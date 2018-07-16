@@ -2,7 +2,12 @@
   "name": "voorhoede-dragonfly",
   "version": "1.0.0",
   "description": "Website for De Voorhoede",
-  "author": "De Voorhoede",
+  "author": "De Voorhoede (https://www.voorhoede.nl)",
+  "homepage": "https://github.com/voorhoede/voorhoede-dragonfly#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/voorhoede/voorhoede-dragonfly"
+  },
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -13,13 +18,13 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "nuxt": "^1.0.0"
+    "nuxt": "1.0.0"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.1",
-    "eslint": "^4.15.0",
-    "eslint-friendly-formatter": "^3.0.0",
-    "eslint-loader": "^1.7.1",
-    "eslint-plugin-vue": "^4.0.0"
+    "babel-eslint": "8.2.1",
+    "eslint": "4.15.0",
+    "eslint-friendly-formatter": "3.0.0",
+    "eslint-loader": "1.7.1",
+    "eslint-plugin-vue": "4.0.0"
   }
 }
