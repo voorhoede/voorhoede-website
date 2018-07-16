@@ -20,3 +20,11 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
+
+
+## Usefull links
+
+* [localhost:3000](http://localhost:3000)
+* [Dato cms](https://voorhoede-dragonfly-cms.admin.datocms.com/editor)
+* [Deployed site](https://voorhoede-dragonfly.netlify.com)
+* [Netlify project](https://app.netlify.com/sites/voorhoede-dragonfly/overview)
