@@ -2,6 +2,7 @@ import { configure } from '@storybook/vue';
 import { setOptions } from '@storybook/addon-options'
 
 import Vue from 'vue';
+import VueI18n from 'vue-i18n'
 import Vuex from 'vuex'; // Vue plugins
 
 setOptions({
@@ -12,6 +13,7 @@ setOptions({
   downPanelInRight: true,
 })
 
+Vue.use(VueI18n)
 Vue.use(Vuex)
 
 /**

@@ -23,12 +23,10 @@
 </template>
 
 <script>
-import AppLogo from '~/components/AppLogo.vue'
+import { AppLogo } from '~/components'
 
 export default {
-  components: {
-    AppLogo
-  }
+  components: { AppLogo }
 }
 </script>
 
