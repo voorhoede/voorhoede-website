@@ -3,10 +3,10 @@
     <div>
       <app-logo/>
       <h1 class="title">
-        Voorhoede Dragonfly
+        About us
       </h1>
       <h2 class="subtitle">
-        Website for De Voorhoede
+        We are De Voorhoede
       </h2>
     </div>
   </section>
