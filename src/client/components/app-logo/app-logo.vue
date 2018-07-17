@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Logo from '../../assets/images/logo.svg'
+import Logo from '../../static/images/logo.svg'
 
 export default {
   components: { Logo }
