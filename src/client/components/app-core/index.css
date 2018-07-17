@@ -1,7 +1,2 @@
-:root {
-  /* COLORS */
-  --brand-yellow: #ffe400;
-  --html-blue: #070de9;
-  --bg-pastel: #fffed9;
-  --black: #222222;
-}
+@import './_reset.css';
+@import './variables.css';
