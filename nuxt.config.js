@@ -1,8 +1,19 @@
+/**
+ * Use Netlify's URL variable:
+ * @see https://www.netlify.com/docs/continuous-deployment/#build-environment-variables
+ */
+const { NODE_ENV, URL } = process.env
+const baseUrl = URL
+
 module.exports = {
   srcDir: 'src/client',
 
   generate: {
     dir: 'dist/client'
+  },
+
+  env: {
+    baseUrl,
   },
 
   /*
@@ -25,6 +36,11 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
+
+  router: {
+    middleware: ['enforce-trailing-slash', 'meta-canonical'],
+  },
+
   /*
   ** Build configuration
   */
