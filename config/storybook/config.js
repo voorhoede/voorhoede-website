@@ -62,6 +62,7 @@ function importAll (r) {
  * it will cause errors as then Webpack can no longer statically determine required files.
  */
 function loadStories() {
+  importAll(require.context(__dirname, true, /\.stories\.js$/))
   importAll(require.context(`${__dirname}/../../src/client/`, true, /\.stories\.js$/))
 }
 

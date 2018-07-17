@@ -48,6 +48,11 @@ available:
 `start` | Serves production version of client app from (`/dist/`) on [`http://localhost:3278`](http://localhost:3278).
 `new-component` | Creates a new component folder 
 
+## Documentation
+
+All components are documented with a README.md file in their own folder.  
+Other documentation can be found [here](_docs/)
+
 ## Usefull links
 
 * [localhost:3278](http://localhost:3278)
