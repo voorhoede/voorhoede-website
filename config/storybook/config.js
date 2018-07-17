@@ -8,9 +8,9 @@ import Vuex from 'vuex'; // Vue plugins
 setOptions({
   name: 'Voorhoede Dragonfly',
   url: '#',
-  showLeftPanel: true,
-  showDownPanel: true,
-  downPanelInRight: true,
+  showStoriesPanel: true,
+  showAddonPanel: true,
+  addonPanelInRight: true,
 })
 
 Vue.use(VueI18n)

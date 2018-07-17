@@ -5,6 +5,8 @@ import { withKnobs } from '@storybook/addon-knobs/vue'
 import VueI18n from 'vue-i18n'
 // import { action } from '@storybook/addon-actions'
 
+import '../app-core/index.css'
+
 import __NAME_PASCAL__ from './__NAME_KEBAB__.vue'
 import README from './README.md'
 
