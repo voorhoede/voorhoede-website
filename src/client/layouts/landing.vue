@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-default">
+  <div class="layout-landing">
     <app-header />
     <nuxt/>
   </div>
@@ -16,7 +16,7 @@ export default {
 <style>
 @import '../components/app-core/index.css';
 
-.layout-default {
-  background-color: var(--bg-pastel);
+.layout-landing {
+  background-color: var(--white);
 }
 </style>
