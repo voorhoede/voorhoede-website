@@ -1,5 +1,7 @@
 # Forms
 
+Always wrap an `input` in a `label`!
+
 ## Text field
 
 ### Usage
