@@ -9,7 +9,7 @@ Always wrap an `input` in a `label`!
 ```html
 <label>
   <span>Label goes here</span>
-  <input type="text" name="input__field" placeholder="placeholder"/>
+  <input type="text" name="input" placeholder="placeholder"/>
 </label>
 ```
 
@@ -18,12 +18,11 @@ Always wrap an `input` in a `label`!
 ### Usage
 
 ```html
-<div>
-  <label for="select">Label goes here</span>
-  <select type="text" name="select__field" placeholder="placeholder">
+<label>Label goes here</span>
+  <select type="text" name="select">
     <option>Option A</option>
     <option>Option B</option>
     <option>Option C</option>
   </select>
-</div>
+</label>
 ```
