@@ -1,31 +1,51 @@
-.input {
-  margin-top: .9375rem;
-  display: block;
+:root {
+  --form-element-margin: .9375rem;
+  --form-element-space-inbetween: 1.5625rem;
+  --form-element-field-padding: .3125rem;
 }
 
-.input + .input {
-  margin-top: 1.5625rem;
-}
-
-.input__label {
+label {
+  margin-top: var(--form-element-margin);
   display: block;
   color: var(--html-blue);
 }
 
-.input__field {
-  padding: .3125rem 0;
+label + label {
+  margin-top: var(--form-element-space-inbetween);
+}
+
+input {
+  padding: var(--form-element-field-padding) 0;
   display: block;
   width: 100%;
   border: none;
   border-bottom: 1px solid var(--html-blue);
+  display: block;
 }
 
-.input__field:focus {
+input:focus {
   margin-bottom: -1px; /* Decrease the margin-bottom, to prevent jump caused by enlarged border */
   border-bottom-width: 2px;
   outline: none;
 }
 
-.input__field:invalid {
+input:invalid {
   border-color: var(--soft-red);
+}
+
+select {
+  padding: var(--input-spacing) 0;
+  display: block;
+  width: 100%;
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--html-blue);
+  border-radius: 0;
+}
+
+select:focus {
+  margin-bottom: -1px; /* Decrease the margin-bottom, to prevent jump caused by enlarged border */
+  border-bottom-width: 2px;
+  outline: none;
 }

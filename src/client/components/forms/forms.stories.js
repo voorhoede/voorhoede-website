@@ -23,17 +23,26 @@ stories.add(
     i18n: new VueI18n({ locale: 'en' }),
     template: `
       <form>
-        <label class="input">
-          <span class="input__label">Text field</span>
-          <input class="input__field" type="text" placeholder="Placeholder goes here"/>
+        <label>
+          <span>Text field</span>
+          <input type="text" placeholder="Placeholder goes here"/>
         </label>
-        <label class="input">
-          <span class="input__label">Focused text field</span>
-          <input class="input__field" type="text" placeholder="Placeholder goes here" autofocus/>
+        <label>
+          <span>Focused text field</span>
+          <input type="text" placeholder="Placeholder goes here" autofocus/>
         </label>
-        <label class="input">
-          <span class="input__label">Invalid text field</span>
-          <input class="input__field" type="text" pattern="abc" value="def"/>
+        <label>
+          <span>Invalid text field</span>
+          <input type="text" pattern="Should be valid" value="Not valid"/>
+        </label>
+
+        <label>
+          <span>Select an item</span>
+          <select>
+            <option>Option A</option>
+            <option>Option B</option>
+            <option>Option C</option>
+          </select>
         </label>
       </form>
     `
