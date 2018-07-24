@@ -1,0 +1,75 @@
+:root {
+  --grid-flexible-column: 1fr;
+  --grid-flexible-column-half: 0.5fr;
+  --grid-column-set: var(--grid-fixed-column) var(--grid-flexible-column);
+
+  --grid-columns:
+    [page-start page-left-start]
+
+      var(--grid-margin)
+
+      [content-start content-left-start]
+
+        repeat(var(--grid-repeat-columns), var(--grid-column-set)) var(--grid-fixed-column)
+
+        [content-left-end]
+
+          var(--grid-flexible-column-half)
+          [page-left-end page-half page-right-start]
+          var(--grid-flexible-column-half)
+
+        [content-right-start]
+
+        repeat(var(--grid-repeat-columns), var(--grid-column-set)) var(--grid-fixed-column)
+
+      [content-right-end content-end]
+
+      var(--grid-margin)
+
+    [page-right-end page-end];
+}
+
+@media (max-width: 719px) {
+  :root {
+    --grid-margin: 20px;
+    --grid-fixed-column: 20px;
+    --grid-repeat-columns: 3;
+  }
+}
+
+@media (min-width: 720px) {
+  :root {
+    --grid-margin: 40px;
+    --grid-fixed-column: 25px;
+    --grid-repeat-columns: 7;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --grid-margin: 60px;
+    --grid-fixed-column: 35px;
+    --grid-repeat-columns: 11;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --grid-margin: 1fr;
+    --grid-flexible-column: 20.68px;
+    --grid-flexible-column-half: 10.34px;
+    --grid-fixed-column: 35px;
+    --grid-repeat-columns: 11;
+  }
+}
+
+@supports (display: grid) {
+  .grid {
+    display: grid;
+    grid-template-columns: var(--grid-columns);
+  }
+
+  .grid > * {
+    grid-column: content;
+  }
+}

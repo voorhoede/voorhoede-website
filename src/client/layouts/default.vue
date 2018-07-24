@@ -1,15 +1,20 @@
 <template>
   <div class="layout-default">
-    <app-header />
-    <nuxt/>
+    <grid-demo :show="showGrid"/>
+    <app-header class="grid"/>
+    <nuxt class="grid"/>
   </div>
 </template>
 
 <script>
-import { AppHeader } from "~/components";
+import { mapState } from "vuex";
+import { AppHeader, GridDemo } from "~/components";
 
 export default {
-  components: { AppHeader }
+  components: { AppHeader, GridDemo },
+  computed: {
+    ...mapState(['showGrid'])
+  }
 }
 </script>
 
