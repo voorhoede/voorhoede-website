@@ -28,10 +28,6 @@ stories.add(
           <input type="text" placeholder="Placeholder goes here"/>
         </label>
         <label>
-          <span>Focused text field</span>
-          <input type="text" placeholder="Placeholder goes here" autofocus/>
-        </label>
-        <label>
           <span>Invalid text field</span>
           <input type="text" pattern="Should be valid" value="Not valid"/>
         </label>
@@ -39,10 +35,16 @@ stories.add(
         <label>
           <span>Select an item</span>
           <select>
+            <option selected disabled>Select an option</option>
             <option>Option A</option>
             <option>Option B</option>
             <option>Option C</option>
           </select>
+        </label>
+
+        <label>
+          <span>Textarea</span>
+          <textarea placeholder="Placeholder goes here"/>
         </label>
       </form>
     `
