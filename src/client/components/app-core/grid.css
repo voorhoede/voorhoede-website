@@ -1,3 +1,4 @@
+/* stylelint-disable value-list-max-empty-lines, custom-property-empty-line-before, indentation */
 :root {
   --grid-flexible-column: 1fr;
   --grid-flexible-column-half: 0.5fr;

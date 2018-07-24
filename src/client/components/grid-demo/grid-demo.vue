@@ -25,9 +25,9 @@ export default {
 <style>
 :root {
   --grid-demo-margin: #757575;
-  --grid-demo-flex: #E0E0E0;
+  --grid-demo-flex: #e0e0e0;
   --grid-demo-fixed: #616161;
-  --grid-demo-center: #E0E0E0;
+  --grid-demo-center: #e0e0e0;
 }
 
 .grid-demo {

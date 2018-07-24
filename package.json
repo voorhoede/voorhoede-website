@@ -16,8 +16,12 @@
     "build:guide": "build-storybook -c config/storybook -o dist/client/guide/",
     "dev": "PORT=3278 nuxt",
     "guide": "start-storybook -p 3279 -c config/storybook",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint:fix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
+    "lint": "run-s lint:*",
+    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint:css": "stylelint '**/*.{vue,css}'",
+    "lintfix": "run-s lintfix:*",
+    "lintfix:js": "npm run lint:js -- --fix",
+    "lintfix:css": "npm run lint:css -- --fix",
     "new-component": "node _scripts/new-component/index.js --component",
     "precommit": "npm run lint",
     "proxy": "ngrok http 3278",
@@ -43,6 +47,9 @@
     "nuxt-i18n": "4.1.0",
     "postcss-custom-properties": "7.0.0",
     "storybook-readme": "3.3.0",
+    "stylelint": "9.3.0",
+    "stylelint-config-standard": "18.2.0",
+    "stylelint-processor-html": "1.0.0",
     "vue-svg-loader": "0.5.0"
   }
 }
