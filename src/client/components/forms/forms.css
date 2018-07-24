@@ -75,3 +75,7 @@ textarea:focus {
   border-bottom-width: 2px;
   outline: none;
 }
+
+textarea:invalid {
+  border-bottom-color: var(--soft-red);
+}

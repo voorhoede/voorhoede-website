@@ -46,6 +46,11 @@ stories.add(
           <span>Textarea</span>
           <textarea placeholder="Placeholder goes here"/>
         </label>
+
+        <label>
+          <span>Invalid textarea</span>
+          <textarea placeholder="Placeholder goes here" required></textarea>
+        </label>
       </form>
     `
   }),
