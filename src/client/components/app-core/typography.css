@@ -1,4 +1,5 @@
 .hero {
+  font-family: var(--font-sans);
   font-size: 3.75rem; /* 60px */
   font-weight: 700;
   line-height: 1.0166666667; /* 61px */
@@ -6,6 +7,7 @@
 }
 
 .sub-title {
+  font-family: var(--font-sans);
   font-size: 1.3125rem; /* 21px */
   font-weight: 400;
   line-height: 1.2380952381; /* 26px */
@@ -13,6 +15,7 @@
 }
 
 .testimonial {
+  font-family: var(--font-sans);
   font-size: 1.8125rem; /* 29px */
   font-weight: 400;
   line-height: 1.4482758621; /* 42px */
@@ -20,6 +23,7 @@
 }
 
 .sub-title-2 {
+  font-family: var(--font-sans);
   font-size: 1.25rem; /* 20px */
   font-weight: 400;
   line-height: 1.4; /* 28px */
@@ -27,6 +31,7 @@
 }
 
 .pullquote {
+  font-family: var(--font-sans);
   font-size: 1.125rem; /* 18px */
   font-weight: 400;
   line-height: 1.3888888889; /* 25px */
@@ -34,6 +39,7 @@
 }
 
 .h1 {
+  font-family: var(--font-sans);
   font-size: 2.4375rem; /* 39px */
   font-weight: 700;
   line-height: 1.1282051282; /* 44px */
@@ -41,6 +47,7 @@
 }
 
 .h2 {
+  font-family: var(--font-sans);
   font-size: 1.9375rem; /* 31px */
   font-weight: 700;
   line-height: 1.2903225806; /* 40px */
@@ -48,6 +55,7 @@
 }
 
 .h3 {
+  font-family: var(--font-sans);
   font-size: 1.5rem; /* 24px */
   font-weight: 700;
   line-height: 1.2083333333; /* 29px */
@@ -55,6 +63,7 @@
 }
 
 .h4 {
+  font-family: var(--font-sans);
   font-size: 1.125rem; /* 18px */
   font-weight: 700;
   line-height: 1.1111111111; /* 20px */
@@ -62,6 +71,7 @@
 }
 
 .h5 {
+  font-family: var(--font-sans);
   font-size: 0.75rem; /* 12px */
   font-weight: 700;
   line-height: 1.3333333333; /* 16px */
@@ -70,6 +80,7 @@
 }
 
 .body-big {
+  font-family: var(--font-sans);
   font-size: 1.125rem; /* 18px */
   font-weight: 400;
   line-height: 1.6666666667; /* 30px */
@@ -77,6 +88,7 @@
 }
 
 .body {
+  font-family: var(--font-sans);
   font-size: 1rem; /* 16px */
   font-weight: 400;
   line-height: 1.5625; /* 25px */
@@ -84,6 +96,7 @@
 }
 
 .body-petite {
+  font-family: var(--font-sans);
   font-size: 0.875rem; /* 14px */
   font-weight: 400;
   line-height: 1.5; /* 21px */
@@ -91,6 +104,7 @@
 }
 
 .body-detail {
+  font-family: var(--font-sans);
   font-size: 0.75rem; /* 12px */
   font-weight: 400;
   line-height: 1.5; /* 18px */
