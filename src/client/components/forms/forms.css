@@ -1,0 +1,31 @@
+.input {
+  margin-top: .9375rem;
+  display: block;
+}
+
+.input + .input {
+  margin-top: 1.5625rem;
+}
+
+.input__label {
+  display: block;
+  color: var(--html-blue);
+}
+
+.input__field {
+  padding: .3125rem 0;
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--html-blue);
+}
+
+.input__field:focus {
+  margin-bottom: -1px; /* Decrease the margin-bottom, to prevent jump caused by enlarged border */
+  border-bottom-width: 2px;
+  outline: none;
+}
+
+.input__field:invalid {
+  border-color: var(--soft-red);
+}
