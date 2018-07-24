@@ -20,6 +20,6 @@ stories.add(
   'App Header',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
-    template: `<app-header/>`,
+    template: '<app-header/>',
   }),
 )

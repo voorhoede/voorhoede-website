@@ -17,7 +17,7 @@ import { AppLogo } from '~/components'
 
 export default {
   layout: 'landing',
-  components: { AppLogo }
+  components: { AppLogo },
 }
 </script>
 

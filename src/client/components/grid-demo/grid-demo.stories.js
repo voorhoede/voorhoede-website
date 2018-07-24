@@ -20,7 +20,7 @@ stories.add(
   'Grid Demo',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
-    template: `<grid-demo show/>`,
+    template: '<grid-demo show/>',
   }),
 )
 

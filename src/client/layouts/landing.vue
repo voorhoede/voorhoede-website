@@ -13,8 +13,8 @@ import { AppHeader, GridDemo } from '~/components'
 export default {
   components: { AppHeader, GridDemo },
   computed: {
-    ...mapState(['showGrid'])
-  }
+    ...mapState(['showGrid']),
+  },
 }
 </script>
 
