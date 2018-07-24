@@ -1,10 +1,10 @@
 # Forms
 
+## Usage
+
 Always wrap an `input` in a `label`!
 
-## Text field
-
-### Usage
+### Text field
 
 ```html
 <label>
@@ -13,9 +13,7 @@ Always wrap an `input` in a `label`!
 </label>
 ```
 
-## Select field
-
-### Usage
+### Select field
 
 ```html
 <label>Label goes here</span>
@@ -26,3 +24,10 @@ Always wrap an `input` in a `label`!
   </select>
 </label>
 ```
+
+### Textarea
+
+<label>
+  <span>Label goes here</span>
+  <textarea></textarea>
+</label>
