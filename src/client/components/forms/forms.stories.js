@@ -52,6 +52,6 @@ stories.add(
           <textarea placeholder="Placeholder goes here" required></textarea>
         </label>
       </form>
-    `
+    `,
   }),
 )

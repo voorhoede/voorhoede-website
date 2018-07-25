@@ -2,6 +2,7 @@
   --form-element-margin: .9375rem;
   --form-element-space-inbetween: 1.5625rem;
   --form-element-padding: .3125rem;
+  --form-select-caret-width: 11px;
   /* Before and after's don't work on select elements, so that's why we're using a background for the caret */
   --form-select-caret: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 6"%3e%3cpath fill="%23070de9" d="M5.487 5.22L10.4.42H.573l4.914 4.8z" /%3e%3c/svg%3e');
 }
@@ -46,7 +47,7 @@ select {
   display: block;
   width: 100%;
   background: var(--form-select-caret);
-  background-size: auto 5px;
+  background-size: var(--form-select-caret-width);
   background-repeat: no-repeat;
   background-position: 100%;
   border: none;
