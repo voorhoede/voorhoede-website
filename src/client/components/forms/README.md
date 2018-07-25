@@ -27,7 +27,9 @@ Always wrap an `input` in a `label`!
 
 ### Textarea
 
+```html
 <label>
   <span>Label goes here</span>
   <textarea></textarea>
 </label>
+```
