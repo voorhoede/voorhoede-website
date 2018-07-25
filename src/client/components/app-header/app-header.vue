@@ -3,8 +3,7 @@
     <div class="app-header__content">
       <div class="app-header__home-link">
         <nuxt-link to="/">
-          <app-logo/>
-          <p class="h4">De Voorhoede</p>
+          <app-logo showText/>
         </nuxt-link>
       </div>
       <div class="app-header__link-lists body-petite">
@@ -55,15 +54,21 @@ export default {
   align-items: center;
 }
 
-.app-header__home-link a {
-  display: flex;
-  text-decoration: none;
+.app-header__home-link svg {
+  width: auto;
+  height: 1.4375rem; /* 23px */
 }
 
-.app-header__home-link svg {
-  margin-right: .5625rem; /* 9px */
-  width: auto;
-  height: calc(1.125rem * 1.1111111111); /* 20px */
+@media screen and (min-width: 720px) {
+  .app-header__home-link svg {
+    height: 1.625rem; /* 26px */
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .app-header__home-link svg {
+    height: 1.8125rem; /* 29px */
+  }
 }
 
 .app-header__link-lists {
@@ -83,8 +88,14 @@ export default {
 }
 
 .app-header__link {
-  padding: 0 calc(2.1875rem / 2); /* 35px / 2 */
+  padding: 0 calc(.9375rem / 2); /* 15px / 2 */
   font-family: var(--font-sans);
+}
+
+@media screen and (min-width: 1100px) {
+  .app-header__link {
+    padding: 0 calc(2.1875rem / 2); /* 35px / 2 */
+  }
 }
 
 .app-header__link a {

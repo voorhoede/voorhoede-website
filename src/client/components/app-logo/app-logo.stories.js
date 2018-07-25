@@ -15,9 +15,17 @@ const stories = storiesOf('Components/App Logo', module)
 Vue.component('app-logo', AppLogo)
 
 stories.add(
-  'App Logo',
+  'App Logo without text',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     template: '<app-logo/>',
+  }),
+)
+
+stories.add(
+  'App Logo with text',
+  () => ({
+    i18n: new VueI18n({ locale: 'en' }),
+    template: '<app-logo showText/>',
   }),
 )
