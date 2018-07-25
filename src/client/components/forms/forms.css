@@ -24,6 +24,7 @@ input {
   border: none;
   border-bottom: 1px solid var(--html-blue);
   display: block;
+  font-family: var(--font-sans);
 }
 
 input:focus {
@@ -51,6 +52,7 @@ select {
   border: none;
   border-bottom: 1px solid var(--html-blue);
   border-radius: 0;
+  font-family: var(--font-sans);
   -moz-appearance: none;
   -webkit-appearance: none;
   -webkit-border-radius: 0;
@@ -69,6 +71,7 @@ textarea {
   height: 4rem;
   border: none;
   border-bottom: 1px solid var(--html-blue);
+  font-family: var(--font-sans);
 }
 
 textarea:focus {
