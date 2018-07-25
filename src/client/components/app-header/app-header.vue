@@ -33,14 +33,19 @@ export default {
 </script>
 
 <style>
+:root {
+  --app-header-height: 3.125rem; /* 50px */
+  --app-header-height-large: 4.0625rem; /* 75px */
+}
+
 .app-header {
   border-bottom: 1px solid var(--fog);
-  height: 3.125rem; /* 50px */
+  height: var(--app-header-height);
 }
 
 @media screen and (min-width: 1100px) {
   .app-header {
-    height: 4.0625rem; /* 75px */
+    height: var(--app-header-height-large);
   }
 }
 
@@ -63,7 +68,13 @@ export default {
 
 @media screen and (min-width: 720px) {
   .app-header__home-link svg {
-    height: calc(1.625rem * 1.3461538462); /* 35px */
+    height: calc(1.125rem * 1.3333333333); /* 24px */
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .app-header__home-link svg {
+    height: calc(1.4375rem * 1.3043478261); /* 24px */
   }
 }
 
@@ -102,7 +113,7 @@ export default {
 }
 
 .app-header__languages-list .app-header__link:first-child {
-  padding-right: .5rem;
+  padding-right: .3125rem; /* 5px */
 }
 
 .app-header__languages-list .app-header__link + .app-header__link {
@@ -112,7 +123,7 @@ export default {
 
 .app-header__languages-list .app-header__link + .app-header__link:before {
   content: '|';
-  padding-right: .5rem;
+  padding-right: .3125rem; /* 5px */
   color: var(--html-blue);
 }
 </style>
