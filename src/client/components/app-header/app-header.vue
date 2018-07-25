@@ -66,18 +66,6 @@ export default {
   height: calc(1.125rem * 1.1111111111); /* 20px */
 }
 
-@media screen and (min-width: 720px) {
-  .app-header__home-link svg {
-    height: calc(1.125rem * 1.3333333333); /* 24px */
-  }
-}
-
-@media screen and (min-width: 1100px) {
-  .app-header__home-link svg {
-    height: calc(1.4375rem * 1.3043478261); /* 24px */
-  }
-}
-
 .app-header__link-lists {
   display: flex;
   align-items: center;
