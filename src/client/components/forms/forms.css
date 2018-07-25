@@ -10,6 +10,7 @@ label {
   margin-top: var(--form-element-margin);
   display: block;
   color: var(--html-blue);
+  font-family: var(--font-sans);
 }
 
 label + label {
