@@ -7,19 +7,20 @@ import VueI18n from 'vue-i18n'
 
 import '../app-core/index.css'
 
-import AppHeader from './app-header.vue'
+import GridDemo from './grid-demo.vue'
 import README from './README.md'
 
-const stories = storiesOf('Components/App Header', module)
+const stories = storiesOf('Components/Grid Demo', module)
   .addDecorator(withKnobs)
   .addDecorator(withReadme(README))
 
-Vue.component('app-header', AppHeader)
+Vue.component('grid-demo', GridDemo)
 
 stories.add(
-  'App Header',
+  'Grid Demo',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
-    template: '<app-header/>',
+    template: '<grid-demo show/>',
   }),
 )
+

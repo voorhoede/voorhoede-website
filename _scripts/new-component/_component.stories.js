@@ -20,6 +20,6 @@ stories.add(
   '__NAME_START__',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
-    template: `<__NAME_KEBAB__/>`,
+    template: '<__NAME_KEBAB__/>',
   }),
 )
