@@ -8,12 +8,12 @@
       </div>
       <div class="app-header__link-lists body-petite">
         <ul class="app-header__link-list">
-          <li v-for="link in links" class="app-header__link"><nuxt-link :to="link.slug">{{ link.title }}</nuxt-link></li>
+          <li v-for="link in links" class="app-header__link"><nuxt-link :to="link.href">{{ link.title }}</nuxt-link></li>
         </ul>
         <ul class="app-header__languages-list">
-          <li v-for="locale in locales" :class="`app-header__link ${locale.url === currentUrl ? 'font-bold' : '' }`">
-            <span v-if="locale.url === currentUrl">{{ locale.title }}</span>
-            <nuxt-link v-else :to="locale.url">{{ locale.title }}</nuxt-link>
+          <li v-for="language in languages" :class="`app-header__link ${language.href === currentUrl ? 'font-bold' : '' }`">
+            <span v-if="language.href === currentUrl">{{ language.locale }}</span>
+            <nuxt-link v-else :to="language.href">{{ language.locale }}</nuxt-link>
           </li>
         </ul>
       </div>
@@ -28,7 +28,7 @@ export default {
   components: { AppLogo },
   props: {
     currentUrl: String,
-    locales: Array,
+    languages: Array,
     links: Array,
   },
 }
