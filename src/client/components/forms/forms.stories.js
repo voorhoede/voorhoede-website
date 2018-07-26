@@ -23,17 +23,17 @@ stories.add(
     i18n: new VueI18n({ locale: 'en' }),
     template: `
       <form>
-        <label class="body-petite">
-          <span>Text field</span>
+        <label>
+          <span class="body-petite">Text field</span>
           <input class="body" type="text" placeholder="Placeholder goes here"/>
         </label>
-        <label class="body-petite">
-          <span>Invalid text field</span>
+        <label>
+          <span class="body-petite">Invalid text field</span>
           <input class="body" type="text" pattern="Should be valid" value="Not valid"/>
         </label>
 
-        <label class="body-petite">
-          <span>Select an item</span>
+        <label>
+          <span class="body-petite">Select an item</span>
           <select class="body">
             <option selected disabled>Select an option</option>
             <option>Option A</option>
@@ -42,14 +42,14 @@ stories.add(
           </select>
         </label>
 
-        <label class="body-petite">
-          <span>Textarea</span>
-          <textarea class="body" placeholder="Placeholder goes here"/>
+        <label>
+          <span class="body-petite">Textarea</span>
+          <textarea rows="3" class="body" placeholder="Placeholder goes here"/>
         </label>
 
-        <label class="body-petite">
-          <span>Invalid textarea</span>
-          <textarea class="body" placeholder="Placeholder goes here" required></textarea>
+        <label>
+          <span class="body-petite">Invalid textarea</span>
+          <textarea rows="3" class="body" placeholder="Placeholder goes here" required></textarea>
         </label>
       </form>
     `,
