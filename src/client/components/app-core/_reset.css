@@ -26,6 +26,10 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
+html {
+  color: var(--black);
+}
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -55,4 +59,8 @@ q::after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+* {
+  color: inherit;
 }

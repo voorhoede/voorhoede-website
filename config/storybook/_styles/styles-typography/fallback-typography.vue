@@ -18,18 +18,18 @@
     <section class="content">
       <div
         v-if="webfont"
-        class="fonts-loaded oxy-font">
+        class="fonts-loaded apercu-font">
+        <p class="body-big spacing">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia ut suscipit vero aliquam dolore, voluptatibus molestias, quis praesentium aspernatur ullam corporis vitae labore earum esse voluptate sequi perspiciatis? Amet, neque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt similique numquam, molestiae, facilis blanditiis ducimus impedit repellat, veritatis fugit ratione delectus obcaecati minus? Commodi, quod? Quis veritatis facere amet doloremque!</p>
         <p class="body spacing">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia ut suscipit vero aliquam dolore, voluptatibus molestias, quis praesentium aspernatur ullam corporis vitae labore earum esse voluptate sequi perspiciatis? Amet, neque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt similique numquam, molestiae, facilis blanditiis ducimus impedit repellat, veritatis fugit ratione delectus obcaecati minus? Commodi, quod? Quis veritatis facere amet doloremque!</p>
-        <p class="body-small spacing">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia ut suscipit vero aliquam dolore, voluptatibus molestias, quis praesentium aspernatur ullam corporis vitae labore earum esse voluptate sequi perspiciatis? Amet, neque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt similique numquam, molestiae, facilis blanditiis ducimus impedit repellat, veritatis fugit ratione delectus obcaecati minus? Commodi, quod? Quis veritatis facere amet doloremque!</p>
-        <p class="body-chart spacing">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia ut suscipit vero aliquam dolore, voluptatibus molestias, quis praesentium aspernatur ullam corporis vitae labore earum esse voluptate sequi perspiciatis? Amet, neque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt similique numquam, molestiae, facilis blanditiis ducimus impedit repellat, veritatis fugit ratione delectus obcaecati minus? Commodi, quod? Quis veritatis facere amet doloremque!</p>
+        <p class="body-petite spacing">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia ut suscipit vero aliquam dolore, voluptatibus molestias, quis praesentium aspernatur ullam corporis vitae labore earum esse voluptate sequi perspiciatis? Amet, neque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt similique numquam, molestiae, facilis blanditiis ducimus impedit repellat, veritatis fugit ratione delectus obcaecati minus? Commodi, quod? Quis veritatis facere amet doloremque!</p>
         <p class="body-detail spacing">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia ut suscipit vero aliquam dolore, voluptatibus molestias, quis praesentium aspernatur ullam corporis vitae labore earum esse voluptate sequi perspiciatis? Amet, neque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt similique numquam, molestiae, facilis blanditiis ducimus impedit repellat, veritatis fugit ratione delectus obcaecati minus? Commodi, quod? Quis veritatis facere amet doloremque!</p>
       </div>
       <div
         v-if="fallbackfont"
         class="fallback-font">
+        <p class="body-big spacing">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia ut suscipit vero aliquam dolore, voluptatibus molestias, quis praesentium aspernatur ullam corporis vitae labore earum esse voluptate sequi perspiciatis? Amet, neque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt similique numquam, molestiae, facilis blanditiis ducimus impedit repellat, veritatis fugit ratione delectus obcaecati minus? Commodi, quod? Quis veritatis facere amet doloremque!</p>
         <p class="body spacing">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia ut suscipit vero aliquam dolore, voluptatibus molestias, quis praesentium aspernatur ullam corporis vitae labore earum esse voluptate sequi perspiciatis? Amet, neque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt similique numquam, molestiae, facilis blanditiis ducimus impedit repellat, veritatis fugit ratione delectus obcaecati minus? Commodi, quod? Quis veritatis facere amet doloremque!</p>
-        <p class="body-small spacing">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia ut suscipit vero aliquam dolore, voluptatibus molestias, quis praesentium aspernatur ullam corporis vitae labore earum esse voluptate sequi perspiciatis? Amet, neque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt similique numquam, molestiae, facilis blanditiis ducimus impedit repellat, veritatis fugit ratione delectus obcaecati minus? Commodi, quod? Quis veritatis facere amet doloremque!</p>
-        <p class="body-chart spacing">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia ut suscipit vero aliquam dolore, voluptatibus molestias, quis praesentium aspernatur ullam corporis vitae labore earum esse voluptate sequi perspiciatis? Amet, neque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt similique numquam, molestiae, facilis blanditiis ducimus impedit repellat, veritatis fugit ratione delectus obcaecati minus? Commodi, quod? Quis veritatis facere amet doloremque!</p>
+        <p class="body-petite spacing">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia ut suscipit vero aliquam dolore, voluptatibus molestias, quis praesentium aspernatur ullam corporis vitae labore earum esse voluptate sequi perspiciatis? Amet, neque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt similique numquam, molestiae, facilis blanditiis ducimus impedit repellat, veritatis fugit ratione delectus obcaecati minus? Commodi, quod? Quis veritatis facere amet doloremque!</p>
         <p class="body-detail spacing">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia ut suscipit vero aliquam dolore, voluptatibus molestias, quis praesentium aspernatur ullam corporis vitae labore earum esse voluptate sequi perspiciatis? Amet, neque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt similique numquam, molestiae, facilis blanditiis ducimus impedit repellat, veritatis fugit ratione delectus obcaecati minus? Commodi, quod? Quis veritatis facere amet doloremque!</p>
       </div>
     </section>
@@ -68,13 +68,16 @@ export default {
 }
 
 .fallback-font {
-  font-family: Helvetica, Arial, sans-serif;
   position: absolute;
   top: 0;
   left: 0;
 }
 
-.oxy-font {
+.fallback-font p {
+  font-family: sans-serif !important;
+}
+
+.apercu-font {
   position: absolute;
 }
 </style>
