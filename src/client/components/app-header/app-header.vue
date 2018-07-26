@@ -90,6 +90,7 @@ export default {
 .app-header__link {
   padding: 0 calc(.9375rem / 2); /* 15px / 2 */
   font-family: var(--font-sans);
+  color: var(--html-blue);
 }
 
 @media screen and (min-width: 1100px) {
