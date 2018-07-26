@@ -1,3 +1,6 @@
+/*eslint vue/require-default-prop: 0 */
+/*eslint vue/require-prop-types: 0 */
+
 import { configure } from '@storybook/vue';
 import { setOptions } from '@storybook/addon-options'
 
@@ -23,7 +26,7 @@ Vue.use(Vuex)
 Vue.mixin({
   created() {
     this.$route = {}
-  }
+  },
 })
 
 /**

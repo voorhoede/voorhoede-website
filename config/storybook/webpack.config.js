@@ -14,7 +14,7 @@ module.exports = (baseConfig, env, defaultConfig) => {
 
   defaultConfig.module.rules.push({
     test: /\.svg$/,
-    loader: 'vue-svg-loader'
+    loader: 'vue-svg-loader',
   })
 
   return defaultConfig

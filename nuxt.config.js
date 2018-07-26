@@ -2,14 +2,14 @@
  * Use Netlify's URL variable:
  * @see https://www.netlify.com/docs/continuous-deployment/#build-environment-variables
  */
-const { NODE_ENV, URL } = process.env
+const { URL } = process.env
 const baseUrl = URL
 
 module.exports = {
   srcDir: 'src/client',
 
   generate: {
-    dir: 'dist/client'
+    dir: 'dist/client',
   },
 
   env: {
@@ -30,7 +30,7 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'dns-prefetch', href: 'https://www.datocms-assets.com/' },
-    ]
+    ],
   },
   /*
   ** Customize the progress bar color
@@ -46,7 +46,7 @@ module.exports = {
   */
   build: {
     postcss: [
-      require('postcss-custom-properties')()
+      require('postcss-custom-properties')(),
     ],
 
     /*
@@ -63,14 +63,14 @@ module.exports = {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules)/
+          exclude: /(node_modules)/,
         })
       }
 
       config.module.rules.push({
         test: /\.svg$/,
-        loader: 'vue-svg-loader'
+        loader: 'vue-svg-loader',
       });
-    }
-  }
+    },
+  },
 }
