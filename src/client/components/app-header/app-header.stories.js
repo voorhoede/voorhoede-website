@@ -20,6 +20,35 @@ stories.add(
   'App Header',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
-    template: '<app-header/>',
+    data() {
+      return {
+        currentUrl: '/',
+        locales: ['nl', 'en'],
+        links: [
+          {
+            title: 'Services',
+            slug: '/en/services/',
+          },
+          {
+            title: 'Cases',
+            slug: '/en/cases/',
+          },
+          {
+            title: 'Academy',
+            slug: '/en/academy/',
+          },
+          {
+            title: 'About us',
+            slug: '/en/about-us/',
+            button: true,
+          },
+          {
+            title: 'Contact',
+            slug: '/en/contact/',
+          },
+        ],
+      }
+    },
+    template: '<app-header :currentUrl="currentUrl" :links="links" :locales="locales"/>',
   }),
 )

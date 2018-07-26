@@ -8,15 +8,10 @@
       </div>
       <div class="app-header__link-lists body-petite">
         <ul class="app-header__link-list">
-          <li class="app-header__link"><nuxt-link to="/services/">Services</nuxt-link></li>
-          <li class="app-header__link"><nuxt-link to="/cases/">Cases</nuxt-link></li>
-          <li class="app-header__link"><nuxt-link to="/academy/">Academy</nuxt-link></li>
-          <li class="app-header__link"><nuxt-link to="/about-us/">About us</nuxt-link></li>
-          <li class="app-header__link"><nuxt-link to="/contact/">Contact</nuxt-link></li>
+          <li v-for="link in links" class="app-header__link"><nuxt-link :to="link.slug">{{ link.title }}</nuxt-link></li>
         </ul>
         <ul class="app-header__languages-list">
-          <li class="app-header__link"><nuxt-link to="/nl/">NL</nuxt-link></li>
-          <li class="app-header__link"><nuxt-link to="/en/">EN</nuxt-link></li>
+          <li v-for="locale in locales" class="app-header__link"><nuxt-link to="/nl/">{{ locale }}</nuxt-link></li>
         </ul>
       </div>
     </div>
@@ -28,6 +23,11 @@ import { AppLogo } from '~/components'
 
 export default {
   components: { AppLogo },
+  props: {
+    currentUrl: String,
+    locales: Array,
+    links: Array,
+  },
 }
 </script>
 
@@ -110,6 +110,7 @@ export default {
 .app-header__languages-list {
   display: flex;
   align-items: center;
+  text-transform: uppercase;
 }
 
 .app-header__languages-list .app-header__link:first-child {
