@@ -22,8 +22,17 @@ stories.add(
     i18n: new VueI18n({ locale: 'en' }),
     data() {
       return {
-        currentUrl: '/',
-        locales: ['nl', 'en'],
+        currentUrl: '/en/services/',
+        locales: [
+          {
+            title: 'en',
+            url: '/en/services/',
+          },
+          {
+            title: 'nl',
+            url: '/nl/services/',
+          },
+        ],
         links: [
           {
             title: 'Services',

@@ -11,7 +11,10 @@
           <li v-for="link in links" class="app-header__link"><nuxt-link :to="link.slug">{{ link.title }}</nuxt-link></li>
         </ul>
         <ul class="app-header__languages-list">
-          <li v-for="locale in locales" class="app-header__link"><nuxt-link to="/nl/">{{ locale }}</nuxt-link></li>
+          <li v-for="locale in locales" :class="`app-header__link ${locale.url === currentUrl ? 'font-bold' : '' }`">
+            <span v-if="locale.url === currentUrl">{{ locale.title }}</span>
+            <nuxt-link v-else :to="locale.url">{{ locale.title }}</nuxt-link>
+          </li>
         </ul>
       </div>
     </div>
