@@ -23,41 +23,20 @@ stories.add(
     data() {
       return {
         currentUrl: '/en/services/',
-        locales: [
-          {
-            title: 'en',
-            url: '/en/services/',
-          },
-          {
-            title: 'nl',
-            url: '/nl/services/',
-          },
+        languages: [
+          { locale: 'en', href: '/en/services/' },
+          { locale: 'nl', href: '/nl/services/' },
         ],
         links: [
-          {
-            title: 'Services',
-            slug: '/en/services/',
-          },
-          {
-            title: 'Cases',
-            slug: '/en/cases/',
-          },
-          {
-            title: 'Academy',
-            slug: '/en/academy/',
-          },
-          {
-            title: 'About us',
-            slug: '/en/about-us/',
-            button: true,
-          },
-          {
-            title: 'Contact',
-            slug: '/en/contact/',
-          },
+          { title: 'Services', href: '/en/services/' },
+          { title: 'Cases', href: '/en/cases/' },
+          { title: 'Academy', href: '/en/academy/' },
+          { title: 'About us', href: '/en/about-us/',
+            button: true },
+          { title: 'Contact', href: '/en/contact/' },
         ],
       }
     },
-    template: '<app-header :currentUrl="currentUrl" :links="links" :locales="locales"/>',
+    template: '<app-header :currentUrl="currentUrl" :links="links" :languages="languages"/>',
   }),
 )
