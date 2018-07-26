@@ -4,7 +4,7 @@
 ## Usage
 
 ```html
-<app-header :currentUrl="/en/services/" :links=""/>
+<app-header :currentUrl="/en/services/" :languages="languages" :links="links"/>
 
 <script>
 import { AppHeader } from '~/components'
@@ -19,12 +19,12 @@ export default {
         { locale: 'nl', href: '/nl/services/' },
       ],
       links: [
-        { title: 'Services', href: '/en/services/' },
-        { title: 'Cases', href: '/en/cases/' },
-        { title: 'Academy', href: '/en/academy/' },
-        { title: 'About us', href: '/en/about-us/',
+        { title: 'Services', href: '/services/' },
+        { title: 'Cases', href: '/cases/' },
+        { title: 'Academy', href: '/academy/' },
+        { title: 'About us', href: '/about-us/',
           button: true },
-        { title: 'Contact', href: '/en/contact/' },
+        { title: 'Contact', href: '/contact/' },
       ],
     }
   }
