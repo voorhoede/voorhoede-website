@@ -10,7 +10,7 @@
         <ul class="app-header__link-list">
           <li v-for="link in links" class="app-header__link"><nuxt-link :to="link.href">{{ link.title }}</nuxt-link></li>
         </ul>
-        <ul class="app-header__languages-list">
+        <ul class="app-header__link-list app-header__link-list--languages">
           <li v-for="language in languages" :class="`app-header__link ${language.href === currentUrl ? 'font-bold' : '' }`">
             <span v-if="language.href === currentUrl">{{ language.locale }}</span>
             <nuxt-link v-else :to="language.href">{{ language.locale }}</nuxt-link>
@@ -83,6 +83,12 @@ export default {
   display: none;
 }
 
+.app-header__link-list--languages {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+}
+
 @media screen and (min-width: 720px) {
   .app-header__link-list {
     display: flex;
@@ -110,22 +116,16 @@ export default {
   color: var(--active-blue);
 }
 
-.app-header__languages-list {
-  display: flex;
-  align-items: center;
-  text-transform: uppercase;
-}
-
-.app-header__languages-list .app-header__link:first-child {
+.app-header__link-list--languages .app-header__link:first-child {
   padding-right: .3125rem; /* 5px */
 }
 
-.app-header__languages-list .app-header__link + .app-header__link {
+.app-header__link-list--languages .app-header__link + .app-header__link {
   padding-left: 0;
   padding-right: 0;
 }
 
-.app-header__languages-list .app-header__link + .app-header__link:before {
+.app-header__link-list--languages .app-header__link + .app-header__link:before {
   content: '|';
   padding-right: .3125rem; /* 5px */
   color: var(--html-blue);
