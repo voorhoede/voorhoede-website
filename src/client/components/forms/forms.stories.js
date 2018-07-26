@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import { storiesOf } from '@storybook/vue'
 import { withReadme } from 'storybook-readme'
 import { withKnobs } from '@storybook/addon-knobs/vue'
@@ -8,14 +7,11 @@ import VueI18n from 'vue-i18n'
 import '../app-core/index.css'
 import './forms.css'
 
-import Forms from './forms-demo.vue'
 import README from './README.md'
 
 const stories = storiesOf('Components/Forms', module)
   .addDecorator(withKnobs)
   .addDecorator(withReadme(README))
-
-Vue.component('forms', Forms)
 
 stories.add(
   'Forms',
