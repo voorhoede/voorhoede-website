@@ -1,19 +1,19 @@
 <template>
   <nav class="app-header grid">
     <div class="app-header__content">
-      <div class="app-header__home-link">
-        <nuxt-link to="/">
-          <app-logo showText/>
-        </nuxt-link>
-      </div>
+      <nuxt-link class="app-header__home-link" to="/">
+        <app-logo show-text/>
+      </nuxt-link>
       <div class="app-header__link-lists body-petite">
         <ul class="app-header__link-list">
-          <li v-for="link in links" class="app-header__link"><nuxt-link :to="link.href">{{ link.title }}</nuxt-link></li>
+          <li v-for="link in links" :key="link.href" class="app-header__link-list-item">
+            <nuxt-link class="app-header__link" :to="link.href">{{ link.title }}</nuxt-link>
+          </li>
         </ul>
         <ul class="app-header__link-list app-header__link-list--languages">
-          <li v-for="language in languages" :class="`app-header__link ${language.href === currentUrl ? 'font-bold' : '' }`">
+          <li v-for="language in languages" :key="language.locale" :class="`app-header__link-list-item ${language.href === currentUrl ? 'font-bold' : '' }`">
             <span v-if="language.href === currentUrl">{{ language.locale }}</span>
-            <nuxt-link v-else :to="language.href">{{ language.locale }}</nuxt-link>
+            <nuxt-link class="app-header__link" v-else :to="language.href">{{ language.locale }}</nuxt-link>
           </li>
         </ul>
       </div>
@@ -27,10 +27,30 @@ import { AppLogo } from '~/components'
 export default {
   components: { AppLogo },
   props: {
-    currentUrl: String,
-    languages: Array,
-    links: Array,
+    currentUrl: {
+      type: String,
+      default: '/',
+    },
+    languages: {
+      type: Array,
+      default: DefaultLanguages,
+    },
+    links: {
+      type: Array,
+      default: DefaultLinks,
+    },
   },
+}
+
+function DefaultLanguages() {
+  return [
+    { locale: 'en', href: '/en/' },
+    { locale: 'nl', href: '/nl/' },
+  ];
+}
+
+function DefaultLinks() {
+  return [];
 }
 </script>
 
@@ -96,23 +116,23 @@ export default {
   }
 }
 
-.app-header__link {
+.app-header__link-list-item {
   padding: 0 calc(.9375rem / 2); /* 15px / 2 */
   font-family: var(--font-sans);
   color: var(--html-blue);
 }
 
 @media screen and (min-width: 1100px) {
-  .app-header__link {
+  .app-header__link-list-item {
     padding: 0 calc(2.1875rem / 2); /* 35px / 2 */
   }
 }
 
-.app-header__link a {
+.app-header__link {
   text-decoration: none;
 }
 
-.app-header__link a:hover {
+.app-header__link:hover {
   color: var(--active-blue);
 }
 
@@ -120,12 +140,12 @@ export default {
   padding-right: .3125rem; /* 5px */
 }
 
-.app-header__link-list--languages .app-header__link + .app-header__link {
+.app-header__link-list--languages .app-header__link-list-item + .app-header__link-list-item {
   padding-left: 0;
   padding-right: 0;
 }
 
-.app-header__link-list--languages .app-header__link + .app-header__link:before {
+.app-header__link-list--languages .app-header__link-list-item + .app-header__link-list-item:before {
   content: '|';
   padding-right: .3125rem; /* 5px */
   color: var(--html-blue);
