@@ -55,16 +55,13 @@
       },
     },
     computed: {
-      body() {
-        return !this.small
-      },
       primary() {
         return !this.secondary && !this.small
       },
       rootClass() {
         return {
           'app-button': true,
-          'body': this.body,
+          'body': !this.small,
           'body-petite': this.small,
           'app-button--primary': this.primary,
           'app-button--secondary': this.secondary,
@@ -183,7 +180,7 @@
 
   .app-button--yellow:active,
   .app-button--yellow--active {
-    background-color: #e9d100;
+    background-color: var(--active-yellow);
   }
 
   .app-button__svg {
