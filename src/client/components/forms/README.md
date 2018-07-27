@@ -2,10 +2,10 @@
 
 ## Usage
 
-Make sure of the following things when writing a form (following the examples below):
+Make sure of the following guidelines when writing a form (following the examples below):
 1. Always wrap `<input>` elements with the `<label>` element.
 2. Always put the text of the label in a `<span>`, inside the `<label>`.
-3. Put a class on the `<span>` and the `<input>` to apply font-sizes.
+3. Put a class on the `<span>` (`body-petite`) and the `<input>` (`body`) to apply font-sizes.
 
 ### Text field
 
