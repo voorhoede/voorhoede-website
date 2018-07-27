@@ -15,16 +15,16 @@ export default {
     return {
       currentUrl: '/en/services/',
       languages: [
-        { locale: 'en', href: '/en/services/' },
-        { locale: 'nl', href: '/nl/services/' },
+        { locale: 'en', active: true, href: '/en/services/' },
+        { locale: 'nl', active: false, href: '/nl/services/' },
       ],
       links: [
-        { title: 'Services', href: '/services/' },
-        { title: 'Cases', href: '/cases/' },
-        { title: 'Academy', href: '/academy/' },
-        { title: 'About us', href: '/about-us/',
+        { title: 'Services', slug: 'services' },
+        { title: 'Cases', slug: 'cases' },
+        { title: 'Academy', slug: 'academy' },
+        { title: 'About us', slug: 'about-us',
           button: true },
-        { title: 'Contact', href: '/contact/' },
+        { title: 'Contact', slug: 'contact' },
       ],
     }
   }

@@ -24,16 +24,15 @@ stories.add(
       return {
         currentUrl: '/en/services/',
         languages: [
-          { locale: 'en', href: '/en/services/' },
-          { locale: 'nl', href: '/nl/services/' },
+          { locale: 'en', active: true, href: '/en/services/' },
+          { locale: 'nl', active: false, href: '/nl/services/' },
         ],
         links: [
-          { title: 'Services', href: '/en/services/' },
-          { title: 'Cases', href: '/en/cases/' },
-          { title: 'Academy', href: '/en/academy/' },
-          { title: 'About us', href: '/en/about-us/',
-            button: true },
-          { title: 'Contact', href: '/en/contact/' },
+          { title: 'Services', slug: 'services' },
+          { title: 'Cases', slug: 'cases' },
+          { title: 'Academy', slug: 'academy' },
+          { title: 'About us', slug: 'about-us', button: true },
+          { title: 'Contact', slug: 'contact' },
         ],
       }
     },

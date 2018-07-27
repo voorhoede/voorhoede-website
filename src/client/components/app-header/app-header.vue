@@ -7,7 +7,7 @@
       <div class="app-header__link-lists body-petite">
         <ul class="app-header__link-list">
           <li v-for="link in links" :key="link.href" class="app-header__link-list-item">
-            <nuxt-link class="app-header__link" :to="link.href">{{ link.title }}</nuxt-link>
+            <nuxt-link class="app-header__link" :to="`${activeLanguage.locale}/${link.slug}/`">{{ link.title }}</nuxt-link>
           </li>
         </ul>
         <ul class="app-header__link-list app-header__link-list--languages">
@@ -33,24 +33,21 @@ export default {
     },
     languages: {
       type: Array,
-      default: DefaultLanguages,
+      default: () => [
+        { locale: 'en', active: true, href: '/en/' },
+        { locale: 'nl', active: false, href: '/nl/' },
+      ],
     },
     links: {
       type: Array,
-      default: DefaultLinks,
+      default: () => [],
     },
   },
-}
-
-function DefaultLanguages() {
-  return [
-    { locale: 'en', href: '/en/' },
-    { locale: 'nl', href: '/nl/' },
-  ];
-}
-
-function DefaultLinks() {
-  return [];
+  computed: {
+    activeLanguage: function() {
+      return this.languages.find(language => language.active)
+    },
+  },
 }
 </script>
 
