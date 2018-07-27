@@ -1,10 +1,18 @@
 :root {
   /* COLORS */
   --brand-yellow: #ffe400;
+  --active-yellow: #e9d100;
   --html-blue: #070de9;
+  --active-blue: #0005be;
   --bg-pastel: #fffed9;
+  --v-dim: #cccccc;
   --black: #222222;
+  --off-black: #555555;
+  --dim: #888888;
+  --very-dim: #cccccc;
+  --fog: #f6f6f6;
   --white: #ffffff;
+  --soft-red: #ff3e3e;
 
   /* FONTS */
   --font-sans: apercu, sans-serif;
