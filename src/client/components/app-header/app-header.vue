@@ -7,11 +7,11 @@
       <div class="app-header__link-lists body-petite">
         <ul class="app-header__link-list">
           <li v-for="link in links" :key="link.href" class="app-header__link-list-item">
-            <nuxt-link class="app-header__link" :to="`${activeLanguage.locale}/${link.slug}/`">{{ link.title }}</nuxt-link>
+            <nuxt-link class="app-header__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
           </li>
         </ul>
         <ul class="app-header__link-list app-header__link-list--languages">
-          <li v-for="language in languages" :key="language.locale" :class="`app-header__link-list-item ${language.href === currentUrl ? 'font-bold' : '' }`">
+          <li v-for="language in languages" :key="language.locale" :class="createClass(language)">
             <span v-if="language.href === currentUrl">{{ language.locale }}</span>
             <nuxt-link class="app-header__link" v-else :to="language.href">{{ language.locale }}</nuxt-link>
           </li>
@@ -34,8 +34,8 @@ export default {
     languages: {
       type: Array,
       default: () => [
-        { locale: 'en', active: true, href: '/en/' },
-        { locale: 'nl', active: false, href: '/nl/' },
+        { locale: 'en', href: '/en/' },
+        { locale: 'nl', href: '/nl/' },
       ],
     },
     links: {
@@ -44,8 +44,20 @@ export default {
     },
   },
   computed: {
-    activeLanguage: function() {
+    activeLanguage() {
       return this.languages.find(language => language.href === this.currentUrl)
+    },
+  },
+  methods: {
+    createHref(link) {
+      const locale = this.activeLanguage.locale;
+      return `/${locale}/${link.slug}`
+    },
+    createClass(language) {
+      return {
+        'app-header__link-list-item': true,
+        'font-bold': language.href === this.currentUrl,
+      }
     },
   },
 }
