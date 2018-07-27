@@ -24,8 +24,8 @@ stories.add(
       return {
         currentUrl: '/en/services/',
         languages: [
-          { locale: 'en', active: true, href: '/en/services/' },
-          { locale: 'nl', active: false, href: '/nl/services/' },
+          { locale: 'en', href: '/en/services/' },
+          { locale: 'nl', href: '/nl/services/' },
         ],
         links: [
           { title: 'Services', slug: 'services' },

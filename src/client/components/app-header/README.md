@@ -14,17 +14,16 @@ export default {
   data() {
     return {
       currentUrl: '/en/services/',
-      languages: [
-        { locale: 'en', active: true, href: '/en/services/' },
-        { locale: 'nl', active: false, href: '/nl/services/' },
-      ],
       links: [
         { title: 'Services', slug: 'services' },
         { title: 'Cases', slug: 'cases' },
         { title: 'Academy', slug: 'academy' },
-        { title: 'About us', slug: 'about-us',
-          button: true },
+        { title: 'About us', slug: 'about-us', button: true },
         { title: 'Contact', slug: 'contact' },
+      ],
+      languages: [
+        { locale: 'en', href: '/en/services/' },
+        { locale: 'nl', href: '/nl/services/' },
       ],
     }
   }
@@ -52,5 +51,5 @@ The Array of languages contains objects. Each language has an opject with the ne
 
 | key | type | value |
 | --- | --- | --- |
-| href | String | URL to put as href |
 | locale | String | The locale of the language (for example: `en`) |
+| href | String | URL to put as href |

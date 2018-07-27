@@ -45,7 +45,7 @@ export default {
   },
   computed: {
     activeLanguage: function() {
-      return this.languages.find(language => language.active)
+      return this.languages.find(language => language.href === this.currentUrl)
     },
   },
 }
