@@ -92,12 +92,12 @@
 
   .app-button--primary:hover,
   .app-button--primary:focus,
-  .app-button--primary--hover {
+  .app-button--primary.app-button--hover {
     transform: scale(1.03);
   }
 
   .app-button--primary:active,
-  .app-button--primary--active {
+  .app-button--primary.app-button--active {
     background-color: var(--active-blue);
     transform: scale(0.95);
     transition: 100ms transform ease-in-out;
@@ -128,8 +128,8 @@
   .app-button--secondary:hover:after,
   .app-button--secondary:focus:after,
   .app-button--secondary:active:after,
-  .app-button--secondary--hover:after,
-  .app-button--secondary--active:after {
+  .app-button--secondary.app-button--hover:after,
+  .app-button--secondary.app-button--active:after {
     transform: scaleX(1);
   }
 

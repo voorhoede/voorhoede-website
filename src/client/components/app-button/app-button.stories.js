@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/vue'
 import { withReadme } from 'storybook-readme'
 import { text, withKnobs } from '@storybook/addon-knobs/vue'
 import VueI18n from 'vue-i18n'
-// import { action } from '@storybook/addon-actions'
+import { action } from '@storybook/addon-actions'
 
 import '../app-core/index.css'
 
@@ -21,6 +21,9 @@ stories.add(
   'App Button',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
+    methods: {
+      clickHandler: action('Button'),
+    },
     template: `
       <div>
         <h1 class="h1">buttons</h1>
@@ -46,20 +49,20 @@ stories.add(
           <tbody>
             <tr>
               <td style="padding: 1rem; text-align: center;">Buttons</td>
-              <td style="padding: 1rem; text-align: center;"><app-button label="${ text('label', defaultLabel) }" to="" /></td>
-              <td style="padding: 1rem; text-align: center;"><app-button class="app-button--primary--hover" label="${ text('label', defaultLabel) }" to="" /></td>
-              <td style="padding: 1rem; text-align: center;"><app-button class="app-button--primary--active" label="${ text('label', defaultLabel) }" to="" /></td>
-              <td style="padding: 1rem; text-align: center;"><app-button label="${ text('label', defaultLabel) }" to="" disabled /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button label="${ text('label', defaultLabel) }" @click="clickHandler" /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button class="app-button--hover" label="${ text('label', defaultLabel) }" @click="clickHandler" /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button class="app-button--active" label="${ text('label', defaultLabel) }" @click="clickHandler" /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button label="${ text('label', defaultLabel) }" @click="clickHandler" disabled /></td>
             </tr>
             <tr>
               <td style="padding: 1rem; text-align: center;">Links</td>
               <td style="padding: 1rem; text-align: center;"><app-button label="${ text('label', defaultLabel) }" to="#" /></td>
-              <td style="padding: 1rem; text-align: center;"><app-button class="app-button--primary--hover" label="${ text('label', defaultLabel) }" to="#" /></td>
-              <td style="padding: 1rem; text-align: center;"><app-button class="app-button--primary--active" label="${ text('label', defaultLabel) }" to="#" /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button class="app-button--hover" label="${ text('label', defaultLabel) }" to="#" /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button class="app-button--active" label="${ text('label', defaultLabel) }" to="#" /></td>
             </tr>
             <tr>
               <td style="padding: 1rem; text-align: center;">Modifier</td>
-              <td style="padding: 1rem; text-align: center;"><app-button class="app-button--yellow" label="${ text('label', defaultLabel) }" to="" /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button class="app-button--yellow" label="${ text('label', defaultLabel) }" @click="clickHandler" /></td>
             </tr>
           </tbody>
         </table>
@@ -81,16 +84,16 @@ stories.add(
           <tbody>
             <tr>
               <td style="padding: 1rem; text-align: center;">Buttons</td>
-              <td style="padding: 1rem; text-align: center;"><app-button secondary label="${ text('label', defaultLabel) }" to="" /></td>
-              <td style="padding: 1rem; text-align: center;"><app-button secondary class="app-button--secondary--hover" label="${ text('label', defaultLabel) }" to="" /></td>
-              <td style="padding: 1rem; text-align: center;"><app-button secondary class="app-button--secondary--active" label="${ text('label', defaultLabel) }" to="" /></td>
-              <td style="padding: 1rem; text-align: center;"><app-button secondary label="${ text('label', defaultLabel) }" to="" disabled /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button secondary label="${ text('label', defaultLabel) }" @click="clickHandler" /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button secondary class="app-button--hover" label="${ text('label', defaultLabel) }" @click="clickHandler" /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button secondary class="app-button--active" label="${ text('label', defaultLabel) }" @click="clickHandler" /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button secondary label="${ text('label', defaultLabel) }" @click="clickHandler" disabled /></td>
             </tr>
             <tr>
               <td style="padding: 1rem; text-align: center;">Links</td>
               <td style="padding: 1rem; text-align: center;"><app-button secondary label="${ text('label', defaultLabel) }" to="#" /></td>
-              <td style="padding: 1rem; text-align: center;"><app-button secondary class="app-button--secondary--hover" label="${ text('label', defaultLabel) }" to="#" /></td>
-              <td style="padding: 1rem; text-align: center;"><app-button secondary label="${ text('label', defaultLabel) }"  to="#" /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button secondary class="app-button--hover" label="${ text('label', defaultLabel) }" to="#" /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button secondary class="app-button--active" label="${ text('label', defaultLabel) }"  to="#" /></td>
             </tr>
           </tbody>
         </table>
@@ -112,20 +115,20 @@ stories.add(
           <tbody>
             <tr>
               <td style="padding: 1rem; text-align: center;">Buttons</td>
-              <td style="padding: 1rem; text-align: center;"><app-button small label="${ text('label', defaultLabel) }" to="" /></td>
-              <td style="padding: 1rem; text-align: center;"><app-button small class="app-button--small--hover" label="${ text('label', defaultLabel) }" to="" /></td>
-              <td style="padding: 1rem; text-align: center;"><app-button small class="app-button--small--active" label="${ text('label', defaultLabel) }" to="" /></td>
-              <td style="padding: 1rem; text-align: center;"><app-button small label="${ text('label', defaultLabel) }" to="" disabled /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button small label="${ text('label', defaultLabel) }" @click="clickHandler" /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button small class="app-button--hover" label="${ text('label', defaultLabel) }" @click="clickHandler" /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button small class="app-button--active" label="${ text('label', defaultLabel) }" @click="clickHandler" /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button small label="${ text('label', defaultLabel) }" @click="clickHandler" disabled /></td>
             </tr>
             <tr>
               <td style="padding: 1rem; text-align: center;">Links</td>
               <td style="padding: 1rem; text-align: center;"><app-button small label="${ text('label', defaultLabel) }" to="#" /></td>
-              <td style="padding: 1rem; text-align: center;"><app-button small class="app-button--small--hover" label="${ text('label', defaultLabel) }" to="#" /></td>
-              <td style="padding: 1rem; text-align: center;"><app-button small class="app-button--small--active" label="${ text('label', defaultLabel) }" to="#" /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button small class="app-button--hover" label="${ text('label', defaultLabel) }" to="#" /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button small class="app-button--active" label="${ text('label', defaultLabel) }" to="#" /></td>
             </tr>
             <tr>
               <td style="padding: 1rem; text-align: center;">Modifier</td>
-              <td style="padding: 1rem; text-align: center;"><app-button small class="app-button--yellow" label="${ text('label', defaultLabel) }" to="" /></td>
+              <td style="padding: 1rem; text-align: center;"><app-button small class="app-button--yellow" label="${ text('label', defaultLabel) }" @click="clickHandler" /></td>
             </tr>
           </tbody>
         </table>
