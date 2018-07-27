@@ -4,7 +4,7 @@ import readme from './README.md'
 import LazyLoad from './'
 import ResponsiveImage from '../responsive-image'
 
-storiesOf('Lazy load', module)
+storiesOf('Components/Lazy load', module)
   .addDecorator(withReadme(readme))
   .add('Default', () => ({
     components: { ResponsiveImage, LazyLoad },
