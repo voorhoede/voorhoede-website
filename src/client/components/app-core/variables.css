@@ -1,8 +1,11 @@
 :root {
   /* COLORS */
   --brand-yellow: #ffe400;
+  --active-yellow: #e9d100;
   --html-blue: #070de9;
+  --active-blue: #0005be;
   --bg-pastel: #fffed9;
+  --v-dim: #cccccc;
   --black: #222222;
   --white: #ffffff;
 
