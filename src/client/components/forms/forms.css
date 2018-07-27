@@ -26,7 +26,6 @@ textarea {
   padding: 0;
   display: block;
   width: 100%;
-  border: none;
   border-bottom: 1px solid var(--html-blue);
 }
 
@@ -51,9 +50,7 @@ select {
   background-size: var(--form-select-caret-width);
   background-repeat: no-repeat;
   background-position: 100%;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
+  appearance: none;
 }
 
 ::placeholder {

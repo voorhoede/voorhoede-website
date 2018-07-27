@@ -61,6 +61,16 @@ table {
   border-spacing: 0;
 }
 
+input,
+select,
+textarea {
+  border: none;
+}
+
+select {
+  border-radius: 0;
+}
+
 * {
   color: inherit;
   box-sizing: border-box;
