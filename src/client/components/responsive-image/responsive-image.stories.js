@@ -3,7 +3,7 @@ import { withReadme } from 'storybook-readme'
 import readme from './README.md'
 import ResponsiveImage from './'
 
-storiesOf('Responsive image', module)
+storiesOf('Components/Responsive image', module)
   .addDecorator(withReadme(readme))
   .add('Ratio 16x9', () => ({
     components: { ResponsiveImage },
