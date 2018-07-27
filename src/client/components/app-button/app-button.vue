@@ -55,13 +55,17 @@
       },
     },
     computed: {
+      body() {
+        return !this.small
+      },
       primary() {
         return !this.secondary && !this.small
       },
       rootClass() {
         return {
           'app-button': true,
-          'body': true,
+          'body': this.body,
+          'body-petite': this.small,
           'app-button--primary': this.primary,
           'app-button--secondary': this.secondary,
           'app-button--small': this.small,
