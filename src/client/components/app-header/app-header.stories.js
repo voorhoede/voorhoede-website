@@ -31,8 +31,8 @@ stories.add(
           { title: 'Services', slug: 'services' },
           { title: 'Cases', slug: 'cases' },
           { title: 'Academy', slug: 'academy' },
-          { title: 'About us', slug: 'about-us', button: true },
-          { title: 'Contact', slug: 'contact' },
+          { title: 'About us', slug: 'about-us' },
+          { title: 'Contact', slug: 'contact', button: true },
         ],
       }
     },

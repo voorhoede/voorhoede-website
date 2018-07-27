@@ -7,7 +7,8 @@
       <div class="app-header__link-lists body-petite">
         <ul class="app-header__link-list">
           <li v-for="link in links" :key="link.href" class="app-header__link-list-item">
-            <nuxt-link class="app-header__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
+            <app-button small v-if="link.button" :label="link.title" :to="createHref(link)"/>
+            <nuxt-link v-else class="app-header__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
           </li>
         </ul>
         <ul class="app-header__link-list app-header__link-list--languages">
@@ -22,10 +23,10 @@
 </template>
 
 <script>
-import { AppLogo } from '~/components'
+import { AppButton, AppLogo } from '~/components'
 
 export default {
-  components: { AppLogo },
+  components: { AppButton, AppLogo },
   props: {
     currentUrl: {
       type: String,
