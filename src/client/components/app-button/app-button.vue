@@ -87,7 +87,7 @@
     border-radius: 3px;
     width: 100%;
     min-width: 14.375rem;
-    padding: 0.75rem 1.5625rem;
+    padding: .75rem 1.5625rem;
     transition: 200ms transform ease-in-out;
   }
 
@@ -100,7 +100,7 @@
   .app-button--primary:active,
   .app-button--primary.app-button--active {
     background-color: var(--active-blue);
-    transform: scale(0.95);
+    transform: scale(.95);
     transition: 100ms transform ease-in-out;
   }
 
@@ -115,7 +115,7 @@
     color: var(--html-blue);
   }
 
-  .app-button--secondary:after {
+  .app-button--secondary::after {
     content: '';
     display: block;
     width: 100%;
@@ -126,11 +126,11 @@
     transition: 200ms transform ease-in-out;
   }
 
-  .app-button--secondary:hover:after,
-  .app-button--secondary:focus:after,
-  .app-button--secondary:active:after,
-  .app-button--secondary.app-button--hover:after,
-  .app-button--secondary.app-button--active:after {
+  .app-button--secondary:hover::after,
+  .app-button--secondary:focus::after,
+  .app-button--secondary:active::after,
+  .app-button--secondary.app-button--hover::after,
+  .app-button--secondary.app-button--active::after {
     transform: scaleX(1);
   }
 
@@ -149,7 +149,7 @@
     color: var(--white);
     background: var(--html-blue);
     border-radius: 3px;
-    padding: 0.375rem 0.9375rem;
+    padding: .375rem .9375rem;
     transition: 200ms transform ease-in-out;
   }
 
@@ -162,7 +162,7 @@
   .app-button--small:active,
   .app-button--small--active {
     background-color: var(--active-blue);
-    transform: scale(0.9);
+    transform: scale(.9);
     transition: 100ms transform ease-in-out;
   }
 
