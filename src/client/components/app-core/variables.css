@@ -16,4 +16,15 @@
 
   /* FONTS */
   --font-sans: apercu, sans-serif;
+
+  /* SPACING */
+  --spacing-tiny: 5px;
+  --spacing-smaller: 10px;
+  --spacing-small: 15px;
+  --spacing-medium: 25px;
+  --spacing-large: 35px;
+  --spacing-larger: 55px;
+  --spacing-big: 75px;
+  --spacing-bigger: 110px;
+  --spacing-huge: 150px;
 }
