@@ -4,32 +4,20 @@
 ## Usage
 
 ```html
-<app-header :currentUrl="/en/services/" :languages="languages" :links="links"/>
-
-<script>
-import { AppHeader } from '~/components'
-
-export default {
-  components: { AppHeader },
-  data() {
-    return {
-      currentUrl: '/en/services/',
-      links: [
-        { title: 'Services', slug: 'services' },
-        { title: 'Cases', slug: 'cases' },
-        { title: 'Academy', slug: 'academy' },
-        { title: 'About us', slug: 'about-us', button: true },
-        { title: 'Contact', slug: 'contact' },
-      ],
-      languages: [
-        { locale: 'en', href: '/en/services/' },
-        { locale: 'nl', href: '/nl/services/' },
-      ],
-    }
-  }
-}
-</script>
-```
+<app-header
+  :currentUrl="/en/services/"
+  :links:="[
+    { title: 'Services', slug: 'services' },
+    { title: 'Cases', slug: 'cases' },
+    { title: 'Academy', slug: 'academy' },
+    { title: 'About us', slug: 'about-us', button: true },
+    { title: 'Contact', slug: 'contact' },
+  ]",
+  :languages="[
+    { locale: 'en', href: '/en/services/' },
+    { locale: 'nl', href: '/nl/services/' },
+  ]"
+/>
 
 ## Props
 
