@@ -73,7 +73,7 @@ export default {
 <style>
 :root {
   --app-header-height: 3.125rem; /* 50px */
-  --app-header-height-large: 4.0625rem; /* 75px */
+  --app-header-height-large: 4.0625rem; /* 65px */
 }
 
 .app-header {
@@ -108,7 +108,7 @@ export default {
 }
 
 .app-header__link-list-item {
-  padding: 0 calc(.9375rem / 2); /* 15px / 2 */
+  padding: 0 calc(var(--spacing-xs) / 2); /* 15px / 2 */
   font-family: var(--font-sans);
   color: var(--html-blue);
 }
@@ -121,8 +121,8 @@ export default {
   color: var(--active-blue);
 }
 
-.app-header__link-list--languages .app-header__link:first-child {
-  padding-right: .3125rem; /* 5px */
+.app-header__link-list--languages .app-header__link-list-item {
+  padding-right: var(--spacing-xxxs); /* 5px */
 }
 
 .app-header__link-list--languages .app-header__link-list-item + .app-header__link-list-item {
@@ -132,7 +132,7 @@ export default {
 
 .app-header__link-list--languages .app-header__link-list-item + .app-header__link-list-item::before {
   content: '|';
-  padding-right: .3125rem; /* 5px */
+  padding-right: var(--spacing-xxxs);
   color: var(--html-blue);
 }
 
@@ -157,7 +157,11 @@ export default {
   }
 
   .app-header__link-list-item {
-    padding: 0 calc(2.1875rem / 2); /* 35px / 2 */
+    padding: 0 calc(var(--spacing-m) / 2);
+  }
+
+  .app-header__link-list--languages .app-header__link-list-item {
+    padding-right: var(--spacing-xxxs);
   }
 }
 
