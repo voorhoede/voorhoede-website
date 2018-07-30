@@ -61,10 +61,6 @@ export default {
   }
 
   @media screen and (min-width: 720px) {
-    .page-header {
-      z-index: -1; /* Make sure page-header doens't overlap content */
-    }
-
     .page-header__fill {
       height: 100vh;
       grid-column: page-right;
