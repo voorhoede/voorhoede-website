@@ -45,6 +45,7 @@ textarea:invalid {
 
 select {
   border-radius: 0;
+
   /* Before and after's don't work on select elements, so that's why we're using a background for the caret */
   background: var(--form-select-caret);
   background-size: var(--form-select-caret-width);
