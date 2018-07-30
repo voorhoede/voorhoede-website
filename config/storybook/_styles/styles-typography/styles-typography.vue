@@ -279,7 +279,7 @@
     <p class="body">
       These are the different classes you can use to modify the typography.
     </p>
-        <table
+    <table
       id="type-table"
       class="fonts-loaded body">
       <tr>
