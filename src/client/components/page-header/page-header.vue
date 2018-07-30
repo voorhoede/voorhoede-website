@@ -43,7 +43,6 @@ export default {
 
   .page-header__curly-bracket-grid {
     width: 100%;
-    height: 100%;
     position: absolute;
     top: 0;
   }
@@ -60,7 +59,6 @@ export default {
     position: relative;
     top: calc(-1 * var(--spacing-larger));
   }
-
 
   @media screen and (min-width: 720px) {
     .page-header {
