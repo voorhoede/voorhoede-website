@@ -108,7 +108,7 @@ export default {
 }
 
 .app-header__link-list-item {
-  padding: 0 calc(var(--spacing-xs) / 2); /* 15px / 2 */
+  padding: 0 calc(var(--spacing-small) / 2);
   font-family: var(--font-sans);
   color: var(--html-blue);
 }
@@ -122,7 +122,7 @@ export default {
 }
 
 .app-header__link-list--languages .app-header__link-list-item {
-  padding-right: var(--spacing-xxxs); /* 5px */
+  padding-right: var(--spacing-tiny);
 }
 
 .app-header__link-list--languages .app-header__link-list-item + .app-header__link-list-item {
@@ -132,7 +132,7 @@ export default {
 
 .app-header__link-list--languages .app-header__link-list-item + .app-header__link-list-item::before {
   content: '|';
-  padding-right: var(--spacing-xxxs);
+  padding-right: var(--spacing-tiny);
   color: var(--html-blue);
 }
 
@@ -157,11 +157,11 @@ export default {
   }
 
   .app-header__link-list-item {
-    padding: 0 calc(var(--spacing-m) / 2);
+    padding: 0 calc(var(--spacing-large) / 2);
   }
 
   .app-header__link-list--languages .app-header__link-list-item {
-    padding-right: var(--spacing-xxxs);
+    padding-right: var(--spacing-tiny);
   }
 }
 
