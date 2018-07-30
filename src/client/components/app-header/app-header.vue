@@ -12,7 +12,14 @@
           </li>
         </ul>
         <ul class="app-header__link-list app-header__link-list--languages">
-          <li v-for="language in languages" :key="language.locale" :class="createClass(language)">
+          <li
+            v-for="language in languages"
+            :key="language.locale"
+            :class="{
+              'app-header__link-list-item': true,
+              'font-bold': language.href === currentUrl,
+            }"
+          >
             <span v-if="language.href === currentUrl">{{ language.locale }}</span>
             <nuxt-link class="app-header__link" v-else :to="language.href">{{ language.locale }}</nuxt-link>
           </li>
@@ -51,14 +58,8 @@ export default {
   },
   methods: {
     createHref(link) {
-      const locale = this.activeLanguage.locale;
+      const locale = this.activeLanguage.locale
       return `/${locale}/${link.slug}`
-    },
-    createClass(language) {
-      return {
-        'app-header__link-list-item': true,
-        'font-bold': language.href === this.currentUrl,
-      }
     },
   },
 }
