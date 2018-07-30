@@ -38,7 +38,11 @@ module.exports = {
   loading: { color: '#070de9' },
 
   router: {
-    middleware: ['enforce-trailing-slash', 'meta-canonical'],
+    middleware: [
+      'redirect-to-locale',
+      'enforce-trailing-slash',
+      'meta-canonical',
+    ],
   },
 
   /*
@@ -70,7 +74,7 @@ module.exports = {
       config.module.rules.push({
         test: /\.svg$/,
         loader: 'vue-svg-loader',
-      });
+      })
     },
   },
 }

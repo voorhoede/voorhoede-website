@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import { AppHeader, GridDemo } from '~/components';
+import { mapState } from 'vuex'
+import { AppHeader, GridDemo } from '~/components'
 
 export default {
   components: { AppHeader, GridDemo },
