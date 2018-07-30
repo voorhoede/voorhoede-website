@@ -1,7 +1,7 @@
 <template>
   <section class="page-about-us">
     <div>
-      <app-logo/>
+      <img src="/images/logo.svg">
       <h1 class="title">
         About us
       </h1>
@@ -11,14 +11,6 @@
     </div>
   </section>
 </template>
-
-<script>
-import { AppLogo } from '~/components'
-
-export default {
-  components: { AppLogo },
-}
-</script>
 
 <style>
 .page-about-us {

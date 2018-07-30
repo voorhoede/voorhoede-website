@@ -1,7 +1,7 @@
 <template>
   <section class="page-index">
     <div>
-      <app-logo/>
+      <img src="/images/logo.svg">
       <h1 class="title">
         Voorhoede Dragonfly
       </h1>
@@ -13,11 +13,8 @@
 </template>
 
 <script>
-import { AppLogo } from '~/components'
-
 export default {
   layout: 'landing',
-  components: { AppLogo },
 }
 </script>
 
