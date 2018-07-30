@@ -30,31 +30,50 @@ export default {
 }
 
 @supports (display: grid) {
+  .page-header {
+    display: block;
+    position: relative;
+  }
+
+  .page-header__fill {
+    height: 50vh;
+    background: var(--brand-yellow);
+    grid-column: page;
+  }
+
+  .page-header__curly-bracket-grid {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+  }
+
+  .page-header__curly-bracket-column {
+    grid-column: page;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .page-header__curly-bracket {
+    height: 50vh;
+    position: relative;
+    top: calc(-1 * var(--spacing-larger));
+  }
+
+
   @media screen and (min-width: 720px) {
     .page-header {
-      display: block;
-      position: relative;
       z-index: -1; /* Make sure page-header doens't overlap content */
     }
 
     .page-header__fill {
       height: 100vh;
-      background: var(--brand-yellow);
       grid-column: page-right;
-    }
-
-    .page-header__curly-bracket-grid {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
     }
 
     .page-header__curly-bracket-column {
       grid-column-end: 32;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
     }
 
     .page-header__curly-bracket {
@@ -63,6 +82,7 @@ export default {
       display: block;
       height: 100vh;
       flex-grow: 1;
+      top: 0;
     }
   }
 
