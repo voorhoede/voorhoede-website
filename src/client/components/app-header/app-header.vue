@@ -14,6 +14,6 @@
 }
 
 .app-header__link {
-  padding: 0.5em;
+  padding: .5em;
 }
 </style>

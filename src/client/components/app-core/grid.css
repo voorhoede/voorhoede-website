@@ -1,9 +1,8 @@
-/* stylelint-disable value-list-max-empty-lines, custom-property-empty-line-before, indentation */
+/* stylelint-disable value-list-max-empty-lines, custom-property-empty-line-before */
 :root {
   --grid-flexible-column: 1fr;
-  --grid-flexible-column-half: 0.5fr;
+  --grid-flexible-column-half: .5fr;
   --grid-column-set: var(--grid-fixed-column) var(--grid-flexible-column);
-
   --grid-columns:
     [page-start page-left-start]
 
