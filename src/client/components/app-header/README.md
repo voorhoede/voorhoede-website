@@ -16,8 +16,9 @@
   :languages="[
     { locale: 'en', href: '/en/services/' },
     { locale: 'nl', href: '/nl/services/' },
-  ]"
+  ]",
 />
+```
 
 ## Props
 
