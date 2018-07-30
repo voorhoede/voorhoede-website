@@ -57,13 +57,16 @@ export default {
     .page-header__bracket-column {
       grid-column-end: 32;
       display: flex;
-      justify-content: flex-end;
+      flex-direction: column;
+      align-items: flex-end;
     }
 
     .page-header__bracket {
       padding-top: calc(var(--spacing-larger) + var(--app-header-height));
-      padding-bottom: var(--spacing-larger);      display: block;
+      padding-bottom: var(--spacing-larger);
+      display: block;
       height: 100%;
+      flex-grow: 1;
     }
   }
 
