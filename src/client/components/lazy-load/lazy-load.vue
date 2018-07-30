@@ -41,7 +41,7 @@ export default {
       this.observer = new IntersectionObserver(this.onIntersection, config)
       this.observer.observe(this.$el)
     },
-    onIntersection (entries, observer) {
+    onIntersection (entries) {
       this.isIntersected = entries.some(entry => entry.intersectionRatio > 0)
       if (this.isIntersected) {
         this.unobserve()

@@ -68,11 +68,6 @@ export default {
 <style>
 @import '../app-core/variables.css';
 
-.responsive-image {
-  /* Needs to be changed when we have spacer variables */
-  margin-bottom: 16px;
-}
-
 .responsive-image__sizer {
   margin-left: auto;
   margin-right: auto;
@@ -86,7 +81,7 @@ export default {
   width: 100%;
 }
 
-.responsive-image__img:before {
+.responsive-image__img::before {
   content: "";
   display: block;
   position: absolute;
@@ -97,7 +92,7 @@ export default {
   background-color: var(--bg-pastel);
 }
 
-.responsive-image__img:after {
+.responsive-image__img::after {
   content: attr(alt);
   display: block;
   position: absolute;
@@ -108,7 +103,7 @@ export default {
 
 .responsive-image__caption {
   /* Needs to be changed when we have spacer variables */
-  margin-top: 8px;
+  margin-top: .5rem;
   text-align: center;
 }
 </style>
