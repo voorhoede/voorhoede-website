@@ -2,7 +2,7 @@
   <nav class="app-header">
     <ul class="app-header__link-list">
       <li class="app-header__link"><nuxt-link to="/">Home</nuxt-link></li>
-      <li class="app-header__link"><nuxt-link to="/about-us/">About us</nuxt-link></li>
+      <li class="app-header__link"><nuxt-link to="/contact/">Contact</nuxt-link></li>
     </ul>
   </nav>
 </template>
