@@ -36,7 +36,7 @@ export default {
   left: 0;
   width: 100%;
   display: none;
-  opacity: 0.5;
+  opacity: .5;
 }
 
 .grid-demo--show {

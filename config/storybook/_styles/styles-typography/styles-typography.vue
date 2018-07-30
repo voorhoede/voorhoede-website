@@ -392,7 +392,7 @@ function debounce(callback, wait, context = this) {
 #type-table tr td:last-child dl {
   display: grid;
   grid-column-gap: 1rem;
-  grid-row-gap: 0.5rem;
+  grid-row-gap: .5rem;
   grid-template-columns: max-content max-content max-content max-content;
 }
 
