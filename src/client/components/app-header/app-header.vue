@@ -17,10 +17,10 @@
             :key="language.locale"
             :class="{
               'app-header__link-list-item': true,
-              'font-bold': language.href === currentUrl,
+              'font-bold': language.locale === activeLanguage.locale,
             }"
           >
-            <span v-if="language.href === currentUrl">{{ language.locale }}</span>
+            <span v-if="language.locale === activeLanguage.locale">{{ language.locale }}</span>
             <nuxt-link class="app-header__link" v-else :to="language.href">{{ language.locale }}</nuxt-link>
           </li>
         </ul>
@@ -53,7 +53,12 @@ export default {
   },
   computed: {
     activeLanguage() {
-      return this.languages.find(language => language.href === this.currentUrl)
+      const trailingSlashRegex = /\/$/;
+      const currentUrl = this.currentUrl.replace(trailingSlashRegex, '')
+
+      return this.languages.find(language => {
+        return language.href.replace(trailingSlashRegex, '') === currentUrl
+      })
     },
   },
   methods: {

@@ -22,7 +22,7 @@ stories.add(
     i18n: new VueI18n({ locale: 'en' }),
     data() {
       return {
-        currentUrl: '/en/services/',
+        currentUrl: '/en/services',
         languages: [
           { locale: 'en', href: '/en/services/' },
           { locale: 'nl', href: '/nl/services/' },
