@@ -102,8 +102,7 @@ export default {
 }
 
 .responsive-image__caption {
-  /* Needs to be changed when we have spacer variables */
-  margin-top: .5rem;
+  margin-top: var(--spacing-smaller);
   text-align: center;
 }
 </style>
