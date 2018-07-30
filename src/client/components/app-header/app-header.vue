@@ -2,7 +2,7 @@
   <nav class="app-header grid">
     <div class="app-header__content">
       <nuxt-link class="app-header__home-link" to="/">
-        <img class="app-header__logo" src="/images/logo-with-text.svg"/>
+        <img class="app-header__logo" src="/images/logo-with-text.svg">
       </nuxt-link>
       <div class="app-header__link-lists body-petite">
         <ul class="app-header__link-list">
@@ -26,7 +26,7 @@
 import { AppButton } from '~/components'
 
 export default {
-  components: { AppButton, },
+  components: { AppButton },
   props: {
     currentUrl: {
       type: String,
