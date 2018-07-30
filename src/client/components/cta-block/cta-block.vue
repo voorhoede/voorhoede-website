@@ -34,7 +34,8 @@
 
 <style>
   .cta-block {
-    padding-bottom: var(--spacing-large);
+    padding-top: var(--spacing-large);
+    padding-bottom: var(--spacing-larger);
     border-top: 1px solid var(--very-dim);
     text-align: center;
   }

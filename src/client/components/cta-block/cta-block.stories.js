@@ -24,11 +24,13 @@ stories.add(
       clickHandler: action('Button'),
     },
     template: `
-      <cta-block
-        title="${ text('title', 'got a project you need to bring to life?') }"
-        ctaLabel="${ text('ctaLabel', 'Drop us a line') }"
-        ctaTo="http://google.nl"
-      />
+      <div style="margin-top: 55px;">
+        <cta-block
+          title="${ text('title', 'got a project you need to bring to life?') }"
+          ctaLabel="${ text('ctaLabel', 'Drop us a line') }"
+          ctaTo="http://google.nl"
+        />
+      </div>
     `,
   }),
 )
