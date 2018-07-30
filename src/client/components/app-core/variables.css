@@ -18,13 +18,13 @@
   --font-sans: apercu, sans-serif;
 
   /* SPACING */
-  --spacing-xxxs: 5px;
-  --spacing-xxs: 10px;
-  --spacing-xs: 15px;
-  --spacing-s: 25px;
-  --spacing-m: 35px;
-  --spacing-l: 55px;
-  --spacing-xl: 75px;
-  --spacing-xxl: 110px;
-  --spacing-xxxl: 150px;
+  --spacing-tiny: 5px;
+  --spacing-smaller: 10px;
+  --spacing-small: 15px;
+  --spacing-medium: 25px;
+  --spacing-large: 35px;
+  --spacing-larger: 55px;
+  --spacing-big: 75px;
+  --spacing-bigger: 110px;
+  --spacing-huge: 150px;
 }
