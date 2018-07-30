@@ -3,19 +3,39 @@ const curry = require('lodash/fp/curry')
 const staticDir = 'src/client/static'
 const dataDir = `${staticDir}/data`
 
-const downloadData = curry((dato, root, i18n, locales, page, fn) => {
+const isPublished = (item) => item.published
+
+const downloadSingleItem = curry((dato, root, i18n, locales, page, fn) => {
   locales.forEach(locale => {
     i18n.locale = locale
     root.createDataFile(`${dataDir}/${locale}/${page}.json`, 'json', fn(dato[page], i18n))
   })
 })
 
+const downloadFilteredCollection = curry((dato, root, i18n, locales, collection, collectionSlug, filterFn, fn) => {
+  locales.forEach(locale => {
+    i18n.locale = locale
+    dato[collection]
+      .filter(filterFn)
+      .forEach(item => {
+        root.createDataFile(`${dataDir}/${locale}/${collectionSlug}/${item.slug}.json`, 'json', fn(item, i18n))
+      })
+  })
+})
+
 module.exports = (dato, root, i18n) => {
   try {
-    const downloadPage = downloadData(dato, root, i18n, i18n.availableLocales)
-    const downloadHome = downloadPage('home')
+    const page = downloadSingleItem(dato, root, i18n, i18n.availableLocales)
+    const filteredCollection = downloadFilteredCollection(dato, root, i18n, i18n.availableLocales)
+    const saveHome = page('home')
+    const saveBlog = page('blog')
+    const saveContact = page('contact')
+    const saveBlogPosts = filteredCollection('blogPosts', 'blog', isPublished)
 
-    downloadHome(getHomeData)
+    saveHome(getHomeData)
+    saveBlog(getBlogData)
+    saveContact(getContactData)
+    saveBlogPosts(getBlogPostData)
 
   // Build should fail if dato dump fails
   } catch (error) {
@@ -24,7 +44,18 @@ module.exports = (dato, root, i18n) => {
   }
 }
 
-const getHomeData = (page, i18n) => {
-  console.log(i18n)
-  return { title: page.title, headerTitle: page.headerTitle }
+const getHomeData = ({ title, headerTitle }) => {
+  return { title, headerTitle }
+}
+
+const getBlogData = ({ title }) => {
+  return { title }
+}
+
+const getBlogPostData = ({ title }) => {
+  return { title }
+}
+
+const getContactData = ({ title, subtitle }) => {
+  return { title, subtitle }
 }
