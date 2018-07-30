@@ -2,7 +2,7 @@
   <nav class="app-header grid">
     <div class="app-header__content">
       <nuxt-link class="app-header__home-link" to="/">
-        <app-logo show-text/>
+        <img class="app-header__logo" src="/images/logo-with-text.svg"/>
       </nuxt-link>
       <div class="app-header__link-lists body-petite">
         <ul class="app-header__link-list">
@@ -23,10 +23,10 @@
 </template>
 
 <script>
-import { AppButton, AppLogo } from '~/components'
+import { AppButton } from '~/components'
 
 export default {
-  components: { AppButton, AppLogo },
+  components: { AppButton, },
   props: {
     currentUrl: {
       type: String,
@@ -87,19 +87,19 @@ export default {
   align-items: center;
 }
 
-.app-header__home-link svg {
+.app-header__logo {
   width: auto;
   height: 1.4375rem; /* 23px */
 }
 
 @media screen and (min-width: 720px) {
-  .app-header__home-link svg {
+  .app-header__logo {
     height: 1.625rem; /* 26px */
   }
 }
 
 @media screen and (min-width: 1100px) {
-  .app-header__home-link svg {
+  .app-header__logo {
     height: 1.8125rem; /* 29px */
   }
 }
@@ -155,7 +155,7 @@ export default {
   padding-right: 0;
 }
 
-.app-header__link-list--languages .app-header__link-list-item + .app-header__link-list-item:before {
+.app-header__link-list--languages .app-header__link-list-item + .app-header__link-list-item::before {
   content: '|';
   padding-right: .3125rem; /* 5px */
   color: var(--html-blue);
