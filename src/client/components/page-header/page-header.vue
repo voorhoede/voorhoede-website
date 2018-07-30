@@ -3,10 +3,10 @@
     <div class="page-header__fill-grid grid">
       <div class="page-header__fill"/>
     </div>
-    <div v-if="curlyBracket" class="page-header__bracket-grid grid">
-      <div class="page-header__bracket-column">
-        <!-- TODO: Get curly bracket export from Joshua -->
-        <img class="page-header__bracket" src="/images/temporary-curly-bracket.svg">
+    <div v-if="curlyBracket" class="page-header__curly-bracket-grid grid">
+      <div class="page-header__curly-bracket-column">
+        <!-- TODO: Get curly-bracket export from Joshua -->
+        <img class="page-header__curly-bracket" src="/images/temporary-curly-bracket.svg">
       </div>
     </div>
   </div>
@@ -43,21 +43,21 @@ export default {
       grid-column: page-right;
     }
 
-    .page-header__bracket-grid {
+    .page-header__curly-bracket-grid {
       width: 100%;
       height: 100%;
       position: absolute;
       top: 0;
     }
 
-    .page-header__bracket-column {
+    .page-header__curly-bracket-column {
       grid-column-end: 32;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
     }
 
-    .page-header__bracket {
+    .page-header__curly-bracket {
       padding-top: calc(var(--spacing-larger) + var(--app-header-height));
       padding-bottom: var(--spacing-larger);
       display: block;
@@ -67,13 +67,13 @@ export default {
   }
 
   @media screen and (min-width: 1100px) {
-    .page-header__bracket {
+    .page-header__curly-bracket {
       padding-top: calc(var(--spacing-larger) + var(--app-header-height-large));
     }
   }
 
   @media screen and (min-width: 1200px) {
-    .page-header__bracket-column {
+    .page-header__curly-bracket-column {
       grid-column-end: 48;
     }
   }
