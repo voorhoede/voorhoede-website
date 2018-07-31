@@ -5,8 +5,7 @@
     </div>
     <div v-if="curlyBracket" class="page-header__curly-bracket-grid grid">
       <div class="page-header__curly-bracket-column">
-        <!-- TODO: Get curly-bracket export from Joshua -->
-        <img class="page-header__curly-bracket" src="/images/temporary-curly-bracket.svg">
+        <img class="page-header__curly-bracket" src="/images/curly-bracket.svg">
       </div>
     </div>
   </div>
