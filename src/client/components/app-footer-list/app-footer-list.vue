@@ -50,6 +50,7 @@ export default {
 .footer-list__title {
   font-family: var(--font-sans);
   font-weight: 700;
+  margin-bottom: 5px;
   color: var(--html-blue);
 }
 
