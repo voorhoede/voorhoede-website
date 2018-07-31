@@ -2,10 +2,9 @@
   /* COLORS */
   --brand-yellow: #ffe400;
   --active-yellow: #e9d100;
-  --html-blue: #070de9;
+  --html-blue: blue;
   --active-blue: #0005be;
   --bg-pastel: #fffed9;
-  --v-dim: #cccccc;
   --black: #222222;
   --off-black: #555555;
   --dim: #888888;
@@ -16,4 +15,15 @@
 
   /* FONTS */
   --font-sans: apercu, sans-serif;
+
+  /* SPACING */
+  --spacing-tiny: 5px;
+  --spacing-smaller: 10px;
+  --spacing-small: 15px;
+  --spacing-medium: 25px;
+  --spacing-large: 35px;
+  --spacing-larger: 55px;
+  --spacing-big: 75px;
+  --spacing-bigger: 110px;
+  --spacing-huge: 150px;
 }
