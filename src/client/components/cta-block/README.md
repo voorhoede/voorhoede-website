@@ -19,4 +19,6 @@ The block contains a title to prompt the user to click the button and a button.
 | title | String | true | A string that is displayed above the cta button |
 | ctaLabel | String | true | A string that is displayed on the button |
 | ctaTo | String | true | A string that is a link |
+| headingClass | String | false | A string that is used as a class on the heading |
+| body | String | false | A body text between the title and the cta button | 
 

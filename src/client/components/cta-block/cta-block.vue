@@ -1,6 +1,12 @@
 <template>
   <section class="cta-block">
-    <h2 class="h4 cta-block__title">{{ title }}</h2>
+    <h2
+      :class="headingClass"
+      class="cta-block__title"
+    >
+      {{ title }}
+    </h2>
+    <p v-if="body !== ''" class="cta-block__body body">{{ body }}</p>
     <app-button
       :label="ctaLabel"
       :to="ctaTo"
@@ -19,6 +25,14 @@
       title: {
         type: String,
         required: true,
+      },
+      headingClass: {
+        type: String,
+        default: 'h4',
+      },
+      body: {
+        type: String,
+        default: '',
       },
       ctaLabel: {
         type: String,
@@ -41,7 +55,10 @@
   }
 
   .cta-block__title {
-    margin-bottom: 25px;
+    margin-bottom: var(--spacing-medium);
   }
 
+  .cta-block__body {
+    margin-bottom: var(--spacing-medium);
+  }
 </style>
