@@ -17,13 +17,23 @@ const stories = storiesOf('Components/Page Header', module)
 Vue.component('page-header', PageHeader)
 
 stories.add(
-  'Page Header',
+  'Page Header - with curly bracket',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     template: `
       <div style="padding-top: var(--spacing-large); background: var(--bg-pastel)">
         <page-header curly-bracket/>
       </div>
+    `,
+  }),
+)
+
+stories.add(
+  'Page Header - without curly bracket',
+  () => ({
+    i18n: new VueI18n({ locale: 'en' }),
+    template: `
+      <page-header/>
     `,
   }),
 )
