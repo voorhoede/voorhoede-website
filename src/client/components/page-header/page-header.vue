@@ -59,6 +59,7 @@ export default {
     overflow: hidden;
   }
 
+  /* Ugly wrapper to prevent horizontal scrolling, while making vertical overflow possible */
   .page-header__curly-bracket-wrapper {
     height: 100%;
     position: relative;
