@@ -37,11 +37,11 @@
       },
     },
     computed: {
-      hasHeading: function () {
-        return !!this.$slots.heading
+      hasHeading() {
+        return 'heading' in this.$slots
       },
-      hasBody: function() {
-        return !!this.$slots.body
+      hasBody() {
+        return 'body' in this.$slots
       },
     },
   }

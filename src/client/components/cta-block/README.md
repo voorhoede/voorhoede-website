@@ -14,7 +14,7 @@ The `body` slot is an optional slot when the `call-to-action` needs more informa
   ctaTo="https://voorhoede.nl"
 >
   <template slot="heading">
-    <h2 class="h4">got a project you need to bring to life?</h2>
+    <h2 class="h4">Got a project you need to bring to life?</h2>
   </template>
   <template slot="body">
     <p class="body">For us, that’s about technology and user experience. Fast, available for all, enjoyable to use. And fun to build. This is how our team bands together, adhering to the same values, to make sure we achieve a solid result for clients both large and small. Does that fit you?</p>
