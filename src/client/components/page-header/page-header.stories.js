@@ -20,6 +20,10 @@ stories.add(
   'Page Header',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
-    template: '<page-header curly-bracket/>',
+    template: `
+      <div style="margin-top: var(--spacing-large)">
+        <page-header curly-bracket/>
+      </div>
+    `,
   }),
 )
