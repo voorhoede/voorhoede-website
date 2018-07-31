@@ -5,18 +5,19 @@
 
 ```html
 <app-header
-  :currentUrl="/en/services/"
-  :links:="[
+  :currentUrl="'/en/services/'"
+  :links="[
     { title: 'Services', slug: 'services' },
     { title: 'Cases', slug: 'cases' },
     { title: 'Academy', slug: 'academy' },
     { title: 'About us', slug: 'about-us', button: true },
     { title: 'Contact', slug: 'contact' },
-  ]",
+  ]"
   :languages="[
     { locale: 'en', href: '/en/services/' },
     { locale: 'nl', href: '/nl/services/' },
-  ]",
+  ]"
+  :current-locale="'en'"
 />
 ```
 
@@ -27,6 +28,7 @@
 | currentUrl | String | The URL of the current page |
 | links | Array | List of links to render. |
 | languages | Array | List of available languages |
+| current-locale | String | The current locale |
 
 The Array of links contains objects. Each link has an opject with the next keys and values:
 
