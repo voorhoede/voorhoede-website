@@ -29,8 +29,12 @@ export default {
   computed: {
     ...mapState(['showGrid']),
     currentUri() {
-      const [,, uri] = /(\/[\w]+\/)(.+)/.exec(this.$route.fullPath)
-      return uri
+      try {
+        const [,, uri] = /(\/[\w]+\/)(.+)/.exec(this.$route.fullPath)
+        return uri
+      } catch (e) {
+        return ''
+      }
     },
   },
 }
