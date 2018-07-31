@@ -1,9 +1,14 @@
+const dotenv = require('dotenv-safe')
+
+dotenv.config()
+
 /**
  * Use Netlify's URL variable:
  * @see https://www.netlify.com/docs/continuous-deployment/#build-environment-variables
  */
-const { URL } = process.env
+const { URL, DEFAULT_LOCALE } = process.env
 const baseUrl = URL
+const defaultLocale = DEFAULT_LOCALE
 
 module.exports = {
   srcDir: 'src/client',
@@ -14,6 +19,7 @@ module.exports = {
 
   env: {
     baseUrl,
+    defaultLocale,
   },
 
   /*
