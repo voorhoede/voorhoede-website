@@ -11,10 +11,10 @@
         { title: 'Contact', slug: 'contact', button: true },
       ]"
       :languages="[
-        { locale: 'en', href: `/en/${currentUri}` },
-        { locale: 'nl', href: `/nl/${currentUri}` },
+        { locale: 'en', href: `/en/` },
+        { locale: 'nl', href: `/nl/` },
       ]"
-      :current-locale="$route.params.locale"
+      :current-locale="currentLocale"
       class="grid"/>
     <nuxt class="grid"/>
   </div>
@@ -28,10 +28,10 @@ export default {
   components: { AppHeader, GridDemo },
   computed: {
     ...mapState(['showGrid']),
-    currentUri() {
+    currentLocale() {
       try {
-        const [,, uri] = /(\/[\w]+\/)(.+)/.exec(this.$route.fullPath)
-        return uri
+        const [,, locale] = /(\/)([\w]+)(\/)/.exec(this.$route.fullPath)
+        return locale
       } catch (e) {
         return ''
       }

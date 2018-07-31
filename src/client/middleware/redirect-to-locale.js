@@ -7,8 +7,8 @@ export default function redirectToLocale({ route, redirect }) {
     redirect(301, `/${defaultLocale}/`)
     return
   }
-
-  const [,, locale] = /(\/)([\w]+)/.exec(fullPath)
+  const matches = /(\/)([\w]+)/.exec(fullPath) || []
+  const [,, locale] = matches
   if (availableLocales.indexOf(locale) === -1) {
     redirect(301, `/${defaultLocale}${fullPath}`)
   }

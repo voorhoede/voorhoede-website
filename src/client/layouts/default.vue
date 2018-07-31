@@ -14,7 +14,7 @@
         { locale: 'en', href: `/en/${currentUri}` },
         { locale: 'nl', href: `/nl/${currentUri}` },
       ]"
-      :current-locale="$route.params.locale"
+      :current-locale="currentLocale"
       class="grid"/>
     <nuxt class="grid"/>
   </div>
@@ -28,6 +28,14 @@ export default {
   components: { AppHeader, GridDemo },
   computed: {
     ...mapState(['showGrid']),
+    currentLocale() {
+      try {
+        const [,, locale] = /(\/)([\w]+)(\/)(.+)/.exec(this.$route.fullPath)
+        return locale
+      } catch (e) {
+        return ''
+      }
+    },
     currentUri() {
       try {
         const [,, uri] = /(\/[\w]+\/)(.+)/.exec(this.$route.fullPath)

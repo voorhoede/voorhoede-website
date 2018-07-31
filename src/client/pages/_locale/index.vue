@@ -3,18 +3,23 @@
     <div>
       <img src="/images/logo.svg">
       <h1 class="title">
-        Voorhoede Dragonfly
+        {{ title }}
       </h1>
-      <h2 class="subtitle">
-        Website for De Voorhoede
-      </h2>
+      <h2 class="subtitle" v-html="subtitle" />
     </div>
   </section>
 </template>
 
 <script>
+import getPageData from '../../lib/get-page-data'
+
 export default {
   layout: 'landing',
+  async asyncData({ params }) {
+    const { locale } = params
+    const data = await getPageData({ uri: 'index', locale })
+    return data
+  },
 }
 </script>
 
