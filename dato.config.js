@@ -45,7 +45,7 @@ module.exports = (dato, root, i18n) => {
 
     getPage('home', homeData)('index.json')
     getPage('contact', contactData)('contact.json')
-    getPage('events', eventsData)('academy.json')
+    getPage('eventOverview', eventsData)('academy.json')
     getPage('team', teamData)('about-us.json')
     getPage('work', workData)('cases/index.json')
     getPageEn('blog', blogData)('blog/index.json')
