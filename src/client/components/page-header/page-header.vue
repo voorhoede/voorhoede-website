@@ -5,7 +5,9 @@
     </div>
     <div v-if="curlyBracket" class="page-header__curly-bracket-grid grid">
       <div class="page-header__curly-bracket-column">
-        <img class="page-header__curly-bracket" src="/images/curly-bracket.svg">
+        <div class="page-header__curly-bracket-wrapper">
+          <img class="page-header__curly-bracket" src="/images/curly-bracket.svg">
+        </div>
       </div>
     </div>
   </div>
@@ -54,9 +56,13 @@ export default {
     top: calc(-1 * var(--spacing-large));
     right: 0;
     bottom: calc(-1 * var(--spacing-large));
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .page-header__curly-bracket-wrapper {
+    height: 100%;
+    position: relative;
+    right: calc(-1 * var(--spacing-large));
   }
 
   .page-header__curly-bracket {
@@ -76,6 +82,13 @@ export default {
     .page-header__curly-bracket-column {
       position: static;
       grid-column-end: 32;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .page-header__curly-bracket-wrapper {
+      position: static;
     }
 
     .page-header__curly-bracket {
