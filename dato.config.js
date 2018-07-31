@@ -1,41 +1,61 @@
 const curry = require('lodash/fp/curry')
+const pick = require('lodash/fp/pick')
 
 const staticDir = 'src/client/static'
 const dataDir = `${staticDir}/data`
+const pagesDir = `${dataDir}/pages`
 
+const altLocales = { en: 'nl', nl: 'en' }
 const isPublished = (item) => item.published
+const hasBody = (item) => item.body
 
-const downloadSingleItem = curry((dato, root, i18n, locales, page, fn) => {
+const downloadPage = curry((dato, root, i18n, locales, page, contentFn, file) => {
   locales.forEach(locale => {
     i18n.locale = locale
-    root.createDataFile(`${dataDir}/${locale}/${page}.json`, 'json', fn(dato[page], i18n))
+    root.createDataFile(
+      `${pagesDir}/${locale}/${file}`,
+      'json',
+      contentFn(dato[page], i18n, dato)
+    )
   })
 })
 
-const downloadFilteredCollection = curry((dato, root, i18n, locales, collection, collectionSlug, filterFn, fn) => {
+const downloadCollection = curry((dato, root, i18n, locales, collection, contentFn, filterFn, folder) => {
   locales.forEach(locale => {
     i18n.locale = locale
     dato[collection]
       .filter(filterFn)
       .forEach(item => {
-        root.createDataFile(`${dataDir}/${locale}/${collectionSlug}/${item.slug}.json`, 'json', fn(item, i18n))
+        root.createDataFile(
+          `${pagesDir}/${locale}/${folder}/${item.slug}.json`,
+          'json',
+          contentFn(item, i18n, dato)
+        )
       })
   })
 })
 
 module.exports = (dato, root, i18n) => {
   try {
-    const page = downloadSingleItem(dato, root, i18n, i18n.availableLocales)
-    const filteredCollection = downloadFilteredCollection(dato, root, i18n, i18n.availableLocales)
-    const saveHome = page('home')
-    const saveBlog = page('blog')
-    const saveContact = page('contact')
-    const saveBlogPosts = filteredCollection('blogPosts', 'blog', isPublished)
+    const getPage = downloadPage(dato, root, i18n, i18n.availableLocales)
+    const getPageEn = downloadPage(dato, root, i18n, ['en'])
+    const getCollection = downloadCollection(dato, root, i18n, i18n.availableLocales)
+    const getCollectionEn = downloadCollection(dato, root, i18n, ['en'])
+    const getCollectionNl = downloadCollection(dato, root, i18n, ['nl'])
 
-    saveHome(getHomeData)
-    saveBlog(getBlogData)
-    saveContact(getContactData)
-    saveBlogPosts(getBlogPostData)
+    getPage('home', homeData)('index.json')
+    getPage('contact', contactData)('contact.json')
+    getPage('events', eventsData)('events.json')
+    getPage('team', teamData)('team.json')
+    getPage('work', workData)('portfolio/index.json')
+    getPageEn('blog', blogData)('blog/index.json')
+
+    getCollection('services', servicesData, hasBody)('service')
+    getCollection('projects', portfolioData, isPublished)('portfolio')
+    getCollectionEn('blogPosts', blogPostsData, isPublished)('blog')
+    getCollectionEn('jobs', jobsData, isPublished)('jobs')
+    getCollectionNl('jobs', jobsData, isPublished)('vacatures')
+
 
   // Build should fail if dato dump fails
   } catch (error) {
@@ -44,18 +64,69 @@ module.exports = (dato, root, i18n) => {
   }
 }
 
-const getHomeData = ({ title, headerTitle }) => {
-  return { title, headerTitle }
+function homeData(data, i18n, dato) {
+  const picked = pick(
+    [
+      'title',
+      'subtitle',
+      'headerTitle',
+      'usps',
+      'servicesHeader',
+      'servicesDescription',
+      'clientsTitle',
+    ],
+    data
+  )
+  return {
+    ...picked,
+    canonical: (i18n.locale === 'nl') ? 'https://www.voorhoede.nl/' : false,
+    privacyStatementUrl: dato.home.privacyStatement.url(),
+  }
 }
 
-const getBlogData = ({ title }) => {
-  return { title }
+function contactData(data, i18n, dato) {
+  const altLocale = altLocales[i18n.locale]
+  const picked = pick(['title', 'subtitle'], data)
+  return {
+    ...picked,
+    description: data.social.description,
+    keywords: data.keywords.split(',').map(keyword => keyword.trim()),
+    alternateUrls: i18n.withLocale(altLocale, () => ({
+      [altLocale]: `/${altLocale}/contact/`,
+    })),
+    services: dato.home.services.map(pick(['slug', 'title'])),
+    privacyStatementUrl: dato.home.privacyStatement.url(),
+  }
 }
 
-const getBlogPostData = ({ title }) => {
-  return { title }
+function eventsData(data, i18n, dato) {
+  return pick(['title', 'subtitle'], data)
 }
 
-const getContactData = ({ title, subtitle }) => {
-  return { title, subtitle }
+function blogData(data, i18n, dato) {
+  return pick(['title'], data)
+}
+
+function blogPostsData(data, i18n, dato) {
+  return pick(['title'], data)
+}
+
+function jobsData(data, i18n, dato) {
+  return pick(['title', 'description'], data)
+}
+
+function servicesData(data, i18n, dato) {
+  return pick(['title', 'subtitle'], data)
+}
+
+function portfolioData(data, i18n, dato) {
+  return pick(['title', 'subtitle'], data)
+}
+
+function teamData(data, i18n, dato) {
+  return pick(['title', 'subtitle'], data)
+}
+
+function workData(data, i18n, dato) {
+  return pick(['title', 'subtitle'], data)
 }
