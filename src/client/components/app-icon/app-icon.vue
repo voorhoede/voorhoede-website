@@ -21,8 +21,8 @@
 
 <style scoped>
 .app-icon {
-  width: 1rem;
-  height: 1rem;
+  width: 1em;
+  height: 1em;
   vertical-align: middle;
 }
 </style>

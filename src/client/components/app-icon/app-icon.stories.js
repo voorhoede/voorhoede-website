@@ -40,6 +40,6 @@ stories.add(
       }
     },
     i18n: new VueI18n({ locale: 'en' }),
-    template: '<p> I was hit in the <app-icon :name="name" :alt="alt" /> Awfully hard</p>',
+    template: '<p class="h1"> I was hit in the <app-icon :name="name" :alt="alt" /> Awfully hard</p>',
   }),
 )
