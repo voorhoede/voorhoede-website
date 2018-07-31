@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h5 class="footer-list__title">{{title}}</h5>
+    <h5 class="footer-list__title">{{ title }}</h5>
     <ul class="footer-list">
-      <li  v-for="({target, title}, index) in links"
-            :key="index">
+      <li v-for="({target, title}, index) in links"
+          :key="index">
         <nuxt-link :to="target" class="footer-list__link">
-            {{ title }}
+          {{ title }}
         </nuxt-link>
       </li>
     </ul>
@@ -23,10 +23,10 @@ export default {
       type: Array,
       default: () => [{
         title: 'Services',
-        target: '/services'
+        target: '/services',
       },{
         title: 'Cases',
-        target: '/cases'
+        target: '/cases',
       }],
       validator: (links) => {
         return links.every(link => {
@@ -34,9 +34,9 @@ export default {
             typeof link.title === 'string' &&
             typeof link.target === 'string'
         })
-      }
-    }
-  }
+      },
+    },
+  },
 }
 </script>
 
