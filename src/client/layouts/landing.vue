@@ -1,7 +1,21 @@
 <template>
   <div class="layout-landing">
     <grid-demo :show="showGrid"/>
-    <app-header class="grid"/>
+    <app-header
+      :current-url="$route.fullPath"
+      :links="[
+        { title: 'Services', slug: 'services' },
+        { title: 'Cases', slug: 'cases' },
+        { title: 'Academy', slug: 'academy' },
+        { title: 'About us', slug: 'about-us' },
+        { title: 'Contact', slug: 'contact', button: true },
+      ]"
+      :languages="[
+        { locale: 'en', href: `/en/${currentUri}` },
+        { locale: 'nl', href: `/nl/${currentUri}` },
+      ]"
+      :current-locale="$route.params.locale"
+      class="grid"/>
     <nuxt class="grid"/>
   </div>
 </template>
@@ -14,6 +28,10 @@ export default {
   components: { AppHeader, GridDemo },
   computed: {
     ...mapState(['showGrid']),
+    currentUri() {
+      const [,, uri] = /(\/[\w]+\/)(.+)/.exec(this.$route.fullPath)
+      return uri
+    },
   },
 }
 </script>

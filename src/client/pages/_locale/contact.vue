@@ -1,7 +1,6 @@
 <template>
   <section class="page-contact">
     <div>
-      <app-logo/>
       <h1 class="title">{{ title }}</h1>
       <h2 class="subtitle">{{ subtitle }}</h2>
     </div>
@@ -10,7 +9,6 @@
 
 <script>
 import getPageData from '../../lib/get-page-data'
-import { AppLogo } from '~/components'
 
 export default {
   async asyncData({ params }) {
@@ -18,7 +16,6 @@ export default {
     const data = await getPageData({ uri: 'contact', locale })
     return data
   },
-  components: { AppLogo },
 }
 </script>
 

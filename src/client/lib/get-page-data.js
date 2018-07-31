@@ -1,5 +1,5 @@
 export default function getPageData({ locale, uri }) {
-  const url = `/data/${locale}/${uri}.json`
+  const url = `/data/pages/${locale}/${uri}.json`
 
   if (process.client) {
     // On client load over http
