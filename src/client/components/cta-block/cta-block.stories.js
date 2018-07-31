@@ -17,7 +17,7 @@ const stories = storiesOf('Components/Cta Block', module)
 Vue.component('cta-block', CtaBlock)
 
 stories.add(
-  'Cta Block without body',
+  'Cta Block',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     methods: {
@@ -26,31 +26,16 @@ stories.add(
     template: `
       <div style="margin-top: 55px;">
         <cta-block
-          title="${ text('title', 'got a project you need to bring to life?') }"
           ctaLabel="${ text('ctaLabel', 'Drop us a line') }"
-          ctaTo="http://google.nl"
-        />
-      </div>
-    `,
-  }),
-)
-
-stories.add(
-  'Cta Block with body',
-  () => ({
-    i18n: new VueI18n({ locale: 'en' }),
-    methods: {
-      clickHandler: action('Button'),
-    },
-    template: `
-      <div style="margin-top: 55px; background-color: #fffed9;">
-        <cta-block
-          title="${ text('title', 'got a project you need to bring to life?') }"
-          headingClass="h3"
-          body="${ text('body', 'For us, that’s about technology and user experience. Fast, available for all, enjoyable to use. And fun to build. This is how our team bands together, adhering to the same values, to make sure we achieve a solid result for clients both large and small. Does that fit you?') }"
-          ctaLabel="${ text('ctaLabel', 'Drop us a line') }"
-          ctaTo="http://google.nl"
-        />
+          ctaTo="https://voorhoede.nl"
+        >
+        <template slot="heading">
+          <h2 class="h4">${ text('heading', 'got a project you need to bring to life?') }</h2>
+        </template>
+        <template slot="body">
+          <p class="body">${ text('body', 'For us, that’s about technology and user experience. Fast, available for all, enjoyable to use. And fun to build. This is how our team bands together, adhering to the same values, to make sure we achieve a solid result for clients both large and small. Does that fit you?') }</p>
+        </template>
+        </cta-block>
       </div>
     `,
   }),

@@ -1,12 +1,17 @@
 <template>
   <section class="cta-block">
-    <h2
-      :class="headingClass"
-      class="cta-block__title"
+    <header
+      v-if="hasHeading"
+      class="cta-block__heading"
     >
-      {{ title }}
-    </h2>
-    <p v-if="body !== ''" class="cta-block__body body">{{ body }}</p>
+      <slot name="heading" />
+    </header>
+    <div
+      v-if="hasBody"
+      class="cta-block__body"
+    >
+      <slot name="body" />
+    </div>
     <app-button
       :label="ctaLabel"
       :to="ctaTo"
@@ -22,18 +27,6 @@
       AppButton,
     },
     props: {
-      title: {
-        type: String,
-        required: true,
-      },
-      headingClass: {
-        type: String,
-        default: 'h4',
-      },
-      body: {
-        type: String,
-        default: '',
-      },
       ctaLabel: {
         type: String,
         required: true,
@@ -41,6 +34,14 @@
       ctaTo: {
         type: String,
         required: true,
+      },
+    },
+    computed: {
+      hasHeading: function () {
+        return !!this.$slots.heading
+      },
+      hasBody: function() {
+        return !!this.$slots.body
       },
     },
   }
@@ -54,11 +55,14 @@
     text-align: center;
   }
 
-  .cta-block__title {
+  .cta-block__heading {
     margin-bottom: var(--spacing-medium);
   }
 
   .cta-block__body {
+    max-width: 38.875rem;
+    margin-right: auto;
     margin-bottom: var(--spacing-medium);
+    margin-left: auto;
   }
 </style>
