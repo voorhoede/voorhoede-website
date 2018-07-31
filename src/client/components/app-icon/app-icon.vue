@@ -1,6 +1,6 @@
 <template>
   <img class="app-icon"
-       :src="`/icons/${name}.svg`"
+       :src="`/icons/icon_${name}.svg`"
        :alt="alt">
 </template>
 

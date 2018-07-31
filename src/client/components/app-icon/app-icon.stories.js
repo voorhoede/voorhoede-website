@@ -21,7 +21,7 @@ stories.add(
   () => ({
     data () {
       return {
-        name: text('icon name', 'logo'),
+        name: text('icon name', 'eye-active'),
         alt: text('image alt text', ''),
       }
     },
