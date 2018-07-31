@@ -18,9 +18,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.page-contact {
-  height: 100vh;
-}
-</style>

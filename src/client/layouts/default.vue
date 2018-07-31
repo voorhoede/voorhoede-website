@@ -53,5 +53,6 @@ export default {
 
 .layout-default {
   background-color: var(--bg-pastel);
+  min-height: 100vh;
 }
 </style>
