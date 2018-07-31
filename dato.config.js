@@ -45,13 +45,13 @@ module.exports = (dato, root, i18n) => {
 
     getPage('home', homeData)('index.json')
     getPage('contact', contactData)('contact.json')
-    getPage('events', eventsData)('events.json')
-    getPage('team', teamData)('team.json')
-    getPage('work', workData)('portfolio/index.json')
+    getPage('events', eventsData)('academy.json')
+    getPage('team', teamData)('about-us.json')
+    getPage('work', workData)('cases/index.json')
     getPageEn('blog', blogData)('blog/index.json')
 
-    getCollection('services', servicesData, hasBody)('service')
-    getCollection('projects', portfolioData, isPublished)('portfolio')
+    getCollection('services', servicesData, hasBody)('services')
+    getCollection('projects', portfolioData, isPublished)('cases')
     getCollectionEn('blogPosts', blogPostsData, isPublished)('blog')
     getCollectionEn('jobs', jobsData, isPublished)('jobs')
     getCollectionNl('jobs', jobsData, isPublished)('vacatures')
