@@ -68,6 +68,7 @@ export default {
 
   .page-header__curly-bracket {
     height: 100%;
+    mix-blend-mode: screen;
   }
 
   @media screen and (min-width: 720px) {
