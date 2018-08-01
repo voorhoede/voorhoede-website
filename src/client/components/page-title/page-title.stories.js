@@ -23,10 +23,10 @@ stories.add(
     template: `
       <page-title seo-title="We are De Voorhoede - how can we help">
         <template slot="title">
-          <p>We are De Voorhoede</p>
+          <span>We are De Voorhoede</span>
         </template>
         <template slot="subTitle">
-          <p>How can we help?</p>
+          <span>How can we help?</span>
         </template>
       </page-title>
     `,

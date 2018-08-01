@@ -5,13 +5,15 @@
 
 Provide the page-title component with two slots: the `title` slot, providing the title of the page (previewed small); and the `subTitle` slot, providing the subtitle of the page (previewed large).
 
+Please use `<span>` tags in these slots, since the semantic title written on the page by the `seoTitle` prop.
+
 ```html
-<page-title seo-title="We are De Voorhoede - how can we help?">
+<page-title seo-title="We are De Voorhoede - how can we help">
   <template slot="title">
-    <p>We are De Voorhoede</p>
+    <span>We are De Voorhoede</span>
   </template>
   <template slot="subTitle">
-    <p>How can we help?</p>
+    <span>How can we help?</span>
   </template>
 </page-title>
 ```
