@@ -71,6 +71,29 @@ export default {
     mix-blend-mode: screen;
   }
 
+  @media screen and (min-width: 520px) {
+    .page-header__curly-bracket-grid {
+      display: grid;
+    }
+
+    .page-header__curly-bracket-column {
+      grid-column: content;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .page-header__curly-bracket-wrapper {
+      position: static;
+    }
+
+    .page-header__curly-bracket {
+      display: block;
+      flex-grow: 1;
+      top: 0;
+    }
+  }
+
   @media screen and (min-width: 720px) {
     .page-header__fill {
       height: 100vh;
@@ -84,22 +107,12 @@ export default {
     .page-header__curly-bracket-column {
       position: static;
       grid-column-end: 32;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-    }
-
-    .page-header__curly-bracket-wrapper {
-      position: static;
     }
 
     .page-header__curly-bracket {
       padding-top: calc(var(--spacing-big) + var(--app-header-height));
       padding-bottom: calc(var(--spacing-larger) - var(--spacing-tiny)); /* By design, the bracket should be placed a bit under image of the hero */
-      display: block;
       height: 100vh;
-      flex-grow: 1;
-      top: 0;
     }
   }
 
