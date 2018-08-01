@@ -21,7 +21,9 @@ stories.add(
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     template: `
-      <page-header curly-bracket/>
+      <div style="min-height: 100vh; background: var(--bg-pastel);">
+        <page-header curly-bracket/>
+      </div>
     `,
   }),
 )
