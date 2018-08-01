@@ -1,6 +1,5 @@
 export { default as AppButton } from './app-button'
 export { default as AppHeader } from './app-header'
-export { default as AppLogo } from './app-logo'
 export { default as FixedRatio } from './fixed-ratio'
 export { default as GridDemo } from './grid-demo'
 export { default as LazyLoad } from './lazy-load'
