@@ -1,6 +1,6 @@
 <template>
   <div class="page-title">
-    <h1 class="sr-only">{{ pageTitle }}</h1>
+    <h1 class="sr-only">{{ seoTitle }}</h1>
     <div class="page-title__title sub-title">
       <slot name="title"/>
     </div>
@@ -13,7 +13,7 @@
 <script>
 export default {
   props: {
-    pageTitle: {
+    seoTitle: {
       type: String,
       required: true,
     },
