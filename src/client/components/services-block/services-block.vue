@@ -45,7 +45,7 @@ export default {
 }
 
 .services-block__service + .services-block__service {
-  margin-top: var(--spacing-larger)
+  margin-top: var(--spacing-larger);
 }
 
 .services-block__service-title {
