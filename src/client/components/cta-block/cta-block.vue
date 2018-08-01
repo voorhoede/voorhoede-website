@@ -60,7 +60,6 @@
   }
 
   .cta-block__body {
-    max-width: 38.875rem;
     margin-right: auto;
     margin-bottom: var(--spacing-medium);
     margin-left: auto;
