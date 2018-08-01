@@ -10,6 +10,7 @@
       <ul class="services-block__service-characteristics-list">
         <li
           v-for="characteristic in service.characteristics"
+          :key="characteristic"
           class="services-block__service-characteristic body"
         >{{ characteristic }}</li>
       </ul>
@@ -31,8 +32,8 @@ export default {
     services: {
       type: Array,
       required: true,
-    }
-  }
+    },
+  },
 }
 </script>
 
