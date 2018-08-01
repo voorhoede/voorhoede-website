@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h5 class="footer-list__title">{{ title }}</h5>
+    <h5 class="body footer-list__title">{{ title }}</h5>
     <ul class="footer-list">
       <li v-for="({target, title}, index) in links"
           :key="index"
-          class="footer-list__item">
+          class="footer-list__item body-detail">
         <nuxt-link :to="target" class="footer-list__link">
           {{ title }}
         </nuxt-link>
@@ -34,6 +34,9 @@ export default {
       },{
         title: 'About us',
         target: '/about-us',
+      },{
+        title: 'FAQs',
+        target: '/faq',
       }],
       validator: (links) => {
         return links.every(link => {
@@ -47,25 +50,23 @@ export default {
 }
 </script>
 
-
 <style>
 .footer-list {
   display: flex;
-  flex-direction: row;
+  flex-flow: wrap;
   border-bottom: 1px solid var(--black);
   justify-content: center;
-  padding-bottom: 20px;
+  padding-bottom: calc(var(--spacing-smaller) * 2);
 }
 
 .footer-list__item {
-  margin: 0 20px;
+  margin: 0 var(--spacing-smaller);
 }
 
 .footer-list__title {
-  font-family: var(--font-sans);
   font-weight: 700;
-  margin-bottom: 20px;
   color: var(--html-blue);
+  margin-bottom: calc(var(--spacing-small) / 2);
 }
 
 .footer-list__link {
@@ -78,10 +79,19 @@ export default {
     display: flex;
     flex-direction: column;
     border-bottom: 0;
+    padding-bottom: 0;
   }
 
   .footer-list__item {
-    margin: 0 0;
+    margin: 0 0 15px 0;
+  }
+
+  .footer-list__item:last-of-type {
+    margin: 0 0 0 0;
+  }
+
+  .footer-list__title {
+    margin-bottom: calc(var(--spacing-smaller) * 2 );
   }
 }
 </style>
