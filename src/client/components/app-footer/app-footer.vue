@@ -19,13 +19,13 @@
     </div>
     <div class="footer__column footer__column--right">
       <h5 class="body footer-list__title font-bold">Contact</h5>
-      <div class="body-detail footer-contact__link-list">
-        <nuxt-link target="_blank" :to="`tel:${ tel }`">{{ tel }}</nuxt-link>
-        <nuxt-link target="_blank" :to="`mailto:${ email }`">{{ email }}</nuxt-link>
+      <div class="body-detail footer-list footer-list--border-none footer-list--no-padding">
+        <nuxt-link class="footer-list__item" target="_blank" :to="`tel:${ tel }`">{{ tel }}</nuxt-link>
+        <nuxt-link class="footer-list__item" target="_blank" :to="`mailto:${ email }`">{{ email }}</nuxt-link>
         <nuxt-link
           target="_blank"
           :to="`${ googleMapsLink }`"
-          class="footer-contact__link-address"
+          class="footer-list__item footer-list__item-spaced"
         >
           <span>{{ address }}</span>
           <span>{{ postalCode }}</span>
@@ -47,7 +47,7 @@
         </li>
       </ul>
       <nuxt-link class="body-detail footer__privacy" :to="privacyLink" target="_blank">
-        {{ privacyStatment }}
+        {{ privacyStatement }}
       </nuxt-link>
     </div>
   </footer>
@@ -100,7 +100,7 @@ export default {
       type: String,
       default: '1059 AT Amsterdam',
     },
-    privacyStatment: {
+    privacyStatement: {
       type: String,
       default: '@ De Voorhoede 2018  Privacy statement',
     },
@@ -149,7 +149,7 @@ export default {
   border-top: 1px solid var(--black);
 }
 
-.footer__bottom .footer__bottom-text {
+.footer__bottom-text {
   display: none;
 }
 
@@ -158,32 +158,11 @@ export default {
   text-decoration: none;
 }
 
-.footer-contact__link-list {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  flex-flow: wrap;
-  line-height: 2;
-}
-
-.footer-contact__link-list a {
-  text-decoration: none;
-  padding: 0 var(--spacing-smaller) 0 0;
-}
-
 .footer-icon__list {
   display: flex;
   text-align: center;
   justify-content: space-around;
   margin-bottom: var(--spacing-small);
-}
-
-.footer-contact__link-address {
-  display: flex;
-}
-
-.footer-contact__link-address span {
-  padding-right: var(--spacing-tiny);
 }
 
 .footer-icon__list-item {
@@ -198,7 +177,16 @@ export default {
   padding-bottom: calc(var(--spacing-smaller) * 2);
 }
 
+.footer-list--border-none {
+  border-bottom: 0;
+}
+
+.footer-list--no-padding {
+  padding-bottom: 0;
+}
+
 .footer-list__item {
+  text-decoration: none;
   margin: 0 var(--spacing-smaller);
 }
 
@@ -304,23 +292,6 @@ export default {
       margin-bottom: calc(var(--spacing-smaller) * 2);
     }
 
-    .footer-contact__link-list {
-      flex-direction: column;
-    }
-
-    .footer-contact__link-list a {
-      text-align: right;
-      padding: 0 0 0 0;
-    }
-
-    .footer-contact__link-address {
-      flex-direction: column;
-    }
-
-    .footer-contact__link-address span {
-      padding-right: var(--spacing-tiny);
-    }
-
     .footer-list {
       display: flex;
       flex-direction: column;
@@ -335,6 +306,12 @@ export default {
 
     .footer-list__title {
       margin-bottom: calc(var(--spacing-smaller) * 2);
+    }
+
+    .footer-list__item-spaced span {
+      display: flex;
+      width: 100%;
+      justify-content: flex-end;
     }
   }
 }
