@@ -21,8 +21,8 @@ stories.add(
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     template: `
-      <div style="min-height: 100vh; background: var(--bg-pastel);">
-        <page-header-decoration curly-bracket/>
+      <div style="padding: 5rem 0; background: var(--bg-pastel);">
+        <page-header-decoration style="height: 100vh;" curly-bracket/>
       </div>
     `,
   }),
@@ -32,8 +32,6 @@ stories.add(
   'Page Header - without curly bracket',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
-    template: `
-      <page-header-decoration/>
-    `,
+    template: '<page-header-decoration style="height: 100vh;"/>',
   }),
 )
