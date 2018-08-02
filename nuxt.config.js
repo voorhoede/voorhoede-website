@@ -1,3 +1,5 @@
+const generate = require('./config/nuxt/generate')
+
 const dotenv = require('dotenv-safe')
 
 dotenv.config()
@@ -13,9 +15,7 @@ const defaultLocale = DEFAULT_LOCALE
 module.exports = {
   srcDir: 'src/client',
 
-  generate: {
-    dir: 'dist/client',
-  },
+  generate,
 
   env: {
     baseUrl,
