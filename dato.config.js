@@ -50,7 +50,7 @@ module.exports = (dato, root, i18n) => {
     getPage('work', workData)('cases/index.json')
     getPageEn('blog', blogData)('blog/index.json')
 
-    getCollection('services', servicesData, hasBody)('services')
+    // getCollection('services', servicesData, hasBody)('services')
     getCollection('projects', portfolioData, isPublished)('cases')
     getCollectionEn('blogPosts', blogPostsData, isPublished)('blog')
     getCollectionEn('jobs', jobsData, isPublished)('jobs')
