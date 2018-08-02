@@ -1,10 +1,13 @@
 <template>
   <div class="page-header-decoration grid">
-    <div class="page-header-decoration__fill"/>
+    <div v-if="background" class="page-header-decoration__background"/>
     <div v-if="curlyBracket" class="page-header-decoration__curly-bracket-column">
       <div class="page-header-decoration__curly-bracket-wrapper">
         <img class="page-header-decoration__curly-bracket" src="/images/curly-bracket.svg">
       </div>
+    </div>
+    <div v-if="hasImage" class="page-header-decoration__image">
+      <slot name="image"/>
     </div>
   </div>
 </template>
@@ -12,11 +15,21 @@
 <script>
 export default {
   props: {
-    curlyBracket: {
+    background: {
+      type: Boolean,
       required: false,
       default: false,
-      type: Boolean,
     },
+    curlyBracket: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+  },
+  computed: {
+    hasImage() {
+      return 'image' in this.$slots
+    }
   },
 }
 </script>
@@ -29,14 +42,16 @@ export default {
 @supports (display: grid) {
   .page-header-decoration {
     display: grid;
+    grid-template-rows: var(--spacing-large) 1fr var(--spacing-larger);
     position: relative;
   }
 
-  .page-header-decoration__fill {
+  .page-header-decoration__background {
     background: var(--brand-yellow);
     height: 100%;
     grid-column: page;
-    grid-row: 1;
+    grid-row-start: 1;
+    grid-row-end: 4;
   }
 
   .page-header-decoration__curly-bracket-column {
@@ -61,6 +76,16 @@ export default {
     mix-blend-mode: screen;
   }
 
+  .page-header-decoration__image {
+    grid-column-start: 2;
+    grid-column-end: 24;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
   @media screen and (min-width: 520px) {
     .page-header-decoration__curly-bracket-column {
       grid-column: content;
@@ -78,6 +103,11 @@ export default {
       flex-grow: 1;
       top: 0;
     }
+
+    .page-header-decoration__image {
+      grid-column: content;
+      justify-content: center;
+    }
   }
 
   @media screen and (min-width: 720px) {
@@ -87,8 +117,6 @@ export default {
 
     .page-header-decoration__fill {
       grid-column: page-right;
-      grid-row-start: 1;
-      grid-row-end: 5;
     }
 
     .page-header-decoration__curly-bracket-column {
