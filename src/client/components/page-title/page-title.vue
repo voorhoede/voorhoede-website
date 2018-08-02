@@ -15,6 +15,7 @@ export default {
   props: {
     seoTitle: {
       type: String,
+      default: null,
     },
   },
 }
