@@ -40,7 +40,7 @@ export default {
             typeof service.characteristics === 'object' &&
             typeof service.ctaLink === 'string'
         })
-      }
+      },
     },
   },
 }
