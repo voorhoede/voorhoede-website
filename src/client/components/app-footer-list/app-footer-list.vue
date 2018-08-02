@@ -91,7 +91,7 @@ export default {
   }
 
   .footer-list__title {
-    margin-bottom: calc(var(--spacing-smaller) * 2 );
+    margin-bottom: calc(var(--spacing-smaller) * 2);
   }
 }
 </style>

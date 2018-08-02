@@ -263,7 +263,7 @@ export default {
 
     .footer-contact__header {
       text-align: right;
-      margin-bottom: calc(var(--spacing-smaller) * 2 );
+      margin-bottom: calc(var(--spacing-smaller) * 2);
     }
 
     .footer-contact__link-list {
