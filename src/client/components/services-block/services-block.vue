@@ -1,15 +1,15 @@
 <template>
   <ul class="services-block grid">
     <li
-      v-for="service in services"
-      :key="service.title"
+      v-for="({ title, subtitle, characteristics, ctaLink }) in services"
+      :key="title"
       class="services-block__service"
     >
-      <h3 class="services-block__service-title h5">{{ service.title }}</h3>
-      <h4 class="services-block__service-sub-title h3">{{ service.subTitle }}</h4>
+      <h3 class="services-block__service-title h5">{{ title }}</h3>
+      <h4 class="services-block__service-sub-title h3">{{ subtitle }}</h4>
       <ul class="services-block__service-characteristics-list">
         <li
-          v-for="characteristic in service.characteristics"
+          v-for="characteristic in characteristics"
           :key="characteristic"
           class="services-block__service-characteristic body"
         >{{ characteristic }}</li>
@@ -17,7 +17,7 @@
       <AppButton
         secondary
         label="Learn more"
-        :to="service.ctaLink"
+        :to="ctaLink"
       />
     </li>
   </ul>
@@ -32,6 +32,15 @@ export default {
     services: {
       type: Array,
       required: true,
+      validator: function(services) {
+        return services.every(service => {
+          return service instanceof Object &&
+            typeof service.title === 'string' &&
+            typeof service.subtitle === 'string' &&
+            typeof service.characteristics === 'object' &&
+            typeof service.ctaLink === 'string'
+        })
+      }
     },
   },
 }

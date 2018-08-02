@@ -25,7 +25,7 @@ stories.add(
         :services="[
           {
             title: 'We learn, we train',
-            subTitle: 'Kick-start your project',
+            subtitle: 'Kick-start your project',
             characteristics: [
               'Get a roadmap',
               'Budget indication for your project',
@@ -36,7 +36,7 @@ stories.add(
           },
           {
             title: 'Need a team?',
-            subTitle: 'Your own agile team',
+            subtitle: 'Your own agile team',
             characteristics: [
               'A dedicated team',
               'Scrum master, developers and optional designers',
@@ -47,7 +47,7 @@ stories.add(
           },
           {
             title: 'Need developers?',
-            subTitle: 'Front-end specialists',
+            subtitle: 'Front-end specialists',
             characteristics: [
               'Experts in JavaScript (frameworks), HTML and CSS',
               'Who quickly get the hang of your project',
