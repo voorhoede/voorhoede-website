@@ -139,6 +139,7 @@ export default {
       grid-column-end: 33;
       grid-row-start: 2;
       grid-row-end: 3;
+      justify-content: flex-end;
     }
   }
 
