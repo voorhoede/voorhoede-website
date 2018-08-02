@@ -2,7 +2,7 @@
   <div>
     <h5 class="body footer-list__title">{{ title }}</h5>
     <ul class="footer-list">
-      <li v-for="({target, title}, index) in links"
+      <li v-for="({slug, title}, index) in links"
           :key="index"
           class="footer-list__item body-detail">
         <nuxt-link :to="slug" class="footer-list__link">
@@ -42,7 +42,7 @@ export default {
         return links.every(link => {
           return link instanceof Object &&
             typeof link.title === 'string' &&
-            typeof link.target === 'string'
+            typeof link.slug === 'string'
         })
       },
     },
