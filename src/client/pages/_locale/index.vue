@@ -15,9 +15,10 @@ import getPageData from '../../lib/get-page-data'
 
 export default {
   layout: 'landing',
-  async asyncData({ params }) {
+  async asyncData({ params, store }) {
     const { locale } = params
     const data = await getPageData({ uri: 'index', locale })
+    store.commit('alternateUris/SET_ALTERNATE_URIS', data.alternateUris)
     return data
   },
 }

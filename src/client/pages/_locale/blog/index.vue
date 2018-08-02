@@ -10,9 +10,10 @@
 import getPageData from '../../../lib/get-page-data'
 
 export default {
-  async asyncData({ params }) {
+  async asyncData({ params, store }) {
     const { locale } = params
     const data = await getPageData({ uri: 'blog/index', locale })
+    store.commit('alternateUris/SET_ALTERNATE_URIS', data.alternateUris)
     return data
   },
 }

@@ -11,9 +11,10 @@
 import getPageData from '../../../lib/get-page-data'
 
 export default {
-  async asyncData({ params }) {
+  async asyncData({ params, store }) {
     const { locale, jobs, slug } = params
     const data = await getPageData({ uri: `${jobs}/${slug}`, locale })
+    store.commit('alternateUris/SET_ALTERNATE_URIS', data.alternateUris)
     return data
   },
   validate ({ params }) {
