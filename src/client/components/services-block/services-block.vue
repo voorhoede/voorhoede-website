@@ -63,4 +63,13 @@ export default {
 .services-block .app-button {
   margin-top: var(--spacing-small);
 }
+
+.services-block__service-sub-title::after {
+  margin-top: var(--spacing-small);
+  content: '';
+  display: block;
+  width: var(--spacing-medium);
+  height: 2px;
+  background: var(--html-blue);
+}
 </style>
