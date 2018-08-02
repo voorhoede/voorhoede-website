@@ -96,6 +96,7 @@ export default {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
+      overflow: visible;
     }
 
     .page-header-decoration__curly-bracket-wrapper {
