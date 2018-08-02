@@ -3,7 +3,7 @@
     <ul class="services-block__list grid">
       <li
         v-for="service in services"
-        :key="title"
+        :key="service.ctaLink"
         class="services-block__service"
       >
         <div class="services-block__service-content">
