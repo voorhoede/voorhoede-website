@@ -1,5 +1,4 @@
 const generate = require('./config/nuxt/generate')
-
 const dotenv = require('dotenv-safe')
 
 dotenv.config()

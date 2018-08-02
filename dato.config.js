@@ -1,5 +1,9 @@
+const fs = require('fs')
 const curry = require('lodash/fp/curry')
 const pick = require('lodash/fp/pick')
+const dotenv = require('dotenv-safe')
+
+dotenv.config()
 
 const staticDir = 'src/client/static'
 const dataDir = `${staticDir}/data`
@@ -86,6 +90,8 @@ module.exports = (dato, root, i18n) => {
         { title: 'Contact', slug: 'contact', button: true },
       ],
     })
+
+    fs.writeFileSync(`${__dirname}/${staticDir}/_redirects`, `/\t/${process.env.DEFAULT_LOCALE}/`, 'utf8')
 
   // Build should fail if dato dump fails
   } catch (error) {
