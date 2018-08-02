@@ -138,8 +138,8 @@ export default {
     }
 
     .page-header-decoration__image {
-      grid-column-start: 3;
-      grid-column-end: 31;
+      grid-column-start: 13;
+      grid-column-end: 33;
       grid-row-start: 2;
       grid-row-end: 3;
     }
@@ -150,14 +150,19 @@ export default {
       grid-template-rows: var(--spacing-larger) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
     }
 
-    .page-header-decoration__curly-bracket {
-      padding-top: calc(var(--spacing-larger) + var(--app-header-height-large));
+    .page-header-decoration__image {
+      grid-column-start: 14;
     }
   }
 
   @media screen and (min-width: 1200px) {
     .page-header-decoration__curly-bracket-column {
       grid-column-end: 48;
+    }
+
+    .page-header-decoration__image {
+      grid-column-start: 22;
+      grid-column-end: 49;
     }
   }
 }

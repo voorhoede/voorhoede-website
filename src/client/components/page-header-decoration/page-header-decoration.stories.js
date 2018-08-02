@@ -22,7 +22,7 @@ stories.add(
     i18n: new VueI18n({ locale: 'en' }),
     template: `
       <div style="padding-bottom: 5rem; background: var(--bg-pastel);">
-        <page-header-decoration style="height: 50vh;" curly-bracket background>
+        <page-header-decoration style="height: 100vh;" curly-bracket background>
           <template slot="image">
             <img style="max-width: 100%; max-height: 100%" src="https://www.datocms-assets.com/6068/1529572359-random-image.jpeg" alt="image">
           </template>
