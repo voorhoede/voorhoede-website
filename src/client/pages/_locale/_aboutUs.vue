@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import getPageData from '../../lib/get-page-data'
+import { getPageData } from '../../lib/get-data'
 
 export default {
   async asyncData({ params, store }) {

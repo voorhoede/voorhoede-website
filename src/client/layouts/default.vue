@@ -3,13 +3,7 @@
     <grid-demo :show="showGrid"/>
     <app-header
       :current-url="$route.fullPath"
-      :links="[
-        { title: 'Services', slug: 'services' },
-        { title: 'Cases', slug: 'cases' },
-        { title: 'Academy', slug: 'academy' },
-        { title: 'About us', slug: 'about-us' },
-        { title: 'Contact', slug: 'contact', button: true },
-      ]"
+      :links="localizedMenu"
       :languages="languages"
       :current-locale="currentLocale"
       class="grid"/>
@@ -24,7 +18,7 @@ import { AppHeader, GridDemo } from '~/components'
 export default {
   components: { AppHeader, GridDemo },
   computed: {
-    ...mapState(['showGrid', 'alternateUris']),
+    ...mapState(['showGrid', 'alternateUris', 'menu']),
     languages() {
       return Object.keys(this.alternateUris)
         .reduce((list, key) =>
@@ -50,6 +44,9 @@ export default {
       } catch (e) {
         return ''
       }
+    },
+    localizedMenu() {
+      return this.menu[this.currentLocale]
     },
   },
 }

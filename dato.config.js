@@ -70,6 +70,22 @@ module.exports = (dato, root, i18n) => {
     getCollection('jobs', jobsData, isPublished)({ en:'jobs', nl:'vacatures' })
     getCollectionEn('blogPosts', blogPostsData, isPublished)('blog')
 
+    root.createDataFile(`${dataDir}/menu.json`, 'json', {
+      en: [
+        { title: 'Services', slug: 'services' },
+        { title: 'Cases', slug: 'cases' },
+        { title: 'Academy', slug: 'academy' },
+        { title: 'About Us', slug: 'about-us' },
+        { title: 'Contact', slug: 'contact', button: true },
+      ],
+      nl: [
+        { title: 'Services', slug: 'services' },
+        { title: 'Cases', slug: 'cases' },
+        { title: 'Academy', slug: 'academy' },
+        { title: 'Over Ons', slug: 'over-ons' },
+        { title: 'Contact', slug: 'contact', button: true },
+      ],
+    })
 
   // Build should fail if dato dump fails
   } catch (error) {
