@@ -21,7 +21,7 @@ stories.add(
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     template: `
-      <page-title seo-title="We are De Voorhoede - how can we help">
+      <page-title>
         <template slot="title">
           <span>We are De Voorhoede</span>
         </template>
