@@ -78,7 +78,7 @@ export default {
 
   .page-header-decoration__image {
     grid-column-start: 2;
-    grid-column-end: 24;
+    grid-column-end: 19;
     grid-row-start: 2;
     grid-row-end: 3;
     display: flex;
@@ -87,6 +87,10 @@ export default {
   }
 
   @media screen and (min-width: 520px) {
+    .page-header-decoration {
+      grid-template-rows: var(--spacing-large) 1fr var(--spacing-small);
+    }
+
     .page-header-decoration__curly-bracket-column {
       grid-column: content;
       display: flex;
@@ -106,6 +110,8 @@ export default {
 
     .page-header-decoration__image {
       grid-column: content;
+      grid-column-start: 4;
+      grid-column-end: 16;
       justify-content: center;
     }
   }
@@ -115,8 +121,9 @@ export default {
       grid-template-rows: var(--spacing-big) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
     }
 
-    .page-header-decoration__fill {
+    .page-header-decoration__background {
       grid-column: page-right;
+      grid-row-end: 6;
     }
 
     .page-header-decoration__curly-bracket-column {
@@ -128,6 +135,13 @@ export default {
 
     .page-header-decoration__curly-bracket {
       height: 100%;
+    }
+
+    .page-header-decoration__image {
+      grid-column-start: 3;
+      grid-column-end: 31;
+      grid-row-start: 2;
+      grid-row-end: 3;
     }
   }
 
