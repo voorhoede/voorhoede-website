@@ -42,7 +42,7 @@ export default {
 @supports (display: grid) {
   .page-header-decoration {
     display: grid;
-    grid-template-rows: var(--spacing-large) 1fr var(--spacing-larger);
+    grid-template-rows: calc(var(--app-header-height) + var(--spacing-large)) 1fr var(--spacing-larger);
     position: relative;
   }
 
@@ -88,7 +88,7 @@ export default {
 
   @media screen and (min-width: 520px) {
     .page-header-decoration {
-      grid-template-rows: var(--spacing-large) 1fr var(--spacing-small);
+      grid-template-rows: calc(var(--app-header-height) + var(--spacing-large)) 1fr var(--spacing-small);
     }
 
     .page-header-decoration__curly-bracket-column {
@@ -118,7 +118,7 @@ export default {
 
   @media screen and (min-width: 720px) {
     .page-header-decoration {
-      grid-template-rows: var(--spacing-big) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
+      grid-template-rows: calc(var(--app-header-height) + var(--spacing-big)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
     }
 
     .page-header-decoration__background {
@@ -147,7 +147,7 @@ export default {
 
   @media screen and (min-width: 1100px) {
     .page-header-decoration {
-      grid-template-rows: var(--spacing-larger) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
+      grid-template-rows: calc(var(--app-header-height) + var(--spacing-larger)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
     }
 
     .page-header-decoration__image {
@@ -156,6 +156,10 @@ export default {
   }
 
   @media screen and (min-width: 1200px) {
+    .page-header-decoration {
+      grid-template-rows: calc(var(--app-header-height-large) + var(--spacing-larger)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
+    }
+
     .page-header-decoration__curly-bracket-column {
       grid-column-end: 48;
     }
