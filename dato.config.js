@@ -125,34 +125,34 @@ function contactData(data, i18n, dato) {
   }
 }
 
-function eventsData(data, i18n, dato) {
+function eventsData(data) {
   return pick(['title', 'subtitle'], data)
 }
 
-function blogData(data, i18n, dato) {
+function blogData(data) {
   return pick(['title'], data)
 }
 
-function blogPostsData(data, i18n, dato) {
+function blogPostsData(data) {
   return pick(['title'], data)
 }
 
-function jobsData(data, i18n, dato) {
+function jobsData(data) {
   return pick(['title', 'description'], data)
 }
 
-function servicesData(data, i18n, dato) {
+function servicesData(data) {
   return pick(['title', 'subtitle'], data)
 }
 
-function portfolioData(data, i18n, dato) {
+function portfolioData(data) {
   return pick(['title', 'subtitle'], data)
 }
 
-function teamData(data, i18n, dato) {
+function teamData(data) {
   return pick(['title', 'subtitle'], data)
 }
 
-function workData(data, i18n, dato) {
+function workData(data) {
   return pick(['title', 'subtitle'], data)
 }
