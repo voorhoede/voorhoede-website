@@ -148,16 +148,6 @@ export default {
 
   @media screen and (min-width: 1100px) {
     .page-header-decoration {
-      grid-template-rows: calc(var(--app-header-height) + var(--spacing-larger)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
-    }
-
-    .page-header-decoration__image {
-      grid-column-start: 14;
-    }
-  }
-
-  @media screen and (min-width: 1200px) {
-    .page-header-decoration {
       grid-template-rows: calc(var(--app-header-height-large) + var(--spacing-larger)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
     }
 
