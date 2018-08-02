@@ -1,20 +1,32 @@
 <template>
   <footer class="footer grid">
-    <app-footer-list class="footer__wrapper" />
+    <div class="footer__column">
+      <h5 class="body footer-list__title font-bold">Explore</h5>
+      <ul class="footer-list">
+        <li
+          v-for="({ href, title }, index) in footerExploreLinks"
+          :key="index"
+          class="footer-list__item body-detail"
+        >
+          <nuxt-link :to="href" class="footer-list__link">{{ title }}</nuxt-link>
+        </li>
+      </ul>
+    </div>
     <div class="footer__header">
       <h2 class="h3 footer__header-title">{{ headerTitle }}</h2>
       <img class="footer__header-logo" src="/images/logo--blue.svg">
-      <p class="body">{{ headerSubtitle }}</p>
+      <p class="body font-bold">{{ headerSubtitle }}</p>
     </div>
-    <div class="footer__wrapper footer__wrapper--right">
-      <h5 class="body footer-contact__header">Contact</h5>
+    <div class="footer__column footer__column--right">
+      <h5 class="body footer-list__title font-bold">Contact</h5>
       <div class="body-detail footer-contact__link-list">
         <nuxt-link target="_blank" :to="`tel:${ tel }`">{{ tel }}</nuxt-link>
         <nuxt-link target="_blank" :to="`mailto:${ email }`">{{ email }}</nuxt-link>
         <nuxt-link
           target="_blank"
           :to="`${ googleMapsLink }`"
-          class="footer-contact__link-address">
+          class="footer-contact__link-address"
+        >
           <span>{{ address }}</span>
           <span>{{ postalCode }}</span>
         </nuxt-link>
@@ -22,9 +34,9 @@
     </div>
     <div class="footer__bottom">
       <div class="body-detail footer__bottom-text">
-        <span v-for="( { key, value }, index) in legal" :key="index">
-          {{ key }}: {{ value }}
-        </span>
+        <dl v-for="({ key, value }, index) in legal" :key="index">
+          <dt>{{ key }}</dt>: <dd>{{ value }}</dd>
+        </dl>
       </div>
       <ul class="footer-icon__list">
         <li class="footer-icon__list-item"
@@ -34,21 +46,32 @@
           </nuxt-link>
         </li>
       </ul>
-      <span class="body-detail footer-copyright">{{ copyright }}</span>
+      <nuxt-link class="body-detail footer__privacy" :to="privacyLink" target="_blank">
+        {{ privacyStatment }}
+      </nuxt-link>
     </div>
   </footer>
 </template>
 
 <script>
-import AppFooterList from '../../components/app-footer-list'
 import AppIcon from '../../components/app-icon'
 
 export default {
   components: {
-    AppFooterList,
     AppIcon,
   },
   props: {
+    footerExploreLinks: {
+      type: Array,
+      default: () => [],
+      validator: (links) => {
+        return links.every(link => {
+          return link instanceof Object &&
+            typeof link.title === 'string' &&
+            typeof link.href === 'string'
+        })
+      },
+    },
     headerTitle: {
       type: String,
       default: 'Make it real',
@@ -77,17 +100,17 @@ export default {
       type: String,
       default: '1059 AT Amsterdam',
     },
-    copyright: {
+    privacyStatment: {
       type: String,
       default: '@ De Voorhoede 2018  Privacy statement',
     },
+    privacyLink: {
+      type: String,
+      default: 'https://www.datocms-assets.com/2850/1527667154-de-voorhoede-privacy-statement-nl.pdf',
+    },
     legal: {
       type: Array,
-      default: () => [
-        { key: 'KvK', value: '56017235' },
-        { key: 'BTW', value: 'NL851944620B01' },
-        { key: 'IBAN', value: 'NL20ABNA0442829159' },
-      ],
+      default: () => [],
       validator: (legal) => {
         return legal.every(item => {
           return item instanceof Object &&
@@ -98,12 +121,7 @@ export default {
     },
     social: {
       type: Array,
-      default: () => [
-        { icon: 'instagram--blue', slug: 'https://www.instagram.com/devoorhoede/?hl=nl' },
-        { icon: 'twitter--blue', slug: 'https://twitter.com/devoorhoede' },
-        { icon: 'facebook--blue', slug: 'https://www.facebook.com/DeVoorhoede/' },
-        { icon: 'git-hub--blue', slug: 'https://github.com/voorhoede/' },
-      ],
+      default: () => [],
       validator: (social) => {
         return social.every(item => {
           return item instanceof Object &&
@@ -135,15 +153,9 @@ export default {
   display: none;
 }
 
-.footer-copyright {
+.footer__privacy {
   text-align: center;
-}
-
-.footer-contact__header {
-  font-weight: 700;
-  color: var(--html-blue);
-  text-align: center;
-  margin-bottom: var(--spacing-tiny);
+  text-decoration: none;
 }
 
 .footer-contact__link-list {
@@ -151,6 +163,7 @@ export default {
   justify-content: center;
   text-align: center;
   flex-flow: wrap;
+  line-height: 2;
 }
 
 .footer-contact__link-list a {
@@ -177,14 +190,36 @@ export default {
   margin: 0 calc(var(--spacing-small) / 2);
 }
 
+.footer-list {
+  display: flex;
+  flex-flow: wrap;
+  border-bottom: 1px solid var(--black);
+  justify-content: center;
+  padding-bottom: calc(var(--spacing-smaller) * 2);
+}
+
+.footer-list__item {
+  margin: 0 var(--spacing-smaller);
+}
+
+.footer-list__title {
+  color: var(--html-blue);
+  margin-bottom: calc(var(--spacing-small) / 2);
+}
+
+.footer-list__link {
+  font-family: var(--font-sans);
+  text-decoration: none;
+}
+
 @supports (display: grid) {
-  .footer__wrapper {
+  .footer__column {
     text-align: center;
     grid-row: 2;
     margin-bottom: var(--spacing-large);
   }
 
-  .footer__wrapper.footer__wrapper--right {
+  .footer__column.footer__column--right {
     grid-row: 3;
     text-align: center;
   }
@@ -204,7 +239,6 @@ export default {
 
   .footer__header .body {
     color: var(--html-blue);
-    font-weight: 700;
     width: 180px;
     text-align: center;
   }
@@ -226,7 +260,7 @@ export default {
       width: auto;
     }
 
-    .footer-copyright {
+    .footer__copyright {
       text-align: right;
       width: calc(100% / 3);
     }
@@ -244,18 +278,22 @@ export default {
       max-width: calc(100% / 3);
     }
 
-    .footer__bottom .footer__bottom-text span {
-      padding-right: var(--spacing-smaller);
-      margin-bottom: var(--spacing-tiny);
+    .footer__bottom .footer__bottom-text dl {
+      display: flex;
+      margin-right: 10px;
     }
 
-    .footer__wrapper {
+    .footer__bottom .footer__bottom-text dd {
+      padding-left: 5px;
+    }
+
+    .footer__column {
       grid-column: content-left;
       text-align: left;
       grid-row: 1;
     }
 
-    .footer__wrapper.footer__wrapper--right {
+    .footer__column.footer__column--right {
       grid-column: content-right;
       text-align: right;
       grid-row: 1;
@@ -272,7 +310,6 @@ export default {
 
     .footer-contact__link-list a {
       text-align: right;
-      margin: 0 0 var(--spacing-small) 0;
       padding: 0 0 0 0;
     }
 
@@ -282,9 +319,23 @@ export default {
 
     .footer-contact__link-address span {
       padding-right: var(--spacing-tiny);
-      margin-bottom: var(--spacing-tiny);
+    }
+
+    .footer-list {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .footer-list__item {
+      margin: 0 0 0 0;
+      line-height: 2;
+    }
+
+    .footer-list__title {
+      margin-bottom: calc(var(--spacing-smaller) * 2);
     }
   }
 }
-
 </style>
