@@ -5,7 +5,7 @@
       <li v-for="({target, title}, index) in links"
           :key="index"
           class="footer-list__item body-detail">
-        <nuxt-link :to="target" class="footer-list__link">
+        <nuxt-link :to="slug" class="footer-list__link">
           {{ title }}
         </nuxt-link>
       </li>
@@ -24,19 +24,19 @@ export default {
       type: Array,
       default: () => [{
         title: 'Services',
-        target: '/services',
+        slug: '/nl/services',
       },{
         title: 'Cases',
-        target: '/cases',
+        slug: '/nl/cases',
       },{
         title: 'Academy',
-        target: '/academy',
+        slug: '/nl/academy',
       },{
         title: 'About us',
-        target: '/about-us',
+        slug: '/nl/about-us',
       },{
         title: 'FAQs',
-        target: '/faq',
+        slug: '/nl/faq',
       }],
       validator: (links) => {
         return links.every(link => {
@@ -83,7 +83,7 @@ export default {
   }
 
   .footer-list__item {
-    margin: 0 0 15px 0;
+    margin: 0 0 var(--spacing-small) 0;
   }
 
   .footer-list__item:last-of-type {

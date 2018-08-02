@@ -11,4 +11,4 @@ Contains a list of `links` and a `title`. Specific to the footer.
 | name | required | description |
 | --- | --- | --- |
 | title | false | String value that is used as a title for the list |
-| links | false | An Array that is used to display links |
+| links | true | An Array that is used to display links contains the values `slug` and `title` |

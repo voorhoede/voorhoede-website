@@ -20,6 +20,27 @@ stories.add(
   'App Footer List',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
-    template: '<app-footer-list/>',
+    data: () => {
+      return {
+        'title': 'Explore',
+        'links': [{
+          title: 'Services',
+          slug: '/nl/services',
+        },{
+          title: 'Cases',
+          slug: '/nl/cases',
+        },{
+          title: 'Academy',
+          slug: '/nl/academy',
+        },{
+          title: 'About us',
+          slug: '/nl/about-us',
+        },{
+          title: 'FAQs',
+          slug: '/nl/faq',
+        }],
+      }
+    },
+    template: '<app-footer-list :title="title" :links="links"/>',
   }),
 )
