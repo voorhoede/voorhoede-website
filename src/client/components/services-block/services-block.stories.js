@@ -52,7 +52,7 @@ stories.add(
               'Experts in JavaScript (frameworks), HTML and CSS',
               'Who quickly get the hang of your project',
               'Back-up of 20 colleagues',
-              'Immediately available</li></ul>',
+              'Immediately available',
             ],
             ctaLink: '/services/front-end-specialists',
           },

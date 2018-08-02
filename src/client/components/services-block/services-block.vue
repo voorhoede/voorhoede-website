@@ -48,25 +48,25 @@ export default {
 
 <style>
 .services-block__service {
-  margin-top: var(--spacing-large);
   padding-bottom: var(--spacing-large);
+  margin-bottom: var(--spacing-larger);
   border-bottom: 2px solid var(--very-dim);
-}
-
-.services-block__service + .services-block__service {
-  margin-top: var(--spacing-larger);
 }
 
 .services-block__service-title {
   background: var(--brand-yellow);
+  padding-left: var(--spacing-small);
+  padding-top: 2px;
 }
 
 .services-block__service-sub-title {
   margin-top: var(--spacing-large);
+  margin-bottom: var(--spacing-small);
 }
 
 .services-block__service-characteristics-list {
   list-style-type: disc;
+  margin-left: var(--spacing-medium);
 }
 
 .services-block .app-button {
