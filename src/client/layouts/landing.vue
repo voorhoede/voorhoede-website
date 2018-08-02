@@ -3,17 +3,8 @@
     <grid-demo :show="showGrid"/>
     <app-header
       :current-url="$route.fullPath"
-      :links="[
-        { title: 'Services', slug: 'services' },
-        { title: 'Cases', slug: 'cases' },
-        { title: 'Academy', slug: 'academy' },
-        { title: 'About us', slug: 'about-us' },
-        { title: 'Contact', slug: 'contact', button: true },
-      ]"
-      :languages="[
-        { locale: 'en', href: `/en/` },
-        { locale: 'nl', href: `/nl/` },
-      ]"
+      :links="localizedMenu"
+      :languages="languages"
       :current-locale="currentLocale"
       class="grid"/>
     <nuxt class="grid"/>
@@ -27,7 +18,17 @@ import { AppHeader, GridDemo } from '~/components'
 export default {
   components: { AppHeader, GridDemo },
   computed: {
-    ...mapState(['showGrid']),
+    ...mapState(['showGrid', 'alternateUris', 'menu']),
+    languages() {
+      return Object.keys(this.alternateUris)
+        .reduce((list, key) =>
+          [
+            ...list,
+            { locale: key, href: this.alternateUris[key] },
+          ],
+          []
+        )
+    },
     currentLocale() {
       try {
         const [,, locale] = /(\/)([\w]+)(\/)/.exec(this.$route.fullPath)
@@ -35,6 +36,9 @@ export default {
       } catch (e) {
         return ''
       }
+    },
+    localizedMenu() {
+      return this.menu[this.currentLocale]
     },
   },
 }
