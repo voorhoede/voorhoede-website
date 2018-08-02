@@ -7,14 +7,14 @@ import VueI18n from 'vue-i18n'
 
 import '../app-core/index.css'
 
-import PageHeader from './page-header.vue'
+import pageHeaderDecoration from './page-header-decoration.vue'
 import README from './README.md'
 
 const stories = storiesOf('Components/Page Header', module)
   .addDecorator(withKnobs)
   .addDecorator(withReadme(README))
 
-Vue.component('page-header', PageHeader)
+Vue.component('page-header-decoration', pageHeaderDecoration)
 
 stories.add(
   'Page Header - with curly bracket',
@@ -22,7 +22,7 @@ stories.add(
     i18n: new VueI18n({ locale: 'en' }),
     template: `
       <div style="min-height: 100vh; background: var(--bg-pastel);">
-        <page-header curly-bracket/>
+        <page-header-decoration curly-bracket/>
       </div>
     `,
   }),
@@ -33,7 +33,7 @@ stories.add(
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     template: `
-      <page-header/>
+      <page-header-decoration/>
     `,
   }),
 )

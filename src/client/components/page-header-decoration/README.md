@@ -3,7 +3,7 @@
 ## Usage
 
 ```html
-<page-header curly-bracket="true"/>
+<page-header-decoration curly-bracket="true"/>
 ```
 
 ## Props
