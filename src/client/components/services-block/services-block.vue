@@ -1,26 +1,31 @@
 <template>
-  <ul class="services-block grid">
-    <li
-      v-for="service in services"
-      :key="title"
-      class="services-block__service"
-    >
-      <h3 class="services-block__service-title h5">{{ service.title }}</h3>
-      <h4 class="services-block__service-sub-title h3">{{ service.subtitle }}</h4>
-      <ul class="services-block__service-characteristics-list">
-        <li
-          v-for="characteristic in service.characteristics"
-          :key="characteristic"
-          class="services-block__service-characteristic body"
-        >{{ characteristic }}</li>
-      </ul>
-      <AppButton
-        secondary
-        label="Learn more"
-        :to="service.ctaLink"
-      />
-    </li>
-  </ul>
+  <div class="services-block grid">
+    <ul class="services-block__list grid">
+      <li
+        v-for="service in services"
+        :key="title"
+        class="services-block__service"
+      >
+        <div class="services-block__service-content">
+          <h3 class="services-block__service-title h5">{{ service.title }}</h3>
+          <h4 class="services-block__service-sub-title h3">{{ service.subtitle }}</h4>
+          <div class="services-block__service-divider"/>
+          <ul class="services-block__service-characteristics-list">
+            <li
+              v-for="characteristic in service.characteristics"
+              :key="characteristic"
+              class="services-block__service-characteristic body"
+            >{{ characteristic }}</li>
+          </ul>
+        </div>
+        <AppButton
+          secondary
+          label="Learn more"
+          :to="service.ctaLink"
+        />
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -47,10 +52,13 @@ export default {
 </script>
 
 <style>
+:root {
+  --services-block-border: 2px solid var(--very-dim);
+}
+
 .services-block__service {
-  padding-bottom: var(--spacing-large);
   margin-bottom: var(--spacing-larger);
-  border-bottom: 2px solid var(--very-dim);
+  border-bottom: var(--services-block-border);;
 }
 
 .services-block__service-title {
@@ -76,6 +84,13 @@ export default {
   margin-bottom: var(--spacing-small);
 }
 
+.services-block__service-divider {
+  margin: var(--spacing-small) 0;
+  width: var(--spacing-medium);
+  height: 2px;
+  background: var(--html-blue);
+}
+
 .services-block__service-characteristics-list {
   list-style-type: disc;
   margin-left: var(--spacing-medium);
@@ -83,15 +98,37 @@ export default {
 
 .services-block .app-button {
   margin-top: var(--spacing-small);
+  margin-bottom: var(--spacing-large);
   margin-left: var(--spacing-medium);
 }
 
-.services-block__service-sub-title::after {
-  margin-top: var(--spacing-small);
-  content: '';
-  display: block;
-  width: var(--spacing-medium);
-  height: 2px;
-  background: var(--html-blue);
+@media screen and (min-width: 720px) {
+  .services-block__list {
+    display: flex;
+  }
+
+  .services-block__service {
+    margin-bottom: 0;
+    width: calc(100% / 3 - 2 / 3 * var(--spacing-large));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: none;
+  }
+
+  .services-block__service + .services-block__service {
+    margin-left: var(--spacing-large);
+    padding-left: var(--spacing-large);
+    border-left: var(--services-block-border);
+  }
+
+  .services-block__service-divider {
+    width: var(--spacing-large);
+  }
+
+  .services-block .app-button {
+    margin-bottom: 0;
+  }
 }
 </style>
