@@ -29,7 +29,7 @@ export default {
   computed: {
     hasImage() {
       return 'image' in this.$slots
-    }
+    },
   },
 }
 </script>
