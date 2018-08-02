@@ -42,7 +42,7 @@ export default {
 @supports (display: grid) {
   .page-header-decoration {
     display: grid;
-    grid-template-rows: calc(var(--app-header-height) + var(--spacing-large)) 1fr var(--spacing-larger);
+    grid-template-rows: var(--spacing-large) 1fr var(--spacing-larger);
     position: relative;
   }
 
@@ -87,10 +87,6 @@ export default {
   }
 
   @media screen and (min-width: 520px) {
-    .page-header-decoration {
-      grid-template-rows: calc(var(--app-header-height) + var(--spacing-large)) 1fr var(--spacing-small);
-    }
-
     .page-header-decoration__curly-bracket-column {
       grid-column: content;
       display: flex;
