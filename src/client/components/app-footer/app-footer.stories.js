@@ -20,6 +20,40 @@ stories.add(
   'App Footer',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
-    template: '<app-footer />',
+    data: () => {
+      return {
+        headerTitle: 'Make it real',
+        headerSubtitle: 'Discuss your next project with us',
+        tel: '+31 (0)20 2610 954',
+        email: 'post@voorhoede.nl',
+        googleMapsLink: 'https://www.google.nl/maps/place/De+Voorhoede+%7C+Front-end+Development/@52.3477995,4.8485761,17z/data=!3m1!4b1!4m5!3m4!1s0x47c5e21d502d2d59:0xbf570944a96ebf45!8m2!3d52.3477962!4d4.8507648',
+        address: 'Rijnsburgstraat 9 - 11',
+        postalCode: '1059 AT Amsterdam',
+        copyright: '@ De Voorhoede 2018  Privacy statement',
+        legal: [
+          { key: 'KvK', value: '56017235' },
+          { key: 'BTW', value: 'NL851944620B01' },
+          { key: 'IBAN', value: 'NL20ABNA0442829159' },
+        ],
+        social : [
+          { icon: 'instagram--blue', slug: 'https://www.instagram.com/devoorhoede/?hl=nl' },
+          { icon: 'twitter--blue', slug: 'https://twitter.com/devoorhoede' },
+          { icon: 'facebook--blue', slug: 'https://www.facebook.com/DeVoorhoede/' },
+          { icon: 'git-hub--blue', slug: 'https://github.com/voorhoede/' },
+        ],
+      }
+    },
+    template: `<app-footer
+                :headerTitle="headerTitle"
+                :headerSubtitle="headerSubtitle"
+                :tel="tel"
+                :email="email"
+                :googleMapsLink="googleMapsLink"
+                :address="address"
+                :postalCode="postalCode"
+                :copyright="copyright"
+                :legal="legal"
+                :social="social
+              "/>`,
   }),
 )

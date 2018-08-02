@@ -9,11 +9,11 @@
     <div class="footer__wrapper footer__wrapper--right">
       <h5 class="body footer-contact__header">Contact</h5>
       <div class="body-detail footer-contact__link-list">
-        <nuxt-link target="_blank" :to="`tel:${tel}`">{{ tel }}</nuxt-link>
-        <nuxt-link target="_blank" :to="`mailto:${email}`">{{ email }}</nuxt-link>
+        <nuxt-link target="_blank" :to="`tel:${ tel }`">{{ tel }}</nuxt-link>
+        <nuxt-link target="_blank" :to="`mailto:${ email }`">{{ email }}</nuxt-link>
         <nuxt-link
           target="_blank"
-          :to="`${addressLink}`"
+          :to="`${ googleMapsLink }`"
           class="footer-contact__link-address">
           <span>{{ address }}</span>
           <span>{{ postalCode }}</span>
@@ -22,29 +22,15 @@
     </div>
     <div class="footer__bottom">
       <div class="body-detail footer__bottom-text">
-        <span>KvK: {{ kvk }}</span>
-        <span>BTW: {{ btw }}</span>
-        <span>IBAN: {{ iban }}</span>
+        <span v-for="( { key, value }, index) in legal" :key="index">
+          {{ key }}: {{ value }}
+        </span>
       </div>
       <ul class="footer-icon__list">
-        <li class="footer-icon__list-item">
-          <nuxt-link to="https://www.instagram.com/devoorhoede/?hl=nl" target="_blank">
-            <app-icon name="instagram--blue" />
-          </nuxt-link>
-        </li>
-        <li class="footer-icon__list-item">
-          <nuxt-link to="https://twitter.com/devoorhoede" target="_blank">
-            <app-icon name="twitter--blue" />
-          </nuxt-link>
-        </li>
-        <li class="footer-icon__list-item">
-          <nuxt-link to="https://www.facebook.com/DeVoorhoede/" target="_blank">
-            <app-icon name="facebook--blue" />
-          </nuxt-link>
-        </li>
-        <li class="footer-icon__list-item">
-          <nuxt-link to="https://github.com/voorhoede/" target="_blank">
-            <app-icon name="git-hub--blue" />
+        <li class="footer-icon__list-item"
+            v-for="({ icon, slug }, index ) in social" :key="index">
+          <nuxt-link :to="`${ slug }`" target="_blank">
+            <app-icon :name="`${ icon }`" />
           </nuxt-link>
         </li>
       </ul>
@@ -62,20 +48,70 @@ export default {
     AppFooterList,
     AppIcon,
   },
-  data: () => {
-    return {
-      headerTitle: 'Make it real',
-      headerSubtitle: 'Discuss your next project with us',
-      tel: '+31 (0)20 2610 954',
-      email: 'post@voorhoede.nl',
-      addressLink: 'https://www.google.nl/maps/place/De+Voorhoede+%7C+Front-end+Development/@52.3477995,4.8485761,17z/data=!3m1!4b1!4m5!3m4!1s0x47c5e21d502d2d59:0xbf570944a96ebf45!8m2!3d52.3477962!4d4.8507648',
-      address: 'Rijnsburgstraat 9 - 11',
-      postalCode: '1059 AT Amsterdam',
-      copyright: '@ De Voorhoede 2018  Privacy statement',
-      kvk: '56017235',
-      btw: 'NL851944620B01',
-      iban: 'NL20ABNA0442829159',
-    }
+  props: {
+    headerTitle: {
+      type: String,
+      default: 'Make it real',
+    },
+    headerSubtitle: {
+      type: String,
+      default: 'Discuss your next project with us',
+    },
+    tel:{
+      type: String,
+      default: '+31 (0)20 2610 954',
+    },
+    email: {
+      type: String,
+      default: 'post@voorhoede.nl',
+    },
+    googleMapsLink: {
+      type: String,
+      default: 'https://www.google.nl/maps/place/De+Voorhoede+%7C+Front-end+Development/@52.3477995,4.8485761,17z/data=!3m1!4b1!4m5!3m4!1s0x47c5e21d502d2d59:0xbf570944a96ebf45!8m2!3d52.3477962!4d4.8507648',
+    },
+    address: {
+      type: String,
+      default: 'Rijnsburgstraat 9 - 11',
+    },
+    postalCode: {
+      type: String,
+      default: '1059 AT Amsterdam',
+    },
+    copyright: {
+      type: String,
+      default: '@ De Voorhoede 2018  Privacy statement',
+    },
+    legal: {
+      type: Array,
+      default: () => [
+        { key: 'KvK', value: '56017235' },
+        { key: 'BTW', value: 'NL851944620B01' },
+        { key: 'IBAN', value: 'NL20ABNA0442829159' },
+      ],
+      validator: (legal) => {
+        return legal.every(item => {
+          return item instanceof Object &&
+            typeof item.key === 'string' &&
+            typeof item.value === 'string'
+        })
+      },
+    },
+    social: {
+      type: Array,
+      default: () => [
+        { icon: 'instagram--blue', slug: 'https://www.instagram.com/devoorhoede/?hl=nl' },
+        { icon: 'twitter--blue', slug: 'https://twitter.com/devoorhoede' },
+        { icon: 'facebook--blue', slug: 'https://www.facebook.com/DeVoorhoede/' },
+        { icon: 'git-hub--blue', slug: 'https://github.com/voorhoede/' },
+      ],
+      validator: (social) => {
+        return social.every(item => {
+          return item instanceof Object &&
+            typeof item.icon === 'string' &&
+            typeof item.slug === 'string'
+        })
+      },
+    },
   },
 }
 </script>
@@ -141,11 +177,6 @@ export default {
   margin: 0 calc(var(--spacing-small) / 2);
 }
 
-.footer-icon__list-item a img.app-icon {
-  width: 1.2em;
-  height: 1.2em;
-}
-
 @supports (display: grid) {
   .footer__wrapper {
     text-align: center;
@@ -164,7 +195,7 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: var(--spacing-large);
   }
 
   .footer__header .footer__header-title {
@@ -178,14 +209,14 @@ export default {
     text-align: center;
   }
 
-  .footer__header img {
+  .footer__header .footer__header-logo {
     width: 3.25rem;
     height: 3.25rem;
-    margin-bottom:var(--spacing-small);
+    margin-bottom: var(--spacing-small);
   }
 
   @media (min-width: 720px) {
-    .footer-icon__list-item a img.app-icon {
+    .footer-icon__list-item img.app-icon {
       width: 1.4em;
       height: 1.4em;
     }
@@ -197,7 +228,7 @@ export default {
 
     .footer-copyright {
       text-align: right;
-      width: 33%;
+      width: calc(100% / 3);
     }
 
     .footer__bottom {
@@ -210,7 +241,7 @@ export default {
     .footer__bottom .footer__bottom-text {
       display: flex;
       flex-flow: row wrap;
-      max-width: 33%;
+      max-width: calc(100% / 3);
     }
 
     .footer__bottom .footer__bottom-text span {
