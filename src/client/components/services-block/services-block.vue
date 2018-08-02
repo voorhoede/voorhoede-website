@@ -1,15 +1,15 @@
 <template>
   <ul class="services-block grid">
     <li
-      v-for="({ title, subtitle, characteristics, ctaLink }) in services"
+      v-for="service in services"
       :key="title"
       class="services-block__service"
     >
-      <h3 class="services-block__service-title h5">{{ title }}</h3>
-      <h4 class="services-block__service-sub-title h3">{{ subtitle }}</h4>
+      <h3 class="services-block__service-title h5">{{ service.title }}</h3>
+      <h4 class="services-block__service-sub-title h3">{{ service.subtitle }}</h4>
       <ul class="services-block__service-characteristics-list">
         <li
-          v-for="characteristic in characteristics"
+          v-for="characteristic in service.characteristics"
           :key="characteristic"
           class="services-block__service-characteristic body"
         >{{ characteristic }}</li>
@@ -17,7 +17,7 @@
       <AppButton
         secondary
         label="Learn more"
-        :to="ctaLink"
+        :to="service.ctaLink"
       />
     </li>
   </ul>
@@ -32,12 +32,12 @@ export default {
     services: {
       type: Array,
       required: true,
-      validator: function(services) {
+      validator(services) {
         return services.every(service => {
           return service instanceof Object &&
             typeof service.title === 'string' &&
             typeof service.subtitle === 'string' &&
-            typeof service.characteristics === 'object' &&
+            typeof service.characteristics === 'object' && service.characteristics.length &&
             typeof service.ctaLink === 'string'
         })
       },
@@ -54,9 +54,21 @@ export default {
 }
 
 .services-block__service-title {
+  padding-left: var(--spacing-smaller);
+  position: relative;
+}
+
+/* Putting the background on the title itself will make it a bit off aligned */
+.services-block__service-title::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -1px;
+  right: 0;
+  bottom: 2px;
+  left: 0;
   background: var(--brand-yellow);
-  padding-left: var(--spacing-small);
-  padding-top: 2px;
+  z-index: -1;
 }
 
 .services-block__service-sub-title {
@@ -71,6 +83,7 @@ export default {
 
 .services-block .app-button {
   margin-top: var(--spacing-small);
+  margin-left: var(--spacing-medium);
 }
 
 .services-block__service-sub-title::after {
