@@ -76,7 +76,7 @@ export default {
   .column:nth-child(1n+35) { display: none; }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1100px) {
   .column:nth-child(2n+18),
   .column:nth-child(2n+19),
   .column:nth-child(17),
