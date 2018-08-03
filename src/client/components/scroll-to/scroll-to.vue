@@ -13,25 +13,29 @@
 
   .scroll-to__text {
     position: absolute;
+
     /* Distance between the text and the arrow */
     top: calc(-1 * (var(--spacing-small) + 1rem));
     left: 50%;
     text-transform: uppercase;
     transform: rotateZ(-90deg) translateY(50%);
+
     /* Change the origin to keep the same starting point on all the media queries */
     transform-origin: bottom left;
     color: var(--html-blue);
   }
 
   .scroll-top__image {
-    transform: scale(0.6);
+    transform: scale(.6);
+
     /* needs a bigger offset because the whitespace gets bigger */
     transform-origin: center 6px;
   }
 
   @media (min-width: 720px) {
     .scroll-top__image {
-      transform: scale(0.8);
+      transform: scale(.8);
+
       /* needs a bigger offset because the whitespace gets bigger */
       transform-origin: center 5px;
     }
@@ -40,7 +44,7 @@
   @media (min-width: 1100px) {
     .scroll-top__image {
       transform: scale(1);
-      transform-origin: center 0px;
+      transform-origin: center 0;
     }
   }
 </style>
