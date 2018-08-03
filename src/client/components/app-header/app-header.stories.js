@@ -34,8 +34,9 @@ stories.add(
           { title: 'About us', slug: 'about-us' },
           { title: 'Contact', slug: 'contact', button: true },
         ],
+        currentLocale: 'en',
       }
     },
-    template: '<app-header :currentUrl="currentUrl" :links="links" :languages="languages"/>',
+    template: '<app-header :currentUrl="currentUrl" :links="links" :languages="languages" :current-locale="currentLocale"/>',
   }),
 )

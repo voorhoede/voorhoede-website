@@ -1,7 +1,7 @@
 <template>
   <nav class="app-header grid">
     <div class="app-header__content">
-      <nuxt-link class="app-header__home-link" to="/">
+      <nuxt-link class="app-header__home-link" :to="`/${currentLocale}/`">
         <img class="app-header__logo" src="/images/logo-with-text.svg">
       </nuxt-link>
       <div class="app-header__link-lists body-petite">
@@ -17,10 +17,10 @@
             :key="language.locale"
             :class="{
               'app-header__link-list-item': true,
-              'font-bold': language.locale === activeLanguage.locale,
+              'font-bold': language.locale === currentLocale,
             }"
           >
-            <span v-if="language.locale === activeLanguage.locale">{{ language.locale }}</span>
+            <span v-if="language.locale === currentLocale">{{ language.locale }}</span>
             <nuxt-link class="app-header__link" v-else :to="language.href">{{ language.locale }}</nuxt-link>
           </li>
         </ul>
@@ -50,12 +50,15 @@ export default {
       type: Array,
       default: () => [],
     },
+    currentLocale: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     activeLanguage() {
-      const trailingSlashRegex = /\/$/;
+      const trailingSlashRegex = /\/$/
       const currentUrl = this.currentUrl.replace(trailingSlashRegex, '')
-
       return this.languages.find(language => {
         return language.href.replace(trailingSlashRegex, '') === currentUrl
       })
@@ -63,8 +66,8 @@ export default {
   },
   methods: {
     createHref(link) {
-      const locale = this.activeLanguage.locale
-      return `/${locale}/${link.slug}`
+      const locale = this.currentLocale
+      return `/${locale}/${link.slug}/`
     },
   },
 }
