@@ -74,11 +74,6 @@ export default {
 </script>
 
 <style>
-:root {
-  --app-header-height: 3.125rem; /* 50px */
-  --app-header-height-large: 4.0625rem; /* 65px */
-}
-
 .app-header {
   border-bottom: 1px solid var(--fog);
   height: var(--app-header-height);
