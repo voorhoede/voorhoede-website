@@ -18,7 +18,7 @@ const jobs = require('./jobs')
 const services = require('./services')
 
 const staticDir = 'src/client/static'
-const dataDir = `${staticDir}/data/new`
+const dataDir = `${staticDir}/data`
 const pagesDir = `${dataDir}/pages`
 
 module.exports = (dato, root, i18n) => {

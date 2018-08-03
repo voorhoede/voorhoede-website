@@ -1,3 +1,4 @@
+/*  eslint-disable no-unused-vars */
 const pick = require('./lib/pick')
 
 module.exports = function contact(pageData, i18n, dato) {
