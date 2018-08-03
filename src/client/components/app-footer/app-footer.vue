@@ -253,7 +253,7 @@ export default {
 
 @media (min-width: 720px) {
   .footer-icon__list {
-    width: 33%;
+    width: calc(100% / 3);
     justify-content: center;
   }
   .footer-icon__list-item img.app-icon {
@@ -285,11 +285,11 @@ export default {
 
   .footer__bottom .footer__bottom-text dl {
     display: flex;
-    margin-right: 10px;
+    margin-right: var(--spacing-smaller);
   }
 
   .footer__bottom .footer__bottom-text dd {
-    padding-left: 5px;
+    padding-left: var(--spacing-tiny);
   }
 
   .footer-contact__header {
