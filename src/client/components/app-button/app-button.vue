@@ -86,7 +86,7 @@
     background: var(--html-blue);
     border-radius: 3px;
     width: 100%;
-    min-width: 14.375rem;
+    max-width: 14.375rem;
     padding: .75rem 1.5625rem;
     transition: 200ms transform ease-in-out;
   }
