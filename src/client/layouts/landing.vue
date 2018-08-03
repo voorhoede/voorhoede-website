@@ -1,7 +1,6 @@
 <template>
   <div class="layout-landing">
     <grid-demo :show="showGrid"/>
-    <app-header class="grid"/>
     <nuxt class="grid"/>
   </div>
 </template>

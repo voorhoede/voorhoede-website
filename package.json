@@ -52,5 +52,9 @@
     "stylelint-config-standard": "18.2.0",
     "stylelint-processor-html": "1.0.0",
     "vue-svg-loader": "0.5.0"
-  }
+  },
+  "browserslist": [
+    "ie 11",
+    "last 2 versions"
+  ]
 }
