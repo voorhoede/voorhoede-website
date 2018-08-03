@@ -161,7 +161,6 @@ export default {
 .footer-icon__list {
   display: flex;
   text-align: center;
-  justify-content: space-around;
   margin-bottom: var(--spacing-small);
 }
 
@@ -200,6 +199,31 @@ export default {
   text-decoration: none;
 }
 
+.footer__header {
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: var(--spacing-large);
+}
+
+.footer__header .footer__header-title {
+  margin-bottom: calc(var(--spacing-smaller) * 2);
+}
+
+.footer__header .body {
+  color: var(--html-blue);
+  width: 180px;
+  text-align: center;
+}
+
+.footer__header .footer__header-logo {
+  width: 3.25rem;
+  height: 3.25rem;
+  margin-bottom: var(--spacing-small);
+}
+
 @supports (display: grid) {
   .footer__column {
     text-align: center;
@@ -212,69 +236,7 @@ export default {
     text-align: center;
   }
 
-  .footer__header {
-    grid-row: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: var(--spacing-large);
-  }
-
-  .footer__header .footer__header-title {
-    margin-bottom: calc(var(--spacing-smaller) * 2);
-  }
-
-  .footer__header .body {
-    color: var(--html-blue);
-    width: 180px;
-    text-align: center;
-  }
-
-  .footer__header .footer__header-logo {
-    width: 3.25rem;
-    height: 3.25rem;
-    margin-bottom: var(--spacing-small);
-  }
-
   @media (min-width: 720px) {
-    .footer-icon__list-item img.app-icon {
-      width: 1.4em;
-      height: 1.4em;
-    }
-
-    .footer__header .body {
-      margin-bottom: 0;
-      width: auto;
-    }
-
-    .footer__copyright {
-      text-align: right;
-      width: calc(100% / 3);
-    }
-
-    .footer__bottom {
-      border-top: 3px solid var(--html-blue);
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-
-    .footer__bottom .footer__bottom-text {
-      display: flex;
-      flex-flow: row wrap;
-      max-width: calc(100% / 3);
-    }
-
-    .footer__bottom .footer__bottom-text dl {
-      display: flex;
-      margin-right: 10px;
-    }
-
-    .footer__bottom .footer__bottom-text dd {
-      padding-left: 5px;
-    }
-
     .footer__column {
       grid-column: content-left;
       text-align: left;
@@ -286,33 +248,75 @@ export default {
       text-align: right;
       grid-row: 1;
     }
+  }
+}
 
-    .footer-contact__header {
-      text-align: right;
-      margin-bottom: calc(var(--spacing-smaller) * 2);
-    }
+@media (min-width: 720px) {
+  .footer-icon__list {
+    width: 33%;
+    justify-content: center;
+  }
+  .footer-icon__list-item img.app-icon {
+    width: 1.4em;
+    height: 1.4em;
+  }
 
-    .footer-list {
-      display: flex;
-      flex-direction: column;
-      border-bottom: 0;
-      padding-bottom: 0;
-    }
+  .footer__header .body {
+    margin-bottom: 0;
+    width: auto;
+  }
 
-    .footer-list__item {
-      margin: 0 0 0 0;
-      line-height: 2;
-    }
+  .footer__privacy {
+    text-align: right;
+    width: calc(100% / 3);
+  }
 
-    .footer-list__title {
-      margin-bottom: calc(var(--spacing-smaller) * 2);
-    }
+  .footer__bottom {
+    border-top: 3px solid var(--html-blue);
+    flex-direction: row;
+    align-items: flex-start;
+  }
 
-    .footer-list__item-spaced span {
-      display: flex;
-      width: 100%;
-      justify-content: flex-end;
-    }
+  .footer__bottom .footer__bottom-text {
+    display: flex;
+    flex-flow: row wrap;
+    width: calc(100% / 3);
+  }
+
+  .footer__bottom .footer__bottom-text dl {
+    display: flex;
+    margin-right: 10px;
+  }
+
+  .footer__bottom .footer__bottom-text dd {
+    padding-left: 5px;
+  }
+
+  .footer-contact__header {
+    text-align: right;
+    margin-bottom: calc(var(--spacing-smaller) * 2);
+  }
+
+  .footer-list {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .footer-list__item {
+    margin: 0 0 0 0;
+    line-height: 2;
+  }
+
+  .footer-list__title {
+    margin-bottom: calc(var(--spacing-smaller) * 2);
+  }
+
+  .footer-list__item-spaced span {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
   }
 }
 </style>
