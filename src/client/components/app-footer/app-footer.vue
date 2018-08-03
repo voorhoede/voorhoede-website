@@ -256,6 +256,7 @@ export default {
     width: calc(100% / 3);
     justify-content: center;
   }
+
   .footer-icon__list-item img.app-icon {
     width: 1.4em;
     height: 1.4em;
