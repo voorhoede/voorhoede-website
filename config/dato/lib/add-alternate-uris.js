@@ -1,6 +1,6 @@
 const curry = require('lodash/fp/curry')
 
-module.exports = curry(function addAlternateUris(locales, i18n, _file, data) {
+module.exports = curry(function addAlternateUris(locales, i18n, _file, pageData) {
   const file = typeof _file !== 'object'
       ? locales.reduce((obj, locale) => ({ ...obj, [locale]: _file }), {})
       : _file
@@ -11,7 +11,7 @@ module.exports = curry(function addAlternateUris(locales, i18n, _file, data) {
       uri: i18n.withLocale(
         locale,
         () => {
-          const { slug } = data
+          const { slug } = pageData
           const uri = slug ? `${file[locale]}/${slug[locale]}` : file[locale]
           return `/${locale}/${uri}`
             .replace('.json', '/')
@@ -20,5 +20,5 @@ module.exports = curry(function addAlternateUris(locales, i18n, _file, data) {
       ),
     })
   )
-  return { ...data, alternateUris }
+  return { ...pageData, alternateUris }
 })
