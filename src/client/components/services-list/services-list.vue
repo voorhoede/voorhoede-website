@@ -1,20 +1,18 @@
 <template>
-  <div class="services-list grid">
-    <ul class="services-list__list">
-      <li
-        v-for="service in services"
-        :key="service.ctaLink"
-        class="services-list__item"
-      >
-        <service-excerpt
-          :title="service.title"
-          :subtitle="service.subtitle"
-          :characteristics="service.characteristics"
-          :href="service.href"
-        />
-      </li>
-    </ul>
-  </div>
+  <ul class="services-list">
+    <li
+      v-for="service in services"
+      :key="service.ctaLink"
+      class="services-list__item"
+    >
+      <service-excerpt
+        :title="service.title"
+        :subtitle="service.subtitle"
+        :characteristics="service.characteristics"
+        :href="service.href"
+      />
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -52,7 +50,7 @@ export default {
 }
 
 @media screen and (min-width: 720px) {
-  .services-list__list {
+  .services-list {
     display: flex;
   }
 
