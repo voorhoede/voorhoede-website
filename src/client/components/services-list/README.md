@@ -48,11 +48,4 @@
 | --- | --- | --- | --- |
 | services | Array | true | List of services |
 
-Each service should be an object with the following properties:
-
-| prop | Type | required | description |
-| --- | --- | --- | --- |
-| title | String | true | Title of the service |
-| subtitle | String | true | Sub title of the service |
-| characteristics | Array | true | Array of strings, describing the service |
-| serviceLink | String | true | Link to service page |
+Each service should be an object. Check `Components/Service Excerpt` for the required properties each service should have.

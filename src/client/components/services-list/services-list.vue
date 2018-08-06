@@ -27,13 +27,7 @@ export default {
       type: Array,
       required: true,
       validator(services) {
-        return services.every(service => {
-          return service instanceof Object &&
-            typeof service.title === 'string' &&
-            typeof service.subtitle === 'string' &&
-            typeof service.characteristics === 'object' && service.characteristics.length &&
-            typeof service.href === 'string'
-        })
+        return services.every(service => service instanceof Object)
       },
     },
   },
