@@ -51,4 +51,8 @@
 Each service should be an object with the following properties:
 
 | prop | Type | required | description |
-| title | String | true | |
+| --- | --- | --- | --- |
+| title | String | true | Title of the service |
+| subTitle | String | true | Sub title of the service |
+| characteristics | Array | true | Array of strings, describing the service |
+| ctaLink | String | true | Link to service page |
