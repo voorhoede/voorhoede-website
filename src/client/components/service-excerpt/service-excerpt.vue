@@ -52,21 +52,9 @@ export default {
 <style>
 .service-excerpt__title {
   margin-bottom: var(--spacing-medium);
+  padding-top: .125rem; /* 2px */
   padding-left: var(--spacing-smaller);
-  position: relative;
-}
-
-/* Putting the background on the title itself will make it a bit off aligned */
-.service-excerpt__title::before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: -1px;
-  right: 0;
-  bottom: 2px;
-  left: 0;
   background: var(--brand-yellow);
-  z-index: -1;
 }
 
 .service-excerpt__sub-title {
@@ -82,21 +70,37 @@ export default {
 
 .service-excerpt__characteristics-list {
   list-style-type: disc;
-  margin-left: var(--spacing-medium);
+}
+
+.service-excerpt__characteristic {
+  margin-left: var(--spacing-small);
 }
 
 .service-excerpt .app-button {
   margin-top: var(--spacing-small);
-  margin-left: var(--spacing-medium);
+  margin-left: var(--spacing-small);
 }
 
 @media screen and (min-width: 720px) {
+  .service-excerpt__title {
+    padding-top: .25rem; /* 4px */
+    padding-bottom: .125rem; /* 2px */
+  }
+
   .service-excerpt__divider {
     width: var(--spacing-large);
   }
 
   .service-excerpt .app-button {
     margin-top: var(--spacing-large);
+    margin-left: 0;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .service-excerpt__title {
+    padding-top: .375em; /* 6px */
+    padding-bottom: .25rem; /* 4px */
   }
 }
 </style>
