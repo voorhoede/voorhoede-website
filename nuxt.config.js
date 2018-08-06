@@ -1,19 +1,24 @@
+const generate = require('./config/nuxt/generate')
+const dotenv = require('dotenv-safe')
+
+dotenv.config()
+
 /**
  * Use Netlify's URL variable:
  * @see https://www.netlify.com/docs/continuous-deployment/#build-environment-variables
  */
-const { URL } = process.env
+const { URL, DEFAULT_LOCALE } = process.env
 const baseUrl = URL
+const defaultLocale = DEFAULT_LOCALE
 
 module.exports = {
   srcDir: 'src/client',
 
-  generate: {
-    dir: 'dist/client',
-  },
+  generate,
 
   env: {
     baseUrl,
+    defaultLocale,
   },
 
   /*
@@ -38,7 +43,11 @@ module.exports = {
   loading: { color: '#070de9' },
 
   router: {
-    middleware: ['enforce-trailing-slash', 'meta-canonical'],
+    middleware: [
+      'redirect-to-locale',
+      'enforce-trailing-slash',
+      'meta-canonical',
+    ],
   },
 
   /*
@@ -70,7 +79,7 @@ module.exports = {
       config.module.rules.push({
         test: /\.svg$/,
         loader: 'vue-svg-loader',
-      });
+      })
     },
   },
 }

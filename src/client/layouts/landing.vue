@@ -1,7 +1,12 @@
 <template>
   <div class="layout-landing">
     <grid-demo :show="showGrid"/>
-    <app-header class="grid"/>
+    <app-header
+      :current-url="$route.fullPath"
+      :links="localizedMenu"
+      :languages="languages"
+      :current-locale="currentLocale"
+      class="grid"/>
     <nuxt class="grid"/>
   </div>
 </template>
@@ -13,7 +18,28 @@ import { AppHeader, GridDemo } from '~/components'
 export default {
   components: { AppHeader, GridDemo },
   computed: {
-    ...mapState(['showGrid']),
+    ...mapState(['showGrid', 'alternateUris', 'menu']),
+    languages() {
+      return Object.keys(this.alternateUris)
+        .reduce((list, key) =>
+          [
+            ...list,
+            { locale: key, href: this.alternateUris[key] },
+          ],
+          []
+        )
+    },
+    currentLocale() {
+      try {
+        const [,, locale] = /(\/)([\w]+)(\/)/.exec(this.$route.fullPath)
+        return locale
+      } catch (e) {
+        return ''
+      }
+    },
+    localizedMenu() {
+      return this.menu[this.currentLocale]
+    },
   },
 }
 </script>

@@ -4,7 +4,8 @@
   --active-yellow: #e9d100;
   --html-blue: blue;
   --active-blue: #0005be;
-  --bg-pastel: #fffed9;
+  --bg-pastel: #fffeca;
+  --paper: #fffed9;
   --black: #222222;
   --off-black: #555555;
   --dim: #888888;
@@ -26,4 +27,8 @@
   --spacing-big: 75px;
   --spacing-bigger: 110px;
   --spacing-huge: 150px;
+
+  /* COMPONENTS */
+  --app-header-height: 3.125rem; /* 50px */
+  --app-header-height-large: 4.0625rem; /* 65px */
 }
