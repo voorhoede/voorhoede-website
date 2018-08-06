@@ -6,7 +6,7 @@
       class="highlighted-clients__client"
     >
       <fixed-ratio :width="5" :height="2">
-        <img class="highlighted-clients__image" :src="logoSrc" :alt="name">
+        <!-- <img class="highlighted-clients__image" :src="logoSrc" :alt="name"> -->
       </fixed-ratio>
     </li>
   </ul>
@@ -36,7 +36,7 @@ export default {
 <style>
 :root {
   --highlighted-clients-gap: calc(var(--spacing-tiny) / 2);
-  --highlighted-clients-width: calc(100% / 2 - var(--highlighted-clients-gap))
+  --highlighted-clients-width: calc(100% / 2 - var(--highlighted-clients-gap));
 }
 
 .highlighted-clients {
@@ -51,13 +51,10 @@ export default {
 .highlighted-clients__client {
   margin-top: calc(var(--spacing-medium) / 2);
   margin-bottom: calc(var(--spacing-medium) / 2);
-  filter: grayscale(100%);
-}
-
-.highlighted-clients__client {
-  margin-left: var(--highlighted-clients-gap);
   margin-right: var(--highlighted-clients-gap);
+  margin-left: var(--highlighted-clients-gap);
   width: var(--highlighted-clients-width);
+  filter: grayscale(100%);
 }
 
 @media screen and (max-width: 719px) {
