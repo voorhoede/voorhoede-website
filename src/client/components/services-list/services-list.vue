@@ -43,11 +43,17 @@ export default {
 <style>
 :root {
   --services-list-border: 2px solid var(--very-dim);
+  --services-list-columns: 3;
+  --services-list-item-spacing: var(--spacing-large);
+  --services-list-item-width: calc(
+    100% / var(--services-list-columns)
+    - (var(--services-list-columns) - 1) / var(--services-list-columns) * var(--services-list-item-spacing)
+  );
 }
 
 .services-list__item {
   margin-bottom: var(--spacing-larger);
-  padding-bottom: var(--spacing-larger);
+  padding-bottom: var(--spacing-large);
   border-bottom: var(--services-list-border);
 }
 
@@ -59,7 +65,7 @@ export default {
   .services-list__item {
     margin-bottom: 0;
     padding-bottom: 0;
-    width: calc(100% / 3 - 2 / 3 * var(--spacing-large));
+    width: var(--services-list-item-width);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
