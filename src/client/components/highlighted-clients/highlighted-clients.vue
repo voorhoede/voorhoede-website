@@ -34,6 +34,11 @@ export default {
 </script>
 
 <style>
+:root {
+  --highlighted-clients-gap: calc(var(--spacing-tiny) / 2);
+  --highlighted-clients-width: calc(100% / 2 - var(--highlighted-clients-gap))
+}
+
 .highlighted-clients {
   display: flex;
   flex-wrap: wrap;
@@ -47,16 +52,15 @@ export default {
   margin-top: calc(var(--spacing-medium) / 2);
   margin-bottom: calc(var(--spacing-medium) / 2);
   filter: grayscale(100%);
-  background: var(--very-dim);
+}
+
+.highlighted-clients__client {
+  margin-left: var(--highlighted-clients-gap);
+  margin-right: var(--highlighted-clients-gap);
+  width: var(--highlighted-clients-width);
 }
 
 @media screen and (max-width: 719px) {
-  .highlighted-clients__client {
-    margin-left: calc(var(--spacing-tiny) / 2);
-    margin-right: calc(var(--spacing-tiny) / 2);
-    width: calc(50% - var(--spacing-medium) / 2);
-  }
-
   .highlighted-clients__client:nth-child(2n - 1) {
     margin-left: 0;
   }
@@ -67,10 +71,9 @@ export default {
 }
 
 @media screen and (min-width: 720px) {
-  .highlighted-clients__client {
-    margin-left: calc(var(--spacing-big) / 2);
-    margin-right: calc(var(--spacing-big) / 2);
-    width: calc(25% - var(--spacing-big) * 3 / 4);
+  :root {
+    --highlighted-clients-gap: calc(var(--spacing-big) / 2);
+    --highlighted-clients-width: calc(25% - var(--highlighted-clients-gap) * 2 * 3 / 4);
   }
 
   .highlighted-clients__client:nth-child(4n - 3) {
@@ -79,6 +82,12 @@ export default {
 
   .highlighted-clients__client:nth-child(4n) {
     margin-right: 0;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  :root {
+    --highlighted-clients-gap: calc(var(--spacing-bigger) / 2);
   }
 }
 </style>
