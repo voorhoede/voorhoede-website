@@ -66,11 +66,11 @@ export default {
   }
 }
 
-
 @media screen and (min-width: 720px) {
   .highlighted-clients__client {
     margin-left: calc(var(--spacing-big) / 2);
-    margin-right: calc(var(--spacing-big) / 2);  width: calc(25% - var(--spacing-big) * 3 / 4);
+    margin-right: calc(var(--spacing-big) / 2);
+    width: calc(25% - var(--spacing-big) * 3 / 4);
   }
 
   .highlighted-clients__client:nth-child(4n - 3) {
