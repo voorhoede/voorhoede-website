@@ -42,7 +42,7 @@ export default {
 
 <style>
 :root {
-  --services-list-border: 2px solid var(--very-dim);
+  --services-list-border: 1px solid var(--very-dim);
   --services-list-columns: 3;
   --services-list-item-spacing: var(--spacing-large);
   --services-list-item-width: calc(
