@@ -6,7 +6,7 @@
       class="highlighted-clients__client"
     >
       <fixed-ratio :width="5" :height="2">
-        <!-- <img class="highlighted-clients__image" :src="logoSrc" :alt="name"> -->
+        <img class="highlighted-clients__image" :src="logoSrc" :alt="name">
       </fixed-ratio>
     </li>
   </ul>
@@ -49,8 +49,7 @@ export default {
 }
 
 .highlighted-clients__client {
-  margin-top: calc(var(--spacing-medium) / 2);
-  margin-bottom: calc(var(--spacing-medium) / 2);
+  margin-bottom: var(--spacing-medium);
   margin-right: var(--highlighted-clients-gap);
   margin-left: var(--highlighted-clients-gap);
   width: var(--highlighted-clients-width);
@@ -58,6 +57,10 @@ export default {
 }
 
 @media screen and (max-width: 719px) {
+  .highlighted-clients__client:nth-last-child(-n + 2) {
+    margin-bottom: 0;
+  }
+
   .highlighted-clients__client:nth-child(2n - 1) {
     margin-left: 0;
   }
@@ -71,6 +74,10 @@ export default {
   :root {
     --highlighted-clients-gap: calc(var(--spacing-big) / 2);
     --highlighted-clients-width: calc(25% - var(--highlighted-clients-gap) * 2 * 3 / 4);
+  }
+
+  .highlighted-clients__client:nth-last-child(-n + 4) {
+    margin-bottom: 0;
   }
 
   .highlighted-clients__client:nth-child(4n - 3) {
