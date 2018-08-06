@@ -38,14 +38,14 @@ export default {
       type: Array,
       required: true,
       validator(characteristics) {
-        return characteristics.every(characteristic => typeof characteristic === 'string');
+        return characteristics.every(characteristic => typeof characteristic === 'string')
       },
     },
     href: {
       type: String,
       required: true,
-    }
-  }
+    },
+  },
 }
 </script>
 
