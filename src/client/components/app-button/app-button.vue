@@ -66,6 +66,7 @@
           'app-button--primary': this.primary,
           'app-button--secondary': this.secondary,
           'app-button--small': this.small,
+          'font-bold': this.secondary,
         }
       },
     },
@@ -77,6 +78,7 @@
     display: inline-block;
     background: none;
     border: 0;
+    text-align: center;
     text-decoration: none;
     cursor: pointer;
   }
@@ -86,7 +88,7 @@
     background: var(--html-blue);
     border-radius: 3px;
     width: 100%;
-    max-width: 14.375rem;
+    min-width: 14.375rem;
     padding: .75rem 1.5625rem;
     transition: 200ms transform ease-in-out;
   }
@@ -191,6 +193,12 @@
   .app-button--secondary:disabled .app-button__svg,
   .app-button--secondary[disabled] .app-button__svg {
     fill: var(--v-dim);
+  }
+
+  @media (min-width: 720px) {
+    .app-button--primary {
+      width: auto;
+    }
   }
 
 </style>
