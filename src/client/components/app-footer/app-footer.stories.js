@@ -54,10 +54,10 @@ stories.add(
           { key: 'IBAN', value: 'NL20ABNA0442829159' },
         ],
         social : [
-          { icon: 'instagram--blue', slug: 'https://www.instagram.com/devoorhoede/?hl=nl' },
-          { icon: 'twitter--blue', slug: 'https://twitter.com/devoorhoede' },
-          { icon: 'facebook--blue', slug: 'https://www.facebook.com/DeVoorhoede/' },
-          { icon: 'git-hub--blue', slug: 'https://github.com/voorhoede/' },
+          { icon: 'instagram--blue', href: 'https://www.instagram.com/devoorhoede/?hl=nl' },
+          { icon: 'twitter--blue', href: 'https://twitter.com/devoorhoede' },
+          { icon: 'facebook--blue', href: 'https://www.facebook.com/DeVoorhoede/' },
+          { icon: 'git-hub--blue', href: 'https://github.com/voorhoede/' },
         ],
       }
     },
