@@ -50,6 +50,10 @@ export default {
 </script>
 
 <style>
+:root {
+  --service-excerpt-bullet-size: 2px;
+}
+
 .service-excerpt__title {
   margin-bottom: var(--spacing-medium);
   padding-top: .125rem; /* 2px */
@@ -68,12 +72,21 @@ export default {
   background: var(--html-blue);
 }
 
-.service-excerpt__characteristics-list {
-  list-style-type: disc;
+.service-excerpt__characteristic {
+  padding-left: var(--spacing-small);
 }
 
-.service-excerpt__characteristic {
-  margin-left: var(--spacing-small);
+.service-excerpt__characteristic::before {
+  content: '';
+  display: inline-block;
+  background: var(--black);
+  background: currentColor;
+  height: var(--service-excerpt-bullet-size);
+  width: var(--service-excerpt-bullet-size);
+  border-radius: 50%;
+  vertical-align: middle;
+  position: relative;
+  left: calc(-1 * var(--spacing-small));
 }
 
 .service-excerpt .app-button {
