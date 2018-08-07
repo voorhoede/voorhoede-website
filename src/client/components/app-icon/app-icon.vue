@@ -31,7 +31,7 @@
   vertical-align: middle;
 }
 
-@media(min-width: 720px) {
+@media (min-width: 720px) {
   .app-icon--large {
     width: 1.4em;
     height: 1.4em;
