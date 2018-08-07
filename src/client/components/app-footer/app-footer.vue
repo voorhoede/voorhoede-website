@@ -222,7 +222,6 @@ export default {
 }
 
 .app-footer__header {
-  grid-row: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -258,6 +257,10 @@ export default {
     text-align: center;
   }
 
+  .app-footer__header {
+    grid-row: 1;
+  }
+
   @media (min-width: 720px) {
     .app-footer__column {
       grid-column: content-left;
@@ -290,11 +293,66 @@ export default {
   }
 }
 
-@media (min-width: 720px) {
+
+@supports not (display: grid) {
   .app-footer {
-    padding: var(--spacing-larger) 0 0 0;
+    width: 100%;
+    padding: var(--spacing-larger) var(--spacing-medium) 0 var(--spacing-medium);
+    flex-flow: column wrap;
+    display: flex;
   }
 
+  .app-footer__column {
+    order: 2;
+    float: left;
+    width: 100%;
+    text-align: center;
+  }
+
+  .app-footer__column--right {
+    padding-top: var(--spacing-medium);
+    margin-bottom: var(--spacing-medium);
+    order: 3;
+  }
+
+  .app-footer__header {
+    width: 100%;
+    order: 1;
+  }
+  .app-footer__bottom {
+    order: 4;
+  }
+
+  @media (min-width: 720px) {
+    .app-footer {
+      flex-flow: row wrap;
+      padding: var(--spacing-larger) var(--spacing-medium) 0 var(--spacing-medium);
+    }
+
+    .app-footer__column {
+      text-align: left;
+      width: calc(100% / 3);
+      order: 1;
+    }
+
+    .app-footer__column--right {
+      text-align: right;
+      order: 3;
+    }
+
+    .app-footer__header {
+      order: 2;
+      float: left;
+      width: calc(100% / 3);
+    }
+
+    .app-footer__bottom {
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 720px) {
   .app-footer__list--icon {
     width: calc(100% / 3);
     justify-content: flex-start;
