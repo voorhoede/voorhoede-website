@@ -1,5 +1,5 @@
 # App Footer
-Used as a Container to position components inside it.
+Used as a container to position components inside it.
 
 ## Usage
 

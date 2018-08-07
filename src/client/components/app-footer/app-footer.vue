@@ -74,11 +74,13 @@ export default {
       type: Array,
       default: () => [],
       validator: (links) => {
-        return links.every(link => {
-          return link instanceof Object &&
-            typeof link.title === 'string' &&
-            typeof link.href === 'string'
-        })
+        return (
+          links.every(link => {
+            return link instanceof Object &&
+              typeof link.title === 'string' &&
+              typeof link.href === 'string'
+          })
+        )
       },
     },
     headerTitle: {
@@ -125,22 +127,26 @@ export default {
       type: Array,
       default: () => [],
       validator: (legal) => {
-        return legal.every(item => {
-          return item instanceof Object &&
-            typeof item.key === 'string' &&
-            typeof item.value === 'string'
-        })
+        return (
+          legal.every(item => {
+            return item instanceof Object &&
+              typeof item.key === 'string' &&
+              typeof item.value === 'string'
+          })
+        )
       },
     },
     social: {
       type: Array,
       default: () => [],
       validator: (social) => {
-        return social.every(item => {
-          return item instanceof Object &&
-            typeof item.icon === 'string' &&
-            typeof item.slug === 'string'
-        })
+        return (
+          social.every(item => {
+            return item instanceof Object &&
+              typeof item.icon === 'string' &&
+              typeof item.slug === 'string'
+          })
+        )
       },
     },
   },
