@@ -1,9 +1,9 @@
-# Scroll Highlight List
+# Scroll Highlighted Text
 
 ## Usage
 
 ```html
-<scroll-highlight-list
+<scroll-highlighted-text
   :textLines="[
     'We work lean and agile.',
     'Start small and iterate fast',

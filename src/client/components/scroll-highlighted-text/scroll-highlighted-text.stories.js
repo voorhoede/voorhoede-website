@@ -7,14 +7,14 @@ import VueI18n from 'vue-i18n'
 
 import '../app-core/index.css'
 
-import ScrollHighlightList from './highlight-text-lines.vue'
+import ScrollHighlightedText from './scroll-highlighted-text.vue'
 import README from './README.md'
 
-const stories = storiesOf('Components/Highlight text lines', module)
+const stories = storiesOf('Components/Scroll Highlighted Text', module)
   .addDecorator(withKnobs)
   .addDecorator(withReadme(README))
 
-Vue.component('highlight-text-lines', ScrollHighlightList)
+Vue.component('scroll-highlighted-text', ScrollHighlightedText)
 
 const arrayValues = [
   'We work lean and agile.',
@@ -24,7 +24,7 @@ const arrayValues = [
 ]
 
 stories.add(
-  'Scroll Highlight List',
+  'Scroll Highlighted Text',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     data() {
@@ -33,7 +33,7 @@ stories.add(
       }
     },
     template: `
-      <highlight-text-lines
+      <scroll-highlighted-text
         :textLines="textLines"
       />
     `,

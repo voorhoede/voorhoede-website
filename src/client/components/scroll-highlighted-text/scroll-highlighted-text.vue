@@ -31,12 +31,10 @@
 
   .highlight-text-lines__text {
     display: block;
-    color: var(--html-blue);
-    margin-bottom: var(--spacing-small);
   }
 
-  .highlight-text-lines__text:last-of-type {
-    margin-bottom: 0;
+  .highlight-text-lines__text + .highlight-text-lines__text {
+    margin-top: var(--spacing-small);
   }
 
   @media (min-width: 720px) {
