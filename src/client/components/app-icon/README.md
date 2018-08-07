@@ -1,10 +1,10 @@
 # App Icon
-App icon loads svg's in the img source tag to show icons. The image tag has two required properties named the `name` and `alt` and `class` string values.
+App icon loads svg's in the img source tag to show icons. The image tag has two required properties named the `name` and `alt` and `large` string values.
 
 ## Usage
 
 ```html
-<app-icon :name="name" :alt="alt" :class="class" />
+<app-icon :name="name" :alt="alt" :large="true" />
 ```
 
 ## Props
@@ -12,4 +12,4 @@ App icon loads svg's in the img source tag to show icons. The image tag has two 
 | --- | --- | --- |
 | name | true | the name of the svg file in the icons folder |
 | alt | false | the alt alt value for the image tag that is need to load in the svg |
-| class | false | adds custom class |
+| large | false | adds large icon variant |
