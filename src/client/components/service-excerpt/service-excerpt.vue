@@ -88,6 +88,7 @@ export default {
   }
 
   .service-excerpt__divider {
+    margin-bottom: var(--spacing-medium);
     width: var(--spacing-large);
   }
 
