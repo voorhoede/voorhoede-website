@@ -303,7 +303,6 @@ export default {
 
   .app-footer__column {
     order: 2;
-    float: left;
     width: 100%;
     text-align: center;
   }
@@ -330,9 +329,11 @@ export default {
     }
 
     .app-footer__column {
-      text-align: left;
-      width: calc(100% / 3);
       order: 1;
+      width: calc(100% / 3);
+      padding-top: 0;
+      margin-bottom: var(--spacing-medium);
+      text-align: left;
     }
 
     .app-footer__column--right {
@@ -342,7 +343,6 @@ export default {
 
     .app-footer__header {
       order: 2;
-      float: left;
       width: calc(100% / 3);
     }
 
