@@ -74,11 +74,6 @@ export default {
   filter: grayscale(100%);
 }
 
-.highlighted-clients__call-to-action {
-  display: flex;
-  justify-content: center;
-}
-
 @media (max-width: 719px) {
   .highlighted-clients__client:nth-last-child(-n + 2) {
     margin-bottom: 0;
@@ -109,6 +104,11 @@ export default {
 
   .highlighted-clients__client:nth-child(4n) {
     margin-right: 0;
+  }
+
+  .highlighted-clients__call-to-action {
+    display: flex;
+    justify-content: center;
   }
 }
 
