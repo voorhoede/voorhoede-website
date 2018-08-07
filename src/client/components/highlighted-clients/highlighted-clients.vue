@@ -72,7 +72,6 @@ export default {
   margin-left: var(--highlighted-clients-gap);
   width: var(--highlighted-clients-width);
   filter: grayscale(100%);
-  background: var(--very-dim);
 }
 
 .highlighted-clients__call-to-action {
@@ -80,7 +79,7 @@ export default {
   justify-content: center;
 }
 
-@media screen and (max-width: 719px) {
+@media (max-width: 719px) {
   .highlighted-clients__client:nth-last-child(-n + 2) {
     margin-bottom: 0;
   }
@@ -94,7 +93,7 @@ export default {
   }
 }
 
-@media screen and (min-width: 720px) {
+@media (min-width: 720px) {
   :root {
     --highlighted-clients-gap: calc(var(--spacing-big) / 2);
     --highlighted-clients-width: calc(25% - var(--highlighted-clients-gap) * 2 * 3 / 4);
@@ -113,7 +112,7 @@ export default {
   }
 }
 
-@media screen and (min-width: 1100px) {
+@media (min-width: 1100px) {
   :root {
     --highlighted-clients-gap: calc(var(--spacing-bigger) / 2);
   }
