@@ -1,22 +1,29 @@
 <template>
-  <ul class="highlighted-clients">
-    <li
-      v-for="({ name, logoSrc }) in clients"
-      :key="logoSrc"
-      class="highlighted-clients__client"
-    >
-      <fixed-ratio :width="5" :height="2">
-        <img class="highlighted-clients__image" :src="logoSrc" :alt="name">
-      </fixed-ratio>
-    </li>
-  </ul>
+  <div class="highlighted-clients">
+    <ul class="highlighted-clients__list">
+      <li
+        v-for="({ name, logoSrc }) in clients"
+        :key="logoSrc"
+        class="highlighted-clients__client"
+      >
+        <fixed-ratio :width="5" :height="2">
+          <img class="highlighted-clients__image" :src="logoSrc" :alt="name">
+        </fixed-ratio>
+      </li>
+    </ul>
+    <app-button
+      primary
+      :label="ctaLabel"
+      :to="ctaLink"
+    />
+  </div>
 </template>
 
 <script>
-import { FixedRatio } from '~/components'
+import { AppButton, FixedRatio } from '~/components'
 
 export default {
-  components: { FixedRatio },
+  components: { AppButton, FixedRatio },
   props: {
     clients: {
       type: Array,
@@ -29,6 +36,14 @@ export default {
         ))
       },
     },
+    ctaLabel: {
+      type: String,
+      required: true,
+    },
+    ctaLink: {
+      type: String,
+      required: true,
+    },
   },
 }
 </script>
@@ -39,7 +54,7 @@ export default {
   --highlighted-clients-width: calc(100% / 2 - var(--highlighted-clients-gap));
 }
 
-.highlighted-clients {
+.highlighted-clients__list {
   display: flex;
   flex-wrap: wrap;
 }
