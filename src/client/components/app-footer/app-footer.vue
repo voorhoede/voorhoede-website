@@ -331,7 +331,7 @@ export default {
 
     .app-footer__column {
       text-align: left;
-      width: calc(100% / 3);
+      width: calc( 100% / 3 );
       order: 1;
     }
 
