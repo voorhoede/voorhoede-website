@@ -76,6 +76,10 @@ export default {
   padding-left: var(--spacing-small);
 }
 
+.service-excerpt__characteristic + .service-excerpt__characteristic {
+  margin-top: var(--spacing-smaller);
+}
+
 .service-excerpt__characteristic::before {
   content: '';
   display: inline-block;
