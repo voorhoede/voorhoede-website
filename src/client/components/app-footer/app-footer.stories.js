@@ -45,8 +45,9 @@ stories.add(
         googleMapsLink: text('google maps link', 'https://www.google.nl/maps/place/De+Voorhoede+%7C+Front-end+Development/@52.3477995,4.8485761,17z/data=!3m1!4b1!4m5!3m4!1s0x47c5e21d502d2d59:0xbf570944a96ebf45!8m2!3d52.3477962!4d4.8507648'),
         address: text('street address', 'Rijnsburgstraat 9 - 11'),
         postalCode: text('postal code', '1059 AT Amsterdam'),
-        privacyStatement: text('privacy statment', '@ De Voorhoede 2018  Privacy statement'),
+        privacyLinkLabel: text('privacy statment', 'Privacy statement'),
         privacyLink: 'https://www.datocms-assets.com/2850/1527667154-de-voorhoede-privacy-statement-nl.pdf',
+        copyright: '© De Voorhoede 2018',
         legal: [
           { key: 'KvK', value: '56017235' },
           { key: 'BTW', value: 'NL851944620B01' },
@@ -69,10 +70,11 @@ stories.add(
                 :googleMapsLink="googleMapsLink"
                 :address="address"
                 :postalCode="postalCode"
-                :privacyStatement="privacyStatement"
+                :privacyLinkLabel="privacyLinkLabel"
                 :privacyLink="privacyLink"
                 :legal="legal"
-                :social="social
-              "/>`,
+                :social="social"
+                :copyright="copyright"
+              />`,
   }),
 )

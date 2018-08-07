@@ -1,54 +1,63 @@
 <template>
-  <footer class="footer grid">
-    <div class="footer__column">
-      <h5 class="body footer-list__title font-bold">Explore</h5>
-      <ul class="footer-list">
+  <footer class="app-footer grid">
+    <div class="app-footer__column">
+      <h5 class="body app-footer__list-title font-bold">Explore</h5>
+      <ul class="app-footer__list">
         <li
           v-for="({ href, title }, index) in footerExploreLinks"
           :key="index"
-          class="footer-list__item body-detail"
+          class="app-footer__list-item body-detail"
         >
-          <nuxt-link :to="href" class="footer-list__link">{{ title }}</nuxt-link>
+          <nuxt-link :to="href" class="app-footer__link">{{ title }}</nuxt-link>
         </li>
       </ul>
     </div>
-    <div class="footer__header">
-      <h2 class="h3 footer__header-title">{{ headerTitle }}</h2>
-      <img class="footer__header-logo" src="/images/logo--blue.svg">
-      <p class="body font-bold">{{ headerSubtitle }}</p>
+    <div class="app-footer__header">
+      <h2 class="h4 app-footer__header-title">{{ headerTitle }}</h2>
+      <img class="app-footer__header-logo" src="/images/logo--blue.svg">
+      <p class="body font-bold app-footer__header-subtitle">{{ headerSubtitle }}</p>
     </div>
-    <div class="footer__column footer__column--right">
-      <h5 class="body footer-list__title font-bold">Contact</h5>
-      <div class="body-detail footer-list footer-list--border-none footer-list--no-padding">
-        <nuxt-link class="footer-list__item" target="_blank" :to="`tel:${ tel }`">{{ tel }}</nuxt-link>
-        <nuxt-link class="footer-list__item" target="_blank" :to="`mailto:${ email }`">{{ email }}</nuxt-link>
-        <nuxt-link
-          target="_blank"
-          :to="`${ googleMapsLink }`"
-          class="footer-list__item footer-list__item-spaced"
-        >
-          <span>{{ address }}</span>
-          <span>{{ postalCode }}</span>
-        </nuxt-link>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <div class="body-detail footer__bottom-text">
-        <dl v-for="({ key, value }, index) in legal" :key="index">
-          <dt>{{ key }}</dt>: <dd>{{ value }}</dd>
-        </dl>
-      </div>
-      <ul class="footer-icon__list">
-        <li class="footer-icon__list-item"
-            v-for="({ icon, slug }, index ) in social" :key="index">
-          <nuxt-link :to="`${ slug }`" target="_blank">
-            <app-icon :name="`${ icon }`" />
+    <div class="app-footer__column app-footer__column--right">
+      <h5 class="body app-footer__list-title font-bold">Contact</h5>
+      <ul class="body-detail app-footer__list app-footer__list--border-none app-footer__list--no-padding">
+        <li class="app-footer__list-item">
+          <nuxt-link class="app-footer__link" target="_blank" :to="`tel:${ tel }`">{{ tel }}</nuxt-link>
+        </li>
+        <li class="app-footer__list-item">
+          <nuxt-link class="app-footer__link" target="_blank" :to="`mailto:${ email }`">{{ email }}</nuxt-link>
+        </li>
+        <li class="app-footer__list-item">
+          <nuxt-link
+            target="_blank"
+            :to="`${ googleMapsLink }`"
+            class="app-footer__link app-footer__link--right"
+          >
+            <span>{{ address }}</span>
+            <span>{{ postalCode }}</span>
           </nuxt-link>
         </li>
       </ul>
-      <nuxt-link class="body-detail footer__privacy" :to="privacyLink" target="_blank">
-        {{ privacyStatement }}
-      </nuxt-link>
+    </div>
+    <div class="app-footer__bottom">
+      <div class="body-detail app-footer__bottom-text">
+        <dl class="app-footer__definition-list" v-for="({ key, value }, index) in legal" :key="index">
+          <dt>{{ key }}</dt>: <dd class="app-footer__definition-value">{{ value }}</dd>
+        </dl>
+      </div>
+      <ul class="app-footer__list--icon">
+        <li class="app-footer__list-item--icon"
+            v-for="({ icon, slug }, index ) in social" :key="index">
+          <nuxt-link :to="`${ slug }`" target="_blank">
+            <app-icon :name="`${ icon }`" :large="true" />
+          </nuxt-link>
+        </li>
+      </ul>
+      <div class="body-detail app-footer__copyright">
+        {{ copyright }}
+        <nuxt-link :to="privacyLink" class="app-footer__privacy" target="_blank">
+          {{ privacyLinkLabel }}
+        </nuxt-link>
+      </div>
     </div>
   </footer>
 </template>
@@ -74,39 +83,43 @@ export default {
     },
     headerTitle: {
       type: String,
-      default: 'Make it real',
+      default: '',
     },
     headerSubtitle: {
       type: String,
-      default: 'Discuss your next project with us',
+      default: '',
     },
-    tel:{
+    tel: {
       type: String,
-      default: '+31 (0)20 2610 954',
+      default: '',
     },
     email: {
       type: String,
-      default: 'post@voorhoede.nl',
+      default: '',
     },
     googleMapsLink: {
       type: String,
-      default: 'https://www.google.nl/maps/place/De+Voorhoede+%7C+Front-end+Development/@52.3477995,4.8485761,17z/data=!3m1!4b1!4m5!3m4!1s0x47c5e21d502d2d59:0xbf570944a96ebf45!8m2!3d52.3477962!4d4.8507648',
+      default: '',
     },
     address: {
       type: String,
-      default: 'Rijnsburgstraat 9 - 11',
+      default: '',
     },
     postalCode: {
       type: String,
-      default: '1059 AT Amsterdam',
+      default: '',
     },
-    privacyStatement: {
+    copyright: {
       type: String,
-      default: '@ De Voorhoede 2018  Privacy statement',
+      default: '',
+    },
+    privacyLinkLabel: {
+      type: String,
+      default: '',
     },
     privacyLink: {
       type: String,
-      default: 'https://www.datocms-assets.com/2850/1527667154-de-voorhoede-privacy-statement-nl.pdf',
+      default: '',
     },
     legal: {
       type: Array,
@@ -135,71 +148,74 @@ export default {
 </script>
 
 <style>
-.footer {
-  padding: var(--spacing-large) 0 0 0;
+.app-footer {
+  padding: var(--spacing-larger) 0 0 0;
   background: var(--brand-yellow);
 }
 
-.footer__bottom {
+.app-footer__bottom {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: calc(var(--spacing-smaller) * 2);
-  padding-top: calc(var(--spacing-smaller) * 2);
+  margin-bottom: var(--spacing-medium);
+  padding-top: var(--spacing-medium);
   border-top: 1px solid var(--black);
 }
 
-.footer__bottom-text {
+.app-footer__bottom-text {
   display: none;
+  font-size: 12px;
 }
 
-.footer__privacy {
-  text-align: center;
+.app-footer__copyright {
+  font-size: 12px;
+}
+
+.app-footer__privacy {
   text-decoration: none;
 }
 
-.footer-icon__list {
+.app-footer__list--icon {
   display: flex;
   text-align: center;
   margin-bottom: var(--spacing-small);
 }
 
-.footer-icon__list-item {
-  margin: 0 calc(var(--spacing-small) / 2);
+.app-footer__list-item--icon {
+  margin: 0 var(--spacing-smaller);
 }
 
-.footer-list {
+.app-footer__list {
   display: flex;
   flex-flow: wrap;
   border-bottom: 1px solid var(--black);
   justify-content: center;
-  padding-bottom: calc(var(--spacing-smaller) * 2);
+  padding-bottom: var(--spacing-medium);
 }
 
-.footer-list--border-none {
+.app-footer__list--border-none {
   border-bottom: 0;
 }
 
-.footer-list--no-padding {
+.app-footer__list--no-padding {
   padding-bottom: 0;
 }
 
-.footer-list__item {
+.app-footer__list-item {
   text-decoration: none;
   margin: 0 var(--spacing-smaller);
 }
 
-.footer-list__title {
+.app-footer__list-title {
   color: var(--html-blue);
-  margin-bottom: calc(var(--spacing-small) / 2);
+  margin-bottom: var(--spacing-tiny);
 }
 
-.footer-list__link {
-  font-family: var(--font-sans);
+.app-footer__link {
   text-decoration: none;
 }
 
-.footer__header {
+.app-footer__header {
   grid-row: 1;
   display: flex;
   flex-direction: column;
@@ -208,116 +224,140 @@ export default {
   margin-bottom: var(--spacing-large);
 }
 
-.footer__header .footer__header-title {
-  margin-bottom: calc(var(--spacing-smaller) * 2);
-}
-
-.footer__header .body {
-  color: var(--html-blue);
-  width: 180px;
-  text-align: center;
-}
-
-.footer__header .footer__header-logo {
-  width: 3.25rem;
-  height: 3.25rem;
+.app-footer__header-title {
   margin-bottom: var(--spacing-small);
 }
 
+.app-footer__header-subtitle {
+  color: var(--html-blue);
+  text-align: center;
+}
+
+.app-footer__header-logo {
+  width: 3.25rem;
+  height: 3.25rem;
+  margin-bottom: var(--spacing-small);
+  filter: drop-shadow(1px 2px 4px var(--dim));
+}
+
 @supports (display: grid) {
-  .footer__column {
+  .app-footer__column {
     text-align: center;
     grid-row: 2;
     margin-bottom: var(--spacing-large);
   }
 
-  .footer__column.footer__column--right {
+  .app-footer__column--right {
     grid-row: 3;
     text-align: center;
   }
 
   @media (min-width: 720px) {
-    .footer__column {
+    .app-footer__column {
       grid-column: content-left;
       text-align: left;
       grid-row: 1;
+      grid-column-start: 2;
     }
 
-    .footer__column.footer__column--right {
+    .app-footer__column--right {
       grid-column: content-right;
       text-align: right;
       grid-row: 1;
+      grid-column-end: -2;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .app-footer__column {
+      grid-column-start: 4;
+    }
+
+    .app-footer__bottom {
+      grid-column-start: 4;
+      grid-column-end: -4;
+    }
+
+    .app-footer__column--right {
+      grid-column-end: -4;
     }
   }
 }
 
 @media (min-width: 720px) {
-  .footer-icon__list {
+  .app-footer {
+    padding: var(--spacing-larger) 0 0 0;
+  }
+
+  .app-footer__list--icon {
     width: calc(100% / 3);
-    justify-content: center;
+    justify-content: flex-start;
   }
 
-  .footer-icon__list-item img.app-icon {
-    width: 1.4em;
-    height: 1.4em;
-  }
-
-  .footer__header .body {
+  .app-footer__header.body {
     margin-bottom: 0;
     width: auto;
   }
 
-  .footer__privacy {
+  .app-footer__copyright {
     text-align: right;
     width: calc(100% / 3);
   }
 
-  .footer__bottom {
-    border-top: 3px solid var(--html-blue);
+  .app-footer__bottom {
+    border-top: 1px solid var(--html-blue);
     flex-direction: row;
     align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 0;
   }
 
-  .footer__bottom .footer__bottom-text {
-    display: flex;
+  .app-footer__bottom-text {
+    display: none;
     flex-flow: row wrap;
     width: calc(100% / 3);
   }
 
-  .footer__bottom .footer__bottom-text dl {
+   .app-footer__definition-list {
     display: flex;
     margin-right: var(--spacing-smaller);
   }
 
-  .footer__bottom .footer__bottom-text dd {
+  .app-footer__definition-value {
     padding-left: var(--spacing-tiny);
   }
 
-  .footer-contact__header {
-    text-align: right;
-    margin-bottom: calc(var(--spacing-smaller) * 2);
-  }
-
-  .footer-list {
+  .app-footer__list {
     display: flex;
     flex-direction: column;
     border-bottom: 0;
     padding-bottom: 0;
   }
 
-  .footer-list__item {
-    margin: 0 0 0 0;
+  .app-footer__list-item {
+    margin: 0;
     line-height: 2;
   }
 
-  .footer-list__title {
-    margin-bottom: calc(var(--spacing-smaller) * 2);
+  .app-footer__list-title {
+    margin-bottom: var(--spacing-tiny);
   }
 
-  .footer-list__item-spaced span {
+  .app-footer__link--right {
     display: flex;
+    flex-direction: column;
     width: 100%;
     justify-content: flex-end;
+  }
+}
+
+@media (min-width: 1100px) {
+  .app-footer__bottom-text {
+    display: flex;
+  }
+
+  .app-footer__list--icon {
+    justify-content: center;
   }
 }
 </style>

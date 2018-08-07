@@ -17,6 +17,9 @@ Used as a Container to position components inside it.
 	:social="social
 >
 ```
+
+## Props
+
 | name | required | type | description |
 | --- | --- | --- | --- |
 | headerTitle | false | String | value that should display a slogan for the heading of the footer section |
@@ -27,6 +30,5 @@ Used as a Container to position components inside it.
 | address | false | String | value of the street address to de voorhoede |
 | postal code | false | String | value of the postal code of de voorhoede |
 | copyright | false | String | value copyright of the voorhoede |
-| kvk | false | String | value kvk number |
-| btw | false | String | value btw number |
-| iban | false | String | value iban number |
+| legal | false | Array | this should show the kvk btw and iban number |
+| social | false | Array | this hould show the social media icon and the link to the social media page |
