@@ -36,7 +36,7 @@ stories.add(
           { logoSrc: 'https://www.datocms-assets.com/2850/1529495146-logo-hva.svg', name: 'Hogeschool van Amsterdam' },
           { logoSrc: 'https://www.datocms-assets.com/2850/1529495144-logo-grandvision.svg', name: 'GrandVision' }
         ]"
-        ctaLabel="Get your own name on the list"
+        ctaLabel="Get your name on the list"
         ctaLink="/en/contact/"
       />
     `,

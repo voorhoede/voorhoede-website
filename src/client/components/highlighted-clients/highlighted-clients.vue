@@ -11,11 +11,13 @@
         </fixed-ratio>
       </li>
     </ul>
-    <app-button
-      primary
-      :label="ctaLabel"
-      :to="ctaLink"
-    />
+    <div class="highlighted-clients__call-to-action">
+      <app-button
+        primary
+        :label="ctaLabel"
+        :to="ctaLink"
+      />
+    </div>
   </div>
 </template>
 
@@ -55,6 +57,7 @@ export default {
 }
 
 .highlighted-clients__list {
+  margin-bottom: var(--spacing-medium);
   display: flex;
   flex-wrap: wrap;
 }
@@ -69,6 +72,12 @@ export default {
   margin-left: var(--highlighted-clients-gap);
   width: var(--highlighted-clients-width);
   filter: grayscale(100%);
+  background: var(--very-dim);
+}
+
+.highlighted-clients__call-to-action {
+  display: flex;
+  justify-content: center;
 }
 
 @media screen and (max-width: 719px) {
