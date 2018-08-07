@@ -293,7 +293,6 @@ export default {
   }
 }
 
-
 @supports not (display: grid) {
   .app-footer {
     width: 100%;
@@ -319,6 +318,7 @@ export default {
     width: 100%;
     order: 1;
   }
+
   .app-footer__bottom {
     order: 4;
   }
@@ -331,7 +331,7 @@ export default {
 
     .app-footer__column {
       text-align: left;
-      width: calc( 100% / 3 );
+      width: calc(100% / 3);
       order: 1;
     }
 
