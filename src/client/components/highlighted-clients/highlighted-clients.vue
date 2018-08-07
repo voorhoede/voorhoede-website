@@ -52,58 +52,28 @@ export default {
 
 <style>
 :root {
-  --highlighted-clients-gap: calc(var(--spacing-tiny) / 2);
-  --highlighted-clients-width: calc(100% / 2 - var(--highlighted-clients-gap));
+  --highlighted-clients-width: calc(100% / 2 - var(--spacing-tiny) / 2);
 }
 
 .highlighted-clients__list {
   margin-bottom: var(--spacing-medium);
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.highlighted-clients__client {
+  margin-bottom: var(--spacing-medium);
+  width: var(--highlighted-clients-width);
 }
 
 .highlighted-clients__image {
   height: 100%;
 }
 
-.highlighted-clients__client {
-  margin-bottom: var(--spacing-medium);
-  margin-right: var(--highlighted-clients-gap);
-  margin-left: var(--highlighted-clients-gap);
-  width: var(--highlighted-clients-width);
-  filter: grayscale(100%);
-}
-
-@media (max-width: 719px) {
-  .highlighted-clients__client:nth-last-child(-n + 2) {
-    margin-bottom: 0;
-  }
-
-  .highlighted-clients__client:nth-child(2n - 1) {
-    margin-left: 0;
-  }
-
-  .highlighted-clients__client:nth-child(2n) {
-    margin-right: 0;
-  }
-}
-
 @media (min-width: 720px) {
   :root {
-    --highlighted-clients-gap: calc(var(--spacing-big) / 2);
-    --highlighted-clients-width: calc(25% - var(--highlighted-clients-gap) * 2 * 3 / 4);
-  }
-
-  .highlighted-clients__client:nth-last-child(-n + 4) {
-    margin-bottom: 0;
-  }
-
-  .highlighted-clients__client:nth-child(4n - 3) {
-    margin-left: 0;
-  }
-
-  .highlighted-clients__client:nth-child(4n) {
-    margin-right: 0;
+    --highlighted-clients-width: 150px;
   }
 
   .highlighted-clients__call-to-action {
@@ -114,7 +84,26 @@ export default {
 
 @media (min-width: 1100px) {
   :root {
-    --highlighted-clients-gap: calc(var(--spacing-bigger) / 2);
+    --highlighted-clients-width: 210px;
+  }
+}
+
+@supports (display: grid) {
+  .highlighted-clients__list {
+    display: grid;
+    grid-template-columns: repeat(2, var(--highlighted-clients-width));
+    row-gap: var(--spacing-medium);
+  }
+
+  .highlighted-clients__client {
+    margin-bottom: 0;
+    width: auto;
+  }
+
+  @media (min-width: 720px) {
+    .highlighted-clients__list {
+      grid-template-columns: repeat(4, var(--highlighted-clients-width));
+    }
   }
 }
 </style>
