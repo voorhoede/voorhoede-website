@@ -81,7 +81,7 @@ export default {
   margin-left: var(--spacing-small);
 }
 
-@media screen and (min-width: 720px) {
+@media (min-width: 720px) {
   .service-excerpt__title {
     padding-top: .25rem; /* 4px */
     padding-bottom: .125rem; /* 2px */
@@ -98,7 +98,7 @@ export default {
   }
 }
 
-@media screen and (min-width: 1100px) {
+@media (min-width: 1100px) {
   .service-excerpt__title {
     padding-top: .375em; /* 6px */
     padding-bottom: .25rem; /* 4px */
