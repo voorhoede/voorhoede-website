@@ -4,8 +4,8 @@
       class="academy-excerpt__calendar"
       :datetime="date"
     >
-      <span>6</span>
-      <span>Juli</span>
+      <span class="academy-excerpt__day font-bold">{{ day }}</span>
+      <span class="academy-excerpt__month">{{ month }}</span>
     </time>
     <div class="academy-excerpt__content">
       <h2 class="academy-excerpt__heading h3">{{ heading }}</h2>
@@ -34,7 +34,11 @@
       AppButton,
     },
     props: {
-      date: {
+      dateString: {
+        type: String,
+        required: true,
+      },
+      currentLocale: {
         type: String,
         required: true,
       },
@@ -63,20 +67,73 @@
         required: true,
       },
     },
+    computed: {
+      date() {
+        return new Date(this.dateString)
+      },
+      day() {
+        return this.date.toLocaleDateString(this.currentLocale, {
+          day: 'numeric',
+        })
+      },
+      month() {
+        return this.date.toLocaleDateString(this.currentLocale, {
+          month: 'short',
+        })
+      },
+    },
   }
 </script>
 
 <style>
-    .academy-excerpt__calendar {
-      grid-column-start: 2;
-      grid-column-end: 5;
+  .academy-excerpt__calendar {
+    grid-column-start: 2;
+    grid-column-end: 5;
+    align-self: start;
+    justify-self: end;
+    position: relative;
+    max-width: 3.75rem;
+    padding: var(--spacing-tiny) 0;
+    border: 3px solid var(--html-blue);
+    font-family: var(--font-sans);
+    text-align: center;
+    color: var(--html-blue);
+  }
 
-    }
+  .academy-excerpt__calendar::before,
+  .academy-excerpt__calendar::after {
+    content: '';
+    position: absolute;
+    top: -60px;
+    width: 2px;
+    height: 64px;
+    border-radius: 1px;
+    background-color: var(--html-blue);
+  }
 
-    .academy-excerpt__content {
-      grid-column-start: 6;
-      grid-column-end: 18;
-    }
+  .academy-excerpt__calendar::before {
+    left: 8px;
+  }
+
+  .academy-excerpt__calendar::after {
+    right: 8px;
+  }
+
+  .academy-excerpt__day {
+    font-size: 1.8125rem;
+  }
+
+  .academy-excerpt__month {
+    font-size: 0.8125rem;
+    letter-spacing: 2.3px;
+    text-transform: uppercase;
+  }
+
+  .academy-excerpt__content {
+    grid-column-start: 6;
+    grid-column-end: 18;
+  }
+
   .academy-excerpt__heading {
     margin-bottom: var(--spacing-small);
   }
@@ -92,10 +149,26 @@
   }
 
   @media (min-width: 720px) {
-    .academy-excerpt__button-group {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .academy-excerpt__calendar {
+      grid-column-start: 7;
+      grid-column-end: 9;
+    }
+
+    .academy-excerpt__content {
+      grid-column-start: 10;
+      grid-column-end: 21;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .academy-excerpt__calendar {
+      grid-column-start: 12;
+      grid-column-end: 14;
+    }
+
+    .academy-excerpt__content {
+      grid-column-start: 16;
+      grid-column-end: 29;
     }
   }
 
