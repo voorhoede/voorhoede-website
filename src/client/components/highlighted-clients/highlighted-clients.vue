@@ -87,7 +87,6 @@ export default {
     --highlighted-clients-width: 210px;
   }
 
-
   .highlighted-clients__list {
     margin-bottom: var(--spacing-big);
   }
