@@ -1,21 +1,21 @@
 <template>
   <footer class="app-footer grid">
+    <div class="app-footer__header">
+      <h2 class="h4 app-footer__header-title">{{ headerTitle }}</h2>
+      <img class="app-footer__header-logo" src="/images/logo--blue.svg">
+      <p class="body font-bold app-footer__header-subtitle">{{ headerSubtitle }}</p>
+    </div>
     <div class="app-footer__column">
       <h5 class="body app-footer__list-title font-bold">Explore</h5>
       <ul class="app-footer__list">
         <li
-          v-for="({ href, title }, index) in footerExploreLinks"
+          v-for="({ href, title }, index) in exploreLinks"
           :key="index"
           class="app-footer__list-item body-detail"
         >
           <nuxt-link :to="href" class="app-footer__link">{{ title }}</nuxt-link>
         </li>
       </ul>
-    </div>
-    <div class="app-footer__header">
-      <h2 class="h4 app-footer__header-title">{{ headerTitle }}</h2>
-      <img class="app-footer__header-logo" src="/images/logo--blue.svg">
-      <p class="body font-bold app-footer__header-subtitle">{{ headerSubtitle }}</p>
     </div>
     <div class="app-footer__column app-footer__column--right">
       <h5 class="body app-footer__list-title font-bold">Contact</h5>
@@ -70,7 +70,7 @@ export default {
     AppIcon,
   },
   props: {
-    footerExploreLinks: {
+    exploreLinks: {
       type: Array,
       default: () => [],
       validator: (links) => {
@@ -154,8 +154,14 @@ export default {
 </script>
 
 <style>
+:root {
+  --app-footer-spacing: var(--spacing-small);
+}
+
 .app-footer {
-  padding: var(--spacing-larger) 0 0 0;
+  width: 100%;
+  padding: var(--app-footer-spacing);
+  padding-top: var(--spacing-larger);
   background: var(--brand-yellow);
 }
 
@@ -179,16 +185,7 @@ export default {
 
 .app-footer__privacy {
   text-decoration: none;
-}
-
-.app-footer__list--icon {
-  display: flex;
-  text-align: center;
-  margin-bottom: var(--spacing-small);
-}
-
-.app-footer__list-item--icon {
-  margin: 0 var(--spacing-smaller);
+  border-bottom: 1px solid var(--black);
 }
 
 .app-footer__list {
@@ -207,9 +204,19 @@ export default {
   padding-bottom: 0;
 }
 
+.app-footer__list--icon {
+  display: flex;
+  text-align: center;
+  margin-bottom: var(--spacing-small);
+}
+
 .app-footer__list-item {
   text-decoration: none;
   margin: 0 var(--spacing-smaller);
+}
+
+.app-footer__list-item--icon {
+  margin: 0 var(--spacing-tiny);
 }
 
 .app-footer__list-title {
@@ -226,6 +233,7 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
   margin-bottom: var(--spacing-large);
 }
 
@@ -245,6 +253,15 @@ export default {
   filter: drop-shadow(1px 2px 4px var(--dim));
 }
 
+.app-footer__column {
+  text-align: center;
+}
+
+.app-footer__column--right {
+  padding-top: var(--spacing-medium);
+  margin-bottom: var(--spacing-medium);
+}
+
 @supports (display: grid) {
   .app-footer__column {
     text-align: center;
@@ -259,6 +276,7 @@ export default {
 
   .app-footer__header {
     grid-row: 1;
+    width: 100%;
   }
 
   @media (min-width: 720px) {
@@ -266,14 +284,16 @@ export default {
       grid-column: content-left;
       text-align: left;
       grid-row: 1;
-      grid-column-start: 2;
     }
 
     .app-footer__column--right {
       grid-column: content-right;
       text-align: right;
       grid-row: 1;
-      grid-column-end: -2;
+    }
+
+    .app-footer__header {
+      width: calc(100% - var(--app-footer-spacing) * 2);
     }
   }
 
@@ -293,74 +313,27 @@ export default {
   }
 }
 
-@supports not (display: grid) {
+@media (min-width: 720px) {
   .app-footer {
-    width: 100%;
+    position: relative;
     padding: var(--spacing-larger) var(--spacing-medium) 0 var(--spacing-medium);
-    flex-flow: column wrap;
-    display: flex;
   }
 
   .app-footer__column {
-    order: 2;
-    width: 100%;
-    text-align: center;
+    float: left;
+    padding-top: 0;
+    margin-bottom: var(--spacing-medium);
+    text-align: left;
   }
 
   .app-footer__column--right {
-    padding-top: var(--spacing-medium);
-    margin-bottom: var(--spacing-medium);
-    order: 3;
+    float: right;
+    text-align: right;
   }
 
   .app-footer__header {
+    position: absolute;
     width: 100%;
-    order: 1;
-  }
-
-  .app-footer__bottom {
-    order: 4;
-  }
-
-  @media (min-width: 720px) {
-    .app-footer {
-      flex-flow: row wrap;
-      padding: var(--spacing-larger) var(--spacing-medium) 0 var(--spacing-medium);
-    }
-
-    .app-footer__column {
-      order: 1;
-      width: calc(100% / 3);
-      padding-top: 0;
-      margin-bottom: var(--spacing-medium);
-      text-align: left;
-    }
-
-    .app-footer__column--right {
-      text-align: right;
-      order: 3;
-    }
-
-    .app-footer__header {
-      order: 2;
-      width: calc(100% / 3);
-    }
-
-    .app-footer__bottom {
-      width: 100%;
-    }
-  }
-}
-
-@media (min-width: 720px) {
-  .app-footer__list--icon {
-    width: calc(100% / 3);
-    justify-content: flex-start;
-  }
-
-  .app-footer__header.body {
-    margin-bottom: 0;
-    width: auto;
   }
 
   .app-footer__copyright {
@@ -373,6 +346,7 @@ export default {
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
+    width: 100%;
     margin-bottom: 0;
   }
 
@@ -396,6 +370,11 @@ export default {
     flex-direction: column;
     border-bottom: 0;
     padding-bottom: 0;
+  }
+
+  .app-footer__list--icon {
+    width: calc(100% / 3);
+    justify-content: flex-start;
   }
 
   .app-footer__list-item {

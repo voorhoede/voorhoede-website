@@ -22,7 +22,7 @@ stories.add(
     i18n: new VueI18n({ locale: 'en' }),
     data: () => {
       return {
-        footerExploreLinks: [{
+        exploreLinks: [{
           title: 'Services',
           href: '/nl/services',
         },{
@@ -62,7 +62,7 @@ stories.add(
       }
     },
     template: `<app-footer
-                :footerExploreLinks="footerExploreLinks"
+                :exploreLinks="exploreLinks"
                 :headerTitle="headerTitle"
                 :headerSubtitle="headerSubtitle"
                 :tel="tel"
