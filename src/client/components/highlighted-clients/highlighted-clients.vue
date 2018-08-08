@@ -11,7 +11,7 @@
         </fixed-ratio>
       </li>
     </ul>
-    <div class="highlighted-clients__call-to-action">
+    <div class="highlighted-clients__cta">
       <app-button :label="ctaLabel" :to="ctaLink"/>
     </div>
   </div>
@@ -77,7 +77,7 @@ export default {
     margin-bottom: var(--spacing-larger);
   }
 
-  .highlighted-clients__call-to-action {
+  .highlighted-clients__cta {
     display: flex;
     justify-content: center;
   }
