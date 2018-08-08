@@ -30,7 +30,7 @@
 | --- | --- | --- | --- |
 | clients | Array | true | Array of clients |
 | ctaLabel | String | true | Label of the call to action button |
-| ctaLink | Path the call to action button should take you |
+| ctaLink | Url where the cta should lead to |
 
 The Array of clients must have a length of 12 clients. Each client is an object with the following properties:
 
