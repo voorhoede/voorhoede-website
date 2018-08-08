@@ -7,7 +7,9 @@
         class="highlighted-clients__client"
       >
         <fixed-ratio :width="5" :height="2">
-          <img class="highlighted-clients__image" :src="logoSrc" :alt="name">
+          <lazy-load>
+            <img class="highlighted-clients__image" :src="logoSrc" :alt="name">
+          </lazy-load>
         </fixed-ratio>
       </li>
     </ul>
@@ -18,10 +20,14 @@
 </template>
 
 <script>
-import { AppButton, FixedRatio } from '~/components'
+import { AppButton, FixedRatio, LazyLoad } from '~/components'
 
 export default {
-  components: { AppButton, FixedRatio },
+  components: {
+    AppButton,
+    FixedRatio,
+    LazyLoad,
+  },
   props: {
     clients: {
       type: Array,
