@@ -13,8 +13,8 @@ export default {
       return this.$slots.slides
         .filter(slide => slide.tag)
         .length
-    }
-  }
+    },
+  },
 }
 </script>
 
