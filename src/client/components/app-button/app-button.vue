@@ -65,6 +65,7 @@
           'body-petite': this.small,
           'app-button--primary': this.primary,
           'app-button--secondary': this.secondary,
+          'font-bold': this.secondary,
           'app-button--small': this.small,
           'font-bold': this.secondary,
         }
