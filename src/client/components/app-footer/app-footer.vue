@@ -48,7 +48,7 @@
         <li class="app-footer__list-item--icon"
             v-for="({ icon, href }, index ) in social" :key="index">
           <nuxt-link :to="`${ href }`" target="_blank">
-            <app-icon :name="`${ icon }`" :isLarge="true" />
+            <app-icon :name="`${ icon }`" :is-large="true" />
           </nuxt-link>
         </li>
       </ul>
