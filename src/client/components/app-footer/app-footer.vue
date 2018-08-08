@@ -304,13 +304,11 @@ export default {
 
   .app-footer__bottom-text {
     display: none;
-    flex-flow: row wrap;
-    width: calc(100% / 3);
   }
 
    .app-footer__definition-list {
     display: flex;
-    margin-right: var(--spacing-smaller);
+    margin-right: var(--spacing-tiny);
   }
 
   .app-footer__definition-value {
@@ -350,6 +348,8 @@ export default {
 @media (min-width: 1100px) {
   .app-footer__bottom-text {
     display: flex;
+    flex-wrap: wrap;
+    width: calc(100% / 3);
   }
 
   .app-footer__list--icon {
@@ -359,6 +359,12 @@ export default {
 
   .app-footer__copyright {
     width: calc(100% / 3);
+  }
+}
+
+@media (min-width: 1200px) {
+  .app-footer__bottom-text {
+    flex-wrap: nowrap;
   }
 }
 
