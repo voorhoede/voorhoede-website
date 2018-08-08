@@ -56,7 +56,7 @@ export default {
 }
 
 .highlighted-clients__list {
-  margin-bottom: var(--spacing-larger);
+  margin-bottom: var(--spacing-large);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -74,6 +74,10 @@ export default {
 @media (min-width: 720px) {
   :root {
     --highlighted-clients-width: 150px;
+  }
+
+  .highlighted-clients__list {
+    margin-bottom: var(--spacing-larger);
   }
 
   .highlighted-clients__call-to-action {
