@@ -12,11 +12,7 @@
       </li>
     </ul>
     <div class="highlighted-clients__call-to-action">
-      <app-button
-        primary
-        :label="ctaLabel"
-        :to="ctaLink"
-      />
+      <app-button :label="ctaLabel" :to="ctaLink"/>
     </div>
   </div>
 </template>
@@ -52,7 +48,8 @@ export default {
 
 <style>
 :root {
-  --highlighted-clients-width: calc(100% / 2 - var(--spacing-tiny) / 2);
+  --highlighted-clients-columns: 2;
+  --highlighted-clients-width: calc((100% / var(--highlighted-clients-columns)) - (var(--spacing-tiny) / var(--highlighted-clients-columns)));
 }
 
 .highlighted-clients__list {
@@ -99,7 +96,7 @@ export default {
 @supports (display: grid) {
   .highlighted-clients__list {
     display: grid;
-    grid-template-columns: repeat(2, var(--highlighted-clients-width));
+    grid-template-columns: repeat(var(--highlighted-clients-columns), var(--highlighted-clients-width));
     row-gap: var(--spacing-medium);
   }
 
@@ -109,8 +106,8 @@ export default {
   }
 
   @media (min-width: 720px) {
-    .highlighted-clients__list {
-      grid-template-columns: repeat(4, var(--highlighted-clients-width));
+    :root {
+      --highlighted-clients-columns: 4;
     }
   }
 }
