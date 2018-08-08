@@ -262,57 +262,6 @@ export default {
   margin-bottom: var(--spacing-medium);
 }
 
-@supports (display: grid) {
-  .app-footer__column {
-    text-align: center;
-    grid-row: 2;
-    margin-bottom: var(--spacing-large);
-  }
-
-  .app-footer__column--right {
-    grid-row: 3;
-    text-align: center;
-  }
-
-  .app-footer__header {
-    grid-row: 1;
-    width: 100%;
-  }
-
-  @media (min-width: 720px) {
-    .app-footer__column {
-      grid-column: content-left;
-      text-align: left;
-      grid-row: 1;
-    }
-
-    .app-footer__column--right {
-      grid-column: content-right;
-      text-align: right;
-      grid-row: 1;
-    }
-
-    .app-footer__header {
-      width: calc(100% - var(--app-footer-spacing) * 2);
-    }
-  }
-
-  @media (min-width: 1100px) {
-    .app-footer__column {
-      grid-column-start: 4;
-    }
-
-    .app-footer__bottom {
-      grid-column-start: 4;
-      grid-column-end: -4;
-    }
-
-    .app-footer__column--right {
-      grid-column-end: -4;
-    }
-  }
-}
-
 @media (min-width: 720px) {
   .app-footer {
     position: relative;
@@ -401,6 +350,57 @@ export default {
 
   .app-footer__list--icon {
     justify-content: center;
+  }
+}
+
+@supports (display: grid) {
+  .app-footer__column {
+    text-align: center;
+    grid-row: 2;
+    margin-bottom: var(--spacing-large);
+  }
+
+  .app-footer__column--right {
+    grid-row: 3;
+    text-align: center;
+  }
+
+  .app-footer__header {
+    grid-row: 1;
+    width: 100%;
+  }
+
+  @media (min-width: 720px) {
+    .app-footer__column {
+      grid-column: content-left;
+      text-align: left;
+      grid-row: 1;
+    }
+
+    .app-footer__column--right {
+      grid-column: content-right;
+      text-align: right;
+      grid-row: 1;
+    }
+
+    .app-footer__header {
+      width: calc(100% - var(--app-footer-spacing) * 2);
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .app-footer__column {
+      grid-column-start: 4;
+    }
+
+    .app-footer__bottom {
+      grid-column-start: 4;
+      grid-column-end: -4;
+    }
+
+    .app-footer__column--right {
+      grid-column-end: -4;
+    }
   }
 }
 </style>
