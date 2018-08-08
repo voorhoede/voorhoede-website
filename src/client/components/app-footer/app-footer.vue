@@ -48,7 +48,7 @@
         <li class="app-footer__list-item--icon"
             v-for="({ icon, href }, index ) in social" :key="index">
           <nuxt-link :to="`${ href }`" target="_blank">
-            <app-icon :name="`${ icon }`" :large="true" />
+            <app-icon :name="`${ icon }`" :is-large="true" />
           </nuxt-link>
         </li>
       </ul>
@@ -263,6 +263,112 @@ export default {
   margin-bottom: var(--spacing-medium);
 }
 
+@media (min-width: 720px) {
+  :root {
+    --app-footer-spacing: var(--spacing-medium);
+  }
+
+  .app-footer {
+    position: relative;
+  }
+
+  .app-footer__column {
+    float: left;
+    padding-top: 0;
+    margin-bottom: var(--spacing-medium);
+    text-align: left;
+  }
+
+  .app-footer__column--right {
+    float: right;
+    text-align: right;
+  }
+
+  .app-footer__header {
+    position: absolute;
+    width: calc(100% - var(--app-footer-spacing) * 2);
+  }
+
+  .app-footer__copyright {
+    text-align: right;
+    width: 50%;
+  }
+
+  .app-footer__bottom {
+    border-top: 1px solid var(--html-blue);
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .app-footer__bottom-text {
+    display: none;
+  }
+
+   .app-footer__definition-list {
+    display: flex;
+    margin-right: var(--spacing-tiny);
+  }
+
+  .app-footer__definition-value {
+    padding-left: var(--spacing-tiny);
+  }
+
+  .app-footer__list {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .app-footer__list--icon {
+    margin-bottom: 0;
+    width: 50%;
+    justify-content: flex-start;
+  }
+
+  .app-footer__list-item {
+    margin: 0;
+    line-height: 2;
+  }
+
+  .app-footer__list-title {
+    margin-bottom: var(--spacing-tiny);
+  }
+
+  .app-footer__link--right {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (min-width: 1100px) {
+  .app-footer__bottom-text {
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(100% / 3);
+  }
+
+  .app-footer__list--icon {
+    width: calc(100% / 3);
+    justify-content: center;
+  }
+
+  .app-footer__copyright {
+    width: calc(100% / 3);
+  }
+}
+
+@media (min-width: 1200px) {
+  .app-footer__bottom-text {
+    flex-wrap: nowrap;
+  }
+}
+
 @supports (display: grid) {
   .app-footer__column {
     text-align: center;
@@ -292,10 +398,6 @@ export default {
       text-align: right;
       grid-row: 1;
     }
-
-    .app-footer__header {
-      width: calc(100% - var(--app-footer-spacing) * 2);
-    }
   }
 
   @media (min-width: 1100px) {
@@ -311,97 +413,6 @@ export default {
     .app-footer__column--right {
       grid-column-end: -4;
     }
-  }
-}
-
-@media (min-width: 720px) {
-  .app-footer {
-    position: relative;
-    padding: var(--spacing-larger) var(--spacing-medium) 0 var(--spacing-medium);
-  }
-
-  .app-footer__column {
-    float: left;
-    padding-top: 0;
-    margin-bottom: var(--spacing-medium);
-    text-align: left;
-  }
-
-  .app-footer__column--right {
-    float: right;
-    text-align: right;
-  }
-
-  .app-footer__header {
-    position: absolute;
-    width: 100%;
-  }
-
-  .app-footer__copyright {
-    text-align: right;
-    width: calc(100% / 3);
-  }
-
-  .app-footer__bottom {
-    border-top: 1px solid var(--html-blue);
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 0;
-  }
-
-  .app-footer__bottom-text {
-    display: none;
-    flex-flow: row wrap;
-    width: calc(100% / 3);
-  }
-
-   .app-footer__definition-list {
-    display: flex;
-    margin-right: var(--spacing-smaller);
-  }
-
-  .app-footer__definition-value {
-    padding-left: var(--spacing-tiny);
-  }
-
-  .app-footer__list {
-    display: flex;
-    flex-direction: column;
-    border-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  .app-footer__list--icon {
-    width: calc(100% / 3);
-    justify-content: flex-start;
-  }
-
-  .app-footer__list-item {
-    margin: 0;
-    line-height: 2;
-  }
-
-  .app-footer__list-title {
-    margin-bottom: var(--spacing-tiny);
-  }
-
-  .app-footer__link--right {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: flex-end;
-  }
-}
-
-@media (min-width: 1100px) {
-  .app-footer__bottom-text {
-    display: flex;
-  }
-
-  .app-footer__list--icon {
-    justify-content: center;
   }
 }
 </style>

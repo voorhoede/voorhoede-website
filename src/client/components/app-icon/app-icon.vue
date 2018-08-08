@@ -1,6 +1,6 @@
 <template>
   <img class="app-icon"
-       :class="{ 'app-icon--large' : large === true }"
+       :class="{ 'app-icon--large': isLarge }"
        :src="`/icons/icon_${name}.svg`"
        :alt="alt">
 </template>
@@ -16,7 +16,7 @@
         type: String,
         default: '',
       },
-      large: {
+      isLarge: {
         type: Boolean,
         default: false,
       },
