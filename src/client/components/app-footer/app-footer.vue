@@ -226,6 +226,7 @@ export default {
 
 .app-footer__link {
   position: relative;
+  z-index: 1;
   text-decoration: none;
 }
 
