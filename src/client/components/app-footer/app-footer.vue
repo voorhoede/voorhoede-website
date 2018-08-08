@@ -263,9 +263,12 @@ export default {
 }
 
 @media (min-width: 720px) {
+  :root {
+    --app-footer-spacing: var(--spacing-medium);
+  }
+
   .app-footer {
     position: relative;
-    padding: var(--spacing-larger) var(--spacing-medium) 0 var(--spacing-medium);
   }
 
   .app-footer__column {
@@ -282,18 +285,18 @@ export default {
 
   .app-footer__header {
     position: absolute;
-    width: 100%;
+    width: calc(100% - var(--app-footer-spacing) * 2);
   }
 
   .app-footer__copyright {
     text-align: right;
-    width: calc(100% / 3);
+    width: 50%;
   }
 
   .app-footer__bottom {
     border-top: 1px solid var(--html-blue);
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 0;
@@ -322,7 +325,8 @@ export default {
   }
 
   .app-footer__list--icon {
-    width: calc(100% / 3);
+    margin-bottom: 0;
+    width: 50%;
     justify-content: flex-start;
   }
 
@@ -349,7 +353,12 @@ export default {
   }
 
   .app-footer__list--icon {
+    width: calc(100% / 3);
     justify-content: center;
+  }
+
+  .app-footer__copyright {
+    width: calc(100% / 3);
   }
 }
 
@@ -381,10 +390,6 @@ export default {
       grid-column: content-right;
       text-align: right;
       grid-row: 1;
-    }
-
-    .app-footer__header {
-      width: calc(100% - var(--app-footer-spacing) * 2);
     }
   }
 
