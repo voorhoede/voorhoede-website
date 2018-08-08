@@ -19,6 +19,8 @@
     { logoSrc: '/client-logos/hva.svg', name: 'Hogeschool van Amsterdam' },
     { logoSrc: '/client-logos/grandvision.svg', name: 'GrandVision' }
   ]"
+  ctaLabel="Get your name on the list"
+  ctaLink="/en/contact/"
 />
 ```
 
@@ -27,10 +29,12 @@
 | Prop | Type | Required | Description |
 | --- | --- | --- | --- |
 | clients | Array | true | Array of clients |
+| ctaLabel | String | true | Label of the call to action button |
+| ctaLink | Path the call to action button should take you |
 
 The Array of clients must have a length of 12 clients. Each client is an object with the following properties:
 
 | Prop | Type | Required | Description |
 | --- | --- | --- | --- |
-| logoSrc | String | true | src of the logo |
+| logoSrc | String | true | Path to the logo |
 | name | String | true | Name of the client |
