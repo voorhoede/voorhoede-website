@@ -34,8 +34,5 @@ stories.add(
       />
     </div>
     `,
-    asyncData() {
-      console.log('henk')
-    },
   }),
 )

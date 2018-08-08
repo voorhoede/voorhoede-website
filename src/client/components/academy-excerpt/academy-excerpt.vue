@@ -124,7 +124,7 @@
   }
 
   .academy-excerpt__month {
-    font-size: 0.8125rem;
+    font-size: .8125rem;
     letter-spacing: 2.3px;
     text-transform: uppercase;
   }
