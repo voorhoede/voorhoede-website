@@ -225,6 +225,7 @@ export default {
 }
 
 .app-footer__link {
+  position: relative;
   text-decoration: none;
 }
 
