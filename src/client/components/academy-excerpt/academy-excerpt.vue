@@ -10,7 +10,7 @@
     <div class="academy-excerpt__content">
       <h2 class="academy-excerpt__heading h3">{{ heading }}</h2>
       <p class="academy-excerpt__body body">{{ body }}</p>
-      <div class="academy-excerpt__button-group">
+      <footer class="academy-excerpt__actions">
         <app-button
           class="academy-excerpt__primary-button"
           :label="ctaPrimaryLabel"
@@ -21,7 +21,7 @@
           :to="ctaSecondaryTo"
           secondary
         />
-      </div>
+      </footer>
     </div>
     <div v-if="image" class="academy-excerpt__image">
       <responsive-image
@@ -166,12 +166,21 @@ export default {
 }
 
 @media (min-width: 720px) {
+  .academy-excerpt__actions {
+     display: flex;
+     align-items: center;
+  }
+
+  .academy-excerpt__primary-button {
+    margin-right: var(--spacing-medium);
+  }
+
   .academy-excerpt__image {
     display: block;
   }
 }
 
-@supports (display: flex) {
+@supports (display: grid) {
   .academy-excerpt__calendar {
     grid-column-start: 2;
     grid-column-end: 5;
@@ -204,16 +213,16 @@ export default {
   @media (min-width: 1100px) {
     .academy-excerpt__calendar {
       grid-column-start: 12;
-      grid-column-end: 14;
+      grid-column-end: 15;
     }
 
     .academy-excerpt__content {
       grid-column-start: 16;
-      grid-column-end: 29;
+      grid-column-end: 31;
     }
 
     .academy-excerpt__image {
-      grid-column-start: 30;
+      grid-column-start: 32;
       grid-column-end: -7;
     }
   }
