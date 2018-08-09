@@ -55,7 +55,12 @@ export default {
 <style>
 :root {
   --highlighted-clients-columns: 2;
-  --highlighted-clients-width: calc((100% / var(--highlighted-clients-columns)) - (var(--spacing-tiny) / var(--highlighted-clients-columns)));
+
+  /* Columns should be devided over the full width and have a bit of spacing between them. */
+  --highlighted-clients-width: calc(
+    (100% / var(--highlighted-clients-columns))
+    - (var(--highlighted-clients-columns) - 1) / var(--highlighted-clients-columns) * var(--spacing-tiny)
+  );
 }
 
 .highlighted-clients__list {
