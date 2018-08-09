@@ -36,6 +36,7 @@
 
 .horizontal-carousel__slide:last-child {
   display: flex;
+  flex-basis: calc(var(--horizontal-carousel-slide-width) + var(--horizontal-carousel-offset));
 }
 
 .horizontal-carousel__slide:last-child > * {
@@ -45,6 +46,6 @@
 .horizontal-carousel__slide:last-child::after {
   content: '';
   display: block;
-  width: calc(var(--horizontal-carousel-offset) + var(--horizontal-carousel-slide-spacing));
+  width: var(--horizontal-carousel-offset);
 }
 </style>
