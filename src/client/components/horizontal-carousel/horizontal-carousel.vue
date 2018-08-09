@@ -26,24 +26,24 @@
   display: none;
 }
 
-.horizontal-carousel__slide {
+.horizontal-carousel > * {
   flex: 0 0 var(--horizontal-carousel-slide-width);
 }
 
-.horizontal-carousel__slide + .horizontal-carousel__slide {
+.horizontal-carousel > * + * {
   margin-left: var(--horizontal-carousel-slide-spacing);
 }
 
-.horizontal-carousel__slide:last-child {
+.horizontal-carousel > *:last-child {
   display: flex;
   flex-basis: calc(var(--horizontal-carousel-slide-width) + var(--horizontal-carousel-offset));
 }
 
-.horizontal-carousel__slide:last-child > * {
+.horizontal-carousel > *:last-child > * {
   flex-grow: 1;
 }
 
-.horizontal-carousel__slide:last-child::after {
+.horizontal-carousel > *:last-child::after {
   content: '';
   display: block;
   width: var(--horizontal-carousel-offset);

@@ -25,21 +25,17 @@ stories.add(
     template: `
       <horizontal-carousel :childrenCount="3">
         <template slot="slides">
-          <div
+          <responsive-image
             v-for="i in [0, 1, 2]"
             :key="i"
-            class="horizontal-carousel__slide"
-          >
-            <responsive-image
-              :image="{
-                format: 'jpeg',
-                width: 1280,
-                height: 720,
-                alt: 'Two hands forming a heart around the sun during a sunset',
-                url: 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
-              }"
-            />
-          </div>
+            :image="{
+              format: 'jpeg',
+              width: 1280,
+              height: 720,
+              alt: 'Two hands forming a heart around the sun during a sunset',
+              url: 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
+            }"
+          />
         </template>
       </horizontal-carousel>
     `,
