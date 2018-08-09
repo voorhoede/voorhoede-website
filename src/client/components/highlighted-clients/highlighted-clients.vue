@@ -70,6 +70,11 @@ export default {
   width: var(--highlighted-clients-width);
 }
 
+.highlighted-clients .lazy-load {
+  width: 100%;
+  height: 100%;
+}
+
 .highlighted-clients__image {
   height: 100%;
 }
