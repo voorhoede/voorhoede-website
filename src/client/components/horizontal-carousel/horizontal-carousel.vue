@@ -1,58 +1,55 @@
 <template>
   <div class="horizontal-carousel">
-    <div class="horizontal-carousel__track" :style="`--horizontal-carousel-children-count: ${childrenCount}`">
+    <div class="horizontal-carousel__track">
       <slot name="slides"/>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  computed: {
-    childrenCount() {
-      return this.$slots.slides
-        .filter(slide => slide.tag)
-        .length
-    },
-  },
-}
-</script>
-
 <style>
 :root {
   --horizontal-carousel-offset: calc(var(--grid-margin) + var(--grid-fixed-column));
-  --horizontal-carousel-child-spacing: var(--grid-fixed-column);
-  --horizontal-carousel-child-width: calc(100vw - 2 * var(--horizontal-carousel-offset));
+  --horizontal-carousel-slide-spacing: var(--grid-fixed-column);
+  --horizontal-carousel-slide-width: calc(100vw - 2 * var(--horizontal-carousel-offset));
 }
 
-@supports (width: var(--horizontal-carousel-child-width)) {
-  .horizontal-carousel {
-    width: 100%;
-    overflow-x: auto;
-  }
+.horizontal-carousel {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 
-  .horizontal-carousel::-webkit-scrollbar {
-    display: none;
-  }
+.horizontal-carousel::-webkit-scrollbar {
+  display: none;
+}
 
-  .horizontal-carousel__track {
-    padding-left: var(--horizontal-carousel-offset);
-    display: flex;
-    align-items: center;
-    width: calc(
-      (var(--horizontal-carousel-children-count) * var(--horizontal-carousel-child-width))
-      + ((var(--horizontal-carousel-children-count) - 1) * var(--horizontal-carousel-child-spacing))
-      + (2 * var(--horizontal-carousel-offset))
-    );
-  }
+.horizontal-carousel__track {
+  padding: 0 var(--horizontal-carousel-offset);
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  white-space: nowrap;
+}
 
-  .horizontal-carousel__track > * {
-    width: var(--horizontal-carousel-child-width);
-    border: 2px solid var(--black); /* TODO: Remove this border */
-  }
+.horizontal-carousel__slide {
+  flex: 0 0 var(--horizontal-carousel-slide-width);
+}
 
-  .horizontal-carousel__track > * + * {
-    margin-left: var(--horizontal-carousel-child-spacing);
-  }
+.horizontal-carousel__slide + .horizontal-carousel__slide {
+  margin-left: var(--horizontal-carousel-slide-spacing);
+}
+
+.horizontal-carousel__slide:last-child {
+  display: flex;
+}
+
+.horizontal-carousel__slide:last-child > * {
+  flex-grow: 1;
+}
+
+.horizontal-carousel__slide:last-child::after {
+  content: '';
+  display: block;
+  width: calc(var(--horizontal-carousel-offset) + var(--horizontal-carousel-slide-spacing));
 }
 </style>
