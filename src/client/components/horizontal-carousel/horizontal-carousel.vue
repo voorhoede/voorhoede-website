@@ -1,6 +1,8 @@
 <template>
-  <div class="horizontal-carousel">
-    <slot name="slides"/>
+  <div class="horizontal-carousel grid">
+    <div class="horizontal-carousel__slides">
+      <slot name="slides"/>
+    </div>
   </div>
 </template>
 
@@ -12,6 +14,10 @@
 }
 
 .horizontal-carousel {
+  display: block;
+}
+
+.horizontal-carousel__slides {
   padding: 0 var(--horizontal-carousel-offset);
   width: 100%;
   display: flex;
@@ -22,30 +28,56 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.horizontal-carousel::-webkit-scrollbar {
+.horizontal-carousel__slides::-webkit-scrollbar {
   display: none;
 }
 
-.horizontal-carousel > * {
+.horizontal-carousel__slides > * {
   flex: 0 0 var(--horizontal-carousel-slide-width);
 }
 
-.horizontal-carousel > * + * {
+.horizontal-carousel__slides > * + * {
   margin-left: var(--horizontal-carousel-slide-spacing);
 }
 
-.horizontal-carousel > *:last-child {
+.horizontal-carousel__slides > *:last-child {
   display: flex;
   flex-basis: calc(var(--horizontal-carousel-slide-width) + var(--horizontal-carousel-offset));
 }
 
-.horizontal-carousel > *:last-child > * {
+.horizontal-carousel__slides > *:last-child > * {
   flex-grow: 1;
 }
 
-.horizontal-carousel > *:last-child::after {
+.horizontal-carousel__slides > *:last-child::after {
   content: '';
   display: block;
   width: var(--horizontal-carousel-offset);
+}
+
+@media (min-width: 720px) {
+  :root {
+    --horizontal-carousel-slides-count: 3;
+    --horizontal-carousel-slide-width: calc(
+      (100% / var(--horizontal-carousel-slides-count))
+      - ((var(--horizontal-carousel-slides-count) - 1) / var(--horizontal-carousel-slides-count) * var(--horizontal-carousel-slide-spacing))
+    );
+  }
+
+  .horizontal-carousel {
+    display: grid;
+  }
+
+  .horizontal-carousel__slides {
+    padding: 0;
+  }
+
+  .horizontal-carousel__slides > *:last-child {
+    flex-basis: var(--horizontal-carousel-slide-width);
+  }
+
+  .horizontal-carousel__slides > *:last-child::after {
+    content: none;
+  }
 }
 </style>

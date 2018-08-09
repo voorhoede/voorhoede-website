@@ -23,10 +23,10 @@ stories.add(
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     template: `
-      <horizontal-carousel :childrenCount="3">
+      <horizontal-carousel>
         <template slot="slides">
           <responsive-image
-            v-for="i in [0, 1, 2]"
+            v-for="i in 3"
             :key="i"
             :image="{
               format: 'jpeg',
