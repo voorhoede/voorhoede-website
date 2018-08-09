@@ -21,6 +21,7 @@ export default {
 <style>
 :root {
   --horizontal-carousel-offset: calc(var(--grid-margin) + var(--grid-fixed-column));
+  --horizontal-carousel-child-spacing: var(--grid-fixed-column);
   --horizontal-carousel-child-width: calc(100vw - 2 * var(--horizontal-carousel-offset));
 }
 
@@ -30,12 +31,17 @@ export default {
     overflow-x: auto;
   }
 
+  .horizontal-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
   .horizontal-carousel__track {
     padding-left: var(--horizontal-carousel-offset);
     display: flex;
     align-items: center;
     width: calc(
       (var(--horizontal-carousel-children-count) * var(--horizontal-carousel-child-width))
+      + ((var(--horizontal-carousel-children-count) - 1) * var(--horizontal-carousel-child-spacing))
       + (2 * var(--horizontal-carousel-offset))
     );
   }
@@ -43,6 +49,10 @@ export default {
   .horizontal-carousel__track > * {
     width: var(--horizontal-carousel-child-width);
     border: 2px solid var(--black); /* TODO: Remove this border */
+  }
+
+  .horizontal-carousel__track > * + * {
+    margin-left: var(--horizontal-carousel-child-spacing);
   }
 }
 </style>
