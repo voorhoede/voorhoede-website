@@ -8,8 +8,8 @@
       <span class="academy-excerpt__month">{{ month }}</span>
     </time>
     <div class="academy-excerpt__content">
-      <h2 class="academy-excerpt__heading h3">{{ heading }}</h2>
-      <p class="academy-excerpt__body body">{{ body }}</p>
+      <h2 class="academy-excerpt__heading h3">{{ title }}</h2>
+      <p class="academy-excerpt__description body">{{ description }}</p>
       <footer class="academy-excerpt__actions">
         <app-button
           class="academy-excerpt__primary-button"
@@ -26,7 +26,7 @@
     <div v-if="image" class="academy-excerpt__image">
       <responsive-image
         :image="{
-          alt: heading,
+          alt: title,
           url: image.src,
           width: image.width,
           height: image.height,
@@ -53,11 +53,11 @@ export default {
       type: String,
       required: true,
     },
-    heading: {
+    title: {
       type: String,
       required: true,
     },
-    body: {
+    description: {
       type: String,
       required: true,
     },
