@@ -81,6 +81,7 @@
     text-align: center;
     text-decoration: none;
     cursor: pointer;
+    line-height: 1.18;
   }
 
   .app-button--primary {
