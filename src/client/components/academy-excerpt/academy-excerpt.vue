@@ -80,13 +80,14 @@ export default {
     image: {
       type: Object,
       required: false,
+      default: null,
       validator(image) {
         return (
           'src' in image && typeof image.src === 'string'
           && 'width' in image && typeof image.width === 'number'
           && 'height' in image && typeof image.height === 'number'
         )
-      }
+      },
     },
   },
   computed: {

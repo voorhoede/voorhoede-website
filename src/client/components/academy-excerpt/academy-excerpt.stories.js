@@ -17,7 +17,7 @@ const stories = storiesOf('Components/Academy Excerpt', module)
 Vue.component('academy-excerpt', AcademyExcerpt)
 
 stories.add(
-  'Academy Excerpt',
+  'Academy Excerpt - with image',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     template: `
@@ -36,6 +36,27 @@ stories.add(
           width: 1280,
           height: 720,
         }"
+      />
+    </div>
+    `,
+  }),
+)
+
+stories.add(
+  'Academy Excerpt - without image',
+  () => ({
+    i18n: new VueI18n({ locale: 'en' }),
+    template: `
+    <div style="margin-top: 100px;">
+      <academy-excerpt
+        date-string="2018-10-31"
+        current-locale="${select('locale', { en: 'en', nl: 'nl' }, 'en')}"
+        heading="Simply Serverless Meetup"
+        body="On 12 July we will host the Simply Serverless Meetup. We'll introduce you to cloud functions, a brand new tool for serverless Node apps and show the benefits by sharing a project built with a serverless architecture."
+        ctaPrimaryLabel="Sign up"
+        ctaPrimaryTo="https://google.nl"
+        ctaSecondaryLabel="Learn more"
+        ctaSecondaryTo="https://google.nl"
       />
     </div>
     `,
