@@ -1,28 +1,32 @@
 <template>
   <article class="case-excerpt">
     <div class="case-excerpt__image-container">
-      <img src="/images/logo.svg" class="case-excerpt__image">
+      <img :src="`/images/${imageName}.svg`" class="case-excerpt__image">
     </div>
-    <div class="case-excerpt__tooltip">
+    <div class="case-excerpt__tooltip"
+         :class="{
+           'case-exceprt__tooltip--right' : alignTooltip === 'right',
+           'case-exceprt__tooltip--left' : alignTooltip === 'left'
+         }"
+    >
       <div class="case-exceprt__tooltip-triangle" />
       <div class="case-exceprt__description">
         <h3 class="h3 case-excepert__description-header">
-          A brand new Funda
+          {{ caseDescriptionHeader }}
         </h3>
         <p class="body">
-          The biggest, most responsive and modular website for real estate in the Netherlands
+          {{ caseDescriptionBody }}
         </p>
       </div>
       <div class="case-exceprt__tooltip-actions">
         <app-button
-          small
-          label="See more"
-          to=""
+          :label="primaryLabel"
+          :to="primaryHref"
         />
         <app-button
           secondary
-          label="Learn more"
-          to=""
+          :label="secondaryLabel"
+          :to="secondaryHref"
         />
       </div>
     </div>
@@ -30,11 +34,53 @@
 </template>
 
 <script>
-import { AppButton } from '~/components';
+import { AppButton } from '~/components'
 
 export default {
   components: {
     AppButton,
+  },
+  props: {
+    primaryLabel: {
+      type: String,
+      required: false,
+      default: '',
+    },
+    primaryHref: {
+      type: String,
+      required: false,
+      default: '',
+    },
+    secondaryLabel: {
+      type: String,
+      required: false,
+      default: '',
+    },
+    secondaryHref: {
+      type: String,
+      required: false,
+      default: '',
+    },
+    alignTooltip: {
+      type: String,
+      required: false,
+      default: '',
+    },
+    imageName: {
+      type: String,
+      required: true,
+      default: '',
+    },
+    caseDescriptionHeader: {
+      type: String,
+      required: true,
+      default: '',
+    },
+    caseDescriptionBody: {
+      type: String,
+      required: true,
+      default: '',
+    },
   },
 }
 </script>
@@ -45,7 +91,9 @@ export default {
 }
 
 .case-excerpt {
+  display: flex;
   position: relative;
+  justify-content: center;
 }
 
 .case-excerpt:active .case-excerpt__image-container,
@@ -66,6 +114,7 @@ export default {
   margin: 0 var(--spacing-medium);
   transform-origin: center;
   transition: 200ms transform ease-in-out;
+  width: 100%;
 }
 
 .case-excerpt__image {
@@ -99,6 +148,12 @@ export default {
 
 .case-exceprt__tooltip-actions {
   display: flex;
+  align-items: center;
+}
+
+.case-exceprt__tooltip-actions .app-button {
+  min-width: auto;
+  width: calc(50% - (var(--spacing-smaller) / 2));
 }
 
 .case-exceprt__tooltip-actions .app-button:first-of-type {
@@ -114,7 +169,7 @@ export default {
   margin-bottom: var(--spacing-smaller);
 }
 
-@media (min-width: 720px) {
+@media (min-width: 480px) {
   .case-excerpt__image-container {
     padding-bottom: var(--spacing-big);
   }
@@ -124,12 +179,24 @@ export default {
   }
 
   .case-excerpt__tooltip {
-    max-width: 300px;
-    left: 33%;
+    max-width: 310px;
     top: calc(50% + var(--triangle-size));
   }
 
-  .case-exceprt__tooltip-triangle {
+  .case-exceprt__tooltip--right {
+    right: 33%;
+  }
+
+  .case-exceprt__tooltip--right > .case-exceprt__tooltip-triangle {
+    right: var(--spacing-medium);
+    margin-right: 0;
+  }
+
+  .case-exceprt__tooltip--left {
+    left: 33%;
+  }
+
+  .case-exceprt__tooltip--left > .case-exceprt__tooltip-triangle {
     left: var(--spacing-medium);
     margin-left: 0;
   }
