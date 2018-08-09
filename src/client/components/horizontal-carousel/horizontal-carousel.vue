@@ -1,8 +1,6 @@
 <template>
   <div class="horizontal-carousel">
-    <div class="horizontal-carousel__track">
-      <slot name="slides"/>
-    </div>
+    <slot name="slides"/>
   </div>
 </template>
 
@@ -14,21 +12,18 @@
 }
 
 .horizontal-carousel {
+  padding: 0 var(--horizontal-carousel-offset);
   width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  white-space: nowrap;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
 
 .horizontal-carousel::-webkit-scrollbar {
   display: none;
-}
-
-.horizontal-carousel__track {
-  padding: 0 var(--horizontal-carousel-offset);
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  white-space: nowrap;
 }
 
 .horizontal-carousel__slide {
