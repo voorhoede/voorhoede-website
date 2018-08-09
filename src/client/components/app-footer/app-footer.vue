@@ -340,9 +340,8 @@ export default {
   }
 
   .app-footer__link--right {
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
-    width: 100%;
     justify-content: flex-end;
   }
 }
