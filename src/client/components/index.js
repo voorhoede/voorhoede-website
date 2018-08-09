@@ -1,3 +1,4 @@
+export { default as AcademyExcerpt } from './academy-excerpt'
 export { default as AppButton } from './app-button'
 export { default as AppHeader } from './app-header'
 export { default as AppIcon } from './app-icon'

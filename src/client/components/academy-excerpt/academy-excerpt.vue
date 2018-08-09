@@ -171,8 +171,13 @@ export default {
      align-items: center;
   }
 
+  .academy-excerpt__actions .app-button {
+    min-width: auto;
+  }
+
   .academy-excerpt__primary-button {
     margin-right: var(--spacing-medium);
+    width: calc(50% - var(--spacing-medium) / 2); /* TODO: fix import order to prevent line from being overruled */
   }
 
   .academy-excerpt__image {
