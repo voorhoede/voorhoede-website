@@ -75,6 +75,7 @@
   font-weight: 700;
   line-height: 1.3333333333; /* 16px */
   text-transform: uppercase;
+  letter-spacing: .1375rem; /* 2.2px */
   color: var(--html-blue);
 }
 
@@ -155,6 +156,7 @@
   .h5 {
     font-size: .8125rem; /* 13px */
     line-height: 1.3076923077; /* 17px */
+    letter-spacing: .15rem; /* 2.4px */
   }
 
   .body-big {
@@ -227,6 +229,7 @@
   .h5 {
     font-size: .875rem; /* 14px */
     line-height: 1.1428571429; /* 16px */
+    letter-spacing: .15625rem; /* 2.5px */
   }
 
   .body-big {
