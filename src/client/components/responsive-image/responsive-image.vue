@@ -3,7 +3,7 @@
     <div class="responsive-image__sizer" :style="`max-width:${image.width}px;`">
       <fixed-ratio class="responsive-image__canvas" :width="image.width" :height="image.height">
         <lazy-load>
-          <picture class="responsive-image__picture" v-if="width">
+          <picture class="responsive-image__picture">
             <!--[if IE 9]><video style="display: none;"><![endif]-->
             <source type="image/webp" :srcset="imageUrl({ fm: 'webp', w: width })">
             <source :type="`image/${image.format}`" :srcset="imageUrl({ w: width })">
@@ -40,6 +40,10 @@ export default {
     image: {
       type: Object,
       required: true,
+      validator(image) {
+        return typeof(image.width) === 'number' && typeof(image.height) === 'number' && typeof(image.width) === 'number'
+          && typeof(image.format) === 'string' && typeof(image.width) === 'number' && typeof(image.url) === 'number'
+      },
     },
     widthStep: {
       type: Number,
