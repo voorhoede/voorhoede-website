@@ -111,7 +111,7 @@ export default {
 
 <style>
 :root {
-  --triangle-size: 30px;
+  --case-excerpt-triangle-size: 30px;
 }
 
 .case-excerpt {
@@ -126,7 +126,7 @@ export default {
   background: var(--white);
   border: 3px solid var(--html-blue);
   transform-origin: center;
-  transition: 200ms transform cubic-bezier(0.05, 0, 0.45, 1);
+  transition: 200ms transform cubic-bezier(.05, 0, .45, 1);
 }
 
 .case-excerpt__image {
@@ -137,7 +137,7 @@ export default {
 .case-excerpt__tooltip {
   flex-direction: column;
   position: absolute;
-  top: calc(66% + var(--triangle-size));
+  top: calc(66% + var(--case-excerpt-triangle-size));
   left: calc(var(--spacing-medium) * -1);
   right: calc(var(--spacing-medium) * -1);
   width: auto;
@@ -146,21 +146,21 @@ export default {
   transform-origin: top;
   transform: scaleY(0);
   transition-delay: 0.56s;
-  transition: transform 270ms cubic-bezier(0, 0, 0.1, 1);
+  transition: transform 270ms cubic-bezier(0, 0, .1, 1);
 }
 
 .case-excerpt__tooltip-triangle {
   position: absolute;
-  top: calc(var(--triangle-size) - 59px);
+  top: calc(-1 * var(--case-excerpt-triangle-size));
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
   width: 0;
   height: 0;
-	border-left: var(--triangle-size) solid transparent;
-	border-right: var(--triangle-size) solid transparent;
-  border-bottom: var(--triangle-size) solid var(--brand-yellow);
+	border-left: var(--case-excerpt-triangle-size) solid transparent;
+	border-right: var(--case-excerpt-triangle-size) solid transparent;
+  border-bottom: var(--case-excerpt-triangle-size) solid var(--brand-yellow);
   transform: none;
 }
 
@@ -210,7 +210,7 @@ export default {
   .case-excerpt__tooltip {
     left: auto;
     right: auto;
-    top: calc(50% + var(--triangle-size));
+    top: calc(50% + var(--case-excerpt-triangle-size));
     width: 100%;
     max-width: 320px;
   }
