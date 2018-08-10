@@ -111,7 +111,7 @@ export default {
 
 <style>
 :root {
-  --case-excerpt-triangle-size: 30px;
+  --case-excerpt-triangle-size: 20px;
 }
 
 .case-excerpt {
@@ -145,7 +145,7 @@ export default {
   padding: var(--spacing-medium);
   transform-origin: top;
   transform: scaleY(0);
-  transition: transform 270ms cubic-bezier(0, 0, .1, 1) .11s;
+  transition: transform 200ms cubic-bezier(0, 0, .1, 1) .11s;
 }
 
 .case-excerpt__tooltip-triangle {
