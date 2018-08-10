@@ -22,7 +22,7 @@ stories.add(
     i18n: new VueI18n({ locale: 'en' }),
     data() {
       return {
-        caseId: '',
+        caseId: '1',
         primaryLabel: 'See more',
         primaryHref: '/en/funda',
         secondaryLabel: 'Learn more',
@@ -53,7 +53,7 @@ stories.add(
     i18n: new VueI18n({ locale: 'en' }),
     data() {
       return {
-        caseId: '',
+        caseId: '2',
         primaryLabel: 'See more',
         primaryHref: '/en/funda',
         secondaryLabel: 'Learn more',
@@ -86,7 +86,7 @@ stories.add(
     i18n: new VueI18n({ locale: 'en' }),
     data() {
       return {
-        caseId: '',
+        caseId: '3',
         primaryLabel: 'See more',
         primaryHref: '/en/funda',
         secondaryLabel: 'Learn more',
