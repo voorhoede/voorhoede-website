@@ -8,7 +8,7 @@
       <span class="academy-excerpt__month">{{ month }}</span>
     </time>
     <div class="academy-excerpt__content">
-      <h2 class="academy-excerpt__heading h3">{{ title }}</h2>
+      <h2 class="academy-excerpt__title h3">{{ title }}</h2>
       <p class="academy-excerpt__description body">{{ description }}</p>
       <footer class="academy-excerpt__actions">
         <app-button
@@ -148,11 +148,11 @@ export default {
   text-transform: uppercase;
 }
 
-.academy-excerpt__heading {
+.academy-excerpt__title {
   margin-bottom: var(--spacing-small);
 }
 
-.academy-excerpt__body {
+.academy-excerpt__description {
   margin-bottom: var(--spacing-medium);
 }
 
