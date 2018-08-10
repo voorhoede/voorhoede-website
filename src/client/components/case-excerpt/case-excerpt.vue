@@ -1,13 +1,24 @@
 <template>
-  <article class="case-excerpt">
-    <div class="case-excerpt__image-container">
+  <article
+    class="case-excerpt"
+    :class="{ 'case-excerpt--open': toolTipIsOpen }"
+    :id="`case-excerpt-${caseId}`"
+  >
+    <a
+      @click.prevent="toggleTooltip"
+      :href="`#case-excerpt-${caseId}`"
+      role="button"
+      class="case-excerpt__image-container"
+    >
       <img :src="`/images/${imageName}.svg`" class="case-excerpt__image">
-    </div>
-    <div class="case-excerpt__tooltip"
-         :class="{
-           'case-exceprt__tooltip--right' : alignTooltip === 'right',
-           'case-exceprt__tooltip--left' : alignTooltip === 'left'
-         }"
+    </a>
+    <div
+      class="case-excerpt__tooltip"
+      :class="{
+        'case-exceprt__tooltip--right' : alignTooltip === 'right',
+        'case-exceprt__tooltip--left' : alignTooltip === 'left',
+        'case-exceprt__tooltip--show' : tooltipIsOpen
+      }"
     >
       <div class="case-exceprt__tooltip-triangle" />
       <div class="case-exceprt__description">
@@ -41,6 +52,10 @@ export default {
     AppButton,
   },
   props: {
+    caseId: {
+      type: String,
+      required: true,
+    },
     primaryLabel: {
       type: String,
       required: false,
@@ -74,12 +89,20 @@ export default {
     caseDescriptionHeader: {
       type: String,
       required: true,
-      default: '',
     },
     caseDescriptionBody: {
       type: String,
       required: true,
-      default: '',
+    },
+  },
+  data() {
+    return {
+      tooltipIsOpen: false,
+    }
+  },
+  methods: {
+    toggleTooltip() {
+      this.tooltipIsOpen = !this.tooltipIsOpen
     },
   },
 }
@@ -96,25 +119,13 @@ export default {
   justify-content: center;
 }
 
-.case-excerpt:active .case-excerpt__image-container,
-.case-excerpt:hover .case-excerpt__image-container {
-  border: 5px solid var(--html-blue);
-  transform: scale(1.05);
-}
-
-.case-excerpt:active .case-excerpt__tooltip,
-.case-excerpt:hover .case-excerpt__tooltip {
-  display: flex;
-}
-
 .case-excerpt__image-container {
+  width: 100%;
   padding-bottom: var(--spacing-larger);
   background: var(--white);
   border: 3px solid var(--html-blue);
-  margin: 0 var(--spacing-medium);
   transform-origin: center;
   transition: 200ms transform ease-in-out;
-  width: 100%;
 }
 
 .case-excerpt__image {
@@ -127,9 +138,15 @@ export default {
   flex-direction: column;
   position: absolute;
   top: calc(66% + var(--triangle-size));
-  width: 100%;
+  left: calc(var(--spacing-medium) * -1);
+  right: calc(var(--spacing-medium) * -1);
+  width: auto;
   background: var(--brand-yellow);
   padding: var(--spacing-medium);
+}
+
+.case-exceprt__tooltip--show {
+  display: flex;
 }
 
 .case-exceprt__tooltip-triangle {
@@ -169,7 +186,30 @@ export default {
   margin-bottom: var(--spacing-smaller);
 }
 
+.case-excerpt:target .case-excerpt__image-container
+.case-excerpt--open .case-excerpt__image-container {
+  border: 5px solid var(--html-blue);
+  transform: scale(1.05);
+}
+
+.case-excerpt:target .case-excerpt__tooltip,
+.case-excerpt--open .case-excerpt__tooltip {
+  display: flex;
+}
+
 @media (min-width: 480px) {
+  .case-excerpt__image-container:focus,
+  .case-excerpt:hover .case-excerpt__image-container,
+  .case-excerpt--open .case-excerpt__image-container {
+    border: 5px solid var(--html-blue);
+    transform: scale(1.05);
+  }
+
+  .case-excerpt:hover .case-excerpt__tooltip,
+  .case-excerpt__image-container:focus + .case-excerpt__tooltip {
+    display: flex;
+  }
+
   .case-excerpt__image-container {
     padding-bottom: var(--spacing-big);
   }
@@ -179,8 +219,11 @@ export default {
   }
 
   .case-excerpt__tooltip {
-    max-width: 310px;
+    left: auto;
+    right: auto;
     top: calc(50% + var(--triangle-size));
+    width: 100%;
+    max-width: 310px;
   }
 
   .case-exceprt__tooltip--right {

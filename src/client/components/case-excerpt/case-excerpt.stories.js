@@ -22,6 +22,7 @@ stories.add(
     i18n: new VueI18n({ locale: 'en' }),
     data() {
       return {
+        caseId: '',
         primaryLabel: 'See more',
         primaryHref: '/en/funda',
         secondaryLabel: 'Learn more',
@@ -31,8 +32,9 @@ stories.add(
         caseDescriptionBody: 'The biggest, most responsive and modular website for real estate in the Netherlands',
       }
     },
-    template: `<div style="margin-top: 25px;">
+    template: `<div style="margin: 25px;">
                 <case-excerpt
+                  :caseId="caseId"
                   :primaryLabel="primaryLabel"
                   :primaryHref="primaryHref"
                   :secondaryLabel="secondaryLabel"
@@ -51,6 +53,7 @@ stories.add(
     i18n: new VueI18n({ locale: 'en' }),
     data() {
       return {
+        caseId: '',
         primaryLabel: 'See more',
         primaryHref: '/en/funda',
         secondaryLabel: 'Learn more',
@@ -63,6 +66,7 @@ stories.add(
     },
     template: `<div style="margin-top: 25px;">
                 <case-excerpt
+                  :caseId="caseId"
                   :alignTooltip="alignTooltip"
                   :primaryLabel="primaryLabel"
                   :primaryHref="primaryHref"
@@ -82,6 +86,7 @@ stories.add(
     i18n: new VueI18n({ locale: 'en' }),
     data() {
       return {
+        caseId: '',
         primaryLabel: 'See more',
         primaryHref: '/en/funda',
         secondaryLabel: 'Learn more',
@@ -94,6 +99,7 @@ stories.add(
     },
     template: `<div style="margin-top: 25px;">
                 <case-excerpt
+                  :caseId="caseId"
                   :alignTooltip="alignTooltip"
                   :primaryLabel="primaryLabel"
                   :primaryHref="primaryHref"
