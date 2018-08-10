@@ -1,6 +1,6 @@
 <template>
   <article>
-    <nuxt-link :to="item.slug" class="blog-list-item">
+    <nuxt-link :to="item.url" class="blog-list-item">
       <time datetime="item.date" class="blog-list-item__time body-petite">{{ formattedDate }}</time>
 
       <div class="blog-list-item__content">
@@ -25,7 +25,7 @@
         type: Object,
         required: true,
         validator(item) {
-          return typeof(item.slug) === 'string' && typeof(item.title) === 'string' && !!Date.parse(item.date) && item.authors.length >= 1
+          return typeof(item.url) === 'string' && typeof(item.title) === 'string' && !!Date.parse(item.date) && item.authors.length >= 1
         },
         currentLocale: {
           type: String,
