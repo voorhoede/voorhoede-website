@@ -36,6 +36,7 @@
 | image | Object | false | Object of the image to display |
 
 The image object should contain the next properties:
+
 | Prop | Type | Required | Description |
 | --- | --- | --- | --- |
 | src | String | true | Path to the image |
