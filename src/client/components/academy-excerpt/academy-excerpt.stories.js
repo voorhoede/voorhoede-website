@@ -32,7 +32,8 @@ stories.add(
         ctaSecondaryLabel="Learn more"
         ctaSecondaryTo="https://google.nl"
         :image="{
-          src: 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
+          url: 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
+          type: 'jpeg',
           width: 1280,
           height: 720,
         }"
