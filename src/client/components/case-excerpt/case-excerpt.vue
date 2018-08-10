@@ -1,8 +1,10 @@
 <template>
   <article
     class="case-excerpt"
-    :class="{ 'case-excerpt--open': toolTipIsOpen }"
+    :class="{ 'case-excerpt--open': tooltipIsOpen }"
     :id="`case-excerpt-${caseId}`"
+    @mouseover="tooltipIsOpen = true"
+    @mouseleave="tooltipIsOpen = false"
   >
     <a
       @click.prevent="toggleTooltip"
@@ -15,21 +17,20 @@
     <div
       class="case-excerpt__tooltip"
       :class="{
-        'case-exceprt__tooltip--right' : alignTooltip === 'right',
-        'case-exceprt__tooltip--left' : alignTooltip === 'left',
-        'case-exceprt__tooltip--show' : tooltipIsOpen
+        'case-excerpt__tooltip--right' : alignTooltip === 'right',
+        'case-excerpt__tooltip--left' : alignTooltip === 'left',
       }"
     >
-      <div class="case-exceprt__tooltip-triangle" />
-      <div class="case-exceprt__description">
-        <h3 class="h3 case-excepert__description-header">
+      <div class="case-excerpt__tooltip-triangle" />
+      <div class="case-excerpt__description">
+        <h3 class="h3 case-excerpt__description-header">
           {{ caseDescriptionHeader }}
         </h3>
         <p class="body">
           {{ caseDescriptionBody }}
         </p>
       </div>
-      <div class="case-exceprt__tooltip-actions">
+      <div class="button-group">
         <app-button
           :label="primaryLabel"
           :to="primaryHref"
@@ -125,7 +126,7 @@ export default {
   background: var(--white);
   border: 3px solid var(--html-blue);
   transform-origin: center;
-  transition: 200ms transform ease-in-out;
+  transition: 200ms transform cubic-bezier(0.05, 0, 0.45, 1);
 }
 
 .case-excerpt__image {
@@ -134,7 +135,6 @@ export default {
 }
 
 .case-excerpt__tooltip {
-  display: none;
   flex-direction: column;
   position: absolute;
   top: calc(66% + var(--triangle-size));
@@ -143,13 +143,13 @@ export default {
   width: auto;
   background: var(--brand-yellow);
   padding: var(--spacing-medium);
+  transform-origin: top;
+  transform: scaleY(0);
+  transition-delay: 0.56s;
+  transition: transform 270ms cubic-bezier(0, 0, 0.1, 1);
 }
 
-.case-exceprt__tooltip--show {
-  display: flex;
-}
-
-.case-exceprt__tooltip-triangle {
+.case-excerpt__tooltip-triangle {
   position: absolute;
   top: calc(var(--triangle-size) - 59px);
   left: 0;
@@ -160,29 +160,16 @@ export default {
   height: 0;
 	border-left: var(--triangle-size) solid transparent;
 	border-right: var(--triangle-size) solid transparent;
-	border-bottom: var(--triangle-size) solid var(--brand-yellow);
+  border-bottom: var(--triangle-size) solid var(--brand-yellow);
+  transform: none;
 }
 
-.case-exceprt__tooltip-actions {
-  display: flex;
-  align-items: center;
-}
-
-.case-exceprt__tooltip-actions .app-button {
-  min-width: auto;
-  width: calc(50% - (var(--spacing-smaller) / 2));
-}
-
-.case-exceprt__tooltip-actions .app-button:first-of-type {
-  margin-right: var(--spacing-small);
-}
-
-.case-exceprt__description {
+.case-excerpt__description {
   color: var(--html-blue);
   margin-bottom: var(--spacing-small);
 }
 
-.case-excepert__description-header {
+.case-excerpt__description-header {
   margin-bottom: var(--spacing-smaller);
 }
 
@@ -195,6 +182,7 @@ export default {
 .case-excerpt:target .case-excerpt__tooltip,
 .case-excerpt--open .case-excerpt__tooltip {
   display: flex;
+  transform: scaleY(1);
 }
 
 @media (min-width: 480px) {
@@ -208,6 +196,7 @@ export default {
   .case-excerpt:hover .case-excerpt__tooltip,
   .case-excerpt__image-container:focus + .case-excerpt__tooltip {
     display: flex;
+    transform: scaleY(1);
   }
 
   .case-excerpt__image-container {
@@ -223,23 +212,23 @@ export default {
     right: auto;
     top: calc(50% + var(--triangle-size));
     width: 100%;
-    max-width: 310px;
+    max-width: 320px;
   }
 
-  .case-exceprt__tooltip--right {
+  .case-excerpt__tooltip--right {
     right: 33%;
   }
 
-  .case-exceprt__tooltip--right > .case-exceprt__tooltip-triangle {
+  .case-excerpt__tooltip--right > .case-excerpt__tooltip-triangle {
     right: var(--spacing-medium);
     margin-right: 0;
   }
 
-  .case-exceprt__tooltip--left {
+  .case-excerpt__tooltip--left {
     left: 33%;
   }
 
-  .case-exceprt__tooltip--left > .case-exceprt__tooltip-triangle {
+  .case-excerpt__tooltip--left > .case-excerpt__tooltip-triangle {
     left: var(--spacing-medium);
     margin-left: 0;
   }
