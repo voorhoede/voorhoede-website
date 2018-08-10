@@ -45,9 +45,13 @@
 </script>
 
 <style>
+  :root {
+    --blog-list-item-animation-timing: .3s;
+  }
+
   .blog-list-item {
     display: inline-block;
-    transition: transform .3s;
+    transition: transform var(--blog-list-item-animation-timing);
   }
 
   @media screen and (min-width: 720px) {
@@ -82,7 +86,7 @@
     padding-left: var(--spacing-medium);
     border-left: 1px solid var(--very-dim);
     margin-bottom: var(--spacing-medium);
-    transition: border-left .3s;
+    transition: border-left var(--blog-list-item-animation-timing);
   }
 
   .blog-list-item:hover .blog-list-item__content,
