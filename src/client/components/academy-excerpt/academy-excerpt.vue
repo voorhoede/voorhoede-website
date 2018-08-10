@@ -10,7 +10,7 @@
     <div class="academy-excerpt__content">
       <h2 class="academy-excerpt__title h3">{{ title }}</h2>
       <p class="academy-excerpt__description body">{{ description }}</p>
-      <footer class="academy-excerpt__actions">
+      <footer class="academy-excerpt__actions button-group">
         <app-button
           class="academy-excerpt__primary-button"
           :label="ctaPrimaryLabel"
@@ -161,26 +161,18 @@ export default {
 }
 
 @media (max-width: 719px) {
-  .academy-excerpt__primary-button {
+  .academy-excerpt__actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .academy-excerpt__actions .app-button:first-child {
+    width: 100%;
     margin-bottom: var(--spacing-medium);
   }
 }
 
 @media (min-width: 720px) {
-  .academy-excerpt__actions {
-     display: flex;
-     align-items: center;
-  }
-
-  .academy-excerpt__actions .app-button {
-    min-width: auto;
-  }
-
-  .academy-excerpt__primary-button {
-    margin-right: var(--spacing-medium);
-    width: calc(50% - var(--spacing-medium) / 2); /* TODO: fix import order to prevent line from being overruled */
-  }
-
   .academy-excerpt__image {
     display: block;
   }
