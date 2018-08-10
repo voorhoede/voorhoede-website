@@ -170,6 +170,10 @@ export default {
     width: 100%;
     margin-bottom: var(--spacing-medium);
   }
+
+  .academy-excerpt__actions .app-button + .app-button {
+    margin-left: 0;
+  }
 }
 
 @media (min-width: 720px) {
