@@ -23,7 +23,6 @@ module.exports = {
     'no-console': 1,
     'no-unused-vars': 1,
     'vue/max-attributes-per-line': 0,
-    'comma-dangle': [2, 'always-multiline'],
     'quotes': [2, 'single'],
     'curly': [2, 'multi-line'],
     'object-curly-spacing': [2, 'always'],
