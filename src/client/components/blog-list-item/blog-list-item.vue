@@ -25,7 +25,7 @@
         type: Object,
         required: true,
         validator(item) {
-          return typeof(item.title) === 'string' && !!Date.parse(item.date) && item.authors.length >= 1
+          return typeof(item.slug) === 'string' && typeof(item.title) === 'string' && !!Date.parse(item.date) && item.authors.length >= 1
         },
         currentLocale: {
           type: String,
