@@ -2,7 +2,7 @@
   <article class="academy-excerpt grid">
     <time
       class="academy-excerpt__calendar"
-      :datetime="date"
+      :datetime="dateString"
     >
       <span class="academy-excerpt__day font-bold">{{ day }}</span>
       <span class="academy-excerpt__month">{{ month }}</span>
@@ -27,7 +27,7 @@
       <responsive-image
         :image="{
           alt: title,
-          url: image.src,
+          url: image.url,
           width: image.width,
           height: image.height,
         }"
@@ -82,11 +82,7 @@ export default {
       required: false,
       default: null,
       validator(image) {
-        return (
-          'src' in image && typeof image.src === 'string'
-          && 'width' in image && typeof image.width === 'number'
-          && 'height' in image && typeof image.height === 'number'
-        )
+        return typeof(image.url) === 'string' && typeof(image.type) === 'string' && typeof(image.width) === 'number' && typeof(image.height) === 'number'
       },
     },
   },

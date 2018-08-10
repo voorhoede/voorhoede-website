@@ -14,7 +14,8 @@
   ctaSecondaryLabel="Learn more"
   ctaSecondaryTo="https://google.nl"
   :image="{
-    src: 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
+    url: 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
+    type: 'jpeg',
     width: 1280,
     height: 720,
   }"
@@ -39,6 +40,7 @@ The image object should contain the next properties:
 
 | Prop | Type | Required | Description |
 | --- | --- | --- | --- |
-| src | String | true | Path to the image |
+| url | String | true | Path to the image |
+| type | String | true | Image type |
 | width | Number | true | Width in px |
 | height | Number | true | Height in px |
