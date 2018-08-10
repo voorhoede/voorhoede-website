@@ -79,7 +79,6 @@ export default {
     },
     image: {
       type: Object,
-      required: false,
       default: null,
       validator(image) {
         return typeof(image.url) === 'string' && typeof(image.type) === 'string' && typeof(image.width) === 'number' && typeof(image.height) === 'number'
