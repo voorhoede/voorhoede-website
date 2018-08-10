@@ -1,0 +1,21 @@
+:root {
+  --button-group-spacing: var(--spacing-medium);
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+}
+
+.button-group .app-button + .app-button {
+  margin-left: var(--button-group-spacing);
+}
+
+.button-group .app-button {
+  min-width: auto;
+  width: calc(50% - var(--button-group-spacing) / 2);
+}
+
+.button-group .app-button--secondary {
+  width: auto;
+}
