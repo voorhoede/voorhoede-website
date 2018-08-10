@@ -34,6 +34,7 @@
 
 .horizontal-carousel__slides > * {
   flex: 0 0 var(--horizontal-carousel-slide-width);
+  white-space: initial;
 }
 
 .horizontal-carousel__slides > * + * {
