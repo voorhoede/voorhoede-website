@@ -145,8 +145,7 @@ export default {
   padding: var(--spacing-medium);
   transform-origin: top;
   transform: scaleY(0);
-  transition-delay: 0.56s;
-  transition: transform 270ms cubic-bezier(0, 0, .1, 1);
+  transition: transform 270ms cubic-bezier(0, 0, .1, 1) 0.11s;
 }
 
 .case-excerpt__tooltip-triangle {
