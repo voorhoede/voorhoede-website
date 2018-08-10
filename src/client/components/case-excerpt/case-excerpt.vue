@@ -186,7 +186,7 @@ export default {
   margin-bottom: var(--spacing-smaller);
 }
 
-.case-excerpt:target .case-excerpt__image-container
+.case-excerpt:target .case-excerpt__image-container,
 .case-excerpt--open .case-excerpt__image-container {
   border: 5px solid var(--html-blue);
   transform: scale(1.05);
