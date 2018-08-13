@@ -14,7 +14,7 @@
       </li>
     </ul>
     <div class="highlighted-clients__cta">
-      <app-button :label="ctaLabel" :to="ctaLink"/>
+      <app-button :label="ctaLabel" :to="{ name: 'locale-contact' }"/>
     </div>
   </div>
 </template>
@@ -41,10 +41,6 @@ export default {
       },
     },
     ctaLabel: {
-      type: String,
-      required: true,
-    },
-    ctaLink: {
       type: String,
       required: true,
     },

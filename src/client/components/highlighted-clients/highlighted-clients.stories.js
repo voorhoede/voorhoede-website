@@ -37,7 +37,6 @@ stories.add(
           { logoSrc: '/client-logos/grandvision.svg', name: 'GrandVision' }
         ]"
         ctaLabel="Get your name on the list"
-        ctaLink="/en/contact/"
       />
     `,
   }),
