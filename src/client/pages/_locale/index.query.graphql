@@ -1,13 +1,13 @@
 query HomePage($locale: SiteLocale, $altLocale: SiteLocale)  {
   home(locale:$locale) {
-    ...slugs
+    ...home
   },
   alternateUrl: home(locale:$altLocale) {
     slug
   }
 }
 
-fragment slugs on HomeRecord {
+fragment home on HomeRecord {
   slug
   title,
   social {
