@@ -5,9 +5,8 @@
       :current-url="$route.fullPath"
       :links="localizedMenu"
       :languages="languages"
-      :current-locale="currentLocale"
-      class="grid"/>
-    <nuxt class="grid"/>
+      :current-locale="currentLocale"/>
+    <nuxt/>
   </div>
 </template>
 
