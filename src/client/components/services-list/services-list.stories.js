@@ -27,19 +27,19 @@ stories.add(
             tagline: 'We learn, we train',
             title: 'Kick-start your project',
             teaser: 'Get a roadmap\nBudget indication for your project\nTest your idea using a prototype\nWith our input, you decide the next step',
-            slug: '/services/project-kick-start',
+            slug: 'project-kick-start',
           },
           {
             tagline: 'Need a team?',
             title: 'Your own agile team',
             teaser: 'A dedicated team\nScrum master, developers and optional designers\nOn-site or at our office\nYou stay in charge',
-            slug: '/services/agile-team',
+            slug: 'agile-team',
           },
           {
             tagline: 'Need developers?',
             title: 'Front-end specialists',
             teaser: 'Experts in JavaScript (frameworks), HTML and CSS\nWho quickly get the hang of your project\nBack-up of 20 colleagues\nImmediately available',
-            slug: '/services/front-end-specialists',
+            slug: 'front-end-specialists',
           },
         ]
       }

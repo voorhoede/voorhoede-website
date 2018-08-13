@@ -15,7 +15,10 @@
     <AppButton
       secondary
       label="Learn more"
-      :to="slug"
+      :to="{
+        name: 'locale-services-slug',
+        params: { slug },
+      }"
     />
   </article>
 </template>
