@@ -61,6 +61,11 @@ export default {
   display: none;
 }
 
+.page-header__image img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
 @supports (display: grid) {
   .page-header {
     padding-top: 0;
