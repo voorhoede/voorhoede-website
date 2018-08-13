@@ -1,24 +1,17 @@
 <template>
   <section class="page-cases">
-    <div>
-      <h1 class="title">{{ title }}</h1>
-      <p class="description">{{ description }}</p>
-    </div>
+    <pre>{{ job }}</pre>
   </section>
 </template>
 
 <script>
-import { getPageData } from '../../../lib/get-data'
+  import query from './index.query.graphql'
+  import { getData } from '../../../lib/get-data'
 
-export default {
-  async asyncData({ params, store }) {
-    const { locale, jobs, slug } = params
-    const data = await getPageData({ uri: `${jobs}/${slug}`, locale })
-    store.commit('alternateUris/SET_ALTERNATE_URIS', data.alternateUris)
-    return data
-  },
-  validate ({ params }) {
-    return /^(jobs|vacatures)$/.test(params.jobs)
-  },
-}
+  export default {
+    async asyncData({ params }) {
+      const { locale } = params
+      return await getData({ query, variables: { locale, altLocale: 'nl' } })
+    },
+  }
 </script>
