@@ -1,5 +1,5 @@
 const fetch = require('node-fetch')
-const token = '1956fa5400c0f63150d7210ca7ca35'
+const token = process.env.DATO_API_TOKEN
 
 export function getData({ query, variables }) {
   return fetch(
