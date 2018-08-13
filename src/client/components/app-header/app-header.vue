@@ -75,8 +75,13 @@ export default {
 
 <style>
 .app-header {
-  border-bottom: 1px solid var(--fog);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
   height: var(--app-header-height);
+  width: 100%;
+  border-bottom: 1px solid var(--fog);
 }
 
 .app-header__content {
@@ -146,10 +151,6 @@ export default {
 }
 
 @media screen and (min-width: 1100px) {
-  .app-header {
-    height: var(--app-header-height-large);
-  }
-
   .app-header__logo {
     height: 1.8125rem; /* 29px */
   }
