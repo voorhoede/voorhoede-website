@@ -22,7 +22,7 @@
     </section>
     <section class="page-index__cases">
       <div class="grid">
-        <h2 class="page-index__section-title h1">{{ casesTitle }}</h2>
+        <h2 class="page-index__section-title page-index__section-title--cases h1">{{ casesTitle }}</h2>
       </div>
       <horizontal-carousel>
         <template slot="slides">
@@ -130,6 +130,12 @@ export default {
         { logoSrc: '/client-logos/grandvision.svg', name: 'GrandVision' }
       ],
       clientsButtonLabel: 'Get your name on the list',
+      allEvents: [{
+        'date': '2018-10-19T09:00:00+02:00',
+        'title': 'Performance Masterclass #2',
+        'description': 'Performance matters. Research shows performance has a huge impact on conversion and user retention. You — as a front-end developer — can make a big difference! In this full day masterclass you will learn how to boost performance to the max.',
+        'url': 'https://www.eventbrite.nl/e/tickets-front-end-performance-master-class-42671692180'
+      }]
     }
   }
 }
@@ -194,6 +200,17 @@ export default {
 @media (min-width: 1100px) {
   .page-index .scroll-highlighted-text {
     padding: var(--spacing-bigger) 0;
+  }
+
+  .page-index__section-title--cases {
+    grid-column-start: 6;
+    grid-column-end: -6;
+  }
+
+  .page-index__services > *,
+  .page-index__clients > * {
+    grid-column-start: 4;
+    grid-column-end: -4;
   }
 
   .page-index__section-title {
