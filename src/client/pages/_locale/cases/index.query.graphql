@@ -1,0 +1,12 @@
+query Case($locale: SiteLocale, $altLocale: SiteLocale)  {
+  work(locale:$locale) {
+    ...work
+  },
+  alternateUrl: work(locale:$altLocale) {
+    title
+  }
+}
+
+fragment work on WorkRecord {
+  title
+}
