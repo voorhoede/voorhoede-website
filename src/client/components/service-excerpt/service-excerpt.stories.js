@@ -22,15 +22,11 @@ stories.add(
     i18n: new VueI18n({ locale: 'en' }),
     template: `
       <service-excerpt
-        title="We learn, we train"
-        subtitle="Kick-start your project"
-        :characteristics="[
-          'Get a roadmap',
-          'Budget indication for your project',
-          'Test your idea using a prototype',
-          'With our input, you decide the next step',
-        ]"
         href="/services/project-kick-start"
+        tagline="We learn, we train"
+        title="Kick-start your project"
+        teaser="A dedicated team\nScrum master, developers and optional designers\nOn-site or at our office\nYou stay in charge"
+        slug="project-kick-start"
       />
     `,
   }),

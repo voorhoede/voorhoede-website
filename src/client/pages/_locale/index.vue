@@ -41,7 +41,7 @@ export default {
     return {
       headerTitle: 'We are <br/> De Voorhoede',
       subtitle: 'How can we help?',
-      seoTitle: 'We are De Voorhoede - how can we help?',
+      seoTitle: 'We are De Voorhoede how can we help?',
       headerImage: 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
       usps: [
         'We work lean and agile.',
@@ -52,37 +52,22 @@ export default {
       servicesHeader: 'What can we do for you?',
       services: [
         {
-          title: 'We learn, we train',
-          subtitle: 'Kick-start your project',
-          characteristics: [
-            'Get a roadmap',
-            'Budget indication for your project',
-            'Test your idea using a prototype',
-            'With our input, you decide the next step',
-          ],
-          href: '/services/project-kick-start',
+          tagline: 'We learn, we train',
+          title: 'Kick-start your project',
+          teaser: 'A dedicated team\nScrum master, developers and optional designers\nOn-site or at our office\nYou stay in charge',
+          slug: 'project-kick-start',
         },
         {
-          title: 'Need a team?',
-          subtitle: 'Your own agile team',
-          characteristics: [
-            'A dedicated team',
-            'Scrum master, developers and optional designers',
-            'On-site or at our office',
-            'You stay in charge',
-          ],
-          href: '/services/agile-team',
+          tagline: 'Need a team?',
+          title: 'Your own agile team',
+          teaser: 'Get a roadmap\nBudget indication for your project\nTest your idea using a prototype\nWith our input, you decide the next step',
+          slug: 'agile-team',
         },
         {
-          title: 'Need developers?',
-          subtitle: 'Front-end specialists',
-          characteristics: [
-            'Experts in JavaScript (frameworks), HTML and CSS',
-            'Who quickly get the hang of your project',
-            'Back-up of 20 colleagues',
-            'Immediately available',
-          ],
-          href: '/services/front-end-specialists',
+          tagline: 'Need developers?',
+          title: 'Front-end specialists',
+          teaser: 'Experts in JavaScript (frameworks), HTML and CSS\nWho quickly get the hang of your project\nBack-up of 20 colleagues\nImmediately available',
+          slug: 'front-end-specialists',
         }
       ]
     }

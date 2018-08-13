@@ -6,10 +6,10 @@
       class="services-list__item"
     >
       <service-excerpt
+        :tagline="service.tagline"
         :title="service.title"
-        :subtitle="service.subtitle"
-        :characteristics="service.characteristics"
-        :href="service.href"
+        :teaser="service.teaser"
+        :slug="service.slug"
       />
     </li>
   </ul>
