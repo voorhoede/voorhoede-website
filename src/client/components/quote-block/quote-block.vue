@@ -35,6 +35,7 @@
   }
 
   .quote-block__quote {
+    display: block;
     quotes: '\201c' '\201d';
     margin-bottom: var(--spacing-small);
   }
