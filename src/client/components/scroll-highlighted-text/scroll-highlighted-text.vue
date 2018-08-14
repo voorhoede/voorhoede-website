@@ -21,9 +21,6 @@
         },
       },
     },
-    mounted() {
-      debugger
-    }
   }
 </script>
 
