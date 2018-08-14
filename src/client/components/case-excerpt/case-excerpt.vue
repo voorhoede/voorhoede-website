@@ -12,7 +12,9 @@
       role="button"
       class="case-excerpt__image-container"
     >
-      <img :src="`/images/${imageName}.svg`" class="case-excerpt__image">
+      <lazy-load>
+        <img :src="`/images/${imageName}.svg`" class="case-excerpt__image">
+      </lazy-load>
     </a>
     <div
       class="case-excerpt__tooltip"
@@ -33,14 +35,14 @@
         <app-button
           @focus="isTooltipOpen = true"
           :label="primaryLabel"
-          :to="primaryHref"
+          :to="primarySlug"
         />
         <app-button
           secondary
           @blur="isTooltipOpen = false"
           @focus="isTooltipOpen = true"
           :label="secondaryLabel"
-          :to="secondaryHref"
+          :to="secondarySlug"
         />
       </div>
     </div>
@@ -48,11 +50,12 @@
 </template>
 
 <script>
-import { AppButton } from '~/components'
+import { AppButton, LazyLoad } from '~/components'
 
 export default {
   components: {
     AppButton,
+    LazyLoad,
   },
   props: {
     caseId: {
@@ -75,7 +78,7 @@ export default {
       type: String,
       default: '',
     },
-    primaryHref: {
+    primarySlug: {
       type: String,
       default: '',
     },
@@ -83,7 +86,7 @@ export default {
       type: String,
       default: '',
     },
-    secondaryHref: {
+    secondarySlug: {
       type: String,
       default: '',
     },
@@ -123,10 +126,12 @@ export default {
   border: 3px solid var(--html-blue);
   transform-origin: center;
   transition: 200ms transform cubic-bezier(.05, 0, .45, 1);
+  min-height: 300px;
 }
 
 .case-excerpt__image {
   width: 100%;
+  min-height: 230px;
   max-height: 230px;
 }
 
@@ -196,6 +201,7 @@ export default {
   }
 
   .case-excerpt__image-container {
+    min-height: 360px;
     padding-bottom: var(--spacing-big);
   }
 

@@ -7,9 +7,10 @@ Adds information about a case. When active or hovererd it shows a tooltip. This 
 <case-excerpt
 	:caseId="caseId"
 	:primaryLabel="primaryLabel"
-	:primaryHref="primaryHref"
+	:primarySlug="{ name: 'locale-cases-slug', params: { slug: 'funda', locale: currentLocale }}"
+	:primarySlug="primaryHref"
 	:secondaryLabel="secondaryLabel"
-	:secondaryHref="secondaryHref"
+	:secondarySlug="{ name: 'locale-cases', params: { locale: currentLocale }}"
 	:imageName="imageName"
 	:caseDescriptionHeader="caseDescriptionHeader"
 	:caseDescriptionBody="caseDescriptionBody"
@@ -25,7 +26,7 @@ Adds information about a case. When active or hovererd it shows a tooltip. This 
 | caseDescriptionBody | String | true | Description of the case excerpt |
 | caseId | String | false | This should be a unique key |
 | primaryLabel | String | false | Text in the primary button |
-| primaryHref | String | false | Href to the actual case page |
+| primarySlug | String | false | Named slug that contains a slug and locale variable to the case page |
 | secondaryLabel | String | false | Secondary button text |
-| secondaryHref | String | false | Href to the overview page of the cases |
+| secondarySlug | String | false | Slug to the cases page contains the locale variable |
 | alignTooltip | String | false | Align tooltip and tooltip triangle to left or the right, standard style centers tooltip |
