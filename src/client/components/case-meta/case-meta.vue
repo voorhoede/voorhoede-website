@@ -1,0 +1,175 @@
+<template>
+  <aside class="case-meta grid">
+    <h2 class="sr-only">case information</h2>
+    <section class="case-meta__expertise">
+      <h3 class="case-meta__title body font-bold">{{ expertiseTitle }}</h3>
+      <p class="body-petite">{{ expertiseString }}</p>
+    </section>
+    <section class="case-meta__platform">
+      <h3 class="case-meta__title body font-bold">{{ platformTitle }}</h3>
+      <p class="body-petite">{{ platformString }}</p>
+    </section>
+    <section class="case-meta__deliverable">
+      <h3 class="case-meta__title body font-bold">{{ deliverableTitle }}</h3>
+      <p class="body-petite">{{ deliverableString }}</p>
+    </section>
+    <section class="case-meta__interested">
+      <h3 class="case-meta__title body font-bold">{{ interestedTitle }}</h3>
+      <nuxt-link class="case-meta__link body-petite" :to="interestedLinkUrl">
+        {{ interestedLinkLabel }} >>
+      </nuxt-link>
+    </section>
+  </aside>
+</template>
+
+<script>
+  export default {
+    props: {
+      expertiseTitle: {
+        type: String,
+        required: true
+      },
+      expertises: {
+        type: Array,
+        required: true,
+        validator(value) {
+          return value.every(item => item.title)
+        }
+      },
+      platformTitle: {
+        type: String,
+        required: true
+      },
+      platforms: {
+        type: Array,
+        required: true,
+        validator(value) {
+          return value.every(item => item.title)
+        }
+      },
+      deliverableTitle: {
+        type: String,
+        required: true
+      },
+      deliverables: {
+        type: Array,
+        required: true,
+        validator(value) {
+          return value.every(item => item.title)
+        }
+      },
+      interestedTitle: {
+        type: String,
+        required: true
+      },
+      interestedLinkLabel: {
+        type: String,
+        required: true
+      },
+      interestedLinkUrl: {
+        type: String,
+        required: true
+      }
+    },
+    computed: {
+      expertiseString() {
+        return this.createMetaString(this.expertises)
+      },
+      platformString() {
+        return this.createMetaString(this.platforms)
+      },
+      deliverableString() {
+        return this.createMetaString(this.deliverables)
+      }
+    },
+    methods: {
+      createMetaString(array) {
+        return array.reduce((acc, curr, index) => {
+          if (index === 0) {
+            return acc = curr.title
+          } else if (index !== array.length - 1) {
+            return acc += `, ${curr.title}`
+          } else {
+            return acc += ` and ${curr.title}`
+          }
+        }, '')
+      }
+    }
+  }
+</script>
+
+<style>
+  .case-meta {
+    grid-row-gap: var(--spacing-large);
+  }
+
+  .case-meta__title {
+    color: var(--html-blue);
+    margin-bottom: var(--spacing-tiny);
+  }
+
+  .case-meta__link:hover,
+  .case-meta__link:focus {
+    color: var(--active-blue);
+  }
+
+  .case-meta__link:active {
+    color: var(--active-blue);
+  }
+
+  .case-meta__expertise,
+  .case-meta__deliverable {
+    grid-column-start: 4;
+    grid-column-end: 8;
+  }
+
+  .case-meta__platform,
+  .case-meta__interested {
+    grid-column-start: 12;
+    grid-column-end: 16;
+  }
+
+  @media (min-width: 720px) {
+    .case-meta__expertise {
+      grid-column-start: 4;
+      grid-column-end: 10;
+    }
+
+    .case-meta__platform {
+      grid-column-start: 14;
+      grid-column-end: 20;
+    }
+
+    .case-meta__deliverable {
+      grid-column-start: 24;
+      grid-column-end: 30;
+    }
+
+    .case-meta__interested {
+      grid-column-start: 34;
+      grid-column-end: 40;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .case-meta__expertise {
+      grid-column-start: 4;
+      grid-column-end: 10;
+    }
+
+    .case-meta__platform {
+      grid-column-start: 17;
+      grid-column-end: 23;
+    }
+
+    .case-meta__deliverable {
+      grid-column-start: 30;
+      grid-column-end: 36;
+    }
+
+    .case-meta__interested {
+      grid-column-start: 44;
+      grid-column-end: 50;
+    }
+  }
+</style>
