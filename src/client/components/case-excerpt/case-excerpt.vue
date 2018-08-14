@@ -134,7 +134,6 @@ export default {
 }
 
 .case-excerpt__tooltip {
-  transform: scaleY(0);
   position: absolute;
   top: calc(66% + var(--case-excerpt-triangle-size));
   left: calc(var(--spacing-medium) * -1);
@@ -143,6 +142,7 @@ export default {
   background: var(--brand-yellow);
   padding: var(--spacing-medium);
   transform-origin: top;
+  transform: scaleY(0);
   transition: transform 200ms cubic-bezier(0, 0, .1, 1) .11s;
 }
 
