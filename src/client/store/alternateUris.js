@@ -1,4 +1,4 @@
-const SET_ALTERNATE_URIS = 'SET_ALTERNATE_URIS'
+export const SET_ALTERNATE_URIS = 'SET_ALTERNATE_URIS'
 
 const baseState = {
   en: '/en/',

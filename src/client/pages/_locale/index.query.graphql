@@ -1,0 +1,48 @@
+query HomePage($locale: SiteLocale, $altLocale: SiteLocale)  {
+  home(locale:$locale) {
+    ...home
+  },
+  alternateUrl: home(locale:$altLocale) {
+    slug
+  }
+}
+
+fragment home on HomeRecord {
+  slug
+  title,
+  social {
+    title,
+    description,
+    image {
+      url
+    }
+  },
+  keywords,
+  headerTitle,
+  subtitle,
+  usps,
+  cases {
+    slug,
+    title,
+    published,
+    social {
+      image {
+        url
+      }
+    }
+  }
+  servicesHeader,
+  services {
+    tagline,
+    title,
+    slug,
+    teaser
+  },
+  clientsTitle,
+  clientsList {
+    name,
+    icon {
+      url
+    }
+  }
+}

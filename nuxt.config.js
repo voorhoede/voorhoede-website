@@ -7,7 +7,7 @@ dotenv.config()
  * Use Netlify's URL variable:
  * @see https://www.netlify.com/docs/continuous-deployment/#build-environment-variables
  */
-const { URL, DEFAULT_LOCALE } = process.env
+const { URL, DEFAULT_LOCALE, DATO_API_TOKEN } = process.env
 const baseUrl = URL
 const defaultLocale = DEFAULT_LOCALE
 
@@ -19,6 +19,7 @@ module.exports = {
   env: {
     baseUrl,
     defaultLocale,
+    DATO_API_TOKEN
   },
 
   /*
@@ -76,10 +77,17 @@ module.exports = {
         })
       }
 
+
       config.module.rules.push({
         test: /\.svg$/,
         loader: 'vue-svg-loader',
       })
-    },
-  },
+
+      config.module.rules.push({
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: 'raw-loader',
+      })
+    }
+  }
 }
