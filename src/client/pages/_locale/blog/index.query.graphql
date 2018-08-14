@@ -1,0 +1,12 @@
+query Blog($locale: SiteLocale, $altLocale: SiteLocale)  {
+  blog(locale:$locale) {
+    ...blog
+  },
+  alternateUrl: blog(locale:$altLocale) {
+    slug
+  }
+}
+
+fragment blog on BlogRecord {
+  title
+}
