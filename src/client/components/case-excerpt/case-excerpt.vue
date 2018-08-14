@@ -13,7 +13,7 @@
       class="case-excerpt__image-container"
     >
       <lazy-load>
-        <img :src="`/images/${imageName}.svg`" class="case-excerpt__image">
+        <img :src="`/images/${image.name}.svg`" class="case-excerpt__image" :alt="image.alt">
       </lazy-load>
     </a>
     <div
@@ -24,7 +24,7 @@
       }"
     >
       <div class="case-excerpt__description">
-        <h3 class="h3 case-excerpt__description-header">
+        <h3 class="h3 case-excerpt__title">
           {{ caseDescriptionHeader }}
         </h3>
         <p class="body">
@@ -42,7 +42,7 @@
           @blur="isTooltipOpen = false"
           @focus="isTooltipOpen = true"
           :label="secondaryLabel"
-          to="/cases"
+          :to="{ name: 'locale-cases', params: { locale: 'en' }}"
         />
       </div>
     </div>
@@ -62,9 +62,12 @@ export default {
       type: String,
       required: true,
     },
-    imageName: {
-      type: String,
+    image: {
+      type: Object,
       required: true,
+      validator (image) {
+        return typeof(image.name) === 'string'
+      }
     },
     caseDescriptionHeader: {
       type: String,
@@ -127,12 +130,11 @@ export default {
 
 .case-excerpt__image {
   width: 100%;
-  min-height: 230px;
-  max-height: 230px;
+  height: 230px;
 }
 
 .case-excerpt__tooltip {
-  flex-direction: column;
+  transform: scaleY(0);
   position: absolute;
   top: calc(66% + var(--case-excerpt-triangle-size));
   left: calc(var(--spacing-medium) * -1);
@@ -141,7 +143,6 @@ export default {
   background: var(--brand-yellow);
   padding: var(--spacing-medium);
   transform-origin: top;
-  transform: scaleY(0);
   transition: transform 200ms cubic-bezier(0, 0, .1, 1) .11s;
 }
 
@@ -160,13 +161,13 @@ export default {
   transform: none;
 }
 
+.case-excerpt__title {
+  margin-bottom: var(--spacing-smaller);
+}
+
 .case-excerpt__description {
   color: var(--html-blue);
   margin-bottom: var(--spacing-small);
-}
-
-.case-excerpt__description-header {
-  margin-bottom: var(--spacing-smaller);
 }
 
 .case-excerpt:target .case-excerpt__image-container,
@@ -178,6 +179,7 @@ export default {
 .case-excerpt:target .case-excerpt__tooltip,
 .case-excerpt--open .case-excerpt__tooltip {
   display: flex;
+  flex-direction: column;
   transform: scaleY(1);
 }
 
@@ -201,7 +203,7 @@ export default {
   }
 
   .case-excerpt__image {
-    max-height: 275px;
+    height: 275px;
   }
 
   .case-excerpt__tooltip {
@@ -212,15 +214,6 @@ export default {
     max-width: 320px;
   }
 
-  .case-excerpt__tooltip--right {
-    right: 33%;
-  }
-
-  .case-excerpt__tooltip--right::before {
-    right: var(--spacing-medium);
-    margin-right: 0;
-  }
-
   .case-excerpt__tooltip--left {
     left: 33%;
   }
@@ -228,6 +221,15 @@ export default {
   .case-excerpt__tooltip--left::before {
     left: var(--spacing-medium);
     margin-left: 0;
+  }
+
+  .case-excerpt__tooltip--right {
+    right: 33%;
+  }
+
+  .case-excerpt__tooltip--right::before {
+    right: var(--spacing-medium);
+    margin-right: 0;
   }
 }
 
