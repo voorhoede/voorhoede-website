@@ -1,0 +1,58 @@
+query HomePage($locale: SiteLocale, $altLocale: SiteLocale)  {
+  home(locale:$locale) {
+    ...home
+  },
+  alternateUrl: home(locale:$altLocale) {
+    slug
+  },
+  upcomingEvents: allEvents(first: 1, orderBy: date_DESC) {
+    date,
+    description,
+    title,
+    url,
+  },
+  latestBlogposts: allBlogPosts(first:3, orderBy: publishDate_DESC) {
+    title,
+    publishDate,
+    authors {
+      slug,
+      name,
+      image {
+        url
+      }
+    }
+  }
+}
+
+fragment home on HomeRecord {
+  title,
+  social {
+    title,
+    description,
+    image {
+      url
+    }
+  },
+  keywords,
+  headerTitle,
+  subtitle,
+  usps,
+  cases {
+    slug,
+    title,
+    published,
+    social {
+      image {
+        url
+      }
+    }
+  },
+  servicesHeader,
+  services {
+    tagline,
+    title,
+    slug,
+    teaser
+  },
+  clientsTitle
+}

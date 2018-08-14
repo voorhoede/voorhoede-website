@@ -1,0 +1,12 @@
+query Academy($locale: SiteLocale, $altLocale: SiteLocale)  {
+  academy(locale:$locale) {
+    ...academy
+  },
+  alternateUrl: academy(locale:$altLocale) {
+    slug
+  }
+}
+
+fragment academy on AcademyRecord {
+  title
+}

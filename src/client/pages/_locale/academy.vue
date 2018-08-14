@@ -1,21 +1,17 @@
 <template>
   <section class="page-academy">
-    <div>
-      <h1 class="title">{{ title }}</h1>
-      <h1 class="subtitle">{{ subtitle }}</h1>
-    </div>
+    <pre>{{ academy }}</pre>
   </section>
 </template>
 
 <script>
-import { getPageData } from '../../lib/get-data'
+  import query from './_aboutUs.query.graphql'
+  import { getData } from '../../lib/get-data'
 
-export default {
-  async asyncData({ params, store }) {
-    const { locale } = params
-    const data = await getPageData({ uri: 'academy', locale })
-    store.commit('alternateUris/SET_ALTERNATE_URIS', data.alternateUris)
-    return data
-  },
-}
+  export default {
+    async asyncData({ params }) {
+      const { locale } = params
+      return await getData({ query, variables: { locale, altLocale: 'nl' } })
+    },
+  }
 </script>

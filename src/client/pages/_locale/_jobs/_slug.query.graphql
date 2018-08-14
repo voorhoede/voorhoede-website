@@ -1,0 +1,12 @@
+query JobQuery($slug:String, $locale:SiteLocale, $altLocale:SiteLocale)  {
+  job(locale:$locale, , filter: { slug: { eq: $slug } }) {
+    ...job
+  },
+  alternateUrl: job(locale:$altLocale) {
+    slug
+  }
+}
+
+fragment job on JobRecord {
+  title
+}
