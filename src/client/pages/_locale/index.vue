@@ -9,7 +9,7 @@
           <h2 v-html="home.subtitle"/>
         </template>
         <template v-if="home.headerImage" slot="image">
-          <img :src="home.headerImage" alt="image">
+          <img :src="home.headerImage.url" alt="image">
         </template>
       </page-header>
       <scroll-highlighted-text :text-lines="home.usps"/>
@@ -20,7 +20,7 @@
     </section>
     <section class="page-index__cases">
       <div class="grid">
-        <h2 class="page-index__section-title page-index__section-title--cases h1">{{ casesTitle }}</h2>
+        <h2 class="page-index__section-title page-index__section-title--cases h1">{{ home.casesTitle }}</h2>
       </div>
       <horizontal-carousel>
         <template slot="slides">

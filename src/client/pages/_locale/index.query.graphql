@@ -36,9 +36,16 @@ fragment home on HomeRecord {
   keywords,
   headerTitle,
   subtitle,
+  headerImage {
+    width,
+    height,
+    format,
+    url
+  },
   usps {
     line: usp
   },
+  casesTitle,
   cases {
     slug,
     title,
@@ -58,5 +65,6 @@ fragment home on HomeRecord {
       teaser
     }
   },
-  clientsTitle
+  clientsTitle,
+  clientsButtonLabel
 }
