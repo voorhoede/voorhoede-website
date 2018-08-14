@@ -37,7 +37,7 @@
     </section>
     <section class="page-index__clients grid">
       <h2 class="page-index__section-title page-index__section-title--clients h3 font-normal">{{ clientsTitle }}</h2>
-      <highlighted-clients :clients="clientsList" :cta-label="clientsButtonLabel"/>
+      <highlighted-clients :cta-label="clientsButtonLabel"/>
     </section>
     <div class="page-index__academy">
       <academy-excerpt
@@ -135,20 +135,6 @@ export default {
         }
       ],
       clientsTitle: 'We are proud to have worked with these leading companies',
-      clientsList: [
-        { logoSrc: '/client-logos/olx.svg', name: 'OLX' },
-        { logoSrc: '/client-logos/hyperloop.svg', name: 'Delft Hyperloop' },
-        { logoSrc: '/client-logos/funda.svg', name: 'Funda' },
-        { logoSrc: '/client-logos/npo.svg', name: 'NPO' },
-        { logoSrc: '/client-logos/abn-amro.svg', name: 'ABN AMRO' },
-        { logoSrc: '/client-logos/hotelspecials.svg', name: 'HotelSpecials' },
-        { logoSrc: '/client-logos/2dehands.svg', name: '2dehands.be' },
-        { logoSrc: '/client-logos/ziggo.svg', name: 'Ziggo' },
-        { logoSrc: '/client-logos/sita.svg', name: 'Sita' },
-        { logoSrc: '/client-logos/trouw.svg', name: 'Trouw' },
-        { logoSrc: '/client-logos/hva.svg', name: 'Hogeschool van Amsterdam' },
-        { logoSrc: '/client-logos/grandvision.svg', name: 'GrandVision' }
-      ],
       clientsButtonLabel: 'Get your name on the list',
       allEvents: [{
         'date': '2018-10-19T09:00:00+02:00',
