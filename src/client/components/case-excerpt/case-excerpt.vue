@@ -42,7 +42,7 @@
           @blur="isTooltipOpen = false"
           @focus="isTooltipOpen = true"
           :label="secondaryLabel"
-          :to="secondarySlug"
+          to="/cases"
         />
       </div>
     </div>
@@ -83,10 +83,6 @@ export default {
       default: '',
     },
     secondaryLabel: {
-      type: String,
-      default: '',
-    },
-    secondarySlug: {
       type: String,
       default: '',
     },

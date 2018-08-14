@@ -28,5 +28,4 @@ Adds information about a case. When active or hovererd it shows a tooltip. This 
 | primaryLabel | String | false | Text in the primary button |
 | primarySlug | String | false | Named slug that contains a slug and locale variable to the case page |
 | secondaryLabel | String | false | Secondary button text |
-| secondarySlug | String | false | Slug to the cases page contains the locale variable |
 | alignTooltip | String | false | Align tooltip and tooltip triangle to left or the right, standard style centers tooltip |
