@@ -1,9 +1,6 @@
 <template>
-  <section v-if="title" class="text-block">
-    <h3 class="text-block__title h3">{{ title }}</h3>
-    <slot />
-  </section>
-  <div v-else class="text-block">
+  <div class="text-block">
+    <h3 v-if="title" class="text-block__title h3">{{ title }}</h3>
     <slot />
   </div>
 </template>
@@ -29,7 +26,7 @@
     margin-bottom: var(--spacing-smaller);
   }
 
-  .text-block__item + .text-block__item {
+  .text-block > *:not(.text-block__title):not(:first-child) {
     margin-top: 1rem;
   }
 </style>
