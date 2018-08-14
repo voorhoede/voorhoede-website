@@ -20,12 +20,12 @@ Adds information about a case. When active or hovererd it shows a tooltip. This 
 ## Props
 | Name | Type | required | description |
 | --- | --- | --- | --- |
+| imageName | String | true | Name of the case illustration |
+| caseDescriptionHeader | String | true | Title of the case excerpt |
+| caseDescriptionBody | String | true | Description of the case excerpt |
 | caseId | String | false | This should be a unique key |
 | primaryLabel | String | false | Text in the primary button |
 | primaryHref | String | false | Href to the actual case page |
 | secondaryLabel | String | false | Secondary button text |
 | secondaryHref | String | false | Href to the overview page of the cases |
-| imageName | String | true | Name of the case illustration |
-| caseDescriptionHeader | String | true | Title of the case excerpt |
-| caseDescriptionBody | String | true | Description of the case excerpt |
 | alignTooltip | String | false | Align tooltip and tooltip triangle to left or the right, standard style centers tooltip |

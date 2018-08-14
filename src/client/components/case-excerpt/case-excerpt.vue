@@ -1,19 +1,19 @@
 <template>
   <article
     class="case-excerpt"
-    :class="{ 'case-excerpt--open': tooltipIsOpen }"
+    :class="{ 'case-excerpt--open': isTooltipOpen }"
     :id="`case-excerpt-${caseId}`"
-    @mouseover="tooltipIsOpen = true"
-    @mouseleave="tooltipIsOpen = false"
+    @mouseover="isTooltipOpen = true"
+    @mouseleave="isTooltipOpen = false"
   >
-    <a
+    <nuxt-link
       @click.prevent="toggleTooltip"
-      :href="`#case-excerpt-${caseId}`"
+      :to="`#case-excerpt-${caseId}`"
       role="button"
       class="case-excerpt__image-container"
     >
       <img :src="`/images/${imageName}.svg`" class="case-excerpt__image">
-    </a>
+    </nuxt-link>
     <div
       class="case-excerpt__tooltip"
       :class="{
@@ -31,14 +31,14 @@
       </div>
       <div class="button-group">
         <app-button
-          @focus="tooltipIsOpen = true"
+          @focus="isTooltipOpen = true"
           :label="primaryLabel"
           :to="primaryHref"
         />
         <app-button
           secondary
-          @blur="tooltipIsOpen = false"
-          @focus="tooltipIsOpen = true"
+          @blur="isTooltipOpen = false"
+          @focus="isTooltipOpen = true"
           :label="secondaryLabel"
           :to="secondaryHref"
         />
@@ -56,6 +56,18 @@ export default {
   },
   props: {
     caseId: {
+      type: String,
+      required: true,
+    },
+    imageName: {
+      type: String,
+      required: true,
+    },
+    caseDescriptionHeader: {
+      type: String,
+      required: true,
+    },
+    caseDescriptionBody: {
       type: String,
       required: true,
     },
@@ -79,27 +91,15 @@ export default {
       type: String,
       default: '',
     },
-    imageName: {
-      type: String,
-      required: true,
-    },
-    caseDescriptionHeader: {
-      type: String,
-      required: true,
-    },
-    caseDescriptionBody: {
-      type: String,
-      required: true,
-    },
   },
   data() {
     return {
-      tooltipIsOpen: false,
+      isTooltipOpen: false,
     }
   },
   methods: {
     toggleTooltip() {
-      this.tooltipIsOpen = !this.tooltipIsOpen
+      this.isTooltipOpen = !this.isTooltipOpen
     },
   },
 }
