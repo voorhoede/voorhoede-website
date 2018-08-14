@@ -6,14 +6,14 @@
     @mouseover="isTooltipOpen = true"
     @mouseleave="isTooltipOpen = false"
   >
-    <nuxt-link
+    <a
       @click.prevent="toggleTooltip"
-      :to="`#case-excerpt-${caseId}`"
+      :href="`#case-excerpt-${caseId}`"
       role="button"
       class="case-excerpt__image-container"
     >
       <img :src="`/images/${imageName}.svg`" class="case-excerpt__image">
-    </nuxt-link>
+    </a>
     <div
       class="case-excerpt__tooltip"
       :class="{
