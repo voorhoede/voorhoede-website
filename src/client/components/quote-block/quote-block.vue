@@ -49,6 +49,6 @@
   }
 
   .quote-block__cite {
-  color: var(--dim);
+    color: var(--dim);
   }
 </style>
