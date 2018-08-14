@@ -43,14 +43,14 @@ stories.add(
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     template: `
-    <text-block>
-      <p class="body">
-        Our front-end guide is a custom made component library. Each component in the front-end guide is a small bundle of HTML, CSS and/or JavaScript code. Front-end developers build these components independently. Some examples of components are a search field, a contact form and a navigation menu. We use them to compose pages, like the home page or search results page.
-      </p>
-      <p class="body">
-        We always develop and test components in isolation. This way we make sure that subsequent changes will not affect the rest of the website. When a component is delivered but not ready to use, you can implement it at a later stage without any hassle.
-      </p>
-    </text-block>
+      <text-block>
+        <p class="body">
+          Our front-end guide is a custom made component library. Each component in the front-end guide is a small bundle of HTML, CSS and/or JavaScript code. Front-end developers build these components independently. Some examples of components are a search field, a contact form and a navigation menu. We use them to compose pages, like the home page or search results page.
+        </p>
+        <p class="body">
+          We always develop and test components in isolation. This way we make sure that subsequent changes will not affect the rest of the website. When a component is delivered but not ready to use, you can implement it at a later stage without any hassle.
+        </p>
+      </text-block>
     `
   }),
 )
