@@ -151,10 +151,9 @@ export default {
   top: calc(var(--case-excerpt-triangle-size) * -1);
   left: 0;
   right: 0;
+  width: 0;
   margin-left: auto;
   margin-right: auto;
-  width: 0;
-  height: 0;
 	border-left: var(--case-excerpt-triangle-size) solid transparent;
 	border-right: var(--case-excerpt-triangle-size) solid transparent;
   border-bottom: var(--case-excerpt-triangle-size) solid var(--brand-yellow);
