@@ -39,11 +39,25 @@
       <h2 class="page-index__section-title page-index__section-title--clients h3 font-normal">{{ clientsTitle }}</h2>
       <highlighted-clients :clients="clientsList" :cta-label="clientsButtonLabel"/>
     </section>
+    <div class="page-index__academy">
+      <academy-excerpt
+        :date-string="allEvents[0].date"
+        :title="allEvents[0].title"
+        :description="allEvents[0].description"
+        :cta-primary-label="academyPrimaryButtonLabel"
+        :cta-primary-to="allEvents[0].url"
+        :cta-secondary-label="academySecondaryButtonLabel"
+        cta-secondary-to="/en/academy"
+        :current-locale="currentLocale"
+        :image="academyImage"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import {
+  AcademyExcerpt,
   HighlightedClients,
   PageHeader,
   HorizontalCarousel,
@@ -53,6 +67,7 @@ import {
 
 export default {
   components: {
+    AcademyExcerpt,
     HighlightedClients,
     PageHeader,
     HorizontalCarousel,
@@ -60,6 +75,11 @@ export default {
     ServicesList,
   },
   layout: 'landing',
+  data() {
+    return {
+      currentLocale: 'en',
+    }
+  },
   asyncData() {
     return {
       headerTitle: 'We are <br/> De Voorhoede',
@@ -135,7 +155,15 @@ export default {
         'title': 'Performance Masterclass #2',
         'description': 'Performance matters. Research shows performance has a huge impact on conversion and user retention. You — as a front-end developer — can make a big difference! In this full day masterclass you will learn how to boost performance to the max.',
         'url': 'https://www.eventbrite.nl/e/tickets-front-end-performance-master-class-42671692180'
-      }]
+      }],
+      academyPrimaryButtonLabel: 'Sign up',
+      academySecondaryButtonLabel: 'All events',
+      academyImage: {
+        format: 'jpeg',
+        width: 1500,
+        height: 582,
+        url: 'https://www.voorhoede.nl/assets/images/team-xl.jpg',
+      },
     }
   }
 }
@@ -143,6 +171,7 @@ export default {
 
 <style>
 .page-index__header {
+  margin-bottom: var(--spacing-larger);
   background: var(--bg-pastel);
 }
 
@@ -159,23 +188,26 @@ export default {
   color: var(--dim);
 }
 
-.page-index__services {
-  margin-top: var(--spacing-larger);
-}
-
 .page-index__cases {
   margin-bottom: var(--spacing-bigger);
   text-align: center;
 }
 
 .page-index__clients {
+  margin-bottom: var(--spacing-larger);
   padding-top: var(--spacing-large);
   padding-bottom: var(--spacing-larger);
   background: var(--fog);
 }
 
+.page-index__academy {
+  padding: var(--spacing-larger) 0;
+  background: var(--bg-pastel);
+}
+
 @media (min-width: 720px) {
   .page-index .page-header {
+    margin-bottom: var(--spacing-big);
     height: 100vh;
   }
 
@@ -188,7 +220,6 @@ export default {
   }
 
   .page-index__services {
-    margin-top: var(--spacing-big);
     margin-bottom: var(--spacing-bigger);
   }
 
@@ -198,6 +229,10 @@ export default {
 }
 
 @media (min-width: 1100px) {
+  .page-index__header {
+    margin-bottom: var(--spacing-bigger);
+  }
+
   .page-index .scroll-highlighted-text {
     padding: var(--spacing-bigger) 0;
   }
@@ -215,10 +250,6 @@ export default {
 
   .page-index__section-title {
     margin-bottom: var(--spacing-big);
-  }
-
-  .page-index__services {
-    margin-top: var(--spacing-bigger);
   }
 }
 

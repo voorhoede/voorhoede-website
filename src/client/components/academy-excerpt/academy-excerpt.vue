@@ -30,6 +30,7 @@
           url: image.url,
           width: image.width,
           height: image.height,
+          format: image.format,
         }"
       />
     </div>
@@ -80,9 +81,6 @@ export default {
     image: {
       type: Object,
       default: null,
-      validator(image) {
-        return typeof(image.url) === 'string' && typeof(image.type) === 'string' && typeof(image.width) === 'number' && typeof(image.height) === 'number'
-      },
     },
   },
   computed: {
@@ -134,10 +132,12 @@ export default {
 }
 
 .academy-excerpt__day {
+  display: inline-block;
   font-size: 1.8125rem;
 }
 
 .academy-excerpt__month {
+  display: inline-block;
   font-size: .8125rem;
   letter-spacing: 2.3px;
   text-transform: uppercase;
