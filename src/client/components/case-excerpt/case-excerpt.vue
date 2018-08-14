@@ -21,7 +21,6 @@
         'case-excerpt__tooltip--left' : alignTooltip === 'left',
       }"
     >
-      <div class="case-excerpt__tooltip-triangle" />
       <div class="case-excerpt__description">
         <h3 class="h3 case-excerpt__description-header">
           {{ caseDescriptionHeader }}
@@ -32,11 +31,14 @@
       </div>
       <div class="button-group">
         <app-button
+          @focus="tooltipIsOpen = true"
           :label="primaryLabel"
           :to="primaryHref"
         />
         <app-button
           secondary
+          @blur="tooltipIsOpen = false"
+          @focus="tooltipIsOpen = true"
           :label="secondaryLabel"
           :to="secondaryHref"
         />
@@ -59,33 +61,27 @@ export default {
     },
     primaryLabel: {
       type: String,
-      required: false,
       default: '',
     },
     primaryHref: {
       type: String,
-      required: false,
       default: '',
     },
     secondaryLabel: {
       type: String,
-      required: false,
       default: '',
     },
     secondaryHref: {
       type: String,
-      required: false,
       default: '',
     },
     alignTooltip: {
       type: String,
-      required: false,
       default: '',
     },
     imageName: {
       type: String,
       required: true,
-      default: '',
     },
     caseDescriptionHeader: {
       type: String,
@@ -148,9 +144,10 @@ export default {
   transition: transform 200ms cubic-bezier(0, 0, .1, 1) .11s;
 }
 
-.case-excerpt__tooltip-triangle {
+.case-excerpt__tooltip::before {
+  content: '';
   position: absolute;
-  top: calc(-1 * var(--case-excerpt-triangle-size));
+  top: calc(var(--case-excerpt-triangle-size) * -1);
   left: 0;
   right: 0;
   margin-left: auto;
@@ -218,7 +215,7 @@ export default {
     right: 33%;
   }
 
-  .case-excerpt__tooltip--right > .case-excerpt__tooltip-triangle {
+  .case-excerpt__tooltip--right::before {
     right: var(--spacing-medium);
     margin-right: 0;
   }
@@ -227,7 +224,7 @@ export default {
     left: 33%;
   }
 
-  .case-excerpt__tooltip--left > .case-excerpt__tooltip-triangle {
+  .case-excerpt__tooltip--left::before {
     left: var(--spacing-medium);
     margin-left: 0;
   }
