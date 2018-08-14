@@ -224,6 +224,7 @@ export default {
   }
 
   .page-index__clients {
+    margin-bottom: var(--spacing-bigger);
     padding-top: var(--spacing-larger);
   }
 }
@@ -250,6 +251,10 @@ export default {
 
   .page-index__section-title {
     margin-bottom: var(--spacing-big);
+  }
+
+  .page-index__clients {
+    margin-bottom: var(--spacing-huge);
   }
 }
 
