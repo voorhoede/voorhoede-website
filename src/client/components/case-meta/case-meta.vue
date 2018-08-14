@@ -3,15 +3,15 @@
     <h2 class="sr-only">case information</h2>
     <section class="case-meta__expertise">
       <h3 class="case-meta__title body font-bold">{{ expertiseTitle }}</h3>
-      <p class="body-petite">{{ expertiseString }}</p>
+      <p class="body-petite">{{ expertises | toMetaString }}</p>
     </section>
     <section class="case-meta__platform">
       <h3 class="case-meta__title body font-bold">{{ platformTitle }}</h3>
-      <p class="body-petite">{{ platformString }}</p>
+      <p class="body-petite">{{ platforms | toMetaString }}</p>
     </section>
     <section class="case-meta__deliverable">
       <h3 class="case-meta__title body font-bold">{{ deliverableTitle }}</h3>
-      <p class="body-petite">{{ deliverableString }}</p>
+      <p class="body-petite">{{ deliverables | toMetaString }}</p>
     </section>
     <section class="case-meta__interested">
       <h3 class="case-meta__title body font-bold">{{ interestedTitle }}</h3>
@@ -24,6 +24,14 @@
 
 <script>
   export default {
+    filters: {
+      toMetaString(array) {
+        const lastItem = array.pop() /* Pop also removes the last element of the array */
+        return array
+          .map(array => array.title)
+          .join(', ') + ' and ' + lastItem.title
+      }
+    },
     props: {
       expertiseTitle: {
         type: String,
@@ -71,30 +79,6 @@
         required: true
       }
     },
-    computed: {
-      expertiseString() {
-        return this.createMetaString(this.expertises)
-      },
-      platformString() {
-        return this.createMetaString(this.platforms)
-      },
-      deliverableString() {
-        return this.createMetaString(this.deliverables)
-      }
-    },
-    methods: {
-      createMetaString(array) {
-        return array.reduce((acc, curr, index) => {
-          if (index === 0) {
-            return acc = curr.title
-          } else if (index !== array.length - 1) {
-            return acc += `, ${curr.title}`
-          } else {
-            return acc += ` and ${curr.title}`
-          }
-        }, '')
-      }
-    }
   }
 </script>
 
