@@ -12,13 +12,11 @@
           <img :src="home.headerImage" alt="image">
         </template>
       </page-header>
-      <scroll-highlighted-text :text-lines="usps"/>
+      <scroll-highlighted-text :text-lines="home.usps"/>
     </div>
     <section class="page-index__services grid">
       <h2 class="page-index__section-title h1">{{ home.servicesHeader }}</h2>
-      <services-list
-        :services="home.services"
-      />
+      <services-list :services="home.services"/>
     </section>
     <section class="page-index__cases">
       <div class="grid">
@@ -39,7 +37,6 @@
       <h2 class="page-index__section-title page-index__section-title--clients h3 font-normal">{{ home.clientsTitle }}</h2>
       <highlighted-clients :cta-label="home.clientsButtonLabel"/>
     </section>
-
   </div>
 </template>
 
@@ -55,110 +52,109 @@
     ServicesList,
   } from '~/components'
 
-export default {
-  components: {
-    AcademyExcerpt,
-    HighlightedClients,
-    PageHeader,
-    HorizontalCarousel,
-    ScrollHighlightedText,
-    ServicesList,
-  },
-    layout: 'landing',
-    async asyncData({ params }) {
-      const { locale } = params
-      return await getData({ query, variables: { locale, altLocale: 'nl' } })
+  export default {
+    components: {
+      AcademyExcerpt,
+      HighlightedClients,
+      PageHeader,
+      HorizontalCarousel,
+      ScrollHighlightedText,
+      ServicesList,
     },
-  }
+      layout: 'landing',
+      async asyncData({ params }) {
+        const { locale } = params
+        return await getData({ query, variables: { locale, altLocale: 'nl' } })
+      },
+    }
 </script>
 
 <style>
-.page-index__header {
-  margin-bottom: var(--spacing-larger);
-  background: var(--bg-pastel);
-}
-
-.page-index .scroll-highlighted-text {
-  padding: var(--spacing-larger) 0;
-}
-
-.page-index__section-title {
-  margin-bottom: var(--spacing-large);
-  text-align: center;
-}
-
-.page-index__section-title--clients {
-  color: var(--dim);
-}
-
-.page-index__cases {
-  margin-bottom: var(--spacing-bigger);
-  text-align: center;
-}
-
-.page-index__clients {
-  margin-bottom: var(--spacing-larger);
-  padding-top: var(--spacing-large);
-  padding-bottom: var(--spacing-larger);
-  background: var(--fog);
-}
-
-.page-index__academy {
-  padding: var(--spacing-larger) 0;
-  background: var(--bg-pastel);
-}
-
-@media (min-width: 720px) {
-  .page-index .page-header {
-    margin-bottom: var(--spacing-big);
-    height: 100vh;
-  }
-
-  .page-index .scroll-highlighted-text {
-    padding: var(--spacing-big) 0;
-  }
-
-  .page-index__section-title {
-    margin-bottom: var(--spacing-larger);
-  }
-
-  .page-index__services {
-    margin-bottom: var(--spacing-bigger);
-  }
-
-  .page-index__clients {
-    margin-bottom: var(--spacing-bigger);
-    padding-top: var(--spacing-larger);
-  }
-}
-
-@media (min-width: 1100px) {
   .page-index__header {
-    margin-bottom: var(--spacing-bigger);
+    margin-bottom: var(--spacing-larger);
+    background: var(--bg-pastel);
   }
 
   .page-index .scroll-highlighted-text {
-    padding: var(--spacing-bigger) 0;
-  }
-
-  .page-index__section-title--cases {
-    grid-column-start: 6;
-    grid-column-end: -6;
-  }
-
-  .page-index__services > *,
-  .page-index__clients > * {
-    grid-column-start: 4;
-    grid-column-end: -4;
+    padding: var(--spacing-larger) 0;
   }
 
   .page-index__section-title {
-    margin-bottom: var(--spacing-big);
+    margin-bottom: var(--spacing-large);
+    text-align: center;
+  }
+
+  .page-index__section-title--clients {
+    color: var(--dim);
+  }
+
+  .page-index__cases {
+    margin-bottom: var(--spacing-bigger);
+    text-align: center;
   }
 
   .page-index__clients {
-    margin-bottom: var(--spacing-huge);
+    margin-bottom: var(--spacing-larger);
+    padding-top: var(--spacing-large);
+    padding-bottom: var(--spacing-larger);
+    background: var(--fog);
   }
-}
 
+  .page-index__academy {
+    padding: var(--spacing-larger) 0;
+    background: var(--bg-pastel);
+  }
+
+  @media (min-width: 720px) {
+    .page-index .page-header {
+      margin-bottom: var(--spacing-big);
+      height: 100vh;
+    }
+
+    .page-index .scroll-highlighted-text {
+      padding: var(--spacing-big) 0;
+    }
+
+    .page-index__section-title {
+      margin-bottom: var(--spacing-larger);
+    }
+
+    .page-index__services {
+      margin-bottom: var(--spacing-bigger);
+    }
+
+    .page-index__clients {
+      margin-bottom: var(--spacing-bigger);
+      padding-top: var(--spacing-larger);
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .page-index__header {
+      margin-bottom: var(--spacing-bigger);
+    }
+
+    .page-index .scroll-highlighted-text {
+      padding: var(--spacing-bigger) 0;
+    }
+
+    .page-index__section-title--cases {
+      grid-column-start: 6;
+      grid-column-end: -6;
+    }
+
+    .page-index__services > *,
+    .page-index__clients > * {
+      grid-column-start: 4;
+      grid-column-end: -4;
+    }
+
+    .page-index__section-title {
+      margin-bottom: var(--spacing-big);
+    }
+
+    .page-index__clients {
+      margin-bottom: var(--spacing-huge);
+    }
+  }
 </style>

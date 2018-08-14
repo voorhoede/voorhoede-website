@@ -36,7 +36,9 @@ fragment home on HomeRecord {
   keywords,
   headerTitle,
   subtitle,
-  usps,
+  usps {
+    line: usp
+  },
   cases {
     slug,
     title,

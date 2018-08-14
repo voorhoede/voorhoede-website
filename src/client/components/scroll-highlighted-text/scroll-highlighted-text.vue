@@ -2,10 +2,10 @@
   <p class="scroll-highlighted-text">
     <span
       class="scroll-highlighted-text__text h1"
-      v-for="(text, index) in textLines"
+      v-for="(item, index) in textLines"
       :key="index"
     >
-      {{ text }}
+      {{ item.line }}
     </span>
   </p>
 </template>
@@ -16,11 +16,14 @@
       textLines: {
         type: Array,
         required: true,
-        validator(value) {
-          return value.every(item => typeof item === 'string')
+        validator(textLines) {
+          return textLines.every(item => 'line' in item)
         },
       },
     },
+    mounted() {
+      debugger
+    }
   }
 </script>
 
