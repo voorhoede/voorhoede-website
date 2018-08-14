@@ -113,6 +113,7 @@ export default {
 }
 
 .case-excerpt {
+  padding: 10px;
   display: flex;
   position: relative;
   justify-content: center;
@@ -134,6 +135,7 @@ export default {
 }
 
 .case-excerpt__tooltip {
+  flex-direction: column;
   position: absolute;
   top: calc(66% + var(--case-excerpt-triangle-size));
   left: calc(var(--spacing-medium) * -1);
@@ -179,7 +181,6 @@ export default {
 .case-excerpt:target .case-excerpt__tooltip,
 .case-excerpt--open .case-excerpt__tooltip {
   display: flex;
-  flex-direction: column;
   transform: scaleY(1);
 }
 
