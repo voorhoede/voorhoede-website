@@ -120,18 +120,18 @@
     }
 
     .case-meta__platform {
-      grid-column-start: 14;
-      grid-column-end: 20;
+      grid-column-start: 12;
+      grid-column-end: 18;
     }
 
     .case-meta__deliverable {
-      grid-column-start: 24;
-      grid-column-end: 30;
+      grid-column-start: 20;
+      grid-column-end: 26;
     }
 
     .case-meta__interested {
-      grid-column-start: 34;
-      grid-column-end: 40;
+      grid-column-start: 28;
+      grid-column-end: 34;
     }
   }
 
