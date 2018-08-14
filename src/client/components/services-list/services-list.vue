@@ -8,7 +8,7 @@
       <service-excerpt
         :tagline="service.tagline"
         :title="service.title"
-        :teaser="service.teaser"
+        :teasers="service.teasers"
         :slug="service.slug"
       />
     </li>

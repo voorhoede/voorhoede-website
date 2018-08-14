@@ -52,7 +52,9 @@ fragment home on HomeRecord {
     tagline,
     title,
     slug,
-    teaser
+    teasers {
+      teaser
+    }
   },
   clientsTitle
 }
