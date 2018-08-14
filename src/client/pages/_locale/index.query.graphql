@@ -10,6 +10,12 @@ query HomePage($locale: SiteLocale, $altLocale: SiteLocale)  {
     description,
     title,
     url,
+    image {
+      url,
+      format,
+      width,
+      height
+    }
   },
   latestBlogposts: allBlogPosts(first:3, orderBy: publishDate_DESC) {
     title,
@@ -18,7 +24,10 @@ query HomePage($locale: SiteLocale, $altLocale: SiteLocale)  {
       slug,
       name,
       image {
-        url
+        url,
+        width,
+        height,
+        format
       }
     }
   }
@@ -41,7 +50,7 @@ fragment home on HomeRecord {
     height,
     format,
     url
-  },
+  }
   usps {
     line: usp
   },
@@ -66,5 +75,7 @@ fragment home on HomeRecord {
     }
   },
   clientsTitle,
-  clientsButtonLabel
+  clientsButtonLabel,
+  academyPrimaryButtonLabel,
+  academySecondaryButtonLabel
 }

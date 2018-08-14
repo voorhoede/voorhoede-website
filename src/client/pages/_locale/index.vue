@@ -37,6 +37,20 @@
       <h2 class="page-index__section-title page-index__section-title--clients h3 font-normal">{{ home.clientsTitle }}</h2>
       <highlighted-clients :cta-label="home.clientsButtonLabel"/>
     </section>
+    <div class="page-index__academy">
+      <academy-excerpt
+        :date-string="upcomingEvents[0].date"
+        current-locale="en"
+        :title="upcomingEvents[0].title"
+        :description="upcomingEvents[0].description"
+        :url="upcomingEvents[0].url"
+        :image="upcomingEvents[0].image"
+        :cta-primary-label="home.academyPrimaryButtonLabel"
+        :cta-primary-to="upcomingEvents[0].url"
+        :cta-secondary-label="home.academySecondaryButtonLabel"
+        :cta-secondary-to="{ name: 'locale-academy', params: { locale: 'en' }}"
+      />
+    </div>
   </div>
 </template>
 

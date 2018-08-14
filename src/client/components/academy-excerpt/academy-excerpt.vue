@@ -67,7 +67,7 @@ export default {
       required: true,
     },
     ctaPrimaryTo: {
-      type: String,
+      type: [String, Object],
       required: true,
     },
     ctaSecondaryLabel: {
@@ -75,7 +75,7 @@ export default {
       required: true,
     },
     ctaSecondaryTo: {
-      type: String,
+      type: [String, Object],
       required: true,
     },
     image: {
