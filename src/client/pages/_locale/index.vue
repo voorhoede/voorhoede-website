@@ -152,11 +152,6 @@
       padding: var(--spacing-bigger) 0;
     }
 
-    .page-index__section-title--cases {
-      grid-column-start: 6;
-      grid-column-end: -6;
-    }
-
     .page-index__services > *,
     .page-index__clients > * {
       grid-column-start: 4;
