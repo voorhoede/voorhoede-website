@@ -11,9 +11,9 @@ Adds information about a case. When active or hovererd it shows a tooltip. This 
 	:primarySlug="primaryHref"
 	:secondaryLabel="secondaryLabel"
 	:secondarySlug="{ name: 'locale-cases', params: { locale: currentLocale }}"
-	:imageName="imageName"
-	:caseDescriptionHeader="caseDescriptionHeader"
-	:caseDescriptionBody="caseDescriptionBody"
+	:imageUrl="/images/logo.svg"
+	:title="title"
+	:body="body"
 	:alignTooltip="alignTooltip"
 	/>
 ```
@@ -21,9 +21,9 @@ Adds information about a case. When active or hovererd it shows a tooltip. This 
 ## Props
 | Name | Type | required | description |
 | --- | --- | --- | --- |
-| imageName | String | true | Name of the case illustration |
-| caseDescriptionHeader | String | true | Title of the case excerpt |
-| caseDescriptionBody | String | true | Description of the case excerpt |
+| imageUrl | String | true | Contains the url of the case illustration |
+| title | String | true | Title of the case excerpt |
+| body | String | true | Description of the case excerpt |
 | caseId | String | false | This should be a unique key |
 | primaryLabel | String | false | Text in the primary button |
 | primarySlug | String | false | Named slug that contains a slug and locale variable to the case page |

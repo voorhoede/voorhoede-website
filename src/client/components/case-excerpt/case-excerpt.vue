@@ -13,7 +13,7 @@
       class="case-excerpt__image-container"
     >
       <lazy-load>
-        <img :src="`/images/${image.name}.svg`" class="case-excerpt__image" :alt="image.alt">
+        <img :src="imageUrl" class="case-excerpt__image">
       </lazy-load>
     </a>
     <div
@@ -25,10 +25,10 @@
     >
       <div class="case-excerpt__description">
         <h3 class="h3 case-excerpt__title">
-          {{ caseDescriptionHeader }}
+          {{ title }}
         </h3>
         <p class="body">
-          {{ caseDescriptionBody }}
+          {{ body }}
         </p>
       </div>
       <div class="button-group">
@@ -62,18 +62,15 @@ export default {
       type: String,
       required: true,
     },
-    image: {
-      type: Object,
-      required: true,
-      validator (image) {
-        return typeof(image.name) === 'string'
-      }
+    imageUrl: {
+      type: String,
+      default: ''
     },
-    caseDescriptionHeader: {
+    title: {
       type: String,
       required: true,
     },
-    caseDescriptionBody: {
+    body: {
       type: String,
       required: true,
     },
@@ -120,12 +117,12 @@ export default {
 
 .case-excerpt__image-container {
   width: 100%;
+  min-height: 300px;
   padding-bottom: var(--spacing-larger);
   background: var(--white);
   border: 3px solid var(--html-blue);
   transform-origin: center;
   transition: 200ms transform cubic-bezier(.05, 0, .45, 1);
-  min-height: 300px;
 }
 
 .case-excerpt__image {

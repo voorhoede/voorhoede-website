@@ -32,9 +32,9 @@ stories.add(
           primaryLabel="See more"
           :primarySlug="{ name: 'locale-cases-slug', params: {slug: 'funda', locale: currentLocale }}"
           secondaryLabel="Learn more"
-          :image="{ name: 'logo', alt:'A brand new Funda' }"
-          caseDescriptionHeader="A brand new Funda"
-          caseDescriptionBody="The biggest, most responsive and modular website for real estate in the Netherlands"
+          imageUrl="/images/logo.svg"
+          title="A brand new Funda"
+          body="The biggest, most responsive and modular website for real estate in the Netherlands"
         />
       </div>
     `,
@@ -57,9 +57,9 @@ stories.add(
           primaryLabel="See more"
           :primarySlug="{ name: 'locale-cases-slug', params: { slug: 'funda', locale: currentLocale }}"
           secondaryLabel="Learn more"
-          :image="{ name: 'logo', alt:'A brand new Funda' }"
-          caseDescriptionHeader="A brand new Funda"
-          caseDescriptionBody="The biggest, most responsive and modular website for real estate in the Netherlands"
+          imageUrl="/images/logo.svg"
+          title="A brand new Funda"
+          body="The biggest, most responsive and modular website for real estate in the Netherlands"
           alignTooltip="left"
         />
       </div>
@@ -83,9 +83,9 @@ stories.add(
           primaryLabel="See more"
           :primarySlug="{ name: 'locale-cases-slug', params: {slug: 'funda', locale: currentLocale }}"
           secondaryLabel="Learn more"
-          :image="{ name: 'logo', alt:'A brand new Funda' }"
-          caseDescriptionHeader="A brand new Funda"
-          caseDescriptionBody="The biggest, most responsive and modular website for real estate in the Netherlands"
+          imageUrl="/images/logo.svg"
+          title="A brand new Funda"
+          body="The biggest, most responsive and modular website for real estate in the Netherlands"
           alignTooltip="right"
         />
       </div>
