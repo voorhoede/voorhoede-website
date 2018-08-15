@@ -3,7 +3,7 @@
     <div v-if="brick" class="page-header__brick"/>
     <div v-if="curlyBracket" class="page-header__curly-bracket-column">
       <div class="page-header__curly-bracket-wrapper">
-        <img class="page-header__curly-bracket" src="/images/curly-bracket.svg">
+        <img class="page-header__curly-bracket" src="/images/curly-bracket--close.svg">
       </div>
     </div>
     <div v-if="hasImage" class="page-header__image">

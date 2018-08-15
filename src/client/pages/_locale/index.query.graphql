@@ -1,11 +1,8 @@
-query HomePage($locale: SiteLocale, $altLocale: SiteLocale)  {
+query HomePage($locale: SiteLocale)  {
   home(locale:$locale) {
     ...home
   },
-  alternateUrl: home(locale:$altLocale) {
-    slug
-  },
-  upcomingEvents: allEvents(first: 1, orderBy: date_DESC) {
+  upcomingEvents: allAcademyItems(first: 1, orderBy: date_DESC) {
     date,
     description,
     title,
@@ -59,10 +56,8 @@ fragment home on HomeRecord {
     slug,
     title,
     published,
-    social {
-      image {
-        url
-      }
+    heroIllustration {
+      url
     }
   },
   servicesHeader,
@@ -79,7 +74,10 @@ fragment home on HomeRecord {
   academyPrimaryButtonLabel,
   academySecondaryButtonLabel,
   academyIllustration {
-    url
+    url,
+    format,
+    width,
+    height
   },
   blogPostsTitle,
   callToActionTitle,

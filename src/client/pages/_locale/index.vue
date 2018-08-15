@@ -40,7 +40,7 @@
       <h2 class="page-index__section-title page-index__section-title--clients h3 font-normal">{{ home.clientsTitle }}</h2>
       <highlighted-clients :cta-label="home.clientsButtonLabel"/>
     </section>
-    <div class="page-index__academy">
+    <div class="page-index__academy grid">
       <academy-excerpt
         :date-string="upcomingEvents[0].date"
         :current-locale="currentLocale"
@@ -53,6 +53,9 @@
         :cta-secondary-label="home.academySecondaryButtonLabel"
         :cta-secondary-to="{ name: 'locale-academy', params: { locale: currentLocale }}"
       />
+      <div class="page-index__academy-curly-bracket-column">
+        <img class="page-index__academy-curly-bracket" src="/images/curly-bracket--blue.svg" alt="">
+      </div>
     </div>
     <section class="page-index__blog-posts grid">
       <h2 class="page-index__section-title page-index__section-title--blog-posts h3">{{ home.blogPostsTitle }}</h2>
@@ -165,8 +168,44 @@
     background: var(--bg-pastel);
   }
 
+  .page-index .academy-excerpt {
+    grid-column: page;
+    grid-row: 1;
+  }
+
+  .page-index__academy-curly-bracket-column {
+    margin-top: var(--spacing-big);
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row: 1;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-index__academy-curly-bracket {
+    height: 100%;
+    position: absolute;
+    right: 0;
+  }
+
   .page-index__blog-posts {
     margin-bottom: var(--spacing-bigger);
+  }
+
+  @media (min-width: 540px) {
+    .page-index__academy-curly-bracket-column {
+      overflow: visible;
+      grid-column-start: 3;
+      grid-column-end: 5;
+    }
+
+    .page-index__academy-curly-bracket {
+      top: 0;
+      height: auto;
+      width: 80%;
+    }
   }
 
   @media (min-width: 720px) {
@@ -218,6 +257,30 @@
       grid-column-start: 14;
       grid-column-end: 31;
       margin-right: 0;
+    }
+
+    .page-index__academy {
+      padding: 0;
+      position: relative;
+    }
+
+    .page-index .academy-excerpt {
+      padding: var(--spacing-larger) 0;
+    }
+
+    .page-index__academy-curly-bracket-column {
+      margin-top: 0;
+      position: absolute;
+      top: calc(-1 * var(--spacing-medium));
+      bottom: calc(-1 * var(--spacing-medium));
+      grid-column-start: 2;
+      grid-column-end: 6;
+    }
+
+    .page-index__academy-curly-bracket {
+      position: static;
+      height: 100%;
+      width: auto;
     }
   }
 
