@@ -1,0 +1,12 @@
+query Contact($locale: SiteLocale, $altLocale: SiteLocale)  {
+  contact(locale:$locale) {
+    ...contact
+  },
+  alternateUrl: contact(locale:$altLocale) {
+    slug
+  }
+}
+
+fragment contact on ContactRecord {
+  title
+}

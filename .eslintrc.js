@@ -26,6 +26,6 @@ module.exports = {
     'quotes': [2, 'single'],
     'curly': [2, 'multi-line'],
     'object-curly-spacing': [2, 'always'],
-    'semi': [2, "never", { "beforeStatementContinuationChars": "never"}]
+    'semi': [1, "never", { "beforeStatementContinuationChars": "never"}]
   }
 }

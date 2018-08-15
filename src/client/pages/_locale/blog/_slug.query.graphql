@@ -1,0 +1,12 @@
+query BlogPost($slug:String, $locale:SiteLocale, $altLocale:SiteLocale)  {
+  blogPost(locale:$locale, , filter: { slug: { eq: $slug } }) {
+    ...blogPost
+  },
+  alternateUrl: blogPost(locale:$altLocale) {
+    slug
+  }
+}
+
+fragment blogPost on BlogPostRecord {
+  title
+}
