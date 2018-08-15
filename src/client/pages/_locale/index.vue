@@ -169,9 +169,12 @@
 
     .page-index__blog-posts-list {
       grid-column: page;
+      overflow: hidden;
+    }
+
+    .page-index .blog-list-item {
       display: grid;
       grid-template-columns: var(--grid-columns);
-      overflow: hidden;
     }
 
     .page-index .blog-list-item__time {
