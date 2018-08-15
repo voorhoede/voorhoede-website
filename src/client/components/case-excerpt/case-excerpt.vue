@@ -113,7 +113,6 @@ export default {
 }
 
 .case-excerpt {
-  padding: 10px;
   display: flex;
   position: relative;
   justify-content: center;
