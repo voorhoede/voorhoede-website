@@ -15,7 +15,9 @@
       <div class="page-index__scroll-to grid">
         <scroll-to/>
       </div>
-      <scroll-highlighted-text :text-lines="home.usps"/>
+      <div class="grid">
+        <scroll-highlighted-text :text-lines="home.usps"/>
+      </div>
     </div>
     <section class="page-index__services grid">
       <h2 class="page-index__section-title h1">{{ home.servicesHeader }}</h2>
@@ -53,8 +55,8 @@
         :cta-secondary-label="home.academySecondaryButtonLabel"
         :cta-secondary-to="{ name: 'locale-academy', params: { locale: currentLocale }}"
       />
-      <div class="page-index__academy-curly-bracket-column">
-        <img class="page-index__academy-curly-bracket" src="/images/curly-bracket--blue.svg" alt="">
+      <div class="page-index__curly-bracket-column">
+        <img class="page-index__curly-bracket" src="/images/curly-bracket--blue.svg" alt="">
       </div>
     </div>
     <section class="page-index__blog-posts grid">
@@ -64,6 +66,9 @@
           <blog-list-item :item="blogPost" :current-locale="currentLocale"/>
         </li>
       </ul>
+      <div class="page-index__curly-bracket-column page-index__curly-bracket-column--right">
+        <img class="page-index__curly-bracket" src="/images/curly-bracket--close-blue.svg" alt="">
+      </div>
     </section>
     <div class="grid">
       <cta-block :cta-label="home.callToActionLabel" :cta-to="{ name: 'locale-contact', params: { locale: currentLocale } }">
@@ -148,6 +153,7 @@
 
   .page-index__section-title--blog-posts {
     margin-bottom: var(--spacing-medium);
+    grid-row: 1;
   }
 
   .page-index__cases {
@@ -173,7 +179,7 @@
     grid-row: 1;
   }
 
-  .page-index__academy-curly-bracket-column {
+  .page-index__curly-bracket-column {
     margin-top: var(--spacing-big);
     grid-column-start: 1;
     grid-column-end: 4;
@@ -184,24 +190,47 @@
     overflow: hidden;
   }
 
-  .page-index__academy-curly-bracket {
-    height: 100%;
+  .page-index__curly-bracket-column--right {
+    grid-column-start: -4;
+    grid-column-end: -1;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
+
+  .page-index__curly-bracket {
+    max-height: 100%;
     position: absolute;
     right: 0;
+  }
+
+  .page-index__curly-bracket-column--right .page-index__curly-bracket {
+    right: auto;
+    left: 0;
   }
 
   .page-index__blog-posts {
     margin-bottom: var(--spacing-bigger);
   }
 
+  .page-index__blog-posts-list {
+    grid-row: 2;
+    grid-column-end: -3;
+  }
+
   @media (min-width: 540px) {
-    .page-index__academy-curly-bracket-column {
+    .page-index__curly-bracket-column {
+      max-height: none;
       overflow: visible;
       grid-column-start: 3;
       grid-column-end: 5;
     }
 
-    .page-index__academy-curly-bracket {
+    .page-index__curly-bracket-column--right {
+      grid-column-start: -4;
+      grid-column-end: -1;
+    }
+
+    .page-index__curly-bracket {
       top: 0;
       height: auto;
       width: 80%;
@@ -237,6 +266,10 @@
       padding-top: var(--spacing-larger);
     }
 
+    .page-index__blog-posts {
+      position: relative;
+    }
+
     .page-index__blog-posts-list {
       grid-column: page;
       overflow: hidden;
@@ -268,7 +301,7 @@
       padding: var(--spacing-larger) 0;
     }
 
-    .page-index__academy-curly-bracket-column {
+    .page-index__curly-bracket-column {
       margin-top: 0;
       position: absolute;
       top: calc(-1 * var(--spacing-medium));
@@ -277,7 +310,13 @@
       grid-column-end: 6;
     }
 
-    .page-index__academy-curly-bracket {
+    .page-index__curly-bracket-column--right {
+      grid-row-start: 1;
+      grid-column-start: -6;
+      grid-column-end: -2;
+    }
+
+    .page-index__curly-bracket {
       position: static;
       height: 100%;
       width: auto;
