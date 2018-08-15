@@ -51,6 +51,14 @@
         :cta-secondary-to="{ name: 'locale-academy', params: { locale: 'en' }}"
       />
     </div>
+    <section class="page-index__blog-posts grid">
+      <h2 class="page-index__section-title page-index__section-title--blog-posts h2">{{ home.blogPostsTitle }}</h2>
+      <ul class="page-index__blog-posts-list">
+        <li v-for="blogPost in latestBlogposts" :key="blogPost.slug">
+          <blog-list-item :item="blogPost" current-locale="en"/>
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
 
@@ -59,6 +67,7 @@
   import { getData } from '../../lib/get-data'
   import {
     AcademyExcerpt,
+    BlogListItem,
     HighlightedClients,
     PageHeader,
     HorizontalCarousel,
@@ -69,6 +78,7 @@
   export default {
     components: {
       AcademyExcerpt,
+      BlogListItem,
       HighlightedClients,
       PageHeader,
       HorizontalCarousel,
@@ -102,6 +112,10 @@
     color: var(--dim);
   }
 
+  .page-index__section-title--blog-posts {
+    margin-bottom: var(--spacing-medium);
+  }
+
   .page-index__cases {
     margin-bottom: var(--spacing-bigger);
     text-align: center;
@@ -115,8 +129,13 @@
   }
 
   .page-index__academy {
+    margin-bottom: var(--spacing-large);
     padding: var(--spacing-larger) 0;
     background: var(--bg-pastel);
+  }
+
+  .page-index__blog-posts {
+    margin-bottom: var(--spacing-bigger);
   }
 
   @media (min-width: 720px) {
@@ -133,6 +152,10 @@
       margin-bottom: var(--spacing-larger);
     }
 
+    .page-index__section-title--blog-posts {
+      margin-bottom: var(--spacing-medium);
+    }
+
     .page-index__services {
       margin-bottom: var(--spacing-bigger);
     }
@@ -140,6 +163,11 @@
     .page-index__clients {
       margin-bottom: var(--spacing-bigger);
       padding-top: var(--spacing-larger);
+    }
+
+    .page-index__blog-posts-list {
+      grid-column-start: 10;
+      grid-column-end: -10;
     }
   }
 
@@ -162,8 +190,17 @@
       margin-bottom: var(--spacing-big);
     }
 
+    .page-index__section-title--blog-posts {
+      margin-bottom: var(--spacing-medium);
+    }
+
     .page-index__clients {
       margin-bottom: var(--spacing-huge);
+    }
+
+    .page-index__blog-posts-list {
+      grid-column-start: 16;
+      grid-column-end: -12;
     }
   }
 </style>

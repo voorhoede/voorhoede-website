@@ -19,9 +19,9 @@ query HomePage($locale: SiteLocale, $altLocale: SiteLocale)  {
   },
   latestBlogposts: allBlogPosts(first:3, orderBy: publishDate_DESC) {
     title,
-    publishDate,
+    date: publishDate,
+    slug,
     authors {
-      slug,
       name,
       image {
         url,
@@ -77,5 +77,6 @@ fragment home on HomeRecord {
   clientsTitle,
   clientsButtonLabel,
   academyPrimaryButtonLabel,
-  academySecondaryButtonLabel
+  academySecondaryButtonLabel,
+  blogPostsTitle
 }
