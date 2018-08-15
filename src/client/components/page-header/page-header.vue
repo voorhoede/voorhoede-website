@@ -1,14 +1,5 @@
 <template>
   <header class="page-header grid">
-    <div class="page-header__text">
-      <h1 v-if="seoTitle" class="sr-only">{{ seoTitle }}</h1>
-      <div class="page-header__title sub-title">
-        <slot name="title"/>
-      </div>
-      <div class="page-header__sub-title hero">
-        <slot name="subTitle"/>
-      </div>
-    </div>
     <div v-if="brick" class="page-header__brick"/>
     <div v-if="curlyBracket" class="page-header__curly-bracket-column">
       <div class="page-header__curly-bracket-wrapper">
@@ -17,6 +8,15 @@
     </div>
     <div v-if="hasImage" class="page-header__image">
       <slot name="image"/>
+    </div>
+    <div class="page-header__text">
+      <h1 v-if="seoTitle" class="sr-only">{{ seoTitle }}</h1>
+      <div class="page-header__title sub-title">
+        <slot name="title"/>
+      </div>
+      <div class="page-header__sub-title hero">
+        <slot name="subTitle"/>
+      </div>
     </div>
   </header>
 </template>
