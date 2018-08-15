@@ -52,7 +52,7 @@
       />
     </div>
     <section class="page-index__blog-posts grid">
-      <h2 class="page-index__section-title page-index__section-title--blog-posts h2">{{ home.blogPostsTitle }}</h2>
+      <h2 class="page-index__section-title page-index__section-title--blog-posts h3">{{ home.blogPostsTitle }}</h2>
       <ul class="page-index__blog-posts-list">
         <li v-for="blogPost in latestBlogposts" :key="blogPost.slug">
           <blog-list-item :item="blogPost" current-locale="en"/>
@@ -154,6 +154,8 @@
 
     .page-index__section-title--blog-posts {
       margin-bottom: var(--spacing-medium);
+      grid-column-start: 14;
+      text-align: left;
     }
 
     .page-index__services {
@@ -166,8 +168,22 @@
     }
 
     .page-index__blog-posts-list {
-      grid-column-start: 10;
-      grid-column-end: -10;
+      grid-column: page;
+      display: grid;
+      grid-template-columns: var(--grid-columns);
+      overflow: hidden;
+    }
+
+    .page-index .blog-list-item__time {
+      grid-column-start: 9;
+      grid-column-end: 14;
+      text-align: right;
+    }
+
+    .page-index .blog-list-item__content {
+      grid-column-start: 14;
+      grid-column-end: 31;
+      margin-right: 0;
     }
   }
 
@@ -192,15 +208,21 @@
 
     .page-index__section-title--blog-posts {
       margin-bottom: var(--spacing-medium);
+      grid-column-start: 21;
     }
 
     .page-index__clients {
       margin-bottom: var(--spacing-huge);
     }
 
-    .page-index__blog-posts-list {
+    .page-index .blog-list-item__time {
       grid-column-start: 16;
-      grid-column-end: -12;
+      grid-column-end: 21;
+    }
+
+    .page-index .blog-list-item__content {
+      grid-column-start: 21;
+      grid-column-end: 40;
     }
   }
 </style>
