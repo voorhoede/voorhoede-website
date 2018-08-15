@@ -1,62 +1,27 @@
 <template>
-  <div class="layout-default">
+  <div class="layout">
     <grid-demo :show="showGrid"/>
-    <app-header
-      :current-url="$route.fullPath"
-      :links="localizedMenu"
-      :languages="languages"
-      :current-locale="currentLocale"
-      class="grid"/>
+    <app-header class="grid"/>
     <nuxt class="grid"/>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import { AppHeader, GridDemo } from '~/components'
+  import { mapState } from 'vuex'
+  import { AppHeader, GridDemo } from '~/components'
 
-export default {
-  components: { AppHeader, GridDemo },
-  computed: {
-    ...mapState(['showGrid', 'alternateUris', 'menu']),
-    languages() {
-      return Object.keys(this.alternateUris)
-        .reduce((list, key) =>
-          [
-            ...list,
-            { locale: key, href: this.alternateUris[key] },
-          ],
-          []
-        )
+  export default {
+    components: { AppHeader, GridDemo },
+    computed: {
+      ...mapState(['showGrid'])
     },
-    currentLocale() {
-      try {
-        const [,, locale] = /(\/)([\w]+)(\/)(.+)/.exec(this.$route.fullPath)
-        return locale
-      } catch (e) {
-        return ''
-      }
-    },
-    currentUri() {
-      try {
-        const [,, uri] = /(\/[\w]+\/)(.+)/.exec(this.$route.fullPath)
-        return uri
-      } catch (e) {
-        return ''
-      }
-    },
-    localizedMenu() {
-      return this.menu[this.currentLocale]
-    },
-  },
-}
+  }
 </script>
 
 <style>
-@import '../components/app-core/index.css';
+  @import '../components/app-core/index.css';
 
-.layout-default {
-  background-color: var(--bg-pastel);
-  min-height: 100vh;
-}
+  .layout {
+    background-color: var(--white);
+  }
 </style>
