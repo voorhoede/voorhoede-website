@@ -12,6 +12,9 @@
           <img :src="home.headerImage.url" alt="image">
         </template>
       </page-header>
+      <div class="page-index__scroll-to grid">
+        <scroll-to/>
+      </div>
       <scroll-highlighted-text :text-lines="home.usps"/>
     </div>
     <section class="page-index__services grid">
@@ -80,6 +83,7 @@
     PageHeader,
     HorizontalCarousel,
     ScrollHighlightedText,
+    ScrollTo,
     ServicesList,
   } from '~/components'
 
@@ -92,6 +96,7 @@
       PageHeader,
       HorizontalCarousel,
       ScrollHighlightedText,
+      ScrollTo,
       ServicesList,
     },
     layout: 'landing',
@@ -111,6 +116,18 @@
   .page-index__header {
     margin-bottom: var(--spacing-larger);
     background: var(--bg-pastel);
+  }
+
+  .page-index__scroll-to {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .page-index .scroll-to {
+    grid-column-start: 2;
+    grid-column-end: 3;
   }
 
   .page-index .scroll-highlighted-text {
@@ -207,6 +224,11 @@
   @media (min-width: 1100px) {
     .page-index__header {
       margin-bottom: var(--spacing-bigger);
+    }
+
+    .page-index .scroll-to {
+      grid-column-start: 4;
+      grid-column-end: 5;
     }
 
     .page-index .scroll-highlighted-text {
