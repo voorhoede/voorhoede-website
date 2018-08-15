@@ -1,14 +1,36 @@
-query HomePage($locale: SiteLocale, $altLocale: SiteLocale)  {
+query HomePage($locale: SiteLocale)  {
   home(locale:$locale) {
     ...home
   },
-  alternateUrl: home(locale:$altLocale) {
-    slug
+  upcomingEvents: allAcademyItems(first: 1, orderBy: date_DESC) {
+    date,
+    description,
+    title,
+    url,
+    image {
+      url,
+      format,
+      width,
+      height
+    }
+  },
+  latestBlogposts: allBlogPosts(first:3, orderBy: publishDate_DESC) {
+    title,
+    date: publishDate,
+    slug,
+    authors {
+      name,
+      image {
+        url,
+        width,
+        height,
+        format
+      }
+    }
   }
 }
 
 fragment home on HomeRecord {
-  slug
   title,
   social {
     title,
@@ -20,29 +42,44 @@ fragment home on HomeRecord {
   keywords,
   headerTitle,
   subtitle,
-  usps,
+  headerImage {
+    width,
+    height,
+    format,
+    url
+  }
+  usps {
+    line: usp
+  },
+  casesTitle,
   cases {
     slug,
     title,
     published,
-    social {
-      image {
-        url
-      }
+    heroIllustration {
+      url
     }
-  }
+  },
   servicesHeader,
   services {
     tagline,
     title,
     slug,
-    teaser
+    teasers {
+      teaser
+    }
   },
   clientsTitle,
-  clientsList {
-    name,
-    icon {
-      url
-    }
-  }
+  clientsButtonLabel,
+  academyPrimaryButtonLabel,
+  academySecondaryButtonLabel,
+  academyIllustration {
+    url,
+    format,
+    width,
+    height
+  },
+  blogPostsTitle,
+  callToActionTitle,
+  callToActionLabel
 }
