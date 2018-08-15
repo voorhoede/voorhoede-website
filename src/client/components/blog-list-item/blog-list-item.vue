@@ -7,6 +7,8 @@
         <div class="blog-list-item__author">
           <lazy-load v-for="author in item.authors" :key="author.name">
             <img
+              :width="thumbnailSize"
+              :height="thumbnailSize"
               class="blog-list-item__image"
               :src="`${author.image.url}?auto=compress&auto=quality&fm=webp&w=40&h=40&fit=crop`"
               alt=""
@@ -105,6 +107,7 @@
   }
 
   .blog-list-item__image {
+    display: block;
     margin-right: var(--spacing-smaller);
   }
 
