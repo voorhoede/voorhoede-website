@@ -1,21 +1,17 @@
 <template>
   <section class="page-blog-item">
-    <div>
-      <h1 class="title">{{ title }}</h1>
-    </div>
+    <pre>{{ blogPost }}</pre>
   </section>
 </template>
 
 <script>
-import { getPageData } from '../../../lib/get-data'
-import { SET_ALTERNATE_URIS } from '../../../store/alternateUris'
+  import query from './_slug.query.graphql'
+  import { getData } from '../../../lib/get-data'
 
-export default {
-  async asyncData({ params, store }) {
-    const { locale, slug } = params
-    const data = await getPageData({ uri: `blog/${slug}`, locale })
-    store.commit(SET_ALTERNATE_URIS, data.alternateUris)
-    return data
-  },
-}
+  export default {
+    async asyncData({ params }) {
+      const { locale } = params
+      return await getData({ query, variables: { locale, altLocale: 'nl' } })
+    },
+  }
 </script>
