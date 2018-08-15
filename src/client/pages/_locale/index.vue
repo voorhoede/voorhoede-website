@@ -40,7 +40,7 @@
     <div class="page-index__academy">
       <academy-excerpt
         :date-string="upcomingEvents[0].date"
-        current-locale="en"
+        :current-locale="currentLocale"
         :title="upcomingEvents[0].title"
         :description="upcomingEvents[0].description"
         :url="upcomingEvents[0].url"
@@ -48,17 +48,24 @@
         :cta-primary-label="home.academyPrimaryButtonLabel"
         :cta-primary-to="upcomingEvents[0].url"
         :cta-secondary-label="home.academySecondaryButtonLabel"
-        :cta-secondary-to="{ name: 'locale-academy', params: { locale: 'en' }}"
+        :cta-secondary-to="{ name: 'locale-academy', params: { locale: currentLocale }}"
       />
     </div>
     <section class="page-index__blog-posts grid">
       <h2 class="page-index__section-title page-index__section-title--blog-posts h3">{{ home.blogPostsTitle }}</h2>
       <ul class="page-index__blog-posts-list">
         <li v-for="blogPost in latestBlogposts" :key="blogPost.slug">
-          <blog-list-item :item="blogPost" current-locale="en"/>
+          <blog-list-item :item="blogPost" :current-locale="currentLocale"/>
         </li>
       </ul>
     </section>
+    <div class="grid">
+      <cta-block :cta-label="home.callToActionLabel" :cta-to="{ name: 'locale-contact', params: { locale: currentLocale } }">
+        <template slot="heading">
+          <h3 class="h4">{{ home.callToActionTitle }}</h3>
+        </template>
+      </cta-block>
+    </div>
   </div>
 </template>
 
@@ -68,6 +75,7 @@
   import {
     AcademyExcerpt,
     BlogListItem,
+    CtaBlock,
     HighlightedClients,
     PageHeader,
     HorizontalCarousel,
@@ -79,18 +87,24 @@
     components: {
       AcademyExcerpt,
       BlogListItem,
+      CtaBlock,
       HighlightedClients,
       PageHeader,
       HorizontalCarousel,
       ScrollHighlightedText,
       ServicesList,
     },
-      layout: 'landing',
-      async asyncData({ params }) {
-        const { locale } = params
-        return await getData({ query, variables: { locale, altLocale: 'nl' } })
-      },
-    }
+    layout: 'landing',
+    data() {
+      return {
+        currentLocale: 'en'
+      }
+    },
+    async asyncData({ params }) {
+      const { locale } = params
+      return await getData({ query, variables: { locale, altLocale: 'nl' } })
+    },
+  }
 </script>
 
 <style>

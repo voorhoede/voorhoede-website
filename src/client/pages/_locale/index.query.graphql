@@ -81,5 +81,7 @@ fragment home on HomeRecord {
   academyIllustration {
     url
   },
-  blogPostsTitle
+  blogPostsTitle,
+  callToActionTitle,
+  callToActionLabel
 }
