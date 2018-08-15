@@ -1,6 +1,6 @@
 <template>
   <aside class="case-meta grid">
-    <h2 class="sr-only">case information</h2>
+    <h2 class="sr-only">Case information</h2>
     <section class="case-meta__expertise">
       <h3 class="case-meta__title body font-bold">{{ expertiseTitle }}</h3>
       <p class="body-petite">{{ expertises | toMetaString }}</p>
