@@ -1,0 +1,12 @@
+query CaseQuery($slug:String, $locale:SiteLocale, $altLocale:SiteLocale)  {
+  project(locale:$locale, , filter: { slug: { eq: $slug } }) {
+    ...project
+  },
+  alternateUrl: project(locale:$altLocale) {
+    slug
+  }
+}
+
+fragment project on ProjectRecord {
+  title
+}

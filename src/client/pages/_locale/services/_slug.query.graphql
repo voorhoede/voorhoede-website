@@ -1,0 +1,12 @@
+query ServiceQuery($slug:String, $locale:SiteLocale, $altLocale:SiteLocale)  {
+  service(locale:$locale, , filter: { slug: { eq: $slug } }) {
+    ...service
+  },
+  alternateUrl: service(locale:$altLocale) {
+    slug
+  }
+}
+
+fragment service on ServiceRecord {
+  title
+}
