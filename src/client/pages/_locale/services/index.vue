@@ -1,7 +1,17 @@
 <template>
   <section class="page-services">
     <div>
-      <h1 class="title">Services</h1>
+      <pre>{{ serviceOverview }}</pre>
     </div>
   </section>
 </template>
+
+<script>
+  import query from './index.query.graphql'
+
+  export default {
+    async asyncData({ store, route }) {
+      return await store.dispatch('getData', { query, route })
+    },
+  }
+</script>
