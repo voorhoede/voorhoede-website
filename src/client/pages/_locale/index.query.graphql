@@ -78,5 +78,8 @@ fragment home on HomeRecord {
   clientsButtonLabel,
   academyPrimaryButtonLabel,
   academySecondaryButtonLabel,
+  academyIllustration {
+    url
+  },
   blogPostsTitle
 }

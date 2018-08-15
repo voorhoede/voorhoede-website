@@ -44,7 +44,7 @@
         :title="upcomingEvents[0].title"
         :description="upcomingEvents[0].description"
         :url="upcomingEvents[0].url"
-        :image="upcomingEvents[0].image"
+        :illustration="home.academyIllustration"
         :cta-primary-label="home.academyPrimaryButtonLabel"
         :cta-primary-to="upcomingEvents[0].url"
         :cta-secondary-label="home.academySecondaryButtonLabel"
