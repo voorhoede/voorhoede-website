@@ -1,27 +1,27 @@
 <template>
   <section class="get-in-touch-form grid">
-    <h2 class="get-in-touch-form__title h3">Let's discuss what we can do - together.</h2>
+    <h2 class="get-in-touch-form__title h3">{{ title }}</h2>
 
-    <form class="get-in-touch-form__form" method="POST" netlify>
+    <form class="get-in-touch-form__form" method="POST" data-netlify="true">
       <label class="get-in-touch-form__label">
-        <span class="get-in-touch-form__label-text body-petite">My name is</span>
-        <input class="body" type="text" placeholder="Your name" name="name">
+        <span class="get-in-touch-form__label-text body-petite">{{ nameLabel }}</span>
+        <input class="body" type="text" :placeholder="namePlaceholder" name="name">
       </label>
       <label class="get-in-touch-form__label">
-        <span class="get-in-touch-form__label-text body-petite">You can email me at</span>
-        <input class="body" type="text" placeholder="Email address" name="email">
+        <span class="get-in-touch-form__label-text body-petite">{{ emailLabel }}</span>
+        <input class="body" type="text" :placeholder="emailPlaceholder" name="email">
       </label>
       <label class="get-in-touch-form__label">
-        <span class="get-in-touch-form__label-text body-petite">You can call me on</span>
-        <input class="body" type="number" placeholder="Phone number" name="number">
+        <span class="get-in-touch-form__label-text body-petite">{{ phoneLabel }}</span>
+        <input class="body" type="number" :placeholder="phonePlaceholder" name="number">
       </label>
       <label class="get-in-touch-form__label">
-        <span class="get-in-touch-form__label-text body-petite">My project is</span>
-        <input class="body" type="text" placeholder="Short summary of my project" name="explanation">
+        <span class="get-in-touch-form__label-text body-petite">{{ summaryLabel }}</span>
+        <input class="body" type="text" :placeholder="summaryPlaceholder" name="explanation">
       </label>
       <app-button
         class="get-in-touch-form__button"
-        label="Get in touch"
+        :label="ctaLabel"
         type="submit"
       />
     </form>
@@ -34,6 +34,48 @@
   export default {
     components: {
       AppButton
+    },
+    props: {
+      title: {
+        type: String,
+        required: true
+      },
+      nameLabel: {
+        type: String,
+        required: true
+      },
+      namePlaceholder: {
+        type: String,
+        required: true
+      },
+      emailLabel: {
+        type: String,
+        required: true
+      },
+      emailPlaceholder: {
+        type: String,
+        required: true
+      },
+      phoneLabel: {
+        type: String,
+        required: true
+      },
+      phonePlaceholder: {
+        type: String,
+        required: true
+      },
+      summaryLabel: {
+        type: String,
+        required: true
+      },
+      summaryPlaceholder: {
+        type: String,
+        required: true
+      },
+      ctaLabel: {
+        type: String,
+        required: true
+      }
     }
   }
 </script>
