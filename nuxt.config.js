@@ -46,6 +46,7 @@ module.exports = {
   router: {
     middleware: [
       'redirect-to-locale',
+      'locale',
       'enforce-trailing-slash',
       'meta-canonical',
     ],
