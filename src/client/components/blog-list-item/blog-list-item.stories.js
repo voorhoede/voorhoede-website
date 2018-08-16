@@ -86,7 +86,7 @@ stories.add('Blog List item', () => ({
     template: `
   <ol class="grid">
     <li v-for="item in blogItems" :key="item.title">
-      <blog-list-item :item="item" :current-locale="this.currentLocale"/>
+      <blog-list-item :item="item" />
     </li>
   </ol>
 ` ,
