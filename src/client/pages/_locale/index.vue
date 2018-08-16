@@ -23,7 +23,7 @@
       <h2 class="page-index__section-title h1">{{ home.servicesHeader }}</h2>
       <services-list :services="home.services"/>
     </section>
-    <section class="page-index__cases page-index__cases--no-margin">
+    <section class="page-index__cases">
       <div class="grid">
         <h2 class="page-index__section-title page-index__section-title--cases h1">{{ home.casesTitle }}</h2>
       </div>
@@ -34,9 +34,9 @@
             :key="caseExcerpt.id"
           >
             <case-excerpt
-              :case-id="caseExcerpt.id"
+              :case-id="caseExcerpt.slug"
               primary-label="See more"
-              :primary-slug="{ name: 'locale-cases-slug', params: { slug: caseExcerpt.slug, locale: 'en' }}"
+              :slug="caseExcerpt.slug"
               secondary-label="Learn more"
               :image-url="caseExcerpt.heroIllustration.url"
               :title="caseExcerpt.title"
@@ -166,12 +166,20 @@
     grid-row: 1;
   }
 
+  .page-index__section-title--cases {
+    margin-bottom: calc(var(--spacing-large) - var(--spacing-smaller));
+  }
+
   .page-index__cases {
     text-align: center;
   }
 
   .page-index__cases .horizontal-carousel__slides {
     padding-bottom: var(--spacing-huge);
+  }
+
+  .page-index__cases .case-excerpt {
+    padding-top: var(--spacing-smaller);
   }
 
   .page-index__clients {

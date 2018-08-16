@@ -35,7 +35,7 @@
         <app-button
           @focus="isTooltipOpen = true"
           :label="primaryLabel"
-          :to="primarySlug"
+          :to="{ name: 'locale-cases-slug', params: { slug, locale: 'en' }}"
         />
         <app-button
           secondary
@@ -78,7 +78,7 @@ export default {
       type: String,
       default: '',
     },
-    primarySlug: {
+    slug: {
       type: String,
       default: '',
     },
