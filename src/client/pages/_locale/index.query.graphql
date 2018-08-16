@@ -42,7 +42,7 @@ fragment home on HomeRecord {
   keywords,
   headerTitle,
   subtitle,
-  headerImage {
+  headerIllustration {
     width,
     height,
     format,
@@ -82,5 +82,7 @@ fragment home on HomeRecord {
   },
   blogPostsTitle,
   callToActionTitle,
-  callToActionLabel
+  callToActionLabel,
+  casePrimaryCtaLabel,
+  caseSecondaryCtaLabel
 }
