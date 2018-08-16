@@ -8,7 +8,6 @@ Adds information about a case. When active or hovererd it shows a tooltip. This 
 	:caseId="caseId"
 	:primaryLabel="primaryLabel"
 	:primarySlug="{ name: 'locale-cases-slug', params: { slug: 'funda', locale: currentLocale }}"
-	:primarySlug="primaryHref"
 	:secondaryLabel="secondaryLabel"
 	:secondarySlug="{ name: 'locale-cases', params: { locale: currentLocale }}"
 	:imageUrl="/images/logo.svg"

@@ -23,17 +23,25 @@
       <h2 class="page-index__section-title h1">{{ home.servicesHeader }}</h2>
       <services-list :services="home.services"/>
     </section>
-    <section class="page-index__cases">
+    <section class="page-index__cases page-index__cases--no-margin">
       <div class="grid">
         <h2 class="page-index__section-title page-index__section-title--cases h1">{{ home.casesTitle }}</h2>
       </div>
       <horizontal-carousel>
         <template slot="slides">
           <div
-            v-for="item in 3"
-            :key="item"
+            v-for="caseExcerpt in home.cases"
+            :key="caseExcerpt.id"
           >
-            <span class="body-big">Let's wait for Jesse's component</span>
+            <case-excerpt
+              :case-id="caseExcerpt.id"
+              primary-label="See more"
+              :primary-slug="{ name: 'locale-cases-slug', params: { slug: caseExcerpt.slug, locale: 'en' }}"
+              secondary-label="Learn more"
+              :image-url="caseExcerpt.heroIllustration.url"
+              :title="caseExcerpt.title"
+              :body="caseExcerpt.subtitle"
+            />
           </div>
         </template>
       </horizontal-carousel>
@@ -87,6 +95,7 @@
     AcademyExcerpt,
     BlogListItem,
     CtaBlock,
+    CaseExcerpt,
     HighlightedClients,
     PageHeader,
     HorizontalCarousel,
@@ -100,6 +109,7 @@
       AcademyExcerpt,
       BlogListItem,
       CtaBlock,
+      CaseExcerpt,
       HighlightedClients,
       PageHeader,
       HorizontalCarousel,
@@ -157,8 +167,11 @@
   }
 
   .page-index__cases {
-    margin-bottom: var(--spacing-bigger);
     text-align: center;
+  }
+
+  .page-index__cases .horizontal-carousel__slides {
+    padding-bottom: var(--spacing-huge);
   }
 
   .page-index__clients {

@@ -14,6 +14,7 @@ export { default as CaseExcerpt } from './case-excerpt'
 export { default as CtaBlock } from './cta-block'
 export { default as GridDemo } from './grid-demo'
 export { default as HighlightedClients } from './highlighted-clients' /* Should be exported after LazyLoad */
+
 export { default as PageHeader } from './page-header'
 export { default as ScrollHighlightedText } from './scroll-highlighted-text'
 export { default as ServiceExcerpt } from './service-excerpt'

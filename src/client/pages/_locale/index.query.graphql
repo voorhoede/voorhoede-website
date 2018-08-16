@@ -2,7 +2,7 @@ query HomePage($locale: SiteLocale)  {
   home(locale:$locale) {
     ...home
   },
-  upcomingEvents: allAcademyItems(first: 1, orderBy: date_DESC) {
+	upcomingEvents: allAcademyItems(first: 1, orderBy: date_DESC) {
     date,
     description,
     title,
@@ -55,6 +55,7 @@ fragment home on HomeRecord {
   cases {
     slug,
     title,
+    subtitle,
     published,
     heroIllustration {
       url
