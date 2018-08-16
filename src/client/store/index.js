@@ -81,10 +81,6 @@ const createStore = () => {
           const alternateSlug = data.alternate ? `/${data.alternate.slug}` : ''
           const url = `/${getters.alternateLocale}${alternateParentSlug}${alternateSlug}/`
 
-          debugger;
-
-          console.log('asdasd')
-
           commit(types.SET_ALTERNATE_URL, { url })
           return data
         } catch (e) {
