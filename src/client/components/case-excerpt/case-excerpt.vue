@@ -170,7 +170,8 @@ export default {
 
 .case-excerpt:target .case-excerpt__image-container,
 .case-excerpt--open .case-excerpt__image-container {
-  border: 5px solid var(--html-blue);
+  border-width: 5px;
+  margin: -2px; /* Decrease the margin-bottom, to prevent jump caused by enlarged border */
   transform: scale(1.05);
 }
 
@@ -184,7 +185,8 @@ export default {
   .case-excerpt__image-container:focus,
   .case-excerpt:hover .case-excerpt__image-container,
   .case-excerpt--open .case-excerpt__image-container {
-    border: 5px solid var(--html-blue);
+    border-width: 5px;
+    margin: -2px; /* Decrease the margin-bottom, to prevent jump caused by enlarged border */
     transform: scale(1.05);
   }
 
