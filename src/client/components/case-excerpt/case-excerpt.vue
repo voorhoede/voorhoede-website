@@ -12,9 +12,11 @@
       role="button"
       class="case-excerpt__image-container"
     >
-      <lazy-load>
-        <img :src="imageUrl" class="case-excerpt__image">
-      </lazy-load>
+      <fixed-ratio :width="10" :height="9">
+        <lazy-load>
+          <img :src="imageUrl" class="case-excerpt__image">
+        </lazy-load>
+      </fixed-ratio>
     </a>
     <div
       class="case-excerpt__tooltip"
@@ -50,11 +52,12 @@
 </template>
 
 <script>
-import { AppButton, LazyLoad } from '~/components'
+import { AppButton, FixedRatio, LazyLoad } from '~/components'
 
 export default {
   components: {
     AppButton,
+    FixedRatio,
     LazyLoad,
   },
   props: {
@@ -117,7 +120,6 @@ export default {
 
 .case-excerpt__image-container {
   width: 100%;
-  min-height: 300px;
   padding-bottom: var(--spacing-larger);
   background: var(--white);
   border: 3px solid var(--html-blue);
@@ -197,7 +199,6 @@ export default {
   }
 
   .case-excerpt__image-container {
-    min-height: 360px;
     padding-bottom: var(--spacing-big);
   }
 
@@ -229,6 +230,12 @@ export default {
   .case-excerpt__tooltip--right::before {
     right: var(--spacing-medium);
     margin-right: 0;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 719px) {
+  .case-excerpt__image-container {
+    padding-bottom: 0;
   }
 }
 
