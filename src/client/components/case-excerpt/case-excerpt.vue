@@ -141,6 +141,7 @@ export default {
   width: auto;
   background: var(--brand-yellow);
   padding: var(--spacing-medium);
+  z-index: 1;
   transform-origin: top;
   transform: scaleY(0);
   transition: transform 200ms cubic-bezier(0, 0, .1, 1) .11s;
@@ -203,7 +204,7 @@ export default {
     right: auto;
     top: calc(50% + var(--case-excerpt-triangle-size));
     width: 100%;
-    max-width: 320px;
+    min-width: 360px;
   }
 
   .case-excerpt__tooltip--left {
