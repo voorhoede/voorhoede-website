@@ -120,7 +120,6 @@ export default {
 
 .case-excerpt__image-container {
   width: 100%;
-  padding-bottom: var(--spacing-larger);
   background: var(--white);
   border: 3px solid var(--html-blue);
   transform-origin: center;
@@ -128,8 +127,11 @@ export default {
 }
 
 .case-excerpt__image {
+  position: absolute;
+  left: 0;
+  top: 40%; /* Image should be aligned a bit above the center */
+  transform: translateY(-50%);
   width: 100%;
-  height: 230px;
 }
 
 .case-excerpt__tooltip {
@@ -198,14 +200,6 @@ export default {
     transform: scaleY(1);
   }
 
-  .case-excerpt__image-container {
-    padding-bottom: var(--spacing-big);
-  }
-
-  .case-excerpt__image {
-    height: 275px;
-  }
-
   .case-excerpt__tooltip {
     left: auto;
     right: auto;
@@ -233,21 +227,7 @@ export default {
   }
 }
 
-@media (min-width: 480px) and (max-width: 719px) {
-  .case-excerpt__image-container {
-    padding-bottom: 0;
-  }
-}
-
 @media (min-width: 1100px) {
-  .case-excerpt__image-container {
-    padding-bottom: var(--spacing-huge);
-  }
-
-  .case-excerpt__image {
-    max-height: 380px;
-  }
-
   .case-excerpt__tooltip {
     max-width: 360px;
   }
