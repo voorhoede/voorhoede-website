@@ -8,8 +8,8 @@
         <template slot="subTitle">
           <h2 v-html="home.subtitle"/>
         </template>
-        <template v-if="home.headerImage" slot="image">
-          <img :src="home.headerImage.url" alt="image">
+        <template v-if="home.headerIllustration" slot="image">
+          <img :src="home.headerIllustration.url" alt="">
         </template>
       </page-header>
       <div class="page-index__scroll-to grid">
