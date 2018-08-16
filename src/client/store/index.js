@@ -9,7 +9,6 @@ const createStore = () => {
       showGrid: false,
       locales: ['nl', 'en'],
       currentLocale: process.env.DEFAULT_LOCALE,
-      currentRoutePath: `/${process.env.DEFAULT_LOCALE}/`,
       menu: {
         nl: [
           {
@@ -82,12 +81,19 @@ const createStore = () => {
           const alternateSlug = data.alternate ? `/${data.alternate.slug}` : ''
           const url = `/${getters.alternateLocale}${alternateParentSlug}${alternateSlug}/`
 
+          debugger;
+
+          console.log('asdasd')
+
           commit(types.SET_ALTERNATE_URL, { url })
           return data
         } catch (e) {
           console.error(e) // eslint-disable-line no-console
           throw e
         }
+      },
+      nuxtServerInit({ commit }, { params }) {
+        commit(types.SET_CURRENT_LOCALE, { locale: params.locale })
       }
     },
     mutations: {

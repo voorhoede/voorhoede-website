@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import query from './index.query.graphql'
+  import query from './_contact.query.graphql'
 
   export default {
     async asyncData({ store, route }) {

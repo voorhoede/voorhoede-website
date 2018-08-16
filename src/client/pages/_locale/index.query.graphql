@@ -42,7 +42,7 @@ fragment home on HomeRecord {
   keywords,
   headerTitle,
   subtitle,
-  headerImage {
+  headerIllustration {
     width,
     height,
     format,
