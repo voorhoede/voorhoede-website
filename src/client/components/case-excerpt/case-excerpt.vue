@@ -3,8 +3,6 @@
     class="case-excerpt"
     :class="{ 'case-excerpt--open': isTooltipOpen }"
     :id="`case-excerpt-${caseId}`"
-    @mouseover="isTooltipOpen = true"
-    @mouseleave="isTooltipOpen = false"
   >
     <a
       @click.prevent="toggleTooltip"
