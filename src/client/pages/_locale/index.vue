@@ -30,7 +30,7 @@
       <horizontal-carousel>
         <template slot="slides">
           <div
-            v-for="caseExcerpt in home.cases"
+            v-for="(caseExcerpt, index) in home.cases"
             :key="caseExcerpt.id"
           >
             <case-excerpt
@@ -41,6 +41,7 @@
               :image-url="caseExcerpt.heroIllustration.url"
               :title="caseExcerpt.title"
               :body="caseExcerpt.subtitle"
+              :align-tooltip="(index === 0) ? 'left' : (index === 2 ? 'right' : '')"
             />
           </div>
         </template>
@@ -117,7 +118,6 @@
       ScrollTo,
       ServicesList,
     },
-    layout: 'landing',
     data() {
       return {
         currentLocale: 'en'
@@ -168,10 +168,6 @@
 
   .page-index__section-title--cases {
     margin-bottom: calc(var(--spacing-large) - var(--spacing-smaller));
-  }
-
-  .page-index__cases {
-    text-align: center;
   }
 
   .page-index__cases .horizontal-carousel__slides {

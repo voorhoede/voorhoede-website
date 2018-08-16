@@ -9,11 +9,11 @@
       <h5 class="body app-footer__list-title font-bold">Explore</h5>
       <ul class="app-footer__list">
         <li
-          v-for="({ href, title }, index) in exploreLinks"
-          :key="index"
+          v-for="({ slug, title }) in exploreLinks"
+          :key="slug"
           class="app-footer__list-item body-detail"
         >
-          <nuxt-link :to="href" class="app-footer__link">{{ title }}</nuxt-link>
+          <nuxt-link :to="slug" class="app-footer__link">{{ title }}</nuxt-link>
         </li>
       </ul>
     </div>
@@ -78,7 +78,7 @@ export default {
           links.every(link => {
             return link instanceof Object &&
               typeof link.title === 'string' &&
-              typeof link.href === 'string'
+              typeof link.slug === 'string'
           })
         )
       },
