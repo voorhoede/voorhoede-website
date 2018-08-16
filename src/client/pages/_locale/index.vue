@@ -2,8 +2,6 @@
   <section class="page-index">
     <div>
       <img src="/images/logo.svg">
-
-      <nuxt-link to="/en/blog/aapje/" >googogogo</nuxt-link>
       <pre>{{ home }}</pre>
     </div>
   </section>
