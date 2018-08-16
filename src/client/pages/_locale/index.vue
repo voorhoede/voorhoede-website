@@ -35,9 +35,9 @@
           >
             <case-excerpt
               :case-id="caseExcerpt.slug"
-              primary-label="See more"
+              :primary-label="home.casePrimaryCtaLabel"
               :slug="caseExcerpt.slug"
-              secondary-label="Learn more"
+              :secondary-label="home.caseSecondaryCtaLabel"
               :image-url="caseExcerpt.heroIllustration.url"
               :title="caseExcerpt.title"
               :body="caseExcerpt.subtitle"
