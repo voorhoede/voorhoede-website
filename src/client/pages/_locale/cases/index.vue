@@ -46,6 +46,11 @@
       PageHeader,
       CtaBlock
     },
+    data() {
+      return {
+        currentLocale: 'en'
+      }
+    },
     async asyncData({ params }) {
       const { locale } = params
       return await getData({ query, variables: { locale, altLocale: 'nl' } })
@@ -54,15 +59,15 @@
 </script>
 
 <style>
+.page-case__overview {
+  margin: var(--spacing-large) 0 0 0;
+}
+
+.page-case__overview .case-excerpt {
+  margin-bottom: var(--spacing-big);
+}
+
 @supports (display: grid) {
-  .page-case__overview {
-    margin: var(--spacing-large) 0 0 0;
-  }
-
-  .page-case__overview .case-excerpt {
-    margin-bottom: var(--spacing-big);
-  }
-
   @media (min-width: 480px) {
     .page-case__overview {
       display: grid;
