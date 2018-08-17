@@ -1,8 +1,8 @@
 query HomePage($locale: SiteLocale)  {
-  home(locale:$locale) {
-    ...home
+  page: home(locale:$locale) {
+    ...page
   },
-	upcomingEvents: allAcademyItems(first: 1, orderBy: date_DESC) {
+  upcomingEvents: allAcademyItems(first: 1, orderBy: date_ASC) {
     date,
     description,
     title,
@@ -30,7 +30,7 @@ query HomePage($locale: SiteLocale)  {
   }
 }
 
-fragment home on HomeRecord {
+fragment page on HomeRecord {
   title,
   social {
     title,
@@ -56,7 +56,6 @@ fragment home on HomeRecord {
     slug,
     title,
     subtitle,
-    published,
     heroIllustration {
       url
     }
@@ -82,7 +81,5 @@ fragment home on HomeRecord {
   },
   blogPostsTitle,
   callToActionTitle,
-  callToActionLabel,
-  casePrimaryCtaLabel,
-  caseSecondaryCtaLabel
+  callToActionLabel
 }

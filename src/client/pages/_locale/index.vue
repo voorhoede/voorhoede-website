@@ -3,41 +3,41 @@
     <div class="page-index__header">
       <page-header brick curly-bracket>
         <template slot="title">
-          <h1 v-html="home.headerTitle"/>
+          <h1 v-html="page.headerTitle"/>
         </template>
         <template slot="subTitle">
-          <h2 v-html="home.subtitle"/>
+          <h2 v-html="page.subtitle"/>
         </template>
-        <template v-if="home.headerIllustration" slot="image">
-          <img :src="home.headerIllustration.url" alt="">
+        <template v-if="page.headerIllustration" slot="image">
+          <img :src="page.headerIllustration.url" alt="">
         </template>
       </page-header>
       <div class="page-index__scroll-to grid">
         <scroll-to/>
       </div>
       <div class="grid">
-        <scroll-highlighted-text :text-lines="home.usps"/>
+        <scroll-highlighted-text :text-lines="page.usps"/>
       </div>
     </div>
     <section class="page-index__services grid">
-      <h2 class="page-index__section-title h1">{{ home.servicesHeader }}</h2>
-      <services-list :services="home.services"/>
+      <h2 class="page-index__section-title h1">{{ page.servicesHeader }}</h2>
+      <services-list :services="page.services"/>
     </section>
     <section class="page-index__cases">
       <div class="grid">
-        <h2 class="page-index__section-title page-index__section-title--cases h1">{{ home.casesTitle }}</h2>
+        <h2 class="page-index__section-title page-index__section-title--cases h1">{{ page.casesTitle }}</h2>
       </div>
       <horizontal-carousel>
         <template slot="slides">
           <div
-            v-for="(caseExcerpt, index) in home.cases"
+            v-for="(caseExcerpt, index) in page.cases"
             :key="caseExcerpt.id"
           >
             <case-excerpt
               :case-id="caseExcerpt.slug"
-              :primary-label="home.casePrimaryCtaLabel"
+              :primary-label="page.casePrimaryCtaLabel"
               :slug="caseExcerpt.slug"
-              :secondary-label="home.caseSecondaryCtaLabel"
+              :secondary-label="page.caseSecondaryCtaLabel"
               :image-url="caseExcerpt.heroIllustration.url"
               :title="caseExcerpt.title"
               :body="caseExcerpt.subtitle"
@@ -48,8 +48,8 @@
       </horizontal-carousel>
     </section>
     <section class="page-index__clients grid">
-      <h2 class="page-index__section-title page-index__section-title--clients h3 font-normal">{{ home.clientsTitle }}</h2>
-      <highlighted-clients :cta-label="home.clientsButtonLabel"/>
+      <h2 class="page-index__section-title page-index__section-title--clients h3 font-normal">{{ page.clientsTitle }}</h2>
+      <highlighted-clients :cta-label="page.clientsButtonLabel"/>
     </section>
     <div class="page-index__academy grid">
       <academy-excerpt
@@ -58,10 +58,10 @@
         :title="upcomingEvents[0].title"
         :description="upcomingEvents[0].description"
         :url="upcomingEvents[0].url"
-        :illustration="home.academyIllustration"
-        :cta-primary-label="home.academyPrimaryButtonLabel"
+        :illustration="page.academyIllustration"
+        :cta-primary-label="page.academyPrimaryButtonLabel"
         :cta-primary-to="upcomingEvents[0].url"
-        :cta-secondary-label="home.academySecondaryButtonLabel"
+        :cta-secondary-label="page.academySecondaryButtonLabel"
         :cta-secondary-to="{ name: 'locale-academy', params: { locale: currentLocale }}"
       />
       <div class="page-index__curly-bracket-column">
@@ -69,7 +69,7 @@
       </div>
     </div>
     <section class="page-index__blog-posts grid">
-      <h2 class="page-index__section-title page-index__section-title--blog-posts h3">{{ home.blogPostsTitle }}</h2>
+      <h2 class="page-index__section-title page-index__section-title--blog-posts h3">{{ page.blogPostsTitle }}</h2>
       <ul class="page-index__blog-posts-list">
         <li v-for="blogPost in latestBlogposts" :key="blogPost.slug">
           <blog-list-item :item="blogPost" :current-locale="currentLocale"/>
@@ -80,9 +80,9 @@
       </div>
     </section>
     <div class="grid">
-      <cta-block :cta-label="home.callToActionLabel" :cta-to="{ name: 'locale-contact', params: { locale: currentLocale } }">
+      <cta-block :cta-label="page.callToActionLabel" :cta-to="{ name: 'locale-contact', params: { locale: currentLocale } }">
         <template slot="heading">
-          <h3 class="h4">{{ home.callToActionTitle }}</h3>
+          <h3 class="h4">{{ page.callToActionTitle }}</h3>
         </template>
       </cta-block>
     </div>
