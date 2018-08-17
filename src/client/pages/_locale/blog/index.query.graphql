@@ -1,12 +1,13 @@
-query Blog($locale: SiteLocale, $altLocale: SiteLocale)  {
-  blog(locale:$locale) {
-    ...blog
+query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
+  blogPostOverview(locale:$locale) {
+    ...blogPostOverview
   },
-  alternateUrl: blog(locale:$altLocale) {
-    slug
+
+  alternate:blogPostOverview {
+    slug(locale:$alternateLocale)
   }
 }
 
-fragment blog on BlogRecord {
+fragment blogPostOverview on BlogPostOverviewRecord {
   title
 }

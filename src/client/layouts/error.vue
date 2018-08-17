@@ -8,7 +8,7 @@
 export default {
   props: {
     error: {
-      type: Object,
+      type: Error,
       required: true,
     },
   },

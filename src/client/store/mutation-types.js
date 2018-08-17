@@ -1,0 +1,4 @@
+export const SHOW_GRID = 'SHOW_GRID'
+export const HIDE_GRID = 'HIDE_GRID'
+export const SET_CURRENT_LOCALE = 'SET_CURRENT_LOCALE'
+export const SET_ALTERNATE_URL = 'SET_ALTERNATE_URL'
