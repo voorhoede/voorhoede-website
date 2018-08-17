@@ -39,6 +39,7 @@
         />
         <app-button
           secondary
+          v-if="secondaryLabel"
           @blur="isTooltipOpen = false"
           @focus="isTooltipOpen = true"
           :label="secondaryLabel"

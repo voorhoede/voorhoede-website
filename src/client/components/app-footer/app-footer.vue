@@ -47,9 +47,9 @@
       <ul class="app-footer__list--icon">
         <li class="app-footer__list-item--icon"
             v-for="({ icon, href }, index ) in social" :key="index">
-          <nuxt-link :to="href" target="_blank">
+          <a :href="href" target="_blank">
             <app-icon :name="icon" :is-large="true" />
-          </nuxt-link>
+          </a>
         </li>
       </ul>
       <div class="body-detail app-footer__copyright">
