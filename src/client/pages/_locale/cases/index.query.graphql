@@ -1,12 +1,26 @@
 query Case($locale: SiteLocale, $altLocale: SiteLocale)  {
-  work(locale:$locale) {
-    ...work
+  page: caseOverview(locale:$locale) {
+    ...page
   },
-  alternateUrl: work(locale:$altLocale) {
+  items: allCaseItems{
+    slug,
+    title,
+    subtitle,
+    heroIllustration {
+      url
+    }
+  },
+  alternateUrl: caseOverview(locale:$altLocale) {
     title
   }
 }
 
-fragment work on WorkRecord {
-  title
+fragment page on CaseOverviewRecord {
+  title,
+  subtitle,
+  headerIllustration {
+    url
+  }
+  callToActionLabel,
+  callToActionTitle
 }

@@ -11,7 +11,7 @@ export const state = () => ({
       },
       {
         title: 'Cases',
-        slug: 'case',
+        slug: 'cases',
       },
       {
         title: 'Academy',
@@ -34,7 +34,7 @@ export const state = () => ({
       },
       {
         title: 'Cases',
-        slug: 'case',
+        slug: 'cases',
       },
       {
         title: 'Academy',
