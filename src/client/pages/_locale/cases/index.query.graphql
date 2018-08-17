@@ -2,7 +2,7 @@ query Case($locale: SiteLocale, $altLocale: SiteLocale)  {
   page: caseOverview(locale:$locale) {
     ...page
   },
-  items: allCaseItems{
+  items: allCaseItems {
     slug,
     title,
     subtitle,
