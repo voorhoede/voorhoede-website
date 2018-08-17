@@ -15,6 +15,7 @@
           class="academy-excerpt__primary-button"
           :label="ctaPrimaryLabel"
           :to="ctaPrimaryTo"
+          external
         />
         <app-button
           :label="ctaSecondaryLabel"
