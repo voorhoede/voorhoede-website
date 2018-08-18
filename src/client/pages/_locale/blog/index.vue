@@ -1,6 +1,6 @@
 <template>
   <section class="page-blog">
-    <pre>{{ blogPostOverview }}</pre>
+    <pre>{{ page }}</pre>
   </section>
 </template>
 

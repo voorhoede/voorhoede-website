@@ -1,6 +1,6 @@
 <template>
   <section class="page-services">
-    <pre>{{ service }}</pre>
+    <pre>{{ page }}</pre>
   </section>
 </template>
 

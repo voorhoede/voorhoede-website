@@ -1,7 +1,7 @@
 <template>
   <section class="page-services">
     <div>
-      <pre>{{ serviceOverview }}</pre>
+      <pre>{{ page }}</pre>
     </div>
   </section>
 </template>

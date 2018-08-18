@@ -1,6 +1,6 @@
 <template>
   <section class="page-academy">
-    <pre>{{ academyItemsOverview }}</pre>
+    <pre>{{ page }}</pre>
   </section>
 </template>
 

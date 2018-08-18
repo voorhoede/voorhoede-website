@@ -1,5 +1,5 @@
 query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
-  about(locale: $locale) {
+  page: about(locale: $locale) {
     ...about
   },
 
@@ -9,5 +9,6 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
 }
 
 fragment about on AboutRecord {
-  title
+  title,
+  slug
 }

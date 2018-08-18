@@ -2,7 +2,7 @@
   <section class="page-index">
     <div>
       <img src="/images/logo.svg">
-      <pre>{{ home }}</pre>
+      <pre>{{ page }}</pre>
     </div>
   </section>
 </template>

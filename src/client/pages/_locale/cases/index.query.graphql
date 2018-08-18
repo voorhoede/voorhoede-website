@@ -1,13 +1,16 @@
 query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
-  caseOverview(locale:$locale) {
+  page: caseOverview(locale:$locale) {
     ...caseOverview
   },
-
+  items: allCaseItems(locale:$locale) {
+    slug
+  },
   alternate:caseOverview {
     slug(locale:$alternateLocale)
   }
 }
 
 fragment caseOverview on CaseOverviewRecord {
-  title
+  title,
+  slug
 }

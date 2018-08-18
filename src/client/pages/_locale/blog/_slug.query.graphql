@@ -1,5 +1,5 @@
 query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
-  blogPost(locale: $locale, filter: { slug: { eq: $slug } }) {
+  page: blogPost(locale: $locale, filter: { slug: { eq: $slug } }) {
     ...blogPost
   },
 
@@ -13,5 +13,6 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
 }
 
 fragment blogPost on BlogPostRecord {
-  title
+  title,
+  slug
 }

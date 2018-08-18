@@ -1,13 +1,16 @@
 query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
-  jobOverview(locale:$locale) {
+  page: jobOverview(locale:$locale) {
     ...jobOverview
   },
-
+  items: allJobs(locale: $locale) {
+    slug(locale: $locale)
+  },
   alternate:jobOverview {
     slug(locale:$alternateLocale)
   }
 }
 
 fragment jobOverview on JobOverviewRecord {
-  title
+  title,
+  slug
 }

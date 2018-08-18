@@ -1,5 +1,5 @@
 query HomePage($locale: SiteLocale)  {
-  home(locale:$locale) {
+  page: home(locale:$locale) {
     ...home
   },
   upcomingEvents: allAcademyItems(first: 1, orderBy: date_DESC) {
@@ -32,6 +32,7 @@ query HomePage($locale: SiteLocale)  {
 
 fragment home on HomeRecord {
   title,
+  slug,
   social {
     title,
     description,

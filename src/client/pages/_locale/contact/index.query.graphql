@@ -1,5 +1,5 @@
 query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
-  contact(locale:$locale) {
+  page: contact(locale:$locale) {
     ...contact
   },
 
@@ -9,5 +9,6 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
 }
 
 fragment contact on ContactRecord {
-  title
+  title,
+  slug
 }

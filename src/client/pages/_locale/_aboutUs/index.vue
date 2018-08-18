@@ -1,6 +1,6 @@
 <template>
   <section class="page-cases">
-    <pre>{{ about }}</pre>
+    <pre>{{ page }}</pre>
   </section>
 </template>
 

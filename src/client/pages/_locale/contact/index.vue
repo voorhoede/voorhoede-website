@@ -1,6 +1,6 @@
 <template>
   <section class="page-contact">
-    <pre>{{ contact }}</pre>
+    <pre>{{ page }}</pre>
   </section>
 </template>
 
