@@ -6,18 +6,18 @@ import { withKnobs } from '@storybook/addon-knobs/vue'
 
 import '../app-core/index.css'
 
-import __NAME_PASCAL__ from './__NAME_KEBAB__.vue'
+import RichTextBlock from './rich-text-block.vue'
 import README from './README.md'
 
-const stories = storiesOf('Components/__NAME_START__', module)
+const stories = storiesOf('Components/Rich Text Block', module)
   .addDecorator(withKnobs)
   .addDecorator(withReadme(README))
 
-Vue.component('__NAME_KEBAB__', __NAME_PASCAL__)
+Vue.component('rich-text-block', RichTextBlock)
 
 stories.add(
-  '__NAME_START__',
+  'Rich Text Block',
   () => ({
-    template: '<__NAME_KEBAB__/>',
+    template: '<rich-text-block/>',
   }),
 )
