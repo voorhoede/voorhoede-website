@@ -23,7 +23,7 @@
           class="responsive-video__button"
           :href="video.url"
           @click.prevent="play">
-          <span class="a11y-sr-only">{{ $t('play_video') }}</span>
+          <span class="a11y-sr-only">Play video</span>
           <img class="responsive-video__icon" src="/icons/icon_play.svg">
         </a>
       </fixed-ratio>
@@ -138,9 +138,9 @@
   }
 
   .responsive-video__i-frame {
-    width:100%;
-    height:100%;
-    position:relative;
+    width: 100%;
+    height: 100%;
+    position: relative;
   }
 
   .responsive-video__button {
@@ -162,6 +162,6 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
   }
 </style>
