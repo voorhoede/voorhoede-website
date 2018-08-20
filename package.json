@@ -11,6 +11,7 @@
   "private": true,
   "scripts": {
     "analyze": "nuxt build --analyze",
+    "prebuild": "rimraf src/client/static/data && node config/data/dump && node config/nuxt/lib/routes",
     "build": "NODE_ENV=production run-s build:*",
     "build:client": "nuxt generate",
     "build:guide": "build-storybook -c config/storybook -o dist/client/guide/",
@@ -37,6 +38,7 @@
     "@storybook/addon-options": "3.4.8",
     "@storybook/vue": "3.4.8",
     "babel-eslint": "8.2.1",
+    "chalk": "^2.4.1",
     "commander": "2.16.0",
     "datocms-client": "0.6.2",
     "eslint": "4.15.0",
@@ -57,6 +59,7 @@
     "stylelint": "9.3.0",
     "stylelint-config-standard": "18.2.0",
     "stylelint-processor-html": "1.0.0",
+    "util": "^0.11.0",
     "vue-svg-loader": "0.5.0"
   },
   "browserslist": [

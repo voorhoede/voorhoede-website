@@ -1,21 +1,13 @@
-const fetch = require('node-fetch')
-const token = process.env.DATO_API_TOKEN
+const path = require('path')
 
-export function getData({ query, variables }) {
-  return fetch(
-    'https://graphql.datocms.com/',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-      body: JSON.stringify({ query, variables }),
-    }
-  )
-    .then(res => {
-      return res.json()
-    })
-    .then((res) => res.data)
+export function getData(route) {
+  const filepath = path.join('/data', route, 'index.json')
+  if (process.client) {
+    // On client load over http
+    return fetch(filepath).then(res => res.json())
+  } else {
+    // On server load from file system
+    const data = JSON.parse(require('fs').readFileSync(`src/client/static${filepath}`, 'utf8'))
+    return Promise.resolve(data)
+  }
 }

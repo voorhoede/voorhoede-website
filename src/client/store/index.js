@@ -68,14 +68,7 @@ const createStore = () => {
       async getData({ commit, state, getters }, { query, route }) {
 
         try {
-          const data = await getData({
-            query,
-            variables: {
-              locale: state.currentLocale,
-              alternateLocale: getters.alternateLocale,
-              slug: route.params.slug
-            }
-          })
+          const data = await getData(route.path)
 
           const alternateParentSlug = data.alternateParent ? `/${data.alternateParent.slug}` : ''
           const alternateSlug = data.alternate ? `/${data.alternate.slug}` : ''
