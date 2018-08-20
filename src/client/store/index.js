@@ -65,7 +65,7 @@ const createStore = () => {
       localizedMenuItems: state => state.menu[state.currentLocale]
     },
     actions: {
-      async getData({ commit, state, getters }, { query, route }) {
+      async getData({ commit, getters }, { route }) {
 
         try {
           const data = await getData(route.path)
