@@ -23,7 +23,7 @@
           class="responsive-video__button"
           :href="video.url"
           @click.prevent="play">
-          <span class="a11y-sr-only">Play video</span>
+          <span class="sr-only">Play video</span>
           <img class="responsive-video__icon" src="/icons/icon_play.svg">
         </a>
       </fixed-ratio>
