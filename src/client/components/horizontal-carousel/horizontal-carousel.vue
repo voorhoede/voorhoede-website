@@ -54,6 +54,11 @@
   content: '';
   display: block;
   width: var(--horizontal-carousel-offset);
+  flex-shrink: 0;
+}
+
+.horizontal-carousel__slides--height-fix {
+  height: 500px;
 }
 
 @media (min-width: 720px) {
@@ -71,6 +76,7 @@
 
   .horizontal-carousel__slides {
     padding: 0;
+    overflow-x: unset;
   }
 
   .horizontal-carousel__slides > *:last-child {

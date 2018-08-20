@@ -35,15 +35,10 @@ stories.add(
             }"
           />
           <service-excerpt
-            title="We learn, we train"
-            subtitle="Kick-start your project"
-            :characteristics="[
-              'Get a roadmap',
-              'Budget indication for your project',
-              'Test your idea using a prototype',
-              'With our input, you decide the next step',
-            ]"
-            href="/services/project-kick-start"
+            tagline="We learn, we train"
+            title="Kick-start your project"
+            teaser="Get a roadmap\nBudget indication for your project\nTest your idea using a prototype\nWith our input, you decide the next step"
+            slug="/services/project-kick-start"
           />
           <responsive-image
             :image="{

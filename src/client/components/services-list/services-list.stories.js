@@ -20,43 +20,33 @@ stories.add(
   'Services List',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
+    data() {
+      return {
+        services: [
+          {
+            tagline: 'We learn, we train',
+            title: 'Kick-start your project',
+            teaser: 'Get a roadmap\nBudget indication for your project\nTest your idea using a prototype\nWith our input, you decide the next step',
+            slug: 'project-kick-start',
+          },
+          {
+            tagline: 'Need a team?',
+            title: 'Your own agile team',
+            teaser: 'A dedicated team\nScrum master, developers and optional designers\nOn-site or at our office\nYou stay in charge',
+            slug: 'agile-team',
+          },
+          {
+            tagline: 'Need developers?',
+            title: 'Front-end specialists',
+            teaser: 'Experts in JavaScript (frameworks), HTML and CSS\nWho quickly get the hang of your project\nBack-up of 20 colleagues\nImmediately available',
+            slug: 'front-end-specialists',
+          },
+        ]
+      }
+    },
     template: `
       <services-list
-        :services="[
-          {
-            title: 'We learn, we train',
-            subtitle: 'Kick-start your project',
-            characteristics: [
-              'Get a roadmap',
-              'Budget indication for your project',
-              'Test your idea using a prototype',
-              'With our input, you decide the next step',
-            ],
-            href: '/services/project-kick-start',
-          },
-          {
-            title: 'Need a team?',
-            subtitle: 'Your own agile team',
-            characteristics: [
-              'A dedicated team',
-              'Scrum master, developers and optional designers',
-              'On-site or at our office',
-              'You stay in charge',
-            ],
-            href: '/services/agile-team',
-          },
-          {
-            title: 'Need developers?',
-            subtitle: 'Front-end specialists',
-            characteristics: [
-              'Experts in JavaScript (frameworks), HTML and CSS',
-              'Who quickly get the hang of your project',
-              'Back-up of 20 colleagues',
-              'Immediately available',
-            ],
-            href: '/services/front-end-specialists',
-          },
-        ]"
+        :services="services"
       />
     `,
   }),

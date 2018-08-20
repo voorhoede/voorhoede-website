@@ -1,21 +1,24 @@
 <template>
   <article class="service-excerpt">
     <div class="service-excerpt__content">
-      <h3 class="service-excerpt__title h5">{{ title }}</h3>
-      <h4 class="service-excerpt__sub-title h3">{{ subtitle }}</h4>
+      <h3 class="service-excerpt__title h5">{{ tagline }}</h3>
+      <h4 class="service-excerpt__sub-title h3">{{ title }}</h4>
       <div class="service-excerpt__divider"/>
       <ul class="service-excerpt__characteristics-list">
         <li
-          v-for="characteristic in characteristics"
-          :key="characteristic"
+          v-for="line in teasers"
+          :key="line.teaser"
           class="service-excerpt__characteristic body"
-        >{{ characteristic }}</li>
+        >{{ line.teaser }}</li>
       </ul>
     </div>
     <AppButton
       secondary
       label="Learn more"
-      :to="href"
+      :to="{
+        name: 'locale-services-slug',
+        params: { slug },
+      }"
     />
   </article>
 </template>
@@ -26,22 +29,22 @@ import { AppButton } from '~/components'
 export default {
   components: { AppButton },
   props: {
+    tagline: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,
     },
-    subtitle: {
-      type: String,
-      required: true,
-    },
-    characteristics: {
+    teasers: {
       type: Array,
       required: true,
-      validator(characteristics) {
-        return characteristics.every(characteristic => typeof characteristic === 'string')
-      },
+      validator(teasers) {
+        return teasers.every(line => 'teaser' in line)
+      }
     },
-    href: {
+    slug: {
       type: String,
       required: true,
     },

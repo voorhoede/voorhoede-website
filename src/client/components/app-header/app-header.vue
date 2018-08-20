@@ -56,9 +56,14 @@
 
 <style>
   .app-header {
-    border-bottom: 1px solid var(--fog);
-    height: var(--app-header-height);
-  }
+    position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: var(--app-header-height);
+  width: 100%;
+  border-bottom: 1px solid var(--fog);
+}
 
   .app-header__content {
     display: flex;
@@ -127,10 +132,6 @@
   }
 
   @media screen and (min-width: 1100px) {
-    .app-header {
-      height: var(--app-header-height-large);
-    }
-
     .app-header__logo {
       height: 1.8125rem; /* 29px */
     }

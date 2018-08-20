@@ -30,5 +30,10 @@
 
   /* COMPONENTS */
   --app-header-height: 3.125rem; /* 50px */
-  --app-header-height-large: 4.0625rem; /* 65px */
+}
+
+@media (min-width: 1100px) {
+  :root {
+    --app-header-height: 4.0625rem; /* 65px */
+  }
 }
