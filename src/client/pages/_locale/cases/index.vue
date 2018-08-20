@@ -17,7 +17,7 @@
           <case-excerpt
             :case-id="caseItem.slug"
             primary-label="See more"
-            :primary-slug="{ name: 'locale-cases-slug', params: { slug: caseItem.slug, locale: currentLocale }}"
+            :slug="caseItem.slug"
             :image-url="caseItem.heroIllustration ? caseItem.heroIllustration.url : null"
             :title="caseItem.title"
             :body="caseItem.subtitle"
@@ -36,8 +36,8 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   import query from './index.query.graphql'
-  import { getData } from '../../../lib/get-data'
   import { CaseExcerpt, PageHeader, CtaBlock } from '~/components'
 
   export default {
@@ -46,15 +46,12 @@
       PageHeader,
       CtaBlock
     },
-    data() {
-      return {
-        currentLocale: 'en'
-      }
+    async asyncData({ store, route }) {
+      return await store.dispatch('getData', { query, route })
     },
-    async asyncData({ params }) {
-      const { locale } = params
-      return await getData({ query, variables: { locale, altLocale: 'nl' } })
-    },
+    computed: {
+      ...mapState(['currentLocale']),
+    }
   }
 </script>
 

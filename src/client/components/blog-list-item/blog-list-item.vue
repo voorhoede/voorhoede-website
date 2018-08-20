@@ -22,6 +22,7 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   import { LazyLoad } from '~/components'
 
   export default {
@@ -33,10 +34,6 @@
         validator(item) {
           return typeof(item.slug) === 'string' && typeof(item.title) === 'string' && !!Date.parse(item.date) && item.authors.length >= 1
         },
-      },
-      currentLocale: {
-        type: String,
-        required: true,
       }
     },
     data() {
@@ -45,6 +42,9 @@
       }
     },
     computed: {
+      ...mapState([
+        'currentLocale',
+      ]),
       authorName() {
         return `by ${this.item.authors.map(author => author.name).join(', ')}`
       },

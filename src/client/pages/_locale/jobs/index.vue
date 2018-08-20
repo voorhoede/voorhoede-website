@@ -1,6 +1,6 @@
 <template>
-  <section class="page-blog">
-    <pre>{{ blogPostOverview }}</pre>
+  <section class="page-cases">
+    <pre>{{ jobOverview }}</pre>
   </section>
 </template>
 
@@ -13,3 +13,4 @@
     },
   }
 </script>
+
