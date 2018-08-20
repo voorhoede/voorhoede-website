@@ -1,0 +1,13 @@
+query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
+  about(locale: $locale) {
+    ...about
+  },
+
+  alternate: about(locale: $locale) {
+    slug(locale:$alternateLocale)
+  }
+}
+
+fragment about on AboutRecord {
+  title
+}

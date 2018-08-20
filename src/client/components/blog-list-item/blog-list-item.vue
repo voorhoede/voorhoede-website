@@ -16,6 +16,7 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   import FixedRatio from '../fixed-ratio'
 
   export default {
@@ -27,13 +28,12 @@
         validator(item) {
           return typeof(item.url) === 'string' && typeof(item.title) === 'string' && !!Date.parse(item.date) && item.authors.length >= 1
         },
-        currentLocale: {
-          type: String,
-          required: true
-        }
       },
     },
     computed: {
+      ...mapState([
+        'currentLocale',
+      ]),
       authorName() {
         return `by ${this.item.authors.map(author => author.name).join(', ')}`
       },
