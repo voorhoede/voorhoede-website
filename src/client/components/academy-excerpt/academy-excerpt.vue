@@ -15,6 +15,7 @@
           class="academy-excerpt__primary-button"
           :label="ctaPrimaryLabel"
           :to="ctaPrimaryTo"
+          external
         />
         <app-button
           :label="ctaSecondaryLabel"
@@ -128,15 +129,15 @@
 
   .academy-excerpt__day {
     display: inline-block;
-  font-size: 1.8125rem;
-}
+    font-size: 1.8125rem;
+  }
 
   .academy-excerpt__month {
     display: inline-block;
-  font-size: .8125rem;
-  letter-spacing: 2.3px;
-  text-transform: uppercase;
-}
+    font-size: .8125rem;
+    letter-spacing: 2.3px;
+    text-transform: uppercase;
+  }
 
   .academy-excerpt__title {
     margin-bottom: var(--spacing-small);
@@ -168,14 +169,14 @@
 
   @media (min-width: 720px) {
     .academy-excerpt__illustration-column {
-    display: block;
-  }
+      display: block;
+    }
 
-  .academy-excerpt__illustration {
-    max-width: 100%;
-    max-height: 100%;
+    .academy-excerpt__illustration {
+      max-width: 100%;
+      max-height: 100%;
+    }
   }
-}
 
   @supports (display: grid) {
     .academy-excerpt__calendar {

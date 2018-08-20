@@ -9,11 +9,11 @@
       <h5 class="body app-footer__list-title font-bold">Explore</h5>
       <ul class="app-footer__list">
         <li
-          v-for="({ slug, title }) in exploreLinks"
-          :key="slug"
+          v-for="link in exploreLinks"
+          :key="link.slug"
           class="app-footer__list-item body-detail"
         >
-          <nuxt-link :to="slug" class="app-footer__link">{{ title }}</nuxt-link>
+          <nuxt-link :to="link.slug" class="app-footer__link">{{ link.title }}</nuxt-link>
         </li>
       </ul>
     </div>
@@ -40,15 +40,15 @@
     </div>
     <div class="app-footer__bottom">
       <div class="body-detail app-footer__bottom-text">
-        <dl class="app-footer__definition-list" v-for="({ key, value }, index) in legal" :key="index">
-          <dt>{{ key }}</dt>: <dd class="app-footer__definition-value">{{ value }}</dd>
+        <dl class="app-footer__definition-list" v-for="legalItem in legal" :key="legalItem.key">
+          <dt>{{ legalItem.key }}</dt>: <dd class="app-footer__definition-value">{{ legalItem.value }}</dd>
         </dl>
       </div>
       <ul class="app-footer__list--icon">
         <li class="app-footer__list-item--icon"
-            v-for="({ icon, href }, index ) in social" :key="index">
-          <a :href="href" target="_blank">
-            <app-icon :name="icon" :is-large="true" />
+            v-for="socialItem in social" :key="socialItem.href">
+          <a :href="socialItem.href" target="_blank">
+            <app-icon :name="socialItem.icon" :is-large="true" />
           </a>
         </li>
       </ul>
