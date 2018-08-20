@@ -3,15 +3,15 @@
     <h2 class="sr-only">Case information</h2>
     <section class="case-meta__expertise">
       <h3 class="case-meta__title body font-bold">{{ expertiseTitle }}</h3>
-      <p class="body-petite">{{ expertises | toMetaString }}</p>
+      <p class="body-petite">{{ toMetaString(expertises) }}</p>
     </section>
     <section class="case-meta__platform">
       <h3 class="case-meta__title body font-bold">{{ platformTitle }}</h3>
-      <p class="body-petite">{{ platforms | toMetaString }}</p>
+      <p class="body-petite">{{ toMetaString(platforms) }}</p>
     </section>
     <section class="case-meta__deliverable">
       <h3 class="case-meta__title body font-bold">{{ deliverableTitle }}</h3>
-      <p class="body-petite">{{ deliverables | toMetaString }}</p>
+      <p class="body-petite">{{ toMetaString(deliverables) }}</p>
     </section>
     <section class="case-meta__interested">
       <h3 class="case-meta__title body font-bold">{{ interestedTitle }}</h3>
@@ -23,15 +23,9 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
+
   export default {
-    filters: {
-      toMetaString(array) {
-        const lastItem = array.pop() /* Pop also removes the last element of the array */
-        return array
-          .map(array => array.title)
-          .join(', ') + ' and ' + lastItem.title
-      }
-    },
     props: {
       expertiseTitle: {
         type: String,
@@ -79,6 +73,21 @@
         required: true
       }
     },
+    computed: {
+      ...mapState([
+        'currentLocale',
+      ]),
+    },
+    methods: {
+      toMetaString(array) {
+        const finalDivider = (this.currentLocale === 'en') ? 'and' : 'en'
+
+        const lastItem = array.pop() /* Pop also removes the last element of the array */
+        return array
+          .map(array => array.title)
+          .join(', ') + ` ${finalDivider} ${lastItem.title}`
+      }
+    }
   }
 </script>
 
