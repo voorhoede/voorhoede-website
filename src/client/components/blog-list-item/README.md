@@ -19,7 +19,6 @@
           url: 'https://www.datocms-assets.com/2850/1522324546-marko.png?fit=crop&h=40&w=40',
         }]
     }"
-    current-locale="nl"
   />
 ```
 
@@ -28,7 +27,6 @@
 | Prop | Type | Required | Description |
 | --- | --- | --- | --- |
 | item | Object | true | Object |
-| currentLocale | String | true | The current locale |
 
 Each item has the following props:
 

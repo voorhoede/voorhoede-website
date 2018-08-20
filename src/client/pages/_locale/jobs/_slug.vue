@@ -1,11 +1,11 @@
 <template>
-  <section class="page-blog">
-    <pre>{{ blogPostOverview }}</pre>
+  <section class="page-cases">
+    <pre>{{ job }}</pre>
   </section>
 </template>
 
 <script>
-  import query from './index.query.graphql'
+  import query from './_slug.query.graphql'
 
   export default {
     async asyncData({ store, route }) {

@@ -1,12 +1,13 @@
-query Case($locale: SiteLocale, $altLocale: SiteLocale)  {
-  work(locale:$locale) {
-    ...work
+query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
+  caseOverview(locale:$locale) {
+    ...caseOverview
   },
-  alternateUrl: work(locale:$altLocale) {
-    title
+
+  alternate:caseOverview {
+    slug(locale:$alternateLocale)
   }
 }
 
-fragment work on WorkRecord {
+fragment caseOverview on CaseOverviewRecord {
   title
 }

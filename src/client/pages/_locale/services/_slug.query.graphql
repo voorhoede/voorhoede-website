@@ -1,9 +1,14 @@
-query ServiceQuery($slug:String, $locale:SiteLocale, $altLocale:SiteLocale)  {
-  service(locale:$locale, , filter: { slug: { eq: $slug } }) {
+query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
+  service(locale: $locale, filter: { slug: { eq: $slug } }) {
     ...service
   },
-  alternateUrl: service(locale:$altLocale) {
-    slug
+
+  alternate: service(locale: $locale, filter: { slug: { eq: $slug } }) {
+    slug(locale: $alternateLocale)
+  },
+
+  alternateParent: serviceOverview {
+    slug(locale: $alternateLocale)
   }
 }
 

@@ -9,13 +9,10 @@
 
 <script>
   import query from './index.query.graphql'
-  import { getData } from '../../lib/get-data'
 
   export default {
-    layout: 'landing',
-    async asyncData({ params }) {
-      const { locale } = params
-      return await getData({ query, variables: { locale, altLocale: 'nl' } })
+    async asyncData({ store, route }) {
+      return await store.dispatch('getData', { query, route })
     },
   }
 </script>

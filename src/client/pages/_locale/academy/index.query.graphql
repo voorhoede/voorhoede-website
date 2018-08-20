@@ -1,0 +1,13 @@
+query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
+  academyItemsOverview(locale:$locale) {
+    ...academyItemsOverview
+  },
+
+  alternate:academyItemsOverview {
+    slug(locale:$alternateLocale)
+  }
+}
+
+fragment academyItemsOverview on AcademyItemsOverviewRecord {
+  title
+}

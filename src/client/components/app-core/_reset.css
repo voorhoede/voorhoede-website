@@ -72,6 +72,10 @@ select {
   border-radius: 0;
 }
 
+button {
+  padding: 0;
+}
+
 * {
   color: inherit;
   box-sizing: border-box;
