@@ -2,9 +2,7 @@ import Vue from 'vue'
 import { storiesOf } from '@storybook/vue'
 import { withReadme } from 'storybook-readme'
 import { withKnobs } from '@storybook/addon-knobs/vue'
-import VueI18n from 'vue-i18n'
 import createStore from '../../store'
-// import { action } from '@storybook/addon-actions'
 
 import '../app-core/index.css'
 
@@ -18,11 +16,9 @@ const stories = storiesOf('Components/Blog List Item', module)
 Vue.component('blog-list-item', BlogListItem)
 
 stories.add('Blog List item', () => ({
-    i18n: new VueI18n({ locale: 'en' }),
     store: createStore(),
     data() {
       return {
-        currentLocale: 'nl',
         blogItems: [
           {
             url: '/some-url',

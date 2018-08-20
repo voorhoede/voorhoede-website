@@ -90,6 +90,7 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   import query from './index.query.graphql'
   import {
     AcademyExcerpt,
@@ -117,14 +118,12 @@
       ScrollTo,
       ServicesList,
     },
-    data() {
-      return {
-        currentLocale: 'en'
-      }
-    },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { query, route })
     },
+    computed: {
+      ...mapState(['currentLocale'])
+    }
   }
 </script>
 

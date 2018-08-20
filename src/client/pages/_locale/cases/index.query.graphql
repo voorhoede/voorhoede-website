@@ -1,13 +1,26 @@
-query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
-  caseOverview(locale:$locale) {
-    ...caseOverview
+query Case($locale: SiteLocale, $altLocale: SiteLocale)  {
+  page: caseOverview(locale:$locale) {
+    ...page
   },
-
-  alternate:caseOverview {
-    slug(locale:$alternateLocale)
+  items: allCaseItems {
+    slug,
+    title,
+    subtitle,
+    heroIllustration {
+      url
+    }
+  },
+  alternateUrl: caseOverview(locale:$altLocale) {
+    title
   }
 }
 
-fragment caseOverview on CaseOverviewRecord {
-  title
+fragment page on CaseOverviewRecord {
+  title,
+  subtitle,
+  headerIllustration {
+    url
+  }
+  callToActionLabel,
+  callToActionTitle
 }

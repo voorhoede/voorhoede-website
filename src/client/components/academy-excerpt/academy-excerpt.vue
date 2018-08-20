@@ -33,8 +33,8 @@
 </template>
 
 <script>
-  import { AppButton, LazyLoad } from '~/components'
   import { mapState } from 'vuex'
+  import { AppButton, LazyLoad } from '~/components'
 
   export default {
     components: {
@@ -172,10 +172,10 @@
       display: block;
     }
 
-  .academy-excerpt__illustration {
-    max-width: 100%;
-    max-height: 100%;
-  }
+    .academy-excerpt__illustration {
+      max-width: 100%;
+      max-height: 100%;
+    }
   }
 
   @supports (display: grid) {

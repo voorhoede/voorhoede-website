@@ -1,22 +1,22 @@
 <template>
-  <div class="layout">
+  <div>
     <grid-demo :show="showGrid"/>
     <app-header/>
     <nuxt/>
     <app-footer
-      :header-title="localisedFooter.headerTitle"
-      :header-subtitle="localisedFooter.headerSubtitle"
+      :header-title="localizedFooter.headerTitle"
+      :header-subtitle="localizedFooter.headerSubtitle"
       :explore-links="localizedMenuItems"
-      :tel="localisedFooter.tel"
-      :email="localisedFooter.email"
-      :google-maps-link="localisedFooter.googleMapsLink"
-      :address="localisedFooter.address"
-      :postal-code="localisedFooter.postalCode"
-      :copyright="localisedFooter.copyright"
-      :privacy-link-label="localisedFooter.privacyLinkLabel"
-      :privacy-link="localisedFooter.privacyLink"
-      :legal="localisedFooter.legal"
-      :social="localisedFooter.social"
+      :tel="localizedFooter.tel"
+      :email="localizedFooter.email"
+      :google-maps-link="localizedFooter.googleMapsLink"
+      :address="localizedFooter.address"
+      :postal-code="localizedFooter.postalCode"
+      :copyright="localizedFooter.copyright"
+      :privacy-link-label="localizedFooter.privacyLinkLabel"
+      :privacy-link="localizedFooter.privacyLink"
+      :legal="localizedFooter.legal"
+      :social="localizedFooter.social"
     />
   </div>
 </template>
@@ -29,7 +29,6 @@
     components: { AppFooter, AppHeader, GridDemo },
     data() {
       return {
-        currentLocale: 'en',
         footerContent: {
           en: {
             headerTitle: 'Make it real',
@@ -81,11 +80,11 @@
       }
     },
     computed: {
-      ...mapState(['showGrid']),
+      ...mapState(['showGrid', 'currentLocale']),
       ...mapGetters([
         'localizedMenuItems',
       ]),
-      localisedFooter() {
+      localizedFooter() {
         return this.footerContent[this.currentLocale]
       }
     },
@@ -94,9 +93,4 @@
 
 <style>
   @import '../components/app-core/index.css';
-
-  .layout-default {
-    background-color: var(--white);
-    min-height: 100vh;
-  }
 </style>

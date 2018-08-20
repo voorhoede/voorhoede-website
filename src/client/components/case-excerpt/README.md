@@ -5,26 +5,25 @@ Adds information about a case. When active or hovererd it shows a tooltip. This 
 
 ```html
 <case-excerpt
-	:caseId="caseId"
-	:primaryLabel="primaryLabel"
-	:primarySlug="{ name: 'locale-cases-slug', params: { slug: 'funda', locale: currentLocale }}"
-	:secondaryLabel="secondaryLabel"
-	:secondarySlug="{ name: 'locale-cases', params: { locale: currentLocale }}"
-	:imageUrl="/images/logo.svg"
-	:title="title"
-	:body="body"
-	:alignTooltip="alignTooltip"
+	case-id="caseId"
+	primary-label="primaryLabel"
+	slug="some-slug"
+	secondary-label="secondaryLabel"
+	image-url="/images/logo.svg"
+	title="title"
+	body="body"
+	align-tooltip="alignTooltip"
 	/>
 ```
 
 ## Props
 | Name | Type | required | description |
 | --- | --- | --- | --- |
-| imageUrl | String | true | Contains the url of the case illustration |
+| image-url | String | true | Contains the url of the case illustration |
 | title | String | true | Title of the case excerpt |
 | body | String | true | Description of the case excerpt |
-| caseId | String | false | This should be a unique key |
-| primaryLabel | String | false | Text in the primary button |
-| primarySlug | String | false | Named slug that contains a slug and locale variable to the case page |
-| secondaryLabel | String | false | Secondary button text |
-| alignTooltip | String | false | Align tooltip and tooltip triangle to left or the right, standard style centers tooltip |
+| case-id | String | false | This should be a unique key |
+| primary-label | String | false | Text in the primary button |
+| slug | String | false | Named slug that contains a slug and locale variable to the case page |
+| secondary-label | String | false | Secondary button text |
+| align-tooltip | String | false | Align tooltip and tooltip triangle to left or the right, standard style centers tooltip |
