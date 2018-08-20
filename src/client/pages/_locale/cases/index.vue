@@ -1,5 +1,5 @@
 <template>
-  <div class="page-cases">
+  <main class="page-cases">
     <page-header>
       <template slot="title">
         <h1 v-html="page.title"/>
@@ -11,7 +11,7 @@
         <img :src="page.headerIllustration.url" alt="">
       </template>
     </page-header>
-    <main class="grid">
+    <div class="grid">
       <ul class="page-case__overview">
         <li class="page-case__overview-item" v-for="caseItem in items" :key="caseItem.slug">
           <case-excerpt
@@ -24,7 +24,7 @@
           />
         </li>
       </ul>
-    </main>
+    </div>
     <div class="grid">
       <cta-block :cta-label="page.callToActionLabel" :cta-to="{ name: 'locale-contact', params: { locale: currentLocale } }">
         <template slot="heading">
@@ -32,7 +32,7 @@
         </template>
       </cta-block>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
