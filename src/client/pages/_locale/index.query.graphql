@@ -85,5 +85,7 @@ fragment page on HomeRecord {
   },
   blogPostsTitle,
   callToActionTitle,
-  callToActionLabel
+  callToActionLabel,
+  casePrimaryCtaLabel,
+  caseSecondaryCtaLabel
 }
