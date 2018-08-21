@@ -33,7 +33,7 @@ stories.add(
       }
     },
     template: `
-      <scroll-highlighted-text :textLines="textLines"/>
+      <scroll-highlighted-text :text-lines="textLines"/>
     `,
   }),
 )

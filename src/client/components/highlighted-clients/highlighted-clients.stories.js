@@ -21,7 +21,7 @@ stories.add(
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     template: `
-      <highlighted-clients ctaLabel="Get your name on the list"/>
+      <highlighted-clients cta-label="Get your name on the list"/>
     `,
   }),
 )
