@@ -17,10 +17,10 @@ const stories = storiesOf('Components/Scroll Highlighted Text', module)
 Vue.component('scroll-highlighted-text', ScrollHighlightedText)
 
 const arrayValues = [
-  'We work lean and agile.',
-  'Start small and iterate fast',
-  'to help you from an idea,',
-  'to an amazing product.',
+  { line: 'We work lean and agile.' },
+  { line: 'Start small and iterate fast' },
+  { line: 'to help you from an idea,' },
+  { line: 'to an amazing product.' },
 ]
 
 stories.add(
@@ -33,9 +33,7 @@ stories.add(
       }
     },
     template: `
-      <scroll-highlighted-text
-        :textLines="textLines"
-      />
+      <scroll-highlighted-text :textLines="textLines"/>
     `,
   }),
 )

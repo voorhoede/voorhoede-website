@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import { storiesOf } from '@storybook/vue'
 import { withReadme } from 'storybook-readme'
-import { withKnobs, select } from '@storybook/addon-knobs/vue'
-import VueI18n from 'vue-i18n'
+import { withKnobs } from '@storybook/addon-knobs/vue'
 //import { action } from '@storybook/addon-actions'
 
 import '../app-core/index.css'
 
 import AcademyExcerpt from './academy-excerpt.vue'
 import README from './README.md'
+import createStore from '../../store'
 
 const stories = storiesOf('Components/Academy Excerpt', module)
   .addDecorator(withKnobs)
@@ -19,12 +19,11 @@ Vue.component('academy-excerpt', AcademyExcerpt)
 stories.add(
   'Academy Excerpt - with image',
   () => ({
-    i18n: new VueI18n({ locale: 'en' }),
+    store: createStore(),
     template: `
     <div style="margin-top: 100px;">
       <academy-excerpt
         date-string="2018-10-31"
-        current-locale="${select('locale', { en: 'en', nl: 'nl' }, 'en')}"
         title="Simply Serverless Meetup"
         description="On 12 July we will host the Simply Serverless Meetup. We'll introduce you to cloud functions, a brand new tool for serverless Node apps and show the benefits by sharing a project built with a serverless architecture."
         ctaPrimaryLabel="Sign up"
@@ -33,7 +32,7 @@ stories.add(
         ctaSecondaryTo="https://google.nl"
         :image="{
           url: 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
-          type: 'jpeg',
+          format: 'jpeg',
           width: 1280,
           height: 720,
         }"
@@ -46,12 +45,11 @@ stories.add(
 stories.add(
   'Academy Excerpt - without image',
   () => ({
-    i18n: new VueI18n({ locale: 'en' }),
+    store: createStore(),
     template: `
     <div style="margin-top: 100px;">
       <academy-excerpt
         date-string="2018-10-31"
-        current-locale="${select('locale', { en: 'en', nl: 'nl' }, 'en')}"
         title="Simply Serverless Meetup"
         description="On 12 July we will host the Simply Serverless Meetup. We'll introduce you to cloud functions, a brand new tool for serverless Node apps and show the benefits by sharing a project built with a serverless architecture."
         ctaPrimaryLabel="Sign up"

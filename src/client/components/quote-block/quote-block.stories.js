@@ -7,28 +7,24 @@ import VueI18n from 'vue-i18n'
 
 import '../app-core/index.css'
 
-import PageTitle from './page-title.vue'
+import QuoteBlock from './quote-block.vue'
 import README from './README.md'
 
-const stories = storiesOf('Components/Page Title', module)
+const stories = storiesOf('Components/Quote Block', module)
   .addDecorator(withKnobs)
   .addDecorator(withReadme(README))
 
-Vue.component('page-title', PageTitle)
+Vue.component('quote-block', QuoteBlock)
 
 stories.add(
-  'Page Title',
+  'Quote Block',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     template: `
-      <page-title>
-        <template slot="title">
-          <span>We are De Voorhoede</span>
-        </template>
-        <template slot="subTitle">
-          <span>How can we help?</span>
-        </template>
-      </page-title>
+      <quote-block
+        quote="Drop &amp; Fly allows passengers to check in their own baggage. In less than a minute, with state-of-the-art technology."
+        cite="The Drop &amp; fly team"
+      />
     `,
   }),
 )

@@ -6,22 +6,22 @@
       </nuxt-link>
       <div class="app-header__link-lists body-petite">
         <ul class="app-header__link-list">
-          <li v-for="link in links" :key="link.href" class="app-header__link-list-item">
+          <li v-for="link in localizedMenuItems" :key="link.href" class="app-header__link-list-item">
             <app-button small v-if="link.button" :label="link.title" :to="createHref(link)"/>
             <nuxt-link v-else class="app-header__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
           </li>
         </ul>
         <ul class="app-header__link-list app-header__link-list--languages">
           <li
-            v-for="language in languages"
-            :key="language.locale"
+            v-for="locale in locales"
+            :key="locale"
+            class="app-header__link-list-item"
             :class="{
-              'app-header__link-list-item': true,
-              'font-bold': language.locale === currentLocale,
+              'font-bold': locale === currentLocale,
             }"
           >
-            <span v-if="language.locale === currentLocale">{{ language.locale }}</span>
-            <nuxt-link class="app-header__link" v-else :to="language.href">{{ language.locale }}</nuxt-link>
+            <span v-if="locale === currentLocale">{{ locale }}</span>
+            <nuxt-link class="app-header__link" v-else :to="alternateUrl">{{ locale }}</nuxt-link>
           </li>
         </ul>
       </div>
@@ -30,137 +30,119 @@
 </template>
 
 <script>
-import { AppButton } from '~/components'
+  import { mapGetters, mapState } from 'vuex'
+  import { AppButton } from '~/components'
 
-export default {
-  components: { AppButton },
-  props: {
-    currentUrl: {
-      type: String,
-      default: '/',
+  export default {
+    components: { AppButton },
+    computed: {
+      ...mapState([
+        'locales',
+        'currentLocale',
+        'alternateUrl',
+      ]),
+      ...mapGetters([
+        'localizedMenuItems',
+      ]),
     },
-    languages: {
-      type: Array,
-      default: () => [
-        { locale: 'en', href: '/en/' },
-        { locale: 'nl', href: '/nl/' },
-      ],
+    methods: {
+      createHref(link) {
+        const locale = this.currentLocale
+        return `/${locale}/${link.slug}/`
+      },
     },
-    links: {
-      type: Array,
-      default: () => [],
-    },
-    currentLocale: {
-      type: String,
-      default: '',
-    },
-  },
-  computed: {
-    activeLanguage() {
-      const trailingSlashRegex = /\/$/
-      const currentUrl = this.currentUrl.replace(trailingSlashRegex, '')
-      return this.languages.find(language => {
-        return language.href.replace(trailingSlashRegex, '') === currentUrl
-      })
-    },
-  },
-  methods: {
-    createHref(link) {
-      const locale = this.currentLocale
-      return `/${locale}/${link.slug}/`
-    },
-  },
-}
+  }
 </script>
 
 <style>
-.app-header {
-  border-bottom: 1px solid var(--fog);
-  height: var(--app-header-height);
-}
-
-.app-header__content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.app-header__logo {
-  width: auto;
-  height: 1.4375rem; /* 23px */
-}
-
-.app-header__link-lists {
-  display: flex;
-  align-items: center;
-}
-
-.app-header__link-list {
-  display: none;
-}
-
-.app-header__link-list--languages {
-  display: flex;
-  align-items: center;
-  text-transform: uppercase;
-}
-
-.app-header__link-list-item {
-  padding: 0 calc(var(--spacing-small) / 2);
-  font-family: var(--font-sans);
-  color: var(--html-blue);
-}
-
-.app-header__link {
-  text-decoration: none;
-}
-
-.app-header__link:hover {
-  color: var(--active-blue);
-}
-
-.app-header__link-list--languages .app-header__link-list-item {
-  padding-right: var(--spacing-tiny);
-}
-
-.app-header__link-list--languages .app-header__link-list-item + .app-header__link-list-item {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.app-header__link-list--languages .app-header__link-list-item + .app-header__link-list-item::before {
-  content: '|';
-  padding-right: var(--spacing-tiny);
-  color: var(--html-blue);
-}
-
-@media screen and (min-width: 720px) {
-  .app-header__logo {
-    height: 1.625rem; /* 26px */
+  .app-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    height: var(--app-header-height);
+    width: 100%;
+    border-bottom: 1px solid var(--fog);
   }
 
-  .app-header__link-list {
+  .app-header__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .app-header__logo {
+    width: auto;
+    height: 1.4375rem; /* 23px */
+  }
+
+  .app-header__link-lists {
     display: flex;
     align-items: center;
   }
-}
 
-@media screen and (min-width: 1100px) {
-  .app-header {
-    height: var(--app-header-height-large);
+  .app-header__link-list {
+    display: none;
   }
 
-  .app-header__logo {
-    height: 1.8125rem; /* 29px */
+  .app-header__link-list--languages {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
   }
 
   .app-header__link-list-item {
-    padding: 0 calc(var(--spacing-large) / 2);
+    padding: 0 calc(var(--spacing-small) / 2);
+    font-family: var(--font-sans);
+    color: var(--html-blue);
+  }
+
+  .app-header__link {
+    text-decoration: none;
+  }
+
+  .app-header__link:hover {
+    color: var(--active-blue);
   }
 
   .app-header__link-list--languages .app-header__link-list-item {
     padding-right: var(--spacing-tiny);
   }
-}
+
+  .app-header__link-list--languages .app-header__link-list-item + .app-header__link-list-item {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .app-header__link-list--languages .app-header__link-list-item + .app-header__link-list-item::before {
+    content: '|';
+    padding-right: var(--spacing-tiny);
+    color: var(--html-blue);
+  }
+
+  @media screen and (min-width: 720px) {
+    .app-header__logo {
+      height: 1.625rem; /* 26px */
+    }
+
+    .app-header__link-list {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  @media screen and (min-width: 1100px) {
+    .app-header__logo {
+      height: 1.8125rem; /* 29px */
+    }
+
+    .app-header__link-list-item {
+      padding: 0 calc(var(--spacing-large) / 2);
+    }
+
+    .app-header__link-list--languages .app-header__link-list-item {
+      padding-right: var(--spacing-tiny);
+    }
+  }
 
 </style>

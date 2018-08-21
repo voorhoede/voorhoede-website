@@ -1,13 +1,19 @@
 <template>
   <article>
-    <nuxt-link :to="item.url" class="blog-list-item">
+    <nuxt-link :to="{ name: 'locale-blog-slug', params: { locale: currentLocale, slug: item.slug }}" class="blog-list-item">
       <time datetime="item.date" class="blog-list-item__time body-petite">{{ formattedDate }}</time>
-
       <div class="blog-list-item__content">
         <h3 class="body blog-list-item__heading">{{ item.title }}</h3>
         <div class="blog-list-item__author">
-          <img class="blog-list-item__image" alt="" v-for="author in item.authors" :src="author.image.url" :key="author.name"
-               :width="author.image.width" :height="author.image.width">
+          <lazy-load v-for="author in item.authors" :key="author.name">
+            <img
+              :width="thumbnailSize"
+              :height="thumbnailSize"
+              class="blog-list-item__image"
+              :src="`${author.image.url}?auto=compress&auto=quality&fm=webp&w=40&h=40&fit=crop`"
+              alt=""
+            >
+          </lazy-load>
           <span class="body-petite">{{ authorName }}</span>
         </div>
       </div>
@@ -16,24 +22,29 @@
 </template>
 
 <script>
-  import FixedRatio from '../fixed-ratio'
+  import { mapState } from 'vuex'
+  import { LazyLoad } from '~/components'
 
   export default {
-    components: { FixedRatio },
+    components: { LazyLoad },
     props: {
       item: {
         type: Object,
         required: true,
         validator(item) {
-          return typeof(item.url) === 'string' && typeof(item.title) === 'string' && !!Date.parse(item.date) && item.authors.length >= 1
+          return typeof(item.slug) === 'string' && typeof(item.title) === 'string' && !!Date.parse(item.date) && item.authors.length >= 1
         },
-        currentLocale: {
-          type: String,
-          required: true
-        }
-      },
+      }
+    },
+    data() {
+      return {
+        thumbnailSize: 40
+      }
     },
     computed: {
+      ...mapState([
+        'currentLocale',
+      ]),
       authorName() {
         return `by ${this.item.authors.map(author => author.name).join(', ')}`
       },
@@ -79,6 +90,7 @@
       display: block;
       color: var(--dim);
       margin-right: var(--spacing-medium);
+      flex-shrink: 0;
     }
   }
 
@@ -95,6 +107,7 @@
   }
 
   .blog-list-item__image {
+    display: block;
     margin-right: var(--spacing-smaller);
   }
 

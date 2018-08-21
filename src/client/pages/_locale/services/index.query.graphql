@@ -1,5 +1,13 @@
-{
-  home {
-    title
+query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
+  serviceOverview(locale:$locale) {
+    ...serviceOverview
+  },
+
+  alternate:serviceOverview {
+    slug(locale:$alternateLocale)
   }
+}
+
+fragment serviceOverview on ServiceOverviewRecord {
+  title
 }

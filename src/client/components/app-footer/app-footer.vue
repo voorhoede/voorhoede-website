@@ -9,11 +9,11 @@
       <h5 class="body app-footer__list-title font-bold">Explore</h5>
       <ul class="app-footer__list">
         <li
-          v-for="({ href, title }, index) in exploreLinks"
-          :key="index"
+          v-for="link in exploreLinks"
+          :key="link.slug"
           class="app-footer__list-item body-detail"
         >
-          <nuxt-link :to="href" class="app-footer__link">{{ title }}</nuxt-link>
+          <nuxt-link :to="link.slug" class="app-footer__link">{{ link.title }}</nuxt-link>
         </li>
       </ul>
     </div>
@@ -21,42 +21,40 @@
       <h5 class="body app-footer__list-title font-bold">Contact</h5>
       <ul class="body-detail app-footer__list app-footer__list--border-none app-footer__list--no-padding">
         <li class="app-footer__list-item">
-          <nuxt-link class="app-footer__link" target="_blank" :to="`tel:${ tel }`">{{ tel }}</nuxt-link>
+          <a class="app-footer__link" target="_blank" :href="`tel:${cleanedTelephone}`">{{ tel }}</a>
         </li>
         <li class="app-footer__list-item">
-          <nuxt-link class="app-footer__link" target="_blank" :to="`mailto:${ email }`">{{ email }}</nuxt-link>
+          <a class="app-footer__link" target="_blank" :href="`mailto:${ email }`">{{ email }}</a>
         </li>
         <li class="app-footer__list-item">
-          <nuxt-link
+          <a
             target="_blank"
-            :to="`${ googleMapsLink }`"
+            :href="googleMapsLink"
             class="app-footer__link app-footer__link--right"
           >
             <span>{{ address }}</span>
             <span>{{ postalCode }}</span>
-          </nuxt-link>
+          </a>
         </li>
       </ul>
     </div>
     <div class="app-footer__bottom">
       <div class="body-detail app-footer__bottom-text">
-        <dl class="app-footer__definition-list" v-for="({ key, value }, index) in legal" :key="index">
-          <dt>{{ key }}</dt>: <dd class="app-footer__definition-value">{{ value }}</dd>
+        <dl class="app-footer__definition-list" v-for="legalItem in legal" :key="legalItem.key">
+          <dt>{{ legalItem.key }}</dt>: <dd class="app-footer__definition-value">{{ legalItem.value }}</dd>
         </dl>
       </div>
       <ul class="app-footer__list--icon">
         <li class="app-footer__list-item--icon"
-            v-for="({ icon, href }, index ) in social" :key="index">
-          <nuxt-link :to="`${ href }`" target="_blank">
-            <app-icon :name="`${ icon }`" :is-large="true" />
-          </nuxt-link>
+            v-for="socialItem in social" :key="socialItem.href">
+          <a :href="socialItem.href" target="_blank">
+            <app-icon :name="socialItem.icon" :is-large="true" />
+          </a>
         </li>
       </ul>
       <div class="body-detail app-footer__copyright">
         {{ copyright }}
-        <nuxt-link :to="privacyLink" class="app-footer__privacy" target="_blank">
-          {{ privacyLinkLabel }}
-        </nuxt-link>
+        <a :href="privacyLink" class="app-footer__privacy" target="_blank">{{ privacyLinkLabel }}</a>
       </div>
     </div>
   </footer>
@@ -78,7 +76,7 @@ export default {
           links.every(link => {
             return link instanceof Object &&
               typeof link.title === 'string' &&
-              typeof link.href === 'string'
+              typeof link.slug === 'string'
           })
         )
       },
@@ -150,6 +148,11 @@ export default {
       },
     },
   },
+  computed: {
+    cleanedTelephone() {
+      return this.tel.replace(/[^0-9]/g, '')
+    }
+  }
 }
 </script>
 

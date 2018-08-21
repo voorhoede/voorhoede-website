@@ -1,12 +1,17 @@
-query CaseQuery($slug:String, $locale:SiteLocale, $altLocale:SiteLocale)  {
-  project(locale:$locale, , filter: { slug: { eq: $slug } }) {
-    ...project
+query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
+  caseItem(locale: $locale, filter: { slug: { eq: $slug } }) {
+    ...caseItem
   },
-  alternateUrl: project(locale:$altLocale) {
-    slug
+
+  alternate: caseItem(locale: $locale, filter: { slug: { eq: $slug } }) {
+    slug(locale: $alternateLocale)
+  },
+
+  alternateParent: caseOverview {
+    slug(locale: $alternateLocale)
   }
 }
 
-fragment project on ProjectRecord {
+fragment caseItem on CaseItemRecord {
   title
 }

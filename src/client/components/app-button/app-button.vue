@@ -15,6 +15,23 @@
       <path d="M8.461 7.5L4.177 5.273V3.046l6.646 3.468v1.972l-6.646 3.468V9.727z"/>
     </svg>
   </button>
+  <a
+    v-else-if="external"
+    :class="rootClass"
+    v-bind="$attrs"
+    v-on="$listeners"
+    :href="to"
+  >
+    {{ label }}
+    <svg
+      v-if="secondary"
+      class="app-button__svg"
+      width="16"
+      height="16"
+      viewBox="0 0 15 15">
+      <path d="M8.461 7.5L4.177 5.273V3.046l6.646 3.468v1.972l-6.646 3.468V9.727z"/>
+    </svg>
+  </a>
   <nuxt-link
     v-else
     :class="rootClass"
@@ -42,7 +59,7 @@
         required: true,
       },
       to: {
-        type: String,
+        type: [String, Object],
         default: '',
       },
       secondary: {
@@ -53,6 +70,10 @@
         type: Boolean,
         default: false,
       },
+      external: {
+        type: Boolean,
+        default: false,
+      }
     },
     computed: {
       primary() {

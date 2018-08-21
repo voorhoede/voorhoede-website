@@ -1,9 +1,14 @@
-query BlogPost($slug:String, $locale:SiteLocale, $altLocale:SiteLocale)  {
-  blogPost(locale:$locale, , filter: { slug: { eq: $slug } }) {
+query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
+  blogPost(locale: $locale, filter: { slug: { eq: $slug } }) {
     ...blogPost
   },
-  alternateUrl: blogPost(locale:$altLocale) {
-    slug
+
+  alternate: blogPost(locale: $locale, filter: { slug: { eq: $slug } }) {
+    slug(locale: $alternateLocale)
+  },
+
+  alternateParent: blogPostOverview {
+    slug(locale: $alternateLocale)
   }
 }
 
