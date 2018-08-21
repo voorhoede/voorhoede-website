@@ -1,6 +1,6 @@
 <template>
   <figure class="responsive-image">
-    <div class="responsive-image__sizer" :style="needsMaxWidth ? `max-width:${image.width}px;` : ''">
+    <div class="responsive-image__sizer" :style="hasMaxWidth ? `max-width:${image.width}px;` : ''">
       <fixed-ratio class="responsive-image__canvas" :width="image.width" :height="image.height">
         <lazy-load>
           <picture class="responsive-image__picture">
@@ -49,21 +49,36 @@ export default {
       type: Number,
       default: 100,
     },
-    needsMaxWidth: {
+    hasMaxWidth: {
       type: Boolean,
-      default: true
+      default: true,
+    },
+    percentageOfPageWidth: {
+      type: Number,
+      default: 100,
+      validator(value) {
+        return (
+          value > 1 &&
+          value <= 100
+        )
+      }
     }
   },
   data() {
     return {
-      width: undefined,
+      width: null,
     }
   },
   mounted() {
     const pixelRatio = window.devicePixelRatio || 1
     const cssWidth = this.$el.getBoundingClientRect().width
     const width = Math.ceil(cssWidth * pixelRatio / this.widthStep) * this.widthStep
-    this.width = Math.min(width, this.image.width)
+
+    if (this.hasMaxWidth) {
+      this.width = Math.min(width, this.image.width)
+    } else {
+      this.width = width * ( this.percentageOfPageWidth / 100 )
+    }
   },
   methods: {
     imageUrl(options) {
