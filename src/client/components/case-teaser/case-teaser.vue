@@ -4,7 +4,9 @@
       <responsive-image :image="image" />
     </div>
     <header class="case-teaser__header">
-      <h2 class="case-teaser__title h2">Self-service baggage drop-off with a web UI</h2>
+      <h2 class="case-teaser__title h2">
+        Self-service baggage drop-off with a web UI
+      </h2>
     </header>
   </section>
 </template>
@@ -27,7 +29,7 @@ export default {
 
 <style>
 .case-teaser {
-  margin: var(--spacing-larger) 0;
+  margin: 0 0 var(--spacing-large) 0;
 }
 
 .case-teaser__header {
@@ -37,7 +39,6 @@ export default {
 .case-teaser__title {
   grid-column: content;
   grid-column-start: 2;
-  display: grid;
 }
 
 .case-teaser__image {
@@ -45,12 +46,13 @@ export default {
   grid-column-end: 20;
 }
 
-.case-teaser__title::after {
+.case-teaser__header::after {
   content: '';
   margin-top: var(--spacing-larger);
   width: 60px;
   height: 2px;
   border-bottom: 2px solid var(--very-dim);
+  position: absolute;
 }
 
 @media (min-width: 720px) {
@@ -79,7 +81,7 @@ export default {
     grid-column-end: 2;
   }
 
-  .case-teaser__title::after {
+  .case-teaser__header::after {
     border-bottom: none;
   }
 }
