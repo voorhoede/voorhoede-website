@@ -1,10 +1,10 @@
 <template>
   <responsive-image
-    :has-max-width="false"
+    :needs-max-width="false"
     :image="{
       'format': 'jpeg',
       'width': 640,
-      'height': 480,
+      'height': 360,
       'alt': 'Two hands forming a heart around the sun during a sunset',
       'url': 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
     }"
