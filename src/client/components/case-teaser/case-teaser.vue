@@ -5,7 +5,7 @@
     </div>
     <header class="case-teaser__header">
       <h2 class="case-teaser__title h2">
-        Self-service baggage drop-off with a web UI
+        {{ title }}
       </h2>
     </header>
   </section>
@@ -19,6 +19,10 @@ export default {
     ResponsiveImage
   },
   props: {
+    title: {
+      type: String,
+      default: ''
+    },
     image : {
       type: Object,
       default: () => {},

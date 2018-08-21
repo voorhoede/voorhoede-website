@@ -23,6 +23,7 @@ stories.add(
     template: `
       <case-teaser
         :image="image"
+        title="Self-service baggage drop-off with a web UI"
       />`,
       data() {
         return {
