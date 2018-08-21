@@ -116,7 +116,7 @@ export default {
   .highlighted-clients__list {
     display: grid;
     grid-template-columns: repeat(var(--highlighted-clients-columns), var(--highlighted-clients-width));
-    row-gap: var(--spacing-medium);
+    grid-row-gap: var(--spacing-medium);
   }
 
   .highlighted-clients__client {

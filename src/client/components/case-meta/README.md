@@ -5,29 +5,29 @@
 
 ```html
 <case-meta
-  expertiseTitle="Expertise"
+  expertise-title="Expertise"
   :expertises="[{title: 'Development'}, {title: 'Prototyping'}]"
-  platformTitle="Platform"
+  platform-title="Platform"
   :platforms="[{title: 'Vuejs'}, {title: 'Node.js'}, {title: 'Nuxt'}]"
-  deliverableTitle="Deliverables"
+  deliverable-title="Deliverables"
   :deliverables="[{title: 'API intergration'}, {title: 'BFF (back-end for front-end)'}]"
-  interestedTitle="Interested"
-  interestedLinkLabel="Visit site"
-  interestedLinkUrl="https://google.nl"
+  interested-title="Interested"
+  interested-link-label="Visit site"
+  interested-link-url="https://google.nl"
 />
 ```
 
 ## Props
 | Prop | Type | Required | Description |
 | --- | --- | --- | --- |
-| expertiseTitle | String | true | Title of the section |
+| expertise-title | String | true | Title of the section |
 | expertises | Array | true | Array of items |
-| platformTitle | String | true | Title of the section |
+| platform-title | String | true | Title of the section |
 | platforms | Array | true | Array of items |
-| deliverableTitle | String | true | Title of the section |
+| deliverable-title | String | true | Title of the section |
 | deliverables | Array | true | Array of items |
-| interestedTitle | String | true | Title of the section |
-| interestedLinkLabel | String | true | Label for the interested link |
+| interested-title | String | true | Title of the section |
+| interested-link-label | String | true | Label for the interested link |
 
 Each item has the following props:
 
