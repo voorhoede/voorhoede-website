@@ -23,15 +23,15 @@ stories.add(
     template: `
       <get-in-touch-form
         title="Let's discuss what we can do - together."
-        nameLabel="My name is"
-        namePlaceholder="Your name"
-        emailLabel="You can email me at"
-        emailPlaceholder="Email address"
-        phoneLabel="You can call me on"
-        phonePlaceholder="Phone number"
-        summaryLabel="My project is"
-        summaryPlaceholder="Short summary of my project"
-        ctaLabel="Get in touch"
+        name-label="My name is"
+        name-placeholder="Your name"
+        email-label="You can email me at"
+        email-placeholder="Email address"
+        phone-label="You can call me on"
+        phone-placeholder="Phone number"
+        summary-label="My project is"
+        summary-placeholder="Short summary of my project"
+        cta-label="Get in touch"
       />
     `,
   }),
