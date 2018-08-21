@@ -24,15 +24,15 @@ stories.add(
     i18n: new VueI18n({ locale: 'en' }),
     template: `
       <case-meta
-        expertiseTitle="Expertise"
+        expertise-title="Expertise"
         :expertises="[{title: 'Development'}, {title: 'Prototyping'}]"
-        platformTitle="Platform"
+        platform-title="Platform"
         :platforms="[{title: 'Vuejs'}, {title: 'Node.js'}, {title: 'Nuxt'}]"
-        deliverableTitle="Deliverables"
+        deliverable-title="Deliverables"
         :deliverables="[{title: 'API intergration'}, {title: 'BFF (back-end for front-end)'}]"
-        interestedTitle="Interested"
-        interestedLinkLabel="Visit site"
-        interestedLinkUrl="https://google.nl"
+        interested-title="Interested"
+        interested-link-label="Visit site"
+        interested-link-url="https://google.nl"
       />
     `,
   }),
