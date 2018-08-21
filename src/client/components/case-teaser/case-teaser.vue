@@ -91,6 +91,7 @@ export default {
 
   .case-teaser__header {
     grid-column-start: 31;
+    grid-column-end: 46;
   }
 }
 </style>
