@@ -20,14 +20,6 @@ export default {
     image : {
       type: Object,
       default: () => {},
-      validator: (image) => {
-        return image instanceof Object &&
-          typeof image.url === 'string' &&
-          typeof image.alt === 'string' &&
-          typeof image.format === 'string' &&
-          typeof image.width === 'string' &&
-          typeof image.height === 'string'
-      }
     }
   }
 }
@@ -72,6 +64,10 @@ export default {
     grid-row: 1;
   }
 
+  .case-teaser__image .responsive-image__sizer {
+    margin-right: 0;
+  }
+
   .case-teaser__header {
     grid-column: content-right;
     grid-row: 1;
@@ -94,7 +90,7 @@ export default {
   }
 
   .case-teaser__header {
-    grid-column-start: 29;
+    grid-column-start: 31;
   }
 }
 </style>
