@@ -21,10 +21,11 @@ export default {
   props: {
     title: {
       type: String,
-      default: ''
+      required: true
     },
     image : {
       type: Object,
+      required: true,
       default: () => {},
     }
   }
