@@ -23,11 +23,9 @@ stories.add(
     template: `
       <case-teaser
         :image="image"
-        :needs-max-width="needsMaxWidth"
       />`,
       data() {
         return {
-          needsMaxWidth: false,
           image: {
             'format': 'jpeg',
             'width': 720,
