@@ -57,13 +57,13 @@
 <style>
   .app-header {
     position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  height: var(--app-header-height);
-  width: 100%;
-  border-bottom: 1px solid var(--fog);
-}
+    top: 0;
+    left: 0;
+    z-index: 1;
+    height: var(--app-header-height);
+    width: 100%;
+    border-bottom: 1px solid var(--fog);
+  }
 
   .app-header__content {
     display: flex;

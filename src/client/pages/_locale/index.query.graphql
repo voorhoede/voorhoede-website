@@ -1,8 +1,11 @@
-query HomePage($locale: SiteLocale)  {
+query HomePage($locale: SiteLocale, $altLocale: SiteLocale)  {
   page: home(locale:$locale) {
     ...page
   },
-  upcomingEvents: allAcademyItems(first: 1, orderBy: date_DESC) {
+  alternateUrl: home(locale:$altLocale) {
+    slug
+  },
+  upcomingEvents: allAcademyItems(first: 1, orderBy: date_ASC) {
     date,
     description,
     title,
@@ -31,6 +34,7 @@ query HomePage($locale: SiteLocale)  {
 }
 
 fragment page on HomeRecord {
+  slug,
   title,
   social {
     title,
@@ -56,7 +60,6 @@ fragment page on HomeRecord {
     slug,
     title,
     subtitle,
-    published,
     heroIllustration {
       url
     }

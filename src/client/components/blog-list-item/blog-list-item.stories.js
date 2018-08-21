@@ -21,7 +21,7 @@ stories.add('Blog List item', () => ({
       return {
         blogItems: [
           {
-            url: '/some-url',
+            slug: 'some-slug',
             title: 'Peer-to-peer apis Peer-to-peer apis Peer-to-peer apis',
             date: '2018-04-20T00:00:00.000Z',
             authors: [{
@@ -36,7 +36,7 @@ stories.add('Blog List item', () => ({
             }],
           },
           {
-            url: '/some-url',
+            slug: 'some-slug',
             title: '13 command line tools to up your Front-end Game\n',
             date: '2018-04-10T00:00:00.000Z',
             authors: [{
@@ -51,7 +51,7 @@ stories.add('Blog List item', () => ({
             }],
           },
           {
-            url: '/some-url',
+            slug: 'some-slug',
             title: 'Real-time communication with Server Sent Events\n',
             date: '2018-01-24T00:00:00.000Z',
             authors: [

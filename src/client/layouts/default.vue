@@ -1,8 +1,8 @@
 <template>
   <div>
     <grid-demo :show="showGrid"/>
-    <app-header />
-    <nuxt />
+    <app-header/>
+    <nuxt/>
     <app-footer
       :header-title="localizedFooter.headerTitle"
       :header-subtitle="localizedFooter.headerSubtitle"
