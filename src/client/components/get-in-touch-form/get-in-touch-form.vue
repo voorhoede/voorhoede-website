@@ -13,7 +13,7 @@
       </label>
       <label class="get-in-touch-form__label">
         <span class="get-in-touch-form__label-text body-petite">{{ phoneLabel }}</span>
-        <input class="body" type="number" :placeholder="phonePlaceholder" name="number">
+        <input class="body" type="text" :placeholder="phonePlaceholder" name="number">
       </label>
       <label class="get-in-touch-form__label">
         <span class="get-in-touch-form__label-text body-petite">{{ summaryLabel }}</span>
