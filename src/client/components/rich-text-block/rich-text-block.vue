@@ -17,7 +17,6 @@
   .rich-text {
     font-family: var(--font-sans);
     font-size: .875rem; /* 14px */
-    margin-bottom: var(--spacing-larger);
   }
 
   .rich-text p {
