@@ -52,16 +52,6 @@ export default {
     hasMaxWidth: {
       type: Boolean,
       default: true,
-    },
-    percentageOfPageWidth: {
-      type: Number,
-      default: 100,
-      validator(value) {
-        return (
-          value > 1 &&
-          value <= 100
-        )
-      }
     }
   },
   data() {
@@ -77,7 +67,7 @@ export default {
     if (this.hasMaxWidth) {
       this.width = Math.min(width, this.image.width)
     } else {
-      this.width = width * ( this.percentageOfPageWidth / 100 )
+      this.width = width
     }
   },
   methods: {
