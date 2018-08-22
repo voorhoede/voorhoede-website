@@ -25,8 +25,7 @@ export default {
     },
     image : {
       type: Object,
-      required: true,
-      default: () => {},
+      required: true
     }
   }
 }
@@ -49,11 +48,6 @@ export default {
   position: absolute;
 }
 
-.case-teaser__title {
-  grid-column: content;
-  grid-column-start: 2;
-}
-
 .case-teaser__image {
   grid-column-start: 1;
   grid-column-end: 20;
@@ -65,7 +59,7 @@ export default {
   }
 
   .case-teaser__header {
-    grid-column: content-right;
+    grid-column-start: 20;
     grid-row: 1;
     align-self: center;
     margin: 0;
@@ -73,10 +67,6 @@ export default {
 
   .case-teaser__header::after {
     border-bottom: none;
-  }
-
-  .case-teaser__title {
-    grid-column-end: 2;
   }
 
   .case-teaser__image {
@@ -93,11 +83,13 @@ export default {
 @media (min-width: 1100px) {
   .case-teaser__header {
     grid-column-start: 31;
-    grid-column-end: 46;
+    grid-column-end: 50;
   }
+}
 
+@media (min-width: 720px) and (max-width: 960px) {
   .case-teaser__title {
-    grid-column: content-left;
+    font-size: 1.937rem;
   }
 }
 </style>

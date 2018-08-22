@@ -14,7 +14,7 @@ Used as a container to position components inside it.
 	:postalCode="postalCode"
 	:copyright="copyright"
 	:legal="legal"
-	:social="social
+	:social="social"
 >
 ```
 
