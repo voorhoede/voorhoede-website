@@ -30,7 +30,7 @@ stories.add(
           image: {
             'format': 'jpeg',
             'width': 720,
-            'height': 405,
+            'height': 400,
             'alt': 'Two hands forming a heart around the sun during a sunset',
             'url': 'https://www.datocms-assets.com/6524/1534941302-drop-and-fly.jpg',
           },
