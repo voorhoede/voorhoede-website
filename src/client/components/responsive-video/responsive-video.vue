@@ -16,7 +16,7 @@
           webkitallowfullscreen
           mozallowfullscreen
           allowfullscreen
-          allow="autoplay" 
+          allow="autoplay"
         />
         <a
           v-if="!isPlaying"
@@ -28,7 +28,7 @@
         </a>
       </fixed-ratio>
       <figcaption v-if="video.title">
-        <a target="_blank" rel="noopener" :href="video.url" >
+        <a class="responsive-video__caption body-detail" target="_blank" rel="noopener" :href="video.url" >
           {{ video.title }}
         </a>
       </figcaption>
@@ -82,20 +82,20 @@
             } else if (this.width < 480) {
               preset = '/hqdefault.jpg'
             }
-            
+
             return this.video.thumbnailUrl.replace('/hqdefault.jpg', preset)
           default:
             throw Error(`unsupported video provider for cover image: ${this.video.provider}`)
         }
       },
       videoUrl() {
-        if (!this.isPlaying) { 
+        if (!this.isPlaying) {
           return ''
         }
-        
+
         const { autoplay, loop, mute = autoplay } = this
         const { provider, providerUid } = this.video
-        
+
         switch (provider) {
           case 'vimeo':
             return `https://player.vimeo.com/video/${providerUid}?autoplay=1&muted=${binaryBoolean(mute)}&loop=${binaryBoolean(loop)}`
@@ -109,7 +109,7 @@
     mounted() {
       const pixelRatio = window.devicePixelRatio || 1
       const cssWidth = this.$el.getBoundingClientRect().width
-      
+
       this.width = cssWidth * pixelRatio
     },
     methods: {
@@ -163,5 +163,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  .responsive-video__caption {
+    display: block;
+    margin-top: var(--spacing-smaller);
   }
 </style>
