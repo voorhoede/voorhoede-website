@@ -20,12 +20,12 @@ storiesOf('Components/Responsive image', module)
       }
     },
   }))
-  .add('Ratio 16x9 - full width ( no max width )', () => ({
+  .add('Ratio 16x9 - full width', () => ({
     components: { ResponsiveImage },
     template: `
       <responsive-image
         :image="image"
-        :has-max-width="false"
+        :is-full-width="true"
       />
     `,
     data() {
