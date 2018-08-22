@@ -42,7 +42,7 @@ export default {
 
 .case-teaser__header::after {
   content: '';
-  margin-top: var(--spacing-larger);
+  margin-top: var(--spacing-large);
   width: 60px;
   border-bottom: 2px solid var(--very-dim);
   position: absolute;
