@@ -32,7 +32,7 @@ stories.add(
             'width': 720,
             'height': 405,
             'alt': 'Two hands forming a heart around the sun during a sunset',
-            'url': 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
+            'url': 'https://www.datocms-assets.com/6524/1534941302-drop-and-fly.jpg',
           },
         }
       },
