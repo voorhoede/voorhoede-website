@@ -31,11 +31,12 @@ stories.add(
           {
             title: 'Independence',
             body: '<p>all teams should be able to work and make progress independently of each other. This also applies to all disciplines within a team.</p>',
+            image: { url: '/images/logo--blue.svg' }
           },
           {
             title: 'Reuse',
             body: '<p>Each team is responsible for a different part of the website.</p>',
-            image: { url: '/images/logo--blue.svg' }
+            image: { url: 'https://www.datocms-assets.com/6524/1535033232-screen-shot-2018-08-23-at-16-06-24.png' }
           },
           {
             title: 'Transparency',
@@ -44,7 +45,6 @@ stories.add(
           },
           {
             body: '<p>all developers use the same vocabulary for all parts of the website. Designers, back-end developers and other stakeholders understand and use this terminology as well. The same goes for coding conventions (guidelines on how to write your code).</p><p>When it’s always clear what’s being done by each team, you prevent them doing the same thing twice. Transparency also allows you to review and improve each other’s work.</p>',
-            image: { url: '/images/logo--blue.svg' }
           },
         ]"
       />
