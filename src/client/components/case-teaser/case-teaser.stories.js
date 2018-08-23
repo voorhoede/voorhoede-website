@@ -31,7 +31,7 @@ stories.add(
             'format': 'jpeg',
             'width': 720,
             'height': 400,
-            'alt': 'Two hands forming a heart around the sun during a sunset',
+            'alt': 'User confirms on drop and fly screen that bags do not contain any prohibited items',
             'url': 'https://www.datocms-assets.com/6524/1534941302-drop-and-fly.jpg',
           },
         }
