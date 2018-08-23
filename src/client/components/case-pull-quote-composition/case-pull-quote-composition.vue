@@ -7,21 +7,17 @@
       {{ pullquote }}
     </h4>
     <div class="pullquote-composition__body">
-      <text-block>
-        <p class="body">
-          {{ body }}
-        </p>
-      </text-block>
+      <rich-text-block :text="text"/>
     </div>
   </section>
 </template>
 
 <script>
-import { TextBlock } from '~/components'
+import { RichTextBlock } from '~/components'
 
 export default {
   components: {
-    TextBlock
+    RichTextBlock,
   },
   props: {
     inverse: {
@@ -32,7 +28,7 @@ export default {
       type: String,
       required: true,
     },
-    body: {
+    text: {
       type: String,
       required: true,
     },
@@ -68,7 +64,7 @@ export default {
 }
 
 .pullquote-composition__body {
-  margin-top: var(--spacing-larger);
+  margin-top: var(--spacing-large);
 }
 
 @media (min-width: 375px) {
@@ -97,7 +93,6 @@ export default {
 
   .pullquote-composition__image {
     grid-column-start: 11;
-    max-width: 130px;
   }
 
   .pullquote-composition__body {
@@ -107,17 +102,23 @@ export default {
   }
 
   .pullquote-composition--inverse .pullquote-composition__image {
-    grid-column-start: 20;
+    grid-column-start: 24;
   }
 
   .pullquote-composition--inverse .pullquote-composition__title {
-    grid-column-start: 24;
-    grid-column-end: 33;
+    grid-column-start: 25;
+    grid-column-end: 34;
   }
 
   .pullquote-composition--inverse .pullquote-composition__body {
-    grid-column-end: 13;
+    grid-column-end: 16;
     grid-column-start: 2;
+  }
+}
+
+@media (max-width: 1100px) {
+  .pullquote-composition__image {
+    max-width: 120px;
   }
 }
 
@@ -133,12 +134,12 @@ export default {
 
   .pullquote-composition__body {
     grid-column-start: 29;
-    grid-column-end: 46;
+    grid-column-end: 48;
   }
 
   .pullquote-composition--inverse .pullquote-composition__title {
     grid-column-start: 34;
-    grid-column-end: 48;
+    grid-column-end: 46;
   }
 
   .pullquote-composition--inverse .pullquote-composition__image {
@@ -146,8 +147,19 @@ export default {
   }
 
   .pullquote-composition--inverse .pullquote-composition__body {
-    grid-column-end: 19;
+    grid-column-end: 21;
     grid-column-start: 2;
+  }
+}
+
+@media (min-width: 1440px) {
+  .pullquote-composition__body {
+    grid-column-start: 29;
+    grid-column-end: 45;
+  }
+
+  .pullquote-composition--inverse .pullquote-composition__body {
+    grid-column-start: 5;
   }
 }
 </style>
