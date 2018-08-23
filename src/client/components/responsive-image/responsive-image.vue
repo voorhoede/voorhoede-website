@@ -48,7 +48,7 @@ export default {
     widthStep: {
       type: Number,
       default: 100,
-    },
+    }
   },
   data() {
     return {
