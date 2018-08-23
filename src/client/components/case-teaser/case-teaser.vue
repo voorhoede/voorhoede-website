@@ -89,7 +89,7 @@ export default {
 
 @media (min-width: 720px) and (max-width: 960px) {
   .case-teaser__title {
-    font-size: 1.937rem;
+    font-size: 1.9375rem; /* 31px */
   }
 }
 </style>
