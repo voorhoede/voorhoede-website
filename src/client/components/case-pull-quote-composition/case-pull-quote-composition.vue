@@ -1,15 +1,14 @@
 <template>
   <section class="pullquote-componsition">
     <div class="pullquote-componsition__header grid">
-      <img src="/images/logo.svg" alt="" class="pullquote-componsition__image" >
+      <img :src="imageUrl" class="pullquote-componsition__image">
       <h4 class="pullquote pullquote-componsition__title">
-        Drop &amp; fly is installed in over 35 airports around the globe
+        {{ pullquote }}
       </h4>
       <div class="pullquote-composition__body">
         <text-block>
           <p class="body">
-            Drop & Fly units are placed all around the world. The user interface must be adaptable to each specific airport. So we developed a system to customise styling, texts and available languages. Now changing or adding an airport theme, language selection or text is just a matter of simple configuration.
-            This way the front-end can be easily adapted to the specific demands of Sita's current and future clients. A solution they can use for years to come!
+            {{ body }}
           </p>
         </text-block>
       </div>
@@ -23,6 +22,20 @@ import { TextBlock } from '~/components'
 export default {
   components: {
     TextBlock
+  },
+  props: {
+    pullquote: {
+      type: String,
+      required: true,
+    },
+    body: {
+      type: String,
+      required: true,
+    },
+    imageUrl: {
+      type: String,
+      required: true,
+    }
   }
 }
 </script>
@@ -34,19 +47,25 @@ export default {
 
 .pullquote-componsition__title {
   grid-row: 1;
-  grid-column: content-right;
+  grid-column-start: 9;
   align-self: center;
 }
 
 .pullquote-componsition__image {
   grid-row: 1;
   grid-column: content-left;
+  justify-self: flex-start;
   align-self: center;
-  justify-self: center;
 }
 
 .pullquote-composition__body {
   margin-top: var(--spacing-large);
+}
+
+@media (min-width: 375px) {
+  .pullquote-componsition__image {
+    justify-self: center;
+  }
 }
 
 @media (max-width: 480px) {
@@ -73,16 +92,17 @@ export default {
 
 @media (min-width: 1100px) {
   .pullquote-componsition__title {
-    grid-column-end: 14;
+    grid-column-end: 17;
+    grid-column-start: 7;
   }
 
   .pullquote-componsition__image {
-    grid-column-start: 15;
+    grid-column-start: 19;
   }
 
   .pullquote-composition__body {
     grid-column-start: 29;
-    grid-column-end: 42;
+    grid-column-end: 46;
   }
 }
 </style>

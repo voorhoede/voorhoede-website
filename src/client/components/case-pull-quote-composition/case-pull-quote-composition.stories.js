@@ -2,7 +2,6 @@ import Vue from 'vue'
 import { storiesOf } from '@storybook/vue'
 import { withReadme } from 'storybook-readme'
 import { withKnobs } from '@storybook/addon-knobs/vue'
-import VueI18n from 'vue-i18n'
 // import { action } from '@storybook/addon-actions'
 
 import '../app-core/index.css'
@@ -19,7 +18,11 @@ Vue.component('case-pull-quote-composition', CasePullQuoteComposition)
 stories.add(
   'Case Pull Quote Composition',
   () => ({
-    i18n: new VueI18n({ locale: 'en' }),
-    template: '<case-pull-quote-composition/>',
+    template: `<case-pull-quote-composition
+      image-url="/images/logo.svg"
+      pullquote="Drop and fly is installed in over 35 airports around the globe"
+      body="Drop and Fly units are placed all around the world. The user interface must be adaptable to each specific airport. So we developed a system to customise styling, texts and available languages. Now changing or adding an airport theme, language selection or text is just a matter of simple configuration.
+      This way the front-end can be easily adapted to the specific demands of Sita's current and future clients. A solution they can use for years to come!"
+    />`,
   }),
 )
