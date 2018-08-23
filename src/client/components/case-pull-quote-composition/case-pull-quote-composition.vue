@@ -1,6 +1,6 @@
 <template>
   <section class="pullquote-composition grid"
-           :class="inverseAlignment ? 'pullquote-composition--inverse' : '' ">
+           :class="inverse ? 'pullquote-composition--inverse' : '' ">
     <img :src="imageUrl" class="pullquote-composition__image">
     <h4 class="pullquote font-bold pullquote-composition__title">
       {{ pullquote }}
@@ -23,9 +23,9 @@ export default {
     TextBlock
   },
   props: {
-    inverseAlignment: {
+    inverse: {
       type: Boolean,
-      default: true,
+      default: false
     },
     pullquote: {
       type: String,
