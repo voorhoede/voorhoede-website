@@ -38,7 +38,7 @@ export default {
     },
     imageUrl: {
       type: String,
-      required: true,
+      default: '',
     }
   }
 }
