@@ -3,7 +3,6 @@
     <h2 class="storytelling-section__title h3">{{ title }}</h2>
     <section
       class="storytelling-section__item"
-      :class="{ 'storytelling-section__item--odd': index % 2 === 0 }"
       v-for="(item, index) in items"
       :key="index"
     >
@@ -57,7 +56,7 @@
 
   .storytelling-section__image-container {
     width: 240px;
-    margin: 0 auto var(--spacing-medium) auto;
+    margin: var(--spacing-medium) auto;
   }
 
   .storytelling-section__image {
@@ -73,18 +72,34 @@
     @supports (display: grid) {
       .storytelling-section__item {
         display: grid;
-        grid-template-columns: 33.33% 33.33% 33.33%;
+        align-items: center;
+        grid-template-columns: repeat(3, 1fr);
       }
-    }
 
-    .storytelling-section__image-container {
-      width: auto;
-      grid-column: 1;
-    }
+      .storytelling-section__image-container {
+        display: inline-block;
+        width: auto;
+        grid-column: 1;
+      }
 
-    .storytelling-section__card {
-      grid-column-start: 2;
-      grid-column-end: 3;
+      .storytelling-section__item:nth-of-type(2n) .storytelling-section__image-container {
+        grid-column: 3;
+        grid-row-start: 1;
+        grid-row-end: 3;
+      }
+
+      .storytelling-section__card {
+        display: inline-block;
+        grid-column-start: 2;
+        grid-column-end: 4;
+      }
+
+      .storytelling-section__item:nth-of-type(2n) .storytelling-section__card {
+        grid-row-start: 1;
+        grid-row-end: 3;
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
     }
   }
 </style>
