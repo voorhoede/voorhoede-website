@@ -19,7 +19,7 @@
     font-size: .875rem; /* 14px */
   }
 
-  .rich-text p {
+  .rich-text p:not(:last-child) {
     margin-bottom: var(--spacing-medium);
   }
 
@@ -64,7 +64,7 @@
   }
 
   @media (min-width: 720px) {
-    .rich-text p {
+    .rich-text p:not(:last-child) {
       margin-bottom: var(--spacing-large);
     }
 
