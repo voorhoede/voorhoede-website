@@ -19,6 +19,7 @@ stories.add(
   'Case Pull Quote Composition',
   () => ({
     template: `<case-pull-quote-composition
+      alignment-inverse="true"
       image-url="/images/logo.svg"
       pullquote="Drop and fly is installed in over 35 airports around the globe"
       body="Drop and Fly units are placed all around the world. The user interface must be adaptable to each specific airport. So we developed a system to customise styling, texts and available languages. Now changing or adding an airport theme, language selection or text is just a matter of simple configuration.
