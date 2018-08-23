@@ -2,7 +2,6 @@ import Vue from 'vue'
 import { storiesOf } from '@storybook/vue'
 import { withReadme } from 'storybook-readme'
 import { withKnobs } from '@storybook/addon-knobs/vue'
-import VueI18n from 'vue-i18n'
 // import { action } from '@storybook/addon-actions'
 
 import '../app-core/index.css'
@@ -19,11 +18,10 @@ Vue.component('case-teaser', CaseTeaser)
 stories.add(
   'Case Teaser',
   () => ({
-    i18n: new VueI18n({ locale: 'en' }),
     template: `
       <case-teaser
         :image="image"
-        title="Self-service baggage drop-off with a web UI"
+        title="Self-service baggage drop-ofgif with a web UI"
       />`,
       data() {
         return {
