@@ -2,7 +2,7 @@
   <section class="pullquote-componsition">
     <div class="pullquote-componsition__header grid">
       <img :src="imageUrl" class="pullquote-componsition__image">
-      <h4 class="pullquote pullquote-componsition__title">
+      <h4 class="pullquote font-bold pullquote-componsition__title">
         {{ pullquote }}
       </h4>
       <div class="pullquote-composition__body">
@@ -59,7 +59,7 @@ export default {
 }
 
 .pullquote-composition__body {
-  margin-top: var(--spacing-large);
+  margin-top: var(--spacing-larger);
 }
 
 @media (min-width: 375px) {
@@ -68,7 +68,13 @@ export default {
   }
 }
 
-@media (max-width: 480px) {
+@media (min-width: 480px) {
+  .pullquote-componsition__title {
+    grid-column-end: 15;
+  }
+}
+
+@media (max-width: 479px) {
   .pullquote-componsition__image {
     max-width: 110px;
   }
