@@ -3,11 +3,11 @@
     <div class="case-teaser__image">
       <responsive-image :image="image" />
     </div>
-    <header class="case-teaser__header">
+    <div class="case-teaser__header">
       <h2 class="case-teaser__title h2">
         {{ title }}
       </h2>
-    </header>
+    </div>
   </section>
 </template>
 

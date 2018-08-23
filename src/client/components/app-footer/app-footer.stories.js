@@ -60,16 +60,16 @@ stories.add(
       }
     },
     template: `<app-footer
-                :exploreLinks="exploreLinks"
-                :headerTitle="headerTitle"
-                :headerSubtitle="headerSubtitle"
+                :explore-links="exploreLinks"
+                :header-title="headerTitle"
+                :header-subtitle="headerSubtitle"
                 :tel="tel"
                 :email="email"
-                :googleMapsLink="googleMapsLink"
+                :google-maps-link="googleMapsLink"
                 :address="address"
-                :postalCode="postalCode"
-                :privacyLinkLabel="privacyLinkLabel"
-                :privacyLink="privacyLink"
+                :postal-code="postalCode"
+                :privacy-link-label="privacyLinkLabel"
+                :privacy-link="privacyLink"
                 :legal="legal"
                 :social="social"
                 :copyright="copyright"
