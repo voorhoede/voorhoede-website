@@ -20,7 +20,7 @@ stories.add(
   () => ({
     template: `<case-pull-quote-composition
       :inverse="false"
-      image-url="/images/logo.svg"
+
       pullquote="Drop and fly is installed in over 35 airports around the globe"
       body="Drop and Fly units are placed all around the world. The user interface must be adaptable to each specific airport. So we developed a system to customise styling, texts and available languages. Now changing or adding an airport theme, language selection or text is just a matter of simple configuration.
       This way the front-end can be easily adapted to the specific demands of Sita's current and future clients. A solution they can use for years to come!"

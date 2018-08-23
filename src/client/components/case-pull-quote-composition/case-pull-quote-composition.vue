@@ -1,8 +1,9 @@
 <template>
   <section class="pullquote-composition grid"
            :class="inverse ? 'pullquote-composition--inverse' : '' ">
-    <img :src="imageUrl" class="pullquote-composition__image">
-    <h4 class="pullquote font-bold pullquote-composition__title">
+    <img :src="imageUrl" class="pullquote-composition__image" v-if="imageUrl">
+    <h4 class="pullquote font-bold pullquote-composition__title"
+        :class="imageUrl ? '' : 'pullquote-composition__title--align-left' ">
       {{ pullquote }}
     </h4>
     <div class="pullquote-composition__body">
@@ -54,6 +55,10 @@ export default {
   align-self: center;
 }
 
+.pullquote-composition__title--align-left {
+  grid-column: content;
+}
+
 .pullquote-composition__image {
   grid-row: 1;
   grid-column: content-left;
@@ -92,11 +97,13 @@ export default {
 
   .pullquote-composition__image {
     grid-column-start: 11;
+    max-width: 130px;
   }
 
   .pullquote-composition__body {
     grid-column-start: 20;
     grid-row: 1;
+    margin-top: 0;
   }
 
   .pullquote-composition--inverse .pullquote-composition__image {
@@ -129,13 +136,13 @@ export default {
     grid-column-end: 46;
   }
 
-  .pullquote-composition--inverse .pullquote-composition__image {
-    grid-column-start: 30;
-  }
-
   .pullquote-composition--inverse .pullquote-composition__title {
     grid-column-start: 34;
     grid-column-end: 48;
+  }
+
+  .pullquote-composition--inverse .pullquote-composition__image {
+    grid-column-start: 30;
   }
 
   .pullquote-composition--inverse .pullquote-composition__body {
