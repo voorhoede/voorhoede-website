@@ -52,6 +52,7 @@
   .storytelling-section {
     background-color: var(--paper);
     grid-row-gap: var(--spacing-large);
+    grid-column: content;
   }
 
   .storytelling-section__image-container {
@@ -69,37 +70,61 @@
   }
 
   @media (min-width: 720px) {
-    @supports (display: grid) {
-      .storytelling-section__item {
-        display: grid;
-        align-items: center;
-        grid-template-columns: repeat(3, 1fr);
-      }
+    .storytelling-section__title {
+      grid-column-start: 5;
+    }
 
-      .storytelling-section__image-container {
-        display: inline-block;
-        width: auto;
-        grid-column: 1;
-      }
+    .storytelling-section__item {
+      grid-column-start: 4;
+      grid-column-end: 32;
+      display: grid;
+      align-items: center;
+      grid-template-columns: repeat(3, 1fr);
+    }
 
-      .storytelling-section__item:nth-of-type(2n) .storytelling-section__image-container {
-        grid-column: 3;
-        grid-row-start: 1;
-        grid-row-end: 3;
-      }
+    .storytelling-section__image-container {
+      display: inline-block;
+      width: auto;
+      grid-column: 1;
+    }
 
-      .storytelling-section__card {
-        display: inline-block;
-        grid-column-start: 2;
-        grid-column-end: 4;
-      }
+    .storytelling-section__item:nth-of-type(2n) .storytelling-section__image-container {
+      grid-column: 3;
+      grid-row:1;
+    }
 
-      .storytelling-section__item:nth-of-type(2n) .storytelling-section__card {
-        grid-row-start: 1;
-        grid-row-end: 3;
-        grid-column-start: 1;
-        grid-column-end: 3;
-      }
+    .storytelling-section__card {
+      display: inline-block;
+      grid-column-start: 2;
+      grid-column-end: 4;
+    }
+
+    .storytelling-section__item:nth-of-type(2n) .storytelling-section__card {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row:1;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .storytelling-section__title {
+      grid-column-start: 11;
+    }
+
+    .storytelling-section__item {
+      grid-column-start: 10;
+      grid-column-end: 43;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .storytelling-section__title {
+      grid-column-start: 14;
+    }
+
+    .storytelling-section__item {
+      grid-column-start: 13;
+      grid-column-end: 40;
     }
   }
 </style>
