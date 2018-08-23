@@ -81,7 +81,8 @@ export default {
   }
 
   .pullquote-composition__body {
-    grid-column: content-right;
+    grid-column-start: 29;
+    grid-column-end: 42;
   }
 }
 </style>
