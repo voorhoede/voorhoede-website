@@ -32,39 +32,39 @@ stories.add(
                 <h6>This is an h6</h6>
                 <p>Oredered list</p>
                 <ol>
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li>
+                  <li>Item 1</li>
+                  <li>Item 2</li>
+                  <li>Item 3</li>
                 </ol>
                 <p>Unordered list</p>
                 <ul>
-                <li>Coffee</li>
-                <li>Tea</li>
-                <li>Beer</li>
+                  <li>Coffee</li>
+                  <li>Tea</li>
+                  <li>Beer</li>
                 </ul>
                 <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tbody>
-                <tr style="height: 17px;">
-                <td style="width: 25%; height: 17px;"><strong>Why</strong></td>
-                <td style="width: 25%; height: 17px;"><strong>use</strong></td>
-                <td style="width: 25%; height: 17px;"><strong>tables?</strong></td>
-                </tr>
-                <tr style="height: 17px;">
-                <td style="width: 25%; height: 17px;">Something</td>
-                <td style="width: 25%; height: 17px;">Something</td>
-                <td style="width: 25%; height: 17px;">Something</td>
-                </tr>
-                <tr style="height: 17px;">
-                <td style="width: 25%; height: 17px;">Something</td>
-                <td style="width: 25%; height: 17px;">Something</td>
-                <td style="width: 25%; height: 17px;">Something</td>
-                </tr>
-                <tr style="height: 17px;">
-                <td style="width: 25%; height: 17px;">Something</td>
-                <td style="width: 25%; height: 17px;">Something</td>
-                <td style="width: 25%; height: 17px;">Something</td>
-                </tr>
-                </tbody>
+                  <tbody>
+                    <tr style="height: 17px;">
+                      <td style="width: 25%; height: 17px;"><strong>Why</strong></td>
+                      <td style="width: 25%; height: 17px;"><strong>use</strong></td>
+                      <td style="width: 25%; height: 17px;"><strong>tables?</strong></td>
+                    </tr>
+                    <tr style="height: 17px;">
+                      <td style="width: 25%; height: 17px;">Something</td>
+                      <td style="width: 25%; height: 17px;">Something</td>
+                      <td style="width: 25%; height: 17px;">Something</td>
+                    </tr>
+                    <tr style="height: 17px;">
+                      <td style="width: 25%; height: 17px;">Something</td>
+                      <td style="width: 25%; height: 17px;">Something</td>
+                      <td style="width: 25%; height: 17px;">Something</td>
+                    </tr>
+                    <tr style="height: 17px;">
+                      <td style="width: 25%; height: 17px;">Something</td>
+                      <td style="width: 25%; height: 17px;">Something</td>
+                      <td style="width: 25%; height: 17px;">Something</td>
+                    </tr>
+                  </tbody>
                 </table>
                 <p><a href="https://github.com/voorhoede/voorhoede-dragonfly" target="_blank" rel="noopener">Link</a></p>
               </div>`
