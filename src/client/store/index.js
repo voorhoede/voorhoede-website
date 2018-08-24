@@ -65,13 +65,13 @@ const createStore = () => {
       localizedMenuItems: state => state.menu[state.currentLocale]
     },
     actions: {
-      async getData({ commit, getters }, { route }) {
+      async getData({ commit, getters, state }, { route }) {
 
         try {
           const data = await getData(route.path)
 
           const alternateParentSlug = data.alternateParent ? `/${data.alternateParent.slug}` : ''
-          const alternateSlug = data.alternate ? `/${data.alternate.slug}` : ''
+          const alternateSlug = (data.alternate && !state.locales.includes(data.alternate.slug)) ? `/${data.alternate.slug}` : ''
           const url = `/${getters.alternateLocale}${alternateParentSlug}${alternateSlug}/`
 
           commit(types.SET_ALTERNATE_URL, { url })
