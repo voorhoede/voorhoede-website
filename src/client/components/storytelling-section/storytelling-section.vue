@@ -59,7 +59,7 @@
     margin-bottom: var(--spacing-medium);
     height: 150px;
     background-size: contain;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-position: center;
   }
 
