@@ -131,11 +131,11 @@ export default {
 
 @media (min-width: 1100px) {
   .pullquote-composition {
-    grid-template-columns: 6fr 8fr 2fr 6fr 2fr 15fr 3fr;
+    grid-template-columns: 6fr 8fr 2fr 6fr 2fr 15fr 5fr;
   }
 
   .pullquote-composition--inverse {
-    grid-template-columns: 3fr 15fr 2fr 6fr 2fr 8fr 6fr;
+    grid-template-columns: 5fr 15fr 2fr 6fr 2fr 8fr 6fr;
   }
 }
 </style>
