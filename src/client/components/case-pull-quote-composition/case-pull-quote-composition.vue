@@ -1,7 +1,11 @@
 <template>
   <div class="grid">
     <section class="pullquote-composition"
-             :class="inverse ? 'pullquote-composition--inverse' : '' ">
+             :class="{
+               'pullquote-composition--inverse' : inverse === true,
+               'pullquote-composition--no-grid' : imageUrl === ''
+             }"
+    >
       <img :src="imageUrl" class="pullquote-composition__image" v-if="imageUrl">
       <h4 class="pullquote font-bold pullquote-composition__title"
           :class="imageUrl ? '' : 'pullquote-composition__title--align-left' ">
@@ -46,6 +50,10 @@ export default {
 .pullquote-composition {
   display: grid;
   margin-bottom: var(--spacing-larger);
+}
+
+.pullquote-composition--no-grid {
+  display: block;
 }
 
 .pullquote-composition__title {
