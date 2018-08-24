@@ -5,10 +5,10 @@
 ```html
 <scroll-highlighted-text
   :textLines="[
-    'We work lean and agile.',
-    'Start small and iterate fast',
-    'to help you from an idea,',
-    'to an amazing product.'
+    { line: 'We work lean and agile.' },
+    { line: 'Start small and iterate fast' },
+    { line: 'to help you from an idea,' },
+    { line: 'to an amazing product. },
   ]"
 />
 ```

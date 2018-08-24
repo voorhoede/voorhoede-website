@@ -2,9 +2,7 @@ import Vue from 'vue'
 import { storiesOf } from '@storybook/vue'
 import { withReadme } from 'storybook-readme'
 import { withKnobs } from '@storybook/addon-knobs/vue'
-import VueI18n from 'vue-i18n'
 import createStore from '../../store'
-// import { action } from '@storybook/addon-actions'
 
 import '../app-core/index.css'
 
@@ -18,14 +16,12 @@ const stories = storiesOf('Components/Blog List Item', module)
 Vue.component('blog-list-item', BlogListItem)
 
 stories.add('Blog List item', () => ({
-    i18n: new VueI18n({ locale: 'en' }),
     store: createStore(),
     data() {
       return {
-        currentLocale: 'nl',
         blogItems: [
           {
-            url: '/some-url',
+            slug: 'some-slug',
             title: 'Peer-to-peer apis Peer-to-peer apis Peer-to-peer apis',
             date: '2018-04-20T00:00:00.000Z',
             authors: [{
@@ -40,7 +36,7 @@ stories.add('Blog List item', () => ({
             }],
           },
           {
-            url: '/some-url',
+            slug: 'some-slug',
             title: '13 command line tools to up your Front-end Game\n',
             date: '2018-04-10T00:00:00.000Z',
             authors: [{
@@ -55,7 +51,7 @@ stories.add('Blog List item', () => ({
             }],
           },
           {
-            url: '/some-url',
+            slug: 'some-slug',
             title: 'Real-time communication with Server Sent Events\n',
             date: '2018-01-24T00:00:00.000Z',
             authors: [

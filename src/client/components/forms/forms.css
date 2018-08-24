@@ -1,6 +1,4 @@
 :root {
-  --form-element-space-inbetween: var(--spacing-medium);
-  --form-field-spacing: var(--spacing-tiny);
   --form-select-caret: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 6"%3e%3cpath fill="%23070de9" d="M5.487 5.22L10.4.42H.573l4.914 4.8z" /%3e%3c/svg%3e');
   --form-select-caret-width: .6875rem; /* 11px */
 }
@@ -16,13 +14,13 @@ label > span {
 }
 
 label + label {
-  margin-top: var(--form-element-space-inbetween);
+  margin-top: var(--spacing-medium);
 }
 
 input,
 select,
 textarea {
-  margin-top: var(--form-field-spacing);
+  margin-top: var(--spacing-tiny);
   padding: 0;
   display: block;
   width: 100%;
@@ -63,6 +61,10 @@ select {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+  }
+
+  label + label {
+    margin-top: var(--spacing-small);
   }
 
   label > span {

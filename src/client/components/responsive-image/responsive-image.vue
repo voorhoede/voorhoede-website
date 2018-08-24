@@ -18,7 +18,7 @@
         </no-script>
       </fixed-ratio>
     </div>
-    <figcaption class="responsive-image__caption" v-if="image.title">
+    <figcaption class="responsive-image__caption  body-detail" v-if="image.title">
       {{ image.title }}
     </figcaption>
   </figure>
@@ -41,14 +41,14 @@ export default {
       type: Object,
       required: true,
       validator(image) {
-        return typeof(image.width) === 'number' && typeof(image.height) === 'number' && typeof(image.width) === 'number'
-          && typeof(image.format) === 'string' && typeof(image.width) === 'number' && typeof(image.url) === 'number'
+        return typeof(image.width) === 'number' && typeof(image.height) === 'number'
+          && typeof(image.format) === 'string' && typeof(image.url) === 'string'
       },
     },
     widthStep: {
       type: Number,
       default: 100,
-    },
+    }
   },
   data() {
     return {

@@ -1,7 +1,7 @@
 <template>
   <div class="scroll-to">
     <span class="scroll-to__text body-petite font-bold">Scroll</span>
-    <img class="scroll-top__image" src="/images/scroll-to-arrow.svg" alt="An arrow facing downwards">
+    <img class="scroll-to__image" src="/images/scroll-to-arrow.svg" alt="An arrow facing downwards">
   </div>
 </template>
 
@@ -9,6 +9,7 @@
   .scroll-to {
     display: inline-flex;
     flex-direction: column;
+    position: relative;
   }
 
   .scroll-to__text {
@@ -25,7 +26,7 @@
     color: var(--html-blue);
   }
 
-  .scroll-top__image {
+  .scroll-to__image {
     transform: scale(.6);
 
     /* needs a bigger offset because the whitespace gets bigger */
@@ -33,7 +34,7 @@
   }
 
   @media (min-width: 720px) {
-    .scroll-top__image {
+    .scroll-to__image {
       transform: scale(.8);
 
       /* needs a bigger offset because the whitespace gets bigger */
@@ -42,7 +43,7 @@
   }
 
   @media (min-width: 1100px) {
-    .scroll-top__image {
+    .scroll-to__image {
       transform: scale(1);
       transform-origin: center 0;
     }

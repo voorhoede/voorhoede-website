@@ -6,5 +6,3 @@
 ```html
 <__NAME_KEBAB__ />
 ```
-
-## Props

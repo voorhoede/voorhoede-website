@@ -15,6 +15,7 @@
           class="academy-excerpt__primary-button"
           :label="ctaPrimaryLabel"
           :to="ctaPrimaryTo"
+          external
         />
         <app-button
           :label="ctaSecondaryLabel"
@@ -23,27 +24,22 @@
         />
       </footer>
     </div>
-    <div v-if="image" class="academy-excerpt__image">
-      <responsive-image
-        :image="{
-          alt: title,
-          url: image.url,
-          width: image.width,
-          height: image.height,
-        }"
-      />
+    <div v-if="illustration" class="academy-excerpt__illustration-column">
+      <lazy-load>
+        <img class="academy-excerpt__illustration" :src="illustration.url" alt="">
+      </lazy-load>
     </div>
   </article>
 </template>
 
 <script>
   import { mapState } from 'vuex'
-  import { AppButton, ResponsiveImage } from '~/components'
+  import { AppButton, LazyLoad } from '~/components'
 
   export default {
     components: {
       AppButton,
-      ResponsiveImage,
+      LazyLoad,
     },
     props: {
       dateString: {
@@ -63,7 +59,7 @@
         required: true,
       },
       ctaPrimaryTo: {
-        type: String,
+        type: [String, Object],
         required: true,
       },
       ctaSecondaryLabel: {
@@ -71,15 +67,15 @@
         required: true,
       },
       ctaSecondaryTo: {
-        type: String,
+        type: [String, Object],
         required: true,
       },
-      image: {
+      illustration: {
         type: Object,
         default: null,
-        validator(image) {
-          return typeof(image.url) === 'string' && typeof(image.type) === 'string' && typeof(image.width) === 'number' && typeof(image.height) === 'number'
-        },
+        validator(illustration) {
+          return typeof(illustration.url) === 'string'
+        }
       },
     },
     computed: {
@@ -132,10 +128,12 @@
   }
 
   .academy-excerpt__day {
+    display: inline-block;
     font-size: 1.8125rem;
   }
 
   .academy-excerpt__month {
+    display: inline-block;
     font-size: .8125rem;
     letter-spacing: 2.3px;
     text-transform: uppercase;
@@ -149,7 +147,7 @@
     margin-bottom: var(--spacing-medium);
   }
 
-  .academy-excerpt__image {
+  .academy-excerpt__illustration-column {
     display: none;
   }
 
@@ -170,8 +168,13 @@
   }
 
   @media (min-width: 720px) {
-    .academy-excerpt__image {
+    .academy-excerpt__illustration-column {
       display: block;
+    }
+
+    .academy-excerpt__illustration {
+      max-width: 100%;
+      max-height: 100%;
     }
   }
 
@@ -199,7 +202,7 @@
         grid-column-end: 23;
       }
 
-      .academy-excerpt__image {
+      .academy-excerpt__illustration-column {
         grid-column-start: 24;
         grid-column-end: -2;
       }
@@ -216,7 +219,7 @@
         grid-column-end: 31;
       }
 
-      .academy-excerpt__image {
+      .academy-excerpt__illustration-column {
         grid-column-start: 32;
         grid-column-end: -7;
       }

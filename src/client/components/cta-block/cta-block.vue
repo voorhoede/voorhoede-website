@@ -32,7 +32,7 @@
         required: true,
       },
       ctaTo: {
-        type: String,
+        type: [String, Object],
         required: true,
       },
     },
@@ -63,5 +63,11 @@
     margin-right: auto;
     margin-bottom: var(--spacing-medium);
     margin-left: auto;
+  }
+
+  @media (min-width: 1100px) {
+    .cta-block {
+      padding-bottom: var(--spacing-big);
+    }
   }
 </style>

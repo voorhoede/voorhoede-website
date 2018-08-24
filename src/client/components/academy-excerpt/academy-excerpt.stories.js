@@ -32,7 +32,7 @@ stories.add(
         ctaSecondaryTo="https://google.nl"
         :image="{
           url: 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
-          type: 'jpeg',
+          format: 'jpeg',
           width: 1280,
           height: 720,
         }"
