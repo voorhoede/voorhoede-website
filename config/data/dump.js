@@ -32,7 +32,7 @@ function getPageData(queryPath, locale, alternateLocale) {
     .then(pageData => {
       const relPath = locales.includes(pageData.page.slug) ? locale : path.join(locale, pageData.page.slug)
       writeJsonFile({ filePath: relPath, data: pageData })
-      console.log(chalk.green(`👌️ Successfully written: ${relPath}`)) // eslint-disable no-console
+      console.log(chalk.green(`👌️ Successfully written: ${relPath}`)) // eslint-disable-line no-console
       if (pageData.items) {
         pageData.items
           .map(item => item.slug)
@@ -42,17 +42,17 @@ function getPageData(queryPath, locale, alternateLocale) {
               .then(data => {
                 const relPath = path.join(locale, pageData.page.slug, data.page.slug)
                 writeJsonFile({ filePath: relPath, data })
-                console.log(chalk.green(`👌️ Successfully written: ${relPath}`)) // eslint-disable no-console
+                console.log(chalk.green(`👌️ Successfully written: ${relPath}`)) // eslint-disable-line no-console
               })
               .catch(e => {
-                console.error(chalk.red('Error for ' + slugQueryPath, e))
+                console.error(chalk.red('Error for ' + slugQueryPath, e)) // eslint-disable-line no-console
                 process.exit(1)
               })
           })
       }
     })
     .catch(e => {
-      console.error(chalk.red('Error for ' + queryPath, e))
+      console.error(chalk.red('Error for ' + queryPath, e)) // eslint-disable-line no-console
       process.exit(1)
     })
 
