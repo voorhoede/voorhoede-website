@@ -6,9 +6,9 @@
       v-for="(item, index) in items"
       :key="index"
     >
-      <div class="storytelling-section__image-container">
-        <img class="storytelling-section__image" v-if="item.image" :src="item.image.url">
-      </div>
+
+      <div class="storytelling-section__image" v-if="item.image" :style="`background-image: url(${item.image.url})`" />
+      
       <div class="storytelling-section__card">
         <h3 class="body font-bold">{{ item.title }}</h3>
         <rich-text-block :text="item.body" />
@@ -22,7 +22,7 @@
 
   export default {
     components: {
-      RichTextBlock
+      RichTextBlock,
     },
     props: {
       title: {
@@ -55,13 +55,12 @@
     grid-column: content;
   }
 
-  .storytelling-section__image-container {
-    max-width: 240px;
-    margin: var(--spacing-medium) auto;
-  }
-
   .storytelling-section__image {
-    width: 100%;
+    margin-bottom: var(--spacing-medium);
+    height: 150px;
+    background-size: contain;
+    background-repeat:no-repeat;
+    background-position: center;
   }
 
   .storytelling-section__card {
@@ -83,10 +82,8 @@
       grid-template-columns: repeat(3, 1fr);
     }
 
-    .storytelling-section__image-container {
-      display: inline-block;
-      width: auto;
-      grid-column: 1;
+    .storytelling-section__image {
+      margin-bottom: 0;
     }
 
     .storytelling-section__card {
