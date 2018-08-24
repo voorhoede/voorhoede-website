@@ -21,14 +21,14 @@ glob(path.join(__dirname, '../../src/client/**/index.query.graphql'))
   .then(paths => {
     paths.forEach(query => {
       locales.forEach(locale => {
-        const altLocale = locales.find(l => l !== locale)
-        getPageData(query, locale, altLocale)
+        const alternateLocale = locales.find(l => l !== locale)
+        getPageData(query, locale, alternateLocale)
       })
     })
   })
 
-function getPageData(queryPath, locale, altLocale) {
-  return runQuery(queryPath, { locale, altLocale })
+function getPageData(queryPath, locale, alternateLocale) {
+  return runQuery(queryPath, { locale, alternateLocale })
     .then(pageData => {
       const relPath = locales.includes(pageData.page.slug) ? locale : path.join(locale, pageData.page.slug)
       writeJsonFile({ filePath: relPath, data: pageData })
@@ -38,16 +38,24 @@ function getPageData(queryPath, locale, altLocale) {
           .map(item => item.slug)
           .forEach(slug => {
             const slugQueryPath = path.join(path.parse(queryPath).dir, '_slug.query.graphql')
-            runQuery(slugQueryPath, { locale, altLocale, slug })
+            runQuery(slugQueryPath, { locale, alternateLocale, slug })
               .then(data => {
                 const relPath = path.join(locale, pageData.page.slug, data.page.slug)
                 writeJsonFile({ filePath: relPath, data })
                 console.log(chalk.green(`👌️ Successfully written: ${relPath}`)) // eslint-disable no-console
               })
+              .catch(e => {
+                console.error(chalk.red('Error for ' + slugQueryPath, e))
+                process.exit(1)
+              })
           })
       }
     })
-    .catch(e => console.error(e))
+    .catch(e => {
+      console.error(chalk.red('Error for ' + queryPath, e))
+      process.exit(1)
+    })
+
 }
 
 function runQuery(queryFilePath, variables) {
