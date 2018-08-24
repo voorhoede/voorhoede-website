@@ -64,7 +64,6 @@ export default {
   grid-column: 1;
   justify-self: flex-start;
   align-self: center;
-  max-width: 155px;
 }
 
 .pullquote-composition__body {
