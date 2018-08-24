@@ -10,13 +10,14 @@ query Case($locale: SiteLocale, $alternateLocale: SiteLocale)  {
       url
     }
   },
-  alternate:caseOverview {
+  alternate: caseOverview {
     slug(locale:$alternateLocale)
   }
 }
 
 fragment page on CaseOverviewRecord {
   title,
+  slug,
   subtitle,
   headerIllustration {
     url
