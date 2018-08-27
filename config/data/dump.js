@@ -19,10 +19,10 @@ const locales = ['nl', 'en']
 
 glob(path.join(__dirname, '../../src/client/**/index.query.graphql'))
   .then(paths => {
-    paths.forEach(query => {
+    paths.forEach(queryPath => {
       locales.forEach(locale => {
         const alternateLocale = locales.find(l => l !== locale)
-        getPageData(query, locale, alternateLocale)
+        getPageData(queryPath, locale, alternateLocale)
       })
     })
   })
