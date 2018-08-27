@@ -53,11 +53,12 @@
     },
     methods: {
       imageUrl(options) {
-        if (window.matchMedia('(max-width: 719px)').matches) {
+        if (this.width < 720) {
           Object.assign(options, { fit:'crop', 'h': 288, crop: 'faces' })
         } else {
           Object.assign(options, { fit:'crop', 'h': 512, crop: 'faces' })
         }
+
         return imageUrl(this.image.url, options)
       },
     },
@@ -65,6 +66,10 @@
 </script>
 
 <style>
+  .full-width-image {
+    overflow: hidden;
+  }
+
   .full-width-image__img::after {
     content: attr(alt);
     display: block;
