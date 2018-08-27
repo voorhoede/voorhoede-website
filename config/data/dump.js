@@ -30,7 +30,8 @@ glob(path.join(__dirname, '../../src/client/**/index.query.graphql'))
 function getPageData(queryPath, locale, alternateLocale) {
   return runQuery(queryPath, { locale, alternateLocale })
     .then(pageData => {
-      const relPath = locales.includes(pageData.page.slug) ? locale : path.join(locale, pageData.page.slug)
+      const isHomePage = locales.includes(pageData.page.slug)
+      const relPath = isHomePage ? locale : path.join(locale, pageData.page.slug)
       writeJsonFile({ filePath: relPath, data: pageData })
       console.log(chalk.green(`👌️ Successfully written: ${relPath}`)) // eslint-disable-line no-console
       if (pageData.items) {
