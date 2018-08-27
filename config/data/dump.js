@@ -14,7 +14,7 @@ dotenv.config()
  *
 */
 
-const queryApi = require('../../src/client/lib/queryApi')
+const queryApi = require('../../src/client/lib/query-api')
 const locales = ['nl', 'en']
 
 glob(path.join(__dirname, '../../src/client/**/index.query.graphql'))
