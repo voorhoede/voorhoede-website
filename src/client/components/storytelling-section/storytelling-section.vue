@@ -3,8 +3,8 @@
     <h2 class="storytelling-section__title h3">{{ title }}</h2>
     <section
       class="storytelling-section__item"
-      v-for="(item, index) in items"
-      :key="index"
+      v-for="item in items"
+      :key="item.title"
     >
 
       <div class="storytelling-section__image" v-if="item.image" :style="`background-image: url(${item.image.url})`" />
