@@ -83,6 +83,7 @@ export default {
 
   .case-teaser--small .case-teaser__header {
     max-width: 233px;
+    width: auto;
   }
 
   .case-teaser--inverse .case-teaser__header {
