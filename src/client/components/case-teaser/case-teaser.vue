@@ -1,17 +1,10 @@
 <template>
-  <section class="case-teaser grid"
-           :class="{
-             'case-teaser--small': small === true,
-             'case-teaser--inverse': inverse === true
-  }">
+  <section class="case-teaser grid">
     <div class="case-teaser__image">
       <responsive-image :image="image" />
     </div>
     <div class="case-teaser__header">
-      <h4 class="pullquote font-bold" v-if="small">
-        {{ title }}
-      </h4>
-      <h2 class="case-teaser__title h2" v-else>
+      <h2 class="case-teaser__title h2">
         {{ title }}
       </h2>
     </div>
@@ -33,14 +26,6 @@ export default {
     image : {
       type: Object,
       required: true
-    },
-    small: {
-      type: Boolean,
-      default: false
-    },
-    inverse: {
-      type: Boolean,
-      default: false
     }
   }
 }
@@ -49,14 +34,6 @@ export default {
 <style>
 .case-teaser {
   margin: 0 0 var(--spacing-large) 0;
-}
-
-.case-teaser--small .case-teaser__image {
-  grid-column-start: 0;
-}
-
-.case-teaser--small .case-teaser__header::after {
-  display: none;
 }
 
 .case-teaser__header {
@@ -81,21 +58,9 @@ export default {
     grid-row: 1;
   }
 
-  .case-teaser--small .case-teaser__header {
-    max-width: 233px;
-  }
-
-  .case-teaser--inverse .case-teaser__header {
-    grid-column: content-left;
-    grid-column-start: 6;
-  }
-
-  .case-teaser--inverse .case-teaser__image {
-    grid-column: content-right;
-  }
-
   .case-teaser__header {
     grid-column: content-right;
+    grid-column-start: 20;
     grid-row: 1;
     align-self: center;
     margin: 0;
@@ -116,19 +81,6 @@ export default {
 }
 
 @media (min-width: 1100px) {
-  .case-teaser--small .case-teaser__image {
-    grid-column-start: 6;
-  }
-
-  .case-teaser--inverse .case-teaser__header {
-    grid-column-start: 10;
-  }
-
-  .case-teaser--inverse .case-teaser__image {
-    grid-column-end: 46;
-    grid-column-start: 24;
-  }
-
   .case-teaser__header {
     grid-column-start: 30;
   }
