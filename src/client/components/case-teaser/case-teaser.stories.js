@@ -52,9 +52,9 @@ stories.add(
           image: {
             'format': 'jpeg',
             'width': 720,
-            'height': 400,
+            'height': 480,
             'alt': 'User confirms on drop and fly screen that bags do not contain any prohibited items',
-            'url': 'https://www.datocms-assets.com/6524/1534941302-drop-and-fly.jpg',
+            'url': 'https://www.datocms-assets.com/6524/1535460060-pick-up-10idea.jpg',
           },
         }
       },
@@ -76,9 +76,9 @@ stories.add(
           image: {
             'format': 'jpeg',
             'width': 720,
-            'height': 400,
+            'height': 480,
             'alt': 'User confirms on drop and fly screen that bags do not contain any prohibited items',
-            'url': 'https://www.datocms-assets.com/6524/1534941302-drop-and-fly.jpg',
+            'url': 'https://www.datocms-assets.com/6524/1535460065-1526629287-pick-up-10-idea-copy.png',
           },
         }
       },

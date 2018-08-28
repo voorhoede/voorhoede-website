@@ -106,8 +106,7 @@ export default {
   }
 
   .case-teaser__image {
-    grid-column: content-left;
-    grid-column-start: 1;
+    grid-column: page-left;
     grid-row: 1;
   }
 
@@ -122,7 +121,7 @@ export default {
   }
 
   .case-teaser--inverse .case-teaser__header {
-    grid-column-start: 12;
+    grid-column-start: 10;
   }
 
   .case-teaser--inverse .case-teaser__image {
