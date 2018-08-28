@@ -147,7 +147,7 @@
 
     .page-header__image {
       grid-column: page-right;
-      grid-column-end: 49;
+      grid-column-end: 33;
       grid-row-start: 4;
       grid-row-end: 6;
       justify-content: flex-end;
