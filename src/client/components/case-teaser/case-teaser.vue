@@ -1,10 +1,17 @@
 <template>
-  <section class="case-teaser grid">
+  <section class="case-teaser grid"
+           :class="{
+             'case-teaser--small': small === true,
+             'case-teaser--inverse': inverse === true
+  }">
     <div class="case-teaser__image">
       <responsive-image :image="image" />
     </div>
     <div class="case-teaser__header">
-      <h2 class="case-teaser__title h2">
+      <h4 class="pullquote font-bold" v-if="small">
+        {{ title }}
+      </h4>
+      <h2 class="case-teaser__title h2" v-else>
         {{ title }}
       </h2>
     </div>
@@ -26,6 +33,14 @@ export default {
     image : {
       type: Object,
       required: true
+    },
+    small: {
+      type: Boolean,
+      default: false
+    },
+    inverse: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -34,6 +49,14 @@ export default {
 <style>
 .case-teaser {
   margin: 0 0 var(--spacing-large) 0;
+}
+
+.case-teaser--small .case-teaser__image {
+  grid-column-start: 0;
+}
+
+.case-teaser--small .case-teaser__header::after {
+  display: none;
 }
 
 .case-teaser__header {
@@ -58,8 +81,21 @@ export default {
     grid-row: 1;
   }
 
+  .case-teaser--small .case-teaser__header {
+    max-width: 233px;
+  }
+
+  .case-teaser--inverse .case-teaser__header {
+    grid-column: content-left;
+    grid-column-start: 6;
+  }
+
+  .case-teaser--inverse .case-teaser__image {
+    grid-column: content-right;
+  }
+
   .case-teaser__header {
-    grid-column-start: 20;
+    grid-column: content-right;
     grid-row: 1;
     align-self: center;
     margin: 0;
@@ -71,7 +107,7 @@ export default {
 
   .case-teaser__image {
     grid-column: content-left;
-    grid-column-start: 1;
+    grid-column-start: 2;
     grid-row: 1;
   }
 
@@ -81,9 +117,21 @@ export default {
 }
 
 @media (min-width: 1100px) {
+  .case-teaser--small .case-teaser__image {
+    grid-column-start: 6;
+  }
+
+  .case-teaser--inverse .case-teaser__header {
+    grid-column-start: 13;
+  }
+
+  .case-teaser--inverse .case-teaser__image {
+    grid-column-end: 47;
+    grid-column-start: 27;
+  }
+
   .case-teaser__header {
-    grid-column-start: 31;
-    grid-column-end: 50;
+    grid-column-start: 29;
   }
 }
 
