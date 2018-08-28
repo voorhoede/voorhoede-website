@@ -1,14 +1,14 @@
 <template>
-  <header class="page-header grid">
-    <div v-if="brick" class="page-header__brick"/>
+  <header class="page-header grid" :class="{ 'page-header--no-brick' : !brick }">
+    <div v-if="brick" class="page-header__brick" />
     <div v-if="hasImage" class="page-header__image">
       <slot name="image"/>
     </div>
     <div class="page-header__text">
-      <h1 class="page-header__title hero">{{ title }}</h1>
+      <h1 class="page-header__title" :class="brick ? 'hero' : 'h1'">{{ title }}</h1>
       <h2 class="page-header__sub-title sub-title">{{ subTitle }}</h2>
     </div>
-    <scroll-to class="page-header__scroll-to"/>
+    <scroll-to v-if="brick" class="page-header__scroll-to"/>
   </header>
 </template>
 
@@ -53,6 +53,14 @@
     background: var(--bg-pastel);
   }
 
+  .page-header.page-header--no-brick {
+    grid-template-rows: var(--app-header-height) 1fr;
+  }
+
+  .page-header--no-brick .page-header__text {
+    grid-column-end: 10;
+  }
+
   .page-header__text {
     display: flex;
     flex-direction: column;
@@ -87,6 +95,15 @@
     align-items: flex-end;
   }
 
+  .page-header--no-brick .page-header__image {
+    grid-row-end: 3;
+    grid-row-start: 2;
+    grid-column-start: 13;
+    grid-column-end: 18;
+    display: flex;
+    align-items: center;
+  }
+
   .page-header__image img {
     max-width: 100%;
     max-height: 100%;
@@ -116,6 +133,12 @@
       grid-row-end: 4;
     }
 
+    .page-header--no-brick .page-header__text {
+      grid-row-end: 6;
+      grid-column: page-left;
+      grid-column-start: 4;
+    }
+
     .page-header__brick {
       grid-column: page-right;
       grid-row-start: 1;
@@ -128,6 +151,15 @@
       grid-row-start: 4;
       grid-row-end: 6;
       justify-content: flex-end;
+    }
+
+    .page-header--no-brick .page-header__image {
+      grid-column: page-right;
+      grid-column-end: 33;
+      grid-row-start: 2;
+      grid-row-end: -1;
+      margin-bottom: calc(var(--spacing-medium) * -1);
+      /* justify-content: flex-end; */
     }
 
     .page-header__scroll-to.scroll-to {
@@ -154,6 +186,14 @@
 
     .page-header__scroll-to.scroll-to {
       bottom: -163px;
+    }
+
+    .page-header--no-brick .page-header__image {
+      grid-column: page-right;
+      grid-column-end: 48;
+      grid-row-start: 2;
+      grid-row-end: -1;
+      margin-bottom: calc(var(--spacing-medium) * -1);
     }
   }
 </style>
