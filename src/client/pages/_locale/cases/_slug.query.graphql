@@ -1,5 +1,5 @@
 query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
-  caseItem(locale: $locale, filter: { slug: { eq: $slug } }) {
+  page: caseItem(locale: $locale, filter: { slug: { eq: $slug } }) {
     ...caseItem
   },
 
@@ -13,5 +13,68 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
 }
 
 fragment caseItem on CaseItemRecord {
-  title
+  title,
+  heroIllustration {
+    url
+  },
+  caseTeaser {
+    caseTeaserTitle,
+    caseTeaserImage {
+      url,
+      alt
+    },
+    caseTeaserInverse,
+    caseTeaserSmall
+  },
+  content {
+    ... on TextSectionRecord {
+      title,
+      body,
+    },
+    ... on ImageRecord {
+      image {
+        url,
+        width,
+        height,
+        alt,
+      },
+    },
+    ... on PullquoteRecord {
+      pullquote {
+        quote,
+        illustration {
+          url,
+        },
+        richText,
+      }
+    },
+    ... on InlineTeaserRecord {
+      teaser {
+        caseTeaserTitle,
+        caseTeaserImage {
+          url,
+          alt
+        },
+        caseTeaserSmall,
+        caseTeaserInverse
+      }
+    }
+  },
+  metaData {
+    expertisesTitle,
+    expertises {
+      title
+    },
+    deliverableTitle,
+    deliverables {
+      title
+    },
+    platformsTitle,
+    platforms {
+      title
+    },
+    interestedTitle,
+    interestedLinkUrl,
+    interestedLinkLabel,
+  },
 }
