@@ -15,8 +15,18 @@ const stories = storiesOf('Components/Page Header Detail', module)
 Vue.component('page-header-detail', PageHeaderDetail)
 
 stories.add(
-  'Page Header Detail',
+  'Page Header Detail - with brick',
   () => ({
-    template: '<page-header-detail/>',
+    template: `<page-header-detail brick title="Drop & fly" sub-title="Case page">
+                <img slot="image" src="https://www.datocms-assets.com/6524/1535465393-unicorn.svg" alt="">
+              </page-header-detail>`,
+  }),
+)
+.add(
+  'Page Header Detail - without brick',
+  () => ({
+    template: `<page-header-detail title="Peer-to-peer APIs" sub-title="Blog">
+                <img slot="image" src="https://www.datocms-assets.com/6524/1535465393-unicorn.svg" alt="">
+              </page-header-detail>`,
   }),
 )
