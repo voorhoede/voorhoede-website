@@ -27,12 +27,18 @@ stories.add(
         `
       }
     },
-    template: `<case-pull-quote-composition
-      :inverse="false"
-      image-url="/images/logo.svg"
-      pullquote="Drop and fly is installed in over 35 airports around the globe"
-      :text="text"
-    />`,
+    template: `
+    <div class="grid">
+      <case-pull-quote-composition
+        :inverse="false"
+        :image="{
+          url: 'https://www.datocms-assets.com/6524/1535369672-screen-shot-2018-08-27-at-13-34-19.png',
+          alt: 'A spherical model of Earth'
+        }"
+        pullquote="Drop and fly is installed in over 35 airports around the globe"
+        :text="text"
+      />
+    </div>`,
   }),
 ).add(
   'Case Pull Quote Composition inversed',
@@ -46,12 +52,18 @@ stories.add(
         `
       }
     },
-    template: `<case-pull-quote-composition
-      :inverse="true"
-      image-url="/images/logo.svg"
-      pullquote="Drop and fly is installed in over 35 airports around the globe"
-      :text="text"
-    />`,
+    template: `
+    <div class="grid">
+      <case-pull-quote-composition
+        :inverse="true"
+        :image="{
+          url: 'https://www.datocms-assets.com/6524/1535369672-screen-shot-2018-08-27-at-13-34-19.png',
+          alt: 'A spherical model of Earth'
+        }"
+        pullquote="Drop and fly is installed in over 35 airports around the globe"
+        :text="text"
+      />
+    </div>`,
   }),
 ).add(
   'Case Pull Quote Composition no image',
@@ -65,11 +77,13 @@ stories.add(
         `
       }
     },
-    template: `<case-pull-quote-composition
-      :inverse="false"
-      image-url=""
-      pullquote="Drop and fly is installed in over 35 airports around the globe"
-      :text="text"
-    />`,
+    template: `
+    <div class="grid">
+      <case-pull-quote-composition
+        :inverse="false"
+        pullquote="Drop and fly is installed in over 35 airports around the globe"
+        :text="text"
+      />
+    </div>`,
   }),
 )

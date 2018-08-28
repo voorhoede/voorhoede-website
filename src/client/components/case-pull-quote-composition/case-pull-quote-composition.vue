@@ -1,21 +1,19 @@
 <template>
-  <div class="grid">
-    <section class="pullquote-composition"
-             :class="{
-               'pullquote-composition--inverse' : inverse === true,
-               'pullquote-composition--no-grid' : imageUrl === ''
-             }"
-    >
-      <img :src="imageUrl" class="pullquote-composition__image" v-if="imageUrl">
-      <h4 class="pullquote font-bold pullquote-composition__title"
-          :class="imageUrl ? '' : 'pullquote-composition__title--align-left' ">
-        {{ pullquote }}
-      </h4>
-      <div class="pullquote-composition__body">
-        <rich-text-block :text="text"/>
-      </div>
-    </section>
-  </div>
+  <section class="pullquote-composition"
+           :class="{
+             'pullquote-composition--inverse' : inverse === true,
+             'pullquote-composition--no-grid' : image === ''
+           }"
+  >
+    <img :src="image.url" class="pullquote-composition__image" v-if="image" :alt="image.alt">
+    <h4 class="pullquote font-bold pullquote-composition__title"
+        :class="image ? '' : 'pullquote-composition__title--align-left' ">
+      {{ pullquote }}
+    </h4>
+    <div class="pullquote-composition__body">
+      <rich-text-block :text="text"/>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -38,9 +36,16 @@ export default {
       type: String,
       required: true,
     },
-    imageUrl: {
-      type: String,
-      default: '',
+    image: {
+      type: Object,
+      default: null,
+      validator(image) {
+        if(image) {
+          return image instanceof Object &&
+            typeof image.url === 'string' &&
+            typeof image.alt === 'string'
+        }
+      }
     }
   }
 }
