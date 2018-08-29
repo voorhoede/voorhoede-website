@@ -59,19 +59,20 @@
     <div class="page-cases__link">
       <nuxt-link class="font-html-blue body font-bold" :to="`/${currentLocale}/cases`">&larr; See all cases</nuxt-link>
     </div>
-
-    <get-in-touch-form
-      :title="page.getInTouchTitle"
-      :name-label="page.getInTouchForm.nameLabel"
-      :name-placeholder="page.getInTouchForm.namePlaceholder"
-      :email-label="page.getInTouchForm.emailLabel"
-      :email-placeholder="page.getInTouchForm.emailPlaceholder"
-      :phone-label="page.getInTouchForm.phoneLabel"
-      :phone-placeholder="page.getInTouchForm.phonePlaceholder"
-      :summary-label="page.getInTouchForm.summaryLabel"
-      :summary-placeholder="page.getInTouchForm.summaryPlaceholder"
-      :cta-label="page.getInTouchForm.ctaButtonLabel"
-    />
+    <aside class="page-cases__get-in-touch-form">
+      <get-in-touch-form
+        :title="page.getInTouchTitle"
+        :name-label="page.getInTouchForm.nameLabel"
+        :name-placeholder="page.getInTouchForm.namePlaceholder"
+        :email-label="page.getInTouchForm.emailLabel"
+        :email-placeholder="page.getInTouchForm.emailPlaceholder"
+        :phone-label="page.getInTouchForm.phoneLabel"
+        :phone-placeholder="page.getInTouchForm.phonePlaceholder"
+        :summary-label="page.getInTouchForm.summaryLabel"
+        :summary-placeholder="page.getInTouchForm.summaryPlaceholder"
+        :cta-label="page.getInTouchForm.ctaButtonLabel"
+      />
+    </aside>
   </main>
 </template>
 
@@ -125,7 +126,7 @@
     grid-column-start: 4;
   }
 
-  .page-cases .get-in-touch-form,
+  .page-cases__get-in-touch-form,
   .page-cases__content,
   .page-cases__content > *:not(:last-child) {
     margin-bottom: var(--spacing-larger);
@@ -151,7 +152,7 @@
   }
 
   @media (min-width: 720px) {
-    .page-cases .get-in-touch-form,
+    .page-cases__get-in-touch-form,
     .page-cases__content,
     .page-cases__content > *:not(:last-child) {
       margin-bottom: var(--spacing-big);
@@ -169,7 +170,7 @@
       grid-column-end: 39;
     }
 
-    .page-cases .get-in-touch-form,
+    .page-cases__get-in-touch-form,
     .page-cases__content,
     .page-cases__content > *:not(:last-child) {
       margin-bottom: var(--spacing-bigger);
