@@ -1,5 +1,5 @@
 query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
-  caseItem(locale: $locale, filter: { slug: { eq: $slug } }) {
+  page: caseItem(locale: $locale, filter: { slug: { eq: $slug } }) {
     ...caseItem
   },
 
@@ -8,10 +8,93 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
   },
 
   alternateParent: caseOverview {
-    slug(locale: $alternateLocale)
+    slug
   }
 }
 
 fragment caseItem on CaseItemRecord {
-  title
+  title,
+  heroIllustration {
+    url
+  },
+  caseTeaser {
+    caseTeaserTitle,
+    caseTeaserImage {
+      url,
+      alt,
+      width,
+      height      
+    },
+    caseTeaserInverse,
+    caseTeaserSmall
+  },
+  content {
+    ... on TextSectionRecord {
+      title,
+      body,
+    },
+    ... on ImageRecord {
+      image {
+        url,
+        width,
+        height,
+      },
+      alt,
+      fullWidth,
+    },
+    ... on PullquoteRecord {
+      pullquote {
+        quote,
+        illustration {
+          url,
+        },
+        richText,
+      }
+    },
+    ... on InlineTeaserRecord {
+      teaser {
+        caseTeaserTitle,
+        caseTeaserImage {
+          url,
+          alt,
+          width,
+      		height
+        },
+        caseTeaserSmall,
+        caseTeaserInverse
+      }
+    }
+  },
+  metaData {
+    expertisesTitle,
+    expertises {
+      title
+    },
+    deliverableTitle,
+    deliverables {
+      title
+    },
+    platformsTitle,
+    platforms {
+      title
+    },
+    interestedTitle,
+    interestedLinkUrl,
+    interestedLinkLabel,
+  },
+  quote,
+  author,
+  getInTouchTitle,
+  getInTouchForm {
+    title,
+    nameLabel,
+    namePlaceholder,
+    emailLabel,
+    emailPlaceholder,
+    summaryLabel,
+    summaryPlaceholder,
+    phoneLabel,
+    phonePlaceholder,
+    ctaButtonLabel
+  }
 }
