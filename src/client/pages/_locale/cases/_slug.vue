@@ -4,17 +4,20 @@
       <img slot="image" :src="page.heroIllustration.url" alt="">
     </page-header-detail>
 
-    <case-meta
-      :expertise-title="page.metaData.expertisesTitle"
-      :expertises="page.metaData.expertises"
-      :platform-title="page.metaData.platformsTitle"
-      :platforms="page.metaData.platforms"
-      :deliverable-title="page.metaData.deliverableTitle"
-      :deliverables="page.metaData.deliverables"
-      :interested-title="page.metaData.interestedTitle"
-      :interested-link-label="page.metaData.interestedLinkLabel"
-      :interested-link-url="page.metaData.interestedLinkUrl"
-    />
+    <aside class="page-cases__case-meta-container grid">
+      <case-meta
+        class="page-cases__case-meta"
+        :expertise-title="page.metaData.expertisesTitle"
+        :expertises="page.metaData.expertises"
+        :platform-title="page.metaData.platformsTitle"
+        :platforms="page.metaData.platforms"
+        :deliverable-title="page.metaData.deliverableTitle"
+        :deliverables="page.metaData.deliverables"
+        :interested-title="page.metaData.interestedTitle"
+        :interested-link-label="page.metaData.interestedLinkLabel"
+        :interested-link-url="page.metaData.interestedLinkUrl"
+      />
+    </aside>
 
     <case-teaser
       v-if="page.caseTeaser"
@@ -111,11 +114,15 @@
 </script>
 
 <style>
-  .case-meta {
-    margin-bottom: var(--spacing-large);
-    padding-top: var(--spacing-medium);
-    padding-bottom: var(--spacing-large);
+  .page-cases__case-meta-container {
+    grid-column: page;
     background-color: var(--bg-pastel);
+    padding-top: var(--spacing-large);
+    padding-bottom: var(--spacing-large);
+  }
+
+  .page-cases__case-meta {
+    grid-column-start: 4;
   }
 
   .page-cases .get-in-touch-form,
@@ -144,11 +151,6 @@
   }
 
   @media (min-width: 720px) {
-    .case-meta {
-      margin-bottom: var(--spacing-larger);
-      height: 23.5vh;
-    }
-
     .page-cases .get-in-touch-form,
     .page-cases__content,
     .page-cases__content > *:not(:last-child) {
@@ -157,10 +159,6 @@
   }
 
   @media (min-width: 1100px) {
-    .case-meta {
-      margin-bottom: var(--spacing-big);
-    }
-
     .page-cases__text {
       grid-column-start: 14;
       grid-column-end: 39;
