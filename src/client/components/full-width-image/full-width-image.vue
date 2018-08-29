@@ -68,6 +68,7 @@
 <style>
   .full-width-image {
     overflow: hidden;
+    grid-column: page;
   }
 
   .full-width-image__img::after {
