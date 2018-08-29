@@ -124,6 +124,7 @@
   @media screen and (min-width: 720px) {
     .page-header {
       grid-template-rows: var(--app-header-height) 1fr .3fr .3fr 1fr calc(var(--spacing-larger) - var(--spacing-tiny));
+      height: 76.5vh;
     }
 
     .page-header__text {
