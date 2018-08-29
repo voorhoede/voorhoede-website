@@ -1,5 +1,5 @@
 <template>
-  <section class="get-in-touch-form grid">
+  <div class="get-in-touch-form grid">
     <h2 class="get-in-touch-form__title h3">{{ title }}</h2>
 
     <form class="get-in-touch-form__form" method="POST" data-netlify="true">
@@ -25,7 +25,7 @@
         type="submit"
       />
     </form>
-  </section>
+  </div>
 </template>
 
 <script>
