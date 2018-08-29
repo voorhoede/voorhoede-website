@@ -1,5 +1,5 @@
 <template>
-  <main class="page-cases">
+  <main class="page-cases grid">
     <page-header-detail brick :title="page.title" :sub-title="'Case study'">
       <img slot="image" :src="page.heroIllustration.url" alt="">
     </page-header-detail>
@@ -22,7 +22,7 @@
       :image="page.caseTeaser.image"
     />
 
-    <section class="grid page-cases__content">
+    <section class="page-cases__content grid">
       <template v-for="(item, index) in page.content">
         <div v-if="item.body" :key="index" class="page-cases__text">
           <h3 class="page-cases__title h3">{{ item.title }}</h3>
@@ -30,7 +30,7 @@
             :text="item.body"
           />
         </div>
-        
+
         <responsive-image
           v-if="item.image && !item.fullWidth"
           :key="index"
@@ -53,11 +53,11 @@
       </template>
       <quote-block :quote="page.quote" :cite="page.author" />
     </section>
-    <div class="grid page-cases__link ">
+    <div class="page-cases__link">
       <nuxt-link class="font-html-blue body font-bold" :to="`/${currentLocale}/cases`">&larr; See all cases</nuxt-link>
     </div>
 
-    <get-in-touch-form 
+    <get-in-touch-form
       :title="page.getInTouchTitle"
       :name-label="page.getInTouchForm.nameLabel"
       :name-placeholder="page.getInTouchForm.namePlaceholder"
@@ -124,6 +124,10 @@
     margin-bottom: var(--spacing-larger);
   }
 
+  .page-cases__content {
+    grid-column: page;
+  }
+
   .page-cases__title {
     margin-bottom: var(--spacing-small);
   }
@@ -131,7 +135,7 @@
   .page-cases__link {
     margin-bottom: var(--spacing-bigger);
   }
-  
+
   .page-cases__link::before {
     grid-column: content;
     padding-bottom: var(--spacing-small);
