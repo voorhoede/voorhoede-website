@@ -20,6 +20,14 @@
       ScrollTo,
     },
     props: {
+      title: {
+        type: String,
+        required: true
+      },
+      subTitle: {
+        type: String,
+        required: true
+      },
       seoTitle: {
         type: String,
         default: null,
@@ -28,14 +36,6 @@
         type: Boolean,
         default: false,
       },
-      title: {
-        type: String,
-        required: true
-      },
-      subTitle: {
-        type: String,
-        required: true
-      }
     },
     computed: {
       hasImage() {
