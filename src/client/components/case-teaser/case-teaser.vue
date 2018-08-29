@@ -1,5 +1,5 @@
 <template>
-  <section class="case-teaser grid">
+  <section class="case-teaser">
     <div class="case-teaser__image">
       <responsive-image :image="image" />
     </div>
@@ -32,64 +32,80 @@ export default {
 </script>
 
 <style>
-.case-teaser {
-  margin: 0 0 var(--spacing-large) 0;
-}
+  :root {
+    --text-block-max-width: 360px;
+    --page-max-width: 1440px;
+  }
 
-.case-teaser__header {
-  margin: var(--spacing-large) 0;
-}
-
-.case-teaser__header::after {
-  content: '';
-  margin-top: var(--spacing-large);
-  width: 60px;
-  border-bottom: 2px solid var(--very-dim);
-  position: absolute;
-}
-
-.case-teaser__image {
-  grid-column-start: 1;
-  grid-column-end: 20;
-}
-
-@media (min-width: 720px) {
   .case-teaser {
-    grid-row: 1;
+    grid-column: page;
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 var(--spacing-large) 0;
   }
 
   .case-teaser__header {
-    grid-column-start: 20;
-    grid-row: 1;
-    align-self: center;
-    margin: 0;
+    flex-basis: 100%;
+    margin: var(--spacing-large) var(--grid-margin);
   }
 
   .case-teaser__header::after {
-    border-bottom: none;
+    content: '';
+    margin-top: var(--spacing-large);
+    width: 60px;
+    border-bottom: 2px solid var(--very-dim);
+    position: absolute;
   }
 
   .case-teaser__image {
-    grid-column: content-left;
-    grid-column-start: 1;
-    grid-row: 1;
+    flex-basis: 100%;
   }
 
-  .case-teaser__image .responsive-image__sizer {
-    margin-right: 0;
-  }
-}
+  @media (min-width: 720px) {
+    .case-teaser {
+      flex-direction: row;
+      grid-column: page;
+      margin: 0 auto var(--spacing-large) auto;
+      width: 100%;
+      max-width: var(--page-max-width);
+    }
 
-@media (min-width: 1100px) {
-  .case-teaser__header {
-    grid-column-start: 31;
-    grid-column-end: 50;
-  }
-}
+    .case-teaser__header {
+      flex-basis: 50%;
+      margin-left: var(--spacing-larger);
+      align-self: center;
+    }
 
-@media (min-width: 720px) and (max-width: 960px) {
-  .case-teaser__title {
-    font-size: 1.9375rem; /* 31px */
+    .case-teaser__title {
+      max-width: var(--text-block-max-width);
+    }
+
+    .case-teaser__header::after {
+      border-bottom: none;
+    }
+
+    .case-teaser__image {
+      flex: 50% 1 0;
+    }
+
+    .case-teaser__image .responsive-image__sizer {
+      margin-right: 0;
+    }
   }
-}
+
+  @media (min-width: 1100px) {
+    .case-teaser {
+      margin-bottom: var(--spacing-big);
+    }
+
+    .case-teaser__header {
+      margin-left: var(--spacing-bigger);
+    }
+  }
+
+  @media (min-width: 720px) and (max-width: 960px) {
+    .case-teaser__title {
+      font-size: 1.9375rem; /* 31px */
+    }
+  }
 </style>
