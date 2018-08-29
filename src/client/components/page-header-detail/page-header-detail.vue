@@ -1,14 +1,16 @@
 <template>
-  <header class="page-header grid" :class="{ 'page-header--no-brick' : !brick }">
-    <div v-if="brick" class="page-header__brick" />
-    <div v-if="hasImage" class="page-header__image">
-      <slot name="image"/>
+  <header class="page-header grid" :class="{ 'page-header--brick' : brick }">
+    <div class="container">
+      <div class="page-header__text">
+        <h1 class="page-header__title" :class="brick ? 'hero' : 'h1'">{{ title }}</h1>
+        <h2 class="page-header__subtitle sub-title">{{ subTitle }}</h2>
+      </div>
+
+      <div v-if="hasImage" class="page-header__image">
+        <slot name="image"/>
+      </div>
+      <scroll-to v-if="brick" class="page-header__scroll-to"/>
     </div>
-    <div class="page-header__text">
-      <h1 class="page-header__title" :class="brick ? 'hero' : 'h1'">{{ title }}</h1>
-      <h2 class="page-header__sub-title sub-title">{{ subTitle }}</h2>
-    </div>
-    <scroll-to v-if="brick" class="page-header__scroll-to"/>
   </header>
 </template>
 
@@ -20,6 +22,14 @@
       ScrollTo,
     },
     props: {
+      title: {
+        type: String,
+        required: true
+      },
+      subTitle: {
+        type: String,
+        required: true
+      },
       seoTitle: {
         type: String,
         default: null,
@@ -28,14 +38,6 @@
         type: Boolean,
         default: false,
       },
-      title: {
-        type: String,
-        required: true
-      },
-      subTitle: {
-        type: String,
-        required: true
-      }
     },
     computed: {
       hasImage() {
@@ -47,153 +49,106 @@
 
 <style>
   .page-header {
-    position: relative;
-    grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) 1fr var(--spacing-tiny);
-    padding-top: 0;
-    background: var(--bg-pastel);
+    grid-column: page;
+    background-color: var(--bg-pastel);
   }
 
-  .page-header.page-header--no-brick {
-    grid-template-rows: var(--app-header-height) 1fr;
+  .page-header--brick {
+    grid-column: page;
+    background-image: linear-gradient(
+      to bottom,
+      var(--bg-pastel),
+      var(--bg-pastel) 50%,
+      var(--brand-yellow) 50%,
+      var(--brand-yellow) 100%
+    );
+  }
+
+  .container {
+    grid-column: content;
+    display: flex;
+    flex-direction: column;
+    position: relative;
   }
 
   .page-header__text {
     display: flex;
     flex-direction: column;
-    grid-column: content;
-    grid-row-start: 2;
-    margin: var(--spacing-medium) 0;
-  }
-
-  .page-header--no-brick .page-header__text {
-    grid-column-end: 10;
+    padding-top: calc(var(--app-header-height) + var(--spacing-medium));
+    padding-bottom: var(--spacing-large);
   }
 
   .page-header__title {
-    margin-top: var(--spacing-smaller);
     order: 2;
+    max-width: 70%;
   }
 
-  .page-header__sub-title {
+  .page-header__subtitle {
     order: 1;
-  }
-
-  .page-header__brick {
-    background-color: var(--brand-yellow);
-    grid-column: page;
-    grid-row-start: 3;
-    grid-row-end: 6;
+    margin-bottom: var(--spacing-smaller);
   }
 
   .page-header__image {
-    grid-column-start: 8;
-    grid-column-end: 19;
-    grid-row-start: 4;
-    grid-row-end: 5;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-  }
-
-  .page-header--no-brick .page-header__image {
-    grid-row-end: 3;
-    grid-row-start: 2;
-    grid-column-start: 13;
-    grid-column-end: 18;
-    display: flex;
-    align-items: center;
+    padding-bottom: var(--spacing-medium);
+    height: 40vh;
   }
 
   .page-header__image img {
-    max-width: 100%;
-    max-height: 100%;
+    max-height: 60%;
   }
 
   .page-header__scroll-to.scroll-to {
     position: absolute;
-    grid-row-start: 5;
+    bottom: -58px;
   }
 
   @media screen and (min-width: 520px) {
     .page-header__image {
-      grid-column: content;
       justify-content: center;
     }
   }
 
   @media screen and (min-width: 720px) {
     .page-header {
-      grid-template-rows: var(--app-header-height) 1fr .3fr .3fr 1fr calc(var(--spacing-larger) - var(--spacing-tiny));
-      height: 76.5vh;
+      height: 76.5vh; /* as specified by the design */
+    }
+
+    .page-header--brick {
+      background-image: linear-gradient(
+        to right,
+        var(--bg-pastel),
+        var(--bg-pastel) 50%,
+        var(--brand-yellow) 50%,
+        var(--brand-yellow) 100%
+      );
+    }
+
+    .container {
+      flex-direction: row;
     }
 
     .page-header__text {
-      grid-column: page-left;
-      grid-column-start: 4;
-      grid-column-end: 16;
-      grid-row-end: 4;
-    }
-
-    .page-header--no-brick .page-header__text {
-      grid-row-end: 6;
-      grid-column: page-left;
-      grid-column-start: 4;
-    }
-
-    .page-header__brick {
-      grid-column: page-right;
-      grid-row-start: 1;
-      grid-row-end: -1;
+      width: 50%;
     }
 
     .page-header__image {
-      grid-column: page-right;
-      grid-column-end: 33;
-      grid-row-start: 4;
-      grid-row-end: 6;
       justify-content: flex-end;
-    }
-
-    .page-header--no-brick .page-header__image {
-      grid-column: page-right;
-      grid-column-end: 33;
-      grid-row-start: 2;
-      grid-row-end: -1;
-      margin-bottom: calc(var(--spacing-medium) * -1);
+      padding-bottom: var(--spacing-large);
+      width: 50%;
+      height: 100%;
     }
 
     .page-header__scroll-to.scroll-to {
-      position: absolute;
-      bottom: -160px;
-      grid-row-start: 7;
+      bottom: -158px;
     }
   }
 
   @media screen and (min-width: 1100px) {
-    .page-header {
-      grid-template-rows: var(--app-header-height) 1fr .6fr var(--spacing-large);
-    }
-
-    .page-header__text {
-      grid-column-end: 21;
-      grid-row-end: 3;
-    }
-
-    .page-header__image {
-      grid-row-start: 3;
-      grid-row-end: 4;
-    }
-
     .page-header__scroll-to.scroll-to {
       bottom: -163px;
-    }
-
-    .page-header--no-brick .page-header__image {
-      grid-column: page-right;
-      grid-column-end: 48;
-      grid-row-start: 2;
-      grid-row-end: -1;
-      margin-bottom: calc(var(--spacing-medium) * -1);
     }
   }
 </style>

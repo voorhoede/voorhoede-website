@@ -118,8 +118,6 @@
   .page-cases__case-meta-container {
     grid-column: page;
     background-color: var(--bg-pastel);
-    padding-top: var(--spacing-large);
-    padding-bottom: var(--spacing-large);
   }
 
   .page-cases__case-meta {
