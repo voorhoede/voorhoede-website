@@ -13,6 +13,7 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
 }
 
 fragment caseItem on CaseItemRecord {
+  slug,
   title,
   heroIllustration {
     url
@@ -21,10 +22,10 @@ fragment caseItem on CaseItemRecord {
     caseTeaserTitle,
     caseTeaserImage {
       url,
-      alt
-    },
-    caseTeaserInverse,
-    caseTeaserSmall
+      alt,
+      width,
+      height
+    }
   },
   content {
     ... on TextSectionRecord {
@@ -48,15 +49,16 @@ fragment caseItem on CaseItemRecord {
         richText,
       }
     },
-    ... on InlineTeaserRecord {
-      teaser {
-        caseTeaserTitle,
-        caseTeaserImage {
+    ... on ImageWithTextRecord {
+      imageWithDescription {
+        image{
           url,
-          alt
+          alt,
+          width,
+          height
         },
-        caseTeaserSmall,
-        caseTeaserInverse
+        description,
+        inverse
       }
     }
   },
