@@ -37,7 +37,7 @@ stories.add(
           'format': 'png',
           'width': 120,
           'height': 1000,
-          'alt': 'Two hands forming a heart around the sun during a sunset',
+          'alt': 'A ninja, a superhero & a cowboy',
           'url': 'https://www.datocms-assets.com/6524/1535025273-screen-shot-2018-08-23-at-13-54-07.png',
         }"
       />
