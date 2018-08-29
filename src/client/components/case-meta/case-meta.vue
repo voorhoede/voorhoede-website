@@ -82,9 +82,11 @@
       toMetaString(array) {
         const finalDivider = (this.currentLocale === 'en') ? 'and' : 'en'
 
-        const lastItem = array.pop() /* Pop also removes the last element of the array */
+        const lastItem = array[array.length-1]
+
         return array
-          .map(array => array.title)
+          .slice(0, array.length - 1)
+          .map(item => item.title)
           .join(', ') + ` ${finalDivider} ${lastItem.title}`
       }
     }

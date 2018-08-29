@@ -18,15 +18,13 @@ fragment caseItem on CaseItemRecord {
     url
   },
   caseTeaser {
-    caseTeaserTitle,
-    caseTeaserImage {
+    title,
+    image {
       url,
       alt,
       width,
       height      
     },
-    caseTeaserInverse,
-    caseTeaserSmall
   },
   content {
     ... on TextSectionRecord {
@@ -51,19 +49,6 @@ fragment caseItem on CaseItemRecord {
         richText,
       }
     },
-    ... on InlineTeaserRecord {
-      teaser {
-        caseTeaserTitle,
-        caseTeaserImage {
-          url,
-          alt,
-          width,
-      		height
-        },
-        caseTeaserSmall,
-        caseTeaserInverse
-      }
-    }
   },
   metaData {
     expertisesTitle,
