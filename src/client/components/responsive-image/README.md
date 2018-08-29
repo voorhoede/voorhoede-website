@@ -21,6 +21,6 @@
     'height': 720,
     'alt': 'Two hands forming a heart around the sun during a sunset',
     'url': 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
-  }" 
+  }"
 />
 ```
