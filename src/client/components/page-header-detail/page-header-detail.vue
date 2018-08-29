@@ -181,6 +181,7 @@
     .page-header__image {
       grid-row-start: 3;
       grid-row-end: 4;
+      grid-column-end: 48;
     }
 
     .page-header__scroll-to.scroll-to {
