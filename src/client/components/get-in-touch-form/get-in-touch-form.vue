@@ -81,6 +81,8 @@
 </script>
 
 <style>
+  @import '../forms/forms.css';
+
   .get-in-touch-form__label:first-of-type {
     margin-top: 0;
   }
