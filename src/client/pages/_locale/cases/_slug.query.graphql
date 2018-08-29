@@ -51,7 +51,7 @@ fragment caseItem on CaseItemRecord {
     },
     ... on ImageWithTextRecord {
       imageWithDescription {
-        image{
+        image {
           url,
           alt,
           width,
