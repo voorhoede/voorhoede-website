@@ -18,7 +18,7 @@
         </no-script>
       </fixed-ratio>
     </div>
-    <figcaption class="responsive-image__caption  body-detail" v-if="image.title">
+    <figcaption class="responsive-image__caption body-detail" v-if="image.title">
       {{ image.title }}
     </figcaption>
   </figure>
