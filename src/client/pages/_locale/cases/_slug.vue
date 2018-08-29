@@ -56,7 +56,7 @@
       </template>
       <quote-block :quote="page.quote" :cite="page.author" />
     </section>
-    <div class="page-cases__link">
+    <div class="page-cases__link-container">
       <nuxt-link class="font-html-blue body font-bold" :to="`/${currentLocale}/cases`">&larr; See all cases</nuxt-link>
     </div>
     <aside class="page-cases__get-in-touch-form">
@@ -140,15 +140,10 @@
     margin-bottom: var(--spacing-small);
   }
 
-  .page-cases__link {
-    margin-bottom: var(--spacing-bigger);
-  }
-
-  .page-cases__link::before {
-    grid-column: content;
-    padding-bottom: var(--spacing-small);
+  .page-cases__link-container {
+    padding-top: var(--spacing-small);
     border-top: 2px solid var(--very-dim);
-    content: '';
+    margin-bottom: var(--spacing-bigger);
   }
 
   @media (min-width: 720px) {
