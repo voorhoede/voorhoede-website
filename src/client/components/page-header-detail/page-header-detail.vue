@@ -113,7 +113,7 @@
 
   @media screen and (min-width: 720px) {
     .page-header {
-      height: 76.5vh;
+      height: 76.5vh; /* as specified by the design */
     }
 
     .page-header--brick {
