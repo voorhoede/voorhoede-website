@@ -58,17 +58,16 @@ export default {
     }
 
     .image-with-description__description {
-      max-width: 233px;
-      grid-column: content-right;
       grid-column-start: 21;
+      grid-column-end: 30;
       grid-row: 1;
       align-self: center;
       margin: 0;
     }
 
     .image-with-description--inverse .image-with-description__description {
-      grid-column: content-left;
       grid-column-start: 6;
+      grid-column-end: 15;
     }
 
     .image-with-description--inverse .image-with-description__image {
@@ -90,23 +89,19 @@ export default {
       grid-column-start: 6;
     }
 
+    .image-with-description__description {
+      grid-column-start: 30;
+      grid-column-end: 39;
+    }
+
     .image-with-description--inverse .image-with-description__description {
       grid-column-start: 10;
+      grid-column-end: 19;
     }
 
     .image-with-description--inverse .image-with-description__image {
-      grid-column-end: 46;
       grid-column-start: 24;
-    }
-
-    .image-with-description__description {
-      grid-column-start: 30;
-    }
-  }
-
-  @media (min-width: 720px) and (max-width: 960px) {
-    .image-with-description__title {
-      font-size: 1.9375rem; /* 31px */
+      grid-column-end: 46;
     }
   }
 </style>
