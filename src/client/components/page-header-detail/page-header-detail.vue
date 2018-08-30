@@ -61,7 +61,7 @@
       var(--bg-pastel) 50%,
       var(--brand-yellow) 50%,
       var(--brand-yellow) 100%
-    )
+    );
   }
 
   .container {
@@ -123,7 +123,7 @@
         var(--bg-pastel) 50%,
         var(--brand-yellow) 50%,
         var(--brand-yellow) 100%
-      )
+      );
     }
 
     .container {
