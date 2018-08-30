@@ -2,14 +2,13 @@
   <header class="page-header grid" :class="{ 'page-header--brick' : brick }">
     <div class="container"> 
       <div class="page-header__text">
-        <h1 class="page-header__title" :class="brick ? 'hero' : 'h1'">{{ title }}</h1>
-        <h2 class="page-header__subtitle sub-title">{{ subTitle }}</h2>
+        <h1 class="page-header__title" :class="brick ? 'hero' : 'h1'">{{ detailPage ? title : subTitle }}</h1>
+        <h2 class="page-header__subtitle sub-title">{{ detailPage ? subTitle : title }}</h2>
       </div>
   
       <div v-if="hasImage" class="page-header__image">
         <slot name="image"/>
       </div>
-      <scroll-to v-if="brick" class="page-header__scroll-to"/>
     </div>
   </header>
 </template>
@@ -29,6 +28,11 @@
       subTitle: {
         type: String,
         required: true,
+      },
+      detailPage: {
+        type: Boolean,
+        required: true,
+        default: false,
       },
       seoTitle: {
         type: String,
@@ -83,11 +87,6 @@
   .page-header__image img {
     width: auto;
     max-height: 60%;
-  }
-
-  .page-header__scroll-to.scroll-to {
-    position: absolute;
-    bottom: -58px;
   }
 
   .page-header--brick {
@@ -147,10 +146,6 @@
       height: 100%;
     }
 
-    .page-header__scroll-to.scroll-to {
-      bottom: -158px;
-    }
-
     .page-header--brick {
       height: 76.5vh;
       background-image: linear-gradient(
@@ -168,12 +163,6 @@
 
     .page-header--brick .page-header__image img {
       max-height: 100%;
-    }
-  }
-
-  @media screen and (min-width: 1100px) {
-    .page-header__scroll-to.scroll-to {
-      bottom: -163px;
     }
   }
 </style>
