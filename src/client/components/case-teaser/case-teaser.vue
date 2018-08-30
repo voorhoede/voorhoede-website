@@ -23,7 +23,7 @@ export default {
       type: String,
       required: true
     },
-    image : {
+    image: {
       type: Object,
       required: true
     }
@@ -32,64 +32,67 @@ export default {
 </script>
 
 <style>
-.case-teaser {
-  margin: 0 0 var(--spacing-large) 0;
-}
+  :root {
+    --border-width: 60px;
+  }
 
-.case-teaser__header {
-  margin: var(--spacing-large) 0;
-}
-
-.case-teaser__header::after {
-  content: '';
-  margin-top: var(--spacing-large);
-  width: 60px;
-  border-bottom: 2px solid var(--very-dim);
-  position: absolute;
-}
-
-.case-teaser__image {
-  grid-column-start: 1;
-  grid-column-end: 20;
-}
-
-@media (min-width: 720px) {
   .case-teaser {
-    grid-row: 1;
+    margin: 0 0 var(--spacing-large) 0;
   }
 
   .case-teaser__header {
-    grid-column-start: 20;
-    grid-row: 1;
-    align-self: center;
-    margin: 0;
+    margin: var(--spacing-large) 0;
   }
 
   .case-teaser__header::after {
-    border-bottom: none;
+    content: '';
+    margin-top: var(--spacing-large);
+    width: var(--border-width);
+    border-bottom: 2px solid var(--very-dim);
+    position: absolute;
   }
 
   .case-teaser__image {
-    grid-column: content-left;
     grid-column-start: 1;
-    grid-row: 1;
+    grid-column-end: 20;
   }
 
-  .case-teaser__image .responsive-image__sizer {
-    margin-right: 0;
-  }
-}
+  @media (min-width: 720px) {
+    .case-teaser {
+      grid-row: 1;
+    }
 
-@media (min-width: 1100px) {
-  .case-teaser__header {
-    grid-column-start: 31;
-    grid-column-end: 50;
-  }
-}
+    .case-teaser__header {
+      grid-column: content-right;
+      grid-column-start: 20;
+      grid-row: 1;
+      align-self: center;
+      margin: 0;
+    }
 
-@media (min-width: 720px) and (max-width: 960px) {
-  .case-teaser__title {
-    font-size: 1.9375rem; /* 31px */
+    .case-teaser__header::after {
+      border-bottom: none;
+    }
+
+    .case-teaser__image {
+      grid-column: page-left;
+      grid-row: 1;
+    }
+
+    .case-teaser__image .responsive-image__sizer {
+      margin-right: 0;
+    }
   }
-}
+
+  @media (min-width: 1100px) {
+    .case-teaser__header {
+      grid-column-start: 30;
+    }
+  }
+
+  @media (min-width: 720px) and (max-width: 960px) {
+    .case-teaser__title {
+      font-size: 1.9375rem; /* 31px */
+    }
+  }
 </style>
