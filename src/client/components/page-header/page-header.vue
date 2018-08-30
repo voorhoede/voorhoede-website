@@ -129,21 +129,21 @@
   }
 
   @media screen and (min-width: 720px) {
-    .container,
-    .page-header--brick .container {
+    .container {
       flex-direction: row;
     }
 
     .page-header__text {
-      width: 50%;
+      width: 45%;
     }
 
-    .page-header__image {
+    .page-header--brick .page-header__image {
+      align-self: flex-end;
       justify-content: flex-end;
       margin-top: auto;
       padding-bottom: var(--spacing-large);
-      width: 50%;
-      height: 100%;
+      width: 70%;
+      height: auto;
     }
 
     .page-header--brick {
@@ -163,6 +163,12 @@
 
     .page-header--brick .page-header__image img {
       max-height: 100%;
+    }
+  }
+
+  @media screen and (min-width: 1100px) {
+    .page-header--brick .container {
+      flex-direction: row;
     }
   }
 </style>

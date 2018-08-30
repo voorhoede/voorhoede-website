@@ -18,7 +18,7 @@ stories.add(
   'Page Header - with brick',
   () => ({
     template: `<div class="grid page">
-                <page-header brick title="Drop & fly" sub-title="Case page">
+                <page-header detailPage brick title="Drop & fly" sub-title="Case page">
                   <img slot="image" src="https://www.datocms-assets.com/6524/1535373222-screen-shot-2018-08-27-at-14-10-21.png" alt="">
                 </page-header>
               </div>`,
@@ -28,7 +28,7 @@ stories.add(
   'Page Header - without brick',
   () => ({
     template: `<div class="grid page">
-                <page-header title="Peer-to-peer APIs" sub-title="Blog">
+                <page-header detailPage title="Peer-to-peer APIs" sub-title="Blog">
                   <img slot="image" src="https://www.datocms-assets.com/6524/1535465393-unicorn.svg" alt="">
                 </page-header>
               </div>`,
