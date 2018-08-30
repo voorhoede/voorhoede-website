@@ -19,7 +19,7 @@
       />
     </aside>
 
-    <div class="page-cases__case-teaser grid page">
+    <div class="page-cases__case-teaser grid">
       <case-teaser
         v-if="page.caseTeaser"
         :title="page.caseTeaser.title"
@@ -38,12 +38,6 @@
 
         <responsive-image
           v-if="item.image && !item.fullWidth"
-          :key="index"
-          :image="item.image"
-        />
-
-        <full-width-image
-          v-if="item.image && item.fullWidth"
           :key="index"
           :image="item.image"
         />
@@ -83,7 +77,6 @@
   import { CaseMeta } from '~/components'
   import { CasePullQuoteComposition } from '~/components'
   import { CaseTeaser } from '~/components'
-  import { FullWidthImage } from '~/components'
   import { GetInTouchForm } from '~/components'
   import { PageHeaderDetail } from '~/components'
   import { ResponsiveImage } from '~/components'
@@ -99,7 +92,6 @@
       CaseMeta,
       CasePullQuoteComposition,
       CaseTeaser,
-      FullWidthImage,
       GetInTouchForm,
       PageHeaderDetail,
       ResponsiveImage,
@@ -133,6 +125,10 @@
     margin-bottom: var(--spacing-larger);
   }
 
+  .page-cases__get-in-touch-form {
+    grid-column: page;
+  }
+
   .page-cases__content {
     grid-column: page;
   }
@@ -162,7 +158,7 @@
 
   @media (min-width: 1100px) {
     .page-cases__case-teaser {
-      margin: var(--spacing-larger) 0 var(--spacing-big) 0;
+      margin: var(--spacing-larger) 0 0 0;
     }
 
     .page-cases__text {
