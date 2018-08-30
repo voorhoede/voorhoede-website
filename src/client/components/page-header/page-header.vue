@@ -1,215 +1,168 @@
 <template>
-  <header class="page-header grid">
-    <div v-if="brick" class="page-header__brick"/>
-    <div v-if="curlyBracket" class="page-header__curly-bracket-column">
-      <div class="page-header__curly-bracket-wrapper">
-        <img class="page-header__curly-bracket" src="/images/curly-bracket--close.svg">
+  <header class="page-header grid" :class="{ 'page-header--brick' : brick }">
+    <div class="container"> 
+      <div class="page-header__text">
+        <h1 class="page-header__title" :class="brick ? 'hero' : 'h1'">{{ detailPage ? title : subTitle }}</h1>
+        <h2 class="page-header__subtitle sub-title">{{ detailPage ? subTitle : title }}</h2>
       </div>
-    </div>
-    <div v-if="hasImage" class="page-header__image">
-      <slot name="image"/>
-    </div>
-    <div class="page-header__text">
-      <h1 v-if="seoTitle" class="sr-only">{{ seoTitle }}</h1>
-      <div class="page-header__title sub-title">
-        <slot name="title"/>
-      </div>
-      <div class="page-header__sub-title hero">
-        <slot name="subTitle"/>
+  
+      <div v-if="hasImage" class="page-header__image">
+        <slot name="image"/>
       </div>
     </div>
   </header>
 </template>
 
 <script>
-export default {
-  props: {
-    seoTitle: {
-      type: String,
-      default: null,
+  import { ScrollTo } from '~/components'
+
+  export default {
+    components: {
+      ScrollTo,
     },
-    brick: {
-      type: Boolean,
-      required: false,
-      default: false,
+    props: {
+      title: {
+        type: String,
+        required: true,
+      },
+      subTitle: {
+        type: String,
+        required: true,
+      },
+      detailPage: {
+        type: Boolean,
+        required: true,
+        default: false,
+      },
+      seoTitle: {
+        type: String,
+        default: null,
+      },
+      brick: {
+        type: Boolean,
+        default: false,
+      },
     },
-    curlyBracket: {
-      type: Boolean,
-      required: false,
-      default: false,
+    computed: {
+      hasImage() {
+        return 'image' in this.$slots
+      },
     },
-  },
-  computed: {
-    hasImage() {
-      return 'image' in this.$slots
-    },
-  },
-}
+  }
 </script>
 
-<style>
-.page-header {
-  padding-top: var(--app-header-height);
-  background: var(--bg-pastel);
-}
-
-.page-header__brick {
-  display: none;
-}
-
-.page-header__curly-bracket {
-  display: none;
-}
-
-.page-header__image img {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-@supports (display: grid) {
+<style scoped>
   .page-header {
-    padding-top: 0;
-    grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
+    grid-column: page;
+    background-color: var(--bg-pastel);
+  }
+
+  .container {
+    grid-column: content;
+    display: flex;
     position: relative;
+    justify-content: space-between;
   }
 
   .page-header__text {
-    margin: var(--spacing-medium) 0;
-    grid-column: content;
-    grid-row-start: 2;
+    display: flex;
+    flex-direction: column;
+    padding-top: calc(var(--app-header-height) + var(--spacing-medium));
+    padding-bottom: var(--spacing-large);
   }
 
-  .page-header__sub-title {
-    margin-top: var(--spacing-large);
+  .page-header__title {
+    order: 2;
   }
 
-  .page-header__brick {
-    display: block;
-    background: var(--brand-yellow);
-    grid-column: page;
-    grid-row-start: 3;
-    grid-row-end: 6;
-  }
-
-  .page-header__curly-bracket-column {
-    grid-column: page;
-    grid-row: 3;
-    position: absolute;
-    top: calc(-1 * var(--spacing-large));
-    right: 0;
-    bottom: calc(-1 * var(--spacing-large));
-    overflow: hidden;
-  }
-
-  /* Ugly wrapper to prevent horizontal scrolling, while making vertical overflow possible */
-  .page-header__curly-bracket-wrapper {
-    display: block;
-    height: 100%;
-    position: relative;
-    right: calc(-1 * var(--spacing-large));
-  }
-
-  .page-header__curly-bracket {
-    display: block;
-    height: 100%;
-    mix-blend-mode: screen;
+  .page-header__subtitle {
+    order: 1;
+    margin-bottom: var(--spacing-smaller);
   }
 
   .page-header__image {
-    grid-column-start: 2;
-    grid-column-end: 19;
-    grid-row-start: 4;
-    grid-row-end: 5;
+    display: none;
+  }
+
+  .page-header__image img {
+    width: auto;
+    max-height: 60%;
+  }
+
+  .page-header--brick {
+    grid-column: page;
+    background-image: linear-gradient(
+      to bottom,
+      var(--bg-pastel),
+      var(--bg-pastel) 50%,
+      var(--brand-yellow) 50%,
+      var(--brand-yellow) 90%
+    );
+  }
+
+  .page-header--brick .container {
+    flex-direction: column;
+  }
+
+  .page-header--brick .page-header__image {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    padding-bottom: var(--spacing-medium);
+    max-width: 100%;
+    height: 40vh;
   }
 
   @media screen and (min-width: 520px) {
-    .page-header__curly-bracket-column {
-      grid-column: content;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      overflow: visible;
-    }
-
-    .page-header__curly-bracket-wrapper {
-      position: static;
-    }
-
-    .page-header__curly-bracket {
-      display: block;
-      flex-grow: 1;
-      top: 0;
-    }
-
     .page-header__image {
-      grid-column: content;
-      grid-column-start: 4;
-      grid-column-end: 16;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      padding-bottom: var(--spacing-large);
+      width: 20%;
+    }
+
+    .page-header--brick .page-header__image {
       justify-content: center;
+      width: 100%;
     }
   }
 
   @media screen and (min-width: 720px) {
-    .page-header {
-      grid-template-rows: calc(var(--app-header-height) + var(--spacing-big)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
+    .container,
+    .page-header--brick .container {
+      flex-direction: row;
     }
 
     .page-header__text {
-      margin: var(--spacing-medium) 0;
-      grid-column: content;
-      grid-row-start: 2;
-      grid-column-start: 2;
-      grid-column-end: 12;
-    }
-
-    .page-header__brick {
-      height: 100%;
-      grid-column: page-right;
-      grid-row-start: 1;
-      grid-row-end: -1;
-    }
-
-    .page-header__curly-bracket-column {
-      position: static;
-      grid-column-end: 32;
-      grid-row-start: 2;
-      grid-row-end: 4;
-    }
-
-    .page-header__curly-bracket {
-      height: 100%;
+      width: 50%;
     }
 
     .page-header__image {
-      grid-column-start: 13;
-      grid-column-end: 33;
-      grid-row-start: 2;
-      grid-row-end: 3;
+      justify-content: flex-end;
+      margin-top: auto;
+      padding-bottom: var(--spacing-large);
+      width: 50%;
+      height: 100%;
+    }
+
+    .page-header--brick {
+      height: 76.5vh;
+      background-image: linear-gradient(
+        to right,
+        var(--bg-pastel),
+        var(--bg-pastel) 50%,
+        var(--brand-yellow) 50%,
+        var(--brand-yellow) 100%
+      );
+    }
+
+    .page-header--brick .page-header__image {
       justify-content: flex-end;
     }
-  }
 
-  @media screen and (min-width: 1100px) {
-    .page-header {
-      grid-template-rows: calc(var(--app-header-height) + var(--spacing-larger)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
-    }
-
-    .page-header__text {
-      grid-column-start: 4;
-      grid-column-end: 21;
-    }
-
-    .page-header__curly-bracket-column {
-      grid-column-end: 48;
-    }
-
-    .page-header__image {
-      grid-column-start: 22;
-      grid-column-end: 49;
+    .page-header--brick .page-header__image img {
+      max-height: 100%;
     }
   }
-}
 </style>

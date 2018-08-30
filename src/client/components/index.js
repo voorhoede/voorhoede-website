@@ -29,3 +29,4 @@ export { default as CasePullQuoteComposition } from './case-pull-quote-compositi
 export { default as StorytellingSection } from './storytelling-section'
 export { default as CaseTeaser } from './case-teaser'
 export { default as FaqItem } from './faq-item'
+export { default as PageHeaderHome } from './page-header-home'
