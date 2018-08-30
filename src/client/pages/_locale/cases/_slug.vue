@@ -19,11 +19,13 @@
       />
     </aside>
 
-    <case-teaser
-      v-if="page.caseTeaser"
-      :title="page.caseTeaser.title"
-      :image="page.caseTeaser.image"
-    />
+    <div class="page-cases__case-teaser grid page">
+      <case-teaser
+        v-if="page.caseTeaser"
+        :title="page.caseTeaser.title"
+        :image="page.caseTeaser.image"
+      />
+    </div>
 
     <section class="page-cases__content grid">
       <template v-for="(item, index) in page.content">
@@ -118,6 +120,7 @@
   .page-cases__case-meta-container {
     grid-column: page;
     background-color: var(--bg-pastel);
+    padding: var(--spacing-small) 0 var(--spacing-large) 0;
   }
 
   .page-cases__case-meta {
@@ -144,6 +147,11 @@
     margin-bottom: var(--spacing-bigger);
   }
 
+  .page-cases__case-teaser {
+    grid-column: page;
+    margin: var(--spacing-large) 0;
+  }
+
   @media (min-width: 720px) {
     .page-cases__get-in-touch-form,
     .page-cases__content,
@@ -153,6 +161,10 @@
   }
 
   @media (min-width: 1100px) {
+    .page-cases__case-teaser {
+      margin: var(--spacing-larger) 0 var(--spacing-big) 0;
+    }
+
     .page-cases__text {
       grid-column-start: 14;
       grid-column-end: 39;
