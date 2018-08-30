@@ -23,7 +23,7 @@ export default {
       type: String,
       required: true
     },
-    image : {
+    image: {
       type: Object,
       required: true
     }
@@ -35,13 +35,13 @@ export default {
   :root {
     --text-block-max-width: 360px;
     --page-max-width: 1440px;
+    --border-width: 60px;
   }
 
   .case-teaser {
     grid-column: page;
     display: flex;
     flex-direction: column;
-    margin: 0 0 var(--spacing-large) 0;
   }
 
   .case-teaser__header {
@@ -51,10 +51,10 @@ export default {
 
   .case-teaser__header::after {
     content: '';
-    margin-top: var(--spacing-large);
-    width: 60px;
-    border-bottom: 2px solid var(--very-dim);
     position: absolute;
+    margin-top: var(--spacing-large);
+    width: var(--border-width);
+    border-bottom: 2px solid var(--very-dim);
   }
 
   .case-teaser__image {
