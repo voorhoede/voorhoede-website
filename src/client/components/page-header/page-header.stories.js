@@ -2,38 +2,35 @@ import Vue from 'vue'
 import { storiesOf } from '@storybook/vue'
 import { withReadme } from 'storybook-readme'
 import { withKnobs } from '@storybook/addon-knobs/vue'
-import VueI18n from 'vue-i18n'
-// import { action } from '@storybook/addon-actions'
 
 import '../app-core/index.css'
 
-import pageHeader from './page-header.vue'
+import PageHeader from './page-header.vue'
 import README from './README.md'
 
 const stories = storiesOf('Components/Page Header', module)
   .addDecorator(withKnobs)
   .addDecorator(withReadme(README))
 
-Vue.component('page-header', pageHeader)
+Vue.component('page-header', PageHeader)
 
 stories.add(
-  'Page Header',
+  'Page Header - with brick',
   () => ({
-    i18n: new VueI18n({ locale: 'en' }),
-    template: `
-      <div style="padding-bottom: 5rem; background: var(--bg-pastel);">
-        <page-header style="height: 100vh;" curly-bracket brick>
-          <template slot="title">
-            <span>We are De Voorhoede</span>
-          </template>
-          <template slot="subTitle">
-            <span>How can we help?</span>
-          </template>
-          <template slot="image">
-            <img style="max-width: 100%; max-height: 100%" src="https://www.datocms-assets.com/6068/1529572359-random-image.jpeg" alt="image">
-          </template>
-        </page-header>
-      </div>
-    `,
+    template: `<div class="grid page">
+                <page-header detailPage brick title="Drop & fly" sub-title="Case page">
+                  <img slot="image" src="https://www.datocms-assets.com/6524/1535373222-screen-shot-2018-08-27-at-14-10-21.png" alt="">
+                </page-header>
+              </div>`,
+  }),
+)
+.add(
+  'Page Header - without brick',
+  () => ({
+    template: `<div class="grid page">
+                <page-header detailPage title="Peer-to-peer APIs" sub-title="Blog">
+                  <img slot="image" src="https://www.datocms-assets.com/6524/1535465393-unicorn.svg" alt="">
+                </page-header>
+              </div>`,
   }),
 )
