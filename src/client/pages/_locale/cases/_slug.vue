@@ -1,8 +1,8 @@
 <template>
   <main class="page-cases grid">
-    <page-header-detail brick :title="page.title" :sub-title="'Case study'">
+    <page-header detail-page brick :title="page.title" :sub-title="'Case study'">
       <img slot="image" :src="page.heroIllustration.url" alt="">
-    </page-header-detail>
+    </page-header>
 
     <aside class="page-cases__case-meta-container grid">
       <case-meta
@@ -83,7 +83,7 @@
   import { CaseTeaser } from '~/components'
   import { FullWidthImage } from '~/components'
   import { GetInTouchForm } from '~/components'
-  import { PageHeaderDetail } from '~/components'
+  import { PageHeader } from '~/components'
   import { ResponsiveImage } from '~/components'
   import { RichTextBlock } from '~/components'
   import { QuoteBlock } from '~/components'
@@ -99,7 +99,7 @@
       CaseTeaser,
       FullWidthImage,
       GetInTouchForm,
-      PageHeaderDetail,
+      PageHeader,
       ResponsiveImage,
       RichTextBlock,
       QuoteBlock,
