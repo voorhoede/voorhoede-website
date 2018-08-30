@@ -1,11 +1,11 @@
 <template>
   <header class="page-header grid" :class="{ 'page-header--brick' : brick }">
-    <div class="container"> 
+    <div class="container">
       <div class="page-header__text">
         <h1 class="page-header__title" :class="brick ? 'hero' : 'h1'">{{ title }}</h1>
         <h2 class="page-header__subtitle sub-title">{{ subTitle }}</h2>
       </div>
-  
+
       <div v-if="hasImage" class="page-header__image">
         <slot name="image"/>
       </div>
@@ -113,7 +113,7 @@
 
   @media screen and (min-width: 720px) {
     .page-header {
-      height: 76vh;
+      height: 76.5vh; /* as specified by the design */
     }
 
     .page-header--brick {

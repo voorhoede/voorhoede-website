@@ -23,7 +23,7 @@ fragment caseItem on CaseItemRecord {
       url,
       alt,
       width,
-      height      
+      height
     },
   },
   content {
