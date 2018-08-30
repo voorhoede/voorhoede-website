@@ -137,15 +137,6 @@
       width: 45%;
     }
 
-    .page-header--brick .page-header__image {
-      align-self: flex-end;
-      justify-content: flex-end;
-      margin-top: auto;
-      padding-bottom: var(--spacing-large);
-      width: 70%;
-      height: auto;
-    }
-
     .page-header--brick {
       height: 76.5vh;
       background-image: linear-gradient(
@@ -158,7 +149,12 @@
     }
 
     .page-header--brick .page-header__image {
+      align-self: flex-end;
       justify-content: flex-end;
+      margin-top: auto;
+      padding-bottom: var(--spacing-large);
+      width: 70%;
+      height: auto;
     }
 
     .page-header--brick .page-header__image img {
