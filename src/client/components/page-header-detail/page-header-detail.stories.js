@@ -19,7 +19,7 @@ stories.add(
   () => ({
     template: `<div class="grid page">
                 <page-header-detail brick title="Drop & fly" sub-title="Case page">
-                  <img slot="image" src="https://www.datocms-assets.com/6524/1535465393-unicorn.svg" alt="">
+                  <img slot="image" src="https://www.datocms-assets.com/6524/1535373222-screen-shot-2018-08-27-at-14-10-21.png" alt="">
                 </page-header-detail>
               </div>`,
   }),
