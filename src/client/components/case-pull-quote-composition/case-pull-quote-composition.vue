@@ -5,7 +5,7 @@
              'pullquote-composition--no-grid' : image === ''
            }"
   >
-    <img :src="image.url" class="pullquote-composition__image" v-if="image" :alt="image.alt">
+    <img v-if="image" :src="image.url" class="pullquote-composition__image" :alt="image.alt">
     <h4 class="pullquote font-bold pullquote-composition__title"
         :class="image ? '' : 'pullquote-composition__title--align-left' ">
       {{ pullquote }}
@@ -40,10 +40,16 @@ export default {
       type: Object,
       default: null,
       validator(image) {
-        if(image) {
-          return image instanceof Object &&
+        if (!image) {
+          return true
+        } else {
+          const isValidImageText = (image.alt !== null) ? image.alt === 'string' : true
+
+          return (
+            typeof isValidImageText &&
             typeof image.url === 'string' &&
-            typeof image.alt === 'string'
+            typeof image.format === 'string'
+          )
         }
       }
     }
@@ -70,6 +76,8 @@ export default {
 
 .pullquote-composition__title--align-left {
   grid-column: content;
+  grid-column-end: 8;
+  grid-column-start: 1;
 }
 
 .pullquote-composition__image {

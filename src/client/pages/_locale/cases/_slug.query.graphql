@@ -23,7 +23,8 @@ fragment caseItem on CaseItemRecord {
       url,
       alt,
       width,
-      height
+      height,
+      format
     },
   },
   content {
@@ -37,6 +38,7 @@ fragment caseItem on CaseItemRecord {
         alt,
         width,
         height,
+        format
       },
       alt,
       fullWidth,
@@ -47,6 +49,7 @@ fragment caseItem on CaseItemRecord {
         illustration {
           url,
           alt,
+          format
         },
         richText,
       }

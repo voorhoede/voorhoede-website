@@ -113,7 +113,7 @@
 
 <style>
   :root {
-    --view-height-largea: 89vh;
+    --view-height-large: 89vh;
   }
 
   .page-cases__case-meta-container {
