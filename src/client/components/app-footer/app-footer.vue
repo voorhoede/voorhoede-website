@@ -163,8 +163,7 @@ export default {
 
 .app-footer {
   width: 100%;
-  padding: var(--app-footer-spacing);
-  padding-top: var(--spacing-larger);
+  padding: var(--spacing-larger) 0 var(--app-footer-spacing) 0;
   background: var(--brand-yellow);
 }
 
