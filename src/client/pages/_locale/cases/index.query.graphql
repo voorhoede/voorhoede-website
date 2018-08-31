@@ -1,8 +1,8 @@
-query Case($locale: SiteLocale, $altLocale: SiteLocale)  {
+query Case($locale: SiteLocale)  {
   page: caseOverview(locale:$locale) {
     ...page
   },
-  items: allCaseItems {
+  items: allCaseItems(locale:$locale) {
     slug,
     title,
     subtitle,
@@ -10,13 +10,14 @@ query Case($locale: SiteLocale, $altLocale: SiteLocale)  {
       url
     }
   },
-  alternateUrl: caseOverview(locale:$altLocale) {
-    title
+  alternate: caseOverview {
+    slug
   }
 }
 
 fragment page on CaseOverviewRecord {
   title,
+  slug,
   subtitle,
   headerIllustration {
     url

@@ -14,6 +14,7 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
 
 fragment caseItem on CaseItemRecord {
   title,
+  slug,
   heroIllustration {
     url
   },

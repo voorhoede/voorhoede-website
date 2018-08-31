@@ -89,7 +89,7 @@
 
   export default {
     async asyncData({ store, route }) {
-      return await store.dispatch('getData', { query, route })
+      return await store.dispatch('getData', { route })
     },
     components: {
       CaseMeta,

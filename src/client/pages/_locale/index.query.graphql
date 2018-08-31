@@ -1,8 +1,8 @@
-query HomePage($locale: SiteLocale, $altLocale: SiteLocale)  {
+query HomePage($locale: SiteLocale, $alternateLocale: SiteLocale)  {
   page: home(locale:$locale) {
     ...page
   },
-  alternateUrl: home(locale:$altLocale) {
+  alternate: home(locale:$alternateLocale) {
     slug
   },
   upcomingEvents: allAcademyItems(first: 1, orderBy: date_ASC) {
@@ -18,9 +18,9 @@ query HomePage($locale: SiteLocale, $altLocale: SiteLocale)  {
     }
   },
   latestBlogposts: allBlogPosts(first:3, orderBy: publishDate_DESC) {
+    slug,
     title,
     date: publishDate,
-    slug,
     authors {
       name,
       image {
@@ -36,6 +36,7 @@ query HomePage($locale: SiteLocale, $altLocale: SiteLocale)  {
 fragment page on HomeRecord {
   slug,
   title,
+  slug,
   social {
     title,
     description,
@@ -69,9 +70,6 @@ fragment page on HomeRecord {
     tagline,
     title,
     slug,
-    teasers {
-      teaser
-    }
   },
   clientsTitle,
   clientsButtonLabel,

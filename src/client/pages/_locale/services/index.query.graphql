@@ -1,13 +1,16 @@
-query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
-  serviceOverview(locale:$locale) {
+query ($locale: SiteLocale)  {
+  page: serviceOverview(locale:$locale) {
     ...serviceOverview
   },
-
+  items: allServices(locale: $locale) {
+    slug
+  },
   alternate:serviceOverview {
-    slug(locale:$alternateLocale)
+    slug
   }
 }
 
 fragment serviceOverview on ServiceOverviewRecord {
-  title
+  title,
+  slug
 }

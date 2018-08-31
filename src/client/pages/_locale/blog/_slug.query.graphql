@@ -1,17 +1,18 @@
-query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
-  blogPost(locale: $locale, filter: { slug: { eq: $slug } }) {
+query ($locale: SiteLocale, $slug: String)  {
+  page: blogPost(locale: $locale, filter: { slug: { eq: $slug } }) {
     ...blogPost
   },
 
   alternate: blogPost(locale: $locale, filter: { slug: { eq: $slug } }) {
-    slug(locale: $alternateLocale)
+    slug
   },
 
   alternateParent: blogPostOverview {
-    slug(locale: $alternateLocale)
+    slug
   }
 }
 
 fragment blogPost on BlogPostRecord {
-  title
+  title,
+  slug
 }
