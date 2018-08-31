@@ -78,7 +78,6 @@ module.exports = {
         })
       }
 
-
       config.module.rules.push({
         test: /\.svg$/,
         loader: 'vue-svg-loader',

@@ -1,13 +1,16 @@
-query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
-  blogPostOverview(locale:$locale) {
+query ($locale: SiteLocale)  {
+  page: blogPostOverview(locale:$locale) {
     ...blogPostOverview
   },
-
+  items: allBlogPosts(locale: $locale) {
+    slug
+  },
   alternate:blogPostOverview {
-    slug(locale:$alternateLocale)
+    slug
   }
 }
 
 fragment blogPostOverview on BlogPostOverviewRecord {
-  title
+  title,
+  slug
 }

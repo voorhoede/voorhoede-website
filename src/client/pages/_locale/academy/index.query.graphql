@@ -1,13 +1,14 @@
-query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
-  academyItemsOverview(locale:$locale) {
+query ($locale: SiteLocale)  {
+  page: academyItemsOverview(locale:$locale) {
     ...academyItemsOverview
   },
 
   alternate:academyItemsOverview {
-    slug(locale:$alternateLocale)
+    slug
   }
 }
 
 fragment academyItemsOverview on AcademyItemsOverviewRecord {
-  title
+  title,
+  slug
 }

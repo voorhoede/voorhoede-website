@@ -23,7 +23,7 @@
 
 <script>
   import { mapState, mapGetters } from 'vuex'
-  import { AppFooter, AppHeader, GridDemo } from '~/components'
+  import { AppFooter, AppHeader, GridDemo } from '../components'
 
   export default {
     components: { AppFooter, AppHeader, GridDemo },

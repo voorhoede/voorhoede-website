@@ -8,7 +8,7 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
   },
 
   alternateParent: caseOverview {
-    slug(locale: $alternateLocale)
+    slug
   }
 }
 
@@ -19,8 +19,8 @@ fragment caseItem on CaseItemRecord {
     url
   },
   caseTeaser {
-    caseTeaserTitle,
-    caseTeaserImage {
+    title,
+    image {
       url,
       alt,
       width,

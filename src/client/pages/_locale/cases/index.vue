@@ -37,7 +37,6 @@
 
 <script>
   import { mapState } from 'vuex'
-  import query from './index.query.graphql'
   import { CaseExcerpt, PageHeader, CtaBlock } from '~/components'
 
   export default {
@@ -47,7 +46,7 @@
       CtaBlock
     },
     async asyncData({ store, route }) {
-      return await store.dispatch('getData', { query, route })
+      return await store.dispatch('getData', { route })
     },
     computed: {
       ...mapState(['currentLocale']),

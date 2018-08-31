@@ -1,5 +1,5 @@
 query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
-  service(locale: $locale, filter: { slug: { eq: $slug } }) {
+  page: service(locale: $locale, filter: { slug: { eq: $slug } }) {
     ...service
   },
 
@@ -8,10 +8,11 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
   },
 
   alternateParent: serviceOverview {
-    slug(locale: $alternateLocale)
+    slug
   }
 }
 
 fragment service on ServiceRecord {
-  title
+  title,
+  slug
 }

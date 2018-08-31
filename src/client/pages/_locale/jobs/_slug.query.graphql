@@ -1,5 +1,5 @@
 query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
-  job(locale: $locale, filter: { slug: { eq: $slug } }) {
+  page: job(locale: $locale, filter: { slug: { eq: $slug } }) {
     ...job
   },
 
@@ -8,10 +8,11 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
   },
 
   alternateParent: jobOverview {
-    slug(locale: $alternateLocale)
+    slug
   }
 }
 
 fragment job on JobRecord {
-  title
+  title,
+  slug
 }

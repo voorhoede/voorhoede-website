@@ -1,5 +1,5 @@
 const path = require('path')
-
+const webpack = require('webpack')
 const nuxtRootDir = path.resolve(`${__dirname}/../../src/client`)
 
 module.exports = (baseConfig, env, defaultConfig) => {
@@ -16,6 +16,12 @@ module.exports = (baseConfig, env, defaultConfig) => {
     test: /\.svg$/,
     loader: 'vue-svg-loader',
   })
+
+  defaultConfig.plugins.push(
+    new webpack.DefinePlugin({
+      'process.client': true // always assume client in storybook
+    }),
+  )
 
   return defaultConfig
 }
