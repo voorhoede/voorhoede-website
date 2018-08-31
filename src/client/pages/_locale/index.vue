@@ -1,7 +1,7 @@
 <template>
   <div class="page-index">
     <div class="page-index__header">
-      <page-header brick curly-bracket>
+      <page-header-home brick curly-bracket>
         <template slot="title">
           <h1 v-html="page.headerTitle"/>
         </template>
@@ -11,7 +11,7 @@
         <template v-if="page.headerIllustration" slot="image">
           <img :src="page.headerIllustration.url" alt="">
         </template>
-      </page-header>
+      </page-header-home>
       <div class="page-index__scroll-to grid">
         <scroll-to/>
       </div>
@@ -97,7 +97,7 @@
     CtaBlock,
     CaseExcerpt,
     HighlightedClients,
-    PageHeader,
+    PageHeaderHome,
     HorizontalCarousel,
     ScrollHighlightedText,
     ScrollTo,
@@ -111,7 +111,7 @@
       CtaBlock,
       CaseExcerpt,
       HighlightedClients,
-      PageHeader,
+      PageHeaderHome,
       HorizontalCarousel,
       ScrollHighlightedText,
       ScrollTo,

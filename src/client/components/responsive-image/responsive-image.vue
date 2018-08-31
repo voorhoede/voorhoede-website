@@ -18,95 +18,95 @@
         </no-script>
       </fixed-ratio>
     </div>
-    <figcaption class="responsive-image__caption  body-detail" v-if="image.title">
+    <figcaption class="responsive-image__caption body-detail" v-if="image.title">
       {{ image.title }}
     </figcaption>
   </figure>
 </template>
 
 <script>
-import FixedRatio from '../fixed-ratio'
-import LazyLoad from '../lazy-load'
-import NoScript from '../no-script'
-import imageUrl from '../../lib/image-url'
+  import FixedRatio from '../fixed-ratio'
+  import LazyLoad from '../lazy-load'
+  import NoScript from '../no-script'
+  import imageUrl from '../../lib/image-url'
 
-export default {
-  components: {
-    FixedRatio,
-    LazyLoad,
-    NoScript,
-  },
-  props: {
-    image: {
-      type: Object,
-      required: true,
-      validator(image) {
-        return typeof(image.width) === 'number' && typeof(image.height) === 'number'
-          && typeof(image.format) === 'string' && typeof(image.url) === 'string'
+  export default {
+    components: {
+      FixedRatio,
+      LazyLoad,
+      NoScript,
+    },
+    props: {
+      image: {
+        type: Object,
+        required: true,
+        validator(image) {
+          return typeof(image.width) === 'number' && typeof(image.height) === 'number'
+            && typeof(image.format) === 'string' && typeof(image.url) === 'string'
+        },
+      },
+      widthStep: {
+        type: Number,
+        default: 100,
+      }
+    },
+    data() {
+      return {
+        width: null,
+      }
+    },
+    mounted() {
+      const pixelRatio = window.devicePixelRatio || 1
+      const cssWidth = this.$el.getBoundingClientRect().width
+      const width = Math.ceil(cssWidth * pixelRatio / this.widthStep) * this.widthStep
+      this.width = Math.min(width, this.image.width)
+    },
+    methods: {
+      imageUrl(options) {
+        return imageUrl(this.image.url, options)
       },
     },
-    widthStep: {
-      type: Number,
-      default: 100,
-    }
-  },
-  data() {
-    return {
-      width: undefined,
-    }
-  },
-  mounted() {
-    const pixelRatio = window.devicePixelRatio || 1
-    const cssWidth = this.$el.getBoundingClientRect().width
-    const width = Math.ceil(cssWidth * pixelRatio / this.widthStep) * this.widthStep
-    this.width = Math.min(width, this.image.width)
-  },
-  methods: {
-    imageUrl(options) {
-      return imageUrl(this.image.url, options)
-    },
-  },
-}
+  }
 </script>
 
 <style>
-@import '../app-core/variables.css';
+  @import '../app-core/variables.css';
 
-.responsive-image__sizer {
-  margin-left: auto;
-  margin-right: auto;
-}
+  .responsive-image__sizer {
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-.responsive-image__canvas {
-  background-color: var(--bg-pastel);
-}
+  .responsive-image__canvas {
+    background-color: var(--bg-pastel);
+  }
 
-.responsive-image__img {
-  width: 100%;
-}
+  .responsive-image__img {
+    width: 100%;
+  }
 
-.responsive-image__img::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background-color: var(--bg-pastel);
-}
+  .responsive-image__img::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: var(--bg-pastel);
+  }
 
-.responsive-image__img::after {
-  content: attr(alt);
-  display: block;
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  text-align: center;
-}
+  .responsive-image__img::after {
+    content: attr(alt);
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+  }
 
-.responsive-image__caption {
-  margin-top: var(--spacing-smaller);
-  text-align: center;
-}
+  .responsive-image__caption {
+    margin-top: var(--spacing-smaller);
+    text-align: center;
+  }
 </style>
