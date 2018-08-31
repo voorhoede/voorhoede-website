@@ -121,6 +121,12 @@
     top: 89vh;
   }
 
+  @media screen and (min-width: 420px) {
+    .page-header--brick .page-header__image img {
+      height: 100%;
+    }
+  }
+
   @media screen and (min-width: 520px) {
     .page-header__image {
       display: flex;
