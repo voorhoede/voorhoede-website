@@ -1,4 +1,4 @@
-query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
+query ($locale: SiteLocale)  {
   page: jobOverview(locale:$locale) {
     ...jobOverview
   },
@@ -6,7 +6,7 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
     slug(locale: $locale)
   },
   alternate:jobOverview {
-    slug(locale:$alternateLocale)
+    slug
   }
 }
 

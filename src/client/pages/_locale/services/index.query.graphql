@@ -1,4 +1,4 @@
-query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
+query ($locale: SiteLocale)  {
   page: serviceOverview(locale:$locale) {
     ...serviceOverview
   },
@@ -6,7 +6,7 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
     slug
   },
   alternate:serviceOverview {
-    slug(locale:$alternateLocale)
+    slug
   }
 }
 

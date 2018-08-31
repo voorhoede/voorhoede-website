@@ -1,4 +1,4 @@
-query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
+query ($locale: SiteLocale)  {
   page: blogPostOverview(locale:$locale) {
     ...blogPostOverview
   },
@@ -6,7 +6,7 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
     slug
   },
   alternate:blogPostOverview {
-    slug(locale:$alternateLocale)
+    slug
   }
 }
 

@@ -70,9 +70,6 @@ fragment page on HomeRecord {
     tagline,
     title,
     slug,
-    teasers {
-      teaser
-    }
   },
   clientsTitle,
   clientsButtonLabel,

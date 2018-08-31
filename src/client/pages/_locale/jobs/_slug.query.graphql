@@ -8,7 +8,7 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
   },
 
   alternateParent: jobOverview {
-    slug(locale: $alternateLocale)
+    slug
   }
 }
 

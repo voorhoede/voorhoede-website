@@ -1,4 +1,4 @@
-query Case($locale: SiteLocale, $alternateLocale: SiteLocale)  {
+query Case($locale: SiteLocale)  {
   page: caseOverview(locale:$locale) {
     ...page
   },
@@ -11,7 +11,7 @@ query Case($locale: SiteLocale, $alternateLocale: SiteLocale)  {
     }
   },
   alternate: caseOverview {
-    slug(locale:$alternateLocale)
+    slug
   }
 }
 

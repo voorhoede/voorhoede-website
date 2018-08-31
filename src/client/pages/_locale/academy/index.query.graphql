@@ -1,10 +1,10 @@
-query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
+query ($locale: SiteLocale)  {
   page: academyItemsOverview(locale:$locale) {
     ...academyItemsOverview
   },
 
   alternate:academyItemsOverview {
-    slug(locale:$alternateLocale)
+    slug
   }
 }
 
