@@ -74,15 +74,18 @@
 
 <script>
   import query from './_slug.query.graphql'
-  import { CaseMeta } from '~/components'
-  import { CasePullQuoteComposition } from '~/components'
-  import { CaseTeaser } from '~/components'
-  import { GetInTouchForm } from '~/components'
-  import { PageHeader } from '~/components'
-  import { ResponsiveImage } from '~/components'
-  import { RichTextBlock } from '~/components'
-  import { QuoteBlock } from '~/components'
   import { mapState } from 'vuex'
+
+  import {
+    CaseMeta,
+    CasePullQuoteComposition,
+    CaseTeaser,
+    GetInTouchForm,
+    PageHeader,
+    ResponsiveImage,
+    RichTextBlock,
+    QuoteBlock,
+  } from '~/components'
 
   export default {
     async asyncData({ store, route }) {
@@ -109,6 +112,10 @@
 </script>
 
 <style>
+  :root {
+    --view-height-largea: 89vh;
+  }
+
   .page-cases__case-meta-container {
     grid-column: page;
     background-color: var(--bg-pastel);
@@ -148,6 +155,12 @@
     margin: var(--spacing-large) 0;
   }
 
+  .page-cases__scroll-to {
+    position: absolute;
+    top: var(--view-height-large);
+    left: var(--grid-margin);
+  }
+
   @media (min-width: 720px) {
     .page-cases__get-in-touch-form,
     .page-cases__content,
@@ -157,6 +170,10 @@
   }
 
   @media (min-width: 1100px) {
+    .page-cases__case-meta-container {
+      padding: 0;
+    }
+
     .page-cases__case-teaser {
       margin: var(--spacing-larger) 0 0 0;
     }
@@ -175,6 +192,17 @@
     .page-cases__content,
     .page-cases__content > *:not(:last-child) {
       margin-bottom: var(--spacing-bigger);
+    }
+
+    .page-cases__link-container {
+      grid-column-start: 4;
+      grid-column-end: -4;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    .page-cases__scroll-to {
+      position: relative;
     }
   }
 </style>

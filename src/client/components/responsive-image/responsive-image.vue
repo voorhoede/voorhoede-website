@@ -43,6 +43,7 @@
         validator(image) {
           return typeof(image.width) === 'number' && typeof(image.height) === 'number'
             && typeof(image.format) === 'string' && typeof(image.url) === 'string'
+            && typeof(image.alt) === 'string'
         },
       },
       widthStep: {

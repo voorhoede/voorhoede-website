@@ -1,14 +1,17 @@
 <template>
   <header class="page-header grid" :class="{ 'page-header--brick' : brick }">
-    <div class="container"> 
+    <div class="page-header__container">
       <div class="page-header__text">
         <h1 class="page-header__title" :class="brick ? 'hero' : 'h1'">{{ detailPage ? title : subTitle }}</h1>
         <h2 class="page-header__subtitle sub-title">{{ detailPage ? subTitle : title }}</h2>
       </div>
-  
+
       <div v-if="hasImage" class="page-header__image">
         <slot name="image"/>
       </div>
+    </div>
+    <div class="page-header__scroll-container">
+      <scroll-to v-if="brick" class="page-header__scroll-to"/>
     </div>
   </header>
 </template>
@@ -57,7 +60,7 @@
     background-color: var(--bg-pastel);
   }
 
-  .container {
+  .page-header__container {
     grid-column: content;
     display: flex;
     position: relative;
@@ -85,9 +88,6 @@
   }
 
   .page-header__image img {
-    width: auto;
-    height: auto;
-    max-height: 150px;
     max-width: 100%;
   }
 
@@ -102,7 +102,7 @@
     height: 90vh;
   }
 
-  .page-header--brick .container {
+  .page-header--brick .page-header__container {
     flex-direction: column;
     padding-bottom: 0;
   }
@@ -114,6 +114,11 @@
     padding-bottom: var(--spacing-medium);
     max-width: 100%;
     height: 40vh;
+  }
+
+  .page-header__scroll-to.scroll-to {
+    position: absolute;
+    top: 89vh;
   }
 
   @media screen and (min-width: 520px) {
@@ -132,7 +137,7 @@
   }
 
   @media screen and (min-width: 720px) {
-    .container {
+    .page-header__container {
       flex-direction: row;
     }
 
@@ -176,12 +181,27 @@
   }
 
   @media screen and (min-width: 1100px) {
-    .page-header--brick .container {
+    .page-header--brick .page-header__container {
       flex-direction: row;
+    }
+
+    .page-header__container {
+      grid-column-start: 4;
+      padding-top: calc(var(--app-header-height) + var(--spacing-larger));
+    }
+
+    .page-header__scroll-container {
+      grid-column-start: 2;
     }
 
     .page-header__image img {
       max-height: 260px;
+    }
+  }
+
+  @media screen and (min-width: 1400px) {
+    .page-header--brick .page-header__image {
+      height: auto;
     }
   }
 </style>

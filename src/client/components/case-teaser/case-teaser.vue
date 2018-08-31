@@ -33,7 +33,7 @@ export default {
 
 <style>
   :root {
-    --text-block-max-width: 360px;
+    --text-block-max-width: 400px;
     --page-max-width: 1440px;
     --border-width: 60px;
   }
