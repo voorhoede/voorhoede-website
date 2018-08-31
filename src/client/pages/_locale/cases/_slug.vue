@@ -73,7 +73,6 @@
 </template>
 
 <script>
-  import query from './_slug.query.graphql'
   import { mapState } from 'vuex'
 
   import {
