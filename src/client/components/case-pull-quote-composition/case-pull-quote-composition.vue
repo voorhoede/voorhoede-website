@@ -149,7 +149,7 @@ export default {
   }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1440px) {
   .pullquote-composition {
     grid-template-columns: 6fr 8fr 2fr 6fr 2fr 15fr 5fr;
   }
