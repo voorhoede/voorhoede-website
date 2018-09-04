@@ -4,11 +4,8 @@
       <page-header
         is-homepage
         :title="page.headerTitle"
-        :sub-title="page.subtitle">
-        <template v-if="page.headerIllustration" slot="image">
-          <img :src="page.headerIllustration.url" alt="">
-        </template>
-      </page-header>
+        :sub-title="page.subtitle"
+        :image="page.headerIllustration"/>
       <div class="page-index__scroll-to grid">
         <scroll-to/>
       </div>
@@ -137,7 +134,7 @@
   }
 
   .page-index .scroll-to {
-    grid-column-start: 2;
+    grid-column-start: 1;
     grid-column-end: 3;
   }
 

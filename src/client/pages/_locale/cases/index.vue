@@ -2,11 +2,8 @@
   <main class="page-cases">
     <page-header
       :title="page.title"
-      :sub-title="page.subtitle">
-      <template v-if="page.headerIllustration" slot="image">
-        <img :src="page.headerIllustration.url" alt="">
-      </template>
-    </page-header>
+      :sub-title="page.subtitle"
+      :image="page.headerIllustration" />
     <div class="grid">
       <ul class="page-case__overview">
         <li class="page-case__overview-item" v-for="caseItem in items" :key="caseItem.slug">

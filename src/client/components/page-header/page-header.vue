@@ -1,21 +1,21 @@
 <template>
-  <header class="page-header grid">
+  <header class="page-header grid" :class="isHomepage ? '' : 'page-header--smaller-rows' ">
     <div v-if="isHomepage" class="page-header__brick" />
     <div v-if="isHomepage" class="page-header__curly-bracket-column">
       <div class="page-header__curly-bracket-wrapper">
         <img class="page-header__curly-bracket" src="/images/curly-bracket--close.svg">
       </div>
     </div>
-    <div v-if="hasImage" class="page-header__image">
-      <slot name="image"/>
+    <div class="page-header__image" :class="isHomepage ? '': 'page-header__image--spacing-top' ">
+      <img :src="image.url" alt="">
     </div>
     <div class="page-header__text">
       <h1 v-if="seoTitle" class="sr-only">{{ seoTitle }}</h1>
       <div class="page-header__title sub-title">
-        {{ title }}
+        <span v-html="title" />
       </div>
-      <div class="page-header__sub-title hero">
-        {{ subTitle }}
+      <div class="page-header__sub-title h1">
+        <span v-html="subTitle" />
       </div>
     </div>
   </header>
@@ -27,6 +27,14 @@ export default {
     seoTitle: {
       type: String,
       default: null,
+    },
+    image: {
+      type: Object,
+      required: true,
+      validator(image) {
+        return typeof(image.width) === 'number' && typeof(image.height) === 'number'
+          && typeof(image.format) === 'string' && typeof(image.url) === 'string'
+      },
     },
     title: {
       type: String,
@@ -61,11 +69,18 @@ export default {
 
 .page-header__curly-bracket {
   display: none;
+  z-index: 0;
 }
 
 .page-header__image img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  position: static;
+  z-index: 1;
+  object-fit: contain;
+  object-position: bottom;
+  justify-content: flex-end;
+  background: cadetblue;
 }
 
 @supports (display: grid) {
@@ -75,6 +90,10 @@ export default {
     position: relative;
   }
 
+  .page-header--smaller-rows {
+    grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(30vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
+  }
+
   .page-header__text {
     margin: var(--spacing-medium) 0;
     grid-column: content;
@@ -82,7 +101,9 @@ export default {
   }
 
   .page-header__sub-title {
-    margin-top: var(--spacing-large);
+    margin-top: var(--spacing-smaller);
+    hyphens: auto;
+    overflow-wrap: break-word;
   }
 
   .page-header__brick {
@@ -119,7 +140,7 @@ export default {
 
   .page-header__image {
     grid-column-start: 2;
-    grid-column-end: 19;
+    grid-column-end: 18;
     grid-row-start: 4;
     grid-row-end: 5;
     display: flex;
@@ -148,8 +169,8 @@ export default {
 
     .page-header__image {
       grid-column: content;
-      grid-column-start: 4;
-      grid-column-end: 16;
+      grid-column-start: 2;
+      grid-column-end: 18;
       justify-content: center;
     }
   }
@@ -164,7 +185,7 @@ export default {
       grid-column: content;
       grid-row-start: 2;
       grid-column-start: 2;
-      grid-column-end: 12;
+      grid-column-end: 18;
     }
 
     .page-header__brick {
@@ -176,7 +197,7 @@ export default {
 
     .page-header__curly-bracket-column {
       position: static;
-      grid-column-end: 32;
+      grid-column-end: 34;
       grid-row-start: 2;
       grid-row-end: 4;
     }
@@ -186,11 +207,12 @@ export default {
     }
 
     .page-header__image {
-      grid-column-start: 13;
-      grid-column-end: 33;
+      grid-column: content-right;
       grid-row-start: 2;
       grid-row-end: 3;
       justify-content: flex-end;
+      align-self: flex-end;
+      height: 50%;
     }
   }
 
@@ -201,7 +223,7 @@ export default {
 
     .page-header__text {
       grid-column-start: 4;
-      grid-column-end: 26;
+      grid-column-end: 20;
     }
 
     .page-header__curly-bracket-column {
@@ -209,8 +231,16 @@ export default {
     }
 
     .page-header__image {
-      grid-column-start: 26;
+      max-height: 75%;
+      align-self: flex-end;
+      height: 100%;
+      grid-column-start: 21;
       grid-column-end: 48;
+    }
+
+    .page-header__image--spacing-top {
+      position: relative;
+      top: var(--spacing-big);
     }
   }
 }

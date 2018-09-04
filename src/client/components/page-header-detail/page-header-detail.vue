@@ -5,22 +5,28 @@
         <h1 class="page-header__title" :class="hasBrick ? 'hero' : 'h1'">{{ title }}</h1>
         <span class="page-header__subtitle sub-title">{{ subTitle }}</span>
       </div>
-
-      <div v-if="hasImage" class="page-header__image">
-        <slot name="image"/>
+      <div class="page-header__image">
+        <img :src="image.url" alt="" >
       </div>
     </div>
   </header>
 </template>
 
 <script>
-  import { ScrollTo } from '~/components'
+  import { ScrollTo } from '../../components'
 
   export default {
     components: {
       ScrollTo,
     },
     props: {
+      image: {
+        type: Object,
+        required: true,
+        validator(image) {
+          return typeof(image.url) === 'string'
+        },
+      },
       title: {
         type: String,
         required: true,
@@ -33,12 +39,7 @@
         type: Boolean,
         default: false,
       },
-    },
-    computed: {
-      hasImage() {
-        return 'image' in this.$slots
-      },
-    },
+    }
   }
 </script>
 
