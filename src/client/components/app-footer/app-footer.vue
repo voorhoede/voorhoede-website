@@ -6,7 +6,7 @@
       <p class="body font-bold app-footer__header-subtitle">{{ headerSubtitle }}</p>
     </div>
     <div class="app-footer__column">
-      <h5 class="body app-footer__list-title font-bold">Explore</h5>
+      <h3 class="body app-footer__list-title font-bold">Explore</h3>
       <ul class="app-footer__list">
         <li
           v-for="link in exploreLinks"
@@ -18,7 +18,7 @@
       </ul>
     </div>
     <div class="app-footer__column app-footer__column--right">
-      <h5 class="body app-footer__list-title font-bold">Contact</h5>
+      <h3 class="body app-footer__list-title font-bold">Contact</h3>
       <ul class="body-detail app-footer__list app-footer__list--border-none app-footer__list--no-padding">
         <li class="app-footer__list-item">
           <a class="app-footer__link" target="_blank" :href="`tel:${ cleanedTelephone }`">{{ tel }}</a>
