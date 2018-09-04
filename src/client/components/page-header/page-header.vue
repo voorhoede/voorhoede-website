@@ -1,5 +1,5 @@
 <template>
-  <header class="page-header grid" :class="isHomepage ? '' : 'page-header--smaller-rows' ">
+  <header class="page-header grid">
     <div v-if="isHomepage" class="page-header__brick" />
     <div v-if="isHomepage" class="page-header__curly-bracket-column">
       <div class="page-header__curly-bracket-wrapper">
@@ -32,8 +32,7 @@ export default {
       type: Object,
       required: true,
       validator(image) {
-        return typeof(image.width) === 'number' && typeof(image.height) === 'number'
-          && typeof(image.format) === 'string' && typeof(image.url) === 'string'
+        return typeof(image.url) === 'string'
       },
     },
     title: {
@@ -48,12 +47,7 @@ export default {
       type: Boolean,
       default: false
     },
-  },
-  computed: {
-    hasImage() {
-      return 'image' in this.$slots
-    },
-  },
+  }
 }
 </script>
 
@@ -80,7 +74,6 @@ export default {
   object-fit: contain;
   object-position: bottom;
   justify-content: flex-end;
-  background: cadetblue;
 }
 
 @supports (display: grid) {
@@ -88,10 +81,6 @@ export default {
     padding-top: 0;
     grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
     position: relative;
-  }
-
-  .page-header--smaller-rows {
-    grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(30vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
   }
 
   .page-header__text {
@@ -231,11 +220,9 @@ export default {
     }
 
     .page-header__image {
-      max-height: 75%;
+      grid-column: content-right;
       align-self: flex-end;
       height: 100%;
-      grid-column-start: 21;
-      grid-column-end: 48;
     }
 
     .page-header__image--spacing-top {

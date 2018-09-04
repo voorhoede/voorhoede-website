@@ -23,13 +23,18 @@ stories.add(
       <div style="padding-bottom: 5rem; background: var(--bg-pastel);">
         <page-header
           title="We are De Voorhoede"
-          sub-title="How can we help?">
-          <template slot="image">
-            <img style="max-width: 100%; max-height: 100%" src="https://www.datocms-assets.com/6068/1529572359-random-image.jpeg" alt="image">
-          </template>
+          sub-title="How can we help?"
+          :image="image">
         </page-header>
       </div>
     `,
+    data: () => {
+      return {
+        image: {
+          'url': 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
+        },
+      }
+    }
   }),
 )
 
@@ -42,12 +47,17 @@ stories.add(
         <page-header style="height: 100vh;"
           isHomepage
           title="We are De Voorhoede"
-          sub-title="How can we help?">
-          <template slot="image">
-            <img style="max-width: 100%; max-height: 100%" src="https://www.datocms-assets.com/6068/1529572359-random-image.jpeg" alt="image">
-          </template>
+          sub-title="How can we help?"
+          :image="image">
         </page-header>
       </div>
     `,
+    data: () => {
+      return {
+        image: {
+          'url': 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
+        },
+      }
+    }
   }),
 )

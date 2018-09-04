@@ -21,10 +21,17 @@ stories.add(
                 <page-header-detail
                   hasBrick
                   title="Drop & fly"
-                  sub-title="Case page">
-                  <img slot="image" src="https://www.datocms-assets.com/6524/1535373222-screen-shot-2018-08-27-at-14-10-21.png" alt="">
+                  sub-title="Case page"
+                  :image="image">
                 </page-header-detail>
               </div>`,
+    data: () => {
+      return {
+        image: {
+          'url': 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
+        },
+      }
+    }
   }),
 )
 .add(
@@ -33,9 +40,16 @@ stories.add(
     template: `<div class="grid page">
                 <page-header-detail
                   title="Peer-to-peer APIs"
-                  sub-title="Blog">
-                  <img slot="image" src="https://www.datocms-assets.com/6524/1535465393-unicorn.svg" alt="">
+                  sub-title="Blog"
+                  :image="image">
                 </page-header-detail>
               </div>`,
+    data: () => {
+      return {
+        image: {
+          'url': 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
+        },
+      }
+    }
   }),
 )
