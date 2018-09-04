@@ -277,7 +277,6 @@ export default {
 }
 
 .app-footer__column--right {
-  padding-top: var(--spacing-medium);
   margin-bottom: var(--spacing-medium);
 }
 
