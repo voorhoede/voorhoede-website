@@ -3,10 +3,23 @@
 ## Usage
 
 ```html
-<page-header
-  detailPage
-  brick
-  :title="Drop & fly"
-  :sub-title="Case page"
-/>
+<page-header curly-bracket brick seo-title="We are De Voorhoede - how can we help">
+  <template slot="title">
+    <span>We are De Voorhoede</span>
+  </template>
+  <template slot="subTitle">
+    <span>How can we help?</span>
+  </template>
+  <template slot="image">
+    <img src="">
+  </template>
+</page-header>
 ```
+
+## Props
+
+| Name | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| seoTitle | String | false | null | Title used for SEO |
+| curly-bracket | Boolean | false | false | Whether to show the curly bracket |
+| brick | Boolean | false | false | Whether to show the brick |

@@ -1,12 +1,8 @@
 <template>
   <main class="page-cases">
-    <page-header>
-      <template slot="title">
-        <h1 v-html="page.title"/>
-      </template>
-      <template slot="subTitle">
-        <h2 v-html="page.subtitle"/>
-      </template>
+    <page-header
+      :title="page.title"
+      :sub-title="page.subtitle">
       <template v-if="page.headerIllustration" slot="image">
         <img :src="page.headerIllustration.url" alt="">
       </template>

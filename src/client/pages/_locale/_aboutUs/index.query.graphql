@@ -1,10 +1,10 @@
-query ($locale: SiteLocale, $alternateLocale: SiteLocale)  {
+query ($locale: SiteLocale)  {
   page: about(locale: $locale) {
     ...about
   },
 
   alternate: about(locale: $locale) {
-    slug(locale:$alternateLocale)
+    slug
   }
 }
 
