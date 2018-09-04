@@ -2,9 +2,6 @@ query ($locale: SiteLocale)  {
   page: serviceOverview(locale:$locale) {
     ...serviceOverview
   },
-  items: allServices(locale: $locale) {
-    slug
-  },
   alternate:serviceOverview {
     slug
   }
@@ -12,5 +9,26 @@ query ($locale: SiteLocale)  {
 
 fragment serviceOverview on ServiceOverviewRecord {
   title,
-  slug
+  slug,
+  services {
+    tagline,
+    title,
+    slug,
+    summary {
+      title
+    },
+  },
+  getInTouchTitle,
+  getInTouchForm {
+    title,
+    nameLabel,
+    namePlaceholder,
+    emailLabel,
+    emailPlaceholder,
+    summaryLabel,
+    summaryPlaceholder,
+    phoneLabel,
+    phonePlaceholder,
+    ctaButtonLabel
+  }
 }
