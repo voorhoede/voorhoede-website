@@ -64,8 +64,8 @@
     </div>
     <section class="page-index__blog-posts grid">
       <h2 class="page-index__section-title page-index__section-title--blog-posts h3">{{ page.blogPostsTitle }}</h2>
-      <ul class="page-index__blog-posts-list">
-        <li v-for="blogPost in latestBlogposts" :key="blogPost.slug">
+      <ul class="page-index__blog-posts-list grid">
+        <li v-for="blogPost in latestBlogposts" :key="blogPost.slug" class="page-index__blog-posts-list-item">
           <blog-list-item :item="blogPost" :current-locale="currentLocale"/>
         </li>
       </ul>
@@ -122,13 +122,13 @@
 
 <style>
   .page-index__header {
-    margin-bottom: var(--spacing-larger);
+    margin-bottom: var(--spacing-big);
     background: var(--bg-pastel);
   }
 
   .page-index__scroll-to {
     position: absolute;
-    bottom: 0;
+    top: 78vh;
     left: 0;
     right: 0;
   }
@@ -161,7 +161,7 @@
   }
 
   .page-index__cases .horizontal-carousel__slides {
-    padding-bottom: var(--spacing-huge);
+    padding-bottom: var(--spacing-bigger);
   }
 
   .page-index__cases .case-excerpt {
@@ -216,7 +216,7 @@
   }
 
   .page-index__blog-posts {
-    margin-bottom: var(--spacing-bigger);
+    margin-bottom: calc(var(--spacing-bigger) - var(--spacing-large) - var(--spacing-medium));
   }
 
   .page-index__blog-posts-list {
@@ -254,6 +254,10 @@
       padding: var(--spacing-big) 0;
     }
 
+    .page-index__cases {
+      margin-bottom: calc(var(--spacing-large) + var(--spacing-tiny));
+    }
+
     .page-index__section-title {
       margin-bottom: var(--spacing-larger);
     }
@@ -275,6 +279,7 @@
 
     .page-index__blog-posts {
       position: relative;
+      margin-bottom: var(--spacing-big);
     }
 
     .page-index__blog-posts-list {
@@ -282,9 +287,15 @@
       overflow: hidden;
     }
 
-    .page-index .blog-list-item {
-      display: grid;
-      grid-template-columns: var(--grid-columns);
+    .page-index__blog-posts-list-item {
+      transition: transform var(--blog-list-item-animation-timing) ease-out;
+      display: inline-block;
+      grid-column-start: 10;
+      grid-column-end: 32;
+    }
+
+    .page-index__scroll-to {
+      top: 89vh;
     }
 
     .page-index .blog-list-item__time {
@@ -356,11 +367,17 @@
 
     .page-index__clients {
       margin-bottom: var(--spacing-huge);
+      padding-top: var(--spacing-big);
     }
 
     .page-index .blog-list-item__time {
       grid-column-start: 16;
       grid-column-end: 21;
+    }
+
+    .page-index__blog-posts-list-item {
+      grid-column-start: 17;
+      grid-column-end: 50;
     }
 
     .page-index .blog-list-item__content {
@@ -377,6 +394,10 @@
     .page-index .scroll-to {
       grid-column-start: 4;
       grid-column-end: 5;
+    }
+
+    .page-index__scroll-to {
+      top: 81vh;
     }
 
     .page-index .page-header__text {

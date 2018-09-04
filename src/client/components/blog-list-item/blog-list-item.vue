@@ -61,7 +61,7 @@
   }
 
   .blog-list-item {
-    display: inline-block;
+    display: block;
     transition: transform var(--blog-list-item-animation-timing) ease-out;
   }
 

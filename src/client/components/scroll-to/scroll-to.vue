@@ -16,7 +16,7 @@
     position: absolute;
 
     /* Distance between the text and the arrow */
-    top: calc(-1 * (var(--spacing-small) + 1rem));
+    top: calc(-1 * (var(--spacing-tiny) + 1rem));
     left: 50%;
     text-transform: uppercase;
     transform: rotateZ(-90deg) translateY(50%);
