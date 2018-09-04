@@ -54,7 +54,7 @@ fragment page on HomeRecord {
     url
   }
   usps {
-    line: usp
+    line
   },
   casesTitle,
   cases {
@@ -70,6 +70,9 @@ fragment page on HomeRecord {
     tagline,
     title,
     slug,
+    summary {
+      title
+    },
   },
   clientsTitle,
   clientsButtonLabel,
