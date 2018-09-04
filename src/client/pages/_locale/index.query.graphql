@@ -54,7 +54,7 @@ fragment page on HomeRecord {
     url
   }
   usps {
-    line: usp
+    line
   },
   casesTitle,
   cases {
