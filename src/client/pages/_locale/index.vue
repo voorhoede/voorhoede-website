@@ -335,11 +335,6 @@
       margin-bottom: var(--spacing-bigger);
     }
 
-    .page-index .scroll-to {
-      grid-column-start: 4;
-      grid-column-end: 5;
-    }
-
     .page-index .scroll-highlighted-text {
       padding: var(--spacing-bigger) 0;
     }
@@ -371,6 +366,18 @@
     .page-index .blog-list-item__content {
       grid-column-start: 21;
       grid-column-end: 40;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .page-index .scroll-to {
+      grid-column-start: 4;
+      grid-column-end: 5;
+    }
+
+    .page-index .page-header__text {
+      margin: var(--spacing-larger) 0;
+      grid-column-end: 24;
     }
   }
 </style>

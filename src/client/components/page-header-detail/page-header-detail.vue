@@ -1,6 +1,6 @@
 <template>
   <header class="page-header grid" :class="{ 'page-header--brick' : hasBrick }">
-    <div class="page-header__text">
+    <div class="page-header__description">
       <h1 class="page-header__title" :class="hasBrick ? 'hero' : 'h1'">{{ title }}</h1>
       <span class="page-header__subtitle sub-title">{{ subTitle }}</span>
     </div>
@@ -47,7 +47,7 @@
     background-color: var(--bg-pastel);
   }
 
-  .page-header__text {
+  .page-header__description {
     display: flex;
     flex-direction: column;
     grid-column: content;
@@ -80,9 +80,9 @@
     background-image: linear-gradient(
       to bottom,
       var(--bg-pastel),
-      var(--bg-pastel) 50%,
-      var(--brand-yellow) 50%,
-      var(--brand-yellow) 90%
+      var(--bg-pastel) 25vh,
+      var(--brand-yellow) 25vh,
+      var(--brand-yellow) 90vh
     );
   }
 
@@ -137,7 +137,7 @@
       top: 0;
     }
 
-    .page-header__text {
+    .page-header__description {
       grid-column: content-left;
     }
   }

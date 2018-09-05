@@ -7,14 +7,14 @@
       </div>
     </div>
     <div class="page-header__image" :class="{ 'page-header__image--spaced-top': !isHomepage }">
-      <img :src="image.url" :alt="image.alt">
+      <img :src="image.url" alt="">
     </div>
-    <div class="page-header__text">
+    <div class="page-header__description">
       <div class="page-header__title sub-title">
         <span v-html="title" />
       </div>
-      <div class="page-header__sub-title" :class="isHomepage ? 'hero' : 'h1'">
-        <span v-html="subTitle" />
+      <div class="page-header__text" :class="isHomepage ? 'hero' : 'h1'">
+        <span v-html="text" />
       </div>
     </div>
   </header>
@@ -27,7 +27,7 @@ export default {
       type: Object,
       required: true,
       validator(image) {
-        return typeof(image.url) === 'string' && typeof(image.alt) === 'string'
+        return typeof(image.url) === 'string'
       },
     },
     title: {
@@ -50,6 +50,7 @@ export default {
 .page-header {
   padding-top: var(--app-header-height);
   background: var(--bg-pastel);
+  grid-row-end: 5;
 }
 
 .page-header__brick {
@@ -74,16 +75,17 @@ export default {
 @supports (display: grid) {
   .page-header {
     padding-top: 0;
-    grid-template-rows: var(--app-header-height) 1fr var(--spacing-medium) calc(30vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
+    grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
     position: relative;
   }
 
-  .page-header__text {
+  .page-header__description {
+    margin: var(--spacing-medium) 0;
     grid-column: content;
     grid-row-start: 2;
   }
 
-  .page-header__sub-title {
+  .page-header__text {
     margin-top: var(--spacing-smaller);
     hyphens: auto;
     overflow-wrap: break-word;
@@ -160,10 +162,10 @@ export default {
 
   @media screen and (min-width: 720px) {
     .page-header {
-      grid-template-rows: calc(var(--app-header-height) + var(--spacing-medium)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
+      grid-template-rows: calc(var(--app-header-height) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
     }
 
-    .page-header__text {
+    .page-header__description {
       grid-column: content;
       grid-row-start: 2;
       grid-column-start: 2;
@@ -199,11 +201,12 @@ export default {
 
   @media screen and (min-width: 1100px) {
     .page-header {
-      grid-template-rows: calc(var(--app-header-height) + var(--spacing-medium)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
+      grid-template-rows: calc(var(--app-header-height) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
     }
 
-    .page-header__text {
-      grid-column-start: 4;
+    .page-header__description {
+      margin: 0;
+      grid-column-start: 2;
       grid-column-end: 23;
     }
 
@@ -222,6 +225,12 @@ export default {
       top: var(--spacing-big);
       height: 100%;
     }
+  }
+
+  @media screen and (min-width: 1440px) {
+    .page-header__description {
+      grid-column-start: 4;
+     }
   }
 }
 </style>
