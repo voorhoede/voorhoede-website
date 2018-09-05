@@ -10,7 +10,6 @@
       <img :src="image.url" alt="">
     </div>
     <div class="page-header__text">
-      <h1 v-if="seoTitle" class="sr-only">{{ seoTitle }}</h1>
       <div class="page-header__title sub-title">
         <span v-html="title" />
       </div>

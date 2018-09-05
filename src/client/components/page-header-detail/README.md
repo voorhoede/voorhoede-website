@@ -1,12 +1,12 @@
-# Page Header Detail
-
+# Page Header
+`hasBrick` is a variant with the yellow background.
 ## Usage
 
 ```html
 <page-header
-  detailPage
-  brick
-  :title="Drop & fly"
-  :sub-title="Case page"
+  hasBrick
+  title="Drop & fly"
+  sub-title="Case page"
+  :image="image"
 />
 ```
