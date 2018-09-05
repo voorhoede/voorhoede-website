@@ -25,7 +25,7 @@ const createStore = () => {
           },
           {
             title: 'Over Ons',
-            slug: 'over-ons',
+            slug: 'about-us',
           },
           {
             title: 'Contact',
