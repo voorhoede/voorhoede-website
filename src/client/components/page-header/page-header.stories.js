@@ -31,7 +31,7 @@ stories.add(
     data: () => {
       return {
         image: {
-          'url': 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
+          'url': 'https://www.datocms-assets.com/6524/1535638068-drop-fly.svg',
           'alt': '',
         },
       }
@@ -56,7 +56,7 @@ stories.add(
     data: () => {
       return {
         image: {
-          'url': 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
+          'url': 'https://www.datocms-assets.com/6524/1535638068-drop-fly.svg',
           'alt': '',
         },
       }

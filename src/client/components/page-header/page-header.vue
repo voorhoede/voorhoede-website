@@ -1,5 +1,5 @@
 <template>
-  <header class="page-header grid">
+  <header class="page-header grid" :class="{ 'page-header--generic': !isHomepage }">
     <div v-if="isHomepage" class="page-header__brick" />
     <div v-if="isHomepage" class="page-header__curly-bracket-column">
       <div class="page-header__curly-bracket-wrapper">
@@ -50,6 +50,14 @@ export default {
 .page-header {
   padding-top: var(--app-header-height);
   background: var(--bg-pastel);
+}
+
+.page-header.page-header--generic {
+  grid-template-rows: var(--app-header-height) 1fr;
+}
+
+.page-header--generic .page-header__image {
+  display: none;
 }
 
 .page-header__brick {
@@ -133,6 +141,12 @@ export default {
   }
 
   @media screen and (min-width: 520px) {
+    .page-header {
+      position: relative;
+      grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
+      padding-top: 0;
+    }
+
     .page-header__curly-bracket-column {
       grid-column: content;
       display: flex;
@@ -162,6 +176,10 @@ export default {
   @media screen and (min-width: 720px) {
     .page-header {
       grid-template-rows: calc(var(--app-header-height) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
+    }
+
+    .page-header--generic .page-header__image {
+      display: flex;
     }
 
     .page-header__description {
