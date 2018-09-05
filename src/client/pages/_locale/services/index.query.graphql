@@ -1,22 +1,22 @@
 query ($locale: SiteLocale)  {
   page: serviceOverview(locale:$locale) {
-    ...serviceOverview
+    ...page
   },
-  alternate:serviceOverview {
+  alternate: serviceOverview(locale:$locale) {
     slug
   }
 }
 
-fragment serviceOverview on ServiceOverviewRecord {
+fragment page on ServiceOverviewRecord {
   title,
   slug,
   services {
-    tagline,
     title,
+    tagline,
     slug,
     summary {
       title
-    },
+    }
   },
   getInTouchTitle,
   getInTouchForm {
