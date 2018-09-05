@@ -220,7 +220,7 @@ export default {
 
     .page-header__image--spaced-top {
       position: relative;
-      top: var(--spacing-larger);
+      top: var(--spacing-big);
       height: 100%;
     }
   }
