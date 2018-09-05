@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="page-header__image" :class="{ 'page-header__image--spaced-top': !isHomepage }">
-      <img :src="image.url" alt="">
+      <img :src="image.url" :alt="image.alt">
     </div>
     <div class="page-header__description">
       <div class="page-header__title sub-title">
@@ -27,7 +27,7 @@ export default {
       type: Object,
       required: true,
       validator(image) {
-        return typeof(image.url) === 'string'
+        return typeof(image.url) === 'string' && typeof(image.alt) === 'string'
       },
     },
     title: {
