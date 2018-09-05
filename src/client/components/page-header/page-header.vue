@@ -27,7 +27,7 @@ export default {
       type: Object,
       required: true,
       validator(image) {
-        return typeof(image.url) === 'string'
+        return typeof(image.url) === 'string' && typeof(image.alt) === 'string'
       },
     },
     title: {
