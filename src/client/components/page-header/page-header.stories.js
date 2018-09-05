@@ -20,7 +20,7 @@ stories.add(
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     template: `
-      <div style="padding-bottom: 5rem; background: var(--bg-pastel);">
+      <div style="background: var(--bg-pastel);">
         <page-header
           title="We are De Voorhoede"
           sub-title="How can we help?"
@@ -32,6 +32,7 @@ stories.add(
       return {
         image: {
           'url': 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
+          'alt': '',
         },
       }
     }
@@ -43,7 +44,7 @@ stories.add(
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     template: `
-      <div style="padding-bottom: 5rem; background: var(--bg-pastel);">
+      <div style="background: var(--bg-pastel);">
         <page-header style="height: 100vh;"
           isHomepage
           title="We are De Voorhoede"
@@ -56,6 +57,7 @@ stories.add(
       return {
         image: {
           'url': 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
+          'alt': '',
         },
       }
     }

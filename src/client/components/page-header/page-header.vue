@@ -6,7 +6,7 @@
         <img class="page-header__curly-bracket" src="/images/curly-bracket--close.svg">
       </div>
     </div>
-    <div class="page-header__image" :class="isHomepage ? '': 'page-header__image--big' ">
+    <div class="page-header__image" :class="{ 'page-header__image--big': !isHomepage }">
       <img :src="image.url" alt="">
     </div>
     <div class="page-header__text">
@@ -14,7 +14,7 @@
       <div class="page-header__title sub-title">
         <span v-html="title" />
       </div>
-      <div class="page-header__sub-title h1">
+      <div class="page-header__sub-title" :class="isHomepage ? 'hero' : 'h1'">
         <span v-html="subTitle" />
       </div>
     </div>
@@ -118,7 +118,7 @@ export default {
     display: block;
     height: 100%;
     position: relative;
-    right: calc(-1 * var(--spacing-large));
+    right: calc(-1 * var(--spacing-medium));
   }
 
   .page-header__curly-bracket {

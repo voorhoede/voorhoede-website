@@ -17,18 +17,19 @@ Vue.component('page-header-detail', PageHeaderDetail)
 stories.add(
   'Page Header Detail - with brick',
   () => ({
-    template: `<div class="grid page">
-                <page-header-detail
-                  hasBrick
-                  title="Drop & fly"
-                  sub-title="Case page"
-                  :image="image">
-                </page-header-detail>
-              </div>`,
+    template: `
+              <page-header-detail
+                hasBrick
+                title="Drop & fly"
+                sub-title="Case page"
+                :image="image">
+              </page-header-detail>
+              `,
     data: () => {
       return {
         image: {
-          'url': 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
+          'url': 'https://www.datocms-assets.com/6524/1535638068-drop-fly.svg',
+          'alt': 'drop and fly illustration',
         },
       }
     }
@@ -37,17 +38,18 @@ stories.add(
 .add(
   'Page Header Detail - without brick',
   () => ({
-    template: `<div class="grid page">
-                <page-header-detail
-                  title="Peer-to-peer APIs"
-                  sub-title="Blog"
-                  :image="image">
-                </page-header-detail>
-              </div>`,
+    template: `
+              <page-header-detail
+                title="Peer-to-peer APIs"
+                sub-title="Blog"
+                :image="image">
+              </page-header-detail>
+              `,
     data: () => {
       return {
         image: {
-          'url': 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
+          'url': 'https://www.datocms-assets.com/6524/1535638068-drop-fly.svg',
+          'alt': 'drop and fly illustration',
         },
       }
     }
