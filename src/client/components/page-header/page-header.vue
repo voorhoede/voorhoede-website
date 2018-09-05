@@ -34,7 +34,7 @@ export default {
       type: String,
       required: true,
     },
-    subTitle: {
+    text: {
       type: String,
       required: true,
     },
@@ -50,7 +50,6 @@ export default {
 .page-header {
   padding-top: var(--app-header-height);
   background: var(--bg-pastel);
-  grid-row-end: 5;
 }
 
 .page-header__brick {
@@ -63,20 +62,20 @@ export default {
 }
 
 .page-header__image img {
-  width: 100%;
-  height: 100%;
   position: static;
   z-index: 1;
   object-fit: contain;
   object-position: bottom;
   justify-content: flex-end;
+  width: 100%;
+  height: 100%;
 }
 
 @supports (display: grid) {
   .page-header {
-    padding-top: 0;
-    grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
     position: relative;
+    grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
+    padding-top: 0;
   }
 
   .page-header__description {

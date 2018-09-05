@@ -2,7 +2,7 @@
   <main class="page-cases">
     <page-header
       :title="page.title"
-      :sub-title="page.subtitle"
+      :text="page.subtitle"
       :image="page.headerIllustration" />
     <div class="grid">
       <ul class="page-case__overview">

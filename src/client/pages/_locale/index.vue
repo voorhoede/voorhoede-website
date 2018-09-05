@@ -4,7 +4,7 @@
       <page-header
         is-homepage
         :title="page.headerTitle"
-        :sub-title="page.subtitle"
+        :text="page.subtitle"
         :image="page.headerIllustration"/>
       <div class="page-index__scroll-to grid">
         <scroll-to/>

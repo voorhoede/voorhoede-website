@@ -23,7 +23,7 @@ stories.add(
       <div style="background: var(--bg-pastel);">
         <page-header
           title="We are De Voorhoede"
-          sub-title="How can we help?"
+          text="How can we help?"
           :image="image">
         </page-header>
       </div>
@@ -48,7 +48,7 @@ stories.add(
         <page-header style="height: 100vh;"
           isHomepage
           title="We are De Voorhoede"
-          sub-title="How can we help?"
+          text="How can we help?"
           :image="image">
         </page-header>
       </div>
