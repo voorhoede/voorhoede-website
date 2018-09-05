@@ -43,7 +43,7 @@
   }
 </script>
 
-<style scoped>
+<style>
   .page-header {
     grid-column: page;
     background-color: var(--bg-pastel);

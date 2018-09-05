@@ -6,7 +6,7 @@
         <img class="page-header__curly-bracket" src="/images/curly-bracket--close.svg">
       </div>
     </div>
-    <div class="page-header__image" :class="isHomepage ? '': 'page-header__image--spacing-top' ">
+    <div class="page-header__image" :class="isHomepage ? '': 'page-header__image--big' ">
       <img :src="image.url" alt="">
     </div>
     <div class="page-header__text">
@@ -51,7 +51,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .page-header {
   padding-top: var(--app-header-height);
   background: var(--bg-pastel);
@@ -79,7 +79,7 @@ export default {
 @supports (display: grid) {
   .page-header {
     padding-top: 0;
-    grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
+    grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(30vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
     position: relative;
   }
 
@@ -212,7 +212,7 @@ export default {
 
     .page-header__text {
       grid-column-start: 4;
-      grid-column-end: 20;
+      grid-column-end: 23;
     }
 
     .page-header__curly-bracket-column {
@@ -221,13 +221,14 @@ export default {
 
     .page-header__image {
       grid-column: content-right;
+      grid-column-end: 48;
       align-self: flex-end;
-      height: 100%;
     }
 
-    .page-header__image--spacing-top {
+    .page-header__image--big {
       position: relative;
       top: var(--spacing-big);
+      height: 100%;
     }
   }
 }
