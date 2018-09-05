@@ -1,4 +1,4 @@
-# Faq Item
+# Generic text block
 
 
 ## Usage
