@@ -99,15 +99,6 @@
     height: 40vh;
   }
 
-  @media screen and (min-width: 520px) {
-    .page-header__image {
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
-      padding-bottom: var(--spacing-large);
-    }
-  }
-
   @media screen and (min-width: 720px) {
     .container {
       flex-direction: row;
@@ -125,8 +116,12 @@
     }
 
     .page-header__image {
+      display: flex;
       grid-column: content-right;
       top: var(--spacing-larger);
+      justify-content: flex-end;
+      align-items: flex-end;
+      padding-bottom: var(--spacing-large);
     }
 
     .page-header--brick .page-header__image {
