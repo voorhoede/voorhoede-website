@@ -1,21 +1,20 @@
 <template>
-  <section class="generic-text-block">
-    <div class="generic-text-block__content">
-      <h2 class="generic-text-block__title h4">{{ title }}</h2>
-      <rich-text-block :text="body"/>
-    </div>
-    <div v-if="image" class="generic-text-block__image-container">
+  <div class="generic-text-block">
+    <h2 class="generic-text-block__title h4">{{ title }}</h2>
+    <rich-text-block class="generic-text-block__body" :text="body"/>
+    <lazy-load v-if="image" class="generic-text-block__image-container">
       <img class="generic-text-block__image" :src="image.url" :alt="image.alt">
-    </div>
-  </section>
+    </lazy-load>
+  </div>
 </template>
 
 <script>
-  import { RichTextBlock } from '~/components'
+  import { RichTextBlock, LazyLoad } from '~/components'
 
   export default {
     components: {
-      RichTextBlock
+      RichTextBlock,
+      LazyLoad
     },
     props: {
       title: {
@@ -34,8 +33,7 @@
             return true
           }
 
-          return typeof(image.width) === 'number' && typeof(image.height) === 'number'
-            && typeof(image.format) === 'string' && typeof(image.url) === 'string'
+          return typeof(image.url) === 'string' && typeof(image.alt) === 'string'
         },
       }
     }
@@ -43,50 +41,64 @@
 </script>
 
 <style>
+  :root {
+    --image-height: 10rem;
+  }
+
   .generic-text-block {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .generic-text-block__image-container {
-    order: 1;
-    margin-bottom: var(--spacing-small);
-  }
-
-  .generic-text-block__image {
-    width: 100%;
-  }
-
-  .generic-text-block__content {
-    order: 2;
+    display: grid;
+    grid-template-rows: var(--image-height) auto auto;
+    grid-row-gap: var(--spacing-smaller);
   }
 
   .generic-text-block__title {
-    margin-bottom: var(--spacing-tiny);
+    grid-row: 2;
+  }
+
+  .generic-text-block__body {
+    grid-row: 3;
+  }
+
+  .generic-text-block__image-container {
+    grid-row: 1;
+    text-align: center;
+  }
+
+  .generic-text-block__image {
+    max-width: 100%;
+    max-height: 100%;
   }
 
   @media (min-width: 720px) {
     .generic-text-block {
-      flex-direction: row;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 63% 29%;
+      grid-column-gap: var(--spacing-large);
+      grid-template-rows: auto;
+    }
+
+    .generic-text-block__title {
+      grid-row: 1;
+    }
+
+    .generic-text-block__body {
+      grid-row: 2;
     }
 
     .generic-text-block__image-container {
-      order: 2;
-      flex-grow: 1;
+      grid-row: 2;
+      grid-column: 2;
+      text-align: left;
     }
 
-    .generic-text-block__content {
-      order: 1;
-      flex: 1 0 auto;
-      max-width: 25rem;
-      margin-right: var(--spacing-big);
+    .generic-text-block__image {
+      min-height: var(--image-height);
     }
   }
 
   @media (min-width: 1100px) {
-    .generic-text-block__content {
-      max-width: 35rem;
+    .generic-text-block {
+      grid-column-gap: var(--spacing-big);
     }
   }
 </style>
