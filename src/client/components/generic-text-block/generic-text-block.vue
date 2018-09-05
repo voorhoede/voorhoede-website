@@ -1,11 +1,11 @@
 <template>
-  <section class="faq-item">
-    <div class="faq-item__content">
-      <h2 class="faq-item__title h4">{{ title }}</h2>
+  <section class="generic-text-block">
+    <div class="generic-text-block__content">
+      <h2 class="generic-text-block__title h4">{{ title }}</h2>
       <rich-text-block :text="body"/>
     </div>
-    <div v-if="image" class="faq-item__image-container">
-      <img class="faq-item__image" :src="image.url" :alt="image.alt">
+    <div v-if="image" class="generic-text-block__image-container">
+      <img class="generic-text-block__image" :src="image.url" :alt="image.alt">
     </div>
   </section>
 </template>
@@ -18,13 +18,13 @@
       RichTextBlock
     },
     props: {
-      body: {
+      title: {
         type: String,
         required: true
       },
-      title: {
+      body: {
         type: String,
-        default: null
+        required: true
       },
       image: {
         type: Object,
@@ -43,40 +43,40 @@
 </script>
 
 <style>
-  .faq-item {
+  .generic-text-block {
     display: flex;
     flex-direction: column;
   }
 
-  .faq-item__image-container {
+  .generic-text-block__image-container {
     order: 1;
     margin-bottom: var(--spacing-small);
   }
 
-  .faq-item__image {
+  .generic-text-block__image {
     width: 100%;
   }
 
-  .faq-item__content {
+  .generic-text-block__content {
     order: 2;
   }
 
-  .faq-item__title {
+  .generic-text-block__title {
     margin-bottom: var(--spacing-tiny);
   }
 
   @media (min-width: 720px) {
-    .faq-item {
+    .generic-text-block {
       flex-direction: row;
       justify-content: space-between;
     }
 
-    .faq-item__image-container {
+    .generic-text-block__image-container {
       order: 2;
       flex-grow: 1;
     }
 
-    .faq-item__content {
+    .generic-text-block__content {
       order: 1;
       flex: 1 0 auto;
       max-width: 25rem;
@@ -85,7 +85,7 @@
   }
 
   @media (min-width: 1100px) {
-    .faq-item__content {
+    .generic-text-block__content {
       max-width: 35rem;
     }
   }
