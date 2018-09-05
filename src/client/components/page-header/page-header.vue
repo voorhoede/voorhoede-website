@@ -1,5 +1,5 @@
 <template>
-  <header class="page-header grid" :class="{ 'page-header--generic': !isHomepage }">
+  <header class="page-header grid" :class="{ 'page-header--home': isHomepage }">
     <div v-if="isHomepage" class="page-header__brick" />
     <div v-if="isHomepage" class="page-header__curly-bracket-column">
       <div class="page-header__curly-bracket-wrapper">
@@ -48,16 +48,7 @@ export default {
 
 <style>
 .page-header {
-  padding-top: var(--app-header-height);
   background: var(--bg-pastel);
-}
-
-.page-header.page-header--generic {
-  grid-template-rows: var(--app-header-height) 1fr;
-}
-
-.page-header--generic .page-header__image {
-  display: none;
 }
 
 .page-header__brick {
@@ -81,9 +72,21 @@ export default {
 
 @supports (display: grid) {
   .page-header {
+    grid-template-rows: var(--app-header-height) 1fr;
+  }
+
+  .page-header--home {
     position: relative;
     grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
     padding-top: 0;
+  }
+
+  .page-header .page-header__image {
+    display: none;
+  }
+
+  .page-header--home .page-header__image {
+    display: flex;
   }
 
   .page-header__description {
@@ -112,7 +115,7 @@ export default {
     position: absolute;
     top: calc(-1 * var(--spacing-large));
     right: 0;
-    bottom: calc(-1 * var(--spacing-large));
+    bottom: calc(-1 * var(--spacing-larger));
     overflow: hidden;
   }
 
@@ -141,7 +144,7 @@ export default {
   }
 
   @media screen and (min-width: 520px) {
-    .page-header {
+    .page-header--home {
       position: relative;
       grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
       padding-top: 0;
@@ -153,6 +156,7 @@ export default {
       flex-direction: column;
       align-items: flex-end;
       overflow: visible;
+      bottom: calc(-1 * var(--spacing-large));
     }
 
     .page-header__curly-bracket-wrapper {
@@ -175,10 +179,14 @@ export default {
 
   @media screen and (min-width: 720px) {
     .page-header {
+      grid-template-rows: calc(var(--app-header-height)) 1fr var(--spacing-large);
+    }
+
+    .page-header--home {
       grid-template-rows: calc(var(--app-header-height) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
     }
 
-    .page-header--generic .page-header__image {
+    .page-header .page-header__image {
       display: flex;
     }
 
@@ -217,14 +225,18 @@ export default {
   }
 
   @media screen and (min-width: 1100px) {
-    .page-header {
+    .page-header--home {
       grid-template-rows: calc(var(--app-header-height) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
     }
 
-    .page-header__description {
-      margin: 0;
+    .page-header--home .page-header__description {
       grid-column-start: 2;
-      grid-column-end: 23;
+    }
+
+    .page-header__description {
+      margin: var(--spacing-medium) 0;
+      grid-column-start: 4;
+      grid-column-end: 25;
     }
 
     .page-header__curly-bracket-column {
@@ -246,8 +258,13 @@ export default {
 
   @media screen and (min-width: 1440px) {
     .page-header__description {
+      margin-top: var(--spacing-medium);
+    }
+
+    .page-header--home .page-header__description {
       grid-column-start: 4;
-     }
+      margin-top: var(--spacing-larger);
+    }
   }
 }
 </style>

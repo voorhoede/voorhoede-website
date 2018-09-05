@@ -45,7 +45,7 @@ stories.add(
     i18n: new VueI18n({ locale: 'en' }),
     template: `
       <div style="background: var(--bg-pastel);">
-        <page-header style="height: 100vh;"
+        <page-header style="height: 90vh;"
           isHomepage
           title="We are De Voorhoede"
           text="How can we help?"

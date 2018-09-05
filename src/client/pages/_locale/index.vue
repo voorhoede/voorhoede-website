@@ -376,7 +376,7 @@
     }
 
     .page-index .page-header__text {
-      margin: var(--spacing-larger) 0;
+      margin: var(--spacing-large) 0;
       grid-column-end: 24;
     }
   }
