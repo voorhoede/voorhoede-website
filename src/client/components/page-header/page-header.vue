@@ -194,7 +194,6 @@ export default {
       grid-row-end: 3;
       justify-content: flex-end;
       align-self: flex-end;
-      height: 50%;
     }
   }
 
