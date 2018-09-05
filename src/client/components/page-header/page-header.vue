@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="page-header__image" :class="{ 'page-header__image--big': !isHomepage }">
-      <img :src="image.url" alt="">
+      <img :src="image.url" :alt="image.alt">
     </div>
     <div class="page-header__text">
       <div class="page-header__title sub-title">
