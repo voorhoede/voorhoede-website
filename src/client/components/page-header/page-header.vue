@@ -23,10 +23,6 @@
 <script>
 export default {
   props: {
-    seoTitle: {
-      type: String,
-      default: null,
-    },
     image: {
       type: Object,
       required: true,
