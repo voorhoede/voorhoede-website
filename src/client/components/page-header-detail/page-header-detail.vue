@@ -126,7 +126,7 @@
 
     .page-header__image {
       grid-column: content-right;
-      top: var(--spacing-big);
+      top: var(--spacing-larger);
     }
 
     .page-header--brick .page-header__image {
@@ -145,10 +145,6 @@
   @media screen and (min-width: 1100px) {
     .page-header--brick .container {
       flex-direction: row;
-    }
-
-    .page-header__image {
-      top: var(--spacing-big);
     }
 
     .page-header--brick .page-header__image img {

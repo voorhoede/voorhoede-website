@@ -6,7 +6,7 @@
         <img class="page-header__curly-bracket" src="/images/curly-bracket--close.svg">
       </div>
     </div>
-    <div class="page-header__image" :class="{ 'page-header__image--big': !isHomepage }">
+    <div class="page-header__image" :class="{ 'page-header__image--spaced-top': !isHomepage }">
       <img :src="image.url" :alt="image.alt">
     </div>
     <div class="page-header__text">
@@ -74,12 +74,11 @@ export default {
 @supports (display: grid) {
   .page-header {
     padding-top: 0;
-    grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(30vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
+    grid-template-rows: var(--app-header-height) 1fr var(--spacing-medium) calc(30vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
     position: relative;
   }
 
   .page-header__text {
-    margin: var(--spacing-medium) 0;
     grid-column: content;
     grid-row-start: 2;
   }
@@ -161,11 +160,10 @@ export default {
 
   @media screen and (min-width: 720px) {
     .page-header {
-      grid-template-rows: calc(var(--app-header-height) + var(--spacing-big)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
+      grid-template-rows: calc(var(--app-header-height) + var(--spacing-medium)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
     }
 
     .page-header__text {
-      margin: var(--spacing-medium) 0;
       grid-column: content;
       grid-row-start: 2;
       grid-column-start: 2;
@@ -202,7 +200,7 @@ export default {
 
   @media screen and (min-width: 1100px) {
     .page-header {
-      grid-template-rows: calc(var(--app-header-height) + var(--spacing-larger)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
+      grid-template-rows: calc(var(--app-header-height) + var(--spacing-medium)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
     }
 
     .page-header__text {
@@ -220,9 +218,9 @@ export default {
       align-self: flex-end;
     }
 
-    .page-header__image--big {
+    .page-header__image--spaced-top {
       position: relative;
-      top: var(--spacing-big);
+      top: var(--spacing-larger);
       height: 100%;
     }
   }
