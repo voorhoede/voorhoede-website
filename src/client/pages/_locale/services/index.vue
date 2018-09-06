@@ -1,5 +1,10 @@
 <template>
   <main class="page-services grid">
+    <page-header
+      :title="page.title"
+      :text="page.subtitle"
+      :image="page.headerillustration"
+    />
     <services-list :services="page.services"/>
     <get-in-touch-form
       :title="page.getInTouchTitle"
@@ -17,12 +22,13 @@
 </template>
 
 <script>
-  import { ServicesList, GetInTouchForm } from '~/components'
+  import { PageHeader, ServicesList, GetInTouchForm } from '~/components'
 
   export default {
     components: {
       ServicesList,
       GetInTouchForm,
+      PageHeader,
     },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
@@ -31,6 +37,10 @@
 </script>
 
 <style>
+  .page-services .page-header {
+    grid-column: page;
+  }
+
   .page-services > * {
     margin-bottom: var(--spacing-larger);
   }
@@ -44,6 +54,11 @@
   @media (min-width: 1100px) {
     .page-services > * {
       margin-bottom: var(--spacing-bigger);
+    }
+
+    .page-services .services-list {
+      grid-column-start: 4;
+      grid-column-end: 48;
     }
   }
 </style>

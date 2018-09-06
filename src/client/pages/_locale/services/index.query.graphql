@@ -9,6 +9,7 @@ query ($locale: SiteLocale)  {
 
 fragment page on ServiceOverviewRecord {
   title,
+  subtitle,
   slug,
   services {
     title,
@@ -17,6 +18,10 @@ fragment page on ServiceOverviewRecord {
     summary {
       title
     }
+  },
+  headerillustration {
+    url,
+    alt
   },
   getInTouchTitle,
   getInTouchForm {
