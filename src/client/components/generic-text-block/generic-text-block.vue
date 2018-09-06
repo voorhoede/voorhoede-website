@@ -1,6 +1,6 @@
 <template>
   <div class="generic-text-block">
-    <h2 class="generic-text-block__title h4">{{ title }}</h2>
+    <h2 v-if="title" class="generic-text-block__title h4">{{ title }}</h2>
     <rich-text-block class="generic-text-block__body" :text="body"/>
     <lazy-load v-if="image" class="generic-text-block__image-container">
       <img class="generic-text-block__image" :src="image.url" :alt="image.alt">
@@ -19,7 +19,7 @@
     props: {
       title: {
         type: String,
-        required: true
+        default: ''
       },
       body: {
         type: String,
@@ -47,8 +47,12 @@
   }
 
   .generic-text-block {
-    display: grid;
-    grid-row-gap: var(--spacing-smaller);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .generic-text-block__title {
+    margin-bottom: var(--spacing-smaller);
   }
 
   .generic-text-block__body li::before {
@@ -65,8 +69,9 @@
   }
 
   .generic-text-block__image-container {
+    order: -1;
+    margin-bottom: var(--spacing-smaller);
     height: var(--image-height);
-    grid-row: 1;
     text-align: center;
   }
 
@@ -79,17 +84,23 @@
 
   @media (min-width: 720px) {
     .generic-text-block {
+      display: grid;
       grid-template-columns: 63% 1fr; /* 63% == 550(text)/877(total width)*100 from design  */
-      grid-column-gap: var(--spacing-large);
+      grid-gap: var(--spacing-smaller) var(--spacing-large);
+    }
+
+    .generic-text-block__title {
+      margin: 0;
     }
 
     .generic-text-block__body {
-      grid-row: 2;
+      grid-column: 1;
     }
 
     .generic-text-block__image-container {
+      order: 0;
+      margin: 0;
       height: 100%;
-      grid-row: 2;
       text-align: left;
     }
 
