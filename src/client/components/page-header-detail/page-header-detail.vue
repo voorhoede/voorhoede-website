@@ -65,7 +65,6 @@
   }
 
   .page-header__image {
-    position: relative;
     display: none;
   }
 
@@ -118,6 +117,7 @@
     .page-header__image {
       display: flex;
       grid-column: content-right;
+      position: relative;
       top: var(--spacing-larger);
       justify-content: flex-end;
       align-items: flex-end;
@@ -125,8 +125,6 @@
     }
 
     .page-header--brick .page-header__image {
-      align-self: flex-end;
-      justify-content: flex-end;
       margin-top: auto;
       padding-bottom: var(--spacing-large);
       top: 0;
