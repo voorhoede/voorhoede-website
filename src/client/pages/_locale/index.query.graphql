@@ -51,7 +51,8 @@ fragment page on HomeRecord {
     width,
     height,
     format,
-    url
+    url,
+    alt
   }
   usps {
     line

@@ -1,170 +1,273 @@
 <template>
-  <header class="page-header grid" :class="{ 'page-header--brick' : brick }">
-    <div class="container"> 
-      <div class="page-header__text">
-        <h1 class="page-header__title" :class="brick ? 'hero' : 'h1'">{{ detailPage ? title : subTitle }}</h1>
-        <h2 class="page-header__subtitle sub-title">{{ detailPage ? subTitle : title }}</h2>
+  <header class="page-header grid" :class="{ 'page-header--home': isHomepage }">
+    <div v-if="isHomepage" class="page-header__brick" />
+    <div v-if="isHomepage" class="page-header__curly-bracket-column">
+      <div class="page-header__curly-bracket-wrapper">
+        <img class="page-header__curly-bracket" src="/images/curly-bracket--close.svg">
       </div>
-  
-      <div v-if="hasImage" class="page-header__image">
-        <slot name="image"/>
+    </div>
+    <div class="page-header__image" :class="{ 'page-header__image--spaced-top': !isHomepage }">
+      <img :src="image.url" :alt="image.alt">
+    </div>
+    <div class="page-header__description">
+      <div class="page-header__title sub-title">
+        <span v-html="title" />
+      </div>
+      <div class="page-header__text" :class="isHomepage ? 'hero' : 'h1'">
+        <span v-html="text" />
       </div>
     </div>
   </header>
 </template>
 
 <script>
-  import { ScrollTo } from '~/components'
-
-  export default {
-    components: {
-      ScrollTo,
-    },
-    props: {
-      title: {
-        type: String,
-        required: true,
-      },
-      subTitle: {
-        type: String,
-        required: true,
-      },
-      detailPage: {
-        type: Boolean,
-        required: true,
-        default: false,
-      },
-      seoTitle: {
-        type: String,
-        default: null,
-      },
-      brick: {
-        type: Boolean,
-        default: false,
+export default {
+  props: {
+    image: {
+      type: Object,
+      required: true,
+      validator(image) {
+        return typeof(image.url) === 'string' && typeof(image.alt) === 'string'
       },
     },
-    computed: {
-      hasImage() {
-        return 'image' in this.$slots
-      },
+    title: {
+      type: String,
+      required: true,
+    },
+    text: {
+      type: String,
+      required: true,
+    },
+    isHomepage: {
+      type: Boolean,
+      default: false
     },
   }
+}
 </script>
 
-<style scoped>
+<style>
+.page-header {
+  background: var(--bg-pastel);
+}
+
+.page-header__brick {
+  display: none;
+}
+
+.page-header__curly-bracket {
+  display: none;
+  z-index: 0;
+}
+
+.page-header__image img {
+  position: static;
+  z-index: 1;
+  object-fit: contain;
+  object-position: bottom;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+}
+
+@supports (display: grid) {
   .page-header {
-    grid-column: page;
-    background-color: var(--bg-pastel);
+    grid-template-rows: var(--app-header-height) 1fr;
   }
 
-  .container {
-    grid-column: content;
-    display: flex;
+  .page-header--home {
     position: relative;
-    justify-content: space-between;
+    grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
+    padding-top: 0;
   }
 
-  .page-header__text {
-    display: flex;
-    flex-direction: column;
-    padding-top: calc(var(--app-header-height) + var(--spacing-medium));
-    padding-bottom: var(--spacing-large);
-  }
-
-  .page-header__title {
-    order: 2;
-  }
-
-  .page-header__subtitle {
-    order: 1;
-    margin-bottom: var(--spacing-smaller);
-  }
-
-  .page-header__image {
+  .page-header .page-header__image {
     display: none;
   }
 
-  .page-header__image img {
-    width: auto;
-    max-height: 60%;
+  .page-header--home .page-header__image {
+    display: flex;
   }
 
-  .page-header--brick {
+  .page-header__description {
+    margin: var(--spacing-large) 0;
+    grid-column: content;
+    grid-row-start: 2;
+  }
+
+  .page-header__text {
+    margin-top: var(--spacing-smaller);
+    hyphens: auto;
+    overflow-wrap: break-word;
+  }
+
+  .page-header__brick {
+    display: block;
+    background: var(--brand-yellow);
     grid-column: page;
-    background-image: linear-gradient(
-      to bottom,
-      var(--bg-pastel),
-      var(--bg-pastel) 50%,
-      var(--brand-yellow) 50%,
-      var(--brand-yellow) 90%
-    );
+    grid-row-start: 3;
+    grid-row-end: 6;
   }
 
-  .page-header--brick .container {
-    flex-direction: column;
+  .page-header__curly-bracket-column {
+    grid-column: page;
+    grid-row: 3;
+    position: absolute;
+    top: calc(-1 * var(--spacing-large));
+    right: 0;
+    bottom: calc(-1 * var(--spacing-larger));
+    overflow: hidden;
   }
 
-  .page-header--brick .page-header__image {
+  /* Ugly wrapper to prevent horizontal scrolling, while making vertical overflow possible */
+  .page-header__curly-bracket-wrapper {
+    display: block;
+    height: 100%;
+    position: relative;
+    right: calc(-1 * var(--spacing-medium));
+  }
+
+  .page-header__curly-bracket {
+    display: block;
+    height: 100%;
+    mix-blend-mode: screen;
+  }
+
+  .page-header__image {
+    grid-column-start: 2;
+    grid-column-end: 18;
+    grid-row-start: 4;
+    grid-row-end: 5;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    padding-bottom: var(--spacing-medium);
-    max-width: 100%;
-    height: 40vh;
   }
 
   @media screen and (min-width: 520px) {
-    .page-header__image {
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
-      padding-bottom: var(--spacing-large);
-      width: 20%;
+    .page-header--home {
+      position: relative;
+      grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
+      padding-top: 0;
     }
 
-    .page-header--brick .page-header__image {
+    .page-header__curly-bracket-column {
+      grid-column: content;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      overflow: visible;
+      bottom: calc(-1 * var(--spacing-large));
+    }
+
+    .page-header__curly-bracket-wrapper {
+      position: static;
+    }
+
+    .page-header__curly-bracket {
+      display: block;
+      flex-grow: 1;
+      top: 0;
+    }
+
+    .page-header__image {
+      grid-column: content;
+      grid-column-start: 2;
+      grid-column-end: 18;
       justify-content: center;
-      width: 100%;
     }
   }
 
-  @media screen and (min-width: 720px) {
-    .container {
-      flex-direction: row;
+  @media screen and (min-width: 770px) {
+    .page-header {
+      grid-template-rows: calc(var(--app-header-height)) 1fr var(--spacing-large);
     }
 
-    .page-header__text {
-      width: 45%;
+    .page-header--home {
+      grid-template-rows: calc(var(--app-header-height) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
     }
 
-    .page-header--brick {
-      height: 76.5vh;
-      background-image: linear-gradient(
-        to right,
-        var(--bg-pastel),
-        var(--bg-pastel) 50%,
-        var(--brand-yellow) 50%,
-        var(--brand-yellow) 100%
-      );
+    .page-header--home .page-header__description {
+      margin-top: 0;
     }
 
-    .page-header--brick .page-header__image {
-      align-self: flex-end;
+    .page-header .page-header__image {
+      display: flex;
+    }
+
+    .page-header__description {
+      grid-column: content;
+      grid-row-start: 2;
+      grid-column-start: 2;
+      grid-column-end: 18;
+    }
+
+    .page-header__brick {
+      height: 100%;
+      grid-column: page-right;
+      grid-row-start: 1;
+      grid-row-end: -1;
+    }
+
+    .page-header__curly-bracket-column {
+      position: static;
+      grid-column-end: 34;
+      grid-row-start: 2;
+      grid-row-end: 4;
+    }
+
+    .page-header__curly-bracket {
+      height: 100%;
+    }
+
+    .page-header__image {
+      grid-column: content-right;
+      grid-row-start: 2;
+      grid-row-end: 3;
       justify-content: flex-end;
-      margin-top: auto;
-      padding-bottom: var(--spacing-large);
-      width: 70%;
-      height: auto;
-    }
-
-    .page-header--brick .page-header__image img {
-      max-height: 100%;
+      align-self: flex-end;
     }
   }
 
   @media screen and (min-width: 1100px) {
-    .page-header--brick .container {
-      flex-direction: row;
+    .page-header--home {
+      grid-template-rows: calc(var(--app-header-height) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
+    }
+
+    .page-header--home .page-header__description {
+      grid-column-start: 2;
+    }
+
+    .page-header__description {
+      margin: var(--spacing-medium) 0;
+      grid-column-start: 4;
+      grid-column-end: 25;
+    }
+
+    .page-header__curly-bracket-column {
+      grid-column-end: 48;
+    }
+
+    .page-header__image {
+      grid-column: content-right;
+      grid-column-end: 48;
+      align-self: flex-end;
+    }
+
+    .page-header__image--spaced-top {
+      position: relative;
+      top: var(--spacing-big);
+      height: 100%;
     }
   }
+
+  @media screen and (min-width: 1440px) {
+    .page-header__description {
+      margin-top: var(--spacing-medium);
+    }
+
+    .page-header--home .page-header__description {
+      grid-column-start: 4;
+    }
+  }
+}
 </style>
