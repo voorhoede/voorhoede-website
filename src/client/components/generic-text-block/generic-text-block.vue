@@ -47,7 +47,6 @@
 
   .generic-text-block {
     display: grid;
-    grid-template-rows: var(--image-height) auto auto;
     grid-row-gap: var(--spacing-smaller);
   }
 
@@ -60,6 +59,7 @@
   }
 
   .generic-text-block__image-container {
+    height: var(--image-height);
     grid-row: 1;
     text-align: center;
   }
@@ -86,6 +86,7 @@
     }
 
     .generic-text-block__image-container {
+      height: 100%;
       grid-row: 2;
       grid-column: 2;
       text-align: left;
