@@ -63,7 +63,7 @@
 
   @media (min-width: 720px) {
     .generic-text-block {
-      grid-template-columns: 63% 1fr; /* 63% == 550(text)/877(white box)*100 from design  */
+      grid-template-columns: 63% 1fr; /* 63% == 550(text)/877(total width)*100 from design  */
       grid-column-gap: var(--spacing-large);
     }
 
