@@ -50,14 +50,6 @@
     grid-row-gap: var(--spacing-smaller);
   }
 
-  .generic-text-block__title {
-    grid-row: 2;
-  }
-
-  .generic-text-block__body {
-    grid-row: 3;
-  }
-
   .generic-text-block__image-container {
     height: var(--image-height);
     grid-row: 1;
@@ -71,14 +63,8 @@
 
   @media (min-width: 720px) {
     .generic-text-block {
-      display: grid;
-      grid-template-columns: 63% 29%;
+      grid-template-columns: 63% 1fr; /* 63% == 550(text)/877(white box)*100 from design  */
       grid-column-gap: var(--spacing-large);
-      grid-template-rows: auto;
-    }
-
-    .generic-text-block__title {
-      grid-row: 1;
     }
 
     .generic-text-block__body {
@@ -88,7 +74,6 @@
     .generic-text-block__image-container {
       height: 100%;
       grid-row: 2;
-      grid-column: 2;
       text-align: left;
     }
 
