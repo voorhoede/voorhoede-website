@@ -56,6 +56,10 @@
       margin-bottom: var(--spacing-bigger);
     }
 
+    .page-services .page-header {
+      margin-bottom: var(--spacing-big);
+    }
+
     .page-services .services-list {
       grid-column-start: 4;
       grid-column-end: 48;
