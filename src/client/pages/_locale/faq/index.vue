@@ -1,5 +1,10 @@
 <template>
   <div class="grid page-faq">
+    <page-header
+      :title="page.title"
+      :text="page.subtitle"
+      :image="page.headerIlustration"
+    />
     <div class="page-faq__overview">
       <ul> 
         <li class="page-faq__overview-item" v-for="item in page.items" :key="item.title">
@@ -15,10 +20,11 @@
 </template>
 
 <script>
-import { GenericTextBlock } from '~/components'
+import { PageHeader, GenericTextBlock } from '~/components'
 
 export default {
   components: {
+    PageHeader,
     GenericTextBlock
   },
   async asyncData({ store, route }) {
@@ -28,8 +34,9 @@ export default {
 </script>
 
 <style>
-  .page-faq__overview {
-    padding: var(--spacing-large) 0;
+  .page-faq .page-header {
+    grid-column: page;
+    margin-bottom: var(--spacing-large);
   }
 
   .page-faq__overview-item {
@@ -42,8 +49,8 @@ export default {
     }
 
     .page-faq__overview {
-      grid-column-start: 4;
-      grid-column-end: -4;
+      grid-column-start: 2;
+      grid-column-end: -2;
       background: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
     }
