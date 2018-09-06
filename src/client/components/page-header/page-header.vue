@@ -90,7 +90,7 @@ export default {
   }
 
   .page-header__description {
-    margin: var(--spacing-medium) 0;
+    margin: var(--spacing-large) 0;
     grid-column: content;
     grid-row-start: 2;
   }
@@ -186,6 +186,10 @@ export default {
       grid-template-rows: calc(var(--app-header-height) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
     }
 
+    .page-header--home .page-header__description {
+      margin-top: 0;
+    }
+
     .page-header .page-header__image {
       display: flex;
     }
@@ -263,7 +267,6 @@ export default {
 
     .page-header--home .page-header__description {
       grid-column-start: 4;
-      margin-top: var(--spacing-larger);
     }
   }
 }

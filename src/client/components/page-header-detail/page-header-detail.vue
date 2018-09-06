@@ -2,7 +2,7 @@
   <header class="page-header grid" :class="{ 'page-header--brick' : hasBrick }">
     <div class="page-header__description">
       <h1 class="page-header__title" :class="hasBrick ? 'hero' : 'h1'">{{ title }}</h1>
-      <span class="page-header__subtitle sub-title">{{ subTitle }}</span>
+      <p class="page-header__subtitle sub-title">{{ subTitle }}</p>
     </div>
     <div class="page-header__image">
       <img :src="image.url" :alt="image.alt">

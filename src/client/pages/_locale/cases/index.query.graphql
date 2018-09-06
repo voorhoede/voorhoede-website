@@ -20,7 +20,8 @@ fragment page on CaseOverviewRecord {
   slug,
   subtitle,
   headerIllustration {
-    url
+    url,
+    alt
   }
   callToActionLabel,
   callToActionTitle
