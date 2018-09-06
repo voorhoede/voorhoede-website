@@ -177,7 +177,7 @@ export default {
     }
   }
 
-  @media screen and (min-width: 720px) {
+  @media screen and (min-width: 770px) {
     .page-header {
       grid-template-rows: calc(var(--app-header-height)) 1fr var(--spacing-large);
     }

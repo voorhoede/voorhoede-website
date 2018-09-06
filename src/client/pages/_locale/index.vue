@@ -370,6 +370,10 @@
   }
 
   @media (min-width: 1440px) {
+    .page-index .page-header--home {
+      height: 1000px;
+    }
+
     .page-index .scroll-to {
       grid-column-start: 4;
       grid-column-end: 5;
