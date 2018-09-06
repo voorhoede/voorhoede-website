@@ -59,6 +59,8 @@
   .generic-text-block__image {
     max-width: 100%;
     max-height: 100%;
+    object-fit: contain;
+    object-position: left top;
   }
 
   @media (min-width: 720px) {
