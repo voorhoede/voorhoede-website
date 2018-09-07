@@ -1,6 +1,6 @@
 <template>
   <div class="generic-text-block">
-    <h2 class="generic-text-block__title h4">{{ title }}</h2>
+    <h2 v-if="title" class="generic-text-block__title h4">{{ title }}</h2>
     <rich-text-block class="generic-text-block__body" :text="body"/>
     <lazy-load v-if="image" class="generic-text-block__image-container">
       <img class="generic-text-block__image" :src="image.url" :alt="image.alt">
@@ -19,7 +19,7 @@
     props: {
       title: {
         type: String,
-        required: true
+        default: ''
       },
       body: {
         type: String,
@@ -43,52 +43,64 @@
 <style>
   :root {
     --image-height: 10rem;
+    --list-bullet-size: 2px;
   }
 
   .generic-text-block {
-    display: grid;
-    grid-row-gap: var(--spacing-smaller);
+    display: flex;
+    flex-direction: column;
   }
 
   .generic-text-block__title {
-    grid-row: 2;
+    margin-bottom: var(--spacing-smaller);
   }
 
-  .generic-text-block__body {
-    grid-row: 3;
+  .generic-text-block__body li::before {
+    content: '';
+    display: inline-block;
+    background: var(--black);
+    background: currentColor;
+    height: var(--list-bullet-size);
+    width: var(--list-bullet-size);
+    border-radius: 50%;
+    vertical-align: middle;
+    position: relative;
+    left: calc(-1 * var(--spacing-small));
   }
 
   .generic-text-block__image-container {
+    order: -1;
+    margin-bottom: var(--spacing-smaller);
     height: var(--image-height);
-    grid-row: 1;
     text-align: center;
   }
 
   .generic-text-block__image {
     max-width: 100%;
     max-height: 100%;
+    object-fit: contain;
+    object-position: left top;
   }
 
   @media (min-width: 720px) {
     .generic-text-block {
       display: grid;
-      grid-template-columns: 63% 29%;
-      grid-column-gap: var(--spacing-large);
-      grid-template-rows: auto;
+      grid-template-columns: 63% 1fr; /* 63% == 550(text)/877(total width)*100 from design  */
+      grid-gap: var(--spacing-smaller) var(--spacing-large);
     }
 
     .generic-text-block__title {
-      grid-row: 1;
+      margin: 0;
     }
 
     .generic-text-block__body {
-      grid-row: 2;
+      grid-column: 1;
     }
 
     .generic-text-block__image-container {
+      order: 0;
+      margin: 0;
       height: 100%;
-      grid-row: 2;
-      grid-column: 2;
       text-align: left;
     }
 
