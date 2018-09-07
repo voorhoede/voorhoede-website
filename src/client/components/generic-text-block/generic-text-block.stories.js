@@ -6,41 +6,54 @@ import { withKnobs } from '@storybook/addon-knobs/vue'
 
 import '../app-core/index.css'
 
-import FaqItem from './faq-item.vue'
+import GenericTextBlock from './generic-text-block.vue'
 import README from './README.md'
 
-const stories = storiesOf('Components/Faq Item', module)
+const stories = storiesOf('Components/Generic text block', module)
   .addDecorator(withKnobs)
   .addDecorator(withReadme(README))
 
-Vue.component('faq-item', FaqItem)
+Vue.component('generic-text-block', GenericTextBlock)
 
 stories.add(
-  'Faq Item',
+  'Generic text block',
   () => ({
     template: `
-      <faq-item
+      <generic-text-block
         title="Why wouldn’t I just hire a freelance developer?"
         body="<p>No, we are a team: we share insights, our love for front-end, and work together on internal and open source projects. All our developers and project managers are employees of De Voorhoede.</p>"
       />
     `,
-  }),
+  })
 )
-.add(
-  'Faq Item with image',
+
+stories.add(
+  'Generic text block with image',
   () => ({
     template: `
-      <faq-item
+      <generic-text-block
         title="Why wouldn’t I just hire a freelance developer?"
         body="<p>No, we are a team: we share insights, our love for front-end, and work together on internal and open source projects. All our developers and project managers are employees of De Voorhoede.</p>"
         :image="{
-          'format': 'png',
-          'width': 120,
-          'height': 1000,
-          'alt': 'A ninja, a superhero & a cowboy',
-          'url': 'https://www.datocms-assets.com/6524/1535025273-screen-shot-2018-08-23-at-13-54-07.png',
+          url: 'https://www.datocms-assets.com/6524/1535033232-screen-shot-2018-08-23-at-16-06-24.png',
+          alt: 'lovely robot waving at you'
         }"
       />
     `,
-  }),
+  })
+)
+
+stories.add(
+  'Generic text block without title',
+  () => ({
+    template: `
+      <generic-text-block
+        body="<p>No, we are a team: we share insights, our love for front-end, and work together on internal and open source projects. All our developers and project managers are employees of De Voorhoede.</p>"
+        :image="{
+          url: 'https://www.datocms-assets.com/6524/1535033232-screen-shot-2018-08-23-at-16-06-24.png',
+          alt: 'lovely robot waving at you'
+        }"
+      />
+    `,
+  })
 )
