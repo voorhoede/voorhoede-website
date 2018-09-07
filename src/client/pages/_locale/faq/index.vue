@@ -3,7 +3,7 @@
     <page-header
       :title="page.title"
       :text="page.subtitle"
-      :image="page.headerIlustration"
+      :image="page.headerIllustration"
     />
     <div class="page-faq__overview">
       <ul> 

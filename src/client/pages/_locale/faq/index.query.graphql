@@ -10,7 +10,7 @@ query($locale: SiteLocale)  {
 fragment page on FaqRecord {
   title,
   subtitle,
-  headerIlustration {
+  headerIllustration {
     url,
     alt
   },
