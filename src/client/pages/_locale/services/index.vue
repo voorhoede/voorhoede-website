@@ -3,7 +3,7 @@
     <page-header
       :title="page.title"
       :text="page.subtitle"
-      :image="page.headerillustration"
+      :image="page.headerIllustration"
     />
     <services-list :services="page.services"/>
     <get-in-touch-form

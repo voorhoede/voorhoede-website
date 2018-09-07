@@ -19,7 +19,7 @@ fragment page on ServiceOverviewRecord {
       title
     }
   },
-  headerillustration {
+  headerIllustration {
     url,
     alt
   },
