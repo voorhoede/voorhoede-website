@@ -49,6 +49,10 @@ export default {
   border-bottom: var(--services-list-border);
 }
 
+.services-list__item:last-of-type {
+  margin-bottom: 0;
+}
+
 @media screen and (min-width: 720px) {
   .services-list {
     display: flex;

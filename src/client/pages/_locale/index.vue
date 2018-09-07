@@ -142,6 +142,10 @@
     padding: var(--spacing-larger) 0;
   }
 
+  .page-index__services {
+    margin-bottom: var(--spacing-larger);
+  }
+
   .page-index__section-title {
     margin-bottom: var(--spacing-large);
     text-align: center;

@@ -175,6 +175,12 @@ export default {
       grid-column-end: 18;
       justify-content: center;
     }
+
+    .page-header__image--spaced-top {
+      position: relative;
+      top: var(--spacing-big);
+      height: 100%;
+    }
   }
 
   @media screen and (min-width: 770px) {
@@ -240,7 +246,7 @@ export default {
     .page-header__description {
       margin: var(--spacing-medium) 0;
       grid-column-start: 4;
-      grid-column-end: 25;
+      grid-column-end: 24;
     }
 
     .page-header__curly-bracket-column {
@@ -251,12 +257,6 @@ export default {
       grid-column: content-right;
       grid-column-end: 48;
       align-self: flex-end;
-    }
-
-    .page-header__image--spaced-top {
-      position: relative;
-      top: var(--spacing-big);
-      height: 100%;
     }
   }
 
