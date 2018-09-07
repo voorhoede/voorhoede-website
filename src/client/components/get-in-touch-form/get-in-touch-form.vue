@@ -7,7 +7,6 @@
       method="POST"
       data-netlify="true"
       name="Get in touch form"
-      action=""
     >
       <label class="get-in-touch-form__label">
         <span class="get-in-touch-form__label-text body-petite">{{ nameLabel }}</span>
