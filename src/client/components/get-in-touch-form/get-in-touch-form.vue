@@ -2,7 +2,13 @@
   <section class="get-in-touch-form grid">
     <h2 class="get-in-touch-form__title h3">{{ title }}</h2>
 
-    <form class="get-in-touch-form__form" method="POST" data-netlify="true" name="Get in touch form">
+    <form
+      class="get-in-touch-form__form"
+      method="POST"
+      data-netlify="true"
+      name="Get in touch form"
+      action=""
+    >
       <label class="get-in-touch-form__label">
         <span class="get-in-touch-form__label-text body-petite">{{ nameLabel }}</span>
         <input class="body" type="text" :placeholder="namePlaceholder" name="name">
