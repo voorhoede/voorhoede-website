@@ -294,7 +294,7 @@
     .page-index__blog-posts-list-item {
       transition: transform var(--blog-list-item-animation-timing) ease-out;
       display: inline-block;
-      grid-column-start: 10;
+      grid-column-start: 8;
       grid-column-end: 32;
     }
 
@@ -384,7 +384,7 @@
     }
 
     .page-index__blog-posts-list-item {
-      grid-column-start: 17;
+      grid-column-start: 16;
       grid-column-end: 45;
     }
 
