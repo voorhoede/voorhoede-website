@@ -7,7 +7,7 @@
       <ul class="service-excerpt__characteristics-list">
         <li
           v-for="line in summary"
-          :key="line"
+          :key="line.title"
           class="service-excerpt__characteristic body"
         >{{ line.title }}</li>
       </ul>
