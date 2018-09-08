@@ -8,6 +8,7 @@
       data-netlify="true"
       name="Get in touch form"
     >
+      <input type="hidden" name="form-name" value="Get in touch form">
       <label class="get-in-touch-form__label">
         <span class="get-in-touch-form__label-text body-petite">{{ nameLabel }}</span>
         <input class="body" type="text" :placeholder="namePlaceholder" name="name">
