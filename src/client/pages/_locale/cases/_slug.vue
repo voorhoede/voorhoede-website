@@ -188,7 +188,7 @@
       grid-column-end: -14;
     }
 
-    .page-case .quote-block {
+    .page-case__content .quote-block {
       grid-column-start: 12;
       grid-column-end: -12;
     }
