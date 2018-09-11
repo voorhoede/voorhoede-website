@@ -43,7 +43,7 @@ export default {
         if (!image) {
           return true
         } else {
-          const isValidImageText = image.alt !== null || image.alt === ''
+          const isValidImageText = (image.alt === undefined) ? true : typeof image.alt === 'string'
 
           return (
             typeof isValidImageText &&

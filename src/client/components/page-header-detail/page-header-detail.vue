@@ -22,7 +22,8 @@
         type: Object,
         required: true,
         validator(image) {
-          const isValidImageText = image.alt !== null || image.alt === ''
+          const isValidImageText = (image.alt === undefined) ? true : typeof image.alt === 'string'
+
           return typeof(image.url) === 'string' && isValidImageText
         },
       },
