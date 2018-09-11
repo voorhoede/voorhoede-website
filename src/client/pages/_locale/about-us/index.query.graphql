@@ -44,7 +44,8 @@ fragment about on AboutRecord {
   jobsBody,
   jobs {
     title,
-    description
+    description,
+    url
   },
   blogPostsTitle,
   callToActionTitle,

@@ -7,30 +7,37 @@
     />
     <div class="page-about-us__overview">
       <div class="page-about-us__overview-item">
-        <text-block class="page-about-us__overview-item-text" :title="page.introTitle">
+        <text-block :title="page.introTitle">
           <p class="body">{{ page.introBody }}</p>
         </text-block>
-        <responsive-image class="page-about-us__overview-item-image" :image="page.introImage" />
+        <responsive-image :image="page.introImage" />
       </div>
       <section class="page-about-us__jobs-overview">
-        <cta-block v-for="(job, index) in page.jobs" :key="job.title" :cta-label="job.title" :cta-to="{ name: 'locale-contact', params: { locale: currentLocale } }">
-          <template slot="heading" v-if="index === 0">
-            <h3 class="h3">{{ page.jobsTitle }}</h3>
-          </template>
-          <template slot="body" v-if="index === 0">
-            <p class="body">{{ page.jobsBody }}</p>
-          </template>
-        </cta-block>
+        <text-block :title="page.jobsTitle">
+          <p class="body">{{ page.jobsBody }}</p>
+        </text-block>
+        <div class="page-about-us__jobs-overview-buttons">
+          <app-button 
+            v-for="job in page.jobs" 
+            :key="job.title" 
+            :label="job.title"
+            external 
+            :to="job.url"
+          />
+        </div>
       </section>
       <section class="page-about-us__blog-posts">
-        <h2 class="page-about-us__section-title page-about-us__section-title--blog-posts h3">{{ page.blogPostsTitle }}</h2>
+        <h2 class="page-about-us__section-title h3">{{ page.blogPostsTitle }}</h2>
         <ul class="page-about-us__blog-posts-list">
           <li v-for="blogPost in latestBlogposts" :key="blogPost.slug">
             <blog-list-item :item="blogPost" :current-locale="currentLocale"/>
           </li>
         </ul>
       </section>
-      <cta-block :cta-label="page.callToActionLabel" :cta-to="{ name: 'locale-contact', params: { locale: currentLocale } }">
+      <cta-block 
+        :cta-label="page.callToActionLabel" 
+        :cta-to="{ name: 'locale-contact', params: { locale: currentLocale } }"
+      >
         <template slot="heading">
           <h3 class="h4">{{ page.callToActionTitle }}</h3>
         </template>
@@ -47,7 +54,8 @@ import {
   GenericTextBlock,
   TextBlock, 
   BlogListItem, 
-  CtaBlock 
+  CtaBlock,
+  AppButton 
 } from '~/components'
 
 export default {
@@ -57,7 +65,8 @@ export default {
     GenericTextBlock,
     TextBlock,
     BlogListItem,
-    CtaBlock
+    CtaBlock,
+    AppButton
   },
   async asyncData({ store, route }) {
     return await store.dispatch('getData', { route })
@@ -75,34 +84,43 @@ export default {
   }
 
   .page-about-us__overview-item {
+    display: flex;
+    flex-direction: column-reverse;
     margin-bottom: var(--spacing-big);
   }
 
-  .page-about-us__overview-item-text {
+  .page-about-us__overview-item .text-block {
+    width: 100%;
+  }
+
+  .page-about-us__overview-item .responsive-image {
     margin-bottom: var(--spacing-medium);
     width: 100%;
   }
 
-  .page-about-us__overview-item-image {
-    width: 100%;
-  }
-
   .page-about-us__jobs-overview {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
     margin-bottom: var(--spacing-big);
   }
 
-  .page-about-us__jobs-overview .cta-block {
-    padding: 0 0 var(--spacing-small);
-    border: none;
+  .page-about-us__jobs-overview .text-block {
+    margin-bottom: var(--spacing-medium);
+  }
+
+  .page-about-us__jobs-overview-buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-about-us__jobs-overview-buttons .app-button {
+    margin-bottom: var(--spacing-small);
+    width: auto;
   }
 
    .page-about-us__blog-posts {
     margin-bottom: var(--spacing-big);
-  }
-
-  .page-about-us__blog-posts-list {
-    grid-row: 2;
-    grid-column-end: -3;
   }
 
   .page-about-us__section-title {
@@ -119,16 +137,20 @@ export default {
       grid-column-start: 2;
       grid-column-end: -2;
       background: var(--white);
-      padding: var(--spacing-large) var(--spacing-larger);
+      padding: var(--spacing-large) var(--spacing-larger) 0;
+    }
+
+    .page-about-us__jobs-overview-buttons {
+      align-items: center;
     }
 
     .page-about-us__overview-item {
-      display: flex;
+      flex-direction: row;
       margin-bottom: var(--spacing-bigger);
     }
 
-    .page-about-us__overview-item-text {
-      margin-right: var(--spacing-medium);
+    .page-about-us__overview-item .text-block {
+      margin-right: var(--spacing-big);
     }
   }
   
@@ -136,7 +158,7 @@ export default {
     .page-about-us__overview {
       grid-column-start: 6;
       grid-column-end: -6;
-      padding: var(--spacing-big) var(--spacing-bigger);
+      padding: var(--spacing-big) var(--spacing-bigger) 0;
     }
   }
 </style>
