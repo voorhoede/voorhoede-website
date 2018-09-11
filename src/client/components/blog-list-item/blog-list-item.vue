@@ -10,7 +10,7 @@
               :width="thumbnailSize"
               :height="thumbnailSize"
               class="blog-list-item__image"
-              :src="`${author.image.url}?auto=compress&auto=quality&fm=webp&w=40&h=40&fit=crop`"
+              :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=40&h=40&fit=crop`"
               alt=""
             >
           </lazy-load>
@@ -61,7 +61,7 @@
   }
 
   .blog-list-item {
-    display: inline-block;
+    display: block;
     transition: transform var(--blog-list-item-animation-timing) ease-out;
   }
 
@@ -86,6 +86,10 @@
   }
 
   @media screen and (min-width: 720px) {
+    .blog-list-item {
+      padding-left: var(--spacing-larger);
+    }
+
     .blog-list-item__time {
       display: block;
       color: var(--dim);

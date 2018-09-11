@@ -64,8 +64,8 @@
     </div>
     <section class="page-index__blog-posts grid">
       <h2 class="page-index__section-title page-index__section-title--blog-posts h3">{{ page.blogPostsTitle }}</h2>
-      <ul class="page-index__blog-posts-list">
-        <li v-for="blogPost in latestBlogposts" :key="blogPost.slug">
+      <ul class="page-index__blog-posts-list grid">
+        <li v-for="blogPost in latestBlogposts" :key="blogPost.slug" class="page-index__blog-posts-list-item">
           <blog-list-item :item="blogPost" :current-locale="currentLocale"/>
         </li>
       </ul>
@@ -122,13 +122,13 @@
 
 <style>
   .page-index__header {
-    margin-bottom: var(--spacing-larger);
+    margin-bottom: var(--spacing-big);
     background: var(--bg-pastel);
   }
 
   .page-index__scroll-to {
     position: absolute;
-    bottom: 0;
+    top: 78vh;
     left: 0;
     right: 0;
   }
@@ -164,17 +164,17 @@
     margin-bottom: calc(var(--spacing-large) - var(--spacing-smaller));
   }
 
-  .page-index__cases .horizontal-carousel__slides {
-    padding-bottom: var(--spacing-huge);
-  }
-
   .page-index__cases .case-excerpt {
     padding-top: var(--spacing-smaller);
   }
 
+  .page-index__cases .horizontal-carousel__slides {
+    padding-bottom: var(--spacing-bigger);
+  }
+
   .page-index__clients {
     margin-bottom: var(--spacing-larger);
-    padding-top: var(--spacing-large);
+    padding-top: var(--spacing-larger);
     padding-bottom: var(--spacing-larger);
     background: var(--fog);
   }
@@ -220,7 +220,7 @@
   }
 
   .page-index__blog-posts {
-    margin-bottom: var(--spacing-bigger);
+    margin-bottom: var(--spacing-large);
   }
 
   .page-index__blog-posts-list {
@@ -258,6 +258,14 @@
       padding: var(--spacing-big) 0;
     }
 
+    .page-index__cases {
+      margin-bottom: var(--spacing-bigger);
+    }
+
+    .page-index__cases .horizontal-carousel__slides {
+      padding-bottom: 0;
+    }
+
     .page-index__section-title {
       margin-bottom: var(--spacing-larger);
     }
@@ -279,6 +287,7 @@
 
     .page-index__blog-posts {
       position: relative;
+      margin-bottom: var(--spacing-big);
     }
 
     .page-index__blog-posts-list {
@@ -286,9 +295,15 @@
       overflow: hidden;
     }
 
-    .page-index .blog-list-item {
-      display: grid;
-      grid-template-columns: var(--grid-columns);
+    .page-index__blog-posts-list-item {
+      transition: transform var(--blog-list-item-animation-timing) ease-out;
+      display: inline-block;
+      grid-column-start: 8;
+      grid-column-end: 32;
+    }
+
+    .page-index__scroll-to {
+      top: 89vh;
     }
 
     .page-index .blog-list-item__time {
@@ -358,13 +373,23 @@
       grid-column-start: 21;
     }
 
+    .page-index__cases {
+      margin-bottom: var(--spacing-huge);
+    }
+
     .page-index__clients {
       margin-bottom: var(--spacing-huge);
+      padding-top: var(--spacing-big);
     }
 
     .page-index .blog-list-item__time {
       grid-column-start: 16;
       grid-column-end: 21;
+    }
+
+    .page-index__blog-posts-list-item {
+      grid-column-start: 16;
+      grid-column-end: 45;
     }
 
     .page-index .blog-list-item__content {
@@ -381,6 +406,10 @@
     .page-index .scroll-to {
       grid-column-start: 4;
       grid-column-end: 5;
+    }
+
+    .page-index__scroll-to {
+      top: 81vh;
     }
 
     .page-index .page-header__text {
