@@ -12,11 +12,11 @@
         </text-block>
         <responsive-image :image="page.introImage" />
       </div>
-      <section class="page-about-us__jobs-overview">
+      <section class="page-about-us__jobs">
         <text-block :title="page.jobsTitle">
           <p class="body">{{ page.jobsBody }}</p>
         </text-block>
-        <div class="page-about-us__jobs-overview-buttons">
+        <div class="page-about-us__jobs-list">
           <app-button 
             v-for="job in page.jobs" 
             :key="job.title" 
@@ -27,10 +27,16 @@
         </div>
       </section>
       <section class="page-about-us__blog-posts">
-        <h2 class="page-about-us__section-title h3">{{ page.blogPostsTitle }}</h2>
+        <h2 class="page-about-us__blog-posts-title h3">{{ page.blogPostsTitle }}</h2>
         <ul class="page-about-us__blog-posts-list">
-          <li v-for="blogPost in latestBlogposts" :key="blogPost.slug">
-            <blog-list-item :item="blogPost" :current-locale="currentLocale"/>
+          <li 
+            v-for="blogPost in latestBlogposts" 
+            :key="blogPost.slug"
+          >
+            <blog-list-item 
+              :item="blogPost" 
+              :current-locale="currentLocale"
+            />
           </li>
         </ul>
       </section>
@@ -98,23 +104,23 @@ export default {
     width: 100%;
   }
 
-  .page-about-us__jobs-overview {
+  .page-about-us__jobs {
     display: flex;
     flex-direction: column;
     text-align: center;
     margin-bottom: var(--spacing-big);
   }
 
-  .page-about-us__jobs-overview .text-block {
+  .page-about-us__jobs .text-block {
     margin-bottom: var(--spacing-medium);
   }
 
-  .page-about-us__jobs-overview-buttons {
+  .page-about-us__jobs-list {
     display: flex;
     flex-direction: column;
   }
 
-  .page-about-us__jobs-overview-buttons .app-button {
+  .page-about-us__jobs-list .app-button {
     margin-bottom: var(--spacing-small);
     width: auto;
   }
@@ -123,7 +129,7 @@ export default {
     margin-bottom: var(--spacing-big);
   }
 
-  .page-about-us__section-title {
+  .page-about-us__blog-posts-title {
     text-align: center;
     margin-bottom: var(--spacing-large);
   }
@@ -140,10 +146,6 @@ export default {
       padding: var(--spacing-large) var(--spacing-larger) 0;
     }
 
-    .page-about-us__jobs-overview-buttons {
-      align-items: center;
-    }
-
     .page-about-us__overview-item {
       flex-direction: row;
       margin-bottom: var(--spacing-bigger);
@@ -151,6 +153,10 @@ export default {
 
     .page-about-us__overview-item .text-block {
       margin-right: var(--spacing-big);
+    }
+
+    .page-about-us__jobs-list {
+      align-items: center;
     }
   }
   
