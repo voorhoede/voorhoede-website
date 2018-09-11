@@ -2,6 +2,9 @@ query ($locale: SiteLocale)  {
   page: serviceOverview(locale:$locale) {
     ...page
   },
+  items: allServices(locale: $locale) {
+    slug
+  }
   alternate: serviceOverview(locale:$locale) {
     slug
   }
