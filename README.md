@@ -53,9 +53,9 @@ available:
 All components are documented with a README.md file in their own folder.  
 Other documentation can be found [here](_docs/)
 
-## Usefull links
+## Useful links
 
-* [localhost:3278](http://localhost:3278)
-* [Dato cms](https://voorhoede-dragonfly-cms.admin.datocms.com/editor)
-* [Deployed site](https://voorhoede-dragonfly.netlify.com)
+* [Local environment](http://localhost:3278)
+* [Preview environment](https://voorhoede-dragonfly.netlify.com)
+* [Dato CMS](https://voorhoede-dragonfly-cms.admin.datocms.com/editor)
 * [Netlify project](https://app.netlify.com/sites/voorhoede-dragonfly/overview)
