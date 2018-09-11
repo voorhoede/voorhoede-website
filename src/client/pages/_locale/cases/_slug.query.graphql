@@ -16,7 +16,8 @@ fragment caseItem on CaseItemRecord {
   title,
   slug,
   heroIllustration {
-    url
+    url,
+    alt
   },
   caseTeaser {
     title,

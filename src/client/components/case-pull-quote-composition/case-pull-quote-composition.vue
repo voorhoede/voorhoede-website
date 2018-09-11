@@ -76,8 +76,8 @@ export default {
 
 .pullquote-composition__title--align-left {
   grid-column: content;
-  grid-column-end: 8;
   grid-column-start: 1;
+  grid-column-end: 8;
 }
 
 .pullquote-composition__image {

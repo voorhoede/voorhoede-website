@@ -1,5 +1,5 @@
 <template>
-  <div class="case-meta">
+  <section class="case-meta">
     <h2 class="sr-only">Case information</h2>
     <section class="case-meta__section">
       <h3 class="case-meta__title body font-bold">{{ expertiseTitle }}</h3>
@@ -19,7 +19,7 @@
         {{ interestedLinkLabel }} &raquo;
       </nuxt-link>
     </section>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -116,7 +116,7 @@
 
   @media (min-width: 720px) {
     .case-meta {
-      height: 23.5vh; /* as specified by the design */
+      min-height: 23.5vh; /* as specified by the design */
       padding-top: var(--spacing-large);
       padding-bottom: var(--spacing-large);
     }

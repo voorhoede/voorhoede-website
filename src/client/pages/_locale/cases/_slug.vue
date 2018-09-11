@@ -22,7 +22,7 @@
       />
     </aside>
 
-    <div class="page-cases__case-teaser grid">
+    <div class="page-cases__case-teaser">
       <case-teaser
         v-if="page.caseTeaser"
         :title="page.caseTeaser.title"
@@ -30,7 +30,7 @@
       />
     </div>
 
-    <section class="page-cases__content grid">
+    <article class="page-cases__content grid">
       <template v-for="(item, index) in page.content">
         <div v-if="item.body" :key="index" class="page-cases__text">
           <h3 class="page-cases__title h3">{{ item.title }}</h3>
@@ -53,12 +53,15 @@
           :text="item.pullquote.richText"
         />
       </template>
+
       <quote-block :quote="page.quote" :cite="page.author" />
-    </section>
+    </article>
+
     <div class="page-cases__link-container">
       <nuxt-link class="font-html-blue body font-bold" :to="`/${currentLocale}/cases`">&larr; See all cases</nuxt-link>
     </div>
-    <aside class="page-cases__get-in-touch-form">
+
+    <div class="page-cases__get-in-touch-form">
       <get-in-touch-form
         :title="page.getInTouchTitle"
         :name-label="page.getInTouchForm.nameLabel"
@@ -71,7 +74,7 @@
         :summary-placeholder="page.getInTouchForm.summaryPlaceholder"
         :cta-label="page.getInTouchForm.ctaButtonLabel"
       />
-    </aside>
+    </div>
   </main>
 </template>
 
@@ -182,12 +185,12 @@
 
     .page-cases__text {
       grid-column-start: 14;
-      grid-column-end: 39;
+      grid-column-end: -14;
     }
 
     .page-cases .quote-block {
       grid-column-start: 12;
-      grid-column-end: 39;
+      grid-column-end: -12;
     }
 
     .page-cases__get-in-touch-form,

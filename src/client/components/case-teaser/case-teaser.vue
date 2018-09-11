@@ -39,7 +39,6 @@ export default {
   }
 
   .case-teaser {
-    grid-column: page;
     display: flex;
     flex-direction: column;
   }
@@ -64,7 +63,6 @@ export default {
   @media (min-width: 720px) {
     .case-teaser {
       flex-direction: row;
-      grid-column: page;
       margin: 0 auto var(--spacing-large) auto;
       width: 100%;
       max-width: var(--page-max-width);
