@@ -2,6 +2,7 @@
 @import './_reset.css';
 @import './font-faces.css';
 @import './typography.css';
+@import './body.css';
 @import './grid.css';
 @import './utilities.css';
 @import './buttons.css';

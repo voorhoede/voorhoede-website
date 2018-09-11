@@ -1,0 +1,7 @@
+body {
+  background: var(--brand-yellow);
+}
+
+#__nuxt {
+  background: var(--white);
+}
