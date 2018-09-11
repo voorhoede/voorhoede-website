@@ -2,7 +2,13 @@
   <section class="get-in-touch-form grid">
     <h2 class="get-in-touch-form__title h3">{{ title }}</h2>
 
-    <form class="get-in-touch-form__form" method="POST" data-netlify="true">
+    <form
+      class="get-in-touch-form__form"
+      method="POST"
+      data-netlify="true"
+      name="get-in-touch"
+    >
+      <input type="hidden" name="form-name" value="get-in-touch">
       <label class="get-in-touch-form__label">
         <span class="get-in-touch-form__label-text body-petite">{{ nameLabel }}</span>
         <input class="body" type="text" :placeholder="namePlaceholder" name="name">
@@ -81,6 +87,12 @@
 </script>
 
 <style>
+  @import '../forms/forms.css';
+
+  .get-in-touch-form {
+    grid-column: page;
+  }
+
   .get-in-touch-form__label:first-of-type {
     margin-top: 0;
   }

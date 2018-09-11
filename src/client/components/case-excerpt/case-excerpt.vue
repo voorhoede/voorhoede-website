@@ -145,7 +145,7 @@
     right: calc(var(--spacing-medium) * -1);
     width: auto;
     background: var(--brand-yellow);
-    padding: var(--spacing-medium);
+    padding: calc(var(--spacing-medium) - var(--spacing-tiny));
     z-index: 1;
     transform-origin: top;
     transform: scaleY(0);
