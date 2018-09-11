@@ -6,10 +6,10 @@
       <div class="service-excerpt__divider"/>
       <ul class="service-excerpt__characteristics-list">
         <li
-          v-for="line in teasers"
-          :key="line.teaser"
+          v-for="line in summary"
+          :key="line.title"
           class="service-excerpt__characteristic body"
-        >{{ line.teaser }}</li>
+        >{{ line.title }}</li>
       </ul>
     </div>
     <AppButton
@@ -37,11 +37,11 @@ export default {
       type: String,
       required: true,
     },
-    teasers: {
+    summary: {
       type: Array,
       required: true,
-      validator(teasers) {
-        return teasers.every(line => 'teaser' in line)
+      validator(summary) {
+        return summary.every(line => 'title' in line)
       }
     },
     slug: {

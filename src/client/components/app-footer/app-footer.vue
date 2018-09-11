@@ -6,22 +6,22 @@
       <p class="body font-bold app-footer__header-subtitle">{{ headerSubtitle }}</p>
     </div>
     <div class="app-footer__column">
-      <h5 class="body app-footer__list-title font-bold">Explore</h5>
+      <h3 class="body app-footer__list-title font-bold">Explore</h3>
       <ul class="app-footer__list">
         <li
           v-for="link in exploreLinks"
           :key="link.slug"
           class="app-footer__list-item body-detail"
         >
-          <nuxt-link :to="link.slug" class="app-footer__link">{{ link.title }}</nuxt-link>
+          <nuxt-link class="app-footer__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
         </li>
       </ul>
     </div>
     <div class="app-footer__column app-footer__column--right">
-      <h5 class="body app-footer__list-title font-bold">Contact</h5>
+      <h3 class="body app-footer__list-title font-bold">Contact</h3>
       <ul class="body-detail app-footer__list app-footer__list--border-none app-footer__list--no-padding">
         <li class="app-footer__list-item">
-          <a class="app-footer__link" target="_blank" :href="`tel:${cleanedTelephone}`">{{ tel }}</a>
+          <a class="app-footer__link" target="_blank" :href="`tel:${ cleanedTelephone }`">{{ tel }}</a>
         </li>
         <li class="app-footer__list-item">
           <a class="app-footer__link" target="_blank" :href="`mailto:${ email }`">{{ email }}</a>
@@ -61,6 +61,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppIcon from '../../components/app-icon'
 
 export default {
@@ -149,10 +150,19 @@ export default {
     },
   },
   computed: {
+    ...mapState([
+      'currentLocale',
+    ]),
     cleanedTelephone() {
       return this.tel.replace(/[^0-9]/g, '')
     }
-  }
+  },
+  methods: {
+    createHref(link) {
+      const locale = this.currentLocale
+      return `/${locale}/${link.slug}/`
+    },
+  },
 }
 </script>
 
@@ -191,8 +201,6 @@ export default {
 }
 
 .app-footer__list {
-  display: flex;
-  flex-flow: wrap;
   border-bottom: 1px solid var(--black);
   justify-content: center;
   padding-bottom: var(--spacing-medium);
@@ -232,6 +240,12 @@ export default {
   text-decoration: none;
 }
 
+.app-footer__link--right {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  }
+
 .app-footer__header {
   display: flex;
   flex-direction: column;
@@ -262,7 +276,6 @@ export default {
 }
 
 .app-footer__column--right {
-  padding-top: var(--spacing-medium);
   margin-bottom: var(--spacing-medium);
 }
 
@@ -339,12 +352,6 @@ export default {
 
   .app-footer__list-title {
     margin-bottom: var(--spacing-tiny);
-  }
-
-  .app-footer__link--right {
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: flex-end;
   }
 }
 

@@ -8,7 +8,7 @@
       <service-excerpt
         :tagline="service.tagline"
         :title="service.title"
-        :teasers="service.teasers"
+        :summary="service.summary"
         :slug="service.slug"
       />
     </li>
@@ -47,6 +47,10 @@ export default {
   margin-bottom: var(--spacing-larger);
   padding-bottom: var(--spacing-large);
   border-bottom: var(--services-list-border);
+}
+
+.services-list__item:last-of-type {
+  margin-bottom: 0;
 }
 
 @media screen and (min-width: 720px) {
