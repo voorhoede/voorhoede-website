@@ -1,8 +1,11 @@
 <template>
   <main class="page-cases grid">
-    <page-header detail-page brick :title="page.title" :sub-title="'Case study'">
-      <img slot="image" :src="page.heroIllustration.url" alt="">
-    </page-header>
+    <page-header-detail
+      has-brick
+      :title="page.title"
+      sub-title="Case study"
+      :image="page.heroIllustration"
+    />
 
     <aside class="page-cases__case-meta-container grid">
       <case-meta
@@ -80,7 +83,7 @@
     CasePullQuoteComposition,
     CaseTeaser,
     GetInTouchForm,
-    PageHeader,
+    PageHeaderDetail,
     ResponsiveImage,
     RichTextBlock,
     QuoteBlock,
@@ -95,7 +98,7 @@
       CasePullQuoteComposition,
       CaseTeaser,
       GetInTouchForm,
-      PageHeader,
+      PageHeaderDetail,
       ResponsiveImage,
       RichTextBlock,
       QuoteBlock,
