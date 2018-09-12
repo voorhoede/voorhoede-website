@@ -6,8 +6,10 @@
       sub-title="Case study"
       :image="page.heroIllustration"
     />
-
     <aside class="page-case__case-meta-container grid">
+      <div class="page-case__scroll-to">
+        <scroll-to />
+      </div>
       <case-meta
         class="page-case__case-meta"
         :expertise-title="page.metaData.expertisesTitle"
@@ -90,6 +92,7 @@
     ResponsiveImage,
     RichTextBlock,
     QuoteBlock,
+    ScrollTo,
   } from '~/components'
 
   export default {
@@ -105,6 +108,7 @@
       ResponsiveImage,
       RichTextBlock,
       QuoteBlock,
+      ScrollTo,
     },
     computed: {
       ...mapState([
@@ -117,8 +121,10 @@
 </script>
 
 <style>
-  :root {
-    --view-height-large: 89vh;
+  .page-case__scroll-to {
+    grid-row: 1;
+    position: relative;
+    margin-top: var(--spacing-big);
   }
 
   .page-case__case-meta-container {
@@ -128,6 +134,7 @@
   }
 
   .page-case__case-meta {
+    grid-row: 1;
     grid-column-start: 4;
   }
 
@@ -160,17 +167,15 @@
     margin: var(--spacing-large) 0;
   }
 
-  .page-case__scroll-to {
-    position: absolute;
-    top: var(--view-height-large);
-    left: var(--grid-margin);
-  }
-
   @media (min-width: 720px) {
     .page-case__get-in-touch-form,
     .page-case__content,
     .page-case__content > *:not(:last-child) {
       margin-bottom: var(--spacing-big);
+    }
+
+    .page-case__scroll-to {
+      margin-top: var(--spacing-bigger);
     }
   }
 

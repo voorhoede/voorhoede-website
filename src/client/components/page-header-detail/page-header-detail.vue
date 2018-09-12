@@ -1,15 +1,12 @@
 <template>
   <header class="page-header-detail grid" :class="{ 'page-header-detail--brick' : hasBrick }">
-    <div class="page-header-detail__container">
+    <div class="page-header-detail__container page-header-detail__container--small">
       <div class="page-header-detail__description">
         <h1 class="page-header-detail__title" :class="hasBrick ? 'hero' : 'h1'">{{ title }}</h1>
         <p class="page-header-detail__subtitle sub-title">{{ subTitle }}</p>
       </div>
       <div class="page-header-detail__image">
         <img :src="image.url" :alt="image.alt">
-      </div>
-      <div v-if="hasBrick" class="page-header-detail__scroll-container">
-        <scroll-to />
       </div>
     </div>
   </header>
@@ -58,6 +55,7 @@
     grid-column: content;
     display: flex;
     flex-direction: column;
+    grid-row: 1;
   }
 
   .page-header-detail__description {
@@ -119,6 +117,11 @@
   @media screen and (min-width: 720px) {
     .container {
       flex-direction: row;
+    }
+
+    .page-header-detail__container--small {
+      grid-column-start: 3;
+      grid-column-end: -3;
     }
 
     .page-header-detail--brick {
