@@ -1,11 +1,16 @@
 <template>
   <header class="page-header-detail grid" :class="{ 'page-header-detail--brick' : hasBrick }">
-    <div class="page-header-detail__description">
-      <h1 class="page-header-detail__title" :class="hasBrick ? 'hero' : 'h1'">{{ title }}</h1>
-      <p class="page-header-detail__subtitle sub-title">{{ subTitle }}</p>
-    </div>
-    <div class="page-header-detail__image">
-      <img :src="image.url" :alt="image.alt">
+    <div class="page-header-detail__container">
+      <div class="page-header-detail__description">
+        <h1 class="page-header-detail__title" :class="hasBrick ? 'hero' : 'h1'">{{ title }}</h1>
+        <p class="page-header-detail__subtitle sub-title">{{ subTitle }}</p>
+      </div>
+      <div class="page-header-detail__image">
+        <img :src="image.url" :alt="image.alt">
+      </div>
+      <div v-if="hasBrick" class="page-header-detail__scroll-container">
+        <scroll-to />
+      </div>
     </div>
   </header>
 </template>
@@ -49,6 +54,12 @@
     background-color: var(--bg-pastel);
   }
 
+  .page-header-detail__container {
+    grid-column: content;
+    display: flex;
+    flex-direction: column;
+  }
+
   .page-header-detail__description {
     display: flex;
     flex-direction: column;
@@ -81,8 +92,8 @@
     background-image: linear-gradient(
       to bottom,
       var(--bg-pastel),
-      var(--bg-pastel) 25vh,
-      var(--brand-yellow) 25vh,
+      var(--bg-pastel) 40vh,
+      var(--brand-yellow) 40vh,
       var(--brand-yellow) 90vh
     );
   }
@@ -98,6 +109,11 @@
     padding-bottom: var(--spacing-medium);
     max-width: 100%;
     height: 40vh;
+  }
+
+  .page-header-detail__scroll-container {
+    position: absolute;
+    bottom: 0;
   }
 
   @media screen and (min-width: 720px) {
@@ -123,6 +139,7 @@
       top: var(--spacing-larger);
       justify-content: flex-end;
       align-items: flex-end;
+      width: 50%;
       padding-bottom: var(--spacing-large);
     }
 
@@ -133,7 +150,11 @@
     }
 
     .page-header-detail__description {
-      grid-column: content-left;
+      width: 50%;
+    }
+
+    .page-header-detail__container {
+      flex-direction: row;
     }
   }
 
