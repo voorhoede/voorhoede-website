@@ -51,7 +51,6 @@
   .cta-block {
     padding-top: var(--spacing-large);
     padding-bottom: var(--spacing-larger);
-    border-top: 1px solid var(--very-dim);
     text-align: center;
   }
 
@@ -63,6 +62,12 @@
     margin-right: auto;
     margin-bottom: var(--spacing-medium);
     margin-left: auto;
+  }
+
+  @media (min-width: 720px) {
+    .cta-block {
+      border-top: 1px solid var(--very-dim);
+    }
   }
 
   @media (min-width: 1100px) {

@@ -6,9 +6,48 @@ query ($locale: SiteLocale)  {
   alternate: about(locale: $locale) {
     slug
   }
+  latestBlogposts: allBlogPosts(locale:$locale, first:3, orderBy: publishDate_DESC) {
+    slug,
+    title,
+    date: publishDate,
+    authors {
+      name,
+      image {
+        url,
+        width,
+        height,
+        format
+      }
+    }
+  }
 }
+
 
 fragment about on AboutRecord {
   title,
-  slug
+  subtitle,
+  headerIllustration {
+    url,
+    alt
+  },
+  slug,
+  introTitle,
+  introBody,
+  introImage {
+    url,
+    alt,
+    width,
+    height,
+    format
+  },
+	jobsTitle,
+  jobsBody,
+  jobs {
+    title,
+    description,
+    url
+  },
+  blogPostsTitle,
+  callToActionTitle,
+  callToActionLabel
 }
