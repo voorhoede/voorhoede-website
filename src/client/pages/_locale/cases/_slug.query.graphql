@@ -7,7 +7,7 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
     slug(locale: $alternateLocale)
   },
 
-  alternateParent: caseOverview {
+  alternateParent: caseOverview(locale:$locale) {
     slug
   }
 }

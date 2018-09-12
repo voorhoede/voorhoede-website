@@ -1,6 +1,6 @@
 <template>
   <header class="page-header-detail grid" :class="{ 'page-header-detail--brick' : hasBrick }">
-    <div class="page-header-detail__container page-header-detail__container--small">
+    <div class="page-header-detail__container">
       <div class="page-header-detail__description">
         <h1 class="page-header-detail__title" :class="hasBrick ? 'hero' : 'h1'">{{ title }}</h1>
         <p class="page-header-detail__subtitle sub-title">{{ subTitle }}</p>
@@ -47,21 +47,17 @@
 
 <style>
   .page-header-detail {
-    grid-column: page;
     background-color: var(--bg-pastel);
   }
 
   .page-header-detail__container {
-    grid-column: content;
     display: flex;
     flex-direction: column;
-    grid-row: 1;
   }
 
   .page-header-detail__description {
     display: flex;
     flex-direction: column;
-    grid-column: content;
     padding-top: calc(var(--app-header-height) + var(--spacing-medium));
     padding-bottom: var(--spacing-large);
   }
@@ -86,12 +82,11 @@
   }
 
   .page-header-detail--brick {
-    grid-column: page;
     background-image: linear-gradient(
       to bottom,
       var(--bg-pastel),
-      var(--bg-pastel) 40vh,
-      var(--brand-yellow) 40vh,
+      var(--bg-pastel) 50%,
+      var(--brand-yellow) 50%,
       var(--brand-yellow) 90vh
     );
   }
@@ -119,11 +114,6 @@
       flex-direction: row;
     }
 
-    .page-header-detail__container--small {
-      grid-column-start: 3;
-      grid-column-end: -3;
-    }
-
     .page-header-detail--brick {
       height: 76.5vh;
       background-image: linear-gradient(
@@ -137,7 +127,6 @@
 
     .page-header-detail__image {
       display: flex;
-      grid-column: content-right;
       position: relative;
       top: var(--spacing-larger);
       justify-content: flex-end;

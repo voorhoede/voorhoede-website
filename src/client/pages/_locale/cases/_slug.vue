@@ -1,11 +1,13 @@
 <template>
   <main class="grid">
-    <page-header-detail
-      has-brick
-      :title="page.title"
-      sub-title="Case study"
-      :image="page.heroIllustration"
-    />
+    <div class="page-case__case-header">
+      <page-header-detail
+        has-brick
+        :title="page.title"
+        sub-title="Case study"
+        :image="page.heroIllustration"
+      />
+    </div>
     <aside class="page-case__case-meta-container grid">
       <div class="page-case__scroll-to">
         <scroll-to />
@@ -121,6 +123,10 @@
 </script>
 
 <style>
+  .page-case__case-header {
+    grid-column: page;
+  }
+
   .page-case__scroll-to {
     grid-row: 1;
     position: relative;
@@ -177,6 +183,11 @@
     .page-case__scroll-to {
       margin-top: var(--spacing-bigger);
     }
+
+    .page-case__case-header .page-header-detail__container {
+      grid-column-start: 4;
+      grid-column-end: -4;
+    }
   }
 
   @media (min-width: 1100px) {
@@ -207,12 +218,6 @@
     .page-case__link-container {
       grid-column-start: 4;
       grid-column-end: -4;
-    }
-  }
-
-  @media (min-width: 1400px) {
-    .page-case__scroll-to {
-      position: relative;
     }
   }
 </style>
