@@ -1,10 +1,10 @@
 <template>
-  <header class="page-header grid" :class="{ 'page-header--brick' : hasBrick }">
-    <div class="page-header__description">
-      <h1 class="page-header__title" :class="hasBrick ? 'hero' : 'h1'">{{ title }}</h1>
-      <p class="page-header__subtitle sub-title">{{ subTitle }}</p>
+  <header class="page-header-detail grid" :class="{ 'page-header-detail--brick' : hasBrick }">
+    <div class="page-header-detail__description">
+      <h1 class="page-header-detail__title" :class="hasBrick ? 'hero' : 'h1'">{{ title }}</h1>
+      <p class="page-header-detail__subtitle sub-title">{{ subTitle }}</p>
     </div>
-    <div class="page-header__image">
+    <div class="page-header-detail__image">
       <img :src="image.url" :alt="image.alt">
     </div>
   </header>
@@ -42,12 +42,12 @@
 </script>
 
 <style>
-  .page-header {
+  .page-header-detail {
     grid-column: page;
     background-color: var(--bg-pastel);
   }
 
-  .page-header__description {
+  .page-header-detail__description {
     display: flex;
     flex-direction: column;
     grid-column: content;
@@ -55,26 +55,26 @@
     padding-bottom: var(--spacing-large);
   }
 
-  .page-header__title {
+  .page-header-detail__title {
     order: 2;
   }
 
-  .page-header__subtitle {
+  .page-header-detail__subtitle {
     order: 1;
     margin-bottom: var(--spacing-smaller);
   }
 
-  .page-header__image {
+  .page-header-detail__image {
     display: none;
   }
 
-  .page-header__image img {
+  .page-header-detail__image img {
     width: 100%;
     max-height: 70%;
     object-fit: contain;
   }
 
-  .page-header--brick {
+  .page-header-detail--brick {
     grid-column: page;
     background-image: linear-gradient(
       to bottom,
@@ -85,11 +85,11 @@
     );
   }
 
-  .page-header--brick .container {
+  .page-header-detail--brick .container {
     flex-direction: column;
   }
 
-  .page-header--brick .page-header__image {
+  .page-header-detail--brick .page-header-detail__image {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
@@ -103,7 +103,7 @@
       flex-direction: row;
     }
 
-    .page-header--brick {
+    .page-header-detail--brick {
       height: 76.5vh;
       background-image: linear-gradient(
         to right,
@@ -114,7 +114,7 @@
       );
     }
 
-    .page-header__image {
+    .page-header-detail__image {
       display: flex;
       grid-column: content-right;
       position: relative;
@@ -124,23 +124,23 @@
       padding-bottom: var(--spacing-large);
     }
 
-    .page-header--brick .page-header__image {
+    .page-header-detail--brick .page-header-detail__image {
       margin-top: auto;
       padding-bottom: var(--spacing-large);
       top: 0;
     }
 
-    .page-header__description {
+    .page-header-detail__description {
       grid-column: content-left;
     }
   }
 
   @media screen and (min-width: 1100px) {
-    .page-header--brick .container {
+    .page-header-detail--brick .container {
       flex-direction: row;
     }
 
-    .page-header--brick .page-header__image img {
+    .page-header-detail--brick .page-header-detail__image img {
       max-height: 100%;
     }
   }

@@ -31,7 +31,7 @@ import { PageHeaderDetail, GenericTextBlock } from '~/components'
 }
 </script>
  <style>
-  .page-service .page-header {
+  .page-service .page-header-detail {
     grid-column: page;
     margin-bottom: var(--spacing-large);
   }
