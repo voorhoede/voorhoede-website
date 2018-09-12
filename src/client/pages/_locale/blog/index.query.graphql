@@ -7,10 +7,34 @@ query ($locale: SiteLocale)  {
   },
   alternate:blogPostOverview {
     slug
+  },
+  latestBlogposts: allBlogPosts(locale:$locale, first:6, orderBy: publishDate_DESC) {
+    slug,
+    title,
+    date: publishDate,
+    authors {
+      name,
+      image {
+        url,
+        width,
+        height,
+        format
+      }
+    }
   }
 }
 
 fragment blogPostOverview on BlogPostOverviewRecord {
   title,
-  slug
+  slug,
+  subtitle,
+  description,
+  headerIllustration {
+    url,
+    alt
+  }
+  callToActionLabel,
+  rssLabel,
+  rssLink,
+  externalRssLink
 }
