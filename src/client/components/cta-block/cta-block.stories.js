@@ -62,3 +62,25 @@ stories.add(
     `,
   }),
 )
+
+stories.add(
+  'Cta Block with second link',
+  () => ({
+    i18n: new VueI18n({ locale: 'en' }),
+    methods: {
+      clickHandler: action('Button'),
+    },
+    template: `
+      <div style="margin-top: 55px;">
+        <cta-block
+          secondLink
+          ctaLabel="${ text('ctaLabel', 'Drop us a line') }"
+          ctaTo="https://voorhoede.nl"
+          secondLinkLabel="${ text('secondLinkLabel', 'Rss feed') }"
+          secondLinkTo="https://voorhoede.nl"
+          SecondLinkExternal="true"
+        />
+      </div>
+    `,
+  }),
+)

@@ -16,6 +16,14 @@
       :label="ctaLabel"
       :to="ctaTo"
     />
+    <app-button
+      v-if="secondLink"
+      class="cta-block__second-link"
+      secondary
+      :external="secondLinkExternal"
+      :label="secondLinkLabel"
+      :to="secondLinkTo"
+    />
   </section>
 </template>
 
@@ -34,6 +42,22 @@
       ctaTo: {
         type: [String, Object],
         required: true,
+      },
+      secondLink: {
+        type: Boolean,
+        default: false,
+      },
+      secondLinkLabel: {
+        type: String,
+        required: true,
+      },
+      secondLinkTo: {
+        type: [String, Object],
+        required: true,
+      },
+      secondLinkExternal: {
+        type: Boolean,
+        default: false,
       },
     },
     computed: {
@@ -64,9 +88,19 @@
     margin-left: auto;
   }
 
+  .cta-block__second-link {
+    margin-top: var(--spacing-medium);
+  }
+
   @media (min-width: 720px) {
     .cta-block {
       border-top: 1px solid var(--very-dim);
+    }
+
+    .cta-block__second-link.app-button {
+      margin: 0 0 0 var(--spacing-medium);
+      padding-left: var(--spacing-medium);
+      border-left: 1px solid var(--very-dim);
     }
   }
 
