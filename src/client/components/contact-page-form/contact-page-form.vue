@@ -1,5 +1,5 @@
 <template>
-  <form method="POST" name="contact-page-form" class="contact-form" data-netlify="true">
+  <form method="POST" name="contact-form" class="contact-form" data-netlify="true">
     <input type="hidden" name="form-name" value="contact-page-form">
     <fieldset class="contact-form__fieldset">
       <legend class="h3">{{ subjectTitle }}</legend>
