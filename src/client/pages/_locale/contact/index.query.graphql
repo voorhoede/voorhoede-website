@@ -9,6 +9,38 @@ query ($locale: SiteLocale)  {
 }
 
 fragment contact on ContactRecord {
-  title,
-  slug
+  slug,
+  subtitle,
+  contactPageForm {
+    subjectTitle,
+    contactTitle,
+    nameLabel,
+    namePlaceholder,
+    emailLabel,
+    emailPlaceholder,
+    businessLabel,
+    businessPlaceholder,
+    phoneLabel,
+    phonePlaceholder,
+    subjectLabel,
+    subjectOptions {
+      label,
+      value
+    },
+    budgetLabel,
+    budgetOptions {
+      label,
+      value
+    },
+    websiteLabel,
+    websitePlaceholder,
+    projectLabel,
+    projectPlaceholder,
+    ctaButtonLabel,
+  },
+  headerIllustration {
+    url,
+    alt
+  },
+  title
 }
