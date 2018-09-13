@@ -1,13 +1,15 @@
 <template>
-  <section class="case-teaser grid">
-    <div class="case-teaser__image">
-      <responsive-image :image="image" />
-    </div>
-    <div class="case-teaser__header">
-      <h2 class="case-teaser__title h2">
-        {{ title }}
-      </h2>
-    </div>
+  <section>
+    <figure class="case-teaser grid">
+      <div class="case-teaser__image">
+        <responsive-image :image="image" />
+      </div>
+      <figcaption class="case-teaser__header">
+        <h2 class="case-teaser__title h2">
+          {{ title }}
+        </h2>
+      </figcaption>
+    </figure>
   </section>
 </template>
 
@@ -16,7 +18,7 @@ import { ResponsiveImage } from '~/components'
 
 export default {
   components: {
-    ResponsiveImage
+    ResponsiveImage,
   },
   props: {
     title: {
