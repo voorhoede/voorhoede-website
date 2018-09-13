@@ -1,19 +1,6 @@
 <template>
   <figure class="full-width-image">
-    <lazy-load>
-      <picture class="full-width-image__picture">
-        <!--[if IE 9]><video style="display: none;"><![endif]-->
-        <source type="image/webp" :srcset="imageUrl({ fm: 'webp', w: width })">
-        <source :type="`image/${image.format}`" :srcset="imageUrl({ w: width })">
-        <!--[if IE 9]></video><![endif]-->
-        <img class="full-width-image__img" :alt="image.alt" :src="imageUrl({ w: width })" >
-      </picture>
-    </lazy-load>
-    <no-script>
-      <picture class="full-width-image__picture">
-        <img class="full-width-image__img" :alt="image.alt" :src="imageUrl({ w: 500 })" >
-      </picture>
-    </no-script>
+    <responsive-image :enable-fixed-ratio="false" :image="image" />
     <figcaption class="full-width-image__caption" v-if="image.title">
       {{ image.title }}
     </figcaption>
@@ -21,6 +8,7 @@
 </template>
 
 <script>
+  import ResponsiveImage from '../responsive-image'
   import LazyLoad from '../lazy-load'
   import NoScript from '../no-script'
   import imageUrl from '../../lib/image-url'
@@ -29,6 +17,7 @@
     components: {
       LazyLoad,
       NoScript,
+      ResponsiveImage,
     },
     props: {
       image: {
@@ -38,7 +27,7 @@
           return typeof(image.width) === 'number' && typeof(image.height) === 'number'
             && typeof(image.format) === 'string' && typeof(image.url) === 'string'
         },
-      }
+      },
     },
     data() {
       return {
@@ -56,7 +45,7 @@
         if (this.width < 720) {
           Object.assign(options, { fit:'crop', 'h': 288, crop: 'faces' })
         } else {
-          Object.assign(options, { fit:'crop', 'h': 512, crop: 'faces' })
+          Object.assign(options, { fit:'crop', 'h': 512, 'w': 1440, crop: 'faces' })
         }
 
         return imageUrl(this.image.url, options)
@@ -67,7 +56,10 @@
 
 <style>
   .full-width-image {
+    height: 43vh;
     overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
   }
 
   .full-width-image__img::after {
@@ -82,5 +74,17 @@
   .full-width-image__caption {
     margin-top: var(--spacing-smaller);
     text-align: center;
+  }
+
+  @media (min-width: 720px) {
+    .full-width-image {
+      height: 53vh;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .full-width-image {
+      width: 1440px;
+    }
   }
 </style>
