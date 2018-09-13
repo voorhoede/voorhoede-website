@@ -1,11 +1,13 @@
 <template>
-  <header class="page-header grid" :class="{ 'page-header--brick' : hasBrick }">
-    <div class="page-header__description">
-      <h1 class="page-header__title" :class="hasBrick ? 'hero' : 'h1'">{{ title }}</h1>
-      <p class="page-header__subtitle sub-title">{{ subTitle }}</p>
-    </div>
-    <div class="page-header__image">
-      <img :src="image.url" :alt="image.alt">
+  <header class="page-header-detail grid" :class="{ 'page-header-detail--brick' : hasBrick }">
+    <div class="page-header-detail__container">
+      <div class="page-header-detail__description">
+        <h1 class="page-header-detail__title" :class="hasBrick ? 'hero' : 'h1'">{{ title }}</h1>
+        <p class="page-header-detail__subtitle sub-title">{{ subTitle }}</p>
+      </div>
+      <div class="page-header-detail__image">
+        <img :src="image.url" :alt="image.alt">
+      </div>
     </div>
   </header>
 </template>
@@ -22,7 +24,9 @@
         type: Object,
         required: true,
         validator(image) {
-          return typeof(image.url) === 'string' && typeof(image.alt) === 'string'
+          const isValidImageText = (image.alt === undefined) ? true : typeof image.alt === 'string'
+
+          return typeof(image.url) === 'string' && isValidImageText
         },
       },
       title: {
@@ -42,54 +46,56 @@
 </script>
 
 <style>
-  .page-header {
-    grid-column: page;
+  .page-header-detail {
     background-color: var(--bg-pastel);
   }
 
-  .page-header__description {
+  .page-header-detail__container {
     display: flex;
     flex-direction: column;
-    grid-column: content;
+  }
+
+  .page-header-detail__description {
+    display: flex;
+    flex-direction: column;
     padding-top: calc(var(--app-header-height) + var(--spacing-medium));
     padding-bottom: var(--spacing-large);
   }
 
-  .page-header__title {
+  .page-header-detail__title {
     order: 2;
   }
 
-  .page-header__subtitle {
+  .page-header-detail__subtitle {
     order: 1;
     margin-bottom: var(--spacing-smaller);
   }
 
-  .page-header__image {
+  .page-header-detail__image {
     display: none;
   }
 
-  .page-header__image img {
+  .page-header-detail__image img {
     width: 100%;
     max-height: 70%;
     object-fit: contain;
   }
 
-  .page-header--brick {
-    grid-column: page;
+  .page-header-detail--brick {
     background-image: linear-gradient(
       to bottom,
       var(--bg-pastel),
-      var(--bg-pastel) 25vh,
-      var(--brand-yellow) 25vh,
+      var(--bg-pastel) 50%,
+      var(--brand-yellow) 50%,
       var(--brand-yellow) 90vh
     );
   }
 
-  .page-header--brick .container {
+  .page-header-detail--brick .container {
     flex-direction: column;
   }
 
-  .page-header--brick .page-header__image {
+  .page-header-detail--brick .page-header-detail__image {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
@@ -98,12 +104,17 @@
     height: 40vh;
   }
 
+  .page-header-detail__scroll-container {
+    position: absolute;
+    bottom: 0;
+  }
+
   @media screen and (min-width: 720px) {
     .container {
       flex-direction: row;
     }
 
-    .page-header--brick {
+    .page-header-detail--brick {
       height: 76.5vh;
       background-image: linear-gradient(
         to right,
@@ -114,33 +125,37 @@
       );
     }
 
-    .page-header__image {
+    .page-header-detail__image {
       display: flex;
-      grid-column: content-right;
       position: relative;
       top: var(--spacing-larger);
       justify-content: flex-end;
       align-items: flex-end;
+      width: 50%;
       padding-bottom: var(--spacing-large);
     }
 
-    .page-header--brick .page-header__image {
+    .page-header-detail--brick .page-header-detail__image {
       margin-top: auto;
       padding-bottom: var(--spacing-large);
       top: 0;
     }
 
-    .page-header__description {
-      grid-column: content-left;
+    .page-header-detail__description {
+      width: 50%;
+    }
+
+    .page-header-detail__container {
+      flex-direction: row;
     }
   }
 
   @media screen and (min-width: 1100px) {
-    .page-header--brick .container {
+    .page-header-detail--brick .container {
       flex-direction: row;
     }
 
-    .page-header--brick .page-header__image img {
+    .page-header-detail--brick .page-header-detail__image img {
       max-height: 100%;
     }
   }

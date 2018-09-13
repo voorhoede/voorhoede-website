@@ -17,6 +17,9 @@
         <span v-html="text" />
       </div>
     </div>
+    <div class="page-header__scroll-container">
+      <scroll-to v-if="brick" class="page-header__scroll-to"/>
+    </div>
   </header>
 </template>
 
@@ -143,6 +146,17 @@ export default {
     align-items: flex-end;
   }
 
+  .page-header__scroll-to.scroll-to {
+    position: absolute;
+    top: 89vh;
+  }
+
+  @media screen and (min-width: 420px) {
+    .page-header--brick .page-header__image img {
+      height: 100%;
+    }
+  }
+
   @media screen and (min-width: 520px) {
     .page-header--home {
       position: relative;
@@ -174,6 +188,12 @@ export default {
       grid-column-start: 2;
       grid-column-end: 18;
       justify-content: center;
+    }
+
+    .page-header__image--spaced-top {
+      position: relative;
+      top: var(--spacing-big);
+      height: 100%;
     }
   }
 
@@ -226,6 +246,10 @@ export default {
       justify-content: flex-end;
       align-self: flex-end;
     }
+
+    .page-header__image img {
+      max-height: 200px;
+    }
   }
 
   @media screen and (min-width: 1100px) {
@@ -240,7 +264,7 @@ export default {
     .page-header__description {
       margin: var(--spacing-medium) 0;
       grid-column-start: 4;
-      grid-column-end: 25;
+      grid-column-end: 24;
     }
 
     .page-header__curly-bracket-column {
@@ -252,12 +276,6 @@ export default {
       grid-column-end: 48;
       align-self: flex-end;
     }
-
-    .page-header__image--spaced-top {
-      position: relative;
-      top: var(--spacing-big);
-      height: 100%;
-    }
   }
 
   @media screen and (min-width: 1440px) {
@@ -267,6 +285,25 @@ export default {
 
     .page-header--home .page-header__description {
       grid-column-start: 4;
+    }
+
+    .page-header__container {
+      grid-column-start: 4;
+      padding-top: calc(var(--app-header-height) + var(--spacing-larger));
+    }
+
+    .page-header__scroll-container {
+      grid-column-start: 2;
+    }
+
+    .page-header__image img {
+      max-height: 260px;
+    }
+  }
+
+  @media screen and (min-width: 1400px) {
+    .page-header--brick .page-header__image {
+      height: auto;
     }
   }
 }
