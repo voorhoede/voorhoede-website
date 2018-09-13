@@ -64,7 +64,7 @@ stories.add(
 )
 
 stories.add(
-  'Cta Block with second link',
+  'Cta Block with alternate link',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     methods: {
@@ -73,12 +73,12 @@ stories.add(
     template: `
       <div style="margin-top: 55px;">
         <cta-block
-          secondLink
+          alternateLink
           ctaLabel="${ text('ctaLabel', 'Drop us a line') }"
           ctaTo="https://voorhoede.nl"
-          secondLinkLabel="${ text('secondLinkLabel', 'Rss feed') }"
-          secondLinkTo="https://voorhoede.nl"
-          SecondLinkExternal="true"
+          alternateLinkLabel="${ text('alternateLinkLabel', 'Rss feed') }"
+          alternateLinkTo="https://voorhoede.nl"
+          alternateLinkExternal="true"
         />
       </div>
     `,

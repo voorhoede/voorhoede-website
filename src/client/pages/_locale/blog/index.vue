@@ -14,14 +14,6 @@
           <blog-list-item large :item="blogPost" :current-locale="currentLocale"/>
         </li>
       </ul>
-      <cta-block 
-        second-link 
-        :cta-label="page.callToActionLabel" 
-        :cta-to="{ name: 'locale-contact', params: { locale: currentLocale } }"
-        :second-link-label="page.rssLabel"
-        :second-link-to="page.rssLink"
-        :second-link-external="page.externalRssLink"
-      />
     </div>
   </main>
 </template>
@@ -31,16 +23,14 @@
   import {
     PageHeader,
     TextBlock,
-    BlogListItem,
-    CtaBlock
+    BlogListItem
   } from '~/components'
 
   export default {
     components: {
       PageHeader,
       TextBlock,
-      BlogListItem,
-      CtaBlock
+      BlogListItem
     },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
