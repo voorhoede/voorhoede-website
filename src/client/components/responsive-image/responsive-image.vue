@@ -26,8 +26,10 @@
         type: Object,
         required: true,
         validator(image) {
-          return typeof(image.width) === 'number' && typeof(image.height) === 'number'
-            && typeof(image.format) === 'string' && typeof(image.url) === 'string'
+          return typeof(image.width) === 'number' &&
+                 typeof(image.height) === 'number' &&
+                 typeof(image.format) === 'string' &&
+                 typeof(image.url) === 'string'
         },
       },
       enableFixedRatio: {

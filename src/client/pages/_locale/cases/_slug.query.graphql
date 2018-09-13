@@ -7,16 +7,17 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
     slug(locale: $alternateLocale)
   },
 
-  alternateParent: caseOverview {
+  alternateParent: caseOverview(locale:$locale) {
     slug
   }
 }
 
 fragment caseItem on CaseItemRecord {
-  slug,
   title,
+  slug,
   heroIllustration {
-    url
+    url,
+    alt
   },
   caseTeaser {
     title,
@@ -24,8 +25,9 @@ fragment caseItem on CaseItemRecord {
       url,
       alt,
       width,
-      height
-    }
+      height,
+      format
+    },
   },
   content {
     ... on TextSectionRecord {
@@ -35,32 +37,25 @@ fragment caseItem on CaseItemRecord {
     ... on ImageRecord {
       image {
         url,
+        alt,
         width,
         height,
-        alt,
+        format
       },
+      alt,
+      fullWidth,
     },
     ... on PullquoteRecord {
       pullquote {
         quote,
         illustration {
           url,
+          alt,
+          format
         },
         richText,
       }
     },
-    ... on ImageWithTextRecord {
-      imageWithDescription {
-        image {
-          url,
-          alt,
-          width,
-          height
-        },
-        description,
-        inverse
-      }
-    }
   },
   metaData {
     expertisesTitle,
@@ -79,4 +74,19 @@ fragment caseItem on CaseItemRecord {
     interestedLinkUrl,
     interestedLinkLabel,
   },
+  quote,
+  author,
+  getInTouchTitle,
+  getInTouchForm {
+    title,
+    nameLabel,
+    namePlaceholder,
+    emailLabel,
+    emailPlaceholder,
+    summaryLabel,
+    summaryPlaceholder,
+    phoneLabel,
+    phonePlaceholder,
+    ctaButtonLabel
+  }
 }

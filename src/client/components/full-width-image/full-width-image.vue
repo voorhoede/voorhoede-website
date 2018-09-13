@@ -56,10 +56,10 @@
 
 <style>
   .full-width-image {
-    height: 43vh;
-    overflow: hidden;
     width: 100%;
+    height: 43vh;
     margin: 0 auto;
+    overflow: hidden;
   }
 
   .full-width-image__img::after {
