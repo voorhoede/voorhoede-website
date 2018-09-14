@@ -39,6 +39,10 @@ export default {
 </script>
 
 <style>
+  :root {
+    --max-width-description: 230px;
+  }
+
   .image-with-description {
     display: flex;
     flex-direction: column;
@@ -57,7 +61,7 @@ export default {
 
     .image-with-description__description {
       width: 50%;
-      max-width: 230px;
+      max-width: var(--max-width-description);
       margin: 0 var(--spacing-big);
       align-self: center;
     }
