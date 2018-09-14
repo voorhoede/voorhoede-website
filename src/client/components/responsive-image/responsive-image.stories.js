@@ -14,8 +14,21 @@ storiesOf('Components/Responsive image', module)
           'format': 'jpeg',
           'width': 1280,
           'height': 720,
-          'alt': 'Two hands forming a heart around the sun during a sunset',
-          'url': 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
+          'alt': 'Declan playing on the selfmade game machines',
+          'url': 'https://www.datocms-assets.com/2850/1506590055-untitled-1.jpg',
+        },
+      }
+    },
+  }))
+  .add('Without fixed ratio', () => ({
+    components: { ResponsiveImage },
+    template: '<responsive-image :has-fixed-ratio="false" :image="image" />',
+    data() {
+      return {
+        image: {
+          'format': 'jpeg',
+          'alt': 'Declan playing on the selfmade game machines',
+          'url': 'https://www.datocms-assets.com/6524/1536758842-vh-placeholder.svg',
         },
       }
     },
@@ -37,7 +50,14 @@ storiesOf('Components/Responsive image', module)
   }))
   .add('Ratio 1x1 - with caption', () => ({
     components: { ResponsiveImage },
-    template: '<responsive-image :image="image" />',
+    template: `
+      <figure class="responsive-image">
+        <responsive-image :image="image" />
+        <figcaption class="responsive-image__caption body-detail" v-if="image.title">
+          {{ image.title }}
+        </figcaption>
+      </figure>
+    `,
     data() {
       return {
         image: {
