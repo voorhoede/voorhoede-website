@@ -1,20 +1,30 @@
 <template>
   <article>
-    <nuxt-link :to="{ name: 'locale-blog-slug', params: { locale: currentLocale, slug: item.slug }}" class="blog-list-item">
-      <time datetime="item.date" class="blog-list-item__time body-petite">{{ formattedDate }}</time>
+    <nuxt-link 
+      :to="{ name: 'locale-blog-slug', params: { locale: currentLocale, slug: item.slug }}" 
+      :class="{'blog-list-item--large' : large}" 
+      class="blog-list-item"
+    >
+      <time 
+        datetime="item.date" 
+        class="blog-list-item__time" 
+        :class="large ? 'body' : 'body-petite'"
+      >
+        {{ formattedDate }}
+      </time>
       <div class="blog-list-item__content">
-        <h3 class="body blog-list-item__heading">{{ item.title }}</h3>
+        <h3 class="blog-list-item__heading" :class="large ? 'h4' : 'body'">{{ item.title }}</h3>
         <div class="blog-list-item__author">
           <lazy-load v-for="author in item.authors" :key="author.name">
             <img
-              :width="thumbnailSize"
-              :height="thumbnailSize"
+              :width="large ? thumbnailSizeLarge : thumbnailSize"
+              :height="large ? thumbnailSizeLarge : thumbnailSize"
               class="blog-list-item__image"
-              :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=40&h=40&fit=crop`"
+              :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=65&h=65&fit=crop`"
               alt=""
             >
           </lazy-load>
-          <span class="body-petite">{{ authorName }}</span>
+          <span :class="large ? 'body' : 'body-petite'">{{ authorName }}</span>
         </div>
       </div>
     </nuxt-link>
@@ -32,13 +42,21 @@
         type: Object,
         required: true,
         validator(item) {
-          return typeof(item.slug) === 'string' && typeof(item.title) === 'string' && !!Date.parse(item.date) && item.authors.length >= 1
+          return typeof(item.slug) === 'string' && 
+                 typeof(item.title) === 'string' && 
+                 !!Date.parse(item.date) && 
+                 item.authors.length >= 1
         },
+      },
+      large: {
+        type: Boolean,
+        default: false,
       }
     },
     data() {
       return {
-        thumbnailSize: 40
+        thumbnailSize: 40,
+        thumbnailSizeLarge: 65        
       }
     },
     computed: {
@@ -65,16 +83,13 @@
     transition: transform var(--blog-list-item-animation-timing) ease-out;
   }
 
-  @media screen and (min-width: 720px) {
-    .blog-list-item {
-      display: flex;
-      flex-direction: row;
-    }
-  }
-
   .blog-list-item:hover,
   .blog-list-item:focus {
     transform: translateX(var(--grid-fixed-column));
+  }
+  
+  .blog-list-item--large .blog-list-item__heading {
+    margin-bottom: var(--spacing-small);
   }
 
   .blog-list-item__heading {
@@ -83,19 +98,6 @@
 
   .blog-list-item__time {
     display: none;
-  }
-
-  @media screen and (min-width: 720px) {
-    .blog-list-item {
-      padding-left: var(--spacing-larger);
-    }
-
-    .blog-list-item__time {
-      display: block;
-      color: var(--dim);
-      margin-right: var(--spacing-medium);
-      flex-shrink: 0;
-    }
   }
 
   .blog-list-item__content {
@@ -118,5 +120,45 @@
   .blog-list-item__author {
     display: flex;
     align-items: center;
+    color: var(--dim);
+  }
+
+  @media (min-width: 720px) {
+    .blog-list-item {
+      display: flex;
+      flex-direction: row;
+      padding-left: var(--spacing-larger);
+    }
+    
+    .blog-list-item--large {
+      padding: var(--spacing-medium) 0;
+    }
+
+    .blog-list-item--large .blog-list-item__content {
+      margin: 0;
+      padding-left: var(--spacing-larger);
+    }
+
+    .blog-list-item--large .blog-list-item__time {
+      width: 7rem;
+      margin-right: var(--spacing-larger);
+    }
+
+    .blog-list-item__time {
+      display: block;
+      color: var(--dim);
+      margin-right: var(--spacing-medium);
+      flex-shrink: 0;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .blog-list-item--large .blog-list-item__content {
+      padding-left: var(--spacing-larger);
+    }
+      
+    .blog-list-item--large .blog-list-item__time {
+      margin-right: var(--spacing-big);
+    }
   }
 </style>

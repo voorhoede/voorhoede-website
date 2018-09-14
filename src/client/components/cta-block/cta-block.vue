@@ -16,6 +16,14 @@
       :label="ctaLabel"
       :to="ctaTo"
     />
+    <app-button
+      v-if="alternateLink"
+      class="cta-block__alternate"
+      secondary
+      :external="alternateLinkExternal"
+      :label="alternateLinkLabel"
+      :to="alternateLinkTo"
+    />
   </section>
 </template>
 
@@ -34,6 +42,22 @@
       ctaTo: {
         type: [String, Object],
         required: true,
+      },
+      alternateLink: {
+        type: Boolean,
+        default: false,
+      },
+      alternateLinkLabel: {
+        type: String,
+        required: true,
+      },
+      alternateLinkTo: {
+        type: [String, Object],
+        required: true,
+      },
+      alternateLinkExternal: {
+        type: Boolean,
+        default: false,
       },
     },
     computed: {
@@ -64,9 +88,19 @@
     margin-left: auto;
   }
 
+  .cta-block__alternate {
+    margin-top: var(--spacing-medium);
+  }
+
   @media (min-width: 720px) {
     .cta-block {
       border-top: 1px solid var(--very-dim);
+    }
+
+    .cta-block__alternate.app-button {
+      margin: 0 0 0 var(--spacing-medium);
+      padding-left: var(--spacing-medium);
+      border-left: 1px solid var(--very-dim);
     }
   }
 
