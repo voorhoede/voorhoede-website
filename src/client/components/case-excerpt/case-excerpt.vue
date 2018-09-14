@@ -1,47 +1,28 @@
 <template>
-  <article
-    class="case-excerpt"
-    :class="{ 'case-excerpt--open': isTooltipOpen }"
-    :id="`case-excerpt-${caseId}`"
-  >
-    <a
-      @click.prevent="toggleTooltip"
-      :href="`#case-excerpt-${caseId}`"
-      role="button"
-      class="case-excerpt__image-container"
+  <article class="case-excerpt">
+    <nuxt-link
+      class="case-excerpt__image-link"
+      :to="{ name: 'locale-cases-slug', params: { slug, locale: currentLocale }}"
     >
-      <fixed-ratio :width="10" :height="9">
-        <lazy-load>
-          <img :src="imageUrl" class="case-excerpt__image">
-        </lazy-load>
-      </fixed-ratio>
-    </a>
-    <div
-      class="case-excerpt__tooltip"
-      :class="{
-        'case-excerpt__tooltip--right' : alignTooltip === 'right',
-        'case-excerpt__tooltip--left' : alignTooltip === 'left',
-      }"
-    >
-      <div class="case-excerpt__description">
-        <h3 class="h3 case-excerpt__title">
-          {{ title }}
-        </h3>
-        <p class="body">
-          {{ body }}
-        </p>
+      <lazy-load>
+        <img :alt="title" :src="imageUrl" class="case-excerpt__image">
+      </lazy-load>
+    </nuxt-link>
+    <div class="case-excerpt__content">
+      <div>
+        <nuxt-link class="case-excerpt__title-link" :to="{ name: 'locale-cases-slug', params: { slug, locale: currentLocale }}">
+          <h3 class="h3 case-excerpt__title">{{ title }}</h3>
+        </nuxt-link>
+        <p class="case-excerpt__body body">{{ body }}</p>
       </div>
-      <div class="button-group">
+      <div class="case-excerpt__actions button-group">
         <app-button
-          @focus="isTooltipOpen = true"
           :label="primaryLabel"
           :to="{ name: 'locale-cases-slug', params: { slug, locale: currentLocale }}"
         />
         <app-button
           secondary
           v-if="secondaryLabel"
-          @blur="isTooltipOpen = false"
-          @focus="isTooltipOpen = true"
           :label="secondaryLabel"
           :to="{ name: 'locale-cases', params: { locale: 'en' }}"
         />
@@ -89,151 +70,116 @@
         type: String,
         default: '',
       },
-      alignTooltip: {
-        type: String,
-        default: '',
-      },
-    },
-    data() {
-      return {
-        isTooltipOpen: false,
-      }
     },
     computed: {
       ...mapState(['currentLocale']),
-    },
-    methods: {
-      toggleTooltip() {
-        this.isTooltipOpen = !this.isTooltipOpen
-      },
     },
   }
 </script>
 
 <style>
   :root {
-    --case-excerpt-triangle-size: 20px;
+    --case-excerpt-height: 250px;
+    --case-excerpt-transition: transform 200ms cubic-bezier(0, 0, .1, 1);
+    --case-excerpt-title-height: 25px;
+    --case-excerpt-image-height: calc(var(--case-excerpt-height) - var(--case-excerpt-title-height));
   }
 
   .case-excerpt {
     display: flex;
+    flex-direction: column;
+    height: var(--case-excerpt-height);
     position: relative;
-    justify-content: center;
+    border: 3px solid var(--html-blue);
+    overflow: hidden;
   }
 
-  .case-excerpt__image-container {
+  .case-excerpt__image-link,
+  .case-excerpt__content {
+    flex-shrink: 0;
+    transition: var(--case-excerpt-transition);
+  }
+
+  .case-excerpt__image-link {
+    display: block;
     width: 100%;
-    background: var(--white);
-    border: 3px solid var(--html-blue);
-    transform-origin: center;
-    transition: 200ms transform cubic-bezier(.05, 0, .45, 1);
+    background: var(--fog);
+  }
+
+  .case-excerpt__image-link .lazy-load {
+    width: 100%;
+    height: var(--case-excerpt-image-height);
+    display: flex;
+    align-items: flex-end;
   }
 
   .case-excerpt__image {
-    position: absolute;
-    left: 0;
-    top: 40%; /* Image should be aligned a bit above the center */
-    transform: translateY(-50%);
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: 0 auto;
   }
 
-  .case-excerpt__tooltip {
+  .case-excerpt__content {
+    display: flex;
     flex-direction: column;
-    position: absolute;
-    top: calc(66% + var(--case-excerpt-triangle-size));
-    left: calc(var(--spacing-medium) * -1);
-    right: calc(var(--spacing-medium) * -1);
-    width: auto;
-    background: var(--brand-yellow);
-    padding: calc(var(--spacing-medium) - var(--spacing-tiny));
-    z-index: 1;
-    transform-origin: top;
-    transform: scaleY(0);
-    transition: transform 200ms cubic-bezier(0, 0, .1, 1) .11s;
+    justify-content: space-between;
+    height: var(--case-excerpt-height);
+    text-align: center;
+    position: relative;
   }
 
-  .case-excerpt__tooltip::before {
+  .case-excerpt__title-link::after {
     content: '';
     position: absolute;
-    top: calc(var(--case-excerpt-triangle-size) * -1);
-    left: 0;
+    top: 0;
     right: 0;
-    width: 0;
-    margin-left: auto;
-    margin-right: auto;
-    border-left: var(--case-excerpt-triangle-size) solid transparent;
-    border-right: var(--case-excerpt-triangle-size) solid transparent;
-    border-bottom: var(--case-excerpt-triangle-size) solid var(--brand-yellow);
-    transform: none;
+    bottom: 0;
+    left: 0;
   }
 
   .case-excerpt__title {
-    margin-bottom: var(--spacing-smaller);
+    margin-top: var(--spacing-smaller);
+    margin-bottom: var(--spacing-tiny);
   }
 
-  .case-excerpt__description {
-    color: var(--html-blue);
-    margin-bottom: var(--spacing-small);
+  .case-excerpt__body,
+  .case-excerpt__actions {
+    display: none;
   }
 
-  .case-excerpt:target .case-excerpt__image-container,
-  .case-excerpt--open .case-excerpt__image-container {
-    border-width: 5px;
-    margin: -2px; /* Decrease the margin-bottom, to prevent jump caused by enlarged border */
-    transform: scale(1.05);
-  }
-
-  .case-excerpt:target .case-excerpt__tooltip,
-  .case-excerpt--open .case-excerpt__tooltip {
-    display: flex;
-    transform: scaleY(1);
-  }
-
-  @media (min-width: 480px) {
-    .case-excerpt__image-container:focus,
-    .case-excerpt:hover .case-excerpt__image-container,
-    .case-excerpt--open .case-excerpt__image-container {
-      border-width: 5px;
-      margin: -2px; /* Decrease the margin-bottom, to prevent jump caused by enlarged border */
-      transform: scale(1.05);
-    }
-
-    .case-excerpt:hover .case-excerpt__tooltip,
-    .case-excerpt__image-container:focus + .case-excerpt__tooltip {
-      display: flex;
-      transform: scaleY(1);
-    }
-
-    .case-excerpt__tooltip {
-      left: auto;
-      right: auto;
-      top: calc(50% + var(--case-excerpt-triangle-size));
-      width: 100%;
-      min-width: 360px;
-    }
-
-    .case-excerpt__tooltip--left {
-      left: 33%;
-    }
-
-    .case-excerpt__tooltip--left::before {
-      left: var(--spacing-medium);
-      margin-left: 0;
-    }
-
-    .case-excerpt__tooltip--right {
-      right: 33%;
-    }
-
-    .case-excerpt__tooltip--right::before {
-      right: var(--spacing-medium);
-      margin-right: 0;
+  @media (min-width: 720px) {
+    :root {
+      --case-excerpt-height: 285px;
+      --case-excerpt-title-height: 35px;
     }
   }
 
   @media (min-width: 1100px) {
-    .case-excerpt__tooltip {
-      max-width: 360px;
+    :root {
+      --case-excerpt-height: 385px;
+      --case-excerpt-title-height: 55px;
+    }
+
+    .case-excerpt:hover .case-excerpt__image-link,
+    .case-excerpt:focus .case-excerpt__image-link,
+    .case-excerpt:hover .case-excerpt__content,
+    .case-excerpt:focus .case-excerpt__content {
+      transform: translateY(calc(-1 * var(--case-excerpt-image-height)));
+    }
+
+    .case-excerpt__body {
+      display: block;
+      padding: 0 var(--spacing-medium);
+      color: var(--html-blue);
+      margin-bottom: var(--spacing-small);
+    }
+
+    .case-excerpt__actions {
+      display: block;
+      padding: var(--spacing-medium);
+      background: var(--brand-yellow);
+      text-align: left;
     }
   }
 </style>

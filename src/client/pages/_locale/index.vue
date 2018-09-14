@@ -23,10 +23,7 @@
       </div>
       <horizontal-carousel>
         <template slot="slides">
-          <div
-            v-for="(caseExcerpt, index) in page.cases"
-            :key="caseExcerpt.id"
-          >
+          <div v-for="caseExcerpt in page.cases" :key="caseExcerpt.id">
             <case-excerpt
               :case-id="caseExcerpt.slug"
               :primary-label="page.casePrimaryCtaLabel"
@@ -34,8 +31,8 @@
               :secondary-label="page.caseSecondaryCtaLabel"
               :image-url="caseExcerpt.heroIllustration.url"
               :title="caseExcerpt.title"
+              :subtitle="caseExcerpt.subtitle"
               :body="caseExcerpt.subtitle"
-              :align-tooltip="(index === 0) ? 'left' : (index === 2 ? 'right' : '')"
             />
           </div>
         </template>
@@ -162,14 +159,6 @@
 
   .page-index__section-title--cases {
     margin-bottom: calc(var(--spacing-large) - var(--spacing-smaller));
-  }
-
-  .page-index__cases .case-excerpt {
-    padding-top: var(--spacing-smaller);
-  }
-
-  .page-index__cases .horizontal-carousel__slides {
-    padding-bottom: var(--spacing-bigger);
   }
 
   .page-index__clients {
