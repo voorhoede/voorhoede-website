@@ -57,7 +57,7 @@
 <style>
   .full-width-image {
     width: 100%;
-    height: 56.25vh;
+    height: 300px;
     margin: 0 auto;
     overflow: hidden;
   }
@@ -76,8 +76,15 @@
     text-align: center;
   }
 
+  @media (min-width: 720px) {
+    .full-width-image {
+      height: 400px;
+    }
+  }
+
   @media (min-width: 1440px) {
     .full-width-image {
+      height: 700px;
       width: 1440px;
     }
   }
