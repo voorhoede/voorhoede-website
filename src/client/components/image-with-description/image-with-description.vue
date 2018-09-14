@@ -1,25 +1,24 @@
 <template>
-  <div class="image-with-description grid"
-       :class="{
-         'image-with-description--inverse': inverse
+  <figure
+    class="image-with-description grid"
+    :class="{
+      'image-with-description--inverse': inverse
   }">
     <div class="image-with-description__image">
       <responsive-image :image="image" />
     </div>
-    <div class="image-with-description__description">
-      <h4 class="pullquote font-bold">
-        {{ description }}
-      </h4>
-    </div>
-  </div>
+    <figcaption class="pullquote font-bold image-with-description__description" v-if="description">
+      {{ description }}
+    </figcaption>
+  </figure>
 </template>
 
 <script>
-import { ResponsiveImage } from '~/components'
+import { ResponsiveImage } from '../../components'
 
 export default {
   components: {
-    ResponsiveImage
+    ResponsiveImage,
   },
   props: {
     description: {

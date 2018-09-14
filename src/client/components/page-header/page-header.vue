@@ -17,9 +17,6 @@
         <span v-html="text" />
       </div>
     </div>
-    <div class="page-header__scroll-container">
-      <scroll-to v-if="brick" class="page-header__scroll-to"/>
-    </div>
   </header>
 </template>
 
