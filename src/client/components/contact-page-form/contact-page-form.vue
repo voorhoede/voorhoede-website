@@ -18,7 +18,7 @@
       </label>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ projectLabel }}</span>
-        <textarea rows="3" class="body" type="text" name="project-description" :placeholder="projectPlaceholder"/>
+        <textarea rows="5" class="contact-form__description body" type="text" name="project-description" :placeholder="projectPlaceholder"/>
       </label>
     </fieldset>
     <fieldset class="contact-form__fieldset">
@@ -149,6 +149,10 @@ select {
 
 .contact-form__fieldset {
   margin-bottom: var(--spacing-large);
+}
+
+.contact-form__description {
+  resize: none;
 }
 
 .contact-form {
