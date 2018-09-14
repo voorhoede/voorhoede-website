@@ -143,6 +143,17 @@ export default {
     align-items: flex-end;
   }
 
+  .page-header__scroll-to.scroll-to {
+    position: absolute;
+    top: 89vh;
+  }
+
+  @media screen and (min-width: 420px) {
+    .page-header--brick .page-header__image img {
+      height: 100%;
+    }
+  }
+
   @media screen and (min-width: 520px) {
     .page-header--home {
       position: relative;
@@ -232,6 +243,10 @@ export default {
       justify-content: flex-end;
       align-self: flex-end;
     }
+
+    .page-header__image img {
+      max-height: 200px;
+    }
   }
 
   @media screen and (min-width: 1100px) {
@@ -267,6 +282,25 @@ export default {
 
     .page-header--home .page-header__description {
       grid-column-start: 4;
+    }
+
+    .page-header__container {
+      grid-column-start: 4;
+      padding-top: calc(var(--app-header-height) + var(--spacing-larger));
+    }
+
+    .page-header__scroll-container {
+      grid-column-start: 2;
+    }
+
+    .page-header__image img {
+      max-height: 260px;
+    }
+  }
+
+  @media screen and (min-width: 1400px) {
+    .page-header--brick .page-header__image {
+      height: auto;
     }
   }
 }

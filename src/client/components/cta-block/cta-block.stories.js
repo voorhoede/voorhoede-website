@@ -62,3 +62,25 @@ stories.add(
     `,
   }),
 )
+
+stories.add(
+  'Cta Block with alternate link',
+  () => ({
+    i18n: new VueI18n({ locale: 'en' }),
+    methods: {
+      clickHandler: action('Button'),
+    },
+    template: `
+      <div style="margin-top: 55px;">
+        <cta-block
+          alternateLink
+          ctaLabel="${ text('ctaLabel', 'Drop us a line') }"
+          ctaTo="https://voorhoede.nl"
+          alternateLinkLabel="${ text('alternateLinkLabel', 'Rss feed') }"
+          alternateLinkTo="https://voorhoede.nl"
+          alternateLinkExternal="true"
+        />
+      </div>
+    `,
+  }),
+)

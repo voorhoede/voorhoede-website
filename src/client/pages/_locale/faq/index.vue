@@ -1,13 +1,13 @@
 <template>
-  <div class="grid page-service">
-    <page-header-detail
-      :title="page.subtitle"
-      :sub-title="page.title"
+  <div class="grid page-faq">
+    <page-header
+      :title="page.title"
+      :text="page.subtitle"
       :image="page.headerIllustration"
     />
-    <div class="page-service__overview">
-      <ul>
-        <li class="page-service__overview-item" v-for="item in page.items" :key="item.title">
+    <div class="page-faq__overview">
+      <ul> 
+        <li class="page-faq__overview-item" v-for="item in page.items" :key="item.title">
           <generic-text-block
             :title="item.title"
             :body="item.body"
@@ -18,11 +18,13 @@
     </div>
   </div>
 </template>
- <script>
-import { PageHeaderDetail, GenericTextBlock } from '~/components'
- export default {
+
+<script>
+import { PageHeader, GenericTextBlock } from '~/components'
+
+export default {
   components: {
-    PageHeaderDetail,
+    PageHeader,
     GenericTextBlock
   },
   async asyncData({ store, route }) {
@@ -30,22 +32,23 @@ import { PageHeaderDetail, GenericTextBlock } from '~/components'
   }
 }
 </script>
- <style>
-  .page-service .page-header-detail {
+
+<style>
+  .page-faq .page-header {
     grid-column: page;
     margin-bottom: var(--spacing-large);
   }
 
-  .page-service__overview-item {
+  .page-faq__overview-item {
     margin-bottom: var(--spacing-large);
   }
 
   @media (min-width: 720px) {
-    .page-service {
+    .page-faq {
       background: var(--bg-pastel);
     }
 
-    .page-service__overview {
+    .page-faq__overview {
       grid-column-start: 2;
       grid-column-end: -2;
       background: var(--white);
@@ -54,10 +57,12 @@ import { PageHeaderDetail, GenericTextBlock } from '~/components'
   }
 
   @media (min-width: 1100px) {
-    .page-service__overview {
+    .page-faq__overview {
       grid-column-start: 6;
       grid-column-end: -6;
       padding: var(--spacing-big) var(--spacing-bigger);
     }
   }
- </style>
+
+</style>
+

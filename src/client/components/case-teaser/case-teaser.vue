@@ -1,13 +1,15 @@
 <template>
-  <section class="case-teaser grid">
-    <div class="case-teaser__image">
-      <responsive-image :image="image" />
-    </div>
-    <div class="case-teaser__header">
-      <h2 class="case-teaser__title h2">
-        {{ title }}
-      </h2>
-    </div>
+  <section>
+    <figure class="case-teaser grid">
+      <div class="case-teaser__image">
+        <responsive-image :image="image" />
+      </div>
+      <figcaption class="case-teaser__header">
+        <h2 class="case-teaser__title h2">
+          {{ title }}
+        </h2>
+      </figcaption>
+    </figure>
   </section>
 </template>
 
@@ -16,7 +18,7 @@ import { ResponsiveImage } from '~/components'
 
 export default {
   components: {
-    ResponsiveImage
+    ResponsiveImage,
   },
   props: {
     title: {
@@ -33,41 +35,49 @@ export default {
 
 <style>
   :root {
+    --text-block-max-width: 400px;
+    --page-max-width: 1440px;
     --border-width: 60px;
   }
 
   .case-teaser {
-    margin: 0 0 var(--spacing-large) 0;
+    display: flex;
+    flex-direction: column;
   }
 
   .case-teaser__header {
-    margin: var(--spacing-large) 0;
+    flex-basis: 100%;
+    margin: var(--spacing-large) var(--grid-margin);
   }
 
   .case-teaser__header::after {
     content: '';
+    position: absolute;
     margin-top: var(--spacing-large);
     width: var(--border-width);
     border-bottom: 2px solid var(--very-dim);
-    position: absolute;
   }
 
   .case-teaser__image {
-    grid-column-start: 1;
-    grid-column-end: 20;
+    flex-basis: 100%;
   }
 
   @media (min-width: 720px) {
     .case-teaser {
-      grid-row: 1;
+      flex-direction: row;
+      margin: 0 auto var(--spacing-large) auto;
+      width: 100%;
+      max-width: var(--page-max-width);
     }
 
     .case-teaser__header {
-      grid-column: content-right;
-      grid-column-start: 20;
-      grid-row: 1;
+      flex-basis: 50%;
+      margin-left: var(--spacing-larger);
       align-self: center;
-      margin: 0;
+    }
+
+    .case-teaser__title {
+      max-width: var(--text-block-max-width);
     }
 
     .case-teaser__header::after {
@@ -75,8 +85,7 @@ export default {
     }
 
     .case-teaser__image {
-      grid-column: page-left;
-      grid-row: 1;
+      flex: 50% 1 0;
     }
 
     .case-teaser__image .responsive-image__sizer {
@@ -85,8 +94,12 @@ export default {
   }
 
   @media (min-width: 1100px) {
+    .case-teaser {
+      margin-bottom: var(--spacing-big);
+    }
+
     .case-teaser__header {
-      grid-column-start: 30;
+      margin-left: var(--spacing-bigger);
     }
   }
 

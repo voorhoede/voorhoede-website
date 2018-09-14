@@ -32,7 +32,7 @@ stories.add(
       <case-pull-quote-composition
         :inverse="false"
         :image="{
-          url: 'https://www.datocms-assets.com/6524/1535369672-screen-shot-2018-08-27-at-13-34-19.png',
+          url: 'https://www.datocms-assets.com/6524/1535640311-earth.svg',
           alt: 'A spherical model of Earth'
         }"
         pullquote="Drop and fly is installed in over 35 airports around the globe"
@@ -57,7 +57,7 @@ stories.add(
       <case-pull-quote-composition
         :inverse="true"
         :image="{
-          url: 'https://www.datocms-assets.com/6524/1535369672-screen-shot-2018-08-27-at-13-34-19.png',
+          url: 'https://www.datocms-assets.com/6524/1535640311-earth.svg',
           alt: 'A spherical model of Earth'
         }"
         pullquote="Drop and fly is installed in over 35 airports around the globe"

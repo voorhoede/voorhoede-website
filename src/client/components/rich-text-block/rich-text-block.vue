@@ -1,5 +1,5 @@
 <template>
-  <div class="rich-text" v-html="text" />
+  <div class="rich-text body-big" v-html="text" />
 </template>
 
 <script>
@@ -14,11 +14,6 @@
 </script>
 
 <style>
-  .rich-text {
-    font-family: var(--font-sans);
-    font-size: .875rem; /* 14px */
-  }
-
   .rich-text p:not(:last-child) {
     margin-bottom: var(--spacing-medium);
   }

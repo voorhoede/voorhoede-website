@@ -19,11 +19,13 @@ stories.add(
   'Image with description',
   () => ({
     template: `
+    <div class="grid">
       <image-with-description
         :image="image"
         :inverse="false"
         description="The idea: leverage machine learning to detect plastic litter"
-      />`,
+      />
+    </div>`,
       data() {
         return {
           image: {
@@ -42,11 +44,13 @@ stories.add(
   'Image with description inverse',
   () => ({
     template: `
+    <div class="grid">
       <image-with-description
         :image="image"
         :inverse="true"
         description="The idea: leverage machine learning to detect plastic litter"
-      />`,
+      />
+    </div>`,
       data() {
         return {
           image: {

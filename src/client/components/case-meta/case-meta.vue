@@ -1,25 +1,25 @@
 <template>
-  <aside class="case-meta grid">
+  <section class="case-meta">
     <h2 class="sr-only">Case information</h2>
-    <section class="case-meta__expertise">
+    <section class="case-meta__section">
       <h3 class="case-meta__title body font-bold">{{ expertiseTitle }}</h3>
       <p class="body-petite">{{ toMetaString(expertises) }}</p>
     </section>
-    <section class="case-meta__platform">
+    <section class="case-meta__section">
       <h3 class="case-meta__title body font-bold">{{ platformTitle }}</h3>
       <p class="body-petite">{{ toMetaString(platforms) }}</p>
     </section>
-    <section class="case-meta__deliverable">
+    <section class="case-meta__section">
       <h3 class="case-meta__title body font-bold">{{ deliverableTitle }}</h3>
       <p class="body-petite">{{ toMetaString(deliverables) }}</p>
     </section>
-    <section class="case-meta__interested">
+    <section class="case-meta__section">
       <h3 class="case-meta__title body font-bold">{{ interestedTitle }}</h3>
       <nuxt-link class="case-meta__link body-petite" :to="interestedLinkUrl">
         {{ interestedLinkLabel }} &raquo;
       </nuxt-link>
     </section>
-  </aside>
+  </section>
 </template>
 
 <script>
@@ -82,9 +82,11 @@
       toMetaString(array) {
         const finalDivider = (this.currentLocale === 'en') ? 'and' : 'en'
 
-        const lastItem = array.pop() /* Pop also removes the last element of the array */
+        const lastItem = array[array.length-1]
+
         return array
-          .map(array => array.title)
+          .slice(0, array.length - 1)
+          .map(item => item.title)
           .join(', ') + ` ${finalDivider} ${lastItem.title}`
       }
     }
@@ -93,7 +95,9 @@
 
 <style>
   .case-meta {
-    grid-row-gap: var(--spacing-large);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   .case-meta__title {
@@ -110,59 +114,32 @@
     color: var(--active-blue);
   }
 
-  .case-meta__expertise,
-  .case-meta__deliverable {
-    grid-column-start: 4;
-    grid-column-end: 8;
-  }
-
-  .case-meta__platform,
-  .case-meta__interested {
-    grid-column-start: 12;
-    grid-column-end: 16;
-  }
-
   @media (min-width: 720px) {
-    .case-meta__expertise {
-      grid-column-start: 4;
-      grid-column-end: 10;
+    .case-meta {
+      min-height: 23.5vh; /* as specified by the design */
+      padding-top: var(--spacing-large);
+      padding-bottom: var(--spacing-large);
+    }
+  }
+
+  @media (max-width: 1099px) {
+    .case-meta__section {
+      flex-basis: calc(50% - ( var(--spacing-small) / 2 ));
     }
 
-    .case-meta__platform {
-      grid-column-start: 12;
-      grid-column-end: 18;
+    .case-meta__section:nth-of-type(odd) {
+      margin-right: var(--spacing-small);
     }
 
-    .case-meta__deliverable {
-      grid-column-start: 20;
-      grid-column-end: 26;
-    }
-
-    .case-meta__interested {
-      grid-column-start: 28;
-      grid-column-end: 34;
+    .case-meta__section:nth-of-type(1),
+    .case-meta__section:nth-of-type(2) {
+      margin-bottom: var(--spacing-large);
     }
   }
 
   @media (min-width: 1100px) {
-    .case-meta__expertise {
-      grid-column-start: 4;
-      grid-column-end: 10;
-    }
-
-    .case-meta__platform {
-      grid-column-start: 17;
-      grid-column-end: 23;
-    }
-
-    .case-meta__deliverable {
-      grid-column-start: 30;
-      grid-column-end: 36;
-    }
-
-    .case-meta__interested {
-      grid-column-start: 44;
-      grid-column-end: 50;
+    .case-meta__section {
+      flex-basis: 12.5rem; /* 200px ( same as design ) */
     }
   }
 </style>
