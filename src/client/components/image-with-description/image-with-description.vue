@@ -45,7 +45,7 @@ export default {
 
   .image-with-description {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     width: 100%;
   }
 
