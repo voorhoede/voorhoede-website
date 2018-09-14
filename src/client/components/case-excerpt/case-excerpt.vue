@@ -9,8 +9,9 @@
           <lazy-load>
             <img :alt="title" :src="imageUrl" class="case-excerpt__image">
           </lazy-load>
-          <h3 class="h3 case-excerpt__title case-excerpt__title--mobile">{{ title }}</h3>
+          <span class="sr-only">{{ title }}</span>
         </nuxt-link>
+        <h3 class="h3 case-excerpt__title">{{ title }}</h3>
         <div class="case-excerpt__info">
           <p class="case-excerpt__body body">{{ body }}</p>
           <div class="case-excerpt__actions button-group">
@@ -79,7 +80,8 @@
 
 <style>
   :root {
-    --case-excerpt-transition: transform 200ms cubic-bezier(0, 0, .1, 1);
+    --case-excerpt-transition: 200ms cubic-bezier(0, 0, .1, 1);
+    --case-excerpt-image-height: 70%;
   }
 
   .case-excerpt {
@@ -87,20 +89,19 @@
   }
 
   .case-excerpt__content {
-    height: 100%;
-  }
-
-  .case-excerpt__image-link {
     display: flex;
     flex-direction: column;
     height: 100%;
   }
 
+  .case-excerpt__image-link {
+    height: var(--case-excerpt-image-height);
+  }
+
   .case-excerpt__image-link .lazy-load {
     display: flex;
     align-items: flex-end;
-    flex-basis: 100%;
-    flex-shrink: 1;
+    height: 100%;
     background: var(--fog);
   }
 
@@ -111,6 +112,7 @@
 
   .case-excerpt__title {
     padding: var(--spacing-small);
+    flex-shrink: 0;
     text-align: center;
   }
 
@@ -119,21 +121,43 @@
   }
 
   @media (min-width: 1100px) {
-    .case-excerpt__content {
-      display: flex;
-      flex-direction: column;
+    .case-excerpt__image-link {
+      will-change: margin-top;
+      transition: margin-top var(--case-excerpt-transition);
+      height: var(--case-excerpt-image-height);
     }
 
     .case-excerpt__title {
-      padding: var(--spacing-medium);
+      padding: var(--spacing-small);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100% - var(--case-excerpt-image-height));
     }
 
     .case-excerpt__info {
-      position: absolute;
-      top: 100%;
-      padding: var(--spacing-medium);
+      height: var(--case-excerpt-image-height);
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .case-excerpt__body {
+      padding: 0 var(--spacing-small);
+      text-align: center;
+    }
+
+    .case-excerpt__actions {
+      padding: var(--spacing-small);
+      background: var(--brand-yellow);
+    }
+
+    .case-excerpt:hover .case-excerpt__image-link {
+      margin-top: calc(-1 * var(--case-excerpt-image-height));
+    }
+
+    .case-excerpt:hover .case-excerpt__body {
+      height: var(--case-excerpt-image-height);
     }
   }
 </style>
