@@ -54,6 +54,6 @@ export default {
 
 <style>
   .lazy-load {
-    height: 100%;
+    height: 100%; /* without the 100% height child will not size properly */
   }
 </style>

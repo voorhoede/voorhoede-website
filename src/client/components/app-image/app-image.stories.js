@@ -6,19 +6,19 @@ import { withKnobs } from '@storybook/addon-knobs/vue'
 
 import '../app-core/index.css'
 
-import ImageComponent from './image-component.vue'
+import AppImage from './app-image.vue'
 import README from './README.md'
 
-const stories = storiesOf('Components/Image Component', module)
+const stories = storiesOf('Components/App Image', module)
   .addDecorator(withKnobs)
   .addDecorator(withReadme(README))
 
-Vue.component('image-component', ImageComponent)
+Vue.component('AppImage', AppImage)
 
 stories.add(
-  'Image Component',
+  'App Image',
   () => ({
-    template: '<image-component :image="image" />',
+    template: '<app-image :image="image" />',
     data() {
       return {
         image: {

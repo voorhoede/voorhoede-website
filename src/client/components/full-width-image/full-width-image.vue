@@ -1,6 +1,6 @@
 <template>
   <figure class="full-width-image">
-    <responsive-image :enable-fixed-ratio="false" :image="image" />
+    <responsive-image :has-fixed-ratio="false" :image="image" />
     <figcaption class="full-width-image__caption" v-if="image.title">
       {{ image.title }}
     </figcaption>
@@ -57,7 +57,7 @@
 <style>
   .full-width-image {
     width: 100%;
-    height: 43vh;
+    height: 56.25vh;
     margin: 0 auto;
     overflow: hidden;
   }
@@ -74,12 +74,6 @@
   .full-width-image__caption {
     margin-top: var(--spacing-smaller);
     text-align: center;
-  }
-
-  @media (min-width: 720px) {
-    .full-width-image {
-      height: 53vh;
-    }
   }
 
   @media (min-width: 1440px) {

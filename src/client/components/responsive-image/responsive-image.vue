@@ -1,38 +1,32 @@
 <template>
   <div class="responsive-image__sizer">
     <fixed-ratio
-      v-if="enableFixedRatio"
+      v-if="hasFixedRatio"
       :width="image.width"
       :height="image.height">
-      <image-component :image="image"/>
+      <app-image :image="image"/>
     </fixed-ratio>
-    <image-component
+    <app-image
       v-else
       :image="image"/>
   </div>
 </template>
 
 <script>
-  import ImageComponent from '../image-component'
+  import AppImage from '../app-image'
   import FixedRatio from '../fixed-ratio'
 
   export default {
     components: {
       FixedRatio,
-      ImageComponent,
+      AppImage,
     },
     props: {
       image: {
         type: Object,
         required: true,
-        validator(image) {
-          return typeof(image.width) === 'number' &&
-                 typeof(image.height) === 'number' &&
-                 typeof(image.format) === 'string' &&
-                 typeof(image.url) === 'string'
-        },
       },
-      enableFixedRatio: {
+      hasFixedRatio: {
         type: Boolean,
         default: true
       }

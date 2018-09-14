@@ -1,17 +1,17 @@
 <template>
-  <div class="image-component">
+  <div class="app-image">
     <lazy-load>
-      <picture class="image-component__picture">
+      <picture class="app-image__picture">
         <!--[if IE 9]><video style="display: none;"><![endif]-->
         <source type="image/webp" :srcset="imageUrl({ fm: 'webp', w: width })">
         <source :type="`image/${image.format}`" :srcset="imageUrl({ w: width })">
         <!--[if IE 9]></video><![endif]-->
-        <img class="image-component__img" :alt="image.alt" :src="imageUrl({ w: width })" >
+        <img class="app-image__img" :alt="image.alt" :src="imageUrl({ w: width })" >
       </picture>
     </lazy-load>
     <no-script>
-      <picture class="image-component__picture">
-        <img class="image-component__img" :alt="image.alt" :src="imageUrl({ w: 500 })" >
+      <picture class="app-image__picture">
+        <img class="app-image__img" :alt="image.alt" :src="imageUrl({ w: 500 })" >
       </picture>
     </no-script>
   </div>
@@ -61,19 +61,18 @@
 </script>
 
 <style>
-  .image-component {
+  .app-image {
     width: 100%;
     height: 100%;
-    background-color: var(--bg-pastel);
   }
 
-  .image-component__img {
+  .app-image__img {
     object-fit: cover;
     height: 100%;
     width: 100%;
   }
 
-  .image-component__img::before {
+  .app-image__img::before {
     content: "";
     display: block;
     position: absolute;
@@ -84,7 +83,7 @@
     background-color: var(--bg-pastel);
   }
 
-  .image-component__img::after {
+  .app-image__img::after {
     content: attr(alt);
     display: block;
     position: absolute;
@@ -93,7 +92,7 @@
     text-align: center;
   }
 
-  .image-component__caption {
+  .app-image__caption {
     margin-top: var(--spacing-smaller);
     text-align: center;
   }

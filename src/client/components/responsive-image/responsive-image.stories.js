@@ -22,13 +22,13 @@ storiesOf('Components/Responsive image', module)
   }))
   .add('Without fixed ratio', () => ({
     components: { ResponsiveImage },
-    template: '<responsive-image :enable-fixed-ratio="false" :image="image" />',
+    template: '<responsive-image :has-fixed-ratio="false" :image="image" />',
     data() {
       return {
         image: {
           'format': 'jpeg',
           'alt': 'Declan playing on the selfmade game machines',
-          'url': 'https://www.datocms-assets.com/2850/1506590055-untitled-1.jpg',
+          'url': 'https://www.datocms-assets.com/6524/1536758842-vh-placeholder.svg',
         },
       }
     },
