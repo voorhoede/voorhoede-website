@@ -1,7 +1,7 @@
 <template>
   <figure class="image-with-description"
-       :class="{
-         'image-with-description--inverse': inverse
+          :class="{
+            'image-with-description--inverse': inverse
   }">
     <div class="image-with-description__image">
       <responsive-image :image="image" />
@@ -44,6 +44,7 @@ export default {
   .image-with-description {
     display: flex;
     flex-direction: column-reverse;
+    justify-content: space-between;
     width: 100%;
   }
 
@@ -60,7 +61,6 @@ export default {
     .image-with-description__description {
       width: 50%;
       max-width: var(--max-width-description);
-      margin: 0 var(--spacing-big);
       align-self: center;
     }
 
