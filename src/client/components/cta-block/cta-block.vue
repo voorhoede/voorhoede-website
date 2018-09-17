@@ -49,11 +49,11 @@
       },
       alternateLinkLabel: {
         type: String,
-        required: true,
+        default: '',
       },
       alternateLinkTo: {
         type: [String, Object],
-        required: true,
+        default: null,
       },
       alternateLinkExternal: {
         type: Boolean,
