@@ -22,15 +22,15 @@ export default {
   props: {
     description: {
       type: String,
-      required: true
+      required: true,
     },
     image: {
       type: Object,
-      required: true
+      required: true,
     },
     inverse: {
       type: Boolean,
-      default: false
+      default: false,
     }
   }
 }

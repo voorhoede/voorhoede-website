@@ -155,6 +155,10 @@
       flex-direction: row;
     }
 
+    .page-header-detail__container {
+      grid-column-start: 4;
+    }
+
     .page-header-detail--brick .page-header-detail__image img {
       max-height: 100%;
     }
