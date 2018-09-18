@@ -1,0 +1,12 @@
+.list li::before {
+  content: '';
+  display: inline-block;
+  background: var(--black);
+  background: currentColor;
+  height: var(--list-bullet-size);
+  width: var(--list-bullet-size);
+  border-radius: 50%;
+  vertical-align: middle;
+  position: relative;
+  left: calc(-1 * var(--spacing-small));
+}
