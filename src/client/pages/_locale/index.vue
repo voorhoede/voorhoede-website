@@ -23,19 +23,15 @@
       </div>
       <horizontal-carousel>
         <template slot="slides">
-          <div
-            v-for="(caseExcerpt, index) in page.cases"
-            :key="caseExcerpt.id"
-          >
+          <div v-for="caseExcerpt in page.cases" :key="caseExcerpt.id">
             <case-excerpt
               :case-id="caseExcerpt.slug"
               :primary-label="page.casePrimaryCtaLabel"
               :slug="caseExcerpt.slug"
               :secondary-label="page.caseSecondaryCtaLabel"
-              :image-url="caseExcerpt.heroIllustration.url"
+              :image="caseExcerpt.heroIllustration"
               :title="caseExcerpt.title"
               :body="caseExcerpt.subtitle"
-              :align-tooltip="(index === 0) ? 'left' : (index === 2 ? 'right' : '')"
             />
           </div>
         </template>
@@ -164,14 +160,6 @@
     margin-bottom: calc(var(--spacing-large) - var(--spacing-smaller));
   }
 
-  .page-index__cases .case-excerpt {
-    padding-top: var(--spacing-smaller);
-  }
-
-  .page-index__cases .horizontal-carousel__slides {
-    padding-bottom: var(--spacing-bigger);
-  }
-
   .page-index__clients {
     margin-bottom: var(--spacing-larger);
     padding-top: var(--spacing-larger);
@@ -228,6 +216,10 @@
     grid-column-end: -3;
   }
 
+  .page-index__cases {
+    margin-bottom: var(--spacing-larger);
+  }
+
   @media (min-width: 540px) {
     .page-index__curly-bracket-column {
       max-height: none;
@@ -247,7 +239,7 @@
       width: 80%;
     }
   }
-
+  
   @media (min-width: 720px) {
     .page-index .page-header {
       margin-bottom: var(--spacing-big);
@@ -346,6 +338,12 @@
       position: static;
       height: 100%;
       width: auto;
+    }
+  }
+
+  @media (min-width: 720px) and (max-width: 1100px) {
+    .page-index__cases .case-excerpt__title {
+      font-size: 1.15rem;
     }
   }
 
