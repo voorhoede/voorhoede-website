@@ -24,7 +24,7 @@
         </text-block>
 
         <rich-text-block
-          class="page-blog-post-list__rich-text"
+          class="page-blog-post-list__rich-text list"
           v-if="item.__typename === 'TextSectionRecord' &&
           item.body"
           :text="item.body"
@@ -43,6 +43,7 @@
 
     <aside class="page-blog-post__author">
       <blog-author :item="page" />
+      <social-buttons :title="page.socialTitle" />
     </aside>
 
     <div class="page-blog-post__link-container">
@@ -77,6 +78,7 @@ import {
   ImageWithDescription,
   BlogAuthor,
   AppButton,
+  SocialButtons,
   CtaBlock,
 } from '~/components'
 export default {
@@ -87,6 +89,7 @@ export default {
   ImageWithDescription,
   BlogAuthor,
   AppButton,
+  SocialButtons,
   CtaBlock,
   },
   async asyncData({ store, route }) {
@@ -118,19 +121,6 @@ export default {
 
   .page-blog-post-list__rich-text {
     margin-bottom: var(--spacing-large);
-  }
-
-  .page-blog-post-list__rich-text li::before {
-    content: '';
-    display: inline-block;
-    background: var(--black);
-    background: currentColor;
-    height: var(--list-bullet-size);
-    width: var(--list-bullet-size);
-    border-radius: 50%;
-    vertical-align: middle;
-    position: relative;
-    left: calc(-1 * var(--spacing-small));
   }
 
   .page-blog-post-list__image {
