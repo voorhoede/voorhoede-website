@@ -29,7 +29,7 @@
               :primary-label="page.casePrimaryCtaLabel"
               :slug="caseExcerpt.slug"
               :secondary-label="page.caseSecondaryCtaLabel"
-              :image-url="caseExcerpt.heroIllustration.url"
+              :image="caseExcerpt.heroIllustration"
               :title="caseExcerpt.title"
               :body="caseExcerpt.subtitle"
             />

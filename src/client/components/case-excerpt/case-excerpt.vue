@@ -6,10 +6,10 @@
           class="case-excerpt__image-link"
           :to="{ name: 'locale-cases-slug', params: { slug, locale: currentLocale }}"
         >
-          <lazy-load>
-            <img :alt="title" :src="imageUrl" class="case-excerpt__image">
-          </lazy-load>
-          <span class="sr-only">{{ title }}</span>
+          <responsive-image
+            :has-fixed-ratio="false"
+            :image="image"
+          />
         </nuxt-link>
         <h3 class="h3 case-excerpt__title">{{ title }}</h3>
         <div class="case-excerpt__info">
@@ -34,22 +34,22 @@
 
 <script>
   import { mapState } from 'vuex'
-  import { AppButton, FixedRatio, LazyLoad } from '~/components'
+  import { AppButton, FixedRatio, ResponsiveImage } from '~/components'
 
   export default {
     components: {
       AppButton,
       FixedRatio,
-      LazyLoad,
+      ResponsiveImage,
     },
     props: {
       caseId: {
         type: String,
         required: true,
       },
-      imageUrl: {
-        type: String,
-        default: ''
+      image: {
+        type: Object,
+        required: true,
       },
       title: {
         type: String,

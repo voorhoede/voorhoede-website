@@ -32,8 +32,13 @@
         type: Object,
         required: true,
         validator(image) {
-          return typeof(image.width) === 'number' && typeof(image.height) === 'number'
-            && typeof(image.format) === 'string' && typeof(image.url) === 'string'
+          let imageDimensions = 
+            (image.width && image.height) ? 
+            typeof(image.width && image.height) === 'number' : true
+            
+          let imageFormat = image.format ? typeof(image.format === 'string') : true
+
+          return imageDimensions && imageFormat && typeof(image.url) === 'string'
         },
       },
       widthStep: {
