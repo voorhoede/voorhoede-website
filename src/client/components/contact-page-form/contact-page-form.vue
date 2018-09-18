@@ -154,15 +154,4 @@ select {
 .contact-form__description {
   resize: none;
 }
-
-.contact-form {
-  padding-top: var(--spacing-large);
-  padding-bottom: var(--spacing-large);
-}
-
-@media screen and (min-width: 720px) {
-  .contact-form {
-    padding-bottom: var(--spacing-big);
-  }
-}
 </style>

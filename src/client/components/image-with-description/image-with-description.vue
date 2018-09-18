@@ -1,7 +1,7 @@
 <template>
   <figure class="image-with-description"
-       :class="{
-         'image-with-description--inverse': inverse
+          :class="{
+            'image-with-description--inverse': inverse
   }">
     <div class="image-with-description__image">
       <responsive-image :image="image" />

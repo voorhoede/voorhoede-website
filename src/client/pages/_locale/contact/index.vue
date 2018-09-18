@@ -4,24 +4,25 @@
       :title="page.title"
       :text="page.subtitle"
       :image="page.headerIllustration" />
-    <div class="page-contact__backdrop grid grid">
-      <div class="page-contact__content grid">
-        <address class="body contact-address">
-          <span>Email us at</span>
-          <br>
-          <a class="font-html-blue" href="mailto:post@voorhoede.nl">post@voorhoede.nl</a>
-          <br>
-          <br>
-          <span>Call us at</span>
-          <br>
-          <a class="font-html-blue">+31 (0)20 2610954</a>
-          <br>
-          <br>
-          <span>Visit us at:</span>
-          <br>
-          <span class="font-html-blue">Rijnsburgstraat 9-11</span>
-          <br>
-          <span class="font-html-blue">1059 AT Amsterdam</span>
+    <div class="page-contact__backdrop grid">
+      <div class="page-contact__content">
+        <address class="contact-address">
+          <dl class="body">
+            <dt>Email us at</dt>
+            <dd><a class="font-html-blue" href="mailto:post@voorhoede.nl">post@voorhoede.nl</a></dd>
+            <dt>Call us at</dt>
+            <dd><a href="tel:+31202610954" class="font-html-blue">+31 (0)20 2610954</a></dd>
+            <dt>Visit us at:</dt>
+            <dd class="font-html-blue">
+              <a href="https://www.google.nl/maps/place/De+Voorhoede+%7C+Front-end+Development/@52.3477995,4.8485761,17z/data=!3m1!4b1!4m5!3m4!1s0x47c5e21d502d2d59:0xbf570944a96ebf45!8m2!3d52.3477962!4d4.8507648">Rijnsburgstraat 9-11<br>1059 AT Amsterdam</a>
+            </dd>
+            <dt>KvK</dt>
+            <dd class="font-html-blue">56017235</dd>
+            <dt>BTW</dt>
+            <dd class="font-html-blue">NL851944620B01</dd>
+            <dt>IBAN</dt>
+            <dd class="font-html-blue">NL20ABNA0442829159</dd>
+          </dl>
         </address>
         <contact-page-form
           :subject-title="page.contactPageForm.subjectTitle"
@@ -57,85 +58,68 @@
     },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
-    },
+    }
   }
 </script>
 
 <style>
-.contact-page {
-  grid-column-start: 2;
-  grid-column-end: 10;
+.page-contact {
+  background-color: var(--bg-pastel);
 }
 
-.contact-address {
-  display: none;
+.page-contact__content {
   padding-top: var(--spacing-large);
+  display: flex;
+  flex-direction: column-reverse;
+  background-color: white;
   grid-column-start: 2;
-  grid-column-end: 10;
-}
-
-.contact-form {
-  grid-column-start: 1;
-  grid-column-end: 48;
+  grid-column-end: -2;
 }
 
 .page-contact__backdrop {
   background-color: white;
 }
 
-.page-contact__content {
-  background-color: white;
+.contact-address {
+  margin-bottom: var(--spacing-larger);
+}
+
+.contact-address dd {
+  margin-bottom: var(--spacing-small);
+}
+
+.contact-form {
+  margin-bottom: var(--spacing-larger);
 }
 
 @media screen and (min-width: 720px) {
-  .contact-form {
-    grid-column-start: 12;
-    grid-column-end: 34;
-  }
-
   .page-contact__backdrop {
     background-color: var(--bg-pastel);
   }
 
+  .page-contact__content {
+    flex-direction: row;
+    grid-column-start: 2;
+    grid-column-end: -2;
+    background: var(--white);
+    padding: var(--spacing-large) var(--spacing-large);
+    justify-content: space-between;
+  }
+
   .contact-address {
-    display: block;
+    width: 30%;
   }
 
-  .page-contact .page-header__image {
-    top: var(--spacing-large);
-    height: 90%;
-  }
-
-  .page-contact .page-header__image img {
-    width: auto;
+  .contact-form {
+    width: 60%;
   }
 }
 
 @media screen and (min-width: 1100px) {
-  .contact-address {
-    grid-column-start: 2;
-    grid-column-end: 12;
-  }
-
-  .contact-form {
-    grid-column-start: 17;
-    grid-column-end: 50;
-  }
-
-  .page-contact .page-header__image {
-    top: var(--spacing-larger);
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .contact-address {
-    grid-column-start: 4;
-    grid-column-end: 10;
-  }
-
-  .contact-form {
-    grid-column-start: 18;
-    grid-column-end: 48;
+  .page-contact__content {
+    grid-column-start: 6;
+    grid-column-end: -6;
+    padding: var(--spacing-larger) var(--spacing-larger);
   }
 }
 </style>
