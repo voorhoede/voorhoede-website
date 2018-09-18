@@ -31,7 +31,6 @@
               :secondary-label="page.caseSecondaryCtaLabel"
               :image-url="caseExcerpt.heroIllustration.url"
               :title="caseExcerpt.title"
-              :subtitle="caseExcerpt.subtitle"
               :body="caseExcerpt.subtitle"
             />
           </div>
