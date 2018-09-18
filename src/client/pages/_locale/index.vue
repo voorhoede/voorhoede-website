@@ -397,10 +397,6 @@
   }
 
   @media (min-width: 1440px) {
-    .page-index .page-header--home {
-      height: 1000px;
-    }
-
     .page-index .scroll-to {
       grid-column-start: 4;
       grid-column-end: 5;
@@ -413,6 +409,12 @@
     .page-index .page-header__text {
       margin: var(--spacing-large) 0;
       grid-column-end: 24;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .page-index .page-header--home {
+      height: 1000px;
     }
   }
 </style>
