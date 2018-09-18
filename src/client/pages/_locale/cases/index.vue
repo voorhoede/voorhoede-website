@@ -57,7 +57,7 @@
 }
 
 @supports (display: grid) {
-  @media (min-width: 480px) {
+  @media (min-width: 540px) {
     .page-case__overview {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -75,15 +75,14 @@
     }
 
     .page-case__overview {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
       grid-gap: var(--spacing-large);
       margin: var(--spacing-larger) 0;
     }
   }
 
-  @media (min-width: 1100px) {
+  @media (min-width: 1200px) {
     .page-case__overview {
+      grid-template-columns: 1fr 1fr 1fr;
       grid-column-start: 4;
       grid-column-end: -4;
     }

@@ -217,6 +217,10 @@
     grid-column-end: -3;
   }
 
+  .page-index__cases {
+    margin-bottom: var(--spacing-larger);
+  }
+
   @media (min-width: 540px) {
     .page-index__curly-bracket-column {
       max-height: none;
@@ -236,7 +240,7 @@
       width: 80%;
     }
   }
-
+  
   @media (min-width: 720px) {
     .page-index .page-header {
       margin-bottom: var(--spacing-big);
@@ -335,6 +339,12 @@
       position: static;
       height: 100%;
       width: auto;
+    }
+  }
+
+  @media (min-width: 720px) and (max-width: 1100px) {
+    .page-index__cases .case-excerpt__title {
+      font-size: 1.15rem;
     }
   }
 

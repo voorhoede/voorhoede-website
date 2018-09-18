@@ -150,6 +150,11 @@
     .case-excerpt__actions {
       padding: var(--spacing-small);
       background: var(--brand-yellow);
+      justify-content: center;
+    }
+
+    .case-excerpt__actions .app-button--secondary::after {
+      background: var(--html-blue);
     }
 
     .case-excerpt:hover .case-excerpt__image-link {
