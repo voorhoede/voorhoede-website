@@ -49,7 +49,7 @@ export default {
   }
 
   .image-with-description__description {
-    margin: var(--spacing-large) 0;
+    margin: 0 0 var(--spacing-small);
   }
 
   @media (min-width: 720px) {
