@@ -1,14 +1,7 @@
 <template>
   <div class="blog-author">
     <div class="blog-author__container">
-      <lazy-load class="blog-author__image" v-for="author in item.authors" :key="author.name">
-        <img
-          :width="thumbnailSize"
-          :height="thumbnailSize"
-          :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=135&h=135&fit=crop`"
-          alt=""
-        >
-      </lazy-load>
+      <app-image class="blog-author__image" v-for="author in item.authors" :key="author.name" :image="author.image"/>
     </div>
     <div class="blog-author__text body">
       <span class="font-html-blue">{{ authorName }}</span>
@@ -18,7 +11,6 @@
         {{ formattedDate }}
       </time>
     </div>
-    
     <div class="blog-author-social">
       <p class="blog-author-social__text body">{{ item.socialTitle }}</p>
       <ul class="blog-author-social--icon">
@@ -35,10 +27,10 @@
 
 <script>
   import { mapState } from 'vuex'
-  import { LazyLoad, AppIcon, } from '~/components'
+  import { AppImage, AppIcon, } from '~/components'
 
   export default {
-    components: { LazyLoad, AppIcon, },
+    components: { AppImage, AppIcon, },
     props: {
       item: {
         type: Object,
@@ -70,13 +62,12 @@
     },
     data() {
       return {
-        thumbnailSize: 135,
         socialAside: [
               { icon: 'instagram--blue', href: 'https://www.instagram.com/devoorhoede/?hl=nl' },
               { icon: 'twitter--blue', href: 'https://twitter.com/devoorhoede' },
               { icon: 'facebook--blue', href: 'https://www.facebook.com/DeVoorhoede/' },
               { icon: 'git-hub--blue', href: 'https://github.com/voorhoede/' },
-            ],        
+            ],
       }
     },
     computed: {
@@ -94,6 +85,10 @@
 </script>
 
 <style>
+   :root {
+    --thumbnail-size: 135px;
+  }
+
   .blog-author {
     display: flex;
     justify-content: space-between;
@@ -107,24 +102,27 @@
 
   .blog-author__container {
     display: none;
+    margin-bottom: var(--spacing-small);
   }
 
-  .blog-author-social--icon {
-    display: flex;
+  .blog-author__image {
+    max-width: var(--thumbnail-size);
+    margin: 0 0 var(--spacing-tiny);
   }
 
   .blog-author-social-item--icon {
+    display: inline-block;
     margin-right: var(--spacing-small);
   }
 
   @media (min-width: 720px) {
     .blog-author {
-      flex-direction: column;
+      display: block;
     }
 
     .blog-author__container {
-      display: flex;
-      flex-direction: column;
+      display: block;
+      border-right: 1px solid var(--very-dim);
     }
 
     .blog-author__text {
@@ -135,14 +133,6 @@
 
     .blog-author-social__text {
       margin-bottom: var(--spacing-smaller);
-    }
-
-    .blog-author__image {
-      border-right: 1px solid var(--very-dim);
-    }
-
-    .blog-author__image:last-of-type {
-      margin-bottom: var(--spacing-medium);
     }
   }
 </style>
