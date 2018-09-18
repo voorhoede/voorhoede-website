@@ -1,27 +1,35 @@
 <template>
   <div class="page-blog-post grid">
     <page-header-detail
+      class="page-blog-post__header"
       :title="page.title"
       :sub-title="page.subtitle"
       :image="page.headerIllustration"
     />
+
     <article class="page-blog-post-list">
-      <text-block class="font-html-blue">
-        <p class="page-blog-post-list__intro testimonial text-block--indented">{{ page.introTitle }}</p>
+      <text-block class="page-blog-post-list__intro">
+        <p class="font-html-blue testimonial">{{ page.introTitle }}</p>
       </text-block>
-      <div v-for="item in page.items" :key="item.title">
+      <div 
+        v-for="item in page.items" 
+        :key="item.title" 
+        :class="{'page-blog-post-list--not-indented' : item.__typename ==='ImageWithTextRecord'}"
+      >
         <text-block
           v-if="item.__typename === 'TextSectionRecord' &&
           item.title"
           class="font-html-blue">
-          <h2 class="page-blog-post-list__title h3 text-block--indented">{{ item.title }}</h2>
+          <h2 class="page-blog-post-list__title h3">{{ item.title }}</h2>
         </text-block>
+
         <rich-text-block
-          class="page-blog-post-list__rich-text text-block--indented"
+          class="page-blog-post-list__rich-text"
           v-if="item.__typename === 'TextSectionRecord' &&
           item.body"
           :text="item.body"
         />
+
         <image-with-description
           class="page-blog-post-list__image"
           v-if="item.__typename === 'ImageWithTextRecord' &&
@@ -32,14 +40,17 @@
         />
       </div>
     </article>
+
     <aside class="page-blog-post__author">
       <blog-author :item="page" />
     </aside>
+
     <div class="page-blog-post__link-container">
       <nuxt-link class="font-html-blue body font-bold" :to="`/${currentLocale}/blog`">
         &larr; See all posts
       </nuxt-link>
     </div>
+
     <div class="page-blog-post__cta grid">
       <cta-block
         class="page-blog-post__cta-block"
@@ -56,6 +67,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import { mapState } from 'vuex'
 import {
@@ -85,17 +97,14 @@ export default {
   }
 }
 </script>
+
  <style>
    :root {
     --list-bullet-size: 2px;
   }
 
-  .page-blog-post .page-header-detail {
+  .page-blog-post__header {
     grid-column: page;
-    margin-bottom: var(--spacing-large);
-  }
-
-  .page-blog-post-list {
     margin-bottom: var(--spacing-large);
   }
 
@@ -105,6 +114,10 @@ export default {
 
   .page-blog-post-list__title {
     margin-bottom: var(--spacing-smaller);
+  }
+
+  .page-blog-post-list__rich-text {
+    margin-bottom: var(--spacing-large);
   }
 
   .page-blog-post-list__rich-text li::before {
@@ -120,8 +133,8 @@ export default {
     left: calc(-1 * var(--spacing-small));
   }
 
-  .page-blog-post-list__image.image-with-description {
-    margin-bottom: var(--spacing-big);
+  .page-blog-post-list__image {
+    margin-bottom: var(--spacing-large);
   }
 
   .page-blog-post__author {
@@ -144,12 +157,24 @@ export default {
   }
 
   @media (min-width: 720px) {
+    .page-blog-post-list > * {
+      padding: 0 var(--spacing-big);
+    }
+
+    .page-blog-post-list--not-indented {
+      padding: 0;
+    }
+
     .page-blog-post-list {
-      grid-column-start: 10;
+      grid-column-start: 8;
       grid-column-end: 0;
     }
     
     .page-blog-post-list__rich-text {
+      margin-bottom: var(--spacing-big);
+    }
+
+    .page-blog-post-list__image {
       margin-bottom: var(--spacing-big);
     }
 
@@ -160,21 +185,17 @@ export default {
 
     .page-blog-post__author {
       grid-column-start: 0;
-      grid-column-end: 10;
+      grid-column-end: 8;
     }
 
     .page-blog-post__link-container {
       grid-column-start: 4;
       grid-column-end: -4;
     }
-
-    .text-block--indented {
-      padding: 0 var(--spacing-big);
-    }
   }
 
   @media (min-width: 1100px) {
-    .page-blog-post .page-header-detail {
+    .page-blog-post__header {
       margin-bottom: var(--spacing-big);
     }
 
