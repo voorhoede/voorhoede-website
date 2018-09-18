@@ -2,29 +2,30 @@
   <article>
     <nuxt-link 
       :to="{ name: 'locale-blog-slug', params: { locale: currentLocale, slug: item.slug }}" 
-      :class="{'blog-list-item--large' : large}" 
-      class="blog-list-item"
+      class="blog-list"
     >
-      <time 
-        datetime="item.date" 
-        class="blog-list-item__time" 
-        :class="large ? 'body' : 'body-petite'"
-      >
-        {{ formattedDate }}
-      </time>
-      <div class="blog-list-item__content">
-        <h3 class="blog-list-item__heading" :class="large ? 'h4' : 'body'">{{ item.title }}</h3>
-        <div class="blog-list-item__author">
-          <lazy-load v-for="author in item.authors" :key="author.name">
-            <img
-              :width="large ? thumbnailSizeLarge : thumbnailSize"
-              :height="large ? thumbnailSizeLarge : thumbnailSize"
-              class="blog-list-item__image"
-              :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=65&h=65&fit=crop`"
-              alt=""
-            >
-          </lazy-load>
-          <span :class="large ? 'body' : 'body-petite'">{{ authorName }}</span>
+      <div class="blog-list-item" :class="{'blog-list-item--large' : large}" >
+        <time 
+          datetime="item.date" 
+          class="blog-list-item__time" 
+          :class="large ? 'body' : 'body-petite'"
+        >
+          {{ formattedDate }}
+        </time>
+        <div class="blog-list-item__content">
+          <h3 class="blog-list-item__heading" :class="large ? 'h4' : 'body'">{{ item.title }}</h3>
+          <div class="blog-list-item__author">
+            <lazy-load v-for="author in item.authors" :key="author.name">
+              <img
+                :width="large ? thumbnailSizeLarge : thumbnailSize"
+                :height="large ? thumbnailSizeLarge : thumbnailSize"
+                class="blog-list-item__image"
+                :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=65&h=65&fit=crop`"
+                alt=""
+              >
+            </lazy-load>
+            <span :class="large ? 'body' : 'body-petite'">{{ authorName }}</span>
+          </div>
         </div>
       </div>
     </nuxt-link>
@@ -83,8 +84,8 @@
     transition: transform var(--blog-list-item-animation-timing) ease-out;
   }
 
-  .blog-list-item:hover,
-  .blog-list-item:focus {
+  .blog-list:hover .blog-list-item,
+  .blog-list:focus .blog-list-item {
     transform: translateX(var(--grid-fixed-column));
   }
   
@@ -107,8 +108,8 @@
     transition: border-left var(--blog-list-item-animation-timing) ease-out;
   }
 
-  .blog-list-item:hover .blog-list-item__content,
-  .blog-list-item:focus .blog-list-item__content {
+  .blog-list:hover .blog-list-item__content,
+  .blog-list:focus .blog-list-item__content {
     border-left: 3px solid var(--html-blue);
   }
 
@@ -127,7 +128,6 @@
     .blog-list-item {
       display: flex;
       flex-direction: row;
-      padding-left: var(--spacing-larger);
     }
     
     .blog-list-item--large {
