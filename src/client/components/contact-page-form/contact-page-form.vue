@@ -1,9 +1,12 @@
 <template>
-  <form method="POST" name="contact-form" class="contact-form" data-netlify="true">
-    <input type="hidden" name="form-name" value="contact-page-form">
+  <form method="POST" name="contact-form" class="contact-form" data-netlify="true" netlify-honeypot="magic-castle">
     <fieldset class="contact-form__fieldset">
       <legend class="h3">{{ subjectTitle }}</legend>
       <input type="hidden" name="form-name" value="contact-form">
+      <label class="hidden">
+        Don't fill this out if you're human:
+        <input name="magic-castle">
+      </label>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ subjectLabel }}</span>
         <select class="body" type="select" name="need-help-with">
@@ -145,6 +148,10 @@ export default {
 
 select {
   -webkit-appearance: none;
+}
+
+.hidden {
+  display: none;
 }
 
 .contact-form__fieldset {
