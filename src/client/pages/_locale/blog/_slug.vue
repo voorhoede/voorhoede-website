@@ -82,16 +82,17 @@ import {
   SocialButtons,
   CtaBlock,
 } from '~/components'
+
 export default {
   components: {
-  PageHeaderDetail,
-  TextBlock,
-  RichTextBlock,
-  ImageWithDescription,
-  BlogAuthor,
-  AppButton,
-  SocialButtons,
-  CtaBlock,
+    PageHeaderDetail,
+    TextBlock,
+    RichTextBlock,
+    ImageWithDescription,
+    BlogAuthor,
+    AppButton,
+    SocialButtons,
+    CtaBlock,
   },
   async asyncData({ store, route }) {
     return await store.dispatch('getData', { route })
