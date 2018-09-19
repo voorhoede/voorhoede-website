@@ -71,12 +71,6 @@
           :description="item.imageWithDescription.description"
         />
 
-        <storytelling-section
-          v-if="item.__typename === 'StorytellingRecord'"
-          :key="item.__typename"
-          title="So, what's key?"
-          :items="[]"
-        />
       </template>
 
       <quote-block :quote="page.quote" :cite="page.author" />
@@ -114,7 +108,6 @@
     PageHeaderDetail,
     FullWidthImage,
     ImageWithDescription,
-    StorytellingSection,
     ResponsiveImage,
     RichTextBlock,
     QuoteBlock,
@@ -133,7 +126,6 @@
       PageHeaderDetail,
       FullWidthImage,
       ImageWithDescription,
-      StorytellingSection,
       ResponsiveImage,
       RichTextBlock,
       QuoteBlock,
