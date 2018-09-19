@@ -22,7 +22,7 @@
 
 <script>
   import { mapState } from 'vuex'
-  import { AppImage, } from '~/components'
+  import { AppImage, } from '../../components'
 
   export default {
     components: { AppImage, },

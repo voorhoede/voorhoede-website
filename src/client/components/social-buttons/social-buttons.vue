@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import { AppIcon, } from '~/components'
+  import { AppIcon, } from '../../components'
 
   export default {
     components: { AppIcon, },

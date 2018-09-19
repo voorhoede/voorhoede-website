@@ -81,7 +81,7 @@ import {
   AppButton,
   SocialButtons,
   CtaBlock,
-} from '~/components'
+} from '../../../components'
 
 export default {
   components: {
