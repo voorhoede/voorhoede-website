@@ -143,9 +143,9 @@
 
 <style>
   :root {
-    --case-full-width-image-height: 515px;
+    --case-full-width-image-height: 515px; /* value according to design */
   }
-  
+
   .page-case__case-header {
     grid-column: page;
   }
@@ -244,7 +244,7 @@
     }
     
     .page-case__content .full-width-image {
-      height: var(--case-full-width-image-height); /* value according to design */
+      height: var(--case-full-width-image-height);
     }
   }
 </style>
