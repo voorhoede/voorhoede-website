@@ -12,31 +12,30 @@
         <p class="font-html-blue testimonial">{{ page.introTitle }}</p>
       </text-block>
 
-      <div 
-        v-for="item in page.items" 
-        :key="item.title" 
-        :class="{ 'page-blog-post-list--not-indented' : item.__typename === 'ImageWithTextRecord' }"
-      >
+      <template v-for="item in page.items">
         <text-block
           v-if="item.__typename === 'TextSectionRecord' && item.title"
-          class="font-html-blue">
-          <h2 class="page-blog-post-list__title h3">{{ item.title }}</h2>
+          :key="item.title"
+        >
+          <h2 class="page-blog-post-list__title h3 font-html-blue">{{ item.title }}</h2>
         </text-block>
 
         <rich-text-block
           class="page-blog-post-list__rich-text list"
           v-if="item.__typename === 'TextSectionRecord' && item.body"
+          :key="item.body"
           :text="item.body"
         />
 
         <image-with-description
-          class="page-blog-post-list__image"
+          class="page-blog-post-list__image page-blog-post-list--not-indented"
           v-if="item.__typename === 'ImageWithTextRecord'"
+          :key="item.description"
           :image="item.imageWithDescription.image"
           :inverse="item.imageWithDescription.inverse"
           :description="item.imageWithDescription.description"
         />
-      </div>
+      </template>
     </article>
 
     <aside class="page-blog-post__aside">
