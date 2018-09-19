@@ -64,7 +64,7 @@
         />
         
         <image-with-description
-          v-if="item.__typename === 'ImageWithTextRecord'"
+          v-if="item.__typename === 'ImageWithTextRecord' "
           :key="item.description"
           :image="item.imageWithDescription.image"
           :inverse="item.imageWithDescription.inverse"
@@ -142,6 +142,10 @@
 </script>
 
 <style>
+  :root {
+    --case-full-width-image-height: 515px;
+  }
+  
   .page-case__case-header {
     grid-column: page;
   }
@@ -240,7 +244,7 @@
     }
     
     .page-case__content .full-width-image {
-      height: 515px; /* value according to design */
+      height: var(--case-full-width-image-height); /* value according to design */
     }
   }
 </style>
