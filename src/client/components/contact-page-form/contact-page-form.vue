@@ -9,13 +9,13 @@
       </label>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ subjectLabel }}</span>
-        <select class="body" type="select" name="need-help-with">
+        <select class="body" type="select" name="need-help-with" v-greyed-out-first>
           <option v-for="subject in subjectOptions" :key="subject.value" :value="subject.value">{{ subject.label }}</option>
         </select>
       </label>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ budgetLabel }}</span>
-        <select class="body" type="select" name="budget-of">
+        <select class="body" type="select" name="budget-of" v-greyed-out-first>
           <option v-for="option in budgetOptions" :key="option.value" :value="option.value">{{ option.label }}</option>
         </select>
       </label>
@@ -57,9 +57,33 @@
 
 <script>
 import { AppButton } from '~/components'
+
+const greyOutFirstOption = element => {
+  const { selectedIndex } = element
+  if (typeof selectedIndex !== 'number') {
+    return
+  }
+  element.classList.toggle('greyed-out', selectedIndex === 0)
+}
+
+const greyOutFirstOptionHandler = ({ target }) => greyOutFirstOption(target)
+
 export default {
   components: {
     AppButton,
+  },
+  directives: {
+    greyedOutFirst: {
+      bind(el){
+        el.addEventListener('change', greyOutFirstOptionHandler)
+      },
+      inserted(el){
+        greyOutFirstOption(el)
+      },
+      unbind(el) {
+        el.removeEventListener('change', greyOutFirstOptionHandler)
+      }
+    }
   },
   props: {
     subjectTitle: {
@@ -148,6 +172,10 @@ export default {
 
 select {
   -webkit-appearance: none;
+}
+
+.greyed-out {
+  color: var(--very-dim);
 }
 
 .hidden {
