@@ -1,7 +1,12 @@
 <template>
-  <div class="blog-author">
-    <div class="blog-author__container">
-      <app-image class="blog-author__image" v-for="author in item.authors" :key="author.name" :image="author.image"/>
+  <div>
+    <div class="blog-author__image">
+      <app-image
+        class="blog-author__image-author" 
+        v-for="author in item.authors" 
+        :key="author.name" 
+        :image="author.image"
+      />
     </div>
     <div class="blog-author__text body">
       <span>{{ authorName }}</span>
@@ -55,45 +60,30 @@
    :root {
     --thumbnail-size: 135px;
   }
-
-  .blog-author {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: var(--spacing-medium);
+  
+  .blog-author__image {
+    display: none;
   }
 
-  .blog-author__text {
-    margin-right: var(--spacing-small);
+  .blog-author__image-author {
+    max-width: var(--thumbnail-size);
+    margin: 0 0 var(--spacing-tiny);
   }
 
   .blog-author__text-time {
     color: var(--dim);
   }
 
-  .blog-author__container {
-    display: none;
-    margin-bottom: var(--spacing-small);
-  }
-
-  .blog-author__image {
-    max-width: var(--thumbnail-size);
-    margin: 0 0 var(--spacing-tiny);
-  }
-
   @media (min-width: 720px) {
-    .blog-author {
+    .blog-author__image {
       display: block;
-    }
-
-    .blog-author__container {
-      display: block;
+      margin-bottom: var(--spacing-small);
       border-right: 1px solid var(--very-dim);
     }
 
     .blog-author__text {
       display: flex;
       flex-direction: column;
-      margin-bottom: var(--spacing-large);
     }
   }
 </style>

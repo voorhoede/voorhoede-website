@@ -11,10 +11,11 @@
       <text-block class="page-blog-post-list__intro">
         <p class="font-html-blue testimonial">{{ page.introTitle }}</p>
       </text-block>
+
       <div 
         v-for="item in page.items" 
         :key="item.title" 
-        :class="{'page-blog-post-list--not-indented' : item.__typename ==='ImageWithTextRecord'}"
+        :class="{ 'page-blog-post-list--not-indented' : item.__typename === 'ImageWithTextRecord' }"
       >
         <text-block
           v-if="item.__typename === 'TextSectionRecord' &&
@@ -41,8 +42,8 @@
       </div>
     </article>
 
-    <aside class="page-blog-post__author">
-      <blog-author :item="page" />
+    <aside class="page-blog-post__aside">
+      <blog-author class="page-blog-post__aside-author" :item="page" />
       <social-buttons :title="page.socialTitle" />
     </aside>
 
@@ -102,16 +103,15 @@ export default {
 </script>
 
  <style>
-   :root {
-    --list-bullet-size: 2px;
-  }
-
   .page-blog-post__header {
     grid-column: page;
-    margin-bottom: var(--spacing-large);
   }
 
-  .page-blog-post-list__intro {
+  .page-blog-post__header,
+  .page-blog-post-list__intro,
+  .page-blog-post-list__rich-text,
+  .page-blog-post-list__image,
+  .page-blog-post__aside-author {
     margin-bottom: var(--spacing-large);
   }
 
@@ -119,15 +119,9 @@ export default {
     margin-bottom: var(--spacing-smaller);
   }
 
-  .page-blog-post-list__rich-text {
-    margin-bottom: var(--spacing-large);
-  }
-
-  .page-blog-post-list__image {
-    margin-bottom: var(--spacing-large);
-  }
-
-  .page-blog-post__author {
+  .page-blog-post__aside {
+    display: flex;
+    justify-content: space-between;
     grid-row: 2;
   }
 
@@ -148,34 +142,33 @@ export default {
 
   @media (min-width: 720px) {
     .page-blog-post-list > * {
-      padding: 0 var(--spacing-big);
+      padding: 0 var(--spacing-larger);
     }
 
     .page-blog-post-list--not-indented {
       padding: 0;
     }
 
-    .page-blog-post-list {
-      grid-column-start: 8;
-      grid-column-end: 0;
-    }
-    
-    .page-blog-post-list__rich-text {
+    .page-blog-post__header,
+    .page-blog-post-list__rich-text,
+    .page-blog-post-list__image {
       margin-bottom: var(--spacing-big);
     }
 
-    .page-blog-post-list__image {
-      margin-bottom: var(--spacing-big);
+    .page-blog-post-list {
+      grid-column-start: 9;
+      grid-column-end: 0;
+    }
+    
+    .page-blog-post__aside {
+      display: block;
+      grid-column-start: 0;
+      grid-column-end: 9;
     }
 
     .page-blog-post__cta-block.cta-block {
       grid-column-start: 8;
       grid-column-end: -8;
-    }
-
-    .page-blog-post__author {
-      grid-column-start: 0;
-      grid-column-end: 8;
     }
 
     .page-blog-post__link-container {
@@ -185,8 +178,12 @@ export default {
   }
 
   @media (min-width: 1100px) {
-    .page-blog-post__header {
-      margin-bottom: var(--spacing-big);
+    .page-blog-post-list > * {
+      padding: 0 var(--spacing-big);
+    }
+
+    .page-blog-post-list--not-indented {
+      padding: 0;
     }
 
     .page-blog-post-list {
@@ -194,14 +191,14 @@ export default {
       grid-column-end: -10;
     }
 
+    .page-blog-post__aside {
+      grid-column-start: 4;
+      grid-column-end: 12;
+    }
+
     .page-blog-post__cta-block.cta-block {
       grid-column-start: 14;
       grid-column-end: -14;
-    }
-
-    .page-blog-post__author {
-      grid-column-start: 4;
-      grid-column-end: 12;
     }
   }
  </style>
