@@ -18,23 +18,20 @@
         :class="{ 'page-blog-post-list--not-indented' : item.__typename === 'ImageWithTextRecord' }"
       >
         <text-block
-          v-if="item.__typename === 'TextSectionRecord' &&
-          item.title"
+          v-if="item.__typename === 'TextSectionRecord' && item.title"
           class="font-html-blue">
           <h2 class="page-blog-post-list__title h3">{{ item.title }}</h2>
         </text-block>
 
         <rich-text-block
           class="page-blog-post-list__rich-text list"
-          v-if="item.__typename === 'TextSectionRecord' &&
-          item.body"
+          v-if="item.__typename === 'TextSectionRecord' && item.body"
           :text="item.body"
         />
 
         <image-with-description
           class="page-blog-post-list__image"
-          v-if="item.__typename === 'ImageWithTextRecord' &&
-          item.imageWithDescription"
+          v-if="item.__typename === 'ImageWithTextRecord'"
           :image="item.imageWithDescription.image"
           :inverse="item.imageWithDescription.inverse"
           :description="item.imageWithDescription.description"
