@@ -64,7 +64,7 @@
         />
         
         <image-with-description
-          v-if="item.__typename === 'ImageWithTextRecord' "
+          v-if="item.__typename === 'ImageWithTextRecord'"
           :key="item.description"
           :image="item.imageWithDescription.image"
           :inverse="item.imageWithDescription.inverse"
