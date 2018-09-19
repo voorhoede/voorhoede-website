@@ -1,3 +1,7 @@
+:root {
+  --list-bullet-size: 2px;
+}
+
 .list li::before {
   content: '';
   display: inline-block;
