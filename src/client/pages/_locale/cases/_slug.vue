@@ -240,7 +240,7 @@
     }
     
     .page-case__content .full-width-image {
-      height: 515px;
+      height: 515px; /* value according to design */
     }
   }
 </style>
