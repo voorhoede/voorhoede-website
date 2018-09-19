@@ -35,27 +35,42 @@
     </div>
 
     <article class="page-case__content grid">
-      <template v-for="(item, index) in page.content">
-        <div v-if="item.body" :key="index" class="page-case__text">
-          <h3 class="page-case__title h3">{{ item.title }}</h3>
-          <rich-text-block
+      <template v-for="item in page.content">
+        <div 
+          v-if="item.__typename === 'TextSectionRecord'"
+          :key="item.title" 
+          class="page-case__text">
+          <h3 class="page-case__title h3" 
+              v-if="item.title">{{ item.title }}</h3>
+          <rich-text-block 
+            v-if="item.body" 
             :text="item.body"
           />
         </div>
 
-        <responsive-image
-          v-if="item.image && !item.fullWidth"
-          :key="index"
+        <full-width-image
+          v-if="item.__typename === 'ImageRecord' &&
+          item.image && item.fullWidth"
+          :key="item.image.url"
           :image="item.image"
         />
 
         <case-pull-quote-composition
-          v-if="item.pullquote"
-          :key="index"
+          v-if="item.__typename === 'PullquoteRecord'"
+          :key="item.pullquote.quote"
           :pullquote="item.pullquote.quote"
           :image="item.pullquote.illustration"
           :text="item.pullquote.richText"
         />
+        
+        <image-with-description
+          v-if="item.__typename === 'ImageWithTextRecord'"
+          :key="item.description"
+          :image="item.imageWithDescription.image"
+          :inverse="item.imageWithDescription.inverse"
+          :description="item.imageWithDescription.description"
+        />
+
       </template>
 
       <quote-block :quote="page.quote" :cite="page.author" />
@@ -91,6 +106,8 @@
     CaseTeaser,
     GetInTouchForm,
     PageHeaderDetail,
+    FullWidthImage,
+    ImageWithDescription,
     ResponsiveImage,
     RichTextBlock,
     QuoteBlock,
@@ -107,6 +124,8 @@
       CaseTeaser,
       GetInTouchForm,
       PageHeaderDetail,
+      FullWidthImage,
+      ImageWithDescription,
       ResponsiveImage,
       RichTextBlock,
       QuoteBlock,
@@ -123,6 +142,10 @@
 </script>
 
 <style>
+  :root {
+    --case-full-width-image-height: 515px; /* value according to design */
+  }
+
   .page-case__case-header {
     grid-column: page;
   }
@@ -218,6 +241,10 @@
     .page-case__link-container {
       grid-column-start: 4;
       grid-column-end: -4;
+    }
+    
+    .page-case__content .full-width-image {
+      height: var(--case-full-width-image-height);
     }
   }
 </style>

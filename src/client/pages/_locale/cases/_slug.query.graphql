@@ -30,6 +30,7 @@ fragment caseItem on CaseItemRecord {
     },
   },
   content {
+    __typename,
     ... on TextSectionRecord {
       title,
       body,
@@ -54,6 +55,19 @@ fragment caseItem on CaseItemRecord {
           format
         },
         richText,
+      }
+    },
+     ... on ImageWithTextRecord {
+      imageWithDescription {
+        image {
+          url,
+          alt,
+          width,
+          height,
+          format
+        },
+        description,
+        inverse
       }
     },
   },

@@ -60,6 +60,7 @@
     height: 300px;
     margin: 0 auto;
     overflow: hidden;
+    grid-column: page;
   }
 
   .full-width-image__img::after {
