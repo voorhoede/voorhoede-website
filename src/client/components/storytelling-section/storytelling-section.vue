@@ -51,7 +51,7 @@
 <style>
   .storytelling-section {
     background-color: var(--paper);
-    grid-row-gap: var(--spacing-large);
+    grid-row-gap: var(--spacing-larger);
     grid-column: content;
   }
 

@@ -54,7 +54,7 @@
           :key="item.image.url"
           :image="item.image"
         />
-
+        
         <responsive-image
           v-if="item.__typename === 'ImageRecord' &&
           item.image && !item.fullWidth"
@@ -78,6 +78,12 @@
           :description="item.imageWithDescription.description"
         />
 
+        <storytelling-section
+          v-if="item.__typename === 'StorytellingBlockRecord'"
+          :key="item.storyItem.title"
+          :items="item.storyItem.items"
+          :title="item.storyItem.title"
+        />
         <responsive-video 
           v-if="item.__typename === 'ResponsiveVideoRecord'"
           :key="item.video.title"
@@ -122,6 +128,7 @@
     CaseTeaser,
     GetInTouchForm,
     PageHeaderDetail,
+    StorytellingSection,
     FullWidthImage,
     ImageWithDescription,
     ResponsiveImage,
@@ -143,6 +150,7 @@
       PageHeaderDetail,
       FullWidthImage,
       ImageWithDescription,
+      StorytellingSection,
       ResponsiveImage,
       RichTextBlock,
       ResponsiveVideo,
@@ -214,6 +222,11 @@
     margin: var(--spacing-large) 0;
   }
 
+  .page-case__content .storytelling-section {
+    grid-column: page;
+    padding: var(--spacing-larger) 0;
+  }
+  
   @media (min-width: 720px) {
     .page-case__get-in-touch-form,
     .page-case__content,
@@ -263,6 +276,16 @@
     
     .page-case__content .full-width-image {
       height: var(--case-full-width-image-height);
+    }
+
+    .page-case__content .image-with-description {
+      grid-column-start: 8;
+      grid-column-end: 0;
+    }
+    
+    .page-case__content .image-with-description--inverse {
+      grid-column-start: 0;
+      grid-column-end: -8;
     }
   }
 </style>

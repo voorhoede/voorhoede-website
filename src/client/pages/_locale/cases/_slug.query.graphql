@@ -70,6 +70,21 @@ fragment caseItem on CaseItemRecord {
         inverse
       }
     },
+    	... on StorytellingBlockRecord {
+      storyItem {
+        title,
+        items {
+        	title
+          body,
+          image {
+            url,
+            alt,
+            width,
+            height
+          }
+        }
+      }
+    }
     ... on ResponsiveVideoRecord {
       mute,
       loop,
