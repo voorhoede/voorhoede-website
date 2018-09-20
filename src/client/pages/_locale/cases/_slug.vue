@@ -271,5 +271,10 @@
       grid-column-start: 8;
       grid-column-end: 0;
     }
+    
+    .page-case__content .image-with-description--inverse {
+      grid-column-start: 0;
+      grid-column-end: -8;
+    }
   }
 </style>
