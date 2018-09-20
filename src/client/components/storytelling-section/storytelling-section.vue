@@ -11,7 +11,7 @@
       
       <div class="storytelling-section__card">
         <h3 class="body font-bold">{{ item.title }}</h3>
-        <rich-text-block :text="item.body" class="body-petite" />
+        <rich-text-block :text="item.body" />
       </div>
     </section>
   </aside>
