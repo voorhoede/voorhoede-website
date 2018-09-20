@@ -62,13 +62,6 @@
           :image="item.image"
         />
 
-        <responsive-image
-          v-if="item.__typename === 'ImageRecord' &&
-          item.image && !item.fullWidth"
-          :key="item.image.url"
-          :image="item.image"
-        />
-
         <case-pull-quote-composition
           v-if="item.__typename === 'PullquoteRecord'"
           :key="item.pullquote.quote"
