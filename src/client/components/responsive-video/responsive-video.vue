@@ -123,6 +123,7 @@
 <style>
   .responsive-video {
     position: relative;
+    grid-column: page;
   }
 
   .responsive-video__canvas {
@@ -168,5 +169,11 @@
   .responsive-video__caption {
     display: block;
     margin-top: var(--spacing-smaller);
+  }
+
+  @media (min-width: 1440px) {
+    .responsive-video {
+      grid-column: content;
+    }
   }
 </style>

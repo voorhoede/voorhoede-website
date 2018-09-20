@@ -55,6 +55,13 @@
           :image="item.image"
         />
 
+        <responsive-image
+          v-if="item.__typename === 'ImageRecord' &&
+          item.image && !item.fullWidth"
+          :key="item.image.url"
+          :image="item.image"
+        />
+
         <case-pull-quote-composition
           v-if="item.__typename === 'PullquoteRecord'"
           :key="item.pullquote.quote"
@@ -69,6 +76,15 @@
           :image="item.imageWithDescription.image"
           :inverse="item.imageWithDescription.inverse"
           :description="item.imageWithDescription.description"
+        />
+
+        <responsive-video 
+          v-if="item.__typename === 'ResponsiveVideoRecord'"
+          :key="item.video.title"
+          :video="item.video" 
+          :autoplay="item.autoplay" 
+          :loop="item.loop" 
+          :mute="item.autoplay" 
         />
 
       </template>
@@ -110,6 +126,7 @@
     ImageWithDescription,
     ResponsiveImage,
     RichTextBlock,
+    ResponsiveVideo,
     QuoteBlock,
     ScrollTo,
   } from '~/components'
@@ -128,6 +145,7 @@
       ImageWithDescription,
       ResponsiveImage,
       RichTextBlock,
+      ResponsiveVideo,
       QuoteBlock,
       ScrollTo,
     },
