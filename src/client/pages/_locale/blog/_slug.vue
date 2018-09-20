@@ -107,9 +107,17 @@ export default {
   .page-blog-post__header,
   .page-blog-post-list__intro,
   .page-blog-post-list__rich-text,
-  .page-blog-post-list__image,
   .page-blog-post__aside-author {
     margin-bottom: var(--spacing-large);
+  }
+
+  .page-blog-post-list__image {
+    justify-content: space-between;
+    margin-bottom: var(--spacing-large);
+  }
+
+  .page-blog-post-list__image .image-with-description__description {
+    margin: 0;
   }
 
   .page-blog-post-list__title {
