@@ -11,7 +11,7 @@
       
       <div class="storytelling-section__card">
         <h3 class="body font-bold">{{ item.title }}</h3>
-        <rich-text-block :text="item.body" />
+        <rich-text-block :text="item.body" class="body-petite" />
       </div>
     </section>
   </aside>
@@ -51,7 +51,7 @@
 <style>
   .storytelling-section {
     background-color: var(--paper);
-    grid-row-gap: var(--spacing-large);
+    grid-row-gap: var(--spacing-larger);
     grid-column: content;
   }
 
