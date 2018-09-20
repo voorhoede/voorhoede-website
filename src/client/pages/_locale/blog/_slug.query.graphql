@@ -1,18 +1,56 @@
 query ($locale: SiteLocale, $slug: String)  {
   page: blogPost(locale: $locale, filter: { slug: { eq: $slug } }) {
-    ...blogPost
+    ...page
   },
-
   alternate: blogPost(locale: $locale, filter: { slug: { eq: $slug } }) {
     slug
   },
-
   alternateParent: blogPostOverview {
     slug
   }
 }
-
-fragment blogPost on BlogPostRecord {
+fragment page on BlogPostRecord {
+  slug,
   title,
-  slug
+  subtitle,
+  headerIllustration {
+    url,
+    alt
+  },
+  date: publishDate,
+  authors {
+    name,
+    lastName,
+    image {
+      url,
+      alt,
+      width,
+      height
+    }
+  }
+  introTitle,
+  items {
+    __typename,
+     ... on TextSectionRecord {
+      title,
+      body,
+    },
+    ... on ImageWithTextRecord {
+      imageWithDescription {
+        image {
+          url,
+          alt,
+          width,
+          height,
+          format
+        },
+        description,
+        inverse
+      }
+    },
+  },
+  callToActionTitle,
+  callToActionBody,
+  callToActionLabel,
+  socialTitle
 }

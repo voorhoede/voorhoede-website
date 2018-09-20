@@ -33,7 +33,8 @@
 }
 
 .horizontal-carousel__slides > * {
-  flex: 0 0 var(--horizontal-carousel-slide-width);
+  flex: 0 0 auto;
+  width: var(--horizontal-carousel-slide-width);
   white-space: initial;
 }
 

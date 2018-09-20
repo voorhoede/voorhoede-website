@@ -11,7 +11,7 @@
             :case-id="caseItem.slug"
             primary-label="See more"
             :slug="caseItem.slug"
-            :image-url="caseItem.heroIllustration ? caseItem.heroIllustration.url : null"
+            :image="caseItem.heroIllustration === null ? (caseItem.heroIllustration = { url: 'https://www.datocms-assets.com/6524/1536758842-vh-placeholder.svg'}) : caseItem.heroIllustration"
             :title="caseItem.title"
             :body="caseItem.subtitle"
           />
@@ -57,7 +57,7 @@
 }
 
 @supports (display: grid) {
-  @media (min-width: 480px) {
+  @media (min-width: 540px) {
     .page-case__overview {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -75,15 +75,14 @@
     }
 
     .page-case__overview {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
       grid-gap: var(--spacing-large);
       margin: var(--spacing-larger) 0;
     }
   }
 
-  @media (min-width: 1100px) {
+  @media (min-width: 1200px) {
     .page-case__overview {
+      grid-template-columns: 1fr 1fr 1fr;
       grid-column-start: 4;
       grid-column-end: -4;
     }

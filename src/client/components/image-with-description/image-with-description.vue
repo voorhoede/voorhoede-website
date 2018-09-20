@@ -22,15 +22,15 @@ export default {
   props: {
     description: {
       type: String,
-      required: true
+      required: true,
     },
     image: {
       type: Object,
-      required: true
+      required: true,
     },
     inverse: {
       type: Boolean,
-      default: false
+      default: false,
     }
   }
 }
@@ -44,11 +44,12 @@ export default {
   .image-with-description {
     display: flex;
     flex-direction: column-reverse;
+    justify-content: space-between;
     width: 100%;
   }
 
   .image-with-description__description {
-    margin: var(--spacing-large) 0;
+    margin: 0 0 var(--spacing-small);
   }
 
   @media (min-width: 720px) {
@@ -60,7 +61,6 @@ export default {
     .image-with-description__description {
       width: 50%;
       max-width: var(--max-width-description);
-      margin: 0 var(--spacing-big);
       align-self: center;
     }
 
