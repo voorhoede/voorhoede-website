@@ -70,6 +70,20 @@ fragment caseItem on CaseItemRecord {
         inverse
       }
     },
+    ... on ResponsiveVideoRecord {
+      mute,
+      loop,
+      autoplay,
+      video {
+        url,
+        title,
+        height,
+        width,
+        provider,
+        providerUid,
+        thumbnailUrl
+      }
+    },
   },
   metaData {
     expertisesTitle,
