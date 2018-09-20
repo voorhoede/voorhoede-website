@@ -7,25 +7,25 @@
             class="responsive-video__background"
             :style="{ backgroundImage: `url(${imageUrl})` }"
           />
+          <iframe
+            v-if="isPlaying"
+            class="responsive-video__i-frame"
+            :src="videoUrl"
+            frameborder="0"
+            webkitallowfullscreen
+            mozallowfullscreen
+            allowfullscreen
+            allow="autoplay"
+          />
+          <a
+            v-if="!isPlaying"
+            class="responsive-video__button"
+            :href="video.url"
+            @click.prevent="play">
+            <span class="sr-only">Play video</span>
+            <img class="responsive-video__icon" src="/icons/icon_play.svg">
+          </a>
         </lazy-load>
-        <iframe
-          v-if="isPlaying"
-          class="responsive-video__i-frame"
-          :src="videoUrl"
-          frameborder="0"
-          webkitallowfullscreen
-          mozallowfullscreen
-          allowfullscreen
-          allow="autoplay"
-        />
-        <a
-          v-if="!isPlaying"
-          class="responsive-video__button"
-          :href="video.url"
-          @click.prevent="play">
-          <span class="sr-only">Play video</span>
-          <img class="responsive-video__icon" src="/icons/icon_play.svg">
-        </a>
       </fixed-ratio>
       <figcaption v-if="video.title">
         <a class="responsive-video__caption body-detail" target="_blank" rel="noopener" :href="video.url" >
@@ -127,7 +127,7 @@
   }
 
   .responsive-video__canvas {
-    background-color: var(--very-dim);
+    background-color: var(--bg-pastel);
   }
 
   .responsive-video__background {
@@ -168,12 +168,14 @@
 
   .responsive-video__caption {
     display: block;
+    text-align: center;
     margin-top: var(--spacing-smaller);
   }
 
   @media (min-width: 1440px) {
     .responsive-video {
-      grid-column: content;
+      margin: 0 auto;
+      width: 1440px;
     }
   }
 </style>
