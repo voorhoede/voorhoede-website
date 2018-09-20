@@ -44,7 +44,6 @@ export default {
   .image-with-description {
     display: flex;
     flex-direction: column-reverse;
-    justify-content: space-between;
     width: 100%;
   }
 
@@ -60,6 +59,7 @@ export default {
 
     .image-with-description__description {
       width: 50%;
+      margin: 0 var(--spacing-big);
       max-width: var(--max-width-description);
       align-self: center;
     }
