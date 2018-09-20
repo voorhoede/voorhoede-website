@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { ResponsiveImage } from '../../components'
+import { ResponsiveImage, } from '../../components'
 
 export default {
   components: {
@@ -59,8 +59,8 @@ export default {
 
     .image-with-description__description {
       width: 50%;
-      margin: 0 var(--spacing-big);
       max-width: var(--max-width-description);
+      margin: 0 var(--spacing-big);
       align-self: center;
     }
 

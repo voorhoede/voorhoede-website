@@ -85,6 +85,20 @@ fragment caseItem on CaseItemRecord {
         }
       }
     }
+    ... on ResponsiveVideoRecord {
+      mute,
+      loop,
+      autoplay,
+      video {
+        url,
+        title,
+        height,
+        width,
+        provider,
+        providerUid,
+        thumbnailUrl
+      }
+    },
   },
   metaData {
     expertisesTitle,
