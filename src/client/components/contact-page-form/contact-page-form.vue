@@ -1,7 +1,7 @@
 <template>
   <form method="POST" name="contact-form" class="contact-form" data-netlify="true" netlify-honeypot="magic-castle">
     <fieldset class="contact-form__fieldset">
-      <legend class="h3">{{ subjectTitle }}</legend>
+      <legend class="h4">{{ subjectTitle }}</legend>
       <input type="hidden" name="form-name" value="contact-form">
       <label class="hidden">
         Don't fill this out if you're human:
@@ -25,7 +25,7 @@
       </label>
     </fieldset>
     <fieldset class="contact-form__fieldset">
-      <legend class="h3">{{ contactTitle }}</legend>
+      <legend class="h4">{{ contactTitle }}</legend>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ nameLabel }}</span>
         <input type="text" class="body" name="name" :placeholder="namePlaceholder">
