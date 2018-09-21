@@ -1,6 +1,6 @@
 <template>
-  <nav class="app-header grid" :class="showMenu ? 'app-header--mobile' : ''">
-    <div class="app-header__content" v-if="!showMenu">
+  <nav class="app-header grid">
+    <div class="app-header__content">
       <nuxt-link class="app-header__home-link" :to="`/${currentLocale}/`">
         <img class="app-header__logo" src="/images/logo-with-text.svg">
       </nuxt-link>
@@ -93,10 +93,6 @@
     height: var(--app-header-height);
     width: 100%;
     border-bottom: 1px solid var(--fog);
-  }
-
-  .app-header--mobile {
-    z-index: 2;
   }
 
   .app-header--mobile__icon {
@@ -197,6 +193,10 @@
 
   @media screen and (min-width: 720px) {
     .app-header--mobile__icon {
+      display: none;
+    }
+    
+    .app-header__content--mobile {
       display: none;
     }
     
