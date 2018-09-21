@@ -5,7 +5,7 @@
       :text="page.subtitle"
       :image="page.headerIllustration"
     />
-    <services-list :services="page.services"/>
+    <services-list :services="page.services" :text="page.smallServices"/>
     <get-in-touch-form
       :title="page.getInTouchTitle"
       :name-label="page.getInTouchForm.nameLabel"

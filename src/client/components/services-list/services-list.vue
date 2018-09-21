@@ -1,25 +1,28 @@
 <template>
-  <ul class="services-list">
-    <li
-      v-for="service in services"
-      :key="service.ctaLink"
-      class="services-list__item"
-    >
-      <service-excerpt
-        :tagline="service.tagline"
-        :title="service.title"
-        :summary="service.summary"
-        :slug="service.slug"
-      />
-    </li>
-  </ul>
+  <div>
+    <ul class="services-list">
+      <li
+        v-for="service in services"
+        :key="service.ctaLink"
+        class="services-list__item"
+      >
+        <service-excerpt
+          :tagline="service.tagline"
+          :title="service.title"
+          :summary="service.summary"
+          :slug="service.slug"
+        />
+      </li>
+    </ul>
+    <rich-text-block class="services-text" :text="text" />      
+  </div>
 </template>
 
 <script>
-import { AppButton, ServiceExcerpt } from '~/components'
+import { AppButton, ServiceExcerpt, RichTextBlock, } from '~/components'
 
 export default {
-  components: { AppButton, ServiceExcerpt },
+  components: { AppButton, ServiceExcerpt, RichTextBlock, },
   props: {
     services: {
       type: Array,
@@ -28,6 +31,10 @@ export default {
         return services.every(service => service instanceof Object)
       },
     },
+    text: {
+      type: String,
+      required: true,
+    }
   },
 }
 </script>
@@ -53,7 +60,7 @@ export default {
   margin-bottom: 0;
 }
 
-@media screen and (min-width: 720px) {
+@media (min-width: 720px) {
   .services-list {
     display: flex;
   }
@@ -81,6 +88,12 @@ export default {
     flex-grow: 1;
     justify-content: space-between;
     align-items: flex-start; /* Reset stretch */
+  }
+
+  .services-text {
+    margin: var(--spacing-larger) auto 0;
+    text-align: center;
+    max-width: 600px;
   }
 }
 </style>
