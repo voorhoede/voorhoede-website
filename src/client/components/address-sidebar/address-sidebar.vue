@@ -18,6 +18,3 @@
     </dl>
   </address>
 </template>
-
-<style>
-</style>
