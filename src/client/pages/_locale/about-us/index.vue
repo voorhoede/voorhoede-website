@@ -39,6 +39,13 @@
             />
           </li>
         </ul>
+        <div class="page-about-us__blog-posts-button">
+          <app-button
+            :to="{ name: 'locale-blog' }"
+            :label="page.allBlogPostsButtonLabel"
+            secondary
+          />
+        </div>
       </section>
     </div>
   </div>
@@ -115,13 +122,22 @@ export default {
     width: auto;
   }
 
-   .page-about-us__blog-posts {
+  .page-about-us__blog-posts {
     margin-bottom: var(--spacing-big);
   }
 
   .page-about-us__blog-posts-title {
     text-align: center;
     margin-bottom: var(--spacing-large);
+  }
+
+  .page-about-us__blog-posts-list {
+    margin-bottom: var(--spacing-small);
+  }
+
+  .page-about-us__blog-posts-button {
+    display: flex;
+    justify-content: center;
   }
 
   @media (min-width: 720px) {

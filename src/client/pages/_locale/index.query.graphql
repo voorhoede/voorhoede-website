@@ -86,6 +86,7 @@ fragment page on HomeRecord {
     height
   },
   blogPostsTitle,
+  allBlogPostsButtonLabel,
   callToActionTitle,
   callToActionLabel,
   casePrimaryCtaLabel,
