@@ -4,8 +4,6 @@
     <app-header/>
     <nuxt/>
     <app-footer
-      :header-title="localizedFooter.headerTitle"
-      :header-subtitle="localizedFooter.headerSubtitle"
       :explore-links="localizedMenuItems"
       :tel="localizedFooter.tel"
       :email="localizedFooter.email"
@@ -31,8 +29,6 @@
       return {
         footerContent: {
           en: {
-            headerTitle: 'Make it real',
-            headerSubtitle: 'Discuss your next project with us',
             tel: '+31 (0)20 2610 954',
             email: 'post@voorhoede.nl',
             googleMapsLink: 'https://www.google.nl/maps/place/De+Voorhoede+%7C+Front-end+Development/@52.3477995,4.8485761,17z/data=!3m1!4b1!4m5!3m4!1s0x47c5e21d502d2d59:0xbf570944a96ebf45!8m2!3d52.3477962!4d4.8507648',
@@ -54,8 +50,6 @@
             ],
           },
           nl: {
-            headerTitle: 'Maak het echt',
-            headerSubtitle: 'Discuss your next project with us',
             tel: '+31 (0)20 2610 954',
             email: 'post@voorhoede.nl',
             googleMapsLink: 'https://www.google.nl/maps/place/De+Voorhoede+%7C+Front-end+Development/@52.3477995,4.8485761,17z/data=!3m1!4b1!4m5!3m4!1s0x47c5e21d502d2d59:0xbf570944a96ebf45!8m2!3d52.3477962!4d4.8507648',

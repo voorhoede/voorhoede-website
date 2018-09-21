@@ -1,9 +1,7 @@
 <template>
   <footer class="app-footer grid">
     <div class="app-footer__header">
-      <h2 class="h4 app-footer__header-title">{{ headerTitle }}</h2>
       <img class="app-footer__header-logo" src="/images/logo--blue.svg">
-      <p class="body font-bold app-footer__header-subtitle">{{ headerSubtitle }}</p>
     </div>
     <div class="app-footer__column">
       <ul class="app-footer__list">
@@ -246,15 +244,6 @@ export default {
   align-items: center;
   width: 100%;
   margin-bottom: var(--spacing-large);
-}
-
-.app-footer__header-title {
-  margin-bottom: var(--spacing-small);
-}
-
-.app-footer__header-subtitle {
-  color: var(--html-blue);
-  text-align: center;
 }
 
 .app-footer__header-logo {
