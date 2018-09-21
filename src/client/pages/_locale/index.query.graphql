@@ -76,7 +76,6 @@ fragment page on HomeRecord {
     },
   },
   clientsTitle,
-  clientsButtonLabel,
   academyPrimaryButtonLabel,
   academySecondaryButtonLabel,
   academyIllustration {
