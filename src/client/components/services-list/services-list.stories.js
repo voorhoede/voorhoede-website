@@ -41,7 +41,8 @@ stories.add(
             teaser: 'Experts in JavaScript (frameworks), HTML and CSS\nWho quickly get the hang of your project\nBack-up of 20 colleagues\nImmediately available',
             slug: 'front-end-specialists',
           },
-        ]
+        ],
+        text: '<p>We also love to help you with your new website, app, training your team, or reviewing your current website or product.</p>',
       }
     },
     template: `

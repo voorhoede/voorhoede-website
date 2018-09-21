@@ -1,25 +1,28 @@
 <template>
-  <ul class="services-list">
-    <li
-      v-for="service in services"
-      :key="service.ctaLink"
-      class="services-list__item"
-    >
-      <service-excerpt
-        :tagline="service.tagline"
-        :title="service.title"
-        :summary="service.summary"
-        :slug="service.slug"
-      />
-    </li>
-  </ul>
+  <div>
+    <ul class="services-list">
+      <li
+        v-for="service in services"
+        :key="service.ctaLink"
+        class="services-list__item"
+      >
+        <service-excerpt
+          :tagline="service.tagline"
+          :title="service.title"
+          :summary="service.summary"
+          :slug="service.slug"
+        />
+      </li>
+    </ul>
+    <rich-text-block class="services-text" :text="text" />      
+  </div>
 </template>
 
 <script>
-import { AppButton, ServiceExcerpt } from '~/components'
+import { AppButton, ServiceExcerpt, RichTextBlock, } from '~/components'
 
 export default {
-  components: { AppButton, ServiceExcerpt },
+  components: { AppButton, ServiceExcerpt, RichTextBlock, },
   props: {
     services: {
       type: Array,
@@ -28,6 +31,10 @@ export default {
         return services.every(service => service instanceof Object)
       },
     },
+    text: {
+      type: String,
+      required: true,
+    }
   },
 }
 </script>
@@ -41,6 +48,11 @@ export default {
     100% / var(--services-list-columns)
     - (var(--services-list-columns) - 1) / var(--services-list-columns) * var(--services-list-item-spacing)
   );
+  --small-services-width: 600px;
+}
+
+.services-list {
+  margin-bottom: var(--spacing-medium);
 }
 
 .services-list__item {
@@ -53,9 +65,10 @@ export default {
   margin-bottom: 0;
 }
 
-@media screen and (min-width: 720px) {
+@media (min-width: 720px) {
   .services-list {
     display: flex;
+    margin-bottom: var(--spacing-larger);
   }
 
   .services-list__item {
@@ -81,6 +94,12 @@ export default {
     flex-grow: 1;
     justify-content: space-between;
     align-items: flex-start; /* Reset stretch */
+  }
+
+  .services-text {
+    margin: 0 auto;
+    text-align: center;
+    max-width: var(--small-services-width);
   }
 }
 </style>
