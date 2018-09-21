@@ -48,6 +48,11 @@ export default {
     100% / var(--services-list-columns)
     - (var(--services-list-columns) - 1) / var(--services-list-columns) * var(--services-list-item-spacing)
   );
+  --small-services-width: 600px;
+}
+
+.services-list {
+  margin-bottom: var(--spacing-medium);
 }
 
 .services-list__item {
@@ -63,6 +68,7 @@ export default {
 @media (min-width: 720px) {
   .services-list {
     display: flex;
+    margin-bottom: var(--spacing-larger);
   }
 
   .services-list__item {
@@ -91,9 +97,9 @@ export default {
   }
 
   .services-text {
-    margin: var(--spacing-larger) auto 0;
+    margin: 0 auto;
     text-align: center;
-    max-width: 600px;
+    max-width: var(--small-services-width);
   }
 }
 </style>
