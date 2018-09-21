@@ -342,10 +342,6 @@ export default {
     margin: 0;
     line-height: 2;
   }
-
-  .app-footer__list-title {
-    margin-bottom: var(--spacing-tiny);
-  }
 }
 
 @media (min-width: 1100px) {
