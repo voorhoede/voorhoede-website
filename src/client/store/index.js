@@ -20,8 +20,8 @@ const createStore = () => {
             slug: 'cases',
           },
           {
-            title: 'Academy',
-            slug: 'academy',
+            title: 'Blog',
+            slug: 'blog',
           },
           {
             title: 'Over Ons',
@@ -43,8 +43,8 @@ const createStore = () => {
             slug: 'cases',
           },
           {
-            title: 'Academy',
-            slug: 'academy',
+            title: 'Blog',
+            slug: 'blog',
           },
           {
             title: 'About Us',
