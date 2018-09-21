@@ -57,6 +57,10 @@ export default {
   --service-excerpt-bullet-size: 2px;
 }
 
+.service-excerpt {
+  position: relative;
+}
+
 .service-excerpt__title {
   margin-bottom: var(--spacing-medium);
   padding-top: .125rem; /* 2px */
@@ -99,6 +103,15 @@ export default {
 .service-excerpt .app-button {
   margin-top: var(--spacing-small);
   margin-left: var(--spacing-small);
+}
+
+.service-excerpt .app-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 @media (min-width: 720px) {
