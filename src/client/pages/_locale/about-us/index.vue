@@ -17,11 +17,11 @@
           <p class="body">{{ page.jobsBody }}</p>
         </text-block>
         <div class="page-about-us__jobs-list">
-          <app-button 
-            v-for="job in page.jobs" 
-            :key="job.title" 
+          <app-button
+            v-for="job in page.jobs"
+            :key="job.title"
             :label="job.title"
-            external 
+            external
             :to="job.url"
           />
         </div>
@@ -29,39 +29,30 @@
       <section class="page-about-us__blog-posts">
         <h2 class="page-about-us__blog-posts-title h3">{{ page.blogPostsTitle }}</h2>
         <ul class="page-about-us__blog-posts-list">
-          <li 
-            v-for="blogPost in latestBlogposts" 
+          <li
+            v-for="blogPost in latestBlogposts"
             :key="blogPost.slug"
           >
-            <blog-list-item 
-              :item="blogPost" 
+            <blog-list-item
+              :item="blogPost"
               :current-locale="currentLocale"
             />
           </li>
         </ul>
       </section>
-      <cta-block 
-        :cta-label="page.callToActionLabel" 
-        :cta-to="{ name: 'locale-contact', params: { locale: currentLocale } }"
-      >
-        <template slot="heading">
-          <h3 class="h4">{{ page.callToActionTitle }}</h3>
-        </template>
-      </cta-block>
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import { 
+import {
   PageHeader,
   ResponsiveImage,
   GenericTextBlock,
-  TextBlock, 
-  BlogListItem, 
-  CtaBlock,
-  AppButton 
+  TextBlock,
+  BlogListItem,
+  AppButton
 } from '~/components'
 
 export default {
@@ -71,7 +62,6 @@ export default {
     GenericTextBlock,
     TextBlock,
     BlogListItem,
-    CtaBlock,
     AppButton
   },
   async asyncData({ store, route }) {
@@ -159,7 +149,7 @@ export default {
       align-items: center;
     }
   }
-  
+
   @media (min-width: 1100px) {
     .page-about-us__overview {
       grid-column-start: 6;
