@@ -47,7 +47,5 @@ fragment about on AboutRecord {
     description,
     url
   },
-  blogPostsTitle,
-  callToActionTitle,
-  callToActionLabel
+  blogPostsTitle
 }
