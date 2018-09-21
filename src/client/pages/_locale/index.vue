@@ -65,6 +65,13 @@
           <blog-list-item :item="blogPost" :current-locale="currentLocale"/>
         </li>
       </ul>
+      <div class="page-index__blog-posts-button">
+        <app-button
+          :to="{ name: 'locale-blog' }"
+          :label="page.allBlogPostsButtonLabel"
+          secondary
+        />
+      </div>
       <div class="page-index__curly-bracket-column page-index__curly-bracket-column--right">
         <img class="page-index__curly-bracket" src="/images/curly-bracket--close-blue.svg" alt="">
       </div>
@@ -83,6 +90,7 @@
   import { mapState } from 'vuex'
   import {
     AcademyExcerpt,
+    AppButton,
     BlogListItem,
     CtaBlock,
     CaseExcerpt,
@@ -97,6 +105,7 @@
   export default {
     components: {
       AcademyExcerpt,
+      AppButton,
       BlogListItem,
       CtaBlock,
       CaseExcerpt,
@@ -212,8 +221,14 @@
   }
 
   .page-index__blog-posts-list {
+    margin-bottom: var(--spacing-small);
     grid-row: 2;
     grid-column-end: -3;
+  }
+
+  .page-index__blog-posts-button {
+    display: flex;
+    justify-content: center;
   }
 
   .page-index__cases {
@@ -239,7 +254,7 @@
       width: 80%;
     }
   }
-  
+
   @media (min-width: 720px) {
     .page-index .page-header {
       margin-bottom: var(--spacing-big);
