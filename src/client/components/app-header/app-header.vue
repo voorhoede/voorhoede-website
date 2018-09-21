@@ -106,6 +106,7 @@
     bottom: 20px;
     right: 20px;
     background: var(--html-blue);
+    box-shadow: 1px 2px 4px var(--dim);
   }
 
   .app-header__content {
