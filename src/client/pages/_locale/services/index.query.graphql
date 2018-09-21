@@ -26,6 +26,7 @@ fragment page on ServiceOverviewRecord {
     url,
     alt
   },
+  smallServices,
   getInTouchTitle,
   getInTouchForm {
     title,
