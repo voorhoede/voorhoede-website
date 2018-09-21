@@ -13,18 +13,14 @@
         </fixed-ratio>
       </li>
     </ul>
-    <div class="highlighted-clients__cta">
-      <app-button :label="ctaLabel" :to="{ name: 'locale-contact' }"/>
-    </div>
   </div>
 </template>
 
 <script>
-import { AppButton, FixedRatio, LazyLoad } from '~/components'
+import { FixedRatio, LazyLoad } from '~/components'
 
 export default {
   components: {
-    AppButton,
     FixedRatio,
     LazyLoad,
   },
@@ -67,7 +63,6 @@ export default {
 }
 
 .highlighted-clients__list {
-  margin-bottom: var(--spacing-large);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -91,24 +86,11 @@ export default {
   :root {
     --highlighted-clients-width: 150px;
   }
-
-  .highlighted-clients__list {
-    margin-bottom: var(--spacing-larger);
-  }
-
-  .highlighted-clients__cta {
-    display: flex;
-    justify-content: center;
-  }
 }
 
 @media (min-width: 1100px) {
   :root {
     --highlighted-clients-width: 210px;
-  }
-
-  .highlighted-clients__list {
-    margin-bottom: var(--spacing-big);
   }
 }
 
