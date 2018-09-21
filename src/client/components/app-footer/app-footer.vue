@@ -6,7 +6,6 @@
       <p class="body font-bold app-footer__header-subtitle">{{ headerSubtitle }}</p>
     </div>
     <div class="app-footer__column">
-      <h3 class="body app-footer__list-title font-bold">Explore</h3>
       <ul class="app-footer__list">
         <li
           v-for="link in exploreLinks"
@@ -18,7 +17,6 @@
       </ul>
     </div>
     <div class="app-footer__column app-footer__column--right">
-      <h3 class="body app-footer__list-title font-bold">Contact</h3>
       <ul class="body-detail app-footer__list app-footer__list--border-none app-footer__list--no-padding">
         <li class="app-footer__list-item">
           <a class="app-footer__link" target="_blank" :href="`tel:${ cleanedTelephone }`">{{ tel }}</a>
@@ -229,11 +227,6 @@ export default {
   margin: 0 var(--spacing-tiny);
 }
 
-.app-footer__list-title {
-  color: var(--html-blue);
-  margin-bottom: var(--spacing-tiny);
-}
-
 .app-footer__link {
   position: relative;
   z-index: 1;
@@ -348,10 +341,6 @@ export default {
   .app-footer__list-item {
     margin: 0;
     line-height: 2;
-  }
-
-  .app-footer__list-title {
-    margin-bottom: var(--spacing-tiny);
   }
 }
 

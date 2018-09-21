@@ -24,12 +24,6 @@ export default {
     FixedRatio,
     LazyLoad,
   },
-  props: {
-    ctaLabel: {
-      type: String,
-      required: true,
-    },
-  },
   data() {
     return {
       clients: [
