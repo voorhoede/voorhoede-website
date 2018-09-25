@@ -97,6 +97,9 @@
 
 <style>
   :root {
+    --header-z-index: 2;
+    --mobile-icon-right: 20px;
+    --mobile-icon-bottom: var(--mobile-icon-right);
     --mobile-icon-height: 52px;
     --mobile-icon-width: var(--mobile-icon-height);
     --mobile-icon-image: 25px;
@@ -108,7 +111,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: var(--header-z-index);
     height: var(--app-header-height);
     width: 100%;
     border-bottom: 1px solid var(--fog);
@@ -116,14 +119,14 @@
 
   .app-header--mobile__icon {
     display: flex;
-    position: fixed;
-    z-index: 2;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    bottom: var(--mobile-icon-bottom);
+    right: var(--mobile-icon-right);
+    z-index: var(--header-z-index);
     height: var(--mobile-icon-height);
     width: var(--mobile-icon-width);
-    bottom: 20px;
-    right: 20px;
     background: var(--html-blue);
     box-shadow: var(--mobile-icon-shadow);
   }
