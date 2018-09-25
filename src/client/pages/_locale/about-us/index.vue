@@ -1,6 +1,7 @@
 <template>
   <div class="grid page-about-us">
     <page-header
+      class="page-about-us__header"
       :title="page.title"
       :text="page.subtitle"
       :image="page.headerIllustration"
@@ -12,42 +13,45 @@
         </text-block>
         <responsive-image :image="page.introImage" />
       </div>
-      <section class="page-about-us__jobs">
-        <text-block :title="page.jobsTitle">
-          <p class="body">{{ page.jobsBody }}</p>
-        </text-block>
-        <div class="page-about-us__jobs-list">
-          <app-button
-            v-for="job in page.jobs"
-            :key="job.title"
-            :label="job.title"
-            external
-            :to="job.url"
-          />
-        </div>
-      </section>
-      <section class="page-about-us__blog-posts">
-        <h2 class="page-about-us__blog-posts-title h3">{{ page.blogPostsTitle }}</h2>
-        <ul class="page-about-us__blog-posts-list">
-          <li
-            v-for="blogPost in latestBlogposts"
-            :key="blogPost.slug"
-          >
-            <blog-list-item
-              :item="blogPost"
-              :current-locale="currentLocale"
-            />
-          </li>
-        </ul>
-        <div class="page-about-us__blog-posts-button">
-          <app-button
-            :to="{ name: 'locale-blog' }"
-            :label="page.allBlogPostsButtonLabel"
-            secondary
-          />
-        </div>
-      </section>
     </div>
+    <div class="page-about-us__jobs-text">
+      <h2 class="page-about-us__jobs-text-title h2">{{ page.jobsTitle }}</h2>
+      <p class="body-big font-html-blue">{{ page.jobsBody }}</p>
+    </div>
+    <ul class="page-about-us__jobs">
+      <li class="page-about-us__jobs-list" v-for="item in page.jobs" :key="item.title">
+        <jobs-excerpt 
+          class="page-about-us__jobs-list-item"
+          :title="item.title" 
+          :description="item.description" 
+          :label="item.callToActionLabel" 
+          :link="item.url" 
+          :image="item.jobImage" 
+        />
+      </li>
+    </ul>
+    <section class="page-about-us__blog-posts">
+      <h2 class="page-about-us__blog-posts-title h2">{{ page.blogPostsTitle }}</h2>
+      <ul class="page-about-us__blog-posts-list">
+        <li
+          v-for="blogPost in latestBlogposts"
+          :key="blogPost.slug"
+        >
+          <blog-list-item
+            large
+            :item="blogPost"
+            :current-locale="currentLocale"
+          />
+        </li>
+      </ul>
+      <div class="page-about-us__blog-posts-button">
+        <app-button
+          :to="{ name: 'locale-blog' }"
+          :label="page.allBlogPostsButtonLabel"
+          secondary
+        />
+      </div>
+    </section>
   </div>
 </template>
 
@@ -59,8 +63,9 @@ import {
   GenericTextBlock,
   TextBlock,
   BlogListItem,
-  AppButton
-} from '~/components'
+  JobsExcerpt,
+  AppButton,
+} from '../../../components'
 
 export default {
   components: {
@@ -69,7 +74,8 @@ export default {
     GenericTextBlock,
     TextBlock,
     BlogListItem,
-    AppButton
+    JobsExcerpt,
+    AppButton,
   },
   async asyncData({ store, route }) {
     return await store.dispatch('getData', { route })
@@ -81,45 +87,57 @@ export default {
 </script>
 
 <style>
-  .page-about-us .page-header {
+  .page-about-us {
+    background: var(--bg-pastel);
+  }
+
+  .page-about-us__header {
     grid-column: page;
-    margin-bottom: var(--spacing-large);
+  }
+
+  .page-about-us__overview {
+    margin-bottom: var(--spacing-big);
   }
 
   .page-about-us__overview-item {
     display: flex;
     flex-direction: column-reverse;
-    margin-bottom: var(--spacing-big);
   }
 
   .page-about-us__overview-item .text-block {
     width: 100%;
   }
 
-  .page-about-us__overview-item .responsive-image {
+  .page-about-us__overview-item .responsive-image__sizer {
     margin-bottom: var(--spacing-medium);
     width: 100%;
   }
 
-  .page-about-us__jobs {
-    display: flex;
-    flex-direction: column;
+  .page-about-us__jobs-text {
     text-align: center;
-    margin-bottom: var(--spacing-big);
+    margin-bottom: var(--spacing-larger);
   }
 
-  .page-about-us__jobs .text-block {
+  .page-about-us__jobs-text-title {
     margin-bottom: var(--spacing-medium);
   }
 
-  .page-about-us__jobs-list {
-    display: flex;
-    flex-direction: column;
+  .page-about-us__jobs {
+    grid-column: page;
+    margin-bottom: var(--spacing-bigger);
   }
 
-  .page-about-us__jobs-list .app-button {
-    margin-bottom: var(--spacing-small);
-    width: auto;
+  .page-about-us__jobs-list:hover {
+    background: var(--white);
+  }
+
+  .page-about-us__jobs-list {
+    border-bottom: 2px solid var(--html-blue);
+    padding: 0 var(--spacing-small);
+  }
+
+  .page-about-us__jobs-list:first-child {
+    border-top: 2px solid var(--html-blue);
   }
 
   .page-about-us__blog-posts {
@@ -145,24 +163,42 @@ export default {
       background: var(--bg-pastel);
     }
 
+    .page-about-us__header {
+      margin-bottom: var(--spacing-large);
+    }
+
     .page-about-us__overview {
       grid-column-start: 2;
       grid-column-end: -2;
       background: var(--white);
-      padding: var(--spacing-large) var(--spacing-larger) 0;
+      padding: var(--spacing-large) var(--spacing-larger);
     }
 
     .page-about-us__overview-item {
       flex-direction: row;
-      margin-bottom: var(--spacing-bigger);
     }
 
     .page-about-us__overview-item .text-block {
       margin-right: var(--spacing-big);
     }
 
-    .page-about-us__jobs-list {
-      align-items: center;
+    .page-about-us__overview-item .responsive-image__sizer {
+      margin-bottom: 0;
+    }
+
+    .page-about-us__jobs-text {
+      grid-column-start: 6;
+      grid-column-end: -6;
+    }
+
+    .page-about-us__jobs-list-item {
+      width: 600px;
+      margin: 0 auto;
+    }
+
+    .page-about-us__blog-posts {
+      grid-column-start: 4;
+      grid-column-end: -4;
     }
   }
 
@@ -170,7 +206,21 @@ export default {
     .page-about-us__overview {
       grid-column-start: 6;
       grid-column-end: -6;
-      padding: var(--spacing-big) var(--spacing-bigger) 0;
+      padding: var(--spacing-big) var(--spacing-bigger);
+    }
+
+    .page-about-us__jobs-text {
+      grid-column-start: 12;
+      grid-column-end: -12;
+    }
+
+    .page-about-us__jobs-list-item {
+      width: 800px;
+    }
+
+    .page-about-us__blog-posts {
+      grid-column-start: 10;
+      grid-column-end: -10;
     }
   }
 </style>
