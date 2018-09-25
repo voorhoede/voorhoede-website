@@ -2,6 +2,7 @@
   <div>
     <grid-demo :show="showGrid"/>
     <app-header/>
+    <app-mobile-menu/>
     <nuxt/>
     <app-footer
       :header-title="localizedFooter.headerTitle"
@@ -23,10 +24,10 @@
 
 <script>
   import { mapState, mapGetters } from 'vuex'
-  import { AppFooter, AppHeader, GridDemo } from '../components'
+  import { AppFooter, AppHeader, AppMobileMenu, GridDemo } from '../components'
 
   export default {
-    components: { AppFooter, AppHeader, GridDemo },
+    components: { AppFooter, AppHeader, AppMobileMenu, GridDemo },
     data() {
       return {
         footerContent: {
