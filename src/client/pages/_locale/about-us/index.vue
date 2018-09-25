@@ -159,10 +159,6 @@ export default {
   }
 
   @media (min-width: 720px) {
-    .page-about-us {
-      background: var(--bg-pastel);
-    }
-
     .page-about-us__header {
       margin-bottom: var(--spacing-large);
     }
