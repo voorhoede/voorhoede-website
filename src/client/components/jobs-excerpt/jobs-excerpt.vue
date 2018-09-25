@@ -4,7 +4,7 @@
       <img class="job-excerpt__image-item" :src="image.url" :alt="image.alt">
     </div>
     <div class="job-excerpt__text">
-      <h3 class="job-excerpt__text-title body-detail">{{ title }}</h3>
+      <h3 class="job-excerpt__text-title body-detail font-html-blue font-bold">{{ title }}</h3>
       <p class="job-excerpt__text-description body-detail">{{ description }}</p>
     </div>
     <app-button
@@ -77,8 +77,6 @@
 
   .job-excerpt__text-title {
     text-transform: uppercase;
-    color: var(--html-blue);
-    font-weight: bold;
     letter-spacing: 2.5px;
     margin-bottom: var(--spacing-tiny);
   }
