@@ -117,7 +117,8 @@ export default {
   }
 
   .page-blog-post-list__image .image-with-description__description {
-    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .page-blog-post-list__title {
@@ -128,6 +129,7 @@ export default {
     display: flex;
     justify-content: space-between;
     grid-row: 2;
+    margin-bottom: var(--spacing-medium);
   }
 
   .page-blog-post__link-container {
@@ -162,12 +164,10 @@ export default {
 
     .page-blog-post-list {
       grid-column-start: 9;
-      grid-column-end: 0;
     }
     
     .page-blog-post__aside {
       display: block;
-      grid-column-start: 0;
       grid-column-end: 9;
     }
 
