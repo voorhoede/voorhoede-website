@@ -13,12 +13,7 @@
 </template>
 
 <script>
-  import { ScrollTo } from '../../components'
-
   export default {
-    components: {
-      ScrollTo,
-    },
     props: {
       image: {
         type: Object,
