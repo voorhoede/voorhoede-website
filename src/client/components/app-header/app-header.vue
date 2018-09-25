@@ -26,14 +26,19 @@
         </ul>
       </div>
     </div>
-    <div class="app-header__content--mobile" v-if="showMenu">
+    <div v-if="showMenu" class="app-header__content--mobile">
       <nuxt-link class="app-header__home-link" :to="`/${currentLocale}/`">
-        <img class="app-header__logo" src="/images/logo--blue.svg" @click="showMenu = !showMenu">
+        <img 
+          class="app-header__logo" 
+          src="/images/logo--blue-and-yellow.svg" 
+          @click="toggleMobileMenu">
       </nuxt-link>
-      <div class="app-header__link-lists app-header__link-lists--mobile body-petite">
-        <ul class="app-header__link-list app-header__link-list--mobile">
-          <li v-for="link in localizedMenuItems" :key="link.href" @click="showMenu = !showMenu" 
-              class="app-header__link-list-item app-header__link-list-item--mobile">
+      <div class="app-header__link-lists--mobile body-petite">
+        <ul class="app-header__link-list--mobile">
+          <li v-for="link in localizedMenuItems" :key="link.href"
+              class="app-header__link-list-item--mobile"
+              @click="toggleMobileMenu"
+          >
             <nuxt-link 
               class="app-header__link h2"
               :to="createHref(link)" 
@@ -44,16 +49,22 @@
         </ul>
       </div>
     </div>
-    <div class="app-header--mobile__icon" @click="showMenu = !showMenu">
-      <img v-if="!showMenu" src="/images/icon_menu-passive--white.svg" >
-      <img v-else src="/images/icon_menu-exit--white.svg" >
+    <div class="app-header--mobile__icon" @click="toggleMobileMenu">
+      <img 
+        v-if="!showMenu" 
+        class="app-header--mobile__icon-image"
+        src="/images/icon_menu-passive--white.svg">
+      <img 
+        v-else 
+        class="app-header--mobile__icon-image" 
+        src="/images/icon_menu-exit--white.svg">
     </div>
   </nav>
 </template>
 
 <script>
   import { mapGetters, mapState } from 'vuex'
-  import { AppButton } from '~/components'
+  import { AppButton } from '../../components'
 
   export default {
     components: { AppButton },
@@ -71,6 +82,9 @@
       ]),
     },
     methods: {
+      toggleMobileMenu() {
+        return this.showMenu = !this.showMenu
+      },
       createHref(link) {
         const locale = this.currentLocale
         return `/${locale}/${link.slug}/`
@@ -82,7 +96,10 @@
 <style>
   :root {
     --mobile-icon-height: 52px;
-    --mobile-icon-width: 52px;
+    --mobile-icon-width: var(--mobile-icon-height);
+    --mobile-icon-image: 25px;
+    --mobile-icon-shadow: 1px 2px 4px var(--dim);
+    --mobile-spacing: 12px 20px;
   }
 
   .app-header {
@@ -100,13 +117,18 @@
     position: fixed;
     z-index: 2;
     justify-content: center;
+    align-items: center;
     height: var(--mobile-icon-height);
     width: var(--mobile-icon-width);
-    padding: var(--spacing-tiny);
     bottom: 20px;
     right: 20px;
     background: var(--html-blue);
-    box-shadow: 1px 2px 4px var(--dim);
+    box-shadow: var(--mobile-icon-shadow);
+  }
+  
+  .app-header--mobile__icon-image {
+    height: var(--mobile-icon-image);
+    width: var(--mobile-icon-image);
   }
 
   .app-header__content {
@@ -123,7 +145,7 @@
     height: 100vh;
     width: 100vw;
     background: var(--brand-yellow);
-    padding: var(--spacing-medium);
+    padding: var(--mobile-spacing);
   }
 
   .app-header__logo {
@@ -137,6 +159,7 @@
   }
 
   .app-header__link-lists--mobile {
+    display: flex;
     height: 100%;
     align-items: flex-start;
     margin-top: var(--spacing-larger);
