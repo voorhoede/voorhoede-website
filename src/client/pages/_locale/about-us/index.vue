@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="page-about-us__jobs-text">
-      <h2 class="page-about-us__jobs-text-title h2">{{ page.jobsTitle }}</h2>
+      <h2 class="page-about-us__jobs-title h2">{{ page.jobsTitle }}</h2>
       <p class="body-big font-html-blue">{{ page.jobsBody }}</p>
     </div>
     <ul class="page-about-us__jobs">
@@ -30,9 +30,9 @@
         />
       </li>
     </ul>
-    <section class="page-about-us__blog-posts">
-      <h2 class="page-about-us__blog-posts-title h2">{{ page.blogPostsTitle }}</h2>
-      <ul class="page-about-us__blog-posts-list">
+    <section class="page-about-us__blog">
+      <h2 class="page-about-us__blog-title h2">{{ page.blogPostsTitle }}</h2>
+      <ul class="page-about-us__blog-list">
         <li
           v-for="blogPost in latestBlogposts"
           :key="blogPost.slug"
@@ -44,7 +44,7 @@
           />
         </li>
       </ul>
-      <div class="page-about-us__blog-posts-button">
+      <div class="page-about-us__blog-button">
         <app-button
           :to="{ name: 'locale-blog' }"
           :label="page.allBlogPostsButtonLabel"
@@ -96,7 +96,7 @@ export default {
   }
 
   .page-about-us__overview {
-    margin-bottom: var(--spacing-big);
+    margin-bottom: var(--spacing-larger);
   }
 
   .page-about-us__overview-item {
@@ -118,13 +118,13 @@ export default {
     margin-bottom: var(--spacing-larger);
   }
 
-  .page-about-us__jobs-text-title {
+  .page-about-us__jobs-title {
     margin-bottom: var(--spacing-medium);
   }
 
   .page-about-us__jobs {
     grid-column: page;
-    margin-bottom: var(--spacing-bigger);
+    margin-bottom: var(--spacing-larger);
   }
 
   .page-about-us__jobs-list:hover {
@@ -133,27 +133,27 @@ export default {
 
   .page-about-us__jobs-list {
     border-bottom: 2px solid var(--html-blue);
-    padding: 0 var(--spacing-small);
+    padding: 0 var(--spacing-large);
   }
 
   .page-about-us__jobs-list:first-child {
     border-top: 2px solid var(--html-blue);
   }
 
-  .page-about-us__blog-posts {
+  .page-about-us__blog {
     margin-bottom: var(--spacing-big);
   }
 
-  .page-about-us__blog-posts-title {
+  .page-about-us__blog-title {
     text-align: center;
     margin-bottom: var(--spacing-large);
   }
 
-  .page-about-us__blog-posts-list {
+  .page-about-us__blog-list {
     margin-bottom: var(--spacing-small);
   }
 
-  .page-about-us__blog-posts-button {
+  .page-about-us__blog-button {
     display: flex;
     justify-content: center;
   }
@@ -168,6 +168,7 @@ export default {
       grid-column-end: -2;
       background: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
+      margin-bottom: var(--spacing-big);
     }
 
     .page-about-us__overview-item {
@@ -182,6 +183,10 @@ export default {
       margin-bottom: 0;
     }
 
+    .page-about-us__jobs {
+      margin-bottom: var(--spacing-big);
+    }
+
     .page-about-us__jobs-text {
       grid-column-start: 6;
       grid-column-end: -6;
@@ -192,7 +197,7 @@ export default {
       margin: 0 auto;
     }
 
-    .page-about-us__blog-posts {
+    .page-about-us__blog {
       grid-column-start: 4;
       grid-column-end: -4;
     }
@@ -205,6 +210,10 @@ export default {
       padding: var(--spacing-big) var(--spacing-bigger);
     }
 
+    .page-about-us__jobs {
+      margin-bottom: var(--spacing-bigger);
+    }
+
     .page-about-us__jobs-text {
       grid-column-start: 12;
       grid-column-end: -12;
@@ -214,7 +223,7 @@ export default {
       width: 800px;
     }
 
-    .page-about-us__blog-posts {
+    .page-about-us__blog {
       grid-column-start: 10;
       grid-column-end: -10;
     }
