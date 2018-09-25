@@ -112,7 +112,7 @@
     --mobile-icon-height: 52px;
     --mobile-icon-width: var(--mobile-icon-height);
     --mobile-icon-image: 25px;
-    --mobile-icon-shadow: 1px 2px 4px var(--dim);
+    --mobile-icon-shadow: 2px 2px 4px 0 rgba(0, 0, 0, .27);
     --mobile-spacing: 12px 20px;
   }
 
