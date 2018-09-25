@@ -51,13 +51,15 @@
     </div>
     <div class="app-header--mobile__icon" @click="toggleMobileMenu">
       <img 
-        v-if="!showMenu" 
-        class="app-header--mobile__icon-image"
-        src="/images/icon_menu-passive--white.svg">
+        v-if="showMenu" 
+        class="app-header--mobile__icon-image" 
+        src="/images/icon_menu-exit--white.svg"
+      >
       <img 
         v-else 
-        class="app-header--mobile__icon-image" 
-        src="/images/icon_menu-exit--white.svg">
+        class="app-header--mobile__icon-image"
+        src="/images/icon_menu-passive--white.svg"
+      >
     </div>
   </nav>
 </template>
