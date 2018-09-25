@@ -39,7 +39,9 @@
         type: Object,
         required: true,
         validator(image) {
-          return typeof(image.url) === 'string' && typeof(image.alt) === 'string'
+          const isValidImageText = (image.alt === undefined) ? true : typeof image.alt === 'string'
+
+          return typeof(image.url) === 'string' && isValidImageText
         },
       },
       label: {
@@ -59,10 +61,11 @@
     --job-excerpt-animation-timing: .15s;
     --job-excerpt-image-width: 65px;
     --job-excerpt-image-height: 90px;
-    --job-excerpt-transform: translateY(20px);
+    --job-excerpt-transform: translateY(25px);
   }
 
   .job-excerpt {
+    position: relative;
     display: grid;
     grid-template-columns: var(--job-excerpt-image-width) var(--spacing-large) 1fr;
     grid-row-gap: var(--spacing-small);
@@ -103,6 +106,21 @@
     margin: 0 auto;
   }
 
+  .job-excerpt .app-button--small:hover,
+  .app-button--small:focus,
+  .app-button--small--hover {
+    transform: none;
+  }
+
+  .job-excerpt .app-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
   @media (min-width: 720px) {
     .job-excerpt {
       display: flex;
@@ -127,6 +145,7 @@
     }
 
     .job-excerpt__text {
+      align-self: center;
       text-align: left;
       max-width: 50%;
     }
