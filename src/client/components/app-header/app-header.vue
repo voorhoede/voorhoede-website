@@ -31,10 +31,13 @@
 
 <script>
   import { mapGetters, mapState } from 'vuex'
-  import { AppButton } from '~/components'
+  import { AppButton } from '../../components'
 
   export default {
     components: { AppButton },
+    data: () => ({
+      showMenu: false
+    }),
     computed: {
       ...mapState([
         'locales',
@@ -55,11 +58,15 @@
 </script>
 
 <style>
+  :root {
+    --header-z-index: 2;
+  }
+  
   .app-header {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: var(--header-z-index);
     height: var(--app-header-height);
     width: 100%;
     border-bottom: 1px solid var(--fog);
