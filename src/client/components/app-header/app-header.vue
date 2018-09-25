@@ -58,6 +58,10 @@
 </script>
 
 <style>
+  :root {
+    --header-z-index: 2;
+  }
+  
   .app-header {
     position: absolute;
     top: 0;

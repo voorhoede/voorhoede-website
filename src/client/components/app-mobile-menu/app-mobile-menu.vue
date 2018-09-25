@@ -78,7 +78,7 @@
 
 <style>
   :root {
-      --header-z-index: 2;
+      --mobile-menu-z-index: 2;
       --mobile-icon-right: 20px;
       --mobile-icon-bottom: var(--mobile-icon-right);
       --mobile-icon-height: 52px;
@@ -105,7 +105,7 @@
     position: fixed;
     bottom: var(--mobile-icon-bottom);
     right: var(--mobile-icon-right);
-    z-index: var(--header-z-index);
+    z-index: var(--mobile-menu-z-index);
     height: var(--mobile-icon-height);
     width: var(--mobile-icon-width);
     background: var(--html-blue);
