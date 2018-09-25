@@ -26,7 +26,10 @@
         </ul>
       </div>
     </div>
-    <div v-if="showMenu" class="app-header__content--mobile">
+    <div 
+      v-if="showMenu" 
+      class="app-header__content--mobile" 
+      @touchmove="prevent">
       <nuxt-link class="app-header__home-link" :to="`/${currentLocale}/`">
         <img 
           class="app-header__logo" 
@@ -49,7 +52,10 @@
         </ul>
       </div>
     </div>
-    <div class="app-header--mobile__icon" @click="toggleMobileMenu">
+    <div 
+      class="app-header--mobile__icon" 
+      @click="toggleMobileMenu" 
+      @touchmove="prevent">
       <img 
         v-if="showMenu" 
         class="app-header--mobile__icon-image" 
@@ -84,6 +90,9 @@
       ]),
     },
     methods: {
+      prevent(event) {
+        event.preventDefault()
+      },
       toggleMobileMenu() {
         return this.showMenu = !this.showMenu
       },
