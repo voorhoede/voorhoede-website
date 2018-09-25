@@ -143,11 +143,6 @@ export default {
     align-items: flex-end;
   }
 
-  .page-header__scroll-to.scroll-to {
-    position: absolute;
-    top: 89vh;
-  }
-
   @media screen and (min-width: 420px) {
     .page-header--brick .page-header__image img {
       height: 100%;
