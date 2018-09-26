@@ -227,6 +227,10 @@
     padding: var(--spacing-larger) 0;
   }
   
+  .page-case__text video {
+    max-width: 100%; /* temporary fix for mvp should refactored after mvp */
+  }
+  
   @media (min-width: 720px) {
     .page-case__get-in-touch-form,
     .page-case__content,
