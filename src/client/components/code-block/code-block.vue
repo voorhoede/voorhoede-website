@@ -26,7 +26,4 @@ export default {
 </script>
 
 <style>
-.code-block:not(:last-child) {
-  margin-bottom: var(--spacing-medium);
-}
 </style>
