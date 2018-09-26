@@ -48,6 +48,17 @@ fragment page on BlogPostRecord {
         inverse
       }
     },
+    ... on ImageRecord {
+      image {
+        url,
+        alt,
+        width,
+        height,
+        format
+      },
+      alt,
+      fullWidth,
+    },
   },
   callToActionTitle,
   callToActionBody,

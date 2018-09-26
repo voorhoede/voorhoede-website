@@ -26,6 +26,14 @@
           :key="item.body"
           :text="item.body"
         />
+        
+        <responsive-image
+          class="page-blog-post-list__image"
+          :class="{ 'page-blog-post-list--not-indented' : item.fullWidth}"
+          v-if="item.__typename === 'ImageRecord' && item.image"
+          :key="item.image.url"
+          :image="item.image"
+        />
 
         <image-with-description
           class="page-blog-post-list__image page-blog-post-list--not-indented"
@@ -72,7 +80,9 @@ import {
   PageHeaderDetail,
   TextBlock,
   RichTextBlock,
+  FullWidthImage,
   ImageWithDescription,
+  ResponsiveImage,
   BlogAuthor,
   AppButton,
   SocialButtons,
@@ -84,7 +94,9 @@ export default {
     PageHeaderDetail,
     TextBlock,
     RichTextBlock,
+    FullWidthImage,
     ImageWithDescription,
+    ResponsiveImage,
     BlogAuthor,
     AppButton,
     SocialButtons,
@@ -129,7 +141,6 @@ export default {
     display: flex;
     justify-content: space-between;
     grid-row: 2;
-    margin-bottom: var(--spacing-medium);
   }
 
   .page-blog-post__link-container {
@@ -145,6 +156,17 @@ export default {
 
   .page-blog-post__cta-block.cta-block {
     border: none;
+  }
+
+  .page-blog-post-list :not(pre) code {
+    font-family: monospace;
+    background: #f5f2f0;
+    padding: 0 .25rem;
+    border: 1px solid #b3b3b3;
+  }
+
+  .page-blog-post-list em {
+    font-style: italic;
   }
 
   @media (min-width: 720px) {
