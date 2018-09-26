@@ -66,11 +66,14 @@
   }
 
   .blog-author__image-author {
-    max-width: var(--thumbnail-size);
+    background: var(--white);
+    width: var(--thumbnail-size);
+    height: var(--thumbnail-size);
     margin: 0 0 var(--spacing-tiny);
   }
 
   .blog-author__text-time {
+    display: block;
     color: var(--dim);
   }
 

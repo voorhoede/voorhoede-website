@@ -52,22 +52,23 @@
 </script>
 
 <style>
+  .social-buttons__text {
+    display: none;
+  }
+
   .social-buttons__list-icon {
     display: inline-block;
-    margin-right: var(--spacing-medium);
+    margin-right: var(--spacing-small);
   }
 
   .social-buttons__list-icon:last-of-type {
     margin: 0;
   }
 
-  .social-buttons__text {
-    margin-bottom: var(--spacing-smaller);
-  }
-
   @media (min-width: 720px) {
-    .social-buttons__list-icon {
-      margin-right: var(--spacing-small);
+    .social-buttons__text {
+      display: block;
+      margin-bottom: var(--spacing-smaller);
     }
 
     .social-buttons__list-icon:last-of-type {
