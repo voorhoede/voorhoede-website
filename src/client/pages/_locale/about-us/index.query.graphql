@@ -44,9 +44,17 @@ fragment about on AboutRecord {
   jobsBody,
   jobs {
     title,
+    jobImage {
+      url,
+      alt,
+      width,
+      height,
+      format
+    }
     description,
-    url
-  },
+    url,
+    callToActionLabel,
+  }
   blogPostsTitle,
-  allBlogPostsButtonLabel
+  allBlogPostsButtonLabel,
 }
