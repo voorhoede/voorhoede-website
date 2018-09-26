@@ -5,6 +5,7 @@ const glob = util.promisify(require('glob'))
 const path = require('path')
 const mkdirp = require('mkdirp')
 const dotenv = require('dotenv-safe')
+const decode = require('decode-html')
 const Prism = require('prismjs')
 const loadLanguages = require('prismjs/components/')
 
@@ -103,9 +104,9 @@ function prismifyCodeBlocks(items) {
   items.forEach(item => {
     if (item.__typename === 'CodeBlockRecord' && item.body && item.language) {
       const { body, language } = item
-      const unwrapped = body
+      const unwrapped = decode(body
         .replace(/(?:<pre>|<\/pre>)/g, '')
-        .replace(/<br\s*\/>/g, '\\n')
+        .replace(/<br\s*\/>/g, '\\n'))
       let prismified
       try {
         prismified = Prism.highlight(unwrapped, Prism.languages[language])

@@ -30,6 +30,7 @@
     "start": "nuxt start"
   },
   "dependencies": {
+    "decode-html": "^2.0.0",
     "dotenv-safe": "6.0.0",
     "nuxt": "1.0.0",
     "prismjs": "^1.15.0"
