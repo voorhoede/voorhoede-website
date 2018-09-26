@@ -5,7 +5,6 @@ const glob = util.promisify(require('glob'))
 const path = require('path')
 const mkdirp = require('mkdirp')
 const dotenv = require('dotenv-safe')
-const decode = require('decode-html')
 const Prism = require('prismjs')
 const loadLanguages = require('prismjs/components/')
 
@@ -102,14 +101,11 @@ function createDirectory(dir) {
 
 function prismifyCodeBlocks(items) {
   items.forEach(item => {
-    if (item.__typename === 'CodeBlockRecord' && item.body && item.language) {
-      const { body, language } = item
-      const unwrapped = decode(body
-        .replace(/(?:<pre>|<\/pre>)/g, '')
-        .replace(/<br\s*\/>/g, '\\n'))
+    const { body, language, __typename } = item
+    if (__typename === 'CodeBlockRecord' && body && language) {
       let prismified
       try {
-        prismified = Prism.highlight(unwrapped, Prism.languages[language])
+        prismified = Prism.highlight(body, Prism.languages[language])
       } catch (e) {
         console.error(`Unable to prismify code block for language ${language}: ${e.message}`) // eslint-disable-line no-console
         return
