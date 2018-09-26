@@ -62,9 +62,6 @@ module.exports = {
     postcss: [
       require('postcss-custom-properties')()
     ],
-    vendor: [
-      'prismjs'
-    ],
 
     /*
     ** Run ESLint on save

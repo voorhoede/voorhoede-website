@@ -5,6 +5,12 @@ const glob = util.promisify(require('glob'))
 const path = require('path')
 const mkdirp = require('mkdirp')
 const dotenv = require('dotenv-safe')
+const Prism = require('prismjs')
+const loadLanguages = require('prismjs/components/')
+
+// Load additional prism languages
+loadLanguages(['bash'])
+
 dotenv.config()
 
 /*
@@ -42,6 +48,10 @@ function getPageData(queryPath, locale, alternateLocale) {
             runQuery(slugQueryPath, { locale, alternateLocale, slug })
               .then(data => {
                 const relPath = path.join(locale, pageData.page.slug, data.page.slug)
+                // Run code block content through prismjs
+                if (data.page && Array.isArray(data.page.items)) {
+                  prismifyCodeBlocks(data.page.items)
+                }
                 writeJsonFile({ filePath: relPath, data })
                 console.log(chalk.green(`👌️ Successfully written: ${relPath}`)) // eslint-disable-line no-console
               })
@@ -87,4 +97,23 @@ async function writeJsonFile({ filePath, data }) {
 
 function createDirectory(dir) {
   return new Promise((resolve, reject) => mkdirp(dir, (err) => err ? reject(err) : resolve()))
+}
+
+function prismifyCodeBlocks(items) {
+  items.forEach(item => {
+    if (item.__typename === 'CodeBlockRecord' && item.body && item.language) {
+      const { body, language } = item
+      const unwrapped = body
+        .replace(/(?:<pre>|<\/pre>)/g, '')
+        .replace(/<br\s*\/>/g, '\\n')
+      let prismified
+      try {
+        prismified = Prism.highlight(unwrapped, Prism.languages[language])
+      } catch (e) {
+        console.error(`Unable to prismify code block for language ${language}: ${e.message}`) // eslint-disable-line no-console
+        return
+      }
+      item.body = prismified
+    }
+  })
 }

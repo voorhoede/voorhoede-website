@@ -27,6 +27,11 @@
           :text="item.body"
         />
 
+        <code-block :language="item.language"
+                    :content="item.body"
+                    v-if="item.__typename === 'CodeBlockRecord' && item.body"
+                    :key="item.body" />
+
         <image-with-description
           class="page-blog-post-list__image page-blog-post-list--not-indented"
           v-if="item.__typename === 'ImageWithTextRecord'"
@@ -77,6 +82,7 @@ import {
   AppButton,
   SocialButtons,
   CtaBlock,
+  CodeBlock,
 } from '../../../components'
 
 export default {
@@ -89,6 +95,7 @@ export default {
     AppButton,
     SocialButtons,
     CtaBlock,
+    CodeBlock,
   },
   async asyncData({ store, route }) {
     return await store.dispatch('getData', { route })
@@ -164,7 +171,7 @@ export default {
       grid-column-start: 9;
       grid-column-end: 0;
     }
-    
+
     .page-blog-post__aside {
       display: block;
       grid-column-start: 0;
@@ -207,4 +214,3 @@ export default {
     }
   }
  </style>
- 
