@@ -52,12 +52,18 @@ module.exports = {
     ],
   },
 
+  css: [
+    'prismjs/themes/prism.css'
+  ],
   /*
   ** Build configuration
   */
   build: {
     postcss: [
-      require('postcss-custom-properties')(),
+      require('postcss-custom-properties')()
+    ],
+    vendor: [
+      'prismjs'
     ],
 
     /*
