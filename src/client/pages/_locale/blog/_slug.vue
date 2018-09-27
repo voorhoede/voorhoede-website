@@ -69,7 +69,7 @@
       <cta-block
         class="page-blog-post__cta-block"
         :cta-label="page.callToActionLabel"
-        :cta-to="{ name: 'locale-contact', params: { locale: currentLocale } }"
+        :cta-to="{ name: 'locale-about-us', params: { locale: currentLocale } }"
       >
         <template slot="heading">
           <h2 class="h3">{{ page.callToActionTitle }}</h2>

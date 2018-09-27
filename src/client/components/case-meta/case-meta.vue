@@ -15,9 +15,9 @@
     </section>
     <section class="case-meta__section">
       <h3 class="case-meta__title body font-bold">{{ interestedTitle }}</h3>
-      <nuxt-link class="case-meta__link body-petite" :to="interestedLinkUrl">
+      <a class="case-meta__link body-petite" :href="interestedLinkUrl" target="_blank">
         {{ interestedLinkLabel }} &raquo;
-      </nuxt-link>
+      </a>
     </section>
   </section>
 </template>
