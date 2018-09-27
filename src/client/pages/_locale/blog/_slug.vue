@@ -169,7 +169,7 @@ export default {
     border: none;
   }
 
-  .page-blog-post-list :not(pre) code {
+  .page-blog-post-list :not(pre) > code {
     font-family: monospace;
     background: #f5f2f0;
     padding: 0 .25rem;
@@ -191,7 +191,8 @@ export default {
 
     .page-blog-post__header,
     .page-blog-post-list__rich-text,
-    .page-blog-post-list__image {
+    .page-blog-post-list__imager,
+    .page-blog-post-list__code-block {
       margin-bottom: var(--spacing-big);
     }
 
