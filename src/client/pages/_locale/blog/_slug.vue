@@ -35,6 +35,14 @@
           :image="item.image"
         />
 
+        <code-block
+          class="page-blog-post-list__code-block"
+          v-if="item.__typename === 'CodeBlockRecord' && item.body"
+          :language="item.language"
+          :content="item.body"
+          :key="item.body"
+        />
+
         <image-with-description
           class="page-blog-post-list__image page-blog-post-list--not-indented"
           v-if="item.__typename === 'ImageWithTextRecord'"
@@ -87,6 +95,7 @@ import {
   AppButton,
   SocialButtons,
   CtaBlock,
+  CodeBlock,
 } from '../../../components'
 
 export default {
@@ -101,6 +110,7 @@ export default {
     AppButton,
     SocialButtons,
     CtaBlock,
+    CodeBlock,
   },
   async asyncData({ store, route }) {
     return await store.dispatch('getData', { route })
@@ -119,7 +129,8 @@ export default {
   .page-blog-post__header,
   .page-blog-post-list__intro,
   .page-blog-post-list__rich-text,
-  .page-blog-post__aside-author {
+  .page-blog-post__aside-author,
+  .page-blog-post-list__code-block {
     margin-bottom: var(--spacing-large);
   }
 
@@ -187,7 +198,7 @@ export default {
     .page-blog-post-list {
       grid-column-start: 9;
     }
-    
+
     .page-blog-post__aside {
       display: block;
       grid-column-end: 9;
@@ -229,4 +240,3 @@ export default {
     }
   }
  </style>
- 

@@ -31,7 +31,8 @@
   },
   "dependencies": {
     "dotenv-safe": "6.0.0",
-    "nuxt": "1.0.0"
+    "nuxt": "1.0.0",
+    "prismjs": "^1.15.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "3.4.8",
