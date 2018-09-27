@@ -66,7 +66,6 @@
   }
 
   .blog-author__image-author.app-image {
-    background: var(--white);
     width: var(--thumbnail-size);
     height: var(--thumbnail-size);
     margin: 0 0 var(--spacing-tiny);
