@@ -14,7 +14,7 @@
     </div>
     <AppButton
       secondary
-      label="Learn more"
+      :label="label"
       :to="{
         name: 'locale-services-slug',
         params: { slug },
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { AppButton } from '~/components'
+import { AppButton } from '../../components'
 
 export default {
   components: { AppButton },
@@ -45,6 +45,10 @@ export default {
       }
     },
     slug: {
+      type: String,
+      required: true,
+    },
+    label: {
       type: String,
       required: true,
     },

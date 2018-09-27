@@ -15,7 +15,7 @@
     </div>
     <section class="page-index__services grid">
       <h2 class="page-index__section-title h1">{{ page.servicesHeader }}</h2>
-      <services-list :services="page.services" :text="page.smallServices"/>
+      <services-list :services="page.services" :label="page.servicesButtonLabel" :text="page.smallServices"/>
     </section>
     <section class="page-index__cases">
       <div class="grid">

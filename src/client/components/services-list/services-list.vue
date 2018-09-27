@@ -11,6 +11,7 @@
           :title="service.title"
           :summary="service.summary"
           :slug="service.slug"
+          :label="label"
         />
       </li>
     </ul>
@@ -19,7 +20,7 @@
 </template>
 
 <script>
-import { AppButton, ServiceExcerpt, RichTextBlock, } from '~/components'
+import { AppButton, ServiceExcerpt, RichTextBlock, } from '../../components'
 
 export default {
   components: { AppButton, ServiceExcerpt, RichTextBlock, },
@@ -34,7 +35,11 @@ export default {
     text: {
       type: String,
       required: true,
-    }
+    },
+    label: {
+      type: String,
+      required: true,
+    },
   },
 }
 </script>
