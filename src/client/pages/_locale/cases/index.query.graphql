@@ -23,6 +23,7 @@ fragment page on CaseOverviewRecord {
     url,
     alt
   }
+  casePrimaryButtonLabel,
   callToActionLabel,
   callToActionTitle
 }
