@@ -205,7 +205,7 @@ export default {
     .page-blog-post-list__image,
     .page-blog-post__button,
     .page-blog-post-list__code-block {
-      margin-bottom: var(--spacing-big);
+      margin-bottom: var(--spacing-larger);
     }
 
     .page-blog-post-list {
