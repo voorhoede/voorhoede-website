@@ -1,8 +1,6 @@
 <template>
   <div class="code-block">
-    <pre :class="codeLanguage">
-      <code v-html="content"/>
-    </pre>
+    <pre :class="codeLanguage"><code v-html="content"/></pre>
   </div>
 </template>
 <script>
