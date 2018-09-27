@@ -75,6 +75,7 @@ fragment page on HomeRecord {
       title
     },
   },
+  servicesButtonLabel,
   smallServices,
   clientsTitle,
   academyPrimaryButtonLabel,
