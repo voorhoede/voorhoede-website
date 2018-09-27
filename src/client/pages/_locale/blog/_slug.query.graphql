@@ -59,6 +59,11 @@ fragment page on BlogPostRecord {
       alt,
       fullWidth,
     },
+    ... on LinkRecord {
+    	link,
+      label,
+      external,
+    },
   },
   callToActionTitle,
   callToActionBody,
