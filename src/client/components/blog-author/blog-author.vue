@@ -65,8 +65,7 @@
     display: none;
   }
 
-  .blog-author__image-author {
-    background: var(--white);
+  .blog-author__image-author.app-image {
     width: var(--thumbnail-size);
     height: var(--thumbnail-size);
     margin: 0 0 var(--spacing-tiny);

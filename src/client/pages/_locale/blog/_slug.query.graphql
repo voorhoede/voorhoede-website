@@ -35,6 +35,10 @@ fragment page on BlogPostRecord {
       title,
       body,
     },
+    ... on CodeBlockRecord {
+      language,
+      body,
+    },
     ... on ImageWithTextRecord {
       imageWithDescription {
         image {
