@@ -20,6 +20,7 @@
         <app-button
           :label="ctaSecondaryLabel"
           :to="ctaSecondaryTo"
+          external
           secondary
         />
       </footer>

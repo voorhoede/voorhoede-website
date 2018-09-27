@@ -52,7 +52,7 @@
         :cta-primary-label="page.academyPrimaryButtonLabel"
         :cta-primary-to="upcomingEvents[0].url"
         :cta-secondary-label="page.academySecondaryButtonLabel"
-        :cta-secondary-to="{ name: 'locale-academy', params: { locale: currentLocale }}"
+        cta-secondary-to="https://www.eventbrite.nl/o/de-voorhoede-11975015411"
       />
       <div class="page-index__curly-bracket-column">
         <img class="page-index__curly-bracket" src="/images/curly-bracket--blue.svg" alt="">
