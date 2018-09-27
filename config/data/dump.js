@@ -6,10 +6,6 @@ const path = require('path')
 const mkdirp = require('mkdirp')
 const dotenv = require('dotenv-safe')
 const Prism = require('prismjs')
-const loadLanguages = require('prismjs/components/')
-
-// Load additional prism languages
-loadLanguages(['bash'])
 
 dotenv.config()
 
@@ -104,6 +100,9 @@ function prismifyCodeBlocks(items) {
     const { body, language, __typename } = item
     if (__typename === 'CodeBlockRecord' && body && language) {
       let prismified
+      if (!Prism.languages.hasOwnProperty(language)) {
+        require(`prismjs/components/prism-${language}`)
+      }
       try {
         prismified = Prism.highlight(body, Prism.languages[language])
       } catch (e) {
