@@ -12,7 +12,7 @@
       external
       small
       :label="label"
-      :to="link"
+      :to="url"
     />
   </div>
 </template>
@@ -31,10 +31,6 @@
         type: String,
         required: true,
       },
-      url: {
-        type: String,
-        required: true,
-      },
       image: {
         type: Object,
         required: true,
@@ -48,7 +44,7 @@
         type: String,
         required: true,
       },
-      link: {
+      url: {
         type: String,
         required: true,
       },

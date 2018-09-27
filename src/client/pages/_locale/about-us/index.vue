@@ -25,7 +25,7 @@
           :title="item.title" 
           :description="item.description" 
           :label="item.callToActionLabel" 
-          :link="item.url" 
+          :url="item.url" 
           :image="item.jobImage" 
         />
       </li>
