@@ -5,7 +5,7 @@ query HomePage($locale: SiteLocale)  {
   alternate: home(locale:$locale) {
     slug
   },
-  upcomingEvents: allAcademyItems(locale:$locale, first: 1, orderBy: date_ASC) {
+  upcomingEvents: allAcademyItems(locale:$locale, first: 1, orderBy: date_DESC) {
     date,
     description,
     title,
