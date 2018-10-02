@@ -5,7 +5,11 @@ query ($locale: SiteLocale)  {
 
   alternate:contact {
     slug
-  }
+  },
+
+  items: allContactConfirmations() {
+      slug
+  },
 }
 
 fragment contact on ContactRecord {
