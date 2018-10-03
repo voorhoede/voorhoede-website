@@ -99,7 +99,7 @@
     </article>
 
     <div class="page-case__link-container">
-      <nuxt-link class="font-html-blue body font-bold" :to="`/${currentLocale}/cases`">&larr; See all cases</nuxt-link>
+      <nuxt-link class="font-html-blue body font-bold" :to="`/${currentLocale}/cases`">&larr; {{ page.backLinkTitle }}</nuxt-link>
     </div>
 
     <div class="page-case__get-in-touch-form">
