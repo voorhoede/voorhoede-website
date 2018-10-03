@@ -36,14 +36,14 @@
 
     <article class="page-case__content grid">
       <template v-for="item in page.content">
-        <div 
+        <div
           v-if="item.__typename === 'TextSectionRecord'"
-          :key="item.title" 
+          :key="item.title"
           class="page-case__text">
-          <h3 class="page-case__title h3" 
+          <h3 class="page-case__title h3"
               v-if="item.title">{{ item.title }}</h3>
-          <rich-text-block 
-            v-if="item.body" 
+          <rich-text-block
+            v-if="item.body"
             :text="item.body"
           />
         </div>
@@ -54,7 +54,7 @@
           :key="item.image.url"
           :image="item.image"
         />
-        
+
         <responsive-image
           v-if="item.__typename === 'ImageRecord' &&
           item.image && !item.fullWidth"
@@ -69,7 +69,7 @@
           :image="item.pullquote.illustration"
           :text="item.pullquote.richText"
         />
-        
+
         <image-with-description
           v-if="item.__typename === 'ImageWithTextRecord'"
           :key="item.description"
@@ -84,18 +84,18 @@
           :items="item.storyItem.items"
           :title="item.storyItem.title"
         />
-        <responsive-video 
+        <responsive-video
           v-if="item.__typename === 'ResponsiveVideoRecord'"
           :key="item.video.title"
-          :video="item.video" 
-          :autoplay="item.autoplay" 
-          :loop="item.loop" 
-          :mute="item.autoplay" 
+          :video="item.video"
+          :autoplay="item.autoplay"
+          :loop="item.loop"
+          :mute="item.autoplay"
         />
 
       </template>
 
-      <quote-block :quote="page.quote" :cite="page.author" />
+      <quote-block v-if="page.quote" :quote="page.quote" :cite="page.author" />
     </article>
 
     <div class="page-case__link-container">
@@ -226,11 +226,11 @@
     grid-column: page;
     padding: var(--spacing-larger) 0;
   }
-  
+
   .page-case__text video {
     max-width: 100%; /* temporary fix for mvp should refactored after mvp */
   }
-  
+
   @media (min-width: 720px) {
     .page-case__get-in-touch-form,
     .page-case__content,
@@ -277,7 +277,7 @@
       grid-column-start: 4;
       grid-column-end: -4;
     }
-    
+
     .page-case__content .full-width-image {
       height: var(--case-full-width-image-height);
     }
@@ -286,7 +286,7 @@
       grid-column-start: 8;
       grid-column-end: 0;
     }
-    
+
     .page-case__content .image-with-description--inverse {
       grid-column-start: 0;
       grid-column-end: -8;
