@@ -14,7 +14,7 @@
         />
       </li>
     </ul>
-    <rich-text-block class="services-text" :text="text" />      
+    <rich-text-block class="services-text" :text="text" />
   </div>
 </template>
 

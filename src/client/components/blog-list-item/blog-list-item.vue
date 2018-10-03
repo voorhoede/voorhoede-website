@@ -1,13 +1,13 @@
 <template>
   <article>
-    <nuxt-link 
-      :to="{ name: 'locale-blog-slug', params: { locale: currentLocale, slug: item.slug }}" 
+    <nuxt-link
+      :to="{ name: 'locale-blog-slug', params: { locale: currentLocale, slug: item.slug }}"
       class="blog-list"
     >
       <div class="blog-list-item" :class="{'blog-list-item--large' : large}" >
-        <time 
-          datetime="item.date" 
-          class="blog-list-item__time" 
+        <time
+          datetime="item.date"
+          class="blog-list-item__time"
           :class="large ? 'body' : 'body-petite'"
         >
           {{ formattedDate }}
@@ -43,9 +43,9 @@
         type: Object,
         required: true,
         validator(item) {
-          return typeof(item.slug) === 'string' && 
-                 typeof(item.title) === 'string' && 
-                 !!Date.parse(item.date) && 
+          return typeof(item.slug) === 'string' &&
+                 typeof(item.title) === 'string' &&
+                 !!Date.parse(item.date) &&
                  item.authors.length >= 1
         },
       },
@@ -57,7 +57,7 @@
     data() {
       return {
         thumbnailSize: 40,
-        thumbnailSizeLarge: 65        
+        thumbnailSizeLarge: 65
       }
     },
     computed: {
@@ -88,7 +88,7 @@
   .blog-list:focus .blog-list-item {
     transform: translateX(var(--grid-fixed-column));
   }
-  
+
   .blog-list-item--large .blog-list-item__heading {
     margin-bottom: var(--spacing-small);
   }
@@ -129,7 +129,7 @@
       display: flex;
       flex-direction: row;
     }
-    
+
     .blog-list-item--large {
       padding: var(--spacing-medium) 0;
     }
@@ -156,7 +156,7 @@
     .blog-list-item--large .blog-list-item__content {
       padding-left: var(--spacing-larger);
     }
-      
+
     .blog-list-item--large .blog-list-item__time {
       margin-right: var(--spacing-big);
     }
