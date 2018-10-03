@@ -1,5 +1,5 @@
 <template>
-  <form name="contact-form" class="contact-form" data-netlify="true" netlify-honeypot="magic-castle" @submit.prevent="handleSubmit">
+  <form method="POST" name="contact-form" :action="confirmationPageUrl" class="contact-form" data-netlify="true" netlify-honeypot="magic-castle">
     <fieldset class="contact-form__fieldset">
       <legend class="h4">{{ subjectTitle }}</legend>
       <input type="hidden" name="form-name" value="contact-form">
@@ -163,23 +163,8 @@ export default {
     ...mapState([
       'currentLocale',
     ]),
-  },
-  methods: {
-    handleSubmit () {
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: {
-          'form-name': 'contact-form',
-          ...this.form
-        }
-      })
-      .then(() => {
-        this.$router.push('/' + this.currentLocale + '/contact/confirmation/')
-      })
-      .catch(() => {
-        this.$router.push('/' + this.currentLocale + '/contact/error/')
-      })
+    confirmationPageUrl() {
+      return '/' + this.currentLocale + '/contact/confirmation/'
     }
   },
 }
