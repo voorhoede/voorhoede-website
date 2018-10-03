@@ -1,5 +1,5 @@
 <template>
-  <form method="POST" name="contact-form" action="/en/contact/confirmation/" class="contact-form" data-netlify="true" netlify-honeypot="magic-castle">
+  <form method="POST" name="contact-form" :action="confirmationPageUrl" class="contact-form" data-netlify="true" netlify-honeypot="magic-castle">
     <fieldset class="contact-form__fieldset">
       <legend class="h4">{{ subjectTitle }}</legend>
       <input type="hidden" name="form-name" value="contact-form">
@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import { AppButton } from '~/components'
 
 const greyOutFirstOption = ({ target }) => {
@@ -157,7 +158,15 @@ export default {
       type: String,
       required: true
     }
-  }
+  },
+  computed: {
+    ...mapState([
+      'currentLocale',
+    ]),
+    confirmationPageUrl() {
+      return '/' + this.currentLocale + '/contact/confirmation/'
+    }
+  },
 }
 </script>
 
