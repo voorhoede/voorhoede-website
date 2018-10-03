@@ -4,12 +4,10 @@
       <h3 class="service-excerpt__title h5">{{ tagline }}</h3>
       <h4 class="service-excerpt__sub-title h3">{{ title }}</h4>
       <div class="service-excerpt__divider"/>
-      <ul class="service-excerpt__characteristics-list">
-        <li
-          v-for="line in summary"
-          :key="line.title"
-          class="service-excerpt__characteristic body"
-        >{{ line.title }}</li>
+      <ul class="list">
+        <li class="body" v-for="line in summary" :key="line.title">
+          {{ line.title }}
+        </li>
       </ul>
     </div>
     <AppButton
@@ -57,10 +55,6 @@ export default {
 </script>
 
 <style>
-:root {
-  --service-excerpt-bullet-size: 2px;
-}
-
 .service-excerpt {
   position: relative;
 }
@@ -83,25 +77,12 @@ export default {
   background: var(--html-blue);
 }
 
-.service-excerpt__characteristic {
+.service-excerpt__content .list {
   padding-left: var(--spacing-small);
 }
 
-.service-excerpt__characteristic + .service-excerpt__characteristic {
+.service-excerpt__content .list li + li {
   margin-top: var(--spacing-smaller);
-}
-
-.service-excerpt__characteristic::before {
-  content: '';
-  display: inline-block;
-  background: var(--black);
-  background: currentColor;
-  height: var(--service-excerpt-bullet-size);
-  width: var(--service-excerpt-bullet-size);
-  border-radius: 50%;
-  vertical-align: middle;
-  position: relative;
-  left: calc(-1 * var(--spacing-small));
 }
 
 .service-excerpt .app-button {
