@@ -39,5 +39,6 @@ fragment page on ServiceOverviewRecord {
     phoneLabel,
     phonePlaceholder,
     ctaButtonLabel
-  }
+  },
+  serviceCtaLabel
 }

@@ -11,10 +11,11 @@
           :title="service.title"
           :summary="service.summary"
           :slug="service.slug"
+          :cta="cta"
         />
       </li>
     </ul>
-    <rich-text-block class="services-text" :text="text" />      
+    <rich-text-block class="services-text" :text="text" />
   </div>
 </template>
 
@@ -32,6 +33,10 @@ export default {
       },
     },
     text: {
+      type: String,
+      required: true,
+    },
+    cta: {
       type: String,
       required: true,
     }
