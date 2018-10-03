@@ -41,10 +41,10 @@ module.exports = {
       { 'name': 'robots', 'content': 'index,follow,noodp' },
       { 'name': 'googlebot', 'content': 'index,follow' },
       /* Facebook */
-      { 'property': 'og:url', 'content': 'https://www.voorhoede.nl/' },
+      { 'property': 'og:url', 'content': `${baseUrl}/` },
       { 'property': 'og:type', 'content': 'website' },
       { 'property': 'og:title', 'content': 'De Voorhoede' },
-      { 'property': 'og:image', 'content': 'https://www.voorhoede.nl/images/social/logo.jpg' },
+      { 'property': 'og:image', 'content': `${baseUrl}/images/social/logo.jpg` },
       { 'property': 'og:image:width', 'content': '1000' },
       { 'property': 'og:image:height', 'content': '500' },
       { 'property': 'og:description', 'content': 'We bouwen front-end oplossingen waarmee je jaren vooruit kunt' },
@@ -52,10 +52,10 @@ module.exports = {
       /* Twitter */
       { 'name': 'twitter:card', 'content': 'summary_large_image' },
       { 'name': 'twitter:creator', 'content': '@devoorhoede' },
-      { 'name': 'twitter:url', 'content': 'https://www.voorhoede.nl/' },
+      { 'name': 'twitter:url', 'content': `${baseUrl}/` },
       { 'name': 'twitter:title', 'content': 'De Voorhoede' },
       { 'name': 'twitter:description', 'content': 'We bouwen front-end oplossingen waarmee je jaren vooruit kunt' },
-      { 'name': 'twitter:image', 'content': 'https://www.voorhoede.nl/images/social/logo.jpg' },
+      { 'name': 'twitter:image', 'content': `${baseUrl}/images/social/logo.jpg` },
       /* Windows */
       { 'name': 'msapplication-square70x70logo', 'content': '/images/social/windows-icon-70x70.png' },
       { 'name': 'msapplication-square150x150logo', 'content': '/images/social/windows-icon-150x150.png' },
