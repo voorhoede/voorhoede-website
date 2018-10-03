@@ -3,14 +3,14 @@
     <page-header
       :title="page.title"
       :text="page.subtitle"
-      :image="page.headerIllustration" 
+      :image="page.headerIllustration"
     />
     <div class="page-blog-container grid">
       <text-block class="page-blog__text">
         <p class="testimonial">{{ page.description }}</p>
       </text-block>
       <ul class="page-blog__posts">
-        <li v-for="blogPost in latestBlogposts" :key="blogPost.slug">
+        <li v-for="blogPost in latestBlogposts" :key="blogPost.slug" v-if="blogPost.published">
           <blog-list-item large :item="blogPost" :current-locale="currentLocale"/>
         </li>
       </ul>

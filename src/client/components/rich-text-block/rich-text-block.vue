@@ -1,5 +1,5 @@
 <template>
-  <div class="rich-text body-big" v-html="text" />
+  <div class="rich-text body-big list" v-html="text" />
 </template>
 
 <script>
