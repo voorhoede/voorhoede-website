@@ -5,7 +5,7 @@
       :text="page.subtitle"
       :image="page.headerIllustration" />
     <div class="page-contact-confirmation__backdrop grid">
-      <div class="page-contact-confirmation__content">
+      <div class="page-contact-confirmation__content" :locale="getLocale">
         test
       </div>
     </div>
@@ -29,6 +29,10 @@
         'currentLocale',
         'alternateUrl',
       ]),
+      getLocale() {
+        console.log(this.currentLocale);
+        return this.currentLocale;
+      }
     }
   }
 </script>
