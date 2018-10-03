@@ -11,8 +11,11 @@
       :google-maps-link="localizedFooter.googleMapsLink"
       :address="localizedFooter.address"
       :postal-code="localizedFooter.postalCode"
-      :copyright="localizedFooter.copyright"
+      :copyright-link-label="localizedFooter.copyrightLinkLabel"
+      :copyright-link-title="localizedFooter.copyrightLinkTitle"
+      :copyright-link="localizedFooter.copyrightLink"
       :privacy-link-label="localizedFooter.privacyLinkLabel"
+      :privacy-link-title="localizedFooter.privacyLinkTitle"
       :privacy-link="localizedFooter.privacyLink"
       :legal="localizedFooter.legal"
       :social="localizedFooter.social"
@@ -36,8 +39,11 @@
             address: 'Rijnsburgstraat 9 - 11',
             postalCode: '1059 AT Amsterdam',
             privacyLinkLabel: 'Privacy statement',
+            privacyLinkTitle: 'De Voorhoede privacy statement',
             privacyLink: 'https://www.datocms-assets.com/2850/1527667147-de-voorhoede-privacy-statement-en.pdf',
-            copyright: '© De Voorhoede 2018',
+            copyrightLinkLabel: 'CC BY 4.0',
+            copyrightLinkTitle: 'Creative Commons licence and disclaimer',
+            copyrightLink: 'https://creativecommons.org/licenses/by/4.0/',
             legal: [
               { key: 'KvK', value: '56017235' },
               { key: 'VAT', value: 'NL851944620B01' },
@@ -57,8 +63,11 @@
             address: 'Rijnsburgstraat 9 - 11',
             postalCode: '1059 AT Amsterdam',
             privacyLinkLabel: 'Privacy statement',
+            privacyLinkTitle: 'De Voorhoede privacy statement',
             privacyLink: 'https://www.datocms-assets.com/2850/1527667154-de-voorhoede-privacy-statement-nl.pdf',
-            copyright: '© De Voorhoede 2018',
+            copyrightLinkLabel: 'CC BY 4.0',
+            copyrightLinkTitle: 'Creative Commons licence en disclaimer',
+            copyrightLink: 'https://creativecommons.org/licenses/by/4.0/',
             legal: [
               { key: 'KvK', value: '56017235' },
               { key: 'BTW', value: 'NL851944620B01' },
