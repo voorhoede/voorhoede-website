@@ -1,14 +1,14 @@
 query ($locale: SiteLocale)  {
-  page: contact(locale:$locale) {
+  page: contact(locale: $locale) {
     ...contact
   },
 
-  alternate:contact(locale: $locale) {
+  alternate: contact(locale: $locale) {
     slug
   },
 
   items: allContactConfirmations() {
-      slug
+    slug
   },
 }
 

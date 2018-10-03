@@ -1,8 +1,8 @@
 query($locale: SiteLocale)  {
-  page: faq(locale:$locale) {
+  page: faq(locale: $locale) {
     ...page
   },
-  alternate: faq(locale:$locale) {
+  alternate: faq(locale: $locale) {
     slug
   }
 }
