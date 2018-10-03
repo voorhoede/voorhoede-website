@@ -30,8 +30,8 @@
         'alternateUrl',
       ]),
       getLocale() {
-        console.log(this.currentLocale);
-        return this.currentLocale;
+        console.log(this.currentLocale)
+        return this.currentLocale
       }
     }
   }
