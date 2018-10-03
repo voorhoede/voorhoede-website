@@ -9,7 +9,7 @@
         <li class="page-case__overview-item" v-for="caseItem in items" :key="caseItem.slug">
           <case-excerpt
             :case-id="caseItem.slug"
-            primary-label="See more"
+            :primary-label="page.casePrimaryButtonLabel"
             :slug="caseItem.slug"
             :image="caseItem.heroIllustration === null ? (caseItem.heroIllustration = { url: 'https://www.datocms-assets.com/6524/1536758842-vh-placeholder.svg'}) : caseItem.heroIllustration"
             :title="caseItem.title"

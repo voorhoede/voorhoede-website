@@ -19,7 +19,7 @@
         type: Object,
         required: true,
         validator(image) {
-          const isValidImageText = (image.alt === undefined) ? true : typeof image.alt === 'string'
+          const isValidImageText = (image.alt === null) ? true : typeof image.alt === 'string'
 
           return typeof(image.url) === 'string' && isValidImageText
         },
