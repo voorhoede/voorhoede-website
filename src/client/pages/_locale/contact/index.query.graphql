@@ -3,7 +3,7 @@ query ($locale: SiteLocale)  {
     ...contact
   },
 
-  alternate:contact {
+  alternate:contact(locale: $locale) {
     slug
   }
 }
@@ -42,5 +42,8 @@ fragment contact on ContactRecord {
     url,
     alt
   },
-  title
+  title,
+  emailLabel,
+  phoneLabel,
+  addressLabel,
 }
