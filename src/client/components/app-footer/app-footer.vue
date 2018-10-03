@@ -12,22 +12,30 @@
         >
           <nuxt-link class="app-footer__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
         </li>
+        <li class="app-footer__list-item body-detail">
+          <nuxt-link class="app-footer__link" :to="createHref({ slug: 'faq'})">FAQ</nuxt-link>
+        </li>
       </ul>
     </div>
     <div class="app-footer__column app-footer__column--right">
       <ul class="body-detail app-footer__list app-footer__list--border-none app-footer__list--no-padding">
         <li class="app-footer__list-item">
-          <a class="app-footer__link" target="_blank" :href="`tel:${ cleanedTelephone }`">{{ tel }}</a>
-        </li>
-        <li class="app-footer__list-item">
-          <a class="app-footer__link" target="_blank" :href="`mailto:${ email }`">{{ email }}</a>
+          <a
+            :href="`tel:${ cleanedTelephone }`"
+            class="app-footer__link"
+            target="_blank">{{ tel }}</a>
         </li>
         <li class="app-footer__list-item">
           <a
-            target="_blank"
+            :href="`mailto:${ email }`"
+            class="app-footer__link"
+            target="_blank" >{{ email }}</a>
+        </li>
+        <li class="app-footer__list-item">
+          <a
             :href="googleMapsLink"
             class="app-footer__link app-footer__link--right"
-          >
+            target="_blank">
             <span>{{ address }}</span>
             <span>{{ postalCode }}</span>
           </a>
@@ -48,9 +56,18 @@
           </a>
         </li>
       </ul>
-      <div class="body-detail app-footer__copyright">
-        {{ copyright }}
-        <a :href="privacyLink" class="app-footer__privacy" target="_blank">{{ privacyLinkLabel }}</a>
+      <div class="body-detail app-footer__legal">
+        <a
+          :href="copyrightLink"
+          class="app-footer__copyright"
+          :title="copyrightLinkTitle"
+          target="_blank">{{ copyrightLinkLabel }}</a>
+        <span> - </span>
+        <a
+          :href="privacyLink"
+          class="app-footer__privacy"
+          :title="privacyLinkTitle"
+          target="_blank">{{ privacyLinkLabel }}</a>
       </div>
     </div>
   </footer>
@@ -106,11 +123,23 @@ export default {
       type: String,
       default: '',
     },
-    copyright: {
+    copyrightLinkLabel: {
+      type: String,
+      default: '',
+    },
+    copyrightLinkTitle: {
+      type: String,
+      default: '',
+    },
+    copyrightLink: {
       type: String,
       default: '',
     },
     privacyLinkLabel: {
+      type: String,
+      default: '',
+    },
+    privacyLinkTitle: {
       type: String,
       default: '',
     },
@@ -187,10 +216,11 @@ export default {
   font-size: 12px;
 }
 
-.app-footer__copyright {
+.app-footer__legal {
   font-size: 12px;
 }
 
+.app-footer__copyright,
 .app-footer__privacy {
   text-decoration: none;
   border-bottom: 1px solid var(--black);
@@ -287,7 +317,7 @@ export default {
     width: calc(100% - var(--app-footer-spacing) * 2);
   }
 
-  .app-footer__copyright {
+  .app-footer__legal {
     text-align: right;
     width: 50%;
   }
@@ -345,7 +375,7 @@ export default {
     justify-content: center;
   }
 
-  .app-footer__copyright {
+  .app-footer__legal {
     width: calc(100% / 3);
   }
 }

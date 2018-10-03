@@ -22,7 +22,8 @@ fragment page on CaseOverviewRecord {
   headerIllustration {
     url,
     alt
-  }
+  },
+  casePrimaryButtonLabel,
   callToActionLabel,
   callToActionTitle
 }
