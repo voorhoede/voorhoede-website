@@ -41,8 +41,11 @@ stories.add(
         address: text('street address', 'Rijnsburgstraat 9 - 11'),
         postalCode: text('postal code', '1059 AT Amsterdam'),
         privacyLinkLabel: text('privacy statment', 'Privacy statement'),
+        privacyLinkTitle: 'De Voorhoede privacy statement',
         privacyLink: 'https://www.datocms-assets.com/2850/1527667154-de-voorhoede-privacy-statement-nl.pdf',
-        copyright: '© De Voorhoede 2018',
+        copyrightLinkLabel: 'CC BY 4.0',
+        copyrightLinkTitle: 'Creative Commons licence and disclaimer',
+        copyrightLink: 'https://creativecommons.org/licenses/by/4.0/',
         legal: [
           { key: 'KvK', value: '56017235' },
           { key: 'BTW', value: 'NL851944620B01' },
@@ -66,10 +69,13 @@ stories.add(
                 :address="address"
                 :postal-code="postalCode"
                 :privacy-link-label="privacyLinkLabel"
+                :privacy-link-title="privacyLinkTitle"
                 :privacy-link="privacyLink"
                 :legal="legal"
                 :social="social"
-                :copyright="copyright"
+                :copyright-link-label="copyrightLinkLabel"
+                :copyright-link-title="copyrightLinkTitle"
+                :copyright-link="copyrightLink"
               />`,
   }),
 )
