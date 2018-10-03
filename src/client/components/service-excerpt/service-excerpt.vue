@@ -14,7 +14,7 @@
     </div>
     <AppButton
       secondary
-      label="Learn more"
+      :label="cta"
       :to="{
         name: 'locale-services-slug',
         params: { slug },
@@ -45,6 +45,10 @@ export default {
       }
     },
     slug: {
+      type: String,
+      required: true,
+    },
+    cta: {
       type: String,
       required: true,
     },

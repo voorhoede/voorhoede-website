@@ -6,7 +6,10 @@
       :image="page.headerIllustration" />
     <div class="page-contact__backdrop grid">
       <div class="page-contact__content">
-        <address-sidebar />
+        <address-sidebar
+          :email-label="page.emailLabel"
+          :phone-label="page.phoneLabel"
+          :address-label="page.addressLabel" />
         <contact-page-form
           :subject-title="page.contactPageForm.subjectTitle"
           :contact-title="page.contactPageForm.contactTitle"

@@ -80,8 +80,7 @@
     },
     methods: {
       toMetaString(array) {
-        const finalDivider = (this.currentLocale === 'en') ? 'and' : 'en'
-
+        const finalDivider = array.length > 1 ? ((this.currentLocale === 'en') ? 'and' : 'en') : ''
         const lastItem = array[array.length-1]
 
         return array

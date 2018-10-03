@@ -12,6 +12,9 @@
         >
           <nuxt-link class="app-footer__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
         </li>
+        <li class="app-footer__list-item body-detail">
+          <nuxt-link class="app-footer__link" :to="createHref({ slug: 'faq'})">FAQ</nuxt-link>
+        </li>
       </ul>
     </div>
     <div class="app-footer__column app-footer__column--right">
