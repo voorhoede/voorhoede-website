@@ -11,6 +11,7 @@ query ($locale: SiteLocale)  {
   latestBlogposts: allBlogPosts(locale:$locale, orderBy: publishDate_DESC) {
     slug,
     title,
+    published,
     date: publishDate,
     authors {
       name,
