@@ -51,6 +51,16 @@
           :inverse="item.imageWithDescription.inverse"
           :description="item.imageWithDescription.description"
         />
+        <div 
+          v-if="item.__typename === 'LinkRecord'" 
+          :key="item.link">
+          <app-button 
+            class="page-blog-post__button"
+            :external="item.external ? true : false" 
+            :label="item.label" 
+            :to="item.link" 
+          />
+        </div>
       </template>
     </article>
 
@@ -130,6 +140,7 @@ export default {
   .page-blog-post-list__intro,
   .page-blog-post-list__rich-text,
   .page-blog-post__aside-author,
+  .page-blog-post__button,
   .page-blog-post-list__code-block {
     margin-bottom: var(--spacing-large);
   }
@@ -179,7 +190,7 @@ export default {
   .page-blog-post-list em {
     font-style: italic;
   }
-
+  
   @media (min-width: 720px) {
     .page-blog-post-list > * {
       padding: 0 var(--spacing-larger);
@@ -191,9 +202,10 @@ export default {
 
     .page-blog-post__header,
     .page-blog-post-list__rich-text,
-    .page-blog-post-list__imager,
+    .page-blog-post-list__image,
+    .page-blog-post__button,
     .page-blog-post-list__code-block {
-      margin-bottom: var(--spacing-big);
+      margin-bottom: var(--spacing-larger);
     }
 
     .page-blog-post-list {
