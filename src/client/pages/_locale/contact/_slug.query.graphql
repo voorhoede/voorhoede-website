@@ -12,7 +12,7 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
   },
 }
 
-fragment contactConfirmation on ContactConfirmationRecord {
+fragment page on ContactConfirmationRecord {
   slug,
   title,
   subtitle,
