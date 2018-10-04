@@ -306,7 +306,7 @@
       transition: transform var(--blog-list-item-animation-timing) ease-out;
       display: inline-block;
       grid-column-start: 8;
-      grid-column-end: 32;
+      grid-column-end: 30;
     }
 
     .page-index__scroll-to {

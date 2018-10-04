@@ -148,7 +148,7 @@
       display: block;
       color: var(--dim);
       margin-right: var(--spacing-medium);
-      flex-shrink: 0;
+      min-width: 6rem;
     }
   }
 
