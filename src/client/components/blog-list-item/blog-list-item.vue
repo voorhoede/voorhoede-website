@@ -104,7 +104,7 @@
 
   .blog-list-item__content {
     padding-left: var(--spacing-medium);
-    border-left: 1px solid var(--very-dim);
+    border-left: 2px solid var(--very-dim);
     margin-bottom: var(--spacing-medium);
     transition: border-left var(--blog-list-item-animation-timing) ease-out;
   }
