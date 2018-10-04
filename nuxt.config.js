@@ -44,7 +44,7 @@ module.exports = {
       { 'property': 'og:url', 'content': `${baseUrl}/` },
       { 'property': 'og:type', 'content': 'website' },
       { 'property': 'og:title', 'content': 'De Voorhoede' },
-      { 'property': 'og:image', 'content': `${baseUrl}/images/social/logo.jpg` },
+      { 'property': 'og:image', 'content': `${baseUrl}/images/social/logo-wide.jpg` },
       { 'property': 'og:image:width', 'content': '1000' },
       { 'property': 'og:image:height', 'content': '500' },
       { 'property': 'og:description', 'content': 'We build front-end solutions which you can use for years to come' },
@@ -55,7 +55,7 @@ module.exports = {
       { 'name': 'twitter:url', 'content': `${baseUrl}/` },
       { 'name': 'twitter:title', 'content': 'De Voorhoede' },
       { 'name': 'twitter:description', 'content': 'We build front-end solutions which you can use for years to come' },
-      { 'name': 'twitter:image', 'content': `${baseUrl}/images/social/logo.jpg` },
+      { 'name': 'twitter:image', 'content': `${baseUrl}/images/social/logo-wide.jpg` },
       /* Windows */
       { 'name': 'msapplication-square70x70logo', 'content': '/images/social/windows-icon-70x70.png' },
       { 'name': 'msapplication-square150x150logo', 'content': '/images/social/windows-icon-150x150.png' },
