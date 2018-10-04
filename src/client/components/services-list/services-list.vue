@@ -1,22 +1,19 @@
 <template>
-  <div>
-    <ul class="services-list">
-      <li
-        v-for="service in services"
-        :key="service.ctaLink"
-        class="services-list__item"
-      >
-        <service-excerpt
-          :tagline="service.tagline"
-          :title="service.title"
-          :summary="service.summary"
-          :slug="service.slug"
-          :cta="cta"
-        />
-      </li>
-    </ul>
-    <rich-text-block class="services-text" :text="text" />
-  </div>
+  <ul class="services-list">
+    <li
+      v-for="service in services"
+      :key="service.ctaLink"
+      class="services-list__item"
+    >
+      <service-excerpt
+        :tagline="service.tagline"
+        :title="service.title"
+        :summary="service.summary"
+        :slug="service.slug"
+        :cta="cta"
+      />
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -32,10 +29,6 @@ export default {
         return services.every(service => service instanceof Object)
       },
     },
-    text: {
-      type: String,
-      required: true,
-    },
     cta: {
       type: String,
       required: true,
@@ -47,13 +40,7 @@ export default {
 <style>
 :root {
   --services-list-border: 1px solid var(--very-dim);
-  --services-list-columns: 3;
-  --services-list-item-spacing: var(--spacing-large);
-  --services-list-item-width: calc(
-    100% / var(--services-list-columns)
-    - (var(--services-list-columns) - 1) / var(--services-list-columns) * var(--services-list-item-spacing)
-  );
-  --small-services-width: 600px;
+  --small-service-spacing: 40px; /* needs to be an even number to get service-list-item to be of equal width */
 }
 
 .services-list {
@@ -77,19 +64,26 @@ export default {
   }
 
   .services-list__item {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    width: var(--services-list-item-width);
     display: flex;
+    flex: 1;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+    width: 100%;
+    margin-bottom: 0;
+    padding-bottom: 0;
     border-bottom: none;
   }
 
-  .services-list__item + .services-list__item {
-    margin-left: var(--spacing-large);
-    padding-left: var(--spacing-large);
+  .services-list__item:first-child {
+    margin-right: var(--small-service-spacing);
+    padding-right: var(--small-service-spacing);
+    border-right: var(--services-list-border);
+  }
+
+  .services-list__item:last-child {
+    padding-left: var(--small-service-spacing);
+    margin-left: var(--small-service-spacing);
     border-left: var(--services-list-border);
   }
 
@@ -99,12 +93,6 @@ export default {
     flex-grow: 1;
     justify-content: space-between;
     align-items: flex-start; /* Reset stretch */
-  }
-
-  .services-text {
-    margin: 0 auto;
-    text-align: center;
-    max-width: var(--small-services-width);
   }
 }
 </style>
