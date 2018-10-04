@@ -65,7 +65,8 @@
         'currentLocale',
       ]),
       authorName() {
-        return `by ${this.item.authors.map(author => author.name).join(', ')}`
+        const prefix = this.currentLocale === 'en' ? 'by' : 'door'
+        return `${prefix} ${this.item.authors.map(author => author.name).join(', ')}`
       },
       formattedDate() {
         return new Date(this.item.date).toLocaleString(this.currentLocale, { day: 'numeric', year: 'numeric', month: 'short' })
@@ -148,7 +149,7 @@
       display: block;
       color: var(--dim);
       margin-right: var(--spacing-medium);
-      flex-shrink: 0;
+      min-width: 6rem;
     }
   }
 
