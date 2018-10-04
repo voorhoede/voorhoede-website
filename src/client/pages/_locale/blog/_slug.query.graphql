@@ -68,6 +68,10 @@ fragment page on BlogPostRecord {
       label,
       external,
     },
+    ... on QuoteRecord {
+      quote,
+      author
+    },
   },
   callToActionTitle,
   callToActionBody,
