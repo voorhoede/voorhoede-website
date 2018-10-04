@@ -40,7 +40,7 @@ export default {
 <style>
 :root {
   --services-list-border: 1px solid var(--very-dim);
-  --small-service-spacing: 40px;
+  --small-service-spacing: 40px; /* needs to be an even number to get service-list-item to be of equal width */
 }
 
 .services-list {
