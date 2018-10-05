@@ -5,6 +5,7 @@
         <nuxt-link
           class="case-excerpt__image-link"
           :to="{ name: 'locale-cases-slug', params: { slug, locale: currentLocale }}"
+          tabindex="-1"
         >
           <responsive-image
             :has-fixed-ratio="false"
@@ -157,11 +158,13 @@
       background: var(--html-blue);
     }
 
-    .case-excerpt:hover .case-excerpt__image-link {
+    .case-excerpt:hover .case-excerpt__image-link,
+    .case-excerpt:focus-within .case-excerpt__image-link {
       margin-top: calc(-1 * var(--case-excerpt-image-height));
     }
 
-    .case-excerpt:hover .case-excerpt__body {
+    .case-excerpt:hover .case-excerpt__body,
+    .case-excerpt:focus-within .case-excerpt__body {
       height: var(--case-excerpt-image-height);
     }
   }
