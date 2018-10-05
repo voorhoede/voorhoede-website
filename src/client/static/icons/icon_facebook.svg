@@ -1,10 +1,3 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <title>dv_design-system_icons</title>
-  <g id="Symbols">
-    <g id="footer_large_open" data-name="footer/large/open">
-      <g id="social_" data-name="social\">
-        <path id="Path" d="M21.162,10.364h-2.71c-.774,0-1.032.368-1.032,1.1v1.348H20.9L20.646,16h-3.1v9.679H13.29V16H10.838V12.692H13.29V10c0-2.573,1.419-3.676,4.517-3.676h3.226v4.043Z" fill="#222"/>
-      </g>
-    </g>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <path fill="#222" d="M21.16 10.36h-2.7c-.78 0-1.04.37-1.04 1.1v1.35h3.48L20.65 16h-3.1v9.68h-4.26V16h-2.45v-3.3h2.45V10c0-2.57 1.42-3.68 4.52-3.68h3.22v4.05z"/>
 </svg>

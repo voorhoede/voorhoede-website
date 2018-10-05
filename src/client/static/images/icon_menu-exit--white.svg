@@ -1,9 +1,4 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <title>dv_design-system_icons</title>
-  <g id="icon_hamburger_hover_white" data-name="icon/hamburger/hover/white">
-    <g id="Group-3">
-      <path id="Path-4" d="M24.157,24.157,7.843,7.843" fill="#FFF" stroke="#FFF" stroke-width="2.351"/>
-    </g>
-  </g>
-  <path id="Path-4-Copy-2" d="M24.157,7.843,7.843,24.157" fill="#FFF" stroke="#FFF" stroke-width="2.351"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <path fill="#FFF" stroke="#FFF" stroke-width="2.35" d="M24.16 24.16L7.84 7.84"/>
+  <path fill="#FFF" stroke="#FFF" stroke-width="2.35" d="M24.16 7.84L7.84 24.16"/>
 </svg>
