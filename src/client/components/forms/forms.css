@@ -35,9 +35,9 @@ textarea:focus {
   outline: none;
 }
 
-input:invalid,
-select:invalid,
-textarea:invalid {
+input.is-invalid,
+select.is-invalid,
+textarea.is-invalid {
   border-bottom-color: var(--soft-red);
 }
 

@@ -3,28 +3,54 @@
     <h2 class="get-in-touch-form__title h3">{{ title }}</h2>
 
     <form
+      @submit.prevent="onFormSubmit"
+      novalidate
       class="get-in-touch-form__form"
       method="POST"
       data-netlify="true"
       name="get-in-touch"
     >
       <input type="hidden" name="form-name" value="get-in-touch">
-      <label class="get-in-touch-form__label">
-        <span class="get-in-touch-form__label-text body-petite">{{ nameLabel }}</span>
-        <input class="body" type="text" :placeholder="namePlaceholder" name="name">
-      </label>
-      <label class="get-in-touch-form__label">
-        <span class="get-in-touch-form__label-text body-petite">{{ emailLabel }}</span>
-        <input class="body" type="text" :placeholder="emailPlaceholder" name="email">
-      </label>
-      <label class="get-in-touch-form__label">
-        <span class="get-in-touch-form__label-text body-petite">{{ phoneLabel }}</span>
-        <input class="body" type="text" :placeholder="phonePlaceholder" name="number">
-      </label>
-      <label class="get-in-touch-form__label">
-        <span class="get-in-touch-form__label-text body-petite">{{ summaryLabel }}</span>
-        <input class="body" type="text" :placeholder="summaryPlaceholder" name="explanation">
-      </label>
+      <input-field
+        v-model="name"
+        id="name"
+        type="text"
+        :label="nameLabel"
+        :placeholder-label="namePlaceholder"
+        required
+        :validate="formIsValidated"
+        validation-error-message="Your name is required"
+      />
+      <input-field
+        v-model="email"
+        id="email"
+        type="email"
+        :label="emailLabel"
+        :placeholder-label="emailPlaceholder"
+        required
+        :validate="formIsValidated"
+        validation-error-message="Your email is required"
+      />
+      <input-field
+        v-model="phone"
+        id="phone"
+        type="tel"
+        :label="phoneLabel"
+        :placeholder-label="phonePlaceholder"
+        required
+        :validate="formIsValidated"
+        validation-error-message="Your phone number is required"
+      />
+      <input-field
+        v-model="project"
+        id="project"
+        type="text"
+        :label="summaryLabel"
+        :placeholder-label="summaryPlaceholder"
+        required
+        :validate="formIsValidated"
+        validation-error-message="Your project is required"
+      />
       <app-button
         class="get-in-touch-form__button"
         :label="ctaLabel"
@@ -35,11 +61,12 @@
 </template>
 
 <script>
-  import { AppButton } from '~/components'
+  import { AppButton, InputField } from '~/components'
 
   export default {
     components: {
-      AppButton
+      AppButton,
+      InputField,
     },
     props: {
       title: {
@@ -82,7 +109,29 @@
         type: String,
         required: true
       }
-    }
+    },
+    data() {
+      return {
+        name: '',
+        email: '',
+        phone: '',
+        project: '',
+        formIsValidated: false,
+      }
+    },
+    computed: {
+      emailValidationErrorMessage() {
+        return this.email ? 'Please provide a valid e-mail address' : 'Your e-mail address is required'
+      },
+    },
+    methods: {
+      onFormSubmit(event) {
+        this.formIsValidated = true
+        if (!event.target.checkValidity()) {
+          return false
+        }
+      },
+    },
   }
 </script>
 

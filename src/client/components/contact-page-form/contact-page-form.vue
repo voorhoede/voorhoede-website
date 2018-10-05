@@ -1,5 +1,5 @@
 <template>
-  <form method="POST" name="contact-form" class="contact-form" data-netlify="true" netlify-honeypot="magic-castle">
+  <form @submit.prevent="onFormSubmit" method="POST" name="contact-form" class="contact-form" data-netlify="true" netlify-honeypot="magic-castle" novalidate>
     <fieldset class="contact-form__fieldset">
       <legend class="h4">{{ subjectTitle }}</legend>
       <input type="hidden" name="form-name" value="contact-form">
@@ -26,26 +26,50 @@
     </fieldset>
     <fieldset class="contact-form__fieldset">
       <legend class="h4">{{ contactTitle }}</legend>
-      <label class="contact-form__label">
-        <span class="contact-form__label-text body-petite">{{ nameLabel }}</span>
-        <input type="text" class="body" name="name" :placeholder="namePlaceholder">
-      </label>
-      <label class="contact-form__label">
-        <span class="contact-form__label-text body-petite">{{ businessLabel }}</span>
-        <input type="text" class="body" name="business" :placeholder="businessPlaceholder">
-      </label>
-      <label class="contact-form__label">
-        <span class="contact-form__label-text body-petite">{{ websiteLabel }}</span>
-        <input class="body" type="text" name="website" :placeholder="websitePlaceholder">
-      </label>
-      <label class="contact-form__label">
-        <span class="contact-form__label-text body-petite">{{ emailLabel }}</span>
-        <input class="body" type="email" name="email" :placeholder="emailPlaceholder">
-      </label>
-      <label class="contact-form__label">
-        <span class="contact-form__label-text body-petite">{{ phoneLabel }}</span>
-        <input class="body" type="phone" name="phone" :placeholder="phonePlaceholder">
-      </label>
+      <input-field
+        v-model="name"
+        id="name"
+        type="text"
+        :label="nameLabel"
+        :placeholder-label="namePlaceholder"
+        required
+        :validate="formIsValidated"
+        validation-error-message="Your name is required"
+      />
+      <input-field
+        id="business"
+        type="text"
+        :label="businessLabel"
+        :placeholder-label="businessPlaceholder"
+        :validate="formIsValidated"
+      />
+      <input-field
+        id="website"
+        type="text"
+        :label="websiteLabel"
+        :placeholder-label="websitePlaceholder"
+        :validate="formIsValidated"
+      />
+      <input-field
+        v-model="email"
+        id="email"
+        type="email"
+        :label="emailLabel"
+        :placeholder-label="emailPlaceholder"
+        required
+        :validate="formIsValidated"
+        :validation-error-message="emailValidationErrorMessage"
+      />
+      <input-field
+        v-model="phone"
+        id="phone"
+        type="tel"
+        :label="phoneLabel"
+        :placeholder-label="phonePlaceholder"
+        required
+        :validate="formIsValidated"
+        validation-error-message="Your phone is required"
+      />
     </fieldset>
     <app-button
       class="contact-form__button"
@@ -56,7 +80,7 @@
 </template>
 
 <script>
-import { AppButton } from '~/components'
+import { AppButton, InputField } from '~/components'
 
 const greyOutFirstOption = ({ target }) => {
   const { selectedIndex } = target
@@ -69,6 +93,7 @@ const greyOutFirstOption = ({ target }) => {
 export default {
   components: {
     AppButton,
+    InputField,
   },
   directives: {
     greyedOutFirst: {
@@ -157,7 +182,28 @@ export default {
       type: String,
       required: true
     }
-  }
+  },
+  data() {
+    return {
+      name: '',
+      email: '',
+      phone: '',
+      formIsValidated: false,
+    }
+  },
+  computed: {
+    emailValidationErrorMessage() {
+      return this.email ? 'Please provide a valid e-mail address' : 'Your e-mail address is required'
+    },
+  },
+  methods: {
+    onFormSubmit(event) {
+      this.formIsValidated = true
+      if (!event.target.checkValidity()) {
+        return false
+      }
+    },
+  },
 }
 </script>
 
