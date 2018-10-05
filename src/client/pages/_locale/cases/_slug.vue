@@ -178,6 +178,7 @@
 
   .page-case__scroll-to {
     grid-row: 1;
+    grid-column: 2;
     position: relative;
     margin-top: var(--spacing-big);
   }

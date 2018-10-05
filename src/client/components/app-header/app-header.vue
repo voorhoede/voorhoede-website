@@ -61,7 +61,7 @@
   :root {
     --header-z-index: 2;
   }
-  
+
   .app-header {
     position: absolute;
     top: 0;
@@ -69,7 +69,19 @@
     z-index: var(--header-z-index);
     height: var(--app-header-height);
     width: 100%;
-    border-bottom: 1px solid var(--fog);
+  }
+
+  .app-header::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--fog);
+    opacity: .71;
+    mix-blend-mode: multiply;
   }
 
   .app-header__content {

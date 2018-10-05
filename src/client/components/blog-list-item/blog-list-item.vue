@@ -65,7 +65,8 @@
         'currentLocale',
       ]),
       authorName() {
-        return `by ${this.item.authors.map(author => author.name).join(', ')}`
+        const prefix = this.currentLocale === 'en' ? 'by' : 'door'
+        return `${prefix} ${this.item.authors.map(author => author.name).join(', ')}`
       },
       formattedDate() {
         return new Date(this.item.date).toLocaleString(this.currentLocale, { day: 'numeric', year: 'numeric', month: 'short' })
@@ -103,7 +104,7 @@
 
   .blog-list-item__content {
     padding-left: var(--spacing-medium);
-    border-left: 1px solid var(--very-dim);
+    border-left: 2px solid var(--very-dim);
     margin-bottom: var(--spacing-medium);
     transition: border-left var(--blog-list-item-animation-timing) ease-out;
   }
@@ -148,7 +149,7 @@
       display: block;
       color: var(--dim);
       margin-right: var(--spacing-medium);
-      flex-shrink: 0;
+      min-width: 6rem;
     }
   }
 

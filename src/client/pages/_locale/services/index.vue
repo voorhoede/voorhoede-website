@@ -5,7 +5,11 @@
       :text="page.subtitle"
       :image="page.headerIllustration"
     />
-    <services-list :services="page.services" :text="page.smallServices" :cta="page.serviceCtaLabel"/>
+
+    <services-list :services="page.services" :cta="page.serviceCtaLabel"/>
+
+    <rich-text-block class="services-text" :text="page.smallServices" />
+
     <get-in-touch-form
       :title="page.getInTouchTitle"
       :name-label="page.getInTouchForm.nameLabel"
@@ -22,13 +26,14 @@
 </template>
 
 <script>
-  import { PageHeader, ServicesList, GetInTouchForm } from '~/components'
+  import { PageHeader, ServicesList, GetInTouchForm, RichTextBlock } from '~/components'
 
   export default {
     components: {
       ServicesList,
       GetInTouchForm,
       PageHeader,
+      RichTextBlock,
     },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
@@ -48,6 +53,13 @@
   @media (min-width: 720px) {
     .page-services > * {
       margin-bottom: var(--spacing-big);
+    }
+
+    .page-services .services-text {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      max-width: var(--small-services-width);
     }
   }
 

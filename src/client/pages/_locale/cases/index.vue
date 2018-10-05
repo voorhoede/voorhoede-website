@@ -11,7 +11,7 @@
             :case-id="caseItem.slug"
             :primary-label="page.casePrimaryButtonLabel"
             :slug="caseItem.slug"
-            :image="caseItem.heroIllustration === null ? (caseItem.heroIllustration = { url: 'https://www.datocms-assets.com/6524/1536758842-vh-placeholder.svg'}) : caseItem.heroIllustration"
+            :image="caseItem.heroIllustration"
             :title="caseItem.title"
             :body="caseItem.subtitle"
           />

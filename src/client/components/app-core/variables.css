@@ -15,7 +15,7 @@
   --soft-red: #ff3e3e;
 
   /* FONTS */
-  --font-sans: apercu, sans-serif;
+  --font-sans: 'apercu', Arial, sans-serif;
 
   /* SPACING */
   --spacing-tiny: 5px;

@@ -26,7 +26,7 @@
           :key="item.body"
           :text="item.body"
         />
-        
+
         <responsive-image
           class="page-blog-post-list__image"
           :class="{ 'page-blog-post-list--not-indented' : item.fullWidth}"
@@ -51,16 +51,24 @@
           :inverse="item.imageWithDescription.inverse"
           :description="item.imageWithDescription.description"
         />
-        <div 
-          v-if="item.__typename === 'LinkRecord'" 
+
+        <div
+          v-if="item.__typename === 'LinkRecord'"
           :key="item.link">
-          <app-button 
+          <app-button
             class="page-blog-post__button"
-            :external="item.external ? true : false" 
-            :label="item.label" 
-            :to="item.link" 
+            :external="item.external ? true : false"
+            :label="item.label"
+            :to="item.link"
           />
         </div>
+
+        <quote-block
+          v-if="item.quote"
+          :key="item.quote"
+          :quote="item.quote"
+          :cite="item.author"
+          class="page-blog-post__quote" />
       </template>
     </article>
 
@@ -106,6 +114,7 @@ import {
   SocialButtons,
   CtaBlock,
   CodeBlock,
+  QuoteBlock,
 } from '../../../components'
 
 export default {
@@ -121,6 +130,7 @@ export default {
     SocialButtons,
     CtaBlock,
     CodeBlock,
+    QuoteBlock,
   },
   async asyncData({ store, route }) {
     return await store.dispatch('getData', { route })
@@ -141,7 +151,8 @@ export default {
   .page-blog-post-list__rich-text,
   .page-blog-post__aside-author,
   .page-blog-post__button,
-  .page-blog-post-list__code-block {
+  .page-blog-post-list__code-block,
+  .page-blog-post__quote {
     margin-bottom: var(--spacing-large);
   }
 
@@ -190,7 +201,7 @@ export default {
   .page-blog-post-list em {
     font-style: italic;
   }
-  
+
   @media (min-width: 720px) {
     .page-blog-post-list > * {
       padding: 0 var(--spacing-larger);
@@ -204,7 +215,8 @@ export default {
     .page-blog-post-list__rich-text,
     .page-blog-post-list__image,
     .page-blog-post__button,
-    .page-blog-post-list__code-block {
+    .page-blog-post-list__code-block,
+    .page-blog-post__quote {
       margin-bottom: var(--spacing-larger);
     }
 
