@@ -199,7 +199,7 @@ export default {
           body.append(key, this.form[key])
         })
 
-        await fetch('/', {
+        await fetch('./', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body
