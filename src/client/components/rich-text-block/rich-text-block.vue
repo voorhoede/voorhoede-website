@@ -14,16 +14,15 @@
 </script>
 
 <style>
+  .rich-text ul,
+  .rich-text ol,
+  .rich-text table,
   .rich-text p:not(:last-child) {
     margin-bottom: var(--spacing-medium);
   }
 
   .rich-text a {
     color: var(--html-blue);
-  }
-
-  .rich-text table {
-    margin-bottom: var(--spacing-medium);
   }
 
   .rich-text td {
@@ -48,7 +47,6 @@
 
   .rich-text ul,
   .rich-text ol {
-    margin-bottom: var(--spacing-medium);
     margin-left: var(--spacing-medium);
     font-size: 1rem;
   }
@@ -58,7 +56,10 @@
   }
 
   @media (min-width: 720px) {
-    .rich-text p:not(:last-child) {
+    .rich-text ul,
+    .rich-text ol,
+    .rich-text p:not(:last-child),
+    .rich-text table {
       margin-bottom: var(--spacing-large);
     }
 
