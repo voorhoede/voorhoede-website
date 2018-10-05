@@ -34,7 +34,7 @@
         :placeholder-label="namePlaceholder"
         required
         :validate="formIsValidated"
-        validation-error-message="Your name is required"
+        :validation-error-message="nameErrorMessage"
       />
       <input-field
         id="business"
@@ -68,7 +68,7 @@
         :placeholder-label="phonePlaceholder"
         required
         :validate="formIsValidated"
-        validation-error-message="Your phone is required"
+        :validation-error-message="phoneErrorMessage"
       />
     </fieldset>
     <app-button
@@ -122,6 +122,10 @@ export default {
       type: String,
       required: true
     },
+    nameErrorMessage: {
+      type: String,
+      required: true
+    },
     emailLabel: {
       type: String,
       required: true
@@ -130,11 +134,23 @@ export default {
       type: String,
       required: true
     },
+    emailErrorMessageEmpty: {
+      type: String,
+      required: true
+    },
+    emailErrorMessageIncorrect: {
+      type: String,
+      required: true
+    },
     phoneLabel: {
       type: String,
       required: true
     },
     phonePlaceholder: {
+      type: String,
+      required: true
+    },
+    phoneErrorMessage: {
       type: String,
       required: true
     },
@@ -193,7 +209,7 @@ export default {
   },
   computed: {
     emailValidationErrorMessage() {
-      return this.email ? 'Please provide a valid e-mail address' : 'Your e-mail address is required'
+      return this.email ? this.emailErrorMessageEmpty : this.emailErrorMessageIncorrect
     },
   },
   methods: {

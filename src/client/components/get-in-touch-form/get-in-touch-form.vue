@@ -19,7 +19,7 @@
         :placeholder-label="namePlaceholder"
         required
         :validate="formIsValidated"
-        validation-error-message="Your name is required"
+        :validation-error-message="nameErrorMessage"
       />
       <input-field
         v-model="email"
@@ -29,7 +29,7 @@
         :placeholder-label="emailPlaceholder"
         required
         :validate="formIsValidated"
-        validation-error-message="Your email is required"
+        :validation-error-message="emailValidationErrorMessage"
       />
       <input-field
         v-model="phone"
@@ -39,7 +39,7 @@
         :placeholder-label="phonePlaceholder"
         required
         :validate="formIsValidated"
-        validation-error-message="Your phone number is required"
+        :validation-error-message="phoneErrorMessage"
       />
       <input-field
         v-model="project"
@@ -49,7 +49,7 @@
         :placeholder-label="summaryPlaceholder"
         required
         :validate="formIsValidated"
-        validation-error-message="Your project is required"
+        :validation-error-message="summaryErrorMessage"
       />
       <app-button
         class="get-in-touch-form__button"
@@ -81,11 +81,23 @@
         type: String,
         required: true
       },
+      nameErrorMessage: {
+        type: String,
+        required: true
+      },
       emailLabel: {
         type: String,
         required: true
       },
       emailPlaceholder: {
+        type: String,
+        required: true
+      },
+      emailErrorMessageEmpty: {
+        type: String,
+        required: true
+      },
+      emailErrorMessageIncorrect: {
         type: String,
         required: true
       },
@@ -97,11 +109,19 @@
         type: String,
         required: true
       },
+      phoneErrorMessage: {
+        type: String,
+        required: true
+      },
       summaryLabel: {
         type: String,
         required: true
       },
       summaryPlaceholder: {
+        type: String,
+        required: true
+      },
+      summaryErrorMessage: {
         type: String,
         required: true
       },
@@ -121,7 +141,7 @@
     },
     computed: {
       emailValidationErrorMessage() {
-        return this.email ? 'Please provide a valid e-mail address' : 'Your e-mail address is required'
+        return this.email ? this.emailErrorMessageEmpty : this.emailErrorMessageIncorrect
       },
     },
     methods: {

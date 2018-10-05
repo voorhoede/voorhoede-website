@@ -32,12 +32,17 @@ fragment page on ServiceOverviewRecord {
     title,
     nameLabel,
     namePlaceholder,
+    nameErrorMessage,
     emailLabel,
     emailPlaceholder,
+    emailErrorMessageEmpty,
+    emailErrorMessageIncorrect,
     summaryLabel,
     summaryPlaceholder,
+    summaryErrorMessage,
     phoneLabel,
     phonePlaceholder,
+    phoneErrorMessage,
     ctaButtonLabel
   },
   serviceCtaLabel
