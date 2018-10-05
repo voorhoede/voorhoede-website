@@ -18,6 +18,11 @@ Vue.component('input-field', InputField)
 stories.add(
   'Input Field',
   () => ({
-    template: '<input-field/>',
+    template: `<input-field
+      type="text"
+      id="name"
+      label="My name is"
+      placeholder-label="Your name"
+    />`,
   }),
 )
