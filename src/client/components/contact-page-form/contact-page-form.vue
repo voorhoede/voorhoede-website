@@ -170,6 +170,7 @@ export default {
   data() {
     return {
       form: {
+        'form-name': 'contact-page-form',
         needHelpWith: '',
         budgetOf: '',
         projectDescription: '',
@@ -192,13 +193,16 @@ export default {
   methods: {
     async submit() {
       try {
+        const body = new URLSearchParams()
+
+        Object.keys(this.form).forEach(key => {
+          body.append(key, this.form[key])
+        })
+
         await fetch('/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: JSON.stringify({
-            'form-name': 'contact-page-form',
-            ...this.form
-          })
+          body
         })
 
         this.$router.push({
@@ -217,7 +221,7 @@ export default {
           }
         })
       }
-    }
+    },
   }
 }
 </script>

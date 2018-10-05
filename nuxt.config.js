@@ -112,6 +112,10 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    vendor: [
+      'url-search-params-polyfill'
+    ],
+
     postcss: [
       require('postcss-custom-properties')()
     ],
