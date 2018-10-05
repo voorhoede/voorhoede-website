@@ -3,27 +3,27 @@
     <h2 class="get-in-touch-form__title h3">{{ title }}</h2>
 
     <form
+      @submit.prevent="submit"
       class="get-in-touch-form__form"
       method="POST"
       data-netlify="true"
-      name="get-in-touch"
+      :action="confirmationPageUrl"
     >
-      <input type="hidden" name="form-name" value="get-in-touch">
       <label class="get-in-touch-form__label">
         <span class="get-in-touch-form__label-text body-petite">{{ nameLabel }}</span>
-        <input class="body" type="text" :placeholder="namePlaceholder" name="name">
+        <input class="body" type="text" :placeholder="namePlaceholder" name="name" v-model="form.name">
       </label>
       <label class="get-in-touch-form__label">
         <span class="get-in-touch-form__label-text body-petite">{{ emailLabel }}</span>
-        <input class="body" type="text" :placeholder="emailPlaceholder" name="email">
+        <input class="body" type="text" :placeholder="emailPlaceholder" name="email" v-model="form.email">
       </label>
       <label class="get-in-touch-form__label">
         <span class="get-in-touch-form__label-text body-petite">{{ phoneLabel }}</span>
-        <input class="body" type="text" :placeholder="phonePlaceholder" name="number">
+        <input class="body" type="text" :placeholder="phonePlaceholder" name="number" v-model="form.number">
       </label>
       <label class="get-in-touch-form__label">
         <span class="get-in-touch-form__label-text body-petite">{{ summaryLabel }}</span>
-        <input class="body" type="text" :placeholder="summaryPlaceholder" name="explanation">
+        <input class="body" type="text" :placeholder="summaryPlaceholder" name="explanation" v-model="form.explanation">
       </label>
       <app-button
         class="get-in-touch-form__button"
@@ -36,6 +36,8 @@
 
 <script>
   import { AppButton } from '~/components'
+  import { mapState } from 'vuex'
+  import submitContactForm from '../../lib/submit-contact-form'
 
   export default {
     components: {
@@ -81,6 +83,34 @@
       ctaLabel: {
         type: String,
         required: true
+      }
+    },
+    data() {
+      return {
+        form: {
+          'form-name': 'get-in-touch',
+          name: '',
+          email: '',
+          number: '',
+          explanation: '',
+        }
+      }
+    },
+    computed: {
+      ...mapState([
+        'currentLocale',
+      ]),
+      confirmationPageUrl() {
+        return '/' + this.currentLocale + '/contact/confirmation/'
+      }
+    },
+    methods: {
+      submit() {
+        submitContactForm({
+          form: this.form,
+          router: this.$router,
+          currentLocale: this.currentLocale,
+        })
       }
     }
   }

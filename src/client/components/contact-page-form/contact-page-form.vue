@@ -66,6 +66,7 @@
 <script>
 import { mapState } from 'vuex'
 import { AppButton } from '~/components'
+import submitContactForm from '../../lib/submit-contact-form'
 
 const greyOutFirstOption = ({ target }) => {
   const { selectedIndex } = target
@@ -191,37 +192,13 @@ export default {
     }
   },
   methods: {
-    async submit() {
-      try {
-        const body = new URLSearchParams()
-
-        Object.keys(this.form).forEach(key => {
-          body.append(key, this.form[key])
-        })
-
-        await fetch('./', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body
-        })
-
-        this.$router.push({
-          name: 'locale-contact-slug',
-          params: {
-            locale: this.currentLocale,
-            slug: 'confirmation'
-          }
-        })
-      } catch (error) {
-        this.$router.push({
-          name: 'locale-contact-slug',
-          params: {
-            locale: this.currentLocale,
-            slug: 'failed'
-          }
-        })
-      }
-    },
+    submit() {
+      submitContactForm({
+        form: this.form,
+        router: this.$router,
+        currentLocale: this.currentLocale
+      })
+    }
   }
 }
 </script>
