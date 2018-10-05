@@ -21,4 +21,5 @@ fragment page on ContactConfirmationRecord {
     alt
   },
   body,
+  callToActionLabel
 }

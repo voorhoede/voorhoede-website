@@ -5,19 +5,23 @@
       :text="page.subtitle"
       :image="page.headerIllustration" />
     <div class="page-contact-confirmation__backdrop grid">
-      <div class="page-contact-confirmation__content">
-        test
+      <div class="page-contact-confirmation__content body">
+        {{ page.body }}
       </div>
     </div>
+    <cta-block
+      :cta-label="page.callToActionLabel"
+      :cta-to="{ name: 'locale-cases', params: { locale: currentLocale }}" />
   </section>
 </template>
 
 <script>
   import { mapState } from 'vuex'
-  import { PageHeader } from '~/components'
+  import { CtaBlock, PageHeader } from '~/components'
 
   export default {
     components: {
+      CtaBlock,
       PageHeader,
     },
     async asyncData({ store, route }) {
@@ -39,6 +43,7 @@
 }
 
 .page-contact-confirmation__backdrop {
+  margin-bottom: var(--spacing-large);
   background-color: white;
 }
 
@@ -53,6 +58,7 @@
 
 @media screen and (min-width: 720px) {
   .page-contact-confirmation__backdrop {
+    margin-bottom: var(--spacing-big);
     background-color: var(--bg-pastel);
   }
 
