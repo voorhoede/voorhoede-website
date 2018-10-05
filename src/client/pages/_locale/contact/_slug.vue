@@ -9,9 +9,11 @@
         {{ page.body }}
       </div>
     </div>
-    <cta-block
-      :cta-label="page.callToActionLabel"
-      :cta-to="{ name: 'locale-cases', params: { locale: currentLocale }}" />
+    <div class="grid">
+      <cta-block
+        :cta-label="page.callToActionLabel"
+        :cta-to="{ name: 'locale-cases', params: { locale: currentLocale }}" />
+    </div>
   </section>
 </template>
 
@@ -48,7 +50,7 @@
 }
 
 .page-contact-confirmation__content {
-  padding-top: var(--spacing-large);
+  padding: var(--spacing-large) 0;
   display: flex;
   flex-direction: column-reverse;
   background-color: white;
