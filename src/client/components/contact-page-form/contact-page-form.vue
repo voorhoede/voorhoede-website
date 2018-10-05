@@ -1,50 +1,58 @@
 <template>
-  <form method="POST" name="contact-form" :action="confirmationPageUrl" class="contact-form" data-netlify="true" netlify-honeypot="magic-castle">
+  <form
+    @submit.prevent="submit"
+    method="POST"
+    name="contact-form"
+    :action="confirmationPageUrl"
+    class="contact-form"
+    data-netlify="true"
+    netlify-honeypot="magic-castle"
+  >
     <fieldset class="contact-form__fieldset">
       <legend class="h4">{{ subjectTitle }}</legend>
       <input type="hidden" name="form-name" value="contact-form">
       <label class="hidden">
         Don't fill this out if you're human:
-        <input name="magic-castle">
+        <input v-model="form.magicCastle" name="magic-castle">
       </label>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ subjectLabel }}</span>
-        <select class="body greyed-out" type="select" name="need-help-with" v-greyed-out-first>
+        <select class="body greyed-out" type="select" name="need-help-with" v-model="form.needHelpWith" v-greyed-out-first>
           <option v-for="subject in subjectOptions" :key="subject.value" :value="subject.value">{{ subject.label }}</option>
         </select>
       </label>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ budgetLabel }}</span>
-        <select class="body greyed-out" type="select" name="budget-of" v-greyed-out-first>
+        <select class="body greyed-out" type="select" name="budget-of" v-model="form.budgetOf" v-greyed-out-first>
           <option v-for="option in budgetOptions" :key="option.value" :value="option.value">{{ option.label }}</option>
         </select>
       </label>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ projectLabel }}</span>
-        <textarea rows="5" class="contact-form__description body" type="text" name="project-description" :placeholder="projectPlaceholder"/>
+        <textarea rows="5" class="contact-form__description body" type="text" name="project-description" v-model="form.projectDescription" :placeholder="projectPlaceholder"/>
       </label>
     </fieldset>
     <fieldset class="contact-form__fieldset">
       <legend class="h4">{{ contactTitle }}</legend>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ nameLabel }}</span>
-        <input type="text" class="body" name="name" :placeholder="namePlaceholder">
+        <input type="text" class="body" name="name" v-model="form.name" :placeholder="namePlaceholder">
       </label>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ businessLabel }}</span>
-        <input type="text" class="body" name="business" :placeholder="businessPlaceholder">
+        <input type="text" class="body" name="business" v-model="form.business" :placeholder="businessPlaceholder">
       </label>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ websiteLabel }}</span>
-        <input class="body" type="text" name="website" :placeholder="websitePlaceholder">
+        <input class="body" type="text" name="website" v-model="form.website" :placeholder="websitePlaceholder">
       </label>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ emailLabel }}</span>
-        <input class="body" type="email" name="email" :placeholder="emailPlaceholder">
+        <input class="body" type="email" name="email" v-model="form.email" :placeholder="emailPlaceholder">
       </label>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ phoneLabel }}</span>
-        <input class="body" type="phone" name="phone" :placeholder="phonePlaceholder">
+        <input class="body" type="phone" name="phone" v-model="form.phone" :placeholder="phonePlaceholder">
       </label>
     </fieldset>
     <app-button
@@ -159,6 +167,20 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      form: {
+        needHelpWith: '',
+        budgetOf: '',
+        projectDescription: '',
+        name: '',
+        business: '',
+        website: '',
+        email: '',
+        phone: '',
+      }
+    }
+  },
   computed: {
     ...mapState([
       'currentLocale',
@@ -167,6 +189,36 @@ export default {
       return '/' + this.currentLocale + '/contact/confirmation/'
     }
   },
+  methods: {
+    async submit() {
+      try {
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: JSON.stringify({
+            'form-name': 'contact-page-form',
+            ...this.form
+          })
+        })
+
+        this.$router.push({
+          name: 'locale-contact-slug',
+          params: {
+            locale: this.currentLocale,
+            slug: 'confirmation'
+          }
+        })
+      } catch (error) {
+        this.$router.push({
+          name: 'locale-contact-slug',
+          params: {
+            locale: this.currentLocale,
+            slug: 'failed'
+          }
+        })
+      }
+    }
+  }
 }
 </script>
 
