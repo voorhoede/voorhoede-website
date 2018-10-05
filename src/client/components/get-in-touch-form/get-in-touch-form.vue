@@ -88,7 +88,7 @@
     data() {
       return {
         form: {
-          'form-name': 'get-in-touch',
+          'form-name': 'get-in-touch-form',
           name: '',
           email: '',
           number: '',
