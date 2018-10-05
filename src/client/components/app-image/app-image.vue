@@ -2,7 +2,7 @@
   <div class="app-image">
     <no-script>
       <picture class="app-image__picture">
-        <img class="app-image__img" :src="image.url" :alt="image.alt">
+        <img class="app-image__img" :alt="image.alt" :src="image.url">
       </picture>
     </no-script>
     <lazy-load>
