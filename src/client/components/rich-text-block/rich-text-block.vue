@@ -14,6 +14,9 @@
 </script>
 
 <style>
+  .rich-text ul,
+  .rich-text ol,
+  .rich-text table,
   .rich-text p:not(:last-child) {
     margin-bottom: var(--spacing-medium);
   }
@@ -22,36 +25,30 @@
     color: var(--html-blue);
   }
 
-  .rich-text table {
-    margin: 0 auto;
-    max-width: 500px;
-    margin-bottom: var(--spacing-medium);
-  }
-
   .rich-text td {
-    padding: var(--spacing-small) 0;
+    padding: var(--spacing-small) var(--spacing-tiny);
     text-align: center;
   }
 
   .rich-text tr {
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    border-bottom: 1px solid var(--very-dim);
   }
 
   .rich-text tr:first-child {
-    font-size: .75rem; /* 12px */
-    font-weight: 700;
-    line-height: 1.3333333333; /* 16px */
-    text-transform: uppercase;
-    letter-spacing: .1375rem; /* 2.2px */
-    color: var(--html-blue);
     border-bottom: 2px solid var(--very-dim);
+    color: var(--html-blue);
+  }
+
+  .rich-text tr:first-child td {
+    padding: var(--spacing-medium) var(--spacing-tiny);
+    font-weight: 700;
+    vertical-align: bottom;
   }
 
   .rich-text ul,
   .rich-text ol {
-    font-size: 1rem;
     margin-left: var(--spacing-medium);
-    margin-bottom: var(--spacing-medium);
+    font-size: 1rem;
   }
 
   .rich-text li {
@@ -59,14 +56,11 @@
   }
 
   @media (min-width: 720px) {
-    .rich-text p:not(:last-child) {
+    .rich-text ul,
+    .rich-text ol,
+    .rich-text p:not(:last-child),
+    .rich-text table {
       margin-bottom: var(--spacing-large);
-    }
-
-    .rich-text tr:first-child {
-      font-size: .8125rem; /* 13px */
-      line-height: 1.3076923077; /* 17px */
-      letter-spacing: .15rem; /* 2.4px */
     }
 
     .rich-text ul,
