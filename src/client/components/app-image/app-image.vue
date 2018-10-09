@@ -1,5 +1,10 @@
 <template>
   <div class="app-image">
+    <no-script>
+      <picture class="app-image__picture">
+        <img class="app-image__img" :alt="image.alt" :src="image.url" >
+      </picture>
+    </no-script>
     <lazy-load>
       <picture class="app-image__picture">
         <!--[if IE 9]><video style="display: none;"><![endif]-->
@@ -9,11 +14,6 @@
         <img class="app-image__img" :alt="image.alt" :src="imageUrl({ w: width })" >
       </picture>
     </lazy-load>
-    <no-script>
-      <picture class="app-image__picture">
-        <img class="app-image__img" :alt="image.alt" :src="imageUrl({ w: 500 })" >
-      </picture>
-    </no-script>
   </div>
 </template>
 
@@ -32,10 +32,10 @@
         type: Object,
         required: true,
         validator(image) {
-          let imageDimensions = 
-            (image.width && image.height) ? 
+          let imageDimensions =
+            (image.width && image.height) ?
             typeof(image.width && image.height) === 'number' : true
-            
+
           let imageFormat = image.format ? typeof(image.format === 'string') : true
 
           return imageDimensions && imageFormat && typeof(image.url) === 'string'
