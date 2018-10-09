@@ -2,16 +2,16 @@
   <div class="highlighted-clients">
     <ul class="highlighted-clients__list">
       <li
-        v-for="{image} in clients"
+        v-for="{ image } in clients"
         :key="image.alt"
         class="highlighted-clients__client"
       >
         <no-script>
-          <img :src="image.src" :alt="image.alt" class="highlighted-clients__image" >
+          <img :src="image.url" :alt="image.alt" class="highlighted-clients__image">
         </no-script>
         <fixed-ratio :width="5" :height="2">
           <lazy-load>
-            <img :src="logoSrc" :alt="name">
+            <img :src="image.url" :alt="image.alt">
           </lazy-load>
         </fixed-ratio>
       </li>
@@ -77,7 +77,7 @@ export default {
 }
 
 .highlighted-clients__image {
-  height: 100%;
+  width: 100%;
 }
 
 @media (min-width: 720px) {
