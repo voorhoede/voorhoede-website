@@ -15,23 +15,24 @@
         </li>
       </ul>
     </div>
+    <div class="grid">
+      <cta-block
+        :cta-label="page.callToActionLabel"
+        :cta-to="{ name: 'locale-about-us', params: { locale: currentLocale } }">
+        <template slot="heading">
+          <h3 class="h4">{{ page.callToActionTitle }}</h3>
+        </template>
+      </cta-block>
+    </div>
   </main>
 </template>
 
 <script>
   import { mapState } from 'vuex'
-  import {
-    PageHeader,
-    TextBlock,
-    BlogListItem
-  } from '~/components'
+  import { BlogListItem, CtaBlock, PageHeader, TextBlock } from '~/components'
 
   export default {
-    components: {
-      PageHeader,
-      TextBlock,
-      BlogListItem
-    },
+    components: { BlogListItem, CtaBlock, PageHeader, TextBlock },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
     },
