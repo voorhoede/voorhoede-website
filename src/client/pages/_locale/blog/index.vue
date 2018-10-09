@@ -54,18 +54,18 @@
   @media (min-width: 720px) {
     .page-blog__text,
     .page-blog__posts {
-        grid-column-start: 5;
-        grid-column-end: -5;
-        margin-bottom: var(--spacing-large);
-      }
+      grid-column-start: 5;
+      grid-column-end: -5;
+      margin-bottom: var(--spacing-large);
+    }
   }
 
   @media (min-width: 1100px) {
     .page-blog__text,
     .page-blog__posts {
-        grid-column-start: 10;
-        grid-column-end: -10;
-        margin-bottom: var(--spacing-large);
-      }
+      grid-column-start: 10;
+      grid-column-end: -10;
+      margin-bottom: var(--spacing-large);
+    }
   }
 </style>

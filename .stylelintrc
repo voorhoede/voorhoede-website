@@ -2,10 +2,10 @@
   "extends": "stylelint-config-standard",
   "rules": {
     "no-empty-source": null,
-    "no-eol-whitespace": null,
+    "no-eol-whitespace": true,
     "no-descending-specificity": null,
     "color-hex-length": "long",
-    "indentation": null,
+    "indentation": 2,
     "declaration-colon-newline-after": null,
     "number-leading-zero": "never"
   }

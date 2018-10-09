@@ -1,13 +1,13 @@
 <template>
   <nav class="app-mobile-menu grid">
-    <div 
-      v-if="showMenu" 
-      class="app-mobile-menu__content" 
+    <div
+      v-if="showMenu"
+      class="app-mobile-menu__content"
       @touchmove="prevent"
     >
       <nuxt-link :to="`/${currentLocale}/`">
-        <img 
-          class="app-mobile-menu__logo" 
+        <img
+          class="app-mobile-menu__logo"
           src="/images/logo--blue-and-yellow.svg"
           @click="toggleMobileMenu">
       </nuxt-link>
@@ -16,9 +16,9 @@
             class="app-mobile-menu__list-item"
             @click="toggleMobileMenu"
         >
-          <nuxt-link 
+          <nuxt-link
             class="h2"
-            :to="createHref(link)" 
+            :to="createHref(link)"
           >
             {{ link.title }}
           </nuxt-link>
@@ -26,17 +26,17 @@
       </ul>
     </div>
 
-    <div 
-      class="app-mobile-menu__icon" 
-      @click="toggleMobileMenu" 
+    <div
+      class="app-mobile-menu__icon"
+      @click="toggleMobileMenu"
       @touchmove="prevent"
     >
-      <img 
-        v-if="showMenu" 
-        class="app-mobile-menu__icon-image" 
+      <img
+        v-if="showMenu"
+        class="app-mobile-menu__icon-image"
         src="/images/icon_menu-exit--white.svg"
       >
-      <img 
+      <img
         v-else
         class="app-mobile-menu__icon-image"
         src="/images/icon_menu-passive--white.svg"
@@ -78,14 +78,14 @@
 
 <style>
   :root {
-      --mobile-menu-z-index: 2;
-      --mobile-icon-right: 20px;
-      --mobile-icon-bottom: var(--mobile-icon-right);
-      --mobile-icon-height: 52px;
-      --mobile-icon-width: var(--mobile-icon-height);
-      --mobile-icon-image: 25px;
-      --mobile-icon-shadow: 2px 2px 4px 0 rgba(0, 0, 0, .27);
-      --mobile-spacing: 12px 20px;
+    --mobile-menu-z-index: 2;
+    --mobile-icon-right: 20px;
+    --mobile-icon-bottom: var(--mobile-icon-right);
+    --mobile-icon-height: 52px;
+    --mobile-icon-width: var(--mobile-icon-height);
+    --mobile-icon-image: 25px;
+    --mobile-icon-shadow: 2px 2px 4px 0 rgba(0, 0, 0, .27);
+    --mobile-spacing: 12px 20px;
   }
 
   .app-mobile-menu {
