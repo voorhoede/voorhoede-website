@@ -111,6 +111,7 @@
   line-height: 1.5625; /* 25px */
 }
 
+.rich-text tr,
 .body-petite {
   font-family: var(--font-sans);
   font-size: .875rem; /* 14px */
@@ -201,6 +202,7 @@
     line-height: 1.5882352941; /* 27px */
   }
 
+  .rich-text tr,
   .body-petite {
     font-size: .9375rem; /* 15px */
     line-height: 1.4; /* 21px */
@@ -288,6 +290,7 @@
     line-height: 1.6111111111; /* 29px */
   }
 
+  .rich-text tr,
   .body-petite {
     font-size: 1rem; /* 16px */
     line-height: 1.375; /* 22px */

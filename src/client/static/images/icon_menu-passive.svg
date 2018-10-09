@@ -1,10 +1,5 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <title>dv_design-system_icons</title>
-  <g id="icon_hamburger_hover_white" data-name="icon/hamburger/hover/white">
-    <g id="Group-3">
-      <path id="Path-4" d="M27,8.542H5.027" fill="none" stroke="#222" stroke-width="2.351"/>
-      <path id="Path-4-Copy" d="M22.851,16H5.027" fill="none" stroke="#222" stroke-width="2.351"/>
-      <path id="Path-4-Copy-2" d="M27,23.458H5.027" fill="none" stroke="#222" stroke-width="2.351"/>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <g fill="none" stroke="#222" stroke-width="2.35">
+    <path d="M27 8.54H5.03M22.85 16H5.03M27 23.46H5.03"/>
   </g>
 </svg>
