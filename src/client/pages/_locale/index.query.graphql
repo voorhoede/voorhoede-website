@@ -63,7 +63,8 @@ fragment page on HomeRecord {
     title,
     subtitle,
     heroIllustration {
-      url
+      url,
+      alt
     }
   },
   servicesHeader,
