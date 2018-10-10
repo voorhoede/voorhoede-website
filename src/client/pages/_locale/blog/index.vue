@@ -15,12 +15,16 @@
         </li>
       </ul>
     </div>
-    <div class="grid">
+    <div class="page-blog__cta grid">
       <cta-block
+        class="page-blog__cta-block"
         :cta-label="page.callToActionLabel"
         :cta-to="{ name: 'locale-about-us', params: { locale: currentLocale } }">
         <template slot="heading">
-          <h3 class="h4">{{ page.callToActionTitle }}</h3>
+          <h3 class="h3">{{ page.callToActionTitle }}</h3>
+        </template>
+        <template slot="body">
+          <p class="body">{{ page.callToActionBody }}</p>
         </template>
       </cta-block>
     </div>
@@ -52,21 +56,40 @@
     padding-top: var(--spacing-larger);
   }
 
+  .page-blog__cta {
+    grid-column: page;
+    background: var(--bg-pastel);
+  }
+
+  .page-blog__cta-block.cta-block {
+    border: none;
+  }
+
   @media (min-width: 720px) {
     .page-blog__text,
     .page-blog__posts {
-        grid-column-start: 5;
-        grid-column-end: -5;
-        margin-bottom: var(--spacing-large);
-      }
+      grid-column-start: 5;
+      grid-column-end: -5;
+      margin-bottom: var(--spacing-large);
+    }
+
+    .page-blog__cta-block.cta-block {
+      grid-column-start: 8;
+      grid-column-end: -8;
+    }
   }
 
   @media (min-width: 1100px) {
     .page-blog__text,
     .page-blog__posts {
-        grid-column-start: 10;
-        grid-column-end: -10;
-        margin-bottom: var(--spacing-large);
-      }
+      grid-column-start: 10;
+      grid-column-end: -10;
+      margin-bottom: var(--spacing-large);
+    }
+
+    .page-blog__cta-block.cta-block {
+      grid-column-start: 14;
+      grid-column-end: -14;
+    }
   }
 </style>
