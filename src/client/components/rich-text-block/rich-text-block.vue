@@ -14,9 +14,9 @@
 </script>
 
 <style>
-  .rich-text ul,
-  .rich-text ol,
   .rich-text table,
+  .rich-text ul:not(:last-child),
+  .rich-text ol:not(:last-child),
   .rich-text p:not(:last-child) {
     margin-bottom: var(--spacing-medium);
   }
@@ -47,26 +47,21 @@
 
   .rich-text ul,
   .rich-text ol {
-    margin-left: var(--spacing-medium);
-    font-size: 1rem;
+    padding-left: var(--spacing-medium);
   }
 
-  .rich-text li {
-    margin-bottom: var(--spacing-tiny);
+  /* Paragraph followed by a list? Pull them closer together! */
+  .rich-text p + ul,
+  .rich-text p + ol {
+    margin-top: calc(-1 * var(--spacing-small));
   }
 
   @media (min-width: 720px) {
-    .rich-text ul,
-    .rich-text ol,
-    .rich-text p:not(:last-child),
-    .rich-text table {
+    .rich-text table,
+    .rich-text ul:not(:last-child),
+    .rich-text ol:not(:last-child),
+    .rich-text p:not(:last-child) {
       margin-bottom: var(--spacing-large);
-    }
-
-    .rich-text ul,
-    .rich-text ol {
-      font-size: 1.0625rem; /* 17px */
-      line-height: 1.5882352941; /* 27px */
     }
   }
 </style>

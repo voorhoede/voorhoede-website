@@ -18,7 +18,8 @@
     </div>
   </div>
 </template>
- <script>
+
+<script>
 import { PageHeaderDetail, GenericTextBlock } from '~/components'
  export default {
   components: {
@@ -30,7 +31,8 @@ import { PageHeaderDetail, GenericTextBlock } from '~/components'
   }
 }
 </script>
- <style>
+
+<style>
   .page-service .page-header-detail {
     grid-column: page;
     margin-bottom: var(--spacing-large);
@@ -60,4 +62,4 @@ import { PageHeaderDetail, GenericTextBlock } from '~/components'
       padding: var(--spacing-big) var(--spacing-bigger);
     }
   }
- </style>
+</style>

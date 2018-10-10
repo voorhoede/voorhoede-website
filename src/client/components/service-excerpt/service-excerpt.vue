@@ -5,7 +5,7 @@
       <h4 class="service-excerpt__sub-title h3">{{ title }}</h4>
       <div class="service-excerpt__divider"/>
       <ul class="list">
-        <li class="body" v-for="line in summary" :key="line.title">
+        <li v-for="line in summary" :key="line.title">
           {{ line.title }}
         </li>
       </ul>
@@ -75,14 +75,6 @@ export default {
   width: var(--spacing-medium);
   height: 2px;
   background: var(--html-blue);
-}
-
-.service-excerpt__content .list {
-  padding-left: var(--spacing-small);
-}
-
-.service-excerpt__content .list li + li {
-  margin-top: var(--spacing-smaller);
 }
 
 .service-excerpt .app-button {
