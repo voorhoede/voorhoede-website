@@ -82,7 +82,6 @@
     height: 1px;
     background-color: var(--black);
     opacity: var(--header-border-opacity);
-    mix-blend-mode: multiply;
   }
 
   .app-header__content {
