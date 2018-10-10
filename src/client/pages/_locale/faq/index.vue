@@ -6,7 +6,7 @@
       :image="page.headerIllustration"
     />
     <div class="page-faq__overview">
-      <ul> 
+      <ul>
         <li class="page-faq__overview-item" v-for="item in page.items" :key="item.title">
           <generic-text-block
             :title="item.title"

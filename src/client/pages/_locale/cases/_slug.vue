@@ -45,6 +45,7 @@
           <rich-text-block
             v-if="item.body"
             :text="item.body"
+            large-text
           />
         </div>
 
