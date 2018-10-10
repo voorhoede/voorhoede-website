@@ -34,5 +34,7 @@ fragment blogPostOverview on BlogPostOverviewRecord {
     url,
     alt
   }
+  callToActionTitle,
+  callToActionBody,
   callToActionLabel,
 }
