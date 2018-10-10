@@ -35,5 +35,7 @@ fragment blogPostOverview on BlogPostOverviewRecord {
     alt
   }
   callToActionLabel,
-  callToActionTitle
+  rssLabel,
+  rssLink,
+  externalRssLink
 }
