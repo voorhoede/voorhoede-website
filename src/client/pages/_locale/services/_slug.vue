@@ -5,20 +5,19 @@
       :sub-title="page.title"
       :image="page.headerIllustration"
     />
-    <div class="page-service__overview">
-      <ul>
-        <li class="page-service__overview-item" v-for="item in page.items" :key="item.title">
-          <generic-text-block
-            :title="item.title"
-            :body="item.body"
-            :image="item.image"
-          />
-        </li>
-      </ul>
-    </div>
+    <article class="page-service__overview">
+      <template v-for="item in page.items">
+        <generic-text-block
+          :key="item.title"
+          :title="item.title"
+          :body="item.body"
+          :image="item.image" />
+      </template>
+    </article>
   </div>
 </template>
- <script>
+
+<script>
 import { PageHeaderDetail, GenericTextBlock } from '~/components'
  export default {
   components: {
@@ -30,13 +29,14 @@ import { PageHeaderDetail, GenericTextBlock } from '~/components'
   }
 }
 </script>
- <style>
+
+<style>
   .page-service .page-header-detail {
     grid-column: page;
     margin-bottom: var(--spacing-large);
   }
 
-  .page-service__overview-item {
+  .page-service__overview .generic-text-block {
     margin-bottom: var(--spacing-large);
   }
 
@@ -60,4 +60,4 @@ import { PageHeaderDetail, GenericTextBlock } from '~/components'
       padding: var(--spacing-big) var(--spacing-bigger);
     }
   }
- </style>
+</style>

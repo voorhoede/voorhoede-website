@@ -103,7 +103,6 @@
 }
 
 .rich-text p,
-.rich-text li,
 .body {
   font-family: var(--font-sans);
   font-size: 1rem; /* 16px */
@@ -196,7 +195,6 @@
   }
 
   .rich-text p,
-  .rich-text li,
   .body {
     font-size: 1.0625rem; /* 17px */
     line-height: 1.5882352941; /* 27px */
@@ -284,7 +282,6 @@
   }
 
   .rich-text p,
-  .rich-text li,
   .body {
     font-size: 1.125rem; /* 18px */
     line-height: 1.6111111111; /* 29px */
