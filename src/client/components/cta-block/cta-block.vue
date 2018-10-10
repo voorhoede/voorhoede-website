@@ -73,18 +73,18 @@
 
 <style>
   .cta-block {
-    padding-top: var(--spacing-large);
-    padding-bottom: var(--spacing-larger);
+    padding-top: var(--spacing-medium);
+    padding-bottom: var(--spacing-medium);
     text-align: center;
   }
 
   .cta-block__heading {
-    margin-bottom: var(--spacing-medium);
+    margin-bottom: var(--spacing-small);
   }
 
   .cta-block__body {
     margin-right: auto;
-    margin-bottom: var(--spacing-medium);
+    margin-bottom: var(--spacing-large);
     margin-left: auto;
   }
 
@@ -106,7 +106,8 @@
 
   @media (min-width: 1100px) {
     .cta-block {
-      padding-bottom: var(--spacing-big);
+      padding-top: var(--spacing-large);
+      padding-bottom: var(--spacing-large);
     }
   }
 </style>
