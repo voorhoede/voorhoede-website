@@ -133,9 +133,9 @@
 
   .page-index__scroll-to {
     position: absolute;
-    top: 78vh;
     left: 0;
     right: 0;
+    bottom: 0;
   }
 
   .page-index .scroll-to {
@@ -256,6 +256,10 @@
   }
 
   @media (min-width: 720px) {
+    .page-index__scroll-to {
+      bottom: var(--spacing-larger);
+    }
+
     .page-index .page-header {
       margin-bottom: var(--spacing-big);
       height: 100vh;
@@ -309,8 +313,8 @@
       grid-column-end: 30;
     }
 
-    .page-index__scroll-to {
-      top: 89vh;
+    .page-index .scroll-to {
+      grid-column: 2;
     }
 
     .page-index .blog-list-item__time {
@@ -415,10 +419,6 @@
     .page-index .scroll-to {
       grid-column-start: 4;
       grid-column-end: 5;
-    }
-
-    .page-index__scroll-to {
-      top: 81vh;
     }
 
     .page-index .page-header__text {
