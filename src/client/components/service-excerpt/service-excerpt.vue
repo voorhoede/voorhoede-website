@@ -5,7 +5,7 @@
       <h4 class="service-excerpt__sub-title h3">{{ title }}</h4>
       <div class="service-excerpt__divider"/>
       <ul class="list">
-        <li v-for="line in summary" :key="line.title">
+        <li class="body" v-for="line in summary" :key="line.title">
           {{ line.title }}
         </li>
       </ul>
