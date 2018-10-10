@@ -55,71 +55,71 @@ export default {
 </script>
 
 <style>
-.service-excerpt {
-  position: relative;
-}
+  .service-excerpt {
+    position: relative;
+  }
 
-.service-excerpt__title {
-  margin-bottom: var(--spacing-medium);
-  padding-top: .125rem; /* 2px */
-  padding-left: var(--spacing-smaller);
-  background: var(--brand-yellow);
-}
-
-.service-excerpt__sub-title {
-  margin-bottom: var(--spacing-small);
-}
-
-.service-excerpt__divider {
-  margin-bottom: var(--spacing-small);
-  width: var(--spacing-medium);
-  height: 2px;
-  background: var(--html-blue);
-}
-
-.service-excerpt__content .list {
-  padding-left: var(--spacing-small);
-}
-
-.service-excerpt__content .list li + li {
-  margin-top: var(--spacing-smaller);
-}
-
-.service-excerpt .app-button {
-  margin-top: var(--spacing-small);
-  margin-left: var(--spacing-small);
-}
-
-.service-excerpt .app-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-@media (min-width: 720px) {
   .service-excerpt__title {
-    padding-top: .25rem; /* 4px */
-    padding-bottom: .125rem; /* 2px */
+    margin-bottom: var(--spacing-medium);
+    padding-top: .125rem; /* 2px */
+    padding-left: var(--spacing-smaller);
+    background: var(--brand-yellow);
+  }
+
+  .service-excerpt__sub-title {
+    margin-bottom: var(--spacing-small);
   }
 
   .service-excerpt__divider {
-    margin-bottom: var(--spacing-medium);
-    width: var(--spacing-large);
+    margin-bottom: var(--spacing-small);
+    width: var(--spacing-medium);
+    height: 2px;
+    background: var(--html-blue);
+  }
+
+  .service-excerpt__content .list {
+    padding-left: var(--spacing-small);
+  }
+
+  .service-excerpt__content .list li + li {
+    margin-top: var(--spacing-smaller);
   }
 
   .service-excerpt .app-button {
-    margin-top: var(--spacing-large);
-    margin-left: 0;
+    margin-top: var(--spacing-small);
+    margin-left: var(--spacing-small);
   }
-}
 
-@media (min-width: 1100px) {
-  .service-excerpt__title {
-    padding-top: .375em; /* 6px */
-    padding-bottom: .25rem; /* 4px */
+  .service-excerpt .app-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
-}
+
+  @media (min-width: 720px) {
+    .service-excerpt__title {
+      padding-top: .25rem; /* 4px */
+      padding-bottom: .125rem; /* 2px */
+    }
+
+    .service-excerpt__divider {
+      margin-bottom: var(--spacing-medium);
+      width: var(--spacing-large);
+    }
+
+    .service-excerpt .app-button {
+      margin-top: var(--spacing-large);
+      margin-left: 0;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .service-excerpt__title {
+      padding-top: .375em; /* 6px */
+      padding-bottom: .25rem; /* 4px */
+    }
+  }
 </style>

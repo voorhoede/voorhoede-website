@@ -161,27 +161,26 @@ export default {
 }
 </script>
 
-
 <style>
-@import '../forms/forms.css';
+  @import '../forms/forms.css';
 
-select {
-  -webkit-appearance: none;
-}
+  select {
+    -webkit-appearance: none;
+  }
 
-.greyed-out {
-  color: var(--very-dim);
-}
+  .greyed-out {
+    color: var(--very-dim);
+  }
 
-.hidden {
-  display: none;
-}
+  .hidden {
+    display: none;
+  }
 
-.contact-form__fieldset {
-  margin-bottom: var(--spacing-large);
-}
+  .contact-form__fieldset {
+    margin-bottom: var(--spacing-large);
+  }
 
-.contact-form__description {
-  resize: none;
-}
+  .contact-form__description {
+    resize: none;
+  }
 </style>

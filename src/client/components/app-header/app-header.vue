@@ -163,5 +163,4 @@
       padding-right: var(--spacing-tiny);
     }
   }
-
 </style>

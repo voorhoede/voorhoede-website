@@ -222,5 +222,4 @@
       width: auto;
     }
   }
-
 </style>

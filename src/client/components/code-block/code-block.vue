@@ -3,6 +3,7 @@
     <pre :class="codeLanguage"><code v-html="content"/></pre>
   </div>
 </template>
+
 <script>
 export default {
   props: {
@@ -22,6 +23,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>

@@ -99,10 +99,6 @@
 </script>
 
 <style>
-  :root {
-    --button-group-spacing: var(--spacing-large);
-  }
-
   .academy-excerpt__calendar {
     position: relative;
     max-width: 3.75rem;

@@ -46,64 +46,64 @@ export default {
 </script>
 
 <style>
-:root {
-  --highlighted-clients-columns: 2;
-
-  /* Columns should be devided over the full width and have a bit of spacing between them. */
-  --highlighted-clients-width: calc(
-    (100% / var(--highlighted-clients-columns))
-    - (var(--highlighted-clients-columns) - 1) / var(--highlighted-clients-columns) * var(--spacing-tiny)
-  );
-}
-
-.highlighted-clients__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.highlighted-clients__client {
-  margin-bottom: var(--spacing-medium);
-  width: var(--highlighted-clients-width);
-}
-
-.highlighted-clients .lazy-load {
-  width: 100%;
-  height: 100%;
-}
-
-.highlighted-clients__image {
-  height: 100%;
-}
-
-@media (min-width: 720px) {
   :root {
-    --highlighted-clients-width: 150px;
-  }
-}
+    --highlighted-clients-columns: 2;
 
-@media (min-width: 1100px) {
-  :root {
-    --highlighted-clients-width: 210px;
+    /* Columns should be devided over the full width and have a bit of spacing between them. */
+    --highlighted-clients-width: calc(
+      (100% / var(--highlighted-clients-columns))
+      - (var(--highlighted-clients-columns) - 1) / var(--highlighted-clients-columns) * var(--spacing-tiny)
+    );
   }
-}
 
-@supports (display: grid) {
   .highlighted-clients__list {
-    display: grid;
-    grid-template-columns: repeat(var(--highlighted-clients-columns), var(--highlighted-clients-width));
-    grid-row-gap: var(--spacing-medium);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   .highlighted-clients__client {
-    margin-bottom: 0;
-    width: auto;
+    margin-bottom: var(--spacing-medium);
+    width: var(--highlighted-clients-width);
+  }
+
+  .highlighted-clients .lazy-load {
+    width: 100%;
+    height: 100%;
+  }
+
+  .highlighted-clients__image {
+    height: 100%;
   }
 
   @media (min-width: 720px) {
     :root {
-      --highlighted-clients-columns: 4;
+      --highlighted-clients-width: 150px;
     }
   }
-}
+
+  @media (min-width: 1100px) {
+    :root {
+      --highlighted-clients-width: 210px;
+    }
+  }
+
+  @supports (display: grid) {
+    .highlighted-clients__list {
+      display: grid;
+      grid-template-columns: repeat(var(--highlighted-clients-columns), var(--highlighted-clients-width));
+      grid-row-gap: var(--spacing-medium);
+    }
+
+    .highlighted-clients__client {
+      margin-bottom: 0;
+      width: auto;
+    }
+
+    @media (min-width: 720px) {
+      :root {
+        --highlighted-clients-columns: 4;
+      }
+    }
+  }
 </style>

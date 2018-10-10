@@ -35,8 +35,6 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
-
   .responsive-image__sizer {
     margin-left: auto;
     margin-right: auto;
