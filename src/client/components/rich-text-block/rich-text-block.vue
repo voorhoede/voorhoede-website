@@ -1,5 +1,6 @@
 <template>
-  <div class="rich-text body-big list" v-html="text" />
+  <div v-if="largeText" class="rich-text body-big list" v-html="text" />
+  <div v-else class="rich-text body list" v-html="text" />
 </template>
 
 <script>
@@ -8,6 +9,11 @@
       text: {
         type: String,
         required: true,
+      },
+      largeText: {
+        type: Boolean,
+        default: false,
+        required: false,
       }
     }
   }
