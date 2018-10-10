@@ -4,12 +4,19 @@
 
     <form
       @submit.prevent="submit"
-      class="get-in-touch-form__form"
       method="POST"
-      data-netlify="true"
+      name="contact-form"
       :action="confirmationPageUrl"
+      class="get-in-touch-form__form"
+      data-netlify="true"
+      netlify-honeypot="magic-castle"
       novalidate
     >
+      <input type="hidden" name="form-name" value="contact-form">
+      <label class="hidden">
+        Don't fill this out if you're human:
+        <input v-model="form.magicCastle" name="magic-castle">
+      </label>
       <input type="hidden" name="form-name" value="get-in-touch">
       <input-field
         v-model="form.name"
@@ -32,7 +39,7 @@
         :validation-error-message="emailValidationErrorMessage"
       />
       <input-field
-        v-model="form.number"
+        v-model="form.phone"
         id="phone"
         type="tel"
         :label="phoneLabel"
@@ -138,7 +145,7 @@
           'form-name': 'get-in-touch-form',
           name: '',
           email: '',
-          number: '',
+          phone: '',
           explanation: '',
         },
         formIsValidated: false,
@@ -156,7 +163,7 @@
       },
     },
     methods: {
-      submit() {
+      submit(event) {
         this.formIsValidated = true
         if (!event.target.checkValidity()) {
           return false
