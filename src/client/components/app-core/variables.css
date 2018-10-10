@@ -30,6 +30,10 @@
 
   /* COMPONENTS */
   --app-header-height: 3.125rem; /* 50px */
+
+  /* Z-INDEXES */
+  --z-index-high: 2;
+  --z-index-low: 1;
 }
 
 @media (min-width: 1100px) {
