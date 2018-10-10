@@ -2,7 +2,7 @@
   <div class="app-image">
     <no-script>
       <picture class="app-image__picture">
-        <img class="app-image__img" :alt="image.alt" :src="image.url" >
+        <img class="app-image__img" :src="image.url" :alt="image.alt">
       </picture>
     </no-script>
     <lazy-load>
@@ -11,7 +11,7 @@
         <source type="image/webp" :srcset="imageUrl({ fm: 'webp', w: width })">
         <source :type="`image/${image.format}`" :srcset="imageUrl({ w: width })">
         <!--[if IE 9]></video><![endif]-->
-        <img class="app-image__img" :alt="image.alt" :src="imageUrl({ w: width })" >
+        <img class="app-image__img" :src="imageUrl({ w: width })" :alt="image.alt">
       </picture>
     </lazy-load>
   </div>

@@ -111,9 +111,9 @@
   }
 
   .case-excerpt__title {
-    padding: var(--spacing-small);
     flex-shrink: 0;
     text-align: center;
+    padding: var(--spacing-small);
   }
 
   .case-excerpt__info {
@@ -122,46 +122,47 @@
 
   @media (min-width: 1100px) {
     .case-excerpt__image-link {
-      will-change: margin-top;
       transition: margin-top var(--case-excerpt-transition);
-      height: var(--case-excerpt-image-height);
+      padding-top: calc(100% - var(--case-excerpt-image-height));
+      background: var(--fog);
     }
 
     .case-excerpt__title {
-      padding: var(--spacing-small);
       display: flex;
       justify-content: center;
       align-items: center;
       height: calc(100% - var(--case-excerpt-image-height));
+      padding: var(--spacing-small);
     }
 
     .case-excerpt__info {
-      height: var(--case-excerpt-image-height);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
     .case-excerpt__body {
-      padding: 0 var(--spacing-small);
       text-align: center;
+      padding: 0 var(--spacing-small);
     }
 
     .case-excerpt__actions {
+      justify-content: center;
       padding: var(--spacing-small);
       background: var(--brand-yellow);
-      justify-content: center;
     }
 
     .case-excerpt__actions .app-button--secondary::after {
       background: var(--html-blue);
     }
 
-    .case-excerpt:hover .case-excerpt__image-link {
+    .case-excerpt:hover .case-excerpt__image-link,
+    .case-excerpt:focus-within .case-excerpt__image-link {
       margin-top: calc(-1 * var(--case-excerpt-image-height));
     }
 
-    .case-excerpt:hover .case-excerpt__body {
+    .case-excerpt:hover .case-excerpt__info,
+    .case-excerpt:focus-within .case-excerpt__info {
       height: var(--case-excerpt-image-height);
     }
   }
