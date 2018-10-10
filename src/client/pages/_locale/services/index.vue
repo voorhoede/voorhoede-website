@@ -45,7 +45,7 @@
   }
 
   .page-services .services-list {
-    margin-bottom: var(--spacing-large);
+    margin-bottom: var(--spacing-larger);
   }
 
   @media (min-width: 720px) {
