@@ -2,13 +2,16 @@
   <div class="highlighted-clients">
     <ul class="highlighted-clients__list">
       <li
-        v-for="({ name, logoSrc }) in clients"
-        :key="logoSrc"
+        v-for="{ image } in clients"
+        :key="image.alt"
         class="highlighted-clients__client"
       >
+        <no-script>
+          <img :src="image.url" :alt="image.alt" class="highlighted-clients__image">
+        </no-script>
         <fixed-ratio :width="5" :height="2">
           <lazy-load>
-            <img class="highlighted-clients__image" :src="logoSrc" :alt="name">
+            <img :src="image.url" :alt="image.alt">
           </lazy-load>
         </fixed-ratio>
       </li>
@@ -17,28 +20,29 @@
 </template>
 
 <script>
-import { FixedRatio, LazyLoad } from '~/components'
+import { FixedRatio, LazyLoad, NoScript } from '~/components'
 
 export default {
   components: {
     FixedRatio,
     LazyLoad,
+    NoScript,
   },
   data() {
     return {
       clients: [
-        { logoSrc: '/client-logos/olx.svg', name: 'OLX' },
-        { logoSrc: '/client-logos/hyperloop.svg', name: 'Delft Hyperloop' },
-        { logoSrc: '/client-logos/funda.svg', name: 'Funda' },
-        { logoSrc: '/client-logos/npo.svg', name: 'NPO' },
-        { logoSrc: '/client-logos/abn-amro.svg', name: 'ABN AMRO' },
-        { logoSrc: '/client-logos/hotelspecials.svg', name: 'HotelSpecials' },
-        { logoSrc: '/client-logos/2dehands.svg', name: '2dehands.be' },
-        { logoSrc: '/client-logos/ziggo.svg', name: 'Ziggo' },
-        { logoSrc: '/client-logos/sita.svg', name: 'Sita' },
-        { logoSrc: '/client-logos/trouw.svg', name: 'Trouw' },
-        { logoSrc: '/client-logos/hva.svg', name: 'Hogeschool van Amsterdam' },
-        { logoSrc: '/client-logos/grandvision.svg', name: 'GrandVision' },
+        { image: { url: '/client-logos/olx.svg', alt: 'OLX' } },
+        { image: { url: '/client-logos/hyperloop.svg', alt: 'Delft Hyperloop' } },
+        { image: { url: '/client-logos/funda.svg', alt: 'Funda' } },
+        { image: { url: '/client-logos/npo.svg', alt: 'NPO' } },
+        { image: { url: '/client-logos/abn-amro.svg', alt: 'ABN AMRO' } },
+        { image: { url: '/client-logos/hotelspecials.svg', alt: 'HotelSpecials' } },
+        { image: { url: '/client-logos/2dehands.svg', alt: '2dehands.be' } },
+        { image: { url: '/client-logos/ziggo.svg', alt: 'Ziggo' } },
+        { image: { url: '/client-logos/sita.svg', alt: 'Sita' } },
+        { image: { url: '/client-logos/trouw.svg', alt: 'Trouw' } },
+        { image: { url: '/client-logos/hva.svg', alt: 'Hogeschool van Amsterdam' } },
+        { image: { url: '/client-logos/grandvision.svg', alt: 'GrandVision' } },
       ]
     }
   },
@@ -73,7 +77,7 @@ export default {
 }
 
 .highlighted-clients__image {
-  height: 100%;
+  width: 100%;
 }
 
 @media (min-width: 720px) {

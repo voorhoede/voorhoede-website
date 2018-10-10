@@ -15,6 +15,16 @@
         <div class="blog-list-item__content">
           <h3 class="blog-list-item__heading" :class="large ? 'h4' : 'body'">{{ item.title }}</h3>
           <div class="blog-list-item__author">
+            <no-script>
+              <img
+                v-for="author in item.authors" :key="author.name"
+                :width="large ? thumbnailSizeLarge : thumbnailSize"
+                :height="large ? thumbnailSizeLarge : thumbnailSize"
+                class="blog-list-item__image"
+                :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=65&h=65&fit=crop`"
+                alt=""
+              >
+            </no-script>
             <lazy-load v-for="author in item.authors" :key="author.name">
               <img
                 :width="large ? thumbnailSizeLarge : thumbnailSize"
@@ -34,10 +44,10 @@
 
 <script>
   import { mapState } from 'vuex'
-  import { LazyLoad } from '~/components'
+  import { LazyLoad, NoScript } from '~/components'
 
   export default {
-    components: { LazyLoad },
+    components: { LazyLoad, NoScript },
     props: {
       item: {
         type: Object,
@@ -116,6 +126,8 @@
 
   .blog-list-item__image {
     display: block;
+    object-fit: contain;
+    height: 100%;
     margin-right: var(--spacing-smaller);
   }
 

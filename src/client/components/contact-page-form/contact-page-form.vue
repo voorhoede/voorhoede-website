@@ -1,33 +1,42 @@
 <template>
-  <form @submit.prevent="onFormSubmit" method="POST" name="contact-form" class="contact-form" data-netlify="true" netlify-honeypot="magic-castle" novalidate>
+  <form
+    @submit.prevent="submit"
+    method="POST"
+    name="contact-form"
+    :action="confirmationPageUrl"
+    class="contact-form"
+    data-netlify="true"
+    netlify-honeypot="magic-castle"
+    novalidate
+  >
     <fieldset class="contact-form__fieldset">
       <legend class="h4">{{ subjectTitle }}</legend>
       <input type="hidden" name="form-name" value="contact-form">
       <label class="hidden">
         Don't fill this out if you're human:
-        <input name="magic-castle">
+        <input v-model="form.magicCastle" name="magic-castle">
       </label>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ subjectLabel }}</span>
-        <select class="body greyed-out" type="select" name="need-help-with" v-greyed-out-first>
+        <select class="body greyed-out" type="select" name="need-help-with" v-model="form.needHelpWith" v-greyed-out-first>
           <option v-for="subject in subjectOptions" :key="subject.value" :value="subject.value">{{ subject.label }}</option>
         </select>
       </label>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ budgetLabel }}</span>
-        <select class="body greyed-out" type="select" name="budget-of" v-greyed-out-first>
+        <select class="body greyed-out" type="select" name="budget-of" v-model="form.budgetOf" v-greyed-out-first>
           <option v-for="option in budgetOptions" :key="option.value" :value="option.value">{{ option.label }}</option>
         </select>
       </label>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ projectLabel }}</span>
-        <textarea rows="5" class="contact-form__description body" type="text" name="project-description" :placeholder="projectPlaceholder"/>
+        <textarea rows="5" class="contact-form__description body" type="text" name="project-description" v-model="form.projectDescription" :placeholder="projectPlaceholder"/>
       </label>
     </fieldset>
     <fieldset class="contact-form__fieldset">
       <legend class="h4">{{ contactTitle }}</legend>
       <input-field
-        v-model="name"
+        v-model="form.name"
         id="name"
         type="text"
         :label="nameLabel"
@@ -37,6 +46,7 @@
         :validation-error-message="nameErrorMessage"
       />
       <input-field
+        v-model="form.business"
         id="business"
         type="text"
         :label="businessLabel"
@@ -44,6 +54,7 @@
         :validate="formIsValidated"
       />
       <input-field
+        v-model="form.website"
         id="website"
         type="text"
         :label="websiteLabel"
@@ -51,7 +62,7 @@
         :validate="formIsValidated"
       />
       <input-field
-        v-model="email"
+        v-model="form.email"
         id="email"
         type="email"
         :label="emailLabel"
@@ -61,7 +72,7 @@
         :validation-error-message="emailValidationErrorMessage"
       />
       <input-field
-        v-model="phone"
+        v-model="form.phone"
         id="phone"
         type="tel"
         :label="phoneLabel"
@@ -80,7 +91,9 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import { AppButton, InputField } from '~/components'
+import submitContactForm from '../../lib/submit-contact-form'
 
 const greyOutFirstOption = ({ target }) => {
   const { selectedIndex } = target
@@ -201,25 +214,45 @@ export default {
   },
   data() {
     return {
-      name: '',
-      email: '',
-      phone: '',
+      form: {
+        'form-name': 'contact-page-form',
+        needHelpWith: '',
+        budgetOf: '',
+        projectDescription: '',
+        name: '',
+        business: '',
+        website: '',
+        email: '',
+        phone: '',
+      },
       formIsValidated: false,
     }
   },
   computed: {
+    ...mapState([
+      'currentLocale',
+    ]),
+    confirmationPageUrl() {
+      return '/' + this.currentLocale + '/contact/confirmation/'
+    },
     emailValidationErrorMessage() {
-      return this.email ? this.emailErrorMessageEmpty : this.emailErrorMessageIncorrect
+      return this.form.email ? this.emailErrorMessageIncorrect : this.emailErrorMessageEmpty
     },
   },
   methods: {
-    onFormSubmit(event) {
+    submit(event) {
       this.formIsValidated = true
       if (!event.target.checkValidity()) {
         return false
       }
-    },
-  },
+
+      submitContactForm({
+        form: this.form,
+        router: this.$router,
+        currentLocale: this.currentLocale
+      })
+    }
+  }
 }
 </script>
 

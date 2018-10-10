@@ -3,16 +3,16 @@
     <h2 class="get-in-touch-form__title h3">{{ title }}</h2>
 
     <form
-      @submit.prevent="onFormSubmit"
-      novalidate
+      @submit.prevent="submit"
       class="get-in-touch-form__form"
       method="POST"
       data-netlify="true"
-      name="get-in-touch"
+      :action="confirmationPageUrl"
+      novalidate
     >
       <input type="hidden" name="form-name" value="get-in-touch">
       <input-field
-        v-model="name"
+        v-model="form.name"
         id="name"
         type="text"
         :label="nameLabel"
@@ -22,7 +22,7 @@
         :validation-error-message="nameErrorMessage"
       />
       <input-field
-        v-model="email"
+        v-model="form.email"
         id="email"
         type="email"
         :label="emailLabel"
@@ -32,7 +32,7 @@
         :validation-error-message="emailValidationErrorMessage"
       />
       <input-field
-        v-model="phone"
+        v-model="form.number"
         id="phone"
         type="tel"
         :label="phoneLabel"
@@ -42,7 +42,7 @@
         :validation-error-message="phoneErrorMessage"
       />
       <input-field
-        v-model="project"
+        v-model="form.explanation"
         id="project"
         type="text"
         :label="summaryLabel"
@@ -62,6 +62,8 @@
 
 <script>
   import { AppButton, InputField } from '~/components'
+  import { mapState } from 'vuex'
+  import submitContactForm from '../../lib/submit-contact-form'
 
   export default {
     components: {
@@ -132,26 +134,41 @@
     },
     data() {
       return {
-        name: '',
-        email: '',
-        phone: '',
-        project: '',
+        form: {
+          'form-name': 'get-in-touch-form',
+          name: '',
+          email: '',
+          number: '',
+          explanation: '',
+        },
         formIsValidated: false,
       }
     },
     computed: {
+      ...mapState([
+        'currentLocale',
+      ]),
+      confirmationPageUrl() {
+        return '/' + this.currentLocale + '/contact/confirmation/'
+      },
       emailValidationErrorMessage() {
-        return this.email ? this.emailErrorMessageEmpty : this.emailErrorMessageIncorrect
+        return this.form.email ? this.emailErrorMessageIncorrect : this.emailErrorMessageEmpty
       },
     },
     methods: {
-      onFormSubmit(event) {
+      submit() {
         this.formIsValidated = true
         if (!event.target.checkValidity()) {
           return false
         }
-      },
-    },
+
+        submitContactForm({
+          form: this.form,
+          router: this.$router,
+          currentLocale: this.currentLocale,
+        })
+      }
+    }
   }
 </script>
 
