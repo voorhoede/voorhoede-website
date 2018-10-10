@@ -59,6 +59,7 @@
 
 <style>
   :root {
+    --header-border-opacity: .08;
     --header-z-index: 2;
   }
 
@@ -79,9 +80,8 @@
     bottom: 0;
     width: 100%;
     height: 1px;
-    background-color: var(--fog);
-    opacity: .71;
-    mix-blend-mode: multiply;
+    background-color: var(--black);
+    opacity: var(--header-border-opacity);
   }
 
   .app-header__content {
