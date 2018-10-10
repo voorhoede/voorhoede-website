@@ -82,6 +82,7 @@
   :root {
     --case-excerpt-transition: 200ms cubic-bezier(0, 0, .1, 1);
     --case-excerpt-image-height: 70%;
+    --case-excerpt-actions-height: 75px;
   }
 
   .case-excerpt {
@@ -154,7 +155,7 @@
     .case-excerpt__actions {
       justify-content: center;
       position: relative;
-      bottom: -75px;
+      bottom: calc(-1 * var(--case-excerpt-actions-height));
       width: 100%;
       padding: var(--spacing-small);
       background: var(--brand-yellow);
