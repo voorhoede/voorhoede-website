@@ -139,6 +139,11 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 0;
+      transition: height var(--case-excerpt-transition);
     }
 
     .case-excerpt__body {
@@ -148,8 +153,12 @@
 
     .case-excerpt__actions {
       justify-content: center;
+      position: relative;
+      bottom: -75px;
+      width: 100%;
       padding: var(--spacing-small);
       background: var(--brand-yellow);
+      transition: bottom var(--case-excerpt-transition);
     }
 
     .case-excerpt__actions .app-button--secondary::after {
@@ -164,6 +173,12 @@
     .case-excerpt:hover .case-excerpt__info,
     .case-excerpt:focus-within .case-excerpt__info {
       height: var(--case-excerpt-image-height);
+    }
+
+    .case-excerpt:hover .case-excerpt__actions,
+    .case-excerpt:focus-within .case-excerpt__actions {
+      position: absolute;
+      bottom: 0;
     }
   }
 </style>
