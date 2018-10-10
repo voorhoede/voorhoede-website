@@ -59,7 +59,7 @@
 
 <style>
   :root {
-    --header-border-color: #f3f3f3;
+    --header-border-opacity: .08;
     --header-z-index: 2;
   }
 
@@ -80,7 +80,8 @@
     bottom: 0;
     width: 100%;
     height: 1px;
-    background-color: var(--header-border-color);
+    background-color: var(--black);
+    opacity: var(--header-border-opacity);
     mix-blend-mode: multiply;
   }
 
