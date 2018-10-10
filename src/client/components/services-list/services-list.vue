@@ -3,15 +3,13 @@
     <li
       v-for="service in services"
       :key="service.ctaLink"
-      class="services-list__item"
-    >
+      class="services-list__item">
       <service-excerpt
         :tagline="service.tagline"
         :title="service.title"
         :summary="service.summary"
         :slug="service.slug"
-        :cta="cta"
-      />
+        :cta="cta" />
     </li>
   </ul>
 </template>
@@ -20,7 +18,7 @@
 import { AppButton, ServiceExcerpt, RichTextBlock, } from '~/components'
 
 export default {
-  components: { AppButton, ServiceExcerpt, RichTextBlock, },
+  components: { AppButton, ServiceExcerpt, RichTextBlock },
   props: {
     services: {
       type: Array,
@@ -40,7 +38,6 @@ export default {
 <style>
 :root {
   --services-list-border: 1px solid var(--very-dim);
-  --small-service-spacing: 40px; /* needs to be an even number to get service-list-item to be of equal width */
 }
 
 .services-list {
@@ -76,14 +73,14 @@ export default {
   }
 
   .services-list__item:first-child {
-    margin-right: var(--small-service-spacing);
-    padding-right: var(--small-service-spacing);
+    margin-right: var(--spacing-medium);
+    padding-right: var(--spacing-medium);
     border-right: var(--services-list-border);
   }
 
   .services-list__item:last-child {
-    padding-left: var(--small-service-spacing);
-    margin-left: var(--small-service-spacing);
+    padding-left: var(--spacing-medium);
+    margin-left: var(--spacing-medium);
     border-left: var(--services-list-border);
   }
 
@@ -93,6 +90,18 @@ export default {
     flex-grow: 1;
     justify-content: space-between;
     align-items: flex-start; /* Reset stretch */
+  }
+}
+
+@media (min-width: 1100px) {
+  .services-list__item:first-child {
+    margin-right: var(--spacing-larger);
+    padding-right: var(--spacing-larger);
+  }
+
+  .services-list__item:last-child {
+    padding-left: var(--spacing-larger);
+    margin-left: var(--spacing-larger);
   }
 }
 </style>
