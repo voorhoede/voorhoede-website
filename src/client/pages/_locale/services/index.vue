@@ -3,13 +3,13 @@
     <page-header
       :title="page.title"
       :text="page.subtitle"
-      :image="page.headerIllustration"
-    />
-
-    <services-list :services="page.services" :cta="page.serviceCtaLabel"/>
-
-    <rich-text-block class="services-text" :text="page.smallServices" />
-
+      :image="page.headerIllustration" />
+    <services-list
+      :services="page.services"
+      :cta="page.serviceCtaLabel" />
+    <rich-text-block
+      class="services-text"
+      :text="page.smallServices" />
     <get-in-touch-form
       :title="page.getInTouchTitle"
       :name-label="page.getInTouchForm.nameLabel"
@@ -20,8 +20,7 @@
       :phone-placeholder="page.getInTouchForm.phonePlaceholder"
       :summary-label="page.getInTouchForm.summaryLabel"
       :summary-placeholder="page.getInTouchForm.summaryPlaceholder"
-      :cta-label="page.getInTouchForm.ctaButtonLabel"
-    />
+      :cta-label="page.getInTouchForm.ctaButtonLabel" />
   </main>
 </template>
 
@@ -29,12 +28,7 @@
   import { PageHeader, ServicesList, GetInTouchForm, RichTextBlock } from '~/components'
 
   export default {
-    components: {
-      ServicesList,
-      GetInTouchForm,
-      PageHeader,
-      RichTextBlock,
-    },
+    components: { ServicesList, GetInTouchForm, PageHeader, RichTextBlock },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
     },
@@ -47,17 +41,15 @@
   }
 
   .page-services > * {
+    margin-bottom: var(--spacing-big);
+  }
+
+  .page-services .services-list {
     margin-bottom: var(--spacing-larger);
   }
 
   @media (min-width: 720px) {
-    .page-services > * {
-      margin-bottom: var(--spacing-big);
-    }
-
     .page-services .services-text {
-      margin-left: auto;
-      margin-right: auto;
       text-align: center;
       max-width: var(--small-services-width);
     }
@@ -66,10 +58,6 @@
   @media (min-width: 1100px) {
     .page-services > * {
       margin-bottom: var(--spacing-bigger);
-    }
-
-    .page-services .page-header {
-      margin-bottom: var(--spacing-big);
     }
 
     .page-services .services-list {

@@ -40,10 +40,6 @@ export default {
   --services-list-border: 1px solid var(--very-dim);
 }
 
-.services-list {
-  margin-bottom: var(--spacing-medium);
-}
-
 .services-list__item {
   margin-bottom: var(--spacing-larger);
   padding-bottom: var(--spacing-large);
@@ -57,7 +53,6 @@ export default {
 @media (min-width: 720px) {
   .services-list {
     display: flex;
-    margin-bottom: var(--spacing-larger);
   }
 
   .services-list__item {

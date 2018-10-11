@@ -87,12 +87,12 @@
 
 <style>
   :root {
-    --blog-list-item-animation-timing: .15s;
+    --blog-list-item-transition: .3s cubic-bezier(.47, 0, .29, .98);
   }
 
   .blog-list-item {
     display: block;
-    transition: transform var(--blog-list-item-animation-timing) ease-out;
+    transition: transform var(--blog-list-item-transition);
   }
 
   .blog-list:hover .blog-list-item,
@@ -116,7 +116,7 @@
     padding-left: var(--spacing-medium);
     border-left: 2px solid var(--very-dim);
     margin-bottom: var(--spacing-medium);
-    transition: border-left var(--blog-list-item-animation-timing) ease-out;
+    transition: border-left var(--blog-list-item-transition);
   }
 
   .blog-list:hover .blog-list-item__content,
