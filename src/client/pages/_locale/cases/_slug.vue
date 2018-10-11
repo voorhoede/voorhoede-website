@@ -99,10 +99,14 @@
     </article>
 
     <div class="page-case__link-container">
-      <nuxt-link class="font-html-blue body font-bold" :to="`/${currentLocale}/cases`">&larr; {{ page.backLinkTitle }}</nuxt-link>
+      <nuxt-link
+        class="font-html-blue body font-bold"
+        :to="`/${currentLocale}/cases`">
+        &larr; {{ page.backLinkTitle }}
+      </nuxt-link>
     </div>
 
-    <div class="page-case__get-in-touch-form">
+    <div class="page-case__get-in-touch-form grid">
       <get-in-touch-form
         :title="page.getInTouchTitle"
         :name-label="page.getInTouchForm.nameLabel"
@@ -115,27 +119,28 @@
         :summary-placeholder="page.getInTouchForm.summaryPlaceholder"
         :cta-label="page.getInTouchForm.ctaButtonLabel"
       />
+      <scroll-back/>
     </div>
   </main>
 </template>
 
 <script>
   import { mapState } from 'vuex'
-
   import {
     CaseMeta,
     CasePullQuoteComposition,
     CaseTeaser,
-    GetInTouchForm,
-    PageHeaderDetail,
-    StorytellingSection,
     FullWidthImage,
+    GetInTouchForm,
     ImageWithDescription,
-    ResponsiveImage,
-    RichTextBlock,
-    ResponsiveVideo,
+    PageHeaderDetail,
     QuoteBlock,
+    ResponsiveImage,
+    ResponsiveVideo,
+    RichTextBlock,
+    ScrollBack,
     ScrollTo,
+    StorytellingSection,
   } from '~/components'
 
   export default {
@@ -146,16 +151,17 @@
       CaseMeta,
       CasePullQuoteComposition,
       CaseTeaser,
-      GetInTouchForm,
-      PageHeaderDetail,
       FullWidthImage,
+      GetInTouchForm,
       ImageWithDescription,
-      StorytellingSection,
-      ResponsiveImage,
-      RichTextBlock,
-      ResponsiveVideo,
+      PageHeaderDetail,
       QuoteBlock,
+      ResponsiveImage,
+      ResponsiveVideo,
+      RichTextBlock,
+      ScrollBack,
       ScrollTo,
+      StorytellingSection,
     },
     computed: {
       ...mapState([
@@ -232,6 +238,13 @@
     max-width: 100%; /* temporary fix for mvp should refactored after mvp */
   }
 
+  .page-case__get-in-touch-form .scroll-back {
+    display: none;
+    position: absolute;
+    bottom: var(--spacing-large);
+    grid-column: -3;
+  }
+
   @media (min-width: 720px) {
     .page-case__get-in-touch-form,
     .page-case__content,
@@ -247,6 +260,19 @@
     .page-case__case-header .page-header-detail__container {
       grid-column-start: 4;
       grid-column-end: -4;
+    }
+
+    .page-case__get-in-touch-form .get-in-touch-form {
+      grid-column-start: 1;
+      grid-column-end: -3;
+    }
+
+    .page-case__get-in-touch-form {
+      position: relative;
+    }
+
+    .page-case__get-in-touch-form .scroll-back {
+      display: flex;
     }
   }
 
@@ -292,6 +318,10 @@
     .page-case__content .image-with-description--inverse {
       grid-column-start: 0;
       grid-column-end: -8;
+    }
+
+    .page-case__get-in-touch-form .get-in-touch-form {
+      grid-column: page;
     }
   }
 </style>

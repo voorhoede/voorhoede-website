@@ -6,7 +6,7 @@
       :image="page.headerIllustration"
     />
     <div class="page-faq__overview">
-      <ul> 
+      <ul>
         <li class="page-faq__overview-item" v-for="item in page.items" :key="item.title">
           <generic-text-block
             :title="item.title"
@@ -15,22 +15,20 @@
           />
         </li>
       </ul>
+      <scroll-back/>
     </div>
   </div>
 </template>
 
 <script>
-import { PageHeader, GenericTextBlock } from '~/components'
+  import { GenericTextBlock, PageHeader, ScrollBack } from '~/components'
 
-export default {
-  components: {
-    PageHeader,
-    GenericTextBlock
-  },
-  async asyncData({ store, route }) {
-    return await store.dispatch('getData', { route })
+  export default {
+    components: { GenericTextBlock, PageHeader, ScrollBack },
+    async asyncData({ store, route }) {
+      return await store.dispatch('getData', { route })
+    }
   }
-}
 </script>
 
 <style>
@@ -43,16 +41,28 @@ export default {
     margin-bottom: var(--spacing-large);
   }
 
+  .page-faq__overview .scroll-back {
+    display: none;
+    position: absolute;
+    bottom: var(--spacing-big);
+    right: var(--spacing-larger);
+  }
+
   @media (min-width: 720px) {
     .page-faq {
       background: var(--bg-pastel);
     }
 
     .page-faq__overview {
+      position: relative;
       grid-column-start: 2;
       grid-column-end: -2;
       background: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
+    }
+
+    .page-faq__overview .scroll-back {
+      display: flex;
     }
   }
 

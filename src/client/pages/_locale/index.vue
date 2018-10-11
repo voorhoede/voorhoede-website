@@ -78,12 +78,13 @@
         <img class="page-index__curly-bracket" src="/images/curly-bracket--close-blue.svg" alt="">
       </div>
     </section>
-    <div class="grid">
+    <div class="page-index__cta-block grid">
       <cta-block :cta-label="page.callToActionLabel" :cta-to="{ name: 'locale-contact', params: { locale: currentLocale } }">
         <template slot="heading">
           <h3 class="h4">{{ page.callToActionTitle }}</h3>
         </template>
       </cta-block>
+      <scroll-back/>
     </div>
   </div>
 </template>
@@ -94,11 +95,12 @@
     AcademyExcerpt,
     AppButton,
     BlogListItem,
-    CtaBlock,
     CaseExcerpt,
+    CtaBlock,
     HighlightedClients,
-    PageHeader,
     HorizontalCarousel,
+    PageHeader,
+    ScrollBack,
     ScrollHighlightedText,
     ScrollTo,
     ServicesList,
@@ -109,11 +111,12 @@
       AcademyExcerpt,
       AppButton,
       BlogListItem,
-      CtaBlock,
       CaseExcerpt,
+      CtaBlock,
       HighlightedClients,
-      PageHeader,
       HorizontalCarousel,
+      PageHeader,
+      ScrollBack,
       ScrollHighlightedText,
       ScrollTo,
       ServicesList,
@@ -141,8 +144,14 @@
   }
 
   .page-index .scroll-to {
-    grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column: 1;
+  }
+
+  .page-index .scroll-back {
+    display: none;
+    position: absolute;
+    bottom: var(--spacing-large);
+    grid-column: -3;
   }
 
   .page-index .scroll-highlighted-text {
@@ -359,6 +368,19 @@
       position: static;
       height: 100%;
       width: auto;
+    }
+
+    .page-index .scroll-back {
+      display: flex;
+    }
+
+    .page-index__cta-block {
+      position: relative;
+    }
+
+    .page-index__cta-block .cta-block {
+      grid-column-start: 6;
+      grid-column-end: -6;
     }
   }
 

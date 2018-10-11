@@ -14,6 +14,7 @@
           <blog-list-item large :item="blogPost" :current-locale="currentLocale"/>
         </li>
       </ul>
+      <scroll-back/>
     </div>
     <div class="page-blog__cta grid">
       <cta-block
@@ -33,10 +34,16 @@
 
 <script>
   import { mapState } from 'vuex'
-  import { BlogListItem, CtaBlock, PageHeader, TextBlock } from '~/components'
+  import {
+    BlogListItem,
+    CtaBlock,
+    PageHeader,
+    ScrollBack,
+    TextBlock,
+  } from '~/components'
 
   export default {
-    components: { BlogListItem, CtaBlock, PageHeader, TextBlock },
+    components: { BlogListItem, CtaBlock, PageHeader, ScrollBack, TextBlock },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
     },
@@ -61,8 +68,15 @@
     background: var(--bg-pastel);
   }
 
-  .page-blog__cta-block.cta-block {
+  .page-blog__cta .cta-block {
     border: none;
+  }
+
+  .page-blog-container .scroll-back {
+    display: none;
+    position: absolute;
+    bottom: var(--spacing-large);
+    grid-column: -3;
   }
 
   @media (min-width: 720px) {
@@ -73,7 +87,15 @@
       margin-bottom: var(--spacing-large);
     }
 
-    .page-blog__cta-block.cta-block {
+    .page-blog-container {
+      position: relative;
+    }
+
+    .page-blog-container .scroll-back {
+      display: flex;
+    }
+
+    .page-blog__cta-block {
       grid-column-start: 8;
       grid-column-end: -8;
     }
@@ -87,7 +109,7 @@
       margin-bottom: var(--spacing-large);
     }
 
-    .page-blog__cta-block.cta-block {
+    .page-blog__cta-block {
       grid-column-start: 14;
       grid-column-end: -14;
     }

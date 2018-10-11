@@ -95,6 +95,7 @@
           <p class="body">{{ page.callToActionBody }}</p>
         </template>
       </cta-block>
+      <scroll-back/>
     </div>
   </div>
 </template>
@@ -102,34 +103,36 @@
 <script>
 import { mapState } from 'vuex'
 import {
-  PageHeaderDetail,
-  TextBlock,
-  RichTextBlock,
+  AppButton,
+  BlogAuthor,
+  CodeBlock,
+  CtaBlock,
   FullWidthImage,
   ImageWithDescription,
-  ResponsiveImage,
-  BlogAuthor,
-  AppButton,
-  SocialButtons,
-  CtaBlock,
-  CodeBlock,
+  PageHeaderDetail,
   QuoteBlock,
+  ResponsiveImage,
+  RichTextBlock,
+  ScrollBack,
+  SocialButtons,
+  TextBlock,
 } from '../../../components'
 
 export default {
   components: {
-    PageHeaderDetail,
-    TextBlock,
-    RichTextBlock,
+    AppButton,
+    BlogAuthor,
+    CodeBlock,
+    CtaBlock,
     FullWidthImage,
     ImageWithDescription,
-    ResponsiveImage,
-    BlogAuthor,
-    AppButton,
-    SocialButtons,
-    CtaBlock,
-    CodeBlock,
+    PageHeaderDetail,
     QuoteBlock,
+    ResponsiveImage,
+    RichTextBlock,
+    ScrollBack,
+    SocialButtons,
+    TextBlock,
   },
   async asyncData({ store, route }) {
     return await store.dispatch('getData', { route })
@@ -201,6 +204,13 @@ export default {
     font-style: italic;
   }
 
+  .page-blog-post__cta .scroll-back {
+    display: none;
+    position: absolute;
+    bottom: var(--spacing-large);
+    grid-column: -3;
+  }
+
   @media (min-width: 720px) {
     .page-blog-post-list > * {
       padding: 0 var(--spacing-larger);
@@ -228,7 +238,15 @@ export default {
       grid-column-end: 9;
     }
 
-    .page-blog-post__cta-block.cta-block {
+    .page-blog-post__cta {
+      position: relative;
+    }
+
+    .page-blog-post__cta .scroll-back {
+      display: flex;
+    }
+
+    .page-blog-post__cta-block {
       grid-column-start: 8;
       grid-column-end: -8;
     }
@@ -258,7 +276,7 @@ export default {
       grid-column-end: 12;
     }
 
-    .page-blog-post__cta-block.cta-block {
+    .page-blog-post__cta-block {
       grid-column-start: 14;
       grid-column-end: -14;
     }
