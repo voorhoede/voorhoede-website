@@ -4,16 +4,10 @@
       <img class="job-excerpt__image-item" :src="image.url" :alt="image.alt">
     </div>
     <div class="job-excerpt__text">
-      <h3 class="job-excerpt__text-title body-detail font-html-blue font-bold">{{ title }}</h3>
+      <h3 class="job-excerpt__text-title h5">{{ title }}</h3>
       <p class="job-excerpt__text-description body-detail">{{ description }}</p>
     </div>
-    <app-button
-      class="job-excerpt__button"
-      external
-      small
-      :label="label"
-      :to="url"
-    />
+    <app-button class="job-excerpt__button" :label="label" :to="url" external />
   </div>
 </template>
 
@@ -54,17 +48,14 @@
 
 <style>
   :root {
-    --job-excerpt-animation-timing: .15s;
-    --job-excerpt-image-width: 65px;
-    --job-excerpt-image-height: 90px;
-    --job-excerpt-transform: translateY(25px);
+    --job-excerpt-easing: .25s cubic-bezier(.5, 0, .25, 1);
   }
 
   .job-excerpt {
     position: relative;
     display: grid;
-    grid-template-columns: var(--job-excerpt-image-width) var(--spacing-large) 1fr;
-    grid-row-gap: var(--spacing-small);
+    grid-template-columns: 65px 1fr;
+    grid-gap: var(--spacing-smaller);
     padding: var(--spacing-small) 0;
   }
 
@@ -74,37 +65,36 @@
   }
 
   .job-excerpt__image-item {
-    width: var(--job-excerpt-image-width);
-    height: var(--job-excerpt-image-height);
+    display: block;
+    width: 65px;
+    height: 85px;
     object-fit: contain;
+  }
+
+  .job-excerpt__text,
+  .job-excerpt__button {
+    grid-column: 2;
   }
 
   .job-excerpt__text {
     align-self: flex-end;
     text-align: center;
-    grid-column: 3;
   }
 
   .job-excerpt__text-description {
     display: none;
   }
 
-  .job-excerpt__text-title {
-    text-transform: uppercase;
-    letter-spacing: 2.5px;
-    margin-bottom: var(--spacing-tiny);
-  }
-
   .job-excerpt__button {
-    grid-column: 3;
-    align-self: flex-start;
-    justify-self: start;
+    min-width: auto;
+    width: auto;
+    align-self: flex-end;
     margin: 0 auto;
   }
 
-  .job-excerpt .app-button--small:hover,
-  .app-button--small:focus,
-  .app-button--small--hover {
+  .job-excerpt .app-button--primary:hover,
+  .app-button--primary:focus,
+  .app-button--primary--hover {
     transform: none;
   }
 
@@ -119,10 +109,49 @@
 
   @media (min-width: 720px) {
     .job-excerpt {
-      display: flex;
       align-items: center;
-      justify-content: space-between;
+      grid-template-columns: 70px 1fr 140px;
+      grid-gap: var(--spacing-large);
+    }
+
+    .job-excerpt__image {
+      grid-row: 1;
+      opacity: .3;
+    }
+
+    .job-excerpt__image-item {
+      width: 70px;
+      height: 90px;
+    }
+
+    .job-excerpt__button {
+      grid-column: 3;
+      align-self: center;
+      margin: 0;
+      opacity: .3;
+    }
+
+    .job-excerpt__text {
+      grid-column: 2;
+      align-self: center;
       text-align: left;
+      overflow: hidden;
+    }
+
+    .job-excerpt__text-title,
+    .job-excerpt__text-description {
+      transform: translateY(34px);
+    }
+
+    .job-excerpt__text-title {
+      transition: transform var(--job-excerpt-easing);
+    }
+
+    .job-excerpt__text-description {
+      display: block;
+      opacity: 0;
+      transition: all var(--job-excerpt-easing);
+      margin-top: var(--spacing-tiny);
     }
 
     .job-excerpt:hover .job-excerpt__text-title,
@@ -139,34 +168,17 @@
     .job-excerpt:focus-within .job-excerpt__image {
       opacity: 1;
     }
+  }
 
-    .job-excerpt__text {
-      align-self: center;
-      text-align: left;
-      max-width: 50%;
+  @media (min-width: 1100px) {
+    .job-excerpt {
+      grid-template-columns: 70px 1fr 160px;
+      grid-gap: var(--spacing-big);
     }
 
-    .job-excerpt__text-title {
-      transform: var(--job-excerpt-transform);
-      transition: transform var(--job-excerpt-animation-timing) ease-out;
-    }
-
+    .job-excerpt__text-title,
     .job-excerpt__text-description {
-      display: block;
-      opacity: 0;
-      transform: var(--job-excerpt-transform);
-      transition: all var(--job-excerpt-animation-timing) ease-out;
-    }
-
-    .job-excerpt__image {
-      opacity: .3;
-      transition: opacity var(--job-excerpt-animation-timing) ease-out;
-    }
-
-    .job-excerpt__button {
-      align-self: center;
-      opacity: .3;
-      margin: 0;
+      transform: translateY(26px);
     }
   }
 
