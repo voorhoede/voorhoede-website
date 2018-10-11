@@ -1,6 +1,6 @@
 <template>
   <p class="scroll-highlighted-text">
-    <span
+    <span 
       class="scroll-highlighted-text__text h1"
       v-for="(item, index) in textLines"
       :key="index"
@@ -35,6 +35,12 @@
 
   .scroll-highlighted-text__text + .scroll-highlighted-text__text {
     margin-top: var(--spacing-small);
+  }
+
+  @media (max-width: 520px) {
+    .scroll-highlighted-text__text {
+      font-size: 32px;
+    }
   }
 
   @media (min-width: 720px) {
