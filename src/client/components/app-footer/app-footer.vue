@@ -193,12 +193,14 @@ export default {
 
 <style>
 :root {
-  --app-footer-spacing: var(--spacing-small);
+  --logo-drop-shadow: drop-shadow(1px 2px 4px var(--dim));
+  --logo-width: 3.25rem;
+  --logo-height: var(--logo-width);
 }
 
 .app-footer {
   width: 100%;
-  padding: var(--spacing-larger) 0 var(--app-footer-spacing) 0;
+  padding: var(--spacing-larger) 0 var(--spacing-small) 0;
   background: var(--brand-yellow);
 }
 
@@ -227,9 +229,11 @@ export default {
 }
 
 .app-footer__list {
-  border-bottom: 1px solid var(--black);
+  display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   padding-bottom: var(--spacing-medium);
+  border-bottom: 1px solid var(--black);
 }
 
 .app-footer__list--border-none {
@@ -248,7 +252,7 @@ export default {
 
 .app-footer__list-item {
   text-decoration: none;
-  margin: 0 var(--spacing-smaller);
+  margin: var(--spacing-smaller);
 }
 
 .app-footer__list-item--icon {
@@ -277,10 +281,10 @@ export default {
 }
 
 .app-footer__header-logo {
-  width: 3.25rem;
-  height: 3.25rem;
+  width: var(--logo-width);
+  height: var(--logo-height);
   margin-bottom: var(--spacing-small);
-  filter: drop-shadow(1px 2px 4px var(--dim));
+  filter: var(--logo-drop-shadow);
 }
 
 .app-footer__column {
@@ -292,10 +296,6 @@ export default {
 }
 
 @media (min-width: 720px) {
-  :root {
-    --app-footer-spacing: var(--spacing-medium);
-  }
-
   .app-footer {
     position: relative;
   }
@@ -314,7 +314,7 @@ export default {
 
   .app-footer__header {
     position: absolute;
-    width: calc(100% - var(--app-footer-spacing) * 2);
+    width: calc(100% - var(--spacing-medium) * 2);
   }
 
   .app-footer__legal {
@@ -323,12 +323,12 @@ export default {
   }
 
   .app-footer__bottom {
-    border-top: 1px solid var(--html-blue);
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 0;
+    border-top: 1px solid var(--html-blue);
   }
 
   .app-footer__bottom-text {
