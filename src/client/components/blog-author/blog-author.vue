@@ -80,7 +80,7 @@
     .blog-author__image {
       display: block;
       margin-bottom: var(--spacing-small);
-      border-right: 1px solid var(--very-dim);
+      border-right: 2px solid var(--very-dim);
     }
 
     .blog-author__text {
