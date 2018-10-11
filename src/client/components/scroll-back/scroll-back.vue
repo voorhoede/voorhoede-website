@@ -1,8 +1,8 @@
 <template>
-  <div class="scroll-back">
+  <a href="#" class="scroll-back">
     <span class="scroll-back__text body-petite font-bold">Return</span>
     <img class="scroll-back__image" src="/images/scroll-to-arrow.svg" alt="An arrow facing upwards">
-  </div>
+  </a>
 </template>
 
 <style>
