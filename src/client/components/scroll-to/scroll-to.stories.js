@@ -21,7 +21,7 @@ stories.add(
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     template: `
-    <div style="position: absolute; top: 200px; left: 50px;">
+    <div style="padding: 32px;">
       <scroll-to />
     </div>
     `,

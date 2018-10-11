@@ -7,58 +7,48 @@
 
 <style>
   :root {
-    --scroll-to-arrow-height: 40px;
-    --scroll-to-arrow-width: var(--scroll-to-arrow-height);
-    --arrow-animation: cubic-bezier(.075, .82, .165, 1);
+    --scroll-back-arrow-width: 32px;
+    --arrow-animation: ease-in-out;
   }
 
   .scroll-to {
-    display: inline-flex;
-    flex-direction: column;
-    position: relative;
+    display: flex;
     z-index: var(--z-index-low);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: var(--scroll-back-arrow-width);
+    height: 135px;
   }
 
   .scroll-to__text {
-    position: absolute;
-
-    /* Distance between the text and the arrow */
-    top: calc(-1 * (var(--spacing-tiny) + 2.5rem));
-    left: 50%;
-    transform: rotateZ(-90deg) translateY(50%);
-
-    /* Change the origin to keep the same starting point on all the media queries */
-    transform-origin: bottom left;
+    transform: rotateZ(-90deg) translateX(20px);
+    transform-origin: center center;
     color: var(--html-blue);
-    text-transform: uppercase;
     letter-spacing: .0625rem;
+    line-height: var(--scroll-back-arrow-width);
+    text-transform: uppercase;
   }
 
   .scroll-to__image {
-    height: var(--scroll-to-arrow-height);
     width: var(--scroll-to-arrow-width);
+    height: 64px;
+    transition: scrollToBounce var(--arrow-animation);
+    animation: scrollToBounce 1400ms infinite;
     object-fit: contain;
-    transition: bouncein-and-out var(--arrow-animation);
-    animation: bouncein-and-out 1400ms infinite;
   }
 
-  @keyframes bouncein-and-out {
+  @keyframes scrollToBounce {
     0% {
-      transform: translateY(-15px);
-    }
-
-    50% {
       transform: translateY(0);
     }
 
-    100% {
-      transform: translateY(-15px);
+    50% {
+      transform: translateY(15px);
     }
-  }
 
-  @media (min-width: 720px) {
-    .scroll-to {
-      position: absolute;
+    100% {
+      transform: translateY(0);
     }
   }
 </style>
