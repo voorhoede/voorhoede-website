@@ -7,7 +7,6 @@
 
 <style>
   :root {
-    --scroll-indicator-index: 1;
     --scroll-to-arrow-height: 40px;
     --scroll-to-arrow-width: var(--scroll-to-arrow-height);
     --arrow-animation: cubic-bezier(.075, .82, .165, 1);
@@ -17,7 +16,7 @@
     display: inline-flex;
     flex-direction: column;
     position: relative;
-    z-index: var(--scroll-indicator-index);
+    z-index: var(--z-index-low);
   }
 
   .scroll-to__text {
