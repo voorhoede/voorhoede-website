@@ -7,17 +7,11 @@ export default async function({ form, router, currentLocale }) {
       body.append(key, form[key])
     })
 
-    await fetch('./', {
+    await fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body
     })
-
-    console.log(await fetch('./', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body
-    }))
 
     router.push({
       name: 'locale-contact-slug',
