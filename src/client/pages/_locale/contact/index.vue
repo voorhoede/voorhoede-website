@@ -90,7 +90,7 @@
       grid-column-start: 2;
       grid-column-end: -2;
       background: var(--white);
-      padding: var(--spacing-large) var(--spacing-large);
+      padding: var(--spacing-larger) var(--spacing-large);
       justify-content: space-between;
     }
 
