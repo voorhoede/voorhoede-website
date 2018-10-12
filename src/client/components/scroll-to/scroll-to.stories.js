@@ -17,12 +17,23 @@ const stories = storiesOf('Components/Scroll To', module)
 Vue.component('scroll-to', ScrollTo)
 
 stories.add(
-  'Scroll To',
+  'Scroll To pointing down',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     template: `
     <div style="padding: 32px;">
-      <scroll-to />
+      <scroll-to point-down />
+    </div>
+    `,
+  }),
+)
+.add(
+  'Scroll To pointing up',
+  () => ({
+    i18n: new VueI18n({ locale: 'en' }),
+    template: `
+    <div style="padding: 32px;">
+      <scroll-to point-up />
     </div>
     `,
   }),
