@@ -1,6 +1,6 @@
 query HomePage($locale: SiteLocale)  {
-  app(locale: $locale) {
-    ...app
+  meta: metaInfo(locale: $locale) {
+    ...meta
   },
   page: home(locale:$locale) {
     ...page
@@ -36,7 +36,7 @@ query HomePage($locale: SiteLocale)  {
   }
 }
 
-fragment app on AppRecord {
+fragment meta on MetaInfoRecord {
   description,
   subject,
   keywords {

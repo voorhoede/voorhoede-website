@@ -10,9 +10,9 @@
     head() {
       return {
         meta: [
-          { 'name': 'description', 'content': this.app.description },
-          { 'name': 'subject', 'content': this.app.subject },
-          { 'name': 'keywords', 'content': this.app.keywords.map(item => item.keyword).join(', ') },
+          { 'name': 'description', 'content': this.meta.description },
+          { 'name': 'subject', 'content': this.meta.subject },
+          { 'name': 'keywords', 'content': this.meta.keywords.map(item => item.keyword).join(', ') },
         ]
       }
     }
