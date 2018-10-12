@@ -1,6 +1,8 @@
 <template>
   <label>
-    <span class="body-petite" :class="{ 'field-is-invalid': isInvalid }">{{ !isInvalid ? label : validationErrorMessage }}</span>
+    <span class="body-petite" :class="{ 'field-is-invalid': isInvalid }">
+      {{ !isInvalid ? label : validationErrorMessage }}
+    </span>
     <input
       :id="id"
       :name="id"
@@ -17,71 +19,71 @@
 </template>
 
 <script>
-export default {
-  inheritAttrs: false,
-  props: {
-    type: {
-      type: String,
-      required: true
+  export default {
+    inheritAttrs: false,
+    props: {
+      type: {
+        type: String,
+        required: true
+      },
+      id: {
+        type: String,
+        required: true
+      },
+      label: {
+        type: String,
+        required: true
+      },
+      value: {
+        type: String,
+        required: false,
+        default: ''
+      },
+      placeholderLabel: {
+        type: String,
+        required: true
+      },
+      validate: {
+        type: Boolean,
+        required: true
+      },
+      validationErrorMessage: {
+        type: String,
+        required: false,
+        default: ''
+      }
     },
-    id: {
-      type: String,
-      required: true
+    data() {
+      return {
+        isFocused: false,
+        valid: false
+      }
     },
-    label: {
-      type: String,
-      required: true
+    computed: {
+      isInvalid() {
+        return this.validate && !this.valid
+      }
     },
-    value: {
-      type: String,
-      required: false,
-      default: ''
+    watch: {
+      value() {
+        this.$nextTick(() => {
+          this.valid = this.$refs.input.checkValidity()
+        })
+      },
     },
-    placeholderLabel: {
-      type: String,
-      required: true
+    mounted() {
+      this.valid = this.$refs.input.checkValidity()
     },
-    validate: {
-      type: Boolean,
-      required: true
+    methods: {
+      updateInput(e) {
+        this.$emit('input', e.target.value)
+      },
     },
-    validationErrorMessage: {
-      type: String,
-      required: false,
-      default: ''
-    }
-  },
-  data() {
-    return {
-      isFocused: false,
-      valid: false
-    }
-  },
-  computed: {
-    isInvalid() {
-      return this.validate && !this.valid
-    }
-  },
-  watch: {
-    value() {
-      this.$nextTick(() => {
-        this.valid = this.$refs.input.checkValidity()
-      })
-    },
-  },
-  mounted() {
-    this.valid = this.$refs.input.checkValidity()
-  },
-  methods: {
-    updateInput(e) {
-      this.$emit('input', e.target.value)
-    },
-  },
-}
+  }
 </script>
 
 <style>
-.field-is-invalid {
-  color: var(--soft-red);
-}
+  .field-is-invalid {
+    color: var(--soft-red);
+  }
 </style>

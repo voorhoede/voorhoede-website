@@ -91,192 +91,188 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import { AppButton, InputField } from '~/components'
-import submitContactForm from '../../lib/submit-contact-form'
+  import { mapState } from 'vuex'
+  import { AppButton, InputField } from '~/components'
+  import submitContactForm from '../../lib/submit-contact-form'
 
-const greyOutFirstOption = ({ target }) => {
-  const { selectedIndex } = target
-  if (typeof selectedIndex !== 'number') {
-    return
+  const greyOutFirstOption = ({ target }) => {
+    const { selectedIndex } = target
+    if (typeof selectedIndex !== 'number') {
+      return
+    }
+    target.classList.toggle('greyed-out', selectedIndex === 0)
   }
-  target.classList.toggle('greyed-out', selectedIndex === 0)
-}
 
-export default {
-  components: {
-    AppButton,
-    InputField,
-  },
-  directives: {
-    greyedOutFirst: {
-      bind(el){
-        el.addEventListener('change', greyOutFirstOption)
+  export default {
+    components: { AppButton, InputField },
+    directives: {
+      greyedOutFirst: {
+        bind(el){
+          el.addEventListener('change', greyOutFirstOption)
+        },
+        unbind(el) {
+          el.removeEventListener('change', greyOutFirstOption)
+        }
+      }
+    },
+    props: {
+      subjectTitle: {
+        type: String,
+        required: true
       },
-      unbind(el) {
-        el.removeEventListener('change', greyOutFirstOption)
+      contactTitle: {
+        type: String,
+        required: true
+      },
+      nameLabel: {
+        type: String,
+        required: true
+      },
+      namePlaceholder: {
+        type: String,
+        required: true
+      },
+      nameErrorMessage: {
+        type: String,
+        required: true
+      },
+      emailLabel: {
+        type: String,
+        required: true
+      },
+      emailPlaceholder: {
+        type: String,
+        required: true
+      },
+      emailErrorMessageEmpty: {
+        type: String,
+        required: true
+      },
+      emailErrorMessageIncorrect: {
+        type: String,
+        required: true
+      },
+      phoneLabel: {
+        type: String,
+        required: true
+      },
+      phonePlaceholder: {
+        type: String,
+        required: true
+      },
+      phoneErrorMessage: {
+        type: String,
+        required: true
+      },
+      businessLabel: {
+        type: String,
+        required: true
+      },
+      businessPlaceholder: {
+        type: String,
+        required: true
+      },
+      websiteLabel: {
+        type: String,
+        required: true
+      },
+      websitePlaceholder: {
+        type: String,
+        required: true
+      },
+      subjectLabel: {
+        type: String,
+        required: true
+      },
+      subjectOptions: {
+        type: Array,
+        required: true
+      },
+      budgetLabel: {
+        type: String,
+        required: true
+      },
+      budgetOptions: {
+        type: Array,
+        required: true
+      },
+      projectLabel: {
+        type: String,
+        required: true
+      },
+      projectPlaceholder: {
+        type: String,
+        required: true
+      },
+      ctaLabel: {
+        type: String,
+        required: true
+      }
+    },
+    data() {
+      return {
+        form: {
+          'form-name': 'contact-page-form',
+          needHelpWith: '',
+          budgetOf: '',
+          projectDescription: '',
+          name: '',
+          business: '',
+          website: '',
+          email: '',
+          phone: '',
+        },
+        formIsValidated: false,
+      }
+    },
+    computed: {
+      ...mapState([
+        'currentLocale',
+      ]),
+      confirmationPageUrl() {
+        return '/' + this.currentLocale + '/contact/confirmation/'
+      },
+      emailValidationErrorMessage() {
+        return this.form.email ? this.emailErrorMessageIncorrect : this.emailErrorMessageEmpty
+      },
+    },
+    methods: {
+      submit(event) {
+        this.formIsValidated = true
+        if (!event.target.checkValidity()) {
+          return false
+        }
+
+        submitContactForm({
+          form: this.form,
+          router: this.$router,
+          currentLocale: this.currentLocale
+        })
       }
     }
-  },
-  props: {
-    subjectTitle: {
-      type: String,
-      required: true
-    },
-    contactTitle: {
-      type: String,
-      required: true
-    },
-    nameLabel: {
-      type: String,
-      required: true
-    },
-    namePlaceholder: {
-      type: String,
-      required: true
-    },
-    nameErrorMessage: {
-      type: String,
-      required: true
-    },
-    emailLabel: {
-      type: String,
-      required: true
-    },
-    emailPlaceholder: {
-      type: String,
-      required: true
-    },
-    emailErrorMessageEmpty: {
-      type: String,
-      required: true
-    },
-    emailErrorMessageIncorrect: {
-      type: String,
-      required: true
-    },
-    phoneLabel: {
-      type: String,
-      required: true
-    },
-    phonePlaceholder: {
-      type: String,
-      required: true
-    },
-    phoneErrorMessage: {
-      type: String,
-      required: true
-    },
-    businessLabel: {
-      type: String,
-      required: true
-    },
-    businessPlaceholder: {
-      type: String,
-      required: true
-    },
-    websiteLabel: {
-      type: String,
-      required: true
-    },
-    websitePlaceholder: {
-      type: String,
-      required: true
-    },
-    subjectLabel: {
-      type: String,
-      required: true
-    },
-    subjectOptions: {
-      type: Array,
-      required: true
-    },
-    budgetLabel: {
-      type: String,
-      required: true
-    },
-    budgetOptions: {
-      type: Array,
-      required: true
-    },
-    projectLabel: {
-      type: String,
-      required: true
-    },
-    projectPlaceholder: {
-      type: String,
-      required: true
-    },
-    ctaLabel: {
-      type: String,
-      required: true
-    }
-  },
-  data() {
-    return {
-      form: {
-        'form-name': 'contact-page-form',
-        needHelpWith: '',
-        budgetOf: '',
-        projectDescription: '',
-        name: '',
-        business: '',
-        website: '',
-        email: '',
-        phone: '',
-      },
-      formIsValidated: false,
-    }
-  },
-  computed: {
-    ...mapState([
-      'currentLocale',
-    ]),
-    confirmationPageUrl() {
-      return '/' + this.currentLocale + '/contact/confirmation/'
-    },
-    emailValidationErrorMessage() {
-      return this.form.email ? this.emailErrorMessageIncorrect : this.emailErrorMessageEmpty
-    },
-  },
-  methods: {
-    submit(event) {
-      this.formIsValidated = true
-      if (!event.target.checkValidity()) {
-        return false
-      }
-
-      submitContactForm({
-        form: this.form,
-        router: this.$router,
-        currentLocale: this.currentLocale
-      })
-    }
   }
-}
 </script>
 
-
 <style>
-@import '../forms/forms.css';
+  @import '../forms/forms.css';
 
-select {
-  -webkit-appearance: none;
-}
+  select {
+    -webkit-appearance: none;
+  }
 
-.greyed-out {
-  color: var(--very-dim);
-}
+  .greyed-out {
+    color: var(--very-dim);
+  }
 
-.hidden {
-  display: none;
-}
+  .hidden {
+    display: none;
+  }
 
-.contact-form__fieldset {
-  margin-bottom: var(--spacing-large);
-}
+  .contact-form__fieldset {
+    margin-bottom: var(--spacing-large);
+  }
 
-.contact-form__description {
-  resize: none;
-}
+  .contact-form__description {
+    resize: none;
+  }
 </style>
