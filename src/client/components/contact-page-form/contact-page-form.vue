@@ -2,7 +2,7 @@
   <form
     @submit.prevent="submit"
     method="POST"
-    name="contact-form"
+    :name="form['form-name']"
     :action="confirmationPageUrl"
     class="contact-form"
     data-netlify="true"
@@ -11,7 +11,7 @@
   >
     <fieldset class="contact-form__fieldset">
       <legend class="h4">{{ subjectTitle }}</legend>
-      <input type="hidden" name="form-name" value="contact-form">
+      <input type="hidden" name="form-name" :value="form['form-name']">
       <label class="hidden">
         Don't fill this out if you're human:
         <input v-model="form.magicCastle" name="magic-castle">

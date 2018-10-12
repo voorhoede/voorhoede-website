@@ -1,23 +1,20 @@
 <template>
   <div class="get-in-touch-form grid">
     <h2 class="get-in-touch-form__title h3">{{ title }}</h2>
-
     <form
       @submit.prevent="submit"
       method="POST"
-      name="contact-form"
+      :name="form['form-name']"
       :action="confirmationPageUrl"
       class="get-in-touch-form__form"
       data-netlify="true"
       netlify-honeypot="magic-castle"
-      novalidate
-    >
-      <input type="hidden" name="form-name" value="contact-form">
+      novalidate>
+      <input type="hidden" name="form-name" :value="form['form-name']">
       <label class="hidden">
         Don't fill this out if you're human:
         <input v-model="form.magicCastle" name="magic-castle">
       </label>
-      <input type="hidden" name="form-name" value="get-in-touch">
       <input-field
         v-model="form.name"
         id="name"
@@ -142,7 +139,7 @@
     data() {
       return {
         form: {
-          'form-name': 'get-in-touch-form',
+          'form-name': 'get-in-touch',
           name: '',
           email: '',
           phone: '',
