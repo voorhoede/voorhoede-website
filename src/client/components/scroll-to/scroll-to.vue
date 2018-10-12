@@ -47,67 +47,78 @@
 </script>
 
 <style>
-  :root {
-    --scroll-back-arrow-width: 32px;
-    --arrow-animation: ease-in-out;
-  }
-
   .scroll-to {
     display: flex;
     z-index: var(--z-index-low);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: var(--scroll-back-arrow-width);
+    width: 32px;
     height: 150px;
     user-select: none;
   }
 
   .scroll-to__text {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    transform-origin: center center;
     color: var(--html-blue);
     letter-spacing: .0625rem;
-    line-height: var(--scroll-back-arrow-width);
+    line-height: 32px;
     text-transform: uppercase;
   }
 
   .scroll-to__image {
-    width: var(--scroll-to-arrow-width);
+    width: 32px;
     height: 64px;
     object-fit: contain;
   }
 
+  .scroll-to__point-up,
+  .scroll-to__point-down {
+    position: relative;
+    width: 32px;
+    height: 150px;
+  }
+
+  .scroll-to__point-up .scroll-to__text,
+  .scroll-to__point-down .scroll-to__text,
+  .scroll-to__point-down .scroll-to__image,
+  .scroll-to__point-up .scroll-to__image {
+    position: absolute;
+  }
+
+  .scroll-to__point-up .scroll-to__text,
+  .scroll-to__point-down .scroll-to__text {
+    left: 0;
+  }
+
+  .scroll-to__point-down .scroll-to__image,
+  .scroll-to__point-up .scroll-to__image {
+    animation: arrowBounce ease-in-out 1.4s infinite;
+  }
+
+  .scroll-to__point-down .scroll-to__text {
+    transform: rotate(90deg);
+    top: -25px;
+    transform-origin: bottom left;
+  }
+
   .scroll-to__point-down .scroll-to__image {
-    animation: pointDownBounce 1.4s infinite;
+    bottom: 10px;
+  }
+
+  .scroll-to__point-up .scroll-to__text {
+    transform: rotate(-90deg);
+    bottom: -25px;
+    transform-origin: top left;
   }
 
   .scroll-to__point-up .scroll-to__image {
-    animation: pointUpBounce 1.4s infinite;
+    top: 10px;
   }
 
-  @keyframes pointDownBounce {
+  @keyframes arrowBounce {
     0% {
       transform: translateY(0);
     }
 
     50% {
       transform: translateY(15px);
-    }
-
-    100% {
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes pointUpBounce {
-    0% {
-      transform: translateY(0);
-    }
-
-    50% {
-      transform: translateY(-15px);
     }
 
     100% {
