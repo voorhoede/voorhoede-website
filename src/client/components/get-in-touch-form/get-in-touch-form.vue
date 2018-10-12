@@ -67,7 +67,7 @@
 <script>
   import { AppButton, InputField } from '~/components'
   import { mapState } from 'vuex'
-  import submitContactForm from '../../lib/submit-contact-form'
+  import submitGetInTouchForm from '../../lib/submit-get-in-touch-form'
 
   export default {
     components: {
@@ -166,7 +166,7 @@
           return false
         }
 
-        submitContactForm({
+        submitGetInTouchForm({
           form: this.form,
           router: this.$router,
           currentLocale: this.currentLocale,
