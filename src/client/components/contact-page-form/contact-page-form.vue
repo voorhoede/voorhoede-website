@@ -7,8 +7,7 @@
     class="contact-form"
     data-netlify="true"
     netlify-honeypot="magic-castle"
-    novalidate
-  >
+    novalidate>
     <fieldset class="contact-form__fieldset">
       <legend class="h4">{{ subjectTitle }}</legend>
       <input type="hidden" name="form-name" value="contact-form">
@@ -256,27 +255,22 @@ export default {
 }
 </script>
 
-
 <style>
-@import '../forms/forms.css';
+  @import '../forms/forms.css';
 
-select {
-  -webkit-appearance: none;
-}
+  .greyed-out {
+    color: var(--very-dim);
+  }
 
-.greyed-out {
-  color: var(--very-dim);
-}
+  .hidden {
+    display: none;
+  }
 
-.hidden {
-  display: none;
-}
+  .contact-form__fieldset {
+    margin-bottom: var(--spacing-large);
+  }
 
-.contact-form__fieldset {
-  margin-bottom: var(--spacing-large);
-}
-
-.contact-form__description {
-  resize: none;
-}
+  .contact-form__description {
+    resize: none;
+  }
 </style>
