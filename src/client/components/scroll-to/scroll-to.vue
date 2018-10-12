@@ -12,12 +12,16 @@
         class="scroll-to__image"
         src="/images/scroll-to-arrow--up.svg"
         alt="An arrow facing upwards">
-      <span class="scroll-to__text body-petite font-bold">Return</span>
+      <span class="scroll-to__text body-petite font-bold">
+        {{ scrollUpText }}
+      </span>
     </a>
   </div>
 </template>
 
 <script>
+  import { mapState } from 'vuex'
+
   export default {
     props: {
       pointDown: {
@@ -31,6 +35,14 @@
           required: false
       },
     },
+    computed: {
+      ...mapState([
+        'currentLocale',
+      ]),
+      scrollUpText() {
+        return this.currentLocale === 'en' ? 'return' : 'terug'
+      },
+    }
   }
 </script>
 
