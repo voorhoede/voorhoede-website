@@ -2,15 +2,15 @@
   <form
     @submit.prevent="submit"
     method="POST"
-    name="contact-form"
+    :name="form['form-name']"
     :action="confirmationPageUrl"
     class="contact-form"
     data-netlify="true"
     netlify-honeypot="magic-castle"
-  >
+    novalidate>
     <fieldset class="contact-form__fieldset">
       <legend class="h4">{{ subjectTitle }}</legend>
-      <input type="hidden" name="form-name" value="contact-form">
+      <input type="hidden" name="form-name" :value="form['form-name']">
       <label class="hidden">
         Don't fill this out if you're human:
         <input v-model="form.magicCastle" name="magic-castle">
@@ -34,26 +34,52 @@
     </fieldset>
     <fieldset class="contact-form__fieldset">
       <legend class="h4">{{ contactTitle }}</legend>
-      <label class="contact-form__label">
-        <span class="contact-form__label-text body-petite">{{ nameLabel }}</span>
-        <input type="text" class="body" name="name" v-model="form.name" :placeholder="namePlaceholder">
-      </label>
-      <label class="contact-form__label">
-        <span class="contact-form__label-text body-petite">{{ businessLabel }}</span>
-        <input type="text" class="body" name="business" v-model="form.business" :placeholder="businessPlaceholder">
-      </label>
-      <label class="contact-form__label">
-        <span class="contact-form__label-text body-petite">{{ websiteLabel }}</span>
-        <input class="body" type="text" name="website" v-model="form.website" :placeholder="websitePlaceholder">
-      </label>
-      <label class="contact-form__label">
-        <span class="contact-form__label-text body-petite">{{ emailLabel }}</span>
-        <input class="body" type="email" name="email" v-model="form.email" :placeholder="emailPlaceholder">
-      </label>
-      <label class="contact-form__label">
-        <span class="contact-form__label-text body-petite">{{ phoneLabel }}</span>
-        <input class="body" type="phone" name="phone" v-model="form.phone" :placeholder="phonePlaceholder">
-      </label>
+      <input-field
+        v-model="form.name"
+        id="name"
+        type="text"
+        :label="nameLabel"
+        :placeholder-label="namePlaceholder"
+        required
+        :validate="formIsValidated"
+        :validation-error-message="nameErrorMessage"
+      />
+      <input-field
+        v-model="form.business"
+        id="business"
+        type="text"
+        :label="businessLabel"
+        :placeholder-label="businessPlaceholder"
+        :validate="formIsValidated"
+      />
+      <input-field
+        v-model="form.website"
+        id="website"
+        type="text"
+        :label="websiteLabel"
+        :placeholder-label="websitePlaceholder"
+        :validate="formIsValidated"
+      />
+      <input-field
+        v-model="form.email"
+        id="email"
+        type="email"
+        :label="emailLabel"
+        :placeholder-label="emailPlaceholder"
+        required
+        :validate="formIsValidated"
+        :validation-error-message="emailValidationErrorMessage"
+      />
+      <input-field
+        v-model="form.phone"
+        id="phone"
+        type="tel"
+        :label="phoneLabel"
+        :placeholder-label="phonePlaceholder"
+        required
+        :validate="formIsValidated"
+        :validation-error-message="phoneErrorMessage"
+      />
     </fieldset>
     <app-button
       class="contact-form__button"
@@ -65,7 +91,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import { AppButton } from '~/components'
+import { AppButton, InputField } from '~/components'
 import submitContactForm from '../../lib/submit-contact-form'
 
 const greyOutFirstOption = ({ target }) => {
@@ -79,6 +105,7 @@ const greyOutFirstOption = ({ target }) => {
 export default {
   components: {
     AppButton,
+    InputField,
   },
   directives: {
     greyedOutFirst: {
@@ -107,6 +134,10 @@ export default {
       type: String,
       required: true
     },
+    nameErrorMessage: {
+      type: String,
+      required: true
+    },
     emailLabel: {
       type: String,
       required: true
@@ -115,11 +146,23 @@ export default {
       type: String,
       required: true
     },
+    emailErrorMessageEmpty: {
+      type: String,
+      required: true
+    },
+    emailErrorMessageIncorrect: {
+      type: String,
+      required: true
+    },
     phoneLabel: {
       type: String,
       required: true
     },
     phonePlaceholder: {
+      type: String,
+      required: true
+    },
+    phoneErrorMessage: {
       type: String,
       required: true
     },
@@ -180,7 +223,8 @@ export default {
         website: '',
         email: '',
         phone: '',
-      }
+      },
+      formIsValidated: false,
     }
   },
   computed: {
@@ -189,10 +233,18 @@ export default {
     ]),
     confirmationPageUrl() {
       return '/' + this.currentLocale + '/contact/confirmation/'
-    }
+    },
+    emailValidationErrorMessage() {
+      return this.form.email ? this.emailErrorMessageIncorrect : this.emailErrorMessageEmpty
+    },
   },
   methods: {
-    submit() {
+    submit(event) {
+      this.formIsValidated = true
+      if (!event.target.checkValidity()) {
+        return false
+      }
+
       submitContactForm({
         form: this.form,
         router: this.$router,
@@ -203,27 +255,22 @@ export default {
 }
 </script>
 
-
 <style>
-@import '../forms/forms.css';
+  @import '../forms/forms.css';
 
-select {
-  -webkit-appearance: none;
-}
+  .greyed-out {
+    color: var(--very-dim);
+  }
 
-.greyed-out {
-  color: var(--very-dim);
-}
+  .hidden {
+    display: none;
+  }
 
-.hidden {
-  display: none;
-}
+  .contact-form__fieldset {
+    margin-bottom: var(--spacing-large);
+  }
 
-.contact-form__fieldset {
-  margin-bottom: var(--spacing-large);
-}
-
-.contact-form__description {
-  resize: none;
-}
+  .contact-form__description {
+    resize: none;
+  }
 </style>
