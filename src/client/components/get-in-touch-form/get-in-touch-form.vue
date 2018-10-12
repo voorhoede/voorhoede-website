@@ -4,27 +4,60 @@
 
     <form
       @submit.prevent="submit"
-      class="get-in-touch-form__form"
       method="POST"
-      data-netlify="true"
+      name="contact-form"
       :action="confirmationPageUrl"
+      class="get-in-touch-form__form"
+      data-netlify="true"
+      netlify-honeypot="magic-castle"
+      novalidate
     >
-      <label class="get-in-touch-form__label">
-        <span class="get-in-touch-form__label-text body-petite">{{ nameLabel }}</span>
-        <input class="body" type="text" :placeholder="namePlaceholder" name="name" v-model="form.name">
+      <input type="hidden" name="form-name" value="contact-form">
+      <label class="hidden">
+        Don't fill this out if you're human:
+        <input v-model="form.magicCastle" name="magic-castle">
       </label>
-      <label class="get-in-touch-form__label">
-        <span class="get-in-touch-form__label-text body-petite">{{ emailLabel }}</span>
-        <input class="body" type="text" :placeholder="emailPlaceholder" name="email" v-model="form.email">
-      </label>
-      <label class="get-in-touch-form__label">
-        <span class="get-in-touch-form__label-text body-petite">{{ phoneLabel }}</span>
-        <input class="body" type="text" :placeholder="phonePlaceholder" name="number" v-model="form.number">
-      </label>
-      <label class="get-in-touch-form__label">
-        <span class="get-in-touch-form__label-text body-petite">{{ summaryLabel }}</span>
-        <input class="body" type="text" :placeholder="summaryPlaceholder" name="explanation" v-model="form.explanation">
-      </label>
+      <input type="hidden" name="form-name" value="get-in-touch">
+      <input-field
+        v-model="form.name"
+        id="name"
+        type="text"
+        :label="nameLabel"
+        :placeholder-label="namePlaceholder"
+        required
+        :validate="formIsValidated"
+        :validation-error-message="nameErrorMessage"
+      />
+      <input-field
+        v-model="form.email"
+        id="email"
+        type="email"
+        :label="emailLabel"
+        :placeholder-label="emailPlaceholder"
+        required
+        :validate="formIsValidated"
+        :validation-error-message="emailValidationErrorMessage"
+      />
+      <input-field
+        v-model="form.phone"
+        id="phone"
+        type="tel"
+        :label="phoneLabel"
+        :placeholder-label="phonePlaceholder"
+        required
+        :validate="formIsValidated"
+        :validation-error-message="phoneErrorMessage"
+      />
+      <input-field
+        v-model="form.explanation"
+        id="project"
+        type="text"
+        :label="summaryLabel"
+        :placeholder-label="summaryPlaceholder"
+        required
+        :validate="formIsValidated"
+        :validation-error-message="summaryErrorMessage"
+      />
       <app-button
         class="get-in-touch-form__button"
         :label="ctaLabel"
@@ -35,13 +68,14 @@
 </template>
 
 <script>
-  import { AppButton } from '~/components'
+  import { AppButton, InputField } from '~/components'
   import { mapState } from 'vuex'
   import submitContactForm from '../../lib/submit-contact-form'
 
   export default {
     components: {
-      AppButton
+      AppButton,
+      InputField,
     },
     props: {
       title: {
@@ -56,11 +90,23 @@
         type: String,
         required: true
       },
+      nameErrorMessage: {
+        type: String,
+        required: true
+      },
       emailLabel: {
         type: String,
         required: true
       },
       emailPlaceholder: {
+        type: String,
+        required: true
+      },
+      emailErrorMessageEmpty: {
+        type: String,
+        required: true
+      },
+      emailErrorMessageIncorrect: {
         type: String,
         required: true
       },
@@ -72,11 +118,19 @@
         type: String,
         required: true
       },
+      phoneErrorMessage: {
+        type: String,
+        required: true
+      },
       summaryLabel: {
         type: String,
         required: true
       },
       summaryPlaceholder: {
+        type: String,
+        required: true
+      },
+      summaryErrorMessage: {
         type: String,
         required: true
       },
@@ -91,9 +145,10 @@
           'form-name': 'get-in-touch-form',
           name: '',
           email: '',
-          number: '',
+          phone: '',
           explanation: '',
-        }
+        },
+        formIsValidated: false,
       }
     },
     computed: {
@@ -102,10 +157,18 @@
       ]),
       confirmationPageUrl() {
         return '/' + this.currentLocale + '/contact/confirmation/'
-      }
+      },
+      emailValidationErrorMessage() {
+        return this.form.email ? this.emailErrorMessageIncorrect : this.emailErrorMessageEmpty
+      },
     },
     methods: {
-      submit() {
+      submit(event) {
+        this.formIsValidated = true
+        if (!event.target.checkValidity()) {
+          return false
+        }
+
         submitContactForm({
           form: this.form,
           router: this.$router,
