@@ -30,9 +30,6 @@ module.exports = {
     meta: [
       { 'charset': 'utf-8' },
       { 'name': 'viewport', 'content': 'width=device-width, initial-scale=1' },
-      { 'name': 'subject', 'content': 'We build front-end solutions which you can use for years to come' },
-      { 'name': 'description', 'content': 'We build front-end solutions which you can use for years to come' },
-      { 'name': 'keywords', 'content': 'front-end, developers, web, HTML, CSS, JS, JavaScript, team, Amsterdam' },
       { 'name': 'classification', 'content': 'business' },
       { 'name': 'theme-color', 'content': '#ffe400' },
       { 'http-equiv': 'X-UA-Compatible', 'content': 'IE=edge' },

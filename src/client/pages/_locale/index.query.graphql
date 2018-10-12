@@ -1,4 +1,7 @@
 query HomePage($locale: SiteLocale)  {
+  app(locale: $locale) {
+    ...app
+  },
   page: home(locale:$locale) {
     ...page
   },
@@ -30,6 +33,14 @@ query HomePage($locale: SiteLocale)  {
         format
       }
     }
+  }
+}
+
+fragment app on AppRecord {
+  description,
+  subject,
+  keywords {
+    keyword
   }
 }
 
