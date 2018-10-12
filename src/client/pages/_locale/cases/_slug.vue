@@ -10,7 +10,7 @@
     </div>
     <aside class="page-case__case-meta-container grid">
       <div class="page-case__scroll-to">
-        <scroll-to />
+        <scroll-to point-down />
       </div>
       <case-meta
         class="page-case__case-meta"
@@ -119,7 +119,7 @@
         :summary-placeholder="page.getInTouchForm.summaryPlaceholder"
         :cta-label="page.getInTouchForm.ctaButtonLabel"
       />
-      <scroll-back/>
+      <scroll-to point-up />
     </div>
   </main>
 </template>
@@ -138,7 +138,6 @@
     ResponsiveImage,
     ResponsiveVideo,
     RichTextBlock,
-    ScrollBack,
     ScrollTo,
     StorytellingSection,
   } from '~/components'
@@ -159,7 +158,6 @@
       ResponsiveImage,
       ResponsiveVideo,
       RichTextBlock,
-      ScrollBack,
       ScrollTo,
       StorytellingSection,
     },
@@ -238,7 +236,7 @@
     max-width: 100%; /* temporary fix for mvp should refactored after mvp */
   }
 
-  .page-case__get-in-touch-form .scroll-back {
+  .page-case__get-in-touch-form .scroll-to {
     display: none;
     position: absolute;
     bottom: var(--spacing-large);
@@ -254,7 +252,6 @@
 
     .page-case__scroll-to {
       position: relative;
-      margin-top: var(--spacing-bigger);
     }
 
     .page-case__case-header .page-header-detail__container {
@@ -271,7 +268,7 @@
       position: relative;
     }
 
-    .page-case__get-in-touch-form .scroll-back {
+    .page-case__get-in-touch-form .scroll-to {
       display: flex;
     }
   }

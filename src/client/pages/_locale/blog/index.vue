@@ -14,7 +14,7 @@
           <blog-list-item large :item="blogPost" :current-locale="currentLocale"/>
         </li>
       </ul>
-      <scroll-back/>
+      <scroll-to point-up />
     </div>
     <div class="page-blog__cta grid">
       <cta-block
@@ -38,12 +38,12 @@
     BlogListItem,
     CtaBlock,
     PageHeader,
-    ScrollBack,
+    ScrollTo,
     TextBlock,
   } from '~/components'
 
   export default {
-    components: { BlogListItem, CtaBlock, PageHeader, ScrollBack, TextBlock },
+    components: { BlogListItem, CtaBlock, PageHeader, ScrollTo, TextBlock },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
     },
@@ -72,7 +72,7 @@
     border: none;
   }
 
-  .page-blog-container .scroll-back {
+  .page-blog-container .scroll-to {
     display: none;
     position: absolute;
     bottom: var(--spacing-large);
@@ -91,7 +91,7 @@
       position: relative;
     }
 
-    .page-blog-container .scroll-back {
+    .page-blog-container .scroll-to {
       display: flex;
     }
 

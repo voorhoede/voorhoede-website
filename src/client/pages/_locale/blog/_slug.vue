@@ -95,7 +95,7 @@
           <p class="body">{{ page.callToActionBody }}</p>
         </template>
       </cta-block>
-      <scroll-back/>
+      <scroll-to point-up />
     </div>
   </div>
 </template>
@@ -113,7 +113,7 @@ import {
   QuoteBlock,
   ResponsiveImage,
   RichTextBlock,
-  ScrollBack,
+  ScrollTo,
   SocialButtons,
   TextBlock,
 } from '../../../components'
@@ -130,7 +130,7 @@ export default {
     QuoteBlock,
     ResponsiveImage,
     RichTextBlock,
-    ScrollBack,
+    ScrollTo,
     SocialButtons,
     TextBlock,
   },
@@ -204,7 +204,7 @@ export default {
     font-style: italic;
   }
 
-  .page-blog-post__cta .scroll-back {
+  .page-blog-post__cta .scroll-to {
     display: none;
     position: absolute;
     bottom: var(--spacing-large);
@@ -242,7 +242,7 @@ export default {
       position: relative;
     }
 
-    .page-blog-post__cta .scroll-back {
+    .page-blog-post__cta .scroll-to {
       display: flex;
     }
 

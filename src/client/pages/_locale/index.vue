@@ -7,7 +7,7 @@
         :text="page.subtitle"
         :image="page.headerIllustration"/>
       <div class="page-index__scroll-to grid">
-        <scroll-to/>
+        <scroll-to point-down />
       </div>
       <div class="grid">
         <scroll-highlighted-text :text-lines="page.usps"/>
@@ -84,7 +84,7 @@
           <h3 class="h4">{{ page.callToActionTitle }}</h3>
         </template>
       </cta-block>
-      <scroll-back/>
+      <scroll-to point-up />
     </div>
   </div>
 </template>
@@ -100,7 +100,6 @@
     HighlightedClients,
     HorizontalCarousel,
     PageHeader,
-    ScrollBack,
     ScrollHighlightedText,
     ScrollTo,
     ServicesList,
@@ -116,7 +115,6 @@
       HighlightedClients,
       HorizontalCarousel,
       PageHeader,
-      ScrollBack,
       ScrollHighlightedText,
       ScrollTo,
       ServicesList,
@@ -143,11 +141,11 @@
     bottom: 0;
   }
 
-  .page-index .scroll-to {
+  .page-index__scroll-to .scroll-to {
     grid-column: 1;
   }
 
-  .page-index .scroll-back {
+  .page-index__cta-block .scroll-to {
     display: none;
     position: absolute;
     bottom: var(--spacing-large);
@@ -324,7 +322,7 @@
       grid-column-end: 30;
     }
 
-    .page-index .scroll-to {
+    .page-index__scroll-to .scroll-to {
       grid-column: 2;
     }
 
@@ -370,7 +368,7 @@
       width: auto;
     }
 
-    .page-index .scroll-back {
+    .page-index__cta-block .scroll-to {
       display: flex;
     }
 
@@ -440,7 +438,7 @@
   }
 
   @media (min-width: 1440px) {
-    .page-index .scroll-to {
+    .page-index__scroll-to .scroll-to {
       grid-column-start: 4;
       grid-column-end: 5;
     }

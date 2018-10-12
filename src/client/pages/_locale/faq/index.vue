@@ -15,16 +15,16 @@
           />
         </li>
       </ul>
-      <scroll-back/>
+      <scroll-to point-up />
     </div>
   </div>
 </template>
 
 <script>
-  import { GenericTextBlock, PageHeader, ScrollBack } from '~/components'
+  import { GenericTextBlock, PageHeader, ScrollTo } from '~/components'
 
   export default {
-    components: { GenericTextBlock, PageHeader, ScrollBack },
+    components: { GenericTextBlock, PageHeader, ScrollTo },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
     }
@@ -41,7 +41,7 @@
     margin-bottom: var(--spacing-large);
   }
 
-  .page-faq__overview .scroll-back {
+  .page-faq__overview .scroll-to {
     display: none;
     position: absolute;
     bottom: var(--spacing-big);
@@ -61,7 +61,7 @@
       padding: var(--spacing-large) var(--spacing-larger);
     }
 
-    .page-faq__overview .scroll-back {
+    .page-faq__overview .scroll-to {
       display: flex;
     }
   }
