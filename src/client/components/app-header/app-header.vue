@@ -59,14 +59,14 @@
 
 <style>
   :root {
-    --header-z-index: 2;
+    --header-border-opacity: .08;
   }
 
   .app-header {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: var(--header-z-index);
+    z-index: var(--z-index-high);
     height: var(--app-header-height);
     width: 100%;
   }
@@ -79,9 +79,8 @@
     bottom: 0;
     width: 100%;
     height: 1px;
-    background-color: var(--fog);
-    opacity: .71;
-    mix-blend-mode: multiply;
+    background-color: var(--black);
+    opacity: var(--header-border-opacity);
   }
 
   .app-header__content {
@@ -92,7 +91,7 @@
 
   .app-header__logo {
     width: auto;
-    height: 1.4375rem; /* 23px */
+    height: 1.625rem; /* 26px */
   }
 
   .app-header__link-lists {
@@ -141,7 +140,7 @@
 
   @media screen and (min-width: 720px) {
     .app-header__logo {
-      height: 1.625rem; /* 26px */
+      height: 1.875rem; /* 30px */
     }
 
     .app-header__link-list {
@@ -152,7 +151,7 @@
 
   @media screen and (min-width: 1100px) {
     .app-header__logo {
-      height: 1.8125rem; /* 29px */
+      height: 2.125rem; /* 34px */
     }
 
     .app-header__link-list-item {

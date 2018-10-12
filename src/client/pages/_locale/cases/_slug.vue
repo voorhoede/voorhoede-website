@@ -184,8 +184,8 @@
   .page-case__scroll-to {
     grid-row: 1;
     grid-column: 2;
-    position: relative;
-    margin-top: var(--spacing-big);
+    position: absolute;
+    bottom: 0;
   }
 
   .page-case__case-meta-container {
@@ -245,6 +245,7 @@
     }
 
     .page-case__scroll-to {
+      position: relative;
       margin-top: var(--spacing-bigger);
     }
 

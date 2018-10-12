@@ -1,16 +1,42 @@
-:root {
-  --list-bullet-size: 2px;
+/* Only add padding when class is put on an actual <ul> element */
+ul.list {
+  padding-left: var(--spacing-medium);
+}
+
+.list li {
+  position: relative;
+  padding-left: 0;
+  font-family: var(--font-sans);
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
+  line-height: 1.5625; /* 25px */
+}
+
+.list li + li {
+  margin-top: var(--spacing-tiny);
 }
 
 .list li::before {
-  content: '';
-  display: inline-block;
-  position: relative;
-  left: calc(-1 * var(--spacing-small));
-  width: var(--list-bullet-size);
-  height: var(--list-bullet-size);
-  border-radius: 50%;
-  background: var(--black);
-  background: currentColor;
-  vertical-align: middle;
+  content: '•';
+  position: absolute;
+  left: calc(-1 * var(--spacing-medium));
+  width: 3px;
+  color: var(--black);
+  color: currentColor;
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.3;
+}
+
+@media (min-width: 720px) {
+  .list li {
+    font-size: 1.0625rem; /* 17px */
+    line-height: 1.5882352941; /* 27px */
+  }
+}
+
+@media (min-width: 1100px) {
+  .list li {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.6111111111; /* 29px */
+  }
 }

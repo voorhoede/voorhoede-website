@@ -43,7 +43,6 @@
 <style>
   :root {
     --image-height: 10rem;
-    --list-bullet-size: 2px;
   }
 
   .generic-text-block {
@@ -53,19 +52,6 @@
 
   .generic-text-block__title {
     margin-bottom: var(--spacing-smaller);
-  }
-
-  .generic-text-block__body li::before {
-    content: '';
-    display: inline-block;
-    background: var(--black);
-    background: currentColor;
-    height: var(--list-bullet-size);
-    width: var(--list-bullet-size);
-    border-radius: 50%;
-    vertical-align: middle;
-    position: relative;
-    left: calc(-1 * var(--spacing-small));
   }
 
   .generic-text-block__image-container {

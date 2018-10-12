@@ -6,46 +6,59 @@
 </template>
 
 <style>
+  :root {
+    --scroll-to-arrow-height: 40px;
+    --scroll-to-arrow-width: var(--scroll-to-arrow-height);
+    --arrow-animation: cubic-bezier(.075, .82, .165, 1);
+  }
+
   .scroll-to {
     display: inline-flex;
     flex-direction: column;
     position: relative;
+    z-index: var(--z-index-low);
   }
 
   .scroll-to__text {
     position: absolute;
 
     /* Distance between the text and the arrow */
-    top: calc(-1 * (var(--spacing-tiny) + 1rem));
+    top: calc(-1 * (var(--spacing-tiny) + 2.5rem));
     left: 50%;
-    text-transform: uppercase;
     transform: rotateZ(-90deg) translateY(50%);
 
     /* Change the origin to keep the same starting point on all the media queries */
     transform-origin: bottom left;
     color: var(--html-blue);
+    text-transform: uppercase;
+    letter-spacing: .0625rem;
   }
 
   .scroll-to__image {
-    transform: scale(.6);
-
-    /* needs a bigger offset because the whitespace gets bigger */
-    transform-origin: center 6px;
+    height: var(--scroll-to-arrow-height);
+    width: var(--scroll-to-arrow-width);
+    object-fit: contain;
+    transition: bouncein-and-out var(--arrow-animation);
+    animation: bouncein-and-out 1400ms infinite;
   }
 
-  @media (min-width: 720px) {
-    .scroll-to__image {
-      transform: scale(.8);
+  @keyframes bouncein-and-out {
+    0% {
+      transform: translateY(-15px);
+    }
 
-      /* needs a bigger offset because the whitespace gets bigger */
-      transform-origin: center 5px;
+    50% {
+      transform: translateY(0);
+    }
+
+    100% {
+      transform: translateY(-15px);
     }
   }
 
-  @media (min-width: 1100px) {
-    .scroll-to__image {
-      transform: scale(1);
-      transform-origin: center 0;
+  @media (min-width: 720px) {
+    .scroll-to {
+      position: absolute;
     }
   }
 </style>

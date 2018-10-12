@@ -68,7 +68,7 @@ export default {
 
 .page-header__image img {
   position: static;
-  z-index: 1;
+  z-index: var(--z-index-low);
   object-fit: contain;
   object-position: bottom;
   justify-content: flex-end;
