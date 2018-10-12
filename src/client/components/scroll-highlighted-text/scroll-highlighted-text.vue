@@ -1,6 +1,6 @@
 <template>
   <p class="scroll-highlighted-text">
-    <span 
+    <span
       class="scroll-highlighted-text__text h1"
       v-for="(item, index) in textLines"
       :key="index"
