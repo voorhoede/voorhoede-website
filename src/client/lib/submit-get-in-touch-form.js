@@ -1,5 +1,4 @@
 export default async function({ form, router, currentLocale }) {
-  console.log({ form, router, currentLocale })
   try {
     const body = new URLSearchParams()
 
@@ -7,7 +6,7 @@ export default async function({ form, router, currentLocale }) {
       body.append(key, form[key])
     })
 
-    await fetch('/', {
+    await fetch('./', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body
