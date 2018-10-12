@@ -7,8 +7,7 @@
     class="contact-form"
     data-netlify="true"
     netlify-honeypot="magic-castle"
-    novalidate
-  >
+    novalidate>
     <fieldset class="contact-form__fieldset">
       <legend class="h4">{{ subjectTitle }}</legend>
       <input type="hidden" name="form-name" :value="form['form-name']">
@@ -18,19 +17,40 @@
       </label>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ subjectLabel }}</span>
-        <select class="body greyed-out" type="select" name="need-help-with" v-model="form.needHelpWith" v-greyed-out-first>
-          <option v-for="subject in subjectOptions" :key="subject.value" :value="subject.value">{{ subject.label }}</option>
+        <select
+          v-model="form.needHelpWith"
+          class="body greyed-out"
+          name="need-help-with"
+          v-greyed-out-first
+          required>
+          <option
+            v-for="subject in subjectOptions"
+            :key="subject.value"
+            :value="subject.value">{{ subject.label }}</option>
         </select>
       </label>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ budgetLabel }}</span>
-        <select class="body greyed-out" type="select" name="budget-of" v-model="form.budgetOf" v-greyed-out-first>
-          <option v-for="option in budgetOptions" :key="option.value" :value="option.value">{{ option.label }}</option>
+        <select
+          v-model="form.budgetOf"
+          class="body greyed-out"
+          name="budget-of"
+          v-greyed-out-first
+          required>
+          <option
+            v-for="option in budgetOptions"
+            :key="option.value"
+            :value="option.value">{{ option.label }}</option>
         </select>
       </label>
       <label class="contact-form__label">
         <span class="contact-form__label-text body-petite">{{ projectLabel }}</span>
-        <textarea rows="5" class="contact-form__description body" type="text" name="project-description" v-model="form.projectDescription" :placeholder="projectPlaceholder"/>
+        <textarea
+          v-model="form.projectDescription"
+          rows="5"
+          class="contact-form__description body"
+          name="project-description"
+          :placeholder="projectPlaceholder"/>
       </label>
     </fieldset>
     <fieldset class="contact-form__fieldset">
