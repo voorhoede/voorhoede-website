@@ -14,6 +14,7 @@
         <span v-html="title" />
       </div>
       <div
+        ref="text"
         class="page-header__text"
         :class="{
           'hero': isHomepage,
@@ -21,7 +22,7 @@
           'page-header__text--js-bootstrapped': jsBootstrapped
         }"
       >
-        <span v-html="selfTypingText" />
+        <span v-html="selfTypingText"/>
       </div>
     </div>
   </header>
@@ -57,19 +58,34 @@ export default {
     }
   },
   mounted() {
+    const typingSpeed = 70
+    const height = this.$refs.text.clientHeight
+    this.$refs.text.style.height = `${height}px`
+
     this.selfTypingText = ''
     this.jsBootstrapped = true
 
-    for (let i = 0; i < this.text.length; i++) {
+    this.text.split('').forEach((letter, index) => {
       setTimeout(() => {
-        this.selfTypingText += this.text.charAt(i)
-      }, 70 * i)
-    }          
-  },
+        this.selfTypingText += letter
+        
+        if (index === this.text.length - 1) {
+          this.$refs.text.style.removeProperty('height')
+        }
+      }, typingSpeed * index)
+
+    })
+  }, 
 }
 </script>
 
 <style>
+:root {
+  --show-text-animation-delay: 3s;
+  --show-text-animation: show 1s forwards;
+  --blink-text-animation: blink 750ms infinite;
+}
+
 .page-header {
   background: var(--bg-pastel);
   grid-template-rows: var(--app-header-height) 1fr;
@@ -119,28 +135,32 @@ export default {
   grid-row-start: 2;
 }
 
+/* by default hidden text to animate visible */
 .page-header__text {
   margin-top: var(--spacing-smaller);
   hyphens: auto;
   overflow-wrap: break-word;
   opacity: 0;
-  animation: show 1s forwards;
-  animation-delay: 3s;
+  animation: var(--show-text-animation);
+  animation-delay: var(--show-text-animation-delay);
 }
 
+/* if js is avialable transition to visible */
 .page-header__text--js-bootstrapped {
   opacity: 1;
   animation: none;
 }
 
+/* positioned absolute to keep the cursor behind the text */
 .page-header__text--js-bootstrapped::after {
   content: '|';
+  position: absolute;
   display: inline-block;
   margin-left: var(--spacing-tiny);
-  font-weight: normal;
-  animation: blink 750ms infinite;
-  vertical-align: middle;
   transform: scaleX(.5);
+  font-weight: normal;
+  animation: var(--blink-text-animation);
+  vertical-align: middle;
 }
 
 .page-header__curly-bracket-column {
