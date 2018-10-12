@@ -1,6 +1,6 @@
 <template>
-  <label>
-    <span class="body-petite" :class="{ 'field-is-invalid': isInvalid }">
+  <label class="input-field">
+    <span class="input-field__label body-petite" :class="{ 'field-is-invalid': isInvalid }">
       {{ !isInvalid ? label : validationErrorMessage }}
     </span>
     <input
@@ -9,7 +9,7 @@
       :value="value"
       :type="type"
       :placeholder="placeholderLabel"
-      class="body"
+      class="input-field__input body"
       :class="{ 'is-invalid': isInvalid }"
       v-bind="$attrs"
       ref="input"
