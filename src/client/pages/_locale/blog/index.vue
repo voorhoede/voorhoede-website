@@ -74,9 +74,6 @@
 
   .page-blog-container .scroll-to {
     display: none;
-    position: absolute;
-    bottom: var(--spacing-large);
-    grid-column: -3;
   }
 
   @media (min-width: 720px) {
@@ -93,6 +90,9 @@
 
     .page-blog-container .scroll-to {
       display: flex;
+      position: absolute;
+      bottom: var(--spacing-large);
+      grid-column: -3;
     }
 
     .page-blog__cta-block {

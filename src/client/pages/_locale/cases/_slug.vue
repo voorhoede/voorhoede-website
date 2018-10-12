@@ -238,9 +238,6 @@
 
   .page-case__get-in-touch-form .scroll-to {
     display: none;
-    position: absolute;
-    bottom: var(--spacing-large);
-    grid-column: -3;
   }
 
   @media (min-width: 720px) {
@@ -270,6 +267,9 @@
 
     .page-case__get-in-touch-form .scroll-to {
       display: flex;
+      position: absolute;
+      bottom: var(--spacing-large);
+      grid-column: -3;
     }
   }
 

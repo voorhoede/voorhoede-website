@@ -370,6 +370,9 @@
 
     .page-index__cta-block .scroll-to {
       display: flex;
+      position: absolute;
+      bottom: var(--spacing-large);
+      grid-column: -3;
     }
 
     .page-index__cta-block {
