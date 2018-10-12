@@ -70,10 +70,7 @@
   import submitContactForm from '../../lib/submit-contact-form'
 
   export default {
-    components: {
-      AppButton,
-      InputField,
-    },
+    components: { AppButton, InputField },
     props: {
       title: {
         type: String,

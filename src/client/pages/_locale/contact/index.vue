@@ -41,12 +41,9 @@
 
 <script>
   import { AddressSidebar, ContactPageForm, PageHeader } from '~/components'
+
   export default {
-    components: {
-      AddressSidebar,
-      ContactPageForm,
-      PageHeader,
-    },
+    components: { AddressSidebar, ContactPageForm, PageHeader },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
     }
@@ -54,63 +51,63 @@
 </script>
 
 <style>
-.page-contact {
-  background-color: var(--bg-pastel);
-}
-
-.page-contact__content {
-  padding-top: var(--spacing-large);
-  display: flex;
-  flex-direction: column-reverse;
-  background-color: white;
-  grid-column-start: 2;
-  grid-column-end: -2;
-}
-
-.page-contact__backdrop {
-  background-color: white;
-}
-
-.contact-address {
-  margin-bottom: var(--spacing-larger);
-}
-
-.contact-address dd {
-  margin-bottom: var(--spacing-small);
-}
-
-.contact-form {
-  margin-bottom: var(--spacing-larger);
-}
-
-@media screen and (min-width: 720px) {
-  .page-contact__backdrop {
+  .page-contact {
     background-color: var(--bg-pastel);
   }
 
   .page-contact__content {
-    flex-direction: row;
+    padding-top: var(--spacing-large);
+    display: flex;
+    flex-direction: column-reverse;
+    background-color: white;
     grid-column-start: 2;
     grid-column-end: -2;
-    background: var(--white);
-    padding: var(--spacing-large) var(--spacing-large);
-    justify-content: space-between;
+  }
+
+  .page-contact__backdrop {
+    background-color: white;
   }
 
   .contact-address {
-    width: 30%;
+    margin-bottom: var(--spacing-larger);
+  }
+
+  .contact-address dd {
+    margin-bottom: var(--spacing-small);
   }
 
   .contact-form {
-    width: 60%;
+    margin-bottom: var(--spacing-larger);
   }
-}
 
-@media screen and (min-width: 1100px) {
-  .page-contact__content {
-    grid-column-start: 6;
-    grid-column-end: -6;
-    padding: var(--spacing-larger) var(--spacing-larger);
+  @media screen and (min-width: 720px) {
+    .page-contact__backdrop {
+      background-color: var(--bg-pastel);
+    }
+
+    .page-contact__content {
+      flex-direction: row;
+      grid-column-start: 2;
+      grid-column-end: -2;
+      background: var(--white);
+      padding: var(--spacing-large) var(--spacing-large);
+      justify-content: space-between;
+    }
+
+    .contact-address {
+      width: 30%;
+    }
+
+    .contact-form {
+      width: 65%;
+    }
   }
-}
+
+  @media screen and (min-width: 1100px) {
+    .page-contact__content {
+      grid-column-start: 6;
+      grid-column-end: -6;
+      padding: var(--spacing-larger) var(--spacing-larger);
+    }
+  }
 </style>
