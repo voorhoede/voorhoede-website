@@ -13,8 +13,15 @@
       <div class="page-header__title sub-title">
         <span v-html="title" />
       </div>
-      <div class="page-header__text" :class="isHomepage ? 'hero' : 'h1'">
-        <span v-html="text" />
+      <div
+        class="page-header__text"
+        :class="{
+          'hero': isHomepage,
+          'h1': !isHomepage,
+          'page-header__text--js-bootstrapped': jsBootstrapped
+        }"
+      >
+        <span v-html="selfTypingText" />
       </div>
     </div>
   </header>
@@ -42,7 +49,23 @@ export default {
       type: Boolean,
       default: false
     },
-  }
+  },
+  data() {
+    return {
+      selfTypingText: this.text,
+      jsBootstrapped: false,
+    }
+  },
+  mounted() {
+    this.selfTypingText = ''
+    this.jsBootstrapped = true
+
+    for (let i = 0; i < this.text.length; i++) {
+      setTimeout(() => {
+        this.selfTypingText += this.text.charAt(i)
+      }, 70 * i)
+    }          
+  },
 }
 </script>
 
@@ -100,6 +123,24 @@ export default {
   margin-top: var(--spacing-smaller);
   hyphens: auto;
   overflow-wrap: break-word;
+  opacity: 0;
+  animation: show 1s forwards;
+  animation-delay: 3s;
+}
+
+.page-header__text--js-bootstrapped {
+  opacity: 1;
+  animation: none;
+}
+
+.page-header__text--js-bootstrapped::after {
+  content: '|';
+  display: inline-block;
+  margin-left: var(--spacing-tiny);
+  font-weight: normal;
+  animation: blink 750ms infinite;
+  vertical-align: middle;
+  transform: scaleX(.5);
 }
 
 .page-header__curly-bracket-column {
