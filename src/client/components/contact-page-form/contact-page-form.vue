@@ -256,16 +256,8 @@
 <style>
   @import '../forms/forms.css';
 
-  select {
-    -webkit-appearance: none;
-  }
-
   .greyed-out {
     color: var(--very-dim);
-  }
-
-  .hidden {
-    display: none;
   }
 
   .contact-form__fieldset {
@@ -273,6 +265,6 @@
   }
 
   .contact-form__description {
-    resize: none;
+    resize: vertical;
   }
 </style>

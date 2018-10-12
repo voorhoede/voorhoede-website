@@ -9,6 +9,10 @@ label {
   font-family: var(--font-sans);
 }
 
+label.hidden {
+  display: none;
+}
+
 label > span {
   color: var(--html-blue);
 }
@@ -49,6 +53,7 @@ select {
   background-size: var(--form-select-caret-width);
   background-repeat: no-repeat;
   background-position: 100%;
+  -webkit-appearance: none;
   appearance: none;
 }
 
