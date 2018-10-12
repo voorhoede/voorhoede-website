@@ -3,9 +3,13 @@
 </template>
 
 <script>
+  import { getData } from '../lib/get-data'
+
   export default {
-    async asyncData({ store, route }) {
-      return await store.dispatch('getData', { route })
+    async asyncData({ route }) {
+      const { meta } = await getData(`/${route.params.locale || process.env.defaultLocale}`)
+
+      return { meta }
     },
     head() {
       return {
