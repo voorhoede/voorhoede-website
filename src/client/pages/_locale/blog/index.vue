@@ -58,7 +58,7 @@
 
   .page-blog__cta {
     grid-column: page;
-    background: var(--bg-pastel);
+    background-color: var(--bg-pastel);
   }
 
   .page-blog__cta-block.cta-block {

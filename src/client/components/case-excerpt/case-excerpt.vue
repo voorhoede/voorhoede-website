@@ -102,7 +102,7 @@
     display: flex;
     align-items: flex-end;
     height: 100%;
-    background: var(--fog);
+    background-color: var(--fog);
   }
 
   .case-excerpt__image {
@@ -124,7 +124,7 @@
     .case-excerpt__image-link {
       transition: margin-top var(--case-excerpt-transition);
       padding-top: calc(100% - var(--case-excerpt-image-height));
-      background: var(--fog);
+      background-color: var(--fog);
     }
 
     .case-excerpt__title {
@@ -149,11 +149,11 @@
     .case-excerpt__actions {
       justify-content: center;
       padding: var(--spacing-small);
-      background: var(--brand-yellow);
+      background-color: var(--brand-yellow);
     }
 
     .case-excerpt__actions .app-button--secondary::after {
-      background: var(--html-blue);
+      background-color: var(--html-blue);
     }
 
     .case-excerpt:hover .case-excerpt__image-link,

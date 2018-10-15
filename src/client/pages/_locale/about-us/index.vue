@@ -92,7 +92,7 @@ export default {
   }
 
   .page-about-us {
-    background: var(--bg-pastel);
+    background-color: var(--bg-pastel);
   }
 
   .page-about-us__header {
@@ -142,7 +142,7 @@ export default {
   }
 
   .page-about-us__jobs-list:hover {
-    background: var(--white);
+    background-color: var(--white);
   }
 
   .page-about-us__jobs-list .job-excerpt__image,
@@ -183,7 +183,7 @@ export default {
     .page-about-us__overview {
       grid-column-start: 2;
       grid-column-end: -2;
-      background: var(--white);
+      background-color: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
       margin-bottom: var(--spacing-big);
     }

@@ -107,7 +107,7 @@
 
   .app-button--primary {
     color: var(--white);
-    background: var(--html-blue);
+    background-color: var(--html-blue);
     border-radius: 3px;
     width: 100%;
     min-width: 14.375rem;
@@ -144,7 +144,7 @@
     display: block;
     width: 100%;
     height: 2px;
-    background: var(--brand-yellow);
+    background-color: var(--brand-yellow);
     transform: scaleX(0);
     transform-origin: left;
     transition: 200ms transform ease-in-out;
@@ -171,7 +171,7 @@
 
   .app-button--small {
     color: var(--white);
-    background: var(--html-blue);
+    background-color: var(--html-blue);
     border-radius: 3px;
     padding: .375rem .9375rem;
     transition: 200ms transform ease-in-out;

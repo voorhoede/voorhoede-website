@@ -68,7 +68,7 @@
     flex-direction: row;
     grid-column-start: 2;
     grid-column-end: -2;
-    background: var(--white);
+    background-color: var(--white);
     padding: var(--spacing-large) var(--spacing-large);
     justify-content: space-between;
   }

@@ -107,7 +107,7 @@
     z-index: var(--z-index-high);
     height: var(--mobile-icon-height);
     width: var(--mobile-icon-width);
-    background: var(--html-blue);
+    background-color: var(--html-blue);
     box-shadow: var(--mobile-icon-shadow);
   }
 
@@ -123,7 +123,7 @@
     position: fixed;
     height: 100vh;
     width: 100vw;
-    background: var(--brand-yellow);
+    background-color: var(--brand-yellow);
     padding: var(--mobile-spacing);
   }
 

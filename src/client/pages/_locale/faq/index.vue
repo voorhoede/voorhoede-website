@@ -45,13 +45,13 @@ export default {
 
   @media (min-width: 720px) {
     .page-faq {
-      background: var(--bg-pastel);
+      background-color: var(--bg-pastel);
     }
 
     .page-faq__overview {
       grid-column-start: 2;
       grid-column-end: -2;
-      background: var(--white);
+      background-color: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
     }
   }
