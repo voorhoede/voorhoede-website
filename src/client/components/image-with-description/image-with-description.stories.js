@@ -6,14 +6,14 @@ import { withKnobs } from '@storybook/addon-knobs/vue'
 
 import '../app-core/index.css'
 
-import CaseInlineImage from './image-with-description.vue'
+import ImageWithDescription from './image-with-description.vue'
 import README from './README.md'
 
 const stories = storiesOf('Components/Image With Description', module)
   .addDecorator(withKnobs)
   .addDecorator(withReadme(README))
 
-Vue.component('image-with-description', CaseInlineImage)
+Vue.component('image-with-description', ImageWithDescription)
 
 stories.add(
   'Image with description',
@@ -41,7 +41,7 @@ stories.add(
 )
 
 stories.add(
-  'Image with description inverse',
+  'Image with description - inverse',
   () => ({
     template: `
     <div class="grid">
