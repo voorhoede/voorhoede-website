@@ -266,7 +266,7 @@
 
   @media (min-width: 720px) {
     .page-index__scroll-to {
-      bottom: var(--spacing-larger);
+      bottom: var(--spacing-medium);
     }
 
     .page-index .page-header {

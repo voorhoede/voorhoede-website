@@ -109,7 +109,7 @@
   }
 
   .scroll-to__point-up .scroll-to__image {
-    top: 10px;
+    top: 0;
   }
 
   @keyframes arrowBounce {
