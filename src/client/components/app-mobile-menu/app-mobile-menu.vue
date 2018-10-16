@@ -1,5 +1,6 @@
 <template>
   <nav class="app-mobile-menu grid">
+    <h3 class="sr-only">Navigation</h3>
     <div
       v-if="showMenu"
       class="app-mobile-menu__content"
@@ -9,7 +10,8 @@
         <img
           class="app-mobile-menu__logo"
           src="/images/logo--blue-and-yellow.svg"
-          @click="toggleMobileMenu">
+          @click="toggleMobileMenu"
+          alt="">
       </nuxt-link>
       <ul class="app-mobile-menu__list body-petite">
         <li v-for="link in localizedMenuItems" :key="link.href"
@@ -35,11 +37,13 @@
         v-if="showMenu"
         class="app-mobile-menu__icon-image"
         src="/images/icon_menu-exit--white.svg"
+        alt=""
       >
       <img
         v-else
         class="app-mobile-menu__icon-image"
         src="/images/icon_menu-passive--white.svg"
+        alt=""
       >
     </div>
   </nav>

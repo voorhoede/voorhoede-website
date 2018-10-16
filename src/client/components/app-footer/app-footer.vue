@@ -1,7 +1,7 @@
 <template>
   <footer class="app-footer grid">
     <div class="app-footer__header">
-      <img class="app-footer__header-logo" src="/images/logo--blue.svg">
+      <img class="app-footer__header-logo" src="/images/logo--blue.svg" alt="">
     </div>
     <div class="app-footer__column">
       <ul class="app-footer__list">
@@ -51,7 +51,7 @@
       <ul class="app-footer__list--icon">
         <li class="app-footer__list-item--icon"
             v-for="socialItem in social" :key="socialItem.href">
-          <a :href="socialItem.href" target="_blank">
+          <a :href="socialItem.href" target="_blank" :aria-label="socialItem.label">
             <app-icon :name="socialItem.icon" :is-large="true" />
           </a>
         </li>
@@ -168,6 +168,7 @@ export default {
           social.every(item => {
             return item instanceof Object &&
               typeof item.icon === 'string' &&
+              typeof item.label === 'string' &&
               typeof item.href === 'string'
           })
         )

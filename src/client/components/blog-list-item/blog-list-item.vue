@@ -134,7 +134,7 @@
   .blog-list-item__author {
     display: flex;
     align-items: center;
-    color: var(--dim);
+    color: var(--off-black);
   }
 
   @media (min-width: 720px) {
@@ -159,7 +159,7 @@
 
     .blog-list-item__time {
       display: block;
-      color: var(--dim);
+      color: var(--off-black);
       margin-right: var(--spacing-medium);
       min-width: 6rem;
     }

@@ -3,7 +3,7 @@
     <div v-if="isHomepage" class="page-header__brick" />
     <div v-if="isHomepage" class="page-header__curly-bracket-column">
       <div class="page-header__curly-bracket-wrapper">
-        <img class="page-header__curly-bracket" src="/images/curly-bracket--close.svg">
+        <img class="page-header__curly-bracket" src="/images/curly-bracket--close.svg" alt="">
       </div>
     </div>
     <div class="page-header__image" :class="{ 'page-header__image--spaced-top': !isHomepage }">
@@ -11,10 +11,10 @@
     </div>
     <div class="page-header__description">
       <div class="page-header__title sub-title">
-        <span v-html="title" />
+        <h1 v-html="title" />
       </div>
       <div class="page-header__text" :class="isHomepage ? 'hero' : 'h1'">
-        <span v-html="text" />
+        <h2 v-html="text" />
       </div>
     </div>
   </header>

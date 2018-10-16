@@ -26,6 +26,10 @@ module.exports = {
   ** Headers of the page
   */
   head: {
+    htmlAttrs: {
+      /* TODO: change defaultLocale to currentlocale */
+      lang: defaultLocale,
+    },
     title: 'De Voorhoede',
     meta: [
       { 'charset': 'utf-8' },
