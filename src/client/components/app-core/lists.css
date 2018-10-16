@@ -22,6 +22,7 @@ ol.numbered-list > li,
   line-height: 1.5625; /* 25px */
 }
 
+/* Adds margin-top to all <li>, except the first <li> */
 ul.list > li + li,
 .list ul > li + li,
 ol.numbered-list > li + li,
