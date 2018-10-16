@@ -247,7 +247,7 @@ export default {
   }
 
   .page-header__curly-bracket-column {
-    grid-column: 48;
+    grid-column: 47;
   }
 
   .page-header__image {
