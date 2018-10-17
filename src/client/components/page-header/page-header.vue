@@ -23,6 +23,10 @@
         <self-typing-text 
           :text="text" 
           :speed-index="70" 
+          :class="{
+            'self-typing-text--hero': isHomepage,
+            'self-typing-text--h1': !isHomepage,
+          }"
         />
       </div>
     </div>
