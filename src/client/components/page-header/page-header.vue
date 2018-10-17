@@ -14,23 +14,28 @@
         <h1 v-html="title" />
       </div>
       <div
-        ref="text"
-        class="page-header__text"
         :class="{
           'hero': isHomepage,
           'h1': !isHomepage,
-          'page-header__text--js-bootstrapped': jsBootstrapped
         }"
       >
         <h2 class="sr-only" v-html="text" />
-        <span v-html="selfTypingText"/>
+        <self-typing-text 
+          :text="text" 
+          :speed-index="70" 
+        />
       </div>
     </div>
   </header>
 </template>
 
 <script>
+import selfTypingText from '../self-typing-text'
+
 export default {
+  components: {
+    selfTypingText
+  },
   props: {
     image: {
       type: Object,
@@ -52,46 +57,10 @@ export default {
       default: false
     },
   },
-  data() {
-    return {
-      /* by adding the this.text initally it will calculate the height needed.
-      This way the header doesnt get larger when the sentence is typed */
-      selfTypingText: this.text,
-      jsBootstrapped: false,
-    }
-  },
-  mounted() {
-    const typingSpeed = 70
-    const height = this.$refs.text.clientHeight
-    const letters = this.text.split('')
-
-    this.$refs.text.style.height = `${height}px`
-    this.selfTypingText = ''
-    this.jsBootstrapped = true
-
-    letters.forEach((letter, index) => {
-      setTimeout(() => {
-        this.selfTypingText += letter
-        
-        /* by removing the height property when the last letter is typed 
-        it will scale normaly when window is resized */
-        if (index === this.text.length - 1) {
-          this.$refs.text.style.removeProperty('height')
-        }
-      }, typingSpeed * index)
-
-    })
-  }, 
 }
 </script>
 
 <style>
-:root {
-  --show-text-animation-delay: 1s;
-  --show-text-animation: show 1s forwards;
-  --blink-text-animation: blink 750ms infinite;
-}
-
 .page-header {
   background: var(--bg-pastel);
   grid-template-rows: var(--app-header-height) 1fr;
@@ -139,34 +108,6 @@ export default {
   margin: var(--spacing-large) 0;
   grid-column: content;
   grid-row-start: 2;
-}
-
-/* by default hidden text to animate visible */
-.page-header__text {
-  margin-top: var(--spacing-smaller);
-  hyphens: auto;
-  overflow-wrap: break-word;
-  opacity: 0;
-  animation: var(--show-text-animation);
-  animation-delay: var(--show-text-animation-delay);
-}
-
-/* if js is avialable transition to visible */
-.page-header__text--js-bootstrapped {
-  opacity: 1;
-  animation: none;
-}
-
-/* positioned absolute to keep the cursor behind the text */
-.page-header__text--js-bootstrapped::after {
-  content: '|';
-  position: absolute;
-  display: inline-block;
-  margin-left: var(--spacing-tiny);
-  transform: scaleX(.5);
-  font-weight: normal;
-  animation: var(--blink-text-animation);
-  vertical-align: middle;
 }
 
 .page-header__curly-bracket-column {
