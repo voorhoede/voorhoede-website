@@ -111,12 +111,17 @@
         :title="page.getInTouchTitle"
         :name-label="page.getInTouchForm.nameLabel"
         :name-placeholder="page.getInTouchForm.namePlaceholder"
+        :name-error-message="page.getInTouchForm.nameErrorMessage"
         :email-label="page.getInTouchForm.emailLabel"
         :email-placeholder="page.getInTouchForm.emailPlaceholder"
+        :email-error-message-empty="page.getInTouchForm.emailErrorMessageEmpty"
+        :email-error-message-incorrect="page.getInTouchForm.emailErrorMessageIncorrect"
         :phone-label="page.getInTouchForm.phoneLabel"
         :phone-placeholder="page.getInTouchForm.phonePlaceholder"
+        :phone-error-message="page.getInTouchForm.phoneErrorMessage"
         :summary-label="page.getInTouchForm.summaryLabel"
         :summary-placeholder="page.getInTouchForm.summaryPlaceholder"
+        :summary-error-message="page.getInTouchForm.summaryErrorMessage"
         :cta-label="page.getInTouchForm.ctaButtonLabel"
       />
       <scroll-to point-up />
