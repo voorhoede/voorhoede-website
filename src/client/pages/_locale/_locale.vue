@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import { getData } from '../lib/get-data'
+  import { getData } from '../../lib/get-data'
 
   export default {
     async asyncData({ route }) {
