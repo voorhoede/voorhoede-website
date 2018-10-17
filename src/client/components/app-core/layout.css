@@ -1,7 +1,7 @@
-html {
-  background-color: var(--bg-pastel);
+.yellow-background {
+  background-color: var(--brand-yellow);
 }
 
-body {
+.white-background {
   background-color: var(--white);
 }
