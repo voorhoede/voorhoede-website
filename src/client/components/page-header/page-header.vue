@@ -11,7 +11,7 @@
     </div>
     <div class="page-header__description">
       <div class="page-header__title sub-title">
-        <span v-html="title" />
+        <h1 v-html="title" />
       </div>
       <div
         ref="text"
@@ -22,6 +22,7 @@
           'page-header__text--js-bootstrapped': jsBootstrapped
         }"
       >
+        <h2 class="sr-only" v-html="text" />
         <span v-html="selfTypingText"/>
       </div>
     </div>
@@ -53,6 +54,8 @@ export default {
   },
   data() {
     return {
+      /* by adding the this.text initally it will calculate the height needed.
+      This way the header doesnt get larger when the sentence is typed */
       selfTypingText: this.text,
       jsBootstrapped: false,
     }
@@ -60,15 +63,18 @@ export default {
   mounted() {
     const typingSpeed = 70
     const height = this.$refs.text.clientHeight
-    this.$refs.text.style.height = `${height}px`
+    const letters = this.text.split('')
 
+    this.$refs.text.style.height = `${height}px`
     this.selfTypingText = ''
     this.jsBootstrapped = true
 
-    this.text.split('').forEach((letter, index) => {
+    letters.forEach((letter, index) => {
       setTimeout(() => {
         this.selfTypingText += letter
         
+        /* by removing the height property when the last letter is typed 
+        it will scale normaly when window is resized */
         if (index === this.text.length - 1) {
           this.$refs.text.style.removeProperty('height')
         }
@@ -81,7 +87,7 @@ export default {
 
 <style>
 :root {
-  --show-text-animation-delay: 3s;
+  --show-text-animation-delay: 1s;
   --show-text-animation: show 1s forwards;
   --blink-text-animation: blink 750ms infinite;
 }
