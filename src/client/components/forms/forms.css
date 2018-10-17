@@ -9,6 +9,10 @@ label {
   font-family: var(--font-sans);
 }
 
+label.hidden {
+  display: none;
+}
+
 label > span {
   color: var(--html-blue);
 }
@@ -36,9 +40,9 @@ textarea:focus {
   outline: none;
 }
 
-input:invalid,
-select:invalid,
-textarea:invalid {
+input.is-invalid,
+select.is-invalid,
+textarea.is-invalid {
   border-bottom-color: var(--soft-red);
 }
 
@@ -50,6 +54,7 @@ select {
   background-size: var(--form-select-caret-width);
   background-repeat: no-repeat;
   background-position: 100%;
+  -webkit-appearance: none;
   appearance: none;
 }
 

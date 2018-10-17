@@ -132,7 +132,7 @@
   .app-button--primary[disabled] {
     pointer-events: none;
     transform: scale(1);
-    background-color: var(--v-dim);
+    background-color: var(--very-dim);
   }
 
   .app-button--secondary {
@@ -166,7 +166,7 @@
   .app-button--secondary:disabled,
   .app-button--secondary[disabled] {
     pointer-events: none;
-    color: var(--v-dim);
+    color: var(--very-dim);
   }
 
   .app-button--small {
@@ -194,7 +194,7 @@
   .app-button--small[disabled] {
     pointer-events: none;
     transform: scale(1);
-    background-color: var(--v-dim);
+    background-color: var(--very-dim);
   }
 
   .app-button--yellow {
@@ -214,7 +214,7 @@
 
   .app-button--secondary:disabled .app-button__svg,
   .app-button--secondary[disabled] .app-button__svg {
-    fill: var(--v-dim);
+    fill: var(--very-dim);
   }
 
   @media (min-width: 720px) {
