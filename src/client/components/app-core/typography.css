@@ -305,6 +305,11 @@ strong,
   font-weight: 700;
 }
 
+em,
+.font-italic {
+  font-style: italic;
+}
+
 .font-html-blue {
   color: var(--html-blue);
 }
