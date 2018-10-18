@@ -213,7 +213,6 @@ export default {
   width: 100%;
   padding: var(--spacing-larger) 0 var(--spacing-small) 0;
   background: var(--brand-yellow);
-  flex-direction: row;
 }
 
 .app-footer__layout {
