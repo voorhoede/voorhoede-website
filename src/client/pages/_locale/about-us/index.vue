@@ -20,13 +20,13 @@
     </div>
     <ul class="page-about-us__jobs">
       <li class="page-about-us__jobs-list" v-for="item in page.jobs" :key="item.title">
-        <jobs-excerpt 
+        <jobs-excerpt
           class="page-about-us__jobs-list-item"
-          :title="item.title" 
-          :description="item.description" 
-          :label="item.callToActionLabel" 
-          :url="item.url" 
-          :image="item.jobImage" 
+          :title="item.title"
+          :description="item.description"
+          :label="item.callToActionLabel"
+          :url="item.url"
+          :image="item.jobImage"
         />
       </li>
     </ul>
@@ -87,6 +87,10 @@ export default {
 </script>
 
 <style>
+  :root {
+    --job-excerpt-easing: .25s cubic-bezier(.5, 0, .25, 1);
+  }
+
   .page-about-us {
     background: var(--bg-pastel);
   }
@@ -127,17 +131,30 @@ export default {
     margin-bottom: var(--spacing-larger);
   }
 
-  .page-about-us__jobs-list:hover {
-    background: var(--white);
-  }
-
   .page-about-us__jobs-list {
     border-bottom: 2px solid var(--html-blue);
     padding: 0 var(--spacing-large);
+    transition: background var(--job-excerpt-easing);
   }
 
   .page-about-us__jobs-list:first-child {
     border-top: 2px solid var(--html-blue);
+  }
+
+  .page-about-us__jobs-list:hover {
+    background: var(--white);
+  }
+
+  .page-about-us__jobs-list .job-excerpt__image,
+  .page-about-us__jobs-list .job-excerpt__button {
+    transition: opacity var(--job-excerpt-easing);
+  }
+
+  .page-about-us__jobs-list:hover .job-excerpt__image,
+  .page-about-us__jobs-list:hover .job-excerpt__button,
+  .page-about-us__jobs-list:focus-within .job-excerpt__image,
+  .page-about-us__jobs-list:focus-within .job-excerpt__button {
+     opacity: 1;
   }
 
   .page-about-us__blog {
