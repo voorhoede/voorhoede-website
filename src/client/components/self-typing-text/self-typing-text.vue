@@ -48,9 +48,8 @@ export default {
           this.$refs.text.style.removeProperty('height')
         }
       }, typingSpeed * index)
-
     })
-  }, 
+  }
 }
 </script>
 <style>
@@ -82,6 +81,7 @@ export default {
     display: inline-block;
     left: -2px;
     top: -2px;
+    height: 100%;
     vertical-align: middle;
     border-right: 3px solid var(--html-blue);
     animation: var(--blink-text-animation);
