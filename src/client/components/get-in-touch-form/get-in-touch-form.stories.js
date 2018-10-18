@@ -25,12 +25,17 @@ stories.add(
         title="Let's discuss what we can do - together."
         name-label="My name is"
         name-placeholder="Your name"
+        name-error-message="Your name is mandatory"
         email-label="You can email me at"
         email-placeholder="Email address"
+        email-error-message-empty="Your email is mandatory"
+        email-error-message-incorrect="Please provide a correct email address"
         phone-label="You can call me on"
         phone-placeholder="Phone number"
+        phone-error-message="Your phone is mandatory"
         summary-label="My project is"
         summary-placeholder="Short summary of my project"
+        summary-error-message="Your project is mandatory"
         cta-label="Get in touch"
       />
     `,
