@@ -19,13 +19,11 @@ stories.add(
   'Image with description',
   () => ({
     template: `
-    <div class="grid">
       <image-with-description
         :image="image"
         :inverse="false"
         description="The idea: leverage machine learning to detect plastic litter"
-      />
-    </div>`,
+      />`,
       data() {
         return {
           image: {
@@ -33,7 +31,7 @@ stories.add(
             'width': 720,
             'height': 480,
             'alt': 'User confirms on drop and fly screen that bags do not contain any prohibited items',
-            'url': 'https://www.datocms-assets.com/6524/1535460060-pick-up-10idea.jpg',
+            'url': 'https://www.datocms-assets.com/6524/1535460065-1526629287-pick-up-10-idea-copy.png',
           },
         }
       },
@@ -44,13 +42,11 @@ stories.add(
   'Image with description - inverse',
   () => ({
     template: `
-    <div class="grid">
       <image-with-description
         :image="image"
         :inverse="true"
         description="The idea: leverage machine learning to detect plastic litter"
-      />
-    </div>`,
+      />`,
       data() {
         return {
           image: {
