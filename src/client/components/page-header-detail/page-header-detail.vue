@@ -2,7 +2,8 @@
   <header class="page-header-detail grid" :class="{ 'page-header-detail--brick' : hasBrick }">
     <div class="page-header-detail__container">
       <div class="page-header-detail__description">
-        <h1 class="page-header-detail__title" :class="hasBrick ? 'hero' : 'h1'">
+        <div class="page-header-detail__title" :class="hasBrick ? 'hero' : 'h1'">          
+          <h1 class="sr-only">{{ title }}</h1>
           <self-typing-text 
             :text="title"
             :speed-index="70"
@@ -11,7 +12,7 @@
               'self-typing-text--h1': !hasBrick,
             }"
           />
-        </h1>
+        </div>
         <p class="page-header-detail__subtitle sub-title">{{ subTitle }}</p>
       </div>
       <div class="page-header-detail__image">
