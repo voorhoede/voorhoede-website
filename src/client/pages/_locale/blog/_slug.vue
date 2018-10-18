@@ -20,7 +20,7 @@
         </text-block>
 
         <rich-text-block
-          class="page-blog-post-list__rich-text list"
+          class="page-blog-post-list__rich-text"
           v-if="item.__typename === 'TextSectionRecord' && item.body"
           :key="item.body"
           :text="item.body"
@@ -206,7 +206,7 @@ export default {
       padding: 0 var(--spacing-larger);
     }
 
-    .page-blog-post-list--not-indented {
+    .page-blog-post-list > .page-blog-post-list--not-indented {
       padding: 0;
     }
 
@@ -220,11 +220,13 @@ export default {
     }
 
     .page-blog-post-list {
-      grid-column-start: 9;
+      grid-column-start: 10;
+      grid-column-end: -2;
     }
 
     .page-blog-post__aside {
       display: block;
+      grid-column-start: 2;
       grid-column-end: 9;
     }
 
@@ -255,23 +257,30 @@ export default {
       padding: 0 var(--spacing-big);
     }
 
-    .page-blog-post-list--not-indented {
-      padding: 0;
-    }
-
     .page-blog-post-list {
-      grid-column-start: 14;
-      grid-column-end: -10;
+      grid-column-start: 12;
+      grid-column-end: -6;
     }
 
     .page-blog-post__aside {
       grid-column-start: 4;
-      grid-column-end: 12;
+      grid-column-end: 11;
     }
 
     .page-blog-post__cta-block {
       grid-column-start: 14;
       grid-column-end: -14;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .page-blog-post-list > * {
+      padding: 0 var(--spacing-bigger);
+    }
+
+    .page-blog-post-list {
+      grid-column-start: 12;
+      grid-column-end: -8;
     }
   }
  </style>
