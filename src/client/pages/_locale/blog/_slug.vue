@@ -193,13 +193,6 @@ export default {
     border: none;
   }
 
-  .page-blog-post-list :not(pre) > code {
-    font-family: monospace;
-    background: #f5f2f0;
-    padding: 0 .25rem;
-    border: 1px solid #b3b3b3;
-  }
-
   .page-blog-post-list em {
     font-style: italic;
   }
