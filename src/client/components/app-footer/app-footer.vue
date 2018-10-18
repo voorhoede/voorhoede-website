@@ -1,46 +1,64 @@
 <template>
   <footer class="app-footer grid">
-    <div class="app-footer__header">
-      <img class="app-footer__header-logo" src="/images/logo--blue.svg">
-    </div>
-    <div class="app-footer__column">
-      <ul class="app-footer__list">
-        <li
-          v-for="link in exploreLinks"
-          :key="link.slug"
-          class="app-footer__list-item body-detail"
-        >
-          <nuxt-link class="app-footer__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
-        </li>
-        <li class="app-footer__list-item body-detail">
-          <nuxt-link class="app-footer__link" :to="createHref({ slug: 'faq'})">FAQ</nuxt-link>
-        </li>
-      </ul>
-    </div>
-    <div class="app-footer__column app-footer__column--right">
-      <ul class="body-detail app-footer__list app-footer__list--border-none app-footer__list--no-padding">
-        <li class="app-footer__list-item">
-          <a
-            :href="`tel:${ cleanedTelephone }`"
-            class="app-footer__link"
-            target="_blank">{{ tel }}</a>
-        </li>
-        <li class="app-footer__list-item">
-          <a
-            :href="`mailto:${ email }`"
-            class="app-footer__link"
-            target="_blank" >{{ email }}</a>
-        </li>
-        <li class="app-footer__list-item">
-          <a
-            :href="googleMapsLink"
-            class="app-footer__link app-footer__link--right"
-            target="_blank">
-            <span>{{ address }}</span>
-            <span>{{ postalCode }}</span>
-          </a>
-        </li>
-      </ul>
+    <div class="app-footer__layout">
+      <div class="app-footer__header">
+        <img class="app-footer__header-logo" src="/images/logo-with-text.svg">
+      </div>
+      <div class="app-footer__column">
+        <h3 class="app-footer__title body-petite font-bold font-html-blue">
+          Explore
+        </h3>
+        <ul class="app-footer__list">
+          <li
+            v-for="link in exploreLinks"
+            :key="link.slug"
+            class="app-footer__list-item body-detail"
+          >
+            <nuxt-link class="app-footer__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
+          </li>
+          <li class="app-footer__list-item body-detail">
+            <nuxt-link class="app-footer__link" :to="createHref({ slug: 'faq'})">FAQ</nuxt-link>
+          </li>
+        </ul>
+      </div>
+      <div class="app-footer__column app-footer__column--right">
+        <h3 class="app-footer__title body-petite font-bold font-html-blue">
+          Contact
+        </h3>
+        <ul class="body-detail app-footer__list">
+          <li class="app-footer__list-item">
+            <a
+              :href="`tel:${ cleanedTelephone }`"
+              class="app-footer__link"
+              target="_blank">{{ tel }}</a>
+          </li>
+          <li class="app-footer__list-item">
+            <a
+              :href="`mailto:${ email }`"
+              class="app-footer__link"
+              target="_blank" >{{ email }}</a>
+          </li>
+          <li class="app-footer__list-item">
+            <a
+              :href="googleMapsLink"
+              class="app-footer__link app-footer__link--right"
+              target="_blank">
+              <span>{{ address }}</span>
+              <span>{{ postalCode }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="app-footer__column app-footer__column--bottom">
+        <ul class="app-footer__list--icon">
+          <li class="app-footer__list-item--icon"
+              v-for="socialItem in social" :key="socialItem.href">
+            <a :href="socialItem.href" target="_blank">
+              <app-icon :name="socialItem.icon" :is-large="true" />
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="app-footer__bottom">
       <div class="body-detail app-footer__bottom-text">
@@ -48,14 +66,6 @@
           <dt>{{ legalItem.key }}</dt>: <dd class="app-footer__definition-value">{{ legalItem.value }}</dd>
         </dl>
       </div>
-      <ul class="app-footer__list--icon">
-        <li class="app-footer__list-item--icon"
-            v-for="socialItem in social" :key="socialItem.href">
-          <a :href="socialItem.href" target="_blank">
-            <app-icon :name="socialItem.icon" :is-large="true" />
-          </a>
-        </li>
-      </ul>
       <div class="body-detail app-footer__legal">
         <a
           :href="copyrightLink"
@@ -193,15 +203,22 @@ export default {
 
 <style>
 :root {
+  --footer-list-max-width: 370px;
+  --footer-list-height: 115px;
   --logo-drop-shadow: drop-shadow(1px 2px 4px var(--dim));
-  --logo-width: 3.25rem;
-  --logo-height: var(--logo-width);
+  --logo-width: 180px;
 }
 
 .app-footer {
   width: 100%;
   padding: var(--spacing-larger) 0 var(--spacing-small) 0;
   background: var(--brand-yellow);
+  flex-direction: row;
+}
+
+.app-footer__layout {
+  display: flex;
+  flex-direction: column;
 }
 
 .app-footer__bottom {
@@ -209,8 +226,6 @@ export default {
   flex-direction: column;
   align-items: center;
   margin-bottom: var(--spacing-medium);
-  padding-top: var(--spacing-medium);
-  border-top: 1px solid var(--black);
 }
 
 .app-footer__bottom-text {
@@ -232,16 +247,10 @@ export default {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  width: 100%;
+  max-width: var(--footer-list-max-width);
   padding-bottom: var(--spacing-medium);
   border-bottom: 1px solid var(--black);
-}
-
-.app-footer__list--border-none {
-  border-bottom: 0;
-}
-
-.app-footer__list--no-padding {
-  padding-bottom: 0;
 }
 
 .app-footer__list--icon {
@@ -269,70 +278,97 @@ export default {
   display: inline-flex;
   flex-direction: column;
   justify-content: flex-end;
-  }
-
-.app-footer__header {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  margin-bottom: var(--spacing-large);
 }
 
 .app-footer__header-logo {
+  display: none;
   width: var(--logo-width);
-  height: var(--logo-height);
   margin-bottom: var(--spacing-small);
-  filter: var(--logo-drop-shadow);
 }
 
 .app-footer__column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  margin-bottom: var(--spacing-medium);
 }
 
 .app-footer__column--right {
   margin-bottom: var(--spacing-medium);
 }
 
+.app-footer__title {
+  margin-bottom: var(--spacing-smaller);
+}
+
 @media (min-width: 720px) {
   .app-footer {
     position: relative;
+    flex-direction: row;
   }
 
-  .app-footer__column {
-    float: left;
-    padding-top: 0;
-    margin-bottom: var(--spacing-medium);
-    text-align: left;
-  }
-
-  .app-footer__column--right {
-    float: right;
-    text-align: right;
+  .app-footer__title {
+    border-bottom: 1px solid;
   }
 
   .app-footer__header {
-    position: absolute;
-    width: calc(100% - var(--spacing-medium) * 2);
+    display: none;
+    width: 25%;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
-  .app-footer__legal {
-    text-align: right;
+  .app-footer__layout {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .app-footer__header-logo {
+    display: block;
+    width: var(--logo-width);
+    margin-bottom: var(--spacing-small);
+  }
+
+  .app-footer__column {
+    padding-top: 0;
+    margin-bottom: var(--spacing-medium);
+    text-align: left;
     width: 50%;
+    align-items: unset;
+  }
+
+  .app-footer__column--right {
+    text-align: left;
+    border-bottom: 0;
+    margin-left: var(--spacing-huge);
+  }
+  
+  .app-footer__column--bottom {
+    display: none;
+    align-items: flex-end;
+  }
+  
+  .app-footer__legal {
+    text-align: left;
+    margin-left: var(--spacing-medium);
+    width: 40%;
   }
 
   .app-footer__bottom {
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
-    margin-bottom: 0;
-    border-top: 1px solid var(--html-blue);
+    padding-top: var(--spacing-small);
+    margin-bottom: var(--spacing-small);
+    border-top: 1px solid var(--dim);
   }
 
   .app-footer__bottom-text {
-    display: none;
+    display: flex;
+    width: 60%;
+    justify-content: flex-end;
   }
 
    .app-footer__definition-list {
@@ -346,14 +382,14 @@ export default {
 
   .app-footer__list {
     display: flex;
-    flex-direction: column;
+    flex-flow: column wrap;
+    max-height: var(--footer-list-height);
     border-bottom: 0;
     padding-bottom: 0;
   }
 
   .app-footer__list--icon {
     margin-bottom: 0;
-    width: 50%;
     justify-content: flex-start;
   }
 
@@ -363,73 +399,41 @@ export default {
   }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 820px) {
   .app-footer__bottom-text {
-    display: flex;
-    flex-wrap: wrap;
-    width: calc(100% / 3);
-  }
-
-  .app-footer__list--icon {
-    width: calc(100% / 3);
-    justify-content: center;
+    width: 50%;
   }
 
   .app-footer__legal {
-    width: calc(100% / 3);
+    width: 50%;
   }
 }
 
-@media (min-width: 1200px) {
-  .app-footer__bottom-text {
-    flex-wrap: nowrap;
-  }
-}
-
-@supports (display: grid) {
-  .app-footer__column {
-    text-align: center;
-    grid-row: 2;
-    margin-bottom: var(--spacing-large);
-  }
-
-  .app-footer__column--right {
-    grid-row: 3;
-    text-align: center;
-  }
-
+@media (min-width: 1100px) {
   .app-footer__header {
-    grid-row: 1;
-    width: 100%;
+    display: flex;
   }
 
-  @media (min-width: 720px) {
-    .app-footer__column {
-      grid-column: content-left;
-      text-align: left;
-      grid-row: 1;
-    }
-
-    .app-footer__column--right {
-      grid-column: content-right;
-      text-align: right;
-      grid-row: 1;
-    }
+  .app-footer__bottom {
+    display: flex;
+    grid-column: 4 / -4;
   }
 
-  @media (min-width: 1100px) {
-    .app-footer__column {
-      grid-column-start: 4;
-    }
+  .app-footer__bottom-text {
+    display: flex;
+    margin-left: auto;
+  }
 
-    .app-footer__bottom {
-      grid-column-start: 4;
-      grid-column-end: -4;
-    }
-
-    .app-footer__column--right {
-      grid-column-end: -4;
-    }
+  .app-footer__column {
+    width: 25%;
+  }
+  
+  .app-footer__column--bottom {
+    display: flex;
+  }
+  
+  .app-footer__list--icon {
+    justify-content: center;
   }
 }
 </style>
