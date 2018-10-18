@@ -19,11 +19,12 @@ stories.add(
   'Image With Text Block',
   () => ({
     template: `
-    <image-with-text-block
-      title="Misfits, every one of them"
-      body="We’re on board as secret weapons and the biggest supporters of our clients. We’re not interested in taking a backseat. We believe that the best work is being made in a great atmosphere. We work hard and are fun to work with. To create applications that deliver measurable results we make use of the latest browser technologies."
-      :image="image"
-    />`,
+      <div style="background-color: var(--bg-pastel); height: 100vh;">
+        <image-with-text-block
+          title="Misfits, every one of them"
+          body="We’re on board as secret weapons and the biggest supporters of our clients. We’re not interested in taking a backseat. We believe that the best work is being made in a great atmosphere."
+          :image="image" />
+      </div>`,
     data() {
       return {
         image: {
@@ -42,12 +43,13 @@ stories.add(
   'Image With Text Block - inverse',
   () => ({
     template: `
-    <image-with-text-block
-      title="Misfits, every one of them"
-      body="We’re on board as secret weapons and the biggest supporters of our clients. We’re not interested in taking a backseat. We believe that the best work is being made in a great atmosphere. We work hard and are fun to work with. To create applications that deliver measurable results we make use of the latest browser technologies."
-      :image="image"
-      inverse="true"
-    />`,
+      <div style="background-color: var(--bg-pastel); height: 100vh;">
+        <image-with-text-block
+          title="Misfits, every one of them"
+          body="We’re on board as secret weapons and the biggest supporters of our clients. We’re not interested in taking a backseat. We believe that the best work is being made in a great atmosphere."
+          :image="image"
+          inverse="true" />
+      </div>`,
     data() {
       return {
         image: {
