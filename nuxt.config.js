@@ -61,7 +61,7 @@ module.exports = {
       { 'name': 'msapplication-square150x150logo', 'content': '/images/social/windows-icon-150x150.png' },
       { 'name': 'msapplication-square310x150logo', 'content': '/images/social/windows-icon-310x150.png' },
       { 'name': 'msapplication-square310x310logo', 'content': '/images/social/windows-icon-310x310.png' },
-      { 'name': 'msapplication-TileColor', 'content': '#ffe400' },
+      { 'name': 'msapplication-TileColor', 'content': '#dedede' },
       /* Apple */
       { 'name': 'apple-mobile-web-app-title', 'content': 'De Voorhoede' },
       { 'name': 'apple-mobile-web-app-capable', 'content': 'yes' },

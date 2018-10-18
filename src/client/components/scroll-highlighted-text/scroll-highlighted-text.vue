@@ -37,6 +37,12 @@
     margin-top: var(--spacing-small);
   }
 
+  @media (max-width: 520px) {
+    .scroll-highlighted-text__text {
+      font-size: 32px;
+    }
+  }
+
   @media (min-width: 720px) {
     .scroll-highlighted-text__text {
       margin-bottom: var(--spacing-large);
