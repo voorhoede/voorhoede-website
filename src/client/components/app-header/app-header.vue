@@ -60,14 +60,13 @@
 <style>
   :root {
     --header-border-opacity: .08;
-    --header-z-index: 2;
   }
 
   .app-header {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: var(--header-z-index);
+    z-index: var(--z-index-high);
     height: var(--app-header-height);
     width: 100%;
   }

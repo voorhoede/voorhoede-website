@@ -1,65 +1,128 @@
 <template>
   <div class="scroll-to">
-    <span class="scroll-to__text body-petite font-bold">Scroll</span>
-    <img class="scroll-to__image" src="/images/scroll-to-arrow.svg" alt="An arrow facing downwards">
+    <div v-if="pointDown" class="scroll-to__point-down">
+      <span class="scroll-to__text body-petite font-bold">Scroll</span>
+      <img
+        class="scroll-to__image"
+        src="/images/scroll-to-arrow--down.svg"
+        alt="An arrow facing downwards">
+    </div>
+    <a v-if="pointUp" href="#" class="scroll-to__point-up">
+      <img
+        class="scroll-to__image"
+        src="/images/scroll-to-arrow--up.svg"
+        alt="An arrow facing upwards">
+      <span class="scroll-to__text body-petite font-bold">
+        {{ scrollUpText }}
+      </span>
+    </a>
   </div>
 </template>
 
-<style>
-  :root {
-    --scroll-indicator-index: 1;
-    --scroll-to-arrow-height: 40px;
-    --scroll-to-arrow-width: var(--scroll-to-arrow-height);
-    --arrow-animation: cubic-bezier(.075, .82, .165, 1);
-  }
+<script>
+  import { mapState } from 'vuex'
 
+  export default {
+    props: {
+      pointDown: {
+          type: Boolean,
+          default: false,
+          required: false
+      },
+      pointUp: {
+          type: Boolean,
+          default: false,
+          required: false
+      },
+    },
+    computed: {
+      ...mapState([
+        'currentLocale',
+      ]),
+      scrollUpText() {
+        return this.currentLocale === 'en' ? 'return' : 'terug'
+      },
+    }
+  }
+</script>
+
+<style>
   .scroll-to {
-    display: inline-flex;
-    flex-direction: column;
-    position: relative;
-    z-index: var(--scroll-indicator-index);
+    display: flex;
+    z-index: var(--z-index-low);
+    width: 32px;
+    height: 150px;
+    user-select: none;
   }
 
   .scroll-to__text {
-    position: absolute;
-
-    /* Distance between the text and the arrow */
-    top: calc(-1 * (var(--spacing-tiny) + 2.5rem));
-    left: 50%;
-    transform: rotateZ(-90deg) translateY(50%);
-
-    /* Change the origin to keep the same starting point on all the media queries */
-    transform-origin: bottom left;
     color: var(--html-blue);
-    text-transform: uppercase;
     letter-spacing: .0625rem;
+    line-height: 32px;
+    text-transform: uppercase;
   }
 
   .scroll-to__image {
-    height: var(--scroll-to-arrow-height);
-    width: var(--scroll-to-arrow-width);
+    width: 32px;
+    height: 64px;
     object-fit: contain;
-    transition: bouncein-and-out var(--arrow-animation);
-    animation: bouncein-and-out 1400ms infinite;
   }
 
-  @keyframes bouncein-and-out {
-    0% {
-      transform: translateY(-15px);
-    }
+  .scroll-to__point-up,
+  .scroll-to__point-down {
+    position: relative;
+    width: 32px;
+    height: 150px;
+  }
 
-    50% {
+  .scroll-to__point-up .scroll-to__text,
+  .scroll-to__point-down .scroll-to__text,
+  .scroll-to__point-down .scroll-to__image,
+  .scroll-to__point-up .scroll-to__image {
+    position: absolute;
+  }
+
+  .scroll-to__point-up .scroll-to__text,
+  .scroll-to__point-down .scroll-to__text {
+    left: 0;
+  }
+
+  .scroll-to__point-down .scroll-to__image,
+  .scroll-to__point-up .scroll-to__image {
+    animation: arrowBounce ease-in-out 1.4s infinite;
+  }
+
+  .scroll-to__point-down .scroll-to__text {
+    transform: rotate(90deg);
+    top: -25px;
+    transform-origin: bottom left;
+  }
+
+  .scroll-to__point-down .scroll-to__image {
+    bottom: 10px;
+  }
+
+  .scroll-to__point-up .scroll-to__text {
+    transform: rotate(-90deg);
+    bottom: -25px;
+    transform-origin: top left;
+  }
+
+  .scroll-to__point-up .scroll-to__image {
+    top: 0;
+  }
+
+  @keyframes arrowBounce {
+    0% {
       transform: translateY(0);
     }
 
-    100% {
-      transform: translateY(-15px);
+    50% {
+      transform: translateY(15px);
     }
-  }
 
-  @media (min-width: 720px) {
-    .scroll-to {
-      position: absolute;
+    100% {
+      transform: translateY(0);
     }
   }
 </style>

@@ -7,7 +7,7 @@
         :text="page.subtitle"
         :image="page.headerIllustration"/>
       <div class="page-index__scroll-to grid">
-        <scroll-to/>
+        <scroll-to point-down />
       </div>
       <div class="grid">
         <scroll-highlighted-text :text-lines="page.usps"/>
@@ -15,7 +15,9 @@
     </div>
     <section class="page-index__services grid">
       <h2 class="page-index__section-title h1">{{ page.servicesHeader }}</h2>
-      <services-list :services="page.services" :text="page.smallServices" :cta="page.servicesCta"/>
+      <services-list
+        :services="page.services"
+        :cta="page.servicesCta" />
     </section>
     <section class="page-index__cases">
       <div class="grid">
@@ -76,12 +78,13 @@
         <img class="page-index__curly-bracket" src="/images/curly-bracket--close-blue.svg" alt="">
       </div>
     </section>
-    <div class="grid">
+    <div class="page-index__cta-block grid">
       <cta-block :cta-label="page.callToActionLabel" :cta-to="{ name: 'locale-contact', params: { locale: currentLocale } }">
         <template slot="heading">
           <h3 class="h4">{{ page.callToActionTitle }}</h3>
         </template>
       </cta-block>
+      <scroll-to point-up />
     </div>
   </div>
 </template>
@@ -92,11 +95,11 @@
     AcademyExcerpt,
     AppButton,
     BlogListItem,
-    CtaBlock,
     CaseExcerpt,
+    CtaBlock,
     HighlightedClients,
-    PageHeader,
     HorizontalCarousel,
+    PageHeader,
     ScrollHighlightedText,
     ScrollTo,
     ServicesList,
@@ -107,11 +110,11 @@
       AcademyExcerpt,
       AppButton,
       BlogListItem,
-      CtaBlock,
       CaseExcerpt,
+      CtaBlock,
       HighlightedClients,
-      PageHeader,
       HorizontalCarousel,
+      PageHeader,
       ScrollHighlightedText,
       ScrollTo,
       ServicesList,
@@ -138,9 +141,15 @@
     bottom: 0;
   }
 
-  .page-index .scroll-to {
-    grid-column-start: 1;
-    grid-column-end: 3;
+  .page-index__scroll-to .scroll-to {
+    grid-column: 1;
+  }
+
+  .page-index__cta-block .scroll-to {
+    display: none;
+    position: absolute;
+    bottom: var(--spacing-large);
+    grid-column: -3;
   }
 
   .page-index .scroll-highlighted-text {
@@ -257,7 +266,7 @@
 
   @media (min-width: 720px) {
     .page-index__scroll-to {
-      bottom: var(--spacing-larger);
+      bottom: var(--spacing-medium);
     }
 
     .page-index .page-header {
@@ -313,7 +322,7 @@
       grid-column-end: 30;
     }
 
-    .page-index .scroll-to {
+    .page-index__scroll-to .scroll-to {
       grid-column: 2;
     }
 
@@ -357,6 +366,22 @@
       position: static;
       height: 100%;
       width: auto;
+    }
+
+    .page-index__cta-block .scroll-to {
+      display: flex;
+      position: absolute;
+      bottom: var(--spacing-large);
+      grid-column: -3;
+    }
+
+    .page-index__cta-block {
+      position: relative;
+    }
+
+    .page-index__cta-block .cta-block {
+      grid-column-start: 6;
+      grid-column-end: -6;
     }
   }
 
@@ -416,7 +441,7 @@
   }
 
   @media (min-width: 1440px) {
-    .page-index .scroll-to {
+    .page-index__scroll-to .scroll-to {
       grid-column-start: 4;
       grid-column-end: 5;
     }

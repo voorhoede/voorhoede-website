@@ -61,7 +61,7 @@ module.exports = {
       { 'name': 'msapplication-square150x150logo', 'content': '/images/social/windows-icon-150x150.png' },
       { 'name': 'msapplication-square310x150logo', 'content': '/images/social/windows-icon-310x150.png' },
       { 'name': 'msapplication-square310x310logo', 'content': '/images/social/windows-icon-310x310.png' },
-      { 'name': 'msapplication-TileColor', 'content': '#ffe400' },
+      { 'name': 'msapplication-TileColor', 'content': '#dedede' },
       /* Apple */
       { 'name': 'apple-mobile-web-app-title', 'content': 'De Voorhoede' },
       { 'name': 'apple-mobile-web-app-capable', 'content': 'yes' },
@@ -86,7 +86,7 @@ module.exports = {
       { 'rel': 'apple-touch-icon', 'href': '/images/social/apple-icon-120x120.png', 'sizes': '120x120' },
       { 'rel': 'apple-touch-icon', 'href': '/images/social/apple-icon-152x152.png', 'sizes': '152x152' },
       { 'rel': 'apple-touch-icon', 'href': '/images/social/apple-icon-180x180.png', 'sizes': '180x180' },
-      { 'rel': 'mask-icon', 'href': '/images/social/logo-monochrome.svg', color: '#ffe400' },
+      { 'rel': 'mask-icon', 'href': '/images/social/logo-monochrome.svg', color: '#5959ff' },
       /* Prefetch */
       { 'rel': 'dns-prefetch', 'href': 'https://www.datocms-assets.com/' },
     ],

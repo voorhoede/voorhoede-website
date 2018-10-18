@@ -18,18 +18,16 @@
             <no-script>
               <img
                 v-for="author in item.authors" :key="author.name"
-                :width="large ? thumbnailSizeLarge : thumbnailSize"
-                :height="large ? thumbnailSizeLarge : thumbnailSize"
                 class="blog-list-item__image"
+                :class="{ 'blog-list-item__image--large': large }"
                 :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=65&h=65&fit=crop`"
                 alt=""
               >
             </no-script>
             <lazy-load v-for="author in item.authors" :key="author.name">
               <img
-                :width="large ? thumbnailSizeLarge : thumbnailSize"
-                :height="large ? thumbnailSizeLarge : thumbnailSize"
                 class="blog-list-item__image"
+                :class="{ 'blog-list-item__image--large': large }"
                 :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=65&h=65&fit=crop`"
                 alt=""
               >
@@ -64,12 +62,6 @@
         default: false,
       }
     },
-    data() {
-      return {
-        thumbnailSize: 40,
-        thumbnailSizeLarge: 65
-      }
-    },
     computed: {
       ...mapState([
         'currentLocale',
@@ -87,12 +79,14 @@
 
 <style>
   :root {
-    --blog-list-item-animation-timing: .15s;
+    --blog-thumbnail-small: 40px;
+    --blog-thumbnail-large: 65px;
+    --blog-list-item-transition: .3s cubic-bezier(.47, 0, .29, .98);
   }
 
   .blog-list-item {
     display: block;
-    transition: transform var(--blog-list-item-animation-timing) ease-out;
+    transition: transform var(--blog-list-item-transition);
   }
 
   .blog-list:hover .blog-list-item,
@@ -116,7 +110,7 @@
     padding-left: var(--spacing-medium);
     border-left: 2px solid var(--very-dim);
     margin-bottom: var(--spacing-medium);
-    transition: border-left var(--blog-list-item-animation-timing) ease-out;
+    transition: border-left var(--blog-list-item-transition);
   }
 
   .blog-list:hover .blog-list-item__content,
@@ -127,8 +121,14 @@
   .blog-list-item__image {
     display: block;
     object-fit: contain;
-    height: 100%;
+    height: var(--blog-thumbnail-small);
+    width: var(--blog-thumbnail-small);
     margin-right: var(--spacing-smaller);
+  }
+
+  .blog-list-item__image--large {
+    height: var(--blog-thumbnail-large);
+    width: var(--blog-thumbnail-large);
   }
 
   .blog-list-item__author {
