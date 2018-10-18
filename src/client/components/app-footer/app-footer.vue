@@ -308,20 +308,17 @@ export default {
     flex-direction: row;
   }
 
+  .app-footer__layout {
+    display: flex;
+    flex-direction: row;
+  }
+
   .app-footer__title {
     border-bottom: 1px solid;
   }
 
   .app-footer__header {
     display: none;
-    width: 25%;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
-
-  .app-footer__layout {
-    display: flex;
-    flex-direction: row;
   }
 
   .app-footer__header-logo {
@@ -334,19 +331,18 @@ export default {
     padding-top: 0;
     margin-bottom: var(--spacing-medium);
     text-align: left;
-    width: 50%;
     align-items: unset;
+    width: 50%;
   }
 
   .app-footer__column--right {
+    margin-left: var(--spacing-huge);
     text-align: left;
     border-bottom: 0;
-    margin-left: var(--spacing-huge);
   }
   
   .app-footer__column--bottom {
     display: none;
-    align-items: flex-end;
   }
   
   .app-footer__legal {
@@ -412,6 +408,9 @@ export default {
 @media (min-width: 1100px) {
   .app-footer__header {
     display: flex;
+    width: 25%;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   .app-footer__bottom {
@@ -430,6 +429,7 @@ export default {
   
   .app-footer__column--bottom {
     display: flex;
+    align-items: flex-end;
   }
   
   .app-footer__list--icon {
