@@ -1,6 +1,6 @@
 <template>
   <nav class="app-header grid">
-    <h3 class="sr-only">Navigation</h3>
+    <h2 class="sr-only">Site Menu</h2>
     <div class="app-header__content">
       <nuxt-link class="app-header__home-link" :to="`/${currentLocale}/`" aria-label="Link to the homepage">
         <img class="app-header__logo" src="/images/logo-with-text.svg" alt="">

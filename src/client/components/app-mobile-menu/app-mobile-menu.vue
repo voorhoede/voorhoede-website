@@ -1,6 +1,6 @@
 <template>
   <nav class="app-mobile-menu grid">
-    <h3 class="sr-only">Navigation</h3>
+    <h2 class="sr-only">Site Menu</h2>
     <div
       v-if="showMenu"
       class="app-mobile-menu__content"

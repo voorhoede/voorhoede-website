@@ -9,6 +9,7 @@
       />
     </div>
     <aside class="page-case__case-meta-container grid">
+      <h2 class="sr-only">Case meta</h2>
       <div class="page-case__scroll-to">
         <scroll-to />
       </div>

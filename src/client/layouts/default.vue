@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2 class="sr-only">Page</h2>
     <grid-demo :show="showGrid"/>
+    <h1 class="sr-only">De Voorhoede</h1>
     <app-header/>
     <app-mobile-menu/>
     <nuxt/>
