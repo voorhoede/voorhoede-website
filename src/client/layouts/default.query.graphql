@@ -1,0 +1,9 @@
+query ($locale: SiteLocale)  {
+    footer(locale: $locale) {
+        ...footer
+    },
+}
+
+fragment footer on FooterRecord {
+  postalCode
+},

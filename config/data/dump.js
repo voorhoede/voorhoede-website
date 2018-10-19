@@ -19,15 +19,29 @@ dotenv.config()
 const queryApi = require('../../src/client/lib/query-api')
 const locales = ['nl', 'en']
 
-glob(path.join(__dirname, '../../src/client/**/index.query.graphql'))
+glob(path.join(__dirname, '../../src/client/**/*.query.graphql'))
   .then(paths => {
     paths.forEach(queryPath => {
       locales.forEach(locale => {
         const alternateLocale = locales.find(l => l !== locale)
-        getPageData(queryPath, locale, alternateLocale)
+        if (queryPath.includes('layout')) {
+          getLayoutData({ queryPath, locale })
+        } else {
+          getPageData(queryPath, locale, alternateLocale)
+        }
       })
     })
   })
+
+function getLayoutData({ queryPath, locale }) {
+  const layoutName = queryPath.match(/(?<=layouts\/).*(?=\.query.graphql)/)[0]
+
+  return runQuery(queryPath, { locale })
+    .then(layoutData => {      
+      writeJsonFile({ filePath: `${locale}/layout/${layoutName}`, data: layoutData })
+      console.log(chalk.green(`👌️ Successfully written: ${locale}/layouts`)) // eslint-disable-line no-console
+    })
+}
 
 function getPageData(queryPath, locale, alternateLocale) {
   return runQuery(queryPath, { locale, alternateLocale })

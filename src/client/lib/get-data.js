@@ -1,7 +1,7 @@
 const path = require('path')
 
 export function getData(route) {
-  const filepath = path.join('/data', route, 'index.json')
+  const filepath = path.join('/data', route, 'index.json')  
   if (process.client) {
     // On client load over http
     return fetch(filepath).then(res => res.json())
