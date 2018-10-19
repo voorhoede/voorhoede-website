@@ -18,6 +18,10 @@ query Case($locale: SiteLocale)  {
 fragment page on CaseOverviewRecord {
   title,
   slug,
+  social {
+    description
+  },
+  keywords,
   subtitle,
   headerIllustration {
     url,

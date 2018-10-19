@@ -24,9 +24,22 @@
   import { GenericTextBlock, PageHeader, ScrollTo } from '~/components'
 
   export default {
-    components: { GenericTextBlock, PageHeader, ScrollTo },
+    components: {
+      PageHeader,
+      GenericTextBlock
+    },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
+    },
+    head() {
+      return {
+        meta: [
+          { 'name': 'description', 'content': this.page.social.description },
+          { 'name': 'description', 'content': this.page.social.description },
+          { 'property': 'og:description', 'content': this.page.social.description },
+          { 'name': 'keywords', 'content': this.page.keywords }
+        ]
+      }
     }
   }
 </script>
@@ -75,4 +88,3 @@
   }
 
 </style>
-

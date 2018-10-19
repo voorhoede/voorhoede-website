@@ -31,6 +31,10 @@ fragment about on AboutRecord {
     alt
   },
   slug,
+  social {
+    description
+  },
+  keywords,
   introTitle,
   introBody,
   introImage {
