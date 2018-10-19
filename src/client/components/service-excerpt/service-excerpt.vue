@@ -63,7 +63,7 @@ export default {
   margin-bottom: var(--spacing-medium);
   padding-top: .125rem; /* 2px */
   padding-left: var(--spacing-smaller);
-  background: var(--brand-yellow);
+  background-color: var(--brand-yellow);
 }
 
 .service-excerpt__sub-title {
@@ -74,7 +74,7 @@ export default {
   margin-bottom: var(--spacing-small);
   width: var(--spacing-medium);
   height: 2px;
-  background: var(--html-blue);
+  background-color: var(--html-blue);
 }
 
 .service-excerpt .app-button {

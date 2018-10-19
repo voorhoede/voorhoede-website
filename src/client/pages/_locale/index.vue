@@ -141,7 +141,7 @@
 <style>
   .page-index__header {
     margin-bottom: var(--spacing-big);
-    background: var(--bg-pastel);
+    background-color: var(--bg-pastel);
   }
 
   .page-index__scroll-to {
@@ -192,13 +192,13 @@
     margin-bottom: var(--spacing-larger);
     padding-top: var(--spacing-larger);
     padding-bottom: var(--spacing-larger);
-    background: var(--fog);
+    background-color: var(--fog);
   }
 
   .page-index__academy {
     margin-bottom: var(--spacing-large);
     padding: var(--spacing-larger) 0;
-    background: var(--bg-pastel);
+    background-color: var(--bg-pastel);
   }
 
   .page-index .academy-excerpt {
