@@ -11,17 +11,35 @@
     </div>
     <div class="page-header__description">
       <div class="page-header__title sub-title">
-        <span v-html="title" />
+        <h1 v-html="title" />
       </div>
-      <div class="page-header__text" :class="isHomepage ? 'hero' : 'h1'">
-        <span v-html="text" />
+      <div
+        :class="{
+          'hero': isHomepage,
+          'h1': !isHomepage,
+        }"
+      >
+        <h2 class="sr-only" v-html="text" />
+        <self-typing-text 
+          :text="text" 
+          :speed-index="70" 
+          :class="{
+            'self-typing-text--hero': isHomepage,
+            'self-typing-text--h1': !isHomepage,
+          }"
+        />
       </div>
     </div>
   </header>
 </template>
 
 <script>
+import selfTypingText from '../self-typing-text'
+
 export default {
+  components: {
+    selfTypingText
+  },
   props: {
     image: {
       type: Object,
@@ -42,7 +60,7 @@ export default {
       type: Boolean,
       default: false
     },
-  }
+  },
 }
 </script>
 

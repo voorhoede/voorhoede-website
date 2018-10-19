@@ -1,5 +1,6 @@
 @import './variables.css';
 @import './_reset.css';
+@import './animations.css';
 @import './buttons.css';
 @import './font-faces.css';
 @import './grid.css';
