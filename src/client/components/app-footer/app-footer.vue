@@ -321,7 +321,7 @@ export default {
   }
 
   .app-footer__title {
-    border-bottom: 1px solid;
+    border-bottom: 2px solid;
   }
 
   .app-footer__header {
