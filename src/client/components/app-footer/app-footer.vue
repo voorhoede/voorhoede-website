@@ -2,11 +2,15 @@
   <footer class="app-footer grid">
     <div class="app-footer__layout">
       <div class="app-footer__header">
-        <img class="app-footer__header-logo" src="/images/logo-with-text.svg">
+        <nuxt-link :to="{name: 'locale', params: {currentLocale } }">
+          <img class="app-footer__header-logo" src="/images/logo-with-text.svg">
+        </nuxt-link>
       </div>
       <div class="app-footer__column">
         <h3 class="app-footer__title body-petite font-bold font-html-blue">
-          Explore
+          <a href="#">
+            Explore
+          </a>
         </h3>
         <ul class="app-footer__list">
           <li
@@ -23,7 +27,11 @@
       </div>
       <div class="app-footer__column app-footer__column--right">
         <h3 class="app-footer__title body-petite font-bold font-html-blue">
-          Contact
+          <nuxt-link
+            :to="{ name: 'locale-contact', params: { locale: currentLocale }}"
+          >
+            Contact
+          </nuxt-link>
         </h3>
         <ul class="body-detail app-footer__list">
           <li class="app-footer__list-item">
