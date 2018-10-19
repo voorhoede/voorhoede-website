@@ -1,11 +1,21 @@
 <template>
   <section class="page-cases">
+    <page-header
+      title="Vacature"
+      :text="page.title"
+      :image="page.jobImage"
+    />
     <pre>{{ page }}</pre>
   </section>
 </template>
 
 <script>
+  import { PageHeader } from '~/components'
+
   export default {
+    components: {
+      PageHeader
+    },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
     },
