@@ -28,6 +28,10 @@ query ($locale: SiteLocale)  {
 fragment blogPostOverview on BlogPostOverviewRecord {
   title,
   slug,
+  social {
+    description
+  },
+  keywords,
   subtitle,
   description,
   headerIllustration {

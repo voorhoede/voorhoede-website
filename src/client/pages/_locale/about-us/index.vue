@@ -81,7 +81,15 @@ export default {
     return await store.dispatch('getData', { route })
   },
   computed: {
-      ...mapState(['currentLocale'])
+    ...mapState(['currentLocale'])
+  },
+  head() {
+    return {
+      meta: [
+        { 'name': 'description', 'content': this.page.social.description },
+        { 'name': 'keywords', 'content': this.page.keywords }
+      ]
+    }
   }
 }
 </script>

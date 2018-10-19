@@ -1,7 +1,4 @@
 query HomePage($locale: SiteLocale)  {
-  meta: metaInfo(locale: $locale) {
-    ...meta
-  },
   page: home(locale:$locale) {
     ...page
   },
@@ -33,14 +30,6 @@ query HomePage($locale: SiteLocale)  {
         format
       }
     }
-  }
-}
-
-fragment meta on MetaInfoRecord {
-  description,
-  subject,
-  keywords {
-    keyword
   }
 }
 

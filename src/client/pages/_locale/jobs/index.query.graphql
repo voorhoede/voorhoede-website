@@ -12,5 +12,9 @@ query ($locale: SiteLocale)  {
 
 fragment jobOverview on JobOverviewRecord {
   title,
-  slug
+  slug,
+  social {
+    description
+  },
+  keywords
 }

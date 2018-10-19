@@ -14,5 +14,9 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
 
 fragment job on JobRecord {
   title,
-  slug
+  slug,
+  social {
+    description
+  },
+  keywords
 }
