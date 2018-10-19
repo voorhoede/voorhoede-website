@@ -7,11 +7,12 @@
       <h3 class="job-excerpt__text-title h5">{{ title }}</h3>
       <p class="job-excerpt__text-description body-detail">{{ description }}</p>
     </div>
-    <app-button class="job-excerpt__button" :label="label" :to="url" external />
+    <app-button class="job-excerpt__button" :label="label" :to="{ name: 'locale-jobs-slug', params: { locale: currentLocale, slug } }"/>
   </div>
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   import { AppImage, AppButton, } from '../../components'
 
   export default {
@@ -22,6 +23,10 @@
         required: true,
       },
       description: {
+        type: String,
+        required: true,
+      },
+      slug: {
         type: String,
         required: true,
       },
@@ -43,6 +48,9 @@
         required: true,
       },
     },
+    computed: {
+      ...mapState(['currentLocale'])
+    }
   }
 </script>
 

@@ -34,6 +34,7 @@
           :label="item.callToActionLabel"
           :url="item.url"
           :image="item.jobImage"
+          :slug="item.slug"
         />
       </li>
     </ul>
