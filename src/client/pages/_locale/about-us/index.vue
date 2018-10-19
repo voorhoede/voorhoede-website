@@ -103,7 +103,7 @@
   }
 
   .page-about-us {
-    background: var(--bg-pastel);
+    background-color: var(--bg-pastel);
   }
 
   .page-about-us__jobs,
@@ -143,7 +143,7 @@
   }
 
   .page-about-us__jobs-list:hover {
-    background: var(--white);
+    background-color: var(--white);
   }
 
   .page-about-us__jobs-list .job-excerpt__image,
@@ -179,6 +179,26 @@
   @media (min-width: 720px) {
     .page-about-us__header {
       margin-bottom: var(--spacing-large);
+    }
+
+    .page-about-us__overview {
+      grid-column-start: 2;
+      grid-column-end: -2;
+      background-color: var(--white);
+      padding: var(--spacing-large) var(--spacing-larger);
+      margin-bottom: var(--spacing-big);
+    }
+
+    .page-about-us__overview-item {
+      flex-direction: row;
+    }
+
+    .page-about-us__overview-item .text-block {
+      margin-right: var(--spacing-big);
+    }
+
+    .page-about-us__overview-item .responsive-image__sizer {
+      margin-bottom: 0;
     }
 
     .page-about-us .image-with-text {

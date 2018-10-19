@@ -1,0 +1,7 @@
+.yellow-background {
+  background-color: var(--brand-yellow);
+}
+
+.white-background {
+  background-color: var(--white);
+}

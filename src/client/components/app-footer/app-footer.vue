@@ -220,7 +220,7 @@ export default {
 .app-footer {
   width: 100%;
   padding: var(--spacing-larger) 0 var(--spacing-small) 0;
-  background: var(--brand-yellow);
+  background-color: var(--brand-yellow);
 }
 
 .app-footer__layout {
