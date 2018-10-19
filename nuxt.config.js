@@ -26,17 +26,18 @@ module.exports = {
   ** Headers of the page
   */
   head: {
+    title: 'De Voorhoede',
     htmlAttrs: {
       /* TODO: change defaultLocale to currentlocale */
       lang: defaultLocale,
+      'class': 'yellow-background',
     },
-    title: 'De Voorhoede',
+    bodyAttrs: {
+      'class': 'white-background',
+    },
     meta: [
       { 'charset': 'utf-8' },
       { 'name': 'viewport', 'content': 'width=device-width, initial-scale=1' },
-      { 'name': 'subject', 'content': 'We build front-end solutions which you can use for years to come' },
-      { 'name': 'description', 'content': 'We build front-end solutions which you can use for years to come' },
-      { 'name': 'keywords', 'content': 'front-end, developers, web, HTML, CSS, JS, JavaScript, team, Amsterdam' },
       { 'name': 'classification', 'content': 'business' },
       { 'name': 'theme-color', 'content': '#ffe400' },
       { 'http-equiv': 'X-UA-Compatible', 'content': 'IE=edge' },
@@ -51,14 +52,12 @@ module.exports = {
       { 'property': 'og:image', 'content': `${baseUrl}/images/social/logo-wide.jpg` },
       { 'property': 'og:image:width', 'content': '1000' },
       { 'property': 'og:image:height', 'content': '500' },
-      { 'property': 'og:description', 'content': 'We build front-end solutions which you can use for years to come' },
       { 'property': 'og:site_name', 'content': 'www.voorhoede.nl' },
       /* Twitter */
       { 'name': 'twitter:card', 'content': 'summary_large_image' },
       { 'name': 'twitter:creator', 'content': '@devoorhoede' },
       { 'name': 'twitter:url', 'content': `${baseUrl}/` },
       { 'name': 'twitter:title', 'content': 'De Voorhoede' },
-      { 'name': 'twitter:description', 'content': 'We build front-end solutions which you can use for years to come' },
       { 'name': 'twitter:image', 'content': `${baseUrl}/images/social/logo-wide.jpg` },
       /* Windows */
       { 'name': 'msapplication-square70x70logo', 'content': '/images/social/windows-icon-70x70.png' },

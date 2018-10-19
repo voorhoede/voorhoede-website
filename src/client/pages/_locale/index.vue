@@ -124,6 +124,16 @@
     },
     computed: {
       ...mapState(['currentLocale'])
+    },
+    head() {
+      return {
+        meta: [
+          { 'name': 'description', 'content': this.page.social.description },
+          { 'name': 'description', 'content': this.page.social.description },
+          { 'property': 'og:description', 'content': this.page.social.description },
+          { 'name': 'keywords', 'content': this.page.keywords }
+        ]
+      }
     }
   }
 </script>
@@ -131,7 +141,7 @@
 <style>
   .page-index__header {
     margin-bottom: var(--spacing-big);
-    background: var(--bg-pastel);
+    background-color: var(--bg-pastel);
   }
 
   .page-index__scroll-to {
@@ -182,13 +192,13 @@
     margin-bottom: var(--spacing-larger);
     padding-top: var(--spacing-larger);
     padding-bottom: var(--spacing-larger);
-    background: var(--fog);
+    background-color: var(--fog);
   }
 
   .page-index__academy {
     margin-bottom: var(--spacing-large);
     padding: var(--spacing-larger) 0;
-    background: var(--bg-pastel);
+    background-color: var(--bg-pastel);
   }
 
   .page-index .academy-excerpt {

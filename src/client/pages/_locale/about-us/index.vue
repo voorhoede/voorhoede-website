@@ -6,14 +6,21 @@
       :text="page.subtitle"
       :image="page.headerIllustration"
     />
-    <div class="page-about-us__overview">
-      <div class="page-about-us__overview-item">
-        <text-block :title="page.introTitle">
-          <p class="body">{{ page.introBody }}</p>
-        </text-block>
-        <responsive-image :image="page.introImage" />
-      </div>
-    </div>
+    <image-with-text-block
+      :title="page.introTitle"
+      :body="page.introBody"
+      :image="page.introImage"
+    />
+    <image-grid
+      :title="page.teamGridTitle"
+      :items="page.teamGrid"
+    />
+    <image-with-text-block
+      :title="page.middleTitle"
+      :body="page.middleBody"
+      :image="page.middleImage"
+      :inverse="true"
+    />
     <div class="page-about-us__jobs-text">
       <h2 class="page-about-us__jobs-title h2">{{ page.jobsTitle }}</h2>
       <p class="body-big font-html-blue">{{ page.jobsBody }}</p>
@@ -56,34 +63,48 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import {
-  PageHeader,
-  ResponsiveImage,
-  GenericTextBlock,
-  TextBlock,
-  BlogListItem,
-  JobsExcerpt,
-  AppButton,
-} from '../../../components'
-
-export default {
-  components: {
+  import { mapState } from 'vuex'
+  import {
+    AppButton,
+    BlogListItem,
+    GenericTextBlock,
+    ImageGrid,
+    ImageWithTextBlock,
+    JobsExcerpt,
     PageHeader,
     ResponsiveImage,
-    GenericTextBlock,
     TextBlock,
-    BlogListItem,
-    JobsExcerpt,
-    AppButton,
+  } from '../../../components'
+
+  export default {
+    components: {
+      AppButton,
+      BlogListItem,
+      GenericTextBlock,
+      ImageGrid,
+      ImageWithTextBlock,
+      JobsExcerpt,
+      PageHeader,
+      ResponsiveImage,
+      TextBlock,
+    },
+    async asyncData({ store, route }) {
+      return await store.dispatch('getData', { route })
+    },
+    computed: {
+    ...mapState(['currentLocale'])
   },
-  async asyncData({ store, route }) {
-    return await store.dispatch('getData', { route })
-  },
-  computed: {
-      ...mapState(['currentLocale'])
+  head() {
+    return {
+      meta: [
+        { 'name': 'description', 'content': this.page.social.description },
+        { 'property': 'og:description', 'content': this.page.social.description },
+        { 'name': 'twitter:description', 'content': this.page.social.description },
+        { 'name': 'keywords', 'content': this.page.keywords }
+      ]
+    }
+    }
   }
-}
 </script>
 
 <style>
@@ -92,43 +113,33 @@ export default {
   }
 
   .page-about-us {
-    background: var(--bg-pastel);
+    background-color: var(--bg-pastel);
   }
 
-  .page-about-us__header {
+  .page-about-us__jobs,
+  .page-about-us__header,
+  .page-about-us .image-grid,
+  .page-about-us .image-with-text {
     grid-column: page;
   }
 
-  .page-about-us__overview {
-    margin-bottom: var(--spacing-larger);
-  }
-
-  .page-about-us__overview-item {
-    display: flex;
-    flex-direction: column-reverse;
-  }
-
-  .page-about-us__overview-item .text-block {
-    width: 100%;
-  }
-
-  .page-about-us__overview-item .responsive-image__sizer {
-    margin-bottom: var(--spacing-medium);
-    width: 100%;
-  }
-
+  .page-about-us__jobs,
+  .page-about-us .image-grid,
   .page-about-us__jobs-text {
     text-align: center;
     margin-bottom: var(--spacing-larger);
   }
 
-  .page-about-us__jobs-title {
-    margin-bottom: var(--spacing-medium);
+  .page-about-us .image-with-text {
+    margin-bottom: var(--spacing-large);
   }
 
-  .page-about-us__jobs {
-    grid-column: page;
+  .page-about-us .image-grid {
     margin-bottom: var(--spacing-larger);
+  }
+
+  .page-about-us__jobs-title {
+    margin-bottom: var(--spacing-medium);
   }
 
   .page-about-us__jobs-list {
@@ -142,7 +153,7 @@ export default {
   }
 
   .page-about-us__jobs-list:hover {
-    background: var(--white);
+    background-color: var(--white);
   }
 
   .page-about-us__jobs-list .job-excerpt__image,
@@ -183,7 +194,7 @@ export default {
     .page-about-us__overview {
       grid-column-start: 2;
       grid-column-end: -2;
-      background: var(--white);
+      background-color: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
       margin-bottom: var(--spacing-big);
     }
@@ -200,6 +211,12 @@ export default {
       margin-bottom: 0;
     }
 
+    .page-about-us .image-with-text {
+      grid-column: content;
+      margin-bottom: var(--spacing-larger);
+    }
+
+    .page-about-us .image-grid,
     .page-about-us__jobs {
       margin-bottom: var(--spacing-big);
     }
@@ -221,12 +238,7 @@ export default {
   }
 
   @media (min-width: 1100px) {
-    .page-about-us__overview {
-      grid-column-start: 6;
-      grid-column-end: -6;
-      padding: var(--spacing-big) var(--spacing-bigger);
-    }
-
+    .page-about-us .image-grid,
     .page-about-us__jobs {
       margin-bottom: var(--spacing-bigger);
     }

@@ -66,13 +66,13 @@ export default {
 
 <style>
 .page-header {
-  background: var(--bg-pastel);
+  background-color: var(--bg-pastel);
   grid-template-rows: var(--app-header-height) 1fr;
 }
 
 .page-header__brick {
   display: block;
-  background: var(--brand-yellow);
+  background-color: var(--brand-yellow);
   grid-column: page;
   grid-row-start: 3;
   grid-row-end: 6;
