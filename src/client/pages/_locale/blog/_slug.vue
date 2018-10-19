@@ -144,6 +144,8 @@ export default {
     return {
       meta: [
         { 'name': 'description', 'content': this.page.social.description },
+        { 'property': 'og:description', 'content': this.page.social.description },
+        { 'name': 'twitter:description', 'content': this.page.social.description },
         { 'name': 'keywords', 'content': this.page.keywords }
       ]
     }

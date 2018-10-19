@@ -44,14 +44,12 @@ module.exports = {
       { 'property': 'og:image', 'content': `${baseUrl}/images/social/logo-wide.jpg` },
       { 'property': 'og:image:width', 'content': '1000' },
       { 'property': 'og:image:height', 'content': '500' },
-      { 'property': 'og:description', 'content': 'We build front-end solutions which you can use for years to come' },
       { 'property': 'og:site_name', 'content': 'www.voorhoede.nl' },
       /* Twitter */
       { 'name': 'twitter:card', 'content': 'summary_large_image' },
       { 'name': 'twitter:creator', 'content': '@devoorhoede' },
       { 'name': 'twitter:url', 'content': `${baseUrl}/` },
       { 'name': 'twitter:title', 'content': 'De Voorhoede' },
-      { 'name': 'twitter:description', 'content': 'We build front-end solutions which you can use for years to come' },
       { 'name': 'twitter:image', 'content': `${baseUrl}/images/social/logo-wide.jpg` },
       /* Windows */
       { 'name': 'msapplication-square70x70logo', 'content': '/images/social/windows-icon-70x70.png' },

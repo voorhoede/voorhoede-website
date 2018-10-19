@@ -31,6 +31,8 @@ import { PageHeaderDetail, GenericTextBlock } from '~/components'
     return {
       meta: [
         { 'name': 'description', 'content': this.page.social.description },
+        { 'name': 'description', 'content': this.page.social.description },
+        { 'property': 'og:description', 'content': this.page.social.description },
         { 'name': 'keywords', 'content': this.page.keywords }
       ]
     }
