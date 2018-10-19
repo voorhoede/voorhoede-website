@@ -128,12 +128,17 @@ fragment caseItem on CaseItemRecord {
     title,
     nameLabel,
     namePlaceholder,
+    nameErrorMessage,
     emailLabel,
     emailPlaceholder,
+    emailErrorMessageEmpty,
+    emailErrorMessageIncorrect,
     summaryLabel,
     summaryPlaceholder,
+    summaryErrorMessage,
     phoneLabel,
     phonePlaceholder,
+    phoneErrorMessage,
     ctaButtonLabel
   },
   backLinkTitle

@@ -11,17 +11,35 @@
     </div>
     <div class="page-header__description">
       <div class="page-header__title sub-title">
-        <span v-html="title" />
+        <h1 v-html="title" />
       </div>
-      <div class="page-header__text" :class="isHomepage ? 'hero' : 'h1'">
-        <span v-html="text" />
+      <div
+        :class="{
+          'hero': isHomepage,
+          'h1': !isHomepage,
+        }"
+      >
+        <h2 class="sr-only" v-html="text" />
+        <self-typing-text 
+          :text="text" 
+          :speed-index="70" 
+          :class="{
+            'self-typing-text--hero': isHomepage,
+            'self-typing-text--h1': !isHomepage,
+          }"
+        />
       </div>
     </div>
   </header>
 </template>
 
 <script>
+import selfTypingText from '../self-typing-text'
+
 export default {
+  components: {
+    selfTypingText
+  },
   props: {
     image: {
       type: Object,
@@ -42,7 +60,7 @@ export default {
       type: Boolean,
       default: false
     },
-  }
+  },
 }
 </script>
 
@@ -60,10 +78,31 @@ export default {
   grid-row-end: 6;
 }
 
+.page-header__curly-bracket-column {
+  grid-column: page;
+  grid-row: 3;
+  position: absolute;
+  top: calc(-1 * var(--spacing-large));
+  right: 0;
+  bottom: calc(-1 * var(--spacing-large));
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Ugly wrapper to prevent horizontal scrolling, while making vertical overflow possible */
+.page-header__curly-bracket-wrapper {
+  display: block;
+  height: 100%;
+  position: relative;
+  right: calc(-1 * var(--spacing-medium));
+}
+
 .page-header__curly-bracket {
   display: block;
   height: 100%;
   mix-blend-mode: screen;
+  position: absolute;
+  right: 0;
 }
 
 .page-header__image img {
@@ -102,24 +141,6 @@ export default {
   overflow-wrap: break-word;
 }
 
-.page-header__curly-bracket-column {
-  grid-column: page;
-  grid-row: 3;
-  position: absolute;
-  top: calc(-1 * var(--spacing-large));
-  right: 0;
-  bottom: calc(-1 * var(--spacing-larger));
-  overflow: hidden;
-}
-
-/* Ugly wrapper to prevent horizontal scrolling, while making vertical overflow possible */
-.page-header__curly-bracket-wrapper {
-  display: block;
-  height: 100%;
-  position: relative;
-  right: calc(-1 * var(--spacing-medium));
-}
-
 .page-header__image {
   grid-column-start: 2;
   grid-column-end: 18;
@@ -145,7 +166,6 @@ export default {
 
   .page-header__curly-bracket-column {
     grid-column: content;
-    bottom: calc(-1 * var(--spacing-large));
   }
 
   .page-header__curly-bracket-wrapper {
@@ -204,13 +224,12 @@ export default {
   }
 
   .page-header__curly-bracket-column {
-    position: static;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    grid-column-end: 34;
+    top: var(--spacing-large);
+    position: relative;
+    grid-column: 33;
     grid-row-start: 2;
     grid-row-end: 4;
+    overflow: unset;
   }
 
   .page-header__curly-bracket {
@@ -246,7 +265,7 @@ export default {
   }
 
   .page-header__curly-bracket-column {
-    grid-column-end: 48;
+    grid-column: 47;
   }
 
   .page-header__image {
