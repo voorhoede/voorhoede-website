@@ -1,12 +1,11 @@
 <template>
-  <figure class="image-with-description"
-          :class="{
-            'image-with-description--inverse': inverse
-  }">
+  <figure class="image-with-description" :class="{ 'image-with-description--inverse': inverse }">
     <div class="image-with-description__image">
       <responsive-image :image="image" />
     </div>
-    <figcaption class="pullquote font-bold image-with-description__description" v-if="description">
+    <figcaption
+      v-if="description"
+      class="pullquote font-bold image-with-description__description">
       {{ description }}
     </figcaption>
   </figure>

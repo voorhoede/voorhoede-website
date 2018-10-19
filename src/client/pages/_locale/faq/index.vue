@@ -24,9 +24,22 @@
   import { GenericTextBlock, PageHeader, ScrollTo } from '~/components'
 
   export default {
-    components: { GenericTextBlock, PageHeader, ScrollTo },
+    components: {
+      PageHeader,
+      GenericTextBlock
+    },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
+    },
+    head() {
+      return {
+        meta: [
+          { 'name': 'description', 'content': this.page.social.description },
+          { 'name': 'description', 'content': this.page.social.description },
+          { 'property': 'og:description', 'content': this.page.social.description },
+          { 'name': 'keywords', 'content': this.page.keywords }
+        ]
+      }
     }
   }
 </script>
@@ -50,14 +63,14 @@
 
   @media (min-width: 720px) {
     .page-faq {
-      background: var(--bg-pastel);
+      background-color: var(--bg-pastel);
     }
 
     .page-faq__overview {
       position: relative;
       grid-column-start: 2;
       grid-column-end: -2;
-      background: var(--white);
+      background-color: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
     }
 
@@ -75,4 +88,3 @@
   }
 
 </style>
-

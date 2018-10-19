@@ -139,6 +139,16 @@ export default {
   },
   computed: {
     ...mapState(['currentLocale'])
+  },
+  head() {
+    return {
+      meta: [
+        { 'name': 'description', 'content': this.page.social.description },
+        { 'property': 'og:description', 'content': this.page.social.description },
+        { 'name': 'twitter:description', 'content': this.page.social.description },
+        { 'name': 'keywords', 'content': this.page.keywords }
+      ]
+    }
   }
 }
 </script>
@@ -186,7 +196,7 @@ export default {
 
   .page-blog-post__cta {
     grid-column: page;
-    background: var(--bg-pastel);
+    background-color: var(--bg-pastel);
   }
 
   .page-blog-post__cta-block.cta-block {

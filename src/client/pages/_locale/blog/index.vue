@@ -49,6 +49,16 @@
     },
     computed: {
       ...mapState(['currentLocale'])
+    },
+    head() {
+      return {
+        meta: [
+          { 'name': 'description', 'content': this.page.social.description },
+          { 'name': 'description', 'content': this.page.social.description },
+          { 'property': 'og:description', 'content': this.page.social.description },
+          { 'name': 'keywords', 'content': this.page.keywords }
+        ]
+      }
     }
   }
 </script>
@@ -65,7 +75,7 @@
 
   .page-blog__cta {
     grid-column: page;
-    background: var(--bg-pastel);
+    background-color: var(--bg-pastel);
   }
 
   .page-blog__cta .cta-block {

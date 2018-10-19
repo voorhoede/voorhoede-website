@@ -35,6 +35,16 @@
         'currentLocale',
         'alternateUrl',
       ]),
+    },
+    head() {
+      return {
+        meta: [
+          { 'name': 'description', 'content': this.page.social.description },
+          { 'name': 'description', 'content': this.page.social.description },
+          { 'property': 'og:description', 'content': this.page.social.description },
+          { 'name': 'keywords', 'content': this.page.keywords }
+        ]
+      }
     }
   }
 </script>
@@ -68,7 +78,7 @@
     flex-direction: row;
     grid-column-start: 2;
     grid-column-end: -2;
-    background: var(--white);
+    background-color: var(--white);
     padding: var(--spacing-large) var(--spacing-large);
     justify-content: space-between;
   }

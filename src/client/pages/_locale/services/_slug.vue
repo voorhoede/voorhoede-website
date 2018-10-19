@@ -26,6 +26,16 @@ import { PageHeaderDetail, GenericTextBlock } from '~/components'
   },
   async asyncData({ store, route }) {
     return await store.dispatch('getData', { route })
+  },
+  head() {
+    return {
+      meta: [
+        { 'name': 'description', 'content': this.page.social.description },
+        { 'name': 'description', 'content': this.page.social.description },
+        { 'property': 'og:description', 'content': this.page.social.description },
+        { 'name': 'keywords', 'content': this.page.keywords }
+      ]
+    }
   }
 }
 </script>
@@ -42,13 +52,13 @@ import { PageHeaderDetail, GenericTextBlock } from '~/components'
 
   @media (min-width: 720px) {
     .page-service {
-      background: var(--bg-pastel);
+      background-color: var(--bg-pastel);
     }
 
     .page-service__overview {
       grid-column-start: 2;
       grid-column-end: -2;
-      background: var(--white);
+      background-color: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
     }
   }
