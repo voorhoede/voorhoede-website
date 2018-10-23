@@ -20,7 +20,7 @@
       :legal="layoutData.footer.legal"
       :social="layoutData.footer.social"
     />
-  </div>  
+  </div>
 </template>
 
 <script>
