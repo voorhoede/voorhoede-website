@@ -15,6 +15,10 @@ query ($locale: SiteLocale)  {
 fragment contact on ContactRecord {
   slug,
   subtitle,
+  social {
+    description
+  },
+  keywords,
   contactPageForm {
     subjectTitle,
     contactTitle,

@@ -10,5 +10,9 @@ query ($locale: SiteLocale)  {
 
 fragment academyItemsOverview on AcademyItemsOverviewRecord {
   title,
-  slug
+  slug,
+  social {
+    description
+  },
+  keywords
 }
