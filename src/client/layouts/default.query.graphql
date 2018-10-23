@@ -1,7 +1,7 @@
 query ($locale: SiteLocale)  {
-    footer: footer(locale: $locale) {
+  footer(locale: $locale) {
     ...footer
-    },
+  },
 }
 
 fragment footer on FooterRecord {

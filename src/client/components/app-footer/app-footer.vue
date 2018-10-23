@@ -78,14 +78,14 @@
         <a
           :href="copyrightLink"
           class="app-footer__copyright"
-          :title="copyrightLinkTitle"
-          target="_blank">{{ copyrightLinkLabel }}</a>
+          :title="copyrightTitle"
+          target="_blank">{{ copyrightLabel }}</a>
         <span> - </span>
         <a
           :href="privacyLink"
           class="app-footer__privacy"
-          :title="privacyLinkTitle"
-          target="_blank">{{ privacyLinkLabel }}</a>
+          :title="privacyTitle"
+          target="_blank">{{ privacyLabel }}</a>
       </div>
     </div>
   </footer>
@@ -141,11 +141,11 @@ export default {
       type: String,
       default: '',
     },
-    copyrightLinkLabel: {
+    copyrightLabel: {
       type: String,
       default: '',
     },
-    copyrightLinkTitle: {
+    copyrightTitle: {
       type: String,
       default: '',
     },
@@ -153,11 +153,11 @@ export default {
       type: String,
       default: '',
     },
-    privacyLinkLabel: {
+    privacyLabel: {
       type: String,
       default: '',
     },
-    privacyLinkTitle: {
+    privacyTitle: {
       type: String,
       default: '',
     },
@@ -386,6 +386,7 @@ export default {
   .app-footer__list {
     display: flex;
     flex-flow: column wrap;
+    justify-content: flex-start;
     max-height: var(--footer-list-height);
     border-bottom: 0;
     padding-bottom: 0;
