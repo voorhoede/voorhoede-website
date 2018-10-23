@@ -1,23 +1,63 @@
 <template>
-  <section class="page-cases">
+  <section class="page-job">
     <page-header
       title="Vacature"
       :text="page.title"
       :image="page.jobImage"
     />
-    <pre>{{ page }}</pre>
+    <div class="grid">
+      <div class="page-job__overview">
+        <ul>
+          <li 
+            class="page-job__overview-item" 
+            v-for="item in page.jobContent" 
+            :key="item.title">
+            <generic-text-block
+              :title="item.title"
+              :body="item.body"
+              :image="item.image"
+            />
+          </li>
+        </ul>
+        <div class="button-group">
+          <app-button
+            class=""
+            :label="page.callToActionLabel"
+            :to="page.url"
+            external
+          />
+          <app-button
+            label="See all vacancies"
+            :to="`/${currentLocale}/jobs`"
+            external
+            secondary
+          />
+        </div>
+        <scroll-to point-up />  
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
-  import { PageHeader } from '~/components'
+  import { mapState } from 'vuex'
+  import { PageHeader, TextBlock, RichTextBlock, GenericTextBlock, CtaBlock, ScrollTo, AppButton } from '~/components'
 
   export default {
     components: {
-      PageHeader
+      PageHeader,
+      TextBlock,
+      RichTextBlock,
+      GenericTextBlock,
+      CtaBlock,
+      ScrollTo,
+      AppButton
     },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
+    },
+    computed: {
+      ...mapState(['currentLocale']),
     },
     head() {
       return {
@@ -31,3 +71,63 @@
     }
   }
 </script>
+
+<style>
+  .page-job .page-header {
+    grid-column: page;
+    margin-bottom: var(--spacing-large);
+  }
+
+  .page-job__overview-item {
+    margin-bottom: var(--spacing-large);
+  }
+
+  .page-job__overview .scroll-to {
+    display: none;
+    position: absolute;
+    bottom: var(--spacing-big);
+    right: var(--spacing-larger);
+  }
+  
+  .page-job__overview .button-group {
+    margin-bottom: var(--spacing-large);
+  }
+  
+  .page-job__overview .button-group .app-button {
+    width: 50%;
+  }
+
+  @media (min-width: 720px) {
+    .page-job {
+      background-color: var(--bg-pastel);
+    }
+
+    .page-job__overview {
+      position: relative;
+      grid-column-start: 2;
+      grid-column-end: -2;
+      background-color: var(--white);
+      padding: var(--spacing-large) var(--spacing-larger);
+    }
+
+    .page-job__overview .scroll-to {
+      display: flex;
+    }
+
+    .page-job__overview .button-group {
+      width: 350px;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .page-job__overview {
+      grid-column-start: 6;
+      grid-column-end: -6;
+      padding: var(--spacing-big) var(--spacing-bigger);
+    }
+
+    .page-job__overview .button-group {
+      width: 40%;
+    }
+  }
+</style>
