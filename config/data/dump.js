@@ -34,7 +34,7 @@ glob(path.join(__dirname, '../../src/client/**/*.query.graphql'))
   })
 
 function getLayoutData({ queryPath, locale }) {
-  const layoutName = queryPath.match(/(?<=layouts\/).*(?=\.query.graphql)/)[0]
+  const layoutName = queryPath.match(/(?<=layouts\/).*(?=\.query.graphql)/)[0] // use name of graphql query file.
 
   return runQuery(queryPath, { locale })
     .then(layoutData => {      

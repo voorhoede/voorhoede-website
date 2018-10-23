@@ -90,8 +90,7 @@ const createStore = () => {
       },
       async getLayoutData({ state, commit }) {
         const currentLocale = state.currentLocale || process.env.defaultLocale
-        const layout = 'default'
-        const data = await getData(`${currentLocale}/layout/${layout}`)
+        const data = await getData(`${currentLocale}/layout/default`)
         commit(types.SET_LAYOUT_DATA, { data })
       }
     },
