@@ -3,7 +3,7 @@
     <div v-if="isHomepage" class="page-header__brick" />
     <div v-if="isHomepage" class="page-header__curly-bracket-column">
       <div class="page-header__curly-bracket-wrapper">
-        <img class="page-header__curly-bracket" src="/images/curly-bracket--close.svg">
+        <img class="page-header__curly-bracket" src="/images/curly-bracket--close.svg" alt="">
       </div>
     </div>
     <div class="page-header__image" :class="{ 'page-header__image--spaced-top': !isHomepage }">

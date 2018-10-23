@@ -28,6 +28,8 @@ module.exports = {
   head: {
     title: 'De Voorhoede',
     htmlAttrs: {
+      /* TODO: change defaultLocale to currentlocale */
+      lang: defaultLocale,
       'class': 'yellow-background',
     },
     bodyAttrs: {

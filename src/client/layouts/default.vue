@@ -1,6 +1,7 @@
 <template>
   <div>
     <grid-demo :show="showGrid"/>
+    <h1 class="sr-only">De Voorhoede</h1>
     <app-header/>
     <app-mobile-menu/>
     <nuxt/>
