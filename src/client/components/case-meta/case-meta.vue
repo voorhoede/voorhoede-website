@@ -13,7 +13,7 @@
       <h3 class="case-meta__title body font-bold">{{ deliverableTitle }}</h3>
       <p class="body-petite">{{ toMetaString(deliverables) }}</p>
     </section>
-    <section class="case-meta__section">
+    <section v-if="interestedTitle" class="case-meta__section">
       <h3 class="case-meta__title body font-bold">{{ interestedTitle }}</h3>
       <a class="case-meta__link body-petite" :href="interestedLinkUrl" target="_blank">
         {{ interestedLinkLabel }} &raquo;
@@ -62,15 +62,18 @@
       },
       interestedTitle: {
         type: String,
-        required: true
+        required: false,
+        default: ''
       },
       interestedLinkLabel: {
         type: String,
-        required: true
+        required: false,
+        default: ''
       },
       interestedLinkUrl: {
         type: String,
-        required: true
+        required: false,
+        default: ''
       }
     },
     computed: {
@@ -137,8 +140,19 @@
   }
 
   @media (min-width: 1100px) {
+    .case-meta {
+      justify-content: unset;
+    }
+
     .case-meta__section {
-      flex-basis: 12.5rem; /* 200px ( same as design ) */
+      --section-width: 12.5rem; /* 200px ( same as design ) */
+
+      flex-basis: var(--section-width);
+      margin-right: calc((100% - 4 * var(--section-width)) / 3);
+    }
+
+    .case-meta__section:last-child {
+      margin-right: 0;
     }
   }
 </style>
