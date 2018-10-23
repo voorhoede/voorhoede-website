@@ -186,6 +186,7 @@ export default {
           social.every(item => {
             return item instanceof Object &&
               typeof item.icon === 'string' &&
+              typeof item.label === 'string' &&
               typeof item.href === 'string'
           })
         )

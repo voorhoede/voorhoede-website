@@ -26,7 +26,8 @@
   export default {
     components: {
       PageHeader,
-      GenericTextBlock
+      GenericTextBlock,
+      ScrollTo
     },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })

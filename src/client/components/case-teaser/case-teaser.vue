@@ -1,13 +1,14 @@
 <template>
   <section>
+    <h2 class="sr-only">{{ title }}</h2>
     <figure class="case-teaser grid">
       <div class="case-teaser__image">
         <responsive-image :image="image" />
       </div>
       <figcaption class="case-teaser__header">
-        <h2 class="case-teaser__title h2">
+        <span class="case-teaser__title h2">
           {{ title }}
-        </h2>
+        </span>
       </figcaption>
     </figure>
   </section>

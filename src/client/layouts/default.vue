@@ -1,6 +1,7 @@
 <template>
   <div>
     <grid-demo :show="showGrid"/>
+    <h1 class="sr-only">De Voorhoede</h1>
     <app-header/>
     <app-mobile-menu/>
     <nuxt/>
@@ -50,10 +51,10 @@
               { key: 'IBAN', value: 'NL20ABNA0442829159' },
             ],
             social : [
-              { icon: 'instagram--blue', href: 'https://www.instagram.com/devoorhoede/?hl=nl' },
-              { icon: 'twitter--blue', href: 'https://twitter.com/devoorhoede' },
-              { icon: 'facebook--blue', href: 'https://www.facebook.com/DeVoorhoede/' },
-              { icon: 'git-hub--blue', href: 'https://github.com/voorhoede/' },
+              { icon: 'instagram--blue', href: 'https://www.instagram.com/devoorhoede/?hl=nl', label: 'instagram' },
+              { icon: 'twitter--blue', href: 'https://twitter.com/devoorhoede', label: 'twitter' },
+              { icon: 'facebook--blue', href: 'https://www.facebook.com/DeVoorhoede/', label: 'facebook' },
+              { icon: 'git-hub--blue', href: 'https://github.com/voorhoede/', label: 'github' },
             ],
           },
           nl: {
@@ -74,10 +75,10 @@
               { key: 'IBAN', value: 'NL20ABNA0442829159' },
             ],
             social : [
-              { icon: 'instagram--blue', href: 'https://www.instagram.com/devoorhoede/?hl=nl' },
-              { icon: 'twitter--blue', href: 'https://twitter.com/devoorhoede' },
-              { icon: 'facebook--blue', href: 'https://www.facebook.com/DeVoorhoede/' },
-              { icon: 'git-hub--blue', href: 'https://github.com/voorhoede/' },
+              { icon: 'instagram--blue', href: 'https://www.instagram.com/devoorhoede/?hl=nl', label: 'instagram' },
+              { icon: 'twitter--blue', href: 'https://twitter.com/devoorhoede', label: 'twitter' },
+              { icon: 'facebook--blue', href: 'https://www.facebook.com/DeVoorhoede/', label: 'facebook' },
+              { icon: 'git-hub--blue', href: 'https://github.com/voorhoede/', label: 'github' },
             ],
           }
         }
