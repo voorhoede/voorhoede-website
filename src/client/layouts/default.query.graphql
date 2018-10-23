@@ -1,9 +1,27 @@
 query ($locale: SiteLocale)  {
-    footer(locale: $locale) {
-        ...footer
+    footer: footer(locale: $locale) {
+    ...footer
     },
 }
 
 fragment footer on FooterRecord {
-  postalCode
+  email,
+  telephoneNumber,
+  googleMapsLink,
+  address,
+  postalCode,
+  privacyLabel,
+  privacyTitle,
+  privacyLink,
+  copyrightLabel,
+  copyrightTitle,
+  copyrightLink,
+  legal {
+    title,
+    value
+  },
+  social {
+    icon,
+    link
+  }
 },
