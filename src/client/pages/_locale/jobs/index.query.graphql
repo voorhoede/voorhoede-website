@@ -12,9 +12,26 @@ query ($locale: SiteLocale)  {
 
 fragment jobOverview on JobOverviewRecord {
   title,
+  subtitle,
+  headerIllustration {
+    url,
+    alt
+  },
   slug,
   social {
     description
   },
-  keywords
+  keywords,
+ 	jobs {
+  	title
+  	slug,
+    body,
+    callToActionLabel,
+    jobImage {
+      url,
+      alt
+    },
+    description,
+   	slug
+  },  
 }
