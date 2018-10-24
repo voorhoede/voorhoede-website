@@ -80,7 +80,7 @@
     50% {
       color: var(--off-black);
     }
-    
+
     100% {
       color: var(--brand-yellow);
     }
@@ -97,7 +97,7 @@
   }
 
   .scroll-highlighted-text__text + .scroll-highlighted-text__text {
-    margin-top: var(--spacing-small);
+    margin-top: var(--spacing-medium);
   }
 
   .scroll-highlighted-text--active {
