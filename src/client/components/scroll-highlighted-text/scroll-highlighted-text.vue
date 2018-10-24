@@ -86,6 +86,11 @@
     }
   }
 
+  :root {
+    --animate-text-in: color-change-in 600ms forwards;
+    --animate-text-out: color-change-out 600ms forwards;
+  }
+
   .scroll-highlighted-text {
     text-align: center;
   }
@@ -93,16 +98,13 @@
   .scroll-highlighted-text__text {
     display: block;
     color: var(--brand-yellow);
-    animation: color-change-out 600ms forwards;
-  }
-
-  .scroll-highlighted-text__text + .scroll-highlighted-text__text {
-    margin-top: var(--spacing-medium);
+    margin-bottom: var(--spacing-medium);
+    animation: var(--animate-text-out);
   }
 
   .scroll-highlighted-text--active {
     color: var(--html-blue);
-    animation: color-change-in 600ms forwards;
+    animation: var(--animate-text-in);
   }
 
   @media (max-width: 520px) {
