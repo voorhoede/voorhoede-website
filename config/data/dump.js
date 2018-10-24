@@ -19,12 +19,16 @@ dotenv.config()
 const queryApi = require('../../src/client/lib/query-api')
 const locales = ['nl', 'en']
 
+//match querypath that starts with layout and ends with query.graphql
+const matchLayoutQuery = /(?<=layouts\/).*(?=\.query.graphql)/
+
 glob(path.join(__dirname, '../../src/client/**/*.query.graphql'))
   .then(paths => {
     paths.forEach(queryPath => {
       locales.forEach(locale => {
         const alternateLocale = locales.find(l => l !== locale)
-        if (queryPath.includes('layout')) {
+        
+        if (queryPath.match(matchLayoutQuery)) {
           getLayoutData({ queryPath, locale })
         } else {
           getPageData(queryPath, locale, alternateLocale)
@@ -34,7 +38,7 @@ glob(path.join(__dirname, '../../src/client/**/*.query.graphql'))
   })
 
 function getLayoutData({ queryPath, locale }) {
-  const layoutName = queryPath.match(/(?<=layouts\/).*(?=\.query.graphql)/)[0] // use name of graphql query file.
+  const layoutName = queryPath.match(matchLayoutQuery)[0] // use name of graphql query file.
 
   return runQuery(queryPath, { locale })
     .then(layoutData => {      

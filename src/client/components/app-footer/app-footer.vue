@@ -60,8 +60,8 @@
       <div class="app-footer__column app-footer__column--bottom">
         <ul class="app-footer__list--icon">
           <li class="app-footer__list-item--icon"
-              v-for="socialItem in social" :key="socialItem.link">
-            <a :href="socialItem.link" target="_blank">
+              v-for="socialItem in social" :key="socialItem.href">
+            <a :href="socialItem.href" target="_blank">
               <app-icon :name="socialItem.icon" :is-large="true" />
             </a>
           </li>
@@ -186,7 +186,7 @@ export default {
           social.every(item => {
             return item instanceof Object &&
               typeof item.icon === 'string' &&
-              typeof item.link === 'string'
+              typeof item.href === 'string'
           })
         )
       },
