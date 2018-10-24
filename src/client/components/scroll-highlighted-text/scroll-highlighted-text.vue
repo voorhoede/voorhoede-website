@@ -59,15 +59,31 @@
 
 <style>
   @keyframes color-change-in {
-      0% { color: var(--brand-yellow); }
-      50% { color: var(--off-black); }
-      100% { color: var(--html-blue); }
+    0% {
+      color: var(--brand-yellow);
+    }
+
+    50% {
+      color: var(--off-black);
+    }
+
+    100% {
+      color: var(--html-blue);
+    }
   }
   
   @keyframes color-change-out {
-      0% { color: var(--html-blue); }
-      50% { color: var(--off-black); }
-      100% { color: var(--brand-yellow); }
+    0% {
+      color: var(--html-blue);
+    }
+
+    50% {
+      color: var(--off-black);
+    }
+    
+    100% {
+      color: var(--brand-yellow);
+    }
   }
 
   .scroll-highlighted-text {
@@ -77,16 +93,16 @@
   .scroll-highlighted-text__text {
     display: block;
     color: var(--brand-yellow);
-    animation: color-change-out 700ms forwards;
+    animation: color-change-out 600ms forwards;
   }
 
   .scroll-highlighted-text__text + .scroll-highlighted-text__text {
-    padding-top: var(--spacing-small);
+    margin-top: var(--spacing-small);
   }
 
   .scroll-highlighted-text--active {
     color: var(--html-blue);
-    animation: color-change-in 700ms forwards;
+    animation: color-change-in 600ms forwards;
   }
 
   @media (max-width: 520px) {
@@ -97,13 +113,13 @@
 
   @media (min-width: 720px) {
     .scroll-highlighted-text__text {
-      padding-bottom: var(--spacing-large);
+      margin-bottom: var(--spacing-large);
     }
   }
 
   @media (min-width: 1100px) {
     .scroll-highlighted-text__text {
-      padding-bottom: var(--spacing-larger);
+      margin-bottom: var(--spacing-larger);
     }
   }
 </style>
