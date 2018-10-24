@@ -311,3 +311,7 @@ strong,
 .font-html-blue {
   color: var(--html-blue);
 }
+
+.font-yellow {
+  color: var(--brand-yellow);
+}
