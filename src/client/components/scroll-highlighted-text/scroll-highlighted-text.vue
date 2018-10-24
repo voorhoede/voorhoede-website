@@ -1,7 +1,7 @@
 <template>
   <span
-    class="scroll-highlighted-text__text h1 font-yellow"
-    :class="isIntersected ? 'scroll-highlighted-text--active' : ''"
+    class="scroll-highlighted-text__text h1"
+    :class="isIntersected ? 'scroll-highlighted-text--active' : 'scroll-highlighted-text--non-active'"
   >
     {{ line }}
   </span>
@@ -47,14 +47,13 @@
         this.observer.observe(this.$el)
       },
       onIntersection (entries) {
-        this.isIntersected = entries.some(entry => entry.intersectionRatio > 0)
+        this.isIntersected = entries.some(entry => entry.isIntersecting)
       },
       unobserve () {
         this.observer.unobserve(this.$el)
       },
     },
   }
-  
 </script>
 
 <style>
@@ -97,14 +96,15 @@
 
   .scroll-highlighted-text__text {
     display: block;
-    color: var(--brand-yellow);
     margin-bottom: var(--spacing-medium);
-    animation: var(--animate-text-out);
   }
 
   .scroll-highlighted-text--active {
-    color: var(--html-blue);
     animation: var(--animate-text-in);
+  }
+  
+  .scroll-highlighted-text--non-active {
+    animation: var(--animate-text-out);
   }
 
   @media (max-width: 520px) {
