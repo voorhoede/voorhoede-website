@@ -16,7 +16,6 @@
             :title="item.title"
             :description="item.description"
             :label="item.callToActionLabel"
-            :url="item.url"
             :image="item.jobImage"
             :slug="item.slug"
           />
@@ -62,7 +61,8 @@
 
 @media (min-width: 1100px) {
   .page-jobs__overview {
-    grid-column: 6 / -12;
+    grid-column-start: 12;
+    grid-column-end: -12;
   }
 }
 </style>

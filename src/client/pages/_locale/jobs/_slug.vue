@@ -1,7 +1,7 @@
 <template>
   <section class="page-job">
     <page-header
-      title="Vacature"
+      :title="page.subtitle"
       :text="page.title"
       :image="page.jobImage"
     />
@@ -27,7 +27,7 @@
             external
           />
           <app-button
-            label="See all vacancies"
+            :label="(currentLocale === 'nl') ? 'Bekijk alle vacatures' : 'See all vacancies'"
             :to="`/${currentLocale}/jobs`"
             external
             secondary
@@ -73,6 +73,10 @@
 </script>
 
 <style>
+  :root {
+    --button-group-width: 350px;
+  }
+
   .page-job .page-header {
     grid-column: page;
     margin-bottom: var(--spacing-large);
@@ -95,6 +99,7 @@
   
   .page-job__overview .button-group .app-button {
     width: 50%;
+    white-space: nowrap;
   }
 
   @media (min-width: 720px) {
@@ -115,7 +120,7 @@
     }
 
     .page-job__overview .button-group {
-      width: 350px;
+      width: var(--button-group-width);
     }
   }
 
@@ -124,10 +129,6 @@
       grid-column-start: 6;
       grid-column-end: -6;
       padding: var(--spacing-big) var(--spacing-bigger);
-    }
-
-    .page-job__overview .button-group {
-      width: 40%;
     }
   }
 </style>

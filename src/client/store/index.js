@@ -24,6 +24,10 @@ const createStore = () => {
             slug: 'blog',
           },
           {
+            title: 'Vacatures',
+            slug: 'jobs',
+          },
+          {
             title: 'Over Ons',
             slug: 'about-us',
           },
@@ -45,6 +49,10 @@ const createStore = () => {
           {
             title: 'Blog',
             slug: 'blog',
+          },
+          {
+            title: 'Jobs',
+            slug: 'jobs',
           },
           {
             title: 'About Us',
