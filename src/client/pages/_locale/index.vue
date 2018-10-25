@@ -12,9 +12,11 @@
       <div class="grid">
         <p class="scroll-highlighted-text">
           <scroll-highlighted-text 
-            v-for="({line, index}) in page.usps" 
+            v-for="(line, index) in page.usps" 
             :key="index"
-            :line="line" />  
+            :line="line"
+            :index="index"
+          />  
         </p>
       </div>
     </div>

@@ -1,17 +1,25 @@
 <template>
   <span
     class="scroll-highlighted-text__text h1"
-    :class="isIntersected ? 'scroll-highlighted-text--active' : 'scroll-highlighted-text--non-active'"
+    :class="
+      (isIntersected && index !== 0) ? 'scroll-highlighted-text--active' 
+      : (!isIntersected && index === 0) ? 'scroll-highlighted-text--non-active'
+      : ''
+    "
   >
-    {{ line }}
+    {{ line.line }}
   </span>
 </template>
 
 <script>
   export default {
     props: {
+      index: {
+        type: Number,
+        required: true
+      },
       line: {
-        type: String,
+        type: Object,
         required: true
       },
       rootMargin: {
@@ -94,7 +102,12 @@
     text-align: center;
   }
 
+  .scroll-highlighted-text__text:first-of-type {
+    color: var(--html-blue);
+  }
+
   .scroll-highlighted-text__text {
+    color: var(--brand-yellow);
     display: block;
     margin-bottom: var(--spacing-medium);
   }
