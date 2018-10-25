@@ -28,6 +28,8 @@ module.exports = {
   head: {
     title: 'De Voorhoede',
     htmlAttrs: {
+      /* TODO: change defaultLocale to currentlocale */
+      lang: defaultLocale,
       'class': 'yellow-background',
     },
     bodyAttrs: {
@@ -100,6 +102,7 @@ module.exports = {
   router: {
     middleware: [
       'redirect-to-locale',
+      'get-layout-data',
       'locale',
       'enforce-trailing-slash',
       'meta-canonical',

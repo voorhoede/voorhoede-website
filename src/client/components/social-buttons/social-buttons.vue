@@ -6,7 +6,10 @@
         class="social-buttons__list-icon"
         v-for="item in socials" 
         :key="item.href">
-        <a :href="item.href" target="_blank">
+        <a 
+          :href="item.href" 
+          target="_blank" 
+          :aria-label="item.label">
           <app-icon :name="item.icon" :is-large="true" />
         </a>
       </li>
@@ -41,10 +44,10 @@
     data() {
       return {
         socials: [
-              { icon: 'instagram--blue', href: 'https://www.instagram.com/devoorhoede/?hl=nl' },
-              { icon: 'twitter--blue', href: 'https://twitter.com/devoorhoede' },
-              { icon: 'facebook--blue', href: 'https://www.facebook.com/DeVoorhoede/' },
-              { icon: 'git-hub--blue', href: 'https://github.com/voorhoede/' },
+              { icon: 'instagram--blue', href: 'https://www.instagram.com/devoorhoede/?hl=nl', label: 'instagram' },
+              { icon: 'twitter--blue', href: 'https://twitter.com/devoorhoede', label: 'twitter' },
+              { icon: 'facebook--blue', href: 'https://www.facebook.com/DeVoorhoede/', label: 'facebook' },
+              { icon: 'git-hub--blue', href: 'https://github.com/voorhoede/', label: 'github' },
             ],
       }
     },

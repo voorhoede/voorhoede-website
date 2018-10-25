@@ -83,6 +83,15 @@ const createStore = () => {
       },
       nuxtServerInit({ commit }, { params }) {
         commit(types.SET_CURRENT_LOCALE, { locale: params.locale })
+      },
+      setCurrentLocale({ commit, dispatch }, { locale }) {
+        commit(types.SET_CURRENT_LOCALE, { locale })
+        dispatch('getLayoutData')
+      },
+      async getLayoutData({ state, commit }) {
+        const currentLocale = state.currentLocale || process.env.defaultLocale
+        const data = await getData(`${currentLocale}/layout/default`)
+        commit(types.SET_LAYOUT_DATA, { data })
       }
     },
     mutations: {
@@ -97,6 +106,9 @@ const createStore = () => {
       },
       [types.SET_ALTERNATE_URL](state, { url }) {
         state.alternateUrl = url
+      },
+      [types.SET_LAYOUT_DATA](state, { data }) {
+        state.layoutData = data
       }
     }
   })

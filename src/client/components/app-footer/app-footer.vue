@@ -70,22 +70,22 @@
     </div>
     <div class="app-footer__bottom">
       <div class="body-detail app-footer__bottom-text">
-        <dl class="app-footer__definition-list" v-for="legalItem in legal" :key="legalItem.key">
-          <dt>{{ legalItem.key }}</dt>: <dd class="app-footer__definition-value">{{ legalItem.value }}</dd>
+        <dl class="app-footer__definition-list" v-for="legalItem in legal" :key="legalItem.title">
+          <dt>{{ legalItem.title }}</dt>: <dd class="app-footer__definition-value">{{ legalItem.value }}</dd>
         </dl>
       </div>
       <div class="body-detail app-footer__legal">
         <a
           :href="copyrightLink"
           class="app-footer__copyright"
-          :title="copyrightLinkTitle"
-          target="_blank">{{ copyrightLinkLabel }}</a>
+          :title="copyrightTitle"
+          target="_blank">{{ copyrightLabel }}</a>
         <span> - </span>
         <a
           :href="privacyLink"
           class="app-footer__privacy"
-          :title="privacyLinkTitle"
-          target="_blank">{{ privacyLinkLabel }}</a>
+          :title="privacyTitle"
+          target="_blank">{{ privacyLabel }}</a>
       </div>
     </div>
   </footer>
@@ -141,11 +141,11 @@ export default {
       type: String,
       default: '',
     },
-    copyrightLinkLabel: {
+    copyrightLabel: {
       type: String,
       default: '',
     },
-    copyrightLinkTitle: {
+    copyrightTitle: {
       type: String,
       default: '',
     },
@@ -153,11 +153,11 @@ export default {
       type: String,
       default: '',
     },
-    privacyLinkLabel: {
+    privacyLabel: {
       type: String,
       default: '',
     },
-    privacyLinkTitle: {
+    privacyTitle: {
       type: String,
       default: '',
     },
@@ -172,7 +172,7 @@ export default {
         return (
           legal.every(item => {
             return item instanceof Object &&
-              typeof item.key === 'string' &&
+              typeof item.title === 'string' &&
               typeof item.value === 'string'
           })
         )
@@ -386,6 +386,7 @@ export default {
   .app-footer__list {
     display: flex;
     flex-flow: column wrap;
+    justify-content: flex-start;
     max-height: var(--footer-list-height);
     border-bottom: 0;
     padding-bottom: 0;
