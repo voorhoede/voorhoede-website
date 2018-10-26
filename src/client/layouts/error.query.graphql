@@ -12,8 +12,12 @@ query ($locale: SiteLocale, $errorCode: IntegerFilter)  {
 
 fragment errorPage on ErrorPageRecord {
   errorCode,
-    title,
-    body
+  title,
+  body,
+  headerImage {
+    url,
+    alt
+  }
 }
 
 fragment footer on FooterRecord {

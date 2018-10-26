@@ -89,12 +89,22 @@ const createStore = () => {
           dispatch('getLayoutData')
         }
       },
-      setCurrentLayout({ commit }, { currentLayout }) {
+      setCurrentLayout({ commit, dispatch }, { currentLayout }) {
         commit(types.SET_CURRENT_LAYOUT, { currentLayout })
+        dispatch('getLayoutData')
       },
       async getLayoutData({ state, commit }) {
         const currentLocale = state.currentLocale || process.env.defaultLocale
-        const data = await getData(`${currentLocale}/layout/${state.currentLayout}`)
+        const currentLayout = state.currentLayout
+        let data
+
+        if (currentLayout === 'default') {
+          data = await getData(`${currentLocale}/layouts/${currentLayout}`)
+        } else {
+          const statusCode = 404
+          data = await getData(`${currentLocale}/layouts/${currentLayout}/${statusCode}`)
+        }
+
 
         commit(types.SET_LAYOUT_DATA, { data })
         return data
