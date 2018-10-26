@@ -1,0 +1,39 @@
+query ($locale: SiteLocale, $errorCode: IntegerFilter)  {
+  error: errorPage(locale: $locale, filter: {
+    errorCode: $errorCode
+  }) {
+		...errorPage
+  }
+
+  footer(locale: $locale) {
+    ...footer
+  },
+}
+
+fragment errorPage on ErrorPageRecord {
+  errorCode,
+    title,
+    body
+}
+
+fragment footer on FooterRecord {
+  email,
+  telephoneNumber,
+  googleMapsLink,
+  address,
+  postalCode,
+  privacyLabel,
+  privacyTitle,
+  privacyLink,
+  copyrightLabel,
+  copyrightTitle,
+  copyrightLink,
+  legal {
+    title,
+    value
+  },
+  social {
+    icon,
+    href
+  }
+},
