@@ -8,7 +8,8 @@ const createStore = () => {
     state: {
       showGrid: false,
       locales: ['nl', 'en'],
-      currentLocale: process.env.DEFAULT_LOCALE,
+      currentLocale: process.env.defaultLocale || process.env.DEFAULT_LOCALE,
+      currentLayout: 'default',
       menu: {
         nl: [
           {
@@ -59,9 +60,7 @@ const createStore = () => {
       },
     },
     getters: {
-      alternateLocale: state => {
-        return state.locales.find(locale => locale !== state.currentLocale)
-      },
+      alternateLocale: state => state.locales.find(locale => locale !== state.currentLocale),
       localizedMenuItems: state => state.menu[state.currentLocale]
     },
     actions: {
@@ -84,14 +83,21 @@ const createStore = () => {
       nuxtServerInit({ commit }, { params }) {
         commit(types.SET_CURRENT_LOCALE, { locale: params.locale })
       },
-      setCurrentLocale({ commit, dispatch }, { locale }) {
-        commit(types.SET_CURRENT_LOCALE, { locale })
-        dispatch('getLayoutData')
+      setCurrentLocale({ commit, dispatch, state }, { locale }) {
+        if (state.currentLocale !== locale && locale) {
+          commit(types.SET_CURRENT_LOCALE, { locale })
+          dispatch('getLayoutData')
+        }
+      },
+      setCurrentLayout({ commit }, { currentLayout }) {
+        commit(types.SET_CURRENT_LAYOUT, { currentLayout })
       },
       async getLayoutData({ state, commit }) {
         const currentLocale = state.currentLocale || process.env.defaultLocale
-        const data = await getData(`${currentLocale}/layout/default`)
+        const data = await getData(`${currentLocale}/layout/${state.currentLayout}`)
+
         commit(types.SET_LAYOUT_DATA, { data })
+        return data
       }
     },
     mutations: {
@@ -109,6 +115,9 @@ const createStore = () => {
       },
       [types.SET_LAYOUT_DATA](state, { data }) {
         state.layoutData = data
+      },
+      [types.SET_CURRENT_LAYOUT](state, { currentLayout }) {
+        state.currentLayout = currentLayout
       }
     }
   })
