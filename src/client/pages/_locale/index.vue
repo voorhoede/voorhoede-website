@@ -381,7 +381,7 @@
     .page-index__cta-block .scroll-to {
       display: flex;
       position: absolute;
-      bottom: var(--spacing-large);
+      bottom: var(--spacing-larger);
       grid-column: -3;
     }
 
@@ -447,6 +447,10 @@
     .page-index .blog-list-item__content {
       grid-column-start: 21;
       grid-column-end: 40;
+    }
+
+    .page-index__cta-block .scroll-to {
+      bottom: var(--spacing-big);
     }
   }
 
