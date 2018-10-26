@@ -464,6 +464,11 @@
       margin: var(--spacing-large) 0;
       grid-column-end: 24;
     }
+
+    .page-index__cta-block {
+      /* tweak for the inconsistent spacing of the latest-blog-post component  */
+      padding-top: 10px;
+    }
   }
 
   @media (min-width: 1920px) {
