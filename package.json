@@ -15,6 +15,7 @@
     "build": "NODE_ENV=production run-s build:*",
     "build:client": "nuxt generate",
     "build:guide": "build-storybook -c config/storybook -o dist/client/guide/",
+    "postbuild": "cp ./dist/client/en/layouts/error/404/index.html ./dist/client/en/404.html & cp ./dist/client/nl/layouts/error/404/index.html ./dist/client/nl/404.html",
     "predev": "npm run prebuild",
     "dev": "PORT=3278 nuxt",
     "guide": "start-storybook -p 3279 -c config/storybook -s ./src/client/static",
