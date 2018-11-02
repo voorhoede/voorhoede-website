@@ -6,10 +6,8 @@
   from = '/en/*'
   to = '/en/layouts/error/404/index.html'
   status = 404
-  force = true
 
 [[redirects]]
   from = '/*'
   to = '/nl/layouts/error/404/index.html'
   status = 404
-  force = true
