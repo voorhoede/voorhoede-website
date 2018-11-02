@@ -12,7 +12,7 @@
             <nuxt-link v-else class="app-header__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
           </li>
         </ul>
-        <ul class="app-header__link-list app-header__link-list--languages" v-if="alternateUrl">
+        <ul class="app-header__link-list app-header__link-list--languages">
           <li
             v-for="locale in locales"
             :key="locale"
