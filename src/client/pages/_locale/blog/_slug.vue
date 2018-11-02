@@ -138,8 +138,7 @@ export default {
     try {
       return await store.dispatch('getData', { route })
     } catch (err) {
-      error({ statusCode: 404, message: err.message })
-      return store.dispatch('setCurrentLayout', { layout: 'error/404' })
+      return error({ statusCode: 404, message: err.message })
     }
   },
   computed: {
