@@ -44,6 +44,7 @@
     "chalk": "^2.4.1",
     "commander": "2.16.0",
     "datocms-client": "0.6.2",
+    "dayjs": "^1.7.7",
     "eslint": "4.15.0",
     "eslint-friendly-formatter": "3.0.0",
     "eslint-loader": "1.7.1",

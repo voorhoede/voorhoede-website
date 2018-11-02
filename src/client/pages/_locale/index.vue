@@ -43,7 +43,7 @@
       <h2 class="page-index__section-title page-index__section-title--clients h3 font-normal">{{ page.clientsTitle }}</h2>
       <highlighted-clients :cta-label="page.clientsButtonLabel"/>
     </section>
-    <div class="page-index__academy grid">
+    <div class="page-index__academy grid" v-if="upcomingEvents[0]">
       <academy-excerpt
         :date-string="upcomingEvents[0].date"
         :current-locale="currentLocale"
