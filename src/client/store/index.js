@@ -90,9 +90,11 @@ const createStore = () => {
           dispatch('getLayoutData')
         }
       },
-      setCurrentLayout({ commit, dispatch }, { layout }) {
-        commit(types.SET_CURRENT_LAYOUT, { layout })
-        return dispatch('getLayoutData')
+      setCurrentLayout({ commit, dispatch, state }, { layout }) {
+        if (state.currentLayout !== layout && layout) {
+          commit(types.SET_CURRENT_LAYOUT, { layout })
+          return dispatch('getLayoutData')
+        }
       },
       async getLayoutData({ state, commit }) {
         const currentLayout = state.currentLayout

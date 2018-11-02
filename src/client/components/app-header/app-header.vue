@@ -2,11 +2,11 @@
   <nav class="app-header grid">
     <h2 class="sr-only">Site Menu</h2>
     <div class="app-header__content">
-      <nuxt-link class="app-header__home-link" :to="`/${currentLocale || defaultLocale}/`" aria-label="Link to the homepage">
+      <nuxt-link class="app-header__home-link" :to="`/${currentLocale}/`" aria-label="Link to the homepage">
         <img class="app-header__logo" src="/images/logo-with-text.svg" alt="">
       </nuxt-link>
       <div class="app-header__link-lists body-petite">
-        <ul class="app-header__link-list" v-if="localizedMenuItems && localizedMenuItems.length">
+        <ul class="app-header__link-list">
           <li v-for="link in localizedMenuItems" :key="link.href" class="app-header__link-list-item">
             <app-button small v-if="link.button" :label="link.title" :to="createHref(link)"/>
             <nuxt-link v-else class="app-header__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
