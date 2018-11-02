@@ -1,9 +1,9 @@
 <template>
-  <span 
+  <span
     ref="text"
-    v-html="selfTypingText" 
+    v-html="selfTypingText"
     class="self-typing-text"
-    :class="{    
+    :class="{
       'self-typing-text--js-bootstrapped': jsBootstrapped
     }"
   />
@@ -37,14 +37,19 @@ export default {
     this.jsBootstrapped = true
     this.$refs.text.style.height = `${height}px`
     this.selfTypingText = ''
-    
+
     letters.forEach((letter, index) => {
       setTimeout(() => {
         this.selfTypingText += letter
-        
-        /* by removing the height property when the last letter is typed 
-        it will scale normaly when window is resized */
-        if (index === this.text.length - 1) {
+
+        /*
+         * By removing the height property when the last letter is typed,
+         * it will scale normaly when window is resized.
+         *
+         * this.$refs.text is checked, because the component might be unmounted,
+         * by the time the code is run, becuase of the timeout.
+         */
+        if (index === this.text.length - 1 && this.$refs.text) {
           this.$refs.text.style.removeProperty('height')
         }
       }, typingSpeed * index)
@@ -99,7 +104,7 @@ export default {
     .self-typing-text--hero::after {
       height: var(--cursor-hero-height-medium);
     }
-    
+
     .self-typing-text--h1::after {
       height: var(--cursor-h1-height-medium);
     }
