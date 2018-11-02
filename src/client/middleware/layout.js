@@ -1,8 +1,8 @@
 export default async function ({ store, route }) {
   if (route.matched.length > 0) {
-    store.dispatch('setCurrentLayout', { currentLayout: 'default' })
+    store.dispatch('setCurrentLayout', { layout: 'default' })
   } else {
-    store.dispatch('setCurrentLayout', { currentLayout: 'error' })
+    store.dispatch('setCurrentLayout', { layout: 'error/404' })
   }
 
   if (!store.state.layoutData) {

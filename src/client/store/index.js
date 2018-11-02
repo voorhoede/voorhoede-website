@@ -79,22 +79,9 @@ const createStore = () => {
           throw e
         }
       },
-      nuxtServerInit({ commit }, { route, params }) {
+      nuxtServerInit({ commit }, { params }) {
         if (params.locale) {
           commit(types.SET_CURRENT_LOCALE, { locale: params.locale })
-        } else {
-          // Get locale for error pages
-          const locales = this.state.locales
-          const localeRegex = new RegExp(`^/(${locales.join('|')})/`)
-          let localeFromPath = route.path.match(localeRegex)[0]
-
-          if (localeFromPath) {
-            localeFromPath = localeFromPath.replace(/\//g, '')
-            const alternateLocale = this.state.locales.find(locale => locale !== localeFromPath)
-            const alternateUrl = route.path.replace(localeFromPath, alternateLocale)
-            commit(types.SET_CURRENT_LOCALE, { locale: localeFromPath })
-            commit(types.SET_ALTERNATE_URL, { url: alternateUrl })
-          }
         }
       },
       setCurrentLocale({ commit, dispatch, state }, { locale }) {
@@ -103,22 +90,19 @@ const createStore = () => {
           dispatch('getLayoutData')
         }
       },
-      setCurrentLayout({ commit, dispatch }, { currentLayout }) {
-        commit(types.SET_CURRENT_LAYOUT, { currentLayout })
-        dispatch('getLayoutData')
+      setCurrentLayout({ commit, dispatch }, { layout }) {
+        commit(types.SET_CURRENT_LAYOUT, { layout })
+        return dispatch('getLayoutData')
       },
       async getLayoutData({ state, commit }) {
-        const currentLocale = state.currentLocale || process.env.defaultLocale
         const currentLayout = state.currentLayout
         let data
 
         if (currentLayout === 'default') {
-          data = await getData(`${currentLocale}/layouts/${currentLayout}`)
+          data = await getData(`${state.currentLocale}/layouts/${currentLayout}`)
         } else {
-          const statusCode = 404
-          data = await getData(`${currentLocale}/layouts/${currentLayout}/${statusCode}`)
+          data = await getData(`${state.currentLocale}/layouts/${currentLayout}`)
         }
-
 
         commit(types.SET_LAYOUT_DATA, { data })
         return data
@@ -140,8 +124,8 @@ const createStore = () => {
       [types.SET_LAYOUT_DATA](state, { data }) {
         state.layoutData = data
       },
-      [types.SET_CURRENT_LAYOUT](state, { currentLayout }) {
-        state.currentLayout = currentLayout
+      [types.SET_CURRENT_LAYOUT](state, { layout }) {
+        state.currentLayout = layout
       }
     }
   })

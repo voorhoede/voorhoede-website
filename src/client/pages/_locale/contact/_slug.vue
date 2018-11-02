@@ -26,8 +26,13 @@
       CtaBlock,
       PageHeader,
     },
-    async asyncData({ store, route }) {
-      return await store.dispatch('getData', { route })
+    async asyncData({ store, route, error }) {
+      try {
+        return await store.dispatch('getData', { route })
+      } catch (err) {
+        error({ statusCode: 404, message: err.message })
+        return store.dispatch('setCurrentLayout', { layout: 'error/404' })
+      }
     },
     computed: {
       ...mapState([
