@@ -1,4 +1,4 @@
-export default async function ({ store, route }) {
+export default function ({ store, route }) {
   if (route.matched.length > 0) {
     store.dispatch('setCurrentLayout', { layout: 'default' })
   } else {
