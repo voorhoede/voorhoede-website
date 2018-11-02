@@ -25,6 +25,9 @@ export default {
     error: {
       type: [Object, Error],
       required: true,
+      validator(error) {
+        return typeof(error.statusCode) === 'number'
+      }
     },
   },
   computed: {
