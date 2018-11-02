@@ -4,7 +4,6 @@ import { getData } from '../lib/get-data'
 
 const createStore = () => {
   return new Vuex.Store({
-
     state: {
       showGrid: false,
       locales: ['nl', 'en'],
@@ -80,8 +79,23 @@ const createStore = () => {
           throw e
         }
       },
-      nuxtServerInit({ commit }, { params }) {
-        commit(types.SET_CURRENT_LOCALE, { locale: params.locale })
+      nuxtServerInit({ commit }, { route, params }) {
+        if (params.locale) {
+          commit(types.SET_CURRENT_LOCALE, { locale: params.locale })
+        } else {
+          // Get locale for error pages
+          const locales = this.state.locales
+          const localeRegex = new RegExp(`^/(${locales.join('|')})/`)
+          let localeFromPath = route.path.match(localeRegex)[0]
+
+          if (localeFromPath) {
+            localeFromPath = localeFromPath.replace(/\//g, '')
+            const alternateLocale = this.state.locales.find(locale => locale !== localeFromPath)
+            const alternateUrl = route.path.replace(localeFromPath, alternateLocale)
+            commit(types.SET_CURRENT_LOCALE, { locale: localeFromPath })
+            commit(types.SET_ALTERNATE_URL, { url: alternateUrl })
+          }
+        }
       },
       setCurrentLocale({ commit, dispatch, state }, { locale }) {
         if (state.currentLocale !== locale && locale) {
