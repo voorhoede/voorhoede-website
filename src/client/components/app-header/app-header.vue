@@ -36,11 +36,6 @@
 
   export default {
     components: { AppButton },
-    data() {
-      return {
-        defaultLocale: process.env.defaultLocale,
-      }
-    },
     computed: {
       ...mapState([
         'locales',
