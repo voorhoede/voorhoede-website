@@ -63,13 +63,13 @@
 
         if(highlightedTextID === firstItem) {
           ((offsetIntersectionObserver) > this.scrollY)
-          ? this.scrolledAbove = true 
+          ? this.scrolledAbove = true
           : this.scrolledAbove = false
         }
 
         if(highlightedTextID === lastItem) {
           ((offsetIntersectionObserver) < this.scrollY)
-          ? this.scrolledBelow = true 
+          ? this.scrolledBelow = true
           : this.scrolledBelow = false
         }
       }), 300)
