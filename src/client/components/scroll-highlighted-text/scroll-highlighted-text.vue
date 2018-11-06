@@ -60,7 +60,7 @@
       window.addEventListener('scroll', this.debounce(() => {
         let offsetIntersectionObserver = this.$refs.highlightedText.offsetTop - this.observerRectTop
         this.scrollY = window.scrollY
-        
+
         if(highlightedTextID === firstItem) {
           ((offsetIntersectionObserver) > this.scrollY)
           ? this.scrolledAbove = true 
@@ -88,7 +88,7 @@
       onIntersection (entries) {
         this.isIntersected = entries.some(entry => {
           this.observerRectTop = (entry.rootBounds.top - entry.rootBounds.height)
-          
+
           return entry.isIntersecting
         })
       },
