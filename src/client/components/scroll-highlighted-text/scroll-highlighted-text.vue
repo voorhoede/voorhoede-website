@@ -3,8 +3,8 @@
     class="scroll-highlighted-text__text h1"
     :class="
       (isIntersected) ? 'scroll-highlighted-text--active' 
-      : (isFirst) ? 'scroll-highlighted-text--active'
-      : (isLast) ? 'scroll-highlighted-text--active'
+      : (isFirst && scrolledAbove) ? 'scroll-highlighted-text--active'
+      : (isLast && scrolledBelow) ? 'scroll-highlighted-text--active'
       : 'scroll-highlighted-text--non-active'
     "
     :data-id="index"
@@ -39,17 +39,17 @@
         isIntersected: false,
         observer: null,
         scrollY: null,
-        scrollDirection: 'down',
         isFirst: (this.index === 0) ? true : false,
-        isLast: false
+        isLast: (this.index === 3) ? true : false,
+        scrolledAbove: false,
+        scrolledBelow: false,
+        observerRectTop: 0
       }
     },
     mounted() {
-      const active = 'scroll-highlighted-text--active'
-      const nonActive = 'scroll-highlighted-text--non-active'
-      const highlightedTextClass = this.$refs.highlightedText.classList
+      const firstItem = 0
+      const lastItem = 3
       const highlightedTextID = parseInt(this.$refs.highlightedText.dataset.id) 
-      let previous = window.scrollY
 
       if ('IntersectionObserver' in window) {
         this.observe()
@@ -57,28 +57,22 @@
         this.isIntersected = true
       }
 
-      this.$root.$on('activeClass', i => {
-        if(highlightedTextID === i ) { 
-          highlightedTextClass.replace(nonActive, active)
-        }
-      })
-      
-      this.$root.$on('nonActiveClass', i => {
-        if(highlightedTextID === i ) { 
-          highlightedTextClass.replace(active, nonActive)
-        }
-      })
-
-      window.addEventListener('scroll', () => {
-        window.scrollY > previous ? this.scrollDirection = 'down': this.scrollDirection = 'up'
+      window.addEventListener('scroll', this.debounce(() => {
+        let offsetIntersectionObserver = this.$refs.highlightedText.offsetTop - this.observerRectTop
         this.scrollY = window.scrollY
-        previous = window.scrollY
         
-        if(this.scrollY > this.$refs.highlightedText.offsetTop) {
-          this.$root.$emit('activeClass', 3)
-          this.$root.$emit('nonActiveClass', 0)
+        if(highlightedTextID === firstItem) {
+          ((offsetIntersectionObserver) > this.scrollY)
+          ? this.scrolledAbove = true 
+          : this.scrolledAbove = false
         }
-      })
+
+        if(highlightedTextID === lastItem) {
+          ((offsetIntersectionObserver) < this.scrollY)
+          ? this.scrolledBelow = true 
+          : this.scrolledBelow = false
+        }
+      }), 300)
     },
     unmounted() {
       this.unobserve()
@@ -87,38 +81,32 @@
       observe () {
         const { rootMargin, threshold } = this
         const config = { root: null, rootMargin, threshold }
+
         this.observer = new IntersectionObserver(this.onIntersection, config)
         this.observer.observe(this.$el)
       },
       onIntersection (entries) {
         this.isIntersected = entries.some(entry => {
-          if(this.isFirst && entry.isIntersecting && this.scrollDirection === 'up') {
-            this.$root.$emit('activeClass', 0)
-          }
-         
-          if(this.index === 1 && entry.isIntersecting && this.scrollDirection === 'down') {
-            this.$root.$emit('nonActiveClass', 0)
-          }
+          this.observerRectTop = (entry.rootBounds.top - entry.rootBounds.height)
           
-          if(this.index === 2 && entry.isIntersecting && this.scrollDirection === 'up') {
-             this.$root.$emit('nonActiveClass', 3)
-          }
-          
-          if(this.index === 3 && entry.isIntersecting) {    
-            this.$root.$emit('activeClass', 3)
-
-            if(this.scrollY >= (entry.target.offsetTop - entry.intersectionRect.top)) {
-              this.isLast = true
-              this.$root.$emit('nonActiveClass', 0)
-            } 
-          }
-
           return entry.isIntersecting
         })
       },
       unobserve () {
         this.observer.unobserve(this.$el)
       },
+      debounce(callback, wait, context = this) {
+        let timeout = null
+        let callbackArgs = null
+
+        const later = () => callback.apply(context, callbackArgs)
+
+        return function() {
+          callbackArgs = arguments
+          clearTimeout(timeout)
+          timeout = setTimeout(later, wait)
+        }
+      }
     },
   }
 </script>
