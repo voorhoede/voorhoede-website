@@ -2,10 +2,13 @@
   <span
     class="scroll-highlighted-text__text h1"
     :class="
-      (isIntersected && index !== 0) ? 'scroll-highlighted-text--active' 
-      : (!isIntersected && index === 0) ? 'scroll-highlighted-text--non-active'
-      : ''
+      (isIntersected) ? 'scroll-highlighted-text--active' 
+      : (isFirst) ? 'scroll-highlighted-text--active'
+      : (isLast) ? 'scroll-highlighted-text--active'
+      : 'scroll-highlighted-text--non-active'
     "
+    :data-id="index"
+    ref="highlightedText"
   >
     {{ line.line }}
   </span>
@@ -35,14 +38,47 @@
       return {
         isIntersected: false,
         observer: null,
+        scrollY: null,
+        scrollDirection: 'down',
+        isFirst: (this.index === 0) ? true : false,
+        isLast: false
       }
     },
     mounted() {
+      const active = 'scroll-highlighted-text--active'
+      const nonActive = 'scroll-highlighted-text--non-active'
+      const highlightedTextClass = this.$refs.highlightedText.classList
+      const highlightedTextID = parseInt(this.$refs.highlightedText.dataset.id) 
+      let previous = window.scrollY
+
       if ('IntersectionObserver' in window) {
         this.observe()
       } else {
         this.isIntersected = true
       }
+
+      this.$root.$on('activeClass', i => {
+        if(highlightedTextID === i ) { 
+          highlightedTextClass.replace(nonActive, active)
+        }
+      })
+      
+      this.$root.$on('nonActiveClass', i => {
+        if(highlightedTextID === i ) { 
+          highlightedTextClass.replace(active, nonActive)
+        }
+      })
+
+      window.addEventListener('scroll', () => {
+        window.scrollY > previous ? this.scrollDirection = 'down': this.scrollDirection = 'up'
+        this.scrollY = window.scrollY
+        previous = window.scrollY
+        
+        if(this.scrollY > this.$refs.highlightedText.offsetTop) {
+          this.$root.$emit('activeClass', 3)
+          this.$root.$emit('nonActiveClass', 0)
+        }
+      })
     },
     unmounted() {
       this.unobserve()
@@ -55,7 +91,30 @@
         this.observer.observe(this.$el)
       },
       onIntersection (entries) {
-        this.isIntersected = entries.some(entry => entry.isIntersecting)
+        this.isIntersected = entries.some(entry => {
+          if(this.isFirst && entry.isIntersecting && this.scrollDirection === 'up') {
+            this.$root.$emit('activeClass', 0)
+          }
+         
+          if(this.index === 1 && entry.isIntersecting && this.scrollDirection === 'down') {
+            this.$root.$emit('nonActiveClass', 0)
+          }
+          
+          if(this.index === 2 && entry.isIntersecting && this.scrollDirection === 'up') {
+             this.$root.$emit('nonActiveClass', 3)
+          }
+          
+          if(this.index === 3 && entry.isIntersecting) {    
+            this.$root.$emit('activeClass', 3)
+
+            if(this.scrollY >= (entry.target.offsetTop - entry.intersectionRect.top)) {
+              this.isLast = true
+              this.$root.$emit('nonActiveClass', 0)
+            } 
+          }
+
+          return entry.isIntersecting
+        })
       },
       unobserve () {
         this.observer.unobserve(this.$el)
@@ -100,10 +159,6 @@
 
   .scroll-highlighted-text {
     text-align: center;
-  }
-
-  .scroll-highlighted-text__text:first-of-type {
-    color: var(--html-blue);
   }
 
   .scroll-highlighted-text__text {
