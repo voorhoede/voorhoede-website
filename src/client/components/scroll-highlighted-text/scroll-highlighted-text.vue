@@ -33,22 +33,27 @@
         type: [Number, Array],
         default: 0,
       },
+      isFirst: {
+        type: Object,
+        required: true,
+      },
+      isLast: {
+        type: Object,
+        required: true,
+      },
     },
     data() {
       return {
         isIntersected: false,
         observer: null,
-        scrollY: null,
-        isFirst: (this.index === 0) ? true : false,
-        isLast: (this.index === 3) ? true : false,
         scrolledAbove: false,
         scrolledBelow: false,
-        observerRectTop: 0
+        observerRectTop: 0,
       }
     },
     mounted() {
-      const firstItem = 0
-      const lastItem = 3
+      const firstItem = this.isFirst.number
+      const lastItem = this.isLast.number
       const highlightedTextID = parseInt(this.$refs.highlightedText.dataset.id) 
 
       if ('IntersectionObserver' in window) {
@@ -59,16 +64,15 @@
 
       window.addEventListener('scroll', this.debounce(() => {
         let offsetIntersectionObserver = this.$refs.highlightedText.offsetTop - this.observerRectTop
-        this.scrollY = window.scrollY
 
         if(highlightedTextID === firstItem) {
-          ((offsetIntersectionObserver) > this.scrollY)
+          ((offsetIntersectionObserver) > window.scrollY)
           ? this.scrolledAbove = true
           : this.scrolledAbove = false
         }
 
         if(highlightedTextID === lastItem) {
-          ((offsetIntersectionObserver) < this.scrollY)
+          ((offsetIntersectionObserver) < window.scrollY)
           ? this.scrolledBelow = true
           : this.scrolledBelow = false
         }
