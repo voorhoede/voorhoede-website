@@ -52,8 +52,6 @@
       }
     },
     mounted() {
-      const firstItem = this.isFirst.number
-      const lastItem = this.isLast.number
       const highlightedTextID = parseInt(this.$refs.highlightedText.dataset.id) 
 
       if ('IntersectionObserver' in window) {
@@ -65,13 +63,13 @@
       window.addEventListener('scroll', this.debounce(() => {
         let offsetIntersectionObserver = this.$refs.highlightedText.offsetTop - this.observerRectTop
 
-        if(highlightedTextID === firstItem) {
+        if(highlightedTextID === this.isFirst.number) {
           ((offsetIntersectionObserver) > window.scrollY)
           ? this.scrolledAbove = true
           : this.scrolledAbove = false
         }
 
-        if(highlightedTextID === lastItem) {
+        if(highlightedTextID === this.isLast.number) {
           ((offsetIntersectionObserver) < window.scrollY)
           ? this.scrolledBelow = true
           : this.scrolledBelow = false
