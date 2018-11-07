@@ -53,44 +53,52 @@
     },
     mounted() {
       const highlightedTextID = parseInt(this.$refs.highlightedText.dataset.id) 
+      let offsetIntersectionObserver
 
-      if ('IntersectionObserver' in window) {
-        this.observe()
-      } else {
-        this.isIntersected = true
-      }
+      'IntersectionObserver' in window ? this.observe() : this.isIntersected = true
 
       window.addEventListener('scroll', this.debounce(() => {
-        let offsetIntersectionObserver = this.$refs.highlightedText.offsetTop - this.observerRectTop
+        if(this.$refs.highlightedText) {
+          // calculate offset from window top including rootMargin set on the observer
+          offsetIntersectionObserver = this.$refs.highlightedText.offsetTop - this.observerRectTop
 
-        if(highlightedTextID === this.isFirst.number) {
-          ((offsetIntersectionObserver) > window.scrollY)
-          ? this.scrolledAbove = true
-          : this.scrolledAbove = false
-        }
-
-        if(highlightedTextID === this.isLast.number) {
-          ((offsetIntersectionObserver) < window.scrollY)
-          ? this.scrolledBelow = true
-          : this.scrolledBelow = false
+          // if first highlighted text line and user scrolled before intersecting with observer
+          if(highlightedTextID === this.isFirst.number) {
+            ((offsetIntersectionObserver) > window.scrollY)
+            ? this.scrolledAbove = true
+            : this.scrolledAbove = false
+          }
+          // if last highlighted text line and user scrolled after intersecting with observer
+          if(highlightedTextID === this.isLast.number) {
+            ((offsetIntersectionObserver) < window.scrollY)
+            ? this.scrolledBelow = true
+            : this.scrolledBelow = false
+          }
         }
       }), 300)
     },
-    unmounted() {
+    destroyed() {
       this.unobserve()
     },
     methods: {
       observe () {
         const { rootMargin, threshold } = this
+        // the viewport is the container due to negative margins
+        // it will only check in a small window if intersected
         const config = { root: null, rootMargin, threshold }
 
         this.observer = new IntersectionObserver(this.onIntersection, config)
+        //this.$el is the target container
         this.observer.observe(this.$el)
       },
       onIntersection (entries) {
-        this.isIntersected = entries.some(entry => {
-          this.observerRectTop = (entry.rootBounds.top - entry.rootBounds.height)
+        //get observer offset to rootBounds
+        const rootBoundTop = entries[0].rootBounds.top
+        this.observerRectTop === rootBoundTop
+          ? false
+          : this.observerRectTop = rootBoundTop
 
+        this.isIntersected = entries.some(entry => {
           return entry.isIntersecting
         })
       },
