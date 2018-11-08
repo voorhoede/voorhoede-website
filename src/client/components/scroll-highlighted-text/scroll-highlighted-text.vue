@@ -57,7 +57,7 @@
         } else if(this.isLast && this.scrolledBelow) {
           return 'scroll-highlighted-text--active'
         } else {
-          return 'scroll-highlighted-text--non-active'
+          return 'scroll-highlighted-text--in-active'
         }
       }
     },
@@ -167,7 +167,7 @@
     animation: var(--animate-text-in);
   }
   
-  .scroll-highlighted-text--non-active {
+  .scroll-highlighted-text--in-active {
     animation: var(--animate-text-out);
   }
 

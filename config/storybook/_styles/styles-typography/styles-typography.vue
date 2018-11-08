@@ -322,7 +322,7 @@
 </template>
 
 <script>
-import debounce from '../../lib/debounce-helper'
+import debounce from '../../../../src/client/lib/debounce-helper'
 
 export default {
   data: () => ({ isMounted: false, width: 'Large' }),
