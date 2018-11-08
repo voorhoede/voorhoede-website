@@ -50,11 +50,9 @@
     },
     computed: {
       isIntersectedClass() {
-        if(this.isIntersected) {
-          return 'scroll-highlighted-text--active'
-        } else if(this.isFirst && this.scrolledAbove) {
-          return 'scroll-highlighted-text--active'
-        } else if(this.isLast && this.scrolledBelow) {
+        if( this.isIntersected ||
+            this.isFirst && this.scrolledAbove ||
+            this.isLast && this.scrolledBelow ) {
           return 'scroll-highlighted-text--active'
         } else {
           return 'scroll-highlighted-text--in-active'
