@@ -188,6 +188,8 @@
 </script>
 
 <style>
+  @import '../../../components/app-core/variables.css';
+  
   :root {
     --case-full-width-image-height: 515px; /* value according to design */
   }

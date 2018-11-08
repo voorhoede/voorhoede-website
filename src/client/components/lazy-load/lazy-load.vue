@@ -53,6 +53,8 @@ export default {
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   .lazy-load {
     height: 100%; /* without the 100% height child will not size properly */
   }

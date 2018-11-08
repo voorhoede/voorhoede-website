@@ -154,6 +154,8 @@ export default {
 </script>
 
  <style>
+  @import '../../../components/app-core/variables.css';
+
   .page-blog-post__header {
     grid-column: page;
   }

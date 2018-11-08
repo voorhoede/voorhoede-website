@@ -50,6 +50,8 @@ export default {
 </script>
 
 <style>
+@import '../app-core/variables.css';
+
 :root {
   --highlighted-clients-columns: 2;
 

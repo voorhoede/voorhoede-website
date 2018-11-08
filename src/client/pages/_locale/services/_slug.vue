@@ -41,6 +41,8 @@ import { PageHeaderDetail, GenericTextBlock } from '~/components'
 </script>
 
 <style>
+  @import '../../../components/app-core/variables.css';
+
   .page-service .page-header-detail {
     grid-column: page;
     margin-bottom: var(--spacing-large);

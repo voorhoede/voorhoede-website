@@ -47,6 +47,8 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   :root {
     --job-excerpt-easing: .25s cubic-bezier(.5, 0, .25, 1);
   }

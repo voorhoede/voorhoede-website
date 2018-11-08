@@ -55,6 +55,8 @@ export default {
 </script>
 
 <style>
+@import '../app-core/variables.css';
+
 .service-excerpt {
   position: relative;
 }

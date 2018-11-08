@@ -55,6 +55,8 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   .social-buttons__text {
     display: none;
   }

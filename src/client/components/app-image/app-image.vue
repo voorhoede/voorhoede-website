@@ -66,6 +66,8 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   .app-image {
     width: 100%;
     height: 100%;

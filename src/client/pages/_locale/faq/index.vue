@@ -46,6 +46,8 @@
 </script>
 
 <style>
+  @import '../../../components/app-core/variables.css';
+
   .page-faq .page-header {
     grid-column: page;
     margin-bottom: var(--spacing-large);

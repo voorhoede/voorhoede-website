@@ -117,11 +117,13 @@ module.exports = {
   */
   build: {
     vendor: [
-      'url-search-params-polyfill'
+      'url-search-params-polyfill',
     ],
 
     postcss: [
-      require('postcss-custom-properties')()
+      require('postcss-import')(),
+      require('postcss-custom-properties')(),
+      require('autoprefixer')(),
     ],
 
     /*

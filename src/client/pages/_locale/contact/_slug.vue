@@ -50,6 +50,8 @@
 </script>
 
 <style>
+@import '../../../components/app-core/variables.css';
+
 .page-contact-confirmation {
   background-color: var(--bg-pastel);
 }

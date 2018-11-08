@@ -14,6 +14,8 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   .rich-text table,
   .rich-text ul:not(:last-child),
   .rich-text ol:not(:last-child),

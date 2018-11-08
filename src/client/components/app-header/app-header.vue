@@ -59,6 +59,8 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+  
   :root {
     --header-border-opacity: .08;
   }

@@ -139,6 +139,8 @@
 </script>
 
 <style>
+  @import '../../components/app-core/variables.css';
+
   .page-index__header {
     margin-bottom: var(--spacing-big);
     background-color: var(--bg-pastel);

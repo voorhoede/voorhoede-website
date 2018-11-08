@@ -41,6 +41,8 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   :root {
     --image-height: 10rem;
   }

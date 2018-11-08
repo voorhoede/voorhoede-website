@@ -25,6 +25,8 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   .scroll-highlighted-text {
     text-align: center;
   }

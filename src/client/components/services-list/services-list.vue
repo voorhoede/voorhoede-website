@@ -36,6 +36,8 @@ export default {
 </script>
 
 <style>
+@import '../app-core/variables.css';
+
 :root {
   --services-list-border: 1px solid var(--very-dim);
 }
