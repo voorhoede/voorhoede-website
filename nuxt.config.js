@@ -112,20 +112,27 @@ module.exports = {
   css: [
     'prismjs/themes/prism.css'
   ],
+
+
+  plugins: [
+    { src: '~/plugins/fetch-polyfill', ssr: false },
+    { src: '~/plugins/promise-polyfill', ssr: false },
+  ],
+
   /*
   ** Build configuration
   */
   build: {
     vendor: [
-      'babel-polyfill',
-      'unfetch/polyfill',
       'url-search-params-polyfill',
     ],
 
     postcss: [
       require('postcss-import')(),
       require('postcss-custom-properties')(),
-      require('autoprefixer')(),
+      require('autoprefixer')({
+        grid: true,
+      }),
     ],
 
     /*
