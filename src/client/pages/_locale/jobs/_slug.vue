@@ -41,7 +41,15 @@
 
 <script>
   import { mapState } from 'vuex'
-  import { PageHeader, TextBlock, RichTextBlock, GenericTextBlock, CtaBlock, ScrollTo, AppButton } from '~/components'
+  import { 
+    PageHeader,
+    TextBlock,
+    RichTextBlock,
+    GenericTextBlock,
+    CtaBlock,
+    ScrollTo,
+    AppButton 
+  } from '../../../components'
 
   export default {
     components: {
