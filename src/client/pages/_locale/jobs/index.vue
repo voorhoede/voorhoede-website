@@ -8,11 +8,9 @@
     <div class="grid">
       <ul class="page-jobs__overview">
         <li 
-          class="page-about-us__jobs-list" 
           v-for="item in page.jobs" 
-          :key="item.title">
+          :key="item.slug">
           <jobs-excerpt
-            class="page-about-us__jobs-list-item"
             :title="item.title"
             :description="item.description"
             :label="item.callToActionLabel"
@@ -60,6 +58,13 @@
 }
 
 @media (min-width: 1100px) {
+  .page-jobs__overview {
+    grid-column-start: 8;
+    grid-column-end: -8;
+  }
+}
+
+@media (min-width: 1400px) {
   .page-jobs__overview {
     grid-column-start: 12;
     grid-column-end: -12;
