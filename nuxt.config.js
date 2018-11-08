@@ -117,6 +117,8 @@ module.exports = {
   */
   build: {
     vendor: [
+      'babel-polyfill',
+      'unfetch/polyfill',
       'url-search-params-polyfill',
     ],
 
