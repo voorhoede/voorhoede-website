@@ -74,7 +74,10 @@
 
     <aside class="page-blog-post__aside">
       <blog-author class="page-blog-post__aside-author" :item="page" />
-      <social-buttons :title="page.socialTitle" />
+      <social-buttons 
+        :title="page.socialTitle" 
+        :share-title="page.title" 
+        :share-post="true" />
     </aside>
 
     <div class="page-blog-post__link-container">
