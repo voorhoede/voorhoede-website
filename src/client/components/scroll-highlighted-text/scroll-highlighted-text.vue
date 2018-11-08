@@ -1,12 +1,7 @@
 <template>
   <span
     class="scroll-highlighted-text__text h1"
-    :class="
-      (isIntersected) ? 'scroll-highlighted-text--active' 
-      : (isFirst && scrolledAbove) ? 'scroll-highlighted-text--active'
-      : (isLast && scrolledBelow) ? 'scroll-highlighted-text--active'
-      : 'scroll-highlighted-text--non-active'
-    "
+    :class="isIntersectedClass"
     :data-id="index"
     ref="highlightedText"
   >
@@ -15,6 +10,8 @@
 </template>
 
 <script>
+  import debounce from '../../lib/debounce-helper'
+
   export default {
     props: {
       index: {
@@ -51,13 +48,26 @@
         observerRectTop: 0,
       }
     },
+    computed: {
+      isIntersectedClass() {
+        if(this.isIntersected) {
+          return 'scroll-highlighted-text--active'
+        } else if(this.isFirst && this.scrolledAbove) {
+          return 'scroll-highlighted-text--active'
+        } else if(this.isLast && this.scrolledBelow) {
+          return 'scroll-highlighted-text--active'
+        } else {
+          return 'scroll-highlighted-text--non-active'
+        }
+      }
+    },
     mounted() {
       const highlightedTextID = parseInt(this.$refs.highlightedText.dataset.id) 
       let offsetIntersectionObserver
 
       'IntersectionObserver' in window ? this.observe() : this.isIntersected = true
 
-      window.addEventListener('scroll', this.debounce(() => {
+      window.addEventListener('scroll', debounce(() => {
         if(this.$refs.highlightedText) {
           // calculate offset from window top including rootMargin set on the observer
           offsetIntersectionObserver = this.$refs.highlightedText.offsetTop - this.observerRectTop
@@ -105,18 +115,6 @@
       unobserve () {
         this.observer.unobserve(this.$el)
       },
-      debounce(callback, wait, context = this) {
-        let timeout = null
-        let callbackArgs = null
-
-        const later = () => callback.apply(context, callbackArgs)
-
-        return function() {
-          callbackArgs = arguments
-          clearTimeout(timeout)
-          timeout = setTimeout(later, wait)
-        }
-      }
     },
   }
 </script>
