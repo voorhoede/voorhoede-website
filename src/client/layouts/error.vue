@@ -63,7 +63,7 @@ export default {
       grid-column-start: 2;
       grid-column-end: -2;
       background-color: var(--white);
-      padding: var(--spacing-large) var(--spacing-large);
+      padding: var(--spacing-large);
       justify-content: space-between;
     }
   }
@@ -72,7 +72,7 @@ export default {
     .layout-error__content {
       grid-column-start: 6;
       grid-column-end: -6;
-      padding: var(--spacing-larger) var(--spacing-larger);
+      padding: var(--spacing-larger);
     }
   }
 </style>
