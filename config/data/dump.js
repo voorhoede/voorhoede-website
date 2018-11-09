@@ -5,6 +5,7 @@ const glob = util.promisify(require('glob'))
 const path = require('path')
 const mkdirp = require('mkdirp')
 const dotenv = require('dotenv-safe')
+const dayjs = require('dayjs')
 const Prism = require('prismjs')
 
 dotenv.config()
@@ -50,7 +51,8 @@ function getLayoutData({ queryPath, locale }) {
 }
 
 function getPageData(queryPath, locale, alternateLocale) {
-  return runQuery(queryPath, { locale, alternateLocale })
+  const currentDate = dayjs().format('YYYY-MM-DD')
+  return runQuery(queryPath, { locale, alternateLocale, currentDate })
     .then(pageData => {
       const isHomePage = locales.includes(pageData.page.slug)
       const relPath = isHomePage ? locale : path.join(locale, pageData.page.slug)

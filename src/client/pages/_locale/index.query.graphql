@@ -1,11 +1,13 @@
-query HomePage($locale: SiteLocale)  {
+query HomePage($locale: SiteLocale, $currentDate: DateTime)  {
   page: home(locale:$locale) {
     ...page
   },
   alternate: home(locale:$locale) {
     slug
   },
-  upcomingEvents: allAcademyItems(locale:$locale, first: 1, orderBy: date_DESC) {
+  upcomingEvents: allAcademyItems(locale:$locale, first: 1, orderBy: date_ASC, filter: {
+    date: { gte: $currentDate }
+  }) {
     date,
     description,
     title,
