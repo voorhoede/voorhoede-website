@@ -10,7 +10,17 @@
         <scroll-to point-down />
       </div>
       <div class="grid">
-        <scroll-highlighted-text :text-lines="page.usps"/>
+        <p class="scroll-highlighted-text">
+          <scroll-highlighted-text 
+            v-for="(line, index) in page.usps" 
+            :key="index"
+            :line="line"
+            :index="index"
+            :is-first="index === 0 ? { isSet: true, number: 0 } : { isSet: false }"
+            :is-last="index === Object.keys(page.usps).length - 1 ? 
+            { isSet: true, number: index } : { isSet: false }"
+          />
+        </p>
       </div>
     </div>
     <section class="page-index__services grid">
