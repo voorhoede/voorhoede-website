@@ -34,6 +34,13 @@
   /* Z-INDEXES */
   --z-index-high: 2;
   --z-index-low: 1;
+
+  /* GRID */
+  --grid-page: 1 / 51;
+  --grid-page-left: 1 / 26;
+  --grid-page-right: 26 / 51;
+  --grid-content: 2 / 50;
+  --grid-content-left: 2 / 50;
 }
 
 @media (min-width: 1100px) {
