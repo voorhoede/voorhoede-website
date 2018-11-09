@@ -61,7 +61,7 @@ function getPageData(queryPath, locale, alternateLocale) {
           .map(item => item.slug)
           .forEach(slug => {
             const slugQueryPath = path.join(path.parse(queryPath).dir, '_slug.query.graphql')
-            runQuery(slugQueryPath, { locale, alternateLocale, slug, currentDate })
+            runQuery(slugQueryPath, { locale, alternateLocale, slug })
               .then(data => {
                 const relPath = path.join(locale, pageData.page.slug, data.page.slug)
                 // Run code block content through prismjs
