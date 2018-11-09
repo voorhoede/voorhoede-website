@@ -67,7 +67,6 @@ select {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    flex-wrap: wrap;
   }
 
   label + label {
@@ -75,7 +74,6 @@ select {
   }
 
   label > span {
-    flex-wrap: wrap;
     flex-basis: 33%;
     padding-right: var(--spacing-small);
   }
