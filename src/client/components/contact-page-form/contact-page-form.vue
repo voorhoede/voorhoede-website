@@ -283,8 +283,4 @@
   .contact-form__fieldset {
     margin-bottom: var(--spacing-large);
   }
-
-  .contact-form__description {
-    resize: vertical;
-  }
 </style>
