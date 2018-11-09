@@ -20,9 +20,9 @@
         }"
       >
         <h2 class="sr-only" v-html="text" />
-        <self-typing-text 
-          :text="text" 
-          :speed-index="70" 
+        <self-typing-text
+          :text="text"
+          :speed-index="70"
           :class="{
             'self-typing-text--hero': isHomepage,
             'self-typing-text--h1': !isHomepage,
@@ -75,13 +75,13 @@ export default {
 .page-header__brick {
   display: block;
   background-color: var(--brand-yellow);
-  grid-column: page;
+  grid-column: var(--grid-page);
   grid-row-start: 3;
   grid-row-end: 6;
 }
 
 .page-header__curly-bracket-column {
-  grid-column: page;
+  grid-column: var(--grid-page);
   grid-row: 3;
   position: absolute;
   top: calc(-1 * var(--spacing-large));
@@ -133,7 +133,7 @@ export default {
 
 .page-header__description {
   margin: var(--spacing-large) 0;
-  grid-column: content;
+  grid-column: var(--grid-content);
   grid-row-start: 2;
 }
 
@@ -144,8 +144,7 @@ export default {
 }
 
 .page-header__image {
-  grid-column-start: 2;
-  grid-column-end: 18;
+  grid-column: var(--grid-content);
   grid-row-start: 4;
   grid-row-end: 5;
   display: flex;
@@ -167,7 +166,7 @@ export default {
   }
 
   .page-header__curly-bracket-column {
-    grid-column: content;
+    grid-column: var(--grid-content);
   }
 
   .page-header__curly-bracket-wrapper {
@@ -181,9 +180,7 @@ export default {
   }
 
   .page-header__image {
-    grid-column: content;
-    grid-column-start: 2;
-    grid-column-end: 18;
+    grid-column: var(--grid-content);
     justify-content: center;
   }
 
@@ -212,23 +209,21 @@ export default {
   }
 
   .page-header__description {
-    grid-column: content;
+    grid-column: var(--grid-content-left);
     grid-row-start: 2;
-    grid-column-start: 2;
-    grid-column-end: 18;
   }
 
   .page-header__brick {
     height: 100%;
-    grid-column: page-right;
+    grid-column: var(--grid-page-right);
     grid-row-start: 1;
-    grid-row-end: -1;
+    grid-row-end: 6;
   }
 
   .page-header__curly-bracket-column {
     top: var(--spacing-large);
     position: relative;
-    grid-column: 33;
+    grid-column: 51;
     grid-row-start: 2;
     grid-row-end: 4;
     overflow: unset;
@@ -239,7 +234,7 @@ export default {
   }
 
   .page-header__image {
-    grid-column: content-right;
+    grid-column: var(--grid-content-right);
     grid-row-start: 2;
     grid-row-end: 3;
     justify-content: flex-end;
@@ -271,7 +266,7 @@ export default {
   }
 
   .page-header__image {
-    grid-column: content-right;
+    grid-column: var(--grid-content-right);
     grid-column-end: 48;
     align-self: flex-end;
   }
