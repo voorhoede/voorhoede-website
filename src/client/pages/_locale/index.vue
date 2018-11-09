@@ -381,7 +381,7 @@
     .page-index__cta-block .scroll-to {
       display: flex;
       position: absolute;
-      bottom: var(--spacing-large);
+      bottom: var(--spacing-larger);
       grid-column: -3;
     }
 
@@ -448,6 +448,10 @@
       grid-column-start: 21;
       grid-column-end: 40;
     }
+
+    .page-index__cta-block .scroll-to {
+      bottom: var(--spacing-big);
+    }
   }
 
   @media (min-width: 1440px) {
@@ -459,6 +463,11 @@
     .page-index .page-header__text {
       margin: var(--spacing-large) 0;
       grid-column-end: 24;
+    }
+
+    .page-index__cta-block {
+      /* tweak for the inconsistent spacing of the latest-blog-post component  */
+      padding-top: var(--spacing-smaller);
     }
   }
 

@@ -254,7 +254,7 @@ export default {
     .page-blog-post__cta .scroll-to {
       display: flex;
       position: absolute;
-      bottom: var(--spacing-large);
+      bottom: var(--spacing-larger);
       grid-column: -3;
     }
 
@@ -287,6 +287,10 @@ export default {
     .page-blog-post__cta-block {
       grid-column-start: 14;
       grid-column-end: -14;
+    }
+
+    .page-blog-post__cta .scroll-to {
+      bottom: var(--spacing-big);
     }
   }
 

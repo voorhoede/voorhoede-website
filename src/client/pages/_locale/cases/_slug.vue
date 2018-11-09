@@ -289,7 +289,7 @@
     .page-case__get-in-touch-form .scroll-to {
       display: flex;
       position: absolute;
-      bottom: var(--spacing-large);
+      bottom: 0;
       grid-column: -3;
     }
   }
