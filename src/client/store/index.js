@@ -82,14 +82,14 @@ const createStore = () => {
         }
       },
       nuxtServerInit({ commit }, { params }) {
-        commit(types.SET_CURRENT_LOCALE, { locale: params.locale })
+        commit(types.SET_CURRENT_LOCALE, { locale: params.locale ? params.locale : process.env.DEFAULT_LOCALE })
       },
       setCurrentLocale({ commit, dispatch }, { locale }) {
         commit(types.SET_CURRENT_LOCALE, { locale })
         dispatch('getLayoutData')
       },
       async getLayoutData({ state, commit }) {
-        const currentLocale = state.currentLocale || process.env.defaultLocale
+        const currentLocale = state.currentLocale
         const data = await getData(`${currentLocale}/layout/default`)
         commit(types.SET_LAYOUT_DATA, { data })
       }
