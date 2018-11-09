@@ -47,7 +47,7 @@ export default {
          * it will scale normaly when window is resized.
          *
          * this.$refs.text is checked, because the component might be unmounted,
-         * by the time the code is run, becuase of the timeout.
+         * by the time the code is run, because of the timeout.
          */
         if (index === this.text.length - 1 && this.$refs.text) {
           this.$refs.text.style.removeProperty('height')
