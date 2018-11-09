@@ -467,7 +467,7 @@
 
     .page-index__cta-block {
       /* tweak for the inconsistent spacing of the latest-blog-post component  */
-      padding-top: 10px;
+      padding-top: var(--spacing-smaller);
     }
   }
 
