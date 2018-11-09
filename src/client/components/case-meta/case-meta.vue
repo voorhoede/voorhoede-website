@@ -6,8 +6,8 @@
       <p class="body-petite">{{ toMetaString(expertises) }}</p>
     </section>
     <section class="case-meta__section">
-      <h3 class="case-meta__title body font-bold">{{ platformTitle }}</h3>
-      <p class="body-petite">{{ toMetaString(platforms) }}</p>
+      <h3 class="case-meta__title body font-bold">{{ technologiesTitle }}</h3>
+      <p class="body-petite">{{ toMetaString(technologies) }}</p>
     </section>
     <section class="case-meta__section">
       <h3 class="case-meta__title body font-bold">{{ deliverableTitle }}</h3>
@@ -38,11 +38,11 @@
           return value.every(item => item.title)
         }
       },
-      platformTitle: {
+      technologiesTitle: {
         type: String,
         required: true
       },
-      platforms: {
+      technologies: {
         type: Array,
         required: true,
         validator(value) {

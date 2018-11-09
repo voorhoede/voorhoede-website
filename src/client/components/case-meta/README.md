@@ -7,8 +7,8 @@
 <case-meta
   expertise-title="Expertise"
   :expertises="[{title: 'Development'}, {title: 'Prototyping'}]"
-  platform-title="Platform"
-  :platforms="[{title: 'Vuejs'}, {title: 'Node.js'}, {title: 'Nuxt'}]"
+  technologies-title="Technologies"
+  :technologies="[{title: 'Vuejs'}, {title: 'Node.js'}, {title: 'Nuxt'}]"
   deliverable-title="Deliverables"
   :deliverables="[{title: 'API intergration'}, {title: 'BFF (back-end for front-end)'}]"
   interested-title="Interested"
@@ -22,8 +22,8 @@
 | --- | --- | --- | --- |
 | expertise-title | String | true | Title of the section |
 | expertises | Array | true | Array of items |
-| platform-title | String | true | Title of the section |
-| platforms | Array | true | Array of items |
+| technologies-title | String | true | Title of the section |
+| technologies | Array | true | Array of items |
 | deliverable-title | String | true | Title of the section |
 | deliverables | Array | true | Array of items |
 | interested-title | String | true | Title of the section |
