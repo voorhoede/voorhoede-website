@@ -40,7 +40,8 @@
   --grid-page-left: 1 / 26;
   --grid-page-right: 26 / 51;
   --grid-content: 2 / 50;
-  --grid-content-left: 2 / 50;
+  --grid-content-left: 2 / 26;
+  --grid-content-right: 26 / 51;
 }
 
 @media (min-width: 1100px) {

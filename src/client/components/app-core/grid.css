@@ -1,14 +1,5 @@
 /* stylelint-disable value-list-max-empty-lines, custom-property-empty-line-before */
 
-:root {
-  --grid-margin: 20px;
-  --grid-fixed-column: 20px;
-  --grid-repeat-columns: 11;
-  --grid-flexible-column: 1fr;
-  --grid-flexible-column-half: .5fr;
-  --grid-column-set: var(--grid-fixed-column) var(--grid-flexible-column);
-}
-
 .grid {
   display: grid;
   grid-template-columns:
@@ -16,12 +7,16 @@
       repeat(2, 25px 1fr)
       repeat(8, 0 0)
       repeat(1, 25px 1fr) 25px
-      var(--grid-flexible-column-half)
-      var(--grid-flexible-column-half)
+      .5fr
+      .5fr
       repeat(1, 25px 1fr) 25px
       repeat(8, 0 0)
       repeat(2, 1fr 25px)
     20px;
+}
+
+.grid > * {
+  grid-column: var(--grid-content);
 }
 
 @media (min-width: 720px) {
@@ -31,8 +26,8 @@
         repeat(3, 25px 1fr)
         repeat(4, 0 0)
         repeat(4, 25px 1fr) 25px
-        var(--grid-flexible-column-half)
-        var(--grid-flexible-column-half)
+        .5fr
+        .5fr
         repeat(4, 25px 1fr) 25px
         repeat(4, 0 0)
         repeat(3, 25px 1fr)
@@ -45,8 +40,8 @@
     grid-template-columns:
       60px
         repeat(11, 20px 1fr) 1fr
-          var(--grid-flexible-column-half)
-          var(--grid-flexible-column-half)
+          .5fr
+          .5fr
         repeat(11, 20px 1fr) 1fr
       60px;
   }
@@ -57,8 +52,8 @@
     grid-template-columns:
       1fr
         repeat(11, 20px 1fr) 20px
-          var(--grid-flexible-column-half)
-          var(--grid-flexible-column-half)
+          .5fr
+          .5fr
         repeat(11, 20px 1fr) 20px
       1fr;
   }
