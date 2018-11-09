@@ -123,10 +123,6 @@
       color: var(--brand-yellow);
     }
 
-    50% {
-      color: var(--off-black);
-    }
-
     100% {
       color: var(--html-blue);
     }
@@ -135,10 +131,6 @@
   @keyframes color-change-out {
     0% {
       color: var(--html-blue);
-    }
-
-    50% {
-      color: var(--off-black);
     }
 
     100% {
