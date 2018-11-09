@@ -14,7 +14,6 @@
           <blog-list-item large :item="blogPost" :current-locale="currentLocale"/>
         </li>
       </ul>
-      <scroll-to point-up />
     </div>
     <div class="page-blog__cta grid">
       <cta-block
@@ -28,6 +27,8 @@
           <p class="body">{{ page.callToActionBody }}</p>
         </template>
       </cta-block>
+
+      <scroll-to point-up />
     </div>
   </main>
 </template>
@@ -78,13 +79,14 @@
   .page-blog__cta {
     grid-column: page;
     background-color: var(--bg-pastel);
+    position: relative;
   }
 
   .page-blog__cta .cta-block {
     border: none;
   }
 
-  .page-blog-container .scroll-to {
+  .page-blog__cta .scroll-to {
     display: none;
   }
 
@@ -100,10 +102,10 @@
       position: relative;
     }
 
-    .page-blog-container .scroll-to {
+    .page-blog__cta .scroll-to {
       display: flex;
       position: absolute;
-      bottom: var(--spacing-large);
+      bottom: var(--spacing-larger);
       grid-column: -3;
     }
 
@@ -124,6 +126,10 @@
     .page-blog__cta-block {
       grid-column-start: 14;
       grid-column-end: -14;
+    }
+
+    .page-blog__cta .scroll-to {
+      bottom: var(--spacing-big);
     }
   }
 </style>

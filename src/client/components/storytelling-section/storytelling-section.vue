@@ -4,13 +4,15 @@
     <section
       class="storytelling-section__item"
       v-for="item in items"
-      :key="item.title"
-    >
+      :key="item.title">
 
-      <div class="storytelling-section__image" v-if="item.image" :style="`background-image: url(${item.image.url})`" />
-      
+      <div
+        class="storytelling-section__image"
+        v-if="item.image"
+        :style="`background-image: url(${item.image.url})`" />
+
       <div class="storytelling-section__card">
-        <h3 class="body font-bold">{{ item.title }}</h3>
+        <h3 class="body-big font-bold">{{ item.title }}</h3>
         <rich-text-block :text="item.body" />
       </div>
     </section>

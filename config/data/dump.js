@@ -5,6 +5,7 @@ const glob = util.promisify(require('glob'))
 const path = require('path')
 const mkdirp = require('mkdirp')
 const dotenv = require('dotenv-safe')
+const dayjs = require('dayjs')
 const Prism = require('prismjs')
 
 dotenv.config()
@@ -27,7 +28,7 @@ glob(path.join(__dirname, '../../src/client/**/*.query.graphql'))
     paths.forEach(queryPath => {
       locales.forEach(locale => {
         const alternateLocale = locales.find(l => l !== locale)
-        
+
         if (queryPath.match(matchLayoutQuery)) {
           getLayoutData({ queryPath, locale })
         } else {
@@ -41,14 +42,17 @@ function getLayoutData({ queryPath, locale }) {
   const layoutName = queryPath.match(matchLayoutQuery)[0] // use name of graphql query file.
 
   return runQuery(queryPath, { locale })
-    .then(layoutData => {      
-      writeJsonFile({ filePath: `${locale}/layout/${layoutName}`, data: layoutData })
-      console.log(chalk.green(`👌️ Successfully written: ${locale}/layouts`)) // eslint-disable-line no-console
+    .then(layoutData => {
+      const isErrorLayout = Boolean(layoutData.error)
+      const relPath = isErrorLayout ? path.join(layoutName, `${layoutData.error.errorCode}`) : layoutName
+      writeJsonFile({ filePath: `${locale}/layouts/${relPath}`, data: layoutData })
+      console.log(chalk.green(`👌️ Successfully written: ${locale}/layouts/${relPath}`)) // eslint-disable-line no-console
     })
 }
 
 function getPageData(queryPath, locale, alternateLocale) {
-  return runQuery(queryPath, { locale, alternateLocale })
+  const currentDate = dayjs().format('YYYY-MM-DD')
+  return runQuery(queryPath, { locale, alternateLocale, currentDate })
     .then(pageData => {
       const isHomePage = locales.includes(pageData.page.slug)
       const relPath = isHomePage ? locale : path.join(locale, pageData.page.slug)

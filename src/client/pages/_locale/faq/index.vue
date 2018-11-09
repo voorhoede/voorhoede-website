@@ -24,11 +24,7 @@
   import { GenericTextBlock, PageHeader, ScrollTo } from '~/components'
 
   export default {
-    components: {
-      PageHeader,
-      GenericTextBlock,
-      ScrollTo
-    },
+    components: { GenericTextBlock, PageHeader, ScrollTo },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
     },

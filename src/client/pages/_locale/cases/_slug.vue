@@ -46,6 +46,7 @@
           <rich-text-block
             v-if="item.body"
             :text="item.body"
+            large-text
           />
         </div>
 
@@ -149,8 +150,12 @@
   } from '~/components'
 
   export default {
-    async asyncData({ store, route }) {
-      return await store.dispatch('getData', { route })
+    async asyncData({ store, route, error }) {
+      try {
+        return await store.dispatch('getData', { route })
+      } catch (err) {
+        return error({ statusCode: 404, message: err.message })
+      }
     },
     components: {
       CaseMeta,
@@ -286,7 +291,7 @@
     .page-case__get-in-touch-form .scroll-to {
       display: flex;
       position: absolute;
-      bottom: var(--spacing-large);
+      bottom: 0;
       grid-column: -3;
     }
   }
