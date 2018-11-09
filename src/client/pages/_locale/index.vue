@@ -11,13 +11,13 @@
       </div>
       <div class="grid">
         <p class="scroll-highlighted-text">
-          <scroll-highlighted-text 
-            v-for="(line, index) in page.usps" 
+          <scroll-highlighted-text
+            v-for="(line, index) in page.usps"
             :key="index"
             :line="line"
             :index="index"
             :is-first="index === 0 ? { isSet: true, number: 0 } : { isSet: false }"
-            :is-last="index === Object.keys(page.usps).length - 1 ? 
+            :is-last="index === Object.keys(page.usps).length - 1 ?
             { isSet: true, number: index } : { isSet: false }"
           />
         </p>
@@ -214,7 +214,7 @@
   }
 
   .page-index .academy-excerpt {
-    grid-column: page;
+    grid-column: var(--grid-page);
     grid-row: 1;
   }
 
@@ -230,8 +230,8 @@
   }
 
   .page-index__curly-bracket-column--right {
-    grid-column-start: -4;
-    grid-column-end: -1;
+    grid-column-start: 47;
+    grid-column-end: 51;
     grid-row-start: 2;
     grid-row-end: 3;
   }
@@ -254,7 +254,7 @@
   .page-index__blog-posts-list {
     margin-bottom: var(--spacing-small);
     grid-row: 2;
-    grid-column-end: -3;
+    grid-column-end: 48;
   }
 
   .page-index__blog-posts-button {
@@ -275,8 +275,8 @@
     }
 
     .page-index__curly-bracket-column--right {
-      grid-column-start: -4;
-      grid-column-end: -1;
+      grid-column-start: 47;
+      grid-column-end: 51;
     }
 
     .page-index__curly-bracket {
@@ -333,7 +333,7 @@
     }
 
     .page-index__blog-posts-list {
-      grid-column: page;
+      grid-column: var(--grid-page);
       overflow: hidden;
     }
 
@@ -380,8 +380,8 @@
 
     .page-index__curly-bracket-column--right {
       grid-row-start: 1;
-      grid-column-start: -6;
-      grid-column-end: -2;
+      grid-column-start: 45;
+      grid-column-end: 49;
     }
 
     .page-index__curly-bracket {
@@ -394,7 +394,7 @@
       display: flex;
       position: absolute;
       bottom: var(--spacing-larger);
-      grid-column: -3;
+      grid-column: 48;
     }
 
     .page-index__cta-block {
@@ -403,7 +403,7 @@
 
     .page-index__cta-block .cta-block {
       grid-column-start: 6;
-      grid-column-end: -6;
+      grid-column-end: 45;
     }
   }
 
@@ -425,7 +425,7 @@
     .page-index__services > *,
     .page-index__clients > * {
       grid-column-start: 4;
-      grid-column-end: -4;
+      grid-column-end: 47;
     }
 
     .page-index__section-title {
