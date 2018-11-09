@@ -86,6 +86,5 @@ select {
 
   label > textarea {
     flex-basis: 66%;
-    resize: vertical;
   }
 }
