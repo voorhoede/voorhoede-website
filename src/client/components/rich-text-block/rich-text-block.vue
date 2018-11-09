@@ -1,5 +1,6 @@
 <template>
-  <div class="rich-text body-big list" v-html="text" />
+  <div v-if="largeText" class="rich-text body-big list" v-html="text" />
+  <div v-else class="rich-text body list" v-html="text" />
 </template>
 
 <script>
@@ -8,6 +9,11 @@
       text: {
         type: String,
         required: true,
+      },
+      largeText: {
+        type: Boolean,
+        default: false,
+        required: false,
       }
     }
   }
@@ -54,6 +60,13 @@
   .rich-text p + ul,
   .rich-text p + ol {
     margin-top: calc(-1 * var(--spacing-small));
+  }
+
+  .rich-text :not(pre) > code {
+    font-family: monospace;
+    background: #f5f2f0;
+    padding: 0 .25rem;
+    border: 1px solid #b3b3b3;
   }
 
   @media (min-width: 720px) {

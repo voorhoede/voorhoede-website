@@ -43,8 +43,10 @@ function getLayoutData({ queryPath, locale }) {
 
   return runQuery(queryPath, { locale })
     .then(layoutData => {
-      writeJsonFile({ filePath: `${locale}/layout/${layoutName}`, data: layoutData })
-      console.log(chalk.green(`👌️ Successfully written: ${locale}/layouts`)) // eslint-disable-line no-console
+      const isErrorLayout = Boolean(layoutData.error)
+      const relPath = isErrorLayout ? path.join(layoutName, `${layoutData.error.errorCode}`) : layoutName
+      writeJsonFile({ filePath: `${locale}/layouts/${relPath}`, data: layoutData })
+      console.log(chalk.green(`👌️ Successfully written: ${locale}/layouts/${relPath}`)) // eslint-disable-line no-console
     })
 }
 
