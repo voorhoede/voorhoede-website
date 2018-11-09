@@ -104,7 +104,7 @@
 
   .scroll-to__point-up .scroll-to__text {
     transform: rotate(-90deg);
-    bottom: -25px;
+    bottom: -32px;
     transform-origin: top left;
   }
 

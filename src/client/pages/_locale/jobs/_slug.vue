@@ -61,8 +61,12 @@
       ScrollTo,
       AppButton
     },
-    async asyncData({ store, route }) {
-      return await store.dispatch('getData', { route })
+    async asyncData({ store, route, error }) {
+      try {
+        return await store.dispatch('getData', { route })
+      } catch (err) {
+        return error({ statusCode: 404, message: err.message })
+      }
     },
     computed: {
       ...mapState(['currentLocale']),

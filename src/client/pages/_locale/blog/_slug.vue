@@ -15,16 +15,16 @@
       <template v-for="item in page.items">
         <text-block
           v-if="item.__typename === 'TextSectionRecord' && item.title"
-          :key="item.title"
-        >
+          :key="item.title">
           <h2 class="page-blog-post-list__title h3 font-html-blue">{{ item.title }}</h2>
         </text-block>
 
         <rich-text-block
-          class="page-blog-post-list__rich-text list"
+          class="page-blog-post-list__rich-text"
           v-if="item.__typename === 'TextSectionRecord' && item.body"
           :key="item.body"
           :text="item.body"
+          large-text
         />
 
         <responsive-image
@@ -74,7 +74,10 @@
 
     <aside class="page-blog-post__aside">
       <blog-author class="page-blog-post__aside-author" :item="page" />
-      <social-buttons :title="page.socialTitle" />
+      <social-buttons 
+        :title="page.socialTitle" 
+        :share-title="page.title" 
+        :share-post="true" />
     </aside>
 
     <div class="page-blog-post__link-container">
@@ -134,8 +137,12 @@ export default {
     SocialButtons,
     TextBlock,
   },
-  async asyncData({ store, route }) {
-    return await store.dispatch('getData', { route })
+  async asyncData({ store, route, error }) {
+    try {
+      return await store.dispatch('getData', { route })
+    } catch (err) {
+      return error({ statusCode: 404, message: err.message })
+    }
   },
   computed: {
     ...mapState(['currentLocale'])
@@ -203,13 +210,6 @@ export default {
     border: none;
   }
 
-  .page-blog-post-list :not(pre) > code {
-    font-family: monospace;
-    background-color: #f5f2f0;
-    padding: 0 .25rem;
-    border: 1px solid #b3b3b3;
-  }
-
   .page-blog-post-list em {
     font-style: italic;
   }
@@ -223,7 +223,7 @@ export default {
       padding: 0 var(--spacing-larger);
     }
 
-    .page-blog-post-list--not-indented {
+    .page-blog-post-list > .page-blog-post-list--not-indented {
       padding: 0;
     }
 
@@ -237,11 +237,13 @@ export default {
     }
 
     .page-blog-post-list {
-      grid-column-start: 9;
+      grid-column-start: 10;
+      grid-column-end: -2;
     }
 
     .page-blog-post__aside {
       display: block;
+      grid-column-start: 2;
       grid-column-end: 9;
     }
 
@@ -252,7 +254,7 @@ export default {
     .page-blog-post__cta .scroll-to {
       display: flex;
       position: absolute;
-      bottom: var(--spacing-large);
+      bottom: var(--spacing-larger);
       grid-column: -3;
     }
 
@@ -272,23 +274,34 @@ export default {
       padding: 0 var(--spacing-big);
     }
 
-    .page-blog-post-list--not-indented {
-      padding: 0;
-    }
-
     .page-blog-post-list {
-      grid-column-start: 14;
-      grid-column-end: -10;
+      grid-column-start: 12;
+      grid-column-end: -6;
     }
 
     .page-blog-post__aside {
       grid-column-start: 4;
-      grid-column-end: 12;
+      grid-column-end: 11;
     }
 
     .page-blog-post__cta-block {
       grid-column-start: 14;
       grid-column-end: -14;
+    }
+
+    .page-blog-post__cta .scroll-to {
+      bottom: var(--spacing-big);
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .page-blog-post-list > * {
+      padding: 0 var(--spacing-bigger);
+    }
+
+    .page-blog-post-list {
+      grid-column-start: 12;
+      grid-column-end: -8;
     }
   }
  </style>

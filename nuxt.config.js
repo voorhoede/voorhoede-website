@@ -103,6 +103,7 @@ module.exports = {
     middleware: [
       'redirect-to-locale',
       'locale',
+      'layout',
       'enforce-trailing-slash',
       'meta-canonical',
     ],
