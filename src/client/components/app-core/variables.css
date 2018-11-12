@@ -36,14 +36,17 @@
   --z-index-low: 1;
 
   /* GRID */
+  --grid-column-small: 25px;
+  --grid-column-large: 20px;
+  --grid-margin: 20px;
   --grid-page-start: 1;
-  --grid-page-end: 51;
+  --grid-content-start: 2;
   --grid-center: 26;
+  --grid-content-end: 50;
+  --grid-page-end: 51;
   --grid-page: var(--grid-page-start) / var(--grid-page-end);
   --grid-page-left: var(--grid-page-start) / var(--grid-center);
   --grid-page-right: var(--grid-center) / var(--grid-page-end);
-  --grid-content-start: 2;
-  --grid-content-end: 50;
   --grid-content: var(--grid-content-start) / var(--grid-content-end);
   --grid-content-left: var(--grid-content-start) / var(--grid-center);
   --grid-content-right: var(--grid-center) / var(--grid-content-end);
