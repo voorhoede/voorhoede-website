@@ -21,7 +21,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import { GenericTextBlock, PageHeader, ScrollTo } from '~/components'
 
   export default {

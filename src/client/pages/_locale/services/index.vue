@@ -30,7 +30,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import { PageHeader, ServicesList, GetInTouchForm, RichTextBlock } from '~/components'
 
   export default {

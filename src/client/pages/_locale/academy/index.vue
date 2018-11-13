@@ -5,8 +5,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-
   export default {
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })

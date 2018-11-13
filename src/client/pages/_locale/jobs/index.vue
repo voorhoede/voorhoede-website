@@ -24,7 +24,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import { PageHeader, JobsExcerpt } from '~/components'
 
   export default {

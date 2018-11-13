@@ -40,7 +40,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import { AddressSidebar, ContactPageForm, PageHeader } from '~/components'
 
   export default {

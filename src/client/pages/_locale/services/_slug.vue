@@ -18,7 +18,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import { PageHeaderDetail, GenericTextBlock } from '~/components'
   export default {
     components: {
