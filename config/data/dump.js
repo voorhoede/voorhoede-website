@@ -46,6 +46,12 @@ function getLayoutData({ queryPath, locale }) {
       const isErrorLayout = Boolean(layoutData.error)
       const relPath = isErrorLayout ? path.join(layoutName, `${layoutData.error.errorCode}`) : layoutName
       writeJsonFile({ filePath: `${locale}/layouts/${relPath}`, data: layoutData })
+      
+      if(layoutData.allRedirects !== undefined) {
+        fs.writeFileSync(`${__dirname}/../../src/client/static/_redirects`,
+        redirectsToText(layoutData.allRedirects, locale), 'utf8')
+      }
+
       console.log(chalk.green(`👌️ Successfully written: ${locale}/layouts/${relPath}`)) // eslint-disable-line no-console
     })
 }
@@ -134,4 +140,11 @@ function prismifyCodeBlocks(items) {
       item.body = prismified
     }
   })
+}
+
+function redirectsToText (redirects, locale) {
+  const redirectToDefaultLocale = `/ /${locale}/ 301`
+  const redirectRulesFromCms = redirects
+    .map(redirect => `${redirect.from} ${redirect.to} ${redirect.httpStatusCode}`)
+  return [redirectToDefaultLocale, ...redirectRulesFromCms, ].join('\n')
 }
