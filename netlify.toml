@@ -13,7 +13,7 @@
   status = 404
 
 [[redirects]]
-  from = "en/portfolio/#work"
+  from = "/en/portfolio/#work"
   to = "/en/cases"
   status = 301
   force = false
