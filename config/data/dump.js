@@ -47,10 +47,8 @@ function getLayoutData({ queryPath, locale }) {
       const relPath = isErrorLayout ? path.join(layoutName, `${layoutData.error.errorCode}`) : layoutName
       writeJsonFile({ filePath: `${locale}/layouts/${relPath}`, data: layoutData })
       
-      if(layoutData.allRedirects !== undefined) {
+      if(layoutData.allRedirects) {
         fs.writeFileSync(`${__dirname}/../../dist/client/_redirects`,
-        redirectsToText(layoutData.allRedirects, locale), 'utf8')
-        fs.writeFileSync(`${__dirname}/../../src/client/static/_redirects`,
         redirectsToText(layoutData.allRedirects, locale), 'utf8')
       }
 
