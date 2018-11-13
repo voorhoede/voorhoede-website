@@ -3,7 +3,22 @@
     <span class="input-field__label body-petite" :class="{ 'field-is-invalid': isInvalid }">
       {{ !isInvalid ? label : validationErrorMessage }}
     </span>
+    <textarea
+      v-if="textarea"
+      :id="id"
+      :name="id"
+      :value="value"
+      :type="type"
+      :placeholder="placeholderLabel"
+      class="body"
+      :class="{ 'is-invalid': isInvalid }"
+      v-bind="$attrs"
+      ref="input"
+      rows="5"
+      @input="updateInput"
+    />
     <input
+      v-else
       :id="id"
       :name="id"
       :value="value"
@@ -51,6 +66,10 @@
         type: String,
         required: false,
         default: ''
+      },
+      textarea: {
+        type: Boolean,
+        default: false,
       }
     },
     data() {

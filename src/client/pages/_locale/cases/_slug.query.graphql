@@ -113,8 +113,8 @@ fragment caseItem on CaseItemRecord {
     deliverables {
       title
     },
-    platformsTitle,
-    platforms {
+    technologiesTitle,
+    technologies {
       title
     },
     interestedTitle,
