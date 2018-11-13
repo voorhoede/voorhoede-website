@@ -1,8 +1,7 @@
+/	/en/
 /nl/portfolio/      /nl/cases/      status = 301
 /en/portfolio/      /en/cases/      status = 301
 /nl/team/       /nl/about-us/       status = 301
 /en/team/       /en/about-us/       status = 301
-
-/	/en/
 /en/*       /en/layouts/error/404/index.html    404
 /*      /nl/layouts/error/404/index.html    404
