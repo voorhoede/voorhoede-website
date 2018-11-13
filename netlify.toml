@@ -2,12 +2,12 @@
   command = "npm run build"
   publish = "dist/client/"
 
-[[redirects]]
-  from = "/nl/portfolio/", to = "/nl/cases/", status = 301,
-  from = "/en/portfolio/", to = "/en/cases/", status = 301,
-  from = "/nl/team/", to = "/nl/about-us/", status = 301,
-  from = "/en/team/", to = "/en/about-us/", status = 301,
-
+redirects = [
+  { from = "/nl/portfolio/", to = "/nl/cases/", status = 301 },
+  { from = "/en/portfolio/", to = "/en/cases/", status = 301 },
+  { from = "/nl/team/", to = "/nl/about-us/", status = 301 },
+  { from = "/en/team/", to = "/en/about-us/", status = 301 },
+]
 [[redirects]]
   from = '/en/*'
   to = '/en/layouts/error/404/index.html'
