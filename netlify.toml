@@ -16,4 +16,3 @@
   from = "/en/portfolio/#work"
   to = "/en/cases"
   status = 301
-  force = false
