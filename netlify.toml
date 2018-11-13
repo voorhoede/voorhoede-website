@@ -3,16 +3,6 @@
   publish = "dist/client/"
 
 [[redirects]]
-  from = '/en/*'
-  to = '/en/layouts/error/404/index.html'
-  status = 404
-
-[[redirects]]
-  from = '/*'
-  to = '/nl/layouts/error/404/index.html'
-  status = 404
-
-[[redirects]]
   from = "/en/portfolio/"
   to = "/en/cases/"
   status = 301
@@ -21,3 +11,13 @@
   from = "/nl/portfolio/"
   to = "/nl/cases/"
   status = 301
+
+[[redirects]]
+  from = '/en/*'
+  to = '/en/layouts/error/404/index.html'
+  status = 404
+
+[[redirects]]
+  from = '/*'
+  to = '/nl/layouts/error/404/index.html'
+  status = 404
