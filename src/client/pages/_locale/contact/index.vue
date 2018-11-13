@@ -40,12 +40,16 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   import { AddressSidebar, ContactPageForm, PageHeader } from '~/components'
 
   export default {
     components: { AddressSidebar, ContactPageForm, PageHeader },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
+    },
+    computed: {
+      ...mapState(['currentLocale'])
     },
     head() {
       return {
@@ -54,7 +58,10 @@
           { 'name': 'description', 'content': this.page.social.description },
           { 'property': 'og:description', 'content': this.page.social.description },
           { 'name': 'keywords', 'content': this.page.keywords }
-        ]
+        ],
+        htmlAttrs: {
+          lang: this.currentLocale
+        }
       }
     }
   }

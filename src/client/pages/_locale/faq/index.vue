@@ -21,12 +21,16 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   import { GenericTextBlock, PageHeader, ScrollTo } from '~/components'
 
   export default {
     components: { GenericTextBlock, PageHeader, ScrollTo },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
+    },
+    computed: {
+      ...mapState(['currentLocale'])
     },
     head() {
       return {
@@ -35,7 +39,10 @@
           { 'name': 'description', 'content': this.page.social.description },
           { 'property': 'og:description', 'content': this.page.social.description },
           { 'name': 'keywords', 'content': this.page.keywords }
-        ]
+        ],
+        htmlAttrs: {
+          lang: this.currentLocale
+        }
       }
     }
   }

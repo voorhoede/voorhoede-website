@@ -154,7 +154,10 @@ export default {
         { 'property': 'og:description', 'content': this.page.social.description },
         { 'name': 'twitter:description', 'content': this.page.social.description },
         { 'name': 'keywords', 'content': this.page.keywords }
-      ]
+      ],
+      htmlAttrs: {
+        lang: 'en' // blogs are always english, so hardcode locale
+      }
     }
   }
 }

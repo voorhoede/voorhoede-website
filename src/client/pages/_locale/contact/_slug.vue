@@ -47,7 +47,10 @@
           { 'name': 'description', 'content': this.page.social.description },
           { 'property': 'og:description', 'content': this.page.social.description },
           { 'name': 'keywords', 'content': this.page.keywords }
-        ]
+        ],
+        htmlAttrs: {
+          lang: this.currentLocale
+        }
       }
     }
   }

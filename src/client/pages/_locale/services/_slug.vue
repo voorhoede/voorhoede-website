@@ -18,30 +18,37 @@
 </template>
 
 <script>
-import { PageHeaderDetail, GenericTextBlock } from '~/components'
- export default {
-  components: {
-    PageHeaderDetail,
-    GenericTextBlock
-  },
-  async asyncData({ store, route, error }) {
-    try {
-      return await store.dispatch('getData', { route })
-    } catch (err) {
-      return error({ statusCode: 404, message: err.message })
-    }
-  },
-  head() {
-    return {
-      meta: [
-        { 'name': 'description', 'content': this.page.social.description },
-        { 'name': 'description', 'content': this.page.social.description },
-        { 'property': 'og:description', 'content': this.page.social.description },
-        { 'name': 'keywords', 'content': this.page.keywords }
-      ]
+  import { mapState } from 'vuex'
+  import { PageHeaderDetail, GenericTextBlock } from '~/components'
+  export default {
+    components: {
+      PageHeaderDetail,
+      GenericTextBlock
+    },
+    async asyncData({ store, route, error }) {
+      try {
+        return await store.dispatch('getData', { route })
+      } catch (err) {
+        return error({ statusCode: 404, message: err.message })
+      }
+    },
+    computed: {
+      ...mapState(['currentLocale'])
+    },
+    head() {
+      return {
+        meta: [
+          { 'name': 'description', 'content': this.page.social.description },
+          { 'name': 'description', 'content': this.page.social.description },
+          { 'property': 'og:description', 'content': this.page.social.description },
+          { 'name': 'keywords', 'content': this.page.keywords }
+        ],
+        htmlAttrs: {
+          lang: this.currentLocale
+        }
+      }
     }
   }
-}
 </script>
 
 <style>
