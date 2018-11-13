@@ -49,11 +49,11 @@
   .grid {
     grid-template-columns:
       calc(3 * var(--grid-margin))             /* 1 2         */
-      repeat(11, var(--grid-column-large) 1fr)
-      var(--grid-column-large) .5fr            /* 24 25 26    */
+      repeat(11, var(--grid-column-medium) 1fr)
+      var(--grid-column-medium) .5fr            /* 24 25 26    */
       /* center */
-      .5fr var(--grid-column-large)            /* 26 27 28    */
-      repeat(11, 1fr var(--grid-column-large))
+      .5fr var(--grid-column-medium)            /* 26 27 28    */
+      repeat(11, 1fr var(--grid-column-medium))
       calc(3 * var(--grid-margin))             /* 50 51       */
   }
 }

@@ -37,6 +37,7 @@
 
   /* GRID */
   --grid-column-small: 25px;
+  --grid-column-medium: 35px;
   --grid-column-large: 20px;
   --grid-margin: 20px;
   --grid-page-start: 1;
