@@ -10,7 +10,7 @@ redirects = [
 ]
 
 redirects = [
-  {from = "/old-path", to = "/new-path"}]
+  {from = "/old-path", to = "/new-path"}, status = 301]
 
 [[redirects]]
   from = '/en/*'
