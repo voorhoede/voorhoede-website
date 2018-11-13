@@ -2,15 +2,10 @@
   command = "npm run build"
   publish = "dist/client/"
 
-[[redirects]]
-  from = "/en/portfolio/"
-  to = "/en/cases/"
-  status = 301
-
-[[redirects]]
-  from = "/nl/portfolio/"
-  to = "/nl/cases/"
-  status = 301
+redirects: [ 
+  { from = "/*/portfolio/*", to = "/*/cases/*", status = 301},
+  { from = "/*/team/*", to = "/*/about-us/*", status = 301}
+]
 
 [[redirects]]
   from = '/en/*'
