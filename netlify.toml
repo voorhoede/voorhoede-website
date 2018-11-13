@@ -9,6 +9,9 @@ redirects = [
   {from = "/en/team/", to = "/en/about-us/*", status = 301},
 ]
 
+redirects = [
+  {from = "/old-path", to = "/new-path"}]
+
 [[redirects]]
   from = '/en/*'
   to = '/en/layouts/error/404/index.html'
