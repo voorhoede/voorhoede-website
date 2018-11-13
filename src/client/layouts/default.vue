@@ -44,7 +44,14 @@
       $route() {
         this.$refs.topOfPage.focus()
       }
-    }
+    },
+    head() {
+      return {
+        htmlAttrs: {
+          lang: this.currentLocale
+        }
+      }
+    },
   }
 </script>
 

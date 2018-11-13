@@ -32,6 +32,13 @@ export default {
   },
   computed: {
     ...mapState(['layoutData'])
+  },
+  head() {
+    return {
+      htmlAttrs: {
+        lang: this.currentLocale
+      }
+    }
   }
 }
 </script>

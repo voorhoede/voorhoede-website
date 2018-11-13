@@ -7,8 +7,8 @@
     />
     <div class="grid">
       <ul class="page-jobs__overview">
-        <li 
-          v-for="item in page.jobs" 
+        <li
+          v-for="item in page.jobs"
           :key="item.slug">
           <jobs-excerpt
             :title="item.title"
@@ -24,16 +24,12 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import { PageHeader, JobsExcerpt } from '~/components'
 
   export default {
     components: {
       PageHeader,
       JobsExcerpt
-    },
-    computed: {
-      ...mapState(['currentLocale']),
     },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })

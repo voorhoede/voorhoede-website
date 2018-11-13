@@ -1,5 +1,5 @@
 <template>
-  <div class="page-blog-post grid">
+  <div class="page-blog-post grid" lang="en">
     <page-header-detail
       class="page-blog-post__header"
       :title="page.title"
@@ -74,9 +74,9 @@
 
     <aside class="page-blog-post__aside">
       <blog-author class="page-blog-post__aside-author" :item="page" />
-      <social-buttons 
-        :title="page.socialTitle" 
-        :share-title="page.title" 
+      <social-buttons
+        :title="page.socialTitle"
+        :share-title="page.title"
         :share-post="true" />
     </aside>
 
