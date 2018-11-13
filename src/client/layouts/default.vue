@@ -1,7 +1,7 @@
 <template>
   <div>
     <grid-demo :show="showGrid"/>
-    <h1 class="sr-only">De Voorhoede</h1>
+    <h1 class="sr-only" ref="test" tabindex="-1">De Voorhoede</h1>
     <app-header/>
     <app-mobile-menu/>
     <nuxt/>
@@ -34,6 +34,11 @@
       ...mapState(['showGrid', 'currentLocale', 'layoutData']),
       ...mapGetters(['localizedMenuItems'])
     },
+    watch: {
+      $route() {
+        this.$refs.test.focus()
+      }
+    }
   }
 </script>
 
