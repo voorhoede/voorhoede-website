@@ -48,7 +48,7 @@ function getLayoutData({ queryPath, locale }) {
       writeJsonFile({ filePath: `${locale}/layouts/${relPath}`, data: layoutData })
       
       if(layoutData.allRedirects !== undefined) {
-        fs.writeFileSync(`${__dirname}/../../src/client/static/_redirects`,
+        fs.writeFileSync(`${__dirname}/../../dist/client/static/_redirects`,
         redirectsToText(layoutData.allRedirects, locale), 'utf8')
       }
 
