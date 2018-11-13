@@ -3,6 +3,11 @@
   publish = "dist/client/"
 
 [[redirects]]
-  from = "/en/portfolio/#work"
-  to = "/en/cases"
+  from = "/en/portfolio/"
+  to = "/en/cases/"
+  status = 301
+
+[[redirects]]
+  from = "/nl/portfolio/"
+  to = "/nl/cases/"
   status = 301
