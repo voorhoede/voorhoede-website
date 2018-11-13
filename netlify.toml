@@ -11,3 +11,9 @@
   from = '/*'
   to = '/nl/layouts/error/404/index.html'
   status = 404
+
+[[redirects]]
+  from = "/nl/portfolio/*"
+  to = "/nl/cases/*"
+  status = 301
+  force = false
