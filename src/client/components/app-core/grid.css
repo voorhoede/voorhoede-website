@@ -24,23 +24,23 @@
   .grid {
     grid-template-columns:
       calc(2 * var(--grid-margin))              /* 1  2        */
-      var(--grid-column-small) 1fr repeat(2, 0) /* 2  3  4-6   */
-      var(--grid-column-small) 1fr              /* 6  7  8     */
-      var(--grid-column-small) 1fr repeat(2, 0) /* 8  9  10-12 */
-      var(--grid-column-small) 1fr repeat(2, 0) /* 12 13 14-16 */
-      var(--grid-column-small) 1fr              /* 16 17 18    */
-      var(--grid-column-small) 1fr repeat(2, 0) /* 18 19 20-22 */
-      var(--grid-column-small) 1fr              /* 22 23 24    */
-      var(--grid-column-small) .5fr             /* 24 25 26    */
+      var(--grid-column-medium) 1fr repeat(2, 0) /* 2  3  4-6   */
+      var(--grid-column-medium) 1fr              /* 6  7  8     */
+      var(--grid-column-medium) 1fr repeat(2, 0) /* 8  9  10-12 */
+      var(--grid-column-medium) 1fr repeat(2, 0) /* 12 13 14-16 */
+      var(--grid-column-medium) 1fr              /* 16 17 18    */
+      var(--grid-column-medium) 1fr repeat(2, 0) /* 18 19 20-22 */
+      var(--grid-column-medium) 1fr              /* 22 23 24    */
+      var(--grid-column-medium) .5fr             /* 24 25 26    */
       /* center */
-      .5fr var(--grid-column-small)             /* 26 27 28    */
-      1fr var(--grid-column-small) repeat(2, 0) /* 28 29 30-32 */
-      1fr var(--grid-column-small)              /* 32 33 34    */
-      1fr var(--grid-column-small) repeat(2, 0) /* 34 35 36-38 */
-      1fr var(--grid-column-small) repeat(2, 0) /* 38 39 40-42 */
-      1fr var(--grid-column-small)              /* 42 43 44    */
-      1fr var(--grid-column-small) repeat(2, 0) /* 44 45 46-48 */
-      1fr var(--grid-column-small)              /* 48 49 50    */
+      .5fr var(--grid-column-medium)             /* 26 27 28    */
+      1fr var(--grid-column-medium) repeat(2, 0) /* 28 29 30-32 */
+      1fr var(--grid-column-medium)              /* 32 33 34    */
+      1fr var(--grid-column-medium) repeat(2, 0) /* 34 35 36-38 */
+      1fr var(--grid-column-medium) repeat(2, 0) /* 38 39 40-42 */
+      1fr var(--grid-column-medium)              /* 42 43 44    */
+      1fr var(--grid-column-medium) repeat(2, 0) /* 44 45 46-48 */
+      1fr var(--grid-column-medium)              /* 48 49 50    */
       calc(2 * var(--grid-margin))              /* 50 51       */
   }
 }
@@ -49,11 +49,11 @@
   .grid {
     grid-template-columns:
       calc(3 * var(--grid-margin))             /* 1 2         */
-      repeat(11, var(--grid-column-medium) 1fr)
-      var(--grid-column-medium) .5fr            /* 24 25 26    */
+      repeat(11, var(--grid-column-large) 1fr)
+      var(--grid-column-large) .5fr            /* 24 25 26    */
       /* center */
-      .5fr var(--grid-column-medium)            /* 26 27 28    */
-      repeat(11, 1fr var(--grid-column-medium))
+      .5fr var(--grid-column-large)            /* 26 27 28    */
+      repeat(11, 1fr var(--grid-column-large))
       calc(3 * var(--grid-margin))             /* 50 51       */
   }
 }
