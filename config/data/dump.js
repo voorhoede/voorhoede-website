@@ -50,6 +50,8 @@ function getLayoutData({ queryPath, locale }) {
       if(layoutData.allRedirects !== undefined) {
         fs.writeFileSync(`${__dirname}/../../dist/client/_redirects`,
         redirectsToText(layoutData.allRedirects, locale), 'utf8')
+        fs.writeFileSync(`${__dirname}/../../src/client/static/_redirects`,
+        redirectsToText(layoutData.allRedirects, locale), 'utf8')
       }
 
       console.log(chalk.green(`👌️ Successfully written: ${locale}/layouts/${relPath}`)) // eslint-disable-line no-console
