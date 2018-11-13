@@ -34,6 +34,13 @@
       ...mapState(['showGrid', 'currentLocale', 'layoutData']),
       ...mapGetters(['localizedMenuItems'])
     },
+    head() {
+      return {
+        htmlAttrs: {
+          lang: this.currentLocale
+        }
+      }
+    }
   }
 </script>
 

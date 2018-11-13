@@ -1,5 +1,5 @@
 <template>
-  <div class="page-blog-post grid">
+  <div class="page-blog-post grid" lang="en">
     <page-header-detail
       class="page-blog-post__header"
       :title="page.title"
@@ -74,9 +74,9 @@
 
     <aside class="page-blog-post__aside">
       <blog-author class="page-blog-post__aside-author" :item="page" />
-      <social-buttons 
-        :title="page.socialTitle" 
-        :share-title="page.title" 
+      <social-buttons
+        :title="page.socialTitle"
+        :share-title="page.title"
         :share-post="true" />
     </aside>
 
@@ -154,10 +154,7 @@ export default {
         { 'property': 'og:description', 'content': this.page.social.description },
         { 'name': 'twitter:description', 'content': this.page.social.description },
         { 'name': 'keywords', 'content': this.page.keywords }
-      ],
-      htmlAttrs: {
-        lang: 'en' // blogs are always english, so hardcode locale
-      }
+      ]
     }
   }
 }

@@ -7,8 +7,8 @@
     />
     <div class="grid">
       <ul class="page-jobs__overview">
-        <li 
-          v-for="item in page.jobs" 
+        <li
+          v-for="item in page.jobs"
           :key="item.slug">
           <jobs-excerpt
             :title="item.title"
@@ -32,9 +32,6 @@
       PageHeader,
       JobsExcerpt
     },
-    computed: {
-      ...mapState(['currentLocale']),
-    },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
     },
@@ -45,10 +42,7 @@
           { 'name': 'description', 'content': this.page.social.description },
           { 'property': 'og:description', 'content': this.page.social.description },
           { 'name': 'keywords', 'content': this.page.keywords }
-        ],
-        htmlAttrs: {
-          lang: this.currentLocale
-        }
+        ]
       }
     }
   }

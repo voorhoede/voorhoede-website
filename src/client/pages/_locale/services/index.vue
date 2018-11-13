@@ -38,9 +38,6 @@
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
     },
-    computed: {
-      ...mapState(['currentLocale'])
-    },
     head() {
       return {
         meta: [
@@ -49,9 +46,6 @@
           { 'property': 'og:description', 'content': this.page.social.description },
           { 'name': 'keywords', 'content': this.page.keywords }
         ],
-        htmlAttrs: {
-          lang: this.currentLocale
-        }
       }
     }
   }
