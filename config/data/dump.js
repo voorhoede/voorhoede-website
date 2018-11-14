@@ -49,7 +49,7 @@ function getLayoutData({ queryPath, locale }) {
       if(layoutData.allRedirects) {
         fs.writeFile(path.join(__dirname,'../../src/client/static/_redirects'),
         redirectsToText(layoutData.allRedirects, locale), 'utf8', (err) => {
-          if (err) { console.error(err) }
+          if (err) { console.error(chalk.red(err, 'failed writing redirects to _redirects file')) }
         })
       }
 
