@@ -45,13 +45,8 @@ function getLayoutData({ queryPath, locale }) {
     .then(layoutData => {
       const isErrorLayout = Boolean(layoutData.error)
       const relPath = isErrorLayout ? path.join(layoutName, `${layoutData.error.errorCode}`) : layoutName
-      writeJsonFile({ filePath: `${locale}/layouts/${relPath}`, data: layoutData })
-      
-      if(layoutData.allRedirects) {
-        fs.writeFileSync(`${__dirname}/../../dist/client/_redirects`,
-        redirectsToText(layoutData.allRedirects, locale), 'utf8')
-      }
 
+      writeJsonFile({ filePath: `${locale}/layouts/${relPath}`, data: layoutData, locale:locale })
       console.log(chalk.green(`👌️ Successfully written: ${locale}/layouts/${relPath}`)) // eslint-disable-line no-console
     })
 }
@@ -106,12 +101,20 @@ function readQueryFile(query) {
   })
 }
 
-async function writeJsonFile({ filePath, data }) {
+async function writeJsonFile({ filePath, data, locale }) {
   const outputFileDir = path.join(__dirname, '../../src/client/static/data/', filePath)
   const outputFilePath = path.join(outputFileDir, 'index.json')
   if (!fs.existsSync(outputFileDir)) {
     await createDirectory(outputFileDir)
   }
+  
+  const pathToRedirects = `${__dirname}'/../../src/client/static/_redirects'`
+  if (data.allRedirects && fs.existsSync(pathToRedirects)) {
+    return fs.writeFile(pathToRedirects, redirectsToText(data.allRedirects, locale), 'utf8', (err) => {
+      if (err) { console.log(err) }
+    })
+  }
+
   return new Promise((resolve, reject) => {
     return fs.writeFile(outputFilePath, JSON.stringify(data), 'utf8', (err) => {
       err ? reject(err) : resolve()
