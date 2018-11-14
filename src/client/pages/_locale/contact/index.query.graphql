@@ -34,16 +34,6 @@ fragment contact on ContactRecord {
     phoneLabel,
     phonePlaceholder,
     phoneErrorMessage,
-    subjectLabel,
-    subjectOptions {
-      label,
-      value
-    },
-    budgetLabel,
-    budgetOptions {
-      label,
-      value
-    },
     websiteLabel,
     websitePlaceholder,
     projectLabel,
