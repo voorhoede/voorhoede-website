@@ -73,7 +73,7 @@
     <section class="page-index__blog-posts grid">
       <h2 class="page-index__section-title page-index__section-title--blog-posts h3">{{ page.blogPostsTitle }}</h2>
       <ul class="page-index__blog-posts-list grid">
-        <li v-if="blogPost.published" v-for="blogPost in latestBlogposts" :key="blogPost.slug" class="page-index__blog-posts-list-item">
+        <li v-for="blogPost in latestBlogposts" :key="blogPost.slug" class="page-index__blog-posts-list-item">
           <blog-list-item :item="blogPost" :current-locale="currentLocale"/>
         </li>
       </ul>
