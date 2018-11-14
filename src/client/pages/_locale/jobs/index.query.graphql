@@ -2,19 +2,37 @@ query ($locale: SiteLocale)  {
   page: jobOverview(locale:$locale) {
     ...jobOverview
   },
+  
   items: allJobs(locale: $locale) {
     slug(locale: $locale)
   },
-  alternate:jobOverview {
+
+  alternate: jobOverview(locale: $locale) {
     slug
   }
 }
 
 fragment jobOverview on JobOverviewRecord {
   title,
+  subtitle,
+  headerIllustration {
+    url,
+    alt
+  },
   slug,
   social {
     description
   },
-  keywords
+  keywords,
+ 	jobs {
+  	title
+    body,
+    description,
+   	slug,
+    callToActionLabel,
+    jobImage {
+      url,
+      alt
+    },
+  },  
 }

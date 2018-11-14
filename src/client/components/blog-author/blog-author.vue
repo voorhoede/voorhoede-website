@@ -67,9 +67,7 @@
   }
 
   .blog-author__image-author.app-image {
-    width: var(--thumbnail-size);
-    height: var(--thumbnail-size);
-    margin: 0 0 var(--spacing-tiny);
+    margin-bottom: var(--spacing-tiny);
   }
 
   .blog-author__text-time {
@@ -81,6 +79,7 @@
     .blog-author__image {
       display: block;
       margin-bottom: var(--spacing-small);
+      padding-right: var(--spacing-larger);
       border-right: 2px solid var(--very-dim);
     }
 

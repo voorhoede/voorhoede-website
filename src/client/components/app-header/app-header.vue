@@ -36,9 +36,6 @@
 
   export default {
     components: { AppButton },
-    data: () => ({
-      showMenu: false
-    }),
     computed: {
       ...mapState([
         'locales',

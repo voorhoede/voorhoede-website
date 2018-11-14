@@ -65,8 +65,8 @@ select {
 @media screen and (min-width: 1100px) {
   label {
     display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
   }
 
   label + label {
@@ -74,19 +74,17 @@ select {
   }
 
   label > span {
-    flex-shrink: 0;
-    margin-right: var(--spacing-larger);
+    flex-basis: 33%;
+    padding-right: var(--spacing-small);
   }
 
   label > input,
   label > select {
     margin-top: 0;
-    flex-shrink: 1;
-    flex-grow: 1;
-    width: auto;
+    flex-basis: 66%;
   }
 
   label > textarea {
-    flex-shrink: 0;
+    flex-basis: 66%;
   }
 }

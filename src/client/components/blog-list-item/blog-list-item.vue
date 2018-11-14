@@ -13,7 +13,7 @@
           {{ formattedDate }}
         </time>
         <div class="blog-list-item__content">
-          <h3 class="blog-list-item__heading" :class="large ? 'h4' : 'body'">{{ item.title }}</h3>
+          <h3 class="blog-list-item__heading" :class="large ? 'h4' : 'body'" lang="en">{{ item.title }}</h3>
           <div class="blog-list-item__author">
             <no-script>
               <img

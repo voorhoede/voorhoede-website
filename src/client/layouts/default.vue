@@ -1,7 +1,13 @@
 <template>
   <div>
     <grid-demo :show="showGrid"/>
-    <h1 class="sr-only">De Voorhoede</h1>
+    <!--
+      Set focus on this element on route change, so that the user can
+      tab to the next focusable element. Giving a negative tabindex
+      makes the element only focusable using .focus() but prevents the
+      element from being focusable using the keyboard.
+    -->
+    <h1 class="sr-only" ref="topOfPage" tabindex="-1">De Voorhoede</h1>
     <app-header/>
     <app-mobile-menu/>
     <nuxt/>
@@ -33,6 +39,18 @@
     computed: {
       ...mapState(['showGrid', 'currentLocale', 'layoutData']),
       ...mapGetters(['localizedMenuItems'])
+    },
+    watch: {
+      $route() {
+        this.$refs.topOfPage.focus()
+      }
+    },
+    head() {
+      return {
+        htmlAttrs: {
+          lang: this.currentLocale
+        }
+      }
     },
   }
 </script>

@@ -72,6 +72,7 @@ fragment about on AboutRecord {
   jobsBody,
   jobs {
     title,
+    slug,
     jobImage {
       url,
       alt,

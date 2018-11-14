@@ -14,9 +14,31 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
 
 fragment job on JobRecord {
   title,
+  subtitle,
   slug,
   social {
     description
   },
-  keywords
+  keywords,
+  jobImage {
+    url,
+    alt,
+  },
+  url,
+  callToActionLabel,
+  jobContent {
+  	__typename,
+    ... on TextSectionRecord {
+      title,
+      body,
+    },
+    ... on GenericTextBlockRecord {
+      title,
+      body,
+      image {
+        url,
+        alt
+      }
+    },
+  },
 }

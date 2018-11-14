@@ -102,7 +102,6 @@
   line-height: 1.6666666667; /* 30px */
 }
 
-.rich-text p,
 .body {
   font-family: var(--font-sans);
   font-size: 1rem; /* 16px */
@@ -194,7 +193,6 @@
     line-height: 1.75; /* 35px */
   }
 
-  .rich-text p,
   .body {
     font-size: 1.0625rem; /* 17px */
     line-height: 1.5882352941; /* 27px */
@@ -281,7 +279,6 @@
     line-height: 1.8181818182; /* 40px */
   }
 
-  .rich-text p,
   .body {
     font-size: 1.125rem; /* 18px */
     line-height: 1.6111111111; /* 29px */
@@ -306,6 +303,11 @@
 strong,
 .font-bold {
   font-weight: 700;
+}
+
+em,
+.font-italic {
+  font-style: italic;
 }
 
 .font-html-blue {

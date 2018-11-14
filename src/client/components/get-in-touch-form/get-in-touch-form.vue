@@ -46,6 +46,7 @@
         :validation-error-message="phoneErrorMessage"
       />
       <input-field
+        textarea
         v-model="form.explanation"
         id="project"
         type="text"

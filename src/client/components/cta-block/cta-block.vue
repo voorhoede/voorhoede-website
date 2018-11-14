@@ -75,13 +75,13 @@
   @import '../app-core/variables.css';
 
   .cta-block {
-    padding-top: var(--spacing-medium);
-    padding-bottom: var(--spacing-medium);
+    padding-top: var(--spacing-large);
+    padding-bottom: var(--spacing-larger);
     text-align: center;
   }
 
   .cta-block__heading {
-    margin-bottom: var(--spacing-small);
+    margin-bottom: var(--spacing-medium);
   }
 
   .cta-block__body {
@@ -109,7 +109,7 @@
   @media (min-width: 1100px) {
     .cta-block {
       padding-top: var(--spacing-large);
-      padding-bottom: var(--spacing-large);
+      padding-bottom: var(--spacing-big);
     }
   }
 </style>
