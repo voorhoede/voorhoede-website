@@ -22,6 +22,7 @@ query HomePage($locale: SiteLocale, $currentDate: DateTime)  {
   latestBlogposts: allBlogPosts(locale:$locale, first:3, orderBy: publishDate_DESC) {
     slug,
     title,
+    published,
     date: publishDate,
     authors {
       name,
