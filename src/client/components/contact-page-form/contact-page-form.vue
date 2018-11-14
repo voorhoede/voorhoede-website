@@ -189,8 +189,6 @@
       return {
         form: {
           'form-name': 'contact-page-form',
-          needHelpWith: '',
-          budgetOf: '',
           projectDescription: '',
           name: '',
           business: '',
