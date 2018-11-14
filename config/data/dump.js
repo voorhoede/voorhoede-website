@@ -47,10 +47,9 @@ function getLayoutData({ queryPath, locale }) {
       const relPath = isErrorLayout ? path.join(layoutName, `${layoutData.error.errorCode}`) : layoutName
       
       if(layoutData.allRedirects) {
-        writeRedirectsFile({ 
-          pathToRedirects: path.join(__dirname,'../../src/client/static/_redirects'),
-          locale: locale,
-          redirects: layoutData.allRedirects
+        fs.writeFile(path.join(__dirname,'../../src/client/static/_redirects'),
+        redirectsToText(layoutData.allRedirects, locale), 'utf8', (err) => {
+          if (err) { console.error(err) }
         })
       }
 
@@ -107,14 +106,6 @@ function readQueryFile(query) {
       err ? reject(err) : resolve(query)
     })
   })
-}
-
-function writeRedirectsFile(pathToRedirects, locale, redirects) {
-  if(redirects) {
-    return fs.writeFile(pathToRedirects, redirectsToText(redirects, locale), 'utf8', (err) => {
-      if (err) { console.error(err) }
-    })
-  }
 }
 
 async function writeJsonFile({ filePath, data }) {
