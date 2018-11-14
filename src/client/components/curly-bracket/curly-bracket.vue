@@ -46,6 +46,7 @@ export default {
   .curly-bracket__image {
     position: absolute;
     top: -2vh;
+    bottom: -2vh;
     right: 0;
     height: calc(100% + 4vh);
   }
@@ -77,12 +78,12 @@ export default {
   } */
   @media (min-width: 720px) {
     .curly-bracket {
-      margin-top: 0;
+      /* margin-top: 0;
       position: absolute;
       top: calc(-1 * var(--spacing-medium));
       bottom: calc(-1 * var(--spacing-medium));
       grid-column-start: 2;
-      grid-column-end: 6;
+      grid-column-end: 6; */
     }
 
     .curly-bracket--right {
@@ -92,9 +93,14 @@ export default {
     }
 
     .curly-bracket__image {
-      position: static;
+      top:0;
+      bottom: 0;
       height: 100%;
-      width: auto;
+    }
+
+    .curly-bracket--right .curly-bracket__image {
+      right: 0;
+      left: auto;
     }
   }
 </style>
