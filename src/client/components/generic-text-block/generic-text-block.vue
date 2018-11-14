@@ -3,7 +3,7 @@
     <h2 v-if="title" class="generic-text-block__title h4">{{ title }}</h2>
     <rich-text-block class="generic-text-block__body" :text="body"/>
     <lazy-load v-if="image" class="generic-text-block__image-container">
-      <img class="generic-text-block__image" :src="image.url" :alt="image.alt">
+      <img class="generic-text-block__image" :src="image.url" alt="">
     </lazy-load>
   </div>
 </template>
@@ -33,7 +33,7 @@
             return true
           }
 
-          return typeof(image.url) === 'string' && typeof(image.alt) === 'string'
+          return image && typeof(image.url) === 'string'
         },
       }
     }
