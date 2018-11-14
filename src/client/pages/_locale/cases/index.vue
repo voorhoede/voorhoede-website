@@ -58,6 +58,8 @@
 </script>
 
 <style>
+@import '../../../components/app-core/variables.css';
+
 .page-case__overview {
   margin: var(--spacing-large) 0 0 0;
 }

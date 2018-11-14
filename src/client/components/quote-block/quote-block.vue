@@ -30,6 +30,8 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   .quote-block {
     text-align: center;
   }

@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="page-header__image" :class="{ 'page-header__image--spaced-top': !isHomepage }">
-      <img :src="image.url" :alt="image.alt">
+      <img v-if="image" :src="image.url" alt="">
     </div>
     <div class="page-header__description">
       <div class="page-header__title sub-title">
@@ -20,9 +20,9 @@
         }"
       >
         <h2 class="sr-only" v-html="text" />
-        <self-typing-text 
-          :text="text" 
-          :speed-index="70" 
+        <self-typing-text
+          :text="text"
+          :speed-index="70"
           :class="{
             'self-typing-text--hero': isHomepage,
             'self-typing-text--h1': !isHomepage,
@@ -43,9 +43,12 @@ export default {
   props: {
     image: {
       type: Object,
-      required: true,
+      required: false,
+      default: function() {
+        return {}
+      },
       validator(image) {
-        return typeof(image.url) === 'string' && typeof(image.alt) === 'string'
+        return image && typeof(image.url) === 'string'
       },
     },
     title: {
@@ -65,6 +68,8 @@ export default {
 </script>
 
 <style>
+@import '../app-core/variables.css';
+
 .page-header {
   background-color: var(--bg-pastel);
   grid-template-rows: var(--app-header-height) 1fr;

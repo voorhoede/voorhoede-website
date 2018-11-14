@@ -22,6 +22,8 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   .text-block__title {
     margin-bottom: var(--spacing-smaller);
   }

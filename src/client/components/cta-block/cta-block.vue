@@ -72,6 +72,8 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   .cta-block {
     padding-top: var(--spacing-large);
     padding-bottom: var(--spacing-larger);

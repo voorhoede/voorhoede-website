@@ -3,8 +3,8 @@
     <h3 v-if="title" class="image-grid__title h2">{{ title }}</h3>
     <ul class="image-grid__list">
       <li
-        v-for="item in items"
-        :key="item.title"
+        v-for="(item, index) in items"
+        :key="index"
         class="image-grid__item"
         :class="{
           'image-grid__item--highlighted': item.isHighlighted,
@@ -50,6 +50,9 @@
 </script>
 
 <style>
+
+  @import '../app-core/variables.css';
+
   .image-grid {
     display: inline-block;
     width: 100%;
