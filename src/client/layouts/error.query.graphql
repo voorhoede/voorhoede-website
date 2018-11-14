@@ -8,7 +8,17 @@ query ($locale: SiteLocale, $errorCode: IntegerFilter)  {
   footer(locale: $locale) {
     ...footer
   },
+
+  allRedirects {
+    ...redirect
+  },
 }
+
+fragment redirect on RedirectRecord {
+	from,
+  to,
+  httpStatusCode
+},
 
 fragment errorPage on ErrorPageRecord {
   errorCode,

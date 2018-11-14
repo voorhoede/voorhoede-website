@@ -1,13 +1,3 @@
 [build]
   command = "npm run build"
   publish = "dist/client/"
-
-[[redirects]]
-  from = '/en/*'
-  to = '/en/layouts/error/404/index.html'
-  status = 404
-
-[[redirects]]
-  from = '/*'
-  to = '/nl/layouts/error/404/index.html'
-  status = 404
