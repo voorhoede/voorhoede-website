@@ -65,6 +65,8 @@ export default {
 </script>
 
 <style>
+@import '../app-core/variables.css';
+
 .page-header {
   background-color: var(--bg-pastel);
   grid-template-rows: var(--app-header-height) 1fr;

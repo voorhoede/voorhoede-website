@@ -36,6 +36,8 @@ export default {
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   :root {
     --max-width-description: 230px;
   }

@@ -51,6 +51,8 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   .storytelling-section {
     background-color: var(--paper);
     grid-row-gap: var(--spacing-larger);

@@ -175,6 +175,7 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
   @import '../forms/forms.css';
 
   .get-in-touch-form {

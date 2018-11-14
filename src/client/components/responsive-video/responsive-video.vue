@@ -121,6 +121,8 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   .responsive-video {
     position: relative;
     grid-column: page;
