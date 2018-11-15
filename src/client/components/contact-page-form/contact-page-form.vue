@@ -25,6 +25,7 @@
         :placeholder-label="projectPlaceholder"
         required
         :validate="formIsValidated"
+        :validation-error-message="projectErrorMessage"
       />
     </fieldset>
     <fieldset class="contact-form__fieldset">
@@ -179,6 +180,10 @@
         required: true
       },
       projectPlaceholder: {
+        type: String,
+        required: true
+      },
+      projectErrorMessage: {
         type: String,
         required: true
       },
