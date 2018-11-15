@@ -19,7 +19,8 @@ query HomePage($locale: SiteLocale, $currentDate: DateTime)  {
       height
     }
   },
-  latestBlogposts: allBlogPosts(locale:$locale, first:3, orderBy: publishDate_DESC, filter: { published: { eq: true } } ) {
+  latestBlogposts: allBlogPosts(locale:$locale, first:3, orderBy: publishDate_DESC,
+    filter: { published: { eq: true } } ) {
     slug,
     title,
     published,
