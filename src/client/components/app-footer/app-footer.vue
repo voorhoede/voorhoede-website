@@ -246,6 +246,13 @@ export default {
   border-bottom: 1px solid var(--black);
 }
 
+.app-footer__copyright:hover,
+.app-footer__copyright:focus,
+.app-footer__privacy:hover,
+.app-footer__privacy:focus {
+  color: var(--active-blue);
+}
+
 .app-footer__list {
   display: flex;
   flex-flow: row wrap;
