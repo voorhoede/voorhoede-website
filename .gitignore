@@ -12,3 +12,5 @@ dist
 
 .env
 src/client/static/data
+
+src/client/static
