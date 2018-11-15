@@ -119,12 +119,10 @@
     text-decoration: none;
   }
 
-  .app-header__link:hover {
-    color: var(--active-blue);
-  }
-
+  .app-header__link:hover,
   .app-header__link:focus {
-    border-bottom: 1px solid var(--html-blue);
+    padding-bottom: .23rem;
+    background: transparent linear-gradient(to top, var(--html-blue) 2px, transparent 2px);
   }
 
   .app-header__link-list--languages .app-header__link-list-item {

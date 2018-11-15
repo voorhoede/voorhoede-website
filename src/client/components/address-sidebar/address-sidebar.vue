@@ -42,6 +42,6 @@ export default {
 .contact-address a:hover,
 .contact-address a:focus {
   padding-bottom: .15rem;
-  background: transparent linear-gradient(to bottom, transparent 90%, var(--html-blue) 95%, var(--html-blue) 100%);
+  background: transparent linear-gradient(to top, var(--html-blue) 2px, transparent 2px);
 }
 </style>
