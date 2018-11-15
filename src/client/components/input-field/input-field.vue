@@ -5,15 +5,17 @@
     </span>
     <textarea
       v-if="textarea"
-      v-model="value"
       :id="id"
       :name="id"
       :type="type"
       :placeholder="placeholderLabel"
+      :value="value"
       class="body"
       :class="{ 'is-invalid': isInvalid }"
       v-bind="$attrs"
       rows="5"
+      ref="input"
+      @input="updateInput"
     />
     <input
       v-else

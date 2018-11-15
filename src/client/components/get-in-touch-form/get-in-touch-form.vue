@@ -164,11 +164,11 @@
           return false
         }
 
-        submitContactForm({
-          form: this.form,
-          router: this.$router,
-          currentLocale: this.currentLocale,
-        })
+        // submitContactForm({
+        //   form: this.form,
+        //   router: this.$router,
+        //   currentLocale: this.currentLocale,
+        // })
       }
     }
   }
