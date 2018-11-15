@@ -15,15 +15,18 @@
         Don't fill this out if you're human:
         <input v-model="form.magicCastle" name="magic-castle">
       </label>
-      <label class="contact-form__label">
-        <span class="contact-form__label-text body-petite">{{ projectLabel }}</span>
-        <textarea
-          v-model="form.projectDescription"
-          rows="5"
-          class="contact-form__description body"
-          name="project-description"
-          :placeholder="projectPlaceholder"/>
-      </label>
+      <input-field
+        textarea
+        v-model="form.projectDescription"
+        id="projectDescription"
+        class="contact-form__description body"
+        :label="projectLabel"
+        type="text"
+        :placeholder-label="projectPlaceholder"
+        required
+        :validate="formIsValidated"
+        :validation-error-message="projectErrorMessage"
+      />
     </fieldset>
     <fieldset class="contact-form__fieldset">
       <legend class="h4">{{ contactTitle }}</legend>
@@ -177,6 +180,10 @@
         required: true
       },
       projectPlaceholder: {
+        type: String,
+        required: true
+      },
+      projectErrorMessage: {
         type: String,
         required: true
       },

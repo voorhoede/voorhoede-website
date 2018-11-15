@@ -38,6 +38,7 @@ fragment contact on ContactRecord {
     websitePlaceholder,
     projectLabel,
     projectPlaceholder,
+    projectErrorMessage,
     ctaButtonLabel,
   },
   headerIllustration {
