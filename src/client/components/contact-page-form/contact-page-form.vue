@@ -15,14 +15,18 @@
         Don't fill this out if you're human:
         <input v-model="form.magicCastle" name="magic-castle">
       </label>
-      <label class="contact-form__label">
+      <label class="contact-form__label" for="projectDescription">
         <span class="contact-form__label-text body-petite">{{ projectLabel }}</span>
-        <textarea
+        <input-field
+          textarea
           v-model="form.projectDescription"
-          rows="5"
-          class="contact-form__description body"
-          name="project-description"
-          :placeholder="projectPlaceholder"/>
+          id="projectDescription"
+          type="text"
+          :placeholder-label="summaryPlaceholder"
+          required
+          :validate="formIsValidated"
+          :validation-error-message="summaryErrorMessage"
+        />
       </label>
     </fieldset>
     <fieldset class="contact-form__fieldset">
