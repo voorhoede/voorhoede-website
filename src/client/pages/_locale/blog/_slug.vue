@@ -81,7 +81,7 @@
     </aside>
 
     <div class="page-blog-post__link-container">
-      <nuxt-link class="font-html-blue body font-bold" :to="`/${currentLocale}/blog`">
+      <nuxt-link class="app-button app-button--secondary body font-bold" :to="`/${currentLocale}/blog`">
         &larr; See all posts
       </nuxt-link>
     </div>
