@@ -17,6 +17,7 @@ fragment job on JobRecord {
   subtitle,
   slug,
   social {
+    title,
     description
   },
   keywords,

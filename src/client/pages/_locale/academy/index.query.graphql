@@ -12,6 +12,7 @@ fragment academyItemsOverview on AcademyItemsOverviewRecord {
   title,
   slug,
   social {
+    title,
     description
   },
   keywords

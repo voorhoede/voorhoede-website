@@ -12,6 +12,7 @@ query ($locale: SiteLocale, $slug: String)  {
 fragment page on BlogPostRecord {
   slug,
   social {
+    title,
     description
   },
   keywords,

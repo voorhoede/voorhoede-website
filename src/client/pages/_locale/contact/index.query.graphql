@@ -16,6 +16,7 @@ fragment contact on ContactRecord {
   slug,
   subtitle,
   social {
+    title,
     description
   },
   keywords,

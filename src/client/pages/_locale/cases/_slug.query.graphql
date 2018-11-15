@@ -16,6 +16,7 @@ fragment caseItem on CaseItemRecord {
   title,
   slug,
   social {
+    title,
     description
   },
   keywords,

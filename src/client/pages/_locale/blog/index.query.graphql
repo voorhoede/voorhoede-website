@@ -30,6 +30,7 @@ fragment blogPostOverview on BlogPostOverviewRecord {
   title,
   slug,
   social {
+    title,
     description
   },
   keywords,
