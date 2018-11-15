@@ -13,4 +13,4 @@ dist
 .env
 src/client/static/data
 
-src/client/static
+src/client/static/_redirects
