@@ -46,16 +46,6 @@
         :validation-error-message="phoneErrorMessage"
       />
       <input-field
-        v-model="form.test"
-        id="test"
-        type="tel"
-        :label="phoneLabel"
-        :placeholder-label="phonePlaceholder"
-        required
-        :validate="formIsValidated"
-        :validation-error-message="phoneErrorMessage"
-      />
-      <input-field
         textarea
         v-model="form.explanation"
         id="explanation"
@@ -147,12 +137,11 @@
     data() {
       return {
         form: {
-          'form-name': 'get-in-touch-form123',
+          'form-name': 'get-in-touch',
           name: '',
           email: '',
           phone: '',
           explanation: '',
-          test: '',
         },
         formIsValidated: false,
       }
