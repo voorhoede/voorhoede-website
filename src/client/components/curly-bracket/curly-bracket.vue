@@ -27,11 +27,9 @@ export default {
 
 <style>
   .curly-bracket {
-    /* margin-top: var(--spacing-big); */
+    margin-top: var(--spacing-bigger);
     grid-column-end: 4;
-    grid-row-start: 2;
-    display: flex;
-    align-items: flex-end;
+    grid-row-start: 1;
     position: relative;
     /* overflow: hidden; */
   }
@@ -45,17 +43,20 @@ export default {
 
   .curly-bracket__image {
     position: absolute;
+    margin: auto;
     top: -2vh;
     bottom: -2vh;
-    right: 0;
-    height: calc(100% + 4vh);
+    right: -2vh;
+    /* max-height: calc(100% + 4vh); */
+    width: 100%;
+    /* max-height: 320px; */
   }
 
   .curly-bracket--right .curly-bracket__image {
     transform: scale(-1,1);
     transform-origin: center center;
     left: 0;
-    right: auto;
+    right: unset;
   }
   /* @media (min-width: 540px) {
     .curly-bracket {
@@ -78,12 +79,13 @@ export default {
   } */
   @media (min-width: 720px) {
     .curly-bracket {
+      margin-top: 0;
       /* margin-top: 0;
       position: absolute;
       top: calc(-1 * var(--spacing-medium));
-      bottom: calc(-1 * var(--spacing-medium));
+      bottom: calc(-1 * var(--spacing-medium)); */
       grid-column-start: 2;
-      grid-column-end: 6; */
+      grid-column-end: 6;
     }
 
     .curly-bracket--right {
@@ -93,9 +95,7 @@ export default {
     }
 
     .curly-bracket__image {
-      top:0;
-      bottom: 0;
-      height: 100%;
+
     }
 
     .curly-bracket--right .curly-bracket__image {
