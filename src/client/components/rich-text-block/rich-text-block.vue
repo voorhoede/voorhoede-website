@@ -31,6 +31,14 @@
 
   .rich-text a {
     color: var(--html-blue);
+    padding-bottom: .15rem;
+    background: transparent linear-gradient(to bottom, transparent 90%, var(--html-blue) 95%, var(--html-blue) 100%);
+  }
+
+  .rich-text a:hover,
+  .rich-text a:focus {
+    color: var(--active-blue);
+    background: transparent linear-gradient(to bottom, transparent 90%, var(--active-blue) 95%, var(--active-blue) 100%);
   }
 
   .rich-text td {
