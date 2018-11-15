@@ -57,7 +57,7 @@
 
 <style>
   @import '../app-core/variables.css';
-  
+
   :root {
     --header-border-opacity: .08;
   }
@@ -121,6 +121,10 @@
 
   .app-header__link:hover {
     color: var(--active-blue);
+  }
+
+  .app-header__link:focus {
+    border-bottom: 1px solid var(--html-blue);
   }
 
   .app-header__link-list--languages .app-header__link-list-item {

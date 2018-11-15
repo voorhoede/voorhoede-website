@@ -8,9 +8,7 @@
       </div>
       <div class="app-footer__column">
         <h3 class="app-footer__title body-petite font-bold font-html-blue">
-          <a href="#">
-            Explore
-          </a>
+          Explore
         </h3>
         <ul class="app-footer__list">
           <li
@@ -27,11 +25,7 @@
       </div>
       <div class="app-footer__column app-footer__column--right">
         <h3 class="app-footer__title body-petite font-bold font-html-blue">
-          <nuxt-link
-            :to="{ name: 'locale-contact', params: { locale: currentLocale }}"
-          >
-            Contact
-          </nuxt-link>
+          Contact
         </h3>
         <ul class="body-detail app-footer__list">
           <li class="app-footer__list-item">
@@ -283,6 +277,14 @@ export default {
   text-decoration: none;
 }
 
+.app-footer__link:hover {
+  color: var(--active-blue);
+}
+
+.app-footer__link:focus {
+  border-bottom: 1px solid var(--html-blue);
+}
+
 .app-footer__link--right {
   display: inline-flex;
   flex-direction: column;
@@ -349,11 +351,11 @@ export default {
     text-align: left;
     border-bottom: 0;
   }
-  
+
   .app-footer__column--bottom {
     display: none;
   }
-  
+
   .app-footer__legal {
     text-align: left;
     margin-left: var(--spacing-medium);
@@ -436,12 +438,12 @@ export default {
   .app-footer__column {
     width: 25%;
   }
-  
+
   .app-footer__column--bottom {
     display: flex;
     align-items: flex-end;
   }
-  
+
   .app-footer__list--icon {
     justify-content: center;
   }
