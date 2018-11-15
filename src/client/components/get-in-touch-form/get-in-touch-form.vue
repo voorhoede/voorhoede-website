@@ -147,7 +147,7 @@
     data() {
       return {
         form: {
-          'form-name': 'get-in-touch',
+          'form-name': 'get-in-touch-form123',
           name: '',
           email: '',
           phone: '',
