@@ -8,7 +8,7 @@ export default async function({ form, router, currentLocale }) {
     
     await fetch('./', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body
     })
 
