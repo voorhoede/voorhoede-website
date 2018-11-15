@@ -5,6 +5,7 @@
     </span>
     <textarea
       v-if="textarea"
+      v-model="value"
       :id="id"
       :name="id"
       :value="value"
