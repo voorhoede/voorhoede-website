@@ -46,6 +46,16 @@
         :validation-error-message="phoneErrorMessage"
       />
       <input-field
+        v-model="form.test"
+        id="test"
+        type="tel"
+        :label="phoneLabel"
+        :placeholder-label="phonePlaceholder"
+        required
+        :validate="formIsValidated"
+        :validation-error-message="phoneErrorMessage"
+      />
+      <input-field
         textarea
         v-model="form.explanation"
         id="project"
@@ -142,6 +152,7 @@
           email: '',
           phone: '',
           explanation: '',
+          test: '',
         },
         formIsValidated: false,
       }

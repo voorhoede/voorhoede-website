@@ -9,7 +9,7 @@ export default async function({ form, router, currentLocale }) {
     await fetch('./', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
+      body
     })
 
     router.push({
