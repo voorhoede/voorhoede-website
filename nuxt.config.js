@@ -24,7 +24,6 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'De Voorhoede',
     htmlAttrs: {
       'class': 'yellow-background',
     },

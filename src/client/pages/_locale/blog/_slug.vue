@@ -149,6 +149,7 @@ export default {
   },
   head() {
     return {
+      title: this.page.social.title,
       meta: [
         { 'name': 'description', 'content': this.page.social.description },
         { 'property': 'og:description', 'content': this.page.social.description },

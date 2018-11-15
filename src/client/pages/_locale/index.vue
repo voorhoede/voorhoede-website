@@ -11,13 +11,13 @@
       </div>
       <div class="grid">
         <p class="scroll-highlighted-text">
-          <scroll-highlighted-text 
-            v-for="(line, index) in page.usps" 
+          <scroll-highlighted-text
+            v-for="(line, index) in page.usps"
             :key="index"
             :line="line"
             :index="index"
             :is-first="index === 0 ? { isSet: true, number: 0 } : { isSet: false }"
-            :is-last="index === Object.keys(page.usps).length - 1 ? 
+            :is-last="index === Object.keys(page.usps).length - 1 ?
             { isSet: true, number: index } : { isSet: false }"
           />
         </p>
@@ -137,6 +137,7 @@
     },
     head() {
       return {
+        title: this.page.social.title,
         meta: [
           { 'name': 'description', 'content': this.page.social.description },
           { 'name': 'description', 'content': this.page.social.description },
