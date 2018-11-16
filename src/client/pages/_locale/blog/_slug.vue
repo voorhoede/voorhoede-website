@@ -199,7 +199,7 @@ export default {
   }
 
   .page-blog-post__link-container {
-    grid-row: 3;
+    grid-row: 4;
     padding-top: var(--spacing-small);
     border-top: 2px solid var(--very-dim);
     margin-bottom: var(--spacing-bigger);
@@ -207,7 +207,7 @@ export default {
 
   .page-blog-post__cta {
     grid-column: var(--grid-page);
-    grid-row: 4;
+    grid-row: 5;
     background-color: var(--bg-pastel);
   }
 

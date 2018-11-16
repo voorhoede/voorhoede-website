@@ -101,16 +101,6 @@ export default {
   height: calc(100% + 4vh);
 }
 
-.page-header__image img {
-  position: static;
-  z-index: var(--z-index-low);
-  object-fit: contain;
-  object-position: bottom;
-  justify-content: flex-end;
-  width: 100%;
-  height: 100%;
-}
-
 .page-header--home {
   position: relative;
   grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
@@ -177,6 +167,7 @@ export default {
     grid-row-end: 5;
   }
 }
+
 @media (min-width: 720px) {
   .page-header {
     grid-template-rows: calc(var(--app-header-height)) 1fr var(--spacing-large);
