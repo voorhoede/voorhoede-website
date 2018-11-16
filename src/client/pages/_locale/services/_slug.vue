@@ -49,11 +49,16 @@
   @import '../../../components/app-core/variables.css';
 
   .page-service .page-header-detail {
-    grid-column: page;
+    grid-column: var(--grid-page);
     margin-bottom: var(--spacing-large);
   }
 
+  .page-service__overview {
+    grid-row: 2;
+  }
+
   .page-service__overview .generic-text-block {
+    grid-row: 3;
     margin-bottom: var(--spacing-large);
   }
 
@@ -64,7 +69,7 @@
 
     .page-service__overview {
       grid-column-start: 2;
-      grid-column-end: -2;
+      grid-column-end: 50;
       background-color: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
     }
@@ -73,7 +78,7 @@
   @media (min-width: 1100px) {
     .page-service__overview {
       grid-column-start: 6;
-      grid-column-end: -6;
+      grid-column-end: 46;
       padding: var(--spacing-big) var(--spacing-bigger);
     }
   }
