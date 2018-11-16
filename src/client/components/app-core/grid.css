@@ -59,14 +59,15 @@
 }
 
 @media (min-width: 1440px) {
+  /* every column has a fixed size in pixels on 1440 and above */
   .grid {
     grid-template-columns:
       1fr                                       /* 1 2        */
-      repeat(11, var(--grid-column-large) 1fr)
-      var(--grid-column-large) .5fr             /* 24 25 26   */
+      repeat(11, var(--grid-column-large) var(--grid-gutter-large))
+      var(--grid-column-large) calc(var(--grid-gutter-large) / 2)             /* 24 25 26   */
       /* center */
-      .5fr var(--grid-column-large)             /* 26 27 28   */
-      repeat(11, 1fr var(--grid-column-large))
+      calc(var(--grid-gutter-large) / 2) var(--grid-column-large)             /* 26 27 28   */
+      repeat(11, var(--grid-column-large) var(--grid-gutter-large))
       1fr                                       /* 50 51      */
   }
 }
