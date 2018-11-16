@@ -181,11 +181,19 @@
 
   .page-index__services {
     margin-bottom: var(--spacing-larger);
+    grid-template-rows: repeat(2, auto);
   }
 
   .page-index__section-title {
     margin-bottom: var(--spacing-large);
+    grid-row-start: 1;
+    grid-row-end: 2;
     text-align: center;
+  }
+
+  .page-index .services-list {
+    grid-row-start: 2;
+    grid-row-end: 3;
   }
 
   .page-index__section-title--clients {
