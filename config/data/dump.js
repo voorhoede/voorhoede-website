@@ -24,6 +24,7 @@ const locales = ['nl', 'en']
 const matchLayoutQuery = /(?<=layouts\/).*(?=\.query.graphql)/
 
 glob(path.join(__dirname, '../../src/client/**/*.query.graphql'))
+  .then(paths => paths.filter(path => !path.includes('slug')))
   .then(paths => {
     paths.forEach(queryPath => {
       locales.forEach(locale => {
