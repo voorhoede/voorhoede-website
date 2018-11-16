@@ -2,7 +2,7 @@ query ($locale: SiteLocale)  {
   page: blogPostOverview(locale:$locale) {
     ...blogPostOverview
   },
-  items: allBlogPosts(locale: $locale) {
+  items: allBlogPosts(locale: $locale, first:100) {
     slug
   },
   alternate:blogPostOverview {
