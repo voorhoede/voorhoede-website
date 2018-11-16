@@ -38,13 +38,13 @@ some columns are zero-width.
 |  ┌--------------------------------------------------------------------content
 |  ├------------------------------content-left-----------------------------┬-/
 1  2  3                          4  13                         14 23 24 25 26
-|  |  |                          /  |                          /  |  |  |  |
+|  |  |                          -  |                          -  |  |  |  |
 |  |  |                          12 |                          22 |  |  |  |
 |**|++|~~~~~~~~~~~~~~~~~~~~~~~~~~|++|~~~~~~~~~~~~~~~~~~~~~~~~~~|++|~~|++| ~|~
 |  |  |                          |  |                          |  |  |   small
 
 1  2  3        4  7  8  9        10 13       14 17 18 19       20 23 24 25 26
-|  |  |        /  |  |  |        /  |        /  |  |  |        /  |  |  |  |
+|  |  |        -  |  |  |        -  |        -  |  |  |        -  |  |  |  |
 |  |  |        6  |  |  |        12 |        16 |  |  |        22 |  |  |  |
 |**|++|~~~~~~~~|++|~~|++|~~~~~~~~|++|~~~~~~~~|++|~~|++|~~~~~~~~|++|~~|++| ~|~
 |  |  |        |  |  |  |        |  |        |  |  |  |      medium (>= 720px)
@@ -101,11 +101,11 @@ you position it like this:
 ```css
 child-element {
   grid-column-start: var(--grid-center);
-  grid-column-end: var(--grid-page-end;
+  grid-column-end: var(--grid-page-end);
 }
 ```
 
-The following custom properties are already defined
+Custom properties are defined to quickly refer to specific grid lines:
 * `--grid-page-start`: 1
 * `--grid-content-start`: 2
 * `--grid-center`: 26
