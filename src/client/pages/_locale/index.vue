@@ -198,6 +198,7 @@
 
   .page-index__section-title--clients {
     color: var(--dim);
+    grid-row: 1;
   }
 
   .page-index__section-title--blog-posts {
@@ -214,6 +215,11 @@
     padding-top: var(--spacing-larger);
     padding-bottom: var(--spacing-larger);
     background-color: var(--fog);
+    grid-template-rows: repeat(2, auto);
+  }
+
+  .page-index .highlighted-clients {
+    grid-row: 2;
   }
 
   .page-index__academy {
