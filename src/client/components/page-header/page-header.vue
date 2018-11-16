@@ -129,6 +129,10 @@ export default {
   display: none;
 }
 
+.page-header--home .page-header__image img {
+  width: 100%;
+}
+
 .page-header--home .page-header__image {
   display: flex;
 }
@@ -136,7 +140,7 @@ export default {
 .page-header__image img {
   position: static;
   z-index: var(--z-index-low);
-  width: 100%;
+  width: auto;
   max-height: 100%;
   object-fit: contain;
 }

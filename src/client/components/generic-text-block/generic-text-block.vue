@@ -79,10 +79,12 @@
 
     .generic-text-block__title {
       margin: 0;
+      grid-row: 1;
     }
 
     .generic-text-block__body {
       grid-column: 1;
+      grid-row: 2;
     }
 
     .generic-text-block__image-container {
