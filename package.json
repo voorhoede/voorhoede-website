@@ -17,6 +17,7 @@
     "build:guide": "build-storybook -c config/storybook -o dist/client/guide/",
     "predev": "npm run prebuild",
     "dev": "PORT=3278 nuxt",
+    "data": "node config/data/dump",
     "guide": "start-storybook -p 3279 -c config/storybook -s ./src/client/static",
     "lint": "run-s lint:*",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",

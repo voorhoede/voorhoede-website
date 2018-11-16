@@ -57,6 +57,7 @@ export default {
     left: unset;
     right: 0;
   }
+
   @media (min-width: 720px) {
     .curly-bracket {
       margin-top: 0;
@@ -75,6 +76,7 @@ export default {
       left: auto;
     }
   }
+
   @media (min-width: 1100px) {
     .curly-bracket {
       grid-column-start: 3;
