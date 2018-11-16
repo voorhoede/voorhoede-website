@@ -125,7 +125,7 @@
   @media (min-width: 1100px) {
     .page-blog__text,
     .page-blog__posts {
-      grid-column-start: 10;
+      grid-column-start: 14;
       grid-column-end: 42;
       margin-bottom: var(--spacing-large);
     }
