@@ -121,17 +121,6 @@ export default {
   grid-column: var(--grid-content);
   grid-row-start: 4;
   grid-row-end: 5;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-}
-
-.page-header .page-header__image {
-  display: none;
-}
-
-.page-header--home .page-header__image {
-  display: flex;
 }
 
 .page-header__image img {
@@ -187,7 +176,7 @@ export default {
     grid-row-start: 4;
     grid-row-end: 5;
   }
-
+}
 @media (min-width: 720px) {
   .page-header {
     grid-template-rows: calc(var(--app-header-height)) 1fr var(--spacing-large);

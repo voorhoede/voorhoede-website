@@ -67,7 +67,7 @@
         cta-secondary-to="https://www.eventbrite.nl/o/de-voorhoede-11975015411"
       />
       <curly-bracket />
-      </div>
+    </div>
     <section class="page-index__blog-posts grid">
       <h2 class="page-index__section-title page-index__section-title--blog-posts h3">{{ page.blogPostsTitle }}</h2>
       <ul class="page-index__blog-posts-list grid">
@@ -241,9 +241,12 @@
   .page-index__curly-bracket-column--right .page-index__curly-bracket {
     right: auto;
     left: 0;
+    grid-row-start: 1;
+    grid-row-end: 4;
   }
 
   .page-index__blog-posts {
+    grid-template-rows: repeat(3, auto);
     margin-bottom: var(--spacing-large);
   }
 
@@ -251,11 +254,25 @@
     margin-bottom: var(--spacing-small);
     grid-row: 2;
     grid-column-end: 48;
+    grid-template-rows: repeat(3, auto);
+  }
+
+  .page-index__blog-posts-list-item {
+    grid-row: 1;
+  }
+
+  .page-index__blog-posts-list-item:nth-child(2) {
+    grid-row: 2;
+  }
+
+  .page-index__blog-posts-list-item:nth-child(3) {
+    grid-row: 3;
   }
 
   .page-index__blog-posts-button {
     display: flex;
     justify-content: center;
+    grid-row: 3;
   }
 
   .page-index__cases {

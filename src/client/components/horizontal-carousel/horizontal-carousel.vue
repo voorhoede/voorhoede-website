@@ -10,9 +10,16 @@
 @import '../app-core/variables.css';
 
 :root {
-  --horizontal-carousel-offset: calc(var(--grid-margin) + var(--grid-fixed-column));
-  --horizontal-carousel-slide-spacing: var(--grid-fixed-column);
-  --horizontal-carousel-slide-width: calc(100vw - 2 * var(--horizontal-carousel-offset));
+  --horizontal-carousel-slides-count: 3;
+  --horizontal-carousel-offset-small: calc(var(--grid-margin) + var(--grid-column-small));
+  --horizontal-carousel-offset-large: calc(var(--grid-margin) + var(--grid-column-large));
+  --horizontal-carousel-slide-spacing-small: var(--grid-column-small);
+  --horizontal-carousel-slide-spacing-large: var(--grid-column-large);
+  --horizontal-carousel-slide-width-small: calc(100vw - 2 * (var(--grid-margin) + var(--grid-column-small)));
+  --horizontal-carousel-slide-width-large: calc(
+    (100% / var(--horizontal-carousel-slides-count))
+    - ((var(--horizontal-carousel-slides-count) - 1) / var(--horizontal-carousel-slides-count) * var(--horizontal-carousel-slide-spacing-large))
+  );
 }
 
 .horizontal-carousel {
@@ -20,7 +27,7 @@
 }
 
 .horizontal-carousel__slides {
-  padding: 0 var(--horizontal-carousel-offset);
+  padding: 0 var(--horizontal-carousel-offset-small);
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
@@ -36,17 +43,17 @@
 
 .horizontal-carousel__slides > * {
   flex: 0 0 auto;
-  width: var(--horizontal-carousel-slide-width);
+  width: var(--horizontal-carousel-slide-width-small);
   white-space: initial;
 }
 
 .horizontal-carousel__slides > * + * {
-  margin-left: var(--horizontal-carousel-slide-spacing);
+  margin-left: var(--horizontal-carousel-slide-spacing-small);
 }
 
 .horizontal-carousel__slides > *:last-child {
   display: flex;
-  flex-basis: calc(var(--horizontal-carousel-slide-width) + var(--horizontal-carousel-offset));
+  flex-basis: calc(var(--horizontal-carousel-slide-width-small) + var(--horizontal-carousel-offset-small));
 }
 
 .horizontal-carousel__slides > *:last-child > * {
@@ -56,7 +63,7 @@
 .horizontal-carousel__slides > *:last-child::after {
   content: '';
   display: block;
-  width: var(--horizontal-carousel-offset);
+  width: var(--horizontal-carousel-offset-small);
   flex-shrink: 0;
 }
 
@@ -65,14 +72,6 @@
 }
 
 @media (min-width: 720px) {
-  :root {
-    --horizontal-carousel-slides-count: 3;
-    --horizontal-carousel-slide-width: calc(
-      (100% / var(--horizontal-carousel-slides-count))
-      - ((var(--horizontal-carousel-slides-count) - 1) / var(--horizontal-carousel-slides-count) * var(--horizontal-carousel-slide-spacing))
-    );
-  }
-
   .horizontal-carousel {
     display: grid;
   }
@@ -82,8 +81,12 @@
     overflow-x: unset;
   }
 
+  .horizontal-carousel__slides > * {
+    width: var(--horizontal-carousel-slide-width-large);
+  }
+
   .horizontal-carousel__slides > *:last-child {
-    flex-basis: var(--horizontal-carousel-slide-width);
+    flex-basis: var(--horizontal-carousel-slide-width-large);
   }
 
   .horizontal-carousel__slides > *:last-child::after {
