@@ -76,7 +76,7 @@ export default {
       left: auto;
     }
   }
-  
+
   @media (min-width: 1100px) {
     .curly-bracket {
       grid-column-start: 3;
