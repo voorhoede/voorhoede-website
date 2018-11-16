@@ -49,8 +49,6 @@ export default {
     left: 0;
     max-height: calc(100% + 4vh);
     width: 100%;
-    max-width: auto;
-    /* max-height: 320px; */
   }
 
   .curly-bracket--right .curly-bracket__image {
