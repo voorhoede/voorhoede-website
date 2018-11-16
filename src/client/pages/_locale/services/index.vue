@@ -55,7 +55,7 @@
   @import '../../../components/app-core/variables.css';
 
   .page-services .page-header {
-    grid-column: page;
+    grid-column: var(--grid-page);
   }
 
   .page-services > * {
@@ -63,7 +63,16 @@
   }
 
   .page-services .services-list {
+    grid-row: 2;
     margin-bottom: var(--spacing-larger);
+  }
+
+  .page-services .services-text {
+    grid-row: 3;
+  }
+
+  .page-services .get-in-touch-form {
+    grid-row: 4;
   }
 
   @media (min-width: 720px) {
