@@ -15,43 +15,18 @@
         Don't fill this out if you're human:
         <input v-model="form.magicCastle" name="magic-castle">
       </label>
-      <label class="contact-form__label">
-        <span class="contact-form__label-text body-petite">{{ subjectLabel }}</span>
-        <select
-          v-model="form.needHelpWith"
-          class="body greyed-out"
-          name="need-help-with"
-          v-greyed-out-first
-          required>
-          <option
-            v-for="subject in subjectOptions"
-            :key="subject.value"
-            :value="subject.value">{{ subject.label }}</option>
-        </select>
-      </label>
-      <label class="contact-form__label">
-        <span class="contact-form__label-text body-petite">{{ budgetLabel }}</span>
-        <select
-          v-model="form.budgetOf"
-          class="body greyed-out"
-          name="budget-of"
-          v-greyed-out-first
-          required>
-          <option
-            v-for="option in budgetOptions"
-            :key="option.value"
-            :value="option.value">{{ option.label }}</option>
-        </select>
-      </label>
-      <label class="contact-form__label">
-        <span class="contact-form__label-text body-petite">{{ projectLabel }}</span>
-        <textarea
-          v-model="form.projectDescription"
-          rows="5"
-          class="contact-form__description body"
-          name="project-description"
-          :placeholder="projectPlaceholder"/>
-      </label>
+      <input-field
+        textarea
+        v-model="form.projectDescription"
+        id="projectDescription"
+        class="contact-form__description body"
+        :label="projectLabel"
+        type="text"
+        :placeholder-label="projectPlaceholder"
+        required
+        :validate="formIsValidated"
+        :validation-error-message="projectErrorMessage"
+      />
     </fieldset>
     <fieldset class="contact-form__fieldset">
       <legend class="h4">{{ contactTitle }}</legend>
@@ -200,27 +175,15 @@
         type: String,
         required: true
       },
-      subjectLabel: {
-        type: String,
-        required: true
-      },
-      subjectOptions: {
-        type: Array,
-        required: true
-      },
-      budgetLabel: {
-        type: String,
-        required: true
-      },
-      budgetOptions: {
-        type: Array,
-        required: true
-      },
       projectLabel: {
         type: String,
         required: true
       },
       projectPlaceholder: {
+        type: String,
+        required: true
+      },
+      projectErrorMessage: {
         type: String,
         required: true
       },
@@ -233,8 +196,6 @@
       return {
         form: {
           'form-name': 'contact-page-form',
-          needHelpWith: '',
-          budgetOf: '',
           projectDescription: '',
           name: '',
           business: '',

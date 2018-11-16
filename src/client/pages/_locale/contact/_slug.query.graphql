@@ -15,6 +15,7 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
 fragment page on ContactConfirmationRecord {
 	slug,
   social {
+    title,
     description
   },
   keywords,

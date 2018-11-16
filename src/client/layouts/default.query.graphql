@@ -2,7 +2,16 @@ query ($locale: SiteLocale)  {
   footer(locale: $locale) {
     ...footer
   },
+  allRedirects {
+    ...redirect
+  },
 }
+
+fragment redirect on RedirectRecord {
+	from,
+  to,
+  httpStatusCode
+},
 
 fragment footer on FooterRecord {
   email,
@@ -23,5 +32,5 @@ fragment footer on FooterRecord {
   social {
     icon,
     href
-  }
+  },
 },

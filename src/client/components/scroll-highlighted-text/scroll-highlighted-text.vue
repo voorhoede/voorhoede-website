@@ -118,6 +118,8 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+  
   @keyframes color-change-in {
     0% {
       color: var(--brand-yellow);

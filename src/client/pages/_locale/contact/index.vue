@@ -33,6 +33,7 @@
           :budget-options="page.contactPageForm.budgetOptions"
           :project-label="page.contactPageForm.projectLabel"
           :project-placeholder="page.contactPageForm.projectPlaceholder"
+          :project-error-message="page.contactPageForm.projectErrorMessage"
           :cta-label="page.contactPageForm.ctaButtonLabel" />
       </div>
     </div>
@@ -49,6 +50,7 @@
     },
     head() {
       return {
+        title: this.page.social.title,
         meta: [
           { 'name': 'description', 'content': this.page.social.description },
           { 'name': 'description', 'content': this.page.social.description },

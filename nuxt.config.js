@@ -7,9 +7,8 @@ dotenv.config()
  * Use Netlify's URL variable:
  * @see https://www.netlify.com/docs/continuous-deployment/#build-environment-variables
  */
-const { URL, DEFAULT_LOCALE, DATO_API_TOKEN } = process.env
+const { URL, DATO_API_TOKEN } = process.env
 const baseUrl = URL
-const defaultLocale = DEFAULT_LOCALE
 
 module.exports = {
   srcDir: 'src/client',
@@ -18,7 +17,6 @@ module.exports = {
 
   env: {
     baseUrl,
-    defaultLocale,
     DATO_API_TOKEN
   },
 
@@ -26,10 +24,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'De Voorhoede',
     htmlAttrs: {
-      /* TODO: change defaultLocale to currentlocale */
-      lang: defaultLocale,
       'class': 'yellow-background',
     },
     bodyAttrs: {
