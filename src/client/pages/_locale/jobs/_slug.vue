@@ -29,7 +29,6 @@
           <app-button
             :label="(currentLocale === 'nl') ? 'Bekijk alle vacatures' : 'See all vacancies'"
             :to="`/${currentLocale}/jobs`"
-            external
             secondary
           />
         </div>
