@@ -39,6 +39,7 @@
   --grid-column-small: 25px;
   --grid-column-medium: 30px;
   --grid-column-large: 35px;
+  --grid-gutter-large: 20px;
   --grid-margin: 20px;
   --grid-page-start: 1;
   --grid-content-start: 2;
