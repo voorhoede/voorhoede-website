@@ -15,6 +15,7 @@
     <image-grid
       :title="page.teamGridTitle"
       :items="page.teamGrid"
+      class="page-about-us__image-grid"
     />
     <image-with-text-block
       :title="page.middleTitle"
@@ -126,6 +127,34 @@
   .page-about-us .image-grid,
   .page-about-us .image-with-text {
     grid-column: var(--grid-page);
+  }
+
+  .page-about-us__header {
+    grid-row: 1;
+  }
+
+  .page-about-us__intro {
+    grid-row: 2;
+  }
+
+  .page-about-us__image-grid {
+    grid-row: 3;
+  }
+
+  .page-about-us__middle {
+    grid-row: 4;
+  }
+
+  .page-about-us__jobs-text {
+    grid-row: 5;
+  }
+
+  .page-about-us__jobs {
+    grid-row: 6;
+  }
+
+  .page-about-us__blog {
+    grid-row: 7;
   }
 
   .page-about-us__jobs,
