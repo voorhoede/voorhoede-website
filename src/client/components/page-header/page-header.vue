@@ -1,11 +1,12 @@
 <template>
   <header class="page-header grid" :class="{ 'page-header--home': isHomepage }">
     <div v-if="isHomepage" class="page-header__brick" />
-    <div v-if="isHomepage" class="page-header__curly-bracket-column">
-      <div class="page-header__curly-bracket-wrapper">
-        <img class="page-header__curly-bracket" src="/images/curly-bracket--close.svg" alt="">
-      </div>
-    </div>
+    <curly-bracket
+      v-if="isHomepage"
+      class="page-header__curly-bracket"
+      side="right"
+      color="paper"
+    />
     <div class="page-header__image" :class="{ 'page-header__image--spaced-top': !isHomepage }">
       <img v-if="image" :src="image.url" alt="">
     </div>
@@ -34,11 +35,13 @@
 </template>
 
 <script>
-import selfTypingText from '../self-typing-text'
+import CurlyBracket from '../curly-bracket'
+import SelfTypingText from '../self-typing-text'
 
 export default {
   components: {
-    selfTypingText
+    CurlyBracket,
+    SelfTypingText,
   },
   props: {
     image: {
@@ -73,6 +76,7 @@ export default {
 .page-header {
   background-color: var(--bg-pastel);
   grid-template-rows: var(--app-header-height) 1fr;
+  overflow: hidden;
 }
 
 .page-header__brick {
@@ -83,31 +87,18 @@ export default {
   grid-row-end: 6;
 }
 
-.page-header__curly-bracket-column {
-  grid-column: page;
-  grid-row: 3;
-  position: absolute;
-  top: calc(-1 * var(--spacing-large));
-  right: 0;
-  bottom: calc(-1 * var(--spacing-large));
-  width: 100%;
-  overflow: hidden;
+.page-header__curly-bracket.curly-bracket {
+  margin-top: 0;
+  grid-row-start: 3;
+  grid-row-end: 6;
 }
 
-/* Ugly wrapper to prevent horizontal scrolling, while making vertical overflow possible */
-.page-header__curly-bracket-wrapper {
-  display: block;
-  height: 100%;
-  position: relative;
-  right: calc(-1 * var(--spacing-medium));
-}
-
-.page-header__curly-bracket {
-  display: block;
-  height: 100%;
+.page-header__curly-bracket .curly-bracket__image {
   mix-blend-mode: screen;
-  position: absolute;
-  right: 0;
+  width: auto;
+  left: 0;
+  right: unset;
+  height: calc(100% + 4vh);
 }
 
 .page-header__image img {
@@ -156,47 +147,6 @@ export default {
   align-items: flex-end;
 }
 
-@media (min-width: 420px) {
-  .page-header--brick .page-header__image img {
-    height: 100%;
-  }
-}
-
-@media (min-width: 520px) {
-  .page-header--home {
-    position: relative;
-    grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
-    padding-top: 0;
-  }
-
-  .page-header__curly-bracket-column {
-    grid-column: content;
-  }
-
-  .page-header__curly-bracket-wrapper {
-    position: static;
-  }
-
-  .page-header__curly-bracket {
-    display: block;
-    flex-grow: 1;
-    top: 0;
-  }
-
-  .page-header__image {
-    grid-column: content;
-    grid-column-start: 2;
-    grid-column-end: 18;
-    justify-content: center;
-  }
-
-  .page-header__image--spaced-top {
-    position: relative;
-    top: var(--spacing-big);
-    height: 100%;
-  }
-}
-
 @media (min-width: 720px) {
   .page-header {
     grid-template-rows: calc(var(--app-header-height)) 1fr var(--spacing-large);
@@ -228,29 +178,25 @@ export default {
     grid-row-end: -1;
   }
 
-  .page-header__curly-bracket-column {
-    top: var(--spacing-large);
+  .page-header__curly-bracket.curly-bracket {
     position: relative;
-    grid-column: 33;
+    grid-column-start: -11;
+    grid-column-end: -4;
     grid-row-start: 2;
     grid-row-end: 4;
     overflow: unset;
   }
 
-  .page-header__curly-bracket {
+  .page-header__curly-bracket .curly-bracket__image {
     height: 100%;
+    width: auto;
   }
 
   .page-header__image {
-    grid-column: content-right;
+    grid-column-start: 14;
+    grid-column-end: -3;
     grid-row-start: 2;
     grid-row-end: 3;
-    justify-content: flex-end;
-    align-self: flex-end;
-  }
-
-  .page-header__image img {
-    max-height: 200px;
   }
 }
 
@@ -269,43 +215,10 @@ export default {
     grid-column-end: 24;
   }
 
-  .page-header__curly-bracket-column {
-    grid-column: 47;
-  }
-
   .page-header__image {
-    grid-column: content-right;
+    grid-column-start: 20;
     grid-column-end: 48;
-    align-self: flex-end;
-  }
-}
-
-@media (min-width: 1400px) {
-  .page-header--brick .page-header__image {
-    height: auto;
-  }
-}
-
-@media (min-width: 1440px) {
-  .page-header__description {
-    margin-top: var(--spacing-medium);
-  }
-
-  .page-header--home .page-header__description {
-    grid-column-start: 4;
-  }
-
-  .page-header__container {
-    grid-column-start: 4;
-    padding-top: calc(var(--app-header-height) + var(--spacing-larger));
-  }
-
-  .page-header__scroll-container {
-    grid-column-start: 2;
-  }
-
-  .page-header__image img {
-    max-height: 260px;
+    grid-row-start: 2;
   }
 }
 </style>

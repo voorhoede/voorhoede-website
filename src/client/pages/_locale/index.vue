@@ -66,9 +66,7 @@
         :cta-secondary-label="page.academySecondaryButtonLabel"
         cta-secondary-to="https://www.eventbrite.nl/o/de-voorhoede-11975015411"
       />
-      <div class="page-index__curly-bracket-column">
-        <img class="page-index__curly-bracket" src="/images/curly-bracket--blue.svg" alt="">
-      </div>
+      <curly-bracket />
     </div>
     <section class="page-index__blog-posts grid">
       <h2 class="page-index__section-title page-index__section-title--blog-posts h3">{{ page.blogPostsTitle }}</h2>
@@ -84,9 +82,7 @@
           secondary
         />
       </div>
-      <div class="page-index__curly-bracket-column page-index__curly-bracket-column--right">
-        <img class="page-index__curly-bracket" src="/images/curly-bracket--close-blue.svg" alt="">
-      </div>
+      <curly-bracket side="right" />
     </section>
     <div class="page-index__cta-block grid">
       <cta-block :cta-label="page.callToActionLabel" :cta-to="{ name: 'locale-contact', params: { locale: currentLocale } }">
@@ -107,6 +103,7 @@
     BlogListItem,
     CaseExcerpt,
     CtaBlock,
+    CurlyBracket,
     HighlightedClients,
     HorizontalCarousel,
     PageHeader,
@@ -122,6 +119,7 @@
       BlogListItem,
       CaseExcerpt,
       CtaBlock,
+      CurlyBracket,
       HighlightedClients,
       HorizontalCarousel,
       PageHeader,
@@ -219,35 +217,6 @@
     grid-row: 1;
   }
 
-  .page-index__curly-bracket-column {
-    margin-top: var(--spacing-big);
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row: 1;
-    display: flex;
-    align-items: flex-end;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .page-index__curly-bracket-column--right {
-    grid-column-start: -4;
-    grid-column-end: -1;
-    grid-row-start: 2;
-    grid-row-end: 3;
-  }
-
-  .page-index__curly-bracket {
-    max-height: 100%;
-    position: absolute;
-    right: 0;
-  }
-
-  .page-index__curly-bracket-column--right .page-index__curly-bracket {
-    right: auto;
-    left: 0;
-  }
-
   .page-index__blog-posts {
     margin-bottom: var(--spacing-large);
   }
@@ -265,26 +234,6 @@
 
   .page-index__cases {
     margin-bottom: var(--spacing-larger);
-  }
-
-  @media (min-width: 540px) {
-    .page-index__curly-bracket-column {
-      max-height: none;
-      overflow: visible;
-      grid-column-start: 3;
-      grid-column-end: 5;
-    }
-
-    .page-index__curly-bracket-column--right {
-      grid-column-start: -4;
-      grid-column-end: -1;
-    }
-
-    .page-index__curly-bracket {
-      top: 0;
-      height: auto;
-      width: 80%;
-    }
   }
 
   @media (min-width: 720px) {
@@ -368,27 +317,6 @@
 
     .page-index .academy-excerpt {
       padding: var(--spacing-larger) 0;
-    }
-
-    .page-index__curly-bracket-column {
-      margin-top: 0;
-      position: absolute;
-      top: calc(-1 * var(--spacing-medium));
-      bottom: calc(-1 * var(--spacing-medium));
-      grid-column-start: 2;
-      grid-column-end: 6;
-    }
-
-    .page-index__curly-bracket-column--right {
-      grid-row-start: 1;
-      grid-column-start: -6;
-      grid-column-end: -2;
-    }
-
-    .page-index__curly-bracket {
-      position: static;
-      height: 100%;
-      width: auto;
     }
 
     .page-index__cta-block .scroll-to {
