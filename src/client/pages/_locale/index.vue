@@ -66,10 +66,8 @@
         :cta-secondary-label="page.academySecondaryButtonLabel"
         cta-secondary-to="https://www.eventbrite.nl/o/de-voorhoede-11975015411"
       />
-      <div class="page-index__curly-bracket-column">
-        <img class="page-index__curly-bracket" src="/images/curly-bracket--blue.svg" alt="">
+      <curly-bracket />
       </div>
-    </div>
     <section class="page-index__blog-posts grid">
       <h2 class="page-index__section-title page-index__section-title--blog-posts h3">{{ page.blogPostsTitle }}</h2>
       <ul class="page-index__blog-posts-list grid">
@@ -84,9 +82,7 @@
           secondary
         />
       </div>
-      <div class="page-index__curly-bracket-column page-index__curly-bracket-column--right">
-        <img class="page-index__curly-bracket" src="/images/curly-bracket--close-blue.svg" alt="">
-      </div>
+      <curly-bracket side="right" />
     </section>
     <div class="page-index__cta-block grid">
       <cta-block :cta-label="page.callToActionLabel" :cta-to="{ name: 'locale-contact', params: { locale: currentLocale } }">
@@ -107,6 +103,7 @@
     BlogListItem,
     CaseExcerpt,
     CtaBlock,
+    CurlyBracket,
     HighlightedClients,
     HorizontalCarousel,
     PageHeader,
@@ -122,6 +119,7 @@
       BlogListItem,
       CaseExcerpt,
       CtaBlock,
+      CurlyBracket,
       HighlightedClients,
       HorizontalCarousel,
       PageHeader,
@@ -225,17 +223,6 @@
   .page-index .academy-excerpt {
     grid-column: var(--grid-page);
     grid-row: 1;
-  }
-
-  .page-index__curly-bracket-column {
-    margin-top: var(--spacing-big);
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row: 1;
-    display: flex;
-    align-items: flex-end;
-    position: relative;
-    overflow: hidden;
   }
 
   .page-index__curly-bracket-column--right {
@@ -376,15 +363,6 @@
 
     .page-index .academy-excerpt {
       padding: var(--spacing-larger) 0;
-    }
-
-    .page-index__curly-bracket-column {
-      margin-top: 0;
-      position: absolute;
-      top: calc(-1 * var(--spacing-medium));
-      bottom: calc(-1 * var(--spacing-medium));
-      grid-column-start: 2;
-      grid-column-end: 6;
     }
 
     .page-index__curly-bracket-column--right {
