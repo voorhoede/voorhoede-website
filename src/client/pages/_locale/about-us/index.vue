@@ -123,7 +123,7 @@
   .page-about-us__header,
   .page-about-us .image-grid,
   .page-about-us .image-with-text {
-    grid-column: page;
+    grid-column: var(--grid-page);
   }
 
   .page-about-us__jobs,
@@ -196,7 +196,7 @@
 
     .page-about-us__overview {
       grid-column-start: 2;
-      grid-column-end: -2;
+      grid-column-end: 50;
       background-color: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
       margin-bottom: var(--spacing-big);
@@ -226,7 +226,7 @@
 
     .page-about-us__jobs-text {
       grid-column-start: 6;
-      grid-column-end: -6;
+      grid-column-end: 44;
     }
 
     .page-about-us__jobs-list-item {
@@ -236,7 +236,7 @@
 
     .page-about-us__blog {
       grid-column-start: 4;
-      grid-column-end: -4;
+      grid-column-end: 48;
     }
   }
 
