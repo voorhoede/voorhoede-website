@@ -114,6 +114,10 @@
     font-family: var(--font-sans);
     text-align: center;
     color: var(--html-blue);
+    grid-column-start: 2;
+    grid-column-end: 5;
+    align-self: start;
+    justify-self: end;
   }
 
   .academy-excerpt__calendar::before,
@@ -133,6 +137,11 @@
 
   .academy-excerpt__calendar::after {
     right: 8px;
+  }
+
+  .academy-excerpt__content {
+    grid-column-start: 6;
+    grid-column-end: var(--grid-content-end);
   }
 
   .academy-excerpt__day {
@@ -184,18 +193,6 @@
       max-width: 100%;
       max-height: 100%;
     }
-  }
-
-  .academy-excerpt__calendar {
-    grid-column-start: 2;
-    grid-column-end: 5;
-    align-self: start;
-    justify-self: end;
-  }
-
-  .academy-excerpt__content {
-    grid-column-start: 6;
-    grid-column-end: var(--grid-content-end);
   }
 
   @media (min-width: 720px) {

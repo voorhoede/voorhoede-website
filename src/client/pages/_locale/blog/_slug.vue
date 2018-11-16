@@ -1,5 +1,5 @@
 <template>
-  <div class="page-blog-post grid">
+  <div class="page-blog-post grid" lang="en">
     <page-header-detail
       class="page-blog-post__header"
       :title="page.title"
@@ -74,14 +74,14 @@
 
     <aside class="page-blog-post__aside">
       <blog-author class="page-blog-post__aside-author" :item="page" />
-      <social-buttons 
-        :title="page.socialTitle" 
-        :share-title="page.title" 
+      <social-buttons
+        :title="page.socialTitle"
+        :share-title="page.title"
         :share-post="true" />
     </aside>
 
     <div class="page-blog-post__link-container">
-      <nuxt-link class="font-html-blue body font-bold" :to="`/${currentLocale}/blog`">
+      <nuxt-link class="app-button app-button--secondary body font-bold" :to="`/${currentLocale}/blog`">
         &larr; See all posts
       </nuxt-link>
     </div>
@@ -149,6 +149,7 @@ export default {
   },
   head() {
     return {
+      title: this.page.social.title,
       meta: [
         { 'name': 'description', 'content': this.page.social.description },
         { 'property': 'og:description', 'content': this.page.social.description },

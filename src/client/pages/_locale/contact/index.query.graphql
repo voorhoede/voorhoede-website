@@ -16,6 +16,7 @@ fragment contact on ContactRecord {
   slug,
   subtitle,
   social {
+    title,
     description
   },
   keywords,
@@ -34,20 +35,11 @@ fragment contact on ContactRecord {
     phoneLabel,
     phonePlaceholder,
     phoneErrorMessage,
-    subjectLabel,
-    subjectOptions {
-      label,
-      value
-    },
-    budgetLabel,
-    budgetOptions {
-      label,
-      value
-    },
     websiteLabel,
     websitePlaceholder,
     projectLabel,
     projectPlaceholder,
+    projectErrorMessage,
     ctaButtonLabel,
   },
   headerIllustration {

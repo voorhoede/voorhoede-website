@@ -26,8 +26,8 @@ stories.add(
       <case-meta
         expertise-title="Expertise"
         :expertises="[{title: 'Development'}, {title: 'Prototyping'}]"
-        platform-title="Platform"
-        :platforms="[{title: 'Vuejs'}, {title: 'Node.js'}, {title: 'Nuxt'}]"
+        technologies-title="Technologies"
+        :technologies="[{title: 'Vuejs'}, {title: 'Node.js'}, {title: 'Nuxt'}]"
         deliverable-title="Deliverables"
         :deliverables="[{title: 'API intergration'}, {title: 'BFF (back-end for front-end)'}]"
         interested-title="Interested"

@@ -16,6 +16,7 @@ fragment page on FaqRecord {
   },
   slug,
   social {
+    title,
     description
   },
   keywords,

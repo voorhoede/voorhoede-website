@@ -15,6 +15,7 @@ fragment page on ServiceOverviewRecord {
   subtitle,
   slug,
   social {
+    title,
     description
   },
   keywords,

@@ -17,8 +17,8 @@
         class="page-case__case-meta"
         :expertise-title="page.metaData.expertisesTitle"
         :expertises="page.metaData.expertises"
-        :platform-title="page.metaData.platformsTitle"
-        :platforms="page.metaData.platforms"
+        :technologies-title="page.metaData.technologiesTitle"
+        :technologies="page.metaData.technologies"
         :deliverable-title="page.metaData.deliverableTitle"
         :deliverables="page.metaData.deliverables"
         :interested-title="page.metaData.interestedTitle"
@@ -102,7 +102,7 @@
 
     <div class="page-case__link-container">
       <nuxt-link
-        class="font-html-blue body font-bold"
+        class="app-button app-button--secondary body font-bold"
         :to="`/${currentLocale}/cases`">
         &larr; {{ page.backLinkTitle }}
       </nuxt-link>
@@ -181,6 +181,7 @@
     },
     head() {
       return {
+        title: this.page.social.title,
         meta: [
           { 'name': 'description', 'content': this.page.social.description },
           { 'name': 'description', 'content': this.page.social.description },
@@ -194,7 +195,7 @@
 
 <style>
   @import '../../../components/app-core/variables.css';
-  
+
   :root {
     --case-full-width-image-height: 515px; /* value according to design */
   }

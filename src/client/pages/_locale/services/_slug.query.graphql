@@ -15,6 +15,7 @@ query ($locale: SiteLocale, $slug: String)  {
 fragment page on ServiceRecord {
 	slug,
   social {
+    title,
     description
   },
   keywords

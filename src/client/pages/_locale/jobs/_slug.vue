@@ -8,9 +8,9 @@
     <div class="grid">
       <div class="page-job__overview">
         <ul>
-          <li 
-            class="page-job__overview-item" 
-            v-for="item in page.jobContent" 
+          <li
+            class="page-job__overview-item"
+            v-for="item in page.jobContent"
             :key="item.title">
             <generic-text-block
               :title="item.title"
@@ -33,7 +33,7 @@
             secondary
           />
         </div>
-        <scroll-to point-up />  
+        <scroll-to point-up />
       </div>
     </div>
   </section>
@@ -41,14 +41,14 @@
 
 <script>
   import { mapState } from 'vuex'
-  import { 
+  import {
     PageHeader,
     TextBlock,
     RichTextBlock,
     GenericTextBlock,
     CtaBlock,
     ScrollTo,
-    AppButton 
+    AppButton
   } from '../../../components'
 
   export default {
@@ -73,6 +73,7 @@
     },
     head() {
       return {
+        title: this.page.social.title,
         meta: [
           { 'name': 'description', 'content': this.page.social.description },
           { 'name': 'description', 'content': this.page.social.description },
@@ -104,11 +105,11 @@
     bottom: var(--spacing-big);
     right: var(--spacing-larger);
   }
-  
+
   .page-job__overview .button-group {
     margin-bottom: var(--spacing-large);
   }
-  
+
   .page-job__overview .button-group .app-button {
     width: 50%;
     white-space: nowrap;

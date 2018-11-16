@@ -5,7 +5,7 @@ export default async function({ form, router, currentLocale }) {
     Object.keys(form).forEach(key => {
       body.append(key, form[key])
     })
-
+    
     await fetch('./', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
