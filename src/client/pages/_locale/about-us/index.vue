@@ -10,6 +10,7 @@
       :title="page.introTitle"
       :body="page.introBody"
       :image="page.introImage"
+      class="page-about-us__intro"
     />
     <image-grid
       :title="page.teamGridTitle"
@@ -20,6 +21,7 @@
       :body="page.middleBody"
       :image="page.middleImage"
       :inverse="true"
+      class="page-about-us__middle"
     />
     <div class="page-about-us__jobs-text">
       <h2 class="page-about-us__jobs-title h2">{{ page.jobsTitle }}</h2>
@@ -215,8 +217,17 @@
     }
 
     .page-about-us .image-with-text {
-      grid-column: content;
       margin-bottom: var(--spacing-larger);
+    }
+
+    .page-about-us .page-about-us__intro {
+      grid-column-start: 4;
+      grid-column-end: 48;
+    }
+
+    .page-about-us .page-about-us__middle {
+      grid-column-start: 6;
+      grid-column-end: 44;
     }
 
     .page-about-us .image-grid,
