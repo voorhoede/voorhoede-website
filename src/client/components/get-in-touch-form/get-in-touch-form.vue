@@ -48,7 +48,7 @@
       <input-field
         textarea
         v-model="form.explanation"
-        id="project"
+        id="explanation"
         type="text"
         :label="summaryLabel"
         :placeholder-label="summaryPlaceholder"
@@ -175,6 +175,7 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
   @import '../forms/forms.css';
 
   .get-in-touch-form {

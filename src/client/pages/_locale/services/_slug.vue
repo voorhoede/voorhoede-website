@@ -33,6 +33,7 @@
     },
     head() {
       return {
+        title: this.page.social.title,
         meta: [
           { 'name': 'description', 'content': this.page.social.description },
           { 'name': 'description', 'content': this.page.social.description },
@@ -45,6 +46,8 @@
 </script>
 
 <style>
+  @import '../../../components/app-core/variables.css';
+
   .page-service .page-header-detail {
     grid-column: page;
     margin-bottom: var(--spacing-large);

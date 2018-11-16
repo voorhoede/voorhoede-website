@@ -24,7 +24,6 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'De Voorhoede',
     htmlAttrs: {
       'class': 'yellow-background',
     },
@@ -108,16 +107,27 @@ module.exports = {
   css: [
     'prismjs/themes/prism.css'
   ],
+
+
+  plugins: [
+    { src: '~/plugins/fetch-polyfill', ssr: false },
+    { src: '~/plugins/promise-polyfill', ssr: false },
+  ],
+
   /*
   ** Build configuration
   */
   build: {
     vendor: [
-      'url-search-params-polyfill'
+      'url-search-params-polyfill',
     ],
 
     postcss: [
-      require('postcss-custom-properties')()
+      require('postcss-import')(),
+      require('postcss-custom-properties')(),
+      require('autoprefixer')({
+        grid: true,
+      }),
     ],
 
     /*

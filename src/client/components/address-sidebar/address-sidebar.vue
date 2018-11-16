@@ -37,3 +37,11 @@ export default {
   }
 }
 </script>
+
+<style>
+.contact-address a:hover,
+.contact-address a:focus {
+  padding-bottom: .15rem;
+  background: transparent linear-gradient(to top, var(--html-blue) 2px, transparent 2px);
+}
+</style>

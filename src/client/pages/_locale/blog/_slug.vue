@@ -81,7 +81,7 @@
     </aside>
 
     <div class="page-blog-post__link-container">
-      <nuxt-link class="font-html-blue body font-bold" :to="`/${currentLocale}/blog`">
+      <nuxt-link class="app-button app-button--secondary body font-bold" :to="`/${currentLocale}/blog`">
         &larr; See all posts
       </nuxt-link>
     </div>
@@ -149,6 +149,7 @@ export default {
   },
   head() {
     return {
+      title: this.page.social.title,
       meta: [
         { 'name': 'description', 'content': this.page.social.description },
         { 'property': 'og:description', 'content': this.page.social.description },
@@ -161,6 +162,8 @@ export default {
 </script>
 
  <style>
+  @import '../../../components/app-core/variables.css';
+
   .page-blog-post__header {
     grid-column: page;
   }

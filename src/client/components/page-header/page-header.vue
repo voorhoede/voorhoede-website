@@ -8,7 +8,7 @@
       color="paper"
     />
     <div class="page-header__image" :class="{ 'page-header__image--spaced-top': !isHomepage }">
-      <img :src="image.url" :alt="image.alt">
+      <img v-if="image" :src="image.url" alt="">
     </div>
     <div class="page-header__description">
       <div class="page-header__title sub-title">
@@ -46,9 +46,12 @@ export default {
   props: {
     image: {
       type: Object,
-      required: true,
+      required: false,
+      default: function() {
+        return {}
+      },
       validator(image) {
-        return typeof(image.url) === 'string' && typeof(image.alt) === 'string'
+        return image && typeof(image.url) === 'string'
       },
     },
     title: {
@@ -68,6 +71,8 @@ export default {
 </script>
 
 <style>
+@import '../app-core/variables.css';
+
 .page-header {
   background-color: var(--bg-pastel);
   grid-template-rows: var(--app-header-height) 1fr;

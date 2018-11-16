@@ -42,6 +42,7 @@
     },
     head() {
       return {
+        title: this.page.social.title,
         meta: [
           { 'name': 'description', 'content': this.page.social.description },
           { 'name': 'description', 'content': this.page.social.description },
@@ -54,6 +55,8 @@
 </script>
 
 <style>
+@import '../../../components/app-core/variables.css';
+
 .page-contact-confirmation {
   background-color: var(--bg-pastel);
 }

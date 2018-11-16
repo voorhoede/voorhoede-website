@@ -19,6 +19,7 @@ fragment page on CaseOverviewRecord {
   title,
   slug,
   social {
+    title,
     description
   },
   keywords,

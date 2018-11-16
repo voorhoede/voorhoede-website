@@ -16,7 +16,7 @@
         <p class="page-header-detail__subtitle sub-title">{{ subTitle }}</p>
       </div>
       <div class="page-header-detail__image">
-        <img :src="image.url" :alt="image.alt">
+        <img v-if="image" :src="image.url" :alt="image.alt">
       </div>
     </div>
   </header>
@@ -32,11 +32,13 @@
     props: {
       image: {
         type: Object,
-        required: true,
+        default: function() {
+          return {}
+        },
         validator(image) {
           const isValidImageText = (image.alt === null) ? true : typeof image.alt === 'string'
 
-          return typeof(image.url) === 'string' && isValidImageText
+          return image && typeof(image.url) === 'string' && isValidImageText
         },
       },
       title: {
@@ -56,6 +58,8 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   .page-header-detail {
     background-color: var(--bg-pastel);
   }

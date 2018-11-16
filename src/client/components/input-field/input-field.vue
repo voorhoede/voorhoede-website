@@ -7,14 +7,14 @@
       v-if="textarea"
       :id="id"
       :name="id"
-      :value="value"
       :type="type"
       :placeholder="placeholderLabel"
+      :value="value"
       class="body"
       :class="{ 'is-invalid': isInvalid }"
       v-bind="$attrs"
-      ref="input"
       rows="5"
+      ref="input"
       @input="updateInput"
     />
     <input
@@ -102,6 +102,8 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   .field-is-invalid {
     color: var(--soft-red);
   }

@@ -35,6 +35,8 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   .image-with-text {
     display: flex;
     flex-direction: column;

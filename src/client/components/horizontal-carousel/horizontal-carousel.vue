@@ -7,6 +7,8 @@
 </template>
 
 <style>
+@import '../app-core/variables.css';
+
 :root {
   --horizontal-carousel-offset: calc(var(--grid-margin) + var(--grid-fixed-column));
   --horizontal-carousel-slide-spacing: var(--grid-fixed-column);

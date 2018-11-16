@@ -1,7 +1,7 @@
 <template>
   <div class="job-excerpt">
     <div class="job-excerpt__image">
-      <img class="job-excerpt__image-item" :src="image.url" :alt="image.alt">
+      <img v-if="image" class="job-excerpt__image-item" :src="image.url" alt="">
     </div>
     <div class="job-excerpt__text">
       <h3 class="job-excerpt__text-title h5">{{ title }}</h3>
@@ -34,9 +34,7 @@
         type: Object,
         required: true,
         validator(image) {
-          const isValidImageText = (image.alt === undefined) ? true : typeof image.alt === 'string'
-
-          return typeof(image.url) === 'string' && isValidImageText
+          return image && typeof(image.url) === 'string'
         },
       },
       label: {
@@ -51,6 +49,8 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   :root {
     --job-excerpt-easing: .25s cubic-bezier(.5, 0, .25, 1);
   }

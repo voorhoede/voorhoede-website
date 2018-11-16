@@ -46,6 +46,7 @@
     },
     head() {
       return {
+        title: this.page.social.title,
         meta: [
           { 'name': 'description', 'content': this.page.social.description },
           { 'name': 'description', 'content': this.page.social.description },
@@ -58,6 +59,8 @@
 </script>
 
 <style>
+@import '../../../components/app-core/variables.css';
+
 .page-case__overview {
   margin: var(--spacing-large) 0 0 0;
 }

@@ -53,6 +53,7 @@
     },
     head() {
       return {
+        title: this.page.social.title,
         meta: [
           { 'name': 'description', 'content': this.page.social.description },
           { 'name': 'description', 'content': this.page.social.description },
@@ -65,6 +66,8 @@
 </script>
 
 <style>
+  @import '../../../components/app-core/variables.css';
+
   .page-blog__text {
     margin-bottom: var(--spacing-larger);
     color: var(--html-blue);

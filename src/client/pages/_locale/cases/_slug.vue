@@ -102,7 +102,7 @@
 
     <div class="page-case__link-container">
       <nuxt-link
-        class="font-html-blue body font-bold"
+        class="app-button app-button--secondary body font-bold"
         :to="`/${currentLocale}/cases`">
         &larr; {{ page.backLinkTitle }}
       </nuxt-link>
@@ -181,6 +181,7 @@
     },
     head() {
       return {
+        title: this.page.social.title,
         meta: [
           { 'name': 'description', 'content': this.page.social.description },
           { 'name': 'description', 'content': this.page.social.description },
@@ -193,6 +194,8 @@
 </script>
 
 <style>
+  @import '../../../components/app-core/variables.css';
+
   :root {
     --case-full-width-image-height: 515px; /* value according to design */
   }
