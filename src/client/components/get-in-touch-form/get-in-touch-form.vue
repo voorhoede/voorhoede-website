@@ -179,7 +179,7 @@
   @import '../forms/forms.css';
 
   .get-in-touch-form {
-    grid-column: page;
+    grid-column: var(--grid-page);
   }
 
   .get-in-touch-form__label:first-of-type {
