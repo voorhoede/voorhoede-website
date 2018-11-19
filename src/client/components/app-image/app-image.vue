@@ -74,6 +74,7 @@
     background-color: var(--bg-pastel);
   }
 
+  .app-image__picture,
   .app-image__img {
     display: block;
     object-fit: cover;
