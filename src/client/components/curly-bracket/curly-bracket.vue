@@ -27,18 +27,22 @@ export default {
 
 <style>
   .curly-bracket {
-    margin-top: var(--spacing-bigger);
-    grid-column-start: 1;
-    grid-column-end: 5;
     grid-row-start: 1;
     grid-row-end: 5;
     position: relative;
   }
 
-  .curly-bracket--right {
-    grid-column-start: 46;
-    grid-column-end: 50;
+  .curly-bracket--left {
+    margin-top: var(--spacing-bigger);
+    grid-column-start: 1;
+    grid-column-end: 8;
   }
+
+  .curly-bracket--right {
+    grid-column-start: 43;
+    grid-column-end: 51;
+  }
+
 
   .curly-bracket__image {
     position: absolute;
@@ -53,20 +57,17 @@ export default {
   .curly-bracket--right .curly-bracket__image {
     transform: scaleX(-1);
     transform-origin: center center;
-    left: unset;
+    left: auto;
     right: 0;
   }
 
   @media (min-width: 720px) {
-    .curly-bracket {
+    .curly-bracket--left {
       margin-top: 0;
       grid-column-start: 2;
-      grid-column-end: 6;
     }
 
     .curly-bracket--right {
-      grid-row-start: 1;
-      grid-column-start: 45;
       grid-column-end: 49;
     }
 
@@ -77,7 +78,7 @@ export default {
   }
 
   @media (min-width: 1100px) {
-    .curly-bracket {
+    .curly-bracket--left {
       grid-column-start: 3;
       grid-column-end: 8;
     }
