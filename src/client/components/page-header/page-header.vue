@@ -7,7 +7,7 @@
       side="right"
       color="paper"
     />
-    <div class="page-header__image" :class="{ 'page-header__image--spaced-top': !isHomepage }">
+    <div class="page-header__image">
       <img v-if="image" :src="image.url" alt="">
     </div>
     <div class="page-header__description">
@@ -76,7 +76,6 @@ export default {
 .page-header {
   background-color: var(--bg-pastel);
   grid-template-rows: var(--app-header-height) 1fr;
-  overflow: hidden;
 }
 
 .page-header__brick {
@@ -105,10 +104,11 @@ export default {
   position: static;
   z-index: var(--z-index-low);
   object-fit: contain;
-  object-position: bottom;
+  object-position: bottom right;
   justify-content: flex-end;
   width: 100%;
-  max-height: 100%;
+  height: 100%;
+  margin-bottom: calc(-1 * var(--spacing-medium))
 }
 
 .page-header--home {
@@ -118,9 +118,14 @@ export default {
 }
 
 .page-header__image {
+  display: none;
+  justify-content: flex-end;
   grid-column: var(--grid-content);
   grid-row-start: 4;
   grid-row-end: 5;
+}
+.page-header--home .page-header__image {
+  display: flex;
 }
 
 .page-header__description {
@@ -133,12 +138,6 @@ export default {
   margin-top: var(--spacing-smaller);
   hyphens: auto;
   overflow-wrap: break-word;
-}
-
-@media (min-width: 420px) {
-  .page-header--brick .page-header__image img {
-    height: 100%;
-  }
 }
 
 @media (min-width: 520px) {
@@ -211,16 +210,19 @@ export default {
   .page-header__image {
     margin-top: var(--spacing-huge);
     display: flex;
-    align-items: flex-end;
-    grid-column-start: var(--grid-center);
+    align-self: flex-end;
+    grid-column-start: 20;
     grid-column-end: 48;
     grid-row-start: 2;
     grid-row-end: 4;
+    height: 275px;
   }
 
   .page-header--home .page-header__image {
     margin-top: 0;
     grid-row-end: 3;
+    width: 100%;
+    height: auto;
   }
 }
 
