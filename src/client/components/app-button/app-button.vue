@@ -21,6 +21,7 @@
     v-bind="$attrs"
     v-on="$listeners"
     :href="to"
+    target="_blank"
   >
     {{ label }}
     <svg

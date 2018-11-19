@@ -31,14 +31,12 @@
           <li class="app-footer__list-item">
             <a
               :href="`tel:${ cleanedTelephone }`"
-              class="app-footer__link"
-              target="_blank">{{ tel }}</a>
+              class="app-footer__link">{{ tel }}</a>
           </li>
           <li class="app-footer__list-item">
             <a
               :href="`mailto:${ email }`"
-              class="app-footer__link"
-              target="_blank" >{{ email }}</a>
+              class="app-footer__link">{{ email }}</a>
           </li>
           <li class="app-footer__list-item">
             <a
