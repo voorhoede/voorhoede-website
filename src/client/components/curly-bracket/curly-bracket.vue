@@ -31,14 +31,13 @@ export default {
     grid-column-start: 1;
     grid-column-end: 5;
     grid-row-start: 1;
+    grid-row-end: 5;
     position: relative;
   }
 
   .curly-bracket--right {
-    grid-column-start: -5;
-    grid-column-end: -1;
-    grid-row-start: 2;
-    grid-row-end: 3;
+    grid-column-start: 46;
+    grid-column-end: 50;
   }
 
   .curly-bracket__image {
@@ -67,8 +66,8 @@ export default {
 
     .curly-bracket--right {
       grid-row-start: 1;
-      grid-column-start: -6;
-      grid-column-end: -2;
+      grid-column-start: 45;
+      grid-column-end: 49;
     }
 
     .curly-bracket--right .curly-bracket__image {
@@ -84,8 +83,8 @@ export default {
     }
 
     .curly-bracket--right {
-      grid-column-start: -8;
-      grid-column-end: -3;
+      grid-column-start: 43;
+      grid-column-end: 48;
     }
   }
 </style>
