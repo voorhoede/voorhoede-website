@@ -101,14 +101,14 @@ export default {
 }
 
 .page-header__image img {
-  position: static;
+  position: relative;
   z-index: var(--z-index-low);
   object-fit: contain;
   object-position: bottom right;
   justify-content: flex-end;
   width: 100%;
   height: 100%;
-  margin-bottom: calc(-1 * var(--spacing-medium))
+  bottom: calc(-1 * var(--spacing-medium))
 }
 
 .page-header--home {
