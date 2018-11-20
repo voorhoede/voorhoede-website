@@ -54,7 +54,7 @@
           <li class="app-footer__list-item--icon"
               v-for="socialItem in social" :key="socialItem.href">
             <a :href="socialItem.href" target="_blank">
-              <app-icon :name="socialItem.icon" :is-large="true" />
+              <app-icon :alt="socialItem.title" :name="socialItem.icon" :is-large="true" />
             </a>
           </li>
         </ul>
