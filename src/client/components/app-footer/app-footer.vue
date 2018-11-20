@@ -54,7 +54,7 @@
           <li class="app-footer__list-item--icon"
               v-for="socialItem in social" :key="socialItem.href">
             <a :href="socialItem.href" target="_blank">
-              <app-icon :name="socialItem.icon" :is-large="true" />
+              <app-icon :alt="socialItem.title" :name="socialItem.icon" :is-large="true" />
             </a>
           </li>
         </ul>
@@ -70,13 +70,13 @@
         <a
           :href="copyrightLink"
           class="app-footer__copyright"
-          :title="copyrightTitle"
+          :aria-label="copyrightTitle"
           target="_blank">{{ copyrightLabel }}</a>
         <span> - </span>
         <a
           :href="privacyLink"
           class="app-footer__privacy"
-          :title="privacyTitle"
+          :aria-label="privacyTitle"
           target="_blank">{{ privacyLabel }}</a>
       </div>
     </div>
