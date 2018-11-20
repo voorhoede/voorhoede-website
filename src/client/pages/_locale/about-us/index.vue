@@ -123,7 +123,7 @@
   .page-about-us__header,
   .page-about-us .image-grid,
   .page-about-us .image-with-text {
-    grid-column: page;
+    grid-column: var(--grid-page);
   }
 
   .page-about-us__jobs,
@@ -215,7 +215,7 @@
     }
 
     .page-about-us .image-with-text {
-      grid-column: content;
+      grid-column: var(--grid-content);
       margin-bottom: var(--spacing-larger);
     }
 
