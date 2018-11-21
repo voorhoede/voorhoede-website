@@ -112,6 +112,8 @@ module.exports = {
   plugins: [
     { src: '~/plugins/fetch-polyfill', ssr: false },
     { src: '~/plugins/promise-polyfill', ssr: false },
+    { src: '~/plugins/find-polyfill', ssr: false },
+    { src: '~/plugins/includes-polyfill', ssr: false },
   ],
 
   /*
