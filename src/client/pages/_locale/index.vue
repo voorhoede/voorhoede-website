@@ -265,15 +265,6 @@
     margin-bottom: var(--spacing-larger);
   }
 
-  @media (min-width: 540px) {
-    .page-index__curly-bracket-column {
-      max-height: none;
-      overflow: visible;
-      grid-column-start: 3;
-      grid-column-end: 5;
-    }
-  }
-
   @media (min-width: 720px) {
     .page-index__scroll-to {
       bottom: var(--spacing-medium);
