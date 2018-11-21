@@ -50,7 +50,7 @@
 
 <style>
 .page-jobs__overview {
-  grid-column: content;
+  grid-column: var(--grid-content);
   margin: var(--spacing-large) 0;
 }
 

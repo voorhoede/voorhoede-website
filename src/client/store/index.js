@@ -98,9 +98,7 @@ const createStore = () => {
         }
       },
       nuxtServerInit({ commit }, { params }) {
-        if (params.locale) {
-          commit(types.SET_CURRENT_LOCALE, { locale: params.locale })
-        }
+        commit(types.SET_CURRENT_LOCALE, { locale: params.locale ? params.locale : process.env.DEFAULT_LOCALE })
       },
       setCurrentLocale({ commit, dispatch, state }, { locale }) {
         if (state.currentLocale !== locale && locale) {

@@ -126,6 +126,7 @@ module.exports = {
       require('postcss-import')(),
       require('postcss-custom-properties')(),
       require('autoprefixer')({
+        browsers: ['ie 11', '>1%'],
         grid: true,
       }),
     ],

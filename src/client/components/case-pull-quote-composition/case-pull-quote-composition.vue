@@ -71,13 +71,13 @@ export default {
 
 .pullquote-composition__title {
   grid-row: 1;
-  grid-column: content-right;
+  grid-column: var(--grid-content-right);
   grid-column-start: 8;
   align-self: center;
 }
 
 .pullquote-composition__title--align-left {
-  grid-column: content;
+  grid-column: var(--grid-content);
   grid-column-start: 1;
   grid-column-end: 8;
 }

@@ -179,15 +179,24 @@
 
   .page-index__services {
     margin-bottom: var(--spacing-larger);
+    grid-template-rows: repeat(2, auto);
   }
 
   .page-index__section-title {
     margin-bottom: var(--spacing-large);
+    grid-row-start: 1;
+    grid-row-end: 2;
     text-align: center;
+  }
+
+  .page-index .services-list {
+    grid-row-start: 2;
+    grid-row-end: 3;
   }
 
   .page-index__section-title--clients {
     color: var(--dim);
+    grid-row: 1;
   }
 
   .page-index__section-title--blog-posts {
@@ -204,6 +213,11 @@
     padding-top: var(--spacing-larger);
     padding-bottom: var(--spacing-larger);
     background-color: var(--fog);
+    grid-template-rows: repeat(2, auto);
+  }
+
+  .page-index .highlighted-clients {
+    grid-row: 2;
   }
 
   .page-index__academy {
@@ -213,23 +227,38 @@
   }
 
   .page-index .academy-excerpt {
-    grid-column: page;
+    grid-column: var(--grid-page);
     grid-row: 1;
   }
 
   .page-index__blog-posts {
+    grid-template-rows: repeat(3, auto);
     margin-bottom: var(--spacing-large);
   }
 
   .page-index__blog-posts-list {
     margin-bottom: var(--spacing-small);
     grid-row: 2;
-    grid-column-end: -3;
+    grid-column-end: 48;
+    grid-template-rows: repeat(3, auto);
+  }
+
+  .page-index__blog-posts-list-item {
+    grid-row: 1;
+  }
+
+  .page-index__blog-posts-list-item:nth-child(2) {
+    grid-row: 2;
+  }
+
+  .page-index__blog-posts-list-item:nth-child(3) {
+    grid-row: 3;
   }
 
   .page-index__blog-posts-button {
     display: flex;
     justify-content: center;
+    grid-row: 3;
   }
 
   .page-index__cases {
@@ -283,7 +312,7 @@
     }
 
     .page-index__blog-posts-list {
-      grid-column: page;
+      grid-column: var(--grid-page);
       overflow: hidden;
     }
 
@@ -323,7 +352,7 @@
       display: flex;
       position: absolute;
       bottom: var(--spacing-larger);
-      grid-column: -3;
+      grid-column: 48;
     }
 
     .page-index__cta-block {
@@ -332,7 +361,7 @@
 
     .page-index__cta-block .cta-block {
       grid-column-start: 6;
-      grid-column-end: -6;
+      grid-column-end: 45;
     }
   }
 
@@ -354,7 +383,7 @@
     .page-index__services > *,
     .page-index__clients > * {
       grid-column-start: 4;
-      grid-column-end: -4;
+      grid-column-end: 47;
     }
 
     .page-index__section-title {

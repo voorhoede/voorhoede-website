@@ -201,7 +201,8 @@
   }
 
   .page-case__case-header {
-    grid-column: page;
+    grid-column: var(--grid-page);
+    grid-row: 1;
   }
 
   .page-case__scroll-to {
@@ -212,7 +213,8 @@
   }
 
   .page-case__case-meta-container {
-    grid-column: page;
+    grid-column: var(--grid-page);
+    grid-row: 2;
     background-color: var(--bg-pastel);
     padding: var(--spacing-small) 0 var(--spacing-large) 0;
   }
@@ -229,11 +231,14 @@
   }
 
   .page-case__get-in-touch-form {
-    grid-column: page;
+    grid-column: var(--grid-page);
+    grid-row: 6;
   }
 
   .page-case__content {
-    grid-column: page;
+    grid-column: var(--grid-page);
+    grid-row: 4;
+    flex-direction: column;
   }
 
   .page-case__title {
@@ -241,18 +246,20 @@
   }
 
   .page-case__link-container {
+    grid-row: 5;
     padding-top: var(--spacing-small);
     border-top: 2px solid var(--very-dim);
     margin-bottom: var(--spacing-bigger);
   }
 
   .page-case__case-teaser {
-    grid-column: page;
+    grid-column: var(--grid-page);
+    grid-row: 3;
     margin: var(--spacing-large) 0;
   }
 
   .page-case__content .storytelling-section {
-    grid-column: page;
+    grid-column: var(--grid-page);
     padding: var(--spacing-larger) 0;
   }
 
@@ -277,12 +284,12 @@
 
     .page-case__case-header .page-header-detail__container {
       grid-column-start: 4;
-      grid-column-end: -4;
+      grid-column-end: 48;
     }
 
     .page-case__get-in-touch-form .get-in-touch-form {
       grid-column-start: 1;
-      grid-column-end: -3;
+      grid-column-end: 49;
     }
 
     .page-case__get-in-touch-form {
@@ -293,7 +300,7 @@
       display: flex;
       position: absolute;
       bottom: 0;
-      grid-column: -3;
+      grid-column: 49;
     }
   }
 
@@ -308,12 +315,12 @@
 
     .page-case__text {
       grid-column-start: 14;
-      grid-column-end: -14;
+      grid-column-end: 38;
     }
 
     .page-case__content .quote-block {
       grid-column-start: 12;
-      grid-column-end: -12;
+      grid-column-end: 40;
     }
 
     .page-case__get-in-touch-form,
@@ -324,7 +331,7 @@
 
     .page-case__link-container {
       grid-column-start: 4;
-      grid-column-end: -4;
+      grid-column-end: 48;
     }
 
     .page-case__content .full-width-image {
@@ -338,11 +345,11 @@
 
     .page-case__content .image-with-description--inverse {
       grid-column-start: 0;
-      grid-column-end: -8;
+      grid-column-end: 44;
     }
 
     .page-case__get-in-touch-form .get-in-touch-form {
-      grid-column: page;
+      grid-column: var(--grid-page);
     }
   }
 </style>

@@ -12,33 +12,49 @@ The project uses CSS Grid to layout components.
 
 ## Grid layout
 
-The grid consist out of altering fixed- and fluid-width columns, wrapped in two 
+The grid consist out of altering fixed- and fluid-width columns, wrapped in two
 "margin" columns.
 
-A few key track lines have names for easy placement.
+```
+┌--------------------------------page-------------------------------┐
+├-----------page-left-------------┬--------------page-right---------┤
+|                                 |                                 |
+|    ┌-------------------------content-------------------------┐    |
+|    ├---------content-left-------┬--------content-right-------┤    |
+| ** | ++ | ~~ | ++ // ~~ | ++ | ~|~ | ++ | ~~ | ++ // ~~ | ++ | ** |
 
+** : grid margin
+++ : fixed with column
+~~ : fluid width column
+ ~ : fluid width column half
 ```
 
-┌------------------------------------page-------------------------------------┐
-|                                                                             |
-├-------------page-left----------------┬--------------page-right--------------┤
-|                                      |                                      |
-|       ┌---------------------------content---------------------------┐       |
-|       |                                                             |       |
-|       ├----------content-left--------┬-------content-right----------┤       |
-|       |                              |                              |       |
-
-| ***** | === | -- | === | -- | === | #|# | === | -- | === | -- | === | ***** |
-
-
-*****: grid margin
-===  : fixed with column
---   : fluid width column
-#    : fluid width column half
+For all breakpoints the number of grid lines is 51. Depending on the breakpoint however,
+some columns are zero-width.
 
 ```
+┌-------------------------------------------------------------------------page
+├---------------------------------page-left--------------------------------┬-/
+|  ┌--------------------------------------------------------------------content
+|  ├------------------------------content-left-----------------------------┬-/
+1  2  3                          4  13                         14 23 24 25 26
+|  |  |                          -  |                          -  |  |  |  |
+|  |  |                          12 |                          22 |  |  |  |
+|**|++|~~~~~~~~~~~~~~~~~~~~~~~~~~|++|~~~~~~~~~~~~~~~~~~~~~~~~~~|++|~~|++| ~|~
+|  |  |                          |  |                          |  |  |   small
 
-## Usage
+1  2  3        4  7  8  9        10 13       14 17 18 19       20 23 24 25 26
+|  |  |        -  |  |  |        -  |        -  |  |  |        -  |  |  |  |
+|  |  |        6  |  |  |        12 |        16 |  |  |        22 |  |  |  |
+|**|++|~~~~~~~~|++|~~|++|~~~~~~~~|++|~~~~~~~~|++|~~|++|~~~~~~~~|++|~~|++| ~|~
+|  |  |        |  |  |  |        |  |        |  |  |  |      medium (>= 720px)
+
+1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26
+|**|++|~~|++|~~|++|~~|++|~~|++|~~|++|~~|++|~~|++|~~|++|~~|++|~~|++|~~|++| ~|~
+|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | wide (>= 1100px)
+```
+
+ ##  Usage
 
 To add the grid to an element, add the `grid` class:
 
@@ -49,8 +65,7 @@ To add the grid to an element, add the `grid` class:
 ```
 
 The `<element>` receives the grid. The `<child-element />` is placed on the grid.
-By default, the `<child-element />` is placed in the `content` section of the 
-grid. Meaning it spans from the second track to the second-last track.
+By default, the `<child-element />` uses `var(--grid-content)`, meaning it spans across content columns (`grid-column: 2 / 50`) of the grid.
 
 ### Custom placement
 
@@ -63,47 +78,38 @@ You can deviate from the default placement of an element. Given this markup:
 
 <style>
   child-element {
-    grid-column: content-left;
+    grid-column: var(--grid-content-left);
   }
 </style>
 ```
 
-The `<child-element />` is now placed in the `content-left` section.
+The `<child-element />` will now span `grid-column: 2 / 26`
+
+You can use the following custom properties to span columns
+* `--grid-page`: Spans from browser edge to edge
+* `--grid-page-left`: The left 50% of the page. Ends in the exact center of the browser
+* `--grid-page-right`: The right 50% of the page. Starts in the exact center of the browser
+* `--grid-content`: Starts right after, and ends right before, the grid "margin"
+* `--grid-content-left`: The left side of the content area. Ends at the last fixed column on the left side
+* `--grid-content-right`: The right side of the content area. Starts at the first fixed column on the right side
 
 #### Custom sections
-
-There are a few sections defined on the grid:
-
-* `page`: Spans from browser edge to edge
-* `page-left`: The left 50% of the page. Ends in the exact center of the browser
-* `page-right`: The right 50% of the page. Starts in the exact center of the browser
-* `content`: Starts right after, and ends right before, the grid "margin"
-* `content-left`: The left side of the content area. Ends at the last fixed column on the left side
-* `content-right`: The right side of the content area. Starts at the first fixed column on the right side
-
-##### Mix / match starting and ending on custom sections
-
-You can mix and match the start end ending of an element on different sections.
-To start an element on `content-right` but end it at the edge of the browser, 
+You do not have to stick to the predefined spans, you can also set the grid lines yourself.
+To start an element on the center, yet end it at the edge of the browser,
 you position it like this:
 
 ```css
 child-element {
-  grid-column-start: content-right;
-  grid-column-end: page;
+  grid-column-start: var(--grid-center);
+  grid-column-end: var(--grid-page-end);
 }
 ```
+
+Custom properties are defined to quickly refer to specific grid lines:
+* `--grid-page-start`: 1
+* `--grid-content-start`: 2
+* `--grid-center`: 26
+* `--grid-content-end`: 50
+* `--grid-page-end`: 51
 
 #### Place on specific track lines
-
-It is possible to start / end a column on track lines instead of above mentioned
-sections. To start an element on the 10th track, use:
-
-```css
-child-element {
-  grid-column-start: 10;
-}
-```
-
-Keep in mind that the amount of columns differ from breakpoint to breakpoint.
-If you place elements on track lines, you should do that for each breakpoint.

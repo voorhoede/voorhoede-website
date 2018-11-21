@@ -99,11 +99,14 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   :root {
     --button-group-spacing: var(--spacing-large);
   }
 
   .academy-excerpt__calendar {
+    display: block;
     position: relative;
     max-width: 3.75rem;
     padding: var(--spacing-tiny) 0;
@@ -111,6 +114,10 @@
     font-family: var(--font-sans);
     text-align: center;
     color: var(--html-blue);
+    grid-column-start: 2;
+    grid-column-end: 5;
+    align-self: start;
+    justify-self: end;
   }
 
   .academy-excerpt__calendar::before,
@@ -130,6 +137,11 @@
 
   .academy-excerpt__calendar::after {
     right: 8px;
+  }
+
+  .academy-excerpt__content {
+    grid-column-start: 6;
+    grid-column-end: var(--grid-content-end);
   }
 
   .academy-excerpt__day {
@@ -183,51 +195,37 @@
     }
   }
 
-  @supports (display: grid) {
+  @media (min-width: 720px) {
     .academy-excerpt__calendar {
-      grid-column-start: 2;
-      grid-column-end: 5;
-      align-self: start;
-      justify-self: end;
+      grid-column-start: 8;
+      grid-column-end: 17;
     }
 
     .academy-excerpt__content {
-      grid-column-start: 6;
-      grid-column-end: 18;
+      grid-column-start: 18;
+      grid-column-end: 30;
     }
 
-    @media (min-width: 720px) {
-      .academy-excerpt__calendar {
-        grid-column-start: 7;
-        grid-column-end: 9;
-      }
+    .academy-excerpt__illustration-column {
+      grid-column-start: 31;
+      grid-column-end: var(--grid-content-end);
+    }
+  }
 
-      .academy-excerpt__content {
-        grid-column-start: 10;
-        grid-column-end: 23;
-      }
-
-      .academy-excerpt__illustration-column {
-        grid-column-start: 24;
-        grid-column-end: -2;
-      }
+  @media (min-width: 1100px) {
+    .academy-excerpt__calendar {
+      grid-column-start: 12;
+      grid-column-end: 15;
     }
 
-    @media (min-width: 1100px) {
-      .academy-excerpt__calendar {
-        grid-column-start: 12;
-        grid-column-end: 15;
-      }
+    .academy-excerpt__content {
+      grid-column-start: 16;
+      grid-column-end: 31;
+    }
 
-      .academy-excerpt__content {
-        grid-column-start: 16;
-        grid-column-end: 31;
-      }
-
-      .academy-excerpt__illustration-column {
-        grid-column-start: 32;
-        grid-column-end: -7;
-      }
+    .academy-excerpt__illustration-column {
+      grid-column-start: 32;
+      grid-column-end: 44;
     }
   }
 </style>

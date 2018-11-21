@@ -46,11 +46,11 @@ function getLayoutData({ queryPath, locale }) {
     .then(layoutData => {
       const isErrorLayout = Boolean(layoutData.error)
       const relPath = isErrorLayout ? path.join(layoutName, `${layoutData.error.errorCode}`) : layoutName
-      
+
       if(layoutData.allRedirects) {
         fs.writeFile(path.join(__dirname,'../../src/client/static/_redirects'),
         redirectsToText(layoutData.allRedirects, locale), 'utf8', (err) => {
-          if (err) { console.error(err) }
+          if (err) console.error(chalk.red('Error while writing redirect ' + err)) // eslint-disable-line no-console
         })
       }
 

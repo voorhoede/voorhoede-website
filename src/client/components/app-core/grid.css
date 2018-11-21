@@ -1,75 +1,73 @@
-/* stylelint-disable value-list-max-empty-lines, custom-property-empty-line-before */
-:root {
-  --grid-flexible-column: 1fr;
-  --grid-flexible-column-half: .5fr;
-  --grid-column-set: var(--grid-fixed-column) var(--grid-flexible-column);
-  --grid-columns:
-    [page-start page-left-start]
+@import './variables.css';
 
-      var(--grid-margin)
-
-      [content-start content-left-start]
-
-        repeat(var(--grid-repeat-columns), var(--grid-column-set)) var(--grid-fixed-column)
-
-        [content-left-end]
-
-          var(--grid-flexible-column-half)
-          [page-left-end page-half page-right-start]
-          var(--grid-flexible-column-half)
-
-        [content-right-start]
-
-        repeat(var(--grid-repeat-columns), var(--grid-column-set)) var(--grid-fixed-column)
-
-      [content-right-end content-end]
-
-      var(--grid-margin)
-
-    [page-right-end page-end];
+.grid {
+  display: grid;
+  grid-template-columns:
+    var(--grid-margin)                          /* 1  2        */
+    var(--grid-column-small) 1fr repeat(8, 0)   /* 2  3   4-12 */
+    var(--grid-column-small) 1fr repeat(8, 0)   /* 12 13 14-22 */
+    var(--grid-column-small) 1fr                /* 22 23 24    */
+    var(--grid-column-small) .5fr               /* 24 25 26    */
+    /* center */
+    .5fr var(--grid-column-small)               /* 26 27 28    */
+    1fr var(--grid-column-small) repeat(8, 0)   /* 28 29 30-38 */
+    1fr var(--grid-column-small) repeat(8, 0)   /* 38 39 40-48 */
+    1fr var(--grid-column-small)                /* 48 49 50    */
+    var(--grid-margin)                          /* 50 51       */
 }
 
-@media (max-width: 719px) {
-  :root {
-    --grid-margin: 20px;
-    --grid-fixed-column: 20px;
-    --grid-repeat-columns: 3;
-  }
+.grid > * {
+  grid-column: var(--grid-content);
 }
 
 @media (min-width: 720px) {
-  :root {
-    --grid-margin: 40px;
-    --grid-fixed-column: 25px;
-    --grid-repeat-columns: 7;
+  .grid {
+    grid-template-columns:
+      calc(2 * var(--grid-margin))              /* 1  2        */
+      var(--grid-column-medium) 1fr repeat(2, 0) /* 2  3  4-6   */
+      var(--grid-column-medium) 1fr              /* 6  7  8     */
+      var(--grid-column-medium) 1fr repeat(2, 0) /* 8  9  10-12 */
+      var(--grid-column-medium) 1fr repeat(2, 0) /* 12 13 14-16 */
+      var(--grid-column-medium) 1fr              /* 16 17 18    */
+      var(--grid-column-medium) 1fr repeat(2, 0) /* 18 19 20-22 */
+      var(--grid-column-medium) 1fr              /* 22 23 24    */
+      var(--grid-column-medium) .5fr             /* 24 25 26    */
+      /* center */
+      .5fr var(--grid-column-medium)             /* 26 27 28    */
+      1fr var(--grid-column-medium) repeat(2, 0) /* 28 29 30-32 */
+      1fr var(--grid-column-medium)              /* 32 33 34    */
+      1fr var(--grid-column-medium) repeat(2, 0) /* 34 35 36-38 */
+      1fr var(--grid-column-medium) repeat(2, 0) /* 38 39 40-42 */
+      1fr var(--grid-column-medium)              /* 42 43 44    */
+      1fr var(--grid-column-medium) repeat(2, 0) /* 44 45 46-48 */
+      1fr var(--grid-column-medium)              /* 48 49 50    */
+      calc(2 * var(--grid-margin))              /* 50 51       */
   }
 }
 
 @media (min-width: 1100px) {
-  :root {
-    --grid-margin: 60px;
-    --grid-fixed-column: 35px;
-    --grid-repeat-columns: 11;
+  .grid {
+    grid-template-columns:
+      calc(3 * var(--grid-margin))             /* 1 2         */
+      repeat(11, var(--grid-column-large) 1fr)
+      var(--grid-column-large) .5fr            /* 24 25 26    */
+      /* center */
+      .5fr var(--grid-column-large)            /* 26 27 28    */
+      repeat(11, 1fr var(--grid-column-large))
+      calc(3 * var(--grid-margin))             /* 50 51       */
   }
 }
 
 @media (min-width: 1440px) {
-  :root {
-    --grid-margin: 1fr;
-    --grid-flexible-column: 20.68px;
-    --grid-flexible-column-half: 10.34px;
-    --grid-fixed-column: 35px;
-    --grid-repeat-columns: 11;
-  }
-}
-
-@supports (display: grid) {
+  /* every column has a fixed size in pixels on 1440 and above */
   .grid {
-    display: grid;
-    grid-template-columns: var(--grid-columns);
-  }
-
-  .grid > * {
-    grid-column: content;
+    grid-template-columns:
+      1fr                                       /* 1 2        */
+      repeat(11, var(--grid-column-large) var(--grid-gutter-large))
+      var(--grid-column-large) calc(var(--grid-gutter-large) / 2)             /* 24 25 26   */
+      /* center */
+      calc(var(--grid-gutter-large) / 2) var(--grid-column-large)             /* 26 27 28   */
+      repeat(11, var(--grid-column-large) var(--grid-gutter-large))
+      1fr                                       /* 50 51      */
   }
 }
