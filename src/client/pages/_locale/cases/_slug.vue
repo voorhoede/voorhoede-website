@@ -35,7 +35,7 @@
       />
     </div>
 
-    <article class="page-case__content grid">
+    <article class="page-case__content">
       <template v-for="item in page.content">
         <div
           v-if="item.__typename === 'TextSectionRecord'"
@@ -199,6 +199,15 @@
   :root {
     --case-full-width-image-height: 515px; /* value according to design */
   }
+  
+  .grid .page-case__content {
+    grid-column: 1 / 51;
+  }
+
+  .grid .page-case__content > *:not(.storytelling-section),
+  .grid .page-case__content > *:not(.full-width-image) {
+    padding: 0 var(--spacing-medium);
+  }
 
   .page-case__case-header {
     grid-column: var(--grid-page);
@@ -236,9 +245,7 @@
   }
 
   .page-case__content {
-    grid-column: var(--grid-page);
     grid-row: 4;
-    flex-direction: column;
   }
 
   .page-case__title {
@@ -259,8 +266,12 @@
   }
 
   .page-case__content .storytelling-section {
-    grid-column: var(--grid-page);
     padding: var(--spacing-larger) 0;
+    width: 100%;
+  }
+
+  .page-case__text {
+    grid-column: var(--grid-page);
   }
 
   .page-case__text video {
@@ -314,8 +325,17 @@
     }
 
     .page-case__text {
-      grid-column-start: 14;
-      grid-column-end: 38;
+      max-width: 580px;
+    }
+
+    .page-case__content {
+      grid-column-start: 1;
+      grid-column-end: 52;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .page-case__content .quote-block {
