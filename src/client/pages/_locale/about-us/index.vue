@@ -10,16 +10,19 @@
       :title="page.introTitle"
       :body="page.introBody"
       :image="page.introImage"
+      class="page-about-us__intro"
     />
     <image-grid
       :title="page.teamGridTitle"
       :items="page.teamGrid"
+      class="page-about-us__image-grid"
     />
     <image-with-text-block
       :title="page.middleTitle"
       :body="page.middleBody"
       :image="page.middleImage"
       :inverse="true"
+      class="page-about-us__middle"
     />
     <div class="page-about-us__jobs-text">
       <h2 class="page-about-us__jobs-title h2">{{ page.jobsTitle }}</h2>
@@ -121,23 +124,62 @@
 
   .page-about-us__jobs,
   .page-about-us__header,
-  .page-about-us .image-grid,
-  .page-about-us .image-with-text {
+  .page-about-us__intro,
+  .page-about-us__image-grid,
+  .page-about-us__middle {
     grid-column: var(--grid-page);
   }
 
-  .page-about-us__jobs,
-  .page-about-us .image-grid,
-  .page-about-us__jobs-text {
-    text-align: center;
-    margin-bottom: var(--spacing-larger);
+  .page-about-us__header {
+    grid-row: 1;
   }
 
-  .page-about-us .image-with-text {
+  .page-about-us__intro {
+    grid-row: 2;
     margin-bottom: var(--spacing-large);
   }
 
-  .page-about-us .image-grid {
+  .page-about-us__image-grid {
+    grid-row: 3;
+    margin-bottom: var(--spacing-larger);
+  }
+
+  .page-about-us__middle {
+    grid-row: 4;
+    margin-bottom: var(--spacing-large);
+  }
+
+  .page-about-us__jobs-text {
+    grid-row: 5;
+  }
+
+  .page-about-us__jobs {
+    grid-row: 6;
+  }
+
+  .page-about-us__blog {
+    grid-row: 7;
+    margin-bottom: var(--spacing-big);
+  }
+
+  .page-about-us__blog-title {
+    text-align: center;
+    margin-bottom: var(--spacing-large);
+  }
+
+  .page-about-us__blog-list {
+    margin-bottom: var(--spacing-small);
+  }
+
+  .page-about-us__blog-button {
+    display: flex;
+    justify-content: center;
+  }
+
+  .page-about-us__jobs,
+  .page-about-us__image-grid,
+  .page-about-us__jobs-text {
+    text-align: center;
     margin-bottom: var(--spacing-larger);
   }
 
@@ -171,62 +213,26 @@
      opacity: 1;
   }
 
-  .page-about-us__blog {
-    margin-bottom: var(--spacing-big);
-  }
-
-  .page-about-us__blog-title {
-    text-align: center;
-    margin-bottom: var(--spacing-large);
-  }
-
-  .page-about-us__blog-list {
-    margin-bottom: var(--spacing-small);
-  }
-
-  .page-about-us__blog-button {
-    display: flex;
-    justify-content: center;
-  }
-
   @media (min-width: 720px) {
     .page-about-us__header {
       margin-bottom: var(--spacing-large);
     }
 
-    .page-about-us__overview {
+    .page-about-us__intro,
+    .page-about-us__middle {
       grid-column-start: 2;
-      grid-column-end: -2;
-      background-color: var(--white);
-      padding: var(--spacing-large) var(--spacing-larger);
-      margin-bottom: var(--spacing-big);
-    }
-
-    .page-about-us__overview-item {
-      flex-direction: row;
-    }
-
-    .page-about-us__overview-item .text-block {
-      margin-right: var(--spacing-big);
-    }
-
-    .page-about-us__overview-item .responsive-image__sizer {
-      margin-bottom: 0;
-    }
-
-    .page-about-us .image-with-text {
-      grid-column: var(--grid-content);
+      grid-column-end: 50;
       margin-bottom: var(--spacing-larger);
     }
 
-    .page-about-us .image-grid,
+    .page-about-us__image-grid,
     .page-about-us__jobs {
       margin-bottom: var(--spacing-big);
     }
 
     .page-about-us__jobs-text {
       grid-column-start: 6;
-      grid-column-end: -6;
+      grid-column-end: 44;
     }
 
     .page-about-us__jobs-list-item {
@@ -236,19 +242,19 @@
 
     .page-about-us__blog {
       grid-column-start: 4;
-      grid-column-end: -4;
+      grid-column-end: 48;
     }
   }
 
   @media (min-width: 1100px) {
-    .page-about-us .image-grid,
+    .page-about-us__image-grid,
     .page-about-us__jobs {
       margin-bottom: var(--spacing-bigger);
     }
 
     .page-about-us__jobs-text {
       grid-column-start: 12;
-      grid-column-end: -12;
+      grid-column-end: 38;
     }
 
     .page-about-us__jobs-list-item {
@@ -257,7 +263,7 @@
 
     .page-about-us__blog {
       grid-column-start: 10;
-      grid-column-end: -10;
+      grid-column-end: 42;
     }
   }
 </style>
