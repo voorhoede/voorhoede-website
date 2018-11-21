@@ -85,6 +85,8 @@
 </script>
 
 <style>
+  @import '../../../components/app-core/variables.css';
+
   :root {
     --button-group-width: 350px;
   }
@@ -122,7 +124,7 @@
     .page-job__overview {
       position: relative;
       grid-column-start: 2;
-      grid-column-end: -2;
+      grid-column-end: 50;
       background-color: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
     }
@@ -139,7 +141,7 @@
   @media (min-width: 1100px) {
     .page-job__overview {
       grid-column-start: 6;
-      grid-column-end: -6;
+      grid-column-end: 46;
       padding: var(--spacing-big) var(--spacing-bigger);
     }
   }

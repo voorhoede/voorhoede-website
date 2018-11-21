@@ -49,6 +49,8 @@
 </script>
 
 <style>
+@import '../../../components/app-core/variables.css';
+
 .page-jobs__overview {
   grid-column: var(--grid-content);
   margin: var(--spacing-large) 0;
