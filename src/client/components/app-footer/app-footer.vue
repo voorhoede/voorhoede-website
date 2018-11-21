@@ -31,14 +31,12 @@
           <li class="app-footer__list-item">
             <a
               :href="`tel:${ cleanedTelephone }`"
-              class="app-footer__link"
-              target="_blank">{{ tel }}</a>
+              class="app-footer__link">{{ tel }}</a>
           </li>
           <li class="app-footer__list-item">
             <a
               :href="`mailto:${ email }`"
-              class="app-footer__link"
-              target="_blank" >{{ email }}</a>
+              class="app-footer__link">{{ email }}</a>
           </li>
           <li class="app-footer__list-item">
             <a
@@ -56,7 +54,7 @@
           <li class="app-footer__list-item--icon"
               v-for="socialItem in social" :key="socialItem.href">
             <a :href="socialItem.href" target="_blank">
-              <app-icon :name="socialItem.icon" :is-large="true" />
+              <app-icon :alt="socialItem.title" :name="socialItem.icon" :is-large="true" />
             </a>
           </li>
         </ul>
@@ -72,13 +70,13 @@
         <a
           :href="copyrightLink"
           class="app-footer__copyright"
-          :title="copyrightTitle"
+          :aria-label="copyrightTitle"
           target="_blank">{{ copyrightLabel }}</a>
         <span> - </span>
         <a
           :href="privacyLink"
           class="app-footer__privacy"
-          :title="privacyTitle"
+          :aria-label="privacyTitle"
           target="_blank">{{ privacyLabel }}</a>
       </div>
     </div>

@@ -62,7 +62,7 @@
     height: 300px;
     margin: 0 auto;
     overflow: hidden;
-    grid-column: page;
+    grid-column: var(--grid-page);
   }
 
   .full-width-image__img::after {

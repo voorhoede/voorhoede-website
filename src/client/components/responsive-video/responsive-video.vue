@@ -125,7 +125,7 @@
 
   .responsive-video {
     position: relative;
-    grid-column: page;
+    grid-column: var(--grid-page);
   }
 
   .responsive-video__canvas {

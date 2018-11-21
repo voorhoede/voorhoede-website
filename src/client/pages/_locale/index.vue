@@ -356,12 +356,6 @@
       padding: var(--spacing-larger) 0;
     }
 
-    .page-index__curly-bracket {
-      position: static;
-      height: 100%;
-      width: auto;
-    }
-
     .page-index__cta-block .scroll-to {
       display: flex;
       position: absolute;
