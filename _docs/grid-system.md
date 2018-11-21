@@ -65,7 +65,7 @@ To add the grid to an element, add the `grid` class:
 ```
 
 The `<element>` receives the grid. The `<child-element />` is placed on the grid.
-By default, the `<child-element />` uses `var(--grid-ontent)`, meaning it spans across content columns (`grid-column: 2 / 50`) of the grid.
+By default, the `<child-element />` uses `var(--grid-content)`, meaning it spans across content columns (`grid-column: 2 / 50`) of the grid.
 
 ### Custom placement
 
