@@ -325,7 +325,7 @@
     }
 
     .page-case__text {
-      max-width: 580px;
+      max-width: 640px;
     }
 
     .page-case__content {
