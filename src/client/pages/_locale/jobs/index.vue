@@ -59,14 +59,14 @@
 @media (min-width: 1100px) {
   .page-jobs__overview {
     grid-column-start: 8;
-    grid-column-end: -8;
+    grid-column-end: 44;
   }
 }
 
 @media (min-width: 1400px) {
   .page-jobs__overview {
     grid-column-start: 12;
-    grid-column-end: -12;
+    grid-column-end: 40;
   }
 }
 </style>
