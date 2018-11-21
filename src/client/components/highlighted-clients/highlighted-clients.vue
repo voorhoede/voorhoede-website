@@ -10,9 +10,9 @@
           <img :src="image.url" :alt="image.alt" class="highlighted-clients__image">
         </no-script>
         <fixed-ratio :width="5" :height="2">
-          <!-- <lazy-load> -->
-          <img :src="image.url" :alt="image.alt">
-          <!-- </lazy-load> -->
+          <lazy-load>
+            <img :src="image.url" :alt="image.alt">
+          </lazy-load>
         </fixed-ratio>
       </li>
     </ul>
