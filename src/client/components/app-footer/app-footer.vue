@@ -218,11 +218,13 @@ export default {
 }
 
 .app-footer__layout {
+  grid-row: 1;
   display: flex;
   flex-direction: column;
 }
 
 .app-footer__bottom {
+  grid-row: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -330,6 +332,7 @@ export default {
   }
 
   .app-footer__title {
+    width: 100%;
     border-bottom: 2px solid;
   }
 
