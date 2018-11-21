@@ -29,8 +29,10 @@ export default {
       this.isIntersected = true
     }
   },
-  unmounted() {
-    this.unobserve()
+  beforeDestroy() {
+    if (this.observer !== null) {
+      this.unobserve()
+    }
   },
   methods: {
     observe () {
