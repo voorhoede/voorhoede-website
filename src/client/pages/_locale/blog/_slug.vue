@@ -165,7 +165,7 @@ export default {
   @import '../../../components/app-core/variables.css';
 
   .page-blog-post__header {
-    grid-column: page;
+    grid-column: var(--grid-page);
   }
 
   .page-blog-post__header,
@@ -199,18 +199,24 @@ export default {
   }
 
   .page-blog-post__link-container {
+    grid-row: 4;
     padding-top: var(--spacing-small);
     border-top: 2px solid var(--very-dim);
     margin-bottom: var(--spacing-bigger);
   }
 
   .page-blog-post__cta {
-    grid-column: page;
+    grid-column: var(--grid-page);
+    grid-row: 5;
     background-color: var(--bg-pastel);
   }
 
   .page-blog-post__cta-block.cta-block {
     border: none;
+  }
+  
+  .page-blog-post-list {
+    grid-row: 2;
   }
 
   .page-blog-post-list em {
@@ -241,7 +247,7 @@ export default {
 
     .page-blog-post-list {
       grid-column-start: 10;
-      grid-column-end: -2;
+      grid-column-end: 50;
     }
 
     .page-blog-post__aside {
@@ -258,17 +264,17 @@ export default {
       display: flex;
       position: absolute;
       bottom: var(--spacing-larger);
-      grid-column: -3;
+      grid-column: 3;
     }
 
     .page-blog-post__cta-block {
       grid-column-start: 8;
-      grid-column-end: -8;
+      grid-column-end: 44;
     }
 
     .page-blog-post__link-container {
       grid-column-start: 4;
-      grid-column-end: -4;
+      grid-column-end: 48;
     }
   }
 
@@ -279,7 +285,7 @@ export default {
 
     .page-blog-post-list {
       grid-column-start: 12;
-      grid-column-end: -6;
+      grid-column-end: 46;
     }
 
     .page-blog-post__aside {
@@ -289,7 +295,7 @@ export default {
 
     .page-blog-post__cta-block {
       grid-column-start: 14;
-      grid-column-end: -14;
+      grid-column-end: 38;
     }
 
     .page-blog-post__cta .scroll-to {
@@ -304,7 +310,7 @@ export default {
 
     .page-blog-post-list {
       grid-column-start: 12;
-      grid-column-end: -8;
+      grid-column-end: 44;
     }
   }
  </style>

@@ -125,7 +125,7 @@
   .app-mobile-menu__content {
     display: flex;
     flex-direction: column;
-    grid-column: page;
+    grid-column: var(--grid-page);
     position: fixed;
     height: 100vh;
     width: 100vw;

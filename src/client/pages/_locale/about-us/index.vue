@@ -155,6 +155,21 @@
 
   .page-about-us__blog {
     grid-row: 7;
+    margin-bottom: var(--spacing-big);
+  }
+
+  .page-about-us__blog-title {
+    text-align: center;
+    margin-bottom: var(--spacing-large);
+  }
+
+  .page-about-us__blog-list {
+    margin-bottom: var(--spacing-small);
+  }
+
+  .page-about-us__blog-button {
+    display: flex;
+    justify-content: center;
   }
 
   .page-about-us__jobs,
@@ -202,24 +217,6 @@
      opacity: 1;
   }
 
-  .page-about-us__blog {
-    margin-bottom: var(--spacing-big);
-  }
-
-  .page-about-us__blog-title {
-    text-align: center;
-    margin-bottom: var(--spacing-large);
-  }
-
-  .page-about-us__blog-list {
-    margin-bottom: var(--spacing-small);
-  }
-
-  .page-about-us__blog-button {
-    display: flex;
-    justify-content: center;
-  }
-
   @media (min-width: 720px) {
     .page-about-us__header {
       margin-bottom: var(--spacing-large);
@@ -246,6 +243,7 @@
     }
 
     .page-about-us .image-with-text {
+      grid-column: var(--grid-content);
       margin-bottom: var(--spacing-larger);
     }
 
