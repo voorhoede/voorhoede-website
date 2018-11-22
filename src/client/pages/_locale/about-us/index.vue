@@ -220,8 +220,7 @@
 
     .page-about-us__intro,
     .page-about-us__middle {
-      grid-column-start: 2;
-      grid-column-end: 50;
+      grid-column: var(--grid-content);
       margin-bottom: var(--spacing-larger);
     }
 

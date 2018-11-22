@@ -91,7 +91,7 @@
 
 @media (min-width: 720px) {
   .image-grid__item {
-    flex: 0 0 calc(100% / 3);
+    flex: 0 0 33.33%;
     height: 360px;
   }
 
