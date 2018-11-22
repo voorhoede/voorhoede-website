@@ -208,6 +208,8 @@
   
   .grid .page-case__content {
     grid-column: var(--grid-page);
+    padding-left: var(--spacing-small);
+    padding-right: var(--spacing-small);
   }
 
   .page-case__case-header {
@@ -267,8 +269,7 @@
   }
 
   .page-case__content .storytelling-section {
-    padding: var(--spacing-larger) 0;
-    width: 100%;
+    padding: var(--spacing-larger) var(--spacing-small);
   }
 
   .page-case__text video {
@@ -279,15 +280,11 @@
     display: none;
   }
 
-  .grid .page-case__content > * {
-    padding-left: var(--spacing-medium);
-    padding-right: var(--spacing-medium);
-  }
-
+  .grid .page-case__content > .storytelling-section,
   .grid .page-case__content > .full-width-image {
-    width: 100%;
-    padding-left: calc(-1 * var(--spacing-medium));
-    padding-right: calc(-1 * var(--spacing-medium));
+    width: calc(100% + (var(--spacing-small) * 2));
+    margin-left: calc(-1 * var(--spacing-small));
+    margin-right: calc(-1 * var(--spacing-small));
   }
 
   @media (min-width: 720px) {
