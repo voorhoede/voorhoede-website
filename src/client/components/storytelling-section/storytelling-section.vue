@@ -64,8 +64,6 @@
     flex-direction: column;
     align-items: center;
     background-color: var(--paper);
-    grid-row-gap: var(--spacing-larger);
-    grid-column: var(--grid-content);
   }
 
   .storytelling-section__image {
@@ -130,28 +128,6 @@
       grid-column-start: 1;
       grid-column-end: 3;
       grid-row: 1;
-    }
-  }
-
-  @media (min-width: 1100px) {
-    .storytelling-section__title {
-      grid-column-start: 11;
-    }
-
-    .storytelling-section__item {
-      grid-column-start: 10;
-      grid-column-end: 43;
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .storytelling-section__title {
-      grid-column-start: 14;
-    }
-
-    .storytelling-section__item {
-      grid-column-start: 13;
-      grid-column-end: 40;
     }
   }
 </style>
