@@ -123,8 +123,7 @@
 
     .page-job__overview {
       position: relative;
-      grid-column-start: 2;
-      grid-column-end: 50;
+      grid-column: var(--grid-content);
       background-color: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
     }
