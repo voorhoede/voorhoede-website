@@ -49,20 +49,20 @@
             large-text
           />
         </div>
-
-        <full-width-image
+  
+        <!-- <full-width-image
           v-if="item.__typename === 'ImageRecord' &&
           item.image && item.fullWidth"
           :key="item.image.url"
           :image="item.image"
         />
-
+        
         <responsive-image
           v-if="item.__typename === 'ImageRecord' &&
           item.image && !item.fullWidth"
           :key="item.image.url"
           :image="item.image"
-        />
+        /> -->
 
         <case-pull-quote-composition
           v-if="item.__typename === 'PullquoteRecord'"
@@ -86,6 +86,7 @@
           :items="item.storyItem.items"
           :title="item.storyItem.title"
         />
+
         <responsive-video
           v-if="item.__typename === 'ResponsiveVideoRecord'"
           :key="item.video.title"
@@ -197,6 +198,7 @@
   @import '../../../components/app-core/variables.css';
 
   :root {
+    --page-content-max-width: 935px;
     --case-full-width-image-height: 515px; /* value according to design */
   }
   
@@ -205,8 +207,11 @@
   }
 
   .grid .page-case__content > *:not(.storytelling-section),
-  .grid .page-case__content > *:not(.full-width-image) {
-    padding: 0 var(--spacing-medium);
+  .grid .page-case__content > *:not(.full-width-image),
+  .grid .page-case__content > *:not(.image-with-description),
+  .grid .page-case__content > *:not(.image-with-description--inverse) {
+    padding-left: var(--spacing-medium);
+    padding-right: var(--spacing-medium);
   }
 
   .page-case__case-header {
@@ -316,6 +321,14 @@
   }
 
   @media (min-width: 1100px) {
+    .grid .page-case__content > *:not(.storytelling-section),
+    .grid .page-case__content > *:not(.full-width-image),
+    .grid .page-case__content > *:not(.image-with-description),
+    .grid .page-case__content > *:not(.image-with-description--inverse) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
     .page-case__case-meta-container {
       padding: 0;
     }
@@ -359,6 +372,7 @@
     }
 
     .page-case__content .image-with-description {
+      max-width: var(--page-content-max-width);
       grid-column-start: 8;
       grid-column-end: 0;
     }
