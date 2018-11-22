@@ -59,7 +59,7 @@ export default {
 
   .services-list__item {
     display: flex;
-    flex: 1 1 0%;
+    flex: 1 1 0%; /* a flex-basis of 0 makes all columns equal, but IE11 needs a unit in flex-basis for it to work */
     margin-bottom: 0;
     padding-bottom: 0;
     border-bottom: none;
