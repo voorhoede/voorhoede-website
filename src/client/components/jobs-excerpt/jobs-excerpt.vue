@@ -58,7 +58,7 @@
   .job-excerpt {
     position: relative;
     display: grid;
-    grid-template-columns: 65px 1fr;
+    grid-template-columns: 85px 1fr;
     grid-gap: var(--spacing-smaller);
     padding: var(--spacing-small) 0;
   }
@@ -81,6 +81,7 @@
   }
 
   .job-excerpt__text {
+    grid-row: 1;
     align-self: flex-end;
     text-align: center;
   }
@@ -90,6 +91,7 @@
   }
 
   .job-excerpt__button {
+    grid-row: 2;
     min-width: auto;
     width: auto;
     align-self: flex-end;
@@ -114,7 +116,7 @@
   @media (min-width: 720px) {
     .job-excerpt {
       align-items: center;
-      grid-template-columns: 70px 1fr 140px;
+      grid-template-columns: 90px 1fr 140px;
       grid-gap: var(--spacing-large);
     }
 
@@ -129,6 +131,7 @@
     }
 
     .job-excerpt__button {
+      grid-row: 1;
       grid-column: 3;
       align-self: center;
       margin: 0;
@@ -159,15 +162,24 @@
     }
 
     .job-excerpt:hover .job-excerpt__text-title,
-    .job-excerpt:hover .job-excerpt__text-description,
+    .job-excerpt:hover .job-excerpt__text-description {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .job-excerpt:hover .job-excerpt__button,
+    .job-excerpt:hover .job-excerpt__image {
+      opacity: 1;
+    }
+
+    /* This is only applied when browsers support :focus-within
+       Don't combine this with :hover, otherwise it will break */
     .job-excerpt:focus-within .job-excerpt__text-title,
     .job-excerpt:focus-within .job-excerpt__text-description {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .job-excerpt:hover .job-excerpt__button,
-    .job-excerpt:hover .job-excerpt__image,
     .job-excerpt:focus-within .job-excerpt__button,
     .job-excerpt:focus-within .job-excerpt__image {
       opacity: 1;
@@ -176,7 +188,7 @@
 
   @media (min-width: 1100px) {
     .job-excerpt {
-      grid-template-columns: 70px 1fr 160px;
+      grid-template-columns: 90px 1fr 160px;
       grid-gap: var(--spacing-big);
     }
 
