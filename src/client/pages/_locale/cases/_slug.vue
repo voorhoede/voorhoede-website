@@ -198,6 +198,9 @@
   @import '../../../components/app-core/variables.css';
 
   :root {
+    --image-resizer-max-width-m: 1060px;
+    --image-resizer-max-width-l: 1300px;
+    --full-width-image-max-width: 1440px;
     --page-section-max-width: 640px;
     --page-content-max-width: 935px;
     --case-full-width-image-height: 515px; /* value according to design */
@@ -205,14 +208,6 @@
   
   .grid .page-case__content {
     grid-column: 1 / 51;
-  }
-
-  .grid .page-case__content > *:not(.storytelling-section),
-  .grid .page-case__content > *:not(.full-width-image),
-  .grid .page-case__content > *:not(.image-with-description),
-  .grid .page-case__content > *:not(.image-with-description--inverse) {
-    padding-left: var(--spacing-medium);
-    padding-right: var(--spacing-medium);
   }
 
   .page-case__case-header {
@@ -284,6 +279,16 @@
     display: none;
   }
 
+  .grid .page-case__content > .full-width-image {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .grid .page-case__content > *:not(.full-width-image) {
+    padding-left: var(--spacing-medium);
+    padding-right: var(--spacing-medium);
+  }
+
   @media (min-width: 720px) {
     .page-case__get-in-touch-form,
     .page-case__content,
@@ -318,8 +323,11 @@
   }
 
   @media (min-width: 1100px) {
+    .grid .page-case__content > .responsive-image__sizer {
+      max-width: var(--image-resizer-max-width-m);
+    }
+
     .grid .page-case__content > *:not(.storytelling-section),
-    .grid .page-case__content > *:not(.full-width-image),
     .grid .page-case__content > *:not(.image-with-description),
     .grid .page-case__content > *:not(.image-with-description--inverse) {
       padding-left: 0;
@@ -369,6 +377,16 @@
 
     .page-case__get-in-touch-form .get-in-touch-form {
       grid-column: var(--grid-page);
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .grid .page-case__content > .responsive-image__sizer {
+      max-width: var(--image-resizer-max-width-l);
+    }
+
+    .grid .page-case__content > .full-width-image {
+      max-width: var(--full-width-image-max-width);
     }
   }
 </style>
