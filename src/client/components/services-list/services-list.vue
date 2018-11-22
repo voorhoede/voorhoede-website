@@ -59,7 +59,7 @@ export default {
 
   .services-list__item {
     display: flex;
-    flex: 1 1 33.33%;
+    flex: 1 1 0%;
     margin-bottom: 0;
     padding-bottom: 0;
     border-bottom: none;
