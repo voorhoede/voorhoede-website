@@ -94,6 +94,18 @@ export default {
 }
 
 @media (min-width: 720px) {
+  .service-excerpt {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start; /* Reset stretch */
+  }
+
+  .service-excerpt__content {
+    width: 100%;
+  }
+
   .service-excerpt__title {
     padding-top: .25rem; /* 4px */
     padding-bottom: .125rem; /* 2px */
