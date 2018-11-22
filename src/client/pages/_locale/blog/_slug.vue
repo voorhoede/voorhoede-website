@@ -246,6 +246,7 @@ export default {
     }
 
     .page-blog-post-list {
+      grid-row: 2;
       grid-column-start: 10;
       grid-column-end: 50;
     }
