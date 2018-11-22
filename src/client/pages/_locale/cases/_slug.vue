@@ -207,7 +207,7 @@
   }
   
   .grid .page-case__content {
-    grid-column: 1 / 51;
+    grid-column: var(--grid-page);
   }
 
   .page-case__case-header {
@@ -315,10 +315,10 @@
     }
 
     .page-case__get-in-touch-form .scroll-to {
+      grid-column: 49;
       display: flex;
       position: absolute;
       bottom: 0;
-      grid-column: 49;
     }
   }
 
@@ -347,13 +347,11 @@
     }
 
     .page-case__content {
-      grid-column-start: 1;
-      grid-column-end: 52;
-      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      width: 100%;
     }
 
     .page-case__get-in-touch-form,
