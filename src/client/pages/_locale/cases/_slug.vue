@@ -275,10 +275,6 @@
     width: 100%;
   }
 
-  .page-case__text {
-    grid-column: var(--grid-page);
-  }
-
   .page-case__text video {
     max-width: 100%; /* temporary fix for mvp should refactored after mvp */
   }
@@ -351,11 +347,6 @@
       align-items: center;
     }
 
-    .page-case__content .quote-block {
-      grid-column-start: 12;
-      grid-column-end: 40;
-    }
-
     .page-case__get-in-touch-form,
     .page-case__content,
     .page-case__content > *:not(:last-child) {
@@ -373,13 +364,6 @@
 
     .page-case__content .image-with-description {
       max-width: var(--page-content-max-width);
-      grid-column-start: 8;
-      grid-column-end: 0;
-    }
-
-    .page-case__content .image-with-description--inverse {
-      grid-column-start: 0;
-      grid-column-end: 44;
     }
 
     .page-case__get-in-touch-form .get-in-touch-form {
