@@ -198,6 +198,7 @@
   @import '../../../components/app-core/variables.css';
 
   :root {
+    --page-section-max-width: 640px;
     --page-content-max-width: 935px;
     --case-full-width-image-height: 515px; /* value according to design */
   }
@@ -334,7 +335,7 @@
     }
 
     .page-case__text {
-      max-width: 640px;
+      max-width: var(--page-section-max-width);
     }
 
     .page-case__content {
