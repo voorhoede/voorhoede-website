@@ -1,8 +1,6 @@
 <template>
   <aside class="storytelling-section grid">
-    <div class="storytelling-section__header">
-      <h2 class="storytelling-section__title h3">{{ title }}</h2>
-    </div>
+    <h2 class="storytelling-section__title h3">{{ title }}</h2>
     <section
       class="storytelling-section__item"
       v-for="item in items"
@@ -54,16 +52,11 @@
 
 <style>
   @import '../app-core/variables.css';
-  
-  :root {
-    --section-max-width: 640px;
-  }
 
   .storytelling-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     background-color: var(--paper);
+    grid-row-gap: var(--spacing-larger);
+    grid-column: var(--grid-content);
   }
 
   .storytelling-section__image {
@@ -79,22 +72,7 @@
     padding: var(--spacing-medium);
   }
 
-  .storytelling-section__item {
-    margin-bottom: var(--spacing-larger);
-    width: 100%;
-  }
-
-  .storytelling-section__header {
-    text-align: left;
-    width: 100%;
-    margin-bottom: var(--spacing-larger);
-  }
-
   @media (min-width: 720px) {
-    .storytelling-section__header {
-      max-width: var(--section-max-width);
-    }
- 
     .storytelling-section__title {
       grid-column-start: 5;
     }
@@ -106,7 +84,6 @@
       grid-column-gap: var(--spacing-small);
       align-items: center;
       grid-template-columns: repeat(3, 1fr);
-      max-width: var(--section-max-width);
     }
 
     .storytelling-section__image {
@@ -128,6 +105,28 @@
       grid-column-start: 1;
       grid-column-end: 3;
       grid-row: 1;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .storytelling-section__title {
+      grid-column-start: 11;
+    }
+
+    .storytelling-section__item {
+      grid-column-start: 10;
+      grid-column-end: 43;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .storytelling-section__title {
+      grid-column-start: 14;
+    }
+
+    .storytelling-section__item {
+      grid-column-start: 13;
+      grid-column-end: 40;
     }
   }
 </style>
