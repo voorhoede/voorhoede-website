@@ -32,6 +32,11 @@ textarea {
   background-color: transparent;
 }
 
+input,
+select {
+  min-height: 30px;
+}
+
 input:focus,
 select:focus,
 textarea:focus {
