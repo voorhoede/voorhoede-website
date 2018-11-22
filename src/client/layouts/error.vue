@@ -45,6 +45,8 @@ export default {
 
 
 <style>
+  @import '../components/app-core/variables.css';
+
   .layout-error__backdrop {
     padding-bottom: var(--spacing-large);
     background-color: white;
