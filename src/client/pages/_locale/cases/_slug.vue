@@ -50,7 +50,7 @@
           />
         </div>
   
-        <!-- <full-width-image
+        <full-width-image
           v-if="item.__typename === 'ImageRecord' &&
           item.image && item.fullWidth"
           :key="item.image.url"
@@ -62,7 +62,7 @@
           item.image && !item.fullWidth"
           :key="item.image.url"
           :image="item.image"
-        /> -->
+        />
 
         <case-pull-quote-composition
           v-if="item.__typename === 'PullquoteRecord'"
