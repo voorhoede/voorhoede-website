@@ -2,9 +2,9 @@
   <header class="page-header-detail grid" :class="{ 'page-header-detail--brick' : hasBrick }">
     <div class="page-header-detail__container">
       <div class="page-header-detail__description">
-        <div class="page-header-detail__title" :class="hasBrick ? 'hero' : 'h1'">          
+        <div class="page-header-detail__title" :class="hasBrick ? 'hero' : 'h1'">
           <h1 class="sr-only">{{ title }}</h1>
-          <self-typing-text 
+          <self-typing-text
             :text="title"
             :speed-index="70"
             :class="{
@@ -72,7 +72,7 @@
   .page-header-detail__description {
     display: flex;
     flex-direction: column;
-    padding-top: calc(var(--app-header-height) + var(--spacing-medium));
+    padding-top: calc(var(--app-header-height-small) + var(--spacing-medium));
     padding-bottom: var(--spacing-large);
   }
 
