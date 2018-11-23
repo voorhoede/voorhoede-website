@@ -68,7 +68,7 @@
 }
 
 .page-case__overview-item {
-  flex-basis: 100%;
+  width: 100%;
   margin-bottom: var(--spacing-big);
 }
 
@@ -78,7 +78,7 @@
   }
 
   .page-case__overview-item {
-    flex-basis: calc(50% - (var(--spacing-smaller) * 2));
+    width: calc(50% - (var(--spacing-smaller) * 2));
     margin-left: var(--spacing-smaller);
     margin-right: var(--spacing-smaller);
     margin-bottom: var(--spacing-larger);
@@ -93,7 +93,7 @@
 
 @media (min-width: 1100px) {
   .page-case__overview-item {
-    flex-basis: calc(33% - (var(--spacing-medium) * 2));
+    width: calc(33% - (var(--spacing-medium) * 2));
     margin-bottom: var(--spacing-larger);
     margin-left: var(--spacing-medium);
     margin-right: var(--spacing-medium);
