@@ -67,7 +67,6 @@
     top: 0;
     left: 0;
     z-index: var(--z-index-high);
-    height: var(--app-header-height);
     width: 100%;
   }
 
@@ -87,6 +86,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: var(--app-header-height);
   }
 
   .app-header__logo {
