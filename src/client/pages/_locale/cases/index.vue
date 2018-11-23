@@ -93,10 +93,10 @@
 
 @media (min-width: 1100px) {
   .page-case__overview-item {
-    flex-basis: calc(33% - (var(--spacing-smaller) * 2));
+    flex-basis: calc(33% - (var(--spacing-medium) * 2));
     margin-bottom: var(--spacing-larger);
-    margin-left: var(--spacing-smaller);
-    margin-right: var(--spacing-smaller);
+    margin-left: var(--spacing-medium);
+    margin-right: var(--spacing-medium);
   }
 }
 </style>
