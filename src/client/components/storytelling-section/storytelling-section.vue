@@ -1,6 +1,6 @@
 <template>
-  <aside class="storytelling-section-bg">
-    <div class="storytelling-section">
+  <aside class="storytelling-section">
+    <div class="storytelling-section__container">
       <h2 class="storytelling-section__title h3">{{ title }}</h2>
       <section
         class="storytelling-section__item"
@@ -61,12 +61,12 @@
     --max-width-storytelling-item: 470px;
   }
 
-  .storytelling-section-bg {
+  .storytelling-section {
     width: 100%;
     background-color: var(--paper);
   }
 
-  .storytelling-section {
+  .storytelling-section__container {
     display: flex;
     flex-direction: column;
     max-width: var(--max-width-storytelling-section);
