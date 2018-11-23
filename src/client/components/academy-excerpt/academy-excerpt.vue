@@ -26,9 +26,11 @@
       </footer>
     </div>
     <div v-if="illustration" class="academy-excerpt__illustration-column">
-      <lazy-load>
-        <img class="academy-excerpt__illustration" :src="illustration.url" alt="">
-      </lazy-load>
+      <div class="academy-excerpt__illustration-wrapper">
+        <lazy-load>
+          <img class="academy-excerpt__illustration" :src="illustration.url" alt="">
+        </lazy-load>
+      </div>
     </div>
   </article>
 </template>
@@ -140,7 +142,7 @@
   }
 
   .academy-excerpt__content {
-    grid-column-start: 6;
+    grid-column-start: 22;
     grid-column-end: var(--grid-content-end);
   }
 
@@ -185,8 +187,30 @@
   }
 
   @media (min-width: 720px) {
+    .academy-excerpt__calendar {
+      grid-column-start: 6;
+      grid-column-end: 13;
+    }
+
+    .academy-excerpt__content {
+      grid-column-start: 16;
+      grid-column-end: 30;
+    }
+
     .academy-excerpt__illustration-column {
       display: block;
+      position: relative;
+      grid-column-start: 31;
+      grid-column-end: var(--grid-content-end);
+    }
+
+    /* Make sure the image doesn't define the height of the full component */
+    .academy-excerpt__illustration-wrapper {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
     }
 
     .academy-excerpt__illustration {
@@ -195,27 +219,10 @@
     }
   }
 
-  @media (min-width: 720px) {
-    .academy-excerpt__calendar {
-      grid-column-start: 8;
-      grid-column-end: 17;
-    }
-
-    .academy-excerpt__content {
-      grid-column-start: 18;
-      grid-column-end: 30;
-    }
-
-    .academy-excerpt__illustration-column {
-      grid-column-start: 31;
-      grid-column-end: var(--grid-content-end);
-    }
-  }
-
   @media (min-width: 1100px) {
     .academy-excerpt__calendar {
-      grid-column-start: 12;
-      grid-column-end: 15;
+      grid-column-start: 11;
+      grid-column-end: 14;
     }
 
     .academy-excerpt__content {
