@@ -26,19 +26,24 @@ export default {
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   .curly-bracket {
     margin-top: var(--spacing-bigger);
-    grid-column-start: 1;
-    grid-column-end: 5;
-    grid-row-start: 1;
     position: relative;
   }
 
+  .curly-bracket--left {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-column-end: 8;
+  }
+
   .curly-bracket--right {
-    grid-column-start: 47;
+    grid-column-start: 44;
     grid-column-end: 51;
+    grid-row-start: 1;
     grid-row-end: 3;
-    -ms-grid-row-span: 3;
   }
 
   .curly-bracket__image {
@@ -61,12 +66,15 @@ export default {
   @media (min-width: 720px) {
     .curly-bracket {
       margin-top: 0;
+    }
+
+    .curly-bracket--left {
       grid-column-start: 2;
-      grid-column-end: 6;
+      grid-column-end: 8;
     }
 
     .curly-bracket--right {
-      grid-column-start: 46;
+      grid-column-start: 44;
       grid-column-end: 50;
     }
 
@@ -77,7 +85,7 @@ export default {
   }
 
   @media (min-width: 1100px) {
-    .curly-bracket {
+    .curly-bracket--left {
       grid-column-start: 3;
       grid-column-end: 8;
     }
