@@ -49,14 +49,14 @@
             large-text
           />
         </div>
-  
+
         <full-width-image
           v-if="item.__typename === 'ImageRecord' &&
           item.image && item.fullWidth"
           :key="item.image.url"
           :image="item.image"
         />
-        
+
         <responsive-image
           v-if="item.__typename === 'ImageRecord' &&
           item.image && !item.fullWidth"
@@ -205,7 +205,7 @@
     --page-content-max-width: 935px;
     --case-full-width-image-height: 515px; /* value according to design */
   }
-  
+
   .grid .page-case__content {
     grid-column: var(--grid-page);
     padding-left: var(--spacing-small);
@@ -233,7 +233,7 @@
 
   .page-case__case-meta {
     grid-row: 1;
-    grid-column-start: 4;
+    grid-column: 4 / var(--grid-content-end);
   }
 
   .page-case__get-in-touch-form,

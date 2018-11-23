@@ -73,6 +73,10 @@ export default {
 <style>
 @import '../app-core/variables.css';
 
+:root {
+  --max-height-image: 285px;
+}
+
 .page-header {
   background-color: var(--bg-pastel);
   grid-template-rows: var(--app-header-height-small) 1fr;
@@ -85,6 +89,11 @@ export default {
   grid-column: var(--grid-page);
   grid-row-start: 3;
   grid-row-end: 6;
+}
+
+.page-header__curly-bracket {
+  position: relative;
+  z-index: var(--z-index-low);
 }
 
 .page-header__curly-bracket.curly-bracket {
@@ -101,26 +110,29 @@ export default {
   height: calc(100% + 4vh);
 }
 
+.page-header__image {
+  grid-column: var(--grid-content);
+  grid-row-start: 4;
+  grid-row-end: 5;
+  position: relative;
+  z-index: var(--z-index-high);
+  align-self: flex-end;
+}
+
 .page-header__image img {
-  position: static;
-  z-index: var(--z-index-low);
   object-fit: contain;
   object-position: bottom;
-  justify-content: flex-end;
   width: 100%;
-  max-height: 100%;
+}
+
+.page-header__image--spaced-top {
+  display: none;
 }
 
 .page-header--home {
   position: relative;
   grid-template-rows: var(--app-header-height-small) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
   padding-top: 0;
-}
-
-.page-header__image {
-  grid-column: var(--grid-content);
-  grid-row-start: 4;
-  grid-row-end: 5;
 }
 
 .page-header__description {
@@ -150,10 +162,6 @@ export default {
 
   .page-header__curly-bracket-column {
     grid-column: var(--grid-content);
-  }
-
-  .page-header__curly-bracket-wrapper {
-    position: static;
   }
 
   .page-header__curly-bracket {
@@ -212,7 +220,8 @@ export default {
     margin-top: var(--spacing-huge);
     display: flex;
     align-items: flex-end;
-    grid-column-start: var(--grid-center);
+    align-self: unset;
+    grid-column-start: 20;
     grid-column-end: 48;
     grid-row-start: 2;
     grid-row-end: 4;
@@ -221,6 +230,18 @@ export default {
   .page-header--home .page-header__image {
     margin-top: 0;
     grid-row-end: 3;
+  }
+
+  .page-header__image--spaced-top {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .page-header__image--spaced-top img {
+    height: 100%;
+    max-height: var(--max-height-image);
+    width: auto;
+    flex: 0 0 auto;
   }
 }
 
