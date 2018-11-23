@@ -5,34 +5,36 @@
       class="blog-list-item"
       :class="{'blog-list-item--large' : large}"
     >
-      <time
-        datetime="item.date"
-        class="blog-list-item__time"
-        :class="large ? 'body' : 'body-petite'"
-      >
-        {{ formattedDate }}
-      </time>
       <div class="blog-list-item__content">
-        <h3 class="blog-list-item__heading" :class="large ? 'h4' : 'body'" lang="en">{{ item.title }}</h3>
-        <div class="blog-list-item__author">
-          <no-script>
-            <img
-              v-for="author in item.authors" :key="author.name"
-              class="blog-list-item__image"
-              :class="{ 'blog-list-item__image--large': large }"
-              :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=65&h=65&fit=crop`"
-              alt=""
-            >
-          </no-script>
-          <lazy-load v-for="author in item.authors" :key="author.name">
-            <img
-              class="blog-list-item__image"
-              :class="{ 'blog-list-item__image--large': large }"
-              :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=65&h=65&fit=crop`"
-              alt=""
-            >
-          </lazy-load>
-          <span :class="large ? 'body' : 'body-petite'">{{ authorName }}</span>
+        <time
+          datetime="item.date"
+          class="blog-list-item__time"
+          :class="large ? 'body' : 'body-petite'"
+        >
+          {{ formattedDate }}
+        </time>
+        <div class="blog-list-item__details">
+          <h3 class="blog-list-item__heading" :class="large ? 'h4' : 'body'" lang="en">{{ item.title }}</h3>
+          <div class="blog-list-item__author">
+            <no-script>
+              <img
+                v-for="author in item.authors" :key="author.name"
+                class="blog-list-item__image"
+                :class="{ 'blog-list-item__image--large': large }"
+                :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=65&h=65&fit=crop`"
+                alt=""
+              >
+            </no-script>
+            <lazy-load v-for="author in item.authors" :key="author.name">
+              <img
+                class="blog-list-item__image"
+                :class="{ 'blog-list-item__image--large': large }"
+                :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=65&h=65&fit=crop`"
+                alt=""
+              >
+            </lazy-load>
+            <span :class="large ? 'body' : 'body-petite'">{{ authorName }}</span>
+          </div>
         </div>
       </div>
     </nuxt-link>
@@ -87,12 +89,15 @@
 
   .blog-list-item {
     display: block;
+  }
+
+  .blog-list-item__content {
     transition: transform var(--blog-list-item-transition);
   }
 
-  .blog-list-item:hover,
-  .blog-list-item:focus {
-    transform: translateX(var(--grid-column-small));
+  .blog-list-item:hover .blog-list-item__content,
+  .blog-list-item:focus .blog-list-item__content {
+    transform: translateX(var(--grid-margin));
   }
 
   .blog-list-item__heading {
@@ -107,15 +112,15 @@
     display: none;
   }
 
-  .blog-list-item__content {
+  .blog-list-item__details {
     padding-left: var(--spacing-medium);
     border-left: 2px solid var(--very-dim);
     margin-bottom: var(--spacing-medium);
     transition: border-left var(--blog-list-item-transition);
   }
 
-  .blog-list-item:hover .blog-list-item__content,
-  .blog-list-item:focus .blog-list-item__content {
+  .blog-list-item:hover .blog-list-item__details,
+  .blog-list-item:focus .blog-list-item__details {
     border-left: 3px solid var(--html-blue);
   }
 
@@ -139,14 +144,9 @@
   }
 
   @media (min-width: 720px) {
-    .blog-list-item {
+    .blog-list-item__content {
       display: flex;
       flex-direction: row;
-    }
-
-    .blog-list-item:hover,
-    .blog-list-item:focus {
-      transform: translateX(var(--grid-column-medium));
     }
 
     .blog-list-item__time {
@@ -160,7 +160,7 @@
       padding: var(--spacing-medium) 0;
     }
 
-    .blog-list-item--large .blog-list-item__content {
+    .blog-list-item--large .blog-list-item__details {
       margin: 0;
       padding-left: var(--spacing-larger);
     }
@@ -172,12 +172,7 @@
   }
 
   @media (min-width: 1100px) {
-    .blog-list-item:hover,
-    .blog-list-item:focus {
-      transform: translateX(var(--grid-column-large));
-    }
-
-    .blog-list-item--large .blog-list-item__content {
+    .blog-list-item--large .blog-list-item__details {
       padding-left: var(--spacing-larger);
     }
 
