@@ -56,8 +56,9 @@
   @import '../app-core/variables.css';
 
   :root {
+    --storytelling-image-height: 150px;
     --max-width-storytelling-section: 715px;
-    --max-width-storytelling-item: 471px;
+    --max-width-storytelling-item: 470px;
   }
 
   .storytelling-section-bg {
@@ -75,7 +76,7 @@
 
   .storytelling-section__image {
     margin-bottom: var(--spacing-medium);
-    height: 150px;
+    height: var(--storytelling-image-height);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
