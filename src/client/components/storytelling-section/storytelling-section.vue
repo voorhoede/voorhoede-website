@@ -96,11 +96,11 @@
   }
 
   @media (min-width: 720px) {
-    .storytelling-section__item:nth-child(even) > .storytelling-section__card {
+    .storytelling-section__item:nth-child(even) .storytelling-section__card {
       margin-left: auto;
     }
     
-    .storytelling-section__item:nth-child(odd) > .storytelling-section__image {
+    .storytelling-section__item:nth-child(odd) .storytelling-section__image {
       order: 1;
     }
 
