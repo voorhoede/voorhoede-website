@@ -96,18 +96,28 @@
   }
 
   @media (min-width: 720px) {
+    .storytelling-section__container {
+      flex-flow: row wrap;
+    }
+
+    .storytelling-section__item:nth-child(odd) > .storytelling-section__image {
+      order: 1;
+    }
+
     .storytelling-section__item:nth-child(odd) {
       align-self: flex-end;
     }
 
     .storytelling-section__item {
-      max-width: var(--max-width-storytelling-item);
+      max-width: 100%;
+      display: flex;
       align-items: center;
       margin-bottom: var(--spacing-larger);
     }
 
     .storytelling-section__image {
-      margin-bottom: 0;
+      width: 100%;
+      margin: 0 var(--spacing-medium);
     }
 
     .storytelling-section__card {
