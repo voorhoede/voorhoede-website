@@ -130,6 +130,7 @@
     flex-shrink: 0;
     text-align: center;
     padding: var(--spacing-small);
+    background: var(--white);
   }
 
   .case-excerpt__info {
