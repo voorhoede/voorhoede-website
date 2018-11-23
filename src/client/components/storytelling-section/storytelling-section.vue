@@ -1,21 +1,23 @@
 <template>
-  <aside class="storytelling-section grid">
-    <h2 class="storytelling-section__title h3">{{ title }}</h2>
-    <section
-      class="storytelling-section__item"
-      v-for="item in items"
-      :key="item.title">
+  <aside class="storytelling-section-bg">
+    <div class="storytelling-section">
+      <h2 class="storytelling-section__title h3">{{ title }}</h2>
+      <section
+        class="storytelling-section__item"
+        v-for="item in items"
+        :key="item.title">
 
-      <div
-        class="storytelling-section__image"
-        v-if="item.image"
-        :style="`background-image: url(${item.image.url})`" />
+        <div
+          class="storytelling-section__image"
+          v-if="item.image"
+          :style="`background-image: url(${item.image.url})`" />
 
-      <div class="storytelling-section__card">
-        <h3 class="body-big font-bold">{{ item.title }}</h3>
-        <rich-text-block :text="item.body" />
-      </div>
-    </section>
+        <div class="storytelling-section__card">
+          <h3 class="body-big font-bold">{{ item.title }}</h3>
+          <rich-text-block :text="item.body" />
+        </div>
+      </section>
+    </div>
   </aside>
 </template>
 
@@ -53,10 +55,22 @@
 <style>
   @import '../app-core/variables.css';
 
-  .storytelling-section {
+  :root {
+    --max-width-storytelling-section: 715px;
+    --max-width-storytelling-item: 471px;
+  }
+
+  .storytelling-section-bg {
+    width: 100%;
     background-color: var(--paper);
-    grid-row-gap: var(--spacing-larger);
-    grid-column: var(--grid-content);
+  }
+
+  .storytelling-section {
+    display: flex;
+    flex-direction: column;
+    max-width: var(--max-width-storytelling-section);
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .storytelling-section__image {
@@ -72,18 +86,23 @@
     padding: var(--spacing-medium);
   }
 
+  .storytelling-section__title {
+    margin-bottom: var(--spacing-large);
+  }
+  
+  .storytelling-section__item:not(:last-child) {
+    margin-bottom: var(--spacing-larger);
+  }
+
   @media (min-width: 720px) {
-    .storytelling-section__title {
-      grid-column-start: 5;
+    .storytelling-section__item:nth-child(odd) {
+      align-self: flex-end;
     }
 
     .storytelling-section__item {
-      grid-column-start: 4;
-      grid-column-end: 32;
-      display: grid;
-      grid-column-gap: var(--spacing-small);
+      max-width: var(--max-width-storytelling-item);
       align-items: center;
-      grid-template-columns: repeat(3, 1fr);
+      margin-bottom: var(--spacing-larger);
     }
 
     .storytelling-section__image {
@@ -92,41 +111,6 @@
 
     .storytelling-section__card {
       display: inline-block;
-      grid-column-start: 2;
-      grid-column-end: 4;
-    }
-
-    .storytelling-section__item:nth-of-type(2n) .storytelling-section__image-container {
-      grid-column: 3;
-      grid-row: 1;
-    }
-
-    .storytelling-section__item:nth-of-type(2n) .storytelling-section__card {
-      grid-column-start: 1;
-      grid-column-end: 3;
-      grid-row: 1;
-    }
-  }
-
-  @media (min-width: 1100px) {
-    .storytelling-section__title {
-      grid-column-start: 11;
-    }
-
-    .storytelling-section__item {
-      grid-column-start: 10;
-      grid-column-end: 43;
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .storytelling-section__title {
-      grid-column-start: 14;
-    }
-
-    .storytelling-section__item {
-      grid-column-start: 13;
-      grid-column-end: 40;
     }
   }
 </style>
