@@ -288,6 +288,18 @@
   }
 
   @media (min-width: 720px) {
+    .grid .page-case__content {
+      padding-left: var(--spacing-large);
+      padding-right: var(--spacing-large);
+    }
+
+    .grid .page-case__content > .storytelling-section,
+    .grid .page-case__content > .full-width-image {
+      width: calc(100% + (var(--spacing-large) * 2));
+      margin-left: calc(-1 * var(--spacing-large));
+      margin-right: calc(-1 * var(--spacing-large));
+    }
+
     .page-case__get-in-touch-form,
     .page-case__content,
     .page-case__content > *:not(:last-child) {
