@@ -241,6 +241,7 @@ export default {
     height: 100%;
     max-height: var(--max-height-image);
     width: auto;
+    flex: 0 0 auto;
   }
 }
 
