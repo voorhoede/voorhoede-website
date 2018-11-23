@@ -79,7 +79,7 @@ export default {
 
 .page-header {
   background-color: var(--bg-pastel);
-  grid-template-rows: var(--app-header-height) 1fr;
+  grid-template-rows: var(--app-header-height-small) 1fr;
   overflow: hidden;
 }
 
@@ -131,7 +131,7 @@ export default {
 
 .page-header--home {
   position: relative;
-  grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
+  grid-template-rows: var(--app-header-height-small) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
   padding-top: 0;
 }
 
@@ -156,7 +156,7 @@ export default {
 @media (min-width: 520px) {
   .page-header--home {
     position: relative;
-    grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
+    grid-template-rows: var(--app-header-height-small) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
     padding-top: 0;
   }
 
@@ -179,11 +179,11 @@ export default {
 
 @media (min-width: 720px) {
   .page-header {
-    grid-template-rows: calc(var(--app-header-height)) 1fr var(--spacing-large);
+    grid-template-rows: calc(var(--app-header-height-small)) 1fr var(--spacing-large);
   }
 
   .page-header--home {
-    grid-template-rows: calc(var(--app-header-height) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
+    grid-template-rows: calc(var(--app-header-height-small) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
   }
 
   .page-header--home .page-header__description {
@@ -246,8 +246,12 @@ export default {
 }
 
 @media (min-width: 1100px) {
+  .page-header {
+    grid-template-rows: var(--app-header-height-large) 1fr;
+  }
+
   .page-header--home {
-    grid-template-rows: calc(var(--app-header-height) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
+    grid-template-rows: calc(var(--app-header-height-large) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
   }
 
   .page-header--home .page-header__description {

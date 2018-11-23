@@ -29,7 +29,8 @@
   --spacing-huge: 150px;
 
   /* COMPONENTS */
-  --app-header-height: 3.125rem; /* 50px */
+  --app-header-height-small: 3.125rem; /* 50px */
+  --app-header-height-large: 4.0625rem; /* 65px */
 
   /* Z-INDEXES */
   --z-index-high: 2;
@@ -52,10 +53,4 @@
   --grid-content: var(--grid-content-start) / var(--grid-content-end);
   --grid-content-left: var(--grid-content-start) / var(--grid-center);
   --grid-content-right: var(--grid-center) / var(--grid-content-end);
-}
-
-@media (min-width: 1100px) {
-  :root {
-    --app-header-height: 4.0625rem; /* 65px */
-  }
 }

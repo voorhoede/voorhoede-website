@@ -67,7 +67,6 @@
     top: 0;
     left: 0;
     z-index: var(--z-index-high);
-    height: var(--app-header-height);
     width: 100%;
   }
 
@@ -87,6 +86,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: var(--app-header-height-small);
   }
 
   .app-header__logo {
@@ -152,6 +152,10 @@
   }
 
   @media screen and (min-width: 1100px) {
+    .app-header__content {
+      height: var(--app-header-height-large);
+    }
+
     .app-header__logo {
       height: 2.125rem; /* 34px */
     }
