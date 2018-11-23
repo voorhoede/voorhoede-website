@@ -333,7 +333,7 @@
       text-align: right;
     }
 
-    .page-index .blog-list-item__content {
+    .page-index .blog-list-item__details {
       grid-column-start: 14;
       grid-column-end: 31;
       margin-right: 0;
@@ -414,7 +414,7 @@
       grid-column-end: 45;
     }
 
-    .page-index .blog-list-item__content {
+    .page-index .blog-list-item__details {
       grid-column-start: 21;
       grid-column-end: 40;
     }
