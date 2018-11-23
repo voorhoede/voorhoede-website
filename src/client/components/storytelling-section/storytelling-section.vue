@@ -96,16 +96,12 @@
   }
 
   @media (min-width: 720px) {
-    .storytelling-section__container {
-      flex-flow: row wrap;
+    .storytelling-section__item:nth-child(even) > .storytelling-section__card {
+      margin-left: auto;
     }
-
+    
     .storytelling-section__item:nth-child(odd) > .storytelling-section__image {
       order: 1;
-    }
-
-    .storytelling-section__item:nth-child(odd) {
-      align-self: flex-end;
     }
 
     .storytelling-section__item {
@@ -121,7 +117,9 @@
     }
 
     .storytelling-section__card {
-      display: inline-block;
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 65%;
     }
   }
 </style>

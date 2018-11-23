@@ -283,6 +283,7 @@
   .grid .page-case__content > .storytelling-section,
   .grid .page-case__content > .full-width-image {
     width: calc(100% + (var(--spacing-small) * 2));
+    height: auto;
     margin-left: calc(-1 * var(--spacing-small));
     margin-right: calc(-1 * var(--spacing-small));
   }
