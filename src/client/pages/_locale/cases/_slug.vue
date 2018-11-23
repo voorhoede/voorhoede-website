@@ -35,7 +35,7 @@
       />
     </div>
 
-    <article class="page-case__content grid">
+    <article class="page-case__content">
       <template v-for="item in page.content">
         <div
           v-if="item.__typename === 'TextSectionRecord'"
@@ -49,14 +49,14 @@
             large-text
           />
         </div>
-
+  
         <full-width-image
           v-if="item.__typename === 'ImageRecord' &&
           item.image && item.fullWidth"
           :key="item.image.url"
           :image="item.image"
         />
-
+        
         <responsive-image
           v-if="item.__typename === 'ImageRecord' &&
           item.image && !item.fullWidth"
@@ -86,6 +86,7 @@
           :items="item.storyItem.items"
           :title="item.storyItem.title"
         />
+
         <responsive-video
           v-if="item.__typename === 'ResponsiveVideoRecord'"
           :key="item.video.title"
@@ -197,7 +198,18 @@
   @import '../../../components/app-core/variables.css';
 
   :root {
+    --image-resizer-max-width-m: 1060px;
+    --image-resizer-max-width-l: 1300px;
+    --full-width-image-max-width: 1440px;
+    --page-section-max-width: 640px;
+    --page-content-max-width: 935px;
     --case-full-width-image-height: 515px; /* value according to design */
+  }
+  
+  .grid .page-case__content {
+    grid-column: var(--grid-page);
+    padding-left: var(--spacing-small);
+    padding-right: var(--spacing-small);
   }
 
   .page-case__case-header {
@@ -236,9 +248,7 @@
   }
 
   .page-case__content {
-    grid-column: var(--grid-page);
     grid-row: 4;
-    flex-direction: column;
   }
 
   .page-case__title {
@@ -259,8 +269,7 @@
   }
 
   .page-case__content .storytelling-section {
-    grid-column: var(--grid-page);
-    padding: var(--spacing-larger) 0;
+    padding: var(--spacing-larger) var(--spacing-small);
   }
 
   .page-case__text video {
@@ -269,6 +278,13 @@
 
   .page-case__get-in-touch-form .scroll-to {
     display: none;
+  }
+
+  .grid .page-case__content > .storytelling-section,
+  .grid .page-case__content > .full-width-image {
+    width: calc(100% + (var(--spacing-small) * 2));
+    margin-left: calc(-1 * var(--spacing-small));
+    margin-right: calc(-1 * var(--spacing-small));
   }
 
   @media (min-width: 720px) {
@@ -297,14 +313,23 @@
     }
 
     .page-case__get-in-touch-form .scroll-to {
+      grid-column: 49;
       display: flex;
       position: absolute;
       bottom: 0;
-      grid-column: 49;
     }
   }
 
   @media (min-width: 1100px) {
+    .grid .page-case__content > .responsive-image__sizer {
+      max-width: var(--image-resizer-max-width-m);
+    }
+
+    .grid .page-case__content > * {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
     .page-case__case-meta-container {
       padding: 0;
     }
@@ -314,13 +339,15 @@
     }
 
     .page-case__text {
-      grid-column-start: 14;
-      grid-column-end: 38;
+      max-width: var(--page-section-max-width);
     }
 
-    .page-case__content .quote-block {
-      grid-column-start: 12;
-      grid-column-end: 40;
+    .page-case__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
     }
 
     .page-case__get-in-touch-form,
@@ -339,17 +366,21 @@
     }
 
     .page-case__content .image-with-description {
-      grid-column-start: 8;
-      grid-column-end: 0;
-    }
-
-    .page-case__content .image-with-description--inverse {
-      grid-column-start: 0;
-      grid-column-end: 44;
+      max-width: var(--page-content-max-width);
     }
 
     .page-case__get-in-touch-form .get-in-touch-form {
       grid-column: var(--grid-page);
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .grid .page-case__content > .responsive-image__sizer {
+      max-width: var(--image-resizer-max-width-l);
+    }
+
+    .grid .page-case__content > .full-width-image {
+      max-width: var(--full-width-image-max-width);
     }
   }
 </style>
