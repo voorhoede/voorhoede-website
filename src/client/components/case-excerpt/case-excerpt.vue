@@ -16,10 +16,13 @@
           <p class="case-excerpt__body body">{{ body }}</p>
           <div class="case-excerpt__actions button-group">
             <app-button
+              :aria-label="`${primaryLabel} - ${title}`"
+              class="case-excerpt__button"
               :label="primaryLabel"
               :to="{ name: 'locale-cases-slug', params: { slug, locale: currentLocale }}"
             />
             <app-button
+              class="case-excerpt__button"
               secondary
               v-if="secondaryLabel"
               :label="secondaryLabel"
@@ -108,6 +111,16 @@
     background: var(--fog);
   }
 
+  .case-excerpt__image-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: var(--z-index-low);
+  }
+
   .case-excerpt__image {
     max-height: 100%;
     max-width: 100%;
@@ -121,6 +134,10 @@
 
   .case-excerpt__info {
     display: none;
+  }
+
+  .case-excerpt__button {
+    z-index: var(--z-index-low);
   }
 
   @media (min-width: 1100px) {
