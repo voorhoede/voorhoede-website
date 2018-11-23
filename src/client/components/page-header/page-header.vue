@@ -73,6 +73,10 @@ export default {
 <style>
 @import '../app-core/variables.css';
 
+:root {
+  --max-height-image: 285px;
+}
+
 .page-header {
   background-color: var(--bg-pastel);
   grid-template-rows: var(--app-header-height) 1fr;
@@ -235,7 +239,7 @@ export default {
 
   .page-header__image--spaced-top img {
     height: 100%;
-    max-height: 285px;
+    max-height: var(--max-height-image);
     width: auto;
   }
 }
