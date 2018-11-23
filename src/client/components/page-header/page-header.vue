@@ -225,8 +225,12 @@ export default {
 }
 
 @media (min-width: 1100px) {
+  .page-header {
+    grid-template-rows: var(--app-header-height-large) 1fr;
+  }
+
   .page-header--home {
-    grid-template-rows: calc(var(--app-header-height--large) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
+    grid-template-rows: calc(var(--app-header-height-large) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
   }
 
   .page-header--home .page-header__description {

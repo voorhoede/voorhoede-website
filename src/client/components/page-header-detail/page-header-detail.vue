@@ -173,6 +173,10 @@
       grid-column-start: 4;
     }
 
+    .page-header-detail__description {
+      padding-top: calc(var(--app-header-height-large) + var(--spacing-medium));
+    }
+
     .page-header-detail--brick .page-header-detail__image img {
       max-height: 100%;
     }
