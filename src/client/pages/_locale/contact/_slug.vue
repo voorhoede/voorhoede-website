@@ -71,8 +71,6 @@
   display: flex;
   flex-direction: column-reverse;
   background-color: white;
-  grid-column-start: 2;
-  grid-column-end: -2;
 }
 
 @media screen and (min-width: 720px) {
@@ -83,8 +81,6 @@
 
   .page-contact-confirmation__content {
     flex-direction: row;
-    grid-column-start: 2;
-    grid-column-end: -2;
     background-color: var(--white);
     padding: var(--spacing-large) var(--spacing-large);
     justify-content: space-between;
@@ -94,7 +90,7 @@
 @media screen and (min-width: 1100px) {
   .page-contact-confirmation__content {
     grid-column-start: 6;
-    grid-column-end: -6;
+    grid-column-end: 46;
     padding: var(--spacing-larger) var(--spacing-larger);
   }
 }

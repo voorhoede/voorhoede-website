@@ -40,7 +40,7 @@
   .responsive-image__sizer {
     margin-left: auto;
     margin-right: auto;
-    height: 100%;
+    height: auto;
     width: 100%;
   }
 </style>

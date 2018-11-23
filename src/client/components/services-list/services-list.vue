@@ -59,11 +59,7 @@ export default {
 
   .services-list__item {
     display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 100%;
+    flex: 1 1 0%; /* a flex-basis of 0 makes all columns equal, but IE11 needs a unit in flex-basis for it to work */
     margin-bottom: 0;
     padding-bottom: 0;
     border-bottom: none;
@@ -79,14 +75,6 @@ export default {
     padding-left: var(--spacing-medium);
     margin-left: var(--spacing-medium);
     border-left: var(--services-list-border);
-  }
-
-  .services-list .service-excerpt {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: space-between;
-    align-items: flex-start; /* Reset stretch */
   }
 }
 

@@ -74,8 +74,6 @@
     display: flex;
     flex-direction: column-reverse;
     background-color: white;
-    grid-column-start: 2;
-    grid-column-end: -2;
   }
 
   .page-contact__backdrop {
@@ -101,8 +99,6 @@
 
     .page-contact__content {
       flex-direction: row;
-      grid-column-start: 2;
-      grid-column-end: -2;
       background: var(--white);
       padding: var(--spacing-larger) var(--spacing-large);
       justify-content: space-between;
@@ -120,7 +116,7 @@
   @media screen and (min-width: 1100px) {
     .page-contact__content {
       grid-column-start: 6;
-      grid-column-end: -6;
+      grid-column-end: 46;
       padding: var(--spacing-larger) var(--spacing-larger);
     }
   }

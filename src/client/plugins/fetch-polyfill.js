@@ -1,1 +1,1 @@
-import 'unfetch/polyfill'
+import 'unfetch/polyfill/index'

@@ -45,6 +45,8 @@ export default {
 
 
 <style>
+  @import '../components/app-core/variables.css';
+
   .layout-error__backdrop {
     padding-bottom: var(--spacing-large);
     background-color: white;
@@ -55,8 +57,6 @@ export default {
     display: flex;
     flex-direction: column-reverse;
     background-color: white;
-    grid-column-start: 2;
-    grid-column-end: -2;
   }
 
   @media screen and (min-width: 720px) {
@@ -67,8 +67,6 @@ export default {
 
     .layout-error__content {
       flex-direction: row;
-      grid-column-start: 2;
-      grid-column-end: -2;
       background-color: var(--white);
       padding: var(--spacing-large);
       justify-content: space-between;
@@ -78,7 +76,7 @@ export default {
   @media screen and (min-width: 1100px) {
     .layout-error__content {
       grid-column-start: 6;
-      grid-column-end: -6;
+      grid-column-end: 46;
       padding: var(--spacing-larger);
     }
   }

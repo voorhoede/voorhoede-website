@@ -85,8 +85,10 @@
         }
       }), 300)
     },
-    destroyed() {
-      this.unobserve()
+    beforeDestroyed() {
+      if (this.observer !== null) {
+        this.unobserve()
+      }
     },
     methods: {
       observe () {

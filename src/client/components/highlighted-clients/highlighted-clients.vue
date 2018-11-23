@@ -53,64 +53,24 @@ export default {
 @import '../app-core/variables.css';
 
 :root {
-  --highlighted-clients-width-small: 1fr;
-  --highlighted-clients-width-medium: 150px;
-  --highlighted-clients-width-large: 210px;
+  --highlighted-clients-columns: 2;
+
+  /* Columns should be devided over the full width and have a bit of spacing between them. */
+  --highlighted-clients-width: calc(
+    (100% / var(--highlighted-clients-columns))
+    - (var(--highlighted-clients-columns) - 1) / var(--highlighted-clients-columns) * var(--spacing-tiny)
+  );
 }
 
 .highlighted-clients__list {
-  display: grid;
-  grid-template-columns: repeat(2, var(--highlighted-clients-width-small));
-  grid-row-gap: var(--spacing-medium);
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.highlighted-clients__client:nth-child(1),
-.highlighted-clients__client:nth-child(2) {
-  grid-row: 1;
-}
-
-.highlighted-clients__client:nth-child(3),
-.highlighted-clients__client:nth-child(4) {
-  grid-row: 2;
-}
-
-.highlighted-clients__client:nth-child(5),
-.highlighted-clients__client:nth-child(6) {
-  grid-row: 3;
-}
-
-.highlighted-clients__client:nth-child(7),
-.highlighted-clients__client:nth-child(8) {
-  grid-row: 4;
-}
-
-.highlighted-clients__client:nth-child(9),
-.highlighted-clients__client:nth-child(10) {
-  grid-row: 5;
-}
-
-.highlighted-clients__client:nth-child(11),
-.highlighted-clients__client:nth-child(12) {
-  grid-row: 6;
-}
-
-.highlighted-clients__client:nth-child(13),
-.highlighted-clients__client:nth-child(14) {
-  grid-row: 7;
-}
-
-.highlighted-clients__client:nth-child(15),
-.highlighted-clients__client:nth-child(16) {
-  grid-row: 8;
-}
-
-.highlighted-clients__client:nth-child(2n - 1) {
-  grid-column: 1;
-}
-
-.highlighted-clients__client:nth-child(2n) {
-  grid-column: 2;
+.highlighted-clients__client {
+  margin-bottom: var(--spacing-medium);
+  width: var(--highlighted-clients-width);
 }
 
 .highlighted-clients .lazy-load {
@@ -123,58 +83,33 @@ export default {
 }
 
 @media (min-width: 720px) {
-  .highlighted-clients__list {
-    grid-template-columns: repeat(4, var(--highlighted-clients-width-medium));
-  }
-
-  .highlighted-clients__client:nth-child(1),
-  .highlighted-clients__client:nth-child(2),
-  .highlighted-clients__client:nth-child(3),
-  .highlighted-clients__client:nth-child(4) {
-    grid-row: 1;
-  }
-
-  .highlighted-clients__client:nth-child(5),
-  .highlighted-clients__client:nth-child(6),
-  .highlighted-clients__client:nth-child(7),
-  .highlighted-clients__client:nth-child(8) {
-    grid-row: 2;
-  }
-
-  .highlighted-clients__client:nth-child(9),
-  .highlighted-clients__client:nth-child(10),
-  .highlighted-clients__client:nth-child(11),
-  .highlighted-clients__client:nth-child(12) {
-    grid-row: 3;
-  }
-
-  .highlighted-clients__client:nth-child(13),
-  .highlighted-clients__client:nth-child(14),
-  .highlighted-clients__client:nth-child(15),
-  .highlighted-clients__client:nth-child(16) {
-    grid-row: 4;
-  }
-
-  .highlighted-clients__client:nth-child(4n - 3) {
-    grid-column: 1;
-  }
-
-  .highlighted-clients__client:nth-child(4n - 2) {
-    grid-column: 2;
-  }
-
-  .highlighted-clients__client:nth-child(4n - 1) {
-    grid-column: 3;
-  }
-
-  .highlighted-clients__client:nth-child(4n) {
-    grid-column: 4;
+  :root {
+    --highlighted-clients-width: 150px;
   }
 }
 
 @media (min-width: 1100px) {
+  :root {
+    --highlighted-clients-width: 210px;
+  }
+}
+
+@supports (display: grid) {
   .highlighted-clients__list {
-    grid-template-columns: repeat(4, var(--highlighted-clients-width-large));
+    display: grid;
+    grid-template-columns: repeat(var(--highlighted-clients-columns), var(--highlighted-clients-width));
+    grid-row-gap: var(--spacing-medium);
+  }
+
+  .highlighted-clients__client {
+    margin-bottom: 0;
+    width: auto;
+  }
+
+  @media (min-width: 720px) {
+    :root {
+      --highlighted-clients-columns: 4;
+    }
   }
 }
 </style>
