@@ -226,7 +226,7 @@
     background-color: var(--bg-pastel);
   }
 
-  .page-index__academy .curly-bracket {
+  .page-index__academy .curly-bracket--left {
     margin-top: var(--spacing-bigger);
   }
 
