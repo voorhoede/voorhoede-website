@@ -25,6 +25,7 @@ fragment footer on FooterRecord {
   copyrightLabel,
   copyrightTitle,
   copyrightLink,
+  logoAlt,
   legal {
     title,
     value
