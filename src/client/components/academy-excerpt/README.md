@@ -9,6 +9,7 @@
   title="Simply Serverless Meetup"
   description="On 12 July we will host the Simply Serverless Meetup. We'll introduce you to cloud functions, a brand new tool for serverless Node apps and show the benefits by sharing a project built with a serverless architecture."
   cta-primary-label="Sign up"
+  cta-primary-aria-label="Sign up for Simply Serverless Meetup"
   cta-primary-to="https://google.nl"
   ctaSecondaryLabel="Learn more"
   ctaSecondaryTo="https://google.nl"
@@ -29,6 +30,7 @@
 | title | String | true | Title of the event |
 | description | String | true | Description of the event |
 | ctaPrimaryLabel | String | true | Label of the primary button |
+| ctaPrimaryAriaLabel | String | true | More descriptive label for the button |
 | ctaPrimaryTo | String | true | Href of the primary button |
 | ctaSecondaryLabel | String | true | Label of the secondary button |
 | ctaSecondaryTo | String | true | Href of the secondary button |

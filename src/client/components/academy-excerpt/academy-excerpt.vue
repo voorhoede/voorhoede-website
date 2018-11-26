@@ -16,6 +16,7 @@
           :label="ctaPrimaryLabel"
           :to="ctaPrimaryTo"
           external
+          :aria-label="ctaPrimaryAriaLabel"
         />
         <app-button
           :label="ctaSecondaryLabel"
@@ -58,6 +59,10 @@
         required: true,
       },
       ctaPrimaryLabel: {
+        type: String,
+        required: true,
+      },
+      ctaPrimaryAriaLabel: {
         type: String,
         required: true,
       },

@@ -64,6 +64,7 @@
         :cta-primary-label="page.academyPrimaryButtonLabel"
         :cta-primary-to="upcomingEvents[0].url"
         :cta-secondary-label="page.academySecondaryButtonLabel"
+        :cta-primary-aria-label="page.academyPrimaryButtonAriaLabel"
         cta-secondary-to="https://www.eventbrite.nl/o/de-voorhoede-11975015411"
       />
       <curly-bracket />

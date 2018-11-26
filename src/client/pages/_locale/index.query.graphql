@@ -84,6 +84,7 @@ fragment page on HomeRecord {
   servicesCta,
   clientsTitle,
   academyPrimaryButtonLabel,
+  academyPrimaryButtonAriaLabel,
   academySecondaryButtonLabel,
   academyIllustration {
     url,
