@@ -27,10 +27,10 @@
     </div>
     <div v-if="illustration" class="academy-excerpt__illustration-column">
       <div class="academy-excerpt__illustration-wrapper">
-      <lazy-load>
-        <img class="academy-excerpt__illustration" :src="illustration.url" alt="">
-      </lazy-load>
-    </div>
+        <lazy-load>
+          <img class="academy-excerpt__illustration" :src="illustration.url" alt="">
+        </lazy-load>
+      </div>
     </div>
   </article>
 </template>
