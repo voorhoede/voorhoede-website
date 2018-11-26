@@ -24,6 +24,7 @@
       :privacy-label="layoutData.footer.privacyLabel"
       :privacy-title="layoutData.footer.privacyTitle"
       :privacy-link="layoutData.footer.privacyLink"
+      :logo-alt="layoutData.footer.logoAlt"
       :legal="layoutData.footer.legal"
       :social="layoutData.footer.social"
     />

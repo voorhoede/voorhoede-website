@@ -3,7 +3,7 @@
     <div class="app-footer__layout">
       <div class="app-footer__header">
         <nuxt-link :to="{name: 'locale', params: {currentLocale } }">
-          <img class="app-footer__header-logo" src="/images/logo-with-text.svg">
+          <img class="app-footer__header-logo" src="/images/logo-with-text.svg" :alt="logoAlt">
         </nuxt-link>
       </div>
       <div class="app-footer__column">
@@ -154,6 +154,10 @@ export default {
       default: '',
     },
     privacyLink: {
+      type: String,
+      default: '',
+    },
+    logoAlt: {
       type: String,
       default: '',
     },
