@@ -58,8 +58,6 @@ export default {
 </script>
 
 <style>
-@import '../app-core/variables.css';
-
 .pullquote-composition {
   display: grid;
   margin-bottom: var(--spacing-larger);

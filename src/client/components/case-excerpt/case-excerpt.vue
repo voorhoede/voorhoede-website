@@ -82,8 +82,6 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
-
   :root {
     --case-excerpt-transition: .5s cubic-bezier(.18, .5, 0, 1.01);
     --case-excerpt-image-height: 70%;

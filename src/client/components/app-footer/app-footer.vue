@@ -206,8 +206,6 @@ export default {
 </script>
 
 <style>
-@import '../app-core/variables.css';
-
 :root {
   --footer-list-max-width: 370px;
   --footer-list-height: 115px;

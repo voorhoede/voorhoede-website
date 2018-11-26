@@ -20,7 +20,6 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
 
   .rich-text table,
   .rich-text ul:not(:last-child),

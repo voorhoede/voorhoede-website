@@ -102,7 +102,6 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
 
   .field-is-invalid {
     color: var(--soft-red);

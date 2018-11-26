@@ -26,8 +26,6 @@ export default {
 </script>
 
 <style>
-  @import '../app-core/variables.css';
-
   .curly-bracket {
     position: relative;
     margin-top: var(--spacing-bigger);

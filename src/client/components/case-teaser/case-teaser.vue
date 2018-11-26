@@ -35,8 +35,6 @@ export default {
 </script>
 
 <style>
-  @import '../app-core/variables.css';
-
   :root {
     --text-block-max-width: 400px;
     --page-max-width: 1440px;

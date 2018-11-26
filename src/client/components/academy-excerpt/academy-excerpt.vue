@@ -101,8 +101,6 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
-
   :root {
     --button-group-spacing: var(--spacing-large);
   }

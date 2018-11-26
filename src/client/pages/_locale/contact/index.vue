@@ -63,7 +63,6 @@
 </script>
 
 <style>
-  @import '../../../components/app-core/variables.css';
 
   .page-contact {
     background-color: var(--bg-pastel);

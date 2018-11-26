@@ -47,7 +47,6 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
 
   .scroll-to {
     display: flex;

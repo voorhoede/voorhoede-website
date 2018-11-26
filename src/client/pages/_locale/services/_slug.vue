@@ -46,7 +46,6 @@
 </script>
 
 <style>
-  @import '../../../components/app-core/variables.css';
 
   .page-service .page-header-detail {
     grid-column: var(--grid-page);
