@@ -45,7 +45,9 @@
   --grid-margin: 20px;
   --grid-page-start: 1;
   --grid-content-start: 2;
+  --grid-content-narrow-start: 8;
   --grid-center: 26;
+  --grid-content-narrow-end: 44;
   --grid-content-end: 50;
   --grid-page-end: 51;
   --grid-page: var(--grid-page-start) / var(--grid-page-end);
@@ -54,4 +56,5 @@
   --grid-content: var(--grid-content-start) / var(--grid-content-end);
   --grid-content-left: var(--grid-content-start) / var(--grid-center);
   --grid-content-right: var(--grid-center) / var(--grid-content-end);
+  --grid-content-narrow: var(--grid-content-narrow-start) / var(--grid-content-narrow-end);
 }

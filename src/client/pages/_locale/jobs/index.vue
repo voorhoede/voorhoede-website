@@ -49,8 +49,6 @@
 </script>
 
 <style>
-@import '../../../components/app-core/variables.css';
-
 .page-jobs__overview {
   grid-column: var(--grid-content);
   margin: var(--spacing-large) 0;
@@ -58,15 +56,7 @@
 
 @media (min-width: 1100px) {
   .page-jobs__overview {
-    grid-column-start: 8;
-    grid-column-end: 44;
-  }
-}
-
-@media (min-width: 1400px) {
-  .page-jobs__overview {
-    grid-column-start: 12;
-    grid-column-end: 40;
+  grid-column: var(--grid-content-narrow);
   }
 }
 </style>
