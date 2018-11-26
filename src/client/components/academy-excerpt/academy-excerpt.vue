@@ -16,7 +16,7 @@
           :label="ctaPrimaryLabel"
           :to="ctaPrimaryTo"
           external
-          :aria-label="mergePlaceholderWithTitle"
+          :aria-label="swapPlaceholderWithTitle"
         />
         <app-button
           :label="ctaSecondaryLabel"
@@ -101,7 +101,7 @@
           month: 'short',
         })
       },
-      mergePlaceholderWithTitle() {
+      swapPlaceholderWithTitle() {
         var regexAtSign = /@[a-zA-z]*/g
         return this.ctaPrimaryAriaLabel.replace(regexAtSign, this.title)
       },
