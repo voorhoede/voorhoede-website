@@ -30,6 +30,7 @@ export default {
 
   .curly-bracket {
     position: relative;
+    margin-top: var(--spacing-bigger);
     grid-row-start: 1;
     grid-row-end: 5;
   }

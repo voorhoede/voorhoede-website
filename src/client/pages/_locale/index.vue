@@ -226,10 +226,6 @@
     background-color: var(--bg-pastel);
   }
 
-  .page-index__academy .curly-bracket--left {
-    margin-top: var(--spacing-bigger);
-  }
-
   .page-index .academy-excerpt {
     grid-column: var(--grid-page);
     grid-row: 1;
