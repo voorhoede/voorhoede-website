@@ -2,9 +2,10 @@
   <article>
     <nuxt-link
       :to="{ name: 'locale-blog-slug', params: { locale: currentLocale, slug: item.slug }}"
-      class="blog-list"
+      class="blog-list-item"
+      :class="{'blog-list-item--large' : large}"
     >
-      <div class="blog-list-item" :class="{'blog-list-item--large' : large}" >
+      <div class="blog-list-item__content">
         <time
           datetime="item.date"
           class="blog-list-item__time"
@@ -12,7 +13,7 @@
         >
           {{ formattedDate }}
         </time>
-        <div class="blog-list-item__content">
+        <div class="blog-list-item__details">
           <h3 class="blog-list-item__heading" :class="large ? 'h4' : 'body'" lang="en">{{ item.title }}</h3>
           <div class="blog-list-item__author">
             <no-script>
@@ -88,35 +89,38 @@
 
   .blog-list-item {
     display: block;
+  }
+
+  .blog-list-item__content {
     transition: transform var(--blog-list-item-transition);
   }
 
-  .blog-list:hover .blog-list-item,
-  .blog-list:focus .blog-list-item {
-    transform: translateX(var(--grid-fixed-column));
-  }
-
-  .blog-list-item--large .blog-list-item__heading {
-    margin-bottom: var(--spacing-small);
+  .blog-list-item:hover .blog-list-item__content,
+  .blog-list-item:focus .blog-list-item__content {
+    transform: translateX(var(--grid-margin));
   }
 
   .blog-list-item__heading {
     color: var(--html-blue);
   }
 
+  .blog-list-item--large .blog-list-item__heading {
+    margin-bottom: var(--spacing-small);
+  }
+
   .blog-list-item__time {
     display: none;
   }
 
-  .blog-list-item__content {
+  .blog-list-item__details {
     padding-left: var(--spacing-medium);
     border-left: 2px solid var(--very-dim);
     margin-bottom: var(--spacing-medium);
     transition: border-left var(--blog-list-item-transition);
   }
 
-  .blog-list:hover .blog-list-item__content,
-  .blog-list:focus .blog-list-item__content {
+  .blog-list-item:hover .blog-list-item__details,
+  .blog-list-item:focus .blog-list-item__details {
     border-left: 3px solid var(--html-blue);
   }
 
@@ -140,35 +144,35 @@
   }
 
   @media (min-width: 720px) {
-    .blog-list-item {
+    .blog-list-item__content {
       display: flex;
       flex-direction: row;
+    }
+
+    .blog-list-item__time {
+      margin-right: var(--spacing-medium);
+      display: block;
+      color: var(--off-black);
+      min-width: 6rem;
     }
 
     .blog-list-item--large {
       padding: var(--spacing-medium) 0;
     }
 
-    .blog-list-item--large .blog-list-item__content {
+    .blog-list-item--large .blog-list-item__details {
       margin: 0;
       padding-left: var(--spacing-larger);
     }
 
     .blog-list-item--large .blog-list-item__time {
-      width: 7rem;
       margin-right: var(--spacing-larger);
-    }
-
-    .blog-list-item__time {
-      display: block;
-      color: var(--off-black);
-      margin-right: var(--spacing-medium);
-      min-width: 6rem;
+      min-width: 8rem;
     }
   }
 
   @media (min-width: 1100px) {
-    .blog-list-item--large .blog-list-item__content {
+    .blog-list-item--large .blog-list-item__details {
       padding-left: var(--spacing-larger);
     }
 

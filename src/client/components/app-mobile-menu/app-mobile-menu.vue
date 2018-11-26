@@ -28,7 +28,7 @@
       </ul>
     </div>
 
-    <div
+    <button
       class="app-mobile-menu__icon"
       @click="toggleMobileMenu"
       @touchmove="prevent"
@@ -45,7 +45,7 @@
         src="/images/icon_menu-passive--white.svg"
         alt=""
       >
-    </div>
+    </button>
   </nav>
 </template>
 <script>
@@ -82,7 +82,7 @@
 
 <style>
   @import '../app-core/variables.css';
-  
+
   :root {
       --mobile-icon-right: 20px;
       --mobile-icon-bottom: var(--mobile-icon-right);
@@ -95,7 +95,7 @@
 
   .app-mobile-menu {
     position: relative;
-    z-index: var(--z-index-high);
+    z-index: var(--z-index-overlay);
   }
 
   .app-mobile-menu__logo {

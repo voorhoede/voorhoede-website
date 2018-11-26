@@ -26,9 +26,11 @@
       </footer>
     </div>
     <div v-if="illustration" class="academy-excerpt__illustration-column">
+      <div class="academy-excerpt__illustration-wrapper">
       <lazy-load>
         <img class="academy-excerpt__illustration" :src="illustration.url" alt="">
       </lazy-load>
+    </div>
     </div>
   </article>
 </template>
@@ -196,14 +198,40 @@
 
     .academy-excerpt__illustration-column {
       display: block;
+      position: relative;
       grid-column-start: 36;
       grid-column-end: var(--grid-content-end);
+    }
+
+    /* Make sure the image doesn't define the height of the full component */
+    .academy-excerpt__illustration-wrapper {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
     }
 
     .academy-excerpt__illustration {
       max-width: 100%;
       max-height: 100%;
     }
+  }
 
+  @media (min-width: 1100px) {
+    .academy-excerpt__calendar {
+      grid-column-start: 11;
+      grid-column-end: 14;
+    }
+
+    .academy-excerpt__content {
+      grid-column-start: 16;
+      grid-column-end: 31;
+    }
+
+    .academy-excerpt__illustration-column {
+      grid-column-start: 32;
+      grid-column-end: 44;
+    }
   }
 </style>

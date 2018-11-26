@@ -3,7 +3,7 @@
     <div class="app-footer__layout">
       <div class="app-footer__header">
         <nuxt-link :to="{name: 'locale', params: {currentLocale } }">
-          <img class="app-footer__header-logo" src="/images/logo-with-text.svg">
+          <img class="app-footer__header-logo" src="/images/logo-with-text.svg" :alt="logoAlt">
         </nuxt-link>
       </div>
       <div class="app-footer__column">
@@ -157,6 +157,10 @@ export default {
       type: String,
       default: '',
     },
+    logoAlt: {
+      type: String,
+      default: '',
+    },
     legal: {
       type: Array,
       default: () => [],
@@ -218,11 +222,13 @@ export default {
 }
 
 .app-footer__layout {
+  grid-row: 1;
   display: flex;
   flex-direction: column;
 }
 
 .app-footer__bottom {
+  grid-row: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -330,6 +336,7 @@ export default {
   }
 
   .app-footer__title {
+    width: 100%;
     border-bottom: 2px solid;
   }
 
@@ -454,3 +461,4 @@ export default {
   }
 }
 </style>
+

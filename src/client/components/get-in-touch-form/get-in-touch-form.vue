@@ -182,6 +182,14 @@
     grid-column: var(--grid-page);
   }
 
+  .get-in-touch-form__title {
+    grid-row: 1;
+  }
+
+  .get-in-touch-form__form {
+    grid-row: 2;
+  }
+
   .get-in-touch-form__label:first-of-type {
     margin-top: 0;
   }
@@ -190,21 +198,17 @@
     margin-top: var(--spacing-larger);
   }
 
-  @media (max-width: 1099px) {
-    .get-in-touch-form__title {
-      margin-bottom: var(--spacing-medium);
-    }
-  }
-
   @media (min-width: 1100px) {
     .get-in-touch-form__title {
       grid-column-start: 6;
       grid-column-end: 18;
+      margin-bottom: var(--spacing-medium);
     }
 
     .get-in-touch-form__form {
       grid-column-start: 21;
       grid-column-end: 46;
+      grid-row: 1;
     }
 
     .get-in-touch-form__label-text {

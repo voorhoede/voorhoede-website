@@ -73,9 +73,14 @@ export default {
 <style>
 @import '../app-core/variables.css';
 
+:root {
+  --max-height-image: 285px;
+}
+
 .page-header {
   background-color: var(--bg-pastel);
-  grid-template-rows: var(--app-header-height) 1fr;
+  grid-template-rows: var(--app-header-height-small) 1fr;
+  overflow: hidden;
 }
 
 .page-header__brick {
@@ -84,6 +89,11 @@ export default {
   grid-column: var(--grid-page);
   grid-row-start: 3;
   grid-row-end: 6;
+}
+
+.page-header__curly-bracket {
+  position: relative;
+  z-index: var(--z-index-low);
 }
 
 .page-header__curly-bracket.curly-bracket {
@@ -100,32 +110,25 @@ export default {
   height: calc(100% + 4vh);
 }
 
-.page-header__image img {
+.page-header__image {
+  grid-column: var(--grid-content);
+  grid-row-start: 4;
+  grid-row-end: 5;
   position: relative;
-  z-index: var(--z-index-low);
+  z-index: var(--z-index-high);
+  align-self: flex-end;
+}
+
+.page-header__image img {
   object-fit: contain;
-  object-position: bottom right;
-  justify-content: flex-end;
+  object-position: bottom;
   width: 100%;
-  height: 100%;
-  bottom: calc(-1 * var(--spacing-medium))
 }
 
 .page-header--home {
   position: relative;
-  grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
+  grid-template-rows: var(--app-header-height-small) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
   padding-top: 0;
-}
-
-.page-header__image {
-  display: none;
-  justify-content: flex-end;
-  grid-column: var(--grid-content);
-  grid-row-start: 4;
-  grid-row-end: 5;
-}
-.page-header--home .page-header__image {
-  display: flex;
 }
 
 .page-header__description {
@@ -143,16 +146,12 @@ export default {
 @media (min-width: 520px) {
   .page-header--home {
     position: relative;
-    grid-template-rows: var(--app-header-height) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
+    grid-template-rows: var(--app-header-height-small) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
     padding-top: 0;
   }
 
   .page-header__curly-bracket-column {
     grid-column: var(--grid-content);
-  }
-
-  .page-header__curly-bracket-wrapper {
-    position: static;
   }
 
   .page-header__curly-bracket {
@@ -170,11 +169,11 @@ export default {
 
 @media (min-width: 720px) {
   .page-header {
-    grid-template-rows: calc(var(--app-header-height)) 1fr var(--spacing-large);
+    grid-template-rows: calc(var(--app-header-height-small)) 1fr var(--spacing-large);
   }
 
   .page-header--home {
-    grid-template-rows: calc(var(--app-header-height) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
+    grid-template-rows: calc(var(--app-header-height-small) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
   }
 
   .page-header--home .page-header__description {
@@ -210,7 +209,8 @@ export default {
   .page-header__image {
     margin-top: var(--spacing-huge);
     display: flex;
-    align-self: flex-end;
+    align-items: flex-end;
+    align-self: unset;
     grid-column-start: 20;
     grid-column-end: 48;
     grid-row-start: 2;
@@ -224,11 +224,27 @@ export default {
     width: 100%;
     height: auto;
   }
+
+  .page-header__image--spaced-top {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .page-header__image--spaced-top img {
+    height: 100%;
+    max-height: var(--max-height-image);
+    width: auto;
+    flex: 0 0 auto;
+  }
 }
 
 @media (min-width: 1100px) {
+  .page-header {
+    grid-template-rows: var(--app-header-height-large) 1fr;
+  }
+
   .page-header--home {
-    grid-template-rows: calc(var(--app-header-height) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
+    grid-template-rows: calc(var(--app-header-height-large) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
   }
 
   .page-header--home .page-header__description {

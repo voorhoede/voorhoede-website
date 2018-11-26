@@ -26,14 +26,15 @@ export default {
 </script>
 
 <style>
+  @import '../app-core/variables.css';
+
   .curly-bracket {
+    position: relative;
     grid-row-start: 1;
     grid-row-end: 5;
-    position: relative;
   }
 
   .curly-bracket--left {
-    margin-top: var(--spacing-bigger);
     grid-column-start: 1;
     grid-column-end: 8;
   }
@@ -42,7 +43,6 @@ export default {
     grid-column-start: 43;
     grid-column-end: 51;
   }
-
 
   .curly-bracket__image {
     position: absolute;
@@ -63,11 +63,12 @@ export default {
 
   @media (min-width: 720px) {
     .curly-bracket--left {
-      margin-top: 0;
       grid-column-start: 2;
+      grid-column-end: 8;
     }
 
     .curly-bracket--right {
+      grid-column-start: 43;
       grid-column-end: 49;
     }
 
