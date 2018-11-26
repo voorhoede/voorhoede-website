@@ -16,7 +16,7 @@
           :label="ctaPrimaryLabel"
           :to="ctaPrimaryTo"
           external
-          :aria-label="ctaPrimaryAriaLabel"
+          :aria-label="mergePlaceholderWithTitle"
         />
         <app-button
           :label="ctaSecondaryLabel"
@@ -100,6 +100,10 @@
         return this.date.toLocaleDateString(this.currentLocale, {
           month: 'short',
         })
+      },
+      mergePlaceholderWithTitle() {
+        var regexAtSign = /@[a-zA-z]*/g
+        return this.ctaPrimaryAriaLabel.replace(regexAtSign, this.title)
       },
     },
   }
