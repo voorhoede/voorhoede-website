@@ -4,6 +4,7 @@
       :to="{ name: 'locale-blog-slug', params: { locale: currentLocale, slug: item.slug }}"
       class="blog-list-item"
       :class="{'blog-list-item--large' : large}"
+      :aria-label="item.title"
     >
       <div class="blog-list-item__content">
         <time
