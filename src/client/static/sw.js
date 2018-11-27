@@ -8,7 +8,7 @@
 self.addEventListener('install', () => {
   // Activate immediately, taking control from any broken service workers
   self.skipWaiting()
-});
+})
 
 self.addEventListener('activate', () => {
   // Get a list of all the current open windows/tabs under
