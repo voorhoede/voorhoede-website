@@ -49,13 +49,15 @@ export default {
   }
 
   .case-teaser__header {
+    display: flex;
+    flex-direction: column;
     flex-basis: 100%;
     margin: var(--spacing-large) var(--grid-margin);
   }
 
   .case-teaser__header::after {
     content: '';
-    position: absolute;
+    position: relative;
     margin-top: var(--spacing-large);
     width: var(--border-width);
     border-bottom: 2px solid var(--very-dim);
