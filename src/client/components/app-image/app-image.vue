@@ -15,8 +15,8 @@
           class="app-image__img"
           :src="imageUrl({
             w: width,
-            h: crop ? width : null,
-            fit: crop ? 'crop': null })"
+            h: cropAndKeepRatio ? width : null,
+            fit: cropAndKeepRatio ? 'crop': null })"
           :alt="image.alt">
       </picture>
     </lazy-load>
@@ -51,7 +51,7 @@
         type: Number,
         default: 100,
       },
-      crop: {
+      cropAndKeepRatio: {
         type: Boolean,
         default: false
       },

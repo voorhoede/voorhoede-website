@@ -6,12 +6,12 @@
           class="blog-author__image-ratio"
           v-for="author in item.authors"
           :key="author.name"
-          :width="1"
-          :height="1"
+          :width="author.image.width"
+          :height="author.image.width"
         >
           <app-image
             :image="author.image"
-            :crop="true"
+            :crop-and-keep-ratio="true"
           />
         </fixed-ratio>
       </div>
