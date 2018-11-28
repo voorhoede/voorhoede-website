@@ -1,20 +1,18 @@
 <template>
   <div>
     <div class="blog-author__image">
-      <div class="blog-author__image-author">
-        <fixed-ratio
-          class="blog-author__image-ratio"
-          v-for="author in item.authors"
-          :key="author.name"
-          :width="author.image.width"
-          :height="author.image.width"
-        >
-          <app-image
-            :image="author.image"
-            :crop-and-keep-ratio="true"
-          />
-        </fixed-ratio>
-      </div>
+      <fixed-ratio
+        class="blog-author__image-ratio"
+        v-for="author in item.authors"
+        :key="author.name"
+        :width="author.image.width"
+        :height="author.image.width"
+      >
+        <app-image
+          :image="author.image"
+          :crop-and-keep-ratio="false"
+        />
+      </fixed-ratio>
     </div>
     <div class="blog-author__text body">
       <span>{{ authorName }}</span>
