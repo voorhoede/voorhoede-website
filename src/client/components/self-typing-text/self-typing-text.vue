@@ -3,6 +3,7 @@
     ref="text"
     v-html="selfTypingText"
     class="self-typing-text"
+    aria-hidden="true"
     :class="{
       'self-typing-text--js-bootstrapped': jsBootstrapped
     }"
