@@ -4,6 +4,8 @@
       :to="{ name: 'locale-blog-slug', params: { locale: currentLocale, slug: item.slug }}"
       class="blog-list-item"
       :class="{'blog-list-item--large' : large}"
+      :aria-label="item.title"
+      lang="en"
     >
       <div class="blog-list-item__content">
         <time
@@ -14,7 +16,7 @@
           {{ formattedDate }}
         </time>
         <div class="blog-list-item__details">
-          <h3 class="blog-list-item__heading" :class="large ? 'h4' : 'body'" lang="en">{{ item.title }}</h3>
+          <h3 class="blog-list-item__heading" :class="large ? 'h4' : 'body'">{{ item.title }}</h3>
           <div class="blog-list-item__author">
             <no-script>
               <img
