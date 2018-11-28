@@ -1,6 +1,7 @@
 const fs = require('fs')
 const util = require('util')
 const chalk = require('chalk')
+const cheerio = require('cheerio')
 const glob = util.promisify(require('glob'))
 const path = require('path')
 const mkdirp = require('mkdirp')
@@ -75,8 +76,10 @@ function getPageData(queryPath, locale, alternateLocale) {
             runQuery(slugQueryPath, { locale, alternateLocale, slug })
               .then(data => {
                 const relPath = path.join(locale, pageData.page.slug, data.page.slug)
-                // Run code block content through prismjs
+                // Add typography classes to headings,
+                // run code block content through prismjs
                 if (data.page && Array.isArray(data.page.items)) {
+                  addClassesToHeadings(data.page.items)
                   prismifyCodeBlocks(data.page.items)
                 }
                 writeJsonFile({ filePath: relPath, data })
@@ -125,6 +128,19 @@ async function writeJsonFile({ filePath, data }) {
 
 function createDirectory(dir) {
   return new Promise((resolve, reject) => mkdirp(dir, (err) => err ? reject(err) : resolve()))
+}
+
+function addClassesToHeadings(items) {
+  items.forEach(item => {
+    const { body, __typename } = item
+    if (__typename === 'TextSectionRecord' && body) {
+      const $ = cheerio.load(item.body)
+      for (let level of [1,2,3,4,5,6]) {
+        $(`h${level}`).addClass(`h${level + 1}`)
+      }
+      item.body = $.html()
+    }
+  })
 }
 
 function prismifyCodeBlocks(items) {

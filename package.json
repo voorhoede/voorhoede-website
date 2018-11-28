@@ -46,6 +46,7 @@
     "autoprefixer": "^9.3.1",
     "babel-eslint": "8.2.1",
     "chalk": "^2.4.1",
+    "cheerio": "^1.0.0-rc.2",
     "commander": "2.16.0",
     "datocms-client": "0.6.2",
     "dayjs": "^1.7.7",
