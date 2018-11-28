@@ -39,7 +39,13 @@ ol.numbered-list > li::before,
 
 ul.list > li::before,
 .list ul > li::before {
-  content: '•';
+  content: '';
+  display: block;
+  margin-top: 12px;
+  width: 3px;
+  height: 3px;
+  background-color: var(--black);
+  border-radius: 50%;
 }
 
 ol.numbered-list > li::before,
