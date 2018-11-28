@@ -119,6 +119,10 @@
     box-shadow: var(--mobile-icon-shadow);
   }
 
+  .app-mobile-menu__icon:active {
+    background-color: var(--active-blue);
+  }
+
   .app-mobile-menu__icon-image {
     height: var(--mobile-icon-image);
     width: var(--mobile-icon-image);
