@@ -119,6 +119,7 @@
     box-shadow: var(--mobile-icon-shadow);
   }
 
+  .app-mobile-menu__icon:focus,
   .app-mobile-menu__icon:active {
     background-color: var(--active-blue);
   }
