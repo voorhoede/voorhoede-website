@@ -113,8 +113,15 @@
     z-index: var(--z-index-high);
     height: var(--mobile-icon-height);
     width: var(--mobile-icon-width);
+    border: none;
+    outline: none;
     background-color: var(--html-blue);
     box-shadow: var(--mobile-icon-shadow);
+  }
+
+  .app-mobile-menu__icon:focus,
+  .app-mobile-menu__icon:active {
+    background-color: var(--active-blue);
   }
 
   .app-mobile-menu__icon-image {
