@@ -28,9 +28,9 @@ export default {
 <style>
   .curly-bracket {
     position: relative;
+    display: none;
     margin-top: var(--spacing-bigger);
     grid-row-start: 1;
-    grid-row-end: 5;
   }
 
   .curly-bracket--left {
@@ -39,8 +39,9 @@ export default {
   }
 
   .curly-bracket--right {
-    grid-column-start: 43;
+    grid-column-start: 44;
     grid-column-end: 51;
+    grid-row-end: 3;
   }
 
   .curly-bracket__image {
@@ -53,22 +54,33 @@ export default {
     width: 100%;
   }
 
+  /* Show the curly bracket only on newer browsers for screens < 720px */
+  @supports (display: grid) {
+    .curly-bracket {
+      display: block;
+    }
+  }
+
   .curly-bracket--right .curly-bracket__image {
     transform: scaleX(-1);
     transform-origin: center center;
-    left: auto;
+    left: unset;
     right: 0;
   }
 
   @media (min-width: 720px) {
+    .curly-bracket {
+      margin-top: 0;
+    }
+
     .curly-bracket--left {
       grid-column-start: 2;
       grid-column-end: 8;
     }
 
     .curly-bracket--right {
-      grid-column-start: 43;
-      grid-column-end: 49;
+      grid-column-start: 44;
+      grid-column-end: 50;
     }
 
     .curly-bracket--right .curly-bracket__image {
@@ -84,8 +96,8 @@ export default {
     }
 
     .curly-bracket--right {
-      grid-column-start: 43;
-      grid-column-end: 48;
+      grid-column-start: 44;
+      grid-column-end: 49;
     }
   }
 </style>
