@@ -58,7 +58,6 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
 
   .page-header-detail {
     background-color: var(--bg-pastel);

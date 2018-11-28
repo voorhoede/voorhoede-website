@@ -60,7 +60,7 @@
       }
     },
     mounted() {
-      const highlightedTextID = parseInt(this.$refs.highlightedText.dataset.id) 
+      const highlightedTextID = parseInt(this.$refs.highlightedText.dataset.id)
       let offsetIntersectionObserver
 
       'IntersectionObserver' in window ? this.observe() : this.isIntersected = true
@@ -120,8 +120,7 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
-  
+
   @keyframes color-change-in {
     0% {
       color: var(--brand-yellow);
@@ -131,7 +130,7 @@
       color: var(--html-blue);
     }
   }
-  
+
   @keyframes color-change-out {
     0% {
       color: var(--html-blue);
@@ -160,7 +159,7 @@
   .scroll-highlighted-text--active {
     animation: var(--animate-text-in);
   }
-  
+
   .scroll-highlighted-text--in-active {
     animation: var(--animate-text-out);
   }

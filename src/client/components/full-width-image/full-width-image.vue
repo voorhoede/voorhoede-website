@@ -55,8 +55,6 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
-
   .full-width-image {
     width: 100%;
     height: 300px;

@@ -50,7 +50,6 @@
 </script>
 
 <style>
-@import '../app-core/variables.css';
 
 .image-grid {
   display: inline-block;

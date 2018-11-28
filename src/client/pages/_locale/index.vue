@@ -148,7 +148,6 @@
 </script>
 
 <style>
-  @import '../../components/app-core/variables.css';
 
   .page-index__header {
     margin-bottom: var(--spacing-big);
@@ -342,6 +341,10 @@
     .page-index__academy {
       padding: 0;
       position: relative;
+    }
+
+    .page-index__academy .curly-bracket {
+      margin-top: 0;
     }
 
     .page-index .academy-excerpt {

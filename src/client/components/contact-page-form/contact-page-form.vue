@@ -235,7 +235,6 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
   @import '../forms/forms.css';
 
   .greyed-out {

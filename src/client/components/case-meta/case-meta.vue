@@ -96,8 +96,6 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
-
   .case-meta {
     display: flex;
     justify-content: space-between;

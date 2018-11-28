@@ -66,14 +66,13 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
-
   .app-image {
     width: 100%;
     height: 100%;
     background-color: var(--bg-pastel);
   }
 
+  .app-image__picture,
   .app-image__img {
     display: block;
     object-fit: cover;

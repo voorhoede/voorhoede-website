@@ -162,7 +162,6 @@ export default {
 </script>
 
  <style>
-  @import '../../../components/app-core/variables.css';
 
   .page-blog-post__header {
     grid-column: var(--grid-page);
@@ -214,7 +213,7 @@ export default {
   .page-blog-post__cta-block.cta-block {
     border: none;
   }
-  
+
   .page-blog-post-list {
     grid-row: 3;
   }
