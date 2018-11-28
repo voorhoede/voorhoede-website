@@ -62,8 +62,10 @@
     </div>
     <div class="app-footer__bottom">
       <div class="body-detail app-footer__bottom-text">
-        <dl class="app-footer__definition-list" v-for="legalItem in legal" :key="legalItem.title">
-          <dt>{{ legalItem.title }}</dt>: <dd class="app-footer__definition-value">{{ legalItem.value }}</dd>
+        <dl class="app-footer__definition-list">
+          <div v-for="legalItem in legal" :key="legalItem.title" class="app-footer__definition-item">
+            <dt>{{ legalItem.title }}:</dt> <dd class="app-footer__definition-value">{{ legalItem.value }}</dd>
+          </div>
         </dl>
       </div>
       <div class="body-detail app-footer__legal">
@@ -228,19 +230,36 @@ export default {
 }
 
 .app-footer__bottom {
-  grid-row: 2;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
+  grid-row: 2;
   margin-bottom: var(--spacing-medium);
 }
 
 .app-footer__bottom-text {
-  display: none;
+  margin-bottom: var(--spacing-medium);
+  max-width: var(--footer-list-max-width);
   font-size: 12px;
 }
 
+.app-footer__definition-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.app-footer__definition-item {
+  display: flex;
+  margin: var(--spacing-smaller);
+}
+
+.app-footer__definition-value {
+  padding-left: var(--spacing-tiny);
+}
+
 .app-footer__legal {
+  text-align: center;
   font-size: 12px;
 }
 
@@ -269,7 +288,6 @@ export default {
 
 .app-footer__list--icon {
   display: flex;
-  text-align: center;
   margin-bottom: var(--spacing-small);
 }
 
@@ -333,6 +351,7 @@ export default {
   .app-footer__layout {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
   }
 
   .app-footer__title {
@@ -355,7 +374,7 @@ export default {
     margin-bottom: var(--spacing-medium);
     text-align: left;
     align-items: unset;
-    width: 50%;
+    width: calc(50% - var(--spacing-huge) / 2);
   }
 
   .app-footer__column--right {
@@ -365,16 +384,16 @@ export default {
   }
 
   .app-footer__column--bottom {
-    display: none;
+    flex: 1 0 100%;
   }
 
   .app-footer__legal {
-    text-align: left;
     margin-left: var(--spacing-medium);
-    width: 40%;
+    text-align: left;
   }
 
   .app-footer__bottom {
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -386,17 +405,16 @@ export default {
 
   .app-footer__bottom-text {
     display: flex;
-    width: 60%;
+    margin-bottom: 0;
     justify-content: flex-end;
   }
 
-   .app-footer__definition-list {
-    display: flex;
-    margin-right: var(--spacing-tiny);
+  .app-footer__definition-list {
+    flex-wrap: nowrap;
   }
 
-  .app-footer__definition-value {
-    padding-left: var(--spacing-tiny);
+  .app-footer__definition-item {
+    margin-left: var(--spacing-smaller);
   }
 
   .app-footer__list {
@@ -410,7 +428,7 @@ export default {
 
   .app-footer__list--icon {
     margin-bottom: 0;
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .app-footer__list-item {
@@ -419,17 +437,11 @@ export default {
   }
 }
 
-@media (min-width: 820px) {
-  .app-footer__bottom-text {
-    width: 50%;
-  }
-
-  .app-footer__legal {
-    width: 50%;
-  }
-}
-
 @media (min-width: 1100px) {
+  .app-footer__layout {
+    flex-wrap: nowrap;
+  }
+
   .app-footer__header {
     display: flex;
     width: 25%;
@@ -439,12 +451,7 @@ export default {
 
   .app-footer__bottom {
     display: flex;
-    grid-column: 4 / -4;
-  }
-
-  .app-footer__bottom-text {
-    display: flex;
-    margin-left: auto;
+    grid-column: 4 / 48;
   }
 
   .app-footer__column {
@@ -454,10 +461,7 @@ export default {
   .app-footer__column--bottom {
     display: flex;
     align-items: flex-end;
-  }
-
-  .app-footer__list--icon {
-    justify-content: center;
+    flex: 1 1 25%;
   }
 }
 </style>
