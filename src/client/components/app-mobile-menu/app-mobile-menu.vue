@@ -81,8 +81,6 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
-
   :root {
       --mobile-icon-right: 20px;
       --mobile-icon-bottom: var(--mobile-icon-right);

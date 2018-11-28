@@ -4,11 +4,11 @@
     <ul class="social-buttons__list">
       <li
         class="social-buttons__list-icon"
-        v-for="item in sharePost ? socialsBlogPost : socials" 
+        v-for="item in sharePost ? socialsBlogPost : socials"
         :key="item.href">
-        <a 
-          :href="item.href" 
-          target="_blank" 
+        <a
+          :href="item.href"
+          target="_blank"
           :aria-label="item.label">
           <app-icon :name="item.icon" :is-large="true" />
         </a>
@@ -56,14 +56,14 @@
     },
     computed : {
       socials() {
-        return [ 
+        return [
           { icon: 'instagram--blue', href: 'https://www.instagram.com/devoorhoede/?hl=nl', label: 'instagram' },
           { icon: 'twitter--blue', href: 'https://twitter.com/devoorhoede', label: 'twitter' },
           { icon: 'facebook--blue', href: 'https://www.facebook.com/DeVoorhoede/', label: 'facebook' },
           { icon: 'git-hub--blue', href: 'https://github.com/voorhoede/', label: 'github' },
         ]
       },
-      socialsBlogPost () { 
+      socialsBlogPost () {
         return [
           { icon: 'twitter--blue',
             href: `https://twitter.com/intent/tweet?text=${this.shareTitle}&url=${this.currentUrl}`,
@@ -88,7 +88,6 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
 
   .social-buttons__text {
     display: none;

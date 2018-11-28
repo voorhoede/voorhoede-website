@@ -7,7 +7,6 @@
 </template>
 
 <style>
-@import '../app-core/variables.css';
 
 :root {
   --horizontal-carousel-slides-count: 3;

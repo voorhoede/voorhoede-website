@@ -53,7 +53,6 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
 
   :root {
     --storytelling-image-height: 150px;
@@ -90,7 +89,7 @@
   .storytelling-section__title {
     margin-bottom: var(--spacing-large);
   }
-  
+
   .storytelling-section__item:not(:last-child) {
     margin-bottom: var(--spacing-larger);
   }
@@ -99,7 +98,7 @@
     .storytelling-section__item:nth-child(even) .storytelling-section__card {
       margin-left: auto;
     }
-    
+
     .storytelling-section__item:nth-child(odd) .storytelling-section__image {
       order: 1;
     }

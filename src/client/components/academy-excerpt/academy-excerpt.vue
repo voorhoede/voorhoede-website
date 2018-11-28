@@ -101,8 +101,6 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
-
   :root {
     --button-group-spacing: var(--spacing-large);
   }
@@ -117,7 +115,7 @@
     text-align: center;
     color: var(--html-blue);
     grid-column-start: 2;
-    grid-column-end: 5;
+    grid-column-end: 13;
     align-self: start;
     justify-self: end;
   }
@@ -142,7 +140,7 @@
   }
 
   .academy-excerpt__content {
-    grid-column-start: 22;
+    grid-column-start: 17;
     grid-column-end: var(--grid-content-end);
   }
 
@@ -188,19 +186,19 @@
 
   @media (min-width: 720px) {
     .academy-excerpt__calendar {
-      grid-column-start: 6;
-      grid-column-end: 13;
+      grid-column-start: 9;
+      grid-column-end: 16;
     }
 
     .academy-excerpt__content {
-      grid-column-start: 16;
-      grid-column-end: 30;
+      grid-column-start: 17;
+      grid-column-end: 35;
     }
 
     .academy-excerpt__illustration-column {
       display: block;
       position: relative;
-      grid-column-start: 31;
+      grid-column-start: 36;
       grid-column-end: var(--grid-content-end);
     }
 

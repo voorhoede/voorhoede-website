@@ -55,7 +55,6 @@
 </script>
 
 <style>
-@import '../../../components/app-core/variables.css';
 
 .page-contact-confirmation {
   background-color: var(--bg-pastel);
@@ -89,8 +88,7 @@
 
 @media screen and (min-width: 1100px) {
   .page-contact-confirmation__content {
-    grid-column-start: 6;
-    grid-column-end: 46;
+    grid-column: var(--grid-content-narrow);
     padding: var(--spacing-larger) var(--spacing-larger);
   }
 }

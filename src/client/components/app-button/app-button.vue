@@ -96,8 +96,6 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
-
   .app-button {
     display: inline-block;
     background: none;

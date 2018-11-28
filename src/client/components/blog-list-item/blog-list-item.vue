@@ -81,8 +81,6 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
-
   :root {
     --blog-thumbnail-small: 40px;
     --blog-thumbnail-large: 65px;

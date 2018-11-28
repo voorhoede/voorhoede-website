@@ -71,7 +71,6 @@ export default {
 </script>
 
 <style>
-@import '../app-core/variables.css';
 
 :root {
   --max-height-image: 285px;
