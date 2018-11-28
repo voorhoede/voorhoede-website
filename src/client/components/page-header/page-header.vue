@@ -7,7 +7,7 @@
       side="right"
       color="paper"
     />
-    <div class="page-header__image">
+    <div class="page-header__image" :class="{ 'page-header__image--spaced-top': !isHomepage }">
       <img v-if="image" :src="image.url" alt="">
     </div>
     <div class="page-header__description">
@@ -124,6 +124,10 @@ export default {
   width: 100%;
 }
 
+.page-header__image--spaced-top {
+  display: none;
+}
+
 .page-header--home {
   position: relative;
   grid-template-rows: var(--app-header-height-small) 1fr var(--spacing-large) calc(50vh - var(--spacing-large) - var(--spacing-larger)) var(--spacing-larger);
@@ -140,6 +144,12 @@ export default {
   margin-top: var(--spacing-smaller);
   hyphens: auto;
   overflow-wrap: break-word;
+}
+
+@media (min-width: 420px) {
+  .page-header--brick .page-header__image img {
+    height: 100%;
+  }
 }
 
 @media (min-width: 520px) {
@@ -214,14 +224,11 @@ export default {
     grid-column-end: 48;
     grid-row-start: 2;
     grid-row-end: 4;
-    height: 275px;
   }
 
   .page-header--home .page-header__image {
     margin-top: 0;
     grid-row-end: 3;
-    width: 100%;
-    height: auto;
   }
 
   .page-header__image--spaced-top {
