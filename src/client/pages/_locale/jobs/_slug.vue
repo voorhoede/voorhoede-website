@@ -27,7 +27,7 @@
             external
           />
           <app-button
-            :label="(currentLocale === 'nl') ? 'Bekijk alle vacatures' : 'See all vacancies'"
+            :label="(currentLocale === 'nl') ? 'Alle vacatures' : 'All vacancies'"
             :to="`/${currentLocale}/jobs`"
             secondary
           />
