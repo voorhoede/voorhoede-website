@@ -1,12 +1,18 @@
 <template>
   <div>
     <div class="blog-author__image">
-      <app-image
-        class="blog-author__image-author"
+      <fixed-ratio
+        class="blog-author__image-ratio"
         v-for="author in item.authors"
         :key="author.name"
-        :image="author.image"
-      />
+        :width="author.image.width"
+        :height="author.image.width"
+      >
+        <app-image
+          :image="author.image"
+          :crop-and-keep-ratio="true"
+        />
+      </fixed-ratio>
     </div>
     <div class="blog-author__text body">
       <span>{{ authorName }}</span>
@@ -21,10 +27,10 @@
 
 <script>
   import { mapState } from 'vuex'
-  import { AppImage, } from '../../components'
+  import { AppImage, FixedRatio } from '../../components'
 
   export default {
-    components: { AppImage, },
+    components: { AppImage, FixedRatio },
     props: {
       item: {
         type: Object,
@@ -59,13 +65,18 @@
    :root {
     --thumbnail-size: 135px;
   }
+  
+  .blog-author__image-ratio {
+    height: 100%;
+    width: 100%;
+    max-height: var(--thumbnail-size);
+    max-width: var(--thumbnail-size);
+    overflow: hidden;
+    margin-bottom: var(--spacing-small);
+  }
 
   .blog-author__image {
     display: none;
-  }
-
-  .blog-author__image-author.app-image {
-    margin-bottom: var(--spacing-tiny);
   }
 
   .blog-author__text-time {
@@ -76,14 +87,19 @@
   @media (min-width: 720px) {
     .blog-author__image {
       display: block;
-      margin-bottom: var(--spacing-small);
-      padding-right: var(--spacing-larger);
+      padding-right: var(--spacing-small);
       border-right: 2px solid var(--very-dim);
     }
 
     .blog-author__text {
       display: flex;
       flex-direction: column;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .blog-author__image {
+      padding-right: var(--spacing-larger);
     }
   }
 </style>

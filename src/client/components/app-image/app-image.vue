@@ -11,7 +11,13 @@
         <source type="image/webp" :srcset="imageUrl({ fm: 'webp', w: width })">
         <source :type="`image/${image.format}`" :srcset="imageUrl({ w: width })">
         <!--[if IE 9]></video><![endif]-->
-        <img class="app-image__img" :src="imageUrl({ w: width })" :alt="image.alt">
+        <img 
+          class="app-image__img"
+          :src="imageUrl({
+            w: width,
+            h: cropAndKeepRatio ? width : null,
+            fit: cropAndKeepRatio ? 'crop': null })"
+          :alt="image.alt">
       </picture>
     </lazy-load>
   </div>
@@ -44,7 +50,11 @@
       widthStep: {
         type: Number,
         default: 100,
-      }
+      },
+      cropAndKeepRatio: {
+        type: Boolean,
+        default: false
+      },
     },
     data() {
       return {
