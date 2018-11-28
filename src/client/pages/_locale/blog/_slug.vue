@@ -163,6 +163,10 @@ export default {
 
  <style>
 
+  :root {
+    --blog-list-max-width: 840px;
+  }
+
   .page-blog-post__header {
     grid-column: var(--grid-page);
   }
@@ -216,6 +220,7 @@ export default {
 
   .page-blog-post-list {
     grid-row: 3;
+    max-width: 100%;
   }
 
   .page-blog-post-list em {
