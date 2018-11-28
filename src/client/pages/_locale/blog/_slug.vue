@@ -162,11 +162,6 @@ export default {
 </script>
 
  <style>
-
-  :root {
-    --blog-list-max-width: 840px;
-  }
-
   .page-blog-post__header {
     grid-column: var(--grid-page);
   }
