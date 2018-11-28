@@ -125,8 +125,7 @@ module.exports = {
     postcss: [
       require('postcss-import')(),
       require('postcss-custom-properties')({
-        importFrom: './src/client/components/app-core/variables.css',
-        preserve: false
+        importFrom: './src/client/components/app-core/variables.css'
       }),
       require('autoprefixer')({
         browsers: ['ie 11', '>1%'],
