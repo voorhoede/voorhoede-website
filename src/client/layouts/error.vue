@@ -75,8 +75,7 @@ export default {
 
   @media screen and (min-width: 1100px) {
     .layout-error__content {
-      grid-column-start: 6;
-      grid-column-end: 46;
+      grid-column: var(--grid-content-narrow);
       padding: var(--spacing-larger);
     }
   }

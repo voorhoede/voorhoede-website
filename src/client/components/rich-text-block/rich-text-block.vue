@@ -20,7 +20,10 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
+
+  .rich-text {
+    word-wrap: break-word;
+  }
 
   .rich-text table,
   .rich-text ul:not(:last-child),

@@ -27,7 +27,7 @@
             external
           />
           <app-button
-            :label="(currentLocale === 'nl') ? 'Bekijk alle vacatures' : 'See all vacancies'"
+            :label="(currentLocale === 'nl') ? 'Alle vacatures' : 'All vacancies'"
             :to="`/${currentLocale}/jobs`"
             secondary
           />
@@ -85,7 +85,6 @@
 </script>
 
 <style>
-  @import '../../../components/app-core/variables.css';
 
   :root {
     --button-group-width: 350px;
@@ -139,8 +138,7 @@
 
   @media (min-width: 1100px) {
     .page-job__overview {
-      grid-column-start: 6;
-      grid-column-end: 46;
+      grid-column: var(--grid-content-narrow);
       padding: var(--spacing-big) var(--spacing-bigger);
     }
   }

@@ -195,7 +195,6 @@
 </script>
 
 <style>
-  @import '../../../components/app-core/variables.css';
 
   :root {
     --image-resizer-max-width-m: 1060px;

@@ -7,7 +7,7 @@
       <h3 class="job-excerpt__text-title h5">{{ title }}</h3>
       <p class="job-excerpt__text-description body-detail">{{ description }}</p>
     </div>
-    <app-button class="job-excerpt__button" :label="label" :to="{ name: 'locale-jobs-slug', params: { locale: currentLocale, slug } }"/>
+    <app-button class="job-excerpt__button" :aria-label="title" :label="label" :to="{ name: 'locale-jobs-slug', params: { locale: currentLocale, slug } }"/>
   </div>
 </template>
 
@@ -49,7 +49,6 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
 
   :root {
     --job-excerpt-easing: .25s cubic-bezier(.5, 0, .25, 1);

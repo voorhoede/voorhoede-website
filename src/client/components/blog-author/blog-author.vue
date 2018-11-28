@@ -62,9 +62,7 @@
 </script>
 
 <style>
-  @import '../app-core/variables.css';
-
-  :root {
+   :root {
     --thumbnail-size: 135px;
   }
   

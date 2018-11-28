@@ -46,7 +46,6 @@
 </script>
 
 <style>
-  @import '../../../components/app-core/variables.css';
 
   .page-service .page-header-detail {
     grid-column: var(--grid-page);
@@ -68,8 +67,7 @@
     }
 
     .page-service__overview {
-      grid-column-start: 2;
-      grid-column-end: 50;
+      grid-column: var(--grid-content);
       background-color: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
     }
@@ -77,8 +75,7 @@
 
   @media (min-width: 1100px) {
     .page-service__overview {
-      grid-column-start: 6;
-      grid-column-end: 46;
+      grid-column: var(--grid-content-narrow);
       padding: var(--spacing-big) var(--spacing-bigger);
     }
   }

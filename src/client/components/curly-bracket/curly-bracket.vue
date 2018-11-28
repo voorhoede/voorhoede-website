@@ -26,11 +26,10 @@ export default {
 </script>
 
 <style>
-  @import '../app-core/variables.css';
-
   .curly-bracket {
-    margin-top: var(--spacing-bigger);
     position: relative;
+    display: none;
+    margin-top: var(--spacing-bigger);
     grid-row-start: 1;
   }
 
@@ -53,6 +52,13 @@ export default {
     left: 0;
     max-height: calc(100% + 4vh);
     width: 100%;
+  }
+
+  /* Show the curly bracket only on newer browsers for screens < 720px */
+  @supports (display: grid) {
+    .curly-bracket {
+      display: block;
+    }
   }
 
   .curly-bracket--right .curly-bracket__image {

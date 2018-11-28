@@ -23,8 +23,6 @@ export default {
 </script>
 
 <style>
-@import '../app-core/variables.css';
-
 :root {
   --grid-demo-margin: #757575;
   --grid-demo-flex: #e0e0e0;
