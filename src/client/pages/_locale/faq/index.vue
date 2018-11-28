@@ -83,8 +83,7 @@
 
   @media (min-width: 1100px) {
     .page-faq__overview {
-      grid-column-start: 6;
-      grid-column-end: 46;
+      grid-column: var(--grid-content-narrow);
       padding: var(--spacing-big) var(--spacing-bigger);
     }
   }
