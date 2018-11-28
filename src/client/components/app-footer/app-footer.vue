@@ -337,7 +337,7 @@ export default {
 
   .app-footer__title {
     width: 100%;
-    border-bottom: 2px solid;
+    border-bottom: 1px solid;
   }
 
   .app-footer__header {
