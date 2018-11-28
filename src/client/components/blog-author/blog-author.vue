@@ -10,7 +10,7 @@
       >
         <app-image
           :image="author.image"
-          :crop-and-keep-ratio="false"
+          :crop-and-keep-ratio="true"
         />
       </fixed-ratio>
     </div>
