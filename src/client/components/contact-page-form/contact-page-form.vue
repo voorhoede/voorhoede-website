@@ -235,6 +235,8 @@
 </script>
 
 <style>
+  @import '../forms/forms.css';
+
   .greyed-out {
     color: var(--very-dim);
   }
