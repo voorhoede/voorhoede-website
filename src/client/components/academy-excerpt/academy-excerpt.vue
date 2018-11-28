@@ -189,6 +189,7 @@
       grid-column-start: 9;
       grid-column-end: 16;
     }
+
     .academy-excerpt__content {
       grid-column-start: 17;
       grid-column-end: 35;
