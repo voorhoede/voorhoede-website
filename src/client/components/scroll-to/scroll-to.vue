@@ -47,9 +47,9 @@
 </script>
 
 <style>
-
   .scroll-to {
     display: flex;
+    position: relative;
     z-index: var(--z-index-low);
     width: 32px;
     height: 150px;
