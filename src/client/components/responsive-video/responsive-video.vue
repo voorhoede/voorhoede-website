@@ -75,7 +75,11 @@
 
         switch (this.video.provider) {
           case 'vimeo':
-            return this.video.thumbnailUrl.replace(sizeRegex, `${this.width}.jpg`)
+            return (
+              this.width === null
+              ? false
+              : this.video.thumbnailUrl.replace(sizeRegex, `${this.width}.jpg`)
+            )
           case 'youtube':
             if (this.width < 320) {
               preset = '/mqdefault.jpg'

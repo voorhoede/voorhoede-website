@@ -199,17 +199,16 @@
   :root {
     --image-resizer-max-width-m: 1060px;
     --image-resizer-max-width-l: 1300px;
-    --full-width-image-max-width: 1440px;
+    --case-content-max-width-m: 935px;
+    --case-content-max-width-l: 1440px;
     --page-section-max-width: 640px;
-    --page-content-max-width: 935px;
     --case-full-width-image-height: 515px; /* value according to design */
   }
 
   .page-case__content {
     grid-row: 4;
     grid-column: var(--grid-page);
-    padding-left: var(--spacing-small);
-    padding-right: var(--spacing-small);
+    padding: 0 var(--spacing-small);
   }
 
   .page-case__case-header {
@@ -282,6 +281,11 @@
     height: auto;
     margin-left: calc(-1 * var(--spacing-small));
     margin-right: calc(-1 * var(--spacing-small));
+  }
+
+  .page-case__content .responsive-video {
+    width: 100%;
+    max-width: var(--case-content-max-width-l);
   }
 
   @media (min-width: 720px) {
@@ -375,7 +379,7 @@
     }
 
     .page-case__content .image-with-description {
-      max-width: var(--page-content-max-width);
+      max-width: var(--case-content-max-width-m);
     }
 
     .page-case__get-in-touch-form .get-in-touch-form {
@@ -389,7 +393,7 @@
     }
 
     .page-case__content .full-width-image {
-      max-width: var(--full-width-image-max-width);
+      max-width: var(--case-content-max-width-l);
     }
   }
 </style>
