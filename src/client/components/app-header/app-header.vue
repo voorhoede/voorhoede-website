@@ -2,8 +2,8 @@
   <nav class="app-header grid">
     <h2 class="sr-only">Site Menu</h2>
     <div class="app-header__content">
-      <nuxt-link class="app-header__home-link" :to="`/${currentLocale}/`" aria-label="Link to the homepage">
-        <img class="app-header__logo" src="/images/logo-with-text.svg" alt="">
+      <nuxt-link class="app-header__home-link" :to="`/${currentLocale}/`">
+        <img class="app-header__logo" src="/images/logo-with-text.svg" alt="Home">
       </nuxt-link>
       <div class="app-header__link-lists body-petite">
         <ul class="app-header__link-list">
@@ -22,7 +22,7 @@
             }"
           >
             <span v-if="locale === currentLocale">{{ locale }}</span>
-            <nuxt-link class="app-header__link" v-else :to="alternateUrl">{{ locale }}</nuxt-link>
+            <nuxt-link class="app-header__link" v-else :to="alternateUrl" :aria-label="locale === 'en' ? 'Engelse versie' : 'Dutch version'">{{ locale }}</nuxt-link>
           </li>
         </ul>
       </div>
