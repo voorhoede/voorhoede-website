@@ -4,13 +4,13 @@
     <ul class="social-buttons__list">
       <li
         class="social-buttons__list-icon"
-        v-for="item in sharePost ? socialsBlogPost : socials"
+        v-for="item in socials"
         :key="item.href">
         <a
           :href="item.href"
           target="_blank"
           :aria-label="item.label">
-          <app-icon :name="item.icon" :is-large="true" />
+          <app-icon :name="item.icon" :is-large="true" :alt="item.alt" />
         </a>
       </li>
     </ul>
@@ -27,26 +27,9 @@
         type: String,
         default: '',
       },
-      sharePost: {
-        type: Boolean,
-        default: false,
-      },
       shareTitle: {
         type: String,
         default: '',
-      },
-      social: {
-        type: Array,
-        default: () => [],
-        validator: (social) => {
-          return (
-            social.every(item => {
-              return item instanceof Object &&
-                typeof item.icon === 'string' &&
-                typeof item.href === 'string'
-            })
-          )
-        },
       },
     },
     data() {
@@ -55,23 +38,17 @@
       }
     },
     computed : {
-      socials() {
-        return [
-          { icon: 'instagram--blue', href: 'https://www.instagram.com/devoorhoede/?hl=nl', label: 'instagram' },
-          { icon: 'twitter--blue', href: 'https://twitter.com/devoorhoede', label: 'twitter' },
-          { icon: 'facebook--blue', href: 'https://www.facebook.com/DeVoorhoede/', label: 'facebook' },
-          { icon: 'git-hub--blue', href: 'https://github.com/voorhoede/', label: 'github' },
-        ]
-      },
-      socialsBlogPost () {
+      socials () {
         return [
           { icon: 'twitter--blue',
             href: `https://twitter.com/intent/tweet?text=${this.shareTitle}&url=${this.currentUrl}`,
             label: 'twitter',
+            alt: 'Share this post on Twitter',
           },
           { icon: 'facebook--blue',
             href: `https://www.facebook.com/sharer.php?u=${this.currentUrl}`,
             label: 'facebook',
+            alt: 'Share this post on Facebook',
           },
         ]
       },
