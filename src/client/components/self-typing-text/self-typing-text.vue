@@ -70,7 +70,7 @@ export default {
           value = min
         : value > max ?
           value = max
-        : value
+        : Math.round(value)
       )
     }
   }
