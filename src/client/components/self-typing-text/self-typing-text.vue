@@ -26,18 +26,19 @@ export default {
     return {
       /* by adding the this.text initally it will calculate the height needed.
       This way the header doesnt get larger when the sentence is typed */
+      typingSpeed: this.speedIndex,
       selfTypingText: this.text,
       jsBootstrapped: false,
     }
   },
   mounted() {
-    const typingSpeed = this.speedIndex
     const height = this.$refs.text.clientHeight
     const letters = this.text.split('')
 
     this.jsBootstrapped = true
     this.$refs.text.style.height = `${height}px`
     this.selfTypingText = ''
+    this.text.length >= 40 ? this.typingSpeed = 50 : this.typingSpeed
 
     letters.forEach((letter, index) => {
       setTimeout(() => {
@@ -53,7 +54,7 @@ export default {
         if (index === this.text.length - 1 && this.$refs.text) {
           this.$refs.text.style.removeProperty('height')
         }
-      }, typingSpeed * index)
+      }, this.typingSpeed * index)
     })
   }
 }
