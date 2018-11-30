@@ -34,11 +34,17 @@ export default {
   mounted() {
     const height = this.$refs.text.clientHeight
     const letters = this.text.split('')
+    const minInterval = 50
+    const maxInterval = 70
+    const minDuration = 600
+    const maxDuration = 1400
+    let duration = this.comparator(minDuration, maxDuration, (this.speedIndex * this.text.length))
+    let letterInterval = this.comparator(minInterval, maxInterval, (duration / this.text.length))
 
+    this.typingSpeed = letterInterval
     this.jsBootstrapped = true
     this.$refs.text.style.height = `${height}px`
     this.selfTypingText = ''
-    this.text.length >= 40 ? this.typingSpeed = 50 : this.typingSpeed
 
     letters.forEach((letter, index) => {
       setTimeout(() => {
@@ -56,6 +62,17 @@ export default {
         }
       }, this.typingSpeed * index)
     })
+  },
+  methods: {
+    comparator (min, max, value) {
+      return (
+        value < min ?
+          value = min
+        : value > max ?
+          value = max
+        : value
+      )
+    }
   }
 }
 </script>
