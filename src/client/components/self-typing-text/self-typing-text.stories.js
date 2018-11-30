@@ -18,6 +18,6 @@ Vue.component('self-typing-text', SelfTypingText)
 stories.add(
   'Self Typing Text',
   () => ({
-    template: '<self-typing-text text="We are the Voorhoede" speed-index="70" />',
+    template: '<self-typing-text text="We are the Voorhoede" />',
   }),
 )

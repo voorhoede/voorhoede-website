@@ -17,16 +17,11 @@ export default {
       type: String,
       required: true,
     },
-    speedIndex: {
-      type: Number,
-      required: true,
-    },
   },
   data() {
     return {
       /* by adding the this.text initally it will calculate the height needed.
       This way the header doesnt get larger when the sentence is typed */
-      typingSpeed: this.speedIndex,
       selfTypingText: this.text,
       jsBootstrapped: false,
     }
@@ -34,14 +29,17 @@ export default {
   mounted() {
     const height = this.$refs.text.clientHeight
     const letters = this.text.split('')
-    const minInterval = 50
+    const minInterval = 35
     const maxInterval = 70
-    const minDuration = 600
-    const maxDuration = 1400
-    const duration = this.comparator(minDuration, maxDuration, (this.speedIndex * this.text.length))
-    const letterInterval = this.comparator(minInterval, maxInterval, (duration / this.text.length))
+    const duration = 1000
+    let currentInterval = (duration / this.text.length)
+    const letterInterval = 
+      currentInterval < minInterval ?
+        currentInterval = minInterval
+      : currentInterval > maxInterval ?
+        currentInterval = maxInterval
+      : Math.round(currentInterval)
 
-    this.typingSpeed = letterInterval
     this.jsBootstrapped = true
     this.$refs.text.style.height = `${height}px`
     this.selfTypingText = ''
@@ -60,19 +58,8 @@ export default {
         if (index === this.text.length - 1 && this.$refs.text) {
           this.$refs.text.style.removeProperty('height')
         }
-      }, this.typingSpeed * index)
+      }, letterInterval * index)
     })
-  },
-  methods: {
-    comparator (min, max, value) {
-      return (
-        value < min ?
-          value = min
-        : value > max ?
-          value = max
-        : Math.round(value)
-      )
-    }
   }
 }
 </script>
