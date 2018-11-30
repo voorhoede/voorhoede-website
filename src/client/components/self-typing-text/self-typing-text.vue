@@ -38,14 +38,14 @@ export default {
     const maxInterval = 70
     const minDuration = 600
     const maxDuration = 1400
-    let duration = this.comparator(minDuration, maxDuration, (this.speedIndex * this.text.length))
-    let letterInterval = this.comparator(minInterval, maxInterval, (duration / this.text.length))
+    const duration = this.comparator(minDuration, maxDuration, (this.speedIndex * this.text.length))
+    const letterInterval = this.comparator(minInterval, maxInterval, (duration / this.text.length))
 
     this.typingSpeed = letterInterval
     this.jsBootstrapped = true
     this.$refs.text.style.height = `${height}px`
     this.selfTypingText = ''
-
+    console.log(this.typingSpeed, duration)
     letters.forEach((letter, index) => {
       setTimeout(() => {
         this.selfTypingText += letter
