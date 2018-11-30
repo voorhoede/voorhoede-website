@@ -29,16 +29,12 @@ export default {
   mounted() {
     const height = this.$refs.text.clientHeight
     const letters = this.text.split('')
-    const minInterval = 35
-    const maxInterval = 70
-    const duration = 1000
-    let currentInterval = (duration / this.text.length)
-    const letterInterval = 
-      currentInterval < minInterval ?
-        currentInterval = minInterval
-      : currentInterval > maxInterval ?
-        currentInterval = maxInterval
-      : Math.round(currentInterval)
+    const MIN_INTERVAL = 35
+    const MAX_INTERVAL = 70
+    const BASE_DURATION = 1000
+    const currentInterval = (BASE_DURATION / this.text.length)
+    /* Get interval that is not higher than max or lower than min */
+    const letterInterval = [MIN_INTERVAL, MAX_INTERVAL, Math.round(currentInterval)].sort()[1]
 
     this.jsBootstrapped = true
     this.$refs.text.style.height = `${height}px`
