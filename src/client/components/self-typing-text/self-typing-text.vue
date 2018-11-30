@@ -45,7 +45,7 @@ export default {
     this.jsBootstrapped = true
     this.$refs.text.style.height = `${height}px`
     this.selfTypingText = ''
-    console.log(this.typingSpeed, duration)
+
     letters.forEach((letter, index) => {
       setTimeout(() => {
         this.selfTypingText += letter
