@@ -42,8 +42,6 @@
   import { mapState } from 'vuex'
   import {
     PageHeader,
-    TextBlock,
-    RichTextBlock,
     GenericTextBlock,
     CtaBlock,
     ScrollTo,
@@ -53,8 +51,6 @@
   export default {
     components: {
       PageHeader,
-      TextBlock,
-      RichTextBlock,
       GenericTextBlock,
       CtaBlock,
       ScrollTo,
