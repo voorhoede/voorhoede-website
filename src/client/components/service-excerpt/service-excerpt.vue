@@ -12,6 +12,7 @@
     </div>
     <AppButton
       secondary
+      :aria-label="cta + ' - ' + title"
       :label="cta"
       :to="{
         name: 'locale-services-slug',
