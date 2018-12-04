@@ -5,7 +5,7 @@
     class="self-typing-text"
     aria-hidden="true"
     :class="{
-      'self-typing-text--js-bootstrapped': jsBootstrapped
+      'self-typing-text--enhanced': enhanced,
       'self-typing-text--ended': animationEnded
     }"
   />
@@ -28,8 +28,12 @@ export default {
       /* by adding the this.text initally it will calculate the height needed.
       This way the header doesnt get larger when the sentence is typed */
       selfTypingText: this.text,
-      jsBootstrapped: false,
       animationEnded: false,
+    }
+  },
+  computed: {
+    enhanced () {
+      return process.client
     }
   },
   mounted() {
@@ -40,7 +44,6 @@ export default {
     /* Get interval that is not higher than max or lower than min */
     const interval = [MIN_INTERVAL, MAX_INTERVAL, Math.round(intervalByDuration)].sort()[1]
 
-    this.jsBootstrapped = true
     this.$refs.text.style.height = `${height}px`
     this.selfTypingText = ''
 
@@ -86,7 +89,7 @@ export default {
     animation-delay: var(--show-text-animation-delay);
   }
 
-  .self-typing-text::after {
+  .self-typing-text--enhanced::after {
     content: '';
     position: relative;
     display: inline-block;
@@ -134,7 +137,7 @@ export default {
     }
   }
 
-  .self-typing-text--js-bootstrapped {
+  .self-typing-text--enhanced {
     opacity: 1;
     animation: none;
   }
