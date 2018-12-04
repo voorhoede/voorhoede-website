@@ -5,44 +5,47 @@
     class="self-typing-text"
     aria-hidden="true"
     :class="{
-      'self-typing-text--js-bootstrapped': jsBootstrapped
+      'self-typing-text--enhanced': enhanced,
+      'self-typing-text--ended': animationEnded
     }"
   />
 </template>
 
 <script>
+const MIN_INTERVAL = 35 // Time between letters should be at least 35ms
+const MAX_INTERVAL = 70 // Time between letters should be no more than 70ms
+const BASE_DURATION = 1000 // Time to aim for is 1s
+
 export default {
   props:{
     text: {
       type: String,
       required: true,
     },
-    speedIndex: {
-      type: Number,
-      required: true,
-    },
   },
-  data() {
+  data () {
     return {
       /* by adding the this.text initally it will calculate the height needed.
       This way the header doesnt get larger when the sentence is typed */
+      animationEnded: false,
+      enhanced: false,
       selfTypingText: this.text,
-      jsBootstrapped: false,
     }
   },
-  mounted() {
-    const typingSpeed = this.speedIndex
+  mounted () {
     const height = this.$refs.text.clientHeight
     const letters = this.text.split('')
+    const intervalByDuration = (BASE_DURATION / this.text.length)
+    /* Get interval that is not higher than max or lower than min */
+    const interval = [MIN_INTERVAL, MAX_INTERVAL, Math.round(intervalByDuration)].sort()[1]
 
-    this.jsBootstrapped = true
+    this.enhanced = true // This should *not* be reactive
     this.$refs.text.style.height = `${height}px`
     this.selfTypingText = ''
 
     letters.forEach((letter, index) => {
       setTimeout(() => {
         this.selfTypingText += letter
-
         /*
          * By removing the height property when the last letter is typed,
          * it will scale normaly when window is resized.
@@ -52,20 +55,15 @@ export default {
          */
         if (index === this.text.length - 1 && this.$refs.text) {
           this.$refs.text.style.removeProperty('height')
+          this.animationEnded = true // remove cursor
         }
-      }, typingSpeed * index)
+      }, interval * index)
     })
   }
 }
 </script>
 <style>
   :root {
-    --cursor-h1-height-low: 2.75rem;
-    --cursor-h1-height-medium: 4.0625rem;
-    --cursor-h1-height-high: 5.625rem;
-    --cursor-hero-height-low: 3.8125rem;
-    --cursor-hero-height-medium: 4.5rem;
-    --cursor-hero-height-high: 6.6875rem;
     --show-text-animation-delay: 1.5s;
     --show-text-animation: show 1s forwards;
     --blink-text-animation: blink 850ms infinite;
@@ -81,52 +79,24 @@ export default {
     animation-delay: var(--show-text-animation-delay);
   }
 
-  .self-typing-text::after {
+  .self-typing-text--enhanced {
+    opacity: 1;
+    animation: none;
+  }
+
+  .self-typing-text--enhanced::after {
     content: '';
     position: relative;
     display: inline-block;
-    left: -2px;
-    top: -2px;
-    height: 100%;
+    left: -0.025em;
+    top: -0.025em;
+    height: 1em;
     vertical-align: middle;
     border-right: 3px solid var(--html-blue);
     animation: var(--blink-text-animation);
   }
 
-  .self-typing-text--hero::after {
-     height: var(--cursor-hero-height-low);
-  }
-
-  .self-typing-text--h1::after {
-     height: var(--cursor-h1-height-low);
-  }
-
-  @media (min-width: 720px) {
-    .self-typing-text--hero::after {
-      height: var(--cursor-hero-height-medium);
-    }
-
-    .self-typing-text--h1::after {
-      height: var(--cursor-h1-height-medium);
-    }
-  }
-
-  @media (min-width: 1100px) {
-    .self-typing-text--hero::after {
-      left: -4px;
-      top: -7px;
-      height: var(--cursor-hero-height-high);
-    }
-
-    .self-typing-text--h1::after {
-      left: -5px;
-      top: -7px;
-      height: var(--cursor-h1-height-high);
-    }
-  }
-
-  .self-typing-text--js-bootstrapped {
-    opacity: 1;
-    animation: none;
+  .self-typing-text--ended::after {
+    content: none;
   }
 </style>
