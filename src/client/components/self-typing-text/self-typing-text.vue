@@ -68,12 +68,6 @@ export default {
 </script>
 <style>
   :root {
-    --cursor-h1-height-low: 2.75rem;
-    --cursor-h1-height-medium: 4.0625rem;
-    --cursor-h1-height-high: 5.625rem;
-    --cursor-hero-height-low: 3.8125rem;
-    --cursor-hero-height-medium: 4.5rem;
-    --cursor-hero-height-high: 6.6875rem;
     --show-text-animation-delay: 1.5s;
     --show-text-animation: show 1s forwards;
     --blink-text-animation: blink 850ms infinite;
@@ -89,13 +83,18 @@ export default {
     animation-delay: var(--show-text-animation-delay);
   }
 
+  .self-typing-text--enhanced {
+    opacity: 1;
+    animation: none;
+  }
+
   .self-typing-text--enhanced::after {
     content: '';
     position: relative;
     display: inline-block;
-    left: -2px;
-    top: -2px;
-    height: 100%;
+    left: -0.025em;
+    top: -0.025em;
+    height: 1em;
     vertical-align: middle;
     border-right: 3px solid var(--html-blue);
     animation: var(--blink-text-animation);
@@ -103,42 +102,5 @@ export default {
 
   .self-typing-text--ended::after {
     content: none;
-  }
-
-  .self-typing-text--hero::after {
-     height: var(--cursor-hero-height-low);
-  }
-
-  .self-typing-text--h1::after {
-     height: var(--cursor-h1-height-low);
-  }
-
-  @media (min-width: 720px) {
-    .self-typing-text--hero::after {
-      height: var(--cursor-hero-height-medium);
-    }
-
-    .self-typing-text--h1::after {
-      height: var(--cursor-h1-height-medium);
-    }
-  }
-
-  @media (min-width: 1100px) {
-    .self-typing-text--hero::after {
-      left: -4px;
-      top: -7px;
-      height: var(--cursor-hero-height-high);
-    }
-
-    .self-typing-text--h1::after {
-      left: -5px;
-      top: -7px;
-      height: var(--cursor-h1-height-high);
-    }
-  }
-
-  .self-typing-text--enhanced {
-    opacity: 1;
-    animation: none;
   }
 </style>
