@@ -11,6 +11,10 @@
 </template>
 
 <script>
+const MIN_INTERVAL = 35 // Time between letters should be at least 35ms
+const MAX_INTERVAL = 70 // Time between letters should be no more than 70ms
+const BASE_DURATION = 1000 // Time to aim for is 1s
+
 export default {
   props:{
     text: {
@@ -29,12 +33,10 @@ export default {
   mounted() {
     const height = this.$refs.text.clientHeight
     const letters = this.text.split('')
-    const MIN_INTERVAL = 35
-    const MAX_INTERVAL = 70
-    const BASE_DURATION = 1000
-    const currentInterval = (BASE_DURATION / this.text.length)
+
+    const intervalByDuration = (BASE_DURATION / this.text.length)
     /* Get interval that is not higher than max or lower than min */
-    const letterInterval = [MIN_INTERVAL, MAX_INTERVAL, Math.round(currentInterval)].sort()[1]
+    const interval = [MIN_INTERVAL, MAX_INTERVAL, Math.round(intervalByDuration)].sort()[1]
 
     this.jsBootstrapped = true
     this.$refs.text.style.height = `${height}px`
@@ -54,7 +56,7 @@ export default {
         if (index === this.text.length - 1 && this.$refs.text) {
           this.$refs.text.style.removeProperty('height')
         }
-      }, letterInterval * index)
+      }, interval * index)
     })
   }
 }
