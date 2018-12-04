@@ -6,6 +6,7 @@
     aria-hidden="true"
     :class="{
       'self-typing-text--js-bootstrapped': jsBootstrapped
+      'self-typing-text--ended': animationEnded
     }"
   />
 </template>
@@ -28,6 +29,7 @@ export default {
       This way the header doesnt get larger when the sentence is typed */
       selfTypingText: this.text,
       jsBootstrapped: false,
+      animationEnded: false,
     }
   },
   mounted() {
@@ -45,7 +47,6 @@ export default {
     letters.forEach((letter, index) => {
       setTimeout(() => {
         this.selfTypingText += letter
-
         /*
          * By removing the height property when the last letter is typed,
          * it will scale normaly when window is resized.
@@ -55,6 +56,7 @@ export default {
          */
         if (index === this.text.length - 1 && this.$refs.text) {
           this.$refs.text.style.removeProperty('height')
+          this.animationEnded = true // remove cursor
         }
       }, interval * index)
     })
@@ -94,6 +96,10 @@ export default {
     vertical-align: middle;
     border-right: 3px solid var(--html-blue);
     animation: var(--blink-text-animation);
+  }
+
+  .self-typing-text--ended::after {
+    content: none;
   }
 
   .self-typing-text--hero::after {
