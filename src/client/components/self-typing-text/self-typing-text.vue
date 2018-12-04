@@ -23,27 +23,23 @@ export default {
       required: true,
     },
   },
-  data() {
+  data () {
     return {
       /* by adding the this.text initally it will calculate the height needed.
       This way the header doesnt get larger when the sentence is typed */
-      selfTypingText: this.text,
       animationEnded: false,
+      enhanced: false,
+      selfTypingText: this.text,
     }
   },
-  computed: {
-    enhanced () {
-      return process.client
-    }
-  },
-  mounted() {
+  mounted () {
     const height = this.$refs.text.clientHeight
     const letters = this.text.split('')
-
     const intervalByDuration = (BASE_DURATION / this.text.length)
     /* Get interval that is not higher than max or lower than min */
     const interval = [MIN_INTERVAL, MAX_INTERVAL, Math.round(intervalByDuration)].sort()[1]
 
+    this.enhanced = true // This should *not* be reactive
     this.$refs.text.style.height = `${height}px`
     this.selfTypingText = ''
 
