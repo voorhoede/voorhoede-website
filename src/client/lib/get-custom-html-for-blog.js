@@ -1,10 +1,12 @@
 const path = require('path')
 
-export function getCustomBlogHtml({ slug }) {
-  const filepath = path.join('/blog', slug, 'index.html')
+export function getCustomHtmlForBlog({ slug }) {
+  const filepath = path.join('/blog-custom-html', slug, 'index.html')
   if (process.client) {
     // On client load over http
-    return fetch(filepath).catch(() => null)
+    return fetch(filepath)
+      .then(res => res.text())
+      .catch(() => null)
   } else {
     // On server load from file system
     try {

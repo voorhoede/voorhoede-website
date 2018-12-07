@@ -124,7 +124,7 @@ import {
   SocialButtons,
   TextBlock,
 } from '../../../components'
-import { getCustomBlogHtml } from '../../../lib/get-custom-blog-html'
+import { getCustomHtmlForBlog } from '../../../lib/get-custom-html-for-blog'
 
 export default {
   components: {
@@ -145,7 +145,7 @@ export default {
   async asyncData({ store, route, error }) {
     try {
       const page = await store.dispatch('getData', { route })
-      const customHtml = await getCustomBlogHtml({ slug: route.params.slug })
+      const customHtml = await getCustomHtmlForBlog({ slug: route.params.slug })
       return {
         ...page,
         customHtml

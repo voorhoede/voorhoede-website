@@ -1,4 +1,12 @@
 <style>
+	@font-face {
+	  font-family: Noto;
+	  font-style: normal;
+	  font-weight: 400;
+	  src: local('Noto Sans'), local('NotoSans'), url(https://fonts.gstatic.com/s/notosans/v7/o-0IIpQlx3QUlC5A4PNr5TRASf6M7Q.woff2) format('woff2');
+	  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+	}
+
 	.demo-content {
 		position: relative;
 		text-align: left;
@@ -6,11 +14,11 @@
 		padding-bottom: 2em;
 		background-color: #f5f2f0;
 		letter-spacing: 0;
-		font-family: Arial;
+		font-family: Georgia;
 	}
 	.demo-content:after {
 		content: '';
-		background-color: blue;
+		background-color: #0CAFCD;
 		position: absolute;
 		left: 0;
 		height: 2px;
@@ -23,13 +31,14 @@
 		top: 1em;
 		left: 1em;
 		right: 1em;
-		letter-spacing: -.05em;
+		line-height: 1.6;
 	}
 	.demo-content .enhancement {
-		font-family: 'apercu';
+		font-family: Noto;
+		line-height: 1.6;
 	}
 	#figure-demo--reflow a {
-		color: blue;
+		color: #0CAFCD;
 	}
 	#figure-demo--reflow .base {
 		opacity: 0; /* Webkit bug, if not set, animation does not trigger correctly */
@@ -63,22 +72,22 @@
 	}
 	#figure-demo--letter-spacing .base {
 		-webkit-animation: 8s linear 0s infinite grow-tracking;
-		animation: 8s linear 0s infinite grow-tracking;
+				animation: 8s linear 0s infinite grow-tracking;
 	}
 	#figure-demo--letter-spacing .enhancement {
 		color: #0CAFCD;
 	}
 	@keyframes grow-tracking {
-		0%		{letter-spacing: -.05em}
-		50%		{letter-spacing: 0;}
-		99%	{letter-spacing: 0;}
-		100%		{letter-spacing: -.05em}
+		0%		{letter-spacing: 0;}
+		50%		{letter-spacing: 0.0265em}
+		99%		{letter-spacing: 0.0265em}
+		100%	{letter-spacing: 0;}
 	}
 	@-webkit-keyframes grow-tracking {
-		0%		{letter-spacing: -.05em}
-		50%		{letter-spacing: 0;}
-		99%	{letter-spacing: 0;}
-		100%		{letter-spacing: -.05em}
+		0%		{letter-spacing: 0;}
+		50%		{letter-spacing: 0.0265em}
+		99%		{letter-spacing: 0.0265em}
+		100%	{letter-spacing: 0;}
 	}
 
 </style>
