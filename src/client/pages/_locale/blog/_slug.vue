@@ -71,11 +71,6 @@
           :cite="item.author"
           class="page-blog-post__quote" />
 
-        <div
-          v-if="item.__typename === 'CustomHtmlBlockRecord'"
-          :key="item.html"
-          v-html="item.html"/>
-
       </template>
     </article>
 
