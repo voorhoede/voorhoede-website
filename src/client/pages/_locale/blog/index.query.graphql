@@ -8,8 +8,7 @@ query ($locale: SiteLocale)  {
   alternate:blogPostOverview {
     slug
   },
-  latestBlogposts: allBlogPosts(locale:$locale, first:100, orderBy: publishDate_DESC,
-    filter: { published: { eq: true } }) {
+  latestBlogposts: allBlogPosts(locale:$locale, first:100, orderBy: publishDate_DESC) {
     slug,
     title,
     published,

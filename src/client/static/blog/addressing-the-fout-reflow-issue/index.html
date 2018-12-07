@@ -1,0 +1,139 @@
+<style>
+	.demo-content {
+		position: relative;
+		text-align: left;
+		padding: 1em;
+		padding-bottom: 2em;
+		background-color: #f5f2f0;
+		letter-spacing: 0;
+		font-family: Arial;
+	}
+	.demo-content:after {
+		content: '';
+		background-color: blue;
+		position: absolute;
+		left: 0;
+		height: 2px;
+		bottom: 0;
+		-webkit-animation: 8s linear 0s infinite timeline;
+				animation: 8s linear 0s infinite timeline;
+	}
+	.demo-content .base {
+		position: absolute;
+		top: 1em;
+		left: 1em;
+		right: 1em;
+		letter-spacing: -.05em;
+	}
+	.demo-content .enhancement {
+		font-family: 'apercu';
+	}
+	#figure-demo--reflow a {
+		color: blue;
+	}
+	#figure-demo--reflow .base {
+		opacity: 0; /* Webkit bug, if not set, animation does not trigger correctly */
+		-webkit-animation: 4s linear 0s infinite alternate switch;
+				animation: 4s linear 0s infinite alternate switch;
+	}
+	#figure-demo--reflow .enhancement {
+		opacity: 0;
+		-webkit-animation: 4s linear 0s infinite alternate-reverse switch;
+				animation: 4s linear 0s infinite alternate-reverse switch;
+	}
+	@keyframes timeline {
+		0%		{width: 0%;}
+		100%	{width: 100%;}
+	}
+	@-webkit-keyframes timeline {
+		0%		{width: 0%;}
+		100%	{width: 100%;}
+	}
+	@keyframes switch {
+		0%		{opacity: 1;}
+		49.5% 	{opacity: 1;}
+		50.5%	{opacity: 0;}
+		100%	{opacity: 0;}
+	}
+	@-webkit-keyframes switch {
+		0%		{opacity: 1;}
+		49.5% 	{opacity: 1;}
+		50.5%	{opacity: 0;}
+		100%	{opacity: 0;}
+	}
+	#figure-demo--letter-spacing .base {
+		-webkit-animation: 8s linear 0s infinite grow-tracking;
+		animation: 8s linear 0s infinite grow-tracking;
+	}
+	#figure-demo--letter-spacing .enhancement {
+		color: #0CAFCD;
+	}
+	@keyframes grow-tracking {
+		0%		{letter-spacing: -.05em}
+		50%		{letter-spacing: 0;}
+		99%	{letter-spacing: 0;}
+		100%		{letter-spacing: -.05em}
+	}
+	@-webkit-keyframes grow-tracking {
+		0%		{letter-spacing: -.05em}
+		50%		{letter-spacing: 0;}
+		99%	{letter-spacing: 0;}
+		100%		{letter-spacing: -.05em}
+	}
+
+</style>
+<script>
+	(function(w, d) {
+		var hasCSSAnimations = ('animation' in document.body.style || '-webkit-animation' in document.body.style);
+		if(hasCSSAnimations) {
+			return false;
+		}
+
+		var DEMO_REFLOW_ID = 'figure-demo--reflow';
+		var DEMO_LETTERSPACING_ID = 'figure-demo--letter-spacing';
+		var frames = 500;
+		var frameDuration = 16;
+		var duration = frames*frameDuration;
+
+		var stylesheet = (function() {
+			var style = d.createElement('style');
+			d.head.appendChild(style);
+			return style.sheet;
+		}());
+
+		var demoReflow = d.getElementById(DEMO_REFLOW_ID);
+		var demoReflowBase = demoReflow.querySelector('.base');
+		var demoReflowEnhancement = demoReflow.querySelector('.enhancement');
+
+		var demoLetterSpacing = d.getElementById(DEMO_LETTERSPACING_ID);
+		var demoLetterSpacingBase = demoLetterSpacing.querySelector('.base');
+
+		// Reflow animation
+		demoReflowBase.style.opacity = 1;
+		w.setInterval(function () {
+			demoReflowBase.style.opacity = 1;
+			demoReflowEnhancement.style.opacity = 0;
+			w.setTimeout(function() {
+				demoReflowBase.style.opacity = 0;
+				demoReflowEnhancement.style.opacity = 1;
+			}, duration/2);
+
+		}, duration);
+
+		// Letter-spacing animation
+		w.setInterval(function () {
+			demoLetterSpacingBase.style.letterSpacing = 0;
+			w.setTimeout(function() {
+				demoLetterSpacingBase.style.letterSpacing = '0.0385em';
+			}, duration/2);
+		}, duration);
+
+		// progressBar animation
+		var p = 0;
+		w.setInterval(function () {
+			stylesheet.cssText = '.demo-content:after { width: '+p/(frames/100)+'% !important }';
+			p = (p===frames) ? 0 : p+1;
+		}, frameDuration);
+
+	}(window, document));
+</script>

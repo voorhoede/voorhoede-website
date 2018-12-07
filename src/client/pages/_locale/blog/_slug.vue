@@ -13,6 +13,7 @@
       </text-block>
 
       <template v-for="item in page.items">
+
         <text-block
           v-if="item.__typename === 'TextSectionRecord' && item.title"
           :key="item.title">
@@ -69,6 +70,12 @@
           :quote="item.quote"
           :cite="item.author"
           class="page-blog-post__quote" />
+
+        <div
+          v-if="item.__typename === 'CustomHtmlBlockRecord'"
+          :key="item.html"
+          v-html="item.html"/>
+
       </template>
     </article>
 
@@ -100,6 +107,8 @@
       </cta-block>
       <scroll-to point-up />
     </div>
+
+    <div v-if="customHtml" v-html="customHtml"/>
   </div>
 </template>
 
@@ -120,6 +129,7 @@ import {
   SocialButtons,
   TextBlock,
 } from '../../../components'
+import { getCustomBlogHtml } from '../../../lib/get-custom-blog-html'
 
 export default {
   components: {
@@ -139,7 +149,12 @@ export default {
   },
   async asyncData({ store, route, error }) {
     try {
-      return await store.dispatch('getData', { route })
+      const page = await store.dispatch('getData', { route })
+      const customHtml = await getCustomBlogHtml({ slug: route.params.slug })
+      return {
+        ...page,
+        customHtml
+      }
     } catch (err) {
       return error({ statusCode: 404, message: err.message })
     }

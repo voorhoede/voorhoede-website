@@ -77,6 +77,9 @@ fragment page on BlogPostRecord {
       quote,
       author
     },
+    ... on CustomHtmlBlockRecord {
+      html
+    }
   },
   callToActionTitle,
   callToActionBody,
