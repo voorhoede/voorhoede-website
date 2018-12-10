@@ -428,10 +428,6 @@
   }
 
   @media (min-width: 1440px) {
-    .page-index__scroll-to .scroll-to {
-      grid-column-start: 4;
-      grid-column-end: 5;
-    }
 
     .page-index .page-header__text {
       margin: var(--spacing-large) 0;
