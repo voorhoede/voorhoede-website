@@ -53,6 +53,7 @@ export default {
   }
 
   .layout-error__content {
+    grid-column: var(--grid-content-narrow);
     padding: var(--spacing-large) 0;
     display: flex;
     flex-direction: column-reverse;
@@ -75,7 +76,6 @@ export default {
 
   @media screen and (min-width: 1100px) {
     .layout-error__content {
-      grid-column: var(--grid-content-narrow);
       padding: var(--spacing-larger);
     }
   }
