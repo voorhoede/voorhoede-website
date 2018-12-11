@@ -135,7 +135,7 @@ export default {
 
 .page-header__description {
   margin: var(--spacing-large) 0;
-  grid-column: var(--grid-content);
+  grid-column: var(--grid-content-inset);
   grid-row-start: 2;
 }
 
@@ -189,7 +189,7 @@ export default {
   }
 
   .page-header__description {
-    grid-column: var(--grid-content-left);
+    grid-column: var(--grid-content-inset-left);
     grid-row-start: 2;
   }
 
@@ -252,14 +252,8 @@ export default {
     grid-template-rows: calc(var(--app-header-height-large) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
   }
 
-  .page-header--home .page-header__description {
-    grid-column-start: 2;
-  }
-
   .page-header__description {
     margin: var(--spacing-medium) 0;
-    grid-column-start: 4;
-    grid-column-end: 24;
   }
 }
 </style>
