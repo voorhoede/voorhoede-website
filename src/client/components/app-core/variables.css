@@ -45,9 +45,11 @@
   --grid-margin: 20px;
   --grid-page-start: 1;
   --grid-content-start: 2;
+  --grid-content-inset-start: 4;
   --grid-content-narrow-start: 6;
   --grid-center: 26;
   --grid-content-narrow-end: 46;
+  --grid-content-inset-end: 48;
   --grid-content-end: 50;
   --grid-page-end: 51;
   --grid-page: var(--grid-page-start) / var(--grid-page-end);
@@ -56,5 +58,7 @@
   --grid-content: var(--grid-content-start) / var(--grid-content-end);
   --grid-content-left: var(--grid-content-start) / var(--grid-center);
   --grid-content-right: var(--grid-center) / var(--grid-content-end);
+  --grid-content-inset: var(--grid-content-inset-start) / var(--grid-content-inset-end);
+  --grid-content-inset-left: var(--grid-content-inset-start) / var(--grid-center);
   --grid-content-narrow: var(--grid-content-narrow-start) / var(--grid-content-narrow-end);
 }
