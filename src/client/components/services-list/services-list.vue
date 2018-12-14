@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import { AppButton, ServiceExcerpt, RichTextBlock, } from '~/components'
+import { ServiceExcerpt } from '~/components'
 
 export default {
-  components: { AppButton, ServiceExcerpt, RichTextBlock },
+  components: { ServiceExcerpt },
   props: {
     services: {
       type: Array,

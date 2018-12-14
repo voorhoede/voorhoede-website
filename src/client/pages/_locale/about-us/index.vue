@@ -70,26 +70,20 @@
   import {
     AppButton,
     BlogListItem,
-    GenericTextBlock,
     ImageGrid,
     ImageWithTextBlock,
     JobsExcerpt,
     PageHeader,
-    ResponsiveImage,
-    TextBlock,
   } from '../../../components'
 
   export default {
     components: {
       AppButton,
       BlogListItem,
-      GenericTextBlock,
       ImageGrid,
       ImageWithTextBlock,
       JobsExcerpt,
       PageHeader,
-      ResponsiveImage,
-      TextBlock,
     },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })

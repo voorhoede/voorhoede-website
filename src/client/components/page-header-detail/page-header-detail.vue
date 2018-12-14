@@ -6,7 +6,6 @@
           <h1 class="sr-only">{{ title }}</h1>
           <self-typing-text
             :text="title"
-            :speed-index="70"
             :class="{
               'self-typing-text--hero': hasBrick,
               'self-typing-text--h1': !hasBrick,

@@ -78,8 +78,7 @@
       <blog-author class="page-blog-post__aside-author" :item="page" />
       <social-buttons
         :title="page.socialTitle"
-        :share-title="page.title"
-        :share-post="true" />
+        :share-title="page.title" />
     </aside>
 
     <div class="page-blog-post__link-container">
@@ -114,7 +113,6 @@ import {
   BlogAuthor,
   CodeBlock,
   CtaBlock,
-  FullWidthImage,
   ImageWithDescription,
   PageHeaderDetail,
   QuoteBlock,
@@ -132,7 +130,6 @@ export default {
     BlogAuthor,
     CodeBlock,
     CtaBlock,
-    FullWidthImage,
     ImageWithDescription,
     PageHeaderDetail,
     QuoteBlock,

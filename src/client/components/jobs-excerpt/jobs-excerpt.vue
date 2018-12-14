@@ -13,10 +13,10 @@
 
 <script>
   import { mapState } from 'vuex'
-  import { AppImage, AppButton, } from '../../components'
+  import { AppButton } from '../../components'
 
   export default {
-    components: { AppImage, AppButton, },
+    components: { AppButton },
     props: {
       title: {
         type: String,
