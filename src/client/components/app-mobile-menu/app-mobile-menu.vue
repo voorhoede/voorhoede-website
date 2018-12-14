@@ -19,7 +19,7 @@
             @click="toggleMobileMenu"
         >
           <nuxt-link
-            class="h2"
+            class="h3"
             :to="createHref(link)"
           >
             {{ link.title }}
@@ -143,11 +143,17 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-top: var(--spacing-larger);
+    margin-top: var(--spacing-medium);
   }
 
   .app-mobile-menu__list-item {
-    margin-bottom: var(--spacing-large);
+    margin-bottom: var(--spacing-medium);
+  }
+
+  @media (min-height: 500px) {
+    .app-mobile-menu__list-item {
+      margin-bottom: var(--spacing-large);
+    }
   }
 
   @media screen and (min-width: 720px) {
@@ -155,4 +161,5 @@
       display: none;
     }
   }
+
 </style>
