@@ -103,7 +103,7 @@
       <scroll-to point-up />
     </div>
 
-    <div v-if="customHtml" v-html="customHtml"/>
+    <script v-if="customScriptPath" :src="customScriptPath" defer/>
   </div>
 </template>
 
@@ -124,7 +124,7 @@ import {
   SocialButtons,
   TextBlock,
 } from '../../../components'
-import { getCustomHtmlForBlog } from '../../../lib/get-custom-html-for-blog'
+import getCustomAssetsForBlog from '../../../lib/get-custom-assets-for-blog'
 
 export default {
   components: {
@@ -145,17 +145,30 @@ export default {
   async asyncData({ store, route, error }) {
     try {
       const page = await store.dispatch('getData', { route })
-      const customHtml = await getCustomHtmlForBlog({ slug: route.params.slug })
+      const { customStylesPath } = getCustomAssetsForBlog({ slug: route.params.slug })
+
       return {
         ...page,
-        customHtml
+        customStylesPath,
       }
     } catch (err) {
       return error({ statusCode: 404, message: err.message })
     }
   },
+  data() {
+    return {
+      customScriptPath: null
+    }
+  },
   computed: {
     ...mapState(['currentLocale'])
+  },
+  mounted() {
+    if (this.page.hasCustomJavascript) {
+      /* Add script after vue has booted, to prevent settings listeners etc on replaced html elements */
+      const { customScriptPath } = getCustomAssetsForBlog({ slug: this.$route.params.slug })
+      this.customScriptPath = customScriptPath
+    }
   },
   head() {
     return {
@@ -165,7 +178,11 @@ export default {
         { 'property': 'og:description', 'content': this.page.social.description },
         { 'name': 'twitter:description', 'content': this.page.social.description },
         { 'name': 'keywords', 'content': this.page.keywords }
+      ],
+      link: [
+        this.page.hasCustomStyling && { rel: 'stylesheet', href: this.customStylesPath }
       ]
+        .filter(Boolean)
     }
   }
 }

@@ -1,0 +1,18 @@
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+
+# Nuxt build
+.nuxt
+
+# Nuxt generate
+dist
+
+.env
+src/client/static/data
+
+src/client/static/_redirects
+
+src/client/static/blog-custom-assets

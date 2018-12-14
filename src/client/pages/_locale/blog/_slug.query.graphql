@@ -81,5 +81,7 @@ fragment page on BlogPostRecord {
   callToActionTitle,
   callToActionBody,
   callToActionLabel,
-  socialTitle
+  socialTitle,
+  hasCustomJavascript,
+  hasCustomStyling,
 }
