@@ -88,8 +88,8 @@ export default {
     content: '';
     position: relative;
     display: inline-block;
-    left: -0.025em;
-    top: -0.025em;
+    left: -.025em;
+    top: -.025em;
     height: 1em;
     vertical-align: middle;
     border-right: 3px solid var(--html-blue);
