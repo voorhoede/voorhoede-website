@@ -32,10 +32,10 @@ nuxt.config.js    <- Nuxt app config
 
 ### Scripts
 
-This project requires [Node.js](http://nodejs.org/) (>= v8) and 
+This project requires [Node.js](http://nodejs.org/) (>= v10.8.0) and
 [npm](https://npmjs.org/) (comes with Node).
 
-After installing dependencies using `npm install` the following scripts are 
+After installing dependencies using `npm install` the following scripts are
 available:
 
 `npm run ...` | Description
@@ -47,11 +47,11 @@ available:
 `proxy` | Exposes app on localhost to world wide web for testing on other devices.
 `start` | Serves production version of client app from (`/dist/`) on [`http://localhost:3278`](http://localhost:3278).
 `data` | Imports all data from Dato CMS.
-`new-component` | Creates a new component folder 
+`new-component` | Creates a new component folder
 
 ## Documentation
 
-All components are documented with a README.md file in their own folder.  
+All components are documented with a README.md file in their own folder.
 Other documentation can be found [here](_docs/)
 
 ## Useful links
