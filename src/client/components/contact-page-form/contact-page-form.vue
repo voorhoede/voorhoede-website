@@ -233,7 +233,7 @@
           router: this.$router,
           currentLocale: this.currentLocale
         })
-      },
+      }
     }
   }
 </script>
