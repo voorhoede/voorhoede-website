@@ -7,7 +7,7 @@
     class="contact-form"
     data-netlify="true"
     netlify-honeypot="magic-castle"
-    novalidate>
+    :novalidate="ScriptEnabled ? true : false">
     <fieldset class="contact-form__fieldset">
       <legend class="h4">{{ subjectTitle }}</legend>
       <input type="hidden" name="form-name" :value="form['form-name']">
@@ -204,6 +204,7 @@
           phone: '',
         },
         formIsValidated: false,
+        ScriptEnabled: false,
       }
     },
     computed: {
@@ -217,6 +218,9 @@
         return this.form.email ? this.emailErrorMessageIncorrect : this.emailErrorMessageEmpty
       },
     },
+    mounted() {
+      this.ScriptEnabled ? true : false
+    },
     methods: {
       submit(event) {
         this.formIsValidated = true
@@ -229,7 +233,7 @@
           router: this.$router,
           currentLocale: this.currentLocale
         })
-      }
+      },
     }
   }
 </script>
