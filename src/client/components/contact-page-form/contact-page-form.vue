@@ -219,7 +219,7 @@
       },
     },
     mounted() {
-      this.ScriptEnabled ? true : false
+      this.ScriptEnabled = true
     },
     methods: {
       submit(event) {

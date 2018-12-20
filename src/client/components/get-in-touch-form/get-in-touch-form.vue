@@ -9,7 +9,7 @@
       class="get-in-touch-form__form"
       data-netlify="true"
       netlify-honeypot="magic-castle"
-      novalidate>
+      :novalidate="ScriptEnabled ? true : false">
       <input type="hidden" name="form-name" :value="form['form-name']">
       <label class="hidden">
         Don't fill this out if you're human:
@@ -144,6 +144,7 @@
           explanation: '',
         },
         formIsValidated: false,
+        ScriptEnabled: false,
       }
     },
     computed: {
@@ -156,6 +157,9 @@
       emailValidationErrorMessage() {
         return this.form.email ? this.emailErrorMessageIncorrect : this.emailErrorMessageEmpty
       },
+    },
+    mounted() {
+      this.ScriptEnabled = true
     },
     methods: {
       submit(event) {
