@@ -5,30 +5,32 @@
       :text="page.subtitle"
       :image="page.headerIllustration" />
 
-    <div class="grid academy-content">
-      <h2 class="academy-events__title h2">Upcoming events</h2>
+    <div class="academy-content grid">
+      <div>
+        <div class="academy-intro">
+          <generic-text-block
+            v-if="page.introductionText"
+            :key="page.introductionText"
+            :body="page.introductionText" />
+        </div>
 
-      <ul class="academy-events">
-        <li class="academy-events__item">
-          <div class="academy-intro">
-            <generic-text-block
-              v-if="page.introductionText"
-              :key="page.introductionText"
-              :body="page.introductionText" />
-          </div>
-        </li>
-        <li
-          v-for="item in 5"
-          :key="item"
-          class="academy-events__item">
-          <div>Item {{ item }}</div>
-          <div>Date</div>
-          <div>Illustration</div>
-          <div>Label</div>
-          <h3>Title</h3>
-          <p>Description</p>
-        </li>
-      </ul>
+        <div class="events-content">
+          <h2 class="academy-events__title h2">Upcoming events</h2>
+          <ul class="academy-events">
+            <li
+              v-for="item in 5"
+              :key="item"
+              class="academy-events__item">
+              <div>Item {{ item }}</div>
+              <div>Date</div>
+              <div>Illustration</div>
+              <div>Label</div>
+              <h3>Title</h3>
+              <p>Description</p>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </main>
 </template>
@@ -66,6 +68,7 @@
   }
 
   .academy-intro {
+    position: relative;
     padding-bottom: var(--spacing-larger);
     color: var(--html-blue);
     background-color: var(--bg-pastel);
@@ -79,7 +82,7 @@
     position: relative;
   }
 
-  .academy-events__item:first-child::before {
+  .academy-intro::before {
     content: '';
     position: absolute;
     top: 0;
@@ -89,7 +92,7 @@
     background-color: var(--bg-pastel);
   }
 
-  .academy-events__item:first-child::after {
+  .academy-intro::after {
     content: '';
     position: absolute;
     top: 0;
@@ -101,33 +104,21 @@
 
   @media (min-width: 1100px) {
     .academy-intro {
-      grid-row-start: 1;
-      grid-row-end: 2;
-      grid-column-start: 4;
-      grid-column-end: 15;
-      padding-right: var(--spacing-large);
+      float: left;
+      width: 33%;
       padding-bottom: var(--spacing-big);
       color: var(--html-blue);
     }
 
-    .academy-events {
-      grid-column-start: 4;
-      grid-row-start: 1;
-      grid-row-end: 3;
-      display: flex;
-      flex-wrap: wrap;
-    }
-
     .academy-events__item {
+      display: inline-block;
       width: 30%;
+      height: 400px;
+      border: 1px solid;
     }
 
-    .academy-events__item:first-child::after {
+    .academy-intro::after {
      display: none;
-    }
-
-    .academy-content {
-      grid-template-rows: auto auto;
     }
   }
 </style>
