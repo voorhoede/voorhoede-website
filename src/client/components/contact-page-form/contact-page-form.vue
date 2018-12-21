@@ -7,7 +7,7 @@
     class="contact-form"
     data-netlify="true"
     netlify-honeypot="magic-castle"
-    :novalidate="ScriptEnabled ? true : false">
+    :novalidate="useCustomValidation">
     <fieldset class="contact-form__fieldset">
       <legend class="h4">{{ subjectTitle }}</legend>
       <input type="hidden" name="form-name" :value="form['form-name']">
@@ -204,7 +204,7 @@
           phone: '',
         },
         formIsValidated: false,
-        ScriptEnabled: false,
+        useCustomValidation: false,
       }
     },
     computed: {
@@ -219,7 +219,7 @@
       },
     },
     mounted() {
-      this.ScriptEnabled = true
+      this.useCustomValidation = true
     },
     methods: {
       submit(event) {
