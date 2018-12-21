@@ -100,7 +100,7 @@
       <scroll-to point-up />
     </div>
 
-    <style v-if="page.customStyling" v-html="page.customStyling"/>
+    <style v-if="page.customStyling" v-html="page.customStyling"></style>
     <script v-if="page.customScript && loadCustomScript" v-html="page.customScript"/>
   </div>
 </template>
