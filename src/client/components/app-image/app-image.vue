@@ -1,24 +1,21 @@
 <template>
-  <div 
+  <div
     class="app-image"
-    :class="{
-      'app-image--pastel' : svgFormat === false
-    }"
-  >
+    :class="{ 'app-image--pastel' : svgFormat === false }">
     <no-script>
       <picture class="app-image__picture">
         <object 
-          v-if="svgFormat"
+          v-if="image.format === 'svg'"
           class="app-image__img"
-          :data="imageUrl({
-            w: width,
-            h: cropAndKeepRatio ? width : null,
-            fit: cropAndKeepRatio ? 'crop': null })" 
+          :data="iamge.url" 
           type="image/svg+xml"
           :alt="image.alt"
         />
-
-        <img v-else class="app-image__img" :src="image.url" :alt="image.alt">
+        <img
+          v-else
+          class="app-image__img"
+          :src="image.url"
+          :alt="image.alt">
       </picture>
     </no-script>
     <lazy-load>
