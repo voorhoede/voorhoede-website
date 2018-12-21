@@ -13,7 +13,6 @@
       </text-block>
 
       <template v-for="item in page.items">
-
         <text-block
           v-if="item.__typename === 'TextSectionRecord' && item.title"
           :key="item.title">
@@ -70,7 +69,6 @@
           :quote="item.quote"
           :cite="item.author"
           class="page-blog-post__quote" />
-
       </template>
     </article>
 
@@ -102,7 +100,8 @@
       <scroll-to point-up />
     </div>
 
-    <script v-if="customScriptPath" :src="customScriptPath" defer/>
+    <style v-if="page.customStyling" v-html="page.customStyling"/>
+    <script v-if="page.customScript && loadCustomScript" v-html="page.customScript"/>
   </div>
 </template>
 
@@ -122,7 +121,6 @@ import {
   SocialButtons,
   TextBlock,
 } from '../../../components'
-import getCustomAssetsForBlog from '../../../lib/get-custom-assets-for-blog'
 
 export default {
   components: {
@@ -141,31 +139,25 @@ export default {
   },
   async asyncData({ store, route, error }) {
     try {
-      const page = await store.dispatch('getData', { route })
-      const { customStylesPath } = getCustomAssetsForBlog({ slug: route.params.slug })
-
-      return {
-        ...page,
-        customStylesPath,
-      }
+      return await store.dispatch('getData', { route })
     } catch (err) {
       return error({ statusCode: 404, message: err.message })
     }
   },
   data() {
     return {
-      customScriptPath: null
+      /*
+       * Load custom script after vue has mounted,
+       * to prevent issues with the moment the custom script is executed and hydration.
+       */
+      loadCustomScript: false
     }
   },
   computed: {
     ...mapState(['currentLocale'])
   },
   mounted() {
-    if (this.page.hasCustomJavascript) {
-      /* Add script after vue has booted, to prevent settings listeners etc on replaced html elements */
-      const { customScriptPath } = getCustomAssetsForBlog({ slug: this.$route.params.slug })
-      this.customScriptPath = customScriptPath
-    }
+    this.loadCustomScript = true
   },
   head() {
     return {
@@ -175,17 +167,13 @@ export default {
         { 'property': 'og:description', 'content': this.page.social.description },
         { 'name': 'twitter:description', 'content': this.page.social.description },
         { 'name': 'keywords', 'content': this.page.keywords }
-      ],
-      link: [
-        this.page.hasCustomStyling && { rel: 'stylesheet', href: this.customStylesPath }
       ]
-        .filter(Boolean)
     }
   }
 }
 </script>
 
- <style>
+<style>
   .page-blog-post__header {
     grid-column: var(--grid-page);
   }
@@ -337,4 +325,4 @@ export default {
       grid-column-end: 44;
     }
   }
- </style>
+</style>
