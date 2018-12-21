@@ -102,6 +102,9 @@
       </cta-block>
       <scroll-to point-up />
     </div>
+
+    <style v-if="page.customStyling" v-html="page.customStyling"></style>
+    <script v-if="page.customScript && loadCustomScript" v-html="page.customScript"/>
   </div>
 </template>
 
@@ -146,8 +149,20 @@ export default {
       return error({ statusCode: 404, message: err.message })
     }
   },
+  data() {
+    return {
+      /*
+       * Load custom script after vue has mounted,
+       * to prevent issues with the moment the custom script is executed and hydration.
+       */
+      loadCustomScript: false
+    }
+  },
   computed: {
     ...mapState(['currentLocale'])
+  },
+  mounted() {
+    this.loadCustomScript = true
   },
   head() {
     return {
@@ -163,7 +178,7 @@ export default {
 }
 </script>
 
- <style>
+<style>
   .page-blog-post__header {
     grid-column: var(--grid-page);
   }
@@ -317,4 +332,4 @@ export default {
       grid-column-end: 44;
     }
   }
- </style>
+</style>
