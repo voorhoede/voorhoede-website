@@ -36,13 +36,20 @@ fragment page on BlogPostRecord {
   introTitle,
   items {
     __typename,
-     ... on TextSectionRecord {
-      title,
-      body,
-    },
     ... on CodeBlockRecord {
       language,
       body,
+    },
+    ... on ImageRecord {
+      image {
+        url,
+        alt,
+        width,
+        height,
+        format
+      },
+      alt,
+      fullWidth,
     },
     ... on ImageWithTextRecord {
       imageWithDescription {
@@ -57,17 +64,6 @@ fragment page on BlogPostRecord {
         inverse
       }
     },
-    ... on ImageRecord {
-      image {
-        url,
-        alt,
-        width,
-        height,
-        format
-      },
-      alt,
-      fullWidth,
-    },
     ... on LinkRecord {
     	link,
       label,
@@ -76,6 +72,24 @@ fragment page on BlogPostRecord {
     ... on QuoteRecord {
       quote,
       author
+    },
+    ... on ResponsiveVideoRecord {
+      mute,
+      loop,
+      autoplay,
+      video {
+        url,
+        title,
+        height,
+        width,
+        provider,
+        providerUid,
+        thumbnailUrl
+      }
+    },
+    ... on TextSectionRecord {
+      title,
+      body,
     },
   },
   callToActionTitle,

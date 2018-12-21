@@ -31,7 +31,7 @@ ul.list > li::before,
 ol.numbered-list > li::before,
 .numbered-list ol > li::before {
   position: absolute;
-  left: calc(-1 * var(--spacing-small));
+  left: calc(-1 * var(--spacing-small) + 1px);
   width: 3px;
   color: var(--black);
   color: currentColor;
@@ -41,8 +41,8 @@ ul.list > li::before,
 .list ul > li::before {
   content: '';
   display: block;
-  margin-top: .7em;
-  margin-top: calc(.7em - 3px / 2); /* Display the dot in the middle of the x height, based on the current font */
+  margin-top: .8em;
+  margin-top: calc(.8em - 2px / 2); /* Display the dot in the middle of the x height, based on the current font */
   width: 3px;
   height: 3px;
   background-color: var(--black);
@@ -69,6 +69,6 @@ ol.numbered-list > li::before,
   .list ul > li::before,
   ol.numbered-list > li::before,
   .numbered-list ol > li::before {
-    left: calc(-1 * var(--spacing-medium));
+    left: calc(-1 * var(--spacing-medium) + 1px);
   }
 }
