@@ -23,7 +23,8 @@ fragment job on JobRecord {
   keywords,
   jobImage {
     url,
-    alt,
+    format,
+    alt
   },
   url,
   callToActionLabel,
@@ -38,6 +39,7 @@ fragment job on JobRecord {
       body,
       image {
         url,
+        format,
         alt
       }
     },

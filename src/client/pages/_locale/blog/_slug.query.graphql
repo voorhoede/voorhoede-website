@@ -20,6 +20,7 @@ fragment page on BlogPostRecord {
   subtitle,
   headerIllustration {
     url,
+    format,
     alt
   },
   date: publishDate,
@@ -28,6 +29,7 @@ fragment page on BlogPostRecord {
     lastName,
     image {
       url,
+      format,
       alt,
       width,
       height
@@ -60,10 +62,10 @@ fragment page on BlogPostRecord {
     ... on ImageRecord {
       image {
         url,
+        format,
         alt,
         width,
         height,
-        format
       },
       alt,
       fullWidth,
