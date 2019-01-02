@@ -52,15 +52,13 @@
         </div>
 
         <full-width-image
-          v-if="item.__typename === 'ImageRecord' &&
-          item.image && item.fullWidth"
+          v-if="item.__typename === 'ImageRecord' && isFullWidth(item)"
           :key="item.image.url"
           :image="item.image"
         />
 
         <responsive-image
-          v-if="item.__typename === 'ImageRecord' &&
-          item.image && !item.fullWidth"
+          v-if="item.__typename === 'ImageRecord' && notFullWidth(item)"
           :key="item.image.url"
           :image="item.image"
         />
@@ -180,6 +178,12 @@
         'currentLocale',
         'alternateUrl',
       ]),
+      isFullWidth(item) {
+        return item.image && item.fullWidth
+      },
+      notFullWidth(item) {
+        return item.image && !item.fullWidth
+      }
     },
     head() {
       return {
