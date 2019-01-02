@@ -58,7 +58,7 @@
         />
 
         <responsive-image
-          v-if="item.__typename === 'ImageRecord' && notFullWidth(item)"
+          v-if="item.__typename === 'ImageRecord' && !isFullWidth(item)"
           :key="item.image.url"
           :image="item.image"
         />
@@ -181,9 +181,6 @@
       isFullWidth(item) {
         return item.image && item.fullWidth
       },
-      notFullWidth(item) {
-        return item.image && !item.fullWidth
-      }
     },
     head() {
       return {
