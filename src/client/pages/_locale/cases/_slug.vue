@@ -177,10 +177,12 @@
         'locales',
         'currentLocale',
         'alternateUrl',
-      ]),
+      ])
+    },
+    methods: {
       isFullWidth(item) {
         return item.image && item.fullWidth
-      },
+      }
     },
     head() {
       return {

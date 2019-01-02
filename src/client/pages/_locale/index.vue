@@ -131,6 +131,8 @@
     },
     computed: {
       ...mapState(['currentLocale']),
+    },
+    methods: {
       isLast(index, usps) {
         return index === Object.keys(usps).length - 1 ? { isSet: true, number: index } : { isSet: false }
       },
