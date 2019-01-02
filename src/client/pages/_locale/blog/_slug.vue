@@ -13,35 +13,12 @@
       </text-block>
 
       <template v-for="item in page.items">
-        <text-block
-          v-if="item.__typename === 'TextSectionRecord' && item.title"
-          :key="item.title">
-          <h2 class="page-blog-post-list__title h3 font-html-blue">{{ item.title }}</h2>
-        </text-block>
-
-        <rich-text-block
-          class="page-blog-post-list__rich-text"
-          v-if="item.__typename === 'TextSectionRecord' && item.body"
-          :key="item.body"
-          :text="item.body"
-          large-text
-        />
-
-        <responsive-image
-          class="page-blog-post-list__image"
-          :class="{ 'page-blog-post-list--not-indented' : item.fullWidth}"
-          v-if="item.__typename === 'ImageRecord' && item.image"
-          :key="item.image.url"
-          :image="item.image"
-        />
-
         <code-block
           class="page-blog-post-list__code-block"
           v-if="item.__typename === 'CodeBlockRecord' && item.body"
           :language="item.language"
           :content="item.body"
-          :key="item.body"
-        />
+          :key="item.body" />
 
         <image-with-description
           class="page-blog-post-list__image page-blog-post-list--not-indented"
@@ -49,8 +26,42 @@
           :key="item.description"
           :image="item.imageWithDescription.image"
           :inverse="item.imageWithDescription.inverse"
-          :description="item.imageWithDescription.description"
-        />
+          :description="item.imageWithDescription.description" />
+
+        <quote-block
+          v-if="item.quote"
+          :key="item.quote"
+          :quote="item.quote"
+          :cite="item.author"
+          class="page-blog-post__quote" />
+
+        <responsive-image
+          class="page-blog-post-list__image"
+          :class="{ 'page-blog-post-list--not-indented' : item.fullWidth}"
+          v-if="item.__typename === 'ImageRecord' && item.image"
+          :key="item.image.url"
+          :image="item.image" />
+
+        <responsive-video
+          v-if="item.__typename === 'ResponsiveVideoRecord'"
+          :key="item.video.title"
+          :video="item.video"
+          :autoplay="item.autoplay"
+          :loop="item.loop"
+          :mute="item.autoplay" />
+
+        <rich-text-block
+          class="page-blog-post-list__rich-text"
+          v-if="item.__typename === 'TextSectionRecord' && item.body"
+          :key="item.body"
+          :text="item.body"
+          large-text />
+
+        <text-block
+          v-if="item.__typename === 'TextSectionRecord' && item.title"
+          :key="item.title">
+          <h2 class="page-blog-post-list__title h3 font-html-blue">{{ item.title }}</h2>
+        </text-block>
 
         <div
           v-if="item.__typename === 'LinkRecord'"
@@ -59,16 +70,8 @@
             class="page-blog-post__button"
             :external="item.external ? true : false"
             :label="item.label"
-            :to="item.link"
-          />
+            :to="item.link" />
         </div>
-
-        <quote-block
-          v-if="item.quote"
-          :key="item.quote"
-          :quote="item.quote"
-          :cite="item.author"
-          class="page-blog-post__quote" />
       </template>
     </article>
 
@@ -99,6 +102,9 @@
       </cta-block>
       <scroll-to point-up />
     </div>
+
+    <style v-if="page.customStyling" v-html="page.customStyling"></style>
+    <script v-if="page.customScript && loadCustomScript" v-html="page.customScript"/>
   </div>
 </template>
 
@@ -113,6 +119,7 @@ import {
   PageHeaderDetail,
   QuoteBlock,
   ResponsiveImage,
+  ResponsiveVideo,
   RichTextBlock,
   ScrollTo,
   SocialButtons,
@@ -129,6 +136,7 @@ export default {
     PageHeaderDetail,
     QuoteBlock,
     ResponsiveImage,
+    ResponsiveVideo,
     RichTextBlock,
     ScrollTo,
     SocialButtons,
@@ -141,8 +149,20 @@ export default {
       return error({ statusCode: 404, message: err.message })
     }
   },
+  data() {
+    return {
+      /*
+       * Load custom script after vue has mounted,
+       * to prevent issues with the moment the custom script is executed and hydration.
+       */
+      loadCustomScript: false
+    }
+  },
   computed: {
     ...mapState(['currentLocale'])
+  },
+  mounted() {
+    this.loadCustomScript = true
   },
   head() {
     return {
@@ -158,18 +178,18 @@ export default {
 }
 </script>
 
- <style>
+<style>
   .page-blog-post__header {
     grid-column: var(--grid-page);
   }
 
   .page-blog-post__header,
-  .page-blog-post-list__intro,
-  .page-blog-post-list__rich-text,
   .page-blog-post__aside-author,
-  .page-blog-post__button,
-  .page-blog-post-list__code-block,
-  .page-blog-post__quote {
+  .page-blog-post__button {
+    margin-bottom: var(--spacing-large);
+  }
+
+  .page-blog-post-list > * {
     margin-bottom: var(--spacing-large);
   }
 
@@ -219,12 +239,18 @@ export default {
     font-style: italic;
   }
 
+  .page-blog-post-list .responsive-video {
+    width: 100%;
+    max-width: var(--case-content-max-width-l);
+  }
+
   .page-blog-post__cta .scroll-to {
     display: none;
   }
 
   @media (min-width: 720px) {
     .page-blog-post-list > * {
+      margin-bottom: var(--spacing-larger);
       padding: 0 var(--spacing-larger);
     }
 
@@ -233,11 +259,7 @@ export default {
     }
 
     .page-blog-post__header,
-    .page-blog-post-list__rich-text,
-    .page-blog-post-list__image,
-    .page-blog-post__button,
-    .page-blog-post-list__code-block,
-    .page-blog-post__quote {
+    .page-blog-post__button {
       margin-bottom: var(--spacing-larger);
     }
 
@@ -310,4 +332,4 @@ export default {
       grid-column-end: 44;
     }
   }
- </style>
+</style>

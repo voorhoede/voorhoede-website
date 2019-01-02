@@ -52,14 +52,14 @@
 
         <full-width-image
           v-if="item.__typename === 'ImageRecord' &&
-          item.image && item.fullWidth"
+            item.image && item.fullWidth"
           :key="item.image.url"
           :image="item.image"
         />
 
         <responsive-image
           v-if="item.__typename === 'ImageRecord' &&
-          item.image && !item.fullWidth"
+            item.image && !item.fullWidth"
           :key="item.image.url"
           :image="item.image"
         />
