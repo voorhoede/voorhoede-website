@@ -7,7 +7,9 @@ query Case($locale: SiteLocale)  {
     title,
     subtitle,
     heroIllustration {
-      url
+      url,
+      format,
+      alt
     }
   },
   alternate: caseOverview {
@@ -26,6 +28,7 @@ fragment page on CaseOverviewRecord {
   subtitle,
   headerIllustration {
     url,
+    format,
     alt
   },
   casePrimaryButtonLabel,
