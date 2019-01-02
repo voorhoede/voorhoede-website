@@ -3,40 +3,53 @@
     class="app-image"
     :class="{ 'app-image--pastel' : svgFormat === false }">
     <no-script>
-      <picture class="app-image__picture">
-        <object 
-          v-if="image.format === 'svg'"
+      <div
+        v-if="svgFormat"
+        class="app-image__picture"
+      >
+        <!-- Safari fix for animated svgs -->
+        <object
           class="app-image__img"
-          :data="iamge.url" 
+          :data="image.url"
           type="image/svg+xml"
           :alt="image.alt"
         />
+      </div>
+      <picture
+        v-else
+        class="app-image__picture"
+      >
         <img
-          v-else
           class="app-image__img"
           :src="image.url"
-          :alt="image.alt">
+          :alt="image.alt"
+        >
       </picture>
     </no-script>
     <lazy-load>
-      <picture class="app-image__picture">
-        <!--[if IE 9]><video style="display: none;"><![endif]-->
-        <source type="image/webp" :srcset="imageUrl({ fm: 'webp', w: width })">
-        <source :type="`image/${image.format}`" :srcset="imageUrl({ w: width })">
-        <!--[if IE 9]></video><![endif]-->
+      <div
+        v-if="svgFormat"
+        class="app-image__picture"
+      >
         <!-- Safari fix for animated svgs -->
-        <object 
-          v-if="svgFormat"
+        <object
           class="app-image__img"
           :data="imageUrl({
             w: width,
             h: cropAndKeepRatio ? width : null,
-            fit: cropAndKeepRatio ? 'crop': null })" 
+            fit: cropAndKeepRatio ? 'crop': null })"
           type="image/svg+xml"
-          :alt="image.alt"
         />
+      </div>
+      <picture
+        v-else
+        class="app-image__picture"
+      >
+        <!--[if IE 9]><video style="display: none;"><![endif]-->
+        <source type="image/webp" :srcset="imageUrl({ fm: 'webp', w: width })">
+        <source :type="`image/${image.format}`" :srcset="imageUrl({ w: width })">
+        <!--[if IE 9]></video><![endif]-->
         <img
-          v-else
           class="app-image__img"
           :src="imageUrl({
             w: width,
