@@ -22,12 +22,14 @@ fragment caseItem on CaseItemRecord {
   keywords,
   heroIllustration {
     url,
+    format,
     alt
   },
   caseTeaser {
     title,
     image {
       url,
+      format,
       alt,
       width,
       height,

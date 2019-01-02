@@ -17,6 +17,7 @@ fragment jobOverview on JobOverviewRecord {
   subtitle,
   headerIllustration {
     url,
+    format,
     alt
   },
   slug,
@@ -33,6 +34,7 @@ fragment jobOverview on JobOverviewRecord {
     callToActionLabel,
     jobImage {
       url,
+      format,
       alt
     },
   },

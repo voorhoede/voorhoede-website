@@ -18,7 +18,7 @@
             :index="index"
             :is-first="index === 0 ? { isSet: true, number: 0 } : { isSet: false }"
             :is-last="index === Object.keys(page.usps).length - 1 ?
-              { isSet: true, number: index } : { isSet: false }"
+            { isSet: true, number: index } : { isSet: false }"
           />
         </p>
       </div>
