@@ -23,6 +23,7 @@ fragment page on ServiceRecord {
   subtitle,
   headerIllustration {
     url,
+    format,
     alt
   }
   items {
@@ -30,6 +31,7 @@ fragment page on ServiceRecord {
     body,
     image {
       url,
+      format,
       alt
     }
   }

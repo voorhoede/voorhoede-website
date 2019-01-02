@@ -1,17 +1,55 @@
 <template>
-  <div class="app-image">
+  <div
+    class="app-image"
+    :class="{ 'app-image--pastel' : svgFormat === false }">
     <no-script>
-      <picture class="app-image__picture">
-        <img class="app-image__img" :src="image.url" :alt="image.alt">
+      <div
+        v-if="svgFormat"
+        class="app-image__picture"
+      >
+        <!-- Safari fix for animated svgs -->
+        <object
+          class="app-image__img"
+          :data="image.url"
+          type="image/svg+xml"
+          :alt="image.alt"
+        />
+      </div>
+      <picture
+        v-else
+        class="app-image__picture"
+      >
+        <img
+          class="app-image__img"
+          :src="image.url"
+          :alt="image.alt"
+        >
       </picture>
     </no-script>
     <lazy-load>
-      <picture class="app-image__picture">
+      <div
+        v-if="svgFormat"
+        class="app-image__picture"
+      >
+        <!-- Safari fix for animated svgs -->
+        <object
+          class="app-image__img"
+          :data="imageUrl({
+            w: width,
+            h: cropAndKeepRatio ? width : null,
+            fit: cropAndKeepRatio ? 'crop': null })"
+          type="image/svg+xml"
+        />
+      </div>
+      <picture
+        v-else
+        class="app-image__picture"
+      >
         <!--[if IE 9]><video style="display: none;"><![endif]-->
         <source type="image/webp" :srcset="imageUrl({ fm: 'webp', w: width })">
         <source :type="`image/${image.format}`" :srcset="imageUrl({ w: width })">
         <!--[if IE 9]></video><![endif]-->
-        <img 
+        <img
           class="app-image__img"
           :src="imageUrl({
             w: width,
@@ -61,6 +99,11 @@
         width: null,
       }
     },
+    computed: {
+      svgFormat () {
+        return this.image.url.includes('.svg')
+      }
+    },
     mounted() {
       const pixelRatio = window.devicePixelRatio || 1
       const cssWidth = this.$el.getBoundingClientRect().width
@@ -79,6 +122,9 @@
   .app-image {
     width: 100%;
     height: 100%;
+  }
+
+  .app-image--pastel {
     background-color: var(--bg-pastel);
   }
 

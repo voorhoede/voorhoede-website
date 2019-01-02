@@ -15,7 +15,7 @@
         <p class="page-header-detail__subtitle sub-title">{{ subTitle }}</p>
       </div>
       <div class="page-header-detail__image">
-        <img v-if="image" :src="image.url" :alt="image.alt">
+        <app-image v-if="image" :image="image" />
       </div>
     </div>
   </header>
@@ -23,10 +23,12 @@
 
 <script>
   import selfTypingText from '../self-typing-text'
+  import appImage from '../app-image'
 
   export default {
     components: {
-      selfTypingText
+      selfTypingText,
+      appImage
     },
     props: {
       image: {
