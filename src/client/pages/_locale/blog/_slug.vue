@@ -50,18 +50,18 @@
           :loop="item.loop"
           :mute="item.autoplay" />
 
+        <text-block
+          v-if="item.__typename === 'TextSectionRecord' && item.title"
+          :key="item.title">
+          <h2 class="page-blog-post-list__title h3 font-html-blue">{{ item.title }}</h2>
+        </text-block>
+
         <rich-text-block
           class="page-blog-post-list__rich-text"
           v-if="item.__typename === 'TextSectionRecord' && item.body"
           :key="item.body"
           :text="item.body"
           large-text />
-
-        <text-block
-          v-if="item.__typename === 'TextSectionRecord' && item.title"
-          :key="item.title">
-          <h2 class="page-blog-post-list__title h3 font-html-blue">{{ item.title }}</h2>
-        </text-block>
 
         <div
           v-if="item.__typename === 'LinkRecord'"
