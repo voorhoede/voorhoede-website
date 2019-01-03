@@ -1,6 +1,6 @@
 <template>
   <article class="academy-event">
-    <a class="academy-event__link" :class="{ 'academy-event__link-themed': isMeetup }" href="/">
+    <a class="academy-event__link" :class="{ 'academy-event__link-themed': isMeetup }" :href="url" target="_blank" rel="noopener">
       <header class="academy-event__header">
         <time
           :datetime="dateString"
@@ -60,6 +60,10 @@
           return typeof(illustration.url) === 'string'
         }
       },
+      url: {
+        type: String,
+        required: true
+      }
     },
     computed: {
       ...mapState([ 'currentLocale' ]),

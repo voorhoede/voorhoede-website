@@ -27,6 +27,7 @@
                 :title="item.title"
                 :description="item.description"
                 :illustration="item.image"
+                :url="item.url"
                 :label="item.label.label"/>
             </li>
           </ul>
