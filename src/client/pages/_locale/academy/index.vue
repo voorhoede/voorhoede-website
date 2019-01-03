@@ -22,7 +22,7 @@
               v-for="item in items"
               :key="item.description"
               class="academy-events__item">
-              <academy-event
+              <event-card
                 :date-string="item.date"
                 :title="item.title"
                 :description="item.description"
@@ -39,10 +39,10 @@
 
 <script>
   import { mapState } from 'vuex'
-  import { AcademyEvent, PageHeader, RichTextBlock } from '~/components'
+  import { EventCard, PageHeader, RichTextBlock } from '~/components'
 
   export default {
-    components: { AcademyEvent, PageHeader, RichTextBlock },
+    components: { EventCard, PageHeader, RichTextBlock },
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
     },

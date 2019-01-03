@@ -1,28 +1,28 @@
 <template>
-  <article class="academy-event">
-    <a class="academy-event__link" :class="{ 'academy-event__link-themed': isMeetup }" :href="url" target="_blank" rel="noopener">
-      <header class="academy-event__header">
+  <article class="event-card">
+    <a class="event-card__link" :class="{ 'event-card__link-themed': isMeetup }" :href="url" target="_blank" rel="noopener">
+      <header class="event-card__header">
         <time
           :datetime="dateString"
-          class="academy-event__calendar" :class="{ 'academy-event__calendar-themed': isMeetup }">
-          <span class="academy-event__day font-bold ">{{ day }}</span>
-          <span class="academy-event__month">{{ month }}</span>
+          class="event-card__calendar" :class="{ 'event-card__calendar-themed': isMeetup }">
+          <span class="event-card__day font-bold ">{{ day }}</span>
+          <span class="event-card__month">{{ month }}</span>
         </time>
 
-        <div v-if="illustration" class="academy-event__illustration-content">
+        <div v-if="illustration" class="event-card__illustration-content">
           <lazy-load>
-            <img class="academy-event__illustration" :src="illustration.url" alt="illustration.alt">
+            <img class="event-card__illustration" :src="illustration.url" alt="illustration.alt">
           </lazy-load>
         </div>
       </header>
-      <div class="academy-event__body">
-        <div class="academy-event__label body-detail" :class="{ 'academy-event__label-themed': isMeetup }">{{ label }}</div>
-        <h2 class="academy-event__title h4">{{ title }}</h2>
+      <div class="event-card__body">
+        <div class="event-card__label body-detail" :class="{ 'event-card__label-themed': isMeetup }">{{ label }}</div>
+        <h2 class="event-card__title h4">{{ title }}</h2>
         <rich-text-block
           v-if="description"
           :key="description"
           :text="description"
-          class="academy-event__description" />
+          class="event-card__description" />
       </div>
     </a>
   </article>
@@ -88,57 +88,58 @@
 </script>
 
 <style>
-  .academy-event {
+  .event-card {
     padding-bottom: var(--spacing-small);
     margin-bottom: var(--spacing-large);
     border-bottom: 1px solid var(--very-dim);
   }
 
-  .academy-event__link {
+  .event-card__link {
     display: block;
     height: 100%;
     overflow: hidden;
   }
 
-  .academy-event__link:hover,
-  .academy-event__link:focus {
+  .event-card__link:hover,
+  .event-card__link:focus {
     outline: var(--spacing-tiny) solid var(--html-blue);
   }
 
-  .academy-event__link-themed:hover,
-  .academy-event__link-themed:focus {
+  .event-card__link-themed:hover,
+  .event-card__link-themed:focus {
     outline: var(--spacing-tiny) solid var(--brand-yellow);
   }
 
-  .academy-event__header {
+  .event-card__header {
     height: 130px;
     position: relative;
     text-align: center;
     background-color: var(--bg-pastel);
   }
 
-  .academy-event__illustration {
+  .event-card__illustration {
     position: absolute;
     bottom: calc(var(--spacing-small) * -1);
-    left: 135px;
+    left: 50%;
     height: 100%;
+    transform: translateX(-50%);
   }
 
-  .academy-event__illustration-content {
+  .event-card__illustration-content {
     height: inherit;
     position: relative;
   }
 
-  .academy-event__title {
+  .event-card__title {
     margin-bottom: var(--spacing-small);
     text-align: center;
   }
 
-  .academy-event__description {
+  .event-card__description {
     display: none;
   }
 
-  .academy-event__calendar {
+  .event-card__calendar {
     display: block;
     position: absolute;
     top: var(--spacing-small);
@@ -155,13 +156,13 @@
     color: var(--white);
   }
 
-  .academy-event__calendar-themed {
+  .event-card__calendar-themed {
     background-color: var(--brand-yellow);
     color: var(--html-blue);
   }
 
-  .academy-event__calendar::before,
-  .academy-event__calendar::after {
+  .event-card__calendar::before,
+  .event-card__calendar::after {
     content: '';
     position: absolute;
     top: calc(var(--spacing-small) * -1);
@@ -171,33 +172,33 @@
     background-color: var(--html-blue);
   }
 
-  .academy-event__calendar-themed::before,
-  .academy-event__calendar-themed::after {
+  .event-card__calendar-themed::before,
+  .event-card__calendar-themed::after {
     background-color: var(--brand-yellow);
   }
 
-  .academy-event__calendar::before {
+  .event-card__calendar::before {
     left: 12px;
   }
 
-  .academy-event__calendar::after {
+  .event-card__calendar::after {
     right: 12px;
   }
 
-  .academy-event__day {
+  .event-card__day {
     display: block;
     margin-top: var(--spacing-tiny);
     font-size: 2rem;
   }
 
-  .academy-event__month {
+  .event-card__month {
     display: block;
     font-size: .8125rem;
     letter-spacing: 2.3px;
     text-transform: uppercase;
   }
 
-  .academy-event__label {
+  .event-card__label {
     display: inline-block;
     margin-left: var(--spacing-small);
     margin-bottom: var(--spacing-small);
@@ -208,36 +209,43 @@
     background-color: var(--html-blue);
   }
 
-  .academy-event__label-themed {
+  .event-card__label-themed {
     background-color: var(--brand-yellow);
     color: var(--html-blue);
   }
 
-  .academy-event__body {
+  .event-card__body {
     position: relative;
     margin-top: calc(var(--spacing-small) * -1);
   }
 
   @media (min-width: 720px) {
-    .academy-event__body {
+    .event-card__illustration {
+      left: auto;
+      right: 0;
+      height: 57%;
+      transform: none;
+    }
+
+    .event-card__body {
       padding: 20px;
       padding-top: 0;
     }
 
-    .academy-event__description {
+    .event-card__description {
       display: block;
     }
 
-    .academy-event__title {
+    .event-card__title {
       text-align: left;
     }
 
-    .academy-event__label {
+    .event-card__label {
       padding-top: 5px;
       padding-bottom: 3px;
     }
 
-    .academy-event {
+    .event-card {
       margin-bottom: 0;
       padding-bottom: 0;
       border-bottom: 0;
@@ -245,26 +253,34 @@
   }
 
   @media (min-width: 1100px) {
-    .academy-event__body {
+    .event-card__illustration {
+      height: 70%;
+    }
+
+    .event-card__body {
       margin-top: var(--spacing-small);
     }
 
-    .academy-event__calendar {
+    .event-card__calendar {
       left: var(--spacing-large);
     }
 
-    .academy-event__label {
+    .event-card__label {
       margin-left: 0;
     }
   }
 
   @media (min-width: 1440px) {
-    .academy-event__header {
+    .event-card__illustration {
+      height: 80%;
+    }
+
+    .event-card__header {
       position: relative;
       height: 213px;
     }
 
-    .academy-event__body {
+    .event-card__body {
       padding-right: var(--spacing-medium);
       padding-left: var(--spacing-medium);
     }
