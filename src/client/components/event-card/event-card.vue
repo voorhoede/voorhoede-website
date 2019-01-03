@@ -11,7 +11,7 @@
 
         <div v-if="illustration" class="event-card__illustration-content">
           <lazy-load>
-            <img class="event-card__illustration" :src="illustration.url" alt="illustration.alt">
+            <img class="event-card__illustration" :src="illustration.url" :alt="illustration.alt">
           </lazy-load>
         </div>
       </header>

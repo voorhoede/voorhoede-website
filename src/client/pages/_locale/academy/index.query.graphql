@@ -16,6 +16,7 @@ query ($locale: SiteLocale, $currentDate: DateTime)  {
     url,
     image {
       url,
+      alt,
       format,
       width,
       height
