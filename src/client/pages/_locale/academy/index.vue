@@ -19,8 +19,8 @@
           <h2 class="academy__title h2">Upcoming events</h2>
           <ul class="academy-events">
             <li
-              v-for="(item, index) in items"
-              :key="index"
+              v-for="item in items"
+              :key="item.description"
               class="academy-events__item">
               <academy-event
                 :date-string="item.date"
@@ -30,10 +30,6 @@
                 :label="item.label.label"/>
             </li>
           </ul>
-        </section>
-        <section class="academy__past-events">
-          <h2 class="academy__title h2">Past events</h2>
-
         </section>
       </div>
     </div>
@@ -128,13 +124,19 @@
 
     .academy-events__item {
       display: inline-flex;
-      width: 35%;
+      width: 45%;
       margin-left: var(--spacing-medium);
       margin-bottom: var(--spacing-medium);
     }
   }
 
   @media (min-width: 1100px) {
+    .academy-content__desktop::after {
+      content: '';
+      clear: both;
+      display: table;
+    }
+
     .academy-events__item {
       max-width: 29%;
       margin-bottom: var(--spacing-larger);
@@ -162,10 +164,16 @@
 
     .academy__upcoming-events .academy__title {
       position: absolute;
+      left: 101%;
       width: 100%;
-      text-align: left;
       transform-origin: top left;
       transform: rotate(90deg);
+      text-align: left;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .academy__upcoming-events .academy__title {
       left: 100%;
     }
   }

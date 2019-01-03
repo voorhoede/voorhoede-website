@@ -1,24 +1,30 @@
 <template>
-  <article class="academy-event" :class="{ 'academy-event__themed': isMeetup }">
-    <header class="academy-event__header">
-      <time
-        :datetime="dateString"
-        class="academy-event__calendar" :class="{ 'academy-event__calendar-themed': isMeetup }">
-        <span class="academy-event__day font-bold ">{{ day }}</span>
-        <span class="academy-event__month">{{ month }}</span>
-      </time>
+  <article class="academy-event">
+    <a class="academy-event__link" :class="{ 'academy-event__link-themed': isMeetup }" href="/">
+      <header class="academy-event__header">
+        <time
+          :datetime="dateString"
+          class="academy-event__calendar" :class="{ 'academy-event__calendar-themed': isMeetup }">
+          <span class="academy-event__day font-bold ">{{ day }}</span>
+          <span class="academy-event__month">{{ month }}</span>
+        </time>
 
-      <div v-if="illustration" class="academy-event__illustration-column">
-        <lazy-load>
-          <img class="academy-event__illustration" :src="illustration.url" alt="illustration.alt">
-        </lazy-load>
+        <div v-if="illustration" class="academy-event__illustration-content">
+          <lazy-load>
+            <img class="academy-event__illustration" :src="illustration.url" alt="illustration.alt">
+          </lazy-load>
+        </div>
+      </header>
+      <div class="academy-event__body">
+        <div class="academy-event__label body-detail" :class="{ 'academy-event__label-themed': isMeetup }">{{ label }}</div>
+        <h2 class="academy-event__title h4">{{ title }}</h2>
+        <rich-text-block
+          v-if="description"
+          :key="description"
+          :text="description"
+          class="academy-event__description" />
       </div>
-    </header>
-    <div class="academy-event__body">
-      <div class="academy-event__label body-detail" :class="{ 'academy-event__label-themed': isMeetup }">{{ label }}</div>
-      <h2 class="academy-event__title h4">{{ title }}</h2>
-      <p class="academy-event__description body">{{ description }}</p>
-    </div>
+    </a>
   </article>
 </template>
 
@@ -26,24 +32,14 @@
 
 <script>
   import { mapState } from 'vuex'
-  import { LazyLoad } from '~/components'
+  import { LazyLoad, RichTextBlock  } from '~/components'
 
   export default {
-    components: { LazyLoad },
+    components: { LazyLoad, RichTextBlock  },
     props: {
       dateString: {
         type: String,
         required: true,
-      },
-      dateBgColor: {
-        type: String,
-        required: false,
-        default: ''
-      },
-      dateTextColor: {
-        type: String,
-        required: false,
-        default: ''
       },
       title: {
         type: String,
@@ -92,14 +88,21 @@
     padding-bottom: var(--spacing-small);
     margin-bottom: var(--spacing-large);
     border-bottom: 1px solid var(--very-dim);
+  }
+
+  .academy-event__link {
+    display: block;
+    height: 100%;
     overflow: hidden;
   }
 
-  .academy-event:hover {
+  .academy-event__link:hover,
+  .academy-event__link:focus {
     outline: var(--spacing-tiny) solid var(--html-blue);
   }
 
-  .academy-event__themed:hover {
+  .academy-event__link-themed:hover,
+  .academy-event__link-themed:focus {
     outline: var(--spacing-tiny) solid var(--brand-yellow);
   }
 
@@ -117,7 +120,7 @@
     height: 100%;
   }
 
-  .academy-event__illustration-column {
+  .academy-event__illustration-content {
     height: inherit;
     position: relative;
   }
@@ -136,16 +139,16 @@
     position: absolute;
     top: var(--spacing-small);
     left: var(--spacing-small);
+    grid-column-start: 2;
+    grid-column-end: 13;
+    align-self: start;
+    justify-self: end;
     width: 4.2rem;
     padding: var(--spacing-tiny) 0;
     background-color: var(--html-blue);
     font-family: var(--font-sans);
     text-align: center;
     color: var(--white);
-    grid-column-start: 2;
-    grid-column-end: 13;
-    align-self: start;
-    justify-self: end;
   }
 
   .academy-event__calendar-themed {
@@ -212,6 +215,11 @@
   }
 
   @media (min-width: 720px) {
+    .academy-event__body {
+      padding: 20px;
+      padding-top: 0;
+    }
+
     .academy-event__description {
       display: block;
     }
