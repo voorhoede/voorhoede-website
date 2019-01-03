@@ -15,7 +15,7 @@
   "private": true,
   "scripts": {
     "analyze": "nuxt build --analyze",
-    "prebuild": "rimraf src/client/static/data && node config/data/dump && node config/nuxt/lib/routes",
+    "prebuild": "rimraf src/client/static/data && node config/data/dump && node config/nuxt/lib/routes && dato dump",
     "build": "NODE_ENV=production run-s build:*",
     "build:client": "nuxt generate",
     "build:guide": "build-storybook -c config/storybook -o dist/client/guide/",
@@ -38,6 +38,7 @@
     "babel-polyfill": "^6.26.0",
     "dotenv-safe": "6.1.0",
     "nuxt": "1.4.4",
+    "nuxt-i18n": "^4.1.0",
     "prismjs": "^1.15.0",
     "unfetch": "^4.0.1",
     "url-search-params-polyfill": "^5.0.0"
@@ -64,7 +65,6 @@
     "ngrok": "3.1.0",
     "node-fetch": "^2.2.0",
     "npm-run-all": "4.1.5",
-    "nuxt-i18n": "4.1.0",
     "postcss-calc": "^7.0.1",
     "postcss-custom-properties": "^8.0.9",
     "postcss-import": "^12.0.1",
