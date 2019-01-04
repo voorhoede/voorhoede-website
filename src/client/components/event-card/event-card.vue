@@ -1,6 +1,6 @@
 <template>
   <article class="event-card">
-    <a class="event-card__link" :class="{ 'event-card__link-themed': isMeetup }" :href="url" target="_blank" rel="noopener">
+    <a class="event-card__link" :class="{ 'event-card__link--alt': isMeetup }" :href="url" target="_blank" rel="noopener">
       <header class="event-card__header">
         <time
           :datetime="dateString"
@@ -16,7 +16,7 @@
         </div>
       </header>
       <div class="event-card__body">
-        <div class="event-card__label body-detail" :class="{ 'event-card__label-themed': isMeetup }">{{ label }}</div>
+        <div class="event-card__type body-detail" :class="{ 'event-card__type--alt': isMeetup }">{{ label }}</div>
         <h2 class="event-card__title h4">{{ title }}</h2>
         <rich-text-block
           v-if="description"
@@ -105,8 +105,8 @@
     outline: var(--spacing-tiny) solid var(--html-blue);
   }
 
-  .event-card__link-themed:hover,
-  .event-card__link-themed:focus {
+  .event-card__link--alt:hover,
+  .event-card__link--alt:focus {
     outline: var(--spacing-tiny) solid var(--brand-yellow);
   }
 
@@ -119,10 +119,9 @@
 
   .event-card__illustration {
     position: absolute;
+    right: 0;
     bottom: calc(var(--spacing-small) * -1);
-    left: 50%;
-    height: 100%;
-    transform: translateX(-50%);
+    height: 65%;
   }
 
   .event-card__illustration-content {
@@ -144,8 +143,6 @@
     position: absolute;
     top: var(--spacing-small);
     left: var(--spacing-small);
-    grid-column-start: 2;
-    grid-column-end: 13;
     align-self: start;
     justify-self: end;
     width: 4.2rem;
@@ -198,7 +195,7 @@
     text-transform: uppercase;
   }
 
-  .event-card__label {
+  .event-card__type {
     display: inline-block;
     margin-left: var(--spacing-small);
     margin-bottom: var(--spacing-small);
@@ -209,7 +206,7 @@
     background-color: var(--html-blue);
   }
 
-  .event-card__label-themed {
+  .event-card__type--alt {
     background-color: var(--brand-yellow);
     color: var(--html-blue);
   }
@@ -217,6 +214,14 @@
   .event-card__body {
     position: relative;
     margin-top: calc(var(--spacing-small) * -1);
+  }
+
+  @media (min-width: 500px) {
+    .event-card__illustration {
+      left: 50%;
+      height: 85%;
+      transform: translateX(-50%);
+    }
   }
 
   @media (min-width: 720px) {
@@ -228,7 +233,7 @@
     }
 
     .event-card__body {
-      padding: 20px;
+      padding: var(--spacing-small);
       padding-top: 0;
     }
 
@@ -240,7 +245,7 @@
       text-align: left;
     }
 
-    .event-card__label {
+    .event-card__type {
       padding-top: 5px;
       padding-bottom: 3px;
     }
@@ -253,6 +258,10 @@
   }
 
   @media (min-width: 1100px) {
+    .event-card {
+      max-width: 350px;
+    }
+
     .event-card__illustration {
       height: 70%;
     }
@@ -265,14 +274,14 @@
       left: var(--spacing-large);
     }
 
-    .event-card__label {
+    .event-card__type {
       margin-left: 0;
     }
   }
 
   @media (min-width: 1440px) {
     .event-card__illustration {
-      height: 80%;
+      height: 60%;
     }
 
     .event-card__header {

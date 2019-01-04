@@ -1,13 +1,13 @@
 <template>
-  <main>
+  <main class="page-event">
     <page-header
       :title="page.title"
       :text="page.subtitle"
       :image="page.headerIllustration" />
 
-    <div class="academy-content grid">
-      <div class="academy-content__desktop">
-        <div class="academy-intro">
+    <div class="page-event__content grid">
+      <div class="page-event__content--grid-left">
+        <div class="page-event__intro">
           <rich-text-block
             v-if="page.introductionText"
             :key="page.introductionText"
@@ -69,7 +69,7 @@
     margin-bottom: var(--spacing-medium);
   }
 
-  .academy-intro {
+  .page-event__intro {
     position: relative;
     margin-bottom: var(--spacing-larger);
     padding-bottom: var(--spacing-larger);
@@ -90,7 +90,7 @@
     position: relative;
   }
 
-  .academy-intro::before {
+  .page-event__intro::before {
     content: '';
     position: absolute;
     top: 0;
@@ -100,7 +100,7 @@
     background-color: var(--bg-pastel);
   }
 
-  .academy-intro::after {
+  .page-event__intro::after {
     content: '';
     position: absolute;
     top: 0;
@@ -110,12 +110,12 @@
     background-color: var(--bg-pastel);
   }
 
-  .academy-content {
-    overflow: hidden; /* hide right pseudo content from .academy-intro */
+  .page-event__content {
+    overflow: hidden; /* hide right pseudo content from .page-event__intro */
   }
 
   @media (min-width: 720px) {
-    .academy-intro {
+    .page-event__intro {
       width: 500px;
     }
 
@@ -132,7 +132,7 @@
   }
 
   @media (min-width: 1100px) {
-    .academy-content__desktop::after {
+    .page-event__content--grid-left::after {
       content: '';
       clear: both;
       display: table;
@@ -143,11 +143,11 @@
       margin-bottom: var(--spacing-larger);
     }
 
-    .academy-intro {
+    .page-event__intro {
       float: left;
       width: 29%;
       padding-right: var(--spacing-larger);
-      padding-bottom: var(--spacing-big);
+      margin-bottom: var(--spacing-small);
       color: var(--html-blue);
     }
 
@@ -155,11 +155,11 @@
       margin-bottom: 0;
     }
 
-    .academy-intro::after {
+    .page-event__intro::after {
      display: none;
     }
 
-    .academy-content__desktop {
+    .page-event__content--grid-left {
       grid-column-start: 4;
     }
 
