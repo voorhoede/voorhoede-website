@@ -16,9 +16,8 @@
             :key="index"
             :line="line"
             :index="index"
-            :is-first="index === 0 ? { isSet: true, number: 0 } : { isSet: false }"
-            :is-last="index === Object.keys(page.usps).length - 1 ?
-            { isSet: true, number: index } : { isSet: false }"
+            :is-first="isFirst(index)"
+            :is-last="isLast(index, page.usps)"
           />
         </p>
       </div>
@@ -131,7 +130,15 @@
       return await store.dispatch('getData', { route })
     },
     computed: {
-      ...mapState(['currentLocale'])
+      ...mapState(['currentLocale']),
+    },
+    methods: {
+      isLast(index, usps) {
+        return index === Object.keys(usps).length - 1 ? { isSet: true, number: index } : { isSet: false }
+      },
+      isFirst(index) {
+        return index === 0 ? { isSet: true, number: 0 } : { isSet: false }
+      }
     },
     head() {
       return {

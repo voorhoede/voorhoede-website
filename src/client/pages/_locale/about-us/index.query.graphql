@@ -15,9 +15,9 @@ query ($locale: SiteLocale)  {
       name,
       image {
         url,
+        format,
         width,
         height,
-        format
       }
     }
   }
@@ -29,6 +29,7 @@ fragment about on AboutRecord {
   subtitle,
   headerIllustration {
     url,
+    format,
     alt
   },
   slug,

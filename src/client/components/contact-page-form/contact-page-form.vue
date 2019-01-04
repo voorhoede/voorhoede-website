@@ -7,7 +7,7 @@
     class="contact-form"
     data-netlify="true"
     netlify-honeypot="magic-castle"
-    novalidate>
+    :novalidate="useCustomValidation">
     <fieldset class="contact-form__fieldset">
       <legend class="h4">{{ subjectTitle }}</legend>
       <input type="hidden" name="form-name" :value="form['form-name']">
@@ -204,6 +204,7 @@
           phone: '',
         },
         formIsValidated: false,
+        useCustomValidation: false,
       }
     },
     computed: {
@@ -216,6 +217,9 @@
       emailValidationErrorMessage() {
         return this.form.email ? this.emailErrorMessageIncorrect : this.emailErrorMessageEmpty
       },
+    },
+    mounted() {
+      this.useCustomValidation = true
     },
     methods: {
       submit(event) {

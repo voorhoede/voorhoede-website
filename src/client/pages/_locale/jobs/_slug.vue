@@ -43,7 +43,6 @@
   import {
     PageHeader,
     GenericTextBlock,
-    CtaBlock,
     ScrollTo,
     AppButton
   } from '../../../components'
@@ -52,7 +51,6 @@
     components: {
       PageHeader,
       GenericTextBlock,
-      CtaBlock,
       ScrollTo,
       AppButton
     },

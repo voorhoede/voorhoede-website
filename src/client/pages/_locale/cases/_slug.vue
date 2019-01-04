@@ -41,8 +41,9 @@
           v-if="item.__typename === 'TextSectionRecord'"
           :key="item.title"
           class="page-case__text">
-          <h3 class="page-case__title h3"
-              v-if="item.title">{{ item.title }}</h3>
+          <h3 
+            class="page-case__title h3"
+            v-if="item.title">{{ item.title }}</h3>
           <rich-text-block
             v-if="item.body"
             :text="item.body"
@@ -51,15 +52,13 @@
         </div>
 
         <full-width-image
-          v-if="item.__typename === 'ImageRecord' &&
-          item.image && item.fullWidth"
+          v-if="item.__typename === 'ImageRecord' && isFullWidth(item)"
           :key="item.image.url"
           :image="item.image"
         />
 
         <responsive-image
-          v-if="item.__typename === 'ImageRecord' &&
-          item.image && !item.fullWidth"
+          v-if="item.__typename === 'ImageRecord' && !isFullWidth(item)"
           :key="item.image.url"
           :image="item.image"
         />
@@ -178,7 +177,12 @@
         'locales',
         'currentLocale',
         'alternateUrl',
-      ]),
+      ])
+    },
+    methods: {
+      isFullWidth(item) {
+        return item.image && item.fullWidth
+      }
     },
     head() {
       return {

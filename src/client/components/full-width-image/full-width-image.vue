@@ -9,14 +9,10 @@
 
 <script>
   import ResponsiveImage from '../responsive-image'
-  import LazyLoad from '../lazy-load'
-  import NoScript from '../no-script'
   import imageUrl from '../../lib/image-url'
 
   export default {
     components: {
-      LazyLoad,
-      NoScript,
       ResponsiveImage,
     },
     props: {
