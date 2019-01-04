@@ -1,10 +1,10 @@
 query ($locale: SiteLocale, $currentDate: DateTime)  {
-  page: academyItemsOverview(locale:$locale) {
-    ...academyItemsOverview
+  page: eventOverview(locale:$locale) {
+    ...eventOverview
   },
 
-  items: allAcademyItems(
-    locale:$locale,
+  items: allEventItems(
+    locale: $locale,
     first: 10,
     orderBy: date_ASC,
     filter: {
@@ -27,7 +27,7 @@ query ($locale: SiteLocale, $currentDate: DateTime)  {
   }
 }
 
-fragment academyItemsOverview on AcademyItemsOverviewRecord {
+fragment eventOverview on EventOverviewRecord {
   title,
   subtitle,
   slug,
