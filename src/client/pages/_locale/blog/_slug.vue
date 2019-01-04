@@ -64,7 +64,7 @@
           large-text />
 
         <div
-          v-if="item.__typename === 'LinkRecord'"
+          v-if="item.__typename === 'LinkSectionRecord'"
           :key="item.link">
           <app-button
             class="page-blog-post__button"
