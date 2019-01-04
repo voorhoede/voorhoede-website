@@ -4,6 +4,8 @@
 
 const fs = require('fs')
 const dotenv = require('dotenv-safe')
+var { getNativeName } = require('iso-639-1')
+
 dotenv.config()
 
 const staticDir = 'src/client/static'
@@ -15,8 +17,18 @@ module.exports = (dato, root, i18n) => {
 
   fs.writeFileSync(`${__dirname}/${staticDir}/_redirects`, redirectsToText(dato.redirects), 'utf8')
 
+  root.createDataFile(`${dataDir}/locales.json`, 'json', localesToJson(locales))
   locales.forEach(locale => {
     root.createDataFile(`${dataDir}/${locale}/messages.json`, 'json', translationsToJson(dato.translations))
+  })
+}
+
+function localesToJson (locales) {
+  return locales.map(code => {
+    return {
+      code,
+      name: getNativeName(code)
+    }
   })
 }
 
