@@ -15,13 +15,13 @@
             large-text />
         </div>
 
-        <section class="academy__upcoming-events">
-          <h2 class="academy__title h2">Upcoming events</h2>
-          <ul class="academy-events">
+        <section class="page-event__upcoming-events">
+          <h2 class="page-event__upcoming-events-title h2">Upcoming events</h2>
+          <ul class="page-event__upcoming-events-list">
             <li
               v-for="item in items"
               :key="item.description"
-              class="academy-events__item">
+              class="page-event__upcoming-events-item">
               <event-card
                 :date-string="item.date"
                 :title="item.title"
@@ -65,7 +65,7 @@
 
 
 <style>
-  .academy__title {
+  .page-event__upcoming-events-title {
     margin-bottom: var(--spacing-medium);
   }
 
@@ -77,16 +77,16 @@
     background-color: var(--bg-pastel);
   }
 
-  .academy__upcoming-events {
+  .page-event__upcoming-events {
     position: relative;
   }
 
-  .academy-events {
+  .page-event__upcoming-events-list {
     margin-top: var(--spacing-larger);
     margin-bottom: var(--spacing-large);
   }
 
-  .academy-events__item {
+  .page-event__upcoming-events-item {
     position: relative;
   }
 
@@ -119,11 +119,11 @@
       width: 500px;
     }
 
-    .academy-events {
+    .page-event__upcoming-events-list {
       margin-left: calc(var(--spacing-medium) * -1);
     }
 
-    .academy-events__item {
+    .page-event__upcoming-events-item {
       display: inline-flex;
       width: 45%;
       margin-left: var(--spacing-medium);
@@ -138,7 +138,7 @@
       display: table;
     }
 
-    .academy-events__item {
+    .page-event__upcoming-events-item {
       max-width: 29%;
       margin-bottom: var(--spacing-larger);
     }
@@ -151,7 +151,7 @@
       color: var(--html-blue);
     }
 
-    .academy-events__item:last-child {
+    .page-event__upcoming-events-item:last-child {
       margin-bottom: 0;
     }
 
@@ -163,7 +163,7 @@
       grid-column-start: 4;
     }
 
-    .academy__upcoming-events .academy__title {
+    .page-event__upcoming-events .page-event__upcoming-events-title {
       position: absolute;
       left: 101%;
       width: 100%;
@@ -174,7 +174,7 @@
   }
 
   @media (min-width: 1440px) {
-    .academy__upcoming-events .academy__title {
+    .page-event__upcoming-events .page-event__upcoming-events-title {
       left: 100%;
     }
   }
