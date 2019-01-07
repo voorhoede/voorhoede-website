@@ -5,7 +5,7 @@ query HomePage($locale: SiteLocale, $currentDate: DateTime)  {
   alternate: home(locale:$locale) {
     slug
   },
-  upcomingEvents: allAcademyItems(locale:$locale, first: 1, orderBy: date_ASC, filter: {
+  upcomingEvents: allEventItems(locale:$locale, first: 1, orderBy: date_ASC, filter: {
     date: { gte: $currentDate }
   }) {
     date,
