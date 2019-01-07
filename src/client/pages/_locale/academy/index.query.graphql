@@ -1,19 +1,44 @@
-query ($locale: SiteLocale)  {
+query ($locale: SiteLocale, $currentDate: DateTime)  {
   page: academyItemsOverview(locale:$locale) {
     ...academyItemsOverview
   },
 
-  alternate:academyItemsOverview {
-    slug
+  items: allAcademyItems(
+    locale:$locale,
+    first: 10,
+    orderBy: date_ASC,
+    filter: {
+      date: { gte: $currentDate }
+  }) {
+    date,
+    description,
+    title,
+    url,
+    image {
+      url,
+      alt,
+      format,
+      width,
+      height
+    },
+    label {
+      label
+    }
   }
 }
 
 fragment academyItemsOverview on AcademyItemsOverviewRecord {
   title,
+  subtitle,
   slug,
   social {
     title,
     description
   },
+  headerIllustration {
+    url,
+    alt
+  },
+  introductionText,
   keywords
 }
