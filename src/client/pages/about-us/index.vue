@@ -74,7 +74,7 @@
     ImageWithTextBlock,
     JobsExcerpt,
     PageHeader,
-  } from '../../../components'
+  } from '~/components'
 
   export default {
     components: {

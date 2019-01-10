@@ -45,7 +45,7 @@
     GenericTextBlock,
     ScrollTo,
     AppButton
-  } from '../../../components'
+  } from '~/components'
 
   export default {
     components: {

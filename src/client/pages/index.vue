@@ -95,7 +95,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import getData from '~/lib/get-data'
   import {
     AcademyExcerpt,
     AppButton,
@@ -126,11 +126,8 @@
       ScrollTo,
       ServicesList,
     },
-    async asyncData({ store, route }) {
-      return await store.dispatch('getData', { route })
-    },
-    computed: {
-      ...mapState(['currentLocale']),
+    async asyncData({ route }) {
+      return await getData(route.fullPath)
     },
     methods: {
       isLast(index, usps) {
