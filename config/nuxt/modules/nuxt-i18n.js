@@ -1,9 +1,9 @@
-const { locales } = require('../lib/data')
-const defaultLocale = locales[0]
+const locales = require('../../../src/client/static/data/locales.json')
+const defaultLocale = process.env.defaultLocale || process.env.DEFAULT_LOCALE || locales[0].code
 
 /**
- * @see https://nuxt-community.github.io/nuxt-i18n/
- */
+* @see https://nuxt-community.github.io/nuxt-i18n/
+*/
 module.exports = [
   'nuxt-i18n',
   {
@@ -14,11 +14,11 @@ module.exports = [
     },
     lazy: true,
     langDir: 'static/data/',
-    locales: locales.map(locale => ({
-      code: locale,
-      file: `${locale}/messages.json`,
-      iso: locale,
-      name: locale,
+    locales: locales.map(({ code, name }) => ({
+      code,
+      file: `${code}/messages.json`,
+      iso: code,
+      name,
     })),
     rootRedirect: defaultLocale,
     strategy: 'prefix',
