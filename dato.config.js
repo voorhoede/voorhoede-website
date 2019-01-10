@@ -20,7 +20,9 @@ module.exports = (dato, root, i18n) => {
   root.createDataFile(`${dataDir}/locales.json`, 'json', localesToJson(locales))
 
   locales.forEach(locale => {
-    root.createDataFile(`${dataDir}/${locale}/messages.json`, 'json', translationsToJson(dato.translations))
+    i18n.withLocale(locale, () => {
+      root.createDataFile(`${dataDir}/${locale}/messages.json`, 'json', translationsToJson(dato.translations))
+    })
   })
 }
 
