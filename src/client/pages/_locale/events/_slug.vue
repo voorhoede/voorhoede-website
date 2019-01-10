@@ -2,13 +2,14 @@
   <div class="page-event-detail grid" lang="en">
     <page-header
       class="page-event-detail__header"
-      :text="page.title"
       :title="page.label.label"
+      :text="page.title"
       :image="page.image" />
 
-    <main class="page-event-detail__list">
+    <article class="page-event-detail-list">
       <template v-for="item in page.items">
         <image-with-description
+          class="page-event-detail-list__image page-event-detail-list--not-indented"
           v-if="item.__typename === 'ImageWithTextRecord'"
           :key="item.description"
           :image="item.imageWithDescription.image"
@@ -19,10 +20,12 @@
           v-if="item.quote"
           :key="item.quote"
           :quote="item.quote"
-          :cite="item.author" />
+          :cite="item.author"
+          class="page-event-detail__quote" />
 
         <responsive-image
-          :class="{ 'page-event-detail__image--not-indented' : item.fullWidth}"
+          class="page-event-detail-list__image"
+          :class="{ 'page-event-detail-list--not-indented' : item.fullWidth}"
           v-if="item.__typename === 'ImageRecord' && item.image"
           :key="item.image.url"
           :image="item.image" />
@@ -38,10 +41,11 @@
         <text-block
           v-if="item.__typename === 'TextSectionRecord' && item.title"
           :key="item.title">
-          <h2 class="h3 font-html-blue">{{ item.title }}</h2>
+          <h2 class="page-event-detail-list__title h3 font-html-blue">{{ item.title }}</h2>
         </text-block>
 
         <rich-text-block
+          class="page-event-detail-list__rich-text"
           v-if="item.__typename === 'TextSectionRecord' && item.body"
           :key="item.body"
           :text="item.body"
@@ -54,7 +58,7 @@
           :to="page.url"
           external />
       </div>
-    </main>
+    </article>
 
     <aside class="page-event-detail__aside">
       <div>
@@ -83,48 +87,59 @@
     </aside>
 
     <div class="page-event-detail__link-container">
-      <nuxt-link
-        class="app-button app-button--secondary body font-bold"
-        :to="`/${currentLocale}/${alternateParent.slug}`">
-        &larr; See all events
+      <nuxt-link class="app-button app-button--secondary body font-bold" :to="`/${currentLocale}/${alternateParent.slug}`">
+        &larr; See all {{ alternateParent.slug }}
       </nuxt-link>
     </div>
+
+    <style v-if="page.customStyling" v-html="page.customStyling"></style>
+    <script v-if="page.customScript && loadCustomScript" v-html="page.customScript"/>
   </div>
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-  import {
+import { mapState } from 'vuex'
+import {
+  AppButton,
+  ImageWithDescription,
+  PageHeader,
+  QuoteBlock,
+  ResponsiveImage,
+  ResponsiveVideo,
+  RichTextBlock,
+  TextBlock,
+} from '../../../components'
+
+export default {
+  components: {
     AppButton,
-    PageHeader,
     ImageWithDescription,
+    PageHeader,
     QuoteBlock,
     ResponsiveImage,
     ResponsiveVideo,
     RichTextBlock,
-    TextBlock } from '../../../components'
-
-  export default {
-    async asyncData({ store, route, error }) {
-      try {
-        return await store.dispatch('getData', { route })
-      } catch (err) {
-        return error({ statusCode: 404, message: err.message })
-      }
-    },
-    components: {
-      AppButton,
-      PageHeader,
-      ImageWithDescription,
-      QuoteBlock,
-      ResponsiveImage,
-      ResponsiveVideo,
-      RichTextBlock,
-      TextBlock
-    },
-    computed: {
-      ...mapState(['currentLocale']),
-      isMeetup() {
+    TextBlock,
+  },
+  async asyncData({ store, route, error }) {
+    try {
+      return await store.dispatch('getData', { route })
+    } catch (err) {
+      return error({ statusCode: 404, message: err.message })
+    }
+  },
+  data() {
+    return {
+      /*
+       * Load custom script after vue has mounted,
+       * to prevent issues with the moment the custom script is executed and hydration.
+       */
+      loadCustomScript: false
+    }
+  },
+  computed: {
+    ...mapState(['currentLocale']),
+    isMeetup() {
         return this.page.label.label.toLowerCase() === 'meet-up'
       },
       dateString() {
@@ -154,32 +169,59 @@
         }
         return min
       }
+  },
+  mounted() {
+    this.loadCustomScript = true
+  },
+  head() {
+    return {
+      title: this.page.social.title,
+      meta: [
+        { 'name': 'description', 'content': this.page.social.description },
+        { 'property': 'og:description', 'content': this.page.social.description },
+        { 'name': 'twitter:description', 'content': this.page.social.description },
+        { 'name': 'keywords', 'content': this.page.keywords }
+      ]
     }
   }
+}
 </script>
 
 <style>
   .page-event-detail__header {
     grid-column: var(--grid-page);
+  }
+
+  .page-event-detail__header,
+  .page-event-detail__aside,
+  .page-event-detail__button {
     margin-bottom: var(--spacing-large);
+  }
+
+  .page-event-detail-list > * {
+    margin-bottom: var(--spacing-large);
+  }
+
+  .page-event-detail-list__image {
+    justify-content: space-between;
+    margin-bottom: var(--spacing-large);
+  }
+
+  .page-event-detail-list__image .image-with-description__description {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .page-event-detail-list__title {
+    margin-bottom: var(--spacing-smaller);
   }
 
   .page-event-detail__aside {
     grid-row: 2;
-    margin-bottom: var(--spacing-larger);
   }
 
   .page-event-detail__aside > * {
-    margin-bottom: var(--spacing-large);
-  }
-
-  .page-event-detail__list {
-    grid-row: 3;
-    max-width: 100%;
-  }
-
-  .page-event-detail__list > * {
-    margin-bottom: var(--spacing-large);
+    margin-bottom: var(--spacing-medium);
   }
 
   .page-event-detail__link-container {
@@ -205,13 +247,40 @@
     color: var(--html-blue);
   }
 
+  .page-event-detail-list {
+    grid-row: 3;
+    max-width: 100%;
+  }
+
+  .page-event-detail-list .responsive-video {
+    width: 100%;
+    max-width: var(--case-content-max-width-l);
+  }
+
+  @media (min-width: 520px) {
+    .page-event-detail__aside {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+
   @media (min-width: 720px) {
-    .page-event-detail__list > * {
+    .page-event-detail-list > * {
       margin-bottom: var(--spacing-larger);
       padding: 0 var(--spacing-larger);
     }
 
-    .page-event-detail__list {
+    .page-event-detail-list > .page-event-detail-list--not-indented {
+      padding: 0;
+    }
+
+    .page-event-detail__header,
+    .page-event-detail__button {
+      margin-bottom: var(--spacing-larger);
+    }
+
+    .page-event-detail-list {
       grid-row: 2;
       grid-column-start: 10;
       grid-column-end: 50;
@@ -223,8 +292,20 @@
       grid-column-end: 9;
     }
 
-    .page-event-detail__header {
-      margin-bottom: var(--spacing-larger);
+    .page-event-detail__cta {
+      position: relative;
+    }
+
+    .page-event-detail__cta .scroll-to {
+      display: flex;
+      position: absolute;
+      bottom: var(--spacing-larger);
+      grid-column: 3;
+    }
+
+    .page-event-detail__cta-block {
+      grid-column-start: 8;
+      grid-column-end: 44;
     }
 
     .page-event-detail__link-container {
@@ -234,8 +315,13 @@
   }
 
   @media (min-width: 1100px) {
-    .page-event-detail__list > * {
+    .page-event-detail-list > * {
       padding: 0 var(--spacing-big);
+    }
+
+    .page-event-detail-list {
+      grid-column-start: 12;
+      grid-column-end: 46;
     }
 
     .page-event-detail__aside {
@@ -243,14 +329,22 @@
       grid-column-end: 11;
     }
 
-    .page-event-detail__list {
-      grid-column-start: 12;
-      grid-column-end: 46;
+    .page-event-detail__cta-block {
+      grid-column-start: 14;
+      grid-column-end: 38;
+    }
+
+    .page-event-detail__cta .scroll-to {
+      bottom: var(--spacing-big);
     }
   }
 
   @media (min-width: 1440px) {
-    .page-blog-post-list {
+    .page-event-detail-list > * {
+      padding: 0 var(--spacing-bigger);
+    }
+
+    .page-event-detail-list {
       grid-column-start: 12;
       grid-column-end: 44;
     }

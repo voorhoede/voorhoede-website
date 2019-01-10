@@ -7,7 +7,7 @@
       <header class="event-card__header">
         <time
           :datetime="dateString"
-          class="event-card__calendar" :class="{ 'event-card__calendar-themed': isMeetup }">
+          class="event-card__calendar" :class="{ 'event-card__calendar--alt': isMeetup }">
           <span class="event-card__day font-bold ">{{ day }}</span>
           <span class="event-card__month">{{ month }}</span>
         </time>
@@ -162,7 +162,7 @@
     color: var(--white);
   }
 
-  .event-card__calendar-themed {
+  .event-card__calendar--alt {
     background-color: var(--brand-yellow);
     color: var(--html-blue);
   }
@@ -178,8 +178,8 @@
     background-color: var(--html-blue);
   }
 
-  .event-card__calendar-themed::before,
-  .event-card__calendar-themed::after {
+  .event-card__calendar--alt::before,
+  .event-card__calendar--alt::after {
     background-color: var(--brand-yellow);
   }
 
