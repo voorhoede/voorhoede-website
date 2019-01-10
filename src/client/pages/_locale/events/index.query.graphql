@@ -13,6 +13,7 @@ query ($locale: SiteLocale, $currentDate: DateTime)  {
     date,
     description,
     title,
+    slug,
     url,
     image {
       url,

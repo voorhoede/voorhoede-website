@@ -1,6 +1,9 @@
 <template>
   <article class="event-card">
-    <a class="event-card__link" :class="{ 'event-card__link--alt': isMeetup }" :href="url" target="_blank" rel="noopener">
+    <nuxt-link
+      :to="{ name: 'locale-events-slug', params: { locale: currentLocale, slug }}"
+      class="event-card__link"
+      :class="{ 'event-card__link--alt': isMeetup }">
       <header class="event-card__header">
         <time
           :datetime="dateString"
@@ -24,7 +27,7 @@
           :text="description"
           class="event-card__description" />
       </div>
-    </a>
+    </nuxt-link>
   </article>
 </template>
 
@@ -60,7 +63,12 @@
           return typeof(illustration.url) === 'string'
         }
       },
-      url: {
+      price: {
+        type: String,
+        required: false,
+        default: ''
+      },
+      slug: {
         type: String,
         required: true
       }
@@ -89,6 +97,7 @@
 
 <style>
   .event-card {
+    width: 100%;
     padding-bottom: var(--spacing-small);
     margin-bottom: var(--spacing-large);
     border-bottom: 1px solid var(--very-dim);
