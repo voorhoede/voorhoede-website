@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import Vuex from 'vuex'
 import * as types from './mutation-types'
 import { getData } from '../lib/get-data'
@@ -75,7 +76,12 @@ const createStore = () => {
     actions: {
       async getData({ commit, dispatch, getters, state }, { route }) {
         try {
-          const data = await getData(route.path)
+          const variables = {
+            currentLocale: state.currentLocale,
+            altLocale: getters.alternateLocale,
+            currentDate: dayjs().format('YYYY-MM-DD')
+          }
+          const data = await getData(route.path, variables)
 
           const alternateParentSlug = data.alternateParent ? `/${data.alternateParent.slug}` : ''
           const alternateSlug = (data.alternate && !state.locales.includes(data.alternate.slug)) ? `/${data.alternate.slug}` : ''
@@ -116,9 +122,9 @@ const createStore = () => {
         let data
 
         if (state.currentLayout === 'default') {
-          data = await getData(`${state.currentLocale}/layouts/${state.currentLayout}`)
+          data = await getData(`/${state.currentLocale}/layouts/${state.currentLayout}`)
         } else {
-          data = await getData(`${state.currentLocale}/layouts/${state.currentLayout}/${state.errorCode}`)
+          data = await getData(`/${state.currentLocale}/layouts/${state.currentLayout}/${state.errorCode}`)
         }
 
         commit(types.SET_LAYOUT_DATA, { data })
