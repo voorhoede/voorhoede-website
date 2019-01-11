@@ -21,12 +21,13 @@
 </template>
 
 <script>
+  import getData from '~/lib/get-data'
   import { GenericTextBlock, PageHeader, ScrollTo } from '~/components'
 
   export default {
     components: { GenericTextBlock, PageHeader, ScrollTo },
-    async asyncData({ store, route }) {
-      return await store.dispatch('getData', { route })
+    async asyncData({ route }) {
+      return await getData(route.fullPath)
     },
     head() {
       return {

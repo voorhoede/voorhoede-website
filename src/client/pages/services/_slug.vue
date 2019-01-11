@@ -18,18 +18,15 @@
 </template>
 
 <script>
+  import getData from '~/lib/get-data'
   import { PageHeaderDetail, GenericTextBlock } from '~/components'
   export default {
     components: {
       PageHeaderDetail,
       GenericTextBlock
     },
-    async asyncData({ store, route, error }) {
-      try {
-        return await store.dispatch('getData', { route })
-      } catch (err) {
-        return error({ statusCode: 404, message: err.message })
-      }
+    async asyncData({ route }) {
+      return await getData(route.fullPath)
     },
     head() {
       return {

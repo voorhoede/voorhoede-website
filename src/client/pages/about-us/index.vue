@@ -66,7 +66,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import getData from '~/lib/get-data'
   import {
     AppButton,
     BlogListItem,
@@ -85,11 +85,8 @@
       JobsExcerpt,
       PageHeader,
     },
-    async asyncData({ store, route }) {
-      return await store.dispatch('getData', { route })
-    },
-    computed: {
-      ...mapState(['currentLocale'])
+    async asyncData({ route }) {
+      return await getData(route.fullPath)
     },
     head() {
       return {

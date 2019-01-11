@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import getData from '~/lib/get-data'
   import { CtaBlock, PageHeader } from '~/components'
 
   export default {
@@ -26,19 +26,8 @@
       CtaBlock,
       PageHeader,
     },
-    async asyncData({ store, route, error }) {
-      try {
-        return await store.dispatch('getData', { route })
-      } catch (err) {
-        return error({ statusCode: 404, message: err.message })
-      }
-    },
-    computed: {
-      ...mapState([
-        'locales',
-        'currentLocale',
-        'alternateUrl',
-      ]),
+    async asyncData({ route }) {
+      return await getData(route.fullPath)
     },
     head() {
       return {

@@ -132,7 +132,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import getData from '~/lib/get-data'
   import {
     CaseMeta,
     CasePullQuoteComposition,
@@ -150,12 +150,8 @@
   } from '~/components'
 
   export default {
-    async asyncData({ store, route, error }) {
-      try {
-        return await store.dispatch('getData', { route })
-      } catch (err) {
-        return error({ statusCode: 404, message: err.message })
-      }
+    async asyncData({ route }) {
+      return await getData(route.fullPath)
     },
     components: {
       CaseMeta,
@@ -171,13 +167,6 @@
       RichTextBlock,
       ScrollTo,
       StorytellingSection,
-    },
-    computed: {
-      ...mapState([
-        'locales',
-        'currentLocale',
-        'alternateUrl',
-      ])
     },
     methods: {
       isFullWidth(item) {

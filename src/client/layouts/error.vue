@@ -15,8 +15,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
+import getData from '../lib/get-data'
 import PageHeader from '../components/page-header'
 
 export default {
@@ -30,13 +29,15 @@ export default {
       }
     },
   },
-  computed: {
-    ...mapState(['layoutData'])
+  async asyncData() {
+    return {
+      layout: await getData(`${this.$i18n.locale}/layouts/error/${this.error.statusCode}`)
+    }
   },
   head() {
     return {
       htmlAttrs: {
-        lang: this.currentLocale
+        lang: this.$i18n.locale
       }
     }
   }

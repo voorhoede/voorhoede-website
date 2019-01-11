@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import getData from '~/lib/get-data'
   import { CaseExcerpt, PageHeader, CtaBlock } from '~/components'
 
   export default {
@@ -38,11 +38,8 @@
       PageHeader,
       CtaBlock
     },
-    async asyncData({ store, route }) {
-      return await store.dispatch('getData', { route })
-    },
-    computed: {
-      ...mapState(['currentLocale']),
+    async asyncData({ route }) {
+      return await getData(route.fullPath)
     },
     head() {
       return {

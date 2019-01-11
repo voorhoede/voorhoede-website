@@ -24,6 +24,7 @@
 </template>
 
 <script>
+  import getData from '~/lib/get-data'
   import { PageHeader, JobsExcerpt } from '~/components'
 
   export default {
@@ -31,8 +32,8 @@
       PageHeader,
       JobsExcerpt
     },
-    async asyncData({ store, route }) {
-      return await store.dispatch('getData', { route })
+    async asyncData({ route }) {
+      return await getData(route.fullPath)
     },
     head() {
       return {

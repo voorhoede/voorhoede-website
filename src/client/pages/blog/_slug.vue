@@ -109,7 +109,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import getData from '~/lib/get-data'
 import {
   AppButton,
   BlogAuthor,
@@ -142,12 +142,8 @@ export default {
     SocialButtons,
     TextBlock,
   },
-  async asyncData({ store, route, error }) {
-    try {
-      return await store.dispatch('getData', { route })
-    } catch (err) {
-      return error({ statusCode: 404, message: err.message })
-    }
+  async asyncData({ route }) {
+    return await getData(route.fullPath)
   },
   data() {
     return {
@@ -157,9 +153,6 @@ export default {
        */
       loadCustomScript: false
     }
-  },
-  computed: {
-    ...mapState(['currentLocale'])
   },
   mounted() {
     this.loadCustomScript = true

@@ -38,13 +38,13 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import getData from '~/lib/get-data'
   import { EventCard, PageHeader, RichTextBlock } from '~/components'
 
   export default {
     components: { EventCard, PageHeader, RichTextBlock },
-    async asyncData({ store, route }) {
-      return await store.dispatch('getData', { route })
+    async asyncData({ route }) {
+      return await getData(route.fullPath)
     },
     head() {
       return {
@@ -57,9 +57,7 @@
         ]
       }
     },
-    computed: {
-      ...mapState(['currentLocale'])
-    }
+
   }
 </script>
 

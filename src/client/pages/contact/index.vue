@@ -41,12 +41,13 @@
 </template>
 
 <script>
+  import getData from '~/lib/get-data'
   import { AddressSidebar, ContactPageForm, PageHeader } from '~/components'
 
   export default {
     components: { AddressSidebar, ContactPageForm, PageHeader },
-    async asyncData({ store, route }) {
-      return await store.dispatch('getData', { route })
+    async asyncData({ route }) {
+      return await getData(route.fullPath)
     },
     head() {
       return {

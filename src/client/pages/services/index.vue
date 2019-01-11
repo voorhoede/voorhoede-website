@@ -30,12 +30,13 @@
 </template>
 
 <script>
+  import getData from '~/lib/get-data'
   import { PageHeader, ServicesList, GetInTouchForm, RichTextBlock } from '~/components'
 
   export default {
     components: { ServicesList, GetInTouchForm, PageHeader, RichTextBlock },
-    async asyncData({ store, route }) {
-      return await store.dispatch('getData', { route })
+    async asyncData({ route }) {
+      return await getData(route.fullPath)
     },
     head() {
       return {
