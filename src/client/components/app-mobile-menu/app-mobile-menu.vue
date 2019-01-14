@@ -1,6 +1,6 @@
 <template>
   <nav class="app-mobile-menu grid">
-    <h2 class="sr-only">Site Menu</h2>
+    <h2 class="sr-only">{{ title }}</h2>
     <div
       v-if="showMenu"
       class="app-mobile-menu__content"
@@ -14,9 +14,11 @@
           alt="">
       </nuxt-link>
       <ul class="app-mobile-menu__list body-petite">
-        <li v-for="link in localizedMenuItems" :key="link.href"
-            class="app-mobile-menu__list-item"
-            @click="toggleMobileMenu"
+        <li
+          v-for="link in links"
+          :key="link.href"
+          class="app-mobile-menu__list-item"
+          @click="toggleMobileMenu"
         >
           <nuxt-link
             class="h3"
@@ -49,7 +51,22 @@
   </nav>
 </template>
 <script>
+  import { createHref, linkValidator } from '../../lib/links'
+
   export default {
+    props: {
+      title: {
+        type: String,
+        default: 'Site menu'
+      },
+      links: {
+        type: Array,
+        validator (links) {
+          return links.every(linkValidator)
+        },
+        default: () => [],
+      }
+    },
     data: () => ({
       showMenu: false
     }),
@@ -60,11 +77,7 @@
       toggleMobileMenu() {
         return this.showMenu = !this.showMenu
       },
-      createHref(link) {
-        return (link.page.slug)
-          ? `/${this.$i18n.locale}/${link.page.slug}`
-          : link.url
-      },
+      createHref
     },
   }
 </script>

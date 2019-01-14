@@ -12,14 +12,14 @@
         </h3>
         <ul class="app-footer__list">
           <li
-            v-for="link in exploreLinks"
+            v-for="link in links"
             :key="link.slug"
             class="app-footer__list-item body-detail"
           >
-            <nuxt-link class="app-footer__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
+            <nuxt-link class="app-footer__link" :to="createHref(link, $i18n.locale)">{{ link.title }}</nuxt-link>
           </li>
           <li class="app-footer__list-item body-detail">
-            <nuxt-link class="app-footer__link" :to="createHref({ slug: 'faq'})">FAQ</nuxt-link>
+            <nuxt-link class="app-footer__link" :to="createHref({ page: { slug: 'faq' } }, $i18n.locale)">FAQ</nuxt-link>
           </li>
         </ul>
       </div>
@@ -86,6 +86,7 @@
 </template>
 
 <script>
+import { createHref, linkValidator } from '../../lib/links'
 import AppIcon from '../../components/app-icon'
 
 export default {
@@ -93,18 +94,12 @@ export default {
     AppIcon,
   },
   props: {
-    exploreLinks: {
+    links: {
       type: Array,
-      default: () => [],
-      validator: (links) => {
-        return (
-          links.every(link => {
-            return link instanceof Object &&
-              typeof link.title === 'string' &&
-              typeof link.slug === 'string'
-          })
-        )
+      validator (links) {
+        return links.every(linkValidator)
       },
+      default: () => [],
     },
     headerTitle: {
       type: String,
@@ -195,10 +190,7 @@ export default {
     }
   },
   methods: {
-    createHref(link) {
-      const locale = this.$i18n.locale
-      return `/${locale}/${link.slug}/`
-    },
+    createHref
   },
 }
 </script>

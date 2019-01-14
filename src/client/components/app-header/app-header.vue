@@ -44,17 +44,8 @@
 </template>
 
 <script>
+  import { createHref, linkValidator } from '../../lib/links'
   import { AppButton } from '../../components'
-
-  function linkValidator (item) {
-    return (
-      typeof item.title === 'string'
-      && (
-        (item.page && typeof item.page.slug === 'string')
-        || typeof item.url === 'string'
-      )
-    )
-  }
 
   export default {
     components: { AppButton },
@@ -82,11 +73,7 @@
         const alternate = name.replace(`___${this.$i18n.locale}`, `___${code}`)
         return alternate
       },
-      createHref(link) {
-        return (link.page.slug)
-          ? `/${this.$i18n.locale}/${link.page.slug}`
-          : link.url
-      },
+      createHref
     },
   }
 </script>

@@ -1,4 +1,7 @@
 query ($locale: SiteLocale)  {
+  menu(locale: $locale) {
+    ...menu
+  },
   footer(locale: $locale) {
     ...footer
   }
@@ -27,3 +30,62 @@ fragment footer on FooterRecord {
     title
   },
 },
+
+fragment menu on MenuRecord {
+  title,
+	links {
+    title,
+    url,
+    page {
+      ... on HomeRecord {
+        slug
+      }
+      ... on ServiceOverviewRecord {
+        slug
+      }
+      ... on CaseOverviewRecord {
+        slug
+      }
+      ... on BlogPostOverviewRecord {
+        slug
+      }
+      ... on JobOverviewRecord {
+        slug
+      }
+      ... on AboutRecord {
+        slug
+      }
+      ... on ContactRecord {
+        slug
+      }
+    }
+  },
+  callToAction {
+    title,
+    url,
+    page {
+      ... on HomeRecord {
+        slug
+      }
+      ... on ServiceOverviewRecord {
+        slug
+      }
+      ... on CaseOverviewRecord {
+        slug
+      }
+      ... on BlogPostOverviewRecord {
+        slug
+      }
+      ... on JobOverviewRecord {
+        slug
+      }
+      ... on AboutRecord {
+        slug
+      }
+      ... on ContactRecord {
+        slug
+      }
+    }
+  }
+}
+
