@@ -35,7 +35,7 @@
                 alt=""
               >
             </lazy-load>
-            <span :class="large ? 'body' : 'body-petite'">{{ $('by__authors_', { authos }) }}</span>
+            <span :class="large ? 'body' : 'body-petite'">{{ $t('by__authors_', { authors }) }}</span>
           </div>
         </div>
       </div>
@@ -65,9 +65,8 @@
       }
     },
     computed: {
-      authorName() {
-        const prefix = this.currentLocale === 'en' ? 'by' : 'door'
-        return `${prefix} ${this.item.authors.map(author => author.name).join(', ')}`
+      authors () {
+        return `${this.item.authors.map(author => author.name).join(', ')}`
       },
       formattedDate() {
         return new Date(this.item.date).toLocaleString(this.$i18n.locale, { day: 'numeric', year: 'numeric', month: 'short' })

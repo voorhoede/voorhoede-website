@@ -1,7 +1,9 @@
 <template>
   <div class="scroll-to">
     <div v-if="pointDown" class="scroll-to__point-down">
-      <span class="scroll-to__text body-petite font-bold">Scroll</span>
+      <span class="scroll-to__text body-petite font-bold">
+        {{ $t('scroll') }}
+      </span>
       <img
         class="scroll-to__image"
         src="/images/scroll-to-arrow--down.svg"
@@ -13,15 +15,13 @@
         src="/images/scroll-to-arrow--up.svg"
         alt="An arrow facing upwards">
       <span class="scroll-to__text body-petite font-bold">
-        {{ scrollUpText }}
+        {{ $t('return') }}
       </span>
     </a>
   </div>
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-
   export default {
     props: {
       pointDown: {
@@ -33,14 +33,6 @@
           type: Boolean,
           default: false,
           required: false
-      },
-    },
-    computed: {
-      ...mapState([
-        'currentLocale',
-      ]),
-      scrollUpText() {
-        return this.currentLocale === 'en' ? 'return' : 'terug'
       },
     }
   }

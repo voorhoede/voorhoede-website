@@ -76,13 +76,12 @@
     },
     methods: {
       toMetaString(array) {
-        const finalDivider = array.length > 1 ? ((this.currentLocale === 'en') ? 'and' : 'en') : ''
-        const lastItem = array[array.length-1]
-
+        const lastIndex = array.length - 1
+        const { title } = array[lastIndex]
         return array
-          .slice(0, array.length - 1)
-          .map(item => item.title)
-          .join(', ') + ` ${finalDivider} ${lastItem.title}`
+          .slice(0, lastIndex)
+          .map(({ title }) => title)
+          .join(', ') + ` ${(array.length > 1) ? this.$t('and') : ''} ${title}`
       }
     }
   }

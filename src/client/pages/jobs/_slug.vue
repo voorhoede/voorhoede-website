@@ -22,12 +22,12 @@
         <div class="button-group">
           <app-button
             class=""
-            :label="page.callToActionLabel"
+            :label="$t('view_details')"
             :to="page.url"
             external
           />
           <app-button
-            :label="(currentLocale === 'nl') ? 'Alle vacatures' : 'All vacancies'"
+            :label="$t('all_jobs')"
             :to="{ name: `jobs___/${$i18n.locale}/` }"
             secondary
           />
