@@ -36,7 +36,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import { AppButton, LazyLoad } from '~/components'
 
   export default {
@@ -82,17 +81,16 @@
       },
     },
     computed: {
-      ...mapState([ 'currentLocale' ]),
       date() {
         return new Date(this.dateString)
       },
       day() {
-        return this.date.toLocaleDateString(this.currentLocale, {
+        return this.date.toLocaleDateString(this.$i18n.locale, {
           day: 'numeric',
         })
       },
       month() {
-        return this.date.toLocaleDateString(this.currentLocale, {
+        return this.date.toLocaleDateString(this.$i18n.locale, {
           month: 'short',
         })
       },
