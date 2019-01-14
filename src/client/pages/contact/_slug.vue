@@ -12,7 +12,7 @@
     <div class="grid">
       <cta-block
         :cta-label="page.callToActionLabel"
-        :cta-to="{ name: 'locale-cases', params: { locale: currentLocale }}" />
+        :cta-to="localePath('cases')" />
     </div>
   </section>
 </template>

@@ -19,7 +19,7 @@
       </ul>
     </div>
     <div class="grid">
-      <cta-block :cta-label="page.callToActionLabel" :cta-to="{ name: 'locale-contact', params: { locale: currentLocale } }">
+      <cta-block :cta-label="page.callToActionLabel" :cta-to="localePath('contact')">
         <template slot="heading">
           <h3 class="h4">{{ page.callToActionTitle }}</h3>
         </template>
@@ -41,6 +41,7 @@
     async asyncData({ route }) {
       return await getData(route.fullPath)
     },
+
     head() {
       return {
         title: this.page.social.title,

@@ -1,7 +1,7 @@
 <template>
   <article>
     <nuxt-link
-      :to="{ name: 'locale-blog-slug', params: { locale: currentLocale, slug: item.slug }}"
+      :to="{ name: `blog-slug___${this.$i18n.locale}`, params: { slug: item.slug }}"
       class="blog-list-item"
       :class="{'blog-list-item--large' : large}"
       :aria-label="item.title"
@@ -35,7 +35,7 @@
                 alt=""
               >
             </lazy-load>
-            <span :class="large ? 'body' : 'body-petite'">{{ authorName }}</span>
+            <span :class="large ? 'body' : 'body-petite'">{{ $('by__authors_', { authos }) }}</span>
           </div>
         </div>
       </div>
@@ -44,7 +44,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import { LazyLoad, NoScript } from '~/components'
 
   export default {
@@ -66,15 +65,12 @@
       }
     },
     computed: {
-      ...mapState([
-        'currentLocale',
-      ]),
       authorName() {
         const prefix = this.currentLocale === 'en' ? 'by' : 'door'
         return `${prefix} ${this.item.authors.map(author => author.name).join(', ')}`
       },
       formattedDate() {
-        return new Date(this.item.date).toLocaleString(this.currentLocale, { day: 'numeric', year: 'numeric', month: 'short' })
+        return new Date(this.item.date).toLocaleString(this.$i18n.locale, { day: 'numeric', year: 'numeric', month: 'short' })
       },
     },
   }

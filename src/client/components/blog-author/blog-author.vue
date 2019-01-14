@@ -26,7 +26,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import { AppImage, FixedRatio } from '../../components'
 
   export default {
@@ -48,9 +47,6 @@
       },
     },
     computed: {
-      ...mapState([
-        'currentLocale',
-      ]),
       authorName() {
         return `by ${this.item.authors.map(author => author.name).join(', ')} -`
       },

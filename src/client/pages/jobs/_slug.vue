@@ -28,7 +28,7 @@
           />
           <app-button
             :label="(currentLocale === 'nl') ? 'Alle vacatures' : 'All vacancies'"
-            :to="`/${currentLocale}/jobs`"
+            :to="{ name: `jobs___/${$i18n.locale}/` }"
             secondary
           />
         </div>

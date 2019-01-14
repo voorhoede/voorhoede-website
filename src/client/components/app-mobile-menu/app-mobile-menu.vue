@@ -6,7 +6,7 @@
       class="app-mobile-menu__content"
       @touchmove="prevent"
     >
-      <nuxt-link :to="`/${currentLocale}/`">
+      <nuxt-link :to="localePath('index')">
         <img
           class="app-mobile-menu__logo"
           src="/images/logo--blue-and-yellow.svg"
@@ -49,22 +49,10 @@
   </nav>
 </template>
 <script>
-  import { mapGetters, mapState } from 'vuex'
-
   export default {
     data: () => ({
       showMenu: false
     }),
-    computed: {
-      ...mapState([
-        'locales',
-        'currentLocale',
-        'alternateUrl',
-      ]),
-      ...mapGetters([
-        'localizedMenuItems',
-      ]),
-    },
     methods: {
       prevent(event) {
         event.preventDefault()
@@ -73,8 +61,9 @@
         return this.showMenu = !this.showMenu
       },
       createHref(link) {
-        const locale = this.currentLocale
-        return `/${locale}/${link.slug}/`
+        return (link.page.slug)
+          ? `/${this.$i18n.locale}/${link.page.slug}`
+          : link.url
       },
     },
   }

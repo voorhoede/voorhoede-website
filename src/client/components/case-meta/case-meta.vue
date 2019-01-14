@@ -23,8 +23,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-
   export default {
     props: {
       expertiseTitle: {
@@ -75,11 +73,6 @@
         required: false,
         default: ''
       }
-    },
-    computed: {
-      ...mapState([
-        'currentLocale',
-      ]),
     },
     methods: {
       toMetaString(array) {

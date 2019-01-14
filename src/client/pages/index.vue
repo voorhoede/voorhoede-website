@@ -55,7 +55,6 @@
     <div class="page-index__academy grid" v-if="upcomingEvents[0]">
       <academy-excerpt
         :date-string="upcomingEvents[0].date"
-        :current-locale="currentLocale"
         :title="upcomingEvents[0].title"
         :description="upcomingEvents[0].description"
         :url="upcomingEvents[0].url"
@@ -71,12 +70,12 @@
       <h2 class="page-index__section-title page-index__section-title--blog-posts h3">{{ page.blogPostsTitle }}</h2>
       <ul class="page-index__blog-posts-list grid">
         <li v-for="blogPost in latestBlogposts" :key="blogPost.slug" class="page-index__blog-posts-list-item">
-          <blog-list-item :item="blogPost" :current-locale="currentLocale"/>
+          <blog-list-item :item="blogPost" />
         </li>
       </ul>
       <div class="page-index__blog-posts-button">
         <app-button
-          :to="{ name: 'locale-blog' }"
+          :to="localePath('blog')"
           :label="page.allBlogPostsButtonLabel"
           secondary
         />
@@ -84,7 +83,7 @@
       <curly-bracket side="right" />
     </section>
     <div class="page-index__cta-block grid">
-      <cta-block :cta-label="page.callToActionLabel" :cta-to="{ name: 'locale-contact', params: { locale: currentLocale } }">
+      <cta-block :cta-label="page.callToActionLabel" :cta-to="localePath('contact')">
         <template slot="heading">
           <h3 class="h4">{{ page.callToActionTitle }}</h3>
         </template>

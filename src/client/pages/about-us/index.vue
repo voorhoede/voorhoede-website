@@ -50,13 +50,12 @@
           <blog-list-item
             large
             :item="blogPost"
-            :current-locale="currentLocale"
           />
         </li>
       </ul>
       <div class="page-about-us__blog-button">
         <app-button
-          :to="{ name: 'locale-blog' }"
+          :to="localePath('blog')"
           :label="page.allBlogPostsButtonLabel"
           secondary
         />

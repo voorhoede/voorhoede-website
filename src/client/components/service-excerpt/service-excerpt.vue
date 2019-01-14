@@ -15,7 +15,7 @@
       :aria-label="cta + ' - ' + title"
       :label="cta"
       :to="{
-        name: 'locale-services-slug',
+        name: `services-slug___${this.$i18n.locale}`,
         params: { slug },
       }"
     />

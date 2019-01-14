@@ -41,7 +41,7 @@
           v-if="item.__typename === 'TextSectionRecord'"
           :key="item.title"
           class="page-case__text">
-          <h3 
+          <h3
             class="page-case__title h3"
             v-if="item.title">{{ item.title }}</h3>
           <rich-text-block
@@ -103,7 +103,7 @@
     <div class="page-case__link-container">
       <nuxt-link
         class="app-button app-button--secondary body font-bold"
-        :to="`/${currentLocale}/cases`">
+        :to="localePath('cases')">
         &larr; {{ page.backLinkTitle }}
       </nuxt-link>
     </div>

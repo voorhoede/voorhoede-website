@@ -83,16 +83,17 @@
     </aside>
 
     <div class="page-blog-post__link-container">
-      <nuxt-link class="app-button app-button--secondary body font-bold" :to="`/${currentLocale}/blog`">
+      <nuxt-link class="app-button app-button--secondary body font-bold" :to="localePath('blog')">
         &larr; See all posts
       </nuxt-link>
     </div>
 
     <div class="page-blog-post__cta grid">
+      <!-- TODO: Make this a section to be defined in DATO (once for all blog pages) -->
       <cta-block
         class="page-blog-post__cta-block"
         :cta-label="page.callToActionLabel"
-        :cta-to="{ name: 'locale-about-us', params: { locale: currentLocale } }">
+        :cta-to="localePath('about-us')">
         <template slot="heading">
           <h2 class="h3">{{ page.callToActionTitle }}</h2>
         </template>

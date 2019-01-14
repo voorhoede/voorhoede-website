@@ -10,16 +10,17 @@
         <p class="testimonial">{{ page.description }}</p>
       </text-block>
       <ul class="page-blog__posts">
-        <li v-for="blogPost in latestBlogposts" :key="blogPost.slug" v-if="blogPost.published">
-          <blog-list-item large :item="blogPost" :current-locale="currentLocale"/>
+        <li v-for="blogPost in latestBlogposts.filter(post => post.published)" :key="blogPost.slug">
+          <blog-list-item large :item="blogPost" />
         </li>
       </ul>
     </div>
     <div class="page-blog__cta grid">
+      <!-- TODO: Make this a section to be defined in DATO (once for all blog pages) -->
       <cta-block
         class="page-blog__cta-block"
         :cta-label="page.callToActionLabel"
-        :cta-to="{ name: 'locale-about-us', params: { locale: currentLocale } }">
+        :cta-to="localePath('about-us')">
         <template slot="heading">
           <h3 class="h3">{{ page.callToActionTitle }}</h3>
         </template>

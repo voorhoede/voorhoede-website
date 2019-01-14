@@ -2,7 +2,7 @@
   <footer class="app-footer grid">
     <div class="app-footer__layout">
       <div class="app-footer__header">
-        <nuxt-link :to="{name: 'locale', params: {currentLocale } }">
+        <nuxt-link :to="localePath('index')">
           <img class="app-footer__header-logo" src="/images/logo-with-text.svg" :alt="logoAlt">
         </nuxt-link>
       </div>
@@ -86,7 +86,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import AppIcon from '../../components/app-icon'
 
 export default {
@@ -191,16 +190,13 @@ export default {
     },
   },
   computed: {
-    ...mapState([
-      'currentLocale',
-    ]),
     cleanedTelephone() {
       return this.tel.replace(/[^0-9]/g, '')
     }
   },
   methods: {
     createHref(link) {
-      const locale = this.currentLocale
+      const locale = this.$i18n.locale
       return `/${locale}/${link.slug}/`
     },
   },

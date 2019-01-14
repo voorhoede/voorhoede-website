@@ -67,7 +67,6 @@
 
 <script>
   import { AppButton, InputField } from '~/components'
-  import { mapState } from 'vuex'
   import submitContactForm from '../../lib/submit-contact-form'
 
   export default {
@@ -148,11 +147,8 @@
       }
     },
     computed: {
-      ...mapState([
-        'currentLocale',
-      ]),
       confirmationPageUrl() {
-        return '/' + this.currentLocale + '/contact/confirmation/'
+        return `/${this.$i18n.locale}/contact/confirmation/` // no-js fallback: leave this a path
       },
       emailValidationErrorMessage() {
         return this.form.email ? this.emailErrorMessageIncorrect : this.emailErrorMessageEmpty
@@ -171,7 +167,7 @@
         submitContactForm({
           form: this.form,
           router: this.$router,
-          currentLocale: this.currentLocale,
+          locale: this.$i18n.locale,
         })
       }
     }
