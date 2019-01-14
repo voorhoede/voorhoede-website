@@ -9,7 +9,7 @@
     </time>
     <div class="academy-excerpt__content">
       <h2 class="academy-excerpt__title h3">{{ title }}</h2>
-      <p class="academy-excerpt__description body" v-html="description" />
+      <div class="academy-excerpt__description body" v-html="description" />
       <footer class="academy-excerpt__actions button-group">
         <app-button
           class="academy-excerpt__primary-button"
