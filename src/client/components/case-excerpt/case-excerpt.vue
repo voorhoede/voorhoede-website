@@ -4,7 +4,7 @@
       <div class="case-excerpt__content">
         <nuxt-link
           class="case-excerpt__image-link"
-          :to="{ name: `cases-slug___${this.$i18n.locale}`, params: { slug }}"
+          :to="localePath({ name: 'cases-slug', params: { slug } })"
         >
           <responsive-image
             :has-fixed-ratio="false"
@@ -19,7 +19,7 @@
               :aria-label="`${primaryLabel} - ${title}`"
               class="case-excerpt__button"
               :label="primaryLabel"
-              :to="{ name: `cases-slug___${this.$i18n.locale}`, params: { slug }}"
+              :to="localePath({ name: 'cases-slug', params: { slug } })"
             />
             <app-button
               class="case-excerpt__button"

@@ -1,7 +1,7 @@
 <template>
   <article>
     <nuxt-link
-      :to="{ name: `blog-slug___${this.$i18n.locale}`, params: { slug: item.slug }}"
+      :to="localePath({ name: 'blog-slug', params: { slug: item.slug } })"
       class="blog-list-item"
       :class="{'blog-list-item--large' : large}"
       :aria-label="item.title"

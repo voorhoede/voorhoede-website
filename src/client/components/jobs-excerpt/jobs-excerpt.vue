@@ -7,7 +7,12 @@
       <h3 class="job-excerpt__text-title h5">{{ title }}</h3>
       <p class="job-excerpt__text-description body-detail">{{ description }}</p>
     </div>
-    <app-button class="job-excerpt__button" :aria-label="title" :label="label" :to="{ name: `jobs-slug___${this.$i18n.locale}`, params: { slug } }"/>
+    <app-button
+      class="job-excerpt__button"
+      :aria-label="title"
+      :label="label"
+      :to="localePath({ name: 'jobs-slug', params: { slug } })"
+    />
   </div>
 </template>
 
