@@ -68,11 +68,6 @@
       }
     },
     methods: {
-      alternateRoute(code) {
-        const { name } = this.$route
-        const alternate = name.replace(`___${this.$i18n.locale}`, `___${code}`)
-        return alternate
-      },
       createHref
     },
   }

@@ -16,10 +16,10 @@
             :key="link.slug"
             class="app-footer__list-item body-detail"
           >
-            <nuxt-link class="app-footer__link" :to="createHref(link, $i18n.locale)">{{ link.title }}</nuxt-link>
+            <nuxt-link class="app-footer__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
           </li>
           <li class="app-footer__list-item body-detail">
-            <nuxt-link class="app-footer__link" :to="createHref({ page: { slug: 'faq' } }, $i18n.locale)">FAQ</nuxt-link>
+            <nuxt-link class="app-footer__link" :to="createHref({ page: { slug: 'faq' } })">FAQ</nuxt-link>
           </li>
         </ul>
       </div>
