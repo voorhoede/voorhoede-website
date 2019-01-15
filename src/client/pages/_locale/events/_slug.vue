@@ -30,14 +30,6 @@
           :key="item.image.url"
           :image="item.image" />
 
-        <responsive-video
-          v-if="item.__typename === 'ResponsiveVideoRecord'"
-          :key="item.video.title"
-          :video="item.video"
-          :autoplay="item.autoplay"
-          :loop="item.loop"
-          :mute="item.autoplay" />
-
         <text-block
           v-if="item.__typename === 'TextSectionRecord' && item.title"
           :key="item.title">
@@ -91,9 +83,6 @@
         &larr; See all {{ alternateParent.slug }}
       </nuxt-link>
     </div>
-
-    <style v-if="page.customStyling" v-html="page.customStyling"></style>
-    <script v-if="page.customScript && loadCustomScript" v-html="page.customScript"/>
   </div>
 </template>
 
@@ -105,10 +94,9 @@ import {
   PageHeader,
   QuoteBlock,
   ResponsiveImage,
-  ResponsiveVideo,
   RichTextBlock,
   TextBlock,
-} from '../../../components'
+} from '~/components'
 
 export default {
   components: {
@@ -117,7 +105,6 @@ export default {
     PageHeader,
     QuoteBlock,
     ResponsiveImage,
-    ResponsiveVideo,
     RichTextBlock,
     TextBlock,
   },
@@ -126,15 +113,6 @@ export default {
       return await store.dispatch('getData', { route })
     } catch (err) {
       return error({ statusCode: 404, message: err.message })
-    }
-  },
-  data() {
-    return {
-      /*
-       * Load custom script after vue has mounted,
-       * to prevent issues with the moment the custom script is executed and hydration.
-       */
-      loadCustomScript: false
     }
   },
   computed: {
@@ -169,9 +147,6 @@ export default {
         }
         return min
       }
-  },
-  mounted() {
-    this.loadCustomScript = true
   },
   head() {
     return {

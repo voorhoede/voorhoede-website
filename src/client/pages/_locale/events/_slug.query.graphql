@@ -63,20 +63,6 @@ fragment eventItem on EventItemRecord {
       quote,
       author
     },
-    ... on ResponsiveVideoRecord {
-      mute,
-      loop,
-      autoplay,
-      video {
-        url,
-        title,
-        height,
-        width,
-        provider,
-        providerUid,
-        thumbnailUrl
-      }
-    },
     ... on TextSectionRecord {
       title,
       body,
