@@ -16,6 +16,10 @@ fragment job on JobRecord {
   title,
   subtitle,
   slug,
+  i18nSlugs: _allSlugLocales {
+    locale,
+    value
+  },
   social {
     title,
     description
