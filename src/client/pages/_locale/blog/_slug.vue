@@ -168,10 +168,18 @@ export default {
     return {
       title: this.page.social.title,
       meta: [
+        { 'name': 'og:title', 'content': this.page.social.title },
+        { 'name': 'twitter:title', 'content': this.page.social.title },
         { 'name': 'description', 'content': this.page.social.description },
         { 'property': 'og:description', 'content': this.page.social.description },
         { 'name': 'twitter:description', 'content': this.page.social.description },
-        { 'name': 'keywords', 'content': this.page.keywords }
+        { 'name': 'keywords', 'content': this.page.keywords },
+        { 'name': 'og:image', 'content': this.page.social.image.url },
+        { 'name': 'twitter:image', 'content': this.page.social.image.url },
+        { 'property': 'og:image:width', 'content': '1000' },
+        { 'property': 'og:image:height', 'content': '500' },
+        { 'property': 'og:site_name', 'content': 'www.voorhoede.nl' },
+        { 'property': 'og:type', 'content': 'website' },
       ]
     }
   }
