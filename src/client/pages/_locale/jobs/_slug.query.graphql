@@ -18,7 +18,10 @@ fragment job on JobRecord {
   slug,
   social {
     title,
-    description
+    description,
+    image {
+      url
+    }
   },
   keywords,
   jobImage {

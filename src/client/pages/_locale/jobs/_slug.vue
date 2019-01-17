@@ -65,14 +65,21 @@
       ...mapState(['currentLocale']),
     },
     head() {
+      const baseUrl = process.env.baseUrl
+      const defaultShareImg = `${baseUrl}/images/social/logo-wide.jpg`
+
       return {
+        htmlAttrs: {
+          lang: this.currentLocale
+        },
         title: this.page.social.title,
         meta: [
           { 'name': 'description', 'content': this.page.social.description },
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'property': 'og:description', 'content': this.page.social.description },
-          { 'name': 'keywords', 'content': this.page.keywords }
-        ]
+          { 'name': 'keywords', 'content': this.page.keywords },
+          { 'name': 'twitter:title', 'content': this.page.social.title },
+          { 'name': 'twitter:description', 'content': this.page.social.description },
+          { 'name': 'twitter:image', 'content': this.page.social.image ? this.page.social.image.url : defaultShareImg },
+        ],
       }
     }
   }
