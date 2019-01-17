@@ -38,6 +38,7 @@
 </template>
 
 <script>
+  import setShareInfo from '../../../lib/set-share-info'
   import { mapState } from 'vuex'
   import { EventCard, PageHeader, RichTextBlock } from '~/components'
 
@@ -47,15 +48,7 @@
       return await store.dispatch('getData', { route })
     },
     head() {
-      return {
-        title: this.page.social.title,
-        meta: [
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'property': 'og:description', 'content': this.page.social.description },
-          { 'name': 'twitter:description', 'content': this.page.social.description },
-          { 'name': 'keywords', 'content': this.page.keywords }
-        ]
-      }
+      return setShareInfo(this.page, this.currentLocale)
     },
     computed: {
       ...mapState(['currentLocale'])

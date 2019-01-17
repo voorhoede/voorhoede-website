@@ -18,7 +18,9 @@
 </template>
 
 <script>
+  import setShareInfo from '../../../lib/set-share-info'
   import { PageHeaderDetail, GenericTextBlock } from '~/components'
+
   export default {
     components: {
       PageHeaderDetail,
@@ -32,22 +34,7 @@
       }
     },
     head() {
-      const baseUrl = process.env.baseUrl
-      const defaultShareImg = `${baseUrl}/images/social/logo-wide.jpg`
-
-      return {
-        htmlAttrs: {
-          lang: this.currentLocale
-        },
-        title: this.page.social.title,
-        meta: [
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'name': 'keywords', 'content': this.page.keywords },
-          { 'name': 'twitter:title', 'content': this.page.social.title },
-          { 'name': 'twitter:description', 'content': this.page.social.description },
-          { 'name': 'twitter:image', 'content': this.page.social.image ? this.page.social.image.url : defaultShareImg },
-        ],
-      }
+      return setShareInfo(this.page, this.currentLocale)
     }
   }
 </script>

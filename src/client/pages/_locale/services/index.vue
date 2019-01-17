@@ -30,6 +30,7 @@
 </template>
 
 <script>
+  import setShareInfo from '../../../lib/set-share-info'
   import { PageHeader, ServicesList, GetInTouchForm, RichTextBlock } from '~/components'
 
   export default {
@@ -38,15 +39,7 @@
       return await store.dispatch('getData', { route })
     },
     head() {
-      return {
-        title: this.page.social.title,
-        meta: [
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'property': 'og:description', 'content': this.page.social.description },
-          { 'name': 'keywords', 'content': this.page.keywords }
-        ],
-      }
+      return setShareInfo(this.page, this.currentLocale)
     }
   }
 </script>
