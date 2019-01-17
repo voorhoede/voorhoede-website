@@ -40,12 +40,6 @@ module.exports = {
       { 'http-equiv': 'Accept-CH', 'content': 'DPR, Width, Viewport-Width, Save-Data' },
       { 'name': 'robots', 'content': 'index,follow,noodp' },
       { 'name': 'googlebot', 'content': 'index,follow' },
-      /* Twitter */
-      { 'name': 'twitter:card', 'content': 'summary_large_image' },
-      { 'name': 'twitter:creator', 'content': '@devoorhoede' },
-      // { 'name': 'twitter:url', 'content': `${baseUrl}/` },
-      // { 'name': 'twitter:title', 'content': 'De Voorhoede' },
-      // { 'name': 'twitter:image', 'content': `${baseUrl}/images/social/logo-wide.jpg` },
       /* Windows */
       { 'name': 'msapplication-square70x70logo', 'content': '/images/social/windows-icon-70x70.png' },
       { 'name': 'msapplication-square150x150logo', 'content': '/images/social/windows-icon-150x150.png' },
