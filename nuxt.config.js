@@ -40,18 +40,10 @@ module.exports = {
       { 'http-equiv': 'Accept-CH', 'content': 'DPR, Width, Viewport-Width, Save-Data' },
       { 'name': 'robots', 'content': 'index,follow,noodp' },
       { 'name': 'googlebot', 'content': 'index,follow' },
-      /* Facebook */
-      // { 'property': 'og:url', 'content': `${baseUrl}/` },
-      // { 'property': 'og:type', 'content': 'website' },
-      // { 'property': 'og:title', 'content': 'De Voorhoede' },
-      // { 'property': 'og:image', 'content': `${baseUrl}/images/social/logo-wide.jpg` },
-      // { 'property': 'og:image:width', 'content': '1000' },
-      // { 'property': 'og:image:height', 'content': '500' },
-      // { 'property': 'og:site_name', 'content': 'www.voorhoede.nl' },
       /* Twitter */
       { 'name': 'twitter:card', 'content': 'summary_large_image' },
       { 'name': 'twitter:creator', 'content': '@devoorhoede' },
-      { 'name': 'twitter:url', 'content': `${baseUrl}/` },
+      // { 'name': 'twitter:url', 'content': `${baseUrl}/` },
       // { 'name': 'twitter:title', 'content': 'De Voorhoede' },
       // { 'name': 'twitter:image', 'content': `${baseUrl}/images/social/logo-wide.jpg` },
       /* Windows */

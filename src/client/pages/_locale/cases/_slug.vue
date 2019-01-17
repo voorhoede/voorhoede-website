@@ -185,13 +185,16 @@
       }
     },
     head() {
+      const baseUrl = process.env.baseUrl
+
       return {
         title: this.page.social.title,
         meta: [
+          { 'name': 'twitter:title', 'content': this.page.social.title },
           { 'name': 'description', 'content': this.page.social.description },
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'property': 'og:description', 'content': this.page.social.description },
-          { 'name': 'keywords', 'content': this.page.keywords }
+          { 'name': 'twitter:description', 'content': this.page.social.description },
+          { 'name': 'keywords', 'content': this.page.keywords },
+          { 'name': 'twitter:image', 'content': this.page.social.image ? this.page.social.image.url : `${baseUrl}/images/social/logo-wide.jpg` },
         ]
       }
     }
