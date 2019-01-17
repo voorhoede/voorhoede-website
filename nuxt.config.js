@@ -1,4 +1,5 @@
 const generate = require('./config/nuxt/generate')
+const modules = require('./config/nuxt/modules')
 const dotenv = require('dotenv-safe')
 
 dotenv.config()
@@ -12,9 +13,8 @@ const baseUrl = URL
 
 module.exports = {
   srcDir: 'src/client',
-
+  modules,
   generate,
-
   env: {
     baseUrl,
     DATO_API_TOKEN
