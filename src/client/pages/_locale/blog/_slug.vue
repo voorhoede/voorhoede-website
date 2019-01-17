@@ -323,6 +323,10 @@ export default {
   }
 
   @media (min-width: 1440px) {
+    .page-blog-post-list .responsive-video {
+      margin: 0 auto var(--spacing-larger) auto;
+    }
+    
     .page-blog-post-list > * {
       padding: 0 var(--spacing-bigger);
     }
