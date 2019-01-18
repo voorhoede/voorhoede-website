@@ -18,7 +18,9 @@
 </template>
 
 <script>
+  import head from '~/lib/seo-head'
   import { PageHeaderDetail, GenericTextBlock } from '~/components'
+
   export default {
     components: {
       PageHeaderDetail,
@@ -31,17 +33,7 @@
         return error({ statusCode: 404, message: err.message })
       }
     },
-    head() {
-      return {
-        title: this.page.social.title,
-        meta: [
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'property': 'og:description', 'content': this.page.social.description },
-          { 'name': 'keywords', 'content': this.page.keywords }
-        ]
-      }
-    }
+head
   }
 </script>
 

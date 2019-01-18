@@ -66,6 +66,7 @@
 </template>
 
 <script>
+  import head from '~/lib/seo-head'
   import { mapState } from 'vuex'
   import {
     AppButton,
@@ -91,17 +92,7 @@
     computed: {
       ...mapState(['currentLocale'])
     },
-    head() {
-      return {
-        title: this.page.social.title,
-        meta: [
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'property': 'og:description', 'content': this.page.social.description },
-          { 'name': 'twitter:description', 'content': this.page.social.description },
-          { 'name': 'keywords', 'content': this.page.keywords }
-        ]
-      }
-    }
+    head
   }
 </script>
 
