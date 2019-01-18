@@ -12,12 +12,9 @@
     </div>
     <AppButton
       secondary
-      :aria-label="cta + ' - ' + title"
-      :label="cta"
-      :to="{
-        name: `services-slug___${this.$i18n.locale}`,
-        params: { slug },
-      }"
+      :aria-label="$t('learn_more_about__title_', { title })"
+      :label="$t('learn_more')"
+      :to="localePath({ name: 'services-slug', params: { slug } })"
     />
   </article>
 </template>
@@ -44,10 +41,6 @@ export default {
       }
     },
     slug: {
-      type: String,
-      required: true,
-    },
-    cta: {
       type: String,
       required: true,
     },

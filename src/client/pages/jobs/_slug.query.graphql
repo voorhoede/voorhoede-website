@@ -31,7 +31,6 @@ fragment job on JobRecord {
     alt
   },
   url,
-  callToActionLabel,
   jobContent {
   	__typename,
     ... on TextSectionRecord {

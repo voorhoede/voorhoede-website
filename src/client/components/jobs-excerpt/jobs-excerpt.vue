@@ -10,7 +10,7 @@
     <app-button
       class="job-excerpt__button"
       :aria-label="title"
-      :label="label"
+      :label="$t('view_details')"
       :to="localePath({ name: 'jobs-slug', params: { slug } })"
     />
   </div>
@@ -40,11 +40,7 @@
         validator(image) {
           return image && typeof(image.url) === 'string'
         },
-      },
-      label: {
-        type: String,
-        required: true,
-      },
+      }
     },
 
   }

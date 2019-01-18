@@ -85,8 +85,5 @@ fragment about on AboutRecord {
     }
     description,
     url,
-    callToActionLabel,
   }
-  blogPostsTitle,
-  allBlogPostsButtonLabel,
 }

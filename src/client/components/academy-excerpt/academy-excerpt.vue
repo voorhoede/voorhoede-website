@@ -13,12 +13,13 @@
       <footer class="academy-excerpt__actions button-group">
         <app-button
           class="academy-excerpt__primary-button"
-          :label="ctaPrimaryLabel"
+          :aria-label="$t('sign_up_for__title_', { title })"
+          :label="$t('sign_up')"
           :to="ctaPrimaryTo"
           external
         />
         <app-button
-          :label="ctaSecondaryLabel"
+          :label="$t('more_events')"
           :to="ctaSecondaryTo"
           external
           secondary

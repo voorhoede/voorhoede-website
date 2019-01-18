@@ -22,7 +22,7 @@
         <div class="button-group">
           <app-button
             class=""
-            :label="$t('view_details')"
+            :label="$t('apply')"
             :to="page.url"
             external
           />

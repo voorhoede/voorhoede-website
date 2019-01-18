@@ -81,7 +81,6 @@ fragment page on HomeRecord {
     },
   },
   smallServices,
-  servicesCta,
   clientsTitle,
   academyPrimaryButtonLabel,
   academySecondaryButtonLabel,
@@ -92,7 +91,6 @@ fragment page on HomeRecord {
     height
   },
   blogPostsTitle,
-  allBlogPostsButtonLabel,
   callToActionTitle,
   callToActionLabel,
   casePrimaryCtaLabel,

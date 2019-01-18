@@ -31,7 +31,6 @@ fragment jobOverview on JobOverviewRecord {
     body,
     description,
    	slug,
-    callToActionLabel,
     jobImage {
       url,
       format,

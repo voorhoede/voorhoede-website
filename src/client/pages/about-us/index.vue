@@ -34,7 +34,6 @@
           class="page-about-us__jobs-list-item"
           :title="item.title"
           :description="item.description"
-          :label="item.callToActionLabel"
           :image="item.jobImage"
           :slug="item.slug"
         />
