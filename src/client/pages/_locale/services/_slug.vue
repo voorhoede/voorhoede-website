@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import setShareInfo from '../../../lib/set-share-info'
+  import head from '~/lib/seo-head'
   import { PageHeaderDetail, GenericTextBlock } from '~/components'
 
   export default {
@@ -33,9 +33,7 @@
         return error({ statusCode: 404, message: err.message })
       }
     },
-    head() {
-      return setShareInfo(this.page, this.currentLocale)
-    }
+head
   }
 </script>
 

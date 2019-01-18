@@ -41,7 +41,7 @@
           v-if="item.__typename === 'TextSectionRecord'"
           :key="item.title"
           class="page-case__text">
-          <h3 
+          <h3
             class="page-case__title h3"
             v-if="item.title">{{ item.title }}</h3>
           <rich-text-block
@@ -132,7 +132,7 @@
 </template>
 
 <script>
-  import setShareInfo from '../../../lib/set-share-info'
+  import head from '~/lib/seo-head'
   import { mapState } from 'vuex'
   import {
     CaseMeta,
@@ -185,9 +185,7 @@
         return item.image && item.fullWidth
       }
     },
-    head() {
-      return setShareInfo(this.page, this.currentLocale)
-    }
+head
   }
 </script>
 

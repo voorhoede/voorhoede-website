@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import setShareInfo from '../../../lib/set-share-info'
+  import head from '~/lib/seo-head'
   import { GenericTextBlock, PageHeader, ScrollTo } from '~/components'
 
   export default {
@@ -29,9 +29,7 @@
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
     },
-    head() {
-      return setShareInfo(this.page, this.currentLocale)
-    }
+head
   }
 </script>
 

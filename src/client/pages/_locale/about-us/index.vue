@@ -66,7 +66,7 @@
 </template>
 
 <script>
-  import setShareInfo from '../../../lib/set-share-info'
+  import head from '~/lib/seo-head'
   import { mapState } from 'vuex'
   import {
     AppButton,
@@ -92,9 +92,7 @@
     computed: {
       ...mapState(['currentLocale'])
     },
-    head() {
-      return setShareInfo(this.page, this.currentLocale)
-    }
+    head
   }
 </script>
 

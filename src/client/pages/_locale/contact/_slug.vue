@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import setShareInfo from '../../../lib/set-share-info'
+  import head from '~/lib/seo-head'
   import { mapState } from 'vuex'
   import { CtaBlock, PageHeader } from '~/components'
 
@@ -41,9 +41,7 @@
         'alternateUrl',
       ]),
     },
-    head() {
-      return setShareInfo(this.page, this.currentLocale)
-    }
+head
   }
 </script>
 
