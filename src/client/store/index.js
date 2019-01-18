@@ -77,11 +77,11 @@ const createStore = () => {
       async getData({ commit, dispatch, getters, state }, { route }) {
         try {
           const variables = {
-            currentLocale: state.currentLocale,
-            altLocale: getters.alternateLocale,
+            locale: state.currentLocale,
+            alternateLocale: getters.alternateLocale,
             currentDate: dayjs().format('YYYY-MM-DD')
           }
-          const data = await getData(route.path, variables)
+          const data = await getData(route, variables)
 
           const alternateParentSlug = data.alternateParent ? `/${data.alternateParent.slug}` : ''
           const alternateSlug = (data.alternate && !state.locales.includes(data.alternate.slug)) ? `/${data.alternate.slug}` : ''
@@ -118,13 +118,25 @@ const createStore = () => {
           return dispatch('getLayoutData')
         }
       },
-      async getLayoutData({ state, commit }) {
+      async getLayoutData({ state, getters, commit }) {
         let data
 
+        const variables = {
+          currentLocale: state.currentLocale,
+          altLocale: getters.alternateLocale,
+          currentDate: dayjs().format('YYYY-MM-DD')
+        }
+
         if (state.currentLayout === 'default') {
-          data = await getData(`/${state.currentLocale}/layouts/${state.currentLayout}`)
+          data = await getData({
+            path: `/${state.currentLocale}/layouts/${state.currentLayout}`,
+            name: 'default'
+          }, variables)
         } else {
-          data = await getData(`/${state.currentLocale}/layouts/${state.currentLayout}/${state.errorCode}`)
+          data = await getData({
+            path: `/${state.currentLocale}/layouts/${state.currentLayout}/${state.errorCode}`,
+            name: 'error'
+          }, variables)
         }
 
         commit(types.SET_LAYOUT_DATA, { data })

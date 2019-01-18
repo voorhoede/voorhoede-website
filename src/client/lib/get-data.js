@@ -2,22 +2,37 @@ const path = require('path')
 const fetch = require('node-fetch')
 
 const locales = ['nl', 'en']
-const layoutRegex = new RegExp(`(${locales.join('|')})/layouts/`)
-const localesRegex = new RegExp(`(${locales.join('|')})`)
+const layoutRegex = new RegExp(`(${locales.join('|')})/layouts/[a-z-]`)
 
 export function getData(route, variables) {
-  let queryPath
-  const clientPath = process.client ? '..' : 'src/client'
-
-  if (route.match(layoutRegex)) {
-    queryPath = path.join(clientPath, 'layouts', route.replace(layoutRegex, '') + '.query.graphql')
-  } else {
-    queryPath = path.join(clientPath, 'pages', route.replace(localesRegex, '_locale'), 'index.query.graphql')
-  }
-
-  const query = process.client ? require(queryPath) : require('fs').readFileSync(queryPath, 'utf8')
-
   if (process.env.NODE_ENV !== 'production') {
+    let queryPath
+
+    if (route.path.match(layoutRegex)) {
+      const layout = (route.path.indexOf('error') >= 0) ? 'error' : 'default'
+      queryPath = `layouts/${layout}.query.graphql`
+    }
+    else {
+      const slug = route.params.slug
+      if (slug) {
+        const routeRegex = new RegExp(/(?<=locale-)[a-z-]{1,}(?=-)/)
+        const routeName = route.name.match(routeRegex)[0]
+        queryPath = `pages/_locale/${routeName}/_slug.query.graphql`
+        variables.slug = slug
+      } else {
+        const routeRegex = new RegExp(/(?<=locale-)[a-z]*/)
+        const routeQueryPath = route.name.match(routeRegex) ? route.name.match(routeRegex)[0] + '/' : ''
+        queryPath = `pages/_locale/${routeQueryPath}index.query.graphql`
+      }
+    }
+
+    let query
+    if (process.client) {
+      query = require(`../${queryPath}`)
+    } else {
+      query = require('fs').readFileSync(`src/client/${queryPath}`, 'utf8')
+    }
+
     return fetch(
       'https://graphql.datocms.com/',
       {
@@ -33,7 +48,7 @@ export function getData(route, variables) {
       .then(res => res.json())
       .then(res => res.data)
   } else {
-    const filepath = path.join('/data', route, 'index.json')
+    const filepath = path.join('/data', route.path, 'index.json')
     if (process.client) {
       // On client load over http
       return fetch(filepath).then(res => res.json())
