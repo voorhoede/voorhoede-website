@@ -1,10 +1,13 @@
 <template>
   <article class="event-card">
-    <a class="event-card__link" :class="{ 'event-card__link--alt': isMeetup }" :href="url" target="_blank" rel="noopener">
+    <nuxt-link
+      :to="{ name: 'locale-events-slug', params: { locale: currentLocale, slug }}"
+      class="event-card__link"
+      :class="{ 'event-card__link--alt': isMeetup }">
       <header class="event-card__header">
         <time
           :datetime="dateString"
-          class="event-card__calendar" :class="{ 'event-card__calendar-themed': isMeetup }">
+          class="event-card__calendar" :class="{ 'event-card__calendar--alt': isMeetup }">
           <span class="event-card__day font-bold ">{{ day }}</span>
           <span class="event-card__month">{{ month }}</span>
         </time>
@@ -24,7 +27,7 @@
           :text="description"
           class="event-card__description" />
       </div>
-    </a>
+    </nuxt-link>
   </article>
 </template>
 
@@ -60,7 +63,12 @@
           return typeof(illustration.url) === 'string'
         }
       },
-      url: {
+      price: {
+        type: String,
+        required: false,
+        default: ''
+      },
+      slug: {
         type: String,
         required: true
       }
@@ -89,6 +97,7 @@
 
 <style>
   .event-card {
+    width: 100%;
     padding-bottom: var(--spacing-small);
     margin-bottom: var(--spacing-large);
     border-bottom: 1px solid var(--very-dim);
@@ -153,7 +162,7 @@
     color: var(--white);
   }
 
-  .event-card__calendar-themed {
+  .event-card__calendar--alt {
     background-color: var(--brand-yellow);
     color: var(--html-blue);
   }
@@ -169,8 +178,8 @@
     background-color: var(--html-blue);
   }
 
-  .event-card__calendar-themed::before,
-  .event-card__calendar-themed::after {
+  .event-card__calendar--alt::before,
+  .event-card__calendar--alt::after {
     background-color: var(--brand-yellow);
   }
 

@@ -124,7 +124,7 @@ import {
   ScrollTo,
   SocialButtons,
   TextBlock,
-} from '../../../components'
+} from '~/components'
 
 export default {
   components: {
