@@ -1,13 +1,14 @@
 const fs = require('fs')
 const util = require('util')
 const chalk = require('chalk')
-const cheerio = require('cheerio')
 const glob = util.promisify(require('glob'))
 const path = require('path')
 const mkdirp = require('mkdirp')
 const dotenv = require('dotenv-safe')
 const dayjs = require('dayjs')
-const Prism = require('prismjs')
+
+const prismifyCodeBlocks = require('../../src/client/lib/prismify-code-blocks')
+const addClassesToHeadings = require('../../src/client/lib/add-classes-to-headings')
 
 dotenv.config()
 
@@ -133,38 +134,6 @@ async function writeJsonFile({ filePath, data }) {
 
 function createDirectory(dir) {
   return new Promise((resolve, reject) => mkdirp(dir, (err) => err ? reject(err) : resolve()))
-}
-
-function addClassesToHeadings(items) {
-  items.forEach(item => {
-    const { body, __typename } = item
-    if (__typename === 'TextSectionRecord' && body) {
-      const $ = cheerio.load(item.body)
-      for (let level of [1,2,3,4,5,6]) {
-        $(`h${level}`).addClass(`h${level + 1}`)
-      }
-      item.body = $.html()
-    }
-  })
-}
-
-function prismifyCodeBlocks(items) {
-  items.forEach(item => {
-    const { body, language, __typename } = item
-    if (__typename === 'CodeBlockRecord' && body && language) {
-      let prismified
-      if (!Prism.languages.hasOwnProperty(language)) {
-        require(`prismjs/components/prism-${language}`)
-      }
-      try {
-        prismified = Prism.highlight(body, Prism.languages[language])
-      } catch (e) {
-        console.error(`Unable to prismify code block for language ${language}: ${e.message}`) // eslint-disable-line no-console
-        return
-      }
-      item.body = prismified
-    }
-  })
 }
 
 function redirectsToText (redirects, locale) {

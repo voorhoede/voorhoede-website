@@ -1,6 +1,9 @@
 const path = require('path')
 const fetch = require('node-fetch')
 
+const addClassesToHeadings = require('./add-classes-to-headings')
+const prismifyCodeBlocks = require('./prismify-code-blocks')
+
 const locales = ['nl', 'en']
 const layoutRegex = new RegExp(`(${locales.join('|')})/layouts/[a-z-]`)
 
@@ -46,7 +49,14 @@ export function getData(route, variables) {
       }
     )
       .then(res => res.json())
-      .then(res => res.data)
+      .then(res => {
+        const data = res.data
+        if (data.page && Array.isArray(data.page.items)) {
+          addClassesToHeadings(data.page.items)
+          prismifyCodeBlocks(data.page.items)
+        }
+        return data
+      })
   } else {
     const filepath = path.join('/data', route.path, 'index.json')
     if (process.client) {
