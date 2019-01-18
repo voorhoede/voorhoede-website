@@ -5,7 +5,7 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       showGrid: false,
-      slugs: undefined,
+      i18nSlugs: undefined,
     },
     mutations: {
       [types.SHOW_GRID](state) {
@@ -15,7 +15,7 @@ const createStore = () => {
         state.showGrid = true
       },
       [types.SET_I18N_SLUGS] (state, i18nSlugs) {
-        state.slugs = i18nSlugs
+        state.i18nSlugs = i18nSlugs
       },
     }
   })
