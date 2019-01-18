@@ -32,7 +32,7 @@
               class="app-header__link"
               :aria-label="$t('switch_to__language_', 'nl', { language: name })"
               :lang="code"
-              :to="switchLocalePath(code)"
+              :to="localizedLocalePaths[code]"
             >
               {{ code }}
             </nuxt-link>
@@ -67,8 +67,24 @@
         default: () => {},
       }
     },
+    computed: {
+      localizedLocalePaths () {
+      if (this.$store.state.i18nSlugs) {
+          return this.$store.state.i18nSlugs.reduce((obj, { locale, value }) => {
+            const name = this.$route.name.replace(/___.*$/,'') // strip locale suffix
+            obj[locale] = this.localePath({ name, params: { slug: value }, }, locale)
+            return obj
+          }, {})
+        } else {
+          return this.$i18n.locales.reduce((obj, { code }) => {
+            obj[code] = this.switchLocalePath(code)
+            return obj
+          }, {})
+        }
+      }
+    },
     methods: {
-      createHref
+      createHref,
     },
   }
 </script>
