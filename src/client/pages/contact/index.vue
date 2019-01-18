@@ -41,14 +41,12 @@
 </template>
 
 <script>
-  import getData from '~/lib/get-data'
+  import asyncData from '~/lib/async-page'
   import { AddressSidebar, ContactPageForm, PageHeader } from '~/components'
 
   export default {
     components: { AddressSidebar, ContactPageForm, PageHeader },
-    async asyncData({ route }) {
-      return await getData(route.fullPath)
-    },
+    asyncData,
     head() {
       return {
         title: this.page.social.title,

@@ -110,7 +110,7 @@
 </template>
 
 <script>
-import getData from '~/lib/get-data'
+import asyncData from '~/lib/async-page'
 import {
   AppButton,
   BlogAuthor,
@@ -143,9 +143,7 @@ export default {
     SocialButtons,
     TextBlock,
   },
-  async asyncData({ route }) {
-    return await getData(route.fullPath)
-  },
+  asyncData,
   data() {
     return {
       /*

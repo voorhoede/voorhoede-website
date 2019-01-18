@@ -65,7 +65,7 @@
 </template>
 
 <script>
-  import getData from '~/lib/get-data'
+  import asyncData from '~/lib/async-page'
   import {
     AppButton,
     BlogListItem,
@@ -84,9 +84,7 @@
       JobsExcerpt,
       PageHeader,
     },
-    async asyncData({ route }) {
-      return await getData(route.fullPath)
-    },
+    asyncData,
     head() {
       return {
         title: this.page.social.title,

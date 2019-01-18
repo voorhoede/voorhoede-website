@@ -24,7 +24,7 @@
 </template>
 
 <script>
-  import getData from '~/lib/get-data'
+  import asyncData from '~/lib/async-page'
   import { PageHeader, JobsExcerpt } from '~/components'
 
   export default {
@@ -32,9 +32,7 @@
       PageHeader,
       JobsExcerpt
     },
-    async asyncData({ route }) {
-      return await getData(route.fullPath)
-    },
+    asyncData,
     head() {
       return {
         title: this.page.social.title,

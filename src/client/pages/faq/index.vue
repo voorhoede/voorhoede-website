@@ -21,14 +21,12 @@
 </template>
 
 <script>
-  import getData from '~/lib/get-data'
+  import asyncData from '~/lib/async-page'
   import { GenericTextBlock, PageHeader, ScrollTo } from '~/components'
 
   export default {
     components: { GenericTextBlock, PageHeader, ScrollTo },
-    async asyncData({ route }) {
-      return await getData(route.fullPath)
-    },
+    asyncData,
     head() {
       return {
         title: this.page.social.title,

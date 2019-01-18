@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import getData from '~/lib/get-data'
+  import asyncData from '~/lib/async-page'
   import { CaseExcerpt, PageHeader, CtaBlock } from '~/components'
 
   export default {
@@ -38,9 +38,7 @@
       PageHeader,
       CtaBlock
     },
-    async asyncData({ route }) {
-      return await getData(route.fullPath)
-    },
+    asyncData,
 
     head() {
       return {

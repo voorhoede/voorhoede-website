@@ -94,7 +94,7 @@
 </template>
 
 <script>
-  import getData from '~/lib/get-data'
+  import asyncData from '~/lib/async-page'
   import {
     AcademyExcerpt,
     AppButton,
@@ -125,9 +125,7 @@
       ScrollTo,
       ServicesList,
     },
-    async asyncData({ route }) {
-      return await getData(route.fullPath)
-    },
+    asyncData,
     methods: {
       isLast(index, usps) {
         return index === Object.keys(usps).length - 1 ? { isSet: true, number: index } : { isSet: false }

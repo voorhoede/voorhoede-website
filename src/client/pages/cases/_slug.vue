@@ -132,7 +132,8 @@
 </template>
 
 <script>
-  import getData from '~/lib/get-data'
+  import asyncData from '~/lib/async-page'
+
   import {
     CaseMeta,
     CasePullQuoteComposition,
@@ -150,9 +151,7 @@
   } from '~/components'
 
   export default {
-    async asyncData({ route }) {
-      return await getData(route.fullPath)
-    },
+    asyncData,
     components: {
       CaseMeta,
       CasePullQuoteComposition,
