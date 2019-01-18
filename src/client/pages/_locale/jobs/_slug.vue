@@ -65,7 +65,7 @@
     computed: {
       ...mapState(['currentLocale']),
     },
-head
+    head
   }
 </script>
 

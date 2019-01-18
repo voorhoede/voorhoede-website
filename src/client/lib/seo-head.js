@@ -1,4 +1,6 @@
-export default function setShareInfo( page, currentLocale ) {
+export default function () {
+  const page = this.page
+  const currentLocale = this.currentLocale
   const baseUrl = process.env.baseUrl
   const defaultShareTitle = 'De Voorhoede'
   const defaultShareImg = `${baseUrl}/images/social/logo-wide.jpg`
