@@ -20,7 +20,7 @@ export function getData(route, variables) {
         queryPath = `pages/_locale/${routeName}/_slug.query.graphql`
         variables.slug = slug
       } else {
-        const routeRegex = new RegExp(/(?<=locale-)[a-z]*/)
+        const routeRegex = new RegExp(/(?<=locale-)[a-z-]*/)
         const routeQueryPath = route.name.match(routeRegex) ? route.name.match(routeRegex)[0] + '/' : ''
         queryPath = `pages/_locale/${routeQueryPath}index.query.graphql`
       }
