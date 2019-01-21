@@ -21,12 +21,17 @@ module.exports = (dato, root, i18n) => {
 
   fs.writeFileSync(`${__dirname}/${staticDir}/_redirects`, redirectsToText(dato.redirects, locales, defaultLocale), 'utf8')
 
+  let messages = locales.reduce((obj, item) => {
+    obj[item] = {}
+    return obj
+  }, {})
 
   locales.forEach(locale => {
     i18n.withLocale(locale, () => {
-      root.createDataFile(`${dataDir}/${locale}/messages.json`, 'json', translationsToJson(dato.translations))
+      messages[locale] = translationsToJson(dato.translations)
     })
   })
+  root.createDataFile(`${dataDir}/messages.json`, 'json', messages)
 }
 
 function localesToJson (locales) {
