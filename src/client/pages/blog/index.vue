@@ -20,7 +20,7 @@
       <cta-block
         class="page-blog__cta-block"
         :cta-label="page.callToActionLabel"
-        :cta-to="localePath('about-us')">
+        :cta-to="localeUrl('about-us')">
         <template slot="heading">
           <h3 class="h3">{{ page.callToActionTitle }}</h3>
         </template>

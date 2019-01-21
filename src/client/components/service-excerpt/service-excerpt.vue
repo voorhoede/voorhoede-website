@@ -14,7 +14,7 @@
       secondary
       :aria-label="$t('learn_more_about__title_', { title })"
       :label="$t('learn_more')"
-      :to="localePath({ name: 'services-slug', params: { slug } })"
+      :to="localeUrl({ name: 'services-slug', params: { slug } })"
     />
   </article>
 </template>

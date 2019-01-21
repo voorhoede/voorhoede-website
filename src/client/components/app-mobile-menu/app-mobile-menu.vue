@@ -6,7 +6,7 @@
       class="app-mobile-menu__content"
       @touchmove="prevent"
     >
-      <nuxt-link :to="localePath('index')">
+      <nuxt-link :to="localeUrl('index')">
         <img
           class="app-mobile-menu__logo"
           src="/images/logo--blue-and-yellow.svg"

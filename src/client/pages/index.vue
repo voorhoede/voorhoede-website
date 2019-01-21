@@ -75,7 +75,7 @@
       </ul>
       <div class="page-index__blog-posts-button">
         <app-button
-          :to="localePath('blog')"
+          :to="localeUrl('blog')"
           :label="$t('latest_blog_posts')"
           secondary
         />
@@ -83,7 +83,7 @@
       <curly-bracket side="right" />
     </section>
     <div class="page-index__cta-block grid">
-      <cta-block :cta-label="page.callToActionLabel" :cta-to="localePath('contact')">
+      <cta-block :cta-label="page.callToActionLabel" :cta-to="localeUrl('contact')">
         <template slot="heading">
           <h3 class="h4">{{ page.callToActionTitle }}</h3>
         </template>

@@ -83,7 +83,7 @@
     </aside>
 
     <div class="page-blog-post__link-container">
-      <nuxt-link class="app-button app-button--secondary body font-bold" :to="localePath('blog')">
+      <nuxt-link class="app-button app-button--secondary body font-bold" :to="localeUrl('blog')">
         &larr; See all posts
       </nuxt-link>
     </div>
@@ -93,7 +93,7 @@
       <cta-block
         class="page-blog-post__cta-block"
         :cta-label="page.callToActionLabel"
-        :cta-to="localePath('about-us')">
+        :cta-to="localeUrl('about-us')">
         <template slot="heading">
           <h2 class="h3">{{ page.callToActionTitle }}</h2>
         </template>

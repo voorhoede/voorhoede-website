@@ -19,7 +19,7 @@
       </ul>
     </div>
     <div class="grid">
-      <cta-block :cta-label="page.callToActionLabel" :cta-to="localePath('contact')">
+      <cta-block :cta-label="page.callToActionLabel" :cta-to="localeUrl('contact')">
         <template slot="heading">
           <h3 class="h4">{{ page.callToActionTitle }}</h3>
         </template>

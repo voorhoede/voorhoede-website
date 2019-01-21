@@ -28,7 +28,7 @@
           />
           <app-button
             :label="$t('all_jobs')"
-            :to="localePath('jobs')"
+            :to="localeUrl('jobs')"
             secondary
           />
         </div>

@@ -103,7 +103,7 @@
     <div class="page-case__link-container">
       <nuxt-link
         class="app-button app-button--secondary body font-bold"
-        :to="localePath('cases')">
+        :to="localeUrl('cases')">
         &larr; {{ page.backLinkTitle }}
       </nuxt-link>
     </div>

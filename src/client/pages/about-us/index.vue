@@ -54,7 +54,7 @@
       </ul>
       <div class="page-about-us__blog-button">
         <app-button
-          :to="localePath('blog')"
+          :to="localeUrl('blog')"
           :label="page.allBlogPostsButtonLabel"
           secondary
         />

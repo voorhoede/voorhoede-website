@@ -2,7 +2,7 @@
   <nav class="app-header grid">
     <h2 class="sr-only">{{ title }}</h2>
     <div class="app-header__content">
-      <nuxt-link class="app-header__home-link" :to="localePath('index')">
+      <nuxt-link class="app-header__home-link" :to="localeUrl('index')">
         <img class="app-header__logo" src="/images/logo-with-text.svg" alt="Home">
       </nuxt-link>
       <div class="app-header__link-lists body-petite">
@@ -32,7 +32,7 @@
               class="app-header__link"
               :aria-label="$t('switch_to__language_', 'nl', { language: name })"
               :lang="code"
-              :to="localizedLocalePaths[code]"
+              :to="localizedlocaleUrls[code]"
             >
               {{ code }}
             </nuxt-link>
@@ -68,16 +68,16 @@
       }
     },
     computed: {
-      localizedLocalePaths () {
+      localizedlocaleUrls () {
       if (this.$store.state.i18nSlugs) {
           return this.$store.state.i18nSlugs.reduce((obj, { locale, value }) => {
             const name = this.$route.name.replace(/___.*$/,'') // strip locale suffix
-            obj[locale] = this.localePath({ name, params: { slug: value }, }, locale)
+            obj[locale] = this.localeUrl({ name, params: { slug: value }, }, locale)
             return obj
           }, {})
         } else {
           return this.$i18n.locales.reduce((obj, { code }) => {
-            obj[code] = this.switchLocalePath(code)
+            obj[code] = this.switchLocaleUrl(code)
             return obj
           }, {})
         }
