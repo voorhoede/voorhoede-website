@@ -1,37 +1,41 @@
 <template>
   <section class="layout-error">
     <page-header
-      v-if="layoutData.error"
-      :title="layoutData.error.title"
-      :text="String(layoutData.error.errorCode)"
-      :image="layoutData.error.headerImage"
+      v-if="layout.error"
+      :title="layout.error.title"
+      :text="String(layout.error.errorCode)"
+      :image="layout.error.headerImage"
     />
-    <div class="layout-error__backdrop grid" v-if="layoutData.error">
+    <div class="layout-error__backdrop grid" v-if="layout.error">
       <div class="layout-error__content body">
-        {{ layoutData.error.body }}
+        {{ layout.error.body }}
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import getData from '../lib/get-data'
 import PageHeader from '../components/page-header'
 
+const DEFAULT_STATUSCODE = 404
 export default {
   components: { PageHeader },
   props: {
     error: {
       type: [Object, Error],
-      required: true,
+      required: false,
       validator(error) {
         return typeof(error.statusCode) === 'number'
-      }
+      },
+      default: () => ({
+        statusCode: DEFAULT_STATUSCODE,
+      })
     },
   },
-  async asyncData() {
+  data() {
     return {
-      layout: await getData(`${this.$i18n.locale}/layouts/error/${this.error.statusCode}`)
+      layout: require(`../static/data/${this.$i18n.locale}/layouts/error/${this.error.statusCode}`)
+        || require(`../static/data/${this.$i18n.locale}/layouts/error/${DEFAULT_STATUSCODE}`) // layout data should always be bundled
     }
   },
   head() {

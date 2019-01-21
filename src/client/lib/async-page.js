@@ -1,12 +1,14 @@
 import { SET_I18N_SLUGS } from '~/store/mutation-types'
 
-export default async function asyncPage ({ route, store, error }) {
+export default async function asyncPage ({ route, store, error } ) {
   try {
     const data = await fetchPage(route.fullPath)
     store.commit(SET_I18N_SLUGS, data.page.i18nSlugs)
     return data
   } catch (e) {
-    error(e)
+    return error({
+      statusCode: 404,
+    })
   }
 }
 
