@@ -180,6 +180,8 @@
   @media (min-width: 1440px) {
     .responsive-video {
       width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 </style>
