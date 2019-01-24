@@ -6,6 +6,7 @@ query ($locale: SiteLocale)  {
   alternate: about(locale: $locale) {
     slug
   }
+
   latestBlogposts: allBlogPosts(locale:$locale, first:3, orderBy: publishDate_DESC,
     filter: { published: { eq: true } } ) {
     slug,
@@ -19,6 +20,18 @@ query ($locale: SiteLocale)  {
         width,
         height,
       }
+    }
+  }
+
+  jobs: allJobs(locale: $locale, filter: { published: { eq: true }}) {
+    title
+    description,
+    callToActionLabel,
+    slug,
+    jobImage {
+      url,
+      format,
+      alt
     }
   }
 }
@@ -73,20 +86,6 @@ fragment about on AboutRecord {
   },
   jobsTitle,
   jobsBody,
-  jobs {
-    title,
-    slug,
-    jobImage {
-      url,
-      alt,
-      width,
-      height,
-      format
-    }
-    description,
-    url,
-    callToActionLabel,
-  }
   blogPostsTitle,
   allBlogPostsButtonLabel,
 }
