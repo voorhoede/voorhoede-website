@@ -11,7 +11,6 @@
           v-for="item in page.jobs"
           :key="item.slug">
           <jobs-excerpt
-            v-if="item.published"
             :title="item.title"
             :description="item.description"
             :label="item.callToActionLabel"

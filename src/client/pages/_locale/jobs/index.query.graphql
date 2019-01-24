@@ -3,7 +3,7 @@ query ($locale: SiteLocale)  {
     ...jobOverview
   },
 
-  items: allJobs(locale: $locale) {
+  items: allJobs(locale: $locale, filter: { published: { eq: true }}) {
     slug(locale: $locale)
   },
 
@@ -32,7 +32,6 @@ fragment jobOverview on JobOverviewRecord {
     description,
    	slug,
     callToActionLabel,
-    published,
     jobImage {
       url,
       format,
