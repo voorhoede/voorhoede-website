@@ -29,7 +29,7 @@
       <p class="body-big font-html-blue">{{ page.jobsBody }}</p>
     </div>
     <ul class="page-about-us__jobs">
-      <li class="page-about-us__jobs-list" v-for="item in page.jobs" :key="item.title">
+      <li class="page-about-us__jobs-list" v-for="item in jobs" :key="item.slug">
         <jobs-excerpt
           class="page-about-us__jobs-list-item"
           :title="item.title"
