@@ -4,7 +4,15 @@ query ($locale: SiteLocale)  {
   },
 
   items: allJobs(locale: $locale, filter: { published: { eq: true }}) {
-    slug(locale: $locale)
+    title
+    description,
+    slug,
+    callToActionLabel,
+    jobImage {
+      url,
+      format,
+      alt
+    },
   },
 
   alternate: jobOverview(locale: $locale) {
@@ -26,16 +34,4 @@ fragment jobOverview on JobOverviewRecord {
     description
   },
   keywords,
- 	jobs {
-  	title
-    body,
-    description,
-   	slug,
-    callToActionLabel,
-    jobImage {
-      url,
-      format,
-      alt
-    },
-  },
 }

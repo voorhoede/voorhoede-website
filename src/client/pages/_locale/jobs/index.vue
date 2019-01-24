@@ -8,7 +8,7 @@
     <div class="grid">
       <ul class="page-jobs__overview">
         <li
-          v-for="item in page.jobs"
+          v-for="item in items"
           :key="item.slug">
           <jobs-excerpt
             :title="item.title"
@@ -35,7 +35,7 @@
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
     },
-head
+    head
   }
 </script>
 
@@ -47,7 +47,7 @@ head
 
 @media (min-width: 1100px) {
   .page-jobs__overview {
-  grid-column: var(--grid-content-narrow);
+    grid-column: var(--grid-content-narrow);
   }
 }
 </style>
