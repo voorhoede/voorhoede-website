@@ -1,4 +1,7 @@
 query ($locale: SiteLocale)  {
+  app(locale: $locale) {
+    ...app
+  },
   footer(locale: $locale) {
     ...footer
   },
@@ -36,3 +39,8 @@ fragment footer on FooterRecord {
     title
   },
 },
+
+fragment app on AppRecord {
+	googleAnalyticsId,
+  experimentsId
+}

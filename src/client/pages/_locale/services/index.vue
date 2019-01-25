@@ -30,6 +30,7 @@
 </template>
 
 <script>
+  import head from '~/lib/seo-head'
   import { PageHeader, ServicesList, GetInTouchForm, RichTextBlock } from '~/components'
 
   export default {
@@ -37,17 +38,7 @@
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
     },
-    head() {
-      return {
-        title: this.page.social.title,
-        meta: [
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'property': 'og:description', 'content': this.page.social.description },
-          { 'name': 'keywords', 'content': this.page.keywords }
-        ],
-      }
-    }
+head
   }
 </script>
 

@@ -27,7 +27,7 @@
                 :title="item.title"
                 :description="item.description"
                 :illustration="item.image"
-                :url="item.url"
+                :slug="item.slug"
                 :label="item.label.label"/>
             </li>
           </ul>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+  import head from '~/lib/seo-head'
   import { mapState } from 'vuex'
   import { EventCard, PageHeader, RichTextBlock } from '~/components'
 
@@ -46,17 +47,7 @@
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
     },
-    head() {
-      return {
-        title: this.page.social.title,
-        meta: [
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'property': 'og:description', 'content': this.page.social.description },
-          { 'name': 'twitter:description', 'content': this.page.social.description },
-          { 'name': 'keywords', 'content': this.page.keywords }
-        ]
-      }
-    },
+head,
     computed: {
       ...mapState(['currentLocale'])
     }

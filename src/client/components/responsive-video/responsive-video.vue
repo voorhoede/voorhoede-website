@@ -179,8 +179,9 @@
 
   @media (min-width: 1440px) {
     .responsive-video {
-      margin: 0 auto;
       width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 </style>

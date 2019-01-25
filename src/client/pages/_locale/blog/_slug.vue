@@ -109,6 +109,7 @@
 </template>
 
 <script>
+import head from '~/lib/seo-head'
 import { mapState } from 'vuex'
 import {
   AppButton,
@@ -124,7 +125,7 @@ import {
   ScrollTo,
   SocialButtons,
   TextBlock,
-} from '../../../components'
+} from '~/components'
 
 export default {
   components: {
@@ -159,22 +160,12 @@ export default {
     }
   },
   computed: {
-    ...mapState(['currentLocale'])
+    ...mapState(['currentLocale']),
   },
   mounted() {
     this.loadCustomScript = true
   },
-  head() {
-    return {
-      title: this.page.social.title,
-      meta: [
-        { 'name': 'description', 'content': this.page.social.description },
-        { 'property': 'og:description', 'content': this.page.social.description },
-        { 'name': 'twitter:description', 'content': this.page.social.description },
-        { 'name': 'keywords', 'content': this.page.keywords }
-      ]
-    }
-  }
+  head,
 }
 </script>
 

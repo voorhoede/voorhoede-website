@@ -8,7 +8,7 @@
     <div class="grid">
       <ul class="page-jobs__overview">
         <li
-          v-for="item in page.jobs"
+          v-for="item in items"
           :key="item.slug">
           <jobs-excerpt
             :title="item.title"
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+  import head from '~/lib/seo-head'
   import { PageHeader, JobsExcerpt } from '~/components'
 
   export default {
@@ -34,17 +35,7 @@
     async asyncData({ store, route }) {
       return await store.dispatch('getData', { route })
     },
-    head() {
-      return {
-        title: this.page.social.title,
-        meta: [
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'property': 'og:description', 'content': this.page.social.description },
-          { 'name': 'keywords', 'content': this.page.keywords }
-        ]
-      }
-    }
+    head
   }
 </script>
 
@@ -56,7 +47,7 @@
 
 @media (min-width: 1100px) {
   .page-jobs__overview {
-  grid-column: var(--grid-content-narrow);
+    grid-column: var(--grid-content-narrow);
   }
 }
 </style>
