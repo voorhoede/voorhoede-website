@@ -51,6 +51,11 @@ export function getData(route, variables) {
       .then(res => res.json())
       .then(res => {
         const data = res.data
+
+        if ('page' in data && !data.page) {
+          throw new Error({ statusCode: 404 })
+        }
+
         if (data.page && Array.isArray(data.page.items)) {
           addClassesToHeadings(data.page.items)
           prismifyCodeBlocks(data.page.items)
