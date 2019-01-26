@@ -40,7 +40,7 @@
       </li>
     </ul>
     <section class="page-about-us__blog">
-      <h2 class="page-about-us__blog-title h2">{{ page.blogPostsTitle }}</h2>
+      <h2 class="page-about-us__blog-title h2">{{ $t('latest_blog_posts') }}</h2>
       <ul class="page-about-us__blog-list">
         <li
           v-for="blogPost in latestBlogposts"
@@ -55,7 +55,7 @@
       <div class="page-about-us__blog-button">
         <app-button
           :to="localeUrl('blog')"
-          :label="page.allBlogPostsButtonLabel"
+          :label="$t('all_blogposts')"
           secondary
         />
       </div>
