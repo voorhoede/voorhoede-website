@@ -25,7 +25,7 @@
       :summary-label="page.getInTouchForm.summaryLabel"
       :summary-placeholder="page.getInTouchForm.summaryPlaceholder"
       :summary-error-message="page.getInTouchForm.summaryErrorMessage"
-      :cta-label="page.getInTouchForm.ctaButtonLabel" />
+    />
   </main>
 </template>
 

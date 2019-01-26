@@ -79,7 +79,7 @@
     </fieldset>
     <app-button
       class="contact-form__button"
-      :label="ctaLabel"
+      :label="$t('get_in_touch')"
       type="submit"
     />
   </form>

@@ -58,7 +58,7 @@
       />
       <app-button
         class="get-in-touch-form__button"
-        :label="ctaLabel"
+        :label="$t('get_in_touch')"
         type="submit"
       />
     </form>
@@ -128,10 +128,6 @@
         type: String,
         required: true
       },
-      ctaLabel: {
-        type: String,
-        required: true
-      }
     },
     data() {
       return {

@@ -34,7 +34,7 @@
           :project-label="page.contactPageForm.projectLabel"
           :project-placeholder="page.contactPageForm.projectPlaceholder"
           :project-error-message="page.contactPageForm.projectErrorMessage"
-          :cta-label="page.contactPageForm.ctaButtonLabel" />
+        />
       </div>
     </div>
   </section>
