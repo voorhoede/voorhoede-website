@@ -148,7 +148,7 @@
     },
     computed: {
       confirmationPageUrl() {
-        return `/${this.$i18n.locale}/contact/confirmation/` // no-js fallback: leave this a path
+        return this.localeUrl({ name: 'contact-slug', params: { slug: 'confirmation' } })
       },
       emailValidationErrorMessage() {
         return this.form.email ? this.emailErrorMessageIncorrect : this.emailErrorMessageEmpty
@@ -167,7 +167,7 @@
         submitContactForm({
           form: this.form,
           router: this.$router,
-          locale: this.$i18n.locale,
+          localeUrl: this.localeUrl,
         })
       }
     }

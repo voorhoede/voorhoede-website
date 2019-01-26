@@ -1,4 +1,4 @@
-export default async function({ form, router, locale }) {
+export default async function({ form, router, localeUrl }) {
   try {
     const body = new URLSearchParams()
 
@@ -12,14 +12,14 @@ export default async function({ form, router, locale }) {
       body
     })
 
-    router.push({
-      name: `contact-slug___${locale}`,
+    router.push(localeUrl({
+      name: 'contact-slug',
       params: { slug: 'confirmation' }
-    })
+    }))
   } catch (error) {
-    router.push({
-      name: `contact-slug___${locale}`,
+    router.push(localeUrl({
+      name: 'contact-slug',
       params: { slug: 'error' }
-    })
+    }))
   }
 }
