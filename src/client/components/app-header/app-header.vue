@@ -68,10 +68,16 @@
       }
     },
     computed: {
+      /**
+       * Pages can have localized slugs, stored as an array in Vuex on asyncData.
+       * When switching locale, the localized slug is needed instead of the current slug.
+       */
       localizedlocaleUrls () {
-      if (this.$store.state.i18nSlugs) {
+        if (this.$store.state.i18nSlugs) {
           return this.$store.state.i18nSlugs.reduce((obj, { locale, value }) => {
-            const name = this.$route.name.replace(/___.*$/,'') // strip locale suffix
+            // Get the route name (without the language suffix).
+            const name = this.$route.name.replace(/___.*$/,'')
+            // Return localized url as a property keyed by lang code.
             obj[locale] = this.localeUrl({ name, params: { slug: value }, }, locale)
             return obj
           }, {})
