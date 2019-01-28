@@ -20,7 +20,10 @@ fragment page on ServiceRecord {
   },
   social {
     title,
-    description
+    description,
+    image {
+      url
+    }
   },
   keywords
   title,

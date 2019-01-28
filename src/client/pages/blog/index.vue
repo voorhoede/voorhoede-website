@@ -36,6 +36,8 @@
 
 <script>
   import asyncData from '~/lib/async-page'
+  import head from '~/lib/seo-head'
+
   import {
     BlogListItem,
     CtaBlock,
@@ -47,17 +49,7 @@
   export default {
     components: { BlogListItem, CtaBlock, PageHeader, ScrollTo, TextBlock },
     asyncData,
-    head() {
-      return {
-        title: this.page.social.title,
-        meta: [
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'property': 'og:description', 'content': this.page.social.description },
-          { 'name': 'keywords', 'content': this.page.keywords }
-        ]
-      }
-    }
+    head
   }
 </script>
 

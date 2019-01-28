@@ -22,6 +22,7 @@
     v-on="$listeners"
     :href="to"
     target="_blank"
+    rel="noopener"
   >
     {{ label }}
     <svg

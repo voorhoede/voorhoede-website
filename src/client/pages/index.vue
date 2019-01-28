@@ -95,6 +95,7 @@
 
 <script>
   import asyncData from '~/lib/async-page'
+  import head from '~/lib/seo-head'
   import {
     AcademyExcerpt,
     AppButton,
@@ -134,17 +135,7 @@
         return index === 0 ? { isSet: true, number: 0 } : { isSet: false }
       }
     },
-    head() {
-      return {
-        title: this.page.social.title,
-        meta: [
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'property': 'og:description', 'content': this.page.social.description },
-          { 'name': 'keywords', 'content': this.page.keywords }
-        ]
-      }
-    }
+    head,
   }
 </script>
 

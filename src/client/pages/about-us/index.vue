@@ -29,7 +29,7 @@
       <p class="body-big font-html-blue">{{ page.jobsBody }}</p>
     </div>
     <ul class="page-about-us__jobs">
-      <li class="page-about-us__jobs-list" v-for="item in page.jobs" :key="item.title">
+      <li class="page-about-us__jobs-list" v-for="item in jobs" :key="item.slug">
         <jobs-excerpt
           class="page-about-us__jobs-list-item"
           :title="item.title"
@@ -65,6 +65,7 @@
 
 <script>
   import asyncData from '~/lib/async-page'
+  import head from '~/lib/seo-head'
   import {
     AppButton,
     BlogListItem,
@@ -84,17 +85,7 @@
       PageHeader,
     },
     asyncData,
-    head() {
-      return {
-        title: this.page.social.title,
-        meta: [
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'property': 'og:description', 'content': this.page.social.description },
-          { 'name': 'twitter:description', 'content': this.page.social.description },
-          { 'name': 'keywords', 'content': this.page.keywords }
-        ]
-      }
-    }
+    head,
   }
 </script>
 

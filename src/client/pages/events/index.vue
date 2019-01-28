@@ -27,7 +27,7 @@
                 :title="item.title"
                 :description="item.description"
                 :illustration="item.image"
-                :url="item.url"
+                :slug="item.slug"
                 :label="item.label.label"/>
             </li>
           </ul>
@@ -39,23 +39,13 @@
 
 <script>
   import asyncData from '~/lib/async-page'
+  import head from '~/lib/seo-head'
   import { EventCard, PageHeader, RichTextBlock } from '~/components'
 
   export default {
     components: { EventCard, PageHeader, RichTextBlock },
     asyncData,
-    head() {
-      return {
-        title: this.page.social.title,
-        meta: [
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'property': 'og:description', 'content': this.page.social.description },
-          { 'name': 'twitter:description', 'content': this.page.social.description },
-          { 'name': 'keywords', 'content': this.page.keywords }
-        ]
-      }
-    },
-
+    head,
   }
 </script>
 

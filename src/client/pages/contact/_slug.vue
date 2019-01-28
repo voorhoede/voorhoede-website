@@ -19,6 +19,8 @@
 
 <script>
   import asyncData from '~/lib/async-page'
+  import head from '~/lib/seo-head'
+
   import { CtaBlock, PageHeader } from '~/components'
 
   export default {
@@ -27,17 +29,7 @@
       PageHeader,
     },
     asyncData,
-    head() {
-      return {
-        title: this.page.social.title,
-        meta: [
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'name': 'description', 'content': this.page.social.description },
-          { 'property': 'og:description', 'content': this.page.social.description },
-          { 'name': 'keywords', 'content': this.page.keywords }
-        ]
-      }
-    }
+    head
   }
 </script>
 

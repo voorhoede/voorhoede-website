@@ -22,7 +22,10 @@ fragment job on JobRecord {
   },
   social {
     title,
-    description
+    description,
+    image {
+      url
+    }
   },
   keywords,
   jobImage {

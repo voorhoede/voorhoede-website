@@ -111,6 +111,7 @@
 
 <script>
 import asyncData from '~/lib/async-page'
+import head from '~/lib/seo-head'
 import {
   AppButton,
   BlogAuthor,
@@ -144,7 +145,7 @@ export default {
     TextBlock,
   },
   asyncData,
-  data() {
+  data () {
     return {
       /*
        * Load custom script after vue has mounted,
@@ -153,20 +154,10 @@ export default {
       loadCustomScript: false
     }
   },
-  mounted() {
+  mounted () {
     this.loadCustomScript = true
   },
-  head() {
-    return {
-      title: this.page.social.title,
-      meta: [
-        { 'name': 'description', 'content': this.page.social.description },
-        { 'property': 'og:description', 'content': this.page.social.description },
-        { 'name': 'twitter:description', 'content': this.page.social.description },
-        { 'name': 'keywords', 'content': this.page.keywords }
-      ]
-    }
-  }
+  head,
 }
 </script>
 

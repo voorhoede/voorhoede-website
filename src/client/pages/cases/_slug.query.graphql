@@ -21,7 +21,10 @@ fragment caseItem on CaseItemRecord {
   },
   social {
     title,
-    description
+    description,
+    image {
+      url
+    }
   },
   keywords,
   heroIllustration {
