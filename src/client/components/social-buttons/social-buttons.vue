@@ -97,15 +97,6 @@
   .social-buttons__list-icon:last-of-type {
     margin: 0;
   }
-  .social-buttons__native-share {
-    appearance: none;
-    background: none;
-    border: none;
-    color: var(--html-blue);
-  }
-  .social-buttons__native-share {
-
-  }
 
   @media (min-width: 720px) {
     .social-buttons__text {
