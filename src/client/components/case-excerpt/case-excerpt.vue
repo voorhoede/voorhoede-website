@@ -4,6 +4,7 @@
       <div class="case-excerpt__content">
         <nuxt-link
           class="case-excerpt__image-link"
+          :aria-label="caseExcerptAriaLabel"
           :to="{ name: 'locale-cases-slug', params: { slug, locale: currentLocale }}"
         >
           <responsive-image
@@ -76,6 +77,11 @@
       },
     },
     computed: {
+      caseExcerptAriaLabel() {
+        return this.currentLocale === 'en'
+          ? `read more about ${this.title}`
+          : `lees meer over ${this.title}`
+      },
       ...mapState(['currentLocale']),
     },
   }
