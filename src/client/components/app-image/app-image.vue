@@ -6,13 +6,14 @@
       <div
         v-if="svgFormat"
         class="app-image__picture"
+        :aria-label="image.alt"
       >
         <!-- Safari fix for animated svgs -->
         <object
           class="app-image__img"
           :data="image.url"
           type="image/svg+xml"
-          :alt="image.alt"
+          tabindex="-1"
         />
       </div>
       <picture
@@ -30,6 +31,7 @@
       <div
         v-if="svgFormat"
         class="app-image__picture"
+        :aria-label="image.alt"
       >
         <!-- Safari fix for animated svgs -->
         <object
@@ -39,6 +41,7 @@
             h: cropAndKeepRatio ? width : null,
             fit: cropAndKeepRatio ? 'crop': null })"
           type="image/svg+xml"
+          tabindex="-1"
         />
       </div>
       <picture
