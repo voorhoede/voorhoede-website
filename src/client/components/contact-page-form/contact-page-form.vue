@@ -185,10 +185,6 @@
       projectErrorMessage: {
         type: String,
         required: true
-      },
-      ctaLabel: {
-        type: String,
-        required: true
       }
     },
     data() {
