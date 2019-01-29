@@ -1,27 +1,40 @@
 <template>
+  <!-- <no-ssr> -->
   <div>
     <p class="social-buttons__text body">{{ title }}</p>
-    <ul class="social-buttons__list">
+    <app-button
+      v-if="hasNativeShare"
+      label="Share"
+      small
+      @click="share"
+    />
+    <ul
+      v-else
+      class="social-buttons__list"
+    >
       <li
         class="social-buttons__list-icon"
         v-for="item in socials"
-        :key="item.href">
+        :key="item.href"
+      >
         <a
           :href="item.href"
           target="_blank"
-          :aria-label="item.label">
+          :aria-label="item.label"
+        >
           <app-icon :name="item.icon" :is-large="true" :alt="item.alt" />
         </a>
       </li>
     </ul>
   </div>
+  <!-- </no-ssr> -->
 </template>
 
 <script>
-  import { AppIcon, } from '../../components'
+  import { AppIcon, AppButton } from '../../components'
 
   export default {
-    components: { AppIcon, },
+    components: { AppIcon, AppButton },
     props: {
       title: {
         type: String,
@@ -32,34 +45,39 @@
         default: '',
       },
     },
-    data() {
+    data () {
       return {
-        currentUrl: ''
+        hasNativeShare: false,
+        url: `${process.env.URL}${this.$router.fullPath}`
       }
     },
-    computed : {
+    computed: {
       socials () {
         return [
           { icon: 'twitter--blue',
-            href: `https://twitter.com/intent/tweet?text=${this.shareTitle}&url=${this.currentUrl}`,
+            href: `https://twitter.com/intent/tweet?text=${this.shareTitle}&url=${this.url}`,
             label: 'twitter',
             alt: 'Share this post on Twitter',
           },
           { icon: 'facebook--blue',
-            href: `https://www.facebook.com/sharer.php?u=${this.currentUrl}`,
+            href: `https://www.facebook.com/sharer.php?u=${this.url}`,
             label: 'facebook',
             alt: 'Share this post on Facebook',
           },
         ]
       },
     },
+    methods: {
+      share () {
+        const url = this.url
+        return navigator.share({ url })
+      }
+    },
     created () {
-      // needs to be done to update the dom with the correct value
-      this.$nextTick(() => {
-        if(process.client) {
-          this.currentUrl = window.location.href
-        }
-      })
+      if (process.browser) {
+        this.hasNativeShare = (typeof window.navigator.share === 'function')
+        this.url = window.location.href
+      }
     }
   }
 </script>
@@ -77,6 +95,15 @@
 
   .social-buttons__list-icon:last-of-type {
     margin: 0;
+  }
+  .social-buttons__native-share {
+    appearance: none;
+    background: none;
+    border: none;
+    color: var(--html-blue);
+  }
+  .social-buttons__native-share {
+
   }
 
   @media (min-width: 720px) {
