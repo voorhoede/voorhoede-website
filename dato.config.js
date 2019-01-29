@@ -5,6 +5,7 @@
 const fs = require('fs')
 const dotenv = require('dotenv-safe')
 var { getNativeName } = require('iso-639-1')
+const { pick } = require('lodash')
 
 dotenv.config()
 
@@ -15,6 +16,8 @@ let locales = []
 
 module.exports = (dato, root, i18n) => {
   locales = i18n.availableLocales
+
+  root.createDataFile(`${dataDir}/app.json`, 'json', appSettingsToJson(dato.app))
 
   root.createDataFile(`${dataDir}/locales.json`, 'json', localesToJson(locales))
   defaultLocale = defaultLocale || locales[0]
@@ -34,6 +37,10 @@ module.exports = (dato, root, i18n) => {
   root.createDataFile(`${dataDir}/messages.json`, 'json', messages)
 }
 
+function appSettingsToJson(app) {
+  return { ...pick(app, ['googleAnalyticsId', 'experimentId']) }
+}
+
 function localesToJson (locales) {
   return locales.map(code => {
     return {
@@ -42,6 +49,7 @@ function localesToJson (locales) {
     }
   })
 }
+
 
 /**
  * Write redirects to text with 1 redirect per line

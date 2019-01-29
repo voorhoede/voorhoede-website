@@ -1,9 +1,6 @@
 query ($locale: SiteLocale)  {
   menu(locale: $locale) {
     ...menu
-  app(locale: $locale) {
-    ...app
-  },
   footer(locale: $locale) {
     ...footer
   }
