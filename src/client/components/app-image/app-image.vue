@@ -6,7 +6,6 @@
       <div
         v-if="svgFormat"
         class="app-image__picture"
-        :aria-label="image.alt"
       >
         <!-- Safari fix for animated svgs -->
         <object
@@ -31,7 +30,6 @@
       <div
         v-if="svgFormat"
         class="app-image__picture"
-        :aria-label="image.alt"
       >
         <!-- Safari fix for animated svgs -->
         <object
