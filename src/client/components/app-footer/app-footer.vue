@@ -64,11 +64,11 @@
     </div>
     <div class="app-footer__bottom">
       <div class="body-detail app-footer__bottom-text">
-        <div class="app-footer__definition-list">
-          <dl v-for="{ title, value } in legal" :key="title" class="app-footer__definition-item">
-            <dt>{{ title }}:</dt> <dd class="app-footer__definition-value">{{ value }}</dd>
-          </dl>
-        </div>
+        <dl class="app-footer__definition-list">
+          <div v-for="{ title, value } in legal" :key="title" class="app-footer__definition-item">
+            <dt>{{ title }}:</dt> <dd :key="value" class="app-footer__definition-value">{{ value }}</dd>
+          </div>
+        </dl>
       </div>
       <div class="body-detail app-footer__legal">
         <a
