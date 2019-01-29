@@ -1,6 +1,7 @@
 query ($locale: SiteLocale)  {
   menu(locale: $locale) {
     ...menu
+  }
   footer(locale: $locale) {
     ...footer
   }
@@ -88,7 +89,3 @@ fragment menu on MenuRecord {
   }
 }
 
-fragment app on AppRecord {
-	googleAnalyticsId,
-  experimentsId
-}
