@@ -4,7 +4,7 @@
 
 const fs = require('fs')
 const dotenv = require('dotenv-safe')
-var { getNativeName } = require('iso-639-1')
+const { getNativeName } = require('iso-639-1')
 const { pick } = require('lodash')
 
 dotenv.config()
