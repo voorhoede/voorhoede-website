@@ -1,7 +1,7 @@
 <template>
   <article class="event-card">
     <nuxt-link
-      :to="{ name: 'locale-events-slug', params: { locale: currentLocale, slug }}"
+      :to="localeUrl('events-slug', { params: { slug } })"
       class="event-card__link"
       :class="{ 'event-card__link--alt': isMeetup }">
       <header class="event-card__header">

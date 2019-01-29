@@ -79,7 +79,7 @@
     </aside>
 
     <div class="page-event-detail__link-container">
-      <nuxt-link class="app-button app-button--secondary body font-bold" :to="`/${currentLocale}/${alternateParent.slug}`">
+      <nuxt-link class="app-button app-button--secondary body font-bold" :to="`/${this.$i18n.locale}/${alternateParent.slug}`">
         &larr; See all {{ alternateParent.slug }}
       </nuxt-link>
     </div>
@@ -119,12 +119,12 @@
           return new Date(this.page.date)
         },
         day() {
-          return this.dateString.toLocaleDateString(this.currentLocale, {
+          return this.dateString.toLocaleDateString(this.$i18n.locale, {
             day: 'numeric',
           })
         },
         month() {
-          return this.dateString.toLocaleDateString(this.currentLocale, {
+          return this.dateString.toLocaleDateString(this.$i18n.locale, {
             month: 'short',
           })
         },
