@@ -1,6 +1,6 @@
 require('dotenv-safe').config()
 
-const appConfig = require('../lib/appconfig');
+const appConfig = require('../lib/appconfig')
 const isProduction = (process.env.NODE_ENV === 'production')
 
 /**
