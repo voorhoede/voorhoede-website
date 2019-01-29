@@ -2,7 +2,9 @@
   <footer class="app-footer grid">
     <div class="app-footer__layout">
       <div class="app-footer__header">
-        <nuxt-link :to="{name: 'locale', params: {currentLocale } }">
+        <nuxt-link 
+          :to="{name: 'locale', params: {currentLocale } }" 
+          aria-label="link to the voorhoede site">
           <img class="app-footer__header-logo" src="/images/logo-with-text.svg" :alt="logoAlt">
         </nuxt-link>
       </div>
@@ -62,11 +64,11 @@
     </div>
     <div class="app-footer__bottom">
       <div class="body-detail app-footer__bottom-text">
-        <dl class="app-footer__definition-list">
-          <div v-for="{ title, value } in legal" :key="title" class="app-footer__definition-item">
+        <div class="app-footer__definition-list">
+          <dl v-for="{ title, value } in legal" :key="title" class="app-footer__definition-item">
             <dt>{{ title }}:</dt> <dd class="app-footer__definition-value">{{ value }}</dd>
-          </div>
-        </dl>
+          </dl>
+        </div>
       </div>
       <div class="body-detail app-footer__legal">
         <a
