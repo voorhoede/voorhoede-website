@@ -48,7 +48,7 @@
     data () {
       return {
         hasNativeShare: false,
-        url: `${process.env.URL}${this.$router.fullPath}`
+        url: `${process.env.URL}${this.$route.fullPath}`
       }
     },
     computed: {
