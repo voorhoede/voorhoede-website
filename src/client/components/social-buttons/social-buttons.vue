@@ -1,5 +1,4 @@
 <template>
-  <!-- <no-ssr> -->
   <div>
     <p class="social-buttons__text body">{{ title }}</p>
     <app-button
@@ -27,7 +26,6 @@
       </li>
     </ul>
   </div>
-  <!-- </no-ssr> -->
 </template>
 
 <script>
@@ -67,18 +65,21 @@
         ]
       },
     },
+    created () {
+      this.$nextTick(() => {
+        if (process.browser) {
+          this.hasNativeShare = (typeof window.navigator.share === 'function')
+          this.url = window.location.href
+        }
+      })
+    },
     methods: {
       share () {
         const url = this.url
         return navigator.share({ url })
       }
     },
-    created () {
-      if (process.browser) {
-        this.hasNativeShare = (typeof window.navigator.share === 'function')
-        this.url = window.location.href
-      }
-    }
+
   }
 </script>
 
