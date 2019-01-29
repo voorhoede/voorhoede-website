@@ -32,18 +32,19 @@
       class="app-mobile-menu__icon"
       @click="toggleMobileMenu"
       @touchmove="prevent"
+      :aria-label="menuLabel"
     >
       <img
         v-if="showMenu"
         class="app-mobile-menu__icon-image"
         src="/images/icon_menu-exit--white.svg"
-        alt=""
+        :alt="closeLabel"
       >
       <img
         v-else
         class="app-mobile-menu__icon-image"
         src="/images/icon_menu-passive--white.svg"
-        alt=""
+        :alt="openLabel"
       >
     </button>
   </nav>
@@ -53,7 +54,10 @@
 
   export default {
     data: () => ({
-      showMenu: false
+      showMenu: false,
+      menuLabel: 'toggle mobile menu',
+      closeLabel: 'close mobile menu',
+      openLabel: 'open mobile menu'
     }),
     computed: {
       ...mapState([
