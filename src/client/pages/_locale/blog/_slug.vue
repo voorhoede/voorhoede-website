@@ -7,21 +7,21 @@
       :image="page.headerIllustration"
     />
 
-    <article class="page-blog-post-list">
-      <text-block class="page-blog-post-list__intro">
+    <article class="blog-post-list">
+      <text-block>
         <p class="font-html-blue testimonial">{{ page.introTitle }}</p>
       </text-block>
 
       <template v-for="item in page.items">
         <code-block
-          class="page-blog-post-list--not-indented"
+          class="blog-post-list--not-indented"
           v-if="item.__typename === 'CodeBlockRecord' && item.body"
           :language="item.language"
           :content="item.body"
           :key="item.body" />
 
         <image-with-description
-          class="page-blog-post-list__image page-blog-post-list--not-indented"
+          class="blog-post-list__image blog-post-list--not-indented"
           v-if="item.__typename === 'ImageWithTextRecord'"
           :key="item.description"
           :image="item.imageWithDescription.image"
@@ -33,11 +33,11 @@
           :key="item.quote"
           :quote="item.quote"
           :cite="item.author"
-          class="page-blog-post__quote" />
+        />
 
         <responsive-image
-          class="page-blog-post-list__image"
-          :class="{ 'page-blog-post-list--not-indented' : item.fullWidth}"
+          class="blog-post-list__image"
+          :class="{ 'blog-post-list--not-indented' : item.fullWidth}"
           v-if="item.__typename === 'ImageRecord' && item.image"
           :key="item.image.url"
           :image="item.image" />
@@ -53,11 +53,10 @@
         <text-block
           v-if="item.__typename === 'TextSectionRecord' && item.title"
           :key="item.title">
-          <h2 class="page-blog-post-list__title h3 font-html-blue">{{ item.title }}</h2>
+          <h2 class="blog-post-list__title h3 font-html-blue">{{ item.title }}</h2>
         </text-block>
 
         <rich-text-block
-          class="page-blog-post-list__rich-text"
           v-if="item.__typename === 'TextSectionRecord' && item.body"
           :key="item.body"
           :text="item.body"
@@ -68,7 +67,7 @@
           :key="item.link">
           <app-button
             class="page-blog-post__button"
-            :external="item.external ? true : false"
+            :external="item.external"
             :label="item.label"
             :to="item.link" />
         </div>
@@ -180,21 +179,21 @@ export default {
     margin-bottom: var(--spacing-large);
   }
 
-  .page-blog-post-list > * {
+  .blog-post-list > * {
     margin-bottom: var(--spacing-large);
   }
 
-  .page-blog-post-list__image {
+  .blog-post-list__image {
     justify-content: space-between;
     margin-bottom: var(--spacing-large);
   }
 
-  .page-blog-post-list__image .image-with-description__description {
+  .blog-post-list__image .image-with-description__description {
     margin-left: 0;
     margin-right: 0;
   }
 
-  .page-blog-post-list__title {
+  .blog-post-list__title {
     margin-bottom: var(--spacing-smaller);
   }
 
@@ -221,16 +220,16 @@ export default {
     border: none;
   }
 
-  .page-blog-post-list {
+  .blog-post-list {
     grid-row: 3;
     max-width: 100%;
   }
 
-  .page-blog-post-list em {
+  .blog-post-list em {
     font-style: italic;
   }
 
-  .page-blog-post-list .responsive-video {
+  .blog-post-list .responsive-video {
     width: 100%;
     max-width: var(--case-content-max-width-l);
   }
@@ -240,12 +239,12 @@ export default {
   }
 
   @media (min-width: 720px) {
-    .page-blog-post-list > * {
+    .blog-post-list > * {
       margin-bottom: var(--spacing-larger);
       padding: 0 var(--spacing-larger);
     }
 
-    .page-blog-post-list .page-blog-post-list--not-indented {
+    .blog-post-list .blog-post-list--not-indented {
       padding: 0;
     }
 
@@ -254,7 +253,7 @@ export default {
       margin-bottom: var(--spacing-larger);
     }
 
-    .page-blog-post-list {
+    .blog-post-list {
       grid-row: 2;
       grid-column-start: 10;
       grid-column-end: 50;
@@ -289,11 +288,11 @@ export default {
   }
 
   @media (min-width: 1100px) {
-    .page-blog-post-list > * {
+    .blog-post-list > * {
       padding: 0 var(--spacing-big);
     }
 
-    .page-blog-post-list {
+    .blog-post-list {
       grid-column-start: 12;
       grid-column-end: 46;
     }
@@ -314,11 +313,11 @@ export default {
   }
 
   @media (min-width: 1440px) {
-    .page-blog-post-list > * {
+    .blog-post-list > * {
       padding: 0 var(--spacing-bigger);
     }
 
-    .page-blog-post-list {
+    .blog-post-list {
       grid-column-start: 12;
       grid-column-end: 44;
     }
