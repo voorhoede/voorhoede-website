@@ -14,14 +14,14 @@
 
       <template v-for="item in page.items">
         <code-block
-          class="blog-post-list--not-indented"
+          class="blog-post-list--full-width"
           v-if="item.__typename === 'CodeBlockRecord' && item.body"
           :language="item.language"
           :content="item.body"
           :key="item.body" />
 
         <image-with-description
-          class="blog-post-list__image blog-post-list--not-indented"
+          class="blog-post-list__image blog-post-list--full-width"
           v-if="item.__typename === 'ImageWithTextRecord'"
           :key="item.description"
           :image="item.imageWithDescription.image"
@@ -37,7 +37,7 @@
 
         <responsive-image
           class="blog-post-list__image"
-          :class="{ 'blog-post-list--not-indented' : item.fullWidth}"
+          :class="{ 'blog-post-list--full-width' : item.fullWidth}"
           v-if="item.__typename === 'ImageRecord' && item.image"
           :key="item.image.url"
           :image="item.image" />
@@ -244,7 +244,7 @@ export default {
       padding: 0 var(--spacing-larger);
     }
 
-    .blog-post-list .blog-post-list--not-indented {
+    .blog-post-list .blog-post-list--full-width {
       padding: 0;
     }
 
