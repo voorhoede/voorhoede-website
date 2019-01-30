@@ -46,7 +46,7 @@
 
 @media (min-width: 1100px) {
   .page-jobs__overview {
-  grid-column: var(--grid-content-narrow);
+    grid-column: var(--grid-content-narrow);
   }
 }
 </style>
