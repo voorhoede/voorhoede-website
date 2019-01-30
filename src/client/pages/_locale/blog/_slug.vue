@@ -53,7 +53,11 @@
         <text-block
           v-if="item.__typename === 'TextSectionRecord' && item.title"
           :key="item.title">
-          <h2 class="page-blog-post-list__title h3 font-html-blue">{{ item.title }}</h2>
+          <h2
+            class="page-blog-post-list__title h3 font-html-blue" 
+            :id="item.title.replace(/\s+/g, '').toLowerCase()">
+            {{ item.title }}
+          </h2>
         </text-block>
 
         <rich-text-block
@@ -80,6 +84,7 @@
       <social-buttons
         :title="page.socialTitle"
         :share-title="page.title" />
+      <table-of-content :items="page.items"/>
     </aside>
 
     <div class="page-blog-post__link-container">
@@ -124,6 +129,7 @@ import {
   RichTextBlock,
   ScrollTo,
   SocialButtons,
+  TableOfContent,
   TextBlock,
 } from '~/components'
 
@@ -141,6 +147,7 @@ export default {
     RichTextBlock,
     ScrollTo,
     SocialButtons,
+    TableOfContent,
     TextBlock,
   },
   async asyncData({ store, route, error }) {
