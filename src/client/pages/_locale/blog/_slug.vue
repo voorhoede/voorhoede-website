@@ -14,7 +14,7 @@
 
       <template v-for="item in page.items">
         <code-block
-          class="page-blog-post-list__code-block"
+          class="page-blog-post-list--not-indented"
           v-if="item.__typename === 'CodeBlockRecord' && item.body"
           :language="item.language"
           :content="item.body"
@@ -245,7 +245,7 @@ export default {
       padding: 0 var(--spacing-larger);
     }
 
-    .page-blog-post-list > .page-blog-post-list--not-indented {
+    .page-blog-post-list .page-blog-post-list--not-indented {
       padding: 0;
     }
 
