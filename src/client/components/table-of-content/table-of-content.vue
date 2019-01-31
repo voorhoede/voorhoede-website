@@ -25,11 +25,11 @@
         type: Array,
         required: true,
       },
-      bottombound: {
+      bottomBound: {
         type: Number,
         default: null
       },
-      asideoffsettop: {
+      asideOffsetTop: {
         type: Number,
         default: null
       }
@@ -49,7 +49,7 @@
       this.elementHeight = this.$el.offsetHeight
     },
     updated() {
-      this.bottomLimit = this.bottombound - (this.elementHeight - this.elementSpacing) 
+      this.bottomLimit = this.bottomBound - (this.elementHeight + this.elementSpacing) 
     },
     beforeDestroy () {
       window.removeEventListener('scroll', () => this.checkOffsetTOC())
@@ -58,11 +58,11 @@
       checkOffsetTOC() {
         const elementOffset = (this.$el.offsetTop + this.elementHeight)
         //top bounds
-        window.scrollY > (elementOffset - this.asideoffsettop)
+        window.scrollY > (elementOffset - this.asideOffsetTop)
           ? this.sticky = true
           : this.sticky = false
-        
-        window.scrollY < (elementOffset + this.asideoffsettop)
+
+        window.scrollY < (elementOffset + this.asideOffsetTop)
           ? this.sticky = false
           : this.sticky = true
         //bottom bounds
