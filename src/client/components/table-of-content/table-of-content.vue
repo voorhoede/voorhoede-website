@@ -25,7 +25,11 @@
         type: Array,
         required: true,
       },
-      bottomBound: {
+      bottombound: {
+        type: Number,
+        default: null
+      },
+      asideoffsettop: {
         type: Number,
         default: null
       }
@@ -35,41 +39,46 @@
         sticky: null,
         bottomLimit: null,
         bottomLimitExceeded: false,
-        elementSpacing: 75
+        elementSpacing: 75,
+        elementHeight: null,
       }
     },
     mounted () {
       // track scroll position table of content
       window.addEventListener('scroll', () => this.checkOffsetTOC())
+      this.elementHeight = this.$el.offsetHeight
     },
     updated() {
-      if(this.$el.offsetHeight !== 0 && this.bottomLimitExceeded === false) {
-        this.bottomLimit = this.bottomBound - (this.$el.offsetHeight - this.elementSpacing)
-      }
+      this.bottomLimit = this.bottombound - (this.elementHeight - this.elementSpacing) 
     },
     beforeDestroy () {
       window.removeEventListener('scroll', () => this.checkOffsetTOC())
     },
     methods: {
       checkOffsetTOC() {
-        let elementOffset = (this.$el.offsetTop + this.$el.offsetHeight)
-        
-        window.scrollY >= elementOffset
+        const elementOffset = (this.$el.offsetTop + this.elementHeight)
+        //top bounds
+        window.scrollY > (elementOffset - this.asideoffsettop)
           ? this.sticky = true
           : this.sticky = false
         
-        if(window.scrollY >= elementOffset && this.bottomLimit) {
+        window.scrollY < (elementOffset + this.asideoffsettop)
+          ? this.sticky = false
+          : this.sticky = true
+        //bottom bounds
+        if (window.scrollY >= elementOffset && this.bottomLimit) {
           // if scroll position is equal or greater than position link container then stop being sticky
           window.scrollY >= this.bottomLimit
             ? this.sticky = false
             : this.sticky = true
-
-          window.scrollY < this.bottomLimit
-            ? this.bottomLimitExceeded = false
-            : this.bottomLimitExceeded = true
         }
+
+        window.scrollY < this.bottomLimit
+        ? this.bottomLimitExceeded = false
+        : this.bottomLimitExceeded = true
       },
       simpleTitle(title) {
+        //remove spaces and lowercase titles
         return `#${title.replace(/\s+/g, '').toLowerCase()}`
       }
     }

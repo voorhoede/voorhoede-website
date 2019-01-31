@@ -80,12 +80,15 @@
       </template>
     </article>
 
-    <aside class="page-blog-post__aside">
+    <aside class="page-blog-post__aside" ref="blog-post-aside">
       <blog-author class="page-blog-post__aside-author" :item="page" />
       <social-buttons
         :title="page.socialTitle"
         :share-title="page.title" />
-      <table-of-content :items="page.items" :bottomBound="offsetTopLinkContainer" />
+      <table-of-content
+        :items="page.items"
+        :bottombound="offsetTopLinkContainer"
+        :asideoffsettop="offsetBlogPostAside" />
     </aside>
 
     <div class="page-blog-post__link-container" ref="blogpost-link-container">
@@ -165,7 +168,8 @@ export default {
        * to prevent issues with the moment the custom script is executed and hydration.
        */
       loadCustomScript: false,
-      offsetTopLinkContainer: null
+      offsetTopLinkContainer: null,
+      offsetBlogPostAside: null
     }
   },
   computed: {
@@ -174,6 +178,7 @@ export default {
   mounted() {
     this.loadCustomScript = true
     this.offsetTopLinkContainer = this.$refs['blogpost-link-container'].offsetTop
+    this.offsetBlogPostAside =  this.$refs['blog-post-aside'].offsetTop
   },
   methods: {
     simpleTitle(title) {
