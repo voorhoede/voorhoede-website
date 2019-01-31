@@ -1,11 +1,13 @@
 <template>
-  <div class="table-of-content">
+  <div 
+    class="table-of-content"
+    :class="{ 'table-of-content--to-bottom': this.bottomLimitExceeded }">
     <div :class="{ 'table-of-content--sticky' : this.sticky }">
       <h3 class="body-big font-html-blue">Table of content</h3>
       <ul class="flat-list">
         <li 
           class="table-of-content__list-item"
-          v-for="item in items" :key="item.title"> 
+          v-for="(item, index) in items" :key="index"> 
           <a 
             :href="`#${item.title.replace(/\s+/g, '').toLowerCase()}`"
             v-if="item.title" 
@@ -19,28 +21,63 @@
 </template>
 
 <script>
-  import debounce from '../../lib/debounce-helper'
+  // if table of content overlaps with blog link container then stop being sticky
+  // track scroll position table of content
+  // track scroll position link container
+  // if scroll position is equal or greater than position link container then stop being sticky
 
+  //problem how to get the scroll position of an element outside of the component
+  //keep the scroll position in the state.
+  //reference component via this.$parent
+  // checkout voorhoede.io to see how it worked there
   export default {
     props: {
       items: {
         type: Array,
         required: true,
+      },
+      bottomBound: {
+        type: Number,
+        default: null
       }
     },
     data() {
       return {
         sticky: null,
+        bottomLimit: null,
+        bottomLimitExceeded: false,
       }
     },
     mounted () {
-      window.addEventListener('scroll', debounce(() => {
-        (window.scrollY >= this.$el.offsetTop) ? this.sticky = true : this.sticky = false
-      }, 25))
+      window.addEventListener('scroll', () => this.checkOffsetTOC())
+    },
+    updated() {
+      if(this.$el.offsetHeight !== 0 && this.bottomLimitExceeded === false) {
+        this.bottomLimit = this.bottomBound - (this.$el.offsetHeight - 75)
+      }
     },
     beforeDestroy () {
-      window.removeEventListener('scroll', debounce)
+      window.removeEventListener('scroll', () => this.checkOffsetTOC())
     },
+    methods: {
+      checkOffsetTOC() {
+        let elementOffset = (this.$el.offsetTop + this.$el.offsetHeight)
+
+        window.scrollY >= elementOffset
+          ? this.sticky = true
+          : this.sticky = false
+
+        if(window.scrollY >= elementOffset && this.bottomLimit) {
+          window.scrollY >= this.bottomLimit
+            ? this.sticky = false
+            : this.sticky = true
+
+          window.scrollY < this.bottomLimit
+            ? this.bottomLimitExceeded = false
+            : this.bottomLimitExceeded = true
+        }
+      }
+    }
   }
 </script>
 
@@ -57,8 +94,13 @@
 
   .table-of-content--sticky {
     position: fixed;
-    top: 0;
+    top: var(--spacing-large);
     max-width: var(--max-width-toc);
+  }
+
+  .table-of-content.table-of-content--to-bottom {
+    position: absolute;
+    bottom: 0;
   }
 
   @media (min-width: 720px) {

@@ -84,10 +84,10 @@
       <social-buttons
         :title="page.socialTitle"
         :share-title="page.title" />
-      <table-of-content :items="page.items"/>
+      <table-of-content :items="page.items" :bottomBound="offsetTopLinkContainer"/>
     </aside>
 
-    <div class="page-blog-post__link-container">
+    <div class="page-blog-post__link-container" ref="blogpost-link-container">
       <nuxt-link class="app-button app-button--secondary body font-bold" :to="`/${currentLocale}/blog`">
         &larr; See all posts
       </nuxt-link>
@@ -163,7 +163,8 @@ export default {
        * Load custom script after vue has mounted,
        * to prevent issues with the moment the custom script is executed and hydration.
        */
-      loadCustomScript: false
+      loadCustomScript: false,
+      offsetTopLinkContainer: null
     }
   },
   computed: {
@@ -171,6 +172,7 @@ export default {
   },
   mounted() {
     this.loadCustomScript = true
+    this.offsetTopLinkContainer = this.$refs['blogpost-link-container'].offsetTop
   },
   head,
 }
@@ -269,6 +271,7 @@ export default {
 
     .page-blog-post__aside {
       display: block;
+      position: relative;
       grid-column-start: 2;
       grid-column-end: 9;
     }
