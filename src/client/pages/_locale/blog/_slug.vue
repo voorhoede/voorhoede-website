@@ -169,7 +169,7 @@ export default {
        */
       loadCustomScript: false,
       bottomPositionAside: null,
-      offsetBlogPostAside: null
+      topOffsetAside: null
     }
   },
   computed: {

@@ -1,8 +1,8 @@
 <template>
   <div 
     class="table-of-content"
-    :class="{ 'table-of-content--to-bottom' : this.bottomLimitExceeded }">
-    <div :class="{ 'table-of-content--sticky' : this.sticky }">
+    :class="{ 'table-of-content--to-bottom' : bottomLimitExceeded }">
+    <div :class="{ 'table-of-content--sticky' : sticky }">
       <h3 class="body-big font-html-blue">Table of content</h3>
       <ul class="flat-list">
         <li 
