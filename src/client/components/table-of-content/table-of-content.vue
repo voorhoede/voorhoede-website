@@ -1,17 +1,14 @@
 <template>
   <div 
     class="table-of-content"
-    :class="{ 'table-of-content--to-bottom': this.bottomLimitExceeded }">
+    :class="{ 'table-of-content--to-bottom' : this.bottomLimitExceeded }">
     <div :class="{ 'table-of-content--sticky' : this.sticky }">
       <h3 class="body-big font-html-blue">Table of content</h3>
       <ul class="flat-list">
         <li 
           class="table-of-content__list-item"
           v-for="(item, index) in items" :key="index"> 
-          <a 
-            :href="`#${item.title.replace(/\s+/g, '').toLowerCase()}`"
-            v-if="item.title" 
-            class="body">
+          <a :href="simpleTitle(item.title)" v-if="item.title" class="body">
             {{ item.title }}
           </a>
         </li>
@@ -21,15 +18,7 @@
 </template>
 
 <script>
-  // if table of content overlaps with blog link container then stop being sticky
-  // track scroll position table of content
   // track scroll position link container
-  // if scroll position is equal or greater than position link container then stop being sticky
-
-  //problem how to get the scroll position of an element outside of the component
-  //keep the scroll position in the state.
-  //reference component via this.$parent
-  // checkout voorhoede.io to see how it worked there
   export default {
     props: {
       items: {
@@ -46,14 +35,16 @@
         sticky: null,
         bottomLimit: null,
         bottomLimitExceeded: false,
+        elementSpacing: 75
       }
     },
     mounted () {
+      // track scroll position table of content
       window.addEventListener('scroll', () => this.checkOffsetTOC())
     },
     updated() {
       if(this.$el.offsetHeight !== 0 && this.bottomLimitExceeded === false) {
-        this.bottomLimit = this.bottomBound - (this.$el.offsetHeight - 75)
+        this.bottomLimit = this.bottomBound - (this.$el.offsetHeight - this.elementSpacing)
       }
     },
     beforeDestroy () {
@@ -62,12 +53,13 @@
     methods: {
       checkOffsetTOC() {
         let elementOffset = (this.$el.offsetTop + this.$el.offsetHeight)
-
+        
         window.scrollY >= elementOffset
           ? this.sticky = true
           : this.sticky = false
-
+        
         if(window.scrollY >= elementOffset && this.bottomLimit) {
+          // if scroll position is equal or greater than position link container then stop being sticky
           window.scrollY >= this.bottomLimit
             ? this.sticky = false
             : this.sticky = true
@@ -76,6 +68,9 @@
             ? this.bottomLimitExceeded = false
             : this.bottomLimitExceeded = true
         }
+      },
+      simpleTitle(title) {
+        return `#${title.replace(/\s+/g, '').toLowerCase()}`
       }
     }
   }

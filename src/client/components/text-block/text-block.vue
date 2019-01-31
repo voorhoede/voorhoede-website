@@ -1,9 +1,6 @@
 <template>
   <div class="text-block">
-    <h3
-      v-if="title"
-      :id="title.replace(/\s+/g, '').toLowerCase()"
-      class="text-block__title h3">{{ title }}</h3>
+    <h3 v-if="title" :id="id" class="text-block__title h3">{{ title }}</h3>
     <slot />
   </div>
 </template>
@@ -14,6 +11,10 @@
       title: {
         type: String,
         default: null
+      },
+      id: {
+        type: String,
+        default: ''
       }
     },
     mounted () {

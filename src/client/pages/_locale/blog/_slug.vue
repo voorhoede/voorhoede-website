@@ -52,10 +52,11 @@
 
         <text-block
           v-if="item.__typename === 'TextSectionRecord' && item.title"
-          :key="item.title">
+          :key="item.title"
+          :id="simpleTitle(item.title)">
           <h2
             class="page-blog-post-list__title h3 font-html-blue" 
-            :id="item.title.replace(/\s+/g, '').toLowerCase()">
+            :id="simpleTitle(item.title)">
             {{ item.title }}
           </h2>
         </text-block>
@@ -84,7 +85,7 @@
       <social-buttons
         :title="page.socialTitle"
         :share-title="page.title" />
-      <table-of-content :items="page.items" :bottomBound="offsetTopLinkContainer"/>
+      <table-of-content :items="page.items" :bottomBound="offsetTopLinkContainer" />
     </aside>
 
     <div class="page-blog-post__link-container" ref="blogpost-link-container">
@@ -173,6 +174,11 @@ export default {
   mounted() {
     this.loadCustomScript = true
     this.offsetTopLinkContainer = this.$refs['blogpost-link-container'].offsetTop
+  },
+  methods: {
+    simpleTitle(title) {
+      return title.replace(/\s+/g, '').toLowerCase()
+    }
   },
   head,
 }
