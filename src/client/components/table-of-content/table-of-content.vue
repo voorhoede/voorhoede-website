@@ -9,7 +9,7 @@
       <li 
         class="table-of-content__list-item"
         v-for="(item, index) in items" :key="index"> 
-        <a :href="simpleTitle(item.title)" v-if="item.title" class="body">
+        <a :href="stripTitle(item.title)" v-if="item.title" class="body">
           {{ item.title }}
         </a>
       </li>
@@ -51,7 +51,7 @@
         this.bottomBoundaryExceeded = window.scrollY >= (this.bottomBound - this.$el.offsetHeight)
         if (this.bottomBoundaryExceeded) this.sticky = false
       },
-      simpleTitle(title) {
+      stripTitle(title) {
         //remove spaces and lowercase titles
         return `#${title.replace(/\s+/g, '').toLowerCase()}`
       }

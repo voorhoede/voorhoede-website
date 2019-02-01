@@ -53,10 +53,10 @@
         <text-block
           v-if="item.__typename === 'TextSectionRecord' && item.title"
           :key="item.title"
-          :id="simpleTitle(item.title)">
+          :id="stripTitle(item.title)">
           <h2
             class="page-blog-post-list__title h3 font-html-blue" 
-            :id="simpleTitle(item.title)">
+            :id="stripTitle(item.title)">
             {{ item.title }}
           </h2>
         </text-block>
@@ -181,7 +181,7 @@ export default {
     this.topOffsetAside =  this.$refs['blog-post-aside'].offsetTop
   },
   methods: {
-    simpleTitle(title) {
+    stripTitle(title) {
       return title.replace(/\s+/g, '').toLowerCase()
     }
   },
