@@ -91,7 +91,7 @@
         :aside-offset-top="topOffsetAside" />
     </aside>
 
-    <div class="page-blog-post__link-container" ref="blogpost-link-container">
+    <div class="page-blog-post__link-container">
       <nuxt-link class="app-button app-button--secondary body font-bold" :to="`/${currentLocale}/blog`">
         &larr; See all posts
       </nuxt-link>
