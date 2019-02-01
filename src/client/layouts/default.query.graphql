@@ -1,20 +1,11 @@
 query ($locale: SiteLocale)  {
-  app(locale: $locale) {
-    ...app
-  },
+  menu(locale: $locale) {
+    ...menu
+  }
   footer(locale: $locale) {
     ...footer
-  },
-  allRedirects {
-    ...redirect
-  },
+  }
 }
-
-fragment redirect on RedirectRecord {
-	from,
-  to,
-  httpStatusCode
-},
 
 fragment footer on FooterRecord {
   email,
@@ -40,7 +31,61 @@ fragment footer on FooterRecord {
   },
 },
 
-fragment app on AppRecord {
-	googleAnalyticsId,
-  experimentsId
+fragment menu on MenuRecord {
+  title,
+	links {
+    title,
+    url,
+    page {
+      ... on HomeRecord {
+        slug
+      }
+      ... on ServiceOverviewRecord {
+        slug
+      }
+      ... on CaseOverviewRecord {
+        slug
+      }
+      ... on BlogPostOverviewRecord {
+        slug
+      }
+      ... on JobOverviewRecord {
+        slug
+      }
+      ... on AboutRecord {
+        slug
+      }
+      ... on ContactRecord {
+        slug
+      }
+    }
+  },
+  callToAction {
+    title,
+    url,
+    page {
+      ... on HomeRecord {
+        slug
+      }
+      ... on ServiceOverviewRecord {
+        slug
+      }
+      ... on CaseOverviewRecord {
+        slug
+      }
+      ... on BlogPostOverviewRecord {
+        slug
+      }
+      ... on JobOverviewRecord {
+        slug
+      }
+      ... on AboutRecord {
+        slug
+      }
+      ... on ContactRecord {
+        slug
+      }
+    }
+  }
 }
+
