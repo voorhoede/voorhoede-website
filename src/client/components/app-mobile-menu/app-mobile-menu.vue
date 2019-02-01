@@ -1,12 +1,12 @@
 <template>
   <nav class="app-mobile-menu grid">
-    <h2 class="sr-only">Site Menu</h2>
+    <h2 class="sr-only">{{ title }}</h2>
     <div
       v-if="showMenu"
       class="app-mobile-menu__content"
       @touchmove="prevent"
     >
-      <nuxt-link :to="`/${currentLocale}/`">
+      <nuxt-link :to="localeUrl('index')">
         <img
           class="app-mobile-menu__logo"
           src="/images/logo--blue-and-yellow.svg"
@@ -14,9 +14,11 @@
           alt="">
       </nuxt-link>
       <ul class="app-mobile-menu__list body-petite">
-        <li v-for="link in localizedMenuItems" :key="link.href"
-            class="app-mobile-menu__list-item"
-            @click="toggleMobileMenu"
+        <li
+          v-for="link in links"
+          :key="link.href"
+          class="app-mobile-menu__list-item"
+          @click="toggleMobileMenu"
         >
           <nuxt-link
             class="h3"
@@ -49,22 +51,25 @@
   </nav>
 </template>
 <script>
-  import { mapGetters, mapState } from 'vuex'
+  import { createHref, linkValidator } from '../../lib/links'
 
   export default {
+    props: {
+      title: {
+        type: String,
+        default: 'Site menu'
+      },
+      links: {
+        type: Array,
+        validator (links) {
+          return links.every(linkValidator)
+        },
+        default: () => [],
+      }
+    },
     data: () => ({
       showMenu: false
     }),
-    computed: {
-      ...mapState([
-        'locales',
-        'currentLocale',
-        'alternateUrl',
-      ]),
-      ...mapGetters([
-        'localizedMenuItems',
-      ]),
-    },
     methods: {
       prevent(event) {
         event.preventDefault()
@@ -72,10 +77,7 @@
       toggleMobileMenu() {
         return this.showMenu = !this.showMenu
       },
-      createHref(link) {
-        const locale = this.currentLocale
-        return `/${locale}/${link.slug}/`
-      },
+      createHref
     },
   }
 </script>
