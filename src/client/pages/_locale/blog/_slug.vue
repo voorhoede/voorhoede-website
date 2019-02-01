@@ -87,7 +87,7 @@
         :share-title="page.title" />
       <table-of-content
         :items="page.items"
-        :bottom-bound="bottomPositionAside"
+        :bottom-boundary="bottomPositionAside"
         :aside-offset-top="topOffsetAside" />
     </aside>
 

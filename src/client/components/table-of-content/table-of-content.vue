@@ -24,7 +24,7 @@
         type: Array,
         required: true,
       },
-      bottomBound: {
+      bottomBoundary: {
         type: Number,
         default: null
       },
@@ -48,7 +48,7 @@
     methods: {
       setStickyState() {
         this.sticky = window.scrollY >= (this.asideOffsetTop + this.$el.offsetHeight),
-        this.bottomBoundaryExceeded = window.scrollY >= (this.bottomBound - this.$el.offsetHeight)
+        this.bottomBoundaryExceeded = window.scrollY >= (this.bottomBoundary - this.$el.offsetHeight)
         if (this.bottomBoundaryExceeded) this.sticky = false
       },
       stripTitle(title) {
