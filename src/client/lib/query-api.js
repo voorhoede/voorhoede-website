@@ -1,7 +1,32 @@
 const fetch = require('node-fetch')
+const backoff = require('backoff')
+
 const token = process.env.DATO_API_TOKEN
 
-module.exports = function query({ query, variables }) {
+module.exports = function({ query, variables }) {
+  const queryBackoff = backoff.fibonacci({
+    maxDelay: 5000
+  })
+
+  queryBackoff.failAfter(5)
+
+  return new Promise((resolve, reject) => {
+    queryBackoff.on('ready', () => {
+      doQuery({ query, variables })
+        .then(data => {
+          queryBackoff.reset()
+          resolve(data)
+        })
+        .catch(() => queryBackoff.backoff())
+    })
+    queryBackoff.on('fail', () => {
+      reject(new Error('unable to fetch data from api'))
+    })
+    queryBackoff.backoff()
+  })
+}
+
+function doQuery({ query, variables }) {
   return fetch(
     'https://graphql.datocms.com/',
     {
@@ -15,6 +40,9 @@ module.exports = function query({ query, variables }) {
     }
   )
     .then(res => {
+      if (!res.ok) {
+        throw new Error(`Error fetching data. ${res.statusText}`)
+      }
       if (res.errors) {
         throw new Error(JSON.stringify(res.errors))
       }
