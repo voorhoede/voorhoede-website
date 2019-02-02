@@ -17,10 +17,10 @@ module.exports = function({ query, variables }) {
           queryBackoff.reset()
           resolve(data)
         })
-        .catch(() => queryBackoff.backoff())
+        .catch(err => queryBackoff.backoff(err))
     })
-    queryBackoff.on('fail', () => {
-      reject(new Error('unable to fetch data from api'))
+    queryBackoff.on('fail', err => {
+      reject(err)
     })
     queryBackoff.backoff()
   })

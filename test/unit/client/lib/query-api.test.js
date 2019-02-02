@@ -5,6 +5,11 @@ const sinon = require('sinon')
 const fetchResponseStub = {
   json: sinon.stub().resolves({ data: 'bar' })
 }
+
+const failResponseStub = {
+  json: sinon.stub().rejects(new Error('some error'))
+}
+
 const okResponse = {
   ok: true
 }
@@ -58,12 +63,34 @@ test('query api with first 3 requests failing', async t => {
 test('query api and succeed immediately', async t => {
   const { fetchStub, queryApi } = t.context
 
-  // instant success
+  // instant success: node-fetch returns an ok response
   fetchStub.resolves({
     ...okResponse,
     ...fetchResponseStub
   })
 
-  await t.notThrowsAsync(queryApi({}), null, 'success')
+  await t.notThrowsAsync(queryApi({}), null, 'query is successful')
   t.is(fetchStub.callCount, 1, '1 attempt is made to fetch the data')
+  t.is(await queryApi({}), 'bar', 'response contains the expected data')
+})
+
+test('query api and error while parsing json', async t => {
+  const { fetchStub, queryApi } = t.context
+
+  // instant success
+  fetchStub.resolves({
+    ...okResponse,
+    ...failResponseStub
+  })
+
+  await t.throwsAsync(queryApi({}), { message: 'some error' }, 'rejects with the expected error (message)')
+})
+
+test('query api and never obtain a response', async t => {
+  const { fetchStub, queryApi } = t.context
+
+  // node-fetch will reject if the server is unavailable
+  fetchStub.rejects(new Error('no response'))
+
+  await t.throwsAsync(queryApi({}), { message: 'no response' }, 'rejects with the expected error (message)')
 })
