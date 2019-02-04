@@ -34,8 +34,7 @@
 </template>
 
 <script>
-  import { AppButton, LazyLoad } from '~/components/'
-  import CalendarIcon from '~/components/calendar-icon'
+  import { AppButton, CalendarIcon, LazyLoad } from '~/components'
 
   export default {
     components: {
