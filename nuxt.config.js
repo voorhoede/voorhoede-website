@@ -1,6 +1,6 @@
+const dotenv = require('dotenv-safe')
 const generate = require('./config/nuxt/generate')
 const modules = require('./config/nuxt/modules')
-const dotenv = require('dotenv-safe')
 
 dotenv.config()
 
@@ -13,8 +13,8 @@ const baseUrl = URL
 
 module.exports = {
   srcDir: 'src/client',
-  modules,
   generate,
+  modules,
   env: {
     baseUrl,
     DATO_API_TOKEN
@@ -82,9 +82,6 @@ module.exports = {
 
   router: {
     middleware: [
-      'redirect-to-locale',
-      'locale',
-      'layout',
       'enforce-trailing-slash',
       'meta-canonical',
     ],
@@ -96,6 +93,7 @@ module.exports = {
 
   plugins: [
     { src: '~/plugins/fetch-polyfill', ssr: false },
+    { src: '~/plugins/locale-urls' },
     { src: '~/plugins/promise-polyfill', ssr: false },
   ],
 

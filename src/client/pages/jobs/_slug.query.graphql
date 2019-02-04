@@ -1,0 +1,53 @@
+query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
+  page: job(locale: $locale, filter: { slug: { eq: $slug } }) {
+    ...job
+  },
+
+  alternate: job(locale: $locale, filter: { slug: { eq: $slug } }) {
+    slug(locale: $alternateLocale)
+  },
+
+  alternateParent: jobOverview {
+    slug
+  }
+}
+
+fragment job on JobRecord {
+  title,
+  subtitle,
+  slug,
+  i18nSlugs: _allSlugLocales {
+    locale,
+    value
+  },
+  social {
+    title,
+    description,
+    image {
+      url
+    }
+  },
+  keywords,
+  jobImage {
+    url,
+    format,
+    alt
+  },
+  url,
+  jobContent {
+  	__typename,
+    ... on TextSectionRecord {
+      title,
+      body,
+    },
+    ... on GenericTextBlockRecord {
+      title,
+      body,
+      image {
+        url,
+        format,
+        alt
+      }
+    },
+  },
+}

@@ -5,7 +5,7 @@
         <nuxt-link
           class="case-excerpt__image-link"
           tabindex="-1"
-          :to="{ name: 'locale-cases-slug', params: { slug, locale: currentLocale }}"
+          :to="localeUrl({ name: 'cases-slug', params: { slug } })"
         >
           <responsive-image
             :has-fixed-ratio="false"
@@ -20,14 +20,14 @@
               :aria-label="`${primaryLabel} - ${title}`"
               class="case-excerpt__button"
               :label="primaryLabel"
-              :to="{ name: 'locale-cases-slug', params: { slug, locale: currentLocale }}"
+              :to="localeUrl({ name: 'cases-slug', params: { slug } })"
             />
             <app-button
               class="case-excerpt__button"
               secondary
               v-if="secondaryLabel"
               :label="secondaryLabel"
-              :to="{ name: 'locale-cases', params: { locale: 'en' }}"
+              :to="localeUrl('cases')"
             />
           </div>
         </div>
@@ -37,7 +37,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import { AppButton, FixedRatio, ResponsiveImage } from '~/components'
 
   export default {
@@ -76,9 +75,7 @@
         default: '',
       },
     },
-    computed: {
-      ...mapState(['currentLocale']),
-    },
+
   }
 </script>
 

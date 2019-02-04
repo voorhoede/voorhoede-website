@@ -1,15 +1,15 @@
 require('dotenv-safe').config()
 
-const appConfig = require('../lib/appconfig');
+const appConfig = require('../../../src/client/static/data/app.json')
 const isProduction = (process.env.NODE_ENV === 'production')
 
 /**
  * https://github.com/nuxt-community/analytics-module
  */
-module.exports = appConfig.googleAnalyticsTrackingId &&
+module.exports = appConfig.googleAnalyticsId &&
   ['@nuxtjs/google-analytics',
   {
-    id: appConfig.googleAnalyticsTrackingId,
+    id: appConfig.googleAnalyticsId,
     /**
      * Debug while in development mode
      * @see https://matteogabriele.gitbooks.io/vue-analytics/content/docs/debug.html

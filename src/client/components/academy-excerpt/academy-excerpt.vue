@@ -13,12 +13,13 @@
       <footer class="academy-excerpt__actions button-group">
         <app-button
           class="academy-excerpt__primary-button"
-          :label="ctaPrimaryLabel"
+          :aria-label="$t('sign_up_for__title_', { title })"
+          :label="$t('sign_up')"
           :to="ctaPrimaryTo"
           external
         />
         <app-button
-          :label="ctaSecondaryLabel"
+          :label="$t('more_events')"
           :to="ctaSecondaryTo"
           external
           secondary
@@ -36,7 +37,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import { AppButton, LazyLoad } from '~/components'
 
   export default {
@@ -82,17 +82,16 @@
       },
     },
     computed: {
-      ...mapState([ 'currentLocale' ]),
       date() {
         return new Date(this.dateString)
       },
       day() {
-        return this.date.toLocaleDateString(this.currentLocale, {
+        return this.date.toLocaleDateString(this.$i18n.locale, {
           day: 'numeric',
         })
       },
       month() {
-        return this.date.toLocaleDateString(this.currentLocale, {
+        return this.date.toLocaleDateString(this.$i18n.locale, {
           month: 'short',
         })
       },

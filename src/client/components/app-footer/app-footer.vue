@@ -2,10 +2,9 @@
   <footer class="app-footer grid">
     <div class="app-footer__layout">
       <div class="app-footer__header">
-        <nuxt-link 
-          :to="{name: 'locale', params: {currentLocale } }" 
-          aria-label="link to the voorhoede site">
-          <img class="app-footer__header-logo" src="/images/logo-with-text.svg" :alt="logoAlt">
+        <nuxt-link :to="localeUrl('index')"
+          aria-label="$t('home')">
+          <img class="app-footer__header-logo" src="/images/logo-with-text.svg" alt="">
         </nuxt-link>
       </div>
       <div class="app-footer__column">
@@ -14,14 +13,14 @@
         </h3>
         <ul class="app-footer__list">
           <li
-            v-for="link in exploreLinks"
+            v-for="link in links"
             :key="link.slug"
             class="app-footer__list-item body-detail"
           >
             <nuxt-link class="app-footer__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
           </li>
           <li class="app-footer__list-item body-detail">
-            <nuxt-link class="app-footer__link" :to="createHref({ slug: 'faq'})">FAQ</nuxt-link>
+            <nuxt-link class="app-footer__link" :to="createHref({ page: { slug: 'faq' } })">FAQ</nuxt-link>
           </li>
         </ul>
       </div>
@@ -88,7 +87,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { createHref, linkValidator } from '../../lib/links'
 import AppIcon from '../../components/app-icon'
 
 export default {
@@ -96,18 +95,12 @@ export default {
     AppIcon,
   },
   props: {
-    exploreLinks: {
+    links: {
       type: Array,
-      default: () => [],
-      validator: (links) => {
-        return (
-          links.every(link => {
-            return link instanceof Object &&
-              typeof link.title === 'string' &&
-              typeof link.slug === 'string'
-          })
-        )
+      validator (links) {
+        return links.every(linkValidator)
       },
+      default: () => [],
     },
     headerTitle: {
       type: String,
@@ -161,10 +154,6 @@ export default {
       type: String,
       default: '',
     },
-    logoAlt: {
-      type: String,
-      default: '',
-    },
     legal: {
       type: Array,
       default: () => [],
@@ -193,18 +182,12 @@ export default {
     },
   },
   computed: {
-    ...mapState([
-      'currentLocale',
-    ]),
     cleanedTelephone() {
       return this.tel.replace(/[^0-9]/g, '')
     }
   },
   methods: {
-    createHref(link) {
-      const locale = this.currentLocale
-      return `/${locale}/${link.slug}/`
-    },
+    createHref
   },
 }
 </script>
