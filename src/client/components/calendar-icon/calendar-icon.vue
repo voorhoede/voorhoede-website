@@ -1,6 +1,10 @@
 <template>
   <time
     class="calendar-icon"
+    :class="{
+      'calendar-icon--blue': (fill === 'blue'),
+      'calendar-icon--yellow': (fill === 'yellow')
+    }"
     :datetime="date"
   >
     <span class="calendar-icon__day font-bold">{{ day }}</span>
@@ -15,6 +19,15 @@ export default {
       type: String,
       required: true,
     },
+    fill: {
+      type: String,
+      default: 'none',
+      validator: color => ['blue', 'yellow', 'dim', 'none'].indexOf(color) !== -1,
+    },
+    solid: {
+      type: Boolean,
+      default: false,
+    }
   },
   computed: {
     dateObject () {
@@ -39,9 +52,9 @@ export default {
     position: relative;
     width: 3.75rem;
     padding: var(--spacing-tiny) 0;
-    border: 3px solid var(--html-blue);
     font-family: var(--font-sans);
     text-align: center;
+    border: 3px solid var(--html-blue);
     color: var(--html-blue);
     grid-column-start: 2;
     grid-column-end: 13;
@@ -66,6 +79,34 @@ export default {
 
   .calendar-icon::after {
     right: 8px;
+  }
+
+
+  .calendar-icon--blue {
+    background-color: var(--html-blue);
+    border: none;
+    color: var(--white);
+  }
+
+  .calendar-icon--dim {
+    background-color: var(--dim);
+    border: none;
+    color: var(--white);
+  }
+
+  .calendar-icon--dim::before,
+  .calendar-icon--dim::after {
+    background-color: var(--dim);
+  }
+
+  .calendar-icon--yellow {
+    background-color: var(--brand-yellow);
+    border: none;
+  }
+
+  .calendar-icon--yellow::before,
+  .calendar-icon--yellow::after {
+    background-color: var(--brand-yellow);
   }
 
   .calendar-icon__day,
