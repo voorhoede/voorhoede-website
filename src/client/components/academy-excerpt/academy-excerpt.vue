@@ -96,6 +96,11 @@
     margin-bottom: var(--spacing-small);
   }
 
+  .academy-excerpt__calendar-icon {
+    grid-column-start: 2;
+    grid-column-end: 13;
+  }
+
   .academy-excerpt__description {
     margin-bottom: var(--spacing-medium);
   }

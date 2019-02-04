@@ -56,10 +56,6 @@ export default {
     text-align: center;
     border: 3px solid var(--html-blue);
     color: var(--html-blue);
-    grid-column-start: 2;
-    grid-column-end: 13;
-    align-self: start;
-    justify-self: end;
   }
 
   .calendar-icon::before,
