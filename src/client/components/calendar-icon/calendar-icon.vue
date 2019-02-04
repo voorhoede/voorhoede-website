@@ -51,6 +51,7 @@ export default {
     display: block;
     position: relative;
     width: 3.75rem;
+    max-height: 3.75rem;
     padding: var(--spacing-tiny) 0;
     font-family: var(--font-sans);
     text-align: center;
