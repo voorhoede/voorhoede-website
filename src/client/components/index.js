@@ -1,3 +1,7 @@
+/**
+ * Make sure this file is sorted from Atom to Template.
+ * Components might have issues including elements that are further down the list.
+ */
 export { default as AppButton } from './app-button'
 export { default as NoScript } from './no-script'
 export { default as FixedRatio } from './fixed-ratio'
@@ -15,7 +19,7 @@ export { default as CurlyBracket } from './curly-bracket'
 export { default as CaseExcerpt } from './case-excerpt'
 export { default as CtaBlock } from './cta-block'
 export { default as GridDemo } from './grid-demo'
-export { default as HighlightedClients } from './highlighted-clients' /* Should be exported after LazyLoad */
+export { default as HighlightedClients } from './highlighted-clients'
 export { default as PageHeader } from './page-header'
 export { default as PageHeaderDetail } from './page-header-detail'
 export { default as ScrollHighlightedText } from './scroll-highlighted-text'
