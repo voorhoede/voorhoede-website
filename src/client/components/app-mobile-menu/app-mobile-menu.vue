@@ -6,7 +6,7 @@
       class="app-mobile-menu__content"
       @touchmove="prevent"
     >
-      <nuxt-link :to="localeUrl('index')">
+      <nuxt-link :to="localeUrl('index')" :aria-label="$t('home')" :title="$t('home')">
         <img
           class="app-mobile-menu__logo"
           src="/images/logo--blue-and-yellow.svg"
@@ -34,19 +34,19 @@
       class="app-mobile-menu__icon"
       @click="toggleMobileMenu"
       @touchmove="prevent"
-      :aria-label="menuLabel"
+      :aria-label="`${(showMenu) ? $t('close_menu') : $t('open_menu') }`"
     >
       <img
         v-if="showMenu"
+        alt=""
         class="app-mobile-menu__icon-image"
         src="/images/icon_menu-exit--white.svg"
-        :alt="closeLabel"
       >
       <img
         v-else
+        alt=""
         class="app-mobile-menu__icon-image"
         src="/images/icon_menu-passive--white.svg"
-        :alt="openLabel"
       >
     </button>
   </nav>
@@ -70,9 +70,6 @@
     },
     data: () => ({
       showMenu: false,
-      menuLabel: 'toggle mobile menu',
-      closeLabel: 'close mobile menu',
-      openLabel: 'open mobile menu'
     }),
     methods: {
       prevent(event) {
