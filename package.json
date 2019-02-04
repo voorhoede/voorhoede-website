@@ -32,7 +32,9 @@
     "new-component": "node _scripts/new-component/index.js --component",
     "precommit": "npm run lint",
     "proxy": "ngrok http 3278",
-    "start": "nuxt start"
+    "start": "nuxt start",
+    "test": "ava -v",
+    "test:watch": "ava -vw"
   },
   "dependencies": {
     "@nuxtjs/google-analytics": "^2.0.2",
@@ -50,7 +52,9 @@
     "@storybook/addon-options": "3.4.8",
     "@storybook/vue": "3.4.8",
     "autoprefixer": "^9.3.1",
+    "ava": "^1.2.0",
     "babel-eslint": "8.2.1",
+    "backoff": "^2.5.0",
     "chalk": "^2.4.1",
     "cheerio": "^1.0.0-rc.2",
     "commander": "2.19.0",
@@ -71,8 +75,10 @@
     "postcss-custom-properties": "^8.0.9",
     "postcss-import": "^12.0.1",
     "promise-polyfill": "^8.1.0",
+    "proxyquire": "^2.1.0",
     "raw-loader": "^0.5.1",
     "rimraf": "2.6.2",
+    "sinon": "^7.2.3",
     "storybook-readme": "3.3.0",
     "stylelint": "9.9.0",
     "stylelint-config-standard": "18.2.0",
@@ -84,5 +90,9 @@
   "browserslist": [
     "ie 11",
     "last 2 versions"
-  ]
+  ],
+  "ava": {
+    "babel": false,
+    "compileEnhancements": false
+  }
 }
