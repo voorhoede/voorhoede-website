@@ -80,7 +80,7 @@
       </template>
     </article>
 
-    <aside class="page-blog-post__aside" ref="blog-post-aside">
+    <aside class="page-blog-post__aside">
       <blog-author class="page-blog-post__aside-author" :item="page" />
       <social-buttons
         :title="page.socialTitle"
@@ -160,8 +160,6 @@ export default {
        * to prevent issues with the moment the custom script is executed and hydration.
        */
       loadCustomScript: false,
-      bottomPositionAside: null,
-      topOffsetAside: null
     }
   },
   mounted () {
@@ -215,11 +213,7 @@ export default {
     grid-row: 4;
     padding-top: var(--spacing-small);
     border-top: 2px solid var(--very-dim);
-    margin-bottom: 0;
-    padding-bottom: var(--spacing-bigger);
-    overflow: hidden;
-    background: white;
-    z-index: 8;
+    margin-bottom: var(--spacing-bigger);
   }
 
   .page-blog-post__cta {
@@ -273,7 +267,6 @@ export default {
 
     .page-blog-post__aside {
       display: block;
-      position: relative;
       grid-column-start: 2;
       grid-column-end: 9;
     }
