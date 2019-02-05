@@ -53,7 +53,7 @@
         <text-block
           v-if="item.__typename === 'TextSectionRecord' && item.title"
           :key="item.title">
-          <h2 class="page-blog-post-list-title h3 font-html-blue">{{ item.title }}</h2>
+          <h2 class="page-blog-post-list__title h3 font-html-blue">{{ item.title }}</h2>
         </text-block>
 
         <rich-text-block
@@ -185,7 +185,7 @@ export default {
     margin-right: 0;
   }
 
-  .page-blog-post-list-title {
+  .page-blog-post-list__title {
     margin-bottom: var(--spacing-smaller);
   }
 
