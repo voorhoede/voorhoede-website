@@ -34,14 +34,15 @@
 
 <style>
   .toc-section {
-    top: var(--spacing-large);
-    position: sticky;
-    margin: var(--spacing-large) 0;
+    display: none;
   }
 
   @media (min-width: 720px) {
     .toc-section {
       display: block;
+      position: sticky;
+      top: var(--spacing-large);
+      margin: var(--spacing-large) 0;
     }
 
     .toc-section__list-item {
