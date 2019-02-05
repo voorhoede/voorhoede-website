@@ -53,7 +53,7 @@
         <text-block
           v-if="item.__typename === 'TextSectionRecord' && item.title"
           :key="item.title"
-          :id="slugify(item.title)">
+          :text-anchor="slugify(item.title)">
           <h2
             class="page-blog-post-list__title h3 font-html-blue" 
             :id="slugify(item.title)">
@@ -169,7 +169,7 @@ export default {
   },
   methods: {
     slugify(title) {
-      return title.replace(/\s+/g, '').toLowerCase()
+      return `${title.replace(/[^A-Za-z]+/g, '-').toLowerCase()}`
     }
   },
   head,

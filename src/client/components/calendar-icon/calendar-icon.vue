@@ -78,7 +78,6 @@ export default {
     right: 8px;
   }
 
-
   .calendar-icon--blue {
     background-color: var(--html-blue);
     border: none;

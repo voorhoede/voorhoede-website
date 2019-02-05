@@ -26,7 +26,7 @@
     methods: {
       slugify(title) {
         //remove spaces and lowercase titles
-        return `#${title.replace(/\s+/g, '').toLowerCase()}`
+        return `#${title.replace(/[^A-Za-z]+/g, '-').toLowerCase()}`
       },
     }
   }
