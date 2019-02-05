@@ -57,16 +57,8 @@
         type: String,
         required: true,
       },
-      ctaPrimaryLabel: {
-        type: String,
-        required: true,
-      },
       ctaPrimaryTo: {
         type: [String, Object],
-        required: true,
-      },
-      ctaSecondaryLabel: {
-        type: String,
         required: true,
       },
       ctaSecondaryTo: {
