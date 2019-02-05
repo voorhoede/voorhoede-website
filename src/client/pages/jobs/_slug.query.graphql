@@ -6,10 +6,6 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
   alternate: job(locale: $locale, filter: { slug: { eq: $slug } }) {
     slug(locale: $alternateLocale)
   },
-
-  alternateParent: jobOverview {
-    slug
-  }
 }
 
 fragment job on JobRecord {

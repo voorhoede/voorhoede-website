@@ -6,10 +6,6 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
   alternate: eventItem(locale: $locale, filter: { slug: { eq: $slug } }) {
     slug(locale: $alternateLocale)
   },
-
-  alternateParent: eventOverview {
-    slug
-  }
 }
 
 fragment eventItem on EventItemRecord {
