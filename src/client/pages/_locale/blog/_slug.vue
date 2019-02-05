@@ -53,10 +53,10 @@
         <text-block
           v-if="item.__typename === 'TextSectionRecord' && item.title"
           :key="item.title"
-          :id="stripTitle(item.title)">
+          :id="slugify(item.title)">
           <h2
             class="page-blog-post-list__title h3 font-html-blue" 
-            :id="stripTitle(item.title)">
+            :id="slugify(item.title)">
             {{ item.title }}
           </h2>
         </text-block>
@@ -181,7 +181,7 @@ export default {
     this.topOffsetAside =  this.$refs['blog-post-aside'].offsetTop
   },
   methods: {
-    stripTitle(title) {
+    slugify(title) {
       return title.replace(/\s+/g, '').toLowerCase()
     }
   },
@@ -228,7 +228,11 @@ export default {
     grid-row: 4;
     padding-top: var(--spacing-small);
     border-top: 2px solid var(--very-dim);
-    margin-bottom: var(--spacing-bigger);
+    margin-bottom: 0;
+    padding-bottom: var(--spacing-bigger);
+    overflow: hidden;
+    background: white;
+    z-index: 8;
   }
 
   .page-blog-post__cta {
@@ -306,6 +310,11 @@ export default {
     .page-blog-post__link-container {
       grid-column-start: 4;
       grid-column-end: 48;
+      margin-bottom: 0;
+    padding-bottom: var(--spacing-bigger);
+    overflow: hidden;
+    background: white;
+    z-index: 8;
     }
   }
 
