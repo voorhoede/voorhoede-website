@@ -24,4 +24,15 @@ export default {
 </script>
 
 <style>
+@media (min-width: 720px) {
+  .code-block pre {
+    padding: var(--spacing-large);
+  }
+}
+
+@media (min-width: 1440px) {
+  .code-block pre {
+    padding: var(--spacing-large) var(--spacing-larger);
+  }
+}
 </style>
