@@ -20,7 +20,7 @@
           'h1': !isHomepage,
         }"
       >
-        <h2 class="sr-only" v-html="text" />
+        <h2 class="sr-only">{{ text }}</h2>
         <self-typing-text
           :text="text"
           :class="{

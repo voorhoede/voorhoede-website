@@ -1,7 +1,7 @@
 <template>
   <article class="event-card">
     <nuxt-link
-      :to="{ name: 'locale-events-slug', params: { locale: currentLocale, slug }}"
+      :to="localeUrl('events-slug', { params: { slug } })"
       class="event-card__link"
       :class="{ 'event-card__link--alt': isMeetup }">
       <header class="event-card__header">
@@ -34,7 +34,6 @@
 
 
 <script>
-  import { mapState } from 'vuex'
   import { LazyLoad, RichTextBlock  } from '~/components'
 
   export default {
@@ -74,17 +73,16 @@
       }
     },
     computed: {
-      ...mapState([ 'currentLocale' ]),
       date() {
         return new Date(this.dateString)
       },
       day() {
-        return this.date.toLocaleDateString(this.currentLocale, {
+        return this.date.toLocaleDateString(this.$i18n.locale, {
           day: 'numeric',
         })
       },
       month() {
-        return this.date.toLocaleDateString(this.currentLocale, {
+        return this.date.toLocaleDateString(this.$i18n.locale, {
           month: 'short',
         })
       },

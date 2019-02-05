@@ -7,12 +7,16 @@
       <h3 class="job-excerpt__text-title h5">{{ title }}</h3>
       <p class="job-excerpt__text-description body-detail">{{ description }}</p>
     </div>
-    <app-button class="job-excerpt__button" :aria-label="title" :label="label" :to="{ name: 'locale-jobs-slug', params: { locale: currentLocale, slug } }"/>
+    <app-button
+      class="job-excerpt__button"
+      :aria-label="title"
+      :label="$t('view_details')"
+      :to="localeUrl({ name: 'jobs-slug', params: { slug } })"
+    />
   </div>
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import { AppButton } from '../../components'
 
   export default {
@@ -36,15 +40,9 @@
         validator(image) {
           return image && typeof(image.url) === 'string'
         },
-      },
-      label: {
-        type: String,
-        required: true,
-      },
+      }
     },
-    computed: {
-      ...mapState(['currentLocale'])
-    }
+
   }
 </script>
 

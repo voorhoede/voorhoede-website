@@ -1,28 +1,41 @@
 <template>
   <nav class="app-header grid">
-    <h2 class="sr-only">Site Menu</h2>
+    <h2 class="sr-only">{{ title }}</h2>
     <div class="app-header__content">
-      <nuxt-link class="app-header__home-link" :to="`/${currentLocale}/`">
+      <nuxt-link class="app-header__home-link" :to="localeUrl('index')">
         <img class="app-header__logo" src="/images/logo-with-text.svg" alt="Home">
       </nuxt-link>
       <div class="app-header__link-lists body-petite">
         <ul class="app-header__link-list">
-          <li v-for="link in localizedMenuItems" :key="link.href" class="app-header__link-list-item">
-            <app-button small v-if="link.button" :label="link.title" :to="createHref(link)"/>
-            <nuxt-link v-else class="app-header__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
+          <li v-for="link in links" :key="link.title" class="app-header__link-list-item">
+            <nuxt-link class="app-header__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
+          </li>
+          <li v-if="callToAction" class="app-header__link-list-item">
+            <app-button small :label="callToAction.title" :to="createHref(callToAction)"/>
           </li>
         </ul>
         <ul class="app-header__link-list app-header__link-list--languages">
           <li
-            v-for="locale in locales"
-            :key="locale"
+            v-for="({ code, name }) in $i18n.locales"
+            :key="code"
             class="app-header__link-list-item"
-            :class="{
-              'font-bold': locale === currentLocale,
-            }"
+            :class="{ 'font-bold': code === $i18n.locale }"
           >
-            <span v-if="locale === currentLocale">{{ locale }}</span>
-            <nuxt-link class="app-header__link" v-else :to="alternateUrl" :aria-label="locale === 'en' ? 'Engelse versie' : 'Dutch version'">{{ locale }}</nuxt-link>
+            <span
+              v-if="code === $i18n.locale"
+              aria-hidden
+            >
+              {{ code }}
+            </span>
+            <nuxt-link
+              v-else
+              class="app-header__link"
+              :aria-label="$t('switch_to__language_', 'nl', { language: name })"
+              :lang="code"
+              :to="localizedlocaleUrls[code]"
+            >
+              {{ code }}
+            </nuxt-link>
           </li>
         </ul>
       </div>
@@ -31,26 +44,53 @@
 </template>
 
 <script>
-  import { mapGetters, mapState } from 'vuex'
+  import { createHref, linkValidator } from '../../lib/links'
   import { AppButton } from '../../components'
 
   export default {
     components: { AppButton },
+    props: {
+      title: {
+        type: String,
+        default: 'Site menu'
+      },
+      links: {
+        type: Array,
+        validator (links) {
+          return links.every(linkValidator)
+        },
+        default: () => [],
+      },
+      callToAction: {
+        type: Object,
+        validator: linkValidator,
+        default: () => {},
+      }
+    },
     computed: {
-      ...mapState([
-        'locales',
-        'currentLocale',
-        'alternateUrl',
-      ]),
-      ...mapGetters([
-        'localizedMenuItems',
-      ]),
+      /**
+       * Pages can have localized slugs, stored as an array in Vuex on asyncData.
+       * When switching locale, the localized slug is needed instead of the current slug.
+       */
+      localizedlocaleUrls () {
+        if (this.$store.state.i18nSlugs) {
+          return this.$store.state.i18nSlugs.reduce((obj, { locale, value }) => {
+            // Get the route name (without the language suffix).
+            const name = this.$route.name.replace(/___.*$/,'')
+            // Return localized url as a property keyed by lang code.
+            obj[locale] = this.localeUrl({ name, params: { slug: value }, }, locale)
+            return obj
+          }, {})
+        } else {
+          return this.$i18n.locales.reduce((obj, { code }) => {
+            obj[code] = this.switchLocaleUrl(code)
+            return obj
+          }, {})
+        }
+      }
     },
     methods: {
-      createHref(link) {
-        const locale = this.currentLocale
-        return `/${locale}/${link.slug}/`
-      },
+      createHref,
     },
   }
 </script>

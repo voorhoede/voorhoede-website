@@ -1,0 +1,34 @@
+query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
+  page: contactConfirmation(locale: $locale, filter: { slug: { eq: $slug } }) {
+    ...page
+  },
+
+  alternate: contactConfirmation(locale: $locale, filter: { slug: { eq: $slug } }) {
+    slug(locale: $alternateLocale)
+  },
+
+  alternateParent: contact(locale:$locale) {
+    slug
+  },
+}
+
+fragment page on ContactConfirmationRecord {
+	slug,
+  i18nSlugs: _allSlugLocales {
+    locale,
+    value
+  },
+  social {
+    title,
+    description
+  },
+  keywords,
+  title,
+  subtitle,
+  headerIllustration {
+    url,
+    alt
+  },
+  body,
+  callToActionLabel
+}

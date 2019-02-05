@@ -8,52 +8,63 @@
       element from being focusable using the keyboard.
     -->
     <h1 class="sr-only" ref="topOfPage" tabindex="-1">De Voorhoede</h1>
-    <app-header/>
-    <app-mobile-menu/>
+    <app-header
+      :title="layout.menu.title"
+      :links="layout.menu.links"
+      :call-to-action="layout.menu.callToAction"
+    />
+    <app-mobile-menu
+      :title="layout.menu.title"
+      :links="[].concat(layout.menu.links, layout.menu.callToAction)"
+    />
     <nuxt/>
     <app-footer
-      :explore-links="localizedMenuItems"
-      :tel="layoutData.footer.telephoneNumber"
-      :email="layoutData.footer.email"
-      :google-maps-link="layoutData.footer.googleMapsLink"
-      :address="layoutData.footer.address"
-      :postal-code="layoutData.footer.postalCode"
-      :copyright-label="layoutData.footer.copyrightLabel"
-      :copyright-title="layoutData.footer.copyrightTitle"
-      :copyright-link="layoutData.footer.copyrightLink"
-      :privacy-label="layoutData.footer.privacyLabel"
-      :privacy-title="layoutData.footer.privacyTitle"
-      :privacy-link="layoutData.footer.privacyLink"
-      :logo-alt="layoutData.footer.logoAlt"
-      :legal="layoutData.footer.legal"
-      :social="layoutData.footer.social"
+      :links="[].concat(layout.menu.links, layout.menu.callToAction)"
+      :tel="layout.footer.telephoneNumber"
+      :email="layout.footer.email"
+      :google-maps-link="layout.footer.googleMapsLink"
+      :address="layout.footer.address"
+      :postal-code="layout.footer.postalCode"
+      :copyright-label="layout.footer.copyrightLabel"
+      :copyright-title="layout.footer.copyrightTitle"
+      :copyright-link="layout.footer.copyrightLink"
+      :privacy-label="layout.footer.privacyLabel"
+      :privacy-title="layout.footer.privacyTitle"
+      :privacy-link="layout.footer.privacyLink"
+      :logo-alt="layout.footer.logoAlt"
+      :legal="layout.footer.legal"
+      :social="layout.footer.social"
     />
   </div>
 </template>
 
 <script>
-  import { mapState, mapGetters } from 'vuex'
-  import { AppFooter, AppHeader, AppMobileMenu, GridDemo } from '../components'
+import { mapState } from 'vuex'
+import { AppFooter, AppHeader, AppMobileMenu, GridDemo } from '../components'
 
-  export default {
-    components: { AppFooter, AppHeader, AppMobileMenu, GridDemo },
-    computed: {
-      ...mapState(['showGrid', 'currentLocale', 'layoutData']),
-      ...mapGetters(['localizedMenuItems'])
-    },
-    watch: {
-      $route() {
-        this.$refs.topOfPage.focus()
+export default {
+  components: { AppFooter, AppHeader, AppMobileMenu, GridDemo },
+  data() {
+    return {
+      layout: require(`../static/data/${this.$i18n.locale}/layouts/default`) // layout data should always be bundled
+    }
+  },
+  computed: {
+    ...mapState(['showGrid']),
+  },
+  watch: {
+    $route() {
+      this.$refs.topOfPage.focus()
+    }
+  },
+  head() {
+    return {
+      htmlAttrs: {
+        lang: this.$i18n.locale
       }
-    },
-    head() {
-      return {
-        htmlAttrs: {
-          lang: this.currentLocale
-        }
-      }
-    },
-  }
+    }
+  },
+}
 </script>
 
 <style>

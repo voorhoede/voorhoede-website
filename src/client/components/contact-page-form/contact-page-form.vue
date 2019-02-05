@@ -79,14 +79,13 @@
     </fieldset>
     <app-button
       class="contact-form__button"
-      :label="ctaLabel"
+      :label="$t('get_in_touch')"
       type="submit"
     />
   </form>
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import { AppButton, InputField } from '~/components'
   import submitContactForm from '../../lib/submit-contact-form'
 
@@ -186,10 +185,6 @@
       projectErrorMessage: {
         type: String,
         required: true
-      },
-      ctaLabel: {
-        type: String,
-        required: true
       }
     },
     data() {
@@ -208,11 +203,8 @@
       }
     },
     computed: {
-      ...mapState([
-        'currentLocale',
-      ]),
       confirmationPageUrl() {
-        return '/' + this.currentLocale + '/contact/confirmation/'
+        return this.localeUrl({ name: 'contact-slug', params: { slug: 'confirmation' } })
       },
       emailValidationErrorMessage() {
         return this.form.email ? this.emailErrorMessageIncorrect : this.emailErrorMessageEmpty
@@ -231,7 +223,7 @@
         submitContactForm({
           form: this.form,
           router: this.$router,
-          currentLocale: this.currentLocale
+          localeUrl: this.localeUrl,
         })
       }
     }
