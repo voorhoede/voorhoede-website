@@ -90,6 +90,4 @@ fragment page on HomeRecord {
   },
   callToActionTitle,
   callToActionLabel,
-  casePrimaryCtaLabel,
-  caseSecondaryCtaLabel
 }

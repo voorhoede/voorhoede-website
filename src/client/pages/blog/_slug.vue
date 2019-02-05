@@ -83,7 +83,7 @@
 
     <div class="page-blog-post__link-container">
       <nuxt-link class="app-button app-button--secondary body font-bold" :to="localeUrl('blog')">
-        &larr; See all posts
+        &larr; {{ $t('all_blogposts') }}
       </nuxt-link>
     </div>
 
