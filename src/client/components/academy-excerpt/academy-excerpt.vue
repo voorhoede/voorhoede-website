@@ -19,9 +19,8 @@
           external
         />
         <app-button
-          :label="$t('more_events')"
+          :label="$t('all_events')"
           :to="localeUrl('events')"
-          external
           secondary
         />
       </footer>

@@ -79,8 +79,10 @@
     </aside>
 
     <div class="page-event-detail__link-container">
-      <nuxt-link class="app-button app-button--secondary body font-bold" :to="`/${this.$i18n.locale}/${alternateParent.slug}`">
-        &larr; See all {{ alternateParent.slug }}
+      <nuxt-link
+        class="app-button app-button--secondary body font-bold"
+        :to="localeUrl('events')">
+        &larr; {{ $t('all_events') }}
       </nuxt-link>
     </div>
   </div>

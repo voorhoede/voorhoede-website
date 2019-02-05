@@ -150,6 +150,5 @@ fragment caseItem on CaseItemRecord {
     phonePlaceholder,
     phoneErrorMessage,
     ctaButtonLabel
-  },
-  backLinkTitle
+  }
 }
