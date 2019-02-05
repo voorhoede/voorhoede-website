@@ -26,7 +26,7 @@
       <h2 class="page-index__section-title h1">{{ page.servicesHeader }}</h2>
       <services-list
         :services="page.services"
-        :cta="page.servicesCta" />
+      />
     </section>
     <section class="page-index__cases">
       <div class="grid">
