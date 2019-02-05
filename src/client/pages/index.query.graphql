@@ -82,15 +82,12 @@ fragment page on HomeRecord {
   },
   smallServices,
   clientsTitle,
-  academyPrimaryButtonLabel,
-  academySecondaryButtonLabel,
   academyIllustration {
     url,
     format,
     width,
     height
   },
-  blogPostsTitle,
   callToActionTitle,
   callToActionLabel,
   casePrimaryCtaLabel,
