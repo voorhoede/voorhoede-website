@@ -2,7 +2,7 @@
   <article class="academy-excerpt grid">
     <time
       class="academy-excerpt__calendar"
-      :datetime="dateString"
+      :datetime="date"
     >
       <span class="academy-excerpt__day font-bold">{{ day }}</span>
       <span class="academy-excerpt__month">{{ month }}</span>
@@ -15,12 +15,12 @@
           class="academy-excerpt__primary-button"
           :aria-label="$t('sign_up_for__title_', { title })"
           :label="$t('sign_up')"
-          :to="ctaPrimaryTo"
+          :to="link"
           external
         />
         <app-button
           :label="$t('more_events')"
-          :to="ctaSecondaryTo"
+          :to="localeUrl('events')"
           external
           secondary
         />
@@ -45,7 +45,7 @@
       LazyLoad,
     },
     props: {
-      dateString: {
+      date: {
         type: String,
         required: true,
       },
@@ -57,12 +57,8 @@
         type: String,
         required: true,
       },
-      ctaPrimaryTo: {
-        type: [String, Object],
-        required: true,
-      },
-      ctaSecondaryTo: {
-        type: [String, Object],
+      link: {
+        type: String,
         required: true,
       },
       illustration: {
@@ -74,16 +70,16 @@
       },
     },
     computed: {
-      date() {
-        return new Date(this.dateString)
+      dateObject() {
+        return new Date(this.date)
       },
       day() {
-        return this.date.toLocaleDateString(this.$i18n.locale, {
+        return this.dateObject.toLocaleDateString(this.$i18n.locale, {
           day: 'numeric',
         })
       },
       month() {
-        return this.date.toLocaleDateString(this.$i18n.locale, {
+        return this.dateObject.toLocaleDateString(this.$i18n.locale, {
           month: 'short',
         })
       },

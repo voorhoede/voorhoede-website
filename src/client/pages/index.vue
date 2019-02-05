@@ -54,15 +54,11 @@
     </section>
     <div class="page-index__academy grid" v-if="upcomingEvents[0]">
       <academy-excerpt
-        :date-string="upcomingEvents[0].date"
+        :date="upcomingEvents[0].date"
         :title="upcomingEvents[0].title"
         :description="upcomingEvents[0].description"
-        :url="upcomingEvents[0].url"
         :illustration="page.academyIllustration"
-        :cta-primary-label="page.academyPrimaryButtonLabel"
-        :cta-primary-to="upcomingEvents[0].url"
-        :cta-secondary-label="page.academySecondaryButtonLabel"
-        cta-secondary-to="https://www.eventbrite.nl/o/de-voorhoede-11975015411"
+        :link="upcomingEvents[0].url"
       />
       <curly-bracket />
     </div>
