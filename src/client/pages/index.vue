@@ -34,12 +34,9 @@
       </div>
       <horizontal-carousel>
         <template slot="slides">
-          <div v-for="caseExcerpt in page.cases" :key="caseExcerpt.id">
+          <div v-for="caseExcerpt in page.cases" :key="caseExcerpt.slug">
             <case-excerpt
-              :case-id="caseExcerpt.slug"
-              :primary-label="page.casePrimaryCtaLabel"
               :slug="caseExcerpt.slug"
-              :secondary-label="page.caseSecondaryCtaLabel"
               :image="caseExcerpt.heroIllustration"
               :title="caseExcerpt.title"
               :body="caseExcerpt.subtitle"
