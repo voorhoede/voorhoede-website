@@ -87,5 +87,7 @@ fragment page on HomeRecord {
     format,
     width,
     height
-  }
+  },
+  callToActionTitle,
+  callToActionLabel,
 }
