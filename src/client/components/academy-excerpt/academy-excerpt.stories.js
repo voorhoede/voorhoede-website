@@ -26,9 +26,7 @@ stories.add(
         date-string="2018-10-31"
         title="Simply Serverless Meetup"
         description="On 12 July we will host the Simply Serverless Meetup. We'll introduce you to cloud functions, a brand new tool for serverless Node apps and show the benefits by sharing a project built with a serverless architecture."
-        ctaPrimaryLabel="Sign up"
         ctaPrimaryTo="https://google.nl"
-        ctaSecondaryLabel="Learn more"
         ctaSecondaryTo="https://google.nl"
         :image="{
           url: 'https://www.datocms-assets.com/6068/1529572359-random-image.jpeg',
