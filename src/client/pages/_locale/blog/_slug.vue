@@ -92,17 +92,16 @@
     </aside>
 
     <div class="page-blog-post__link-container">
-      <nuxt-link class="app-button app-button--secondary body font-bold" :to="localeUrl('blog')">
+      <nuxt-link class="app-button app-button--secondary body font-bold" :to="`/${currentLocale}/blog`">
         &larr; See all posts
       </nuxt-link>
     </div>
 
     <div class="page-blog-post__cta grid">
-      <!-- TODO: Make this a section to be defined in DATO (once for all blog pages) -->
       <cta-block
         class="page-blog-post__cta-block"
         :cta-label="page.callToActionLabel"
-        :cta-to="localeUrl('about-us')">
+        :cta-to="{ name: 'locale-about-us', params: { locale: currentLocale } }">
         <template slot="heading">
           <h2 class="h3">{{ page.callToActionTitle }}</h2>
         </template>
@@ -119,8 +118,8 @@
 </template>
 
 <script>
-import asyncData from '~/lib/async-page'
 import head from '~/lib/seo-head'
+import { mapState } from 'vuex'
 import {
   AppButton,
   BlogAuthor,
@@ -155,8 +154,14 @@ export default {
     TocSection,
     TextBlock,
   },
-  asyncData,
-  data () {
+  async asyncData({ store, route, error }) {
+    try {
+      return await store.dispatch('getData', { route })
+    } catch (err) {
+      return error({ statusCode: 404, message: err.message })
+    }
+  },
+  data() {
     return {
       /*
        * Load custom script after vue has mounted,
@@ -167,7 +172,10 @@ export default {
       topOffsetAside: null
     }
   },
-  mounted () {
+  computed: {
+    ...mapState(['currentLocale']),
+  },
+  mounted() {
     this.loadCustomScript = true
     this.bottomPositionAside = this.$refs['blog-post-aside'].offsetHeight + this.$refs['blog-post-aside'].offsetTop
     this.topOffsetAside =  this.$refs['blog-post-aside'].offsetTop

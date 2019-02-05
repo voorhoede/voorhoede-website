@@ -4,5 +4,5 @@
 ## Usage
 
 ```html
-<table-of-content />
+<toc-section />
 ```

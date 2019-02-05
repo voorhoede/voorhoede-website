@@ -1,20 +1,20 @@
 <template>
-  <div
-    class="table-of-content"
+  <section
+    class="toc-section"
     :class="{ 
-      'table-of-content--sticky' : sticky,
-      'table-of-content--to-bottom' : bottomBoundaryExceeded }">
-    <h3 class="body-big font-html-blue">Table of content</h3>
+      'toc-section--sticky' : sticky,
+      'toc-section--to-bottom' : bottomBoundaryExceeded }">
+    <h3 class="body-big font-html-blue">{{ $t('table_of_content') }}</h3>
     <ul class="flat-list">
       <li 
-        class="table-of-content__list-item"
+        class="toc-section__list-item"
         v-for="(item, index) in items" :key="index"> 
-        <a :href="stripTitle(item.title)" v-if="item.title" class="body">
+        <a :href="slugify(item.title)" v-if="item.title" class="body">
           {{ item.title }}
         </a>
       </li>
     </ul>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -51,7 +51,7 @@
         this.bottomBoundaryExceeded = window.scrollY >= (this.bottomBoundary - this.$el.offsetHeight)
         if (this.bottomBoundaryExceeded) this.sticky = false
       },
-      stripTitle(title) {
+      slugify(title) {
         //remove spaces and lowercase titles
         return `#${title.replace(/\s+/g, '').toLowerCase()}`
       }
@@ -64,28 +64,28 @@
     --max-width-toc: 200px;
   }
 
-  .table-of-content {
+  .toc-section {
     position: relative;
     margin: var(--spacing-large) 0;
   }
 
-  .table-of-content--sticky {
+  .toc-section--sticky {
     position: fixed;
     top: var(--spacing-large);
     max-width: var(--max-width-toc);
   }
 
-  .table-of-content--to-bottom {
+  .toc-section--to-bottom {
     position: absolute;
     bottom: 0;
   }
 
   @media (min-width: 720px) {
-    .table-of-content {
+    .toc-section {
       display: block;
     }
 
-    .table-of-content__list-item {
+    .toc-section__list-item {
       text-decoration: underline;
       margin-bottom: var(--spacing-small);
     }

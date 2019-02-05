@@ -1,2 +1,2 @@
-import Component from './table-of-content.vue'
+import Component from './toc-section.vue'
 export default Component

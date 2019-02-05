@@ -6,18 +6,18 @@ import { withKnobs } from '@storybook/addon-knobs/vue'
 
 import '../app-core/index.css'
 
-import TableOfContent from './table-of-content.vue'
+import TocSection from './toc-section.vue'
 import README from './README.md'
 
 const stories = storiesOf('Components/Table Of Content', module)
   .addDecorator(withKnobs)
   .addDecorator(withReadme(README))
 
-Vue.component('table-of-content', TableOfContent)
+Vue.component('toc-section', TocSection)
 
 stories.add(
   'Table Of Content',
   () => ({
-    template: '<table-of-content/>',
+    template: '<toc-section/>',
   }),
 )
