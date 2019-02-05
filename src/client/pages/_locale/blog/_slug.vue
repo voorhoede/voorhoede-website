@@ -7,21 +7,21 @@
       :image="page.headerIllustration"
     />
 
-    <article class="blog-post-list">
+    <article class="page-blog-post-list">
       <text-block>
         <p class="font-html-blue testimonial">{{ page.introTitle }}</p>
       </text-block>
 
       <template v-for="item in page.items">
         <code-block
-          class="blog-post-list--full-width"
+          class="page-blog-post-list--full-width"
           v-if="item.__typename === 'CodeBlockRecord' && item.body"
           :language="item.language"
           :content="item.body"
           :key="item.body" />
 
         <image-with-description
-          class="blog-post-list__image blog-post-list--full-width"
+          class="page-blog-post-list__image page-blog-post-list--full-width"
           v-if="item.__typename === 'ImageWithTextRecord'"
           :key="item.description"
           :image="item.imageWithDescription.image"
@@ -36,8 +36,8 @@
         />
 
         <responsive-image
-          class="blog-post-list__image"
-          :class="{ 'blog-post-list--full-width' : item.fullWidth}"
+          class="page-blog-post-list__image"
+          :class="{ 'page-blog-post-list--full-width' : item.fullWidth}"
           v-if="item.__typename === 'ImageRecord' && item.image"
           :key="item.image.url"
           :image="item.image" />
@@ -53,7 +53,7 @@
         <text-block
           v-if="item.__typename === 'TextSectionRecord' && item.title"
           :key="item.title">
-          <h2 class="blog-post-list__title h3 font-html-blue">{{ item.title }}</h2>
+          <h2 class="page-blog-post-list-title h3 font-html-blue">{{ item.title }}</h2>
         </text-block>
 
         <rich-text-block
@@ -179,21 +179,21 @@ export default {
     margin-bottom: var(--spacing-large);
   }
 
-  .blog-post-list > * {
+  .page-blog-post-list > * {
     margin-bottom: var(--spacing-large);
   }
 
-  .blog-post-list__image {
+  .page-blog-post-list__image {
     justify-content: space-between;
     margin-bottom: var(--spacing-large);
   }
 
-  .blog-post-list__image .image-with-description__description {
+  .page-blog-post-list__image .image-with-description__description {
     margin-left: 0;
     margin-right: 0;
   }
 
-  .blog-post-list__title {
+  .page-blog-post-list-title {
     margin-bottom: var(--spacing-smaller);
   }
 
@@ -220,16 +220,16 @@ export default {
     border: none;
   }
 
-  .blog-post-list {
+  .page-blog-post-list {
     grid-row: 3;
     max-width: 100%;
   }
 
-  .blog-post-list em {
+  .page-blog-post-list em {
     font-style: italic;
   }
 
-  .blog-post-list .responsive-video {
+  .page-blog-post-list .responsive-video {
     width: 100%;
     max-width: var(--case-content-max-width-l);
   }
@@ -239,12 +239,12 @@ export default {
   }
 
   @media (min-width: 720px) {
-    .blog-post-list > * {
+    .page-blog-post-list > * {
       margin-bottom: var(--spacing-larger);
       padding: 0 var(--spacing-larger);
     }
 
-    .blog-post-list .blog-post-list--full-width {
+    .page-blog-post-list .page-blog-post-list--full-width {
       padding: 0;
     }
 
@@ -253,7 +253,7 @@ export default {
       margin-bottom: var(--spacing-larger);
     }
 
-    .blog-post-list {
+    .page-blog-post-list {
       grid-row: 2;
       grid-column-start: 10;
       grid-column-end: 50;
@@ -288,11 +288,11 @@ export default {
   }
 
   @media (min-width: 1100px) {
-    .blog-post-list > * {
+    .page-blog-post-list > * {
       padding: 0 var(--spacing-big);
     }
 
-    .blog-post-list {
+    .page-blog-post-list {
       grid-column-start: 12;
       grid-column-end: 46;
     }
@@ -313,11 +313,11 @@ export default {
   }
 
   @media (min-width: 1440px) {
-    .blog-post-list > * {
+    .page-blog-post-list > * {
       padding: 0 var(--spacing-bigger);
     }
 
-    .blog-post-list {
+    .page-blog-post-list {
       grid-column-start: 12;
       grid-column-end: 44;
     }
