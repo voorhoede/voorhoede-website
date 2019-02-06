@@ -7,7 +7,7 @@
       makes the element only focusable using .focus() but prevents the
       element from being focusable using the keyboard.
     -->
-    <h1 class="sr-only" ref="topOfPage" tabindex="-1">De Voorhoede</h1>
+    <a id="top" ref="id" class="sr-only" tabindex="-1">{{ $t('top_of_page') }}</a>
     <app-header
       :title="layout.menu.title"
       :links="layout.menu.links"
@@ -54,7 +54,7 @@ export default {
   },
   watch: {
     $route() {
-      this.$refs.topOfPage.focus()
+      document.getElementById('top').focus();
     }
   },
   head() {
