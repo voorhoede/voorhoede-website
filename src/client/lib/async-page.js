@@ -2,6 +2,10 @@ import path from 'path'
 
 import { SET_I18N_SLUGS } from '~/store/mutation-types'
 
+/*
+ * Define fetchPage in this ugly way,
+ * to prevent development code increasing the bundle size
+ */
 const fetchPage = process.env.NODE_ENV === 'production'
   ? function ({ route }) {
     const filepath = path.join('/data', route.path, 'index.json')
