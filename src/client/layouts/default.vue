@@ -17,8 +17,9 @@
       :title="layout.menu.title"
       :links="[].concat(layout.menu.links, layout.menu.callToAction)"
     />
-    <nuxt/>
+    <nuxt v-if="!mobMenuState" />
     <app-footer
+      v-if="!mobMenuState"
       :links="[].concat(layout.menu.links, layout.menu.callToAction)"
       :tel="layout.footer.telephoneNumber"
       :email="layout.footer.email"
@@ -51,6 +52,9 @@ export default {
   },
   computed: {
     ...mapState(['showGrid']),
+    mobMenuState() {
+      return this.$store.state.showMenu
+    }
   },
   watch: {
     $route() {

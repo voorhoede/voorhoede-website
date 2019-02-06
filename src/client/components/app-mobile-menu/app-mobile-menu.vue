@@ -2,19 +2,14 @@
   <nav class="app-mobile-menu grid">
     <h2 class="sr-only">{{ title }}</h2>
     <button
+      v-if="!showMenu"
       class="app-mobile-menu__icon"
       @click="toggleMobileMenu"
       @touchmove="prevent"
-      :aria-label="`${(showMenu) ? $t('close_menu') : $t('open_menu') }`"
+      :aria-label="$t('open_menu')"
     >
       <img
-        v-if="showMenu"
-        alt=""
-        class="app-mobile-menu__icon-image"
-        src="/images/icon_menu-exit--white.svg"
-      >
-      <img
-        v-else
+        v-if="!showMenu"
         alt=""
         class="app-mobile-menu__icon-image"
         src="/images/icon_menu-passive--white.svg"
@@ -48,9 +43,24 @@
         </li>
       </ul>
     </div>
+    <button
+      v-if="showMenu"
+      class="app-mobile-menu__icon"
+      @click="toggleMobileMenu"
+      @touchmove="prevent"
+      :aria-label="$t('close_menu')"
+    >
+      <img
+        v-if="showMenu"
+        alt=""
+        class="app-mobile-menu__icon-image"
+        src="/images/icon_menu-exit--white.svg"
+      >
+    </button>
   </nav>
 </template>
 <script>
+  import { SHOW_MENU } from '~/store/mutation-types'
   import { createHref, linkValidator } from '../../lib/links'
 
   export default {
@@ -75,7 +85,8 @@
         event.preventDefault()
       },
       toggleMobileMenu() {
-        return this.showMenu = !this.showMenu
+        this.showMenu = !this.showMenu
+        return this.$store.commit(SHOW_MENU, this.showMenu)
       },
       createHref
     },
