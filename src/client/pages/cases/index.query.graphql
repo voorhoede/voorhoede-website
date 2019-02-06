@@ -31,7 +31,6 @@ fragment page on CaseOverviewRecord {
     format,
     alt
   },
-  casePrimaryButtonLabel,
   callToActionLabel,
   callToActionTitle
 }
