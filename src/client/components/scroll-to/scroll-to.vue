@@ -20,9 +20,12 @@
       <img
         class="scroll-to__image"
         src="/images/scroll-to-arrow--up.svg"
-        alt="An arrow facing upwards">
-      <span class="scroll-to__text body-petite font-bold">
+        alt="">
+      <span class="scroll-to__text body-petite font-bold" aria-hidden="true">
         {{ $t('return') }}
+      </span>
+      <span class="sr-only">
+        {{ $t('return_to_top') }}
       </span>
     </a>
   </div>
