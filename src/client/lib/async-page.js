@@ -45,6 +45,8 @@ export function fetchPage({ route, i18n }) {
       query = require('fs').readFileSync(`src/client/${queryPath}`, 'utf8')
     }
 
+    const fetch = require('node-fetch')
+
     return fetch(
       'https://graphql.datocms.com/',
       {
