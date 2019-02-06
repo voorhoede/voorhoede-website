@@ -1,5 +1,24 @@
 <template>
   <nav class="app-mobile-menu grid">
+    <button
+      class="app-mobile-menu__icon"
+      @click="toggleMobileMenu"
+      @touchmove="prevent"
+      :aria-label="`${(showMenu) ? $t('close_menu') : $t('open_menu') }`"
+    >
+      <img
+        v-if="showMenu"
+        alt=""
+        class="app-mobile-menu__icon-image"
+        src="/images/icon_menu-exit--white.svg"
+      >
+      <img
+        v-else
+        alt=""
+        class="app-mobile-menu__icon-image"
+        src="/images/icon_menu-passive--white.svg"
+      >
+    </button>
     <h2 class="sr-only">{{ title }}</h2>
     <div
       v-if="showMenu"
@@ -29,26 +48,6 @@
         </li>
       </ul>
     </div>
-
-    <button
-      class="app-mobile-menu__icon"
-      @click="toggleMobileMenu"
-      @touchmove="prevent"
-      :aria-label="`${(showMenu) ? $t('close_menu') : $t('open_menu') }`"
-    >
-      <img
-        v-if="showMenu"
-        alt=""
-        class="app-mobile-menu__icon-image"
-        src="/images/icon_menu-exit--white.svg"
-      >
-      <img
-        v-else
-        alt=""
-        class="app-mobile-menu__icon-image"
-        src="/images/icon_menu-passive--white.svg"
-      >
-    </button>
   </nav>
 </template>
 <script>
