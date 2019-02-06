@@ -26,7 +26,7 @@
       <h2 class="page-index__section-title h1">{{ page.servicesHeader }}</h2>
       <services-list
         :services="page.services"
-        :cta="page.servicesCta" />
+      />
     </section>
     <section class="page-index__cases">
       <div class="grid">
@@ -34,12 +34,9 @@
       </div>
       <horizontal-carousel>
         <template slot="slides">
-          <div v-for="caseExcerpt in page.cases" :key="caseExcerpt.id">
+          <div v-for="caseExcerpt in page.cases" :key="caseExcerpt.slug">
             <case-excerpt
-              :case-id="caseExcerpt.slug"
-              :primary-label="page.casePrimaryCtaLabel"
               :slug="caseExcerpt.slug"
-              :secondary-label="page.caseSecondaryCtaLabel"
               :image="caseExcerpt.heroIllustration"
               :title="caseExcerpt.title"
               :body="caseExcerpt.subtitle"
@@ -54,15 +51,11 @@
     </section>
     <div class="page-index__academy grid" v-if="upcomingEvents[0]">
       <academy-excerpt
-        :date-string="upcomingEvents[0].date"
+        :date="upcomingEvents[0].date"
         :title="upcomingEvents[0].title"
         :description="upcomingEvents[0].description"
-        :url="upcomingEvents[0].url"
         :illustration="page.academyIllustration"
-        :cta-primary-label="page.academyPrimaryButtonLabel"
-        :cta-primary-to="upcomingEvents[0].url"
-        :cta-secondary-label="page.academySecondaryButtonLabel"
-        cta-secondary-to="https://www.eventbrite.nl/o/de-voorhoede-11975015411"
+        :link="upcomingEvents[0].url"
       />
       <curly-bracket />
     </div>

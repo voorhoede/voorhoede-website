@@ -6,10 +6,6 @@ query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
   alternate: caseItem(locale: $locale, filter: { slug: { eq: $slug } }) {
     slug(locale: $alternateLocale)
   },
-
-  alternateParent: caseOverview(locale:$locale) {
-    slug
-  }
 }
 
 fragment caseItem on CaseItemRecord {
@@ -150,6 +146,5 @@ fragment caseItem on CaseItemRecord {
     phonePlaceholder,
     phoneErrorMessage,
     ctaButtonLabel
-  },
-  backLinkTitle
+  }
 }

@@ -104,7 +104,7 @@
       <nuxt-link
         class="app-button app-button--secondary body font-bold"
         :to="localeUrl('cases')">
-        &larr; {{ page.backLinkTitle }}
+        &larr; {{ $t('all_cases') }}
       </nuxt-link>
     </div>
 
