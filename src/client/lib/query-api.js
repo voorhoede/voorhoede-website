@@ -26,7 +26,7 @@ module.exports = function({ query, variables }) {
   })
 }
 
-export function doQuery({ query, variables }) {
+function doQuery({ query, variables }) {
   return fetch(
     'https://graphql.datocms.com/',
     {

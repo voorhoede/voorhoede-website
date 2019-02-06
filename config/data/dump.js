@@ -75,7 +75,6 @@ function getPageData(queryPath, locale, alternateLocale) {
       console.error(chalk.red('Error for ' + queryPath, e)) // eslint-disable-line no-console
       process.exit(1)
     })
-
 }
 
 function runQuery(queryFilePath, variables) {

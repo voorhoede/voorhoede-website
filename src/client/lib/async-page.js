@@ -19,9 +19,9 @@ const fetchPage = process.env.NODE_ENV === 'production'
     // Require modules here, so they don't get included in production build
     const dayjs = require('dayjs')
 
-    const { doQuery } = require('./query-api')
     const addClassesToHeadings = require('./add-classes-to-headings')
     const prismifyCodeBlocks = require('./prismify-code-blocks')
+    const fetch = require('node-fetch')
 
     let queryPath
 
@@ -49,7 +49,28 @@ const fetchPage = process.env.NODE_ENV === 'production'
       query = require('fs').readFileSync(`src/client/pages/${queryPath}.query.graphql`, 'utf8')
     }
 
-    return doQuery({ query, variables })
+    return fetch(
+      'https://graphql.datocms.com/',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${process.env.DATO_API_TOKEN}`,
+        },
+        body: JSON.stringify({ query, variables }),
+      }
+    )
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`Error fetching data. ${res.statusText}`)
+        }
+        if (res.errors) {
+          throw new Error(JSON.stringify(res.errors))
+        }
+        return res.json()
+      })
+      .then((res) => res.data)
       .then(data => {
         if (data.page && Array.isArray(data.page.items)) {
           addClassesToHeadings(data.page.items)
