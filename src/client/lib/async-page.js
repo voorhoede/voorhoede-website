@@ -65,30 +65,12 @@ function fetchPageDev ({ route, i18n }) {
     query = require('fs').readFileSync(`src/client/pages/${queryPath}.query.graphql`, 'utf8')
   }
 
-  const fetch = require('node-fetch')
+  const { doQuery } = require('./query-api')
   const addClassesToHeadings = require('./add-classes-to-headings')
   const prismifyCodeBlocks = require('./prismify-code-blocks')
 
-  return fetch(
-    'https://graphql.datocms.com/',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${process.env.DATO_API_TOKEN}`,
-      },
-      body: JSON.stringify({ query, variables })
-    }
-  )
-    .then(res => res.json())
-    .then(res => {
-      const data = res.data
-
-      if ('page' in data && !data.page) {
-        throw new Error({ statusCode: 404 })
-      }
-
+  return doQuery({ query, variables })
+    .then(data => {
       if (data.page && Array.isArray(data.page.items)) {
         addClassesToHeadings(data.page.items)
         prismifyCodeBlocks(data.page.items)
