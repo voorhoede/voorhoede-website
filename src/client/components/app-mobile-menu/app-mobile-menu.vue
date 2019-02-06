@@ -1,5 +1,6 @@
 <template>
   <nav class="app-mobile-menu grid">
+    <h2 class="sr-only">{{ title }}</h2>
     <button
       class="app-mobile-menu__icon"
       @click="toggleMobileMenu"
@@ -19,7 +20,6 @@
         src="/images/icon_menu-passive--white.svg"
       >
     </button>
-    <h2 class="sr-only">{{ title }}</h2>
     <div
       v-if="showMenu"
       class="app-mobile-menu__content"
