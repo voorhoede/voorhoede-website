@@ -15,7 +15,7 @@
     <a
       v-if="direction === 'up'"
       class="scroll-to__point-up"
-      href="#"
+      href="#top"
     >
       <img
         class="scroll-to__image"
