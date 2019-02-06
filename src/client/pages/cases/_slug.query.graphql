@@ -1,0 +1,150 @@
+query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
+  page: caseItem(locale: $locale, filter: { slug: { eq: $slug } }) {
+    ...caseItem
+  },
+
+  alternate: caseItem(locale: $locale, filter: { slug: { eq: $slug } }) {
+    slug(locale: $alternateLocale)
+  },
+}
+
+fragment caseItem on CaseItemRecord {
+  title,
+  slug,
+  i18nSlugs: _allSlugLocales {
+    locale,
+    value
+  },
+  social {
+    title,
+    description,
+    image {
+      url
+    }
+  },
+  keywords,
+  heroIllustration {
+    url,
+    format,
+    alt
+  },
+  caseTeaser {
+    title,
+    image {
+      url,
+      format,
+      alt,
+      width,
+      height,
+      format
+    },
+  },
+  content {
+    __typename,
+    ... on TextSectionRecord {
+      title,
+      body,
+    },
+    ... on ImageRecord {
+      image {
+        url,
+        alt,
+        width,
+        height,
+        format
+      },
+      alt,
+      fullWidth,
+    },
+    ... on PullquoteRecord {
+      pullquote {
+        quote,
+        illustration {
+          url,
+          alt,
+          format
+        },
+        richText,
+      }
+    },
+     ... on ImageWithTextRecord {
+      imageWithDescription {
+        image {
+          url,
+          alt,
+          width,
+          height,
+          format
+        },
+        description,
+        inverse
+      }
+    },
+    	... on StorytellingBlockRecord {
+      storyItem {
+        title,
+        items {
+        	title
+          body,
+          image {
+            url,
+            alt,
+            width,
+            height
+          }
+        }
+      }
+    }
+    ... on ResponsiveVideoRecord {
+      mute,
+      loop,
+      autoplay,
+      video {
+        url,
+        title,
+        height,
+        width,
+        provider,
+        providerUid,
+        thumbnailUrl
+      }
+    },
+  },
+  metaData {
+    expertisesTitle,
+    expertises {
+      title
+    },
+    deliverableTitle,
+    deliverables {
+      title
+    },
+    technologiesTitle,
+    technologies {
+      title
+    },
+    interestedTitle,
+    interestedLinkUrl,
+    interestedLinkLabel,
+  },
+  quote,
+  author,
+  getInTouchTitle,
+  getInTouchForm {
+    title,
+    nameLabel,
+    namePlaceholder,
+    nameErrorMessage,
+    emailLabel,
+    emailPlaceholder,
+    emailErrorMessageEmpty,
+    emailErrorMessageIncorrect,
+    summaryLabel,
+    summaryPlaceholder,
+    summaryErrorMessage,
+    phoneLabel,
+    phonePlaceholder,
+    phoneErrorMessage,
+    ctaButtonLabel
+  }
+}

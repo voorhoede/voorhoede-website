@@ -15,7 +15,7 @@
       </fixed-ratio>
     </div>
     <div class="blog-author__text body">
-      <span>{{ authorName }}</span>
+      <span>{{ $t('by__authors_', { authors }) }}</span>
       <time
         class="blog-author__text-time"
         datetime="item.date">
@@ -26,7 +26,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import { AppImage, FixedRatio } from '../../components'
 
   export default {
@@ -48,14 +47,11 @@
       },
     },
     computed: {
-      ...mapState([
-        'currentLocale',
-      ]),
-      authorName() {
-        return `by ${this.item.authors.map(author => author.name).join(', ')} -`
+      authors () {
+        return `${this.item.authors.map(author => author.name).join(', ')}`
       },
       formattedDate() {
-        return new Date(this.item.date).toLocaleString(this.currentLocale, { day: 'numeric', year: 'numeric', month: 'long' })
+        return new Date(this.item.date).toLocaleString(this.$i18n.locale, { day: 'numeric', year: 'numeric', month: 'long' })
       },
     },
   }
@@ -65,7 +61,7 @@
    :root {
     --thumbnail-size: 135px;
   }
-  
+
   .blog-author__image-ratio {
     height: 100%;
     width: 100%;

@@ -1,0 +1,41 @@
+query ($locale: SiteLocale, $slug: String)  {
+  page: service(locale: $locale, filter: { slug: { eq: $slug } }) {
+    ...page
+  },
+
+  alternate: service(locale: $locale, filter: { slug: { eq: $slug } }) {
+    slug(locale: $locale)
+  },
+}
+
+fragment page on ServiceRecord {
+	slug,
+  i18nSlugs: _allSlugLocales {
+    locale,
+    value
+  },
+  social {
+    title,
+    description,
+    image {
+      url
+    }
+  },
+  keywords
+  title,
+  subtitle,
+  headerIllustration {
+    url,
+    format,
+    alt
+  }
+  items {
+    title,
+    body,
+    image {
+      url,
+      format,
+      alt
+    }
+  }
+}

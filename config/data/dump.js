@@ -49,13 +49,6 @@ function getLayoutData({ queryPath, locale }) {
       const isErrorLayout = Boolean(layoutData.error)
       const relPath = isErrorLayout ? path.join(layoutName, `${layoutData.error.errorCode}`) : layoutName
 
-      if(layoutData.allRedirects) {
-        fs.writeFile(path.join(__dirname,'../../src/client/static/_redirects'),
-        redirectsToText(layoutData.allRedirects, locale), 'utf8', (err) => {
-          if (err) console.error(chalk.red('Error while writing redirect ' + err)) // eslint-disable-line no-console
-        })
-      }
-
       writeJsonFile({ filePath: `${locale}/layouts/${relPath}`, data: layoutData })
       console.log(chalk.green(`👌️ Successfully written: ${locale}/layouts/${relPath}`)) // eslint-disable-line no-console
     })
@@ -134,11 +127,4 @@ async function writeJsonFile({ filePath, data }) {
 
 function createDirectory(dir) {
   return new Promise((resolve, reject) => mkdirp(dir, (err) => err ? reject(err) : resolve()))
-}
-
-function redirectsToText (redirects, locale) {
-  const redirectToDefaultLocale = `/ /${locale}/ 301`
-  const redirectRulesFromCms = redirects
-    .map(redirect => `${redirect.from} ${redirect.to} ${redirect.httpStatusCode}`)
-  return [redirectToDefaultLocale, ...redirectRulesFromCms, ].join('\n')
 }

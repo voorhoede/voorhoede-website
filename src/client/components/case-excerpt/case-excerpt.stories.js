@@ -21,10 +21,7 @@ stories.add(
     template: `
       <div style="margin: 25px;">
         <case-excerpt
-          case-id="1"
-          primary-label="See more"
           slug="funda"
-          secondary-label="Learn more"
           image-url="/images/logo.svg"
           title="A brand new Funda"
           body="The biggest, most responsive and modular website for real estate in the Netherlands"
@@ -41,10 +38,7 @@ stories.add(
     template: `
       <div style="margin: 25px;">
         <case-excerpt
-          case-id="1"
-          primary-label="See more"
           slug="funda"
-          secondary-label="Learn more"
           image-url="/images/logo.svg"
           title="A brand new Funda"
           body="The biggest, most responsive and modular website for real estate in the Netherlands"
@@ -62,10 +56,7 @@ stories.add(
     template: `
       <div style="margin: 25px;">
         <case-excerpt
-          case-id="1"
-          primary-label="See more"
           slug="funda"
-          secondary-label="Learn more"
           image-url="/images/logo.svg"
           title="A brand new Funda"
           body="The biggest, most responsive and modular website for real estate in the Netherlands"

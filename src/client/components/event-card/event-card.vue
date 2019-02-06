@@ -1,17 +1,15 @@
 <template>
   <article class="event-card">
     <nuxt-link
-      :to="{ name: 'locale-events-slug', params: { locale: currentLocale, slug }}"
+      :to="localeUrl({ name: 'events-slug', params: { slug } })"
       class="event-card__link"
       :class="{ 'event-card__link--alt': isMeetup }">
       <header class="event-card__header">
-        <time
-          :datetime="dateString"
-          class="event-card__calendar" :class="{ 'event-card__calendar--alt': isMeetup }">
-          <span class="event-card__day font-bold ">{{ day }}</span>
-          <span class="event-card__month">{{ month }}</span>
-        </time>
-
+        <calendar-icon
+          class="event-card__calendar-icon"
+          :date="dateString"
+          :fill="(isMeetup) ? 'yellow' : 'blue'"
+        />
         <div v-if="illustration" class="event-card__illustration-content">
           <lazy-load>
             <img class="event-card__illustration" :src="illustration.url" :alt="illustration.alt">
@@ -34,11 +32,10 @@
 
 
 <script>
-  import { mapState } from 'vuex'
-  import { LazyLoad, RichTextBlock  } from '~/components'
+  import { CalendarIcon, LazyLoad, RichTextBlock } from '~/components'
 
   export default {
-    components: { LazyLoad, RichTextBlock  },
+    components: { CalendarIcon, LazyLoad, RichTextBlock },
     props: {
       dateString: {
         type: String,
@@ -74,17 +71,16 @@
       }
     },
     computed: {
-      ...mapState([ 'currentLocale' ]),
       date() {
         return new Date(this.dateString)
       },
       day() {
-        return this.date.toLocaleDateString(this.currentLocale, {
+        return this.date.toLocaleDateString(this.$i18n.locale, {
           day: 'numeric',
         })
       },
       month() {
-        return this.date.toLocaleDateString(this.currentLocale, {
+        return this.date.toLocaleDateString(this.$i18n.locale, {
           month: 'short',
         })
       },
@@ -147,61 +143,10 @@
     display: none;
   }
 
-  .event-card__calendar {
-    display: block;
+  .event-card__calendar-icon {
     position: absolute;
     top: var(--spacing-small);
     left: var(--spacing-small);
-    align-self: start;
-    justify-self: end;
-    width: 4.2rem;
-    padding: var(--spacing-tiny) 0;
-    background-color: var(--html-blue);
-    font-family: var(--font-sans);
-    text-align: center;
-    color: var(--white);
-  }
-
-  .event-card__calendar--alt {
-    background-color: var(--brand-yellow);
-    color: var(--html-blue);
-  }
-
-  .event-card__calendar::before,
-  .event-card__calendar::after {
-    content: '';
-    position: absolute;
-    top: calc(var(--spacing-small) * -1);
-    width: 3px;
-    height: var(--spacing-small);
-    border-radius: 1px;
-    background-color: var(--html-blue);
-  }
-
-  .event-card__calendar--alt::before,
-  .event-card__calendar--alt::after {
-    background-color: var(--brand-yellow);
-  }
-
-  .event-card__calendar::before {
-    left: 12px;
-  }
-
-  .event-card__calendar::after {
-    right: 12px;
-  }
-
-  .event-card__day {
-    display: block;
-    margin-top: var(--spacing-tiny);
-    font-size: 2rem;
-  }
-
-  .event-card__month {
-    display: block;
-    font-size: .8125rem;
-    letter-spacing: 2.3px;
-    text-transform: uppercase;
   }
 
   .event-card__type {
@@ -279,7 +224,7 @@
       margin-top: var(--spacing-small);
     }
 
-    .event-card__calendar {
+    .event-card__calendar-icon {
       left: var(--spacing-large);
     }
 

@@ -9,7 +9,7 @@
         :title="service.title"
         :summary="service.summary"
         :slug="service.slug"
-        :cta="cta" />
+      />
     </li>
   </ul>
 </template>
@@ -26,10 +26,6 @@ export default {
       validator(services) {
         return services.every(service => service instanceof Object)
       },
-    },
-    cta: {
-      type: String,
-      required: true,
     }
   },
 }

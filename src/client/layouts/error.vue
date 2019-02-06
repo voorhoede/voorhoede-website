@@ -1,42 +1,48 @@
 <template>
   <section class="layout-error">
     <page-header
-      v-if="layoutData.error"
-      :title="layoutData.error.title"
-      :text="String(layoutData.error.errorCode)"
-      :image="layoutData.error.headerImage"
+      v-if="layout[$i18n.locale].error"
+      :title="layout[$i18n.locale].error.title"
+      :text="String(layout[$i18n.locale].error.errorCode)"
+      :image="layout[$i18n.locale].error.headerImage"
     />
-    <div class="layout-error__backdrop grid" v-if="layoutData.error">
+    <div class="layout-error__backdrop grid" v-if="layout[$i18n.locale].error">
       <div class="layout-error__content body">
-        {{ layoutData.error.body }}
+        {{ layout[$i18n.locale].error.body }}
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 import PageHeader from '../components/page-header'
+import layoutEn from '~/static/data/en/layouts/error/404/index.json'
+import layoutNl from '~/static/data/nl/layouts/error/404/index.json'
 
+const DEFAULT_STATUSCODE = 404
 export default {
   components: { PageHeader },
   props: {
     error: {
       type: [Object, Error],
-      required: true,
+      required: false,
       validator(error) {
         return typeof(error.statusCode) === 'number'
-      }
+      },
+      default: () => ({
+        statusCode: DEFAULT_STATUSCODE,
+      })
     },
   },
-  computed: {
-    ...mapState(['layoutData'])
-  },
-  head() {
+  data() {
     return {
-      htmlAttrs: {
-        lang: this.currentLocale
+      layout: {
+        en: {
+          ...layoutEn
+        },
+        nl: {
+          ...layoutNl
+        }
       }
     }
   }

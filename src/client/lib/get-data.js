@@ -1,10 +1,12 @@
-const path = require('path')
-const fetch = require('node-fetch')
+import path from 'path'
+import fetch from 'node-fetch'
 
-const addClassesToHeadings = require('./add-classes-to-headings')
-const prismifyCodeBlocks = require('./prismify-code-blocks')
+import locales from '../static/data/locales.json'
+import addClassesToHeadings  from './add-classes-to-headings'
+import prismifyCodeBlocks  from './prismify-code-blocks'
 
-const locales = ['nl', 'en']
+// locales = locales.map(locale => locale.code)
+
 const layoutRegex = new RegExp(`(${locales.join('|')})/layouts/[a-z-]`)
 
 export function getData(route, variables) {

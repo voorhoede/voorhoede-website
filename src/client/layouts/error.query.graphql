@@ -4,21 +4,7 @@ query ($locale: SiteLocale, $errorCode: IntegerFilter)  {
   }) {
 		...errorPage
   }
-
-  footer(locale: $locale) {
-    ...footer
-  },
-
-  allRedirects {
-    ...redirect
-  },
 }
-
-fragment redirect on RedirectRecord {
-	from,
-  to,
-  httpStatusCode
-},
 
 fragment errorPage on ErrorPageRecord {
   errorCode,
@@ -29,25 +15,3 @@ fragment errorPage on ErrorPageRecord {
     alt
   }
 }
-
-fragment footer on FooterRecord {
-  email,
-  telephoneNumber,
-  googleMapsLink,
-  address,
-  postalCode,
-  privacyLabel,
-  privacyTitle,
-  privacyLink,
-  copyrightLabel,
-  copyrightTitle,
-  copyrightLink,
-  legal {
-    title,
-    value
-  },
-  social {
-    icon,
-    href
-  }
-},
