@@ -101,7 +101,7 @@
           <p class="body">{{ page.callToActionBody }}</p>
         </template>
       </cta-block>
-      <scroll-to point-up />
+      <scroll-to direction="up" />
     </div>
 
     <style v-if="page.customStyling" v-html="page.customStyling"></style>
