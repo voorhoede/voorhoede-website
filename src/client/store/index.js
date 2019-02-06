@@ -8,6 +8,11 @@ const createStore = () => {
       showMenu: false,
       i18nSlugs: undefined,
     },
+    actions: {
+      toggleMobileMenu({ state, commit }) {
+        commit(types.SHOW_MENU, !state.showMenu)
+      },
+    },
     mutations: {
       [types.SHOW_GRID](state) {
         state.showGrid = true

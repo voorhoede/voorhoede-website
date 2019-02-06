@@ -17,9 +17,9 @@
       :title="layout.menu.title"
       :links="[].concat(layout.menu.links, layout.menu.callToAction)"
     />
-    <nuxt v-if="!mobMenuState" />
+    <nuxt v-if="!isVisible" />
     <app-footer
-      v-if="!mobMenuState"
+      v-if="!isVisible"
       :links="[].concat(layout.menu.links, layout.menu.callToAction)"
       :tel="layout.footer.telephoneNumber"
       :email="layout.footer.email"
@@ -52,7 +52,7 @@ export default {
   },
   computed: {
     ...mapState(['showGrid']),
-    mobMenuState() {
+    isVisible() {
       return this.$store.state.showMenu
     }
   },

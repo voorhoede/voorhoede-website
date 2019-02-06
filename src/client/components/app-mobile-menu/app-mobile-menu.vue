@@ -6,13 +6,17 @@
       class="app-mobile-menu__icon"
       @click="toggleMobileMenu"
       @touchmove="prevent"
+      @focus="activeMenu = true"
+      @blur="activeMenu = false"
       :aria-label="$t('open_menu')"
     >
       <img
         v-if="!showMenu"
         alt=""
         class="app-mobile-menu__icon-image"
-        src="/images/icon_menu-passive--white.svg"
+        :src="activeMenu
+          ? `/images/icon_menu-passive--blue.svg`
+          : `/images/icon_menu-passive--white.svg`"
       >
     </button>
     <div
@@ -20,7 +24,7 @@
       class="app-mobile-menu__content"
       @touchmove="prevent"
     >
-      <nuxt-link :to="localeUrl('index')" :aria-label="$t('home')" :title="$t('home')">
+      <nuxt-link :to="localeUrl('index')" :aria-label="$t('home')" :title="$t('home')" tabindex="-1">
         <img
           class="app-mobile-menu__logo"
           src="/images/logo--blue-and-yellow.svg"
@@ -28,6 +32,15 @@
           alt="">
       </nuxt-link>
       <ul class="app-mobile-menu__list body-petite">
+        <li class="app-mobile-menu__list-item" @click="toggleMobileMenu">
+          <nuxt-link
+            class="h3"
+            to="/"
+            :aria-label="$t('home')"
+          >
+            {{ $t('home') }}
+          </nuxt-link>
+        </li>
         <li
           v-for="link in links"
           :key="link.href"
@@ -48,19 +61,23 @@
       class="app-mobile-menu__icon"
       @click="toggleMobileMenu"
       @touchmove="prevent"
+      @focus="activeMenu = true"
+      @blur="activeMenu = false"
       :aria-label="$t('close_menu')"
     >
       <img
         v-if="showMenu"
         alt=""
         class="app-mobile-menu__icon-image"
-        src="/images/icon_menu-exit--white.svg"
+        :src="activeMenu 
+          ? `/images/icon_menu-exit--blue.svg` 
+          : `/images/icon_menu-exit--white.svg`"
       >
     </button>
   </nav>
 </template>
 <script>
-  import { SHOW_MENU } from '~/store/mutation-types'
+  import { mapActions, mapState } from 'vuex'
   import { createHref, linkValidator } from '../../lib/links'
 
   export default {
@@ -78,15 +95,15 @@
       }
     },
     data: () => ({
-      showMenu: false,
+      activeMenu: false,
     }),
+    computed: {
+      ...mapState(['showMenu']),
+    },
     methods: {
+      ...mapActions(['toggleMobileMenu']),
       prevent(event) {
         event.preventDefault()
-      },
-      toggleMobileMenu() {
-        this.showMenu = !this.showMenu
-        return this.$store.commit(SHOW_MENU, this.showMenu)
       },
       createHref
     },
@@ -132,7 +149,7 @@
 
   .app-mobile-menu__icon:focus,
   .app-mobile-menu__icon:active {
-    background-color: var(--active-blue);
+    background: var(--white);
   }
 
   .app-mobile-menu__icon-image {
