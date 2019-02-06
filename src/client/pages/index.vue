@@ -81,7 +81,7 @@
           <h3 class="h4">{{ page.callToActionTitle }}</h3>
         </template>
       </cta-block>
-      <scroll-to point-up />
+      <scroll-to direction="up" />
     </div>
   </div>
 </template>

@@ -33,7 +33,7 @@ stories.add(
     i18n: new VueI18n({ locale: 'en' }),
     template: `
     <div style="padding: 32px;">
-      <scroll-to point-up />
+      <scroll-to direction="up" />
     </div>
     `,
   }),

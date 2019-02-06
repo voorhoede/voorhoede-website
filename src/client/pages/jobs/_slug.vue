@@ -32,7 +32,7 @@
             secondary
           />
         </div>
-        <scroll-to point-up />
+        <scroll-to direction="up" />
       </div>
     </div>
   </section>

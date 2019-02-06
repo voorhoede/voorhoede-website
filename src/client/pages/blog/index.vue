@@ -29,7 +29,7 @@
         </template>
       </cta-block>
 
-      <scroll-to point-up />
+      <scroll-to direction="up" />
     </div>
   </main>
 </template>

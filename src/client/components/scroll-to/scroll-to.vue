@@ -1,21 +1,31 @@
 <template>
   <div class="scroll-to">
-    <div v-if="pointDown" class="scroll-to__point-down">
+    <div
+      v-if="direction === 'down'"
+      class="scroll-to__point-down"
+    >
       <span class="scroll-to__text body-petite font-bold">
         {{ $t('scroll') }}
       </span>
       <img
         class="scroll-to__image"
         src="/images/scroll-to-arrow--down.svg"
-        alt="An arrow facing downwards">
+        alt="">
     </div>
-    <a v-if="pointUp" href="#" class="scroll-to__point-up">
+    <a
+      v-if="direction === 'up'"
+      class="scroll-to__point-up"
+      href="#top"
+    >
       <img
         class="scroll-to__image"
         src="/images/scroll-to-arrow--up.svg"
-        alt="An arrow facing upwards">
-      <span class="scroll-to__text body-petite font-bold">
+        alt="">
+      <span class="scroll-to__text body-petite font-bold" aria-hidden="true">
         {{ $t('return') }}
+      </span>
+      <span class="sr-only">
+        {{ $t('return_to_top') }}
       </span>
     </a>
   </div>
@@ -24,15 +34,11 @@
 <script>
   export default {
     props: {
-      pointDown: {
-          type: Boolean,
-          default: false,
-          required: false
-      },
-      pointUp: {
-          type: Boolean,
-          default: false,
-          required: false
+      direction: {
+        type: String,
+        default: 'down',
+        required: false,
+        validator: direction => ['up', 'down'].indexOf(direction) !== -1
       },
     }
   }
