@@ -126,7 +126,7 @@
         :summary-error-message="page.getInTouchForm.summaryErrorMessage"
         :cta-label="page.getInTouchForm.ctaButtonLabel"
       />
-      <scroll-to point-up />
+      <scroll-to direction="up" />
     </div>
   </main>
 </template>

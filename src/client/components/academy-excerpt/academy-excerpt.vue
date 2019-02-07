@@ -2,7 +2,7 @@
   <article class="academy-excerpt grid">
     <calendar-icon
       class="academy-excerpt__calendar-icon"
-      :date="dateString"
+      :date="date"
     />
     <div class="academy-excerpt__content">
       <h2 class="academy-excerpt__title h3">{{ title }}</h2>
