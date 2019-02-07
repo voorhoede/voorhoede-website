@@ -2,7 +2,7 @@ import { SET_I18N_SLUGS } from '~/store/mutation-types'
 
 export default async function asyncPage ({ route, store, error } ) {
   try {
-    const data = await fetchPage(route.fullPath)
+    const data = await fetchPage(route.path)
     store.commit(SET_I18N_SLUGS, data.page.i18nSlugs)
     return data
   } catch (e) {
