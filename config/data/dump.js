@@ -27,16 +27,14 @@ glob(path.join(__dirname, '../../src/client/**/*.query.graphql'))
   .then(paths => {
     paths.forEach(queryPath => {
       locales.forEach(locale => {
-        const alternateLocale = locales.find(l => l !== locale)
-
-        getPageData(queryPath, locale, alternateLocale)
+        getPageData(queryPath, locale)
       })
     })
   })
 
-function getPageData(queryPath, locale, alternateLocale) {
+function getPageData(queryPath, locale) {
   const currentDate = dayjs().format('YYYY-MM-DD')
-  return runQuery(queryPath, { locale, alternateLocale, currentDate })
+  return runQuery(queryPath, { locale, currentDate })
     .then(pageData => {
       const isHomePage = locales.includes(pageData.page.slug)
       const relPath = isHomePage ? locale : path.join(locale, pageData.page.slug)
@@ -52,7 +50,7 @@ function getPageData(queryPath, locale, alternateLocale) {
 
             const slugQueryPath = path.join(path.parse(queryPath).dir, '_slug.query.graphql')
 
-            runQuery(slugQueryPath, { locale, alternateLocale, slug })
+            runQuery(slugQueryPath, { locale, slug })
               .then(data => {
                 const relPath = path.join(locale, pageData.page.slug, data.page.slug)
                 // Add typography classes to headings,
