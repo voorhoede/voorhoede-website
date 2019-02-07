@@ -52,11 +52,6 @@ export default {
   computed: {
     ...mapState(['showGrid']),
   },
-  watch: {
-    $route() {
-      document.getElementById('top').focus();
-    }
-  },
   head() {
     return {
       htmlAttrs: {
