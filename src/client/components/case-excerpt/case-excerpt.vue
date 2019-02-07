@@ -4,6 +4,7 @@
       <div class="case-excerpt__content">
         <nuxt-link
           class="case-excerpt__image-link"
+          tabindex="-1"
           :to="localeUrl({ name: 'cases-slug', params: { slug } })"
         >
           <responsive-image

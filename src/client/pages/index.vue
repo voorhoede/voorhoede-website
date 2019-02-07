@@ -1,5 +1,5 @@
 <template>
-  <div class="page-index">
+  <main class="page-index">
     <div class="page-index__header">
       <page-header
         is-homepage
@@ -83,7 +83,7 @@
       </cta-block>
       <scroll-to direction="up" />
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

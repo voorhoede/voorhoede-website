@@ -17,7 +17,7 @@
       :title="layout.menu.title"
       :links="[].concat(layout.menu.links, layout.menu.callToAction)"
     />
-    <nuxt/>
+    <nuxt />
     <app-footer
       :links="[].concat(layout.menu.links, layout.menu.callToAction)"
       :tel="layout.footer.telephoneNumber"
@@ -46,7 +46,7 @@ export default {
   components: { AppFooter, AppHeader, AppMobileMenu, GridDemo },
   data() {
     return {
-      layout: require(`../static/data/${this.$i18n.locale}/layouts/default`) // layout data should always be bundled
+      layout: require(`../static/data/${this.$i18n.locale}/layouts/default`), // layout data should always be bundled
     }
   },
   computed: {
