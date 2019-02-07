@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 import { AppFooter, AppHeader, AppMobileMenu, GridDemo } from '../components'
 
 export default {
@@ -47,23 +47,15 @@ export default {
   data() {
     return {
       layout: require(`../static/data/${this.$i18n.locale}/layouts/default`), // layout data should always be bundled
-      menuVisible: this.$store.state.showMenu
     }
   },
   computed: {
     ...mapState(['showGrid']),
-    isMobileMenuVisible() {
-      return this.menuVisible
-    }
   },
   watch: {
     $route() {
-      this.menuVisible ? this.toggleMobileMenu() : null
       document.getElementById('top').focus();
     }
-  },
-  methods:{
-    ...mapActions(['toggleMobileMenu']),
   },
   head() {
     return {

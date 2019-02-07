@@ -4,7 +4,7 @@
     <button
       v-if="!showMenu"
       class="app-mobile-menu__button app-mobile-menu__button--open"
-      @click="toggleMobileMenu"
+      @click="showMenu = !showMenu"
       @touchmove="prevent"
       :aria-label="$t('open_menu')"
     >
@@ -21,13 +21,12 @@
         <img
           class="app-mobile-menu__logo"
           src="/images/logo--blue-and-yellow.svg"
-          @click="toggleMobileMenu"
+          @click="showMenu = !showMenu"
           alt="">
       </nuxt-link>
       <ul class="app-mobile-menu__list body-petite">
         <li 
-          class="app-mobile-menu__list-item" 
-          @click="toggleMobileMenu">
+          class="app-mobile-menu__list-item">
           <nuxt-link
             class="h3"
             to="/"
@@ -38,9 +37,7 @@
         <li
           v-for="link in links"
           :key="link.href"
-          class="app-mobile-menu__list-item"
-          @click="toggleMobileMenu"
-        >
+          class="app-mobile-menu__list-item">
           <nuxt-link
             class="h3"
             :to="createHref(link)"
@@ -53,7 +50,7 @@
     <button
       v-if="showMenu"
       class="app-mobile-menu__button app-mobile-menu__button--close"
-      @click="toggleMobileMenu"
+      @click="showMenu = !showMenu"
       @touchmove="prevent"
       :aria-label="$t('close_menu')"
     >
@@ -64,7 +61,6 @@
   </nav>
 </template>
 <script>
-  import { mapActions, mapState } from 'vuex'
   import { createHref, linkValidator } from '../../lib/links'
 
   export default {
@@ -81,11 +77,17 @@
         default: () => [],
       }
     },
-    computed: {
-      ...mapState(['showMenu']),
+    data() {
+      return {
+        showMenu : false,
+      }
+    },
+    watch: {
+      $route() {
+        this.showMenu = false
+      }
     },
     methods: {
-      ...mapActions(['toggleMobileMenu']),
       prevent(event) {
         event.preventDefault()
       },
