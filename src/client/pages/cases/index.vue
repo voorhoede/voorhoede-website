@@ -8,8 +8,6 @@
       <ul class="page-case__overview">
         <li class="page-case__overview-item" v-for="caseItem in items" :key="caseItem.slug">
           <case-excerpt
-            :case-id="caseItem.slug"
-            :primary-label="page.casePrimaryButtonLabel"
             :slug="caseItem.slug"
             :image="caseItem.heroIllustration"
             :title="caseItem.title"

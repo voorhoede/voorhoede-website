@@ -2,7 +2,7 @@
   <article class="academy-excerpt grid">
     <calendar-icon
       class="academy-excerpt__calendar-icon"
-      :date="dateString"
+      :date="date"
     />
     <div class="academy-excerpt__content">
       <h2 class="academy-excerpt__title h3">{{ title }}</h2>
@@ -12,13 +12,12 @@
           class="academy-excerpt__primary-button"
           :aria-label="$t('sign_up_for__title_', { title })"
           :label="$t('sign_up')"
-          :to="ctaPrimaryTo"
+          :to="link"
           external
         />
         <app-button
-          :label="$t('more_events')"
-          :to="ctaSecondaryTo"
-          external
+          :label="$t('all_events')"
+          :to="localeUrl('events')"
           secondary
         />
       </footer>
@@ -43,7 +42,7 @@
       LazyLoad,
     },
     props: {
-      dateString: {
+      date: {
         type: String,
         required: true,
       },
@@ -55,12 +54,8 @@
         type: String,
         required: true,
       },
-      ctaPrimaryTo: {
-        type: [String, Object],
-        required: true,
-      },
-      ctaSecondaryTo: {
-        type: [String, Object],
+      link: {
+        type: String,
         required: true,
       },
       illustration: {

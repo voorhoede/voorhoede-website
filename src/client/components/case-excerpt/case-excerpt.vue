@@ -4,6 +4,7 @@
       <div class="case-excerpt__content">
         <nuxt-link
           class="case-excerpt__image-link"
+          tabindex="-1"
           :to="localeUrl({ name: 'cases-slug', params: { slug } })"
         >
           <responsive-image
@@ -16,16 +17,16 @@
           <p class="case-excerpt__body body">{{ body }}</p>
           <div class="case-excerpt__actions button-group">
             <app-button
-              :aria-label="`${primaryLabel} - ${title}`"
+              :aria-label="$t('learn_more_about__title_', { title })"
               class="case-excerpt__button"
-              :label="primaryLabel"
+              :label="$t('learn_more')"
               :to="localeUrl({ name: 'cases-slug', params: { slug } })"
             />
             <app-button
+              v-if="!onCaseOverview"
               class="case-excerpt__button"
               secondary
-              v-if="secondaryLabel"
-              :label="secondaryLabel"
+              :label="$t('all_cases')"
               :to="localeUrl('cases')"
             />
           </div>
@@ -45,10 +46,6 @@
       ResponsiveImage,
     },
     props: {
-      caseId: {
-        type: String,
-        required: true,
-      },
       image: {
         type: Object,
         required: true,
@@ -61,20 +58,17 @@
         type: String,
         required: true,
       },
-      primaryLabel: {
-        type: String,
-        default: '',
-      },
       slug: {
         type: String,
         required: true
       },
-      secondaryLabel: {
-        type: String,
-        default: '',
-      },
     },
-
+    computed: {
+      onCaseOverview () {
+        return this.$route &&
+          this.$route.path === this.localeUrl('cases')
+      }
+    }
   }
 </script>
 

@@ -15,7 +15,7 @@
           />
         </li>
       </ul>
-      <scroll-to point-up />
+      <scroll-to direction="up" />
     </div>
   </div>
 </template>

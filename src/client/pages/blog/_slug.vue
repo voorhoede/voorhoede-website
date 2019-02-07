@@ -8,20 +8,20 @@
     />
 
     <article class="page-blog-post-list">
-      <text-block class="page-blog-post-list__intro">
+      <text-block>
         <p class="font-html-blue testimonial">{{ page.introTitle }}</p>
       </text-block>
 
       <template v-for="item in page.items">
         <code-block
-          class="page-blog-post-list__code-block"
+          class="page-blog-post-list--full-width"
           v-if="item.__typename === 'CodeBlockRecord' && item.body"
           :language="item.language"
           :content="item.body"
           :key="item.body" />
 
         <image-with-description
-          class="page-blog-post-list__image page-blog-post-list--not-indented"
+          class="page-blog-post-list__image page-blog-post-list--full-width"
           v-if="item.__typename === 'ImageWithTextRecord'"
           :key="item.description"
           :image="item.imageWithDescription.image"
@@ -33,11 +33,11 @@
           :key="item.quote"
           :quote="item.quote"
           :cite="item.author"
-          class="page-blog-post__quote" />
+        />
 
         <responsive-image
           class="page-blog-post-list__image"
-          :class="{ 'page-blog-post-list--not-indented' : item.fullWidth}"
+          :class="{ 'page-blog-post-list--full-width' : item.fullWidth}"
           v-if="item.__typename === 'ImageRecord' && item.image"
           :key="item.image.url"
           :image="item.image" />
@@ -62,7 +62,6 @@
         </text-block>
 
         <rich-text-block
-          class="page-blog-post-list__rich-text"
           v-if="item.__typename === 'TextSectionRecord' && item.body"
           :key="item.body"
           :text="item.body"
@@ -73,7 +72,7 @@
           :key="item.link">
           <app-button
             class="page-blog-post__button"
-            :external="item.external ? true : false"
+            :external="item.external"
             :label="item.label"
             :to="item.link" />
         </div>
@@ -90,7 +89,7 @@
 
     <div class="page-blog-post__link-container">
       <nuxt-link class="app-button app-button--secondary body font-bold" :to="localeUrl('blog')">
-        &larr; See all posts
+        &larr; {{ $t('all_blogposts') }}
       </nuxt-link>
     </div>
 
@@ -107,7 +106,7 @@
           <p class="body">{{ page.callToActionBody }}</p>
         </template>
       </cta-block>
-      <scroll-to point-up />
+      <scroll-to direction="up" />
     </div>
 
     <style v-if="page.customStyling" v-html="page.customStyling"></style>
@@ -250,7 +249,7 @@ export default {
       padding: 0 var(--spacing-larger);
     }
 
-    .page-blog-post-list > .page-blog-post-list--not-indented {
+    .page-blog-post-list .page-blog-post-list--full-width {
       padding: 0;
     }
 

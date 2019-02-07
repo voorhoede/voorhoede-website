@@ -104,7 +104,7 @@
       <nuxt-link
         class="app-button app-button--secondary body font-bold"
         :to="localeUrl('cases')">
-        &larr; {{ page.backLinkTitle }}
+        &larr; {{ $t('all_cases') }}
       </nuxt-link>
     </div>
 
@@ -126,7 +126,7 @@
         :summary-error-message="page.getInTouchForm.summaryErrorMessage"
         :cta-label="page.getInTouchForm.ctaButtonLabel"
       />
-      <scroll-to point-up />
+      <scroll-to direction="up" />
     </div>
   </main>
 </template>
