@@ -56,14 +56,14 @@ export default {
       return this.menuVisible
     }
   },
-  methods:{
-    ...mapActions(['toggleMobileMenu']),
-  },
   watch: {
     $route() {
       this.$refs.topOfPage.focus()
       this.menuVisible ? this.toggleMobileMenu() : null
     }
+  },
+  methods:{
+    ...mapActions(['toggleMobileMenu']),
   },
   head() {
     return {

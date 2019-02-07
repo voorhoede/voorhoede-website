@@ -3,12 +3,12 @@
     <h2 class="sr-only">{{ title }}</h2>
     <button
       v-if="!showMenu"
-      class="app-mobile-menu__icon"
+      class="app-mobile-menu__button app-mobile-menu__button--open"
       @click="toggleMobileMenu"
       @touchmove="prevent"
       :aria-label="$t('open_menu')"
     >
-      <div class="app-mobile-menu__icon-open"></div>
+      <div class="app-mobile-menu__button-icon--open"></div>
     </button>
     <div
       v-if="showMenu"
@@ -51,12 +51,12 @@
     </div>
     <button
       v-if="showMenu"
-      class="app-mobile-menu__icon"
+      class="app-mobile-menu__button app-mobile-menu__button--close"
       @click="toggleMobileMenu"
       @touchmove="prevent"
       :aria-label="$t('close_menu')"
     >
-      <div class="app-mobile-menu__icon-close"></div>
+      <div class="app-mobile-menu__button-icon--close"></div>
     </button>
   </nav>
 </template>
@@ -93,13 +93,13 @@
 
 <style>
   :root {
-      --mobile-icon-right: 20px;
-      --mobile-icon-bottom: var(--mobile-icon-right);
-      --mobile-icon-height: 52px;
-      --mobile-icon-width: var(--mobile-icon-height);
-      --mobile-icon-image: 25px;
-      --mobile-icon-shadow: 2px 2px 4px 0 rgba(0, 0, 0, .27);
-      --mobile-spacing: 12px 20px;
+    --mobile-icon-right: 20px;
+    --mobile-icon-bottom: var(--mobile-icon-right);
+    --mobile-icon-height: 52px;
+    --mobile-icon-width: var(--mobile-icon-height);
+    --mobile-icon-image: 25px;
+    --mobile-icon-shadow: 2px 2px 4px 0 rgba(0, 0, 0, .27);
+    --mobile-spacing: 12px 20px;
   }
 
   .app-mobile-menu {
@@ -112,7 +112,7 @@
     height: 1.4375rem; /* 23px */
   }
 
-  .app-mobile-menu__icon {
+  .app-mobile-menu__button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -128,31 +128,31 @@
     box-shadow: var(--mobile-icon-shadow);
   }
 
-  .app-mobile-menu__icon:focus,
-  .app-mobile-menu__icon:active {
+  .app-mobile-menu__button:focus,
+  .app-mobile-menu__button:active {
     background: var(--white);
   }
 
-  .app-mobile-menu__icon:focus > .app-mobile-menu__icon-open,
-  .app-mobile-menu__icon:active > .app-mobile-menu__icon-open {
+  .app-mobile-menu__button--open:focus .app-mobile-menu__button-icon--open,
+  .app-mobile-menu__button--open:active .app-mobile-menu__button-icon--open {
     background-image: url('/images/icon_menu-passive--blue.svg');
   }
 
-  .app-mobile-menu__icon-open {
+  .app-mobile-menu__button--close:focus .app-mobile-menu__button-icon--close,
+  .app-mobile-menu__button--close:active .app-mobile-menu__button-icon--close {
+    background-image: url('/images/icon_menu-exit--blue.svg');
+  }
+
+  .app-mobile-menu__button-icon--open {
     background-image: url('/images/icon_menu-passive--white.svg');
     height: var(--mobile-icon-image);
     width: var(--mobile-icon-image);
   }
 
-  .app-mobile-menu__icon-close {
+  .app-mobile-menu__button-icon--close {
     background-image: url('/images/icon_menu-exit--white.svg');
     height: var(--mobile-icon-image);
     width: var(--mobile-icon-image);
-  }
-
-  .app-mobile-menu__icon:focus > .app-mobile-menu__icon-close,
-  .app-mobile-menu__icon:active > .app-mobile-menu__icon-close {
-    background-image: url('/images/icon_menu-exit--blue.svg');
   }
 
   .app-mobile-menu__content {
