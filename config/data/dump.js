@@ -10,6 +10,7 @@ const dayjs = require('dayjs')
 const prismifyCodeBlocks = require('../../src/client/lib/prismify-code-blocks')
 const addClassesToHeadings = require('../../src/client/lib/add-classes-to-headings')
 
+const appSettings = require('../../src/client/static/data/app.json')
 dotenv.config()
 
 /*
@@ -20,7 +21,7 @@ dotenv.config()
 */
 
 const queryApi = require('../../src/client/lib/query-api')
-const locales = ['nl', 'en']
+const locales = appSettings.locales.map(({ code }) => code)
 
 glob(path.join(__dirname, '../../src/client/**/*.query.graphql'))
   .then(paths => paths.filter(path => !path.includes('slug')))

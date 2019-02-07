@@ -17,8 +17,11 @@ let locales = []
 module.exports = (dato, root, i18n) => {
   locales = i18n.availableLocales
 
-  root.createDataFile(`${dataDir}/app.json`, 'json', appSettingsToJson(dato.app))
-  root.createDataFile(`${dataDir}/locales.json`, 'json', localesToJson(locales))
+  root.createDataFile(`${dataDir}/app.json`, 'json', {
+    ...appSettingsToJson(dato.app),
+    locales: localesToJson(locales)
+  })
+
   defaultLocale = defaultLocale || locales[0]
 
   fs.writeFileSync(`${__dirname}/${staticDir}/_redirects`, redirectsToText(dato.redirects, locales, defaultLocale), 'utf8')
@@ -30,11 +33,11 @@ module.exports = (dato, root, i18n) => {
 
   locales.forEach(locale => {
     i18n.locale = locale
-    i18n.withLocale(locale, () => {
-      messages[locale] = translationsToJson(dato.translations)
-    })
+
+    messages[locale] = translationsToJson(dato.translations)
 
     root.createDataFile(`${dataDir}/${locale}/layouts/default/index.json`, 'json', layoutToJson(dato), 'utf8')
+
     dato.errorPages.forEach(errorPage => {
       root.createDataFile(`${dataDir}/${locale}/layouts/error/${errorPage.errorCode}/index.json`, 'json', errorPageToJson(errorPage), 'utf8')
     })
