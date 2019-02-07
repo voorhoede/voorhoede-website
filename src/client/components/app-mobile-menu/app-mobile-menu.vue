@@ -6,25 +6,16 @@
       class="app-mobile-menu__icon"
       @click="toggleMobileMenu"
       @touchmove="prevent"
-      @focus="activeMenu = true"
-      @blur="activeMenu = false"
       :aria-label="$t('open_menu')"
     >
-      <img
-        v-if="!showMenu"
-        alt=""
-        class="app-mobile-menu__icon-image"
-        :src="activeMenu
-          ? `/images/icon_menu-passive--blue.svg`
-          : `/images/icon_menu-passive--white.svg`"
-      >
+      <div class="app-mobile-menu__icon-open"></div>
     </button>
     <div
       v-if="showMenu"
       class="app-mobile-menu__content"
       @touchmove="prevent"
     >
-      <nuxt-link :to="localeUrl('index')" :aria-label="$t('home')" :title="$t('home')" tabindex="-1">
+      <nuxt-link :to="localeUrl('index')" :title="$t('home')" tabindex="-1">
         <img
           class="app-mobile-menu__logo"
           src="/images/logo--blue-and-yellow.svg"
@@ -32,7 +23,9 @@
           alt="">
       </nuxt-link>
       <ul class="app-mobile-menu__list body-petite">
-        <li class="app-mobile-menu__list-item" @click="toggleMobileMenu">
+        <li 
+          class="app-mobile-menu__list-item" 
+          @click="toggleMobileMenu">
           <nuxt-link
             class="h3"
             to="/"
@@ -61,18 +54,9 @@
       class="app-mobile-menu__icon"
       @click="toggleMobileMenu"
       @touchmove="prevent"
-      @focus="activeMenu = true"
-      @blur="activeMenu = false"
       :aria-label="$t('close_menu')"
     >
-      <img
-        v-if="showMenu"
-        alt=""
-        class="app-mobile-menu__icon-image"
-        :src="activeMenu 
-          ? `/images/icon_menu-exit--blue.svg` 
-          : `/images/icon_menu-exit--white.svg`"
-      >
+      <div class="app-mobile-menu__icon-close"></div>
     </button>
   </nav>
 </template>
@@ -94,9 +78,6 @@
         default: () => [],
       }
     },
-    data: () => ({
-      activeMenu: false,
-    }),
     computed: {
       ...mapState(['showMenu']),
     },
@@ -152,9 +133,26 @@
     background: var(--white);
   }
 
-  .app-mobile-menu__icon-image {
+  .app-mobile-menu__icon:focus > .app-mobile-menu__icon-open,
+  .app-mobile-menu__icon:active > .app-mobile-menu__icon-open {
+    background-image: url('/images/icon_menu-passive--blue.svg');
+  }
+
+  .app-mobile-menu__icon-open {
+    background-image: url('/images/icon_menu-passive--white.svg');
     height: var(--mobile-icon-image);
     width: var(--mobile-icon-image);
+  }
+
+  .app-mobile-menu__icon-close {
+    background-image: url('/images/icon_menu-exit--white.svg');
+    height: var(--mobile-icon-image);
+    width: var(--mobile-icon-image);
+  }
+
+  .app-mobile-menu__icon:focus > .app-mobile-menu__icon-close,
+  .app-mobile-menu__icon:active > .app-mobile-menu__icon-close {
+    background-image: url('/images/icon_menu-exit--blue.svg');
   }
 
   .app-mobile-menu__content {

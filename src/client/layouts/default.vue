@@ -17,9 +17,8 @@
       :title="layout.menu.title"
       :links="[].concat(layout.menu.links, layout.menu.callToAction)"
     />
-    <nuxt v-if="!isVisible" />
+    <nuxt />
     <app-footer
-      v-if="!isVisible"
       :links="[].concat(layout.menu.links, layout.menu.callToAction)"
       :tel="layout.footer.telephoneNumber"
       :email="layout.footer.email"
@@ -40,25 +39,30 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import { AppFooter, AppHeader, AppMobileMenu, GridDemo } from '../components'
 
 export default {
   components: { AppFooter, AppHeader, AppMobileMenu, GridDemo },
   data() {
     return {
-      layout: require(`../static/data/${this.$i18n.locale}/layouts/default`) // layout data should always be bundled
+      layout: require(`../static/data/${this.$i18n.locale}/layouts/default`), // layout data should always be bundled
+      menuVisible: this.$store.state.showMenu
     }
   },
   computed: {
     ...mapState(['showGrid']),
-    isVisible() {
-      return this.$store.state.showMenu
+    isMobileMenuVisible() {
+      return this.menuVisible
     }
+  },
+  methods:{
+    ...mapActions(['toggleMobileMenu']),
   },
   watch: {
     $route() {
       this.$refs.topOfPage.focus()
+      this.menuVisible ? this.toggleMobileMenu() : null
     }
   },
   head() {
