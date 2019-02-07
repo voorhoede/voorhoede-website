@@ -1,14 +1,16 @@
 const fs = require('fs')
 const util = require('util')
 const chalk = require('chalk')
-const cheerio = require('cheerio')
 const glob = util.promisify(require('glob'))
 const path = require('path')
 const mkdirp = require('mkdirp')
 const dotenv = require('dotenv-safe')
 const dayjs = require('dayjs')
-const Prism = require('prismjs')
 
+const prismifyCodeBlocks = require('../../src/client/lib/prismify-code-blocks')
+const addClassesToHeadings = require('../../src/client/lib/add-classes-to-headings')
+
+const appSettings = require('../../src/client/static/data/app.json')
 dotenv.config()
 
 /*
@@ -19,43 +21,21 @@ dotenv.config()
 */
 
 const queryApi = require('../../src/client/lib/query-api')
-const locales = ['nl', 'en']
-
-//match querypath that starts with layout and ends with query.graphql
-const matchLayoutQuery = /(?<=layouts\/).*(?=\.query.graphql)/
+const locales = appSettings.locales.map(({ code }) => code)
 
 glob(path.join(__dirname, '../../src/client/**/*.query.graphql'))
   .then(paths => paths.filter(path => !path.includes('slug')))
   .then(paths => {
     paths.forEach(queryPath => {
       locales.forEach(locale => {
-        const alternateLocale = locales.find(l => l !== locale)
-
-        if (queryPath.match(matchLayoutQuery)) {
-          getLayoutData({ queryPath, locale })
-        } else {
-          getPageData(queryPath, locale, alternateLocale)
-        }
+        getPageData(queryPath, locale)
       })
     })
   })
 
-function getLayoutData({ queryPath, locale }) {
-  const layoutName = queryPath.match(matchLayoutQuery)[0] // use name of graphql query file.
-
-  return runQuery(queryPath, { locale })
-    .then(layoutData => {
-      const isErrorLayout = Boolean(layoutData.error)
-      const relPath = isErrorLayout ? path.join(layoutName, `${layoutData.error.errorCode}`) : layoutName
-
-      writeJsonFile({ filePath: `${locale}/layouts/${relPath}`, data: layoutData })
-      console.log(chalk.green(`👌️ Successfully written: ${locale}/layouts/${relPath}`)) // eslint-disable-line no-console
-    })
-}
-
-function getPageData(queryPath, locale, alternateLocale) {
+function getPageData(queryPath, locale) {
   const currentDate = dayjs().format('YYYY-MM-DD')
-  return runQuery(queryPath, { locale, alternateLocale, currentDate })
+  return runQuery(queryPath, { locale, currentDate })
     .then(pageData => {
       const isHomePage = locales.includes(pageData.page.slug)
       const relPath = isHomePage ? locale : path.join(locale, pageData.page.slug)
@@ -71,7 +51,7 @@ function getPageData(queryPath, locale, alternateLocale) {
 
             const slugQueryPath = path.join(path.parse(queryPath).dir, '_slug.query.graphql')
 
-            runQuery(slugQueryPath, { locale, alternateLocale, slug })
+            runQuery(slugQueryPath, { locale, slug })
               .then(data => {
                 const relPath = path.join(locale, pageData.page.slug, data.page.slug)
                 // Add typography classes to headings,
@@ -94,7 +74,6 @@ function getPageData(queryPath, locale, alternateLocale) {
       console.error(chalk.red('Error for ' + queryPath, e)) // eslint-disable-line no-console
       process.exit(1)
     })
-
 }
 
 function runQuery(queryFilePath, variables) {
@@ -126,36 +105,4 @@ async function writeJsonFile({ filePath, data }) {
 
 function createDirectory(dir) {
   return new Promise((resolve, reject) => mkdirp(dir, (err) => err ? reject(err) : resolve()))
-}
-
-function addClassesToHeadings(items) {
-  items.forEach(item => {
-    const { body, __typename } = item
-    if (__typename === 'TextSectionRecord' && body) {
-      const $ = cheerio.load(item.body)
-      for (let level of [1,2,3,4,5,6]) {
-        $(`h${level}`).addClass(`h${level + 1}`)
-      }
-      item.body = $.html()
-    }
-  })
-}
-
-function prismifyCodeBlocks(items) {
-  items.forEach(item => {
-    const { body, language, __typename } = item
-    if (__typename === 'CodeBlockRecord' && body && language) {
-      let prismified
-      if (!Prism.languages.hasOwnProperty(language)) {
-        require(`prismjs/components/prism-${language}`)
-      }
-      try {
-        prismified = Prism.highlight(body, Prism.languages[language])
-      } catch (e) {
-        console.error(`Unable to prismify code block for language ${language}: ${e.message}`) // eslint-disable-line no-console
-        return
-      }
-      item.body = prismified
-    }
-  })
 }
