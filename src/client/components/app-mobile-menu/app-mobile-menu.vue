@@ -1,25 +1,43 @@
 <template>
   <nav class="app-mobile-menu grid">
     <h2 class="sr-only">{{ title }}</h2>
+    <button
+      v-if="!showMenu"
+      class="app-mobile-menu__button app-mobile-menu__button--open"
+      @click="showMenu = !showMenu"
+      @touchmove="prevent"
+      :aria-label="$t('open_menu')"
+    >
+      <div
+        class="app-mobile-menu__button-icon app-mobile-menu__button-icon--open">
+      </div>
+    </button>
     <div
       v-if="showMenu"
       class="app-mobile-menu__content"
       @touchmove="prevent"
     >
-      <nuxt-link :to="localeUrl('index')">
+      <nuxt-link :to="localeUrl('index')" :title="$t('home')" tabindex="-1">
         <img
           class="app-mobile-menu__logo"
           src="/images/logo--blue-and-yellow.svg"
-          @click="toggleMobileMenu"
+          @click="showMenu = !showMenu"
           alt="">
       </nuxt-link>
       <ul class="app-mobile-menu__list body-petite">
+        <li 
+          class="app-mobile-menu__list-item">
+          <nuxt-link
+            class="h3"
+            to="/"
+          >
+            {{ $t('home') }}
+          </nuxt-link>
+        </li>
         <li
           v-for="link in links"
           :key="link.href"
-          class="app-mobile-menu__list-item"
-          @click="toggleMobileMenu"
-        >
+          class="app-mobile-menu__list-item">
           <nuxt-link
             class="h3"
             :to="createHref(link)"
@@ -29,24 +47,16 @@
         </li>
       </ul>
     </div>
-
     <button
-      class="app-mobile-menu__icon"
-      @click="toggleMobileMenu"
+      v-if="showMenu"
+      class="app-mobile-menu__button app-mobile-menu__button--close"
+      @click="showMenu = !showMenu"
       @touchmove="prevent"
+      :aria-label="$t('close_menu')"
     >
-      <img
-        v-if="showMenu"
-        class="app-mobile-menu__icon-image"
-        src="/images/icon_menu-exit--white.svg"
-        alt=""
-      >
-      <img
-        v-else
-        class="app-mobile-menu__icon-image"
-        src="/images/icon_menu-passive--white.svg"
-        alt=""
-      >
+      <div 
+        class="app-mobile-menu__button-icon app-mobile-menu__button-icon--close">
+      </div>
     </button>
   </nav>
 </template>
@@ -67,15 +77,19 @@
         default: () => [],
       }
     },
-    data: () => ({
-      showMenu: false
-    }),
+    data() {
+      return {
+        showMenu : false,
+      }
+    },
+    watch: {
+      $route() {
+        this.showMenu = false
+      }
+    },
     methods: {
       prevent(event) {
         event.preventDefault()
-      },
-      toggleMobileMenu() {
-        return this.showMenu = !this.showMenu
       },
       createHref
     },
@@ -84,13 +98,13 @@
 
 <style>
   :root {
-      --mobile-icon-right: 20px;
-      --mobile-icon-bottom: var(--mobile-icon-right);
-      --mobile-icon-height: 52px;
-      --mobile-icon-width: var(--mobile-icon-height);
-      --mobile-icon-image: 25px;
-      --mobile-icon-shadow: 2px 2px 4px 0 rgba(0, 0, 0, .27);
-      --mobile-spacing: 12px 20px;
+    --mobile-icon-right: 20px;
+    --mobile-icon-bottom: var(--mobile-icon-right);
+    --mobile-icon-height: 52px;
+    --mobile-icon-width: var(--mobile-icon-height);
+    --mobile-icon-image: 25px;
+    --mobile-icon-shadow: 2px 2px 4px 0 rgba(0, 0, 0, .27);
+    --mobile-spacing: 12px 20px;
   }
 
   .app-mobile-menu {
@@ -103,7 +117,7 @@
     height: 1.4375rem; /* 23px */
   }
 
-  .app-mobile-menu__icon {
+  .app-mobile-menu__button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -119,14 +133,32 @@
     box-shadow: var(--mobile-icon-shadow);
   }
 
-  .app-mobile-menu__icon:focus,
-  .app-mobile-menu__icon:active {
-    background-color: var(--active-blue);
+  .app-mobile-menu__button:focus,
+  .app-mobile-menu__button:active {
+    background: var(--white);
   }
 
-  .app-mobile-menu__icon-image {
+  .app-mobile-menu__button--open:focus .app-mobile-menu__button-icon--open,
+  .app-mobile-menu__button--open:active .app-mobile-menu__button-icon--open {
+    background-image: url('/images/icon_menu-passive--blue.svg');
+  }
+
+  .app-mobile-menu__button--close:focus .app-mobile-menu__button-icon--close,
+  .app-mobile-menu__button--close:active .app-mobile-menu__button-icon--close {
+    background-image: url('/images/icon_menu-exit--blue.svg');
+  }
+
+  .app-mobile-menu__button-icon {
     height: var(--mobile-icon-image);
     width: var(--mobile-icon-image);
+  }
+
+  .app-mobile-menu__button-icon--open {
+    background-image: url('/images/icon_menu-passive--white.svg');
+  }
+
+  .app-mobile-menu__button-icon--close {
+    background-image: url('/images/icon_menu-exit--white.svg');
   }
 
   .app-mobile-menu__content {

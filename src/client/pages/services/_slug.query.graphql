@@ -6,10 +6,6 @@ query ($locale: SiteLocale, $slug: String)  {
   alternate: service(locale: $locale, filter: { slug: { eq: $slug } }) {
     slug(locale: $locale)
   },
-
-  alternateParent: serviceOverview {
-    slug
-  }
 }
 
 fragment page on ServiceRecord {

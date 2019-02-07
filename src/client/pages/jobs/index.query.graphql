@@ -7,7 +7,6 @@ query ($locale: SiteLocale)  {
     title
     description,
     slug,
-    callToActionLabel,
     jobImage {
       url,
       format,

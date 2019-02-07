@@ -16,7 +16,7 @@ const createStore = () => {
       },
       [types.SET_I18N_SLUGS] (state, i18nSlugs) {
         state.i18nSlugs = i18nSlugs
-      },
+      }
     }
   })
 }
