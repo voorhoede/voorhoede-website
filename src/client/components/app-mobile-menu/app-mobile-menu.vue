@@ -8,7 +8,9 @@
       @touchmove="prevent"
       :aria-label="$t('open_menu')"
     >
-      <div class="app-mobile-menu__button-icon--open"></div>
+      <div
+        class="app-mobile-menu__button-icon app-mobile-menu__button-icon--open">
+      </div>
     </button>
     <div
       v-if="showMenu"
@@ -29,7 +31,6 @@
           <nuxt-link
             class="h3"
             to="/"
-            :aria-label="$t('home')"
           >
             {{ $t('home') }}
           </nuxt-link>
@@ -56,7 +57,9 @@
       @touchmove="prevent"
       :aria-label="$t('close_menu')"
     >
-      <div class="app-mobile-menu__button-icon--close"></div>
+      <div 
+        class="app-mobile-menu__button-icon app-mobile-menu__button-icon--close">
+      </div>
     </button>
   </nav>
 </template>
@@ -143,16 +146,17 @@
     background-image: url('/images/icon_menu-exit--blue.svg');
   }
 
-  .app-mobile-menu__button-icon--open {
-    background-image: url('/images/icon_menu-passive--white.svg');
+  .app-mobile-menu__button-icon {
     height: var(--mobile-icon-image);
     width: var(--mobile-icon-image);
   }
 
+  .app-mobile-menu__button-icon--open {
+    background-image: url('/images/icon_menu-passive--white.svg');
+  }
+
   .app-mobile-menu__button-icon--close {
     background-image: url('/images/icon_menu-exit--white.svg');
-    height: var(--mobile-icon-image);
-    width: var(--mobile-icon-image);
   }
 
   .app-mobile-menu__content {
