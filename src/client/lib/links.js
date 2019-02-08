@@ -10,6 +10,6 @@ export function linkValidator (item) {
 
 export function createHref (item) {
   return (item.page.slug)
-    ? `/${this.$i18n.locale}/${item.page.slug}`
+    ? `/${this.$i18n.locale}/${item.page.slug}/`
     : item.url
 }
