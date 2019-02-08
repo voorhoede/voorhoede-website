@@ -13,7 +13,7 @@
     --horizontal-carousel-slides-count: 3;
     --horizontal-carousel-slide-width-small: calc(100vw - 2 * (var(--grid-margin)));
     --horizontal-carousel-slide-width-large: calc(100vw / var(--horizontal-carousel-slides-count));
-    --horizontal-carousel-width-small: calc(100vw * var(--horizontal-carousel-slides-count) - (var(--grid-margin) * var(--horizontal-carousel-slides-count)));
+    --horizontal-carousel-width-small: calc(100vw * var(--horizontal-carousel-slides-count) - (var(--grid-margin) * (var(--horizontal-carousel-slides-count) + 1)));
   }
 
   .horizontal-carousel {
