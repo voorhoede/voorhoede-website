@@ -1,14 +1,14 @@
 <template>
   <section class="layout-error">
     <page-header
-      v-if="layout[$i18n.locale].error"
-      :title="layout[$i18n.locale].error.title"
-      :text="String(layout[$i18n.locale].error.errorCode)"
-      :image="layout[$i18n.locale].error.headerImage"
+      v-if="layout[$i18n.locale]"
+      :title="layout[$i18n.locale].title"
+      :text="String(layout[$i18n.locale].errorCode)"
+      :image="layout[$i18n.locale].headerImage"
     />
-    <div class="layout-error__backdrop grid" v-if="layout[$i18n.locale].error">
+    <div class="layout-error__backdrop grid" v-if="layout[$i18n.locale]">
       <div class="layout-error__content body">
-        {{ layout[$i18n.locale].error.body }}
+        {{ layout[$i18n.locale].body }}
       </div>
     </div>
   </section>
@@ -37,18 +37,13 @@ export default {
   data() {
     return {
       layout: {
-        en: {
-          ...layoutEn
-        },
-        nl: {
-          ...layoutNl
-        }
+        en: layoutEn,
+        nl: layoutNl,
       }
     }
   }
 }
 </script>
-
 
 <style>
   @import '../components/app-core/variables.css';
