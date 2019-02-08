@@ -1,4 +1,4 @@
-const locales = require('../../../src/client/static/data/locales.json')
+const locales = require('../../../src/client/static/data/app.json').locales
 const messages = require('../../../src/client/static/data/messages.json')
 const defaultLocale = process.env.defaultLocale || process.env.DEFAULT_LOCALE || locales[0].code
 

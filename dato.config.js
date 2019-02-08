@@ -17,9 +17,11 @@ let locales = []
 module.exports = (dato, root, i18n) => {
   locales = i18n.availableLocales
 
-  root.createDataFile(`${dataDir}/app.json`, 'json', appSettingsToJson(dato.app))
+  root.createDataFile(`${dataDir}/app.json`, 'json', {
+    ...appSettingsToJson(dato.app),
+    locales: localesToJson(locales)
+  })
 
-  root.createDataFile(`${dataDir}/locales.json`, 'json', localesToJson(locales))
   defaultLocale = defaultLocale || locales[0]
 
   fs.writeFileSync(`${__dirname}/${staticDir}/_redirects`, redirectsToText(dato.redirects, locales, defaultLocale), 'utf8')
@@ -30,9 +32,17 @@ module.exports = (dato, root, i18n) => {
   }, {})
 
   locales.forEach(locale => {
-    i18n.withLocale(locale, () => {
-      messages[locale] = translationsToJson(dato.translations)
+    i18n.locale = locale
+
+    messages[locale] = translationsToJson(dato.translations)
+
+    root.createDataFile(`${dataDir}/${locale}/layouts/default/index.json`, 'json', layoutToJson(dato), 'utf8')
+
+    dato.errorPages.forEach(errorPage => {
+      root.createDataFile(`${dataDir}/${locale}/layouts/error/${errorPage.errorCode}/index.json`, 'json', errorPageToJson(errorPage), 'utf8')
     })
+
+    fs.writeFileSync(`${__dirname}/${staticDir}/_redirects`, redirectsToText(dato.redirects, locales, defaultLocale), 'utf8')
   })
   root.createDataFile(`${dataDir}/messages.json`, 'json', messages)
 }
@@ -50,6 +60,57 @@ function localesToJson (locales) {
   })
 }
 
+function layoutToJson(dato) {
+  return {
+    menu: {
+      title: dato.menu.title,
+      links: dato.menu.links.map(formatLink),
+      callToAction: formatLink(dato.menu.callToAction)
+    },
+    footer: {
+      ...pick(dato.footer, [
+        'email',
+        'telephoneNumber',
+        'googleMapsLink',
+        'address',
+        'postalCode',
+        'privacyLabel',
+        'privacyTitle',
+        'privacyLink',
+        'copyrightLabel',
+        'copyrightTitle',
+        'copyrightLink',
+        'logoAlt',
+      ]),
+      legal: dato.footer.legal.map(item => {
+        return pick(item, ['title', 'value'])
+      }),
+      social: dato.footer.social.map(item => {
+        return pick(item, ['icon', 'href', 'title'])
+      })
+    }
+  }
+}
+
+function formatLink(link) {
+  return {
+    ...pick(link, ['title', 'url']),
+    page: {
+      slug: link.page.slug
+    }
+  }
+}
+
+function errorPageToJson(errorPage) {
+  return {
+    ...pick(errorPage, [
+      'errorCode',
+      'title',
+      'body',
+    ]),
+    headerImage: pick(errorPage.headerImage.upload, ['url', 'alt'])
+  }
+}
 
 /**
  * Write redirects to text with 1 redirect per line
