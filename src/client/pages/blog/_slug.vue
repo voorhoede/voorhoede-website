@@ -91,6 +91,7 @@
       <!-- TODO: Make this a section to be defined in DATO (once for all blog pages) -->
       <pivot-section
         v-if="pivots"
+        class="page-blog-post__pivot-section"
         :pivot="pivots[0]"
       />
       <scroll-to direction="up" />
