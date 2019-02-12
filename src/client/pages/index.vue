@@ -34,7 +34,7 @@
       </div>
       <horizontal-carousel>
         <template slot="slides">
-          <case-excerpt 
+          <case-excerpt
             v-for="caseExcerpt in page.cases"
             :key="caseExcerpt.slug"
             :slug="caseExcerpt.slug"
@@ -75,12 +75,12 @@
       </div>
       <curly-bracket side="right" />
     </section>
-    <div class="page-index__cta-block grid">
-      <cta-block :cta-label="page.callToActionLabel" :cta-to="localeUrl('contact')">
+    <div class="page-index__pivot-section grid">
+      <pivot-section :cta-label="page.callToActionLabel" :cta-to="localeUrl('contact')">
         <template slot="heading">
           <h3 class="h4">{{ page.callToActionTitle }}</h3>
         </template>
-      </cta-block>
+      </pivot-section>
       <scroll-to direction="up" />
     </div>
   </main>
@@ -94,7 +94,7 @@
     AppButton,
     BlogListItem,
     CaseExcerpt,
-    CtaBlock,
+    PivotSection,
     CurlyBracket,
     HighlightedClients,
     HorizontalCarousel,
@@ -110,7 +110,7 @@
       AppButton,
       BlogListItem,
       CaseExcerpt,
-      CtaBlock,
+      PivotSection,
       CurlyBracket,
       HighlightedClients,
       HorizontalCarousel,
@@ -149,7 +149,7 @@
     grid-column: 1;
   }
 
-  .page-index__cta-block .scroll-to {
+  .page-index__pivot-section .scroll-to {
     display: none;
     position: absolute;
     bottom: var(--spacing-large);
@@ -335,18 +335,18 @@
       padding: var(--spacing-larger) 0;
     }
 
-    .page-index__cta-block .scroll-to {
+    .page-index__pivot-section .scroll-to {
       display: flex;
       position: absolute;
       bottom: var(--spacing-larger);
       grid-column: 48;
     }
 
-    .page-index__cta-block {
+    .page-index__pivot-section {
       position: relative;
     }
 
-    .page-index__cta-block .cta-block {
+    .page-index__pivot-section .pivot-section {
       grid-column-start: 6;
       grid-column-end: 45;
     }
@@ -406,7 +406,7 @@
       grid-column-end: 40;
     }
 
-    .page-index__cta-block .scroll-to {
+    .page-index__pivot-section .scroll-to {
       bottom: var(--spacing-big);
     }
   }
@@ -422,7 +422,7 @@
       grid-column-end: 24;
     }
 
-    .page-index__cta-block {
+    .page-index__pivot-section {
       /* tweak for the inconsistent spacing of the latest-blog-post component  */
       padding-top: var(--spacing-smaller);
     }

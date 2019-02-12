@@ -2,14 +2,14 @@
 A section that is used to create a `call-to-action` block for the end user.
 
 ## Usage
-The Cta block has two `slots` named: `heading` and `body`. 
+The Cta block has two `slots` named: `heading` and `body`.
 
 The `heading` slot needs a `heading` with a class of `h1-h5`. The Component will wrap it with a `header` tag. This slot is highly recommended.
 
 The `body` slot is an optional slot when the `call-to-action` needs more information.
 
 ```html
-<cta-block
+<pivot-section
   ctaLabel="Drop us a line"
   ctaTo="https://voorhoede.nl"
 >
@@ -19,7 +19,7 @@ The `body` slot is an optional slot when the `call-to-action` needs more informa
   <template slot="body">
     <p class="body">For us, that’s about technology and user experience. Fast, available for all, enjoyable to use. And fun to build. This is how our team bands together, adhering to the same values, to make sure we achieve a solid result for clients both large and small. Does that fit you?</p>
   </template>
-</cta-block>
+</pivot-section>
 ```
 
 ## Props

@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="grid">
-      <cta-block
+      <pivot-section
         :cta-label="page.callToActionLabel"
         :cta-to="localeUrl('cases')" />
     </div>
@@ -21,11 +21,11 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
-  import { CtaBlock, PageHeader } from '~/components'
+  import { PivotSection, PageHeader } from '~/components'
 
   export default {
     components: {
-      CtaBlock,
+      PivotSection,
       PageHeader,
     },
     asyncData,

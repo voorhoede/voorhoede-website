@@ -7,14 +7,14 @@ import { action } from '@storybook/addon-actions'
 
 import '../app-core/index.css'
 
-import CtaBlock from './cta-block.vue'
+import PivotSection from './pivot-section.vue'
 import README from './README.md'
 
 const stories = storiesOf('Components/Cta Block', module)
   .addDecorator(withKnobs)
   .addDecorator(withReadme(README))
 
-Vue.component('cta-block', CtaBlock)
+Vue.component('pivot-section', PivotSection)
 
 stories.add(
   'Cta Block with body',
@@ -25,7 +25,7 @@ stories.add(
     },
     template: `
       <div style="margin-top: 55px;">
-        <cta-block
+        <pivot-section
           ctaLabel="${ text('ctaLabel', 'Drop us a line') }"
           ctaTo="https://voorhoede.nl"
         >
@@ -35,7 +35,7 @@ stories.add(
           <template slot="body">
             <p class="body">${ text('body', 'For us, that’s about technology and user experience. Fast, available for all, enjoyable to use. And fun to build. This is how our team bands together, adhering to the same values, to make sure we achieve a solid result for clients both large and small. Does that fit you?') }</p>
           </template>
-        </cta-block>
+        </pivot-section>
       </div>
     `,
   }),
@@ -50,14 +50,14 @@ stories.add(
     },
     template: `
       <div style="margin-top: 55px;">
-        <cta-block
+        <pivot-section
           ctaLabel="${ text('ctaLabel', 'Drop us a line') }"
           ctaTo="https://voorhoede.nl"
         >
           <template slot="heading">
             <h2 class="h4">${ text('heading', 'Got a project you need to bring to life?') }</h2>
           </template>
-        </cta-block>
+        </pivot-section>
       </div>
     `,
   }),
@@ -72,7 +72,7 @@ stories.add(
     },
     template: `
       <div style="margin-top: 55px;">
-        <cta-block
+        <pivot-section
           alternateLink
           ctaLabel="${ text('ctaLabel', 'Drop us a line') }"
           ctaTo="https://voorhoede.nl"

@@ -1,14 +1,14 @@
 <template>
-  <section class="cta-block">
+  <section class="pivot-section">
     <header
       v-if="hasHeading"
-      class="cta-block__heading"
+      class="pivot-section__heading"
     >
       <slot name="heading" />
     </header>
     <div
       v-if="hasBody"
-      class="cta-block__body"
+      class="pivot-section__body"
     >
       <slot name="body" />
     </div>
@@ -18,7 +18,7 @@
     />
     <app-button
       v-if="alternateLink"
-      class="cta-block__alternate"
+      class="pivot-section__alternate"
       secondary
       :external="alternateLinkExternal"
       :label="alternateLinkLabel"
@@ -72,32 +72,32 @@
 </script>
 
 <style>
-  .cta-block {
+  .pivot-section {
     padding-top: var(--spacing-large);
     padding-bottom: var(--spacing-larger);
     text-align: center;
   }
 
-  .cta-block__heading {
+  .pivot-section__heading {
     margin-bottom: var(--spacing-medium);
   }
 
-  .cta-block__body {
+  .pivot-section__body {
     margin-right: auto;
     margin-bottom: var(--spacing-large);
     margin-left: auto;
   }
 
-  .cta-block__alternate {
+  .pivot-section__alternate {
     margin-top: var(--spacing-medium);
   }
 
   @media (min-width: 720px) {
-    .cta-block {
+    .pivot-section {
       border-top: 1px solid var(--very-dim);
     }
 
-    .cta-block__alternate.app-button {
+    .pivot-section__alternate.app-button {
       margin: 0 0 0 var(--spacing-medium);
       padding-left: var(--spacing-medium);
       border-left: 1px solid var(--very-dim);
@@ -105,7 +105,7 @@
   }
 
   @media (min-width: 1100px) {
-    .cta-block {
+    .pivot-section {
       padding-top: var(--spacing-large);
       padding-bottom: var(--spacing-big);
     }
