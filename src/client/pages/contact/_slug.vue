@@ -11,8 +11,9 @@
     </div>
     <div class="grid">
       <pivot-section
-        :cta-label="page.callToActionLabel"
-        :cta-to="localeUrl('cases')" />
+        v-if="pivots"
+        :pivot="pivots[0]"
+      />
     </div>
   </section>
 </template>

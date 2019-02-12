@@ -1,33 +1,26 @@
 <template>
   <section class="pivot-section">
-    <header
-      v-if="hasHeading"
-      class="pivot-section__heading"
+    <h2
+      v-if="pivot.title"
+      class="pivot-section__heading h3"
     >
-      <slot name="heading" />
-    </header>
+      {{ pivot.title }}
+    </h2>
     <div
-      v-if="hasBody"
-      class="pivot-section__body"
+      v-if="pivot.body"
+      v-html="pivot.body"
+      class="pivot-section__body body"
     >
-      <slot name="body" />
     </div>
     <app-button
-      :label="ctaLabel"
-      :to="ctaTo"
-    />
-    <app-button
-      v-if="alternateLink"
-      class="pivot-section__alternate"
-      secondary
-      :external="alternateLinkExternal"
-      :label="alternateLinkLabel"
-      :to="alternateLinkTo"
+      :label="pivot.callToActionLabel"
+      :to="createHref(pivot.link)"
     />
   </section>
 </template>
 
 <script>
+  import { createHref, linkValidator } from '../../lib/links'
   import { AppButton } from '~/components'
 
   export default {
@@ -35,39 +28,18 @@
       AppButton,
     },
     props: {
-      ctaLabel: {
-        type: String,
+      pivot: {
+        type: Object,
         required: true,
-      },
-      ctaTo: {
-        type: [String, Object],
-        required: true,
-      },
-      alternateLink: {
-        type: Boolean,
-        default: false,
-      },
-      alternateLinkLabel: {
-        type: String,
-        default: '',
-      },
-      alternateLinkTo: {
-        type: [String, Object],
-        default: null,
-      },
-      alternateLinkExternal: {
-        type: Boolean,
-        default: false,
+        validator: pivot => {
+          return pivot.hasOwnProperty('callToActionLabel')
+          && linkValidator(pivot.link)
+        }
       },
     },
-    computed: {
-      hasHeading() {
-        return 'heading' in this.$slots
-      },
-      hasBody() {
-        return 'body' in this.$slots
-      },
-    },
+    methods: {
+      createHref
+    }
   }
 </script>
 

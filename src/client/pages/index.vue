@@ -76,11 +76,10 @@
       <curly-bracket side="right" />
     </section>
     <div class="page-index__pivot-section grid">
-      <pivot-section :cta-label="page.callToActionLabel" :cta-to="localeUrl('contact')">
-        <template slot="heading">
-          <h3 class="h4">{{ page.callToActionTitle }}</h3>
-        </template>
-      </pivot-section>
+      <pivot-section
+        v-if="pivots"
+        :pivot="pivots[0]"
+      />
       <scroll-to direction="up" />
     </div>
   </main>

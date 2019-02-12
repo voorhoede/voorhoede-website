@@ -90,16 +90,9 @@
     <div class="page-blog-post__cta grid">
       <!-- TODO: Make this a section to be defined in DATO (once for all blog pages) -->
       <pivot-section
-        class="page-blog-post__pivot-section"
-        :cta-label="page.callToActionLabel"
-        :cta-to="localeUrl('about-us')">
-        <template slot="heading">
-          <h2 class="h3">{{ page.callToActionTitle }}</h2>
-        </template>
-        <template slot="body">
-          <p class="body">{{ page.callToActionBody }}</p>
-        </template>
-      </pivot-section>
+        v-if="pivots"
+        :pivot="pivots[0]"
+      />
       <scroll-to direction="up" />
     </div>
 
