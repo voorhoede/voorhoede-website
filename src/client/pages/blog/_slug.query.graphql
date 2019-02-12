@@ -1,103 +1,132 @@
-query ($locale: SiteLocale, $slug: String)  {
+query ($locale: SiteLocale, $slug: String) {
   page: blogPost(locale: $locale, filter: { slug: { eq: $slug } }) {
     ...page
-  },
-  alternate: blogPost(locale: $locale, filter: { slug: { eq: $slug } }) {
-    slug
-  },
+  }
+  pivot: allPivotSections(locale: $locale, filter: {
+    routes:{ matches:{ pattern: "blog-slug" }}
+  }) {
+    title
+    body
+    callToActionLabel
+    link {
+      title
+      url
+      page {
+        ... on HomeRecord {
+          slug
+        }
+        ... on ServiceOverviewRecord {
+          slug
+        }
+        ... on CaseOverviewRecord {
+          slug
+        }
+        ... on BlogPostOverviewRecord {
+          slug
+        }
+        ... on JobOverviewRecord {
+          slug
+        }
+        ... on AboutRecord {
+          slug
+        }
+        ... on ContactRecord {
+          slug
+        }
+      }
+    }
+  }
 }
+
 fragment page on BlogPostRecord {
-  slug,
+  slug
   social {
-    title,
-    description,
+    title
+    description
     image {
       url
     }
-  },
-  keywords,
-  title,
-  subtitle,
+  }
+  keywords
+  title
+  subtitle
   headerIllustration {
-    url,
-    format,
+    url
+    format
     alt
-  },
-  date: publishDate,
+  }
+  date: publishDate
   authors {
-    name,
-    lastName,
+    name
+    lastName
     image {
-      url,
-      format,
-      alt,
-      width,
+      url
+      format
+      alt
+      width
       height
     }
   }
-  introTitle,
+  introTitle
   items {
-    __typename,
+    __typename
     ... on CodeBlockRecord {
-      language,
-      body,
-    },
+      language
+      body
+    }
     ... on ImageRecord {
       image {
-        url,
-        alt,
-        width,
-        height,
+        url
+        alt
+        width
+        height
         format
-      },
-      alt,
-      fullWidth,
-    },
+      }
+      alt
+      fullWidth
+    }
     ... on ImageWithTextRecord {
       imageWithDescription {
         image {
-          url,
-          alt,
-          width,
-          height,
+          url
+          alt
+          width
+          height
           format
-        },
-        description,
+        }
+        description
         inverse
       }
-    },
+    }
     ... on LinkSectionRecord {
-    	link,
-      label,
-      external,
-    },
+      link
+      label
+      external
+    }
     ... on QuoteRecord {
-      quote,
+      quote
       author
-    },
+    }
     ... on ResponsiveVideoRecord {
-      mute,
-      loop,
-      autoplay,
+      mute
+      loop
+      autoplay
       video {
-        url,
-        title,
-        height,
-        width,
-        provider,
-        providerUid,
+        url
+        title
+        height
+        width
+        provider
+        providerUid
         thumbnailUrl
       }
-    },
+    }
     ... on TextSectionRecord {
-      title,
-      body,
-    },
-  },
-  callToActionTitle,
-  callToActionBody,
-  callToActionLabel,
-  socialTitle,
+      title
+      body
+    }
+  }
+  socialTitle
   customStyling
   customScript
 }
