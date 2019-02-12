@@ -84,7 +84,7 @@
       <social-buttons
         :title="page.socialTitle"
         :share-title="page.title" />
-      <toc-section :items="page.items" />
+      <toc-section :items="tocItems" />
     </aside>
 
     <div class="page-blog-post__link-container">
@@ -163,6 +163,18 @@ export default {
   },
   mounted () {
     this.loadCustomScript = true
+  },
+  computed: {
+    tocItems () {
+      return this.page.items
+        .filter(item => item.title)
+        .map(({ title }) => {
+          return { 
+            slug: this.slugify(title),
+            title
+          }
+        })
+    }
   },
   methods: {
     slugify(title) {
