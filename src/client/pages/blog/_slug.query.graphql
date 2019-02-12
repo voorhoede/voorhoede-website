@@ -2,7 +2,7 @@ query ($locale: SiteLocale, $slug: String) {
   page: blogPost(locale: $locale, filter: { slug: { eq: $slug } }) {
     ...page
   }
-  pivot: allPivotSections(locale: $locale, filter: {
+  pivots: allPivotSections(locale: $locale, filter: {
     routes:{ matches:{ pattern: "blog-slug" }}
   }) {
     title

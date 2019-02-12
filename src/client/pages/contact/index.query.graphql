@@ -5,8 +5,8 @@ query ($locale: SiteLocale)  {
   items: allContactConfirmations(locale: $locale) {
     slug
   },
-  pivot: allPivotSections(locale: $locale, filter: {
-    routes:{ matches:{ pattern: "blog" }}
+  pivots: allPivotSections(locale: $locale, filter: {
+    routes:{ matches:{ pattern: "contact" }}
   }) {
     title
     body

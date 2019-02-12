@@ -2,6 +2,40 @@ query ($locale: SiteLocale, $slug: String)  {
   page: eventItem(locale: $locale, filter: { slug: { eq: $slug } }) {
     ...eventItem
   },
+  pivots: allPivotSections(locale: $locale, filter: {
+    routes:{ matches:{ pattern: "events-slug" }}
+  }) {
+    title
+    body
+    callToActionLabel
+    link {
+      title
+      url
+      page {
+        ... on HomeRecord {
+          slug
+        }
+        ... on ServiceOverviewRecord {
+          slug
+        }
+        ... on CaseOverviewRecord {
+          slug
+        }
+        ... on BlogPostOverviewRecord {
+          slug
+        }
+        ... on JobOverviewRecord {
+          slug
+        }
+        ... on AboutRecord {
+          slug
+        }
+        ... on ContactRecord {
+          slug
+        }
+      }
+    }
+  }
 }
 
 fragment eventItem on EventItemRecord {

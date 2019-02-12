@@ -13,10 +13,6 @@ query ($locale: SiteLocale)  {
       alt
     },
   },
-
-  alternate: jobOverview(locale: $locale) {
-    slug
-  }
 }
 
 fragment jobOverview on JobOverviewRecord {

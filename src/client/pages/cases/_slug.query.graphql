@@ -3,8 +3,8 @@ query ($locale: SiteLocale, $slug: String)  {
     ...caseItem
   },
 
-  pivot: allPivotSections(locale: $locale, filter: {
-    routes:{ matches:{ pattern: "blog" }}
+  pivots: allPivotSections(locale: $locale, filter: {
+    routes:{ matches:{ pattern: "cases-slug" }}
   }) {
     title
     body

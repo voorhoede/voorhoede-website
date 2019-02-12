@@ -2,8 +2,39 @@ query($locale: SiteLocale)  {
   page: faq(locale:$locale) {
     ...page
   },
-  alternate: faq(locale:$locale) {
-    slug
+  pivots: allPivotSections(locale: $locale, filter: {
+    routes:{ matches:{ pattern: "faq" }}
+  }) {
+    title
+    body
+    callToActionLabel
+    link {
+      title
+      url
+      page {
+        ... on HomeRecord {
+          slug
+        }
+        ... on ServiceOverviewRecord {
+          slug
+        }
+        ... on CaseOverviewRecord {
+          slug
+        }
+        ... on BlogPostOverviewRecord {
+          slug
+        }
+        ... on JobOverviewRecord {
+          slug
+        }
+        ... on AboutRecord {
+          slug
+        }
+        ... on ContactRecord {
+          slug
+        }
+      }
+    }
   }
 }
 
