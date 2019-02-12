@@ -1,5 +1,5 @@
 export default function ({ route, redirect }) {
-  if (!route.fullPath.endsWith('/')) {
-    redirect(301, `${route.fullPath}/`)
+  if (!route.path.endsWith('/')) {
+    redirect(301, `${route.path}/`, route.query)
   }
 }

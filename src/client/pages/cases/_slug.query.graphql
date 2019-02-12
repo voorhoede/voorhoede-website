@@ -1,4 +1,4 @@
-query ($locale: SiteLocale, $alternateLocale: SiteLocale, $slug: String)  {
+query ($locale: SiteLocale, $slug: String)  {
   page: caseItem(locale: $locale, filter: { slug: { eq: $slug } }) {
     ...caseItem
   },

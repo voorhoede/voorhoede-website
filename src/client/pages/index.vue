@@ -34,14 +34,14 @@
       </div>
       <horizontal-carousel>
         <template slot="slides">
-          <div v-for="caseExcerpt in page.cases" :key="caseExcerpt.slug">
-            <case-excerpt
-              :slug="caseExcerpt.slug"
-              :image="caseExcerpt.heroIllustration"
-              :title="caseExcerpt.title"
-              :body="caseExcerpt.subtitle"
-            />
-          </div>
+          <case-excerpt 
+            v-for="caseExcerpt in page.cases"
+            :key="caseExcerpt.slug"
+            :slug="caseExcerpt.slug"
+            :image="caseExcerpt.heroIllustration"
+            :title="caseExcerpt.title"
+            :body="caseExcerpt.subtitle"
+          />
         </template>
       </horizontal-carousel>
     </section>
@@ -133,7 +133,6 @@
 </script>
 
 <style>
-
   .page-index__header {
     margin-bottom: var(--spacing-big);
     background-color: var(--bg-pastel);
