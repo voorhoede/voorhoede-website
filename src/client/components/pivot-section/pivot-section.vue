@@ -32,8 +32,8 @@
         type: Object,
         required: true,
         validator: pivot => {
-          return pivot.hasOwnProperty('callToActionLabel')
-          && linkValidator(pivot.link)
+          return pivot.hasOwnProperty('callToActionLabel') &&
+            linkValidator(pivot.link)
         }
       },
     },
@@ -45,6 +45,7 @@
 
 <style>
   .pivot-section {
+    position: relative;
     padding-top: var(--spacing-large);
     padding-bottom: var(--spacing-larger);
     text-align: center;
@@ -60,19 +61,9 @@
     margin-left: auto;
   }
 
-  .pivot-section__alternate {
-    margin-top: var(--spacing-medium);
-  }
-
   @media (min-width: 720px) {
     .pivot-section {
       border-top: 1px solid var(--very-dim);
-    }
-
-    .pivot-section__alternate.app-button {
-      margin: 0 0 0 var(--spacing-medium);
-      padding-left: var(--spacing-medium);
-      border-left: 1px solid var(--very-dim);
     }
   }
 
