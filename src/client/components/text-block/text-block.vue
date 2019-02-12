@@ -1,6 +1,6 @@
 <template>
   <div class="text-block">
-    <h3 v-if="title" class="text-block__title h3">{{ title }}</h3>
+    <h3 v-if="title" :id="slug" class="text-block__title h3">{{ title }}</h3>
     <slot />
   </div>
 </template>
@@ -11,6 +11,10 @@
       title: {
         type: String,
         default: null
+      },
+      slug: {
+        type: String,
+        default: ''
       }
     },
     mounted () {
@@ -22,7 +26,6 @@
 </script>
 
 <style>
-
   .text-block__title {
     margin-bottom: var(--spacing-smaller);
   }

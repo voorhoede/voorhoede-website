@@ -40,7 +40,8 @@
           :class="{ 'page-blog-post-list--full-width' : item.fullWidth}"
           v-if="item.__typename === 'ImageRecord' && item.image"
           :key="item.image.url"
-          :image="item.image" />
+          :image="item.image"
+        />
 
         <responsive-video
           v-if="item.__typename === 'ResponsiveVideoRecord'"
@@ -48,19 +49,27 @@
           :video="item.video"
           :autoplay="item.autoplay"
           :loop="item.loop"
-          :mute="item.autoplay" />
+          :mute="item.autoplay"
+        />
 
         <text-block
           v-if="item.__typename === 'TextSectionRecord' && item.title"
-          :key="item.title">
-          <h2 class="page-blog-post-list__title h3 font-html-blue">{{ item.title }}</h2>
+          :key="item.title"
+          :slug="slugify(item.title)"
+        >
+          <h2
+            class="page-blog-post-list__title h3 font-html-blue"
+            :id="slugify(item.title)">
+            {{ item.title }}
+          </h2>
         </text-block>
 
         <rich-text-block
           v-if="item.__typename === 'TextSectionRecord' && item.body"
           :key="item.body"
           :text="item.body"
-          large-text />
+          large-text
+        />
 
         <div
           v-if="item.__typename === 'LinkSectionRecord'"
@@ -69,7 +78,8 @@
             class="page-blog-post__button"
             :external="item.external"
             :label="item.label"
-            :to="item.link" />
+            :to="item.link"
+          />
         </div>
       </template>
     </article>
@@ -78,7 +88,9 @@
       <blog-author class="page-blog-post__aside-author" :item="page" />
       <social-buttons
         :title="page.socialTitle"
-        :share-title="page.title" />
+        :share-title="page.title"
+      />
+      <toc-section :items="tocItems" />
     </aside>
 
     <div class="page-blog-post__link-container">
@@ -124,6 +136,7 @@ import {
   RichTextBlock,
   ScrollTo,
   SocialButtons,
+  TocSection,
   TextBlock,
 } from '~/components'
 
@@ -141,6 +154,7 @@ export default {
     RichTextBlock,
     ScrollTo,
     SocialButtons,
+    TocSection,
     TextBlock,
   },
   asyncData,
@@ -150,11 +164,28 @@ export default {
        * Load custom script after vue has mounted,
        * to prevent issues with the moment the custom script is executed and hydration.
        */
-      loadCustomScript: false
+      loadCustomScript: false,
+    }
+  },
+  computed: {
+    tocItems () {
+      return this.page.items
+        .filter(item => item.title)
+        .map(({ title }) => {
+          return {
+            slug: this.slugify(title),
+            title
+          }
+        })
     }
   },
   mounted () {
     this.loadCustomScript = true
+  },
+  methods: {
+    slugify(title) {
+      return `${title.replace(/[^A-Za-z]+/g, '-').toLowerCase()}`
+    }
   },
   head,
 }
