@@ -197,15 +197,9 @@
         margin-top: 0;
       }
 
-      .case-excerpt:hover .case-excerpt__info,
-      .case-excerpt:focus-within .case-excerpt__info {
-        height: 0;
-      }
-
-      .case-excerpt:hover .case-excerpt__actions,
-      .case-excerpt:focus-within .case-excerpt__actions {
-        position: static;
-        bottom: calc(-1 * var(--case-excerpt-actions-height));
+      .case-excerpt__info,
+      .case-excerpt__actions {
+        display: none;
       }
     }
   }
