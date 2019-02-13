@@ -1,14 +1,17 @@
 <template>
-  <span
-    ref="text"
-    v-html="selfTypingText"
-    class="self-typing-text"
-    aria-hidden="true"
-    :class="{
-      'self-typing-text--enhanced': enhanced,
-      'self-typing-text--ended': animationEnded
-    }"
-  />
+  <div>
+    <div
+      ref="text"
+      v-html="selfTypingText"
+      class="self-typing-text self-typing-text--animated"
+      aria-hidden="true"
+      :class="{
+        'self-typing-text--enhanced': enhanced,
+        'self-typing-text--ended': animationEnded
+      }"
+    />
+    <div class="self-typing-text self-typing-text--reduced-motion" v-html="text"/>
+  </div>
 </template>
 
 <script>
@@ -33,6 +36,10 @@ export default {
     }
   },
   mounted () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
+    }
+
     const height = this.$refs.text.clientHeight
     const letters = this.text.split('')
     const intervalByDuration = (BASE_DURATION / this.text.length)
@@ -70,13 +77,29 @@ export default {
   }
 
   .self-typing-text {
-    display: block;
     margin-top: var(--spacing-smaller);
     hyphens: auto;
     overflow-wrap: break-word;
+  }
+
+  .self-typing-text--animated {
     opacity: 0;
     animation: var(--show-text-animation);
     animation-delay: var(--show-text-animation-delay);
+  }
+
+  .self-typing-text--reduced-motion {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .self-typing-text--animated {
+      display: none;
+    }
+
+    .self-typing-text--reduced-motion {
+      display: block;
+    }
   }
 
   .self-typing-text--enhanced {
