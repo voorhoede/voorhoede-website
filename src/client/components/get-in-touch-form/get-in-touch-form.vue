@@ -1,6 +1,6 @@
 <template>
   <div class="get-in-touch-form grid">
-    <h3 class="get-in-touch-form__title h3">{{ title }}</h3>
+    <h2 class="get-in-touch-form__title h3">{{ title }}</h2>
     <form
       @submit.prevent="submit"
       method="POST"
