@@ -78,13 +78,11 @@
 
   .rich-text :not(pre) > code {
     font-family: var(--font-code);
-    background: #f5f2f0;
-    padding: 0 .25rem;
-    border: 1px solid #b3b3b3;
-  }
-
-  .rich-text a code {
-    color: var(--black);
+    padding: 1px .25rem;
+    font-size: calc(1em - 2px);
+    color: var(--dark-blue);
+    background: var(--paper);
+    outline: 1px solid var(--bg-pastel);
   }
 
   @media (min-width: 720px) {
