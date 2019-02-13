@@ -14,6 +14,11 @@
           :image="item.image" />
       </template>
     </article>
+    <pivot-section
+        v-if="pivots"
+        class="page-blog-post__pivot-section"
+        :pivot="pivots[0]"
+      />
   </div>
 </template>
 
