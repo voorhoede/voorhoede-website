@@ -190,5 +190,17 @@
       position: absolute;
       bottom: 0;
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .case-excerpt:hover .case-excerpt__image-link,
+      .case-excerpt:focus-within .case-excerpt__image-link {
+        margin-top: 0;
+      }
+
+      .case-excerpt__info,
+      .case-excerpt__actions {
+        display: none;
+      }
+    }
   }
 </style>

@@ -137,6 +137,16 @@
     background-color: var(--very-dim);
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .app-button--primary:hover,
+    .app-button--primary:focus,
+    .app-button--primary.app-button--hover,
+    .app-button--primary:active,
+    .app-button--primary.app-button--active {
+      transform: none;
+    }
+  }
+
   .app-button--secondary {
     color: var(--html-blue);
   }
@@ -158,6 +168,12 @@
   .app-button--secondary.app-button--hover::after,
   .app-button--secondary.app-button--active::after {
     transform: scaleX(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .app-button--secondary::after {
+      transition: none;
+    }
   }
 
   .app-button--secondary:active,

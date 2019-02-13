@@ -8,3 +8,13 @@
   width: 1px;
   overflow: hidden;
 }
+
+/*
+ * Overwrite all transitions,
+ * since user with reduced motion enabled find it really important
+ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
