@@ -186,7 +186,6 @@
       .job-excerpt__text-title,
       .job-excerpt__text-description {
         transform: translateY(0);
-        transition: none;
       }
 
       .job-excerpt__text-description {

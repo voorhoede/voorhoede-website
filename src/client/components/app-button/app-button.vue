@@ -138,16 +138,9 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .app-button--primary {
-      transition: none;
-    }
-
     .app-button--primary:hover,
     .app-button--primary:focus,
-    .app-button--primary.app-button--hover {
-      transform: none;
-    }
-
+    .app-button--primary.app-button--hover,
     .app-button--primary:active,
     .app-button--primary.app-button--active {
       transform: none;

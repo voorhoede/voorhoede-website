@@ -127,10 +127,6 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .blog-list-item__details {
-      transition: none;
-    }
-
     .blog-list-item:hover .blog-list-item__details,
     .blog-list-item:focus .blog-list-item__details {
       border-left: 2px solid var(--html-blue);
