@@ -1,6 +1,6 @@
 <template>
   <div class="get-in-touch-form grid">
-    <h2 class="get-in-touch-form__title h3">{{ title }}</h2>
+    <h3 class="get-in-touch-form__title h3">{{ title }}</h3>
     <form
       @submit.prevent="submit"
       method="POST"
@@ -9,58 +9,62 @@
       class="get-in-touch-form__form"
       data-netlify="true"
       netlify-honeypot="magic-castle"
-      :novalidate="useCustomValidation">
-      <input type="hidden" name="form-name" :value="form['form-name']">
-      <label class="hidden">
-        Don't fill this out if you're human:
-        <input v-model="form.magicCastle" name="magic-castle">
-      </label>
-      <input-field
-        v-model="form.name"
-        id="name"
-        type="text"
-        :label="nameLabel"
-        :placeholder-label="namePlaceholder"
-        required
-        :validate="formIsValidated"
-        :validation-error-message="nameErrorMessage"
-      />
-      <input-field
-        v-model="form.email"
-        id="email"
-        type="email"
-        :label="emailLabel"
-        :placeholder-label="emailPlaceholder"
-        required
-        :validate="formIsValidated"
-        :validation-error-message="emailValidationErrorMessage"
-      />
-      <input-field
-        v-model="form.phone"
-        id="phone"
-        type="tel"
-        :label="phoneLabel"
-        :placeholder-label="phonePlaceholder"
-        required
-        :validate="formIsValidated"
-        :validation-error-message="phoneErrorMessage"
-      />
-      <input-field
-        textarea
-        v-model="form.explanation"
-        id="explanation"
-        type="text"
-        :label="summaryLabel"
-        :placeholder-label="summaryPlaceholder"
-        required
-        :validate="formIsValidated"
-        :validation-error-message="summaryErrorMessage"
-      />
-      <app-button
-        class="get-in-touch-form__button"
-        :label="$t('get_in_touch')"
-        type="submit"
-      />
+      :novalidate="useCustomValidation"
+    >
+      <fieldset>
+        <legend class="sr-only">{{ title }}</legend>
+        <input type="hidden" name="form-name" :value="form['form-name']">
+        <label class="hidden">
+          Don't fill this out if you're human:
+          <input v-model="form.magicCastle" name="magic-castle">
+        </label>
+        <input-field
+          v-model="form.name"
+          id="name"
+          type="text"
+          :label="nameLabel"
+          :placeholder-label="namePlaceholder"
+          required
+          :validate="formIsValidated"
+          :validation-error-message="nameErrorMessage"
+        />
+        <input-field
+          v-model="form.email"
+          id="email"
+          type="email"
+          :label="emailLabel"
+          :placeholder-label="emailPlaceholder"
+          required
+          :validate="formIsValidated"
+          :validation-error-message="emailValidationErrorMessage"
+        />
+        <input-field
+          v-model="form.phone"
+          id="phone"
+          type="tel"
+          :label="phoneLabel"
+          :placeholder-label="phonePlaceholder"
+          required
+          :validate="formIsValidated"
+          :validation-error-message="phoneErrorMessage"
+        />
+        <input-field
+          textarea
+          v-model="form.explanation"
+          id="explanation"
+          type="text"
+          :label="summaryLabel"
+          :placeholder-label="summaryPlaceholder"
+          required
+          :validate="formIsValidated"
+          :validation-error-message="summaryErrorMessage"
+        />
+        <app-button
+          class="get-in-touch-form__button"
+          :label="$t('get_in_touch')"
+          type="submit"
+        />
+      </fieldset>
     </form>
   </div>
 </template>
