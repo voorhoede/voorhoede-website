@@ -190,5 +190,22 @@
       position: absolute;
       bottom: 0;
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .case-excerpt:hover .case-excerpt__image-link,
+      .case-excerpt:focus-within .case-excerpt__image-link {
+        margin-top: 0;
+      }
+
+      .case-excerpt:hover .case-excerpt__info,
+      .case-excerpt:focus-within .case-excerpt__info {
+        height: 0;
+      }
+
+      .case-excerpt:hover .case-excerpt__actions,
+      .case-excerpt:focus-within .case-excerpt__actions {
+        bottom: calc(-1 * var(--case-excerpt-actions-height));
+      }
+    }
   }
 </style>
