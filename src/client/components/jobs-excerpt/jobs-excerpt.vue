@@ -181,6 +181,18 @@
     .job-excerpt:focus-within .job-excerpt__image {
       opacity: 1;
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .job-excerpt__text-title,
+      .job-excerpt__text-description {
+        transform: translateY(0);
+        transition: none;
+      }
+
+      .job-excerpt__text-description {
+        opacity: 1;
+      }
+    }
   }
 
   @media (min-width: 1100px) {
@@ -192,6 +204,13 @@
     .job-excerpt__text-title,
     .job-excerpt__text-description {
       transform: translateY(26px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .job-excerpt__text-title,
+      .job-excerpt__text-description {
+        transform: translateY(0);
+      }
     }
   }
 
