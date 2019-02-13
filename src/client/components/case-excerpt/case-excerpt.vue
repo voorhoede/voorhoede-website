@@ -204,6 +204,7 @@
 
       .case-excerpt:hover .case-excerpt__actions,
       .case-excerpt:focus-within .case-excerpt__actions {
+        position: static;
         bottom: calc(-1 * var(--case-excerpt-actions-height));
       }
     }
