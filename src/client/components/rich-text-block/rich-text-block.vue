@@ -83,6 +83,10 @@
     border: 1px solid #b3b3b3;
   }
 
+  .rich-text a code {
+    color: var(--black);
+  }
+
   @media (min-width: 720px) {
     .rich-text table,
     .rich-text ul:not(:last-child),
