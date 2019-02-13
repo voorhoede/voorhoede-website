@@ -16,6 +16,7 @@
 
   /* FONTS */
   --font-sans: 'apercu', Arial, sans-serif;
+  --font-code: Consolas, Menlo, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 
   /* SPACING */
   --spacing-tiny: 5px;

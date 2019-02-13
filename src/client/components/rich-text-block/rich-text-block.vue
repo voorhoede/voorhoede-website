@@ -20,6 +20,7 @@
 </script>
 
 <style>
+  @import '../app-core/variables.css';
 
   .rich-text {
     word-wrap: break-word;
@@ -76,7 +77,7 @@
   }
 
   .rich-text :not(pre) > code {
-    font-family: monospace;
+    font-family: var(--font-code);
     background: #f5f2f0;
     padding: 0 .25rem;
     border: 1px solid #b3b3b3;
