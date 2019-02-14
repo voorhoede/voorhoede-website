@@ -6,6 +6,9 @@
   --active-blue: #0005be;
   --bg-pastel: #fffeca;
   --paper: #fffed9;
+  --bg-pastel-inverse: #000146;
+  --paper-inverse: #000137;
+  --dark-blue: var(--bg-pastel-inverse);
   --black: #222222;
   --off-black: #555555;
   --dim: #888888;
