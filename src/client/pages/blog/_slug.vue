@@ -259,7 +259,7 @@ export default {
       display: flex;
       position: absolute;
       bottom: var(--spacing-larger);
-      grid-column: 3;
+      grid-column: 48;
     }
 
     .page-blog-post__pivot-section {
