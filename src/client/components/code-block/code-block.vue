@@ -28,20 +28,20 @@ export default {
 <style>
 :root {
   --base03:    var(--bg-pastel-inverse);
-  --base02:    var(--paper-inverse); /* used */
-  --base01:    var(--off-black); /* used */
+  --base02:    var(--paper-inverse);
+  --base01:    var(--off-black);
   --base00:    #666;
   --base0:     #777;
-  --base1:     #A39F7E; /* used */
-  --base2:     var(--paper); /* used */
-  --base3:     var(--bg-pastel); /* used */
-  --yellow:    #B89B03; /* used */
-  --orange:    #FF870D; /* used */
-  --red:       var(--soft-red); /* used */
-  --magenta:   #d33682; /* used */
+  --base1:     #A39F7E;
+  --base2:     var(--paper);
+  --base3:     var(--bg-pastel);
+  --yellow:    #B89B03;
+  --orange:    #FF870D;
+  --red:       var(--soft-red);
+  --magenta:   #d33682;
   --violet:    #8000ff;
-  --blue:      var(--active-blue); /* used */
-  --cyan:      #00AEA3; /* used */
+  --blue:      var(--active-blue);
+  --cyan:      #00AEA3;
   --green:     #4E9F45;
 }
 .code-block code,
