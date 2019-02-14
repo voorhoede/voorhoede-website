@@ -61,7 +61,5 @@ fragment page on CaseOverviewRecord {
     url,
     format,
     alt
-  },
-  callToActionLabel,
-  callToActionTitle
+  }
 }

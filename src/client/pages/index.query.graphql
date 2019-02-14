@@ -120,6 +120,4 @@ fragment page on HomeRecord {
     width,
     height
   },
-  callToActionTitle,
-  callToActionLabel,
 }

@@ -126,7 +126,6 @@ fragment page on BlogPostRecord {
       body
     }
   }
-  socialTitle
   customStyling
   customScript
 }
