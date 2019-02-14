@@ -53,7 +53,6 @@
 </script>
 
 <style>
-
   .page-contact {
     background-color: var(--bg-pastel);
   }
