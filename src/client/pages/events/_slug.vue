@@ -265,7 +265,7 @@
       grid-column: 3;
     }
 
-    .page-event-detail__cta-block {
+    .page-event-detail__pivot-section {
       grid-column-start: 8;
       grid-column-end: 44;
     }
@@ -291,7 +291,7 @@
       grid-column-end: 11;
     }
 
-    .page-event-detail__cta-block {
+    .page-event-detail__pivot-section {
       grid-column-start: 14;
       grid-column-end: 38;
     }

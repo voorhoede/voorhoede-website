@@ -2,6 +2,41 @@ query ($locale: SiteLocale, $slug: String)  {
   page: caseItem(locale: $locale, filter: { slug: { eq: $slug } }) {
     ...caseItem
   },
+
+  pivots: allPivotSections(locale: $locale, filter: {
+    routes:{ matches:{ pattern: "cases-slug" }}
+  }) {
+    title
+    body
+    callToActionLabel
+    link {
+      title
+      url
+      page {
+        ... on HomeRecord {
+          slug
+        }
+        ... on ServiceOverviewRecord {
+          slug
+        }
+        ... on CaseOverviewRecord {
+          slug
+        }
+        ... on BlogPostOverviewRecord {
+          slug
+        }
+        ... on JobOverviewRecord {
+          slug
+        }
+        ... on AboutRecord {
+          slug
+        }
+        ... on ContactRecord {
+          slug
+        }
+      }
+    }
+  }
 }
 
 fragment caseItem on CaseItemRecord {
@@ -144,3 +179,4 @@ fragment caseItem on CaseItemRecord {
     ctaButtonLabel
   }
 }
+

@@ -101,17 +101,11 @@
 
     <div class="page-blog-post__cta grid">
       <!-- TODO: Make this a section to be defined in DATO (once for all blog pages) -->
-      <cta-block
-        class="page-blog-post__cta-block"
-        :cta-label="page.callToActionLabel"
-        :cta-to="localeUrl('about-us')">
-        <template slot="heading">
-          <h2 class="h3">{{ page.callToActionTitle }}</h2>
-        </template>
-        <template slot="body">
-          <p class="body">{{ page.callToActionBody }}</p>
-        </template>
-      </cta-block>
+      <pivot-section
+        v-if="pivots && pivots.length"
+        class="page-blog-post__pivot-section"
+        :pivot="pivots[0]"
+      />
       <scroll-to direction="up" />
     </div>
 
@@ -127,7 +121,7 @@ import {
   AppButton,
   BlogAuthor,
   CodeBlock,
-  CtaBlock,
+  PivotSection,
   ImageWithDescription,
   PageHeaderDetail,
   QuoteBlock,
@@ -145,7 +139,7 @@ export default {
     AppButton,
     BlogAuthor,
     CodeBlock,
-    CtaBlock,
+    PivotSection,
     ImageWithDescription,
     PageHeaderDetail,
     QuoteBlock,
@@ -239,7 +233,7 @@ export default {
     background-color: var(--bg-pastel);
   }
 
-  .page-blog-post__cta-block.cta-block {
+  .page-blog-post__pivot-section.pivot-section {
     border: none;
   }
 
@@ -296,10 +290,10 @@ export default {
       display: flex;
       position: absolute;
       bottom: var(--spacing-larger);
-      grid-column: 3;
+      grid-column: 48;
     }
 
-    .page-blog-post__cta-block {
+    .page-blog-post__pivot-section {
       grid-column-start: 8;
       grid-column-end: 44;
     }
@@ -325,7 +319,7 @@ export default {
       grid-column-end: 11;
     }
 
-    .page-blog-post__cta-block {
+    .page-blog-post__pivot-section {
       grid-column-start: 14;
       grid-column-end: 38;
     }
