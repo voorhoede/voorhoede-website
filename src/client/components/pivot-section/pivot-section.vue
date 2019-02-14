@@ -24,9 +24,7 @@
   import { AppButton } from '~/components'
 
   export default {
-    components: {
-      AppButton,
-    },
+    components: { AppButton },
     props: {
       pivot: {
         type: Object,

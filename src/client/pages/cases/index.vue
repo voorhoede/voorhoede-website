@@ -18,7 +18,7 @@
     </div>
     <div class="grid">
       <pivot-section
-        v-if="pivots"
+        v-if="pivots && pivots.length"
         :pivot="pivots[0]"
       />
     </div>

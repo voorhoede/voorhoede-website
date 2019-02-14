@@ -77,7 +77,7 @@
     </section>
     <div class="page-index__pivot-section grid">
       <pivot-section
-        v-if="pivots"
+        v-if="pivots && pivots.length"
         :pivot="pivots[0]"
       />
       <scroll-to direction="up" />

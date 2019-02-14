@@ -18,7 +18,7 @@
     <div class="page-blog__cta grid">
       <!-- TODO: Make this a section to be defined in DATO (once for all blog pages) -->
       <pivot-section
-        v-if="pivots"
+        v-if="pivots && pivots.length"
         class="page-blog__pivot-section"
         :pivot="pivots[0]"
       />
