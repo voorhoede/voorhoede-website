@@ -79,8 +79,11 @@
     padding: .1em .25rem;
     font-size: .8em;
     color: var(--dark-blue);
-    background: var(--paper);
-    outline: 1px solid var(--bg-pastel);
+  }
+  .rich-text a > code {
+    background-color: transparent;
+    color: inherit;
+    background: transparent linear-gradient(to top, transparent 3px, var(--paper) 2px);
   }
 
   @media (min-width: 720px) {
