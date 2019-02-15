@@ -34,27 +34,13 @@
   .rich-text a {
     color: var(--html-blue);
     padding-bottom: .15rem;
-    position: relative;
-  }
-
-  .rich-text a::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: var(--html-blue);
+    background: transparent linear-gradient(to top, transparent 1px, var(--html-blue) 1px, var(--html-blue) 2px, transparent 2px);
   }
 
   .rich-text a:hover,
   .rich-text a:focus {
     color: var(--active-blue);
-  }
-
-  .rich-text a:hover::after,
-  .rich-text a:focus::after {
-    height: 2px;
+    background: transparent linear-gradient(to top, var(--html-blue) 2px, transparent 2px);
   }
 
   .rich-text td {
