@@ -67,6 +67,7 @@ export default {
 /* Code blocks */
 .code-block pre {
   padding: var(--spacing-medium);
+  line-height: 2;
 	overflow: auto;
 }
 
@@ -137,17 +138,17 @@ export default {
 
 .code-block .token.entity {
 	cursor: help;
-}
-
-@media (min-width: 720px) {
-  .code-block pre {
-    padding: var(--spacing-medium);
   }
-}
 
-@media (min-width: 1440px) {
-  .code-block pre {
-    padding: var(--spacing-medium) var(--spacing-larger);
+  @media (min-width: 720px) {
+    .code-block pre {
+      padding: var(--spacing-medium);
+    }
   }
-}
+
+  @media (min-width: 1440px) {
+    .code-block pre {
+      padding: var(--spacing-medium) var(--spacing-larger);
+    }
+  }
 </style>

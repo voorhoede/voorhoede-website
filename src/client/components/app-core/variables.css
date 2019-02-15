@@ -5,6 +5,8 @@
   --html-blue: blue;
   --active-blue: #0005be;
   --bg-pastel: #fffeca;
+  --bg-pastel-inverse: #000146;
+  --dark-blue: var(--bg-pastel-inverse);
   --paper: #fffed9;
   --bg-pastel-inverse: #000146;
   --paper-inverse: #000137;
@@ -19,6 +21,7 @@
 
   /* FONTS */
   --font-sans: 'apercu', Arial, sans-serif;
+  --font-code: Consolas, Menlo, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 
   /* SPACING */
   --spacing-tiny: 5px;
