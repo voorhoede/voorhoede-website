@@ -1,8 +1,8 @@
 <template>
-  <span
+  <div
     ref="text"
     v-html="selfTypingText"
-    class="self-typing-text"
+    class="self-typing-text self-typing-text--animated"
     aria-hidden="true"
     :class="{
       'self-typing-text--enhanced': enhanced,
@@ -33,6 +33,10 @@ export default {
     }
   },
   mounted () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
+    }
+
     const height = this.$refs.text.clientHeight
     const letters = this.text.split('')
     const intervalByDuration = (BASE_DURATION / this.text.length)
@@ -70,13 +74,19 @@ export default {
   }
 
   .self-typing-text {
-    display: block;
     margin-top: var(--spacing-smaller);
     hyphens: auto;
     overflow-wrap: break-word;
     opacity: 0;
     animation: var(--show-text-animation);
     animation-delay: var(--show-text-animation-delay);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .self-typing-text {
+      animation: none;
+      opacity: 1;
+    }
   }
 
   .self-typing-text--enhanced {

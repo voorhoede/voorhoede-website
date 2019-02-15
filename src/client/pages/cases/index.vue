@@ -17,11 +17,10 @@
       </ul>
     </div>
     <div class="grid">
-      <cta-block :cta-label="page.callToActionLabel" :cta-to="localeUrl('contact')">
-        <template slot="heading">
-          <h3 class="h4">{{ page.callToActionTitle }}</h3>
-        </template>
-      </cta-block>
+      <pivot-section
+        v-if="pivots && pivots.length"
+        :pivot="pivots[0]"
+      />
     </div>
   </main>
 </template>
@@ -30,13 +29,13 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
-  import { CaseExcerpt, PageHeader, CtaBlock } from '~/components'
+  import { CaseExcerpt, PageHeader, PivotSection } from '~/components'
 
   export default {
     components: {
       CaseExcerpt,
       PageHeader,
-      CtaBlock
+      PivotSection
     },
     asyncData,
     head

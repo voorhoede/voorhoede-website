@@ -91,6 +91,13 @@
     animation: arrowBounce ease-in-out 1.4s infinite;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-to__point-down .scroll-to__image,
+    .scroll-to__point-up .scroll-to__image {
+      animation: none;
+    }
+  }
+
   .scroll-to__point-down .scroll-to__text {
     transform: rotate(90deg);
     top: -25px;

@@ -87,10 +87,6 @@ module.exports = {
     ],
   },
 
-  css: [
-    'prismjs/themes/prism.css'
-  ],
-
   plugins: [
     { src: '~/plugins/fetch-polyfill', ssr: false },
     { src: '~/plugins/locale-urls' },

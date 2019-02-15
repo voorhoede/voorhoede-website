@@ -5,9 +5,6 @@ query ($locale: SiteLocale)  {
   items: allBlogPosts(locale: $locale, first:100) {
     slug
   },
-  alternate:blogPostOverview {
-    slug
-  },
   latestBlogposts: allBlogPosts(
     locale:$locale,
     first:100,
@@ -27,6 +24,40 @@ query ($locale: SiteLocale)  {
         format
       }
     }
+  },
+  pivots: allPivotSections(locale: $locale, filter: {
+    routes:{ matches:{ pattern: "blog" }}
+  }) {
+    title
+    body
+    callToActionLabel
+    link {
+      title
+      url
+      page {
+        ... on HomeRecord {
+          slug
+        }
+        ... on ServiceOverviewRecord {
+          slug
+        }
+        ... on CaseOverviewRecord {
+          slug
+        }
+        ... on BlogPostOverviewRecord {
+          slug
+        }
+        ... on JobOverviewRecord {
+          slug
+        }
+        ... on AboutRecord {
+          slug
+        }
+        ... on ContactRecord {
+          slug
+        }
+      }
+    }
   }
 }
 
@@ -44,7 +75,4 @@ fragment blogPostOverview on BlogPostOverviewRecord {
     url,
     alt
   }
-  callToActionTitle,
-  callToActionBody,
-  callToActionLabel,
 }

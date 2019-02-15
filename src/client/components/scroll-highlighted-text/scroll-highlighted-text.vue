@@ -50,7 +50,7 @@
     },
     computed: {
       isIntersectedClass() {
-        if( this.isIntersected ||
+        if (this.isIntersected ||
             this.isFirst && this.scrolledAbove ||
             this.isLast && this.scrolledBelow ) {
           return 'scroll-highlighted-text--active'
@@ -63,7 +63,9 @@
       const highlightedTextID = parseInt(this.$refs.highlightedText.dataset.id)
       let offsetIntersectionObserver
 
-      'IntersectionObserver' in window ? this.observe() : this.isIntersected = true
+      ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+        ? this.observe()
+        : this.isIntersected = true
 
       window.addEventListener('scroll', debounce(() => {
         if(this.$refs.highlightedText) {

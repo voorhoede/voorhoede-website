@@ -12,8 +12,39 @@ query Case($locale: SiteLocale)  {
       alt
     }
   },
-  alternate: caseOverview {
-    slug
+   pivots: allPivotSections(locale: $locale, filter: {
+    routes:{ matches:{ pattern: "cases" }}
+  }) {
+    title
+    body
+    callToActionLabel
+    link {
+      title
+      url
+      page {
+        ... on HomeRecord {
+          slug
+        }
+        ... on ServiceOverviewRecord {
+          slug
+        }
+        ... on CaseOverviewRecord {
+          slug
+        }
+        ... on BlogPostOverviewRecord {
+          slug
+        }
+        ... on JobOverviewRecord {
+          slug
+        }
+        ... on AboutRecord {
+          slug
+        }
+        ... on ContactRecord {
+          slug
+        }
+      }
+    }
   }
 }
 
@@ -30,7 +61,5 @@ fragment page on CaseOverviewRecord {
     url,
     format,
     alt
-  },
-  callToActionLabel,
-  callToActionTitle
+  }
 }

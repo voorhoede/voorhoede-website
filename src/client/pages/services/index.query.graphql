@@ -5,8 +5,39 @@ query ($locale: SiteLocale)  {
   items: allServices(locale: $locale) {
     slug
   }
-  alternate: serviceOverview(locale:$locale) {
-    slug
+  pivots: allPivotSections(locale: $locale, filter: {
+    routes:{ matches:{ pattern: "services" }}
+  }) {
+    title
+    body
+    callToActionLabel
+    link {
+      title
+      url
+      page {
+        ... on HomeRecord {
+          slug
+        }
+        ... on ServiceOverviewRecord {
+          slug
+        }
+        ... on CaseOverviewRecord {
+          slug
+        }
+        ... on BlogPostOverviewRecord {
+          slug
+        }
+        ... on JobOverviewRecord {
+          slug
+        }
+        ... on AboutRecord {
+          slug
+        }
+        ... on ContactRecord {
+          slug
+        }
+      }
+    }
   }
 }
 

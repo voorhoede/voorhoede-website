@@ -3,9 +3,40 @@ query ($locale: SiteLocale, $slug: String)  {
     ...page
   },
 
-  alternate: service(locale: $locale, filter: { slug: { eq: $slug } }) {
-    slug(locale: $locale)
-  },
+  pivots: allPivotSections(locale: $locale, filter: {
+    routes:{ matches:{ pattern: "services-slug" }}
+  }) {
+    title
+    body
+    callToActionLabel
+    link {
+      title
+      url
+      page {
+        ... on HomeRecord {
+          slug
+        }
+        ... on ServiceOverviewRecord {
+          slug
+        }
+        ... on CaseOverviewRecord {
+          slug
+        }
+        ... on BlogPostOverviewRecord {
+          slug
+        }
+        ... on JobOverviewRecord {
+          slug
+        }
+        ... on AboutRecord {
+          slug
+        }
+        ... on ContactRecord {
+          slug
+        }
+      }
+    }
+  }
 }
 
 fragment page on ServiceRecord {
