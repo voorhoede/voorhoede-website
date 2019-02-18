@@ -16,7 +16,7 @@
     </article>
     <pivot-section
       v-if="pivots && pivots.length"
-      class="page-blog-post__pivot-section"
+      class="page-service__pivot-section"
       :pivot="pivots[0]"
     />
   </div>
@@ -25,12 +25,13 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import { PageHeaderDetail, GenericTextBlock } from '~/components'
+  import { PageHeaderDetail, GenericTextBlock, PivotSection } from '~/components'
 
   export default {
     components: {
       PageHeaderDetail,
-      GenericTextBlock
+      GenericTextBlock,
+      PivotSection,
     },
     asyncData,
     head,
@@ -53,12 +54,21 @@
     margin-bottom: var(--spacing-large);
   }
 
+  .page-service__pivot-section.pivot-section {
+    grid-row: 4;
+    grid-column: var(--grid-page);
+    background-color: var(--white);
+    padding: var(--spacing-big) var(--spacing-small) ;
+    border: none;
+  }
+
   @media (min-width: 720px) {
     .page-service {
       background-color: var(--bg-pastel);
     }
 
-    .page-service__overview {
+    .page-service__overview,
+    .page-service__pivot-section.pivot-section {
       grid-column: var(--grid-content);
       background-color: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
@@ -66,9 +76,13 @@
   }
 
   @media (min-width: 1100px) {
-    .page-service__overview {
+    .page-service__overview,
+    .page-service__pivot-section.pivot-section {
       grid-column: var(--grid-content-narrow);
       padding: var(--spacing-big) var(--spacing-bigger);
+    }
+    .page-service__pivot-section.pivot-section {
+      grid-column: var(--grid-content-narrow);
     }
   }
 </style>
