@@ -30,4 +30,4 @@ const feedObject = {
 }
 
 const feed = builder.create(feedObject, { encoding: 'utf-8' })
-writeFileSync(path.join(__dirname, '../../src/client/static/data/blog-feed.xml'), feed.end({ pretty: true }) )
+writeFileSync(path.join(__dirname, '../../src/client/static/blog-feed.xml'), feed.end({ pretty: true }) )
