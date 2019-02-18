@@ -24,7 +24,7 @@
     "build:guide": "build-storybook -c config/storybook -o dist/client/guide/",
     "predev": "run-s prebuild:clean prebuild:predump",
     "dev": "PORT=3278 nuxt",
-    "data": "node config/data/dump",
+    "data": "node _scripts/data-dump/index.js",
     "guide": "start-storybook -p 3279 -c config/storybook -s ./src/client/static",
     "lint": "run-s lint:*",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
