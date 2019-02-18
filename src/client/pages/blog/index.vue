@@ -10,7 +10,7 @@
         <p class="testimonial">{{ page.description }}</p>
       </text-block>
       <ul class="page-blog__posts">
-        <li v-for="blogPost in latestBlogposts.filter(post => post.published)" :key="blogPost.slug">
+        <li v-for="blogPost in items.filter(post => post.published)" :key="blogPost.slug">
           <blog-list-item large :item="blogPost" />
         </li>
       </ul>
