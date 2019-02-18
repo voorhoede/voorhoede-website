@@ -8,7 +8,7 @@ module.exports = function addClassesToHeadings(items) {
       for (let level of [1,2,3,4,5,6]) {
         $(`h${level}`).addClass(`h${level + 1}`)
       }
-      item.body = $.html()
+      item.body = $('body').html()
     }
   })
 }
