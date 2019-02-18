@@ -14,3 +14,4 @@ dist
 src/client/static/data
 
 src/client/static/_redirects
+/src/client/static/blog-feed.xml
