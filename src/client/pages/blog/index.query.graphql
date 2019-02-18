@@ -9,6 +9,9 @@ query ($locale: SiteLocale)  {
     filter: { published: { eq: true } }
   ) {
     slug,
+    social {
+      description
+    }
     title,
     published,
     date: publishDate,
