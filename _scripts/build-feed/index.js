@@ -1,3 +1,5 @@
+const { writeFileSync } = require('fs')
+const path = require('path')
 const builder = require('xmlbuilder')
 const url = process.env.URL || 'https://voorhoede.nl/'
 const { items, page: { social: { description } } } = require('../../src/client/static/data/en/blog/')
@@ -28,4 +30,4 @@ const feedObject = {
 }
 
 const feed = builder.create(feedObject, { encoding: 'utf-8' })
-console.log(feed.end({ pretty: true }))
+writeFileSync(path.join(__dirname, '../../src/client/static/data/blog-feed.xml'), feed.end({ pretty: true }) )
