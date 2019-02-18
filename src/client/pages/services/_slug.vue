@@ -81,8 +81,5 @@
       grid-column: var(--grid-content-narrow);
       padding: var(--spacing-big) var(--spacing-bigger);
     }
-    .page-service__pivot-section.pivot-section {
-      grid-column: var(--grid-content-narrow);
-    }
   }
 </style>
