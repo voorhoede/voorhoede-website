@@ -230,7 +230,7 @@
   }
 
   .page-case__title {
-    margin-bottom: var(--spacing-small);
+    margin-bottom: var(--spacing-smaller);
   }
 
   .page-case__link-container {

@@ -52,24 +52,23 @@
           :mute="item.autoplay"
         />
 
-        <text-block
+        <div
           v-if="item.__typename === 'TextSectionRecord' && item.title"
-          :key="item.title"
-          :slug="slugify(item.title)"
+          :key="item.title || item.body"
+          class="page-blog-post-list__text"
         >
           <h2
+            v-if="item.title"
             class="page-blog-post-list__title h3 font-html-blue"
             :id="slugify(item.title)">
             {{ item.title }}
           </h2>
-        </text-block>
-
-        <rich-text-block
-          v-if="item.__typename === 'TextSectionRecord' && item.body"
-          :key="item.body"
-          :text="item.body"
-          large-text
-        />
+          <rich-text-block
+            v-if="item.body"
+            :text="item.body"
+            large-text
+          />
+        </div>
 
         <div
           v-if="item.__typename === 'LinkSectionRecord'"
