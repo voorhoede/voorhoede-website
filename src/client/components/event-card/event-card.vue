@@ -74,16 +74,6 @@
       date() {
         return new Date(this.dateString)
       },
-      day() {
-        return this.date.toLocaleDateString(this.$i18n.locale, {
-          day: 'numeric',
-        })
-      },
-      month() {
-        return this.date.toLocaleDateString(this.$i18n.locale, {
-          month: 'short',
-        })
-      },
       isMeetup() {
         return this.label.toLowerCase() === 'meet-up'
       }
