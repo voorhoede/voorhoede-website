@@ -55,7 +55,12 @@
     <aside class="page-event-detail__aside">
       <div>
         <p class="body font-bold">Date</p>
-        <div class="body">{{ day }} {{ month }} {{ hours }}:{{ minutes }}</div>
+        <time
+          :datetime="page.date"
+          class="body"
+        >
+          {{ formattedDate }}
+        </time>
       </div>
 
       <div>
@@ -91,6 +96,7 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
+  import formatDate from '~/lib/format-date'
 
   import {
     AppButton,
@@ -115,35 +121,15 @@
     asyncData,
     computed: {
       isMeetup() {
-          return this.page.label.label.toLowerCase() === 'meet-up'
-        },
-        dateString() {
-          return new Date(this.page.date)
-        },
-        day() {
-          return this.dateString.toLocaleDateString(this.$i18n.locale, {
-            day: 'numeric',
-          })
-        },
-        month() {
-          return this.dateString.toLocaleDateString(this.$i18n.locale, {
-            month: 'short',
-          })
-        },
-        hours() {
-          const hour = this.dateString.getHours()
-          if (hour < 10) {
-            return `0${hour}`
-          }
-          return hour
-        },
-        minutes() {
-          const min = this.dateString.getMinutes()
-          if (min < 10) {
-            return `0${min}`
-          }
-          return min
-        }
+        return this.page.label.label.toLowerCase() === 'meet-up'
+      },
+      formattedDate() {
+        return formatDate({
+          date: this.page.date,
+          locale: this.$i18n.locale,
+          format: 'DD MMM HH:mm'
+        })
+      }
     },
     head,
   }
