@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import formatDate from '../../lib/format-date'
+
 export default {
   props: {
     date: {
@@ -37,10 +39,11 @@ export default {
       return this.dateObject.getDate()
     },
     month () {
-      // Intl.DateTimeFormat doesn't work server-side, and throws off design,
-      // therefore only use English here.
-      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
-      return months[this.dateObject.getMonth()]
+      return formatDate({
+        date: this.dateObject,
+        locale: this.$i18n.locale,
+        format: 'MMM'
+      })
     },
   },
 }

@@ -43,9 +43,10 @@
   "dependencies": {
     "@nuxtjs/google-analytics": "^2.0.2",
     "babel-polyfill": "^6.26.0",
+    "dayjs": "^1.7.8",
     "dotenv-safe": "6.1.0",
-    "nuxt": "1.4.4",
     "nuxt-i18n": "^4.1.0",
+    "nuxt": "1.4.4",
     "prismjs": "^1.15.0",
     "unfetch": "^4.0.1",
     "url-search-params-polyfill": "^5.0.0"
@@ -63,7 +64,6 @@
     "cheerio": "^1.0.0-rc.2",
     "commander": "2.19.0",
     "datocms-client": "0.6.2",
-    "dayjs": "^1.7.8",
     "eslint": "4.15.0",
     "eslint-friendly-formatter": "3.0.0",
     "eslint-loader": "1.7.1",

@@ -9,7 +9,7 @@
     >
       <div class="blog-list-item__content">
         <time
-          datetime="item.date"
+          :datetime="item.date"
           class="blog-list-item__time"
           :class="large ? 'body' : 'body-petite'"
         >
@@ -45,6 +45,7 @@
 
 <script>
   import { LazyLoad, NoScript } from '~/components'
+  import formatDate from '../../lib/format-date'
 
   export default {
     components: { LazyLoad, NoScript },
@@ -69,7 +70,11 @@
         return `${this.item.authors.map(author => author.name).join(', ')}`
       },
       formattedDate() {
-        return new Date(this.item.date).toLocaleString(this.$i18n.locale, { day: 'numeric', year: 'numeric', month: 'short' })
+        return formatDate({
+          date: this.item.date,
+          format: 'D MMM YYYY',
+          locale: this.$i18n.locale
+        })
       },
     },
   }
