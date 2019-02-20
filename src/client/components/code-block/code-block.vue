@@ -26,118 +26,117 @@ export default {
 </script>
 
 <style>
-:root {
-  --base03:    var(--bg-pastel-inverse);
-  --base02:    var(--paper-inverse);
-  --base01:    var(--off-black);
-  --base00:    #666;
-  --base0:     #777;
-  --base1:     #A39F7E;
-  --base2:     var(--paper);
-  --base3:     var(--bg-pastel);
-  --yellow:    #B89B03;
-  --orange:    #FF870D;
-  --red:       var(--soft-red);
-  --magenta:   #d33682;
-  --violet:    #8000ff;
-  --blue:      var(--active-blue);
-  --cyan:      #00AEA3;
-  --green:     #4E9F45;
-}
-.code-block code,
-.code-block pre {
-  background-color: var(--base2);
-  color: var(--blue);
-  font-family: Consolas, Menlo, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  text-align: left;
-  white-space: pre;
-	word-spacing: normal;
-	word-break: normal;
-	word-wrap: normal;
-	line-height: 1.5;
-	-moz-tab-size: 2;
-	-o-tab-size: 2;
-	tab-size: 2;
-	-webkit-hyphens: none;
-	-moz-hyphens: none;
-	-ms-hyphens: none;
-  hyphens: none;
-}
+  :root {
+    --base03: var(--bg-pastel-inverse);
+    --base02: var(--paper-inverse);
+    --base01: var(--off-black);
+    --base00: #666666;
+    --base0: #777777;
+    --base1: #a39f7e;
+    --base2: var(--paper);
+    --base3: var(--bg-pastel);
+    --yellow: #b89b03;
+    --orange: #ff870d;
+    --red: var(--soft-red);
+    --magenta: #d33682;
+    --violet: #8000ff;
+    --blue: var(--active-blue);
+    --cyan: #00aea3;
+    --green: #4e9f45;
+  }
 
-/* Code blocks */
-.code-block pre {
-  padding: var(--spacing-medium);
-  line-height: 2;
-	overflow: auto;
-}
+  .code-block code,
+  .code-block pre {
+    background-color: var(--base2);
+    color: var(--blue);
+    font-family: Consolas, Menlo, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    -moz-tab-size: 2;
+    -o-tab-size: 2;
+    tab-size: 2;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
 
-.code-block .token.comment,
-.code-block .token.prolog,
-.code-block .token.doctype,
-.code-block .token.cdata {
-  color: var(--base1);
-}
+  /* Code blocks */
+  .code-block pre {
+    padding: var(--spacing-medium);
+    line-height: 2;
+    overflow: auto;
+  }
 
-.code-block .token.punctuation {
-  color: var(--base01);
-}
+  .code-block .token.comment,
+  .code-block .token.prolog,
+  .code-block .token.doctype,
+  .code-block .token.cdata {
+    color: var(--base1);
+  }
 
-.code-block .token.property,
-.code-block .token.tag,
-.code-block .token.boolean,
-.code-block .token.number,
-.code-block .token.constant,
-.code-block .token.symbol,
-.code-block .token.deleted {
-	color: var(--cyan);
-}
+  .code-block .token.punctuation {
+    color: var(--base01);
+  }
 
-.code-block .token.attr-name,
-.code-block .token.string,
-.code-block .token.char,
-.code-block .token.builtin,
-.code-block .token.url,
-.code-block .token.inserted {
-	color: var(--magenta)
-}
+  .code-block .token.property,
+  .code-block .token.tag,
+  .code-block .token.boolean,
+  .code-block .token.number,
+  .code-block .token.constant,
+  .code-block .token.symbol,
+  .code-block .token.deleted {
+    color: var(--cyan);
+  }
 
-.code-block .token.selector {
-  color: var(--violet);
-}
+  .code-block .token.attr-name,
+  .code-block .token.string,
+  .code-block .token.char,
+  .code-block .token.builtin,
+  .code-block .token.url,
+  .code-block .token.inserted {
+    color: var(--magenta);
+  }
 
-.code-block .token.entity {
-	color: var(--base00);
-	background: var(--base2);
-}
+  .code-block .token.selector {
+    color: var(--violet);
+  }
 
-.code-block .token.atrule,
-.code-block .token.attr-value,
-.code-block .token.keyword,
-.code-block .token.operator {
-	color: var(--red)
-}
+  .code-block .token.entity {
+    color: var(--base00);
+    background: var(--base2);
+    cursor: help;
+  }
 
-.code-block .token.function,
-.code-block .token.class-name {
-	color: var(--yellow);
-}
+  .code-block .token.atrule,
+  .code-block .token.attr-value,
+  .code-block .token.keyword,
+  .code-block .token.operator {
+    color: var(--red);
+  }
 
-.code-block .token.regex,
-.code-block .token.important,
-.code-block .token.variable {
-	color: var(--orange)
-}
+  .code-block .token.function,
+  .code-block .token.class-name {
+    color: var(--yellow);
+  }
 
-.code-block .token.important,
-.code-block .token.bold {
-	font-weight: bold;
-}
-.code-block .token.italic {
-	font-style: italic;
-}
+  .code-block .token.regex,
+  .code-block .token.important,
+  .code-block .token.variable {
+    color: var(--orange);
+  }
 
-.code-block .token.entity {
-	cursor: help;
+  .code-block .token.important,
+  .code-block .token.bold {
+    font-weight: bold;
+  }
+
+  .code-block .token.italic {
+    font-style: italic;
   }
 
   @media (min-width: 720px) {
