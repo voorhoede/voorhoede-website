@@ -41,6 +41,9 @@ export default {
         nl: layoutNl,
       }
     }
+  },
+  head: {
+    title: `${this.error ? this.error.statusCode : DEFAULT_STATUSCODE} | De Voorhoede`
   }
 }
 </script>
