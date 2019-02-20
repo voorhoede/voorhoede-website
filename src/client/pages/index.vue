@@ -28,10 +28,8 @@
         :services="page.services"
       />
     </section>
-    <section class="page-index__cases">
-      <div class="grid">
-        <h2 class="page-index__section-title page-index__section-title--cases h1">{{ page.casesTitle }}</h2>
-      </div>
+    <section class="page-index__cases grid">
+      <h2 class="page-index__section-title page-index__section-title--cases h1">{{ page.casesTitle }}</h2>
       <horizontal-carousel>
         <template slot="slides">
           <case-excerpt
@@ -44,6 +42,13 @@
           />
         </template>
       </horizontal-carousel>
+      <div class="page-index__blog-posts-button">
+        <app-button
+          secondary
+          :label="$t('all_cases')"
+          :to="localeUrl('cases')"
+        />
+      </div>
     </section>
     <section class="page-index__clients grid">
       <h2 class="page-index__section-title page-index__section-title--clients h3 font-normal">{{ page.clientsTitle }}</h2>
@@ -245,6 +250,11 @@
 
   .page-index__cases {
     margin-bottom: var(--spacing-larger);
+  }
+
+  .page-index__cases .horizontal-carousel {
+    margin-bottom: var(--spacing-medium);
+    grid-column: var(--grid-page);
   }
 
   @media (min-width: 720px) {
