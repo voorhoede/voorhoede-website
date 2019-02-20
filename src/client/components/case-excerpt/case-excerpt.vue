@@ -3,9 +3,9 @@
     <fixed-ratio :width="10" :height="10">
       <div class="case-excerpt__content">
         <nuxt-link
-          class="case-excerpt__image-link"
-          tabindex="-1"
+          class="case-excerpt__link"
           :to="localeUrl({ name: 'cases-slug', params: { slug } })"
+          :title="title"
         >
           <responsive-image
             :has-fixed-ratio="false"
@@ -15,19 +15,12 @@
         <h3 class="h3 case-excerpt__title">{{ title }}</h3>
         <div class="case-excerpt__info">
           <p class="case-excerpt__body body">{{ body }}</p>
-          <div class="case-excerpt__actions button-group">
+          <div class="case-excerpt__actions">
             <app-button
+              tabindex="-1"
               :aria-label="$t('learn_more_about__title_', { title })"
-              class="case-excerpt__button"
               :label="$t('learn_more')"
               :to="localeUrl({ name: 'cases-slug', params: { slug } })"
-            />
-            <app-button
-              v-if="!onCaseOverview"
-              class="case-excerpt__button"
-              secondary
-              :label="$t('all_cases')"
-              :to="localeUrl('cases')"
             />
           </div>
         </div>
@@ -63,12 +56,6 @@
         required: true
       },
     },
-    computed: {
-      onCaseOverview () {
-        return this.$route &&
-          this.$route.path === this.localeUrl('cases')
-      }
-    }
   }
 </script>
 
@@ -89,18 +76,18 @@
     height: 100%;
   }
 
-  .case-excerpt__image-link {
+  .case-excerpt__link {
     height: var(--case-excerpt-image-height);
   }
 
-  .case-excerpt__image-link .lazy-load {
+  .case-excerpt__link .lazy-load {
     display: flex;
     align-items: flex-end;
     height: 100%;
     background: var(--fog);
   }
 
-  .case-excerpt__image-link::before {
+  .case-excerpt__link::before {
     content: '';
     position: absolute;
     top: 0;
@@ -126,12 +113,8 @@
     display: none;
   }
 
-  .case-excerpt__button {
-    z-index: var(--z-index-low);
-  }
-
   @media (min-width: 1100px) {
-    .case-excerpt__image-link {
+    .case-excerpt__link {
       transition: margin-top var(--case-excerpt-transition);
       padding-top: calc(100% - var(--case-excerpt-image-height));
       background: var(--fog);
@@ -162,6 +145,7 @@
     }
 
     .case-excerpt__actions {
+      display: flex;
       justify-content: center;
       position: relative;
       bottom: calc(-1 * var(--case-excerpt-actions-height));
@@ -175,25 +159,25 @@
       background: var(--html-blue);
     }
 
-    .case-excerpt:hover .case-excerpt__image-link,
-    .case-excerpt:focus-within .case-excerpt__image-link {
+    .case-excerpt__link:focus,
+    .case-excerpt__link:hover {
       margin-top: calc(-1 * var(--case-excerpt-image-height));
     }
 
-    .case-excerpt:hover .case-excerpt__info,
-    .case-excerpt:focus-within .case-excerpt__info {
+    .case-excerpt__link:hover ~ .case-excerpt__info,
+    .case-excerpt__link:focus ~ .case-excerpt__info {
       height: var(--case-excerpt-image-height);
     }
 
-    .case-excerpt:hover .case-excerpt__actions,
-    .case-excerpt:focus-within .case-excerpt__actions {
+    .case-excerpt__link:hover ~ .case-excerpt__info .case-excerpt__actions,
+    .case-excerpt__link:focus ~ .case-excerpt__info .case-excerpt__actions {
       position: absolute;
       bottom: 0;
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .case-excerpt:hover .case-excerpt__image-link,
-      .case-excerpt:focus-within .case-excerpt__image-link {
+      .case-excerpt:hover .case-excerpt__link,
+      .case-excerpt:focus-within .case-excerpt__link {
         margin-top: 0;
       }
 
