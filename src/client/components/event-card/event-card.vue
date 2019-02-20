@@ -6,7 +6,6 @@
       :class="{ 'event-card__link--alt': isMeetup }">
       <header class="event-card__header">
         <calendar-icon
-          class="event-card__calendar-icon"
           :date="dateString"
           :fill="(isMeetup) ? 'yellow' : 'blue'"
         />
@@ -133,7 +132,7 @@
     display: none;
   }
 
-  .event-card__calendar-icon {
+  .event-card .calendar-icon {
     position: absolute;
     top: var(--spacing-small);
     left: var(--spacing-small);
