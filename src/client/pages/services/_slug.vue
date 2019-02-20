@@ -58,7 +58,7 @@
     grid-row: 4;
     grid-column: var(--grid-page);
     background-color: var(--white);
-    padding: var(--spacing-big) var(--spacing-small) ;
+    padding: var(--spacing-big) var(--spacing-small);
     border: none;
   }
 
