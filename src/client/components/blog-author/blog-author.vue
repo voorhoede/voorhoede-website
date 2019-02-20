@@ -27,6 +27,7 @@
 
 <script>
   import { AppImage, FixedRatio } from '../../components'
+  import formatDate from '../../lib/format-date'
 
   export default {
     components: { AppImage, FixedRatio },
@@ -51,7 +52,11 @@
         return `${this.item.authors.map(author => author.name).join(', ')}`
       },
       formattedDate() {
-        return new Date(this.item.date).toLocaleString(this.$i18n.locale, { day: 'numeric', year: 'numeric', month: 'long' })
+        return formatDate({
+          date: this.item.date,
+          locale: this.$i18n.locale,
+          format: 'D MMMM YYYY'
+        })
       },
     },
   }
