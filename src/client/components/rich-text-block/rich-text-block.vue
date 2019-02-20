@@ -81,8 +81,8 @@
     background-color: var(--paper);
     color: var(--dark-blue);
   }
+
   .rich-text a > code {
-    background-color: transparent;
     color: inherit;
     background: transparent linear-gradient(to top, transparent 2px, var(--paper) 1px);
   }
