@@ -53,6 +53,7 @@ module.exports = {
     ],
     link: [
       /* Favicon */
+      { 'rel': 'alternate', 'hreflang': 'en', 'type': 'application/rss+xml', 'href': `${baseUrl}/blog-feed.xml` },
       { 'rel': 'shortcut icon', 'type': 'image/x-icon', 'href': '/images/social/favicon.ico' },
       { 'rel': 'icon', 'type': 'image/png', 'href': '/images/social/favicon-16x16.png' },
       { 'rel': 'icon', 'type': 'image/png', 'href': '/images/social/favicon-32x32.png' },

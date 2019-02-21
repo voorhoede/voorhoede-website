@@ -2,16 +2,16 @@ query ($locale: SiteLocale)  {
   page: blogPostOverview(locale:$locale) {
     ...blogPostOverview
   },
-  items: allBlogPosts(locale: $locale, first:100) {
-    slug
-  },
-  latestBlogposts: allBlogPosts(
+  items: allBlogPosts(
     locale:$locale,
     first:100,
     orderBy: publishDate_DESC,
     filter: { published: { eq: true } }
   ) {
     slug,
+    social {
+      description
+    }
     title,
     published,
     date: publishDate,
