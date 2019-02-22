@@ -23,7 +23,10 @@
           </li>
         </ul>
       </div>
-      <div class="app-footer__column app-footer__column--right">
+      <div
+        class="app-footer__column app-footer__column--right"
+        ref="contact"
+      >
         <h3 class="app-footer__title body-petite font-bold font-html-blue">
           Contact
         </h3>
@@ -180,13 +183,42 @@ export default {
       },
     },
   },
+  data () {
+    return { observer: null }
+  },
   computed: {
     cleanedTelephone() {
       return this.tel.replace(/[^0-9]/g, '')
     }
   },
+  mounted () {
+    if ('IntersectionObserver' in window) {
+      this.observe(this.$refs.contact)
+    }
+  },
+  beforeDestroyed() {
+      if (this.observer !== null) {
+        this.observer.unobserve(this.$refs.contact)
+      }
+    },
   methods: {
-    createHref
+    createHref,
+    observe (el) {
+      const ga = this.$ga
+      const event = {
+        eventCategory: 'Contact',
+        eventAction: 'footer view',
+        eventLabel: this.$route.fullPath,
+        eventValue: 0
+      }
+      this.observer = new IntersectionObserver(function(entries) {
+        if (entries.some(entry => entry.isIntersecting)) {
+          ga.event(event)
+          this.unobserve(el)
+        }
+      })
+      this.observer.observe(el)
+    }
   },
 }
 </script>
