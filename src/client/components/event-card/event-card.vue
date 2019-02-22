@@ -22,13 +22,11 @@
           v-if="description"
           :key="description"
           :text="description"
-          class="event-card__description" />
+        />
       </div>
     </nuxt-link>
   </article>
 </template>
-
-
 
 <script>
   import { CalendarIcon, LazyLoad, RichTextBlock } from '~/components'
@@ -128,7 +126,7 @@
     text-align: center;
   }
 
-  .event-card__description {
+  .event-card .rich-text {
     display: none;
   }
 
@@ -180,7 +178,7 @@
       padding-top: 0;
     }
 
-    .event-card__description {
+    .event-card .rich-text {
       display: block;
     }
 
@@ -213,7 +211,7 @@
       margin-top: var(--spacing-small);
     }
 
-    .event-card__calendar-icon {
+    .event-card .calendar-icon {
       left: var(--spacing-large);
     }
 
