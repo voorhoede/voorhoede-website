@@ -5,15 +5,13 @@
       class="event-card__link"
       :class="{ 'event-card__link--alt': isMeetup }">
       <header class="event-card__header">
+        <div v-if="illustration" class="event-card__illustration">
+          <responsive-image :image="illustration"/>
+        </div>
         <calendar-icon
           :date="dateString"
           :fill="(isMeetup) ? 'yellow' : 'blue'"
         />
-        <div v-if="illustration" class="event-card__illustration-content">
-          <lazy-load>
-            <img class="event-card__illustration" :src="illustration.url" :alt="illustration.alt">
-          </lazy-load>
-        </div>
       </header>
       <div class="event-card__body">
         <div class="event-card__type body-detail" :class="{ 'event-card__type--alt': isMeetup }">{{ label }}</div>
@@ -29,10 +27,10 @@
 </template>
 
 <script>
-  import { CalendarIcon, LazyLoad, RichTextBlock } from '~/components'
+  import { CalendarIcon, ResponsiveImage, RichTextBlock } from '~/components'
 
   export default {
-    components: { CalendarIcon, LazyLoad, RichTextBlock },
+    components: { CalendarIcon, ResponsiveImage, RichTextBlock },
     props: {
       dateString: {
         type: String,
@@ -110,15 +108,16 @@
   }
 
   .event-card__illustration {
-    position: absolute;
-    right: 0;
-    bottom: calc(var(--spacing-small) * -1);
-    height: 65%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
   }
 
-  .event-card__illustration-content {
-    height: inherit;
-    position: relative;
+  .event-card .responsive-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .event-card__title {
@@ -157,22 +156,7 @@
     margin-top: calc(var(--spacing-small) * -1);
   }
 
-  @media (min-width: 500px) {
-    .event-card__illustration {
-      left: 50%;
-      height: 85%;
-      transform: translateX(-50%);
-    }
-  }
-
   @media (min-width: 720px) {
-    .event-card__illustration {
-      left: auto;
-      right: 0;
-      height: 57%;
-      transform: none;
-    }
-
     .event-card__body {
       padding: var(--spacing-small);
       padding-top: 0;
@@ -203,10 +187,6 @@
       max-width: 350px;
     }
 
-    .event-card__illustration {
-      height: 70%;
-    }
-
     .event-card__body {
       margin-top: var(--spacing-small);
     }
@@ -221,10 +201,6 @@
   }
 
   @media (min-width: 1440px) {
-    .event-card__illustration {
-      height: 60%;
-    }
-
     .event-card__header {
       position: relative;
       height: 213px;
