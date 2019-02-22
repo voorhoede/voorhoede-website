@@ -23,18 +23,23 @@
           </li>
         </ul>
       </div>
-      <div class="app-footer__column app-footer__column--right">
+      <div
+        class="app-footer__column app-footer__column--right"
+        ref="contact"
+      >
         <h3 class="app-footer__title body-petite font-bold font-html-blue">
           Contact
         </h3>
         <ul class="body-detail app-footer__list">
           <li class="app-footer__list-item">
             <a
+              @click="trackLink('phone')"
               :href="`tel:${ cleanedTelephone }`"
               class="app-footer__link">{{ tel }}</a>
           </li>
           <li class="app-footer__list-item">
             <a
+              @click="trackLink('email')"
               :href="`mailto:${ email }`"
               class="app-footer__link">{{ email }}</a>
           </li>
@@ -180,13 +185,49 @@ export default {
       },
     },
   },
+  data () {
+    return { observer: null }
+  },
   computed: {
     cleanedTelephone() {
       return this.tel.replace(/[^0-9]/g, '')
     }
   },
+  mounted () {
+    if ('IntersectionObserver' in window) {
+      this.observeContact()
+    }
+  },
+  beforeDestroyed() {
+    if (this.observer !== null) {
+      this.unobserveContact()
+    }
+  },
   methods: {
-    createHref
+    createHref,
+    observeContact () {
+      const contactElement = this.$refs.contact
+      const ga = this.$ga
+      const event = {
+        eventCategory: 'Contact',
+        eventAction: 'footer view',
+        eventLabel: this.$route.fullPath,
+        eventValue: 0
+      }
+      this.observer = new IntersectionObserver(function(entries) {
+        if (entries.some(entry => entry.isIntersecting)) {
+          ga.event(event)
+          this.unobserve(contactElement)
+        }
+      })
+      this.observer.observe(contactElement)
+    },
+    trackLink (linkType) {
+      this.$ga.event('Contact', `click ${linkType}`, this.$route.fullpath, 0)
+    },
+    unobserveContact () {
+      this.observer.unobserve(this.$refs.contact)
+    }
   },
 }
 </script>
