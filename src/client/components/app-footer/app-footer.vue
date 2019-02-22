@@ -199,10 +199,10 @@ export default {
     }
   },
   beforeDestroyed() {
-      if (this.observer !== null) {
-        this.unobserveContact()
-      }
-    },
+    if (this.observer !== null) {
+      this.unobserveContact()
+    }
+  },
   methods: {
     createHref,
     observeContact () {
