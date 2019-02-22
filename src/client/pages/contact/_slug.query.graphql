@@ -2,6 +2,40 @@ query ($locale: SiteLocale, $slug: String)  {
   page: contactConfirmation(locale: $locale, filter: { slug: { eq: $slug } }) {
     ...page
   },
+  pivots: allPivotSections(locale: $locale, filter: {
+    routes:{ matches:{ pattern: "contact-slug" }}
+  }) {
+    title
+    body
+    callToActionLabel
+    link {
+      title
+      url
+      page {
+        ... on HomeRecord {
+          slug
+        }
+        ... on ServiceOverviewRecord {
+          slug
+        }
+        ... on CaseOverviewRecord {
+          slug
+        }
+        ... on BlogPostOverviewRecord {
+          slug
+        }
+        ... on JobOverviewRecord {
+          slug
+        }
+        ... on AboutRecord {
+          slug
+        }
+        ... on ContactRecord {
+          slug
+        }
+      }
+    }
+  }
 }
 
 fragment page on ContactConfirmationRecord {
