@@ -1,5 +1,5 @@
 <template>
-  <div class="responsive-image__sizer">
+  <div class="responsive-image">
     <fixed-ratio
       v-if="hasFixedRatio"
       :width="image.width"
@@ -36,7 +36,7 @@
 
 <style>
 
-  .responsive-image__sizer {
+  .responsive-image {
     margin-left: auto;
     margin-right: auto;
     height: auto;

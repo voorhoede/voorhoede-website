@@ -91,7 +91,7 @@ export default {
       flex: 50% 1 0;
     }
 
-    .case-teaser__image .responsive-image__sizer {
+    .case-teaser__image .responsive-image {
       margin-right: 0;
     }
   }

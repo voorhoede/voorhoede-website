@@ -42,7 +42,7 @@
     width: 100%;
   }
 
-  .image-with-text .responsive-image__sizer {
+  .image-with-text .responsive-image {
     width: 100%;
   }
 
@@ -88,7 +88,7 @@
       );
     }
 
-    .image-with-text .responsive-image__sizer {
+    .image-with-text .responsive-image {
       width: 50%;
     }
 
@@ -129,7 +129,7 @@
       );
     }
 
-    .image-with-text .responsive-image__sizer {
+    .image-with-text .responsive-image {
       width: 60%;
     }
 
