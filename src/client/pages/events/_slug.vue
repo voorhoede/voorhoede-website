@@ -4,7 +4,7 @@
       class="page-event-detail__header"
       :title="page.label.label"
       :text="page.title"
-      :image="page.image" />
+      :image="pageHeaderImage" />
 
     <article class="page-event-detail-list">
       <template v-for="item in page.items">
@@ -122,6 +122,14 @@
     computed: {
       isMeetup() {
         return this.page.label.label.toLowerCase() === 'meet-up'
+      },
+      pageHeaderImage() {
+        const image = this.page.image
+        if (image && image.format === 'svg') {
+          return image
+        } else {
+          return undefined
+        }
       },
       formattedDate() {
         return formatDate({
