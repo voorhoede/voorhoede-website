@@ -27,19 +27,12 @@ fragment job on JobRecord {
   },
   url,
   jobContent {
-  	__typename,
-    ... on TextSectionRecord {
-      title,
-      body,
-    },
-    ... on GenericTextBlockRecord {
-      title,
-      body,
-      image {
-        url,
-        format,
-        alt
-      }
-    },
+    title,
+    body,
+    image {
+      url,
+      format,
+      alt
+    }
   },
 }

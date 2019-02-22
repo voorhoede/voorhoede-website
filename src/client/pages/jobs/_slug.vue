@@ -1,25 +1,20 @@
 <template>
-  <section class="page-job">
+  <article class="page-job">
     <page-header
       :title="page.subtitle"
       :text="page.title"
       :image="page.jobImage"
     />
     <div class="grid">
-      <div class="page-job__overview">
-        <ul>
-          <li
-            class="page-job__overview-item"
-            v-for="item in page.jobContent"
-            :key="item.title">
-            <generic-text-block
-              :title="item.title"
-              :body="item.body"
-              :image="item.image"
-            />
-          </li>
-        </ul>
-        <div class="button-group">
+      <div class="page-job__content">
+        <generic-text-block
+          v-for="item in page.jobContent"
+          :key="item.title || item.body"
+          :title="item.title"
+          :body="item.body"
+          :image="item.image"
+        />
+        <footer class="page-job__footer button-group">
           <app-button
             class=""
             :label="$t('apply')"
@@ -31,11 +26,11 @@
             :to="localeUrl('jobs')"
             secondary
           />
-        </div>
-        <scroll-to direction="up" />
+          <scroll-to direction="up" />
+        </footer>
       </div>
     </div>
-  </section>
+  </article>
 </template>
 
 <script>
@@ -71,22 +66,22 @@
     margin-bottom: var(--spacing-large);
   }
 
-  .page-job__overview-item {
+  .page-job__content > * {
     margin-bottom: var(--spacing-large);
   }
 
-  .page-job__overview .scroll-to {
+  .page-job__content .scroll-to {
     display: none;
     position: absolute;
     bottom: var(--spacing-big);
     right: var(--spacing-larger);
   }
 
-  .page-job__overview .button-group {
+  .page-job__footer {
     margin-bottom: var(--spacing-large);
   }
 
-  .page-job__overview .button-group .app-button {
+  .page-job__footer .app-button {
     width: 50%;
     white-space: nowrap;
   }
@@ -96,24 +91,24 @@
       background-color: var(--bg-pastel);
     }
 
-    .page-job__overview {
+    .page-job__content {
       position: relative;
       grid-column: var(--grid-content);
       background-color: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
     }
 
-    .page-job__overview .scroll-to {
+    .page-job__content .scroll-to {
       display: flex;
     }
 
-    .page-job__overview .button-group {
+    .page-job__content .button-group {
       width: var(--button-group-width);
     }
   }
 
   @media (min-width: 1100px) {
-    .page-job__overview {
+    .page-job__content {
       grid-column: var(--grid-content-narrow);
       padding: var(--spacing-big) var(--spacing-bigger);
     }
