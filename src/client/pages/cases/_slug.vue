@@ -317,7 +317,7 @@
   }
 
   @media (min-width: 1100px) {
-    .page-case__content .responsive-image__sizer {
+    .page-case__content .responsive-image {
       max-width: var(--image-resizer-max-width-m);
     }
 
@@ -371,7 +371,7 @@
   }
 
   @media (min-width: 1440px) {
-    .page-case__content .responsive-image__sizer {
+    .page-case__content .responsive-image {
       max-width: var(--image-resizer-max-width-l);
     }
 
