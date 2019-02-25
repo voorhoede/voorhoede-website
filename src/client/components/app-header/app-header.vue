@@ -33,6 +33,7 @@
               :aria-label="$t('switch_to__language_', 'nl', { language: name })"
               :lang="code"
               :to="localizedlocaleUrls[code]"
+              @click.native="saveLocale(code)"
             >
               {{ code }}
             </nuxt-link>
@@ -91,6 +92,9 @@
     },
     methods: {
       createHref,
+      saveLocale (code) {
+        document.cookie = `nf_lang=${code};path=/`
+      }
     },
   }
 </script>
