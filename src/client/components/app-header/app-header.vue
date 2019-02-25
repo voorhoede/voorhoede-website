@@ -33,6 +33,7 @@
               :aria-label="$t('switch_to__language_', 'nl', { language: name })"
               :lang="code"
               :to="localizedlocaleUrls[code]"
+              @click.native="saveLocale(code)"
             >
               {{ code }}
             </nuxt-link>
@@ -91,6 +92,15 @@
     },
     methods: {
       createHref,
+      saveLocale (code) {
+        const cookie = document.cookie
+        const langKey = 'nf_lang' // @See https://www.netlify.com/docs/redirects/#geoip-and-language-based-redirects
+        if (cookie.match(new RegExp(langKey) !== null)) {
+          document.cookie = cookie.replace(new RegExp(`${langKey}=[A-Za-z-]+;`), `${langKey}=${code};`)
+        } else {
+          document.cookie = `${langKey}=${code}; path=/; ${cookie}`
+        }
+      }
     },
   }
 </script>

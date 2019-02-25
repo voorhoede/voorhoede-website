@@ -16,7 +16,7 @@
   "scripts": {
     "analyze": "nuxt build --analyze",
     "prebuild": "run-s prebuild:clean prebuild:predump prebuild:dump",
-    "prebuild:clean": "rimraf src/client/static/data",
+    "prebuild:clean": "rimraf src/client/static/data src/client/static/_redirects",
     "prebuild:predump": "dato dump",
     "prebuild:dump": "npm run data",
     "build": "NODE_ENV=production run-s build:*",
