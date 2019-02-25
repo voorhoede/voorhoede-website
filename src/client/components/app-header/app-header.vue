@@ -93,8 +93,13 @@
     methods: {
       createHref,
       saveLocale (code) {
-        // @See https://www.netlify.com/docs/redirects/#geoip-and-language-based-redirects
-        document.cookie = `nf_lang=${code};path=/`
+        const cookie = document.cookie
+        const langKey = 'nf_lang' // @See https://www.netlify.com/docs/redirects/#geoip-and-language-based-redirects
+        if (cookie.match(new RegExp(langKey) !== null)) {
+          document.cookie = cookie.replace(new RegExp(`${langKey}=[A-Za-z-]+;`), `${langKey}=${code};`)
+        } else {
+          document.cookie = `${langKey}=${code}; path=/; ${cookie}`
+        }
       }
     },
   }
