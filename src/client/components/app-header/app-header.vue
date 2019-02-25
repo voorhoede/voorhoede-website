@@ -93,6 +93,7 @@
     methods: {
       createHref,
       saveLocale (code) {
+        // @See https://www.netlify.com/docs/redirects/#geoip-and-language-based-redirects
         document.cookie = `nf_lang=${code};path=/`
       }
     },
