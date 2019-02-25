@@ -34,7 +34,7 @@
           :validation-error-message="$t('name_is_required')"
         />
         <input-field
-          v-model="form.name"
+          v-model="form.business"
           id="business"
           type="text"
           :label="$t('my_business_is')"
