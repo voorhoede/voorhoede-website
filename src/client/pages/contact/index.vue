@@ -9,31 +9,10 @@
         <address-sidebar
           :email-label="page.emailLabel"
           :phone-label="page.phoneLabel"
-          :address-label="page.addressLabel" />
+          :address-label="page.addressLabel"
+        />
         <contact-form
-          :subject-title="page.contactPageForm.subjectTitle"
-          :contact-title="page.contactPageForm.contactTitle"
-          :name-label="page.contactPageForm.nameLabel"
-          :name-placeholder="page.contactPageForm.namePlaceholder"
-          :name-error-message="page.contactPageForm.nameErrorMessage"
-          :email-label="page.contactPageForm.emailLabel"
-          :email-placeholder="page.contactPageForm.emailPlaceholder"
-          :email-error-message-empty="page.contactPageForm.emailErrorMessageEmpty"
-          :email-error-message-incorrect="page.contactPageForm.emailErrorMessageIncorrect"
-          :phone-label="page.contactPageForm.phoneLabel"
-          :phone-placeholder="page.contactPageForm.phonePlaceholder"
-          :phone-error-message="page.contactPageForm.phoneErrorMessage"
-          :business-label="page.contactPageForm.businessLabel"
-          :business-placeholder="page.contactPageForm.businessPlaceholder"
-          :website-label="page.contactPageForm.websiteLabel"
-          :website-placeholder="page.contactPageForm.websitePlaceholder"
-          :subject-label="page.contactPageForm.subjectLabel"
-          :subject-options="page.contactPageForm.subjectOptions"
-          :budget-label="page.contactPageForm.budgetLabel"
-          :budget-options="page.contactPageForm.budgetOptions"
-          :project-label="page.contactPageForm.projectLabel"
-          :project-placeholder="page.contactPageForm.projectPlaceholder"
-          :project-error-message="page.contactPageForm.projectErrorMessage"
+          :aria-label="$t('lets_discuss')"
         />
       </div>
     </div>
@@ -76,7 +55,7 @@
     margin-bottom: var(--spacing-small);
   }
 
-  .contact-form {
+  .page-contact .contact-form {
     margin-bottom: var(--spacing-larger);
   }
 
@@ -96,7 +75,7 @@
       width: 30%;
     }
 
-    .contact-form {
+    .page-contact .contact-form {
       width: 65%;
     }
   }
