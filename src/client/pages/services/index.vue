@@ -10,7 +10,7 @@
     <rich-text-block
       class="services-text"
       :text="page.smallServices" />
-    <get-in-touch-form
+    <contact-form
       :title="page.getInTouchTitle"
       :name-label="page.getInTouchForm.nameLabel"
       :name-placeholder="page.getInTouchForm.namePlaceholder"
@@ -32,10 +32,10 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import { PageHeader, ServicesList, GetInTouchForm, RichTextBlock } from '~/components'
+  import { PageHeader, ServicesList, ContactForm, RichTextBlock } from '~/components'
 
   export default {
-    components: { ServicesList, GetInTouchForm, PageHeader, RichTextBlock },
+    components: { ServicesList, ContactForm, PageHeader, RichTextBlock },
     asyncData,
     head
   }
@@ -60,7 +60,7 @@
     grid-row: 3;
   }
 
-  .page-services .get-in-touch-form {
+  .page-services .contact-form {
     grid-row: 4;
   }
 

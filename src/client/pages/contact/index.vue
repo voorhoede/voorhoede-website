@@ -10,7 +10,7 @@
           :email-label="page.emailLabel"
           :phone-label="page.phoneLabel"
           :address-label="page.addressLabel" />
-        <contact-page-form
+        <contact-form
           :subject-title="page.contactPageForm.subjectTitle"
           :contact-title="page.contactPageForm.contactTitle"
           :name-label="page.contactPageForm.nameLabel"
@@ -43,10 +43,10 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import { AddressSidebar, ContactPageForm, PageHeader } from '~/components'
+  import { AddressSidebar, ContactForm, PageHeader } from '~/components'
 
   export default {
-    components: { AddressSidebar, ContactPageForm, PageHeader },
+    components: { AddressSidebar, ContactForm, PageHeader },
     asyncData,
     head,
   }

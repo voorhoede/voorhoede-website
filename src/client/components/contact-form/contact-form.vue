@@ -1,12 +1,12 @@
 <template>
-  <div class="get-in-touch-form grid">
-    <h2 class="get-in-touch-form__title h3">{{ title }}</h2>
+  <div class="contact-form grid">
+    <h2 class="contact-form__title h3">{{ title }}</h2>
     <form
       @submit.prevent="submit"
       method="POST"
       :name="form['form-name']"
       :action="confirmationPageUrl"
-      class="get-in-touch-form__form"
+      class="contact-form__form"
       data-netlify="true"
       netlify-honeypot="magic-castle"
       :novalidate="useCustomValidation"
@@ -60,7 +60,7 @@
           :validation-error-message="summaryErrorMessage"
         />
         <app-button
-          class="get-in-touch-form__button"
+          class="contact-form__button"
           :label="$t('get_in_touch')"
           type="submit"
         />
@@ -177,40 +177,40 @@
 <style>
   @import '../forms/forms.css';
 
-  .get-in-touch-form {
+  .contact-form {
     grid-column: var(--grid-page);
   }
 
-  .get-in-touch-form__title {
+  .contact-form__title {
     grid-row: 1;
   }
 
-  .get-in-touch-form__form {
+  .contact-form__form {
     grid-row: 2;
   }
 
-  .get-in-touch-form__label:first-of-type {
+  .contact-form__label:first-of-type {
     margin-top: 0;
   }
 
-  .get-in-touch-form__button {
+  .contact-form__button {
     margin-top: var(--spacing-larger);
   }
 
   @media (min-width: 1100px) {
-    .get-in-touch-form__title {
+    .contact-form__title {
       grid-column-start: 6;
       grid-column-end: 18;
       margin-bottom: var(--spacing-medium);
     }
 
-    .get-in-touch-form__form {
+    .contact-form__form {
       grid-column-start: 21;
       grid-column-end: 46;
       grid-row: 1;
     }
 
-    .get-in-touch-form__label-text {
+    .contact-form__label-text {
       width: 9rem;
     }
   }

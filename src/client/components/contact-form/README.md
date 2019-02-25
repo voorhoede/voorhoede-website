@@ -4,7 +4,7 @@
 ## Usage
 
 ```html
-<get-in-touch-form
+<contact-form
   title="Let's discuss what we can do - together."
   name-label="My name is"
   name-placeholder="Your name"

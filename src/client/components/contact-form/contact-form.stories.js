@@ -7,21 +7,21 @@ import VueI18n from 'vue-i18n'
 
 import '../app-core/index.css'
 
-import GetInTouchForm from './get-in-touch-form.vue'
+import ContactForm from './contact-form.vue'
 import README from './README.md'
 
 const stories = storiesOf('Components/Get In Touch Form', module)
   .addDecorator(withKnobs)
   .addDecorator(withReadme(README))
 
-Vue.component('get-in-touch-form', GetInTouchForm)
+Vue.component('contact-form', ContactForm)
 
 stories.add(
   'Get In Touch Form',
   () => ({
     i18n: new VueI18n({ locale: 'en' }),
     template: `
-      <get-in-touch-form
+      <contact-form
         title="Let's discuss what we can do - together."
         name-label="My name is"
         name-placeholder="Your name"
