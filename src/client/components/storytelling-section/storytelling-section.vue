@@ -13,7 +13,7 @@
           :style="`background-image: url(${item.image.url})`" />
 
         <div class="storytelling-section__card">
-          <h3 class="body-big font-bold">{{ item.title }}</h3>
+          <h4 class="body-big font-bold">{{ item.title }}</h4>
           <rich-text-block :text="item.body" />
         </div>
       </section>
