@@ -1,5 +1,6 @@
 <template>
-  <footer class="app-footer grid">
+  <footer class="app-footer grid" role="contentinfo">
+    <h2 class="sr-only">Footer</h2>
     <div class="app-footer__layout">
       <div class="app-footer__header">
         <nuxt-link :to="localeUrl('index')" :aria-label="$t('home')" :title="$t('home')">
