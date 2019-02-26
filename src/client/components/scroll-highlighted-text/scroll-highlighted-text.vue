@@ -74,20 +74,16 @@
 
           // if first highlighted text line and user scrolled before intersecting with observer
           if(highlightedTextID === this.isFirst.number) {
-            ((offsetIntersectionObserver) > window.scrollY)
-            ? this.scrolledAbove = true
-            : this.scrolledAbove = false
+            this.scrolledAbove = offsetIntersectionObserver > window.scrollY
           }
           // if last highlighted text line and user scrolled after intersecting with observer
           if(highlightedTextID === this.isLast.number) {
-            ((offsetIntersectionObserver) < window.scrollY)
-            ? this.scrolledBelow = true
-            : this.scrolledBelow = false
+            this.scrolledBelow = offsetIntersectionObserver < window.scrollY
           }
         }
       }), 300)
     },
-    beforeDestroyed() {
+    beforeDestroy() {
       if (this.observer !== null) {
         this.unobserve()
       }
