@@ -12,7 +12,7 @@
             }"
           />
         </div>
-        <p class="page-header-detail__subtitle sub-title">{{ subTitle }}</p>
+        <h2 class="page-header-detail__subtitle sub-title">{{ subTitle }}</h2>
       </div>
       <div class="page-header-detail__image">
         <app-image v-if="image" :image="image" />

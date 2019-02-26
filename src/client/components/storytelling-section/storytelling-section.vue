@@ -1,7 +1,7 @@
 <template>
   <aside class="storytelling-section">
     <div class="storytelling-section__container">
-      <h2 class="storytelling-section__title h3">{{ title }}</h2>
+      <h3 class="storytelling-section__title h3">{{ title }}</h3>
       <section
         class="storytelling-section__item"
         v-for="item in items"
