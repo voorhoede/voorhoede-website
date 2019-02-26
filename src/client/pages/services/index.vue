@@ -10,32 +10,17 @@
     <rich-text-block
       class="services-text"
       :text="page.smallServices" />
-    <get-in-touch-form
-      :title="page.getInTouchTitle"
-      :name-label="page.getInTouchForm.nameLabel"
-      :name-placeholder="page.getInTouchForm.namePlaceholder"
-      :name-error-message="page.getInTouchForm.nameErrorMessage"
-      :email-label="page.getInTouchForm.emailLabel"
-      :email-placeholder="page.getInTouchForm.emailPlaceholder"
-      :email-error-message-empty="page.getInTouchForm.emailErrorMessageEmpty"
-      :email-error-message-incorrect="page.getInTouchForm.emailErrorMessageIncorrect"
-      :phone-label="page.getInTouchForm.phoneLabel"
-      :phone-placeholder="page.getInTouchForm.phonePlaceholder"
-      :phone-error-message="page.getInTouchForm.phoneErrorMessage"
-      :summary-label="page.getInTouchForm.summaryLabel"
-      :summary-placeholder="page.getInTouchForm.summaryPlaceholder"
-      :summary-error-message="page.getInTouchForm.summaryErrorMessage"
-    />
+    <contact-form class="grid" :title="$t('lets_discuss')" />
   </main>
 </template>
 
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import { PageHeader, ServicesList, GetInTouchForm, RichTextBlock } from '~/components'
+  import { PageHeader, ServicesList, ContactForm, RichTextBlock } from '~/components'
 
   export default {
-    components: { ServicesList, GetInTouchForm, PageHeader, RichTextBlock },
+    components: { ServicesList, ContactForm, PageHeader, RichTextBlock },
     asyncData,
     head
   }
@@ -60,7 +45,7 @@
     grid-row: 3;
   }
 
-  .page-services .get-in-touch-form {
+  .page-services .contact-form {
     grid-row: 4;
   }
 

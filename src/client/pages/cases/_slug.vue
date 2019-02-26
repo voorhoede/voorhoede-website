@@ -108,24 +108,8 @@
       </nuxt-link>
     </div>
 
-    <div class="page-case__get-in-touch-form grid">
-      <get-in-touch-form
-        :title="page.getInTouchTitle"
-        :name-label="page.getInTouchForm.nameLabel"
-        :name-placeholder="page.getInTouchForm.namePlaceholder"
-        :name-error-message="page.getInTouchForm.nameErrorMessage"
-        :email-label="page.getInTouchForm.emailLabel"
-        :email-placeholder="page.getInTouchForm.emailPlaceholder"
-        :email-error-message-empty="page.getInTouchForm.emailErrorMessageEmpty"
-        :email-error-message-incorrect="page.getInTouchForm.emailErrorMessageIncorrect"
-        :phone-label="page.getInTouchForm.phoneLabel"
-        :phone-placeholder="page.getInTouchForm.phonePlaceholder"
-        :phone-error-message="page.getInTouchForm.phoneErrorMessage"
-        :summary-label="page.getInTouchForm.summaryLabel"
-        :summary-placeholder="page.getInTouchForm.summaryPlaceholder"
-        :summary-error-message="page.getInTouchForm.summaryErrorMessage"
-        :cta-label="page.getInTouchForm.ctaButtonLabel"
-      />
+    <div class="page-case__contact-form grid">
+      <contact-form class="grid" :title="$t('lets_discuss')" />
       <scroll-to direction="up" />
     </div>
   </main>
@@ -140,7 +124,7 @@
     CasePullQuoteComposition,
     CaseTeaser,
     FullWidthImage,
-    GetInTouchForm,
+    ContactForm,
     ImageWithDescription,
     PageHeaderDetail,
     QuoteBlock,
@@ -158,7 +142,7 @@
       CasePullQuoteComposition,
       CaseTeaser,
       FullWidthImage,
-      GetInTouchForm,
+      ContactForm,
       ImageWithDescription,
       PageHeaderDetail,
       QuoteBlock,
@@ -218,13 +202,13 @@
     grid-column: 4 / var(--grid-content-end);
   }
 
-  .page-case__get-in-touch-form,
+  .page-case__contact-form,
   .page-case__content,
   .page-case__content > *:not(:last-child) {
     margin-bottom: var(--spacing-larger);
   }
 
-  .page-case__get-in-touch-form {
+  .page-case__contact-form {
     grid-column: var(--grid-page);
     grid-row: 6;
   }
@@ -254,7 +238,7 @@
     max-width: 100%; /* temporary fix for mvp should refactored after mvp */
   }
 
-  .page-case__get-in-touch-form .scroll-to {
+  .page-case__contact-form .scroll-to {
     display: none;
   }
 
@@ -284,7 +268,7 @@
       margin-right: calc(-1 * var(--spacing-large));
     }
 
-    .page-case__get-in-touch-form,
+    .page-case__contact-form,
     .page-case__content,
     .page-case__content > *:not(:last-child) {
       margin-bottom: var(--spacing-big);
@@ -299,16 +283,16 @@
       grid-column-end: 48;
     }
 
-    .page-case__get-in-touch-form .get-in-touch-form {
+    .page-case__contact-form .contact-form {
       grid-column-start: 1;
       grid-column-end: 49;
     }
 
-    .page-case__get-in-touch-form {
+    .page-case__contact-form {
       position: relative;
     }
 
-    .page-case__get-in-touch-form .scroll-to {
+    .page-case__contact-form .scroll-to {
       grid-column: 49;
       display: flex;
       position: absolute;
@@ -346,7 +330,7 @@
       width: 100%;
     }
 
-    .page-case__get-in-touch-form,
+    .page-case__contact-form,
     .page-case__content,
     .page-case__content > *:not(:last-child) {
       margin-bottom: var(--spacing-bigger);
@@ -365,7 +349,7 @@
       max-width: var(--case-content-max-width-m);
     }
 
-    .page-case__get-in-touch-form .get-in-touch-form {
+    .page-case__contact-form .contact-form {
       grid-column: var(--grid-page);
     }
   }

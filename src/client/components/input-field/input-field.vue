@@ -60,7 +60,8 @@
       },
       validate: {
         type: Boolean,
-        required: true
+        required: false,
+        default: false,
       },
       validationErrorMessage: {
         type: String,
