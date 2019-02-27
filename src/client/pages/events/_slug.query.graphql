@@ -52,7 +52,9 @@ fragment eventItem on EventItemRecord {
   image {
     url,
     format,
-    alt
+    alt,
+    width,
+    height,
   },
   label {
     label

@@ -7,6 +7,12 @@
       :image="pageHeaderImage" />
 
     <article class="page-event-detail-list">
+      <responsive-image
+        class="page-event-detail-list__image"
+        v-if="bodyImage"
+        :image="bodyImage"
+      />
+
       <template v-for="item in page.items">
         <image-with-description
           class="page-event-detail-list__image page-event-detail-list--not-indented"
@@ -126,6 +132,14 @@
       pageHeaderImage() {
         const image = this.page.image
         if (image && image.format === 'svg') {
+          return image
+        } else {
+          return undefined
+        }
+      },
+      bodyImage() {
+        const image = this.page.image
+        if (image && image.format !== 'svg') {
           return image
         } else {
           return undefined
