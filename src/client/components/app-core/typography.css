@@ -6,7 +6,7 @@
   color: var(--html-blue);
 }
 
-.sub-title {
+.subtitle {
   font-family: var(--font-sans);
   font-size: 1.3125rem; /* 21px */
   font-weight: 400;
@@ -21,7 +21,7 @@
   line-height: 1.4482758621; /* 42px */
 }
 
-.sub-title-2 {
+.subtitle-2 {
   font-family: var(--font-sans);
   font-size: 1.25rem; /* 20px */
   font-weight: 400;
@@ -136,7 +136,7 @@
     line-height: 1.0285714286; /* 72px */
   }
 
-  .sub-title {
+  .subtitle {
     font-size: 1.875rem; /* 30px */
     line-height: 1.2; /* 36px */
   }
@@ -146,7 +146,7 @@
     line-height: 1.46875; /* 47px */
   }
 
-  .sub-title-2 {
+  .subtitle-2 {
     font-size: 1.625rem; /* 26px */
     line-height: 1.3461538462; /* 35px */
   }
@@ -228,7 +228,7 @@
     line-height: 1.0288461538; /* 107px */
   }
 
-  .sub-title {
+  .subtitle {
     font-size: 2.3125rem; /* 37px */
     line-height: 1.2162162162; /* 45px */
   }
@@ -238,7 +238,7 @@
     line-height: 1.4571428571; /* 51px */
   }
 
-  .sub-title-2 {
+  .subtitle-2 {
     font-size: 2rem; /* 32px */
     line-height: 1.34375; /* 43px */
   }

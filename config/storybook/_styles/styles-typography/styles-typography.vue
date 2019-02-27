@@ -42,18 +42,18 @@
       <tr>
         <td>
           <span
-            ref="sub-title"
-            class="sub-title">sub title</span>
+            ref="subtitle"
+            class="subtitle">sub title</span>
         </td>
-        <td><code>sub-title</code></td>
+        <td><code>subtitle</code></td>
         <td>
           <dl>
             <dt>size</dt>
-            <dd><code>{{ sizes['sub-title'] && sizes['sub-title'].fontSize }}</code></dd>
+            <dd><code>{{ sizes['subtitle'] && sizes['subtitle'].fontSize }}</code></dd>
             <dt>line-height</dt>
-            <dd><code>{{ sizes['sub-title'] && sizes['sub-title'].lineHeight }}</code></dd>
+            <dd><code>{{ sizes['subtitle'] && sizes['subtitle'].lineHeight }}</code></dd>
             <dt>weight</dt>
-            <dd><code>{{ sizes['sub-title'] && sizes['sub-title'].fontWeight }}</code></dd>
+            <dd><code>{{ sizes['subtitle'] && sizes['subtitle'].fontWeight }}</code></dd>
           </dl>
         </td>
       </tr>
@@ -78,18 +78,18 @@
       <tr>
         <td>
           <span
-            ref="sub-title-2"
-            class="sub-title-2">sub title 2</span>
+            ref="subtitle-2"
+            class="subtitle-2">sub title 2</span>
         </td>
-        <td><code>sub-title-2</code></td>
+        <td><code>subtitle-2</code></td>
         <td>
           <dl>
             <dt>size</dt>
-            <dd><code>{{ sizes['sub-title-2'] && sizes['sub-title-2'].fontSize }}</code></dd>
+            <dd><code>{{ sizes['subtitle-2'] && sizes['subtitle-2'].fontSize }}</code></dd>
             <dt>line-height</dt>
-            <dd><code>{{ sizes['sub-title-2'] && sizes['sub-title-2'].lineHeight }}</code></dd>
+            <dd><code>{{ sizes['subtitle-2'] && sizes['subtitle-2'].lineHeight }}</code></dd>
             <dt>weight</dt>
-            <dd><code>{{ sizes['sub-title-2'] && sizes['sub-title-2'].fontWeight }}</code></dd>
+            <dd><code>{{ sizes['subtitle-2'] && sizes['subtitle-2'].fontWeight }}</code></dd>
           </dl>
         </td>
       </tr>
