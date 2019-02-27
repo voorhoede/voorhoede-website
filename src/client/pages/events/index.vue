@@ -3,7 +3,7 @@
     <page-header
       :title="page.title"
       :text="page.subtitle"
-      :image="page.headerIllustration" />
+      :image="page.headerIllustration ? page.headerIllustration : fallbackIllustration" />
 
     <div class="page-event__content grid">
       <div class="page-event__content--grid-left">
@@ -45,6 +45,14 @@
   export default {
     components: { EventCard, PageHeader, RichTextBlock },
     asyncData,
+    data() {
+      return {
+        fallbackIllustration: {
+          url: '/illustrations/event.svg',
+          format: 'svg'
+        }
+      }
+    },
     head,
   }
 </script>

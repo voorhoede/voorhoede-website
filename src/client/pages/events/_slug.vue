@@ -1,15 +1,21 @@
 <template>
-  <div class="page-event-detail grid" lang="en">
+  <article class="page-event-detail grid" lang="en">
     <page-header
       class="page-event-detail__header"
       :title="page.label.label"
       :text="page.title"
-      :image="pageHeaderImage" />
+      :image="imageIsIllustration ? page.image : fallbackIllustration" />
 
-    <article class="page-event-detail-list">
+    <main class="page-event-detail__main">
+      <responsive-image
+        v-if="!imageIsIllustration && page.image"
+        class="page-event-detail__image"
+        :image="page.image"
+      />
+
       <template v-for="item in page.items">
         <image-with-description
-          class="page-event-detail-list__image page-event-detail-list--not-indented"
+          class="page-event-detail__image page-event-detail__main--not-indented"
           v-if="item.__typename === 'ImageWithTextRecord'"
           :key="item.description"
           :image="item.imageWithDescription.image"
@@ -24,8 +30,8 @@
           class="page-event-detail__quote" />
 
         <responsive-image
-          class="page-event-detail-list__image"
-          :class="{ 'page-event-detail-list--not-indented' : item.fullWidth}"
+          class="page-event-detail__image"
+          :class="{ 'page-event-detail__main--not-indented' : item.fullWidth}"
           v-if="item.__typename === 'ImageRecord' && item.image"
           :key="item.image.url"
           :image="item.image" />
@@ -33,11 +39,11 @@
         <text-block
           v-if="item.__typename === 'TextSectionRecord' && item.title"
           :key="item.title">
-          <h2 class="page-event-detail-list__title h3 font-html-blue">{{ item.title }}</h2>
+          <h2 class="page-event-detail__title h3 font-html-blue">{{ item.title }}</h2>
         </text-block>
 
         <rich-text-block
-          class="page-event-detail-list__rich-text"
+          class="page-event-detail__rich-text"
           v-if="item.__typename === 'TextSectionRecord' && item.body"
           :key="item.body"
           :text="item.body"
@@ -50,7 +56,7 @@
           :to="page.url"
           external />
       </div>
-    </article>
+    </main>
 
     <aside class="page-event-detail__aside">
       <div>
@@ -90,7 +96,7 @@
         &larr; {{ $t('all_events') }}
       </nuxt-link>
     </div>
-  </div>
+  </article>
 </template>
 
 <script>
@@ -119,17 +125,21 @@
       TextBlock,
     },
     asyncData,
+    data() {
+      return {
+        fallbackIllustration: {
+          url: '/illustrations/event.svg',
+          format: 'svg'
+        }
+      }
+    },
     computed: {
       isMeetup() {
         return this.page.label.label.toLowerCase() === 'meet-up'
       },
-      pageHeaderImage() {
+      imageIsIllustration() {
         const image = this.page.image
-        if (image && image.format === 'svg') {
-          return image
-        } else {
-          return undefined
-        }
+        return (image && image.format === 'svg')
       },
       formattedDate() {
         return formatDate({
@@ -154,21 +164,21 @@
     margin-bottom: var(--spacing-large);
   }
 
-  .page-event-detail-list > * {
+  .page-event-detail__main > * {
     margin-bottom: var(--spacing-large);
   }
 
-  .page-event-detail-list__image {
+  .page-event-detail__image {
     justify-content: space-between;
     margin-bottom: var(--spacing-large);
   }
 
-  .page-event-detail-list__image .image-with-description__description {
+  .page-event-detail__image .image-with-description__description {
     margin-left: 0;
     margin-right: 0;
   }
 
-  .page-event-detail-list__title {
+  .page-event-detail__title {
     margin-bottom: var(--spacing-smaller);
   }
 
@@ -203,12 +213,12 @@
     color: var(--html-blue);
   }
 
-  .page-event-detail-list {
+  .page-event-detail__main {
     grid-row: 3;
     max-width: 100%;
   }
 
-  .page-event-detail-list .responsive-video {
+  .page-event-detail__main .responsive-video {
     width: 100%;
     max-width: var(--case-content-max-width-l);
   }
@@ -222,12 +232,12 @@
   }
 
   @media (min-width: 720px) {
-    .page-event-detail-list > * {
+    .page-event-detail__main > * {
       margin-bottom: var(--spacing-larger);
       padding: 0 var(--spacing-larger);
     }
 
-    .page-event-detail-list > .page-event-detail-list--not-indented {
+    .page-event-detail__main > .page-event-detail__main--not-indented {
       padding: 0;
     }
 
@@ -236,7 +246,7 @@
       margin-bottom: var(--spacing-larger);
     }
 
-    .page-event-detail-list {
+    .page-event-detail__main {
       grid-row: 2;
       grid-column-start: 10;
       grid-column-end: 50;
@@ -271,11 +281,11 @@
   }
 
   @media (min-width: 1100px) {
-    .page-event-detail-list > * {
+    .page-event-detail__main > * {
       padding: 0 var(--spacing-big);
     }
 
-    .page-event-detail-list {
+    .page-event-detail__main {
       grid-column-start: 12;
       grid-column-end: 46;
     }
@@ -296,11 +306,11 @@
   }
 
   @media (min-width: 1440px) {
-    .page-event-detail-list > * {
+    .page-event-detail__main > * {
       padding: 0 var(--spacing-bigger);
     }
 
-    .page-event-detail-list {
+    .page-event-detail__main {
       grid-column-start: 12;
       grid-column-end: 44;
     }
