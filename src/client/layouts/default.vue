@@ -17,7 +17,7 @@
       :title="layout.menu.title"
       :links="[].concat(layout.menu.links, layout.menu.callToAction)"
     />
-    <nuxt />
+    <nuxt class="grid"/>
     <app-footer
       :links="[].concat(layout.menu.links, layout.menu.callToAction)"
       :tel="layout.footer.telephoneNumber"
