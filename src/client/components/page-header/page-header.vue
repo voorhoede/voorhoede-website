@@ -3,7 +3,6 @@
     <div v-if="isHomepage" class="page-header__brick" />
     <curly-bracket
       v-if="isHomepage"
-      class="page-header__curly-bracket"
       side="right"
       color="paper"
     />
@@ -108,18 +107,15 @@ export default {
   grid-row-end: 6;
 }
 
-.page-header__curly-bracket {
+.page-header .curly-bracket {
   position: relative;
   z-index: var(--z-index-low);
-}
-
-.page-header__curly-bracket.curly-bracket {
   margin-top: 0;
   grid-row-start: 3;
   grid-row-end: 6;
 }
 
-.page-header__curly-bracket .curly-bracket__image {
+.page-header .curly-bracket__image {
   mix-blend-mode: screen;
   width: auto;
   left: 0;
@@ -177,11 +173,7 @@ export default {
     padding-top: 0;
   }
 
-  .page-header__curly-bracket-column {
-    grid-column: var(--grid-content);
-  }
-
-  .page-header__curly-bracket {
+  .page-header .curly-bracket {
     display: block;
     flex-grow: 1;
     top: 0;
@@ -219,7 +211,7 @@ export default {
     grid-row-end: 6;
   }
 
-  .page-header__curly-bracket.curly-bracket {
+  .page-header .curly-bracket {
     position: relative;
     grid-column-start: 40;
     grid-column-end: 47;
@@ -228,7 +220,7 @@ export default {
     overflow: unset;
   }
 
-  .page-header__curly-bracket .curly-bracket__image {
+  .page-header .curly-bracket__image {
     height: 100%;
     width: auto;
   }
