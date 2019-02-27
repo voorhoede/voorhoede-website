@@ -10,10 +10,9 @@
       <footer class="academy-excerpt__actions button-group">
         <app-button
           class="academy-excerpt__primary-button"
-          :aria-label="$t('sign_up_for__title_', { title })"
-          :label="$t('sign_up')"
-          :to="link"
-          external
+          :aria-label="$t('learn_more_about__title_', { title })"
+          :label="$t('learn_more')"
+          :to="localeUrl({ name: 'events-slug', params: { slug } })"
         />
         <app-button
           :label="$t('all_events')"
@@ -42,6 +41,10 @@
       LazyLoad,
     },
     props: {
+      slug: {
+        type: String,
+        required: true,
+      },
       date: {
         type: String,
         required: true,

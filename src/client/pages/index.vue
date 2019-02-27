@@ -56,6 +56,7 @@
     </section>
     <div class="page-index__academy grid" v-if="upcomingEvents[0]">
       <academy-excerpt
+        :slug="upcomingEvents[0].slug"
         :date="upcomingEvents[0].date"
         :title="upcomingEvents[0].title"
         :description="upcomingEvents[0].description"
