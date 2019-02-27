@@ -30,7 +30,7 @@
         <h3 class="app-footer__title body-petite font-bold font-html-blue">
           Contact
         </h3>
-        <ul class="body-detail app-footer__list">
+        <ul class="body-detail app-footer__list app-footer__list--contact">
           <li class="app-footer__list-item">
             <a
               @click="trackLink('phone')"
@@ -43,13 +43,22 @@
               :href="`mailto:${ email }`"
               class="app-footer__link">{{ email }}</a>
           </li>
-          <li class="app-footer__list-item">
+          <li class="app-footer__list-item app-footer__list-item--address">
             <a
               :href="googleMapsLink"
               class="app-footer__link app-footer__link--right"
               target="_blank">
               <span>{{ address }}</span>
               <span>{{ postalCode }}</span>
+            </a>
+          </li>
+          <li class="app-footer__list-item app-footer__list-item--address">
+            <a
+              :href="googleMapsLink"
+              class="app-footer__link app-footer__link--right"
+              target="_blank">
+              <span>Professor Snijdersstraat 5</span>
+              <span>2628 RA Delft</span>
             </a>
           </li>
         </ul>
@@ -319,6 +328,16 @@ export default {
   margin: var(--spacing-smaller);
 }
 
+.app-footer__list--contact {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: right;
+}
+
+.app-footer__list--contact .app-footer__list-item:nth-child(2n) {
+  text-align: left;
+}
+
 .app-footer__list-item--icon {
   margin: 0 var(--spacing-tiny);
 }
@@ -454,13 +473,29 @@ export default {
     justify-content: center;
   }
 
+  .app-footer__list--contact {
+    display: flex;
+    text-align: inherit;
+  }
+
+  .app-footer__list--contact .app-footer__list-item:nth-child(2n) {
+    text-align: inherit;
+  }
+
   .app-footer__list-item {
     margin: 0;
     line-height: 2;
   }
+
+  .app-footer__list-item--address + .app-footer__list-item--address {
+    margin-left: var(--spacing-small);
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+  }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1300px) {
   .app-footer__layout {
     flex-wrap: nowrap;
   }
@@ -481,6 +516,10 @@ export default {
     width: 25%;
   }
 
+  .app-footer__column--right {
+    margin-left: var(--spacing-big);
+  }
+
   .app-footer__column--bottom {
     display: flex;
     align-items: flex-end;
@@ -488,4 +527,3 @@ export default {
   }
 }
 </style>
-
