@@ -5,18 +5,16 @@
       :text="page.subtitle"
       :image="page.headerIllustration"
     />
-    <div class="page-blog-container grid">
-      <text-block class="page-blog__text">
-        <p class="testimonial">{{ page.description }}</p>
-      </text-block>
-      <ul class="page-blog__posts">
-        <li v-for="blogPost in items.filter(post => post.published)" :key="blogPost.slug">
-          <blog-list-item large :item="blogPost" />
-        </li>
-      </ul>
-    </div>
+    <text-block class="page-blog__text">
+      <p class="testimonial">{{ page.description }}</p>
+    </text-block>
+    <ul class="page-blog__posts">
+      <li v-for="blogPost in items.filter(post => post.published)" :key="blogPost.slug">
+        <blog-list-item large :item="blogPost" />
+      </li>
+    </ul>
+    <!-- TODO: Make this a section to be defined in DATO (once for all blog pages) -->
     <div class="page-blog__cta grid">
-      <!-- TODO: Make this a section to be defined in DATO (once for all blog pages) -->
       <pivot-section
         v-if="pivots && pivots.length"
         class="page-blog__pivot-section"
@@ -47,23 +45,28 @@
 </script>
 
 <style>
+  .page-blog {
+    position: relative;
+  }
 
-  .page-blog-container {
-    padding-top: var(--spacing-larger);
+  .page-blog .page-header {
+    grid-column: var(--grid-page);
+    grid-row: 1;
   }
 
   .page-blog__text {
+    padding-top: var(--spacing-larger);
     margin-bottom: var(--spacing-larger);
-    grid-row: 1;
+    grid-row: 2;
     color: var(--html-blue);
   }
 
   .page-blog__posts {
-    grid-row: 2;
+    grid-row: 3;
   }
 
   .page-blog__cta {
-    grid-row: 3;
+    grid-row: 4;
     grid-column: var(--grid-page);
     background-color: var(--bg-pastel);
     position: relative;
@@ -85,7 +88,7 @@
       margin-bottom: var(--spacing-large);
     }
 
-    .page-blog-container {
+    .page-blog__container {
       position: relative;
     }
 
