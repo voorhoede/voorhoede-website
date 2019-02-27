@@ -1,7 +1,7 @@
 <template>
   <aside class="storytelling-section">
     <div class="storytelling-section__container">
-      <h2 class="storytelling-section__title h3">{{ title }}</h2>
+      <h3 class="storytelling-section__title h3">{{ title }}</h3>
       <section
         class="storytelling-section__item"
         v-for="item in items"
@@ -13,7 +13,7 @@
           :style="`background-image: url(${item.image.url})`" />
 
         <div class="storytelling-section__card">
-          <h3 class="body-big font-bold">{{ item.title }}</h3>
+          <h4 class="body-big font-bold">{{ item.title }}</h4>
           <rich-text-block :text="item.body" />
         </div>
       </section>

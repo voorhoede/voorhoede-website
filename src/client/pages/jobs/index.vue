@@ -1,5 +1,5 @@
 <template>
-  <section class="page-jobs">
+  <div class="page-jobs">
     <page-header
       :title="page.title"
       :text="page.subtitle"
@@ -20,7 +20,7 @@
         </li>
       </ul>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>

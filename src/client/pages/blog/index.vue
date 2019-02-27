@@ -5,7 +5,8 @@
       :text="page.subtitle"
       :image="page.headerIllustration"
     />
-    <div class="page-blog-container grid">
+    <section class="page-blog-container grid">
+      <h2 class="sr-only">{{ $t('blog_overview') }}</h2>
       <text-block class="page-blog__text">
         <p class="testimonial">{{ page.description }}</p>
       </text-block>
@@ -14,7 +15,7 @@
           <blog-list-item large :item="blogPost" />
         </li>
       </ul>
-    </div>
+    </section>
     <div class="page-blog__cta grid">
       <!-- TODO: Make this a section to be defined in DATO (once for all blog pages) -->
       <pivot-section
