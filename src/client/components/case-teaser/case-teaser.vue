@@ -1,6 +1,5 @@
 <template>
-  <section>
-    <h2 class="sr-only">{{ title }}</h2>
+  <div>
     <figure class="case-teaser grid">
       <div class="case-teaser__image">
         <responsive-image :image="image" />
@@ -11,7 +10,7 @@
         </span>
       </figcaption>
     </figure>
-  </section>
+  </div>
 </template>
 
 <script>
