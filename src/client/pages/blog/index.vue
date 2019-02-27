@@ -1,8 +1,8 @@
 <template>
   <main class="page-blog">
     <page-header
-      :context="page.title"
-      :tagline="page.subtitle"
+      :small-text="page.title"
+      :large-text="page.subtitle"
       heading="context"
       :image="page.headerIllustration"
     />

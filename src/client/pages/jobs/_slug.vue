@@ -1,8 +1,8 @@
 <template>
   <article class="page-job">
     <page-header
-      :context="page.subtitle"
-      :tagline="page.title"
+      :small-text="page.subtitle"
+      :large-text="page.title"
       heading="tagline"
       :image="page.jobImage"
     />

@@ -3,8 +3,8 @@
     <div class="page-index__header">
       <page-header
         is-homepage
-        :context="page.headerTitle"
-        :tagline="page.subtitle"
+        :small-text="page.headerTitle"
+        :large-text="page.subtitle"
         heading="context"
         :image="page.headerIllustration"/>
       <div class="page-index__scroll-to grid">

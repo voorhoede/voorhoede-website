@@ -2,8 +2,8 @@
   <div class="page-blog-post grid" lang="en">
     <page-header
       class="page-blog-post__header"
-      :context="page.subtitle"
-      :tagline="page.title"
+      :small-text="page.subtitle"
+      :large-text="page.title"
       heading="tagline"
       :image="page.headerIllustration"
     />

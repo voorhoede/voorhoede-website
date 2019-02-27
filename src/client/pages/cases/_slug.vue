@@ -2,8 +2,8 @@
   <main class="grid">
     <div class="page-case__case-header">
     <page-header
-      :context="page.subtitle"
-      :tagline="page.title"
+      :small-text="page.subtitle"
+      :large-text="page.title"
       heading="tagline"
       :image="page.headerIllustration"
     />
