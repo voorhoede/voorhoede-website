@@ -1,5 +1,5 @@
 <template>
-  <main class="grid">
+  <main>
     <div class="page-case__case-header">
       <page-header-detail
         has-brick
