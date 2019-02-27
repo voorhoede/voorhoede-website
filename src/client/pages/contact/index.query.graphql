@@ -49,28 +49,6 @@ fragment contact on ContactRecord {
     description
   },
   keywords,
-  contactPageForm {
-    subjectTitle,
-    contactTitle,
-    nameLabel,
-    namePlaceholder,
-    nameErrorMessage,
-    emailLabel,
-    emailPlaceholder,
-    emailErrorMessageEmpty,
-    emailErrorMessageIncorrect,
-    businessLabel,
-    businessPlaceholder,
-    phoneLabel,
-    phonePlaceholder,
-    phoneErrorMessage,
-    websiteLabel,
-    websitePlaceholder,
-    projectLabel,
-    projectPlaceholder,
-    projectErrorMessage,
-    ctaButtonLabel,
-  },
   headerIllustration {
     url,
     alt
@@ -80,4 +58,3 @@ fragment contact on ContactRecord {
   phoneLabel,
   addressLabel,
 }
-

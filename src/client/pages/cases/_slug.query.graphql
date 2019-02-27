@@ -161,22 +161,4 @@ fragment caseItem on CaseItemRecord {
   quote,
   author,
   getInTouchTitle,
-  getInTouchForm {
-    title,
-    nameLabel,
-    namePlaceholder,
-    nameErrorMessage,
-    emailLabel,
-    emailPlaceholder,
-    emailErrorMessageEmpty,
-    emailErrorMessageIncorrect,
-    summaryLabel,
-    summaryPlaceholder,
-    summaryErrorMessage,
-    phoneLabel,
-    phonePlaceholder,
-    phoneErrorMessage,
-    ctaButtonLabel
-  }
 }
-
