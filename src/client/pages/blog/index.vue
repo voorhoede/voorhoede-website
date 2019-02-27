@@ -50,7 +50,6 @@
   }
 
   .page-blog .page-header {
-    grid-column: var(--grid-page);
     grid-row: 1;
   }
 

@@ -61,6 +61,7 @@
 <style>
 
   .page-header-detail {
+    grid-column: var(--grid-page);
     background-color: var(--bg-pastel);
   }
 
