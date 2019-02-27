@@ -120,8 +120,8 @@ function errorPageToJson(errorPage) {
 function redirectsToText (redirects, locales, defaultLocale) {
   const redirectsToNonDefaultLocales = locales
     .filter(locale => locale !== defaultLocale)
-    .map(locale => `/ /${locale}/ 303 Language=${locale}`)
-  const redirectToDefaultLocale = `/ /${defaultLocale}/ 303`
+    .map(locale => `/ /${locale}/ 302 Language=${locale}`)
+  const redirectToDefaultLocale = `/ /${defaultLocale}/ 302`
 
   const redirectRulesFromCms = redirects
     .map(redirect => `${redirect.from} ${redirect.to} ${redirect.httpStatusCode}`)
