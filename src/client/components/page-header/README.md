@@ -1,13 +1,15 @@
 # Page Header
-`isHomepage` is a boolean that toggles the homepage header variant
+`isHomepage` is a boolean that toggles the homepage header variant,
+`heading` defines which string is used as the `<h1>` inside the page-header
 
 ## Usage
 
 ```html
 <page-header
   isHomepage
-  title="We are De Voorhoede"
-  subtitle="How can we help?"
+  context="We are De Voorhoede"
+  tagline="How can we help?"
+  header="context"
   :image="image"
 >
 
