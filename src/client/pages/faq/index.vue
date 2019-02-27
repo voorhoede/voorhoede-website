@@ -1,8 +1,9 @@
 <template>
   <div class="grid page-faq">
     <page-header
-      :title="page.title"
-      :text="page.subtitle"
+      :context="page.subtitle"
+      :tagline="page.title"
+      heading="tagline"
       :image="page.headerIllustration"
     />
     <div class="page-faq__overview">

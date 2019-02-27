@@ -7,7 +7,7 @@
 <page-header
   isHomepage
   title="We are De Voorhoede"
-  sub-title="How can we help?"
+  subtitle="How can we help?"
   :image="image"
 >
 

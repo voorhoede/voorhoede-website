@@ -1,8 +1,9 @@
 <template>
   <main class="page-blog">
     <page-header
-      :title="page.title"
-      :text="page.subtitle"
+      :context="page.title"
+      :tagline="page.subtitle"
+      heading="context"
       :image="page.headerIllustration"
     />
     <div class="page-blog-container grid">

@@ -1,8 +1,9 @@
 <template>
   <article class="page-job">
     <page-header
-      :title="page.subtitle"
-      :text="page.title"
+      :context="page.subtitle"
+      :tagline="page.title"
+      heading="tagline"
       :image="page.jobImage"
     />
     <div class="grid">

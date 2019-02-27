@@ -1,12 +1,12 @@
 <template>
   <main class="grid">
     <div class="page-case__case-header">
-      <page-header-detail
-        has-brick
-        :title="page.title"
-        sub-title="Case study"
-        :image="page.heroIllustration"
-      />
+    <page-header
+      :context="page.subtitle"
+      :tagline="page.title"
+      heading="tagline"
+      :image="page.headerIllustration"
+    />
     </div>
     <aside class="page-case__case-meta-container grid">
       <h2 class="sr-only">Case meta</h2>
@@ -126,7 +126,7 @@
     FullWidthImage,
     ContactForm,
     ImageWithDescription,
-    PageHeaderDetail,
+    PageHeader,
     QuoteBlock,
     ResponsiveImage,
     ResponsiveVideo,
@@ -144,7 +144,7 @@
       FullWidthImage,
       ContactForm,
       ImageWithDescription,
-      PageHeaderDetail,
+      PageHeader,
       QuoteBlock,
       ResponsiveImage,
       ResponsiveVideo,
@@ -278,7 +278,7 @@
       position: relative;
     }
 
-    .page-case__case-header .page-header-detail__container {
+    .page-case__case-header .page-header__container {
       grid-column-start: 4;
       grid-column-end: 48;
     }

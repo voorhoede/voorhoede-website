@@ -2,7 +2,7 @@
   <article class="service-excerpt">
     <div class="service-excerpt__content">
       <h3 class="service-excerpt__title h5">{{ tagline }}</h3>
-      <h4 class="service-excerpt__sub-title h3">{{ title }}</h4>
+      <h4 class="service-excerpt__subtitle h3">{{ title }}</h4>
       <div class="service-excerpt__divider"/>
       <ul class="list">
         <li class="body" v-for="line in summary" :key="line.title">
@@ -61,7 +61,7 @@ export default {
   background-color: var(--brand-yellow);
 }
 
-.service-excerpt__sub-title {
+.service-excerpt__subtitle {
   margin-bottom: var(--spacing-small);
 }
 

@@ -1,12 +1,12 @@
 <template>
   <div class="page-blog-post grid" lang="en">
-    <page-header-detail
+    <page-header
       class="page-blog-post__header"
-      :title="page.title"
-      :sub-title="page.subtitle"
+      :context="page.subtitle"
+      :tagline="page.title"
+      heading="tagline"
       :image="page.headerIllustration"
     />
-
     <article class="page-blog-post-list">
       <text-block>
         <p class="font-html-blue testimonial">{{ page.introTitle }}</p>
@@ -122,7 +122,7 @@ import {
   CodeBlock,
   PivotSection,
   ImageWithDescription,
-  PageHeaderDetail,
+  PageHeader,
   QuoteBlock,
   ResponsiveImage,
   ResponsiveVideo,
@@ -140,7 +140,7 @@ export default {
     CodeBlock,
     PivotSection,
     ImageWithDescription,
-    PageHeaderDetail,
+    PageHeader,
     QuoteBlock,
     ResponsiveImage,
     ResponsiveVideo,

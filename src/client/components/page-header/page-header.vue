@@ -11,18 +11,32 @@
       <img v-if="image" :src="image.url" alt="">
     </div>
     <div class="page-header__description">
-      <div class="page-header__title sub-title">
-        <h1 v-html="title" />
+      <div class="page-header__title subtitle">
+        <h1
+          v-if="heading === 'context'"
+          v-html="context"
+        />
+        <p
+          v-else
+          v-html="context"
+        />
       </div>
-      <div
-        :class="{
-          'hero': isHomepage,
-          'h1': !isHomepage,
-        }"
-      >
-        <h2 class="sr-only">{{ text }}</h2>
+      <div :class="{
+        'hero': isHomepage,
+        'h1': !isHomepage,
+      }">
+        <h1
+          v-if="heading === 'tagline'"
+          class="sr-only"
+          v-html="tagline"
+        />
+        <p
+          v-else
+          class="sr-only"
+          v-html="tagline"
+        />
         <self-typing-text
-          :text="text"
+          :text="tagline"
           :class="{
             'self-typing-text--hero': isHomepage,
             'self-typing-text--h1': !isHomepage,
@@ -43,6 +57,10 @@ export default {
     SelfTypingText,
   },
   props: {
+    isHomepage: {
+      type: Boolean,
+      default: false
+    },
     image: {
       type: Object,
       required: false,
@@ -53,18 +71,19 @@ export default {
         return image && typeof(image.url) === 'string'
       },
     },
-    title: {
+    context: {
       type: String,
       required: true,
     },
-    text: {
+    tagline: {
       type: String,
       required: true,
     },
-    isHomepage: {
-      type: Boolean,
-      default: false
-    },
+    heading: {
+      type: String,
+      default: 'tagline',
+      validator: value => ['context', 'tagline'].indexOf(value) !== -1,
+    }
   },
 }
 </script>

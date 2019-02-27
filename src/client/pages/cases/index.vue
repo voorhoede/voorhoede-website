@@ -1,9 +1,11 @@
 <template>
   <main class="page-cases">
     <page-header
-      :title="page.title"
-      :text="page.subtitle"
-      :image="page.headerIllustration" />
+      :context="page.title"
+      :tagline="page.subtitle"
+      heading="context"
+      :image="page.headerIllustration"
+    />
     <div class="grid">
       <ul class="page-case__overview">
         <li class="page-case__overview-item" v-for="caseItem in items" :key="caseItem.slug">
