@@ -1,7 +1,7 @@
 <template>
-  <section>
+  <section class="case-teaser">
     <h2 class="sr-only">{{ title }}</h2>
-    <figure class="case-teaser grid">
+    <figure class="case-teaser__figure">
       <div class="case-teaser__image">
         <responsive-image :image="image" />
       </div>
@@ -41,7 +41,7 @@ export default {
     --border-width: 60px;
   }
 
-  .case-teaser {
+  .case-teaser__figure {
     display: flex;
     flex-direction: column;
   }
@@ -66,7 +66,7 @@ export default {
   }
 
   @media (min-width: 720px) {
-    .case-teaser {
+    .case-teaser__figure {
       flex-direction: row;
       margin: 0 auto var(--spacing-large) auto;
       width: 100%;
@@ -97,7 +97,7 @@ export default {
   }
 
   @media (min-width: 1100px) {
-    .case-teaser {
+    .case-teaser__figure {
       margin-bottom: var(--spacing-big);
     }
 

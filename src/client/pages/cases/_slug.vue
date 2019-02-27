@@ -1,13 +1,11 @@
 <template>
-  <main>
-    <div class="page-case__case-header">
-      <page-header-detail
-        has-brick
-        :title="page.title"
-        sub-title="Case study"
-        :image="page.heroIllustration"
-      />
-    </div>
+  <main class="page-case">
+    <page-header-detail
+      has-brick
+      :title="page.title"
+      sub-title="Case study"
+      :image="page.heroIllustration"
+    />
     <aside class="page-case__case-meta-container grid">
       <h2 class="sr-only">Case meta</h2>
       <div class="page-case__scroll-to">
@@ -27,13 +25,11 @@
       />
     </aside>
 
-    <div class="page-case__case-teaser">
-      <case-teaser
-        v-if="page.caseTeaser"
-        :title="page.caseTeaser.title"
-        :image="page.caseTeaser.image"
-      />
-    </div>
+    <case-teaser
+      v-if="page.caseTeaser"
+      :title="page.caseTeaser.title"
+      :image="page.caseTeaser.image"
+    />
 
     <article class="page-case__content">
       <template v-for="item in page.content">
@@ -172,14 +168,7 @@
     --case-full-width-image-height: 515px; /* value according to design */
   }
 
-  .page-case__content {
-    grid-row: 4;
-    grid-column: var(--grid-page);
-    padding: 0 var(--spacing-small);
-  }
-
-  .page-case__case-header {
-    grid-column: var(--grid-page);
+  .page-case .page-header-detail {
     grid-row: 1;
   }
 
@@ -202,6 +191,25 @@
     grid-column: 4 / var(--grid-content-end);
   }
 
+  .page-case .case-teaser {
+    grid-column: var(--grid-page);
+    grid-row: 3;
+    margin: var(--spacing-large) 0;
+  }
+
+  .page-case__content {
+    grid-row: 4;
+    grid-column: var(--grid-page);
+    padding: 0 var(--spacing-small);
+  }
+
+  .page-case__link-container {
+    grid-row: 5;
+    padding-top: var(--spacing-small);
+    border-top: 2px solid var(--very-dim);
+    margin-bottom: var(--spacing-bigger);
+  }
+
   .page-case__contact-form,
   .page-case__content,
   .page-case__content > *:not(:last-child) {
@@ -215,19 +223,6 @@
 
   .page-case__title {
     margin-bottom: var(--spacing-smaller);
-  }
-
-  .page-case__link-container {
-    grid-row: 5;
-    padding-top: var(--spacing-small);
-    border-top: 2px solid var(--very-dim);
-    margin-bottom: var(--spacing-bigger);
-  }
-
-  .page-case__case-teaser {
-    grid-column: var(--grid-page);
-    grid-row: 3;
-    margin: var(--spacing-large) 0;
   }
 
   .page-case__content .storytelling-section {
@@ -314,7 +309,7 @@
       padding: 0;
     }
 
-    .page-case__case-teaser {
+    .page-case .case-teaser {
       margin: var(--spacing-larger) 0 0 0;
     }
 
