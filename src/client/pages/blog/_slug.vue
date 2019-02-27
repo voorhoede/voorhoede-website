@@ -1,5 +1,5 @@
 <template>
-  <div class="page-blog-post grid" lang="en">
+  <div class="page-blog-post" lang="en">
     <page-header-detail
       class="page-blog-post__header"
       :title="page.title"
