@@ -4,7 +4,8 @@
       :title="page.title"
       :text="page.subtitle"
       :image="page.headerIllustration" />
-    <div class="grid">
+    <section class="grid">
+      <h2 class="sr-only">{{ $t('case_overview') }}</h2>
       <ul class="page-case__overview">
         <li class="page-case__overview-item" v-for="caseItem in items" :key="caseItem.slug">
           <case-excerpt
@@ -15,7 +16,7 @@
           />
         </li>
       </ul>
-    </div>
+    </section>
     <div class="grid">
       <pivot-section
         v-if="pivots && pivots.length"

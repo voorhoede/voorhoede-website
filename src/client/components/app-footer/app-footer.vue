@@ -1,6 +1,5 @@
 <template>
   <footer class="app-footer grid" role="contentinfo">
-    <h2 class="sr-only">Footer</h2>
     <div class="app-footer__layout">
       <div class="app-footer__header">
         <nuxt-link :to="localeUrl('index')" :aria-label="$t('home')" :title="$t('home')">
@@ -8,9 +7,9 @@
         </nuxt-link>
       </div>
       <div class="app-footer__column">
-        <h3 class="app-footer__title body-petite font-bold font-html-blue">
+        <h2 class="app-footer__title body-petite font-bold font-html-blue">
           Explore
-        </h3>
+        </h2>
         <ul class="app-footer__list">
           <li
             v-for="link in links"
@@ -28,9 +27,9 @@
         class="app-footer__column app-footer__column--right"
         ref="contact"
       >
-        <h3 class="app-footer__title body-petite font-bold font-html-blue">
+        <h2 class="app-footer__title body-petite font-bold font-html-blue">
           Contact
-        </h3>
+        </h2>
         <ul class="body-detail app-footer__list">
           <li class="app-footer__list-item">
             <a
