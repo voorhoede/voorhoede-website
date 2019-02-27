@@ -1,9 +1,9 @@
 <template>
   <div class="grid page-service">
     <page-header
-      :context="page.subtitle"
-      :tagline="page.title"
-      heading="tagline"
+      :context="page.title"
+      :tagline="page.subtitle"
+      heading="context"
       :image="page.headerIllustration"
     />
     <article class="page-service__overview">
