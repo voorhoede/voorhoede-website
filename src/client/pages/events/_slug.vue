@@ -4,13 +4,13 @@
       class="page-event-detail__header"
       :title="page.label.label"
       :text="page.title"
-      :image="pageHeaderImage" />
+      :image="imageIsIllustration ? page.image : fallbackIllustration" />
 
     <main class="page-event-detail__main">
       <responsive-image
+        v-if="!imageIsIllustration && page.image"
         class="page-event-detail__image"
-        v-if="bodyImage"
-        :image="bodyImage"
+        :image="page.image"
       />
 
       <template v-for="item in page.items">
@@ -125,25 +125,21 @@
       TextBlock,
     },
     asyncData,
+    data() {
+      return {
+        fallbackIllustration: {
+          url: '/illustrations/event.svg',
+          format: 'svg'
+        }
+      }
+    },
     computed: {
       isMeetup() {
         return this.page.label.label.toLowerCase() === 'meet-up'
       },
-      pageHeaderImage() {
+      imageIsIllustration() {
         const image = this.page.image
-        if (image && image.format === 'svg') {
-          return image
-        } else {
-          return undefined
-        }
-      },
-      bodyImage() {
-        const image = this.page.image
-        if (image && image.format !== 'svg') {
-          return image
-        } else {
-          return undefined
-        }
+        return (image && image.format === 'svg')
       },
       formattedDate() {
         return formatDate({
