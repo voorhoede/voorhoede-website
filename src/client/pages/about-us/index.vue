@@ -1,5 +1,5 @@
 <template>
-  <div class="grid page-about-us">
+  <div class="page-about-us">
     <page-header
       class="page-about-us__header"
       :title="page.title"
