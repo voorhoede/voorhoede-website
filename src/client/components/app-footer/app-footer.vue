@@ -43,22 +43,17 @@
               :href="`mailto:${ email }`"
               class="app-footer__link">{{ email }}</a>
           </li>
-          <li class="app-footer__list-item app-footer__list-item--address">
+          <li
+            v-for="address in addresses"
+            :key="address.address"
+            class="app-footer__list-item app-footer__list-item--address"
+          >
             <a
-              :href="googleMapsLink"
+              :href="address.googleMapsLink"
               class="app-footer__link app-footer__link--right"
               target="_blank">
-              <span>{{ address }}</span>
-              <span>{{ postalCode }}</span>
-            </a>
-          </li>
-          <li class="app-footer__list-item app-footer__list-item--address">
-            <a
-              :href="googleMapsLink"
-              class="app-footer__link app-footer__link--right"
-              target="_blank">
-              <span>Professor Snijdersstraat 5</span>
-              <span>2628 RA Delft</span>
+              <span>{{ address.address }}</span>
+              <span>{{ address.postalCode }} {{ address.city }}</span>
             </a>
           </li>
         </ul>
@@ -131,17 +126,19 @@ export default {
       type: String,
       default: '',
     },
-    googleMapsLink: {
-      type: String,
-      default: '',
-    },
-    address: {
-      type: String,
-      default: '',
-    },
-    postalCode: {
-      type: String,
-      default: '',
+    addresses: {
+      type: Array,
+      default: () => [],
+      validator(addresses) {
+        return addresses.every(address => [
+            'address',
+            'postalCode',
+            'city',
+            'googleMapsLink'
+          ]
+            .every(prop => typeof(address[prop] === 'string'))
+        )
+      }
     },
     copyrightLabel: {
       type: String,
