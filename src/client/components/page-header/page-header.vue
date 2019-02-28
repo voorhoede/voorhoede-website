@@ -43,16 +43,19 @@
         />
       </div>
     </div>
+    <scroll-to v-if="isHomepage" point-down />
   </header>
 </template>
 
 <script>
 import CurlyBracket from '../curly-bracket'
+import ScrollTo from '../scroll-to'
 import SelfTypingText from '../self-typing-text'
 
 export default {
   components: {
     CurlyBracket,
+    ScrollTo,
     SelfTypingText,
   },
   props: {
@@ -97,6 +100,7 @@ export default {
   background-color: var(--bg-pastel);
   grid-template-rows: var(--app-header-height-small) 1fr;
   overflow: hidden;
+  position: relative;
 }
 
 .page-header__brick {
@@ -152,6 +156,12 @@ export default {
   margin-top: var(--spacing-smaller);
   hyphens: auto;
   overflow-wrap: break-word;
+}
+.page-header .scroll-to {
+  height: auto;
+  grid-column: 2;
+  position:absolute;
+  bottom: 0;
 }
 
 @media (min-width: 420px) {

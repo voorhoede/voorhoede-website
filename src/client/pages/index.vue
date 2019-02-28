@@ -6,10 +6,8 @@
         :small-text="page.headerTitle"
         :large-text="page.subtitle"
         heading="small-text"
-        :image="page.headerIllustration"/>
-      <div class="page-index__scroll-to grid">
-
-      </div>
+        :image="page.headerIllustration"
+      />
       <div class="grid">
         <p class="scroll-highlighted-text">
           <scroll-highlighted-text
