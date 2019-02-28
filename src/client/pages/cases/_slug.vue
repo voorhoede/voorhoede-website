@@ -4,7 +4,7 @@
       <page-header
         :small-text="page.subtitle"
         :large-text="page.title"
-        heading="tagline"
+        heading="large-text"
         :image="page.headerIllustration"
       />
     </div>

@@ -5,10 +5,10 @@
         is-homepage
         :small-text="page.headerTitle"
         :large-text="page.subtitle"
-        heading="context"
+        heading="small-text"
         :image="page.headerIllustration"/>
       <div class="page-index__scroll-to grid">
-        <scroll-to point-down />
+
       </div>
       <div class="grid">
         <p class="scroll-highlighted-text">

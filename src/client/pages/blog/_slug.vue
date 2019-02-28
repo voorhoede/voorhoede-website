@@ -4,7 +4,7 @@
       class="page-blog-post__header"
       :small-text="page.subtitle"
       :large-text="page.title"
-      heading="tagline"
+      heading="large-text"
       :image="page.headerIllustration"
     />
     <article class="page-blog-post-list">

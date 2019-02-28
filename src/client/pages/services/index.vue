@@ -3,7 +3,7 @@
     <page-header
       :small-text="page.title"
       :large-text="page.subtitle"
-      heading="context"
+      heading="small-text"
       :image="page.headerIllustration" />
     <services-list
       :services="page.services"

@@ -4,7 +4,7 @@
       class="page-about-us__header"
       :small-text="page.title"
       :large-text="page.subtitle"
-      heading="context"
+      heading="small-text"
       :image="page.headerIllustration"
     />
     <image-with-text-block
