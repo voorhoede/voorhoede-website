@@ -1,12 +1,12 @@
 <template>
   <main class="grid">
     <div class="page-case__case-header">
-    <page-header
-      :small-text="page.subtitle"
-      :large-text="page.title"
-      heading="tagline"
-      :image="page.headerIllustration"
-    />
+      <page-header
+        :small-text="page.subtitle"
+        :large-text="page.title"
+        heading="tagline"
+        :image="page.headerIllustration"
+      />
     </div>
     <aside class="page-case__case-meta-container grid">
       <h2 class="sr-only">Case meta</h2>
