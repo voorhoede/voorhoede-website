@@ -30,7 +30,20 @@
         <h2 class="app-footer__title body-petite font-bold font-html-blue">
           Contact
         </h2>
-        <ul class="body-detail app-footer__list">
+        <ul class="body-detail app-footer__list app-footer__list--contact">
+          <li
+            v-for="address in addresses"
+            :key="address.address"
+            class="app-footer__list-item app-footer__list-item--address"
+          >
+            <a
+              :href="address.googleMapsLink"
+              class="app-footer__link app-footer__link--right"
+              target="_blank">
+              <span>{{ address.address }}</span>
+              <span>{{ address.postalCode }} {{ address.city }}</span>
+            </a>
+          </li>
           <li class="app-footer__list-item">
             <a
               @click="trackLink('phone')"
@@ -42,15 +55,6 @@
               @click="trackLink('email')"
               :href="`mailto:${ email }`"
               class="app-footer__link">{{ email }}</a>
-          </li>
-          <li class="app-footer__list-item">
-            <a
-              :href="googleMapsLink"
-              class="app-footer__link app-footer__link--right"
-              target="_blank">
-              <span>{{ address }}</span>
-              <span>{{ postalCode }}</span>
-            </a>
           </li>
         </ul>
       </div>
@@ -122,17 +126,19 @@ export default {
       type: String,
       default: '',
     },
-    googleMapsLink: {
-      type: String,
-      default: '',
-    },
-    address: {
-      type: String,
-      default: '',
-    },
-    postalCode: {
-      type: String,
-      default: '',
+    addresses: {
+      type: Array,
+      default: () => [],
+      validator(addresses) {
+        return addresses.every(address => [
+            'address',
+            'postalCode',
+            'city',
+            'googleMapsLink'
+          ]
+            .every(prop => typeof(address[prop] === 'string'))
+        )
+      }
     },
     copyrightLabel: {
       type: String,
@@ -319,6 +325,18 @@ export default {
   margin: var(--spacing-smaller);
 }
 
+.app-footer__list--contact {
+  text-align: left;
+}
+
+.app-footer__list--contact .app-footer__list-item {
+  width: calc(50% - 2 * var(--spacing-smaller));
+}
+
+.app-footer__list--contact .app-footer__list-item:nth-child(2n - 1) {
+  text-align: right;
+}
+
 .app-footer__list-item--icon {
   margin: 0 var(--spacing-tiny);
 }
@@ -365,7 +383,7 @@ export default {
   margin-bottom: var(--spacing-smaller);
 }
 
-@media (min-width: 720px) {
+@media (min-width: 800px) {
   .app-footer {
     position: relative;
     flex-direction: row;
@@ -397,11 +415,11 @@ export default {
     margin-bottom: var(--spacing-medium);
     text-align: left;
     align-items: unset;
-    width: calc(50% - var(--spacing-huge) / 2);
+    width: calc(50% - var(--spacing-big) / 2);
   }
 
   .app-footer__column--right {
-    margin-left: var(--spacing-huge);
+    margin-left: var(--spacing-big);
     text-align: left;
     border-bottom: 0;
   }
@@ -454,20 +472,37 @@ export default {
     justify-content: center;
   }
 
+  .app-footer__list--contact {
+    flex-direction: row;
+    text-align: inherit;
+  }
+
   .app-footer__list-item {
     margin: 0;
     line-height: 2;
   }
+
+  .app-footer__list--contact .app-footer__list-item:nth-child(2n - 1) {
+    text-align: inherit;
+  }
+
+  .app-footer__list--contact .app-footer__list-item {
+    width: 50%;
+  }
+
+  .app-footer__list-item--address {
+    margin-bottom: 2em; /* one line, font-size * line-height */
+  }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1400px) {
   .app-footer__layout {
     flex-wrap: nowrap;
   }
 
   .app-footer__header {
     display: flex;
-    width: 25%;
+    width: 22%;
     justify-content: flex-start;
     align-items: flex-start;
   }
@@ -478,14 +513,13 @@ export default {
   }
 
   .app-footer__column {
-    width: 25%;
+    width: 28%;
   }
 
   .app-footer__column--bottom {
     display: flex;
     align-items: flex-end;
-    flex: 1 1 25%;
+    flex: 1 1 22%;
   }
 }
 </style>
-
