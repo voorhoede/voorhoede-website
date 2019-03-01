@@ -57,10 +57,10 @@
   }
 </script>
 
-
 <style>
-  .page-event__upcoming-events-title {
-    margin-bottom: var(--spacing-medium);
+  .page-event__content {
+    grid-column: var(--grid-page);
+    overflow: hidden; /* hide right pseudo content from .page-event__intro */
   }
 
   .page-event__intro {
@@ -69,19 +69,6 @@
     padding-bottom: var(--spacing-larger);
     color: var(--html-blue);
     background-color: var(--bg-pastel);
-  }
-
-  .page-event__upcoming-events {
-    position: relative;
-  }
-
-  .page-event__upcoming-events-list {
-    margin-top: var(--spacing-larger);
-    margin-bottom: var(--spacing-large);
-  }
-
-  .page-event__upcoming-events-item {
-    position: relative;
   }
 
   .page-event__intro::before {
@@ -104,8 +91,21 @@
     background-color: var(--bg-pastel);
   }
 
-  .page-event__content {
-    overflow: hidden; /* hide right pseudo content from .page-event__intro */
+  .page-event__upcoming-events {
+    position: relative;
+  }
+
+  .page-event__upcoming-events-title {
+    margin-bottom: var(--spacing-medium);
+  }
+
+  .page-event__upcoming-events-list {
+    margin-top: var(--spacing-larger);
+    margin-bottom: var(--spacing-large);
+  }
+
+  .page-event__upcoming-events-item {
+    position: relative;
   }
 
   @media (min-width: 720px) {
@@ -157,7 +157,7 @@
       grid-column-start: 4;
     }
 
-    .page-event__upcoming-events .page-event__upcoming-events-title {
+    .page-event__upcoming-events-title {
       position: absolute;
       left: 101%;
       width: 100%;
@@ -168,7 +168,7 @@
   }
 
   @media (min-width: 1440px) {
-    .page-event__upcoming-events .page-event__upcoming-events-title {
+    .page-event__upcoming-events-title {
       left: 100%;
     }
   }
