@@ -10,6 +10,11 @@
       <img v-if="image" :src="image.url" alt="">
     </div>
     <div class="page-header__description">
+      <!--
+        `<h1>` is either the headline or the byline.
+        If it is the headline, a `<p>` for the byline should precede it,
+        otherwise a `<p>` for the headline should succeed it.
+      -->
       <p
         v-if="(heading === 'headline')"
         v-html="byline"
