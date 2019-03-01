@@ -138,6 +138,7 @@
 
 <style>
   .page-index__header {
+    grid-column: var(--grid-page);
     margin-bottom: var(--spacing-big);
     background-color: var(--bg-pastel);
   }
@@ -166,6 +167,7 @@
 
   .page-index__services {
     margin-bottom: var(--spacing-larger);
+    grid-column: var(--grid-page);
     grid-template-rows: repeat(2, auto);
   }
 
@@ -195,12 +197,22 @@
     margin-bottom: calc(var(--spacing-large) - var(--spacing-smaller));
   }
 
+  .page-index__cases {
+    margin-bottom: var(--spacing-larger);
+    grid-column: var(--grid-page);
+  }
+
+  .page-index__cases .horizontal-carousel {
+    margin-bottom: var(--spacing-medium);
+    grid-column: var(--grid-page);
+  }
+
   .page-index__clients {
     margin-bottom: var(--spacing-larger);
-    padding-top: var(--spacing-larger);
-    padding-bottom: var(--spacing-larger);
-    background-color: var(--fog);
+    padding: var(--spacing-larger) 0;
+    grid-column: var(--grid-page);
     grid-template-rows: repeat(2, auto);
+    background-color: var(--fog);
   }
 
   .page-index .highlighted-clients {
@@ -210,6 +222,7 @@
   .page-index__academy {
     margin-bottom: var(--spacing-large);
     padding: var(--spacing-larger) 0;
+    grid-column: var(--grid-page);
     background-color: var(--bg-pastel);
   }
 
@@ -219,8 +232,9 @@
   }
 
   .page-index__blog-posts {
-    grid-template-rows: repeat(3, auto);
     margin-bottom: var(--spacing-large);
+    grid-template-rows: repeat(3, auto);
+    grid-column: var(--grid-page);
   }
 
   .page-index__blog-posts-list {
@@ -246,15 +260,6 @@
     display: flex;
     justify-content: center;
     grid-row: 3;
-  }
-
-  .page-index__cases {
-    margin-bottom: var(--spacing-larger);
-  }
-
-  .page-index__cases .horizontal-carousel {
-    margin-bottom: var(--spacing-medium);
-    grid-column: var(--grid-page);
   }
 
   @media (min-width: 720px) {
@@ -379,7 +384,7 @@
     .page-index__services > *,
     .page-index__clients > * {
       grid-column-start: 4;
-      grid-column-end: 47;
+      grid-column-end: 48;
     }
 
     .page-index__section-title {
