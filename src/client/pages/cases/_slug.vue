@@ -2,6 +2,7 @@
   <main class="grid">
     <div class="page-case__case-header">
       <page-header
+        fill-screen
         :byline="page.subtitle"
         :headline="page.title"
         heading="headline"
@@ -10,9 +11,6 @@
     </div>
     <aside class="page-case__case-meta-container grid">
       <h2 class="sr-only">Case meta</h2>
-      <div class="page-case__scroll-to">
-        <scroll-to point-down />
-      </div>
       <case-meta
         class="page-case__case-meta"
         :expertise-title="page.metaData.expertisesTitle"
@@ -183,13 +181,6 @@
     grid-row: 1;
   }
 
-  .page-case__scroll-to {
-    grid-row: 1;
-    grid-column: 2;
-    position: absolute;
-    bottom: 0;
-  }
-
   .page-case__case-meta-container {
     grid-column: var(--grid-page);
     grid-row: 2;
@@ -272,10 +263,6 @@
     .page-case__content,
     .page-case__content > *:not(:last-child) {
       margin-bottom: var(--spacing-big);
-    }
-
-    .page-case__scroll-to {
-      position: relative;
     }
 
     .page-case__case-header .page-header__container {

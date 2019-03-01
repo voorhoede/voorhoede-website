@@ -1,12 +1,13 @@
 <template>
-  <header class="page-header grid" :class="{ 'page-header--home': isHomepage }">
-    <div v-if="isHomepage" class="page-header__brick" />
+  <header
+    class="page-header grid"
+    :class="{ 'page-header--fill-screen': fillScreen }"
+  >
     <curly-bracket
-      v-if="isHomepage"
       side="right"
       color="paper"
     />
-    <div class="page-header__image" :class="{ 'page-header__image--spaced-top': !isHomepage }">
+    <div class="page-header__image">
       <img v-if="image" :src="image.url" alt="">
     </div>
     <div class="page-header__description">
@@ -33,11 +34,11 @@
         v-html="headline"
       />
       <self-typing-text
-        :class="(isHomepage) ? 'hero' : 'h1'"
+        :class="(fillScreen) ? 'hero' : 'h1'"
         :text="headline"
       />
     </div>
-    <scroll-to v-if="isHomepage" point-down />
+    <scroll-to v-if="fillScreen" point-down />
   </header>
 </template>
 
@@ -53,19 +54,9 @@ export default {
     SelfTypingText,
   },
   props: {
-    isHomepage: {
+    fillScreen: {
       type: Boolean,
       default: false
-    },
-    image: {
-      type: Object,
-      required: false,
-      default: function() {
-        return {}
-      },
-      validator(image) {
-        return image && typeof(image.url) === 'string'
-      },
     },
     byline: {
       type: String,
@@ -79,7 +70,16 @@ export default {
       type: String,
       default: 'headline',
       validator: value => ['byline', 'headline'].indexOf(value) !== -1,
-    }
+    },
+    image: {
+      type: Object,
+      default: function() {
+        return {}
+      },
+      validator(image) {
+        return image && typeof(image.url) === 'string'
+      },
+    },
   },
 }
 </script>
@@ -95,14 +95,17 @@ export default {
   grid-template-rows: var(--app-header-height-small) 1fr;
   overflow: hidden;
   position: relative;
+  grid-column: var(--grid-page);
 }
-
-.page-header__brick {
+.page-header--fill-screen::before {
+  content: '';
   display: block;
   background-color: var(--brand-yellow);
-  grid-column: var(--grid-page);
-  grid-row-start: 3;
+  grid-column: var(--grid-page-right);
+  grid-row-start: 1;
   grid-row-end: 6;
+  height: 100vh;
+  min-height: auto;
 }
 
 .page-header .curly-bracket {
@@ -130,16 +133,6 @@ export default {
   align-self: flex-end;
 }
 
-.page-header__image img {
-  object-fit: contain;
-  object-position: bottom;
-  width: 100%;
-}
-
-.page-header__image--spaced-top {
-  display: none;
-}
-
 .page-header__description {
   margin: var(--spacing-large) 0;
   grid-column: var(--grid-content);
@@ -156,12 +149,6 @@ export default {
   grid-column: 2;
   position:absolute;
   bottom: 0;
-}
-
-@media (min-width: 420px) {
-  .page-header--brick .page-header__image img {
-    height: 100%;
-  }
 }
 
 @media (min-width: 520px) {
@@ -188,13 +175,6 @@ export default {
     grid-row-start: 2;
   }
 
-  .page-header__brick {
-    height: 100%;
-    grid-column: var(--grid-page-right);
-    grid-row-start: 1;
-    grid-row-end: 6;
-  }
-
   .page-header .curly-bracket {
     position: relative;
     grid-column-start: 40;
@@ -219,23 +199,15 @@ export default {
     grid-row-start: 2;
     grid-row-end: 4;
   }
-
-  .page-header__image--spaced-top {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .page-header__image--spaced-top img {
-    height: 100%;
-    max-height: var(--max-height-image);
-    width: auto;
-    flex: 0 0 auto;
-  }
 }
 
 @media (min-width: 1100px) {
   .page-header {
     grid-template-rows: var(--app-header-height-large) 1fr;
+  }
+
+  .page-header--fill-screen {
+    max-height: 1000px;
   }
 
   .page-header__description {

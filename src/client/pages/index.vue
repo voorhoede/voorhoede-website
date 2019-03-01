@@ -2,7 +2,7 @@
   <main class="page-index">
     <div class="page-index__header">
       <page-header
-        is-homepage
+        fill-screen
         :byline="page.headerTitle"
         :headline="page.subtitle"
         heading="byline"
