@@ -1,5 +1,5 @@
 <template>
-  <main class="page-services grid">
+  <main class="page-services">
     <page-header
       :title="page.title"
       :text="page.subtitle"
@@ -27,11 +27,6 @@
 </script>
 
 <style>
-
-  .page-services .page-header {
-    grid-column: var(--grid-page);
-  }
-
   .page-services > * {
     margin-bottom: var(--spacing-big);
   }
