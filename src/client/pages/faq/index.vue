@@ -1,5 +1,5 @@
 <template>
-  <div class="grid page-faq">
+  <section class="page-faq">
     <page-header
       :title="page.title"
       :text="page.subtitle"
@@ -17,7 +17,7 @@
       </ul>
       <scroll-to direction="up" />
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -33,9 +33,7 @@
 </script>
 
 <style>
-
   .page-faq .page-header {
-    grid-column: var(--grid-page);
     margin-bottom: var(--spacing-large);
   }
 
