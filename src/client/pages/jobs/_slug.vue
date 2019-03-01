@@ -5,30 +5,28 @@
       :text="page.title"
       :image="page.jobImage"
     />
-    <div class="grid">
-      <div class="page-job__content">
-        <generic-text-block
-          v-for="item in page.jobContent"
-          :key="item.title || item.body"
-          :title="item.title"
-          :body="item.body"
-          :image="item.image"
+    <div class="page-job__content">
+      <generic-text-block
+        v-for="item in page.jobContent"
+        :key="item.title || item.body"
+        :title="item.title"
+        :body="item.body"
+        :image="item.image"
+      />
+      <footer class="page-job__footer button-group">
+        <app-button
+          class=""
+          :label="$t('apply')"
+          :to="page.url"
+          external
         />
-        <footer class="page-job__footer button-group">
-          <app-button
-            class=""
-            :label="$t('apply')"
-            :to="page.url"
-            external
-          />
-          <app-button
-            :label="$t('all_jobs')"
-            :to="localeUrl('jobs')"
-            secondary
-          />
-          <scroll-to direction="up" />
-        </footer>
-      </div>
+        <app-button
+          :label="$t('all_jobs')"
+          :to="localeUrl('jobs')"
+          secondary
+        />
+        <scroll-to direction="up" />
+      </footer>
     </div>
   </article>
 </template>
@@ -62,7 +60,6 @@
   }
 
   .page-job .page-header {
-    grid-column: var(--grid-page);
     margin-bottom: var(--spacing-large);
   }
 
