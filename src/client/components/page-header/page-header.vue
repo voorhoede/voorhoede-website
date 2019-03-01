@@ -10,38 +10,27 @@
       <img v-if="image" :src="image.url" alt="">
     </div>
     <div class="page-header__description">
-      <div class="page-header__title subtitle">
-        <h1
-          v-if="heading === 'byline'"
-          v-html="byline"
-        />
-        <p
-          v-else
-          v-html="byline"
-        />
-      </div>
-      <div :class="{
-        'hero': isHomepage,
-        'h1': !isHomepage,
-      }">
-        <h1
-          v-if="heading === 'headline'"
-          class="sr-only"
-          v-html="headline"
-        />
-        <p
-          v-else
-          class="sr-only"
-          v-html="headline"
-        />
-        <self-typing-text
-          :text="headline"
-          :class="{
-            'self-typing-text--hero': isHomepage,
-            'self-typing-text--h1': !isHomepage,
-          }"
-        />
-      </div>
+      <p
+        v-if="(heading === 'headline')"
+        v-html="byline"
+        class="subtitle"
+      />
+      <h1
+        v-html="(heading === 'byline') ? byline : headline"
+        :class="{
+          'subtitle': (heading === 'byline'),
+          'sr-only': (heading === 'headline')
+        }"
+      />
+      <p
+        v-if="(heading === 'byline')"
+        class="sr-only"
+        v-html="headline"
+      />
+      <self-typing-text
+        :class="(isHomepage) ? 'hero' : 'h1'"
+        :text="headline"
+      />
     </div>
     <scroll-to v-if="isHomepage" point-down />
   </header>
