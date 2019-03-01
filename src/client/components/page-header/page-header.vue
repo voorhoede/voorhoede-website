@@ -4,13 +4,14 @@
     :class="{ 'page-header--fill-screen': fillScreen }"
   >
     <curly-bracket
+      v-if="hasCurlyBracket"
       side="right"
       color="paper"
     />
     <div class="page-header__image">
       <img v-if="image" :src="image.url" alt="">
     </div>
-    <div class="page-header__description">
+    <div class="page-header__text">
       <!--
         `<h1>` is either the headline or the byline.
         If it is the headline, a `<p>` for the byline should precede it,
@@ -55,6 +56,10 @@ export default {
   },
   props: {
     fillScreen: {
+      type: Boolean,
+      default: false
+    },
+    hasCurlyBracket: {
       type: Boolean,
       default: false
     },
@@ -210,7 +215,7 @@ export default {
     max-height: 1000px;
   }
 
-  .page-header__description {
+  .page-header__text {
     margin: var(--spacing-medium) 0;
     grid-column-start: 4;
     grid-column-end: 24;
