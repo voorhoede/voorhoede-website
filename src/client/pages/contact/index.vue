@@ -3,18 +3,17 @@
     <page-header
       :title="page.title"
       :text="page.subtitle"
-      :image="page.headerIllustration" />
-    <div class="page-contact__backdrop grid">
-      <div class="page-contact__content">
-        <address-sidebar
-          :email-label="page.emailLabel"
-          :phone-label="page.phoneLabel"
-          :address-label="page.addressLabel"
-        />
-        <contact-form
-          :aria-label="$t('lets_discuss')"
-        />
-      </div>
+      :image="page.headerIllustration"
+    />
+    <div class="page-contact__content">
+      <address-sidebar
+        :email-label="page.emailLabel"
+        :phone-label="page.phoneLabel"
+        :address-label="page.addressLabel"
+      />
+      <contact-form
+        :aria-label="$t('lets_discuss')"
+      />
     </div>
   </section>
 </template>
@@ -37,21 +36,18 @@
   }
 
   .page-contact__content {
-    padding-top: var(--spacing-large);
+    padding: var(--spacing-large) var(--grid-margin) 0;
+    grid-column: var(--grid-page);
     display: flex;
     flex-direction: column-reverse;
-    background-color: white;
+    background-color: var(--white);
   }
 
-  .page-contact__backdrop {
-    background-color: white;
-  }
-
-  .contact-address {
+  .page-contact .address-sidebar {
     margin-bottom: var(--spacing-larger);
   }
 
-  .contact-address dd {
+  .page-contact .address-sidebar__value {
     margin-bottom: var(--spacing-small);
   }
 
@@ -60,18 +56,15 @@
   }
 
   @media screen and (min-width: 720px) {
-    .page-contact__backdrop {
-      background-color: var(--bg-pastel);
-    }
-
     .page-contact__content {
-      flex-direction: row;
-      background: var(--white);
       padding: var(--spacing-larger) var(--spacing-large);
+      flex-direction: row;
       justify-content: space-between;
+      grid-column: var(--grid-content);
+      background: var(--white);
     }
 
-    .contact-address {
+    .page-contact .address-sidebar {
       width: 30%;
     }
 
