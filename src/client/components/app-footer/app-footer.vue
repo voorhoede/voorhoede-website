@@ -31,18 +31,6 @@
           Contact
         </h2>
         <ul class="body-detail app-footer__list app-footer__list--contact">
-          <li class="app-footer__list-item">
-            <a
-              @click="trackLink('phone')"
-              :href="`tel:${ cleanedTelephone }`"
-              class="app-footer__link">{{ tel }}</a>
-          </li>
-          <li class="app-footer__list-item">
-            <a
-              @click="trackLink('email')"
-              :href="`mailto:${ email }`"
-              class="app-footer__link">{{ email }}</a>
-          </li>
           <li
             v-for="address in addresses"
             :key="address.address"
@@ -55,6 +43,18 @@
               <span>{{ address.address }}</span>
               <span>{{ address.postalCode }} {{ address.city }}</span>
             </a>
+          </li>
+          <li class="app-footer__list-item">
+            <a
+              @click="trackLink('phone')"
+              :href="`tel:${ cleanedTelephone }`"
+              class="app-footer__link">{{ tel }}</a>
+          </li>
+          <li class="app-footer__list-item">
+            <a
+              @click="trackLink('email')"
+              :href="`mailto:${ email }`"
+              class="app-footer__link">{{ email }}</a>
           </li>
         </ul>
       </div>
@@ -331,8 +331,18 @@ export default {
   text-align: right;
 }
 
+.app-footer__list--contact .app-footer__list-item {
+  grid-row: 2;
+  grid-column: 1 / 2;
+}
+
+.app-footer__list--contact .app-footer__list-item--address {
+  grid-row: 1;
+}
+
 .app-footer__list--contact .app-footer__list-item:nth-child(2n) {
-  text-align: left;
+  text-align: inherit;
+  grid-column: 2 / 3;
 }
 
 .app-footer__list-item--icon {
@@ -381,7 +391,7 @@ export default {
   margin-bottom: var(--spacing-smaller);
 }
 
-@media (min-width: 720px) {
+@media (min-width: 800px) {
   .app-footer {
     position: relative;
     flex-direction: row;
@@ -413,11 +423,11 @@ export default {
     margin-bottom: var(--spacing-medium);
     text-align: left;
     align-items: unset;
-    width: calc(50% - var(--spacing-huge) / 2);
+    width: calc(50% - var(--spacing-big) / 2);
   }
 
   .app-footer__column--right {
-    margin-left: var(--spacing-huge);
+    margin-left: var(--spacing-big);
     text-align: left;
     border-bottom: 0;
   }
@@ -471,7 +481,8 @@ export default {
   }
 
   .app-footer__list--contact {
-    display: flex;
+    display: grid;
+    grid-gap: 2em var(--spacing-small); /* One line gap (font-size, 1em * line-height, 2) */
     text-align: inherit;
   }
 
@@ -483,23 +494,16 @@ export default {
     margin: 0;
     line-height: 2;
   }
-
-  .app-footer__list-item--address + .app-footer__list-item--address {
-    margin-left: var(--spacing-small);
-    display: flex;
-    align-items: flex-end;
-    height: 100%;
-  }
 }
 
-@media (min-width: 1300px) {
+@media (min-width: 1400px) {
   .app-footer__layout {
     flex-wrap: nowrap;
   }
 
   .app-footer__header {
     display: flex;
-    width: 25%;
+    width: 22%;
     justify-content: flex-start;
     align-items: flex-start;
   }
@@ -510,17 +514,13 @@ export default {
   }
 
   .app-footer__column {
-    width: 25%;
-  }
-
-  .app-footer__column--right {
-    margin-left: var(--spacing-big);
+    width: 28%;
   }
 
   .app-footer__column--bottom {
     display: flex;
     align-items: flex-end;
-    flex: 1 1 25%;
+    flex: 1 1 22%;
   }
 }
 </style>
