@@ -1,5 +1,5 @@
 <template>
-  <article class="page-event-detail grid" lang="en">
+  <article class="page-event-detail" lang="en">
     <page-header
       class="page-event-detail__header"
       :title="page.label.label"
