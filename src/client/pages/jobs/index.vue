@@ -5,21 +5,19 @@
       :text="page.subtitle"
       :image="page.headerIllustration"
     />
-    <div class="grid">
-      <ul class="page-jobs__overview">
-        <li
-          v-for="item in items"
-          :key="item.slug">
-          <jobs-excerpt
-            :title="item.title"
-            :description="item.description"
-            :label="item.callToActionLabel"
-            :image="item.jobImage"
-            :slug="item.slug"
-          />
-        </li>
-      </ul>
-    </div>
+    <ul class="page-jobs__overview">
+      <li
+        v-for="item in items"
+        :key="item.slug">
+        <jobs-excerpt
+          :title="item.title"
+          :description="item.description"
+          :label="item.callToActionLabel"
+          :image="item.jobImage"
+          :slug="item.slug"
+        />
+      </li>
+    </ul>
   </section>
 </template>
 
@@ -39,15 +37,13 @@
 </script>
 
 <style>
-.page-jobs__overview {
-  grid-column: var(--grid-content);
-  margin: var(--spacing-large) 0;
-}
-
-@media (min-width: 1100px) {
   .page-jobs__overview {
-    grid-column: var(--grid-content-narrow);
+    margin: var(--spacing-large) 0;
   }
-}
-</style>
 
+  @media (min-width: 1100px) {
+    .page-jobs__overview {
+      grid-column: var(--grid-content-narrow);
+    }
+  }
+</style>
