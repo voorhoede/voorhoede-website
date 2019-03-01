@@ -79,6 +79,7 @@ export default {
   background-color: var(--bg-pastel);
   grid-template-rows: var(--app-header-height-small) 1fr;
   overflow: hidden;
+  grid-column: var(--grid-page);
 }
 
 .page-header__brick {
