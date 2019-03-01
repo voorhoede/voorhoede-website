@@ -1,5 +1,5 @@
 <template>
-  <div class="grid page-service">
+  <div class="page-service">
     <page-header-detail
       :title="page.subtitle"
       :sub-title="page.title"
@@ -16,7 +16,6 @@
     </article>
     <pivot-section
       v-if="pivots && pivots.length"
-      class="page-service__pivot-section"
       :pivot="pivots[0]"
     />
   </div>
@@ -41,7 +40,6 @@
 <style>
 
   .page-service .page-header-detail {
-    grid-column: var(--grid-page);
     margin-bottom: var(--spacing-large);
   }
 
@@ -54,7 +52,7 @@
     margin-bottom: var(--spacing-large);
   }
 
-  .page-service__pivot-section.pivot-section {
+  .page-service .pivot-section {
     grid-row: 4;
     grid-column: var(--grid-page);
     background-color: var(--white);
@@ -68,7 +66,7 @@
     }
 
     .page-service__overview,
-    .page-service__pivot-section.pivot-section {
+    .page-service .pivot-section {
       grid-column: var(--grid-content);
       background-color: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
@@ -77,7 +75,7 @@
 
   @media (min-width: 1100px) {
     .page-service__overview,
-    .page-service__pivot-section.pivot-section {
+    .page-service .pivot-section {
       grid-column: var(--grid-content-narrow);
       padding: var(--spacing-big) var(--spacing-bigger);
     }
