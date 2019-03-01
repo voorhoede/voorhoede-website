@@ -326,23 +326,15 @@ export default {
 }
 
 .app-footer__list--contact {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  text-align: right;
+  text-align: left;
 }
 
 .app-footer__list--contact .app-footer__list-item {
-  grid-row: 2;
-  grid-column: 1 / 2;
+  width: calc(50% - 2 * var(--spacing-smaller));
 }
 
-.app-footer__list--contact .app-footer__list-item--address {
-  grid-row: 1;
-}
-
-.app-footer__list--contact .app-footer__list-item:nth-child(2n) {
-  text-align: inherit;
-  grid-column: 2 / 3;
+.app-footer__list--contact .app-footer__list-item:nth-child(2n - 1) {
+  text-align: right;
 }
 
 .app-footer__list-item--icon {
@@ -481,18 +473,21 @@ export default {
   }
 
   .app-footer__list--contact {
-    display: grid;
-    grid-gap: 2em var(--spacing-small); /* One line gap (font-size, 1em * line-height, 2) */
-    text-align: inherit;
-  }
-
-  .app-footer__list--contact .app-footer__list-item:nth-child(2n) {
+    flex-direction: row;
     text-align: inherit;
   }
 
   .app-footer__list-item {
     margin: 0;
     line-height: 2;
+  }
+
+  .app-footer__list--contact .app-footer__list-item:nth-child(2n - 1) {
+    text-align: inherit;
+  }
+
+  .app-footer__list-item--address {
+    margin-bottom: 2em; /* one line, font-size * line-height */
   }
 }
 
