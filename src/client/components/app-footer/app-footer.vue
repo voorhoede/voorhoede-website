@@ -486,6 +486,10 @@ export default {
     text-align: inherit;
   }
 
+  .app-footer__list--contact .app-footer__list-item {
+    width: 50%;
+  }
+
   .app-footer__list-item--address {
     margin-bottom: 2em; /* one line, font-size * line-height */
   }
