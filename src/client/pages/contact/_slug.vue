@@ -3,18 +3,15 @@
     <page-header
       :title="page.title"
       :text="page.subtitle"
-      :image="page.headerIllustration" />
-    <div class="page-contact-confirmation__backdrop grid">
-      <div class="page-contact-confirmation__content body">
-        {{ page.body }}
-      </div>
+      :image="page.headerIllustration"
+    />
+    <div class="page-contact-confirmation__content body">
+      {{ page.body }}
     </div>
-    <div class="grid">
-      <pivot-section
-        v-if="pivots && pivots.length"
-        :pivot="pivots[0]"
-      />
-    </div>
+    <pivot-section
+      v-if="pivots && pivots.length"
+      :pivot="pivots[0]"
+    />
   </section>
 </template>
 
@@ -43,22 +40,21 @@
 .page-contact-confirmation__backdrop {
   margin-bottom: var(--spacing-large);
   background-color: white;
+  grid-column: var(--grid-page);
 }
 
 .page-contact-confirmation__content {
-  padding: var(--spacing-large) 0;
+  padding: var(--spacing-large) var(--grid-margin);
+  grid-column: var(--grid-page);
   display: flex;
   flex-direction: column-reverse;
   background-color: white;
 }
 
 @media screen and (min-width: 720px) {
-  .page-contact-confirmation__backdrop {
-    margin-bottom: var(--spacing-big);
-    background-color: var(--bg-pastel);
-  }
-
   .page-contact-confirmation__content {
+    margin-bottom: var(--spacing-big);
+    grid-column: var(--grid-content);
     flex-direction: row;
     background-color: var(--white);
     padding: var(--spacing-large) var(--spacing-large);
