@@ -1,6 +1,5 @@
 <template>
-  <nav class="app-mobile-menu grid">
-    <h2 class="sr-only">{{ title }}</h2>
+  <nav class="app-mobile-menu grid" :aria-label="title">
     <button
       v-if="!showMenu"
       class="app-mobile-menu__button app-mobile-menu__button--open"

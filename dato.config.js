@@ -82,6 +82,9 @@ function layoutToJson(dato) {
         'copyrightLink',
         'logoAlt',
       ]),
+      addresses: dato.footer.addresses.map(address => {
+        return pick(address, ['address', 'postalCode', 'city', 'googleMapsLink'])
+      }),
       legal: dato.footer.legal.map(item => {
         return pick(item, ['title', 'value'])
       }),

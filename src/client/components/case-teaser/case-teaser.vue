@@ -1,17 +1,14 @@
 <template>
-  <section class="case-teaser">
-    <h2 class="sr-only">{{ title }}</h2>
-    <figure class="case-teaser__figure">
-      <div class="case-teaser__image">
-        <responsive-image :image="image" />
-      </div>
-      <figcaption class="case-teaser__header">
-        <span class="case-teaser__title h2">
-          {{ title }}
-        </span>
-      </figcaption>
-    </figure>
-  </section>
+  <figure class="case-teaser">
+    <div class="case-teaser__image">
+      <responsive-image :image="image" />
+    </div>
+    <figcaption class="case-teaser__header">
+      <span class="case-teaser__title h2">
+        {{ title }}
+      </span>     
+    </figcaption>
+  </figure>
 </template>
 
 <script>
@@ -41,7 +38,7 @@ export default {
     --border-width: 60px;
   }
 
-  .case-teaser__figure {
+  .case-teaser {
     display: flex;
     flex-direction: column;
   }
@@ -66,7 +63,7 @@ export default {
   }
 
   @media (min-width: 720px) {
-    .case-teaser__figure {
+    .case-teaser {
       flex-direction: row;
       margin: 0 auto var(--spacing-large) auto;
       width: 100%;
@@ -97,7 +94,7 @@ export default {
   }
 
   @media (min-width: 1100px) {
-    .case-teaser__figure {
+    .case-teaser {
       margin-bottom: var(--spacing-big);
     }
 
