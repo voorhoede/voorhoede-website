@@ -4,7 +4,7 @@
       :title="page.title"
       :text="page.subtitle"
       :image="page.headerIllustration"
-      />
+    />
     <ul class="page-case__overview">
       <li class="page-case__overview-item" v-for="caseItem in items" :key="caseItem.slug">
         <case-excerpt
