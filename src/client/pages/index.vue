@@ -1,33 +1,34 @@
 <template>
   <main class="page-index">
-    <div class="page-index__header">
-      <page-header
-        is-homepage
-        :title="page.headerTitle"
-        :text="page.subtitle"
-        :image="page.headerIllustration"/>
-      <div class="page-index__scroll-to grid">
-        <scroll-to point-down />
-      </div>
-      <div class="grid">
-        <p class="scroll-highlighted-text">
-          <scroll-highlighted-text
-            v-for="(line, index) in page.usps"
-            :key="index"
-            :line="line"
-            :index="index"
-            :is-first="isFirst(index)"
-            :is-last="isLast(index, page.usps)"
-          />
-        </p>
-      </div>
+    <page-header
+      is-homepage
+      :title="page.headerTitle"
+      :text="page.subtitle"
+      :image="page.headerIllustration"
+    />
+
+    <scroll-to point-down />
+
+    <div class="page-index__usps grid">
+      <p class="scroll-highlighted-text">
+        <scroll-highlighted-text
+          v-for="(line, index) in page.usps"
+          :key="index"
+          :line="line"
+          :index="index"
+          :is-first="isFirst(index)"
+          :is-last="isLast(index, page.usps)"
+        />
+      </p>
     </div>
+
     <section class="page-index__services grid">
       <h2 class="page-index__section-title h1">{{ page.servicesHeader }}</h2>
       <services-list
         :services="page.services"
       />
     </section>
+
     <section class="page-index__cases grid">
       <h2 class="page-index__section-title page-index__section-title--cases h1">{{ page.casesTitle }}</h2>
       <horizontal-carousel>
@@ -42,6 +43,7 @@
           />
         </template>
       </horizontal-carousel>
+
       <div class="page-index__blog-posts-button">
         <app-button
           secondary
@@ -50,10 +52,12 @@
         />
       </div>
     </section>
+
     <section class="page-index__clients grid">
       <h2 class="page-index__section-title page-index__section-title--clients h3 font-normal">{{ page.clientsTitle }}</h2>
       <highlighted-clients :cta-label="page.clientsButtonLabel"/>
     </section>
+
     <div class="page-index__academy grid" v-if="upcomingEvents[0]">
       <academy-excerpt
         :date="upcomingEvents[0].date"
@@ -64,6 +68,7 @@
       />
       <curly-bracket />
     </div>
+
     <section class="page-index__blog-posts grid">
       <h2 class="page-index__section-title page-index__section-title--blog-posts h3">{{ $t('latest_blog_posts') }}</h2>
       <ul class="page-index__blog-posts-list grid">
@@ -80,13 +85,13 @@
       </div>
       <curly-bracket side="right" />
     </section>
-    <div class="page-index__pivot-section grid">
-      <pivot-section
-        v-if="pivots && pivots.length"
-        :pivot="pivots[0]"
-      />
-      <scroll-to direction="up" />
-    </div>
+
+    <pivot-section
+      v-if="pivots && pivots.length"
+      :pivot="pivots[0]"
+    />
+    <scroll-to direction="up" />
+
   </main>
 </template>
 
@@ -137,32 +142,22 @@
 </script>
 
 <style>
-  .page-index__header {
-    grid-column: var(--grid-page);
-    margin-bottom: var(--spacing-big);
-    background-color: var(--bg-pastel);
-  }
-
-  .page-index__scroll-to {
+  .page-index .scroll-to--down {
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
   }
 
-  .page-index__scroll-to .scroll-to {
-    grid-column: 1;
-  }
-
-  .page-index__pivot-section .scroll-to {
+  .page-index .scroll-to--up {
     display: none;
-    position: absolute;
-    bottom: var(--spacing-large);
-    grid-column: -3;
   }
 
-  .page-index .scroll-highlighted-text {
+  .page-index__usps {
+    margin-bottom: var(--spacing-big);
     padding: var(--spacing-larger) 0;
+    grid-column: var(--grid-page);
+    background-color: var(--bg-pastel);
   }
 
   .page-index__services {
@@ -263,16 +258,24 @@
   }
 
   @media (min-width: 720px) {
-    .page-index__scroll-to {
-      bottom: var(--spacing-medium);
+    .page-index {
+      position: relative;
     }
 
     .page-index .page-header {
-      margin-bottom: var(--spacing-big);
       height: 100vh;
+      grid-row: 1;
     }
 
-    .page-index .scroll-highlighted-text {
+    .page-index .scroll-to--down {
+      position: relative;
+      bottom: var(--spacing-medium);
+      grid-row: 1;
+      grid-column: var(--grid-content);
+      align-self: flex-end;
+    }
+
+    .page-index__usps {
       padding: var(--spacing-big) 0;
     }
 
@@ -349,18 +352,14 @@
       padding: var(--spacing-larger) 0;
     }
 
-    .page-index__pivot-section .scroll-to {
+    .page-index .scroll-to--up {
       display: flex;
       position: absolute;
       bottom: var(--spacing-larger);
       grid-column: 48;
     }
 
-    .page-index__pivot-section {
-      position: relative;
-    }
-
-    .page-index__pivot-section .pivot-section {
+    .page-index .pivot-section {
       grid-column-start: 6;
       grid-column-end: 45;
     }
@@ -377,7 +376,7 @@
       margin-bottom: var(--spacing-bigger);
     }
 
-    .page-index .scroll-highlighted-text {
+    .page-index__usps {
       padding: var(--spacing-bigger) 0;
     }
 

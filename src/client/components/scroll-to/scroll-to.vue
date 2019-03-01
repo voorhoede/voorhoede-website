@@ -1,5 +1,8 @@
 <template>
-  <div class="scroll-to">
+  <div class="scroll-to" :class="{
+    'scroll-to--down': direction === 'down',
+    'scroll-to--up': direction === 'up',
+  }">
     <div
       v-if="direction === 'down'"
       class="scroll-to__point-down"
