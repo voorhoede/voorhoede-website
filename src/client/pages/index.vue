@@ -1,26 +1,23 @@
 <template>
   <main class="page-index">
-    <div class="page-index__header">
-      <page-header
-        fill-screen
-        :byline="page.headerTitle"
-        :headline="page.subtitle"
-        heading="byline"
-        :image="page.headerIllustration"
-      />
-      <div class="grid">
-        <p class="scroll-highlighted-text">
-          <scroll-highlighted-text
-            v-for="(line, index) in page.usps"
-            :key="index"
-            :line="line"
-            :index="index"
-            :is-first="isFirst(index)"
-            :is-last="isLast(index, page.usps)"
-          />
-        </p>
-      </div>
-    </div>
+    <page-header
+      :byline="page.headerTitle"
+      :headline="page.subtitle"
+      :image="page.headerIllustration"
+      fill-screen
+      has-curly-bracket
+      heading="byline"
+    />
+      <p class="scroll-highlighted-text">
+        <scroll-highlighted-text
+          v-for="(line, index) in page.usps"
+          :key="index"
+          :line="line"
+          :index="index"
+          :is-first="isFirst(index)"
+          :is-last="isLast(index, page.usps)"
+        />
+      </p>
     <section class="page-index__services grid">
       <h2 class="page-index__section-title h1">{{ page.servicesHeader }}</h2>
       <services-list
@@ -136,22 +133,6 @@
 </script>
 
 <style>
-  .page-index__header {
-    margin-bottom: var(--spacing-big);
-    background-color: var(--bg-pastel);
-  }
-
-  .page-index__scroll-to {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-
-  .page-index__scroll-to .scroll-to {
-    grid-column: 1;
-  }
-
   .page-index__pivot-section .scroll-to {
     display: none;
     position: absolute;
@@ -161,6 +142,7 @@
 
   .page-index .scroll-highlighted-text {
     padding: var(--spacing-larger) 0;
+    background-color: var(--bg-pastel);
   }
 
   .page-index__services {
@@ -257,15 +239,6 @@
   }
 
   @media (min-width: 720px) {
-    .page-index__scroll-to {
-      bottom: var(--spacing-medium);
-    }
-
-    .page-index .page-header {
-      margin-bottom: var(--spacing-big);
-      height: 100vh;
-    }
-
     .page-index .scroll-highlighted-text {
       padding: var(--spacing-big) 0;
     }
@@ -367,10 +340,6 @@
   }
 
   @media (min-width: 1100px) {
-    .page-index__header {
-      margin-bottom: var(--spacing-bigger);
-    }
-
     .page-index .scroll-highlighted-text {
       padding: var(--spacing-bigger) 0;
     }
@@ -425,20 +394,9 @@
       grid-column-end: 5;
     }
 
-    .page-index .page-header__text {
-      margin: var(--spacing-large) 0;
-      grid-column-end: 24;
-    }
-
     .page-index__pivot-section {
       /* tweak for the inconsistent spacing of the latest-blog-post component  */
       padding-top: var(--spacing-smaller);
-    }
-  }
-
-  @media (min-width: 1920px) {
-    .page-index .page-header--home {
-      height: 1000px;
     }
   }
 </style>
