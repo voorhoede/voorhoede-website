@@ -12,12 +12,12 @@
     <div class="page-header__description">
       <div class="page-header__title subtitle">
         <h1
-          v-if="heading === 'small-text'"
-          v-html="smallText"
+          v-if="heading === 'byline'"
+          v-html="byline"
         />
         <p
           v-else
-          v-html="smallText"
+          v-html="byline"
         />
       </div>
       <div :class="{
@@ -25,17 +25,17 @@
         'h1': !isHomepage,
       }">
         <h1
-          v-if="heading === 'large-text'"
+          v-if="heading === 'headline'"
           class="sr-only"
-          v-html="largeText"
+          v-html="headline"
         />
         <p
           v-else
           class="sr-only"
-          v-html="largeText"
+          v-html="headline"
         />
         <self-typing-text
-          :text="largeText"
+          :text="headline"
           :class="{
             'self-typing-text--hero': isHomepage,
             'self-typing-text--h1': !isHomepage,
@@ -73,18 +73,18 @@ export default {
         return image && typeof(image.url) === 'string'
       },
     },
-    smallText: {
+    byline: {
       type: String,
       required: true,
     },
-    largeText: {
+    headline: {
       type: String,
       required: true,
     },
     heading: {
       type: String,
-      default: 'large-text',
-      validator: value => ['small-text', 'large-text'].indexOf(value) !== -1,
+      default: 'headline',
+      validator: value => ['byline', 'headline'].indexOf(value) !== -1,
     }
   },
 }

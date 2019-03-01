@@ -1,9 +1,9 @@
 <template>
   <div class="grid page-service">
     <page-header
-      :small-text="page.title"
-      :large-text="page.subtitle"
-      heading="small-text"
+      :byline="page.title"
+      :headline="page.subtitle"
+      heading="byline"
       :image="page.headerIllustration"
     />
     <article class="page-service__overview">

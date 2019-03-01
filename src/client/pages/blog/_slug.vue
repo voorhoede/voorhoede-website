@@ -2,9 +2,9 @@
   <div class="page-blog-post grid" lang="en">
     <page-header
       class="page-blog-post__header"
-      :small-text="page.subtitle"
-      :large-text="page.title"
-      heading="large-text"
+      :byline="page.subtitle"
+      :headline="page.title"
+      heading="headline"
       :image="page.headerIllustration"
     />
     <article class="page-blog-post-list">

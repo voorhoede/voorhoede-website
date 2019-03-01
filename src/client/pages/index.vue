@@ -3,9 +3,9 @@
     <div class="page-index__header">
       <page-header
         is-homepage
-        :small-text="page.headerTitle"
-        :large-text="page.subtitle"
-        heading="small-text"
+        :byline="page.headerTitle"
+        :headline="page.subtitle"
+        heading="byline"
         :image="page.headerIllustration"
       />
       <div class="grid">

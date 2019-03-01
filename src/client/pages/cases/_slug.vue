@@ -2,9 +2,9 @@
   <main class="grid">
     <div class="page-case__case-header">
       <page-header
-        :small-text="page.subtitle"
-        :large-text="page.title"
-        heading="large-text"
+        :byline="page.subtitle"
+        :headline="page.title"
+        heading="headline"
         :image="page.headerIllustration"
       />
     </div>

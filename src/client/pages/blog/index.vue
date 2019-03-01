@@ -1,9 +1,9 @@
 <template>
   <main class="page-blog">
     <page-header
-      :small-text="page.title"
-      :large-text="page.subtitle"
-      heading="small-text"
+      :byline="page.title"
+      :headline="page.subtitle"
+      heading="byline"
       :image="page.headerIllustration"
     />
     <div class="page-blog-container grid">

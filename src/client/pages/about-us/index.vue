@@ -2,9 +2,9 @@
   <div class="grid page-about-us">
     <page-header
       class="page-about-us__header"
-      :small-text="page.title"
-      :large-text="page.subtitle"
-      heading="small-text"
+      :byline="page.title"
+      :headline="page.subtitle"
+      heading="byline"
       :image="page.headerIllustration"
     />
     <image-with-text-block
