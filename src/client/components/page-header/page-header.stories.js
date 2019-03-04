@@ -1,13 +1,17 @@
 import Vue from 'vue'
 import { storiesOf } from '@storybook/vue'
 import { withReadme } from 'storybook-readme'
-import { withKnobs } from '@storybook/addon-knobs/vue'
+import { boolean, select, text, withKnobs } from '@storybook/addon-knobs/vue'
 import VueI18n from 'vue-i18n'
 
 import '../app-core/index.css'
 
 import pageHeader from './page-header.vue'
 import README from './README.md'
+
+const byline = 'We are De Voorhoede'
+const headline = 'We build web apps like no other'
+const headingOptions = [ 'byline', 'headline' ]
 
 const stories = storiesOf('Components/Page Header', module)
   .addDecorator(withKnobs)
@@ -22,33 +26,11 @@ stories.add(
     template: `
       <div style="background: var(--bg-pastel);">
         <page-header
-          title="We are De Voorhoede"
-          text="How can we help?"
-          :image="image">
-        </page-header>
-      </div>
-    `,
-    data: () => {
-      return {
-        image: {
-          'url': 'https://www.datocms-assets.com/6524/1535638068-drop-fly.svg',
-          'alt': '',
-        },
-      }
-    }
-  }),
-)
-
-stories.add(
-  'Page Header Home',
-  () => ({
-    i18n: new VueI18n({ locale: 'en' }),
-    template: `
-      <div style="background: var(--bg-pastel);">
-        <page-header style="height: 90vh;"
-          isHomepage
-          title="We are De Voorhoede"
-          text="How can we help?"
+          headline="${text('headline', headline) }"
+          byline="${text('byline', byline) }"
+          heading="${select('heading', headingOptions)}"
+          :fill-screen="${boolean('fill-screen', false)}"
+          :has-curly-bracket="${boolean('has-curly-bracket', false)}"
           :image="image">
         </page-header>
       </div>
