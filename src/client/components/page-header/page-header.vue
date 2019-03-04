@@ -4,13 +4,10 @@
     :class="{ 'page-header--fill-screen': fillScreen }"
   >
     <curly-bracket
-      v-if="hasCurlyBracket"
+      v-if="false && hasCurlyBracket && fillScreen"
       side="right"
       color="paper"
     />
-    <div class="page-header__image">
-      <img v-if="image" :src="image.url" alt="">
-    </div>
     <div class="page-header__text">
       <!--
         `<h1>` is either the headline or the byline.
@@ -40,6 +37,9 @@
       />
     </div>
     <scroll-to v-if="fillScreen" point-down />
+    <div class="page-header__image">
+      <img v-if="image" :src="image.url" alt="">
+    </div>
   </header>
 </template>
 
@@ -90,135 +90,92 @@ export default {
 </script>
 
 <style>
-
 :root {
-  --max-height-image: 285px;
+  --max-height: 1000px;
 }
-
 .page-header {
   background-color: var(--bg-pastel);
-  grid-template-rows: var(--app-header-height-small) 1fr;
   overflow: hidden;
   position: relative;
   grid-column: var(--grid-page);
+  grid-template-rows:
+    var(--app-header-height-small)  /* 1 - 2 */
+    var(--spacing-medium)           /* 2 - 3 */
+    auto                            /* 3 - 4:  Text */
+    var(--spacing-medium)           /* 4 - 5 */
+    var(--spacing-medium)           /* 5 - 6 */
+    auto                            /* 7 - 8:  Image */
+    var(--spacing-larger)           /* 7 - 8 */
 }
 .page-header--fill-screen::before {
   content: '';
   display: block;
   background-color: var(--brand-yellow);
-  grid-column: var(--grid-page-right);
-  grid-row-start: 1;
-  grid-row-end: 6;
-  height: 100vh;
-  min-height: auto;
+  width: 100%;
+  grid-column: var(--grid-page);
+  grid-row: 5 / 8;
 }
-
-.page-header .curly-bracket {
-  position: relative;
-  z-index: var(--z-index-low);
-  margin-top: 0;
-  grid-row-start: 3;
-  grid-row-end: 6;
-}
-
-.page-header .curly-bracket__image {
-  mix-blend-mode: screen;
-  width: auto;
-  left: 0;
-  right: unset;
-  height: calc(100% + 4vh);
-}
-
-.page-header__image {
-  grid-column: var(--grid-content);
-  grid-row-start: 4;
-  grid-row-end: 5;
-  position: relative;
-  z-index: var(--z-index-high);
-  align-self: flex-end;
-}
-
-.page-header__description {
-  margin: var(--spacing-large) 0;
-  grid-column: var(--grid-content);
-  grid-row-start: 2;
-}
-
 .page-header__text {
-  margin-top: var(--spacing-smaller);
-  hyphens: auto;
-  overflow-wrap: break-word;
+  grid-row: 3 / 4;
+}
+.page-header__image {
+  grid-column: 3 / var(--grid-page-end);
+  grid-row: 6 / 7;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.page-header__image img {
+  width: 100%;
+  height: 100%;
+  flex: 0 0 auto;
 }
 .page-header .scroll-to {
-  height: auto;
-  grid-column: 2;
-  position:absolute;
-  bottom: 0;
+  position: absolute;
+  bottom: var(--spacing-large);
 }
 
-@media (min-width: 520px) {
-  .page-header .curly-bracket {
-    display: block;
-    flex-grow: 1;
-    top: 0;
-  }
-
-  .page-header__image {
-    grid-column: var(--grid-content);
-    grid-row-start: 4;
-    grid-row-end: 5;
-  }
-}
-
-@media (min-width: 720px) {
+@media screen and (min-width: 720px) {
   .page-header {
-    grid-template-rows: calc(var(--app-header-height-small)) 1fr var(--spacing-large);
+    grid-template-rows:
+      var(--app-header-height-small)  /* 1 - 2 */
+      var(--spacing-big)              /* 2 - 3 */
+      1fr                             /* 3 - 4: Text */
+      var(--spacing-medium)           /* 4 - 5: Image */
+      var(--spacing-medium)           /* 5 - 6 */
+      1fr                             /* 7 - 8 */
+      var(--spacing-larger)           /* 7 - 8 */
   }
-
-  .page-header__description {
-    grid-column: var(--grid-content-left);
-    grid-row-start: 2;
-  }
-
-  .page-header .curly-bracket {
-    position: relative;
-    grid-column-start: 40;
-    grid-column-end: 47;
-    grid-row-start: 2;
-    grid-row-end: 4;
-    overflow: unset;
-  }
-
-  .page-header .curly-bracket__image {
-    height: 100%;
-    width: auto;
-  }
-
-  .page-header__image {
-    margin-top: var(--spacing-huge);
-    display: flex;
-    align-items: flex-end;
-    align-self: unset;
-    grid-column-start: 20;
-    grid-column-end: 48;
-    grid-row-start: 2;
-    grid-row-end: 4;
-  }
-}
-
-@media (min-width: 1100px) {
-  .page-header {
-    grid-template-rows: var(--app-header-height-large) 1fr;
-  }
-
   .page-header--fill-screen {
-    max-height: 1000px;
+    height: 100vh;
+    max-height: var(--max-height);
   }
-
+  .page-header--fill-screen::before {
+    grid-row: 1 / 8;
+    grid-column: var(--grid-page-right);
+  }
   .page-header__text {
-    margin: var(--spacing-medium) 0;
-    grid-column-start: 4;
-    grid-column-end: 24;
+    grid-column: var(--grid-content-left);
+  }
+  .page-header__image {
+    grid-row: 4 / 7;
+    grid-column: 20 / 48;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .page-header {
+    grid-template-rows:
+      var(--app-header-height-large)  /* 1 - 2 */
+      var(--spacing-big)             /* 2 - 3 */
+      1fr                            /* 3 - 4:  Text */
+      var(--spacing-medium)          /* 4 - 5 */
+      var(--spacing-medium)          /* 5 - 6 */
+      1fr                            /* 7 - 8 */
+      var(--spacing-larger)          /* 7 - 8 */
+  }
+  .page-header__text {
+    grid-column: 4 / var(--grid-center);
   }
 }
 </style>

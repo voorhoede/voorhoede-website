@@ -8,16 +8,16 @@
       has-curly-bracket
       heading="byline"
     />
-      <p class="scroll-highlighted-text">
-        <scroll-highlighted-text
-          v-for="(line, index) in page.usps"
-          :key="index"
-          :line="line"
-          :index="index"
-          :is-first="isFirst(index)"
-          :is-last="isLast(index, page.usps)"
-        />
-      </p>
+    <p class="scroll-highlighted-text">
+      <scroll-highlighted-text
+        v-for="(line, index) in page.usps"
+        :key="index"
+        :line="line"
+        :index="index"
+        :is-first="isFirst(index)"
+        :is-last="isLast(index, page.usps)"
+      />
+    </p>
     <section class="page-index__services grid">
       <h2 class="page-index__section-title h1">{{ page.servicesHeader }}</h2>
       <services-list
