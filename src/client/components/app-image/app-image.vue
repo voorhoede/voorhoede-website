@@ -1,78 +1,53 @@
 <template>
-  <div
+  <component
     class="app-image"
-    :class="{ 'app-image--pastel' : svgFormat === false }">
-    <no-script>
-      <div
-        v-if="svgFormat"
-        class="app-image__picture"
-      >
-        <!-- Safari fix for animated svgs -->
-        <object
-          class="app-image__img"
-          :data="image.url"
-          type="image/svg+xml"
-          tabindex="-1"
-        />
-      </div>
-      <picture
-        v-else
-        class="app-image__picture"
-      >
-        <img
-          class="app-image__img"
-          :src="image.url"
-          :alt="image.alt"
-        >
-      </picture>
-    </no-script>
-    <lazy-load>
-      <div
-        v-if="svgFormat"
-        class="app-image__picture"
-      >
-        <!-- Safari fix for animated svgs -->
-        <object
-          class="app-image__img"
-          :data="imageUrl({
-            w: width,
-            h: cropAndKeepRatio ? width : null,
-            fit: cropAndKeepRatio ? 'crop': null })"
-          type="image/svg+xml"
-          tabindex="-1"
-        />
-      </div>
-      <picture
-        v-else
-        class="app-image__picture"
-      >
-        <!--[if IE 9]><video style="display: none;"><![endif]-->
-        <source type="image/webp" :srcset="imageUrl({ fm: 'webp', w: width })">
-        <source :type="`image/${image.format}`" :srcset="imageUrl({ w: width })">
-        <!--[if IE 9]></video><![endif]-->
-        <img
-          class="app-image__img"
-          :src="imageUrl({
-            w: width,
-            h: cropAndKeepRatio ? width : null,
-            fit: cropAndKeepRatio ? 'crop': null })"
-          :alt="image.alt">
-      </picture>
-    </lazy-load>
-  </div>
+    :class="{ 'app-image--pastel' : svgFormat === false }"
+    :is="(lazyLoad) ? 'LazyLoad' : 'div'"
+  >
+    <div
+      v-if="svgFormat"
+      class="app-image__picture"
+    >
+      <!-- Safari fix for animated svgs -->
+      <object
+        class="app-image__img"
+        :data="imageUrl()"
+        type="image/svg+xml"
+        tabindex="-1"
+      />
+    </div>
+    <picture
+      v-else
+      class="app-image__picture"
+    >
+      <!--[if IE 9]><video style="display: none;"><![endif]-->
+      <source type="image/webp" :srcset="imageUrl({ fm: 'webp', w: width })">
+      <source :type="`image/${image.format}`" :srcset="imageUrl({ w: width })">
+      <!--[if IE 9]></video><![endif]-->
+      <img
+        class="app-image__img"
+        :src="imageUrl({
+          w: width,
+          h: cropAndKeepRatio ? width : null,
+          fit: cropAndKeepRatio ? 'crop': null })"
+        :alt="image.alt">
+    </picture>
+  </component>
 </template>
 
 <script>
   import LazyLoad from '../lazy-load'
   import imageUrl from '../../lib/image-url'
-  import NoScript from '../no-script'
 
   export default {
     components: {
       LazyLoad,
-      NoScript
     },
     props: {
+      lazyLoad: {
+        type: Boolean,
+        default: true
+      },
       image: {
         type: Object,
         required: true,
@@ -145,7 +120,6 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: var(--bg-pastel);
   }
 
   .app-image__img::after {

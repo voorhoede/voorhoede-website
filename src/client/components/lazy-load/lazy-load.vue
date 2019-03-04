@@ -1,11 +1,19 @@
 <template>
-  <div class="lazy-load">
-    <slot v-if="isIntersected" />
+  <div>
+    <no-script>
+      <slot />
+    </no-script>
+    <slot class="lazy-load" v-if="isIntersected" />
   </div>
 </template>
 
 <script>
+import NoScript from '../no-script'
+
 export default {
+  components: {
+    NoScript
+  },
   props: {
     rootMargin: {
       type: String,
@@ -58,5 +66,6 @@ export default {
 
   .lazy-load {
     height: 100%; /* without the 100% height child will not size properly */
+    width: 100%;
   }
 </style>
