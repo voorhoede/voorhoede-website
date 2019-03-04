@@ -1,13 +1,11 @@
 <template>
   <header
     class="page-header grid"
-    :class="{ 'page-header--fill-screen': fillScreen }"
+    :class="{
+      'page-header--fill-screen': fillScreen,
+      'page-header--curly-bracket': hasCurlyBracket
+    }"
   >
-    <curly-bracket
-      v-if="false && hasCurlyBracket && fillScreen"
-      side="right"
-      color="paper"
-    />
     <div class="page-header__text">
       <!--
         `<h1>` is either the headline or the byline.
@@ -44,13 +42,11 @@
 </template>
 
 <script>
-import CurlyBracket from '../curly-bracket'
 import ScrollTo from '../scroll-to'
 import SelfTypingText from '../self-typing-text'
 
 export default {
   components: {
-    CurlyBracket,
     ScrollTo,
     SelfTypingText,
   },
@@ -90,9 +86,13 @@ export default {
 </script>
 
 <style>
-:root {
+/**
+ * `page-header--fill-screen` adds a `::before`,
+ * `page-header--curly-bracket` adds an `::after`
+ */
+/* :root {
   --max-height: 1000px;
-}
+} */
 .page-header {
   background-color: var(--bg-pastel);
   overflow: hidden;
@@ -108,22 +108,44 @@ export default {
     var(--spacing-larger)           /* 7 - 8 */
 }
 .page-header--fill-screen::before {
+  /* Yellow half */
   content: '';
   display: block;
   background-color: var(--brand-yellow);
   width: 100%;
   grid-column: var(--grid-page);
   grid-row: 5 / 8;
+  margin-bottom: var(--spacing-larger);
 }
+.page-header--curly-bracket::after {
+  /* Curly bracket */
+  content: '';
+  display: block;
+  position: relative;
+  grid-row: 4 / 9;
+  grid-column: 44 / 51;
+  z-index: 1;
+  background-image: url('/images/curly-bracket--paper.svg');
+  mix-blend-mode: screen;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right center;
+  transform: rotate(180deg);
+  margin-bottom: calc(var(--spacing-larger) - var(--spacing-medium))
+}
+
 .page-header__text {
   grid-row: 3 / 4;
 }
 .page-header__image {
+  position: relative;
   grid-column: 3 / var(--grid-page-end);
   grid-row: 6 / 7;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  z-index: 2;
+  margin-bottom: var(--spacing-larger);
 }
 .page-header__image img {
   width: 100%;
@@ -148,18 +170,27 @@ export default {
   }
   .page-header--fill-screen {
     height: 100vh;
-    max-height: var(--max-height);
+    max-height: 80vw;
   }
   .page-header--fill-screen::before {
+    /* Yellow half */
     grid-row: 1 / 8;
     grid-column: var(--grid-page-right);
+    margin-bottom: 0;
+  }
+  .page-header--curly-bracket::after {
+    /* curly bracket */
+    grid-row: 3 / 8;
+    grid-column: 40 / 48;
+    background-size: contain;
   }
   .page-header__text {
     grid-column: var(--grid-content-left);
   }
   .page-header__image {
-    grid-row: 4 / 7;
-    grid-column: 20 / 48;
+    grid-row: 3 / 7;
+    grid-column: 20 / 49;
+    margin-bottom: 0;
   }
 }
 
