@@ -3,10 +3,10 @@
     <div class="page-case__case-header">
       <page-header
         fill-screen
-        :byline="page.subtitle"
+        byline="Case"
         :headline="page.title"
         heading="headline"
-        :image="page.headerIllustration"
+        :image="page.heroIllustration"
       />
     </div>
     <aside class="page-case__case-meta-container grid">
