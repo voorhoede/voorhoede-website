@@ -35,18 +35,18 @@
       />
     </div>
     <scroll-to v-if="fillScreen" point-down />
-    <div class="page-header__image">
-      <img v-if="image" :src="image.url" alt="">
-    </div>
+    <app-image v-if="image" :image="image" :lazy-load="false" />
   </header>
 </template>
 
 <script>
+import AppImage from '../app-image'
 import ScrollTo from '../scroll-to'
 import SelfTypingText from '../self-typing-text'
 
 export default {
   components: {
+    AppImage,
     ScrollTo,
     SelfTypingText,
   },
@@ -137,7 +137,7 @@ export default {
 .page-header__text {
   grid-row: 3 / 4;
 }
-.page-header__image {
+.page-header .app-image {
   position: relative;
   grid-column: 3 / var(--grid-page-end);
   grid-row: 6 / 7;
@@ -146,11 +146,6 @@ export default {
   align-items: flex-end;
   z-index: 2;
   margin-bottom: var(--spacing-larger);
-}
-.page-header__image img {
-  width: 100%;
-  height: 100%;
-  flex: 0 0 auto;
 }
 .page-header .scroll-to {
   position: absolute;
@@ -181,13 +176,14 @@ export default {
   .page-header--curly-bracket::after {
     /* curly bracket */
     grid-row: 3 / 8;
-    grid-column: 40 / 48;
+    grid-column: 39 / 48;
     background-size: contain;
+    background-position: left center; /* remember, object is rotated */
   }
   .page-header__text {
     grid-column: var(--grid-content-left);
   }
-  .page-header__image {
+  .page-header .app-image {
     grid-row: 3 / 7;
     grid-column: 20 / 49;
     margin-bottom: 0;
