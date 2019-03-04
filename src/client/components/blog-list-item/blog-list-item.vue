@@ -35,11 +35,11 @@
 </template>
 
 <script>
-  import { LazyLoad, NoScript } from '~/components'
+  import { LazyLoad } from '~/components'
   import formatDate from '../../lib/format-date'
 
   export default {
-    components: { LazyLoad, NoScript },
+    components: { LazyLoad },
     props: {
       item: {
         type: Object,
