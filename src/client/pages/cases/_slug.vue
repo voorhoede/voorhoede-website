@@ -10,7 +10,7 @@
       />
     </div>
     <aside class="page-case__case-meta-container grid">
-      <h2 class="sr-only">Case meta</h2>
+      <h2 class="sr-only">{{ $t('case_info') }}</h2>
       <case-meta
         class="page-case__case-meta"
         :expertise-title="page.metaData.expertisesTitle"

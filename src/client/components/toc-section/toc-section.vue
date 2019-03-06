@@ -1,6 +1,6 @@
 <template>
   <section class="toc-section">
-    <h3 class="body-big font-html-blue">{{ $t('table_of_content') }}</h3>
+    <h2 class="body-big font-html-blue">{{ $t('table_of_content') }}</h2>
     <nav>
       <ul class="flat-list">
         <li 

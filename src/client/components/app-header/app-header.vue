@@ -1,6 +1,5 @@
 <template>
-  <nav class="app-header grid">
-    <h2 class="sr-only">{{ title }}</h2>
+  <nav class="app-header grid" :aria-label="title">
     <div class="app-header__content">
       <nuxt-link class="app-header__home-link" :to="localeUrl('index')">
         <img class="app-header__logo" src="/images/logo-with-text.svg" alt="Home">

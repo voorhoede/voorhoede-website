@@ -6,7 +6,8 @@
       heading="byline"
       :image="page.headerIllustration"
     />
-    <div class="grid">
+    <section class="grid">
+      <h2 class="sr-only">{{ $t('all_cases') }}</h2>
       <ul class="page-case__overview">
         <li class="page-case__overview-item" v-for="caseItem in items" :key="caseItem.slug">
           <case-excerpt
@@ -17,7 +18,7 @@
           />
         </li>
       </ul>
-    </div>
+    </section>
     <div class="grid">
       <pivot-section
         v-if="pivots && pivots.length"

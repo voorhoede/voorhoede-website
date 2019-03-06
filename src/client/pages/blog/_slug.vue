@@ -9,7 +9,7 @@
     />
     <article class="page-blog-post-list">
       <text-block>
-        <p class="font-html-blue testimonial">{{ page.introTitle }}</p>
+        <h3 class="font-html-blue testimonial">{{ page.introTitle }}</h3>
       </text-block>
 
       <template v-for="item in page.items">
@@ -57,12 +57,12 @@
           :key="item.title || item.body"
           class="page-blog-post-list__text"
         >
-          <h2
+          <h3
             v-if="item.title"
             class="page-blog-post-list__title h3 font-html-blue"
             :id="slugify(item.title)">
             {{ item.title }}
-          </h2>
+          </h3>
           <rich-text-block
             v-if="item.body"
             :text="item.body"
