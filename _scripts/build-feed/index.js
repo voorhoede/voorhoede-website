@@ -41,4 +41,6 @@ const feedObject = {
 const feed = builder.create(feedObject, { encoding: 'utf-8' })
 const filepath = path.join(__dirname, '../../dist/client/blog-feed.xml')
 writeFileSync(filepath, feed.end({ pretty: true }) )
+
+/* eslint-disable */
 console.log(`Feed written to ${filepath}`)
