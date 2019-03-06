@@ -22,7 +22,7 @@
       </p>
     </div>
 
-    <section class="page-index__services grid">
+    <section class="page-index__services">
       <h2 class="page-index__section-title h1">{{ page.servicesHeader }}</h2>
       <services-list
         :services="page.services"
@@ -162,20 +162,11 @@
 
   .page-index__services {
     margin-bottom: var(--spacing-larger);
-    grid-column: var(--grid-page);
-    grid-template-rows: repeat(2, auto);
   }
 
   .page-index__section-title {
     margin-bottom: var(--spacing-large);
-    grid-row-start: 1;
-    grid-row-end: 2;
     text-align: center;
-  }
-
-  .page-index .services-list {
-    grid-row-start: 2;
-    grid-row-end: 3;
   }
 
   .page-index__section-title--clients {
@@ -380,7 +371,8 @@
       padding: var(--spacing-bigger) 0;
     }
 
-    .page-index__services > *,
+    .page-index__services,
+    .page-index__section-title,
     .page-index__clients > * {
       grid-column-start: 4;
       grid-column-end: 48;
