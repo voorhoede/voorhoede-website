@@ -44,13 +44,12 @@
         </template>
       </horizontal-carousel>
 
-      <div class="page-index__blog-posts-button">
-        <app-button
-          secondary
-          :label="$t('all_cases')"
-          :to="localeUrl('cases')"
-        />
-      </div>
+      <app-button
+        class="page-index__see-all-button"
+        secondary
+        :label="$t('all_cases')"
+        :to="localeUrl('cases')"
+      />
     </section>
 
     <section class="page-index__clients grid">
@@ -76,13 +75,12 @@
           <blog-list-item :item="blogPost" />
         </li>
       </ul>
-      <div class="page-index__blog-posts-button">
-        <app-button
-          :to="localeUrl('blog')"
-          :label="$t('latest_blog_posts')"
-          secondary
-        />
-      </div>
+      <app-button
+        class="page-index__see-all-button"
+        :to="localeUrl('blog')"
+        :label="$t('latest_blog_posts')"
+        secondary
+      />
       <curly-bracket side="right" />
     </section>
 
@@ -242,10 +240,9 @@
     grid-row: 3;
   }
 
-  .page-index__blog-posts-button {
-    display: flex;
-    justify-content: center;
+  .page-index__see-all-button {
     grid-row: 3;
+    justify-self: center;
   }
 
   @media (min-width: 720px) {
