@@ -84,9 +84,7 @@
       }), 300)
     },
     beforeDestroy() {
-      if (this.observer !== null) {
-        this.unobserve()
-      }
+      this.unobserve()
     },
     methods: {
       observe () {
