@@ -53,7 +53,7 @@
         />
 
         <div
-          v-if="item.__typename === 'TextSectionRecord' && item.title"
+          v-if="item.__typename === 'TextSectionRecord'"
           :key="item.title || item.body"
           class="page-blog-post-list__text"
         >
