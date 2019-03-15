@@ -60,31 +60,18 @@
       }
     },
     mounted() {
-      const highlightedTextID = parseInt(this.$refs.highlightedText.dataset.id)
-      let offsetIntersectionObserver
-
       ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches)
         ? this.observe()
         : this.isIntersected = true
 
-      window.addEventListener('scroll', debounce(() => {
-        if(this.$refs.highlightedText) {
-          // calculate offset from window top including rootMargin set on the observer
-          offsetIntersectionObserver = this.$refs.highlightedText.offsetTop - this.observerRectTop
-
-          // if first highlighted text line and user scrolled before intersecting with observer
-          if(highlightedTextID === this.isFirst.number) {
-            this.scrolledAbove = offsetIntersectionObserver > window.scrollY
-          }
-          // if last highlighted text line and user scrolled after intersecting with observer
-          if(highlightedTextID === this.isLast.number) {
-            this.scrolledBelow = offsetIntersectionObserver < window.scrollY
-          }
-        }
-      }), 300)
+      window.addEventListener('scroll', this.onScroll)
     },
     beforeDestroy() {
-      this.unobserve()
+      if (this.observer !== null) {
+        this.unobserve()
+      }
+
+      window.removeEventListener('scroll', this.onScroll)
     },
     methods: {
       observe () {
@@ -108,6 +95,24 @@
           return entry.isIntersecting
         })
       },
+      onScroll: debounce(() => {
+        const highlightedTextID = parseInt(this.$refs.highlightedText.dataset.id)
+        let offsetIntersectionObserver
+
+        if(this.$refs.highlightedText) {
+          // calculate offset from window top including rootMargin set on the observer
+          offsetIntersectionObserver = this.$refs.highlightedText.offsetTop - this.observerRectTop
+
+          // if first highlighted text line and user scrolled before intersecting with observer
+          if(highlightedTextID === this.isFirst.number) {
+            this.scrolledAbove = offsetIntersectionObserver > window.scrollY
+          }
+          // if last highlighted text line and user scrolled after intersecting with observer
+          if(highlightedTextID === this.isLast.number) {
+            this.scrolledBelow = offsetIntersectionObserver < window.scrollY
+          }
+        }
+      }, 300),
       unobserve () {
         this.observer.unobserve(this.$el)
       },
