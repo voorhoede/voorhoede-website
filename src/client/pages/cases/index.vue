@@ -75,7 +75,7 @@
   }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1200px) {
   .page-case__overview-item {
     width: calc(33% - (var(--spacing-medium) * 2));
     margin-bottom: var(--spacing-larger);
