@@ -148,6 +148,10 @@
       margin-bottom: var(--spacing-medium);
     }
 
+    .page-event__past-events {
+      margin-bottom: var(--spacing-bigger);
+    }
+
     .page-event__past-events-list {
       grid-column: var(--grid-content);
     }
