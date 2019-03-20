@@ -155,6 +155,7 @@
 
     .page-event__past-events-list {
       grid-column: var(--grid-content);
+      grid-row: 2;
     }
 
     .page-event__past-events-item + .page-event__past-events-item {
