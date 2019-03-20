@@ -1,5 +1,5 @@
 <template>
-  <address class="contact-address">
+  <address class="address-sidebar">
     <dl class="body">
       <dt>{{ emailLabel }}</dt>
       <dd><a class="font-html-blue" href="mailto:post@voorhoede.nl">post@voorhoede.nl</a></dd>
@@ -39,9 +39,9 @@ export default {
 </script>
 
 <style>
-.contact-address a:hover,
-.contact-address a:focus {
-  padding-bottom: .15rem;
-  background: transparent linear-gradient(to top, var(--html-blue) 2px, transparent 2px);
-}
+  .address-sidebar a:hover,
+  .address-sidebar a:focus {
+    padding-bottom: .15rem;
+    background: transparent linear-gradient(to top, var(--html-blue) 2px, transparent 2px);
+  }
 </style>

@@ -47,11 +47,11 @@
     background-color: white;
   }
 
-  .contact-address {
+  .page-contact .address-sidebar {
     margin-bottom: var(--spacing-larger);
   }
 
-  .contact-address dd {
+  .page-contact .address-sidebar dd {
     margin-bottom: var(--spacing-small);
   }
 
@@ -71,7 +71,7 @@
       justify-content: space-between;
     }
 
-    .contact-address {
+    .page-contact .address-sidebar {
       width: 30%;
     }
 
