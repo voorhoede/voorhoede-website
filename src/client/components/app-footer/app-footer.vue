@@ -47,7 +47,7 @@
           <li class="app-footer__list-item">
             <a
               @click="trackLink('phone')"
-              :href="`tel:${ cleanedTelephone }`"
+              :href="`tel:${ cleanedPhoneNumber }`"
               class="app-footer__link">{{ content.phoneNumber }}</a>
           </li>
           <li class="app-footer__list-item">
@@ -123,7 +123,7 @@ export default {
         { url: this.content.linkedinUrl, platform: 'linked',   icon: 'linkedin--blue' },
       ]
     },
-    cleanedTelephone() {
+    cleanedPhoneNumber() {
       return this.content.phoneNumber.replace(/[^0-9]/g, '')
     }
   },
