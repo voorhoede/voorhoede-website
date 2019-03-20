@@ -43,13 +43,9 @@
 </script>
 
 <style>
-  :root {
-    --event-list-item-transition: .3s cubic-bezier(.47, 0, .29, .98);
-  }
-
   .event-list-item__transition-box {
     padding: var(--spacing-small) 0;
-    transition: transform var(--event-list-item-transition);
+    transition: var(--animation-shift-transition);
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -57,7 +53,7 @@
 
   .event-list-item__link:hover .event-list-item__transition-box,
   .event-list-item__link:focus .event-list-item__transition-box {
-    transform: translateX(var(--grid-margin));
+    transform: var(--animation-shift-transform);
   }
 
   .event-list-item .calendar-icon {

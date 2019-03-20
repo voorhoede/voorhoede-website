@@ -1,3 +1,8 @@
+:root {
+  --animation-shift-transition: transform .3s cubic-bezier(.47, 0, .29, .98);
+  --animation-shift-transform: translateX(var(--grid-margin));
+}
+
 @keyframes blink {
     49% {
         opacity: 0;
