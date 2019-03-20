@@ -58,7 +58,7 @@ query ($locale: SiteLocale, $currentDate: DateTime)  {
   },
   pastEvents: allEventItems(
     locale: $locale,
-    first: 3,
+    first: 100,
     orderBy: date_DESC,
     filter: {
       date: { lt: $currentDate }

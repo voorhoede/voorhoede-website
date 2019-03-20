@@ -39,6 +39,7 @@
       <ul class="page-event__past-events-list">
         <li
           v-for="event in pastEvents"
+          v-if="event.slug"
           :key="event.description"
           class="page-event__past-events-item"
         >
