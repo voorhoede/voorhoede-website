@@ -48,12 +48,7 @@ module.exports = (dato, root, i18n) => {
 }
 
 function appSettingsToJson(app) {
-  return {
-    addresses: app.addresses.map(address => {
-      return pick(address, ['address', 'postalCode', 'city', 'googleMapsLink'])
-    }),
-    ...pick(app, ['googleAnalyticsId', 'experimentId'])
-  }
+  return pick(app, ['googleAnalyticsId', 'experimentId'])
 }
 
 function localesToJson (locales) {
