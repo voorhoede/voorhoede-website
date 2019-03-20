@@ -36,19 +36,15 @@ query ($locale: SiteLocale, $currentDate: DateTime)  {
       }
     }
   }
-
-  items: allEventItems(
+  upcomingEvents: allEventItems(
     locale: $locale,
     first: 10,
     orderBy: date_ASC,
     filter: {
       date: { gte: $currentDate }
-  }) {
-    date,
-    description,
-    title,
-    slug,
-    url,
+    }
+  ) {
+    ...event,
     image {
       url,
       alt,
@@ -59,7 +55,17 @@ query ($locale: SiteLocale, $currentDate: DateTime)  {
     label {
       label
     }
-  }
+  },
+  pastEvents: allEventItems(
+    locale: $locale,
+    first: 3,
+    orderBy: date_DESC,
+    filter: {
+      date: { lt: $currentDate }
+    }
+  ) {
+  	...event
+  },
 }
 
 fragment eventOverview on EventOverviewRecord {
@@ -76,4 +82,12 @@ fragment eventOverview on EventOverviewRecord {
   },
   introductionText,
   keywords
+}
+
+fragment event on EventItemRecord {
+  date,
+  description,
+  title,
+  slug,
+  url,
 }
