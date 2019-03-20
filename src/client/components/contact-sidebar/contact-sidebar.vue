@@ -1,5 +1,5 @@
 <template>
-  <address class="address-sidebar">
+  <address class="contact-sidebar">
     <dl class="body">
       <dt>{{ emailLabel }}</dt>
       <dd><a class="font-html-blue" href="mailto:post@voorhoede.nl">post@voorhoede.nl</a></dd>
@@ -7,7 +7,16 @@
       <dd><a href="tel:+31202610954" class="font-html-blue">+31 (0)20 2610954</a></dd>
       <dt>{{ addressLabel }}</dt>
       <dd class="font-html-blue">
-        <a href="https://www.google.nl/maps/place/De+Voorhoede+%7C+Front-end+Development/@52.3477995,4.8485761,17z/data=!3m1!4b1!4m5!3m4!1s0x47c5e21d502d2d59:0xbf570944a96ebf45!8m2!3d52.3477962!4d4.8507648" target="_blank">Rijnsburgstraat 9-11<br>1059 AT Amsterdam</a>
+        <div
+          v-for="address in addresses"
+          :key="address.googleMapsLink"
+          class="contact-sidebar__address"
+        >
+          <a :href="address.googleMapsLink" target="_blank">
+            {{ address.address }}
+            <br>{{ address.postalCode }} {{ address.city }}
+          </a>
+        </div>
       </dd>
       <dt>KvK</dt>
       <dd class="font-html-blue">56017235</dd>
@@ -30,6 +39,17 @@ export default {
       type: String,
       default: '',
     },
+    addresses: {
+      type: Array,
+      required: true,
+      validator(addresses) {
+        return addresses.every((address) => (
+          typeof(address.address) === 'string'
+          && typeof(address.city) === 'string'
+          && typeof(address.postalCode) === 'string'
+        ))
+      }
+    },
     addressLabel: {
       type: String,
       default: '',
@@ -39,9 +59,13 @@ export default {
 </script>
 
 <style>
-  .address-sidebar a:hover,
-  .address-sidebar a:focus {
+  .contact-sidebar a:hover,
+  .contact-sidebar a:focus {
     padding-bottom: .15rem;
     background: transparent linear-gradient(to top, var(--html-blue) 2px, transparent 2px);
+  }
+
+  .contact-sidebar__address + .contact-sidebar__address {
+    margin-top: var(--spacing-small);
   }
 </style>
