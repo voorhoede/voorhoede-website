@@ -12,7 +12,7 @@
             :image="image"
           />
         </nuxt-link>
-        <h3 class="h3 case-excerpt__title">{{ title }}</h3>
+        <h3 class="h4 case-excerpt__title">{{ title }}</h3>
         <div class="case-excerpt__info">
           <p class="case-excerpt__body body">{{ body }}</p>
           <div class="case-excerpt__actions">
