@@ -1,14 +1,15 @@
 <template>
   <div
-    ref="text"
-    v-html="selfTypingText"
-    class="self-typing-text self-typing-text--animated"
+    class="self-typing-text"
     aria-hidden="true"
     :class="{
       'self-typing-text--enhanced': enhanced,
       'self-typing-text--ended': animationEnded
     }"
-  />
+  >
+    <div class="self-typing-text__placeholder" v-html="text"/>
+    <div class="self-typing-text__text" v-html="selfTypingText"/>
+  </div>
 </template>
 
 <script>
@@ -37,14 +38,12 @@ export default {
       return
     }
 
-    const height = this.$refs.text.clientHeight
     const letters = this.text.split('')
     const intervalByDuration = (BASE_DURATION / this.text.length)
     /* Get interval that is not higher than max or lower than min */
     const interval = [MIN_INTERVAL, Math.round(intervalByDuration), MAX_INTERVAL].sort()[1]
 
     this.enhanced = true // Only enhance when javascript in the client is available
-    this.$refs.text.style.height = `${height}px`
     this.selfTypingText = ''
 
     letters.forEach((letter, index) => {
@@ -57,8 +56,7 @@ export default {
          * this.$refs.text is checked, because the component might be unmounted,
          * by the time the code is run, because of the timeout.
          */
-        if (index === this.text.length - 1 && this.$refs.text) {
-          this.$refs.text.style.removeProperty('height')
+        if (index === this.text.length - 1) {
           this.animationEnded = true // Remove cursor
         }
       }, interval * index)
@@ -75,26 +73,36 @@ export default {
 
   .self-typing-text {
     margin-top: var(--spacing-smaller);
+    position: relative;
+  }
+
+  .self-typing-text__text,
+  .self-typing-text__placeholder {
     hyphens: auto;
     overflow-wrap: break-word;
     opacity: 0;
+  }
+
+  .self-typing-text__text {
     animation: var(--show-text-animation);
     animation-delay: var(--show-text-animation-delay);
+    position: absolute;
+    top: 0;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .self-typing-text {
+    .self-typing-text__text {
       animation: none;
       opacity: 1;
     }
   }
 
-  .self-typing-text--enhanced {
+  .self-typing-text--enhanced .self-typing-text__text {
     opacity: 1;
     animation: none;
   }
 
-  .self-typing-text--enhanced::after {
+  .self-typing-text--enhanced .self-typing-text__text::after {
     content: '';
     position: relative;
     display: inline-block;
@@ -106,7 +114,7 @@ export default {
     animation: var(--blink-text-animation);
   }
 
-  .self-typing-text--ended::after {
+  .self-typing-text--ended .self-typing-text__text::after {
     content: none;
   }
 </style>
