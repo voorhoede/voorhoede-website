@@ -39,7 +39,6 @@
       <ul class="page-event__past-events-list">
         <li
           v-for="event in pastEvents"
-          v-if="event.slug"
           :key="event.description"
           class="page-event__past-events-item"
         >
@@ -73,6 +72,24 @@
           format: 'svg'
         }
       }
+    },
+    computed: {
+      upcomingEvents() {
+        const items = this.items
+        return items
+          .filter(event => new Date(event.date).getTime() > new Date().getTime())
+          .sort((a, b) => new Date(a.date).getTime() - new Date(b).getTime())
+          .slice(0, 10)
+      },
+      pastEvents() {
+        const items = this.items
+        return items
+          .filter(event => (
+            new Date(event.date).getTime() < new Date().getTime()
+            && event.slug // Some old events don't have a slug
+          ))
+          .sort((a, b) => new Date(a.date).getTime() - new Date(b).getTime())
+      },
     },
     head,
   }
