@@ -90,9 +90,11 @@ export default {
  * `page-header--fill-screen` adds a `::before`,
  * `page-header--curly-bracket` adds an `::after`
  */
+
 /* :root {
   --max-height: 1000px;
 } */
+
 .page-header {
   background-color: var(--bg-pastel);
   overflow: hidden;
@@ -107,6 +109,7 @@ export default {
     auto                            /* 7 - 8:  Image */
     var(--spacing-larger)           /* 7 - 8 */
 }
+
 .page-header--fill-screen::before {
   /* Yellow half */
   content: '';
@@ -117,6 +120,7 @@ export default {
   grid-row: 5 / 8;
   margin-bottom: var(--spacing-larger);
 }
+
 .page-header--curly-bracket::after {
   /* Curly bracket */
   content: '';
@@ -131,12 +135,13 @@ export default {
   background-size: cover;
   background-position: right center;
   transform: rotate(180deg);
-  margin-bottom: calc(var(--spacing-larger) - var(--spacing-medium))
+  margin-bottom: calc(var(--spacing-larger) - var(--spacing-medium));
 }
 
 .page-header__text {
   grid-row: 3 / 4;
 }
+
 .page-header .app-image {
   position: relative;
   grid-column: 3 / var(--grid-page-end);
@@ -147,6 +152,7 @@ export default {
   z-index: 2;
   margin-bottom: var(--spacing-larger);
 }
+
 .page-header .scroll-to {
   position: absolute;
   bottom: var(--spacing-large);
@@ -163,16 +169,19 @@ export default {
       1fr                             /* 7 - 8 */
       var(--spacing-larger)           /* 7 - 8 */
   }
+
   .page-header--fill-screen {
     height: 100vh;
     max-height: 80vw;
   }
+
   .page-header--fill-screen::before {
     /* Yellow half */
     grid-row: 1 / 8;
     grid-column: var(--grid-page-right);
     margin-bottom: 0;
   }
+
   .page-header--curly-bracket::after {
     /* curly bracket */
     grid-row: 3 / 8;
@@ -180,9 +189,11 @@ export default {
     background-size: contain;
     background-position: left center; /* remember, object is rotated */
   }
+
   .page-header__text {
     grid-column: var(--grid-content-left);
   }
+
   .page-header .app-image {
     grid-row: 3 / 7;
     grid-column: 20 / 49;
@@ -201,6 +212,7 @@ export default {
       1fr                            /* 7 - 8 */
       var(--spacing-larger)          /* 7 - 8 */
   }
+
   .page-header__text {
     grid-column: 4 / var(--grid-center);
   }
