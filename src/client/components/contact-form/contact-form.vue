@@ -4,13 +4,13 @@
       v-if="title"
       class="contact-form__title h3"
     >
-        {{ title }}
+      {{ title }}
     </h2>
     <form
       @submit.prevent="submit"
       method="POST"
       :name="form['form-name']"
-      :action="this.localeUrl({ name: 'contact-slug', params: { slug: 'confirmation' } })"
+      :action="localeUrl({ name: 'contact-slug', params: { slug: 'confirmation' } })"
       class="contact-form__form"
       data-netlify="true"
       netlify-honeypot="magic-castle"
