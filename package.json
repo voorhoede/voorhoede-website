@@ -33,7 +33,6 @@
     "lintfix": "run-s lintfix:*",
     "lintfix:js": "npm run lint:js -- --fix",
     "lintfix:css": "npm run lint:css -- --fix",
-    "new-component": "node _scripts/new-component/index.js --component",
     "precommit": "npm run lint",
     "proxy": "ngrok http 3278",
     "start": "nuxt start",

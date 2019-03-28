@@ -47,7 +47,6 @@ available:
 `proxy` | Exposes app on localhost to world wide web for testing on other devices.
 `start` | Serves production version of client app from (`/dist/`) on [`http://localhost:3278`](http://localhost:3278).
 `data` | Imports all data from Dato CMS.
-`new-component` | Creates a new component folder
 
 ## Documentation
 
