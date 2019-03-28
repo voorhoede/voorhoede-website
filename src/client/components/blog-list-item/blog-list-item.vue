@@ -18,15 +18,6 @@
         <div class="blog-list-item__details">
           <h3 class="blog-list-item__heading" :class="large ? 'h4' : 'body'">{{ item.title }}</h3>
           <div class="blog-list-item__author">
-            <no-script>
-              <img
-                v-for="author in item.authors" :key="author.name"
-                class="blog-list-item__image"
-                :class="{ 'blog-list-item__image--large': large }"
-                :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=65&h=65&fit=crop`"
-                alt=""
-              >
-            </no-script>
             <lazy-load v-for="author in item.authors" :key="author.name">
               <img
                 class="blog-list-item__image"
@@ -44,11 +35,11 @@
 </template>
 
 <script>
-  import { LazyLoad, NoScript } from '~/components'
+  import { LazyLoad } from '~/components'
   import formatDate from '../../lib/format-date'
 
   export default {
-    components: { LazyLoad, NoScript },
+    components: { LazyLoad },
     props: {
       item: {
         type: Object,
