@@ -39,7 +39,8 @@
             <a
               :href="address.googleMapsLink"
               class="app-footer__link app-footer__link--right"
-              target="_blank">
+              target="_blank"
+              rel="noreferrer noopener">
               <span>{{ address.address }}</span>
               <span>{{ address.postalCode }} {{ address.city }}</span>
             </a>
@@ -62,7 +63,7 @@
         <ul class="app-footer__list--icon">
           <li class="app-footer__list-item--icon"
               v-for="socialItem in social" :key="socialItem.href">
-            <a :href="socialItem.href" target="_blank">
+            <a :href="socialItem.href" target="_blank" rel="noreferrer noopener">
               <app-icon :alt="socialItem.title" :name="socialItem.icon" :is-large="true" />
             </a>
           </li>
@@ -82,13 +83,15 @@
           :href="copyrightLink"
           class="app-footer__copyright"
           :aria-label="copyrightTitle"
-          target="_blank">{{ copyrightLabel }}</a>
+          target="_blank"
+          rel="noreferrer noopener">{{ copyrightLabel }}</a>
         <span> - </span>
         <a
           :href="privacyLink"
           class="app-footer__privacy"
           :aria-label="privacyTitle"
-          target="_blank">{{ privacyLabel }}</a>
+          target="_blank"
+          rel="noreferrer noopener">{{ privacyLabel }}</a>
       </div>
     </div>
   </footer>
