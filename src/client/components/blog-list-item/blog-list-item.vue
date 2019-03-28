@@ -84,7 +84,6 @@
   :root {
     --blog-thumbnail-small: 40px;
     --blog-thumbnail-large: 65px;
-    --blog-list-item-transition: .3s cubic-bezier(.47, 0, .29, .98);
   }
 
   .blog-list-item {
@@ -92,12 +91,12 @@
   }
 
   .blog-list-item__content {
-    transition: transform var(--blog-list-item-transition);
+    transition: var(--animation-shift-transition);
   }
 
   .blog-list-item:hover .blog-list-item__content,
   .blog-list-item:focus .blog-list-item__content {
-    transform: translateX(var(--grid-margin));
+    transform: var(--animation-shift-transform);
   }
 
   @media (prefers-reduced-motion: reduce) {

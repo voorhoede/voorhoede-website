@@ -3,7 +3,8 @@
     class="calendar-icon"
     :class="{
       'calendar-icon--blue': (fill === 'blue'),
-      'calendar-icon--yellow': (fill === 'yellow')
+      'calendar-icon--yellow': (fill === 'yellow'),
+      'calendar-icon--dim': (fill === 'dim'),
     }"
     :datetime="date"
   >
