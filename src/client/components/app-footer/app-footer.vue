@@ -204,7 +204,7 @@ export default {
       this.observeContact()
     }
   },
-  beforeDestroyed() {
+  beforeDestroy() {
     if (this.observer !== null) {
       this.unobserveContact()
     }
