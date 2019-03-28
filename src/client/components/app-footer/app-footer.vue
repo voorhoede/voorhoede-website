@@ -71,11 +71,11 @@
     </div>
     <div class="app-footer__bottom">
       <div class="body-detail app-footer__bottom-text">
-        <dl class="app-footer__definition-list">
-          <div v-for="{ title, value } in legal" :key="title" class="app-footer__definition-item">
+        <div class="app-footer__definition-list">
+          <dl v-for="{ title, value } in legal" :key="title" class="app-footer__definition-item">
             <dt>{{ title }}:</dt> <dd class="app-footer__definition-value">{{ value }}</dd>
-          </div>
-        </dl>
+          </dl>
+        </div>
       </div>
       <div class="body-detail app-footer__legal">
         <a
