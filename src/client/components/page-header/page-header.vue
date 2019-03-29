@@ -158,8 +158,8 @@
 
   .page-header--fill-screen .page-header__image-column {
     display: flex;
-    justify-content: flex-end;
     align-items: flex-end;
+    justify-content: flex-end;
     grid-row: 6 / 7;
     grid-column: 3 / var(--grid-page-end);
     z-index: var(--z-index-low); /* Make sure to be on top off curly bracket */
@@ -190,7 +190,6 @@
   }
 
   .page-header__slot {
-    padding-bottom: var(--spacing-large);
     min-height: 23.5vh;
     grid-row: 9 / 10;
     grid-column: 4 / var(--grid-content-end);
@@ -232,9 +231,8 @@
       max-height: 80vw; /* Keep aspect ratio */
       grid-template-rows:
         var(--app-header-height-small)
-        var(--spacing-medium)
+        var(--spacing-larger)
         auto
-        var(--spacing-medium)
         var(--spacing-medium)
         1fr
         var(--spacing-larger);
@@ -242,14 +240,14 @@
 
     /* Yellow half */
     .page-header--fill-screen::before {
-      grid-row: 1 / 8;
+      grid-row: 1 / 7;
       grid-column: var(--grid-page-right);
     }
 
     /* Curly bracket */
     .page-header--fill-screen::after {
-      margin-bottom: var(--spacing-medium);
-      grid-row: 3 / 8;
+      margin: var(--spacing-medium) 0;
+      grid-row: 3 / 7;
       grid-column: var(--grid-center) / 48;
       background-size: contain;
       background-position: left center; /* remember, object is rotated */
@@ -260,27 +258,20 @@
     }
 
     .page-header__image-column {
-      margin-top: var(--spacing-huge);
       margin-bottom: calc(-1 * var(--spacing-small)); /* Make image move outside page header */
-      grid-row: 2 / 5;
+      grid-row: 3 / 5;
       display: flex;
       align-items: flex-end;
       justify-content: flex-end;
+      grid-column: 29 / 49;
       max-height: var(--max-height-image);
     }
 
-    /*
-     * Grid-column is set with 2 specifity for fill screen variant,
-     * so it has to be overwritten specifically
-     */
-    .page-header__image-column,
     .page-header--fill-screen .page-header__image-column {
+      margin: 0;
+      grid-row: 5 / 6;
       grid-column: 20 / 49;
-    }
-
-    .page-header--fill-screen .page-header__image-column {
-      margin-top: 0;
-      grid-row: 5 / 7;
+      max-height: none;
     }
   }
 
@@ -298,7 +289,6 @@
         var(--app-header-height-large)
         var(--spacing-big)
         1fr
-        var(--spacing-medium)
         var(--spacing-medium)
         1fr
         var(--spacing-larger);
