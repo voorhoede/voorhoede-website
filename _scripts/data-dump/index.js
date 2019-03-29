@@ -43,9 +43,9 @@ function getPageData(queryPath, locale) {
       console.log(chalk.green(`👌️ Successfully written: ${relPath}`)) // eslint-disable-line no-console
       if (pageData.items) {
         pageData.items
-          .map(item => item.slug)
+          .map(item => item && item.slug)
           .forEach(slug => {
-            if (slug === undefined) {
+            if (slug === undefined || slug === null) {
               return
             }
 

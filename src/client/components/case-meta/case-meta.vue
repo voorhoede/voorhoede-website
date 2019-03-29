@@ -14,7 +14,7 @@
     </section>
     <section v-if="interestedTitle" class="case-meta__section">
       <h3 class="case-meta__title body font-bold">{{ interestedTitle }}</h3>
-      <a class="case-meta__link body-petite" :href="interestedLinkUrl" target="_blank">
+      <a class="case-meta__link body-petite" :href="interestedLinkUrl" target="_blank" rel="noreferrer noopener">
         {{ interestedLinkLabel }} &raquo;
       </a>
     </section>

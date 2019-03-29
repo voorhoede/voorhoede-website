@@ -1,11 +1,18 @@
 <template>
   <div class="lazy-load">
-    <slot v-if="isIntersected" />
+    <no-script>
+      <slot />
+    </no-script>
+    <slot class="lazy-load" v-if="isIntersected" />
   </div>
 </template>
 
 <script>
+import NoScript from '../no-script'
 export default {
+  components: {
+    NoScript
+  },
   props: {
     rootMargin: {
       type: String,

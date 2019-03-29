@@ -1,4 +1,4 @@
-query ($locale: SiteLocale, $currentDate: DateTime)  {
+query ($locale: SiteLocale)  {
   page: eventOverview(locale:$locale) {
     ...eventOverview
   },
@@ -36,30 +36,13 @@ query ($locale: SiteLocale, $currentDate: DateTime)  {
       }
     }
   }
-
   items: allEventItems(
     locale: $locale,
-    first: 10,
-    orderBy: date_ASC,
-    filter: {
-      date: { gte: $currentDate }
-  }) {
-    date,
-    description,
-    title,
-    slug,
-    url,
-    image {
-      url,
-      alt,
-      format,
-      width,
-      height
-    },
-    label {
-      label
-    }
-  }
+    first: 100,
+    orderBy: date_DESC,
+  ) {
+    ...event,
+  },
 }
 
 fragment eventOverview on EventOverviewRecord {
@@ -76,4 +59,22 @@ fragment eventOverview on EventOverviewRecord {
   },
   introductionText,
   keywords
+}
+
+fragment event on EventItemRecord {
+  date,
+  description,
+  title,
+  slug,
+  url,
+  image {
+    url,
+    alt,
+    format,
+    width,
+    height
+  },
+  label {
+    label
+  }
 }

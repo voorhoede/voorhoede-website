@@ -39,7 +39,8 @@
             <a
               :href="address.googleMapsLink"
               class="app-footer__link app-footer__link--right"
-              target="_blank">
+              target="_blank"
+              rel="noreferrer noopener">
               <span>{{ address.address }}</span>
               <span>{{ address.postalCode }} {{ address.city }}</span>
             </a>
@@ -65,7 +66,7 @@
             :key="socialLink.url"
             class="app-footer__list-item--icon"
           >
-            <a :href="socialLink.url" target="_blank">
+            <a :href="socialLink.url" target="_blank" rel="noreferrer noopener">
               <app-icon :alt="socialLink.platform" :name="socialLink.icon" :is-large="true" />
             </a>
           </li>
@@ -85,13 +86,15 @@
           :href="content.copyrightLink"
           class="app-footer__copyright"
           :aria-label="content.copyrightTitle"
-          target="_blank">{{ content.copyrightLabel }}</a>
+          target="_blank"
+          rel="noreferrer noopener">{{ content.copyrightLabel }}</a>
         <span> - </span>
         <a
           :href="content.privacyLink"
           class="app-footer__privacy"
           :aria-label="content.privacyTitle"
-          target="_blank">{{ content.privacyLabel }}</a>
+          target="_blank"
+          rel="noreferrer noopener">{{ content.privacyLabel }}</a>
       </div>
     </div>
   </footer>

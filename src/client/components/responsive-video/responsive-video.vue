@@ -28,7 +28,7 @@
         </lazy-load>
       </fixed-ratio>
       <figcaption v-if="video.title">
-        <a class="responsive-video__caption body-detail" target="_blank" rel="noopener" :href="video.url" >
+        <a class="responsive-video__caption body-detail" target="_blank" rel="noreferrer noopener" :href="video.url" >
           {{ video.title }}
         </a>
       </figcaption>

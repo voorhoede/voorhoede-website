@@ -12,7 +12,7 @@
           :key="address.googleMapsLink"
           class="contact-sidebar__address"
         >
-          <a :href="address.googleMapsLink" target="_blank">
+          <a :href="address.googleMapsLink" target="_blank" rel="noreferrer noopener">
             {{ address.address }}
             <br>{{ address.postalCode }} {{ address.city }}
           </a>

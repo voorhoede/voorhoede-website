@@ -19,6 +19,7 @@
         <a
           :href="item.href"
           target="_blank"
+          rel="noreferrer noopener"
           :aria-label="item.label"
         >
           <app-icon :name="item.icon" :is-large="true" :alt="item.alt" />

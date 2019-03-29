@@ -6,9 +6,6 @@
         :key="image.alt"
         class="highlighted-clients__client"
       >
-        <no-script>
-          <img :src="image.url" :alt="image.alt" class="highlighted-clients__image">
-        </no-script>
         <fixed-ratio :width="5" :height="2">
           <lazy-load>
             <img :src="image.url" :alt="image.alt">
@@ -20,13 +17,12 @@
 </template>
 
 <script>
-import { FixedRatio, LazyLoad, NoScript } from '~/components'
+import { FixedRatio, LazyLoad } from '~/components'
 
 export default {
   components: {
     FixedRatio,
     LazyLoad,
-    NoScript,
   },
   data() {
     return {

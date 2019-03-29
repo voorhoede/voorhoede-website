@@ -32,7 +32,7 @@ stories.add(
             <p>Lorem ipsum dolor sit amet, <em>consectetur adipiscing elit</em>, sed do eiusmod tempor <strong>incididunt ut labore</strong> et dolore magna aliqua. Ut enim ad minim veniam, <span>&nbsp;</span><code>quis-nostrud</code><span>&nbsp;</span> exercitation <span style="text-decoration: line-through;">ullamco laboris</span> nisi ut aliquip ex ea commodo consequat.</p>
             <h6>This is an h6</h6>
             <p>Lorem ipsum dolor sit amet, <em>consectetur adipiscing elit</em>, sed do eiusmod tempor <strong>incididunt ut labore</strong> et dolore magna aliqua. Ut enim ad minim veniam, <span>&nbsp;</span><code>quis-nostrud</code><span>&nbsp;</span> exercitation <span style="text-decoration: line-through;">ullamco laboris</span> nisi ut aliquip ex ea commodo consequat.</p>
-            <p><a href="https://github.com/voorhoede/voorhoede-dragonfly" target="_blank" rel="noopener">Link</a></p>
+            <p><a href="https://github.com/voorhoede/voorhoede-dragonfly" target="_blank" rel="noreferrer noopener">Link</a></p>
             <table border="1" style="border-collapse: collapse; width: 100%;">
               <tbody>
                 <tr style="height: 17px;">
@@ -95,7 +95,7 @@ stories.add(
             <p>Lorem ipsum dolor sit amet, <em>consectetur adipiscing elit</em>, sed do eiusmod tempor <strong>incididunt ut labore</strong> et dolore magna aliqua. Ut enim ad minim veniam, <span>&nbsp;</span><code>quis-nostrud</code><span>&nbsp;</span> exercitation <span style="text-decoration: line-through;">ullamco laboris</span> nisi ut aliquip ex ea commodo consequat.</p>
             <h6>This is an h6</h6>
             <p>Lorem ipsum dolor sit amet, <em>consectetur adipiscing elit</em>, sed do eiusmod tempor <strong>incididunt ut labore</strong> et dolore magna aliqua. Ut enim ad minim veniam, <span>&nbsp;</span><code>quis-nostrud</code><span>&nbsp;</span> exercitation <span style="text-decoration: line-through;">ullamco laboris</span> nisi ut aliquip ex ea commodo consequat.</p>
-            <p><a href="https://github.com/voorhoede/voorhoede-dragonfly" target="_blank" rel="noopener">Link</a></p>
+            <p><a href="https://github.com/voorhoede/voorhoede-dragonfly" target="_blank" rel="noreferrer noopener">Link</a></p>
             <table border="1" style="border-collapse: collapse; width: 100%;">
               <tbody>
                 <tr style="height: 17px;">
