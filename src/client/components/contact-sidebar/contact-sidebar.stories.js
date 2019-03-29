@@ -4,15 +4,15 @@ import { withKnobs } from '@storybook/addon-knobs/vue'
 
 import '../app-core/index.css'
 
-import AddressSidebar from './address-sidebar.vue'
+import ContactSidebar from './contact-sidebar.vue'
 
-const stories = storiesOf('Components/Address Sidebar', module)
+const stories = storiesOf('Components/Contact Sidebar', module)
   .addDecorator(withKnobs)
 
-Vue.component('address-sidebar', AddressSidebar)
+Vue.component('address-sidebar', ContactSidebar)
 
 stories.add(
-  'Address Sidebar',
+  'Contact Sidebar',
   () => ({
     template: '<address-sidebar/>',
   }),

@@ -6,10 +6,11 @@
       :image="page.headerIllustration" />
     <div class="page-contact__backdrop grid">
       <div class="page-contact__content">
-        <address-sidebar
+        <contact-sidebar
           :email-label="page.emailLabel"
           :phone-label="page.phoneLabel"
           :address-label="page.addressLabel"
+          :addresses="app.addresses"
         />
         <contact-form
           :aria-label="$t('lets_discuss')"
@@ -22,10 +23,10 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import { AddressSidebar, ContactForm, PageHeader } from '~/components'
+  import { ContactSidebar, ContactForm, PageHeader } from '~/components'
 
   export default {
-    components: { AddressSidebar, ContactForm, PageHeader },
+    components: { ContactSidebar, ContactForm, PageHeader },
     asyncData,
     head,
   }
@@ -47,11 +48,11 @@
     background-color: white;
   }
 
-  .contact-address {
+  .page-contact .contact-sidebar {
     margin-bottom: var(--spacing-larger);
   }
 
-  .contact-address dd {
+  .page-contact .contact-sidebar dd {
     margin-bottom: var(--spacing-small);
   }
 
@@ -71,7 +72,7 @@
       justify-content: space-between;
     }
 
-    .contact-address {
+    .page-contact .contact-sidebar {
       width: 30%;
     }
 

@@ -66,7 +66,7 @@
       var(--grid-column-large) calc(var(--grid-gutter-large) / 2)             /* 24 25 26   */
       /* center */
       calc(var(--grid-gutter-large) / 2) var(--grid-column-large)             /* 26 27 28   */
-      repeat(11, var(--grid-column-large) var(--grid-gutter-large))
+      repeat(11, var(--grid-gutter-large) var(--grid-column-large))
       1fr                                       /* 50 51      */
   }
 }
