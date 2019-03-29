@@ -4,6 +4,7 @@
     :class="{
       'page-header--fill-screen': fillScreen,
       'page-header--curly-bracket': curlyBracket,
+      'page-header--has-slot': displaySlot,
     }"
   >
     <div class="page-header__text">
@@ -34,9 +35,15 @@
         :text="headline"
       />
     </div>
+
     <div v-if="image" class="page-header__image-column">
       <img class="page-header__image" :src="image.url" alt=""/>
     </div>
+
+    <div class="page-header__slot" v-if="displaySlot">
+      <slot/>
+    </div>
+
     <scroll-to v-if="fillScreen" direction="down"/>
   </header>
 </template>
@@ -82,12 +89,18 @@
         default: false,
       }
     },
+    computed: {
+      displaySlot() {
+        return (this.$slots.default && this.fillScreen)
+      }
+    }
   }
 </script>
 
 <style>
   .page-header {
     background-color: var(--bg-pastel);
+    grid-column: var(--grid-page); /* Make sure page header doesn't align on grid-content lines */
     grid-template-rows:
       var(--app-header-height-small)
       var(--spacing-medium)
@@ -159,6 +172,26 @@
     left: var(--grid-margin);
   }
 
+  .page-header--has-slot {
+    grid-template-rows:
+      var(--app-header-height-small)
+      var(--spacing-medium)
+      auto
+      var(--spacing-medium)
+      var(--spacing-medium)
+      calc(50vh - 2 * var(--spacing-medium))
+      var(--spacing-medium)
+      calc(var(--spacing-larger) - var(--spacing-medium))
+      auto;
+  }
+
+  .page-header__slot {
+    padding-bottom: var(--spacing-large);
+    min-height: 23.5vh;
+    grid-row: 9 / 10;
+    grid-column: 4 / var(--grid-content-end);
+  }
+
   @media (min-width: 520px) {
     .page-header--fill-screen {
       grid-template-rows:
@@ -224,7 +257,7 @@
 
     .page-header__image-column {
       margin-top: var(--spacing-huge);
-      margin-bottom: calc(-1 * var(--spacing-small));
+      margin-bottom: calc(-1 * var(--spacing-small)); /* Make image move outside page header */
       grid-row: 2 / 5;
       display: flex;
       align-items: flex-end;

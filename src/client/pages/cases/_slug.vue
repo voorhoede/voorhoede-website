@@ -1,15 +1,12 @@
 <template>
   <main class="grid">
-    <div class="page-case__case-header">
-      <page-header
-        fill-screen
-        heading="headline"
-        byline="Case study"
-        :headline="page.title"
-        :image="page.heroIllustration"
-      />
-    </div>
-    <aside class="page-case__case-meta-container grid">
+    <page-header
+      fill-screen
+      heading="headline"
+      byline="Case study"
+      :headline="page.title"
+      :image="page.heroIllustration"
+    >
       <h2 class="sr-only">{{ $t('case_info') }}</h2>
       <case-meta
         class="page-case__case-meta"
@@ -23,7 +20,7 @@
         :interested-link-label="page.metaData.interestedLinkLabel"
         :interested-link-url="page.metaData.interestedLinkUrl"
       />
-    </aside>
+    </page-header>
 
     <div class="page-case__case-teaser">
       <case-teaser
@@ -174,23 +171,6 @@
     padding: 0 var(--spacing-small);
   }
 
-  .page-case__case-header {
-    grid-column: var(--grid-page);
-    grid-row: 1;
-  }
-
-  .page-case__case-meta-container {
-    grid-column: var(--grid-page);
-    grid-row: 2;
-    background-color: var(--bg-pastel);
-    padding: var(--spacing-small) 0 var(--spacing-large) 0;
-  }
-
-  .page-case__case-meta {
-    grid-row: 1;
-    grid-column: 4 / var(--grid-content-end);
-  }
-
   .page-case__contact-form,
   .page-case__content,
   .page-case__content > *:not(:last-child) {
@@ -265,11 +245,6 @@
 
     .page-case__scroll-to {
       position: relative;
-    }
-
-    .page-case__case-header .page-header-detail__container {
-      grid-column-start: 4;
-      grid-column-end: 48;
     }
 
     .page-case__contact-form .contact-form {
