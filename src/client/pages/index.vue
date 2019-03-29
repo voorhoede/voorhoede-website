@@ -9,9 +9,6 @@
         :headline="page.subtitle"
         :image="page.headerIllustration"
       />
-      <div class="page-index__scroll-to grid">
-        <scroll-to point-down />
-      </div>
       <div class="grid">
         <p class="scroll-highlighted-text">
           <scroll-highlighted-text

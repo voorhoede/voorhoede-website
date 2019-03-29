@@ -11,9 +11,6 @@
     </div>
     <aside class="page-case__case-meta-container grid">
       <h2 class="sr-only">{{ $t('case_info') }}</h2>
-      <div class="page-case__scroll-to">
-        <scroll-to point-down />
-      </div>
       <case-meta
         class="page-case__case-meta"
         :expertise-title="page.metaData.expertisesTitle"
@@ -132,7 +129,6 @@
     ResponsiveImage,
     ResponsiveVideo,
     RichTextBlock,
-    ScrollTo,
     StorytellingSection,
   } from '~/components'
 
@@ -150,7 +146,6 @@
       ResponsiveImage,
       ResponsiveVideo,
       RichTextBlock,
-      ScrollTo,
       StorytellingSection,
     },
     methods: {
@@ -182,13 +177,6 @@
   .page-case__case-header {
     grid-column: var(--grid-page);
     grid-row: 1;
-  }
-
-  .page-case__scroll-to {
-    grid-row: 1;
-    grid-column: 2;
-    position: absolute;
-    bottom: 0;
   }
 
   .page-case__case-meta-container {

@@ -35,17 +35,20 @@
       />
     </div>
     <app-image v-if="image" :image="image" :lazy-load="false"/>
+    <scroll-to v-if="fillScreen" direction="down"/>
   </header>
 </template>
 
 <script>
   import AppImage from '../app-image'
   import SelfTypingText from '../self-typing-text'
+  import ScrollTo from '../scroll-to'
 
   export default {
     components: {
       AppImage,
       SelfTypingText,
+      ScrollTo,
     },
     props: {
       headline: {
@@ -141,6 +144,12 @@
     grid-row: 6 / 7;
     grid-column: 3 / var(--grid-page-end);
     z-index: var(--z-index-low); /* Make sure to be on top off  */
+  }
+
+  .page-header .scroll-to {
+    position: absolute;
+    bottom: var(--spacing-medium);
+    left: var(--grid-margin);
   }
 
   @media (min-width: 520px) {
