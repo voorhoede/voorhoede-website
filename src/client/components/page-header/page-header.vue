@@ -98,6 +98,10 @@
 </script>
 
 <style>
+  :root {
+    --max-height-image: 285px;
+  }
+
   .page-header {
     background-color: var(--bg-pastel);
     grid-column: var(--grid-page); /* Make sure page header doesn't align on grid-content lines */
@@ -262,6 +266,7 @@
       display: flex;
       align-items: flex-end;
       justify-content: flex-end;
+      max-height: var(--max-height-image);
     }
 
     /*
