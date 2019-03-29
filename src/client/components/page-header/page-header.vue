@@ -264,6 +264,9 @@
       align-items: flex-end;
       justify-content: flex-end;
       grid-column: 29 / 49;
+    }
+
+    .page-header__image {
       max-height: var(--max-height-image);
     }
 
@@ -272,6 +275,11 @@
       grid-row: 5 / 6;
       grid-column: 20 / 49;
       max-height: none;
+    }
+
+    /* Make sure image doesn't float upwards */
+    .page-header--fill-screen .page-header__image {
+      max-height: 100%;
     }
   }
 
