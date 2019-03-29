@@ -2,10 +2,12 @@
   <main class="page-index">
     <div class="page-index__header">
       <page-header
-        is-homepage
+        fill-screen
+        curly-bracket
         :title="page.headerTitle"
         :text="page.subtitle"
-        :image="page.headerIllustration"/>
+        :image="page.headerIllustration"
+      />
       <div class="page-index__scroll-to grid">
         <scroll-to point-down />
       </div>
