@@ -34,19 +34,19 @@
         :text="headline"
       />
     </div>
-    <app-image v-if="image" :image="image" :lazy-load="false"/>
+    <div v-if="image" class="page-header__image-column">
+      <img class="page-header__image" :src="image.url" alt=""/>
+    </div>
     <scroll-to v-if="fillScreen" direction="down"/>
   </header>
 </template>
 
 <script>
-  import AppImage from '../app-image'
   import SelfTypingText from '../self-typing-text'
   import ScrollTo from '../scroll-to'
 
   export default {
     components: {
-      AppImage,
       SelfTypingText,
       ScrollTo,
     },
@@ -88,7 +88,6 @@
 <style>
   .page-header {
     background-color: var(--bg-pastel);
-    overflow: hidden;
     grid-template-rows:
       var(--app-header-height-small)
       var(--spacing-medium)
@@ -100,7 +99,7 @@
     grid-row: 3 / 4;
   }
 
-  .page-header .app-image {
+  .page-header__image-column {
     display: none;
   }
 
@@ -109,7 +108,8 @@
       var(--app-header-height-small)
       var(--spacing-medium)
       auto
-      repeat(2, var(--spacing-medium))
+      var(--spacing-medium)
+      var(--spacing-medium)
       calc(50vh - 2 * var(--spacing-medium))
       var(--spacing-medium)
       calc(var(--spacing-larger) - var(--spacing-medium));
@@ -139,11 +139,18 @@
     transform: rotate(180deg);
   }
 
-  .page-header--fill-screen .app-image {
-    display: block;
+  .page-header--fill-screen .page-header__image-column {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
     grid-row: 6 / 7;
     grid-column: 3 / var(--grid-page-end);
-    z-index: var(--z-index-low); /* Make sure to be on top off  */
+    z-index: var(--z-index-low); /* Make sure to be on top off curly bracket */
+  }
+
+  .page-header__image {
+    max-height: 100%;
+    max-width: 100%;
   }
 
   .page-header .scroll-to {
@@ -164,7 +171,7 @@
         calc(var(--spacing-larger) - var(--spacing-medium));
     }
 
-    .page-header--fill-screen .app-image {
+    .page-header--fill-screen .page-header__image-column {
       grid-column: var(--grid-content-narrow);
     }
 
@@ -176,89 +183,91 @@
 
   @media (min-width: 720px) {
     .page-header {
-      grid-template-rows: calc(var(--app-header-height-small)) 1fr var(--spacing-large);
+      grid-template-rows:
+        var(--app-header-height-small)
+        var(--spacing-medium)
+        1fr
+        var(--spacing-medium);
     }
 
-    .page-header--home {
-      grid-template-rows: calc(var(--app-header-height-small) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
+    .page-header--fill-screen {
+      height: 100vh;
+      max-height: 80vw; /* Keep aspect ratio */
+      grid-template-rows:
+        var(--app-header-height-small)
+        var(--spacing-medium)
+        auto
+        var(--spacing-medium)
+        var(--spacing-medium)
+        1fr
+        var(--spacing-larger);
     }
 
-    .page-header--home .page-header__text {
-      margin-top: 0;
+    /* Yellow half */
+    .page-header--fill-screen::before {
+      grid-row: 1 / 8;
+      grid-column: var(--grid-page-right);
+    }
+
+    /* Curly bracket */
+    .page-header--fill-screen::after {
+      margin-bottom: var(--spacing-medium);
+      grid-row: 3 / 8;
+      grid-column: var(--grid-center) / 48;
+      background-size: contain;
+      background-position: left center; /* remember, object is rotated */
     }
 
     .page-header__text {
       grid-column: var(--grid-content-left);
-      grid-row-start: 2;
     }
 
-    .page-header__brick {
-      height: 100%;
-      grid-column: var(--grid-page-right);
-      grid-row-start: 1;
-      grid-row-end: 6;
-    }
-
-    .page-header__curly-bracket.curly-bracket {
-      position: relative;
-      grid-column-start: 40;
-      grid-column-end: 47;
-      grid-row-start: 2;
-      grid-row-end: 4;
-      overflow: unset;
-    }
-
-    .page-header__curly-bracket .curly-bracket__image {
-      height: 100%;
-      width: auto;
-    }
-
-    .page-header__image {
+    .page-header__image-column {
       margin-top: var(--spacing-huge);
+      margin-bottom: calc(-1 * var(--spacing-small));
+      grid-row: 2 / 5;
       display: flex;
       align-items: flex-end;
-      align-self: unset;
-      grid-column-start: 20;
-      grid-column-end: 48;
-      grid-row-start: 2;
-      grid-row-end: 4;
-    }
-
-    .page-header--home .page-header__image {
-      margin-top: 0;
-      grid-row-end: 3;
-    }
-
-    .page-header__image--spaced-top {
-      display: flex;
       justify-content: flex-end;
     }
 
-    .page-header__image--spaced-top img {
-      height: 100%;
-      max-height: var(--max-height-image);
-      width: auto;
-      flex: 0 0 auto;
+    /*
+     * Grid-column is set with 2 specifity for fill screen variant,
+     * so it has to be overwritten specifically
+     */
+    .page-header__image-column,
+    .page-header--fill-screen .page-header__image-column {
+      grid-column: 20 / 49;
+    }
+
+    .page-header--fill-screen .page-header__image-column {
+      margin-top: 0;
+      grid-row: 5 / 7;
     }
   }
 
   @media (min-width: 1100px) {
     .page-header {
-      grid-template-rows: var(--app-header-height-large) 1fr;
+      grid-template-rows:
+        var(--app-header-height-large)
+        var(--spacing-medium)
+        1fr
+        var(--spacing-medium);
     }
 
-    .page-header--home {
-      grid-template-rows: calc(var(--app-header-height-large) + var(--spacing-large)) 1fr var(--spacing-tiny) calc(var(--spacing-larger) - var(--spacing-tiny));
-    }
-
-    .page-header--home .page-header__text {
-      grid-column-start: 2;
+    .page-header--fill-screen {
+      grid-template-rows:
+        var(--app-header-height-large)
+        var(--spacing-big)
+        1fr
+        var(--spacing-medium)
+        var(--spacing-medium)
+        1fr
+        var(--spacing-larger);
     }
 
     .page-header__text {
-      margin: var(--spacing-medium) 0;
-      grid-column-start: 4;
-      grid-column-end: 24;
+      grid-column: 4 / 24;
     }
   }
 </style>
