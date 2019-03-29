@@ -228,7 +228,7 @@
 
     .page-header--fill-screen {
       height: 100vh;
-      max-height: 80vw; /* Keep aspect ratio */
+      position: relative;
       grid-template-rows:
         var(--app-header-height-small)
         var(--spacing-larger)
@@ -251,6 +251,10 @@
       grid-column: var(--grid-center) / 48;
       background-size: contain;
       background-position: left center; /* remember, object is rotated */
+    }
+
+    .page-header--fill-screen .scroll-to {
+      left: 0;
     }
 
     .page-header__text {
@@ -280,6 +284,14 @@
     /* Make sure image doesn't float upwards */
     .page-header--fill-screen .page-header__image {
       max-height: 100%;
+    }
+  }
+
+  /* Keep aspect ratio */
+  @media (max-aspect-ratio: 10/9) and (min-width: 720px) {
+    .page-header--fill-screen {
+      max-height: 80vw;
+      height: auto;
     }
   }
 
