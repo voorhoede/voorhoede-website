@@ -7,24 +7,32 @@
     }"
   >
     <div class="page-header__text">
-      <div class="page-header__title sub-title">
-        <h1 v-html="title" />
-      </div>
-      <div
+      <!--
+       `<h1>` is either the headline or the byline.
+       If it is the headline, a `<p>` for the byline should precede it,
+       otherwise a `<p>` for the headline should succeed it.
+      -->
+      <p
+        v-if="(heading === 'headline')"
+        v-html="byline"
+        class="sub-title"
+      />
+      <h1
+        v-html="(heading === 'byline') ? byline : headline"
         :class="{
-          'hero': fillScreen,
-          'h1': !fillScreen,
+          'sub-title': (heading === 'byline'),
+          'sr-only': (heading === 'headline')
         }"
-      >
-        <h2 class="sr-only">{{ text }}</h2>
-        <self-typing-text
-          :text="text"
-          :class="{
-            'self-typing-text--hero': fillScreen,
-            'self-typing-text--h1': !fillScreen,
-          }"
-        />
-      </div>
+      />
+      <p
+        v-if="(heading === 'byline')"
+        class="sr-only"
+        v-html="headline"
+      />
+      <self-typing-text
+        :class="(fillScreen) ? 'hero' : 'h1'"
+        :text="headline"
+      />
     </div>
     <app-image v-if="image" :image="image" :lazy-load="false"/>
   </header>
@@ -40,20 +48,27 @@
       SelfTypingText,
     },
     props: {
+      headline: {
+        type: String,
+        required: true,
+      },
+      byline: {
+        type: String,
+        required: true,
+      },
+      heading: {
+        type: String,
+        default: 'headline',
+        validator(heading) {
+          return ['headline', 'byline'].indexOf(heading) >= 0
+        }
+      },
       image: {
         type: Object,
         default: null,
         validator(image) {
           return image && typeof(image.url) === 'string'
         },
-      },
-      title: {
-        type: String,
-        required: true,
-      },
-      text: {
-        type: String,
-        required: true,
       },
       fillScreen: {
         type: Boolean,

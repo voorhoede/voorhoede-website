@@ -1,10 +1,11 @@
 <template>
   <main class="grid">
     <div class="page-case__case-header">
-      <page-header-detail
-        has-brick
-        :title="page.title"
-        sub-title="Case study"
+      <page-header
+        fill-screen
+        heading="headline"
+        byline="Case study"
+        :headline="page.title"
         :image="page.heroIllustration"
       />
     </div>
@@ -126,7 +127,7 @@
     FullWidthImage,
     ContactForm,
     ImageWithDescription,
-    PageHeaderDetail,
+    PageHeader,
     QuoteBlock,
     ResponsiveImage,
     ResponsiveVideo,
@@ -144,7 +145,7 @@
       FullWidthImage,
       ContactForm,
       ImageWithDescription,
-      PageHeaderDetail,
+      PageHeader,
       QuoteBlock,
       ResponsiveImage,
       ResponsiveVideo,

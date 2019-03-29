@@ -1,9 +1,11 @@
 <template>
   <section class="page-contact">
     <page-header
-      :title="page.title"
-      :text="page.subtitle"
-      :image="page.headerIllustration" />
+      heading="byline"
+      :byline="page.title"
+      :headline="page.subtitle"
+      :image="page.headerIllustration"
+    />
     <div class="page-contact__backdrop grid">
       <div class="page-contact__content">
         <contact-sidebar

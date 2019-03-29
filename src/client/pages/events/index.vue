@@ -1,9 +1,11 @@
 <template>
   <main class="page-event">
     <page-header
-      :title="page.title"
-      :text="page.subtitle"
-      :image="page.headerIllustration ? page.headerIllustration : fallbackIllustration" />
+      heading="byline"
+      :byline="page.title"
+      :headline="page.subtitle"
+      :image="page.headerIllustration ? page.headerIllustration : fallbackIllustration"
+    />
 
     <div class="page-event__content grid">
       <div class="page-event__content--grid-left">

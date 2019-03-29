@@ -4,8 +4,9 @@
       <page-header
         fill-screen
         curly-bracket
-        :title="page.headerTitle"
-        :text="page.subtitle"
+        heading="byline"
+        :byline="page.headerTitle"
+        :headline="page.subtitle"
         :image="page.headerIllustration"
       />
       <div class="page-index__scroll-to grid">
