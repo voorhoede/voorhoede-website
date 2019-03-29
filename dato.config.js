@@ -48,7 +48,7 @@ module.exports = (dato, root, i18n) => {
 }
 
 function appSettingsToJson(app) {
-  return { ...pick(app, ['googleAnalyticsId', 'experimentId']) }
+  return pick(app, ['googleAnalyticsId', 'experimentId'])
 }
 
 function localesToJson (locales) {
@@ -68,29 +68,29 @@ function layoutToJson(dato) {
       callToAction: formatLink(dato.menu.callToAction)
     },
     footer: {
+      ...pick(dato.app, [
+        'emailAddress',
+        'phoneNumber',
+        'facebookUrl',
+        'twitterUrl',
+        'githubUrl',
+        'youtubeUrl',
+        'linkedinUrl',
+      ]),
+      addresses: dato.app.addresses.map(address => {
+        return pick(address, ['address', 'postalCode', 'city', 'googleMapsLink'])
+      }),
+      legal: dato.app.legal.map(item => {
+        return pick(item, ['title', 'value'])
+      }),
       ...pick(dato.footer, [
-        'email',
-        'telephoneNumber',
-        'googleMapsLink',
-        'address',
-        'postalCode',
         'privacyLabel',
         'privacyTitle',
         'privacyLink',
         'copyrightLabel',
         'copyrightTitle',
         'copyrightLink',
-        'logoAlt',
       ]),
-      addresses: dato.footer.addresses.map(address => {
-        return pick(address, ['address', 'postalCode', 'city', 'googleMapsLink'])
-      }),
-      legal: dato.footer.legal.map(item => {
-        return pick(item, ['title', 'value'])
-      }),
-      social: dato.footer.social.map(item => {
-        return pick(item, ['icon', 'href', 'title'])
-      })
     }
   }
 }

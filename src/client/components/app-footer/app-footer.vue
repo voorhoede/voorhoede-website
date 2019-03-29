@@ -32,7 +32,7 @@
         </h2>
         <ul class="body-detail app-footer__list app-footer__list--contact">
           <li
-            v-for="address in addresses"
+            v-for="address in content.addresses"
             :key="address.address"
             class="app-footer__list-item app-footer__list-item--address"
           >
@@ -48,23 +48,26 @@
           <li class="app-footer__list-item">
             <a
               @click="trackLink('phone')"
-              :href="`tel:${ cleanedTelephone }`"
-              class="app-footer__link">{{ tel }}</a>
+              :href="`tel:${ cleanedPhoneNumber }`"
+              class="app-footer__link">{{ content.phoneNumber }}</a>
           </li>
           <li class="app-footer__list-item">
             <a
               @click="trackLink('email')"
-              :href="`mailto:${ email }`"
-              class="app-footer__link">{{ email }}</a>
+              :href="`mailto:${ content.emailAddress }`"
+              class="app-footer__link">{{ content.emailAddress }}</a>
           </li>
         </ul>
       </div>
       <div class="app-footer__column app-footer__column--bottom">
         <ul class="app-footer__list--icon">
-          <li class="app-footer__list-item--icon"
-              v-for="socialItem in social" :key="socialItem.href">
-            <a :href="socialItem.href" target="_blank" rel="noreferrer noopener">
-              <app-icon :alt="socialItem.title" :name="socialItem.icon" :is-large="true" />
+          <li
+            v-for="socialLink in socialLinks"
+            :key="socialLink.url"
+            class="app-footer__list-item--icon"
+          >
+            <a :href="socialLink.url" target="_blank" rel="noreferrer noopener">
+              <app-icon :alt="socialLink.platform" :name="socialLink.icon" :is-large="true" />
             </a>
           </li>
         </ul>
@@ -73,133 +76,58 @@
     <div class="app-footer__bottom">
       <div class="body-detail app-footer__bottom-text">
         <dl class="app-footer__definition-list">
-          <div v-for="{ title, value } in legal" :key="title" class="app-footer__definition-item">
+          <div v-for="{ title, value } in content.legal" :key="title" class="app-footer__definition-item">
             <dt>{{ title }}:</dt> <dd class="app-footer__definition-value">{{ value }}</dd>
           </div>
         </dl>
       </div>
       <div class="body-detail app-footer__legal">
         <a
-          :href="copyrightLink"
+          :href="content.copyrightLink"
           class="app-footer__copyright"
-          :aria-label="copyrightTitle"
+          :aria-label="content.copyrightTitle"
           target="_blank"
-          rel="noreferrer noopener">{{ copyrightLabel }}</a>
+          rel="noreferrer noopener">{{ content.copyrightLabel }}</a>
         <span> - </span>
         <a
-          :href="privacyLink"
+          :href="content.privacyLink"
           class="app-footer__privacy"
-          :aria-label="privacyTitle"
+          :aria-label="content.privacyTitle"
           target="_blank"
-          rel="noreferrer noopener">{{ privacyLabel }}</a>
+          rel="noreferrer noopener">{{ content.privacyLabel }}</a>
       </div>
     </div>
   </footer>
 </template>
 
 <script>
-import { createHref, linkValidator } from '../../lib/links'
+import { createHref } from '../../lib/links'
 import AppIcon from '../../components/app-icon'
 
 export default {
   components: {
     AppIcon,
   },
-  props: {
-    links: {
-      type: Array,
-      validator (links) {
-        return links.every(linkValidator)
-      },
-      default: () => [],
-    },
-    headerTitle: {
-      type: String,
-      default: '',
-    },
-    headerSubtitle: {
-      type: String,
-      default: '',
-    },
-    tel: {
-      type: String,
-      default: '',
-    },
-    email: {
-      type: String,
-      default: '',
-    },
-    addresses: {
-      type: Array,
-      default: () => [],
-      validator(addresses) {
-        return addresses.every(address => [
-            'address',
-            'postalCode',
-            'city',
-            'googleMapsLink'
-          ]
-            .every(prop => typeof(address[prop] === 'string'))
-        )
-      }
-    },
-    copyrightLabel: {
-      type: String,
-      default: '',
-    },
-    copyrightTitle: {
-      type: String,
-      default: '',
-    },
-    copyrightLink: {
-      type: String,
-      default: '',
-    },
-    privacyLabel: {
-      type: String,
-      default: '',
-    },
-    privacyTitle: {
-      type: String,
-      default: '',
-    },
-    privacyLink: {
-      type: String,
-      default: '',
-    },
-    legal: {
-      type: Array,
-      default: () => [],
-      validator: (legal) => {
-        return (
-          legal.every(item => {
-            return item instanceof Object &&
-              typeof item.title === 'string' &&
-              typeof item.value === 'string'
-          })
-        )
-      },
-    },
-    social: {
-      type: Array,
-      default: () => [],
-      validator: (social) => {
-        return (
-          social.every(item => {
-            return item instanceof Object &&
-              typeof item.icon === 'string' &&
-              typeof item.href === 'string'
-          })
-        )
-      },
-    },
-  },
   data () {
-    return { observer: null }
+    const { menu, footer } = require(`../../static/data/${this.$i18n.locale}/layouts/default`)
+    return {
+      links: [].concat(menu.links, menu.callToAction),
+      content: footer,
+      observer: null
+    }
   },
   computed: {
-    cleanedTelephone() {
-      return this.tel.replace(/[^0-9]/g, '')
+    socialLinks() {
+      return [
+        { url: this.content.twitterUrl,  platform: 'twitter',  icon: 'twitter--blue' },
+        { url: this.content.facebookUrl, platform: 'facebook', icon: 'facebook--blue' },
+        { url: this.content.githubUrl,   platform: 'github',   icon: 'git-hub--blue' },
+        { url: this.content.youtubeUrl,  platform: 'youtube',  icon: 'youtube--blue' },
+        { url: this.content.linkedinUrl, platform: 'linked',   icon: 'linkedin--blue' },
+      ]
+    },
+    cleanedPhoneNumber() {
+      return this.content.phoneNumber.replace(/[^0-9]/g, '')
     }
   },
   mounted () {
