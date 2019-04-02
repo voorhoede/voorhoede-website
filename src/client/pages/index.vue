@@ -255,6 +255,7 @@
   .page-index__cases .horizontal-carousel {
     margin-bottom: var(--spacing-medium);
     grid-column: var(--grid-page);
+    grid-row: 2;
   }
 
   @media (min-width: 720px) {
