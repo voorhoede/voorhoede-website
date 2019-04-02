@@ -264,7 +264,6 @@
 
     .page-index .page-header {
       margin-bottom: var(--spacing-big);
-      height: 100vh;
     }
 
     .page-index .scroll-highlighted-text {
