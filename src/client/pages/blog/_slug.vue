@@ -85,9 +85,9 @@
 
     <aside class="page-blog-post__aside">
       <blog-author class="page-blog-post__aside-author" :item="page" />
-      <social-buttons
+      <social-share-buttons
         :title="page.socialTitle"
-        :share-title="page.title"
+        :twitter-title="page.title"
       />
       <toc-section :items="tocItems" />
     </aside>
@@ -128,7 +128,7 @@ import {
   ResponsiveVideo,
   RichTextBlock,
   ScrollTo,
-  SocialButtons,
+  SocialShareButtons,
   TocSection,
   TextBlock,
 } from '~/components'
@@ -146,7 +146,7 @@ export default {
     ResponsiveVideo,
     RichTextBlock,
     ScrollTo,
-    SocialButtons,
+    SocialShareButtons,
     TocSection,
     TextBlock,
   },
