@@ -134,7 +134,6 @@
       var(--spacing-medium) /* 5 - 6, spacing */
       calc(50vh - 2 * var(--spacing-medium)) /* 6 - 7, image */
       var(--spacing-medium) /* 7 - 8, spacing */
-      calc(var(--spacing-larger) - var(--spacing-medium)); /* 8 - 9, overlap curly bracket  */
   }
 
   /* Yellow half */
@@ -148,10 +147,11 @@
 
   /* Curly bracket */
   .page-header--curly-bracket::after {
-    content: "";
+    margin: calc(-1 * var(--spacing-medium)) 0;
+    content: '';
     display: block;
     position: relative;
-    grid-row: 4 / 9;
+    grid-row: 5 / 8;
     grid-column: 44 / 51;
     background-image: url('/images/curly-bracket--paper.svg');
     background-repeat: no-repeat;
@@ -210,7 +210,6 @@
         var(--spacing-medium) /* 5 - 6, spacing */
         calc(40vh - 2 * var(--spacing-medium)) /* 6 - 7, image */
         var(--spacing-medium) /* 7 - 8, spacing */
-        calc(var(--spacing-larger) - var(--spacing-medium)); /* 8 - 9, overlap curly bracket */
     }
 
     .page-header--fill-screen .page-header__image-column {
