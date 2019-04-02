@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v-if="title" class="social-buttons__text body">{{ title }}</p>
+    <p v-if="title" class="social-share-buttons__text body">{{ title }}</p>
     <app-button
       v-if="hasNativeShare"
       label="Share"
@@ -9,10 +9,10 @@
     />
     <ul
       v-else
-      class="social-buttons__list"
+      class="social-share-buttons__list"
     >
       <li
-        class="social-buttons__list-icon"
+        class="social-share-buttons__list-icon"
         v-for="item in socials"
         :key="item.href"
       >
@@ -39,7 +39,7 @@
         type: String,
         default: '',
       },
-      shareTitle: {
+      twitterTitle: {
         type: String,
         default: '',
       },
@@ -54,7 +54,7 @@
       socials () {
         return [
           { icon: 'twitter--blue',
-            href: `https://twitter.com/intent/tweet?text=${this.shareTitle}&url=${this.url}`,
+            href: `https://twitter.com/intent/tweet?text=${this.twitterTitle}&url=${this.url}`,
             label: 'twitter',
             alt: 'Share this post on Twitter',
           },
@@ -86,26 +86,26 @@
 
 <style>
 
-  .social-buttons__text {
+  .social-share-buttons__text {
     display: none;
   }
 
-  .social-buttons__list-icon {
+  .social-share-buttons__list-icon {
     display: inline-block;
     margin-right: var(--spacing-small);
   }
 
-  .social-buttons__list-icon:last-of-type {
+  .social-share-buttons__list-icon:last-of-type {
     margin: 0;
   }
 
   @media (min-width: 720px) {
-    .social-buttons__text {
+    .social-share-buttons__text {
       display: block;
       margin-bottom: var(--spacing-smaller);
     }
 
-    .social-buttons__list-icon:last-of-type {
+    .social-share-buttons__list-icon:last-of-type {
       margin: 0;
     }
   }
