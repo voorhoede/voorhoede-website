@@ -80,7 +80,7 @@
         const items = this.items
         return items
           .filter(event => new Date(event.date).getTime() > new Date().getTime())
-          .sort((a, b) => new Date(a.date).getTime() - new Date(b).getTime())
+          .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
           .slice(0, 10)
       },
       pastEvents() {
@@ -90,7 +90,7 @@
             new Date(event.date).getTime() < new Date().getTime()
             && event.slug // Some old events don't have a slug
           ))
-          .sort((a, b) => new Date(a.date).getTime() - new Date(b).getTime())
+          .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
       },
     },
     head,
