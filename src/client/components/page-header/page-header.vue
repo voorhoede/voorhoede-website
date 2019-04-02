@@ -40,6 +40,11 @@
       <img class="page-header__image" :src="image.url" alt=""/>
     </div>
 
+    <!--
+      The slot is used to render additional content,
+      taking up `23.5%` of the viewport.
+      It is only rendered when the `fillScreen` prop is `true`.
+    -->
     <div class="page-header__slot" v-if="displaySlot">
       <slot/>
     </div>
@@ -186,7 +191,8 @@
       calc(50vh - 2 * var(--spacing-medium))
       var(--spacing-medium)
       calc(var(--spacing-larger) - var(--spacing-medium))
-      auto;
+      auto
+      var(--spacing-medium);
   }
 
   .page-header__slot {

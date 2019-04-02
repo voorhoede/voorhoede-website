@@ -107,14 +107,6 @@
     color: var(--active-blue);
   }
 
-  @media (min-width: 720px) {
-    .case-meta {
-      min-height: 23.5vh; /* as specified by the design */
-      padding-top: var(--spacing-large);
-      padding-bottom: var(--spacing-large);
-    }
-  }
-
   @media (max-width: 1099px) {
     .case-meta__section {
       flex-basis: calc(50% - ( var(--spacing-small) / 2 ));
