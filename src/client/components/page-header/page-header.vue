@@ -196,7 +196,6 @@
   }
 
   .page-header__slot {
-    min-height: 23.5vh;
     grid-row: 9 / 10;
     grid-column: 4 / var(--grid-content-end);
   }
@@ -220,6 +219,8 @@
     /* Curly bracket */
     .page-header--fill-screen::after {
       grid-column: 39 / 50;
+      background-size: contain;
+      background-position: unset;
     }
   }
 
@@ -252,8 +253,8 @@
 
     /* Curly bracket */
     .page-header--fill-screen::after {
-      margin: var(--spacing-medium) 0;
-      grid-row: 3 / 7;
+      margin: calc(-1 * var(--spacing-medium)) 0;
+      grid-row: 3 / 6;
       grid-column: var(--grid-center) / 48;
       background-size: contain;
       background-position: left center; /* remember, object is rotated */
@@ -291,13 +292,30 @@
     .page-header--fill-screen .page-header__image {
       max-height: 100%;
     }
+
+    .page-header--has-slot {
+      grid-template-rows:
+        var(--app-header-height-small)
+        var(--spacing-larger)
+        auto
+        var(--spacing-medium)
+        1fr
+        var(--spacing-larger)
+        var(--spacing-medium)
+        auto
+        var(--spacing-medium);
+    }
+
+    .page-header__slot {
+      grid-row: 8 / 9;
+      min-height: calc(23.5vh - 2 * var(--spacing-medium));
+    }
   }
 
   /* Keep aspect ratio */
-  @media (max-aspect-ratio: 10/9) and (min-width: 720px) {
+  @media (max-aspect-ratio: 1/1) and (min-width: 720px) {
     .page-header--fill-screen {
-      max-height: 80vw;
-      height: auto;
+      height: 100vw;
     }
   }
 
@@ -315,13 +333,39 @@
         var(--app-header-height-large)
         var(--spacing-big)
         1fr
-        var(--spacing-medium)
-        1fr
         var(--spacing-larger);
+    }
+
+    .page-header--fill-screen::before {
+      grid-row: 1 / 5;
     }
 
     .page-header__text {
       grid-column: 4 / 24;
+    }
+
+    .page-header--fill-screen .page-header__image-column {
+      grid-row: 3 / 4;
+    }
+
+    /* Curly bracket */
+    .page-header--curly-bracket::after {
+      grid-row: 3 / 4;
+    }
+
+    .page-header--has-slot {
+      grid-template-rows:
+        var(--app-header-height-large)
+        var(--spacing-big)
+        1fr
+        var(--spacing-larger)
+        var(--spacing-medium)
+        auto
+        var(--spacing-medium);
+    }
+
+    .page-header__slot {
+      grid-row: 6 / 7;
     }
   }
 </style>
