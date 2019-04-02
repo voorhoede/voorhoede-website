@@ -248,7 +248,7 @@
     }
 
     .page-header--fill-screen {
-      height: 100vh;
+      min-height: 100vh;
       position: relative;
       grid-template-rows:
         var(--app-header-height-small) /* 1 - 2 */
@@ -299,7 +299,7 @@
       margin: 0;
       grid-row: 5 / 6;
       grid-column: 20 / 49;
-      max-height: none;
+      max-height: 100%;
     }
 
     /* Make sure image doesn't float upwards */
@@ -316,19 +316,20 @@
         1fr /* 5 - 6, image */
         var(--spacing-larger) /* 6 - 7, spacing */
         var(--spacing-medium) /* 7 - 8, spacing above slot */
-        calc(23.5vh - 2 * var(--spacing-medium)) /* 8 - 9, slot */
+        auto /* 8 - 9, slot */
         var(--spacing-medium); /* 9 - 10, spacing below slot */
     }
 
     .page-header__slot {
       grid-row: 8 / 9;
+      min-height: calc(23.5vh - 2 * var(--spacing-medium));
     }
   }
 
   /* Keep aspect ratio */
-  @media (max-aspect-ratio: 1/1) and (min-width: 720px) {
+  @media (max-aspect-ratio: 10/8) and (min-width: 720px) {
     .page-header--fill-screen {
-      height: 100vw;
+      min-height: 80vw;
     }
   }
 
