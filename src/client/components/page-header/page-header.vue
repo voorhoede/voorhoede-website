@@ -111,10 +111,10 @@
     background-color: var(--bg-pastel);
     grid-column: var(--grid-page); /* Make sure page header doesn't align on grid-content lines */
     grid-template-rows:
-      var(--app-header-height-small)
-      var(--spacing-medium)
-      auto
-      var(--spacing-medium);
+      var(--app-header-height-small) /* 1 - 2 */
+      var(--spacing-medium) /* 2 - 3, spacing */
+      auto  /* 3 - 4, text */
+      var(--spacing-medium); /* 4 - 5, spacing */
   }
 
   .page-header__text {
@@ -127,14 +127,14 @@
 
   .page-header--fill-screen {
     grid-template-rows:
-      var(--app-header-height-small)
-      var(--spacing-medium)
-      auto
-      var(--spacing-medium)
-      var(--spacing-medium)
-      calc(50vh - 2 * var(--spacing-medium))
-      var(--spacing-medium)
-      calc(var(--spacing-larger) - var(--spacing-medium));
+      var(--app-header-height-small) /* 1 - 2 */
+      var(--spacing-medium) /* 2 - 3, spacing */
+      auto /* 3 - 4, text */
+      var(--spacing-medium) /* 4 - 5, spacing */
+      var(--spacing-medium) /* 5 - 6, spacing */
+      calc(50vh - 2 * var(--spacing-medium)) /* 6 - 7, image */
+      var(--spacing-medium) /* 7 - 8, spacing */
+      calc(var(--spacing-larger) - var(--spacing-medium)); /* 8 - 9, overlap curly bracket  */
   }
 
   /* Yellow half */
@@ -183,16 +183,16 @@
 
   .page-header--has-slot {
     grid-template-rows:
-      var(--app-header-height-small)
-      var(--spacing-medium)
-      auto
-      var(--spacing-medium)
-      var(--spacing-medium)
-      calc(50vh - 2 * var(--spacing-medium))
-      var(--spacing-medium)
-      calc(var(--spacing-larger) - var(--spacing-medium))
-      auto
-      var(--spacing-medium);
+      var(--app-header-height-small) /* 1 - 2 */
+      var(--spacing-medium) /* 2 - 3, spacing */
+      auto /* 3 - 4, text */
+      var(--spacing-medium) /* 4 - 5, spacing */
+      var(--spacing-medium) /* 5 - 6, spacing */
+      calc(50vh - 2 * var(--spacing-medium)) /* 6 - 7, image */
+      var(--spacing-medium) /* 7 - 8, spacing */
+      var(--spacing-medium) /* 8 - 9, spacing */
+      auto /* 9 - 10, slot */
+      var(--spacing-medium); /* 10 - 11, spacing */
   }
 
   .page-header__slot {
@@ -203,13 +203,14 @@
   @media (min-width: 520px) {
     .page-header--fill-screen {
       grid-template-rows:
-        var(--app-header-height-small)
-        var(--spacing-medium)
-        auto
-        repeat(2, var(--spacing-medium))
-        calc(40vh - 2 * var(--spacing-medium))
-        var(--spacing-medium)
-        calc(var(--spacing-larger) - var(--spacing-medium));
+        var(--app-header-height-small) /* 1 - 2 */
+        var(--spacing-medium) /* 2 - 3, spacing */
+        auto /* 3 - 4, text */
+        var(--spacing-medium) /* 4 - 5, spacing */
+        var(--spacing-medium) /* 5 - 6, spacing */
+        calc(40vh - 2 * var(--spacing-medium)) /* 6 - 7, image */
+        var(--spacing-medium) /* 7 - 8, spacing */
+        calc(var(--spacing-larger) - var(--spacing-medium)); /* 8 - 9, overlap curly bracket */
     }
 
     .page-header--fill-screen .page-header__image-column {
@@ -222,27 +223,41 @@
       background-size: contain;
       background-position: unset;
     }
+
+    .page-header--has-slot {
+      grid-template-rows:
+        var(--app-header-height-small) /* 1 - 2 */
+        var(--spacing-medium) /* 2 - 3, spacing */
+        auto /* 3 - 4, text */
+        var(--spacing-medium) /* 4 - 5, spacing */
+        var(--spacing-medium) /* 5 - 6, spacing */
+        calc(40vh - 2 * var(--spacing-medium)) /* 6 - 7, image */
+        var(--spacing-medium) /* 7 - 8, spacing */
+        var(--spacing-medium) /* 8 - 9, spacing */
+        auto /* 9 - 10, Slot */
+        var(--spacing-medium) /* 10 - 11, spacing */
+    }
   }
 
   @media (min-width: 720px) {
     .page-header {
       grid-template-rows:
-        var(--app-header-height-small)
-        var(--spacing-medium)
-        1fr
-        var(--spacing-medium);
+        var(--app-header-height-small) /* 1 - 2 */
+        var(--spacing-medium) /* 2 - 3, spacing */
+        1fr /* 3 - 4, text */
+        var(--spacing-medium); /* 4 - 5, spacing */
     }
 
     .page-header--fill-screen {
       height: 100vh;
       position: relative;
       grid-template-rows:
-        var(--app-header-height-small)
-        var(--spacing-larger)
-        auto
-        var(--spacing-medium)
-        1fr
-        var(--spacing-larger);
+        var(--app-header-height-small) /* 1 - 2 */
+        var(--spacing-larger) /* 2 - 3, spacing */
+        auto /* 3 - 4, text */
+        var(--spacing-medium) /* 4 - 5, spacing between text and image */
+        1fr /* 5 - 6, image */
+        var(--spacing-larger);  /* 6 - 7, spacing */
     }
 
     /* Yellow half */
@@ -295,20 +310,19 @@
 
     .page-header--has-slot {
       grid-template-rows:
-        var(--app-header-height-small)
-        var(--spacing-larger)
-        auto
-        var(--spacing-medium)
-        1fr
-        var(--spacing-larger)
-        var(--spacing-medium)
-        auto
-        var(--spacing-medium);
+        var(--app-header-height-small) /* 1 - 2 */
+        var(--spacing-larger) /* 2 - 3, spacing */
+        auto /* 3 - 4, text */
+        var(--spacing-medium) /* 4 - 5, spacing between text and image */
+        1fr /* 5 - 6, image */
+        var(--spacing-larger) /* 6 - 7, spacing */
+        var(--spacing-medium) /* 7 - 8, spacing above slot */
+        calc(23.5vh - 2 * var(--spacing-medium)) /* 8 - 9, slot */
+        var(--spacing-medium); /* 9 - 10, spacing below slot */
     }
 
     .page-header__slot {
       grid-row: 8 / 9;
-      min-height: calc(23.5vh - 2 * var(--spacing-medium));
     }
   }
 
@@ -322,18 +336,18 @@
   @media (min-width: 1100px) {
     .page-header {
       grid-template-rows:
-        var(--app-header-height-large)
-        var(--spacing-medium)
-        1fr
-        var(--spacing-medium);
+        var(--app-header-height-large) /* 1 - 2 */
+        var(--spacing-medium) /* 2 - 3, spacing */
+        1fr /* 3 - 4, text */
+        var(--spacing-medium); /* 4 - 5, spacing */
     }
 
     .page-header--fill-screen {
       grid-template-rows:
-        var(--app-header-height-large)
-        var(--spacing-big)
-        1fr
-        var(--spacing-larger);
+        var(--app-header-height-large) /* 1 - 2 */
+        var(--spacing-big) /* 2 - 3, spacing above text */
+        1fr /* 3 - 4, text */
+        var(--spacing-larger); /* 4 - 5, spacing below text */
     }
 
     .page-header--fill-screen::before {
@@ -355,13 +369,13 @@
 
     .page-header--has-slot {
       grid-template-rows:
-        var(--app-header-height-large)
-        var(--spacing-big)
-        1fr
-        var(--spacing-larger)
-        var(--spacing-medium)
-        auto
-        var(--spacing-medium);
+        var(--app-header-height-large) /* 1 - 2 */
+        var(--spacing-big) /* 2 - 3, spacing above text */
+        1fr /* 3 - 4, text */
+        var(--spacing-larger) /* 4 - 5, spacing below text */
+        var(--spacing-medium) /* 5 - 6, spacing */
+        calc(23.5vh - 2 * var(--spacing-medium)) /* 6 - 7, slot */
+        var(--spacing-medium); /* 7 - 8, spacing */
     }
 
     .page-header__slot {
