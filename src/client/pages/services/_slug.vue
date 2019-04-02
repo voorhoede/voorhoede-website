@@ -41,7 +41,6 @@
 
 <style>
   .page-service .page-header {
-    grid-column: var(--grid-page);
     margin-bottom: var(--spacing-large);
   }
 

@@ -28,11 +28,6 @@
 </script>
 
 <style>
-
-  .page-services .page-header {
-    grid-column: var(--grid-page);
-  }
-
   .page-services > * {
     margin-bottom: var(--spacing-big);
   }

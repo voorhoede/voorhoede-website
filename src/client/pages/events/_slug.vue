@@ -155,10 +155,6 @@
 </script>
 
 <style>
-  .page-event-detail__header {
-    grid-column: var(--grid-page);
-  }
-
   .page-event-detail__header,
   .page-event-detail__aside,
   .page-event-detail__button {

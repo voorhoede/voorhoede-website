@@ -186,10 +186,6 @@ export default {
 </script>
 
 <style>
-  .page-blog-post .page-header {
-    grid-column: var(--grid-page);
-  }
-
   .page-blog-post__header,
   .page-blog-post__aside-author,
   .page-blog-post__button {
