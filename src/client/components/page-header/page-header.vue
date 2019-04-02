@@ -350,6 +350,7 @@
         var(--spacing-larger); /* 4 - 5, spacing below text */
     }
 
+    /* Yellow half */
     .page-header--fill-screen::before {
       grid-row: 1 / 5;
     }
