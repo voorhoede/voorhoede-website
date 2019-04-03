@@ -1,8 +1,9 @@
 <template>
   <div class="grid page-faq">
     <page-header
-      :title="page.title"
-      :text="page.subtitle"
+      heading="byline"
+      :byline="page.title"
+      :headline="page.subtitle"
       :image="page.headerIllustration"
     />
     <div class="page-faq__overview">
@@ -36,9 +37,7 @@
 </script>
 
 <style>
-
   .page-faq .page-header {
-    grid-column: var(--grid-page);
     margin-bottom: var(--spacing-large);
   }
 

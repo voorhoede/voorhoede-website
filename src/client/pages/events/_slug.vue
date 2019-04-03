@@ -2,8 +2,9 @@
   <article class="page-event-detail grid" lang="en">
     <page-header
       class="page-event-detail__header"
-      :title="page.label.label"
-      :text="page.title"
+      heading="headline"
+      :byline="page.label.label"
+      :headline="page.title"
       :image="imageIsIllustration ? page.image : fallbackIllustration" />
 
     <main class="page-event-detail__main">
@@ -152,10 +153,6 @@
 </script>
 
 <style>
-  .page-event-detail__header {
-    grid-column: var(--grid-page);
-  }
-
   .page-event-detail__header,
   .page-event-detail__aside,
   .page-event-detail__button {

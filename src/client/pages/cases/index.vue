@@ -1,9 +1,11 @@
 <template>
   <main class="page-cases">
     <page-header
-      :title="page.title"
-      :text="page.subtitle"
-      :image="page.headerIllustration" />
+      heading="byline"
+      :byline="page.title"
+      :headline="page.subtitle"
+      :image="page.headerIllustration"
+    />
     <section class="grid">
       <h2 class="sr-only">{{ $t('all_cases') }}</h2>
       <ul class="page-case__overview">

@@ -1,8 +1,9 @@
 <template>
   <article class="page-job">
     <page-header
-      :title="page.subtitle"
-      :text="page.title"
+      heading="headline"
+      :byline="page.subtitle"
+      :headline="page.title"
       :image="page.jobImage"
     />
     <div class="grid">
@@ -60,7 +61,6 @@
   }
 
   .page-job .page-header {
-    grid-column: var(--grid-page);
     margin-bottom: var(--spacing-large);
   }
 

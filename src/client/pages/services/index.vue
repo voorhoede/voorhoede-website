@@ -1,8 +1,9 @@
 <template>
   <main class="page-services grid">
     <page-header
-      :title="page.title"
-      :text="page.subtitle"
+      heading="byline"
+      :byline="page.title"
+      :headline="page.subtitle"
       :image="page.headerIllustration" />
     <services-list
       :services="page.services"
@@ -30,11 +31,6 @@
 </script>
 
 <style>
-
-  .page-services .page-header {
-    grid-column: var(--grid-page);
-  }
-
   .page-services > * {
     margin-bottom: var(--spacing-big);
   }

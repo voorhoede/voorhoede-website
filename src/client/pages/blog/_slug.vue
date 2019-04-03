@@ -1,9 +1,10 @@
 <template>
   <div class="page-blog-post grid" lang="en">
-    <page-header-detail
+    <page-header
       class="page-blog-post__header"
-      :title="page.title"
-      :sub-title="page.subtitle"
+      heading="headline"
+      :headline="page.title"
+      :byline="page.subtitle"
       :image="page.headerIllustration"
     />
 
@@ -122,7 +123,7 @@ import BlogAuthor from '~/components/blog-author'
 import CodeBlock from '~/components/code-block'
 import PivotSection from '~/components/pivot-section'
 import ImageWithDescription from '~/components/image-with-description'
-import PageHeaderDetail from '~/components/page-header-detail'
+import PageHeader from '~/components/page-header'
 import QuoteBlock from '~/components/quote-block'
 import ResponsiveImage from '~/components/responsive-image'
 import ResponsiveVideo from '~/components/responsive-video'
@@ -139,7 +140,7 @@ export default {
     CodeBlock,
     PivotSection,
     ImageWithDescription,
-    PageHeaderDetail,
+    PageHeader,
     QuoteBlock,
     ResponsiveImage,
     ResponsiveVideo,
@@ -184,10 +185,6 @@ export default {
 </script>
 
 <style>
-  .page-blog-post__header {
-    grid-column: var(--grid-page);
-  }
-
   .page-blog-post__header,
   .page-blog-post__aside-author,
   .page-blog-post__button {

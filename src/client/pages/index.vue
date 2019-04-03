@@ -2,13 +2,13 @@
   <main class="page-index">
     <div class="page-index__header">
       <page-header
-        is-homepage
-        :title="page.headerTitle"
-        :text="page.subtitle"
-        :image="page.headerIllustration"/>
-      <div class="page-index__scroll-to grid">
-        <scroll-to point-down />
-      </div>
+        fill-screen
+        curly-bracket
+        heading="byline"
+        :byline="page.headerTitle"
+        :headline="page.subtitle"
+        :image="page.headerIllustration"
+      />
       <div class="grid">
         <p class="scroll-highlighted-text">
           <scroll-highlighted-text
@@ -263,7 +263,6 @@
 
     .page-index .page-header {
       margin-bottom: var(--spacing-big);
-      height: 100vh;
     }
 
     .page-index .scroll-highlighted-text {
