@@ -83,8 +83,8 @@
       return {
         isPlaying: this.autoplay,
         width: null,
-        canvasWidth: this.video ? this.video.width : this.gif.width,
-        canvasHeight: this.video ? this.video.height : this.gif.height
+        canvasWidth: null,
+        canvasHeight: null,
       }
     },
     computed: {
@@ -134,9 +134,12 @@
       },
     },
     created() {
-      if(!this.video && !this.gif) {
+      if (process.env.NODE_ENV !== 'production' && !this.video && !this.gif) {
         throw new Error('Responsive video requires a video or a gif prop')
       }
+
+      this.canvasWidth = this.video ? this.video.width : this.gif.width
+      this.canvasHeight = this.video ? this.video.height : this.gif.height
     },
     mounted() {
       const pixelRatio = window.devicePixelRatio || 1
