@@ -30,7 +30,9 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
-  import { CaseExcerpt, PageHeader, PivotSection } from '~/components'
+  import CaseExcerpt from '~/components/case-excerpt'
+  import PageHeader from '~/components/page-header'
+  import PivotSection from '~/components/pivot-section'
 
   export default {
     components: {

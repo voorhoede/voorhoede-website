@@ -36,12 +36,10 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import {
-    PageHeader,
-    GenericTextBlock,
-    ScrollTo,
-    AppButton
-  } from '~/components'
+  import PageHeader from '~/components/page-header'
+  import GenericTextBlock from '~/components/generic-text-block'
+  import ScrollTo from '~/components/scroll-to'
+  import AppButton from '~/components/app-button'
 
   export default {
     components: {

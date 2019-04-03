@@ -26,7 +26,8 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import { PageHeader, JobsExcerpt } from '~/components'
+  import PageHeader from '~/components/page-header'
+  import JobsExcerpt from '~/components/jobs-excerpt'
 
   export default {
     components: {
@@ -50,4 +51,3 @@
   }
 }
 </style>
-

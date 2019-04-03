@@ -9,7 +9,8 @@
 </template>
 
 <script>
-  import { RichTextBlock, LazyLoad } from '~/components'
+  import LazyLoad from '../lazy-load'
+  import RichTextBlock from '../rich-text-block'
 
   export default {
     components: {

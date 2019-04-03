@@ -17,7 +17,10 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import { PageHeader, ServicesList, ContactForm, RichTextBlock } from '~/components'
+  import PageHeader from '~/components/page-header'
+  import ServicesList from '~/components/services-list'
+  import ContactForm from '~/components/contact-form'
+  import RichTextBlock from '~/components/rich-text-block'
 
   export default {
     components: { ServicesList, ContactForm, PageHeader, RichTextBlock },

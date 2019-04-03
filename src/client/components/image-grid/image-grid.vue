@@ -20,7 +20,7 @@
 </template>
 
 <script>
-  import { AppImage } from '../../components'
+  import AppImage from '../app-image'
 
   export default {
     components: { AppImage },

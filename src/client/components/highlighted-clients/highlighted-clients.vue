@@ -17,7 +17,8 @@
 </template>
 
 <script>
-import { FixedRatio, LazyLoad } from '~/components'
+import FixedRatio from '../fixed-ratio'
+import LazyLoad from '../lazy-load'
 
 export default {
   components: {

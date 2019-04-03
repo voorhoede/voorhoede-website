@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import { RichTextBlock } from '~/components'
+  import RichTextBlock from '../rich-text-block'
 
   export default {
     components: {

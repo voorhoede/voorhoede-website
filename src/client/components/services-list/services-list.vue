@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { ServiceExcerpt } from '~/components'
+import ServiceExcerpt from '../service-excerpt'
 
 export default {
   components: { ServiceExcerpt },

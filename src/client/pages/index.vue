@@ -93,20 +93,18 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import {
-    AcademyExcerpt,
-    AppButton,
-    BlogListItem,
-    CaseExcerpt,
-    PivotSection,
-    CurlyBracket,
-    HighlightedClients,
-    HorizontalCarousel,
-    PageHeader,
-    ScrollHighlightedText,
-    ScrollTo,
-    ServicesList,
-  } from '~/components'
+  import AcademyExcerpt from '~/components/academy-excerpt'
+  import AppButton from '~/components/app-button'
+  import BlogListItem from '~/components/blog-list-item'
+  import CaseExcerpt from '~/components/case-excerpt'
+  import PivotSection from '~/components/pivot-section'
+  import CurlyBracket from '~/components/curly-bracket'
+  import HighlightedClients from '~/components/highlighted-clients'
+  import HorizontalCarousel from '~/components/horizontal-carousel'
+  import PageHeader from '~/components/page-header'
+  import ScrollHighlightedText from '~/components/scroll-highlighted-text'
+  import ScrollTo from '~/components/scroll-to'
+  import ServicesList from '~/components/services-list'
 
   export default {
     components: {
