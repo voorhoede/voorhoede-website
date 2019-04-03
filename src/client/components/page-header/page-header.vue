@@ -248,9 +248,8 @@
     }
 
     .page-header--fill-screen {
-      min-height: 100vh;
       position: relative;
-      overflow: hidden; /* Prevent following elements from overlapping page header in IE11 */
+      overflow: hidden;
       grid-template-rows:
         var(--app-header-height-small) /* 1 - 2 */
         var(--spacing-larger) /* 2 - 3, spacing */
@@ -258,6 +257,17 @@
         var(--spacing-medium) /* 4 - 5, spacing between text and image */
         1fr /* 5 - 6, image */
         var(--spacing-larger);  /* 6 - 7, spacing */
+    }
+
+    /*
+     * IE11 has a nasty bug:
+     * not moving elements below down, while making te page header taking up 100vh.
+     * @supports is not supported by IE11, so this prevents settings a min-height in IE11.
+     */
+    @supports (min-height: 100vh) {
+      .page-header--fill-screen {
+        min-height: 100vh;
+      }
     }
 
     /* Yellow half */
@@ -329,8 +339,11 @@
 
   /* Keep aspect ratio */
   @media (max-aspect-ratio: 10/8) and (min-width: 720px) {
-    .page-header--fill-screen {
-      min-height: 80vw;
+    /* Prevent nasty bug described above in IE11 */
+    @supports (min-height: 80vh) {
+      .page-header--fill-screen {
+        min-height: 80vw;
+      }
     }
   }
 
