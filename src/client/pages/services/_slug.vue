@@ -26,7 +26,9 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import { PageHeader, GenericTextBlock, PivotSection } from '~/components'
+  import PageHeader from '~/components/page-header'
+  import GenericTextBlock from '~/components/generic-text-block'
+  import PivotSection from '~/components/pivot-section'
 
   export default {
     components: {

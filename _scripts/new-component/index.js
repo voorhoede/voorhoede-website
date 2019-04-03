@@ -73,13 +73,3 @@ if (existsSync(`${program.componentDirectory}/${nameKebab}`)) {
 
 mkdirSync(`${program.componentDirectory}/${nameKebab}`)
 mockFiles.forEach(writeComponent)
-
-readFile(path.join(__dirname, '../../src/client/components/index.js'), 'utf8')
-  .then(contents => contents
-    .split('\n')
-    .concat(`export { default as ${namePascal} } from './${nameKebab}'`)
-    .filter(line => line !== '')
-    .concat('')
-    .join('\n')
-  )
-  .then(contents => writeFile(path.join(__dirname, '../../src/client/components/index.js'), contents))

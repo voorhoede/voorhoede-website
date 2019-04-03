@@ -67,14 +67,12 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import {
-    AppButton,
-    BlogListItem,
-    ImageGrid,
-    ImageWithTextBlock,
-    JobsExcerpt,
-    PageHeader,
-  } from '~/components'
+  import AppButton from '~/components/app-button'
+  import BlogListItem from '~/components/blog-list-item'
+  import ImageGrid from '~/components/image-grid'
+  import ImageWithTextBlock from '~/components/image-with-text-block'
+  import JobsExcerpt from '~/components/jobs-excerpt'
+  import PageHeader from '~/components/page-header'
 
   export default {
     components: {

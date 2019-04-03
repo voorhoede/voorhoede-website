@@ -24,7 +24,8 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
-  import { PivotSection, PageHeader } from '~/components'
+  import PivotSection from '~/components/pivot-section'
+  import PageHeader from '~/components/page-header'
 
   export default {
     components: {

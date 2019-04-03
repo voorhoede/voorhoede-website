@@ -114,21 +114,19 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
-  import {
-    CaseMeta,
-    CasePullQuoteComposition,
-    CaseTeaser,
-    ContactForm,
-    FullWidthImage,
-    ImageWithDescription,
-    PageHeader,
-    QuoteBlock,
-    ResponsiveImage,
-    ResponsiveVideo,
-    RichTextBlock,
-    ScrollTo,
-    StorytellingSection,
-  } from '~/components'
+  import CaseMeta from '~/components/case-meta'
+  import CasePullQuoteComposition from '~/components/case-pull-quote-composition'
+  import CaseTeaser from '~/components/case-teaser'
+  import FullWidthImage from '~/components/full-width-image'
+  import ContactForm from '~/components/contact-form'
+  import ImageWithDescription from '~/components/image-with-description'
+  import PageHeader from '~/components/page-header'
+  import QuoteBlock from '~/components/quote-block'
+  import ResponsiveImage from '~/components/responsive-image'
+  import ResponsiveVideo from '~/components/responsive-video'
+  import RichTextBlock from '~/components/rich-text-block'
+  import ScrollTo from '~/components/scroll-to'
+  import StorytellingSection from '~/components/storytelling-section'
 
   export default {
     asyncData,

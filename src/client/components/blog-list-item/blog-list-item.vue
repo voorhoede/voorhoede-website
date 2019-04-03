@@ -35,7 +35,7 @@
 </template>
 
 <script>
-  import { LazyLoad } from '~/components'
+  import LazyLoad from '../lazy-load'
   import formatDate from '../../lib/format-date'
 
   export default {

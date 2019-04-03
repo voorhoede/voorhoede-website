@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  import { AppButton } from '../../components'
+  import AppButton from '../app-button'
 
   export default {
     components: { AppButton },

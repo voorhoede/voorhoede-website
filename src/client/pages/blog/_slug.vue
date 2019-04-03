@@ -46,8 +46,9 @@
 
         <responsive-video
           v-if="item.__typename === 'ResponsiveVideoRecord'"
-          :key="item.video.title"
+          :key="item.video ? item.video.title : item.gif.title"
           :video="item.video"
+          :gif="item.gif"
           :autoplay="item.autoplay"
           :loop="item.loop"
           :mute="item.autoplay"
@@ -117,22 +118,20 @@
 <script>
 import asyncData from '~/lib/async-page'
 import head from '~/lib/seo-head'
-import {
-  AppButton,
-  BlogAuthor,
-  CodeBlock,
-  PivotSection,
-  ImageWithDescription,
-  PageHeader,
-  QuoteBlock,
-  ResponsiveImage,
-  ResponsiveVideo,
-  RichTextBlock,
-  ScrollTo,
-  SocialShareButtons,
-  TocSection,
-  TextBlock,
-} from '~/components'
+import AppButton from '~/components/app-button'
+import BlogAuthor from '~/components/blog-author'
+import CodeBlock from '~/components/code-block'
+import PivotSection from '~/components/pivot-section'
+import ImageWithDescription from '~/components/image-with-description'
+import PageHeader from '~/components/page-header'
+import QuoteBlock from '~/components/quote-block'
+import ResponsiveImage from '~/components/responsive-image'
+import ResponsiveVideo from '~/components/responsive-video'
+import RichTextBlock from '~/components/rich-text-block'
+import ScrollTo from '~/components/scroll-to'
+import SocialShareButtons from '~/components/social-share-buttons'
+import TocSection from '~/components/toc-section'
+import TextBlock from '~/components/text-block'
 
 export default {
   components: {

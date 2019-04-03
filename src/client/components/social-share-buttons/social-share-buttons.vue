@@ -30,7 +30,8 @@
 </template>
 
 <script>
-  import { AppIcon, AppButton } from '../../components'
+  import AppIcon from '../app-icon'
+  import AppButton from '../app-button'
 
   export default {
     components: { AppIcon, AppButton },

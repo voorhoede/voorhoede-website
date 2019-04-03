@@ -30,7 +30,9 @@
 </template>
 
 <script>
-  import { AppButton, FixedRatio, ResponsiveImage } from '~/components'
+  import AppButton from '../app-button'
+  import FixedRatio from '../fixed-ratio'
+  import ResponsiveImage from '../responsive-image'
 
   export default {
     components: {

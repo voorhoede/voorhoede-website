@@ -105,15 +105,13 @@
   import head from '~/lib/seo-head'
   import formatDate from '~/lib/format-date'
 
-  import {
-    AppButton,
-    ImageWithDescription,
-    PageHeader,
-    QuoteBlock,
-    ResponsiveImage,
-    RichTextBlock,
-    TextBlock,
-  } from '~/components'
+  import AppButton from '~/components/app-button'
+  import ImageWithDescription from '~/components/image-with-description'
+  import PageHeader from '~/components/page-header'
+  import QuoteBlock from '~/components/quote-block'
+  import ResponsiveImage from '~/components/responsive-image'
+  import RichTextBlock from '~/components/rich-text-block'
+  import TextBlock from '~/components/text-block'
 
   export default {
     components: {
