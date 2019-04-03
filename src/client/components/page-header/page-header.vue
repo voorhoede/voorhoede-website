@@ -336,7 +336,7 @@
 
     .page-header__slot {
       grid-row: 8 / 9;
-      min-height: calc(23.5vh - 2 * var(--spacing-medium));
+      min-height: calc(23.5% - 2 * var(--spacing-medium));
     }
   }
 
@@ -392,7 +392,7 @@
         1fr /* 3 - 4, text */
         var(--spacing-larger) /* 4 - 5, spacing below text */
         var(--spacing-medium) /* 5 - 6, spacing */
-        calc(23.5vh - 2 * var(--spacing-medium)) /* 6 - 7, slot */
+        calc(23.5% - 2 * var(--spacing-medium)) /* 6 - 7, slot */
         var(--spacing-medium); /* 7 - 8, spacing */
     }
 
