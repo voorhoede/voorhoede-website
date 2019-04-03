@@ -3,7 +3,7 @@
     class="page-header grid"
     :class="{
       'page-header--fill-screen': fillScreen,
-      'page-header--curly-bracket': curlyBracket,
+      'page-header--curly-bracket': displayCurlyBracket,
       'page-header--has-slot': displaySlot,
     }"
   >
@@ -95,8 +95,12 @@
       }
     },
     computed: {
+      /* The slot and curly bracket are only available within the fill screen variant */
       displaySlot() {
         return (this.$slots.default && this.fillScreen)
+      },
+      displayCurlyBracket() {
+        return (this.curlyBracket && this.fillScreen)
       }
     }
   }
