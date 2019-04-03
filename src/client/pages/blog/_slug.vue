@@ -45,8 +45,9 @@
 
         <responsive-video
           v-if="item.__typename === 'ResponsiveVideoRecord'"
-          :key="item.video.title"
+          :key="item.video ? item.video.title : item.gif.title"
           :video="item.video"
+          :gif="item.gif"
           :autoplay="item.autoplay"
           :loop="item.loop"
           :mute="item.autoplay"

@@ -120,6 +120,12 @@ fragment page on BlogPostRecord {
         providerUid
         thumbnailUrl
       }
+      gif {
+        url
+        title
+        width
+        height
+      }
     }
     ... on TextSectionRecord {
       title
