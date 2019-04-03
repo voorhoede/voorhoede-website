@@ -250,14 +250,6 @@
   }
 
   @media (min-width: 720px) {
-    .page-header {
-      grid-template-rows:
-        var(--app-header-height-small) /* 1 - 2 */
-        var(--spacing-medium) /* 2 - 3, spacing */
-        1fr /* 3 - 4, text */
-        var(--spacing-medium); /* 4 - 5, spacing */
-    }
-
     .page-header--fill-screen {
       position: relative;
       overflow: hidden;
