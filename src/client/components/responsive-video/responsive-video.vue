@@ -190,6 +190,8 @@
     left: 0;
     width: 100%;
     height: 100%;
+    border: 0;
+    background-color: rgba(0, 0, 0, 0);
     transition: background-color .25s ease;
   }
 
@@ -197,11 +199,6 @@
   .responsive-video__button:focus {
     border-bottom: none;
     background-color: rgba(0, 0, 0, .25);
-  }
-
-  button.responsive-video__button {
-    border: 0;
-    background-color: rgba(0, 0, 0, 0);
   }
 
   .responsive-video__icon {
