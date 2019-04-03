@@ -250,6 +250,7 @@
     .page-header--fill-screen {
       min-height: 100vh;
       position: relative;
+      overflow: hidden; /* Prevent following elements from overlapping page header in IE11 */
       grid-template-rows:
         var(--app-header-height-small) /* 1 - 2 */
         var(--spacing-larger) /* 2 - 3, spacing */
