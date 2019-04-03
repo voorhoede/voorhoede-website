@@ -7,4 +7,11 @@ const nuxtI18n = require('./modules/nuxt-i18n')
 module.exports = [
   googleAnalytics,
   nuxtI18n,
+  ['@nuxtjs/pwa', {
+    workbox: true,
+    meta: false,
+    icon: false,
+    manifest: false,
+    onesignal: false,
+  }],
 ]
