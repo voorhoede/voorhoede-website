@@ -30,6 +30,7 @@
         class="sr-only"
         v-html="headline"
       />
+      <!-- Always visible, but has aria-hidden -->
       <self-typing-text
         :class="(fillScreen) ? 'hero' : 'h1'"
         :text="headline"
@@ -97,9 +98,15 @@
     computed: {
       /* The slot and curly bracket are only available within the fill screen variant */
       displaySlot() {
+        if (this.$slot.default && !this.fillScreen) {
+          throw new Error('The slot is only available in combination with fhe fill-screen prop')
+        }
         return (this.$slots.default && this.fillScreen)
       },
       displayCurlyBracket() {
+        if (this.curlyBracket && !this.fillScreen) {
+          throw new Error('The curly bracket is only available in combination with fhe fill-screen prop')
+        }
         return (this.curlyBracket && this.fillScreen)
       }
     }
