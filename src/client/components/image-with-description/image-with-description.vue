@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { ResponsiveImage, } from '../../components'
+import ResponsiveImage from '../responsive-image'
 
 export default {
   components: {

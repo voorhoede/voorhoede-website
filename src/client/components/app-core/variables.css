@@ -20,7 +20,7 @@
   --soft-red: #ff3e3e;
 
   /* FONTS */
-  --font-sans: 'apercu', Arial, sans-serif;
+  --font-sans: 'apercu', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, Verdana, sans-serif;
   --font-code: Consolas, Menlo, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 
   /* SPACING */
@@ -55,6 +55,8 @@
   --grid-center: 26;
   --grid-content-narrow-end: 46;
   --grid-content-end: 50;
+  --grid-content-smallest-start: 12;
+  --grid-content-smallest-end: 40;
   --grid-page-end: 51;
   --grid-page: var(--grid-page-start) / var(--grid-page-end);
   --grid-page-left: var(--grid-page-start) / var(--grid-center);
@@ -63,4 +65,5 @@
   --grid-content-left: var(--grid-content-start) / var(--grid-center);
   --grid-content-right: var(--grid-center) / var(--grid-content-end);
   --grid-content-narrow: var(--grid-content-narrow-start) / var(--grid-content-narrow-end);
+  --grid-content-smallest: var(--grid-content-smallest-start) / var(--grid-content-smallest-end);
 }

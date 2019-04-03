@@ -3,12 +3,14 @@
     class="calendar-icon"
     :class="{
       'calendar-icon--blue': (fill === 'blue'),
-      'calendar-icon--yellow': (fill === 'yellow')
+      'calendar-icon--yellow': (fill === 'yellow'),
+      'calendar-icon--dim': (fill === 'dim'),
     }"
     :datetime="date"
+    :aria-label="`${ day } ${ month }`"
   >
-    <span class="calendar-icon__day font-bold">{{ day }}</span>
-    <span class="calendar-icon__month">{{ month }}</span>
+    <span aria-hidden="true" class="calendar-icon__day font-bold">{{ day }}</span>
+    <span aria-hidden="true" class="calendar-icon__month">{{ month }}</span>
   </time>
 </template>
 

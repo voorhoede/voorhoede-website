@@ -1,18 +1,13 @@
 <template>
   <main class="grid">
-    <div class="page-case__case-header">
-      <page-header-detail
-        has-brick
-        :title="page.title"
-        sub-title="Case study"
-        :image="page.heroIllustration"
-      />
-    </div>
-    <aside class="page-case__case-meta-container grid">
+    <page-header
+      fill-screen
+      heading="headline"
+      byline="Case study"
+      :headline="page.title"
+      :image="page.heroIllustration"
+    >
       <h2 class="sr-only">{{ $t('case_info') }}</h2>
-      <div class="page-case__scroll-to">
-        <scroll-to point-down />
-      </div>
       <case-meta
         class="page-case__case-meta"
         :expertise-title="page.metaData.expertisesTitle"
@@ -25,7 +20,7 @@
         :interested-link-label="page.metaData.interestedLinkLabel"
         :interested-link-url="page.metaData.interestedLinkUrl"
       />
-    </aside>
+    </page-header>
 
     <div class="page-case__case-teaser">
       <case-teaser
@@ -119,21 +114,19 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
-  import {
-    CaseMeta,
-    CasePullQuoteComposition,
-    CaseTeaser,
-    FullWidthImage,
-    ContactForm,
-    ImageWithDescription,
-    PageHeaderDetail,
-    QuoteBlock,
-    ResponsiveImage,
-    ResponsiveVideo,
-    RichTextBlock,
-    ScrollTo,
-    StorytellingSection,
-  } from '~/components'
+  import CaseMeta from '~/components/case-meta'
+  import CasePullQuoteComposition from '~/components/case-pull-quote-composition'
+  import CaseTeaser from '~/components/case-teaser'
+  import FullWidthImage from '~/components/full-width-image'
+  import ContactForm from '~/components/contact-form'
+  import ImageWithDescription from '~/components/image-with-description'
+  import PageHeader from '~/components/page-header'
+  import QuoteBlock from '~/components/quote-block'
+  import ResponsiveImage from '~/components/responsive-image'
+  import ResponsiveVideo from '~/components/responsive-video'
+  import RichTextBlock from '~/components/rich-text-block'
+  import ScrollTo from '~/components/scroll-to'
+  import StorytellingSection from '~/components/storytelling-section'
 
   export default {
     asyncData,
@@ -141,10 +134,10 @@
       CaseMeta,
       CasePullQuoteComposition,
       CaseTeaser,
-      FullWidthImage,
       ContactForm,
+      FullWidthImage,
       ImageWithDescription,
-      PageHeaderDetail,
+      PageHeader,
       QuoteBlock,
       ResponsiveImage,
       ResponsiveVideo,
@@ -172,34 +165,16 @@
     --case-full-width-image-height: 515px; /* value according to design */
   }
 
-  .page-case__content {
-    grid-row: 4;
-    grid-column: var(--grid-page);
-    padding: 0 var(--spacing-small);
-  }
-
-  .page-case__case-header {
-    grid-column: var(--grid-page);
-    grid-row: 1;
-  }
-
-  .page-case__scroll-to {
-    grid-row: 1;
-    grid-column: 2;
-    position: absolute;
-    bottom: 0;
-  }
-
-  .page-case__case-meta-container {
+  .page-case__case-teaser {
     grid-column: var(--grid-page);
     grid-row: 2;
-    background-color: var(--bg-pastel);
-    padding: var(--spacing-small) 0 var(--spacing-large) 0;
+    margin: var(--spacing-large) 0;
   }
 
-  .page-case__case-meta {
-    grid-row: 1;
-    grid-column: 4 / var(--grid-content-end);
+  .page-case__content {
+    grid-row: 3;
+    grid-column: var(--grid-page);
+    padding: 0 var(--spacing-small);
   }
 
   .page-case__contact-form,
@@ -208,26 +183,20 @@
     margin-bottom: var(--spacing-larger);
   }
 
-  .page-case__contact-form {
-    grid-column: var(--grid-page);
-    grid-row: 6;
-  }
-
-  .page-case__title {
-    margin-bottom: var(--spacing-smaller);
-  }
-
   .page-case__link-container {
-    grid-row: 5;
+    grid-row: 4;
     padding-top: var(--spacing-small);
     border-top: 2px solid var(--very-dim);
     margin-bottom: var(--spacing-bigger);
   }
 
-  .page-case__case-teaser {
+  .page-case__contact-form {
     grid-column: var(--grid-page);
-    grid-row: 3;
-    margin: var(--spacing-large) 0;
+    grid-row: 5;
+  }
+
+  .page-case__title {
+    margin-bottom: var(--spacing-smaller);
   }
 
   .page-case__content .storytelling-section {
@@ -276,11 +245,6 @@
 
     .page-case__scroll-to {
       position: relative;
-    }
-
-    .page-case__case-header .page-header-detail__container {
-      grid-column-start: 4;
-      grid-column-end: 48;
     }
 
     .page-case__contact-form .contact-form {

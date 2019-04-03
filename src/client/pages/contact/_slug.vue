@@ -1,9 +1,11 @@
 <template>
   <section class="page-contact-confirmation">
     <page-header
-      :title="page.title"
-      :text="page.subtitle"
-      :image="page.headerIllustration" />
+      heading="byline"
+      :byline="page.title"
+      :headline="page.subtitle"
+      :image="page.headerIllustration"
+    />
     <div class="page-contact-confirmation__backdrop grid">
       <div class="page-contact-confirmation__content body">
         {{ page.body }}
@@ -22,7 +24,8 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
-  import { PivotSection, PageHeader } from '~/components'
+  import PivotSection from '~/components/pivot-section'
+  import PageHeader from '~/components/page-header'
 
   export default {
     components: {

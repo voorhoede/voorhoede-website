@@ -27,7 +27,9 @@
 </template>
 
 <script>
-  import { CalendarIcon, ResponsiveImage, RichTextBlock } from '~/components'
+  import CalendarIcon from '../calendar-icon'
+  import ResponsiveImage from '../responsive-image'
+  import RichTextBlock from '../rich-text-block'
 
   export default {
     components: { CalendarIcon, ResponsiveImage, RichTextBlock },

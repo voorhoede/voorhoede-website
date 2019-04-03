@@ -1,8 +1,9 @@
 <template>
   <article class="page-job">
     <page-header
-      :title="page.subtitle"
-      :text="page.title"
+      heading="headline"
+      :byline="page.subtitle"
+      :headline="page.title"
       :image="page.jobImage"
     />
     <div class="grid">
@@ -36,12 +37,10 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import {
-    PageHeader,
-    GenericTextBlock,
-    ScrollTo,
-    AppButton
-  } from '~/components'
+  import PageHeader from '~/components/page-header'
+  import GenericTextBlock from '~/components/generic-text-block'
+  import ScrollTo from '~/components/scroll-to'
+  import AppButton from '~/components/app-button'
 
   export default {
     components: {
@@ -62,7 +61,6 @@
   }
 
   .page-job .page-header {
-    grid-column: var(--grid-page);
     margin-bottom: var(--spacing-large);
   }
 

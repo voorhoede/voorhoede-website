@@ -1,8 +1,9 @@
 <template>
   <div class="grid page-service">
-    <page-header-detail
-      :title="page.subtitle"
-      :sub-title="page.title"
+    <page-header
+      heading="headline"
+      :byline="page.title"
+      :headline="page.subtitle"
       :image="page.headerIllustration"
     />
     <article class="page-service__overview">
@@ -25,11 +26,13 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import { PageHeaderDetail, GenericTextBlock, PivotSection } from '~/components'
+  import PageHeader from '~/components/page-header'
+  import GenericTextBlock from '~/components/generic-text-block'
+  import PivotSection from '~/components/pivot-section'
 
   export default {
     components: {
-      PageHeaderDetail,
+      PageHeader,
       GenericTextBlock,
       PivotSection,
     },
@@ -39,9 +42,7 @@
 </script>
 
 <style>
-
-  .page-service .page-header-detail {
-    grid-column: var(--grid-page);
+  .page-service .page-header {
     margin-bottom: var(--spacing-large);
   }
 

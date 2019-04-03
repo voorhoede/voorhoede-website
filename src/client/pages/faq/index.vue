@@ -1,8 +1,9 @@
 <template>
   <div class="grid page-faq">
     <page-header
-      :title="page.title"
-      :text="page.subtitle"
+      heading="byline"
+      :byline="page.title"
+      :headline="page.subtitle"
       :image="page.headerIllustration"
     />
     <div class="page-faq__overview">
@@ -23,7 +24,10 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import { GenericTextBlock, PageHeader, ScrollTo } from '~/components'
+
+  import GenericTextBlock from '~/components/generic-text-block'
+  import PageHeader from '~/components/page-header'
+  import ScrollTo from '~/components/scroll-to'
 
   export default {
     components: { GenericTextBlock, PageHeader, ScrollTo },
@@ -33,9 +37,7 @@
 </script>
 
 <style>
-
   .page-faq .page-header {
-    grid-column: var(--grid-page);
     margin-bottom: var(--spacing-large);
   }
 

@@ -1,9 +1,10 @@
 <template>
   <div class="page-blog-post grid" lang="en">
-    <page-header-detail
+    <page-header
       class="page-blog-post__header"
-      :title="page.title"
-      :sub-title="page.subtitle"
+      heading="headline"
+      :headline="page.title"
+      :byline="page.subtitle"
       :image="page.headerIllustration"
     />
 
@@ -45,8 +46,9 @@
 
         <responsive-video
           v-if="item.__typename === 'ResponsiveVideoRecord'"
-          :key="item.video.title"
+          :key="item.video ? item.video.title : item.gif.title"
           :video="item.video"
+          :gif="item.gif"
           :autoplay="item.autoplay"
           :loop="item.loop"
           :mute="item.autoplay"
@@ -85,9 +87,9 @@
 
     <aside class="page-blog-post__aside">
       <blog-author class="page-blog-post__aside-author" :item="page" />
-      <social-buttons
+      <social-share-buttons
         :title="page.socialTitle"
-        :share-title="page.title"
+        :twitter-title="page.title"
       />
       <toc-section :items="tocItems" />
     </aside>
@@ -116,22 +118,20 @@
 <script>
 import asyncData from '~/lib/async-page'
 import head from '~/lib/seo-head'
-import {
-  AppButton,
-  BlogAuthor,
-  CodeBlock,
-  PivotSection,
-  ImageWithDescription,
-  PageHeaderDetail,
-  QuoteBlock,
-  ResponsiveImage,
-  ResponsiveVideo,
-  RichTextBlock,
-  ScrollTo,
-  SocialButtons,
-  TocSection,
-  TextBlock,
-} from '~/components'
+import AppButton from '~/components/app-button'
+import BlogAuthor from '~/components/blog-author'
+import CodeBlock from '~/components/code-block'
+import PivotSection from '~/components/pivot-section'
+import ImageWithDescription from '~/components/image-with-description'
+import PageHeader from '~/components/page-header'
+import QuoteBlock from '~/components/quote-block'
+import ResponsiveImage from '~/components/responsive-image'
+import ResponsiveVideo from '~/components/responsive-video'
+import RichTextBlock from '~/components/rich-text-block'
+import ScrollTo from '~/components/scroll-to'
+import SocialShareButtons from '~/components/social-share-buttons'
+import TocSection from '~/components/toc-section'
+import TextBlock from '~/components/text-block'
 
 export default {
   components: {
@@ -140,13 +140,13 @@ export default {
     CodeBlock,
     PivotSection,
     ImageWithDescription,
-    PageHeaderDetail,
+    PageHeader,
     QuoteBlock,
     ResponsiveImage,
     ResponsiveVideo,
     RichTextBlock,
     ScrollTo,
-    SocialButtons,
+    SocialShareButtons,
     TocSection,
     TextBlock,
   },
@@ -185,10 +185,6 @@ export default {
 </script>
 
 <style>
-  .page-blog-post__header {
-    grid-column: var(--grid-page);
-  }
-
   .page-blog-post__header,
   .page-blog-post__aside-author,
   .page-blog-post__button {

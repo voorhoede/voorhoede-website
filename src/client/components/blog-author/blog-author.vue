@@ -26,7 +26,8 @@
 </template>
 
 <script>
-  import { AppImage, FixedRatio } from '../../components'
+  import AppImage from '../app-image'
+  import FixedRatio from '../fixed-ratio'
   import formatDate from '../../lib/format-date'
 
   export default {

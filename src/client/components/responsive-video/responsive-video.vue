@@ -1,14 +1,14 @@
 <template>
   <div class="responsive-video">
     <figure>
-      <fixed-ratio class="responsive-video__canvas" :width="video.width" :height="video.height">
+      <fixed-ratio class="responsive-video__canvas" :width="canvasWidth" :height="canvasHeight">
         <lazy-load>
           <div
             class="responsive-video__background"
             :style="{ backgroundImage: `url(${imageUrl})` }"
           />
           <iframe
-            v-if="isPlaying"
+            v-if="video && isPlaying"
             class="responsive-video__i-frame"
             :src="videoUrl"
             frameborder="0"
@@ -17,20 +17,33 @@
             allowfullscreen
             allow="autoplay"
           />
-          <a
+          <video
+            v-if="gif && isPlaying"
+            class="responsive-video__i-frame"
+            autoplay="true"
+            :loop="loop"
+            muted
+            controls
+          >
+            <source :src="`${gif.url}?fm=mp4`" type="video/mp4">
+          </video>
+          <component
+            :is="video ? 'a' : 'button'"
             v-if="!isPlaying"
             class="responsive-video__button"
-            :href="video.url"
-            @click.prevent="play">
+            :href="video ? video.url : null"
+            @click.prevent="play"
+          >
             <span class="sr-only">Play video</span>
             <img class="responsive-video__icon" src="/icons/icon_play.svg">
-          </a>
+          </component>
         </lazy-load>
       </fixed-ratio>
-      <figcaption v-if="video.title">
-        <a class="responsive-video__caption body-detail" target="_blank" rel="noopener" :href="video.url" >
+      <figcaption>
+        <a v-if="video" class="responsive-video__caption body-detail" target="_blank" rel="noreferrer noopener" :href="video.url" >
           {{ video.title }}
         </a>
+        <span v-if="gif" class="responsive-video__caption body-detail">{{ gif.title }}</span>
       </figcaption>
     </figure>
   </div>
@@ -47,7 +60,11 @@
     props: {
       video: {
         type: Object,
-        required: true,
+        default: null
+      },
+      gif: {
+        type: Object,
+        default: null
       },
       autoplay: {
         type: Boolean,
@@ -66,10 +83,16 @@
       return {
         isPlaying: this.autoplay,
         width: null,
+        canvasWidth: null,
+        canvasHeight: null,
       }
     },
     computed: {
       imageUrl() {
+        if(this.gif) {
+          return `${this.gif.url}?fm=jpg`
+        }
+
         const sizeRegex = /\d+\.\w+$/
         let preset = '/maxresdefault.jpg'
 
@@ -108,7 +131,15 @@
           default:
             throw Error(`unsupported video provider: ${provider}`)
         }
+      },
+    },
+    created() {
+      if (process.env.NODE_ENV !== 'production' && !this.video && !this.gif) {
+        throw new Error('Responsive video requires a video or a gif prop')
       }
+
+      this.canvasWidth = this.video ? this.video.width : this.gif.width
+      this.canvasHeight = this.video ? this.video.height : this.gif.height
     },
     mounted() {
       const pixelRatio = window.devicePixelRatio || 1
@@ -149,12 +180,18 @@
     position: relative;
   }
 
+  .responsive-video video {
+    width: 100%;
+  }
+
   .responsive-video__button {
     position: absolute;
     top: 0;
-    right: 0;
-    bottom: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background-color: rgba(0, 0, 0, 0);
     transition: background-color .25s ease;
   }
 

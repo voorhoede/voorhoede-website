@@ -2,13 +2,13 @@
   <main class="page-index">
     <div class="page-index__header">
       <page-header
-        is-homepage
-        :title="page.headerTitle"
-        :text="page.subtitle"
-        :image="page.headerIllustration"/>
-      <div class="page-index__scroll-to grid">
-        <scroll-to point-down />
-      </div>
+        fill-screen
+        curly-bracket
+        heading="byline"
+        :byline="page.headerTitle"
+        :headline="page.subtitle"
+        :image="page.headerIllustration"
+      />
       <div class="grid">
         <p class="scroll-highlighted-text">
           <scroll-highlighted-text
@@ -93,20 +93,18 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import {
-    AcademyExcerpt,
-    AppButton,
-    BlogListItem,
-    CaseExcerpt,
-    PivotSection,
-    CurlyBracket,
-    HighlightedClients,
-    HorizontalCarousel,
-    PageHeader,
-    ScrollHighlightedText,
-    ScrollTo,
-    ServicesList,
-  } from '~/components'
+  import AcademyExcerpt from '~/components/academy-excerpt'
+  import AppButton from '~/components/app-button'
+  import BlogListItem from '~/components/blog-list-item'
+  import CaseExcerpt from '~/components/case-excerpt'
+  import PivotSection from '~/components/pivot-section'
+  import CurlyBracket from '~/components/curly-bracket'
+  import HighlightedClients from '~/components/highlighted-clients'
+  import HorizontalCarousel from '~/components/horizontal-carousel'
+  import PageHeader from '~/components/page-header'
+  import ScrollHighlightedText from '~/components/scroll-highlighted-text'
+  import ScrollTo from '~/components/scroll-to'
+  import ServicesList from '~/components/services-list'
 
   export default {
     components: {
@@ -255,6 +253,7 @@
   .page-index__cases .horizontal-carousel {
     margin-bottom: var(--spacing-medium);
     grid-column: var(--grid-page);
+    grid-row: 2;
   }
 
   @media (min-width: 720px) {
@@ -264,7 +263,6 @@
 
     .page-index .page-header {
       margin-bottom: var(--spacing-big);
-      height: 100vh;
     }
 
     .page-index .scroll-highlighted-text {

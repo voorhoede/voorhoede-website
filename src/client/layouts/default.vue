@@ -18,27 +18,16 @@
       :links="[].concat(layout.menu.links, layout.menu.callToAction)"
     />
     <nuxt />
-    <app-footer
-      :links="[].concat(layout.menu.links, layout.menu.callToAction)"
-      :tel="layout.footer.telephoneNumber"
-      :email="layout.footer.email"
-      :addresses="layout.footer.addresses"
-      :copyright-label="layout.footer.copyrightLabel"
-      :copyright-title="layout.footer.copyrightTitle"
-      :copyright-link="layout.footer.copyrightLink"
-      :privacy-label="layout.footer.privacyLabel"
-      :privacy-title="layout.footer.privacyTitle"
-      :privacy-link="layout.footer.privacyLink"
-      :logo-alt="layout.footer.logoAlt"
-      :legal="layout.footer.legal"
-      :social="layout.footer.social"
-    />
+    <app-footer/>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import { AppFooter, AppHeader, AppMobileMenu, GridDemo } from '../components'
+import AppFooter from '~/components/app-footer'
+import AppHeader from '~/components/app-header'
+import AppMobileMenu from '~/components/app-mobile-menu'
+import GridDemo from '~/components/grid-demo'
 
 export default {
   components: { AppFooter, AppHeader, AppMobileMenu, GridDemo },

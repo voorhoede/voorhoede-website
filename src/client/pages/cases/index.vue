@@ -1,9 +1,11 @@
 <template>
   <main class="page-cases">
     <page-header
-      :title="page.title"
-      :text="page.subtitle"
-      :image="page.headerIllustration" />
+      heading="byline"
+      :byline="page.title"
+      :headline="page.subtitle"
+      :image="page.headerIllustration"
+    />
     <section class="grid">
       <h2 class="sr-only">{{ $t('all_cases') }}</h2>
       <ul class="page-case__overview">
@@ -30,7 +32,9 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
-  import { CaseExcerpt, PageHeader, PivotSection } from '~/components'
+  import CaseExcerpt from '~/components/case-excerpt'
+  import PageHeader from '~/components/page-header'
+  import PivotSection from '~/components/pivot-section'
 
   export default {
     components: {
@@ -75,7 +79,7 @@
   }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1200px) {
   .page-case__overview-item {
     width: calc(33% - (var(--spacing-medium) * 2));
     margin-bottom: var(--spacing-larger);

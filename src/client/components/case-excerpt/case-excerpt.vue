@@ -30,7 +30,9 @@
 </template>
 
 <script>
-  import { AppButton, FixedRatio, ResponsiveImage } from '~/components'
+  import AppButton from '../app-button'
+  import FixedRatio from '../fixed-ratio'
+  import ResponsiveImage from '../responsive-image'
 
   export default {
     components: {
@@ -113,9 +115,8 @@
     display: none;
   }
 
-  @media (min-width: 1100px) {
+  @media (min-width: 720px) {
     .case-excerpt__link {
-      transition: margin-top var(--case-excerpt-transition);
       padding-top: calc(100% - var(--case-excerpt-image-height));
       background: var(--fog);
     }
@@ -126,6 +127,12 @@
       align-items: center;
       height: calc(100% - var(--case-excerpt-image-height));
       padding: var(--spacing-small);
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .case-excerpt__link {
+      transition: margin-top var(--case-excerpt-transition);
     }
 
     .case-excerpt__info {

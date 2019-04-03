@@ -1,8 +1,9 @@
 <template>
   <main class="page-blog">
     <page-header
-      :title="page.title"
-      :text="page.subtitle"
+      heading="byline"
+      :byline="page.title"
+      :headline="page.subtitle"
       :image="page.headerIllustration"
     />
     <section class="page-blog-container grid">
@@ -32,13 +33,11 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
-  import {
-    BlogListItem,
-    PivotSection,
-    PageHeader,
-    ScrollTo,
-    TextBlock,
-  } from '~/components'
+  import BlogListItem from '~/components/blog-list-item'
+  import PivotSection from '~/components/pivot-section'
+  import PageHeader from '~/components/page-header'
+  import ScrollTo from '~/components/scroll-to'
+  import TextBlock from '~/components/text-block'
 
   export default {
     components: { BlogListItem, PivotSection, PageHeader, ScrollTo, TextBlock },

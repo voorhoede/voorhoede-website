@@ -2,8 +2,9 @@
   <article class="page-event-detail grid" lang="en">
     <page-header
       class="page-event-detail__header"
-      :title="page.label.label"
-      :text="page.title"
+      heading="headline"
+      :byline="page.label.label"
+      :headline="page.title"
       :image="imageIsIllustration ? page.image : fallbackIllustration" />
 
     <main class="page-event-detail__main">
@@ -104,15 +105,13 @@
   import head from '~/lib/seo-head'
   import formatDate from '~/lib/format-date'
 
-  import {
-    AppButton,
-    ImageWithDescription,
-    PageHeader,
-    QuoteBlock,
-    ResponsiveImage,
-    RichTextBlock,
-    TextBlock,
-  } from '~/components'
+  import AppButton from '~/components/app-button'
+  import ImageWithDescription from '~/components/image-with-description'
+  import PageHeader from '~/components/page-header'
+  import QuoteBlock from '~/components/quote-block'
+  import ResponsiveImage from '~/components/responsive-image'
+  import RichTextBlock from '~/components/rich-text-block'
+  import TextBlock from '~/components/text-block'
 
   export default {
     components: {
@@ -154,10 +153,6 @@
 </script>
 
 <style>
-  .page-event-detail__header {
-    grid-column: var(--grid-page);
-  }
-
   .page-event-detail__header,
   .page-event-detail__aside,
   .page-event-detail__button {

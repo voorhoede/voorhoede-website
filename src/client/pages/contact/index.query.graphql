@@ -5,6 +5,14 @@ query ($locale: SiteLocale)  {
   items: allContactConfirmations(locale: $locale) {
     slug
   },
+  app {
+    addresses {
+      city,
+      postalCode,
+      address,
+      googleMapsLink
+    }
+  }
   pivots: allPivotSections(locale: $locale, filter: {
     routes:{ matches:{ pattern: "contact" }}
   }) {
