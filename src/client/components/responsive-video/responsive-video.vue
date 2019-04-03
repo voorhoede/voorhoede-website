@@ -27,7 +27,7 @@
             <source :src="`${gif.url}?fm=mp4`" type="video/mp4">
           </video>
           <component
-            :is="playButtonElement"
+            :is="video ? 'a' : 'button'"
             v-if="!isPlaying"
             class="responsive-video__button"
             :href="video ? video.url : null"
@@ -131,9 +131,6 @@
             throw Error(`unsupported video provider: ${provider}`)
         }
       },
-      playButtonElement() {
-        return this.video ? 'a' : 'button'
-      }
     },
     created() {
       if(!this.video && !this.gif) {
