@@ -24,7 +24,10 @@
 
 <script>
 import { mapState } from 'vuex'
-import { AppFooter, AppHeader, AppMobileMenu, GridDemo } from '../components'
+import AppFooter from '~/components/app-footer'
+import AppHeader from '~/components/app-header'
+import AppMobileMenu from '~/components/app-mobile-menu'
+import GridDemo from '~/components/grid-demo'
 
 export default {
   components: { AppFooter, AppHeader, AppMobileMenu, GridDemo },

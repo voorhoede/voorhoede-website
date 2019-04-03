@@ -23,7 +23,10 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import { ContactSidebar, ContactForm, PageHeader } from '~/components'
+  
+  import ContactSidebar from '~/components/contact-sidebar'
+  import ContactForm from '~/components/contact-form'
+  import PageHeader from '~/components/page-header'
 
   export default {
     components: { ContactSidebar, ContactForm, PageHeader },

@@ -7,7 +7,9 @@ import VueI18n from 'vue-i18n'
 
 import '../app-core/index.css'
 
-import { HorizontalCarousel, ResponsiveImage, ServiceExcerpt } from '~/components'
+import HorizontalCarousel from '../horizontal-carousel'
+import ResponsiveImage from '../responsive-image'
+import ServiceExcerpt from '../service-excerpt'
 import README from './README.md'
 
 const stories = storiesOf('Components/Horizontal Carousel', module)
