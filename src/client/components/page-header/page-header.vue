@@ -98,7 +98,7 @@
     computed: {
       /* The slot and curly bracket are only available within the fill screen variant */
       displaySlot() {
-        if (this.$slot.default && !this.fillScreen) {
+        if (this.$slots.default && !this.fillScreen) {
           throw new Error('The slot is only available in combination with fhe fill-screen prop')
         }
         return (this.$slots.default && this.fillScreen)
