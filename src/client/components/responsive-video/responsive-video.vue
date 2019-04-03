@@ -18,11 +18,12 @@
             allow="autoplay"
           />
           <video
-            class="responsive-video__i-frame"
             v-if="gif && isPlaying"
+            class="responsive-video__i-frame"
             autoplay="true"
             :loop="loop"
             muted
+            controls
           >
             <source :src="`${gif.url}?fm=mp4`" type="video/mp4">
           </video>
