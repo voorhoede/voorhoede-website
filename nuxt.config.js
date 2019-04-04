@@ -97,18 +97,18 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    // postcss: {
-    //   plugins: {
-    //     'postcss-import': {},
-    //     'postcss-custom-properties': {
-    //       importFrom: './src/client/components/app-core/variables.css'
-    //     },
-    //     'autoprefixer': {
-    //       browsers: ['ie 11', '>1%'],
-    //       grid: true,
-    //     }
-    //   }
-    // },
+    postcss: {
+      plugins: {
+        'postcss-import': {},
+        'postcss-custom-properties': {
+          importFrom: './src/client/components/app-core/variables.css'
+        },
+        'autoprefixer': {
+          browsers: ['ie 11', '>1%'],
+          grid: true,
+        }
+      }
+    },
 
     /*
     ** Run ESLint on save
