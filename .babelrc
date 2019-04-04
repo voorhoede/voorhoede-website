@@ -1,9 +1,0 @@
-// this is just used for storybook, not by the nuxt app. For nuxt configuration of babel
-// you need to change that through nuxt.config.js
-{
-  "presets": [
-    ["env", { "modules": false }],
-    "stage-2"
-  ],
-  "plugins": ["transform-runtime"]
-}
