@@ -36,6 +36,8 @@ query ($locale: SiteLocale, $slug: String)  {
         }
       }
     }
+  caseItemShared {
+    subtitle,
   }
 }
 
@@ -160,5 +162,4 @@ fragment caseItem on CaseItemRecord {
   },
   quote,
   author,
-  getInTouchTitle,
 }

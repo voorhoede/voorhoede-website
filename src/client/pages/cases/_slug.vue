@@ -3,7 +3,7 @@
     <page-header
       fill-screen
       heading="headline"
-      byline="Case study"
+      :byline="caseItemShared.subtitle"
       :headline="page.title"
       :image="page.heroIllustration"
     >
