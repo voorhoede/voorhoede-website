@@ -93,6 +93,10 @@ module.exports = {
     { src: '~/plugins/promise-polyfill', ssr: false },
   ],
 
+  css: [
+    '~/components/app-core/index.css'
+  ],
+
   /*
   ** Build configuration
   */
