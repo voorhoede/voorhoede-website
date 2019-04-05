@@ -63,5 +63,15 @@ fragment page on ServiceOverviewRecord {
     alt
   },
   smallServices,
-  getInTouchTitle,
+  contactPerson {
+    name,
+    lastName,
+    jobTitle,
+    image {
+      width,
+      height,
+      url,
+      format
+    }
+  }
 }
