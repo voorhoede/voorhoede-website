@@ -113,7 +113,11 @@
   }
 </script>
 
-<style>
+<!--
+  Webpack doesn't import core styling before this component in development.
+  By making it scoped, the styling defined here is more specific than the core styling
+-->
+<style scoped>
   :root {
     --max-height-image: 285px;
   }
