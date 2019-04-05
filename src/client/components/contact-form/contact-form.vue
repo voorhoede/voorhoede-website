@@ -1,6 +1,6 @@
 <template>
   <div class="contact-form">
-    <div v-if="title" class="contact-form__header">
+    <div v-if="title || contactPerson" class="contact-form__header">
       <h2
         v-if="title"
         class="contact-form__header h3"
