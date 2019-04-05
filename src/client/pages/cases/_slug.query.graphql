@@ -37,7 +37,7 @@ query ($locale: SiteLocale, $slug: String)  {
       }
     }
   },
-  caseItemShared {
+  _caseItem {
     subtitle,
     contactPerson {
       name,
