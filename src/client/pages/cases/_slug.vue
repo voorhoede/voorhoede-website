@@ -104,7 +104,11 @@
     </div>
 
     <div class="page-case__contact-form grid">
-      <contact-form class="grid" :title="$t('lets_discuss')" />
+      <contact-form
+        class="grid"
+        :title="$t('lets_discuss')"
+        :contact-person="caseItemShared.contactPerson"
+      />
       <scroll-to direction="up" />
     </div>
   </main>

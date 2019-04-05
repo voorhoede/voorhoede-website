@@ -36,8 +36,20 @@ query ($locale: SiteLocale, $slug: String)  {
         }
       }
     }
+  },
   caseItemShared {
     subtitle,
+    contactPerson {
+      name,
+      lastName,
+      jobTitle,
+      image {
+        format,
+        height,
+        width,
+        url,
+      },
+    }
   }
 }
 
