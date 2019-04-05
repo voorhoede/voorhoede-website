@@ -72,8 +72,10 @@
   @media (min-width: 720px) {
     .generic-text-block {
       display: grid;
+      grid-template-rows: repeat(2, auto);
       grid-template-columns: 63% 1fr; /* 63% == 550(text)/877(total width)*100 from design  */
-      grid-gap: var(--spacing-smaller) var(--spacing-large);
+      grid-row-gap: var(--spacing-smaller);
+      grid-column-gap: var(--spacing-large);
     }
 
     .generic-text-block__title {
