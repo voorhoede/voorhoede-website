@@ -14,7 +14,7 @@
     </section>
     <section v-if="interestedTitle" class="case-meta__section">
       <h3 class="case-meta__title body font-bold">{{ interestedTitle }}</h3>
-      <a class="case-meta__link body-petite" :href="interestedLinkUrl" target="_blank" rel="noreferrer noopener">
+      <a class="link body-petite" :href="interestedLinkUrl" target="_blank" rel="noreferrer noopener">
         {{ interestedLinkLabel }} &raquo;
       </a>
     </section>
@@ -96,15 +96,6 @@
   .case-meta__title {
     color: var(--html-blue);
     margin-bottom: var(--spacing-tiny);
-  }
-
-  .case-meta__link:hover,
-  .case-meta__link:focus {
-    color: var(--active-blue);
-  }
-
-  .case-meta__link:active {
-    color: var(--active-blue);
   }
 
   @media (max-width: 1099px) {
