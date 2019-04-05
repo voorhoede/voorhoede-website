@@ -224,7 +224,7 @@
   .page-index__blog-posts-list {
     margin-bottom: var(--spacing-small);
     grid-row: 2;
-    grid-column-end: 48;
+    grid-column: var(--grid-content-start) / 48;
     grid-template-rows: repeat(3, auto);
   }
 
@@ -419,16 +419,6 @@
   }
 
   @media (min-width: 1440px) {
-    .page-index__scroll-to .scroll-to {
-      grid-column-start: 4;
-      grid-column-end: 5;
-    }
-
-    .page-index .page-header__text {
-      margin: var(--spacing-large) 0;
-      grid-column-end: 24;
-    }
-
     .page-index__pivot-section {
       /* tweak for the inconsistent spacing of the latest-blog-post component  */
       padding-top: var(--spacing-smaller);
