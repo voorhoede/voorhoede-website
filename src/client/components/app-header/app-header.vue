@@ -187,7 +187,7 @@
     color: var(--html-blue);
   }
 
-  @media screen and (min-width: 720px) {
+  @media screen and (min-width: 800px) {
     .app-header__logo {
       height: 1.875rem; /* 30px */
     }
