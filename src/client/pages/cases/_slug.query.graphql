@@ -2,7 +2,6 @@ query ($locale: SiteLocale, $slug: String)  {
   page: caseItem(locale: $locale, filter: { slug: { eq: $slug } }) {
     ...caseItem
   },
-
   pivots: allPivotSections(locale: $locale, filter: {
     routes:{ matches:{ pattern: "cases-slug" }}
   }) {
@@ -37,7 +36,7 @@ query ($locale: SiteLocale, $slug: String)  {
       }
     }
   },
-  _caseItem {
+  caseItemShared: _caseItem {
     subtitle,
     contactPerson {
       name,
