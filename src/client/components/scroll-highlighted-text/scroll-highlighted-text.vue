@@ -64,14 +64,15 @@
         ? this.observe()
         : this.isIntersected = true
 
-      window.addEventListener('scroll', this.onScroll)
+      this.debouncedScrollEvent = debounce(this.onScroll, 100)
+
+      window.addEventListener('scroll', this.debouncedScrollEvent)
     },
     beforeDestroy() {
       if (this.observer !== null) {
         this.unobserve()
       }
-
-      window.removeEventListener('scroll', this.onScroll)
+      window.removeEventListener('scroll', this.debouncedScrollEvent)
     },
     methods: {
       observe () {
@@ -95,9 +96,10 @@
           return entry.isIntersecting
         })
       },
-      onScroll: debounce(() => {
+      onScroll() {
         const highlightedTextID = parseInt(this.$refs.highlightedText.dataset.id)
         let offsetIntersectionObserver
+        const scrollOffset = 55
 
         if(this.$refs.highlightedText) {
           // calculate offset from window top including rootMargin set on the observer
@@ -105,14 +107,14 @@
 
           // if first highlighted text line and user scrolled before intersecting with observer
           if(highlightedTextID === this.isFirst.number) {
-            this.scrolledAbove = offsetIntersectionObserver > window.scrollY
+            return this.scrolledAbove = offsetIntersectionObserver >= window.scrollY - scrollOffset
           }
           // if last highlighted text line and user scrolled after intersecting with observer
           if(highlightedTextID === this.isLast.number) {
-            this.scrolledBelow = offsetIntersectionObserver < window.scrollY
+            return this.scrolledBelow = offsetIntersectionObserver <= window.scrollY + scrollOffset
           }
         }
-      }, 300),
+      },
       unobserve () {
         this.observer.unobserve(this.$el)
       },
