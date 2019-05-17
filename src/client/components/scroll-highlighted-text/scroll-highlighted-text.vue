@@ -52,7 +52,7 @@
       isIntersectedClass() {
         if (this.isIntersected ||
             this.isFirst && this.scrolledAbove ||
-            this.isLast && this.scrolledBelow ) {
+            this.isLast && this.scrolledBelow) {
           return 'scroll-highlighted-text--active'
         } else {
           return 'scroll-highlighted-text--in-active'
@@ -64,7 +64,7 @@
         ? this.observe()
         : this.isIntersected = true
 
-      this.debouncedScrollEvent = debounce(this.onScroll, 100)
+      this.debouncedScrollEvent = debounce(this.onScroll, 75)
 
       window.addEventListener('scroll', this.debouncedScrollEvent)
     },
@@ -99,7 +99,6 @@
       onScroll() {
         const highlightedTextID = parseInt(this.$refs.highlightedText.dataset.id)
         let offsetIntersectionObserver
-        const scrollOffset = 55
 
         if(this.$refs.highlightedText) {
           // calculate offset from window top including rootMargin set on the observer
@@ -107,11 +106,11 @@
 
           // if first highlighted text line and user scrolled before intersecting with observer
           if(highlightedTextID === this.isFirst.number) {
-            return this.scrolledAbove = offsetIntersectionObserver >= window.scrollY - scrollOffset
+            return this.scrolledAbove = offsetIntersectionObserver > window.scrollY
           }
           // if last highlighted text line and user scrolled after intersecting with observer
           if(highlightedTextID === this.isLast.number) {
-            return this.scrolledBelow = offsetIntersectionObserver <= window.scrollY + scrollOffset
+            return this.scrolledBelow = offsetIntersectionObserver < window.scrollY
           }
         }
       },
