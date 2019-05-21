@@ -97,15 +97,13 @@
 
         switch (this.video.provider) {
           case 'vimeo': {
-            const sizeRegex = /\d+x\d+\.\w+$/
-            const ratio = 16/9
+            const sizeRegex = /\/\d+_(\d+x?\d+?.\w+)$/
             const roundedWidth = Math.round(this.width)
-            const roundedHeight = Math.round(roundedWidth / ratio)
 
             return (
               this.width === null
                 ? false
-                : this.video.thumbnailUrl.replace(sizeRegex, `${roundedWidth}x${roundedHeight}.jpg`)
+                : this.video.thumbnailUrl.replace(sizeRegex, (match, $1, offset, string) => string.replace($1, `${roundedWidth}.jpg`))
             )
           }
           case 'youtube':
