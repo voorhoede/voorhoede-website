@@ -93,21 +93,21 @@
           return `${this.gif.url}?fm=jpg`
         }
 
-        const sizeRegex = /\d+x\d+\.\w+$/
-        const ratio = 16/9
-        const roundedWidth = Math.round(this.width)
-        const height = Math.round(roundedWidth / ratio)
-
         let preset = '/maxresdefault.jpg'
 
         switch (this.video.provider) {
-          case 'vimeo':
+          case 'vimeo': {
+            const sizeRegex = /\d+x\d+\.\w+$/
+            const ratio = 16/9
+            const roundedWidth = Math.round(this.width)
+            const roundedHeight = Math.round(roundedWidth / ratio)
 
             return (
               this.width === null
-              ? false
-              : this.video.thumbnailUrl.replace(sizeRegex, `${roundedWidth}x${height}.jpg`)
+                ? false
+                : this.video.thumbnailUrl.replace(sizeRegex, `${roundedWidth}x${roundedHeight}.jpg`)
             )
+          }
           case 'youtube':
             if (this.width < 320) {
               preset = '/mqdefault.jpg'
