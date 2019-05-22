@@ -93,16 +93,19 @@
           return `${this.gif.url}?fm=jpg`
         }
 
-        const sizeRegex = /\d+\.\w+$/
         let preset = '/maxresdefault.jpg'
 
         switch (this.video.provider) {
-          case 'vimeo':
+          case 'vimeo': {
+            const sizeRegex = /\/\d+_(\d+x?\d+?.\w+)$/
+            const roundedWidth = Math.round(this.width)
+
             return (
               this.width === null
-              ? false
-              : this.video.thumbnailUrl.replace(sizeRegex, `${this.width}.jpg`)
+                ? false
+                : this.video.thumbnailUrl.replace(sizeRegex, (match, $1, offset, string) => string.replace($1, `${roundedWidth}.jpg`))
             )
+          }
           case 'youtube':
             if (this.width < 320) {
               preset = '/mqdefault.jpg'
