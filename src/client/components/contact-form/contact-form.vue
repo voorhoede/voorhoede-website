@@ -28,7 +28,7 @@
           v-model="form.name"
           id="name"
           type="text"
-          @input="emailTitle"
+          @input="createEmailSubject"
           :label="$t('my_name_is')"
           :placeholder-label="$t('your_name')"
           required
@@ -125,7 +125,7 @@
       this.useCustomValidation = true
     },
     methods: {
-      emailTitle(name) {
+      createEmailSubject(name) {
         this.form.subject = `${name} has sent a message`
       },
       submit(event) {
