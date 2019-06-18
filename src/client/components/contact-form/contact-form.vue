@@ -163,13 +163,6 @@
     margin-top: var(--spacing-larger);
   }
 
-  .contact-form__form-is-hidden {
-    visibility: hidden;
-    min-height: 0;
-    height: 0;
-    margin: 0;
-  }
-
   @media (min-width: 1100px) {
     .contact-form__title {
       grid-column-start: 6;
