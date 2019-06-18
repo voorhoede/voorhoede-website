@@ -125,8 +125,8 @@
       this.useCustomValidation = true
     },
     methods: {
-      emailTitle(event) {
-        this.form.subject = `${event} has sent a new message`
+      emailTitle(name) {
+        this.form.subject = `${name} has sent a message`
       },
       submit(event) {
         this.formIsValidated = true
