@@ -18,6 +18,11 @@
     >
       <fieldset>
         <legend class="sr-only">{{ ariaLabelOrTitle }}</legend>
+        <input
+          v-model="emailTitle"
+          name="subject"
+          type="hidden"
+        />
         <input type="hidden" name="form-name" :value="form['form-name']">
         <label class="hidden">
           Don't fill this out if you're human:
@@ -117,6 +122,9 @@
       emailValidationErrorMessage() {
         return this.form.email ? this.$t('provide_valid_email') : this.$t('email_is_required')
       },
+      emailTitle() {
+        return `${this.form.name} has sent a new message`
+      }
     },
     mounted() {
       this.useCustomValidation = true
