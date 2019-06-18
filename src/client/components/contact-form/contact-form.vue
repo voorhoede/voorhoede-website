@@ -20,7 +20,7 @@
         <legend class="sr-only">{{ ariaLabelOrTitle }}</legend>
         <input type="hidden" name="form-name" :value="form['form-name']">
         <input type="text" name="subject" :value="form.name"
-          class="contact-form__form-is-hidden"/>
+          class="hidden"/>
         <label class="hidden">
           Don't fill this out if you're human:
           <input v-model="form.magicCastle" name="magic-castle">
