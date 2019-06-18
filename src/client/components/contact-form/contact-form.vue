@@ -19,7 +19,8 @@
       <fieldset>
         <legend class="sr-only">{{ ariaLabelOrTitle }}</legend>
         <input type="hidden" name="form-name" :value="form['form-name']">
-        <input type="text" name="subject" :value="form.name"/>
+        <input type="text" name="subject" :value="form.name"
+          class="contact-form__form-is-hidden"/>
         <label class="hidden">
           Don't fill this out if you're human:
           <input v-model="form.magicCastle" name="magic-castle">
@@ -160,6 +161,13 @@
 
   .contact-form__button {
     margin-top: var(--spacing-larger);
+  }
+
+  .contact-form__form-is-hidden {
+    visibility: hidden;
+    min-height: 0;
+    height: 0;
+    margin: 0;
   }
 
   @media (min-width: 1100px) {
