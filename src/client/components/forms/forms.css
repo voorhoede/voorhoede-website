@@ -9,6 +9,7 @@ label {
   font-family: var(--font-sans);
 }
 
+input.hidden,
 label.hidden {
   display: none;
 }
