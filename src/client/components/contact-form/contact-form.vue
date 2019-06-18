@@ -18,12 +18,8 @@
     >
       <fieldset>
         <legend class="sr-only">{{ ariaLabelOrTitle }}</legend>
-        <input
-          v-model="emailTitle"
-          name="subject"
-          type="hidden"
-        />
         <input type="hidden" name="form-name" :value="form['form-name']">
+        <input type="hidden" :value="this.form.name" />
         <label class="hidden">
           Don't fill this out if you're human:
           <input v-model="form.magicCastle" name="magic-castle">
@@ -32,6 +28,7 @@
           v-model="form.name"
           id="name"
           type="text"
+          @input="emailTitle"
           :label="$t('my_name_is')"
           :placeholder-label="$t('your_name')"
           required
@@ -110,6 +107,7 @@
           phone: '',
           business: '',
           explanation: '',
+          subject: '',
         },
         formIsValidated: false,
         useCustomValidation: false,
@@ -122,20 +120,19 @@
       emailValidationErrorMessage() {
         return this.form.email ? this.$t('provide_valid_email') : this.$t('email_is_required')
       },
-      emailTitle() {
-        return `${this.form.name} has sent a new message`
-      }
     },
     mounted() {
       this.useCustomValidation = true
     },
     methods: {
+      emailTitle(event) {
+        this.form.subject = `${event} has sent a new message`
+      },
       submit(event) {
         this.formIsValidated = true
         if (!event.target.checkValidity()) {
           return false
         }
-
         submitContactForm({
           form: this.form,
           router: this.$router,
