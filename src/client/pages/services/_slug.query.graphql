@@ -61,12 +61,23 @@ fragment page on ServiceRecord {
     alt
   }
   items {
-    title,
-    body,
-    image {
-      url,
-      format,
-      alt
+    __typename,
+    ... on ImageRecord {
+      image {
+        url,
+        alt,
+        width,
+        height
+      }
+    }
+    ... on GenericTextBlockRecord {
+      title,
+      body,
+      image {
+        url,
+        format,
+        alt
+      }
     }
   }
 }
