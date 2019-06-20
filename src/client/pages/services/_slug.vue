@@ -14,15 +14,12 @@
           :title="item.title"
           :body="item.body"
           :image="item.image" />
-        <fixed-ratio
-          :height="item.image.height"
-          :width="item.image.width"
+        <responsive-image
+          v-if="item.__typename === 'ImageRecord'"
           :key="item.image.url"
-          v-if="item.__typename === 'ImageRecord'">
-          <app-image
-            :image="item.image"
-          />
-        </fixed-ratio>
+          :image="item.image"
+          :has-fixed-ratio="true"
+        />
       </template>
     </article>
     <pivot-section
@@ -39,16 +36,14 @@
   import PageHeader from '~/components/page-header'
   import GenericTextBlock from '~/components/generic-text-block'
   import PivotSection from '~/components/pivot-section'
-  import AppImage from '~/components/app-image'
-  import FixedRatio from '~/components/fixed-ratio'
+  import ResponsiveImage from '~/components/responsive-image'
 
   export default {
     components: {
       PageHeader,
       GenericTextBlock,
       PivotSection,
-      FixedRatio,
-      AppImage
+      ResponsiveImage
     },
     asyncData,
     head,
@@ -66,10 +61,10 @@
     grid-row: 2;
   }
 
-  .page-service__overview .fixed-ratio,
+  .page-service__overview .responsive-image,
   .page-service__overview .generic-text-block {
     grid-row: 3;
-    margin-bottom: var(--spacing-large);
+    margin: 0 0 var(--spacing-large) 0;
   }
 
   .page-service__overview .image-container {
@@ -97,7 +92,7 @@
       padding: var(--spacing-large) var(--spacing-larger);
     }
 
-    .page-service__overview .fixed-ratio {
+    .page-service__overview .responsive-image {
       width: 63%;
     }
   }
