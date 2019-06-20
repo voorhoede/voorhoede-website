@@ -67,11 +67,6 @@
     margin: 0 0 var(--spacing-large) 0;
   }
 
-  .page-service__overview .image-container {
-    width: 100%;
-    height: 100%;
-  }
-
   .page-service__pivot-section.pivot-section {
     grid-row: 4;
     grid-column: var(--grid-page);
