@@ -108,7 +108,7 @@ module.exports = {
           importFrom: './src/client/components/app-core/variables.css'
         },
         'autoprefixer': {
-          browsers: ['ie 11', '>1%'],
+          overrideBrowserslist: ['ie 11', 'last 2 versions'],
           grid: true,
         }
       }
