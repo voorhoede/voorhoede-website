@@ -1,41 +1,35 @@
-query HomePage($locale: SiteLocale, $currentDate: DateTime)  {
-  page: home(locale:$locale) {
+query HomePage($locale: SiteLocale, $currentDate: DateTime) {
+  page: home(locale: $locale) {
     ...page
-  },
-  upcomingEvents: allEventItems(locale:$locale, first: 1, orderBy: date_ASC, filter: {
-    date: { gte: $currentDate }
-  }) {
-    date,
-    description,
-    title,
-    url,
+  }
+  upcomingEvents: allEventItems(locale: $locale, first: 1, orderBy: date_ASC, filter: {date: {gte: $currentDate}}) {
+    date
+    description
+    title
+    url
     image {
-      url,
-      format,
-      width,
+      url
+      format
+      width
       height
     }
-  },
-  latestBlogposts: allBlogPosts(locale:$locale, first:3, orderBy: publishDate_DESC,
-    filter: { published: { eq: true } } ) {
-    slug,
-    title,
-    published,
-    date: publishDate,
+  }
+  latestBlogposts: allBlogPosts(locale: $locale, first: 3, orderBy: publishDate_DESC, filter: {published: {eq: true}}) {
+    slug
+    title
+    published
+    date: publishDate
     authors {
-      name,
+      name
       image {
-        url,
-        width,
-        height,
+        url
+        width
+        height
         format
       }
     }
   }
-
-  pivots: allPivotSections(locale: $locale, filter: {
-    routes:{ matches:{ pattern: "index" }}
-  }) {
+  pivots: allPivotSections(locale: $locale, filter: {routes: {matches: {pattern: "index"}}}) {
     title
     body
     callToActionLabel
@@ -70,54 +64,54 @@ query HomePage($locale: SiteLocale, $currentDate: DateTime)  {
 }
 
 fragment page on HomeRecord {
-  slug,
-  title,
-  slug,
+  slug
+  title
+  slug
   social {
-    title,
-    description,
+    title
+    description
     image {
       url
     }
-  },
-  keywords,
-  headerTitle,
-  subtitle,
+  }
+  keywords
+  headerTitle
+  subtitle
   headerIllustration {
-    width,
-    height,
-    format,
-    url,
+    width
+    height
+    format
+    url
     alt
   }
   usps {
     line
-  },
-  casesTitle,
+  }
+  casesTitle
   cases {
-    slug,
-    title,
-    subtitle,
+    slug
+    title
+    subtitle
     heroIllustration {
-      url,
+      url
       alt
     }
-  },
-  servicesHeader,
+  }
+  servicesHeader
   services {
-    tagline,
-    title,
-    slug,
+    tagline
+    title
+    slug
     summary {
       title
-    },
-  },
-  smallServices,
-  clientsTitle,
+    }
+  }
+  smallServices
+  clientsTitle
   academyIllustration {
-    url,
-    format,
-    width,
+    url
+    format
+    width
     height
-  },
+  }
 }

@@ -1,10 +1,8 @@
-query ($locale: SiteLocale, $slug: String)  {
-  page: contactConfirmation(locale: $locale, filter: { slug: { eq: $slug } }) {
+query ($locale: SiteLocale, $slug: String) {
+  page: contactConfirmation(locale: $locale, filter: {slug: {eq: $slug}}) {
     ...page
-  },
-  pivots: allPivotSections(locale: $locale, filter: {
-    routes:{ matches:{ pattern: "contact-slug" }}
-  }) {
+  }
+  pivots: allPivotSections(locale: $locale, filter: {routes: {matches: {pattern: "contact-slug"}}}) {
     title
     body
     callToActionLabel
@@ -39,22 +37,22 @@ query ($locale: SiteLocale, $slug: String)  {
 }
 
 fragment page on ContactConfirmationRecord {
-	slug,
+  slug
   i18nSlugs: _allSlugLocales {
-    locale,
+    locale
     value
-  },
+  }
   social {
-    title,
+    title
     description
-  },
-  keywords,
-  title,
-  subtitle,
+  }
+  keywords
+  title
+  subtitle
   headerIllustration {
-    url,
+    url
     alt
-  },
-  body,
+  }
+  body
   callToActionLabel
 }

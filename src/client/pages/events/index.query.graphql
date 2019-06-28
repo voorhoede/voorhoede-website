@@ -1,10 +1,8 @@
-query ($locale: SiteLocale)  {
-  page: eventOverview(locale:$locale) {
+query ($locale: SiteLocale) {
+  page: eventOverview(locale: $locale) {
     ...eventOverview
-  },
-  pivots: allPivotSections(locale: $locale, filter: {
-    routes:{ matches:{ pattern: "events" }}
-  }) {
+  }
+  pivots: allPivotSections(locale: $locale, filter: {routes: {matches: {pattern: "events"}}}) {
     title
     body
     callToActionLabel
@@ -36,44 +34,40 @@ query ($locale: SiteLocale)  {
       }
     }
   }
-  items: allEventItems(
-    locale: $locale,
-    first: 100,
-    orderBy: date_DESC,
-  ) {
-    ...event,
-  },
+  items: allEventItems(locale: $locale, first: 100, orderBy: date_DESC) {
+    ...event
+  }
 }
 
 fragment eventOverview on EventOverviewRecord {
-  title,
-  subtitle,
-  slug,
+  title
+  subtitle
+  slug
   social {
-    title,
+    title
     description
-  },
+  }
   headerIllustration {
-    url,
+    url
     alt
-  },
-  introductionText,
+  }
+  introductionText
   keywords
 }
 
 fragment event on EventItemRecord {
-  date,
-  description,
-  title,
-  slug,
-  url,
+  date
+  description
+  title
+  slug
+  url
   image {
-    url,
-    alt,
-    format,
-    width,
+    url
+    alt
+    format
+    width
     height
-  },
+  }
   label {
     label
   }
