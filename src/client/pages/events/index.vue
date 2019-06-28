@@ -90,7 +90,7 @@
             new Date(event.date).getTime() < new Date().getTime()
             && event.slug // Some old events don't have a slug
           ))
-          .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       },
     },
     head,
