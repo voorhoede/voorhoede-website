@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@nuxtjs/google-analytics": "^2.2.0",
-    "dayjs": "^1.8.12",
+    "dayjs": "^1.8.14",
     "dotenv-safe": "6.1.0",
     "nuxt": "2.5.0",
     "nuxt-i18n": "^4.1.0",

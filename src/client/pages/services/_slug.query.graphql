@@ -1,11 +1,8 @@
-query ($locale: SiteLocale, $slug: String)  {
-  page: service(locale: $locale, filter: { slug: { eq: $slug } }) {
+query ($locale: SiteLocale, $slug: String) {
+  page: service(locale: $locale, filter: {slug: {eq: $slug}}) {
     ...page
-  },
-
-  pivots: allPivotSections(locale: $locale, filter: {
-    routes:{ matches:{ pattern: "services-slug" }}
-  }) {
+  }
+  pivots: allPivotSections(locale: $locale, filter: {routes: {matches: {pattern: "services-slug"}}}) {
     title
     body
     callToActionLabel
@@ -40,33 +37,44 @@ query ($locale: SiteLocale, $slug: String)  {
 }
 
 fragment page on ServiceRecord {
-	slug,
+  slug
   i18nSlugs: _allSlugLocales {
-    locale,
+    locale
     value
-  },
+  }
   social {
-    title,
-    description,
+    title
+    description
     image {
       url
     }
-  },
+  }
   keywords
-  title,
-  subtitle,
+  title
+  subtitle
   headerIllustration {
-    url,
-    format,
+    url
+    format
     alt
   }
   items {
-    title,
-    body,
-    image {
-      url,
-      format,
-      alt
+    __typename
+    ... on ImageRecord {
+      image {
+        url
+        alt
+        width
+        height
+      }
+    }
+    ... on GenericTextBlockRecord {
+      title
+      body
+      image {
+        url
+        format
+        alt
+      }
     }
   }
 }

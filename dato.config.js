@@ -71,7 +71,6 @@ function layoutToJson(dato) {
       ...pick(dato.app, [
         'emailAddress',
         'phoneNumber',
-        'facebookUrl',
         'twitterUrl',
         'githubUrl',
         'youtubeUrl',

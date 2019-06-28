@@ -19,6 +19,7 @@
       <fieldset>
         <legend class="sr-only">{{ ariaLabelOrTitle }}</legend>
         <input type="hidden" name="form-name" :value="form['form-name']">
+        <input type="text" name="subject" :value="form.name" class="hidden"/>
         <label class="hidden">
           Don't fill this out if you're human:
           <input v-model="form.magicCastle" name="magic-castle">
@@ -27,6 +28,7 @@
           v-model="form.name"
           id="name"
           type="text"
+          @input="createEmailSubject"
           :label="$t('my_name_is')"
           :placeholder-label="$t('your_name')"
           required
@@ -105,6 +107,7 @@
           phone: '',
           business: '',
           explanation: '',
+          subject: '',
         },
         formIsValidated: false,
         useCustomValidation: false,
@@ -122,12 +125,14 @@
       this.useCustomValidation = true
     },
     methods: {
+      createEmailSubject(name) {
+        this.form.subject = `${name} has sent a message`
+      },
       submit(event) {
         this.formIsValidated = true
         if (!event.target.checkValidity()) {
           return false
         }
-
         submitContactForm({
           form: this.form,
           router: this.$router,

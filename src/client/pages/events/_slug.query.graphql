@@ -1,10 +1,8 @@
-query ($locale: SiteLocale, $slug: String)  {
-  page: eventItem(locale: $locale, filter: { slug: { eq: $slug } }) {
+query ($locale: SiteLocale, $slug: String) {
+  page: eventItem(locale: $locale, filter: {slug: {eq: $slug}}) {
     ...eventItem
-  },
-  pivots: allPivotSections(locale: $locale, filter: {
-    routes:{ matches:{ pattern: "events-slug" }}
-  }) {
+  }
+  pivots: allPivotSections(locale: $locale, filter: {routes: {matches: {pattern: "events-slug"}}}) {
     title
     body
     callToActionLabel
@@ -39,61 +37,61 @@ query ($locale: SiteLocale, $slug: String)  {
 }
 
 fragment eventItem on EventItemRecord {
-  title,
-  slug,
+  title
+  slug
   social {
-    title,
+    title
     description
-  },
-  keywords,
-  date,
-  url,
-  callToActionLabel,
+  }
+  keywords
+  date
+  url
+  callToActionLabel
   image {
-    url,
-    format,
-    alt,
-    width,
-    height,
-  },
+    url
+    format
+    alt
+    width
+    height
+  }
   label {
     label
-  },
-  address,
-  price,
+  }
+  address
+  price
   items {
-    __typename,
+    __typename
     ... on ImageRecord {
       image {
-        url,
-        alt,
-        width,
-        height,
+        url
+        alt
+        width
+        height
         format
-      },
-      alt,
-      fullWidth,
-    },
+      }
+      alt
+      fullWidth
+    }
     ... on ImageWithTextRecord {
       imageWithDescription {
         image {
-          url,
-          alt,
-          width,
-          height,
+          url
+          alt
+          width
+          height
           format
-        },
-        description,
+        }
+        description
         inverse
       }
-    },
+    }
     ... on QuoteRecord {
-      quote,
+      quote
       author
-    },
+    }
     ... on TextSectionRecord {
-      title,
-      body,
-    },
+      title
+      body
+    }
   }
 }
