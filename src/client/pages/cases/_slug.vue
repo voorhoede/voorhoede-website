@@ -129,7 +129,6 @@
   import StorytellingSection from '~/components/storytelling-section'
 
   export default {
-    asyncData,
     components: {
       CaseMeta,
       CasePullQuoteComposition,
@@ -145,12 +144,13 @@
       ScrollTo,
       StorytellingSection,
     },
+    asyncData,
     methods: {
       isFullWidth(item) {
         return item.image && item.fullWidth
       }
     },
-    head
+    head,
   }
 </script>
 

@@ -2,8 +2,9 @@
   <section class="layout-error">
     <page-header
       v-if="layout[$i18n.locale]"
-      :title="layout[$i18n.locale].title"
-      :text="String(layout[$i18n.locale].errorCode)"
+      heading="byline"
+      :byline="layout[$i18n.locale].title"
+      :headline="String(layout[$i18n.locale].errorCode)"
       :image="layout[$i18n.locale].headerImage"
     />
     <div class="layout-error__backdrop grid" v-if="layout[$i18n.locale]">
