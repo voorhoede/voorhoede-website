@@ -12,6 +12,10 @@
         <dl>
           <dt class="sr-only">{{ $t('name') }}</dt>
           <dd class="h5">{{ contactPerson.name }} {{ contactPerson.lastName }}</dd>
+          <template v-if="contactPerson.jobTitle">
+            <dt class="sr-only">{{ $t('job_title') }}</dt>
+            <dd class="body-petite">{{ contactPerson.jobTitle }}</dd>
+          </template>
           <dt class="sr-only">{{ $t('email') }}</dt>
           <dd class="body-petite">
             <a
@@ -19,10 +23,6 @@
               href="mailto:post@voorhoede.nl"
             >post@voorhoede.nl</a>
           </dd>
-          <template v-if="contactPerson.jobTitle">
-            <dt class="sr-only">{{ $t('job_title') }}</dt>
-            <dd class="body-petite">Project manager</dd>
-          </template>
         </dl>
       </div>
     </div>
@@ -179,8 +179,7 @@
   @import '../forms/forms.css';
 
   :root {
-    --contact-form-thumbnail-size-small: 80px;
-    --contact-form-thumbnail-size-large: 120px;
+    --contact-form-thumbnail-size: 120px;
   }
 
   .contact-form__header {
@@ -188,8 +187,7 @@
   }
 
   .contact-form__contact-person {
-    margin-top: var(--spacing-medium);
-    text-align: center;
+    display: none;
   }
 
   .contact-form__contact-person .responsive-image {
@@ -210,10 +208,6 @@
   }
 
   @media (min-width: 520px) {
-    .contact-form__contact-person {
-      text-align: left;
-    }
-
     .contact-form__contact-person .responsive-image {
       margin-left: 0;
       margin-right: 0;
@@ -227,8 +221,12 @@
       margin-bottom: var(--spacing-medium);
     }
 
+    .contact-form__contact-person {
+      display: block;
+    }
+
     .contact-form__contact-person .responsive-image {
-      width: var(--contact-form-thumbnail-size-large);
+      width: var(--contact-form-thumbnail-size);
     }
 
     .contact-form__header ~ .contact-form__form {
