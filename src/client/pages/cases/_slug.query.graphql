@@ -2,7 +2,9 @@ query ($locale: SiteLocale, $slug: String) {
   page: caseItem(locale: $locale, filter: {slug: {eq: $slug}}) {
     ...caseItem
   }
-  pivots: allPivotSections(locale: $locale, filter: {routes: {matches: {pattern: "cases-slug"}}}) {
+  pivots: allPivotSections(locale: $locale, filter: {
+    routes:{ matches:{ pattern: "cases-slug" }}
+  }) {
     title
     body
     callToActionLabel
@@ -32,6 +34,20 @@ query ($locale: SiteLocale, $slug: String) {
           slug
         }
       }
+    }
+  },
+  caseItemShared: _caseItem {
+    subtitle,
+    contactPerson {
+      name,
+      lastName,
+      jobTitle,
+      image {
+        format,
+        height,
+        width,
+        url,
+      },
     }
   }
 }
@@ -157,5 +173,4 @@ fragment caseItem on CaseItemRecord {
   }
   quote
   author
-  getInTouchTitle
 }

@@ -5,13 +5,15 @@
       :byline="page.title"
       :headline="page.subtitle"
       :image="page.headerIllustration" />
-    <services-list
-      :services="page.services"
-      :cta="page.serviceCtaLabel" />
+    <services-list :services="page.services"/>
     <rich-text-block
       class="services-text"
       :text="page.smallServices" />
-    <contact-form class="grid" :title="$t('lets_discuss')" />
+    <contact-form
+      class="grid"
+      :contact-person="page.contactPerson"
+      :title="$t('lets_discuss')"
+    />
   </main>
 </template>
 
