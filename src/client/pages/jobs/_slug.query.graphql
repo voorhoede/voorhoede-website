@@ -1,38 +1,38 @@
-query ($locale: SiteLocale, $slug: String)  {
-  page: job(locale: $locale, filter: { slug: { eq: $slug } }) {
+query ($locale: SiteLocale, $slug: String) {
+  page: job(locale: $locale, filter: {slug: {eq: $slug}}) {
     ...job
-  },
+  }
 }
 
 fragment job on JobRecord {
-  title,
-  subtitle,
-  slug,
+  title
+  subtitle
+  slug
   i18nSlugs: _allSlugLocales {
-    locale,
+    locale
     value
-  },
+  }
   social {
-    title,
-    description,
+    title
+    description
     image {
       url
     }
-  },
-  keywords,
+  }
+  keywords
   jobImage {
-    url,
-    format,
+    url
+    format
     alt
-  },
-  url,
+  }
+  url
   jobContent {
-    title,
-    body,
+    title
+    body
     image {
-      url,
-      format,
+      url
+      format
       alt
     }
-  },
+  }
 }

@@ -1,10 +1,8 @@
 query ($locale: SiteLocale, $slug: String) {
-  page: blogPost(locale: $locale, filter: { slug: { eq: $slug } }) {
+  page: blogPost(locale: $locale, filter: {slug: {eq: $slug}}) {
     ...page
   }
-  pivots: allPivotSections(locale: $locale, filter: {
-    routes:{ matches:{ pattern: "blog-slug" }}
-  }) {
+  pivots: allPivotSections(locale: $locale, filter: {routes: {matches: {pattern: "blog-slug"}}}) {
     title
     body
     callToActionLabel

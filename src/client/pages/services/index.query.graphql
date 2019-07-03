@@ -1,13 +1,11 @@
-query ($locale: SiteLocale)  {
-  page: serviceOverview(locale:$locale) {
+query ($locale: SiteLocale) {
+  page: serviceOverview(locale: $locale) {
     ...page
-  },
+  }
   items: allServices(locale: $locale) {
     slug
   }
-  pivots: allPivotSections(locale: $locale, filter: {
-    routes:{ matches:{ pattern: "services" }}
-  }) {
+  pivots: allPivotSections(locale: $locale, filter: {routes: {matches: {pattern: "services"}}}) {
     title
     body
     callToActionLabel
@@ -42,27 +40,27 @@ query ($locale: SiteLocale)  {
 }
 
 fragment page on ServiceOverviewRecord {
-  title,
-  subtitle,
-  slug,
+  title
+  subtitle
+  slug
   social {
-    title,
+    title
     description
-  },
-  keywords,
+  }
+  keywords
   services {
-    title,
-    tagline,
-    slug,
+    title
+    tagline
+    slug
     summary {
       title
     }
-  },
+  }
   headerIllustration {
-    url,
+    url
     alt
-  },
-  smallServices,
+  }
+  smallServices
   contactPerson {
     name,
     lastName,

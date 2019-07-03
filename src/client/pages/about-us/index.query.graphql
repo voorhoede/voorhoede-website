@@ -1,87 +1,83 @@
-query ($locale: SiteLocale)  {
+query ($locale: SiteLocale) {
   page: about(locale: $locale) {
     ...about
-  },
-
+  }
   alternate: about(locale: $locale) {
     slug
   }
-
-  latestBlogposts: allBlogPosts(locale:$locale, first:3, orderBy: publishDate_DESC,
-    filter: { published: { eq: true } } ) {
-    slug,
-    title,
-    date: publishDate,
+  latestBlogposts: allBlogPosts(locale: $locale, first: 3, orderBy: publishDate_DESC, filter: {published: {eq: true}}) {
+    slug
+    title
+    date: publishDate
     authors {
-      name,
+      name
       image {
-        url,
-        format,
-        width,
-        height,
+        url
+        format
+        width
+        height
       }
     }
   }
-
-  jobs: allJobs(locale: $locale, filter: { published: { eq: true }}) {
+  jobs: allJobs(locale: $locale, filter: {published: {eq: true}}) {
     title
-    description,
-    slug,
+    description
+    slug
     jobImage {
-      url,
-      format,
+      url
+      format
       alt
     }
   }
 }
 
 fragment about on AboutRecord {
-  title,
-  subtitle,
+  title
+  subtitle
   headerIllustration {
-    url,
-    format,
+    url
+    format
     alt
-  },
-  slug,
+  }
+  slug
   social {
-    title,
+    title
     description
-  },
-  keywords,
-  introTitle,
-  introBody,
+  }
+  keywords
+  introTitle
+  introBody
   introImage {
-    url,
-    alt,
-    width,
-    height,
+    url
+    alt
+    width
+    height
     format
-  },
-  teamGridTitle,
+  }
+  teamGridTitle
   teamGrid {
-    id,
-    title,
-    description,
+    id
+    title
+    description
     image {
-      url,
-      alt,
-      width,
-      height,
+      url
+      alt
+      width
+      height
       format
-    },
-    isFullWidth,
+    }
+    isFullWidth
     isHighlighted
-  },
-  middleTitle,
-  middleBody,
+  }
+  middleTitle
+  middleBody
   middleImage {
-    url,
-    alt,
-    width,
-    height,
+    url
+    alt
+    width
+    height
     format
-  },
-  jobsTitle,
-  jobsBody,
+  }
+  jobsTitle
+  jobsBody
 }

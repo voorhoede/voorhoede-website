@@ -40,7 +40,7 @@
   "dependencies": {
     "@nuxtjs/google-analytics": "^2.0.2",
     "babel-polyfill": "^6.26.0",
-    "dayjs": "^1.7.8",
+    "dayjs": "^1.8.14",
     "dotenv-safe": "6.1.0",
     "nuxt-i18n": "^4.1.0",
     "nuxt": "1.4.4",

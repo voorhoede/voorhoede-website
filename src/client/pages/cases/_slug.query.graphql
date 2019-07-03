@@ -1,7 +1,7 @@
-query ($locale: SiteLocale, $slug: String)  {
-  page: caseItem(locale: $locale, filter: { slug: { eq: $slug } }) {
+query ($locale: SiteLocale, $slug: String) {
+  page: caseItem(locale: $locale, filter: {slug: {eq: $slug}}) {
     ...caseItem
-  },
+  }
   pivots: allPivotSections(locale: $locale, filter: {
     routes:{ matches:{ pattern: "cases-slug" }}
   }) {
@@ -53,124 +53,124 @@ query ($locale: SiteLocale, $slug: String)  {
 }
 
 fragment caseItem on CaseItemRecord {
-  title,
-  slug,
+  title
+  slug
   i18nSlugs: _allSlugLocales {
-    locale,
+    locale
     value
-  },
+  }
   social {
-    title,
-    description,
+    title
+    description
     image {
       url
     }
-  },
-  keywords,
+  }
+  keywords
   heroIllustration {
-    url,
-    format,
+    url
+    format
     alt
-  },
+  }
   caseTeaser {
-    title,
+    title
     image {
-      url,
-      format,
-      alt,
-      width,
-      height,
+      url
       format
-    },
-  },
+      alt
+      width
+      height
+      format
+    }
+  }
   content {
-    __typename,
+    __typename
     ... on TextSectionRecord {
-      title,
-      body,
-    },
+      title
+      body
+    }
     ... on ImageRecord {
       image {
-        url,
-        alt,
-        width,
-        height,
+        url
+        alt
+        width
+        height
         format
-      },
-      alt,
-      fullWidth,
-    },
+      }
+      alt
+      fullWidth
+    }
     ... on PullquoteRecord {
       pullquote {
-        quote,
+        quote
         illustration {
-          url,
-          alt,
+          url
+          alt
           format
-        },
-        richText,
+        }
+        richText
       }
-    },
-     ... on ImageWithTextRecord {
+    }
+    ... on ImageWithTextRecord {
       imageWithDescription {
         image {
-          url,
-          alt,
-          width,
-          height,
+          url
+          alt
+          width
+          height
           format
-        },
-        description,
+        }
+        description
         inverse
       }
-    },
-    	... on StorytellingBlockRecord {
+    }
+    ... on StorytellingBlockRecord {
       storyItem {
-        title,
+        title
         items {
-        	title
-          body,
+          title
+          body
           image {
-            url,
-            alt,
-            width,
+            url
+            alt
+            width
             height
           }
         }
       }
     }
     ... on ResponsiveVideoRecord {
-      mute,
-      loop,
-      autoplay,
+      mute
+      loop
+      autoplay
       video {
-        url,
-        title,
-        height,
-        width,
-        provider,
-        providerUid,
+        url
+        title
+        height
+        width
+        provider
+        providerUid
         thumbnailUrl
       }
-    },
-  },
+    }
+  }
   metaData {
-    expertisesTitle,
+    expertisesTitle
     expertises {
       title
-    },
-    deliverableTitle,
+    }
+    deliverableTitle
     deliverables {
       title
-    },
-    technologiesTitle,
+    }
+    technologiesTitle
     technologies {
       title
-    },
-    interestedTitle,
-    interestedLinkUrl,
-    interestedLinkLabel,
-  },
-  quote,
-  author,
+    }
+    interestedTitle
+    interestedLinkUrl
+    interestedLinkLabel
+  }
+  quote
+  author
 }

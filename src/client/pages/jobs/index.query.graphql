@@ -1,32 +1,31 @@
-query ($locale: SiteLocale)  {
-  page: jobOverview(locale:$locale) {
+query ($locale: SiteLocale) {
+  page: jobOverview(locale: $locale) {
     ...jobOverview
-  },
-
-  items: allJobs(locale: $locale, filter: { published: { eq: true }}) {
+  }
+  items: allJobs(locale: $locale, filter: {published: {eq: true}}) {
     title
-    description,
-    slug,
+    description
+    slug
     jobImage {
-      url,
-      format,
+      url
+      format
       alt
-    },
-  },
+    }
+  }
 }
 
 fragment jobOverview on JobOverviewRecord {
-  title,
-  subtitle,
+  title
+  subtitle
   headerIllustration {
-    url,
-    format,
+    url
+    format
     alt
-  },
-  slug,
+  }
+  slug
   social {
-    title,
+    title
     description
-  },
-  keywords,
+  }
+  keywords
 }

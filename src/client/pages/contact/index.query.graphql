@@ -1,21 +1,19 @@
-query ($locale: SiteLocale)  {
+query ($locale: SiteLocale) {
   page: contact(locale: $locale) {
     ...contact
-  },
+  }
   items: allContactConfirmations(locale: $locale) {
     slug
-  },
+  }
   app {
     addresses {
-      city,
-      postalCode,
-      address,
+      city
+      postalCode
+      address
       googleMapsLink
     }
   }
-  pivots: allPivotSections(locale: $locale, filter: {
-    routes:{ matches:{ pattern: "contact" }}
-  }) {
+  pivots: allPivotSections(locale: $locale, filter: {routes: {matches: {pattern: "contact"}}}) {
     title
     body
     callToActionLabel
@@ -50,19 +48,19 @@ query ($locale: SiteLocale)  {
 }
 
 fragment contact on ContactRecord {
-  slug,
-  subtitle,
+  slug
+  subtitle
   social {
-    title,
+    title
     description
-  },
-  keywords,
+  }
+  keywords
   headerIllustration {
-    url,
+    url
     alt
-  },
-  title,
-  emailLabel,
-  phoneLabel,
-  addressLabel,
+  }
+  title
+  emailLabel
+  phoneLabel
+  addressLabel
 }

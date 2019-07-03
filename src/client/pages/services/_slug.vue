@@ -9,10 +9,17 @@
     <article class="page-service__overview">
       <template v-for="item in page.items">
         <generic-text-block
+          v-if="item.__typename === 'GenericTextBlockRecord'"
           :key="item.title"
           :title="item.title"
           :body="item.body"
           :image="item.image" />
+        <responsive-image
+          v-if="item.__typename === 'ImageRecord'"
+          :key="item.image.url"
+          :image="item.image"
+          :has-fixed-ratio="true"
+        />
       </template>
     </article>
     <pivot-section
@@ -29,12 +36,14 @@
   import PageHeader from '~/components/page-header'
   import GenericTextBlock from '~/components/generic-text-block'
   import PivotSection from '~/components/pivot-section'
+  import ResponsiveImage from '~/components/responsive-image'
 
   export default {
     components: {
       PageHeader,
       GenericTextBlock,
       PivotSection,
+      ResponsiveImage
     },
     asyncData,
     head,
@@ -47,12 +56,15 @@
   }
 
   .page-service__overview {
+    display: flex;
+    flex-direction: column;
     grid-row: 2;
   }
 
+  .page-service__overview .responsive-image,
   .page-service__overview .generic-text-block {
     grid-row: 3;
-    margin-bottom: var(--spacing-large);
+    margin: 0 0 var(--spacing-large) 0;
   }
 
   .page-service__pivot-section.pivot-section {
@@ -73,6 +85,10 @@
       grid-column: var(--grid-content);
       background-color: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
+    }
+
+    .page-service__overview .responsive-image {
+      width: 63%;
     }
   }
 

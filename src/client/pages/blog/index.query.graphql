@@ -1,33 +1,26 @@
-query ($locale: SiteLocale)  {
-  page: blogPostOverview(locale:$locale) {
+query ($locale: SiteLocale) {
+  page: blogPostOverview(locale: $locale) {
     ...blogPostOverview
-  },
-  items: allBlogPosts(
-    locale:$locale,
-    first:100,
-    orderBy: publishDate_DESC,
-    filter: { published: { eq: true } }
-  ) {
-    slug,
+  }
+  items: allBlogPosts(locale: $locale, first: 100, orderBy: publishDate_DESC, filter: {published: {eq: true}}) {
+    slug
     social {
       description
     }
-    title,
-    published,
-    date: publishDate,
+    title
+    published
+    date: publishDate
     authors {
-      name,
+      name
       image {
-        url,
-        width,
-        height,
+        url
+        width
+        height
         format
       }
     }
-  },
-  pivots: allPivotSections(locale: $locale, filter: {
-    routes:{ matches:{ pattern: "blog" }}
-  }) {
+  }
+  pivots: allPivotSections(locale: $locale, filter: {routes: {matches: {pattern: "blog"}}}) {
     title
     body
     callToActionLabel
@@ -62,17 +55,17 @@ query ($locale: SiteLocale)  {
 }
 
 fragment blogPostOverview on BlogPostOverviewRecord {
-  title,
-  slug,
+  title
+  slug
   social {
-    title,
+    title
     description
-  },
-  keywords,
-  subtitle,
-  description,
+  }
+  keywords
+  subtitle
+  description
   headerIllustration {
-    url,
+    url
     alt
   }
 }
