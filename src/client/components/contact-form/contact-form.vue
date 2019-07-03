@@ -16,8 +16,8 @@
           <dd class="body-petite">
             <a
               class="link"
-              :href="`mailto:${contactPerson.name}@voorhoede.nl`"
-            >{{ contactPerson.name }}@voorhoede.nl</a>
+              href="mailto:post@voorhoede.nl"
+            >post@voorhoede.nl</a>
           </dd>
           <template v-if="contactPerson.jobTitle">
             <dt class="sr-only">{{ $t('job_title') }}</dt>
