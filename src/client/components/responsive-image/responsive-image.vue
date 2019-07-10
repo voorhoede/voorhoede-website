@@ -35,7 +35,6 @@
 </script>
 
 <style>
-
   .responsive-image {
     margin-left: auto;
     margin-right: auto;

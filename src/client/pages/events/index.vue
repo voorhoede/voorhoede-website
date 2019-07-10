@@ -66,7 +66,6 @@
       PageHeader,
       RichTextBlock
     },
-    asyncData,
     data() {
       return {
         fallbackIllustration: {
@@ -93,6 +92,7 @@
           .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       },
     },
+    asyncData,
     head,
   }
 </script>
@@ -207,7 +207,7 @@
     }
 
     .page-event__intro::after {
-     display: none;
+      display: none;
     }
 
     .page-event__content--grid-left {

@@ -36,7 +36,6 @@ export default {
 </script>
 
 <style>
-
   :root {
     --max-width-description: 230px;
   }

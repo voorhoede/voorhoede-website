@@ -50,72 +50,71 @@
 </script>
 
 <style>
+  .image-grid {
+    display: inline-block;
+    width: 100%;
+  }
 
-.image-grid {
-  display: inline-block;
-  width: 100%;
-}
+  .image-grid__title {
+    margin-bottom: var(--spacing-medium);
+    text-align: center;
+  }
 
-.image-grid__title {
-  margin-bottom: var(--spacing-medium);
-  text-align: center;
-}
+  .image-grid__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
-.image-grid__list {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.image-grid__item {
-  flex: 0 0 50%;
-  height: 250px;
-  background-color: var(--white);
-}
-
-.image-grid__item--full-width {
-  flex: 0 0 100%;
-}
-
-.image-grid__item--highlighted {
-  background-color: var(--brand-yellow);
-}
-
-.image-grid__item-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: var(--spacing-small);
-  height: 100%;
-}
-
-@media (min-width: 720px) {
   .image-grid__item {
-    flex: 0 0 33.33%;
-    height: 360px;
+    flex: 0 0 50%;
+    height: 250px;
+    background-color: var(--white);
   }
 
   .image-grid__item--full-width {
-    order: 7;
     flex: 0 0 100%;
   }
 
-  .image-grid__item-content {
-    padding: var(--spacing-medium);
-  }
-}
-
-@media (min-width: 1100px) {
-  .image-grid__item {
-    flex: 0 0 25%;
-  }
-
-  .image-grid__item--full-width {
-    order: initial;
-    flex: 0 0 50%;
+  .image-grid__item--highlighted {
+    background-color: var(--brand-yellow);
   }
 
   .image-grid__item-content {
-    padding: var(--spacing-large);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--spacing-small);
+    height: 100%;
   }
-}
+
+  @media (min-width: 720px) {
+    .image-grid__item {
+      flex: 0 0 33.33%;
+      height: 360px;
+    }
+
+    .image-grid__item--full-width {
+      order: 7;
+      flex: 0 0 100%;
+    }
+
+    .image-grid__item-content {
+      padding: var(--spacing-medium);
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .image-grid__item {
+      flex: 0 0 25%;
+    }
+
+    .image-grid__item--full-width {
+      order: initial;
+      flex: 0 0 50%;
+    }
+
+    .image-grid__item-content {
+      padding: var(--spacing-large);
+    }
+  }
 </style>

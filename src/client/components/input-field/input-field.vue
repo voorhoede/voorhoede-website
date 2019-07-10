@@ -103,7 +103,6 @@
 </script>
 
 <style>
-
   .field-is-invalid {
     color: var(--soft-red);
   }

@@ -53,14 +53,14 @@ export default {
 
   .layout-error__backdrop {
     padding-bottom: var(--spacing-large);
-    background-color: white;
+    background-color: var(--white);
   }
 
   .layout-error__content {
     padding: var(--spacing-large) 0;
     display: flex;
     flex-direction: column-reverse;
-    background-color: white;
+    background-color: var(--white);
   }
 
   @media screen and (min-width: 720px) {

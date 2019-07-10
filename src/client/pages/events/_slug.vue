@@ -123,7 +123,6 @@
       RichTextBlock,
       TextBlock,
     },
-    asyncData,
     data() {
       return {
         fallbackIllustration: {
@@ -148,6 +147,7 @@
         })
       }
     },
+    asyncData,
     head,
   }
 </script>

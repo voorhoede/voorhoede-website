@@ -5,7 +5,13 @@
     "no-eol-whitespace": null,
     "no-descending-specificity": null,
     "color-hex-length": "long",
-    "indentation": null,
+    "indentation": [
+      2,
+      {
+        "baseIndentLevel": 1
+      }
+    ],
+    "string-quotes": "single",
     "declaration-colon-newline-after": null,
     "number-leading-zero": "never"
   }
