@@ -23,44 +23,43 @@ export default {
 </script>
 
 <style>
-:root {
-  --grid-demo-margin: #757575;
-  --grid-demo-flex: #e0e0e0;
-  --grid-demo-fixed: #616161;
-  --grid-demo-center: #e0e0e0;
-}
+  :root {
+    --grid-demo-margin: #757575;
+    --grid-demo-flex: #e0e0e0;
+    --grid-demo-fixed: #616161;
+    --grid-demo-center: #e0e0e0;
+  }
 
-.grid-demo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: none;
-  opacity: .5;
-}
+  .grid-demo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: none;
+    opacity: .5;
+  }
 
-.grid-demo--show {
-  display: grid;
-}
+  .grid-demo--show {
+    display: grid;
+  }
 
-.column {
-  height: 100vh;
-  grid-column: initial;
-}
+  .column {
+    height: 100vh;
+    grid-column: initial;
+  }
 
-.column:nth-child(2n+18),
-.column:nth-child(2n+19),
-.column:nth-child(17),
-.column:nth-child(18) { background-color: initial; }
-.column:nth-child(1n+35) { display: initial; }
-.column:nth-child(1n) { background-color: var(--grid-demo-flex); }
-.column:nth-child(2n) { background-color: var(--grid-demo-fixed); }
+  .column:nth-child(2n+18),
+  .column:nth-child(2n+19),
+  .column:nth-child(17),
+  .column:nth-child(18) { background-color: initial; }
+  .column:nth-child(1n+35) { display: initial; }
+  .column:nth-child(1n) { background-color: var(--grid-demo-flex); }
+  .column:nth-child(2n) { background-color: var(--grid-demo-fixed); }
 
-.column:nth-child(2n+26) { background-color: var(--grid-demo-flex); }
-.column:nth-child(2n+27) { background-color: var(--grid-demo-fixed); }
-.column:nth-child(25) { background-color: var(--grid-demo-center); }
-.column:nth-child(26) { background-color: var(--grid-demo-center); }
-.column:nth-child(1) { background-color: var(--grid-demo-margin); }
-.column:nth-child(50) { background-color: var(--grid-demo-margin); }
-
+  .column:nth-child(2n+26) { background-color: var(--grid-demo-flex); }
+  .column:nth-child(2n+27) { background-color: var(--grid-demo-fixed); }
+  .column:nth-child(25) { background-color: var(--grid-demo-center); }
+  .column:nth-child(26) { background-color: var(--grid-demo-center); }
+  .column:nth-child(1) { background-color: var(--grid-demo-margin); }
+  .column:nth-child(50) { background-color: var(--grid-demo-margin); }
 </style>

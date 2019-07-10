@@ -3,7 +3,7 @@
     <page-header
       fill-screen
       heading="headline"
-      byline="Case study"
+      :byline="caseItemShared.subtitle"
       :headline="page.title"
       :image="page.heroIllustration"
     >
@@ -104,7 +104,11 @@
     </div>
 
     <div class="page-case__contact-form grid">
-      <contact-form class="grid" :title="$t('lets_discuss')" />
+      <contact-form
+        class="grid"
+        :title="$t('lets_discuss')"
+        :contact-person="caseItemShared.contactPerson"
+      />
       <scroll-to direction="up" />
     </div>
   </main>
@@ -155,7 +159,6 @@
 </script>
 
 <style>
-
   :root {
     --image-resizer-max-width-m: 1060px;
     --image-resizer-max-width-l: 1300px;

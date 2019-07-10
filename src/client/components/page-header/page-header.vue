@@ -128,7 +128,7 @@
     grid-template-rows:
       var(--app-header-height-small) /* 1 - 2 */
       var(--spacing-medium) /* 2 - 3, spacing */
-      auto  /* 3 - 4, text */
+      auto /* 3 - 4, text */
       var(--spacing-medium); /* 4 - 5, spacing */
   }
 

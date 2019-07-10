@@ -122,27 +122,6 @@
 </script>
 
 <style>
-
-  @keyframes color-change-in {
-    0% {
-      color: var(--brand-yellow);
-    }
-
-    100% {
-      color: var(--html-blue);
-    }
-  }
-
-  @keyframes color-change-out {
-    0% {
-      color: var(--html-blue);
-    }
-
-    100% {
-      color: var(--brand-yellow);
-    }
-  }
-
   :root {
     --animate-text-in: color-change-in 600ms forwards;
     --animate-text-out: color-change-out 600ms forwards;

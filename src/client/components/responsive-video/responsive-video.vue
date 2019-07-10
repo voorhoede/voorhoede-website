@@ -159,7 +159,6 @@
 </script>
 
 <style>
-
   .responsive-video {
     position: relative;
     grid-column: var(--grid-page);

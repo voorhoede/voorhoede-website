@@ -35,7 +35,6 @@
 </script>
 
 <style>
-
   .image-with-text {
     display: flex;
     flex-direction: column;

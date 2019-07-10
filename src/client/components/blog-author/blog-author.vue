@@ -64,7 +64,7 @@
 </script>
 
 <style>
-   :root {
+  :root {
     --thumbnail-size: 135px;
   }
 

@@ -47,7 +47,6 @@
 </script>
 
 <style>
-
   :root {
     --job-excerpt-easing: .25s cubic-bezier(.5, 0, .25, 1);
   }

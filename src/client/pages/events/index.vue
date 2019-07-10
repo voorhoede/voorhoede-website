@@ -207,7 +207,7 @@
     }
 
     .page-event__intro::after {
-     display: none;
+      display: none;
     }
 
     .page-event__content--grid-left {

@@ -4,21 +4,41 @@
 }
 
 @keyframes blink {
-    49% {
-        opacity: 0;
-    }
+  49% {
+    opacity: 0;
+  }
 
-    50% {
-        opacity: 1;
-    }
+  50% {
+    opacity: 1;
+  }
 }
 
 @keyframes show {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    100% {
-        opacity: 1;
-    }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes color-change-in {
+  0% {
+    color: var(--brand-yellow);
+  }
+
+  100% {
+    color: var(--html-blue);
+  }
+}
+
+@keyframes color-change-out {
+  0% {
+    color: var(--html-blue);
+  }
+
+  100% {
+    color: var(--brand-yellow);
+  }
 }

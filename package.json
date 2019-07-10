@@ -27,7 +27,7 @@
     "data": "node _scripts/data-dump/index.js",
     "lint": "run-s lint:*",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint:css": "stylelint '**/*.{vue,css}'",
+    "lint:css": "stylelint 'src/client/**/*.{vue,css}'",
     "lintfix": "run-s lintfix:*",
     "lintfix:js": "npm run lint:js -- --fix",
     "lintfix:css": "npm run lint:css -- --fix",

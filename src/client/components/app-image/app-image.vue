@@ -113,7 +113,7 @@
   }
 
   .app-image__img::before {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     top: 0;

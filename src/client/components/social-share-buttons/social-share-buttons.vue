@@ -86,7 +86,6 @@
 </script>
 
 <style>
-
   .social-share-buttons__text {
     display: none;
   }

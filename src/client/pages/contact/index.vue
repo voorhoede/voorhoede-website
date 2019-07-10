@@ -46,11 +46,11 @@
     padding-top: var(--spacing-large);
     display: flex;
     flex-direction: column-reverse;
-    background-color: white;
+    background-color: var(--white);
   }
 
   .page-contact__backdrop {
-    background-color: white;
+    background-color: var(--white);
   }
 
   .page-contact .contact-sidebar {
