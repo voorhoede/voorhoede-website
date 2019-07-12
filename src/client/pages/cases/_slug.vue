@@ -154,7 +154,7 @@
         return item.image && item.fullWidth
       }
     },
-    head
+    head,
   }
 </script>
 

@@ -24,7 +24,7 @@ export default {
       type: Array,
       required: true,
       validator(services) {
-        return services.every(service => service instanceof Object)
+        return services.every(service => typeof service === 'object')
       },
     }
   },

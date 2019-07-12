@@ -30,7 +30,7 @@ export default {
     position: relative;
     display: none;
     margin-top: var(--spacing-bigger);
-    grid-row-start: 1;
+    grid-row: 1 / 2;
   }
 
   .curly-bracket--left {
@@ -41,7 +41,7 @@ export default {
   .curly-bracket--right {
     grid-column-start: 44;
     grid-column-end: 51;
-    grid-row-end: 3;
+    grid-row: 1 / 3;
   }
 
   .curly-bracket__image {
