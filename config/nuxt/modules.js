@@ -11,6 +11,18 @@ module.exports = [
     workbox: {
       dev: process.env.PWA_DEV,
       offlinePage: '/en/offline',
+      runtimeCaching: [
+        {
+          urlPattern: 'https://www.datocms-assets.com/',
+          handler: 'cacheFirst',
+          strategyOptions: {
+            cacheName: 'dato-assets',
+            cacheExpiration: {
+              maxAgeSeconds: 6 * 31 * 24 * 60 * 60 // 6 months
+            }
+          }
+        }
+      ]
     },
     meta: false,
     icon: false,
