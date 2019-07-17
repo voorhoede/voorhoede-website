@@ -55,7 +55,6 @@
 </script>
 
 <style>
-
   :root {
     --button-group-width: 350px;
   }

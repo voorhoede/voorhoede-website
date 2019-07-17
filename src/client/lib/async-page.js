@@ -19,13 +19,12 @@ const fetchPage = process.env.NODE_ENV === 'production'
     }
   }
   // Fetch page data directly from graphql api in development
-  : function ({ route, i18n }) {
+  : async function ({ route, i18n }) {
     // Require modules here, so they don't get included in production build
     const dayjs = require('dayjs')
-
-    const addClassesToHeadings = require('./add-classes-to-headings')
-    const prismifyCodeBlocks = require('./prismify-code-blocks')
     const fetch = require('node-fetch')
+    const addClassesToHeadings = await import('./add-classes-to-headings').then(module => module.default)
+    const prismifyCodeBlocks = await import('./prismify-code-blocks').then(module => module.default)
 
     let queryPath
 

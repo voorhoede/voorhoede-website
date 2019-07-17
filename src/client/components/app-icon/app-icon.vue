@@ -25,16 +25,16 @@
 </script>
 
 <style>
-.app-icon {
-  width: 1em;
-  height: 1em;
-  vertical-align: middle;
-}
-
-@media (min-width: 720px) {
-  .app-icon--large {
-    width: 1.4em;
-    height: 1.4em;
+  .app-icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
   }
-}
+
+  @media (min-width: 720px) {
+    .app-icon--large {
+      width: 1.4em;
+      height: 1.4em;
+    }
+  }
 </style>

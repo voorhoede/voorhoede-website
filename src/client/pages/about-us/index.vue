@@ -186,7 +186,7 @@
   .page-about-us__jobs-list:hover .job-excerpt__button,
   .page-about-us__jobs-list:focus-within .job-excerpt__image,
   .page-about-us__jobs-list:focus-within .job-excerpt__button {
-     opacity: 1;
+    opacity: 1;
   }
 
   @media (min-width: 720px) {

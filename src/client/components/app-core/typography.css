@@ -331,3 +331,10 @@ em,
 .font-html-blue {
   color: var(--html-blue);
 }
+
+.link:hover,
+.link:focus,
+.link.active {
+  color: var(--html-blue);
+  outline: none;
+}

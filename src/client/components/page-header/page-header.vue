@@ -113,7 +113,11 @@
   }
 </script>
 
-<style>
+<!--
+  Webpack doesn't import core styling before this component in development.
+  By making it scoped, the styling defined here is more specific than the core styling
+-->
+<style scoped>
   :root {
     --max-height-image: 285px;
   }
@@ -124,7 +128,7 @@
     grid-template-rows:
       var(--app-header-height-small) /* 1 - 2 */
       var(--spacing-medium) /* 2 - 3, spacing */
-      auto  /* 3 - 4, text */
+      auto /* 3 - 4, text */
       var(--spacing-medium); /* 4 - 5, spacing */
   }
 

@@ -47,7 +47,6 @@
 </script>
 
 <style>
-
   .page-blog-container {
     padding-top: var(--spacing-larger);
   }

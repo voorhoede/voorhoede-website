@@ -47,7 +47,6 @@
 </script>
 
 <style>
-
   :root {
     --job-excerpt-easing: .25s cubic-bezier(.5, 0, .25, 1);
   }
@@ -56,7 +55,7 @@
     position: relative;
     display: grid;
     grid-template-columns: 85px 1fr;
-    grid-gap: var(--spacing-smaller);
+    grid-column-gap: var(--spacing-smaller);
     padding: var(--spacing-small) 0;
   }
 
@@ -112,9 +111,12 @@
 
   @media (min-width: 720px) {
     .job-excerpt {
-      align-items: center;
       grid-template-columns: 90px 1fr 140px;
-      grid-gap: var(--spacing-large);
+      grid-column-gap: var(--spacing-large);
+    }
+
+    .job-excerpt > * {
+      align-self: center;
     }
 
     .job-excerpt__image {
@@ -197,7 +199,7 @@
   @media (min-width: 1100px) {
     .job-excerpt {
       grid-template-columns: 90px 1fr 160px;
-      grid-gap: var(--spacing-big);
+      grid-column-gap: var(--spacing-big);
     }
 
     .job-excerpt__text-title,

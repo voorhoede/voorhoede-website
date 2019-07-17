@@ -24,7 +24,7 @@
           alt="">
       </nuxt-link>
       <ul class="app-mobile-menu__list body-petite">
-        <li 
+        <li
           class="app-mobile-menu__list-item">
           <nuxt-link
             class="h3"
@@ -53,7 +53,7 @@
       @touchmove="prevent"
       :aria-label="$t('close_menu')"
     >
-      <div 
+      <div
         class="app-mobile-menu__button-icon app-mobile-menu__button-icon--close">
       </div>
     </button>
@@ -189,7 +189,7 @@
     }
   }
 
-  @media screen and (min-width: 720px) {
+  @media screen and (min-width: 800px) {
     .app-mobile-menu {
       display: none;
     }

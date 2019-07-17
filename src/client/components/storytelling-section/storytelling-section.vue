@@ -53,7 +53,6 @@
 </script>
 
 <style>
-
   :root {
     --storytelling-image-height: 150px;
     --max-width-storytelling-section: 715px;

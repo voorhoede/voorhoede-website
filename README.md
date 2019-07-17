@@ -41,13 +41,11 @@ available:
 `npm run ...` | Description
 ---|---
 `analyze` | Analyze the bundles created during build.
-`build` | Builds client, guide and server for production to `dist/`.
+`build` | Builds client and server for production to `dist/`.
 `dev` | Serves client app on [`http://localhost:3278`](http://localhost:3278) ("lean" in T9) with hot reloading.
-`guide` | Serves guide on [`http://localhost:3279`](http://localhost:3279) for local development.
 `proxy` | Exposes app on localhost to world wide web for testing on other devices.
 `start` | Serves production version of client app from (`/dist/`) on [`http://localhost:3278`](http://localhost:3278).
 `data` | Imports all data from Dato CMS.
-`new-component` | Creates a new component folder
 
 ## Documentation
 

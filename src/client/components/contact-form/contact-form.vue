@@ -1,11 +1,31 @@
 <template>
   <div class="contact-form">
-    <h2
-      v-if="title"
-      class="contact-form__title h3"
-    >
-      {{ title }}
-    </h2>
+    <div v-if="title || contactPerson" class="contact-form__header">
+      <h2
+        v-if="title"
+        class="contact-form__header h3"
+      >
+        {{ title }}
+      </h2>
+      <div v-if="contactPerson" class="contact-form__contact-person">
+        <responsive-image :image="contactPerson.image"/>
+        <dl>
+          <dt class="sr-only">{{ $t('name') }}</dt>
+          <dd class="h5">{{ contactPerson.name }} {{ contactPerson.lastName }}</dd>
+          <template v-if="contactPerson.jobTitle">
+            <dt class="sr-only">{{ $t('job_title') }}</dt>
+            <dd class="body-petite">{{ contactPerson.jobTitle }}</dd>
+          </template>
+          <dt class="sr-only">{{ $t('email') }}</dt>
+          <dd class="body-petite">
+            <a
+              class="link"
+              href="mailto:post@voorhoede.nl"
+            >post@voorhoede.nl</a>
+          </dd>
+        </dl>
+      </div>
+    </div>
     <form
       @submit.prevent="submit"
       method="POST"
@@ -19,6 +39,7 @@
       <fieldset>
         <legend class="sr-only">{{ ariaLabelOrTitle }}</legend>
         <input type="hidden" name="form-name" :value="form['form-name']">
+        <input type="text" name="subject" :value="form.name" class="hidden"/>
         <label class="hidden">
           Don't fill this out if you're human:
           <input v-model="form.magicCastle" name="magic-castle">
@@ -27,6 +48,7 @@
           v-model="form.name"
           id="name"
           type="text"
+          @input="createEmailSubject"
           :label="$t('my_name_is')"
           :placeholder-label="$t('your_name')"
           required
@@ -79,9 +101,10 @@
   import AppButton from '../app-button'
   import InputField from '../input-field'
   import submitContactForm from '../../lib/submit-contact-form'
+  import ResponsiveImage from '../responsive-image'
 
   export default {
-    components: { AppButton, InputField },
+    components: { AppButton, InputField, ResponsiveImage },
     props: {
       title: {
         type: String,
@@ -94,6 +117,17 @@
         default () {
           this.$t('lets_discuss')
         },
+      },
+      contactPerson: {
+        type: Object,
+        default: undefined,
+        validator(contactPerson) {
+          return !contactPerson || (
+            typeof(contactPerson.name) === 'string'
+            && typeof(contactPerson.lastName) === 'string'
+            && typeof(contactPerson.image) === 'object'
+          )
+        }
       }
     },
     data() {
@@ -105,6 +139,7 @@
           phone: '',
           business: '',
           explanation: '',
+          subject: '',
         },
         formIsValidated: false,
         useCustomValidation: false,
@@ -122,12 +157,14 @@
       this.useCustomValidation = true
     },
     methods: {
+      createEmailSubject(name) {
+        this.form.subject = `${name} has sent a message`
+      },
       submit(event) {
         this.formIsValidated = true
         if (!event.target.checkValidity()) {
           return false
         }
-
         submitContactForm({
           form: this.form,
           router: this.$router,
@@ -141,11 +178,24 @@
 <style>
   @import '../forms/forms.css';
 
-  .contact-form__title {
+  :root {
+    --contact-form-thumbnail-size: 120px;
+  }
+
+  .contact-form__header {
     grid-row: 1;
   }
 
-  .contact-form__title ~ .contact-form__form {
+  .contact-form__contact-person {
+    display: none;
+  }
+
+  .contact-form__contact-person .responsive-image {
+    margin-bottom: var(--spacing-small);
+    width: var(--contact-form-thumbnail-size-small);
+  }
+
+  .contact-form__header ~ .contact-form__form {
     grid-row: 2;
   }
 
@@ -157,20 +207,35 @@
     margin-top: var(--spacing-larger);
   }
 
+  @media (min-width: 520px) {
+    .contact-form__contact-person .responsive-image {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
   @media (min-width: 1100px) {
-    .contact-form__title {
+    .contact-form__header {
       grid-column-start: 6;
       grid-column-end: 18;
       margin-bottom: var(--spacing-medium);
     }
 
-    .contact-form__title ~ .contact-form__form {
+    .contact-form__contact-person {
+      display: block;
+    }
+
+    .contact-form__contact-person .responsive-image {
+      width: var(--contact-form-thumbnail-size);
+    }
+
+    .contact-form__header ~ .contact-form__form {
       grid-column-start: 21;
       grid-column-end: 46;
       grid-row: 1;
     }
 
-    .contact-form__title ~ .contact-form__form > .contact-form__label-text {
+    .contact-form__header ~ .contact-form__form > .contact-form__label-text {
       width: 9rem;
     }
   }

@@ -30,7 +30,6 @@
 </script>
 
 <style>
-
   .quote-block {
     text-align: center;
   }

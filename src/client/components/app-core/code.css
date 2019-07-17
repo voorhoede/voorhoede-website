@@ -2,7 +2,7 @@
  * This file contains overwrites for code highlighting by prism
  */
 
-code[class*="language-"],
-pre[class*="language-"] {
+code[class*='language-'],
+pre[class*='language-'] {
   font-family: var(--font-code);
 }
