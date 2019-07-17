@@ -10,6 +10,13 @@ module.exports = [
   ['@nuxtjs/pwa', {
     workbox: {
       dev: process.env.PWA_DEV
+      dev: process.env.PWA_DEV,
+      runtimeCaching: [
+        {
+          urlPattern: 'https://www.datocms-assets.com/*',
+          handler: 'cacheFirst'
+        }
+      ]
     },
     meta: false,
     icon: false,
