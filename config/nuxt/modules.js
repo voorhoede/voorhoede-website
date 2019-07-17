@@ -8,7 +8,9 @@ module.exports = [
   googleAnalytics,
   nuxtI18n,
   ['@nuxtjs/pwa', {
-    workbox: true,
+    workbox: {
+      dev: process.env.PWA_DEV
+    },
     meta: false,
     icon: false,
     manifest: false,
