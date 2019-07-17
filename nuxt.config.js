@@ -17,7 +17,8 @@ module.exports = {
   modules,
   env: {
     baseUrl,
-    DATO_API_TOKEN
+    DATO_API_TOKEN,
+    useDumpedData: (process.env.NODE_ENV === 'production' || process.env.PWA_DEV === 'true')
   },
 
   /*

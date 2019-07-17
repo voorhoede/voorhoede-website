@@ -24,6 +24,8 @@
     "postbuild": "node _scripts/build-feed/index.js",
     "predev": "run-s prebuild:clean prebuild:predump",
     "dev": "PORT=3278 nuxt",
+    "predev:pwa": "npm run prebuild",
+    "dev:pwa": "PORT=3278 PWA_DEV=true nuxt",
     "data": "node _scripts/data-dump/index.js",
     "lint": "run-s lint:*",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
