@@ -19,11 +19,11 @@ module.exports = [
         '/icons/icon_git-hub--blue.svg',
         '/icons/icon_youtube--blue.svg',
         '/icons/icon_linkedin--blue.svg',
-        'pages/offline.js',
-        'app.js',
-        'commons.app.js',
-        'runtime.js',
-        'vendors.app.js',
+        '/_nuxt/pages/offline.js',
+        '/_nuxt/app.js',
+        '/_nuxt/commons.app.js',
+        '/_nuxt/runtime.js',
+        '/_nuxt/vendors.app.js',
       ],
       runtimeCaching: [
         {
