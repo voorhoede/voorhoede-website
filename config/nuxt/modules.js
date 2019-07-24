@@ -11,6 +11,15 @@ module.exports = [
     workbox: {
       dev: process.env.PWA_DEV,
       offlinePage: '/en/offline',
+      preCaching: [
+        '/images/logo-with-text.svg',
+        '/images/icon_menu-passive--white.svg',
+        '/images/icon_menu-exit--white.svg',
+        '/icons/icon_twitter--blue.svg',
+        '/icons/icon_git-hub--blue.svg',
+        '/icons/icon_youtube--blue.svg',
+        '/icons/icon_linkedin--blue.svg',
+      ],
       runtimeCaching: [
         {
           urlPattern: 'https://www.datocms-assets.com/',
