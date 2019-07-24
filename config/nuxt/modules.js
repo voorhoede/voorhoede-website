@@ -19,6 +19,11 @@ module.exports = [
         '/icons/icon_git-hub--blue.svg',
         '/icons/icon_youtube--blue.svg',
         '/icons/icon_linkedin--blue.svg',
+        'pages/offline.js',
+        'app.js',
+        'commons.app.js',
+        'runtime.js',
+        'vendors.app.js',
       ],
       runtimeCaching: [
         {

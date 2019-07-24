@@ -1,4 +1,6 @@
 const dotenv = require('dotenv-safe')
+const ManifestPlugin = require('webpack-manifest-plugin')
+
 const generate = require('./config/nuxt/generate')
 const modules = require('./config/nuxt/modules')
 
@@ -112,8 +114,11 @@ module.exports = {
           overrideBrowserslist: ['ie 11', 'last 2 versions'],
           grid: true,
         }
-      }
+      },
     },
+    plugins: [
+      new ManifestPlugin()
+    ],
 
     /*
     ** Run ESLint on save
