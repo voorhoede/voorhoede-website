@@ -15,12 +15,12 @@ async function revisionServiceWorker() {
   const revisionedServiceWorker = Object.keys(manifest).reduce((serviceWorker, unhashedChunkName) => {
     const hashedChunkName = manifest[unhashedChunkName]
 
-    return serviceWorker.replace(unhashedChunkName, hashedChunkName)
+    return serviceWorker.replace(`/_nuxt/${unhashedChunkName}`, hashedChunkName)
   }, originalServiceWorker)
 
   await writeFile(serviceWorkerPath, revisionedServiceWorker, 'utf8')
 
-  console.info('Service worker core assets have been revisioned')
+  console.info('Service worker core assets have been revisioned') // eslint-disable-line no-console
 }
 
 revisionServiceWorker()
