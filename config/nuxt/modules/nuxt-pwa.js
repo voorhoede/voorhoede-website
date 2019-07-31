@@ -5,8 +5,8 @@ module.exports = [
       dev: process.env.PWA_DEV,
       offlinePage: '/en/offline',
       preCaching: [
-        '/en/',
-        '/nl/',
+        '/en?homescreen=true',
+        '/nl?homescreen=true',
         '/images/logo-with-text.svg',
         '/images/icon_menu-passive--white.svg',
         '/images/icon_menu-exit--white.svg',
