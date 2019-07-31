@@ -43,7 +43,10 @@ export default {
     return {
       htmlAttrs: {
         lang: this.$i18n.locale
-      }
+      },
+      link: [
+        { rel: 'manifest', type: 'application/manifest+json', href: `/manifest-${this.$i18n.locale}.json` },
+      ]
     }
   },
 }

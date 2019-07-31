@@ -67,7 +67,6 @@ module.exports = {
       { rel: 'icon', type: 'image/png', href: '/images/social/android-96x96.png', sizes: '96x96' },
       { rel: 'icon', type: 'image/png', href: '/images/social/android-144x144.png', sizes: '144x144' },
       { rel: 'icon', type: 'image/png', href: '/images/social/android-192x192.png', sizes: '192x192' },
-      { rel: 'manifest', type: 'application/manifest+json', href: '/manifest.json' },
       /* Safari */
       { rel: 'apple-touch-icon', href: '/images/social/apple-icon-60x60.png', sizes: '60x60' },
       { rel: 'apple-touch-icon', href: '/images/social/apple-icon-76x76.png', sizes: '76x76' },

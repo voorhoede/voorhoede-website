@@ -1,7 +1,7 @@
 {
   "name": "De Voorhoede Front-end Developers",
   "short_name": "De Voorhoede",
-  "start_url": "/?homescreen=true",
+  "start_url": "/en?homescreen=true",
   "display": "standalone",
   "orientation": "portrait",
   "gcm_sender_id": "482941778795",
