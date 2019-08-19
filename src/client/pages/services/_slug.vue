@@ -13,7 +13,8 @@
           :key="item.title"
           :title="item.title"
           :body="item.body"
-          :image="item.image" />
+          :image="item.image"
+        />
         <responsive-image
           v-if="item.__typename === 'ImageRecord'"
           :key="item.image.url"
@@ -43,7 +44,7 @@
       PageHeader,
       GenericTextBlock,
       PivotSection,
-      ResponsiveImage
+      ResponsiveImage,
     },
     asyncData,
     head,
