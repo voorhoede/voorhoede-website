@@ -1,7 +1,7 @@
 <template>
   <div class="generic-text-block">
     <h3 v-if="title" class="generic-text-block__title h4">{{ title }}</h3>
-    <rich-text-block class="generic-text-block__body" :text="body"/>
+    <rich-text-block class="generic-text-block__body" :text="body" />
     <lazy-load v-if="image" class="generic-text-block__image-container">
       <img class="generic-text-block__image" :src="image.url" alt="">
     </lazy-load>
