@@ -156,39 +156,39 @@
   .page-header--fill-screen::before {
     content: '';
     display: block;
-    background-color: var(--brand-yellow);
     grid-column: var(--grid-page);
     grid-row: 5 / 8;
+    background-color: var(--brand-yellow);
   }
 
   /* Curly bracket */
   .page-header--curly-bracket::after {
-    margin: calc(-1 * var(--spacing-medium)) 0;
     content: '';
     display: block;
     position: relative;
-    grid-row: 5 / 8;
     grid-column: 44 / 51;
+    grid-row: 5 / 8;
+    margin: calc(-1 * var(--spacing-medium)) 0;
+    transform: rotate(180deg);
     background-image: url('/images/curly-bracket--paper.svg');
     background-repeat: no-repeat;
-    background-size: cover;
     background-position: 100%;
+    background-size: cover;
     mix-blend-mode: screen;
-    transform: rotate(180deg);
   }
 
   .page-header--fill-screen .page-header__image-column {
     display: flex;
+    z-index: var(--z-index-low); /* Make sure to be on top off curly bracket */
+    grid-column: 3 / var(--grid-page-end);
+    grid-row: 6 / 7;
     align-items: flex-end;
     justify-content: flex-end;
-    grid-row: 6 / 7;
-    grid-column: 3 / var(--grid-page-end);
-    z-index: var(--z-index-low); /* Make sure to be on top off curly bracket */
   }
 
   .page-header__image {
-    max-height: 100%;
     max-width: 100%;
+    max-height: 100%;
   }
 
   .page-header .scroll-to {
@@ -212,8 +212,8 @@
   }
 
   .page-header__slot {
-    grid-row: 9 / 10;
     grid-column: 4 / var(--grid-content-end);
+    grid-row: 9 / 10;
   }
 
   @media (min-width: 520px) {
@@ -235,8 +235,8 @@
     /* Curly bracket */
     .page-header--fill-screen::after {
       grid-column: 39 / 50;
-      background-size: contain;
       background-position: unset;
+      background-size: contain;
     }
 
     .page-header--has-slot {
@@ -268,10 +268,10 @@
     }
 
     /*
-     * IE11 has a nasty bug:
-     * not moving elements below down, while making te page header taking up 100vh.
-     * @supports is not supported by IE11, so this prevents settings a min-height in IE11.
-     */
+    * IE11 has a nasty bug:
+    * not moving elements below down, while making te page header taking up 100vh.
+    * @supports is not supported by IE11, so this prevents settings a min-height in IE11.
+    */
     @supports (min-height: 100vh) {
       .page-header--fill-screen {
         min-height: 100vh;
@@ -280,17 +280,17 @@
 
     /* Yellow half */
     .page-header--fill-screen::before {
-      grid-row: 1 / 7;
       grid-column: var(--grid-page-right);
+      grid-row: 1 / 7;
     }
 
     /* Curly bracket */
     .page-header--fill-screen::after {
-      margin: calc(-1 * var(--spacing-medium)) 0;
-      grid-row: 3 / 6;
       grid-column: var(--grid-center) / 48;
-      background-size: contain;
+      grid-row: 3 / 6;
+      margin: calc(-1 * var(--spacing-medium)) 0;
       background-position: left center; /* remember, object is rotated */
+      background-size: contain;
     }
 
     .page-header--fill-screen .scroll-to {
@@ -306,12 +306,12 @@
     }
 
     .page-header__image-column {
-      margin-bottom: calc(-1 * var(--spacing-small)); /* Make image move outside page header */
-      grid-row: 3 / 5;
       display: flex;
+      grid-column: 29 / 49;
+      grid-row: 3 / 5;
       align-items: flex-end;
       justify-content: flex-end;
-      grid-column: 29 / 49;
+      margin-bottom: calc(-1 * var(--spacing-small)); /* Make image move outside page header */
     }
 
     .page-header__image {
@@ -319,10 +319,10 @@
     }
 
     .page-header--fill-screen .page-header__image-column {
-      margin: 0;
-      grid-row: 5 / 6;
       grid-column: 20 / 49;
+      grid-row: 5 / 6;
       max-height: 100%;
+      margin: 0;
     }
 
     /* Make sure image doesn't float upwards */
