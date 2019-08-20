@@ -14,25 +14,25 @@
        otherwise a `<p>` for the headline should succeed it.
       -->
       <p
-        v-if="(heading === 'headline')"
+        v-if="heading === 'headline'"
         v-html="byline"
         class="sub-title"
       />
       <h1
-        v-html="(heading === 'byline') ? byline : headline"
+        v-html="heading === 'byline' ? byline : headline"
         :class="{
-          'sub-title': (heading === 'byline'),
-          'sr-only': (heading === 'headline')
+          'sub-title': heading === 'byline',
+          'sr-only': heading === 'headline'
         }"
       />
       <p
-        v-if="(heading === 'byline')"
+        v-if="heading === 'byline'"
         class="sr-only"
         v-html="headline"
       />
       <!-- Always visible, but has aria-hidden -->
       <self-typing-text
-        :class="(fillScreen) ? 'hero' : 'h1'"
+        :class="fillScreen ? 'hero' : 'h1'"
         :text="headline"
       />
     </div>
