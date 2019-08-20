@@ -2,8 +2,9 @@
   <header
     class="page-header grid"
     :class="{
-      'page-header--fill-screen': fillScreen,
       'page-header--curly-bracket': displayCurlyBracket,
+      'page-header--fill-screen': fillScreen,
+      'page-header--has-image': image,
       'page-header--has-slot': displaySlot,
     }"
   >
@@ -297,6 +298,10 @@
     }
 
     .page-header__text {
+      grid-column: var(--grid-content);
+    }
+
+    .page-header--has-image .page-header__text {
       grid-column: var(--grid-content-left);
     }
 
@@ -376,7 +381,7 @@
       grid-row: 1 / 5;
     }
 
-    .page-header__text {
+    .page-header--has-image .page-header__text {
       grid-column: 4 / 24;
     }
 
