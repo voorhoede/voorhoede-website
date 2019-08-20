@@ -298,7 +298,7 @@
     }
 
     .page-header__text {
-      grid-column: var(--grid-content);
+      grid-column: 2 / 40;
     }
 
     .page-header--has-image .page-header__text {
@@ -379,6 +379,10 @@
     /* Yellow half */
     .page-header--fill-screen::before {
       grid-row: 1 / 5;
+    }
+
+    .page-header__text {
+      grid-column: 4 / 40;
     }
 
     .page-header--has-image .page-header__text {
