@@ -268,10 +268,10 @@
     }
 
     /*
-    * IE11 has a nasty bug:
-    * not moving elements below down, while making te page header taking up 100vh.
-    * @supports is not supported by IE11, so this prevents settings a min-height in IE11.
-    */
+     * IE11 has a nasty bug:
+     * not moving elements below down, while making te page header taking up 100vh.
+     * @supports is not supported by IE11, so this prevents settings a min-height in IE11.
+     */
     @supports (min-height: 100vh) {
       .page-header--fill-screen {
         min-height: 100vh;
