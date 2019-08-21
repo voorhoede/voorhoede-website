@@ -78,8 +78,6 @@ export default {
 
   .self-typing-text__text,
   .self-typing-text__placeholder {
-    hyphens: auto;
-    overflow-wrap: break-word;
     opacity: 0;
   }
 
