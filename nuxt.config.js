@@ -50,6 +50,7 @@ module.exports = {
       { name: 'apple-mobile-web-app-title', content: 'De Voorhoede' },
       { name: 'apple-mobile-web-app-capable', content: 'yes' },
       { name: 'apple-mobile-web-app-status-bar-style', content: 'white' },
+      { name: 'google-site-verification', content: 'YDAs2Oc-8Ir8eD0nzxTuGa7zzU7XJpgOX7igxek2CGQ' },
     ],
     link: [
       /* Favicon */
