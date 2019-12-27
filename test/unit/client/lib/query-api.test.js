@@ -56,7 +56,7 @@ test('query api with first 3 requests failing', async t => {
     ...fetchResponseStub
   })
 
-  await t.notThrowsAsync(queryApi({}), null, 'retry & succeed works')
+  await t.notThrowsAsync(queryApi({}))
   t.is(fetchStub.callCount, 4, '4 attempts are made to fetch the data')
 })
 
@@ -69,7 +69,7 @@ test('query api and succeed immediately', async t => {
     ...fetchResponseStub
   })
 
-  await t.notThrowsAsync(queryApi({}), null, 'query is successful')
+  await t.notThrowsAsync(queryApi({}))
   t.is(fetchStub.callCount, 1, '1 attempt is made to fetch the data')
   t.is(await queryApi({}), 'bar', 'response contains the expected data')
 })
