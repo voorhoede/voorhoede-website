@@ -23,6 +23,6 @@ jobs:
 
     - name: Run unit tests
       run: |
-        npm install
+        npm ci
         npm run test
 
