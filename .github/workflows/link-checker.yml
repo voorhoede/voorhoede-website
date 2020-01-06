@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cdron: '*/5 * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   broken_link_checker_job:
