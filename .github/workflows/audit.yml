@@ -1,8 +1,8 @@
-name: Audit pull request
 on: pull_request
 
 jobs:
   audit:
+    name: Audit pull request
     runs-on: ubuntu-latest
     steps:
     - name: Audit Netlify deploy preview

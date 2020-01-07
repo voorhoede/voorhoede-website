@@ -4,8 +4,8 @@ on:
 
 jobs:
   broken_link_checker_job:
-    runs-on: ubuntu-latest
     name: Check for broken links
+    runs-on: ubuntu-latest
     steps:
     - name: Check links
       id: link-report
