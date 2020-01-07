@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '*/15 * * * *'
 
 jobs:
   broken_link_checker_job:
@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check links
-      id: link-report
+      id: link-report # add id to use in next step
       uses: celinekurpershoek/github-actions-link-checker@master
       with:
         url: 'https://voorhoede.nl'
