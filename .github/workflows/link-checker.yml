@@ -1,9 +1,7 @@
-on:
-  schedule:
-    - cron: '*/15 * * * *'
+on: pull_request
 
 jobs:
-  broken_link_checker_job:
+  link_checker:
     name: Check for broken links
     runs-on: ubuntu-latest
     steps:
