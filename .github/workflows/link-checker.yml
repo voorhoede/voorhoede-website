@@ -1,4 +1,8 @@
-on: pull_request
+on:
+  pull_request:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '*/15 * * * *'
 
 jobs:
   link_checker:
@@ -10,5 +14,6 @@ jobs:
       uses: celinekurpershoek/github-actions-link-checker@master
       with:
         url: 'https://voorhoede.nl'
+        ignoreUrls: 'linkedin'
     - name: Get the result
       run: echo "${{steps.link-report.outputs.result}}"
