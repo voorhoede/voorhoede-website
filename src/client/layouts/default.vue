@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ConsoleAsciiArt />
     <grid-demo :show="showGrid"/>
     <!--
       Set focus on this element on route change, so that the user can
@@ -28,9 +29,10 @@ import AppFooter from '~/components/app-footer'
 import AppHeader from '~/components/app-header'
 import AppMobileMenu from '~/components/app-mobile-menu'
 import GridDemo from '~/components/grid-demo'
+import ConsoleAsciiArt from '~/components/console-ascii-art'
 
 export default {
-  components: { AppFooter, AppHeader, AppMobileMenu, GridDemo },
+  components: { AppFooter, AppHeader, AppMobileMenu, GridDemo, ConsoleAsciiArt },
   data() {
     return {
       layout: require(`../static/data/${this.$i18n.locale}/layouts/default`), // layout data should always be bundled
