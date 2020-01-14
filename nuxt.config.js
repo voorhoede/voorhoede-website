@@ -91,6 +91,7 @@ module.exports = {
   plugins: [
     { src: '~/plugins/fetch-polyfill', ssr: false },
     { src: '~/plugins/locale-urls' },
+    { src: '~/plugins/ascii-art', ssr: false },
     { src: '~/plugins/promise-polyfill', ssr: false },
   ],
 
