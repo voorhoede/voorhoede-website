@@ -40,7 +40,7 @@
         <legend class="sr-only">{{ ariaLabelOrTitle }}</legend>
         <input type="hidden" name="form-name" :value="form['form-name']">
         <input type="text" name="subject" :value="form.name" class="hidden"/>
-        <label class="hidden">
+        <label class="input-field hidden">
           Don't fill this out if you're human:
           <input v-model="form.magicCastle" name="magic-castle">
         </label>
@@ -54,6 +54,7 @@
           required
           :validate="formIsValidated"
           :validation-error-message="$t('name_is_required')"
+          class="body-petite"
         />
         <input-field
           v-model="form.business"
@@ -61,6 +62,7 @@
           type="text"
           :label="$t('my_business_is')"
           :placeholder-label="$t('company_name')"
+          class="body-petite"
         />
         <input-field
           v-model="form.email"
@@ -71,6 +73,7 @@
           required
           :validate="formIsValidated"
           :validation-error-message="emailValidationErrorMessage"
+          class="body-petite"
         />
         <input-field
           v-model="form.phone"
@@ -78,6 +81,7 @@
           type="tel"
           :label="$t('you_can_call_me_at')"
           :placeholder-label="$t('phone_number')"
+          class="body-petite"
         />
         <input-field
           textarea
@@ -86,6 +90,7 @@
           type="text"
           :label="$t('my_project_is')"
           :placeholder-label="$t('project_description')"
+          class="body-petite"
         />
         <app-button
           class="contact-form__button"

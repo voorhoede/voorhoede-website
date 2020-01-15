@@ -59,6 +59,14 @@
           </li>
         </ul>
       </div>
+      <div class="app-footer__column">
+        <div class="app-footer__list">
+          <h2 class="app-footer__title app-footer__newsletter-title body-petite font-bold font-html-blue">
+            Newsletter
+          </h2>
+          <newsletter-form class="app-footer__newsletter-form" />
+        </div>
+      </div>
       <div class="app-footer__column app-footer__column--bottom">
         <ul class="app-footer__list--icon">
           <li
@@ -103,10 +111,11 @@
 <script>
 import { createHref } from '../../lib/links'
 import AppIcon from '../../components/app-icon'
+import NewsletterForm from '../../components/newsletter-form'
 
 export default {
   components: {
-    AppIcon,
+    AppIcon, NewsletterForm
   },
   data () {
     const { menu, footer } = require(`../../static/data/${this.$i18n.locale}/layouts/default`)
@@ -295,6 +304,15 @@ export default {
     display: none;
     width: var(--logo-width);
     margin-bottom: var(--spacing-small);
+  }
+
+  .app-footer__newsletter-title {
+    width: 100%;
+  }
+
+  .app-footer__newsletter-form {
+    width: 80%;
+    text-align: left;
   }
 
   .app-footer__column {
