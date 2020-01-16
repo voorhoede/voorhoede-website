@@ -360,7 +360,7 @@
 
     .page-index__pivot-section .pivot-section {
       grid-column-start: 6;
-      grid-column-end: 45;
+      grid-column-end: 46;
     }
   }
 

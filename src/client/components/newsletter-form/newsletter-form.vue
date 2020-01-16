@@ -29,7 +29,7 @@
         required
         :validate="formIsValidated"
         :validation-error-message="emailValidationErrorMessage"
-        class="newsletter-form__input-field body-detail"
+        class="newsletter-form__input-field body"
       />
       <input-checkbox
         v-model="form.consent"
@@ -39,12 +39,13 @@
         required
         :validate="formIsValidated"
         :validation-error-message="$t('newsletter_permission')"
-        class="newsletter-form__input-field body-detail"
+        class="newsletter-form__input-checkbox body-petite"
       />
       <app-button
         :label="$t('subscribe')"
         type="submit"
         :small="true"
+        class="newsletter-form__button"
       />
     </form>
   </section>
@@ -108,18 +109,66 @@
     background-color: var(--white);
   }
 
-  .newsletter-form__title,
   .newsletter-form__form {
-    grid-column-start: 10;
-    grid-column-end: 41;
+    margin: 0 auto;
+    max-width: 400px;
   }
 
   .newsletter-form__title {
+    grid-column-start: 6;
+    grid-column-end: 46;
     margin-bottom: var(--spacing-medium);
     text-align: center;
   }
 
-  .newsletter-form__input-field {
+  .newsletter-form__input-field,
+  .newsletter-form__input-checkbox {
     margin-bottom: var(--spacing-small);
+  }
+
+  @media (min-width: 800px) {
+    .newsletter-form__form {
+      display: flex;
+      flex-wrap: wrap;
+      grid-column-start: 12;
+      grid-column-end: 40;
+      max-width: 100%;
+    }
+
+    .newsletter-form__input-field {
+      order: 1;
+      flex: 1 1 auto;
+      margin: 0 25px 25px 0;
+    }
+
+    .newsletter-form__button {
+      order: 2;
+      flex: 0 0 auto;
+      align-self: flex-end;
+      margin-bottom: 25px;
+    }
+
+    .newsletter-form__input-checkbox {
+      order: 3;
+      max-width: 450px;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .newsletter-form__form {
+      grid-column-start: 12;
+      grid-column-end: 40;
+    }
+
+    .newsletter-form .newsletter-form__input-field {
+      display: block;
+    }
+  }
+
+  @media (min-width: 1300px) {
+    .newsletter-form__form {
+      grid-column-start: 15;
+      grid-column-end: 37;
+    }
   }
 </style>

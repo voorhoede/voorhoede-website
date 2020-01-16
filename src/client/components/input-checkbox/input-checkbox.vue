@@ -6,7 +6,6 @@
       :name="name"
       ref="input"
       v-bind="$attrs"
-      @input="updateInput"
       class="input-checkbox__input"
     >
     <label
@@ -66,11 +65,6 @@
     mounted() {
       this.valid = this.$refs.input.checkValidity()
     },
-    methods: {
-      updateInput(e) {
-        this.$emit('input', e.target.checked)
-      },
-    },
   }
 </script>
 
@@ -98,26 +92,27 @@
     cursor: pointer;
   }
 
-  .input-checkbox__label:before {
+  .input-checkbox__label::before {
     content: '';
     display: block;
     position: absolute;
-    top: 0;
+    top: 3px;
     left: 0;
     width: 16px;
     height: 16px;
     border: 1px solid var(--html-blue);
   }
 
-  .input-checkbox__input:checked + .input-checkbox__label:after {
+  .input-checkbox__input:checked + .input-checkbox__label::after {
     content: '';
     display: block;
     position: absolute;
-    top: 0;
+    top: 3px;
     left: 0;
     width: 16px;
     height: 16px;
-    background: var(--html-blue);
+    background: url('/images/checkmark.svg') center no-repeat;
+    background-size: 10px;
   }
 
   .field-is-invalid {
