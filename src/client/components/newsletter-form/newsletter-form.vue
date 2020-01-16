@@ -33,6 +33,7 @@
       />
       <input-checkbox
         v-model="form.consent"
+        value="Y"
         id="gdpr_38537"
         name="gdpr[38537]"
         :label="$t('newsletter_permission')"
@@ -91,7 +92,7 @@
           event.preventDefault()
           return false
         }
-      }
+      },
     },
   }
 </script>
@@ -138,14 +139,14 @@
     .newsletter-form__input-field {
       order: 1;
       flex: 1 1 auto;
-      margin: 0 25px 25px 0;
+      margin: 0 var(--spacing-medium) var(--spacing-medium) 0;
     }
 
     .newsletter-form__button {
       order: 2;
       flex: 0 0 auto;
       align-self: flex-end;
-      margin-bottom: 25px;
+      margin-bottom: var(--spacing-medium);
     }
 
     .newsletter-form__input-checkbox {

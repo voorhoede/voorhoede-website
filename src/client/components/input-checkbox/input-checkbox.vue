@@ -6,6 +6,7 @@
       :name="name"
       ref="input"
       v-bind="$attrs"
+      @input="updateInput"
       class="input-checkbox__input"
     >
     <label
@@ -21,6 +22,10 @@
 <script>
   export default {
     inheritAttrs: false,
+    model: {
+      prop: 'checked',
+      event: 'change'
+    },
     props: {
       id: {
         type: String,
@@ -44,6 +49,10 @@
         required: false,
         default: ''
       },
+      checked: {
+        type: Boolean,
+        default: false
+      }
     },
     data() {
       return {
@@ -56,7 +65,7 @@
       }
     },
     watch: {
-      value() {
+      checked() {
         this.$nextTick(() => {
           this.valid = this.$refs.input.checkValidity()
         })
@@ -64,6 +73,11 @@
     },
     mounted() {
       this.valid = this.$refs.input.checkValidity()
+    },
+    methods: {
+      updateInput(e) {
+        this.$emit('change', e.target.checked)
+      },
     },
   }
 </script>
