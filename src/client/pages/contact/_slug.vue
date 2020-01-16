@@ -1,23 +1,26 @@
 <template>
-  <section class="page-contact-confirmation">
-    <page-header
-      heading="byline"
-      :byline="page.title"
-      :headline="page.subtitle"
-      :image="page.headerIllustration"
-    />
-    <div class="page-contact-confirmation__backdrop grid">
-      <div class="page-contact-confirmation__content body">
-        {{ page.body }}
-      </div>
-    </div>
-    <div class="grid">
-      <pivot-section
-        v-if="pivots && pivots.length"
-        :pivot="pivots[0]"
+  <div>
+    <section class="page-contact-confirmation">
+      <page-header
+        heading="byline"
+        :byline="page.title"
+        :headline="page.subtitle"
+        :image="page.headerIllustration"
       />
-    </div>
-  </section>
+      <div class="page-contact-confirmation__backdrop grid">
+        <div class="page-contact-confirmation__content body">
+          {{ page.body }}
+        </div>
+      </div>
+      <div class="grid">
+        <pivot-section
+          v-if="pivots && pivots.length"
+          :pivot="pivots[0]"
+        />
+      </div>
+    </section>
+    <newsletter-form />
+  </div>
 </template>
 
 <script>
@@ -26,11 +29,13 @@
 
   import PivotSection from '~/components/pivot-section'
   import PageHeader from '~/components/page-header'
+  import NewsletterForm from '~/components/newsletter-form'
 
   export default {
     components: {
       PivotSection,
       PageHeader,
+      NewsletterForm,
     },
     asyncData,
     head

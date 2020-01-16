@@ -1,117 +1,120 @@
 <template>
-  <main class="grid">
-    <page-header
-      fill-screen
-      heading="headline"
-      byline="Case study"
-      :headline="page.title"
-      :image="page.heroIllustration"
-    >
-      <h2 class="sr-only">{{ $t('case_info') }}</h2>
-      <case-meta
-        class="page-case__case-meta"
-        :expertise-title="page.metaData.expertisesTitle"
-        :expertises="page.metaData.expertises"
-        :technologies-title="page.metaData.technologiesTitle"
-        :technologies="page.metaData.technologies"
-        :deliverable-title="page.metaData.deliverableTitle"
-        :deliverables="page.metaData.deliverables"
-        :interested-title="page.metaData.interestedTitle"
-        :interested-link-label="page.metaData.interestedLinkLabel"
-        :interested-link-url="page.metaData.interestedLinkUrl"
-      />
-    </page-header>
+  <div>
+    <main class="grid">
+      <page-header
+        fill-screen
+        heading="headline"
+        byline="Case study"
+        :headline="page.title"
+        :image="page.heroIllustration"
+      >
+        <h2 class="sr-only">{{ $t('case_info') }}</h2>
+        <case-meta
+          class="page-case__case-meta"
+          :expertise-title="page.metaData.expertisesTitle"
+          :expertises="page.metaData.expertises"
+          :technologies-title="page.metaData.technologiesTitle"
+          :technologies="page.metaData.technologies"
+          :deliverable-title="page.metaData.deliverableTitle"
+          :deliverables="page.metaData.deliverables"
+          :interested-title="page.metaData.interestedTitle"
+          :interested-link-label="page.metaData.interestedLinkLabel"
+          :interested-link-url="page.metaData.interestedLinkUrl"
+        />
+      </page-header>
 
-    <div class="page-case__case-teaser">
-      <case-teaser
-        v-if="page.caseTeaser"
-        :title="page.caseTeaser.title"
-        :image="page.caseTeaser.image"
-      />
-    </div>
+      <div class="page-case__case-teaser">
+        <case-teaser
+          v-if="page.caseTeaser"
+          :title="page.caseTeaser.title"
+          :image="page.caseTeaser.image"
+        />
+      </div>
 
-    <article class="page-case__content">
-      <template v-for="item in page.content">
-        <div
-          v-if="item.__typename === 'TextSectionRecord'"
-          :key="item.title"
-          class="page-case__text">
-          <h3
-            class="page-case__title h3"
-            v-if="item.title">{{ item.title }}</h3>
-          <rich-text-block
-            v-if="item.body"
-            :text="item.body"
-            large-text
+      <article class="page-case__content">
+        <template v-for="item in page.content">
+          <div
+            v-if="item.__typename === 'TextSectionRecord'"
+            :key="item.title"
+            class="page-case__text">
+            <h3
+              class="page-case__title h3"
+              v-if="item.title">{{ item.title }}</h3>
+            <rich-text-block
+              v-if="item.body"
+              :text="item.body"
+              large-text
+            />
+          </div>
+
+          <full-width-image
+            v-if="item.__typename === 'ImageRecord' && isFullWidth(item)"
+            :key="item.image.url"
+            :image="item.image"
           />
-        </div>
 
-        <full-width-image
-          v-if="item.__typename === 'ImageRecord' && isFullWidth(item)"
-          :key="item.image.url"
-          :image="item.image"
+          <responsive-image
+            v-if="item.__typename === 'ImageRecord' && !isFullWidth(item)"
+            :key="item.image.url"
+            :image="item.image"
+          />
+
+          <case-pull-quote-composition
+            v-if="item.__typename === 'PullquoteRecord'"
+            :key="item.pullquote.quote"
+            :pullquote="item.pullquote.quote"
+            :image="item.pullquote.illustration"
+            :text="item.pullquote.richText"
+          />
+
+          <image-with-description
+            v-if="item.__typename === 'ImageWithTextRecord'"
+            :key="item.description"
+            :image="item.imageWithDescription.image"
+            :inverse="item.imageWithDescription.inverse"
+            :description="item.imageWithDescription.description"
+          />
+
+          <storytelling-section
+            v-if="item.__typename === 'StorytellingBlockRecord'"
+            :key="item.storyItem.title"
+            :items="item.storyItem.items"
+            :title="item.storyItem.title"
+          />
+
+          <responsive-video
+            v-if="item.__typename === 'ResponsiveVideoRecord'"
+            :key="item.video.title"
+            :video="item.video"
+            :autoplay="item.autoplay"
+            :loop="item.loop"
+            :mute="item.autoplay"
+          />
+
+        </template>
+
+        <quote-block v-if="page.quote" :quote="page.quote" :cite="page.author" />
+      </article>
+
+      <div class="page-case__link-container">
+        <nuxt-link
+          class="app-button app-button--secondary body font-bold"
+          :to="localeUrl('cases')">
+          &larr; {{ $t('all_cases') }}
+        </nuxt-link>
+      </div>
+
+      <div class="page-case__contact-form grid">
+        <contact-form
+          class="grid"
+          :title="$t('lets_discuss')"
+          :contact-person="page.contactPerson"
         />
-
-        <responsive-image
-          v-if="item.__typename === 'ImageRecord' && !isFullWidth(item)"
-          :key="item.image.url"
-          :image="item.image"
-        />
-
-        <case-pull-quote-composition
-          v-if="item.__typename === 'PullquoteRecord'"
-          :key="item.pullquote.quote"
-          :pullquote="item.pullquote.quote"
-          :image="item.pullquote.illustration"
-          :text="item.pullquote.richText"
-        />
-
-        <image-with-description
-          v-if="item.__typename === 'ImageWithTextRecord'"
-          :key="item.description"
-          :image="item.imageWithDescription.image"
-          :inverse="item.imageWithDescription.inverse"
-          :description="item.imageWithDescription.description"
-        />
-
-        <storytelling-section
-          v-if="item.__typename === 'StorytellingBlockRecord'"
-          :key="item.storyItem.title"
-          :items="item.storyItem.items"
-          :title="item.storyItem.title"
-        />
-
-        <responsive-video
-          v-if="item.__typename === 'ResponsiveVideoRecord'"
-          :key="item.video.title"
-          :video="item.video"
-          :autoplay="item.autoplay"
-          :loop="item.loop"
-          :mute="item.autoplay"
-        />
-
-      </template>
-
-      <quote-block v-if="page.quote" :quote="page.quote" :cite="page.author" />
-    </article>
-
-    <div class="page-case__link-container">
-      <nuxt-link
-        class="app-button app-button--secondary body font-bold"
-        :to="localeUrl('cases')">
-        &larr; {{ $t('all_cases') }}
-      </nuxt-link>
-    </div>
-
-    <div class="page-case__contact-form grid">
-      <contact-form
-        class="grid"
-        :title="$t('lets_discuss')"
-        :contact-person="page.contactPerson"
-      />
-      <scroll-to direction="up" />
-    </div>
-  </main>
+        <scroll-to direction="up" />
+      </div>
+    </main>
+    <newsletter-form />
+  </div>
 </template>
 
 <script>
@@ -131,6 +134,7 @@
   import RichTextBlock from '~/components/rich-text-block'
   import ScrollTo from '~/components/scroll-to'
   import StorytellingSection from '~/components/storytelling-section'
+  import NewsletterForm from '~/components/newsletter-form'
 
   export default {
     components: {
@@ -147,6 +151,7 @@
       RichTextBlock,
       ScrollTo,
       StorytellingSection,
+      NewsletterForm,
     },
     asyncData,
     methods: {

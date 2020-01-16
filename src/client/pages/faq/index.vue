@@ -6,7 +6,7 @@
       :headline="page.subtitle"
       :image="page.headerIllustration"
     />
-    <div class="page-faq__overview">
+    <section class="page-faq__overview">
       <ul>
         <li class="page-faq__overview-item" v-for="item in page.items" :key="item.title">
           <generic-text-block
@@ -17,7 +17,8 @@
         </li>
       </ul>
       <scroll-to direction="up" />
-    </div>
+    </section>
+    <newsletter-form />
   </div>
 </template>
 
@@ -28,9 +29,10 @@
   import GenericTextBlock from '~/components/generic-text-block'
   import PageHeader from '~/components/page-header'
   import ScrollTo from '~/components/scroll-to'
+  import NewsletterForm from '~/components/newsletter-form'
 
   export default {
-    components: { GenericTextBlock, PageHeader, ScrollTo },
+    components: { GenericTextBlock, PageHeader, ScrollTo, NewsletterForm },
     asyncData,
     head
   }

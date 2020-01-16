@@ -48,6 +48,7 @@
         </li>
       </ul>
     </section>
+    <newsletter-form />
   </main>
 </template>
 
@@ -58,13 +59,15 @@
   import EventCard from '~/components/event-card'
   import PageHeader from '~/components/page-header'
   import RichTextBlock from '~/components/rich-text-block'
+  import NewsletterForm from '~/components/newsletter-form'
 
   export default {
     components: {
       EventListItem,
       EventCard,
       PageHeader,
-      RichTextBlock
+      RichTextBlock,
+      NewsletterForm,
     },
     data() {
       return {
