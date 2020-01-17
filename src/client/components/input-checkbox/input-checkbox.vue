@@ -117,6 +117,10 @@
     border: 1px solid var(--html-blue);
   }
 
+  .input-checkbox__input:focus + .input-checkbox__label::before {
+    border-width: 2px;
+  }
+
   .input-checkbox__input:checked + .input-checkbox__label::after {
     content: '';
     display: block;

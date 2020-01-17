@@ -21,6 +21,15 @@
         class="hidden"
       >
       <input-field
+        v-model="form.name"
+        id="FNAME"
+        type="text"
+        :label="$t('my_first_name_is')"
+        :placeholder-label="$t('your_first_name')"
+        class="newsletter-form__input-field body"
+
+      />
+      <input-field
         v-model="form.email"
         id="EMAIL"
         type="email"
@@ -72,6 +81,7 @@
         form: {
           consent: false,
           email: '',
+          name: '',
         },
         formIsValidated: false,
         useCustomValidation: false,
@@ -127,7 +137,7 @@
     margin-bottom: var(--spacing-small);
   }
 
-  @media (min-width: 800px) {
+  @media (min-width: 900px) {
     .newsletter-form__form {
       display: flex;
       flex-wrap: wrap;
@@ -136,10 +146,14 @@
       max-width: 100%;
     }
 
-    .newsletter-form__input-field {
+    .input-field.newsletter-form__input-field + .input-field.newsletter-form__input-field,
+    .input-field.newsletter-form__input-field {
       order: 1;
       flex: 1 1 auto;
-      margin: 0 var(--spacing-medium) var(--spacing-medium) 0;
+      margin-top: 0;
+      margin-right: var(--spacing-medium);
+      margin-bottom: var(--spacing-medium);
+      margin-left: 0;
     }
 
     .newsletter-form__button {
@@ -163,13 +177,6 @@
 
     .newsletter-form .newsletter-form__input-field {
       display: block;
-    }
-  }
-
-  @media (min-width: 1300px) {
-    .newsletter-form__form {
-      grid-column-start: 15;
-      grid-column-end: 37;
     }
   }
 </style>
