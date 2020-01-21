@@ -19,5 +19,4 @@ Join our team! Visit https://www.voorhoede.nl/en/jobs/ to apply.
 `
   // eslint-disable-next-line no-console
   console.log(`%c ${art}`, 'color: blue')
-  return
 }
