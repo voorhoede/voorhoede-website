@@ -14,7 +14,7 @@
       class="input-checkbox__label"
       :class="{ 'field-is-invalid': isInvalid }"
     >
-      {{ !isInvalid ? label : validationErrorMessage }}
+      {{ isInvalid ? validationErrorMessage : label }}
     </label>
   </div>
 </template>
@@ -41,12 +41,10 @@
       },
       validate: {
         type: Boolean,
-        required: false,
         default: false,
       },
       validationErrorMessage: {
         type: String,
-        required: false,
         default: ''
       },
       checked: {
@@ -112,8 +110,8 @@
     position: absolute;
     top: 3px;
     left: 0;
-    width: 16px;
-    height: 16px;
+    width: 1rem;
+    height: 1rem;
     border: 1px solid var(--html-blue);
   }
 
@@ -127,8 +125,8 @@
     position: absolute;
     top: 3px;
     left: 0;
-    width: 16px;
-    height: 16px;
+    width: 1rem;
+    height: 1rem;
     background: url('/images/checkmark.svg') center no-repeat;
     background-size: 10px;
   }
