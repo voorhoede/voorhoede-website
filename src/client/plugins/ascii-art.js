@@ -8,7 +8,7 @@ Join our team! Visit https://www.voorhoede.nl/en/jobs/ to apply.
       | |__| |__||___
       |          |__ \\
       |__________|  \\ \\
-       __________  | |
+       __________   | |
    ___|    o|o   |__/ /
   / __|    o|o   |___/
  / /  |_____|____|
