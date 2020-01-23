@@ -1,31 +1,34 @@
 <template>
-  <main class="page-cases">
-    <page-header
-      heading="byline"
-      :byline="page.title"
-      :headline="page.subtitle"
-      :image="page.headerIllustration"
-    />
-    <section class="grid">
-      <h2 class="sr-only">{{ $t('all_cases') }}</h2>
-      <ul class="page-case__overview">
-        <li class="page-case__overview-item" v-for="caseItem in items" :key="caseItem.slug">
-          <case-excerpt
-            :slug="caseItem.slug"
-            :image="caseItem.heroIllustration"
-            :title="caseItem.title"
-            :body="caseItem.subtitle"
-          />
-        </li>
-      </ul>
-    </section>
-    <div class="grid">
-      <pivot-section
-        v-if="pivots && pivots.length"
-        :pivot="pivots[0]"
+  <div>
+    <main class="page-cases">
+      <page-header
+        heading="byline"
+        :byline="page.title"
+        :headline="page.subtitle"
+        :image="page.headerIllustration"
       />
-    </div>
-  </main>
+      <section class="grid">
+        <h2 class="sr-only">{{ $t('all_cases') }}</h2>
+        <ul class="page-case__overview">
+          <li class="page-case__overview-item" v-for="caseItem in items" :key="caseItem.slug">
+            <case-excerpt
+              :slug="caseItem.slug"
+              :image="caseItem.heroIllustration"
+              :title="caseItem.title"
+              :body="caseItem.subtitle"
+            />
+          </li>
+        </ul>
+      </section>
+      <div class="grid">
+        <pivot-section
+          v-if="pivots && pivots.length"
+          :pivot="pivots[0]"
+        />
+      </div>
+    </main>
+    <newsletter-form />
+  </div>
 </template>
 
 <script>
@@ -35,12 +38,14 @@
   import CaseExcerpt from '~/components/case-excerpt'
   import PageHeader from '~/components/page-header'
   import PivotSection from '~/components/pivot-section'
+  import NewsletterForm from '~/components/newsletter-form'
 
   export default {
     components: {
       CaseExcerpt,
       PageHeader,
-      PivotSection
+      PivotSection,
+      NewsletterForm,
     },
     asyncData,
     head

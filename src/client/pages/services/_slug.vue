@@ -1,34 +1,37 @@
 <template>
-  <main class="page-service grid">
-    <page-header
-      heading="headline"
-      :byline="page.title"
-      :headline="page.subtitle"
-      :image="page.headerIllustration"
-    />
-    <article class="page-service__overview">
-      <template v-for="item in page.items">
-        <generic-text-block
-          v-if="item.__typename === 'GenericTextBlockRecord'"
-          :key="item.title"
-          :title="item.title"
-          :body="item.body"
-          :image="item.image"
-        />
-        <responsive-image
-          v-if="item.__typename === 'ImageRecord'"
-          :key="item.image.url"
-          :image="item.image"
-          :has-fixed-ratio="true"
-        />
-      </template>
-    </article>
-    <pivot-section
-      v-if="pivots && pivots.length"
-      class="page-service__pivot-section"
-      :pivot="pivots[0]"
-    />
-  </main>
+  <div>
+    <main class="page-service grid">
+      <page-header
+        heading="headline"
+        :byline="page.title"
+        :headline="page.subtitle"
+        :image="page.headerIllustration"
+      />
+      <article class="page-service__overview">
+        <template v-for="item in page.items">
+          <generic-text-block
+            v-if="item.__typename === 'GenericTextBlockRecord'"
+            :key="item.title"
+            :title="item.title"
+            :body="item.body"
+            :image="item.image"
+          />
+          <responsive-image
+            v-if="item.__typename === 'ImageRecord'"
+            :key="item.image.url"
+            :image="item.image"
+            :has-fixed-ratio="true"
+          />
+        </template>
+      </article>
+      <pivot-section
+        v-if="pivots && pivots.length"
+        class="page-service__pivot-section"
+        :pivot="pivots[0]"
+      />
+    </main>
+    <newsletter-form />
+  </div>
 </template>
 
 <script>
@@ -38,6 +41,7 @@
   import GenericTextBlock from '~/components/generic-text-block'
   import PivotSection from '~/components/pivot-section'
   import ResponsiveImage from '~/components/responsive-image'
+  import NewsletterForm from '~/components/newsletter-form'
 
   export default {
     components: {
@@ -45,6 +49,7 @@
       GenericTextBlock,
       PivotSection,
       ResponsiveImage,
+      NewsletterForm,
     },
     asyncData,
     head,

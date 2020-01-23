@@ -3,22 +3,22 @@
   --form-select-caret-width: .6875rem; /* 11px */
 }
 
-label {
+.input-field {
   margin-top: var(--spacing-small);
   display: block;
   font-family: var(--font-sans);
 }
 
 input.hidden,
-label.hidden {
+.input-field.hidden {
   display: none;
 }
 
-label > span {
+.input-field__label {
   color: var(--html-blue);
 }
 
-label + label {
+.input-field + .input-field {
   margin-top: var(--spacing-medium);
 }
 
@@ -69,28 +69,28 @@ select {
 }
 
 @media screen and (min-width: 1100px) {
-  label {
+  .input-field {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
   }
 
-  label + label {
+  .input-field + .input-field {
     margin-top: var(--spacing-small);
   }
 
-  label > span {
+  .input-field__label {
     flex-basis: 33%;
     padding-right: var(--spacing-small);
   }
 
-  label > input,
-  label > select {
+  .input-field > input,
+  .input-field > select {
     margin-top: 0;
     flex-basis: 66%;
   }
 
-  label > textarea {
+  .input-field > textarea {
     flex-basis: 66%;
   }
 }

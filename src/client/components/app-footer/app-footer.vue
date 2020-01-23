@@ -106,7 +106,7 @@ import AppIcon from '../../components/app-icon'
 
 export default {
   components: {
-    AppIcon,
+    AppIcon
   },
   data () {
     const { menu, footer } = require(`../../static/data/${this.$i18n.locale}/layouts/default`)
@@ -295,6 +295,15 @@ export default {
     display: none;
     width: var(--logo-width);
     margin-bottom: var(--spacing-small);
+  }
+
+  .app-footer__newsletter-title {
+    width: 100%;
+  }
+
+  .app-footer__newsletter-form {
+    width: 80%;
+    text-align: left;
   }
 
   .app-footer__column {

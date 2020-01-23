@@ -1,6 +1,6 @@
 <template>
   <label class="input-field">
-    <span class="input-field__label body-petite" :class="{ 'field-is-invalid': isInvalid }">
+    <span class="input-field__label" :class="{ 'field-is-invalid': isInvalid }">
       {{ !isInvalid ? label : validationErrorMessage }}
     </span>
     <textarea
@@ -75,7 +75,6 @@
     },
     data() {
       return {
-        isFocused: false,
         valid: false
       }
     },
@@ -103,7 +102,7 @@
 </script>
 
 <style>
-  .field-is-invalid {
+  .input-field__label.field-is-invalid {
     color: var(--soft-red);
   }
 </style>
