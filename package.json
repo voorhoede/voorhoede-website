@@ -32,7 +32,6 @@
     "lintfix:js": "npm run lint:js -- --fix",
     "lintfix:css": "npm run lint:css -- --fix",
     "precommit": "npm run lint",
-    "proxy": "ngrok http 3278",
     "start": "nuxt start",
     "test": "ava -v",
     "test:watch": "ava -vw"
@@ -63,7 +62,6 @@
     "husky": "0.14.3",
     "iso-639-1": "^2.1.0",
     "lodash": "^4.17.15",
-    "ngrok": "^3.2.5",
     "node-fetch": "^2.2.0",
     "npm-run-all": "4.1.5",
     "postcss-calc": "^7.0.1",

@@ -7,6 +7,11 @@
 ### Getting started
 
 * Clone the repository.
+* Run `npm ci` to install dependencies.
+* All needed environment variables are listed in the [.env.example](.env.example) file. To automatically set them fill in a `.env` file following the same structure as the example file.
+```sh
+cp .env.example .env
+```
 * Run app in development mode (`npm run dev`), see [scripts](#scripts).
 * Changes on master and content publishing from the CMS trigger a new build and deploy to the [live environment](https://voorhoede-dragonfly.netlify.com).
 
@@ -43,7 +48,6 @@ available:
 `analyze` | Analyze the bundles created during build.
 `build` | Builds client and server for production to `dist/`.
 `dev` | Serves client app on [`http://localhost:3278`](http://localhost:3278) ("lean" in T9) with hot reloading.
-`proxy` | Exposes app on localhost to world wide web for testing on other devices.
 `start` | Serves production version of client app from (`/dist/`) on [`http://localhost:3278`](http://localhost:3278).
 `data` | Imports all data from Dato CMS.
 
