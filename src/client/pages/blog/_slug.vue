@@ -90,6 +90,7 @@
       <social-share-buttons
         :title="page.socialTitle"
         :twitter-title="page.title"
+        :authors="page.authors"
       />
       <toc-section :items="tocItems" />
     </aside>

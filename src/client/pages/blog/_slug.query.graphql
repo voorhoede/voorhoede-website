@@ -57,6 +57,7 @@ fragment page on BlogPostRecord {
   authors {
     name
     lastName
+    twitterHandle
     image {
       url
       format
