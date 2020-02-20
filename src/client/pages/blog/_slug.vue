@@ -10,7 +10,11 @@
 
     <aside class="page-blog-post__aside">
       <blog-author class="page-blog-post__aside-author" :item="page" />
-      <social-share-buttons :title="page.socialTitle" :twitter-title="page.title" />
+      <social-share-buttons
+        :title="page.socialTitle"
+        :twitter-title="page.title"
+        :authors="page.authors"
+      />
       <toc-section :items="tocItems" />
     </aside>
 
