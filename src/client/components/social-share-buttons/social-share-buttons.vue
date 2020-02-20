@@ -59,12 +59,12 @@
       blogAuthors () {
         return this.authors.map(author => {
           return author.twitterHandle ? author.twitterHandle : author.name
-        }).join(', ')
+        }).join(' ')
       },
       socials () {
         return [
           { icon: 'twitter--blue',
-            href: `https://twitter.com/intent/tweet?text=${this.twitterTitle} by ${this.blogAuthors} %26 @voorhoede&url=${this.url}`,
+            href: `https://twitter.com/intent/tweet?text=${this.twitterTitle} by ${this.blogAuthors} @devoorhoede&url=${this.url}`,
             label: 'twitter',
             alt: 'Share this post on Twitter',
           },
