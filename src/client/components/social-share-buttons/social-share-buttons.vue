@@ -64,6 +64,12 @@
             label: 'facebook',
             alt: 'Share this post on Facebook',
           },
+          {
+            icon: 'linkedin--blue',
+            href: `https://www.linkedin.com/shareArticle?&url=${this.url}&title=${this.title}`,
+            label: 'linkedin',
+            alt: 'Share this post on LinkedIn'
+          }
         ]
       },
     },
