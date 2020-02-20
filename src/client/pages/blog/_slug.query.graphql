@@ -81,7 +81,7 @@ fragment page on BlogPostRecord {
         height
         format
       }
-      alt
+      caption
       fullWidth
     }
     ... on ImageWithTextRecord {

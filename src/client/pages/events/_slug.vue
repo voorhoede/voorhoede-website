@@ -36,7 +36,8 @@
             :class="{ 'page-event-detail__main--not-indented' : item.fullWidth}"
             v-if="item.__typename === 'ImageRecord' && item.image"
             :key="item.image.url"
-            :image="item.image" />
+            :image="item.image"
+            :caption="item.caption" />
 
           <text-block
             v-if="item.__typename === 'TextSectionRecord' && item.title"

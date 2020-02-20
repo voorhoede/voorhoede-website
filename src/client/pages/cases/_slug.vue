@@ -57,6 +57,7 @@
             v-if="item.__typename === 'ImageRecord' && !isFullWidth(item)"
             :key="item.image.url"
             :image="item.image"
+            :caption="item.caption"
           />
 
           <case-pull-quote-composition

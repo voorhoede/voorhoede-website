@@ -52,6 +52,7 @@
           v-if="item.__typename === 'ImageRecord' && item.image"
           :key="item.image.url"
           :image="item.image"
+          :caption="item.caption"
         />
 
         <responsive-video
