@@ -67,7 +67,7 @@ fragment page on ServiceRecord {
         height
         format
       }
-      alt
+      caption
       fullWidth
     }
     ... on GenericTextBlockRecord {

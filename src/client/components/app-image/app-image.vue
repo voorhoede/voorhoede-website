@@ -30,7 +30,7 @@
           w: width,
           h: cropAndKeepRatio ? width : null,
           fit: cropAndKeepRatio ? 'crop': null })"
-        :alt="image.alt">
+        :alt="imageAlt">
     </picture>
   </component>
 </template>
@@ -44,6 +44,10 @@
       LazyLoad,
     },
     props: {
+      caption: {
+        type: String,
+        default: '',
+      },
       image: {
         type: Object,
         required: true,
@@ -76,6 +80,9 @@
       }
     },
     computed: {
+      imageAlt () {
+        return this.image.alt ? this.image.alt : ''
+      },
       svgFormat () {
         return this.image.url.includes('.svg')
       }
@@ -129,11 +136,6 @@
     position: absolute;
     top: 50%;
     width: 100%;
-    text-align: center;
-  }
-
-  .app-image__caption {
-    margin-top: var(--spacing-smaller);
     text-align: center;
   }
 </style>

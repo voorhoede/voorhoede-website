@@ -20,6 +20,7 @@
             v-if="item.__typename === 'ImageRecord'"
             :key="item.image.url"
             :image="item.image"
+            :caption="item.caption"
             :has-fixed-ratio="true"
           />
         </template>
