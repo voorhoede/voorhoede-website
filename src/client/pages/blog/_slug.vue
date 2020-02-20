@@ -8,6 +8,12 @@
       :image="page.headerIllustration"
     />
 
+    <aside class="page-blog-post__aside">
+      <blog-author class="page-blog-post__aside-author" :item="page" />
+      <social-share-buttons :title="page.socialTitle" :twitter-title="page.title" />
+      <toc-section :items="tocItems" />
+    </aside>
+
     <article class="page-blog-post-list">
       <text-block>
         <h3 class="font-html-blue testimonial">{{ page.introTitle }}</h3>
