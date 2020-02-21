@@ -6,6 +6,7 @@
           class="case-excerpt__link"
           :to="localeUrl({ name: 'cases-slug', params: { slug } })"
           :title="title"
+          :aria-label="title"
         >
           <responsive-image
             :has-fixed-ratio="false"
