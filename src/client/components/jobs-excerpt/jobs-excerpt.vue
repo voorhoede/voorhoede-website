@@ -8,7 +8,7 @@
       <p class="job-excerpt__text-description body-detail">{{ description }}</p>
     </div>
     <app-button
-      class="job-excerpt__button"
+      class="job-excerpt__button app-button--primary"
       :aria-label="title"
       :label="$t('view_details')"
       :to="localeUrl({ name: 'jobs-slug', params: { slug } })"
@@ -121,7 +121,6 @@
 
     .job-excerpt__image {
       grid-row: 1;
-      opacity: .3;
     }
 
     .job-excerpt__image-item {
@@ -134,7 +133,6 @@
       grid-column: 3;
       align-self: center;
       margin: 0;
-      opacity: .3;
     }
 
     .job-excerpt__text {
@@ -166,7 +164,6 @@
       transform: translateY(0);
     }
 
-    .job-excerpt:hover .job-excerpt__button,
     .job-excerpt:hover .job-excerpt__image {
       opacity: 1;
     }
@@ -179,19 +176,10 @@
       transform: translateY(0);
     }
 
-    .job-excerpt:focus-within .job-excerpt__button,
-    .job-excerpt:focus-within .job-excerpt__image {
-      opacity: 1;
-    }
-
     @media (prefers-reduced-motion: reduce) {
       .job-excerpt__text-title,
       .job-excerpt__text-description {
         transform: translateY(0);
-      }
-
-      .job-excerpt__text-description {
-        opacity: 1;
       }
     }
   }
