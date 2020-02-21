@@ -22,7 +22,7 @@
           >
             <span
               v-if="code === $i18n.locale"
-              aria-hidden
+              aria-hidden="true"
             >
               {{ code }}
             </span>
