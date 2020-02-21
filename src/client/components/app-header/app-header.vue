@@ -29,7 +29,7 @@
             <nuxt-link
               v-else
               class="app-header__link"
-              :aria-label="$t('switch_to__language_', 'nl', { language: name })"
+              :aria-label="$t('switch_to__language_', code, { language: name })"
               :lang="code"
               :to="localizedlocaleUrls[code]"
               @click.native="saveLocale(code)"
