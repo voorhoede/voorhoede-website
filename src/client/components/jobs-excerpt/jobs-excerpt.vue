@@ -8,7 +8,7 @@
       <p class="job-excerpt__text-description body-detail">{{ description }}</p>
     </div>
     <app-button
-      class="job-excerpt__button app-button--primary"
+      class="job-excerpt__button"
       :aria-label="title"
       :label="$t('view_details')"
       :to="localeUrl({ name: 'jobs-slug', params: { slug } })"
