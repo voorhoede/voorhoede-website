@@ -23,6 +23,9 @@ module.exports = [
     vueI18n: {
       fallbackLocale: defaultLocale,
       messages
-    }
+    },
+    // Turned off parsePages to make use of dynamic imports https://github.com/nuxt-community/nuxt-i18n/issues/134
+    // Should not cause a problem since we have generated routes.
+    parsePages: false,
   }
 ]
