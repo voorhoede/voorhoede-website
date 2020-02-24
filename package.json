@@ -76,6 +76,7 @@
     "stylelint-config-standard": "^18.3.0",
     "stylelint-processor-html": "1.0.0",
     "util": "^0.12.1",
+    "vue-lazy-hydration": "^1.0.0-beta.12",
     "vue-svg-loader": "^0.12.0",
     "vue-template-compiler": "^2.5.17",
     "xmlbuilder": "^13.0.2"
