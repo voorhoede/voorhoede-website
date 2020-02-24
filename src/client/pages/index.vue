@@ -1,130 +1,145 @@
 <template>
   <main class="page-index">
     <div class="page-index__header">
-      <page-header
-        fill-screen
-        curly-bracket
-        heading="byline"
-        :byline="page.headerTitle"
-        :headline="page.subtitle"
-        :image="page.headerIllustration"
-      />
-      <div class="grid">
-        <p class="scroll-highlighted-text">
-          <scroll-highlighted-text
-            v-for="(line, index) in page.usps"
-            :key="index"
-            :line="line"
-            :index="index"
-            :is-first="isFirst(index)"
-            :is-last="isLast(index, page.usps)"
-          />
-        </p>
-      </div>
+      <LazyHydrate when-idle>
+        <page-header
+          fill-screen
+          curly-bracket
+          heading="byline"
+          :byline="page.headerTitle"
+          :headline="page.subtitle"
+          :image="page.headerIllustration"
+        />
+      </LazyHydrate>
+
+      <LazyHydrate when-visible>
+        <div class="grid">
+          <p class="scroll-highlighted-text">
+            <scroll-highlighted-text
+              v-for="(line, index) in page.usps"
+              :key="index"
+              :line="line"
+              :index="index"
+              :is-first="isFirst(index)"
+              :is-last="isLast(index, page.usps)"
+            />
+          </p>
+        </div>
+      </LazyHydrate>
     </div>
-    <section class="page-index__services grid">
-      <h2 class="page-index__section-title h1">{{ page.servicesHeader }}</h2>
-      <services-list
-        :services="page.services"
-      />
-    </section>
-    <section class="page-index__cases grid">
-      <h2 class="page-index__section-title page-index__section-title--cases h1">{{ page.casesTitle }}</h2>
-      <horizontal-carousel>
-        <template slot="slides">
-          <case-excerpt
-            v-for="caseExcerpt in page.cases"
-            :key="caseExcerpt.slug"
-            :slug="caseExcerpt.slug"
-            :image="caseExcerpt.heroIllustration"
-            :title="caseExcerpt.title"
-            :body="caseExcerpt.subtitle"
+
+    <LazyHydrate ssr-only>
+      <section class="page-index__services grid">
+        <h2 class="page-index__section-title h1">{{ page.servicesHeader }}</h2>
+        <services-list
+          :services="page.services"
+        />
+      </section>
+    </LazyHydrate>
+
+    <LazyHydrate when-visible>
+      <section class="page-index__cases grid">
+        <h2 class="page-index__section-title page-index__section-title--cases h1">{{ page.casesTitle }}</h2>
+        <horizontal-carousel>
+          <template slot="slides">
+            <case-excerpt
+              v-for="caseExcerpt in page.cases"
+              :key="caseExcerpt.slug"
+              :slug="caseExcerpt.slug"
+              :image="caseExcerpt.heroIllustration"
+              :title="caseExcerpt.title"
+              :body="caseExcerpt.subtitle"
+            />
+          </template>
+        </horizontal-carousel>
+        <div class="page-index__blog-posts-button">
+          <app-button
+            secondary
+            :label="$t('all_cases')"
+            :to="localeUrl('cases')"
           />
-        </template>
-      </horizontal-carousel>
-      <div class="page-index__blog-posts-button">
-        <app-button
-          secondary
-          :label="$t('all_cases')"
-          :to="localeUrl('cases')"
+        </div>
+      </section>
+    </LazyHydrate>
+
+    <LazyHydrate when-visible>
+      <section class="page-index__clients grid">
+        <h2 class="page-index__section-title page-index__section-title--clients h3 font-normal">{{ page.clientsTitle }}</h2>
+        <highlighted-clients :cta-label="page.clientsButtonLabel"/>
+      </section>
+    </LazyHydrate>
+
+    <LazyHydrate when-visible>
+      <div class="page-index__academy grid" v-if="upcomingEvents[0]">
+        <academy-excerpt
+          :date="upcomingEvents[0].date"
+          :title="upcomingEvents[0].title"
+          :description="upcomingEvents[0].description"
+          :illustration="page.academyIllustration"
+          :link="upcomingEvents[0].url"
+        />
+        <curly-bracket />
+      </div>
+    </LazyHydrate>
+
+    <LazyHydrate srr-only>
+      <section class="page-index__blog-posts grid">
+        <h2 class="page-index__section-title page-index__section-title--blog-posts h3">{{ $t('latest_blog_posts') }}</h2>
+        <ul class="page-index__blog-posts-list grid">
+          <li v-for="blogPost in latestBlogposts" :key="blogPost.slug" class="page-index__blog-posts-list-item">
+            <blog-list-item :item="blogPost" />
+          </li>
+        </ul>
+        <div class="page-index__blog-posts-button">
+          <app-button
+            :to="localeUrl('blog')"
+            :label="$t('latest_blog_posts')"
+            secondary
+          />
+        </div>
+        <curly-bracket side="right" />
+      </section>
+    </LazyHydrate>
+
+    <LazyHydrate srr-only>
+      <div class="page-index__pivot-section grid">
+        <pivot-section
+          v-if="pivots && pivots.length"
+          :pivot="pivots[0]"
         />
       </div>
-    </section>
-    <section class="page-index__clients grid">
-      <h2 class="page-index__section-title page-index__section-title--clients h3 font-normal">{{ page.clientsTitle }}</h2>
-      <highlighted-clients :cta-label="page.clientsButtonLabel"/>
-    </section>
-    <div class="page-index__academy grid" v-if="upcomingEvents[0]">
-      <academy-excerpt
-        :date="upcomingEvents[0].date"
-        :title="upcomingEvents[0].title"
-        :description="upcomingEvents[0].description"
-        :illustration="page.academyIllustration"
-        :link="upcomingEvents[0].url"
-      />
-      <curly-bracket />
-    </div>
-    <section class="page-index__blog-posts grid">
-      <h2 class="page-index__section-title page-index__section-title--blog-posts h3">{{ $t('latest_blog_posts') }}</h2>
-      <ul class="page-index__blog-posts-list grid">
-        <li v-for="blogPost in latestBlogposts" :key="blogPost.slug" class="page-index__blog-posts-list-item">
-          <blog-list-item :item="blogPost" />
-        </li>
-      </ul>
-      <div class="page-index__blog-posts-button">
-        <app-button
-          :to="localeUrl('blog')"
-          :label="$t('latest_blog_posts')"
-          secondary
-        />
+    </LazyHydrate>
+
+    <LazyHydrate on-interaction>
+      <div class="page-index__newsletter-section grid">
+        <newsletter-form />
+        <scroll-to direction="up" />
       </div>
-      <curly-bracket side="right" />
-    </section>
-    <div class="page-index__pivot-section grid">
-      <pivot-section
-        v-if="pivots && pivots.length"
-        :pivot="pivots[0]"
-      />
-    </div>
-    <div class="page-index__newsletter-section grid">
-      <newsletter-form />
-      <scroll-to direction="up" />
-    </div>
+    </LazyHydrate>
   </main>
 </template>
 
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import AcademyExcerpt from '~/components/academy-excerpt'
-  import AppButton from '~/components/app-button'
-  import BlogListItem from '~/components/blog-list-item'
-  import CaseExcerpt from '~/components/case-excerpt'
-  import PivotSection from '~/components/pivot-section'
-  import CurlyBracket from '~/components/curly-bracket'
-  import HighlightedClients from '~/components/highlighted-clients'
-  import HorizontalCarousel from '~/components/horizontal-carousel'
-  import NewsletterForm from '~/components/newsletter-form'
-  import PageHeader from '~/components/page-header'
-  import ScrollHighlightedText from '~/components/scroll-highlighted-text'
-  import ScrollTo from '~/components/scroll-to'
-  import ServicesList from '~/components/services-list'
+  import LazyHydrate from 'vue-lazy-hydration'
 
   export default {
     components: {
-      AcademyExcerpt,
-      AppButton,
-      BlogListItem,
-      CaseExcerpt,
-      PivotSection,
-      CurlyBracket,
-      HighlightedClients,
-      HorizontalCarousel,
-      NewsletterForm,
-      PageHeader,
-      ScrollHighlightedText,
-      ScrollTo,
-      ServicesList,
+      LazyHydrate,
+      AcademyExcerpt: () => import(/* webpackChunkName: "academy" */'~/components/academy-excerpt'),
+      AppButton: () => import(/* webpackChunkName: "appbutton" */'~/components/app-button'),
+      BlogListItem: () => import(/* webpackChunkName: "bloglistItem" */'~/components/blog-list-item'),
+      CaseExcerpt: () => import(/* webpackChunkName: "caseExcerpt" */'~/components/case-excerpt'),
+      PivotSection: () => import(/* webpackChunkName: "pivotSection" */'~/components/pivot-section'),
+      CurlyBracket: () => import(/* webpackChunkName: "curlyBracket" */'~/components/curly-bracket'),
+      HighlightedClients: () => import(/* webpackChunkName: "highlightedClients" */'~/components/highlighted-clients'),
+      HorizontalCarousel: () => import(/* webpackChunkName: "carousel" */'~/components/horizontal-carousel'),
+      NewsletterForm: () => import(/* webpackChunkName: "newsletter" */'~/components/newsletter-form'),
+      PageHeader: () => import(/* webpackChunkName: "pageheader" */'~/components/page-header'),
+      ScrollHighlightedText: () => import(/* webpackChunkName: "highlightedtext" */'~/components/scroll-highlighted-text'),
+      ScrollTo: () => import(/* webpackChunkName: "scrollto" */'~/components/scroll-to'),
+      ServicesList: () => import(/* webpackChunkName: "services" */'~/components/services-list'),
     },
     asyncData,
     methods: {
