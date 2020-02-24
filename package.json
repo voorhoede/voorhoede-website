@@ -37,7 +37,7 @@
     "test:watch": "ava -vw"
   },
   "dependencies": {
-    "@nuxtjs/google-analytics": "^2.2.0",
+    "@nuxtjs/google-analytics": "^2.2.3",
     "dayjs": "^1.8.15",
     "dotenv-safe": "6.1.0",
     "nuxt": "^2.8.1",
