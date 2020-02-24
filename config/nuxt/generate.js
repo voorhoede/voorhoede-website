@@ -7,4 +7,9 @@ module.exports = {
   dir: 'dist/client/',
   googleAnalytics,
   routes,
+  html: {
+    minify: {
+      minifyJS: false,
+    }
+  }
 }
