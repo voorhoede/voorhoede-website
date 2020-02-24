@@ -1,32 +1,34 @@
 <template>
-  <main class="page-blog">
-    <page-header
-      heading="byline"
-      :byline="page.title"
-      :headline="page.subtitle"
-      :image="page.headerIllustration"
-    />
-    <section class="page-blog-container grid">
-      <h2 class="sr-only">{{ $t('blog_overview') }}</h2>
-      <text-block class="page-blog__text">
-        <p class="testimonial">{{ page.description }}</p>
-      </text-block>
-      <ul class="page-blog__posts">
-        <li v-for="blogPost in items.filter(post => post.published)" :key="blogPost.slug">
-          <blog-list-item large :item="blogPost" />
-        </li>
-      </ul>
-    </section>
-    <div class="page-blog__cta grid">
-      <!-- TODO: Make this a section to be defined in DATO (once for all blog pages) -->
-      <pivot-section
-        v-if="pivots && pivots.length"
-        class="page-blog__pivot-section"
-        :pivot="pivots[0]"
+  <LazyHydrate when-visible>
+    <main class="page-blog">
+      <page-header
+        heading="byline"
+        :byline="page.title"
+        :headline="page.subtitle"
+        :image="page.headerIllustration"
       />
-      <scroll-to direction="up" />
-    </div>
-  </main>
+      <section class="page-blog-container grid">
+        <h2 class="sr-only">{{ $t('blog_overview') }}</h2>
+        <text-block class="page-blog__text">
+          <p class="testimonial">{{ page.description }}</p>
+        </text-block>
+        <ul class="page-blog__posts">
+          <li v-for="blogPost in items.filter(post => post.published)" :key="blogPost.slug">
+            <blog-list-item large :item="blogPost" />
+          </li>
+        </ul>
+      </section>
+      <div class="page-blog__cta grid">
+        <!-- TODO: Make this a section to be defined in DATO (once for all blog pages) -->
+        <pivot-section
+          v-if="pivots && pivots.length"
+          class="page-blog__pivot-section"
+          :pivot="pivots[0]"
+        />
+        <scroll-to direction="up" />
+      </div>
+    </main>
+  </LazyHydrate>
 </template>
 
 <script>
@@ -38,9 +40,10 @@
   import PageHeader from '~/components/page-header'
   import ScrollTo from '~/components/scroll-to'
   import TextBlock from '~/components/text-block'
+  import LazyHydrate from 'vue-lazy-hydration'
 
   export default {
-    components: { BlogListItem, PivotSection, PageHeader, ScrollTo, TextBlock },
+    components: { LazyHydrate, BlogListItem, PivotSection, PageHeader, ScrollTo, TextBlock },
     asyncData,
     head
   }
