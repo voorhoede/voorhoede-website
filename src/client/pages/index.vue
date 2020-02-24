@@ -123,23 +123,36 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
   import LazyHydrate from 'vue-lazy-hydration'
+  import AcademyExcerpt from '~/components/academy-excerpt'
+  import AppButton from '~/components/app-button'
+  import BlogListItem from '~/components/blog-list-item'	
+  import CaseExcerpt from '~/components/case-excerpt'
+  import PivotSection from '~/components/pivot-section'
+  import CurlyBracket from '~/components/curly-bracket'
+  import HighlightedClients from '~/components/highlighted-clients'
+  import HorizontalCarousel from '~/components/horizontal-carousel'
+  import NewsletterForm from '~/components/newsletter-form'
+  import PageHeader from '~/components/page-header'
+  import ScrollHighlightedText from '~/components/scroll-highlighted-text'
+  import ScrollTo from '~/components/scroll-to'
+  import ServicesList from '~/components/services-list'
 
   export default {
     components: {
       LazyHydrate,
-      AcademyExcerpt: () => import(/* webpackChunkName: "academy" */'~/components/academy-excerpt'),
-      AppButton: () => import(/* webpackChunkName: "appbutton" */'~/components/app-button'),
-      BlogListItem: () => import(/* webpackChunkName: "bloglistItem" */'~/components/blog-list-item'),
-      CaseExcerpt: () => import(/* webpackChunkName: "caseExcerpt" */'~/components/case-excerpt'),
-      PivotSection: () => import(/* webpackChunkName: "pivotSection" */'~/components/pivot-section'),
-      CurlyBracket: () => import(/* webpackChunkName: "curlyBracket" */'~/components/curly-bracket'),
-      HighlightedClients: () => import(/* webpackChunkName: "highlightedClients" */'~/components/highlighted-clients'),
-      HorizontalCarousel: () => import(/* webpackChunkName: "carousel" */'~/components/horizontal-carousel'),
-      NewsletterForm: () => import(/* webpackChunkName: "newsletter" */'~/components/newsletter-form'),
-      PageHeader: () => import(/* webpackChunkName: "pageheader" */'~/components/page-header'),
-      ScrollHighlightedText: () => import(/* webpackChunkName: "highlightedtext" */'~/components/scroll-highlighted-text'),
-      ScrollTo: () => import(/* webpackChunkName: "scrollto" */'~/components/scroll-to'),
-      ServicesList: () => import(/* webpackChunkName: "services" */'~/components/services-list'),
+      AcademyExcerpt,
+      AppButton,
+      BlogListItem,
+      CaseExcerpt,
+      PivotSection,
+      CurlyBracket,
+      HighlightedClients,
+      HorizontalCarousel,
+      NewsletterForm,
+      PageHeader,
+      ScrollHighlightedText,
+      ScrollTo,
+      ServicesList,
     },
     asyncData,
     methods: {

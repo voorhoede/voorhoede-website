@@ -13,12 +13,16 @@
       :links="layout.menu.links"
       :call-to-action="layout.menu.callToAction"
     />
-    <app-mobile-menu
-      :title="layout.menu.title"
-      :links="[].concat(layout.menu.links, layout.menu.callToAction)"
-    />
+    <LazyHydrate when-visible>
+      <app-mobile-menu
+        :title="layout.menu.title"
+        :links="[].concat(layout.menu.links, layout.menu.callToAction)"
+      />
+    </LazyHydrate>
     <nuxt />
-    <app-footer/>
+    <LazyHydrate when-visible>
+      <app-footer/>
+    </LazyHydrate>
   </div>
 </template>
 
@@ -28,10 +32,11 @@ import AppFooter from '~/components/app-footer'
 import AppHeader from '~/components/app-header'
 import AppMobileMenu from '~/components/app-mobile-menu'
 import GridDemo from '~/components/grid-demo'
+import LazyHydrate from 'vue-lazy-hydration'
 
 
 export default {
-  components: { AppFooter, AppHeader, AppMobileMenu, GridDemo },
+  components: { LazyHydrate, AppFooter, AppHeader, AppMobileMenu, GridDemo },
   computed: {
     ...mapState(['showGrid']),
     layout () {
