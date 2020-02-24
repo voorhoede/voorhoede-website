@@ -1,40 +1,42 @@
 <template>
-  <div>
-    <main class="page-cases">
-      <page-header
-        heading="byline"
-        :byline="page.title"
-        :headline="page.subtitle"
-        :image="page.headerIllustration"
-      />
-      <section class="grid">
-        <h2 class="sr-only">{{ $t('all_cases') }}</h2>
-        <ul class="page-case__overview">
-          <li class="page-case__overview-item" v-for="caseItem in items" :key="caseItem.slug">
-            <case-excerpt
-              :slug="caseItem.slug"
-              :image="caseItem.heroIllustration"
-              :title="caseItem.title"
-              :body="caseItem.subtitle"
-            />
-          </li>
-        </ul>
-      </section>
-      <div class="grid">
-        <pivot-section
-          v-if="pivots && pivots.length"
-          :pivot="pivots[0]"
+  <LazyHydrate when-visible>
+    <div>
+      <main class="page-cases">
+        <page-header
+          heading="byline"
+          :byline="page.title"
+          :headline="page.subtitle"
+          :image="page.headerIllustration"
         />
-      </div>
-    </main>
-    <newsletter-form />
-  </div>
+        <section class="grid">
+          <h2 class="sr-only">{{ $t('all_cases') }}</h2>
+          <ul class="page-case__overview">
+            <li class="page-case__overview-item" v-for="caseItem in items" :key="caseItem.slug">
+              <case-excerpt
+                :slug="caseItem.slug"
+                :image="caseItem.heroIllustration"
+                :title="caseItem.title"
+                :body="caseItem.subtitle"
+              />
+            </li>
+          </ul>
+        </section>
+        <div class="grid">
+          <pivot-section
+            v-if="pivots && pivots.length"
+            :pivot="pivots[0]"
+          />
+        </div>
+      </main>
+      <newsletter-form />
+    </div>
+  </LazyHydrate>
 </template>
 
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-
+  import LazyHydrate from 'vue-lazy-hydration'
   import CaseExcerpt from '~/components/case-excerpt'
   import PageHeader from '~/components/page-header'
   import PivotSection from '~/components/pivot-section'
@@ -42,6 +44,7 @@
 
   export default {
     components: {
+      LazyHydrate,
       CaseExcerpt,
       PageHeader,
       PivotSection,
