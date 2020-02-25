@@ -109,14 +109,18 @@ export default {
     AppIcon
   },
   data () {
-    const { menu, footer } = require(`../../static/data/${this.$i18n.locale}/layouts/default`)
     return {
-      links: [].concat(menu.links, menu.callToAction),
-      content: footer,
       observer: null
     }
   },
   computed: {
+    links () {
+      const { menu } = require(`../../static/data/${this.$i18n.locale}/layouts/default`)
+      return [].concat(menu.links, menu.callToAction)
+    },
+    content () {
+      return require(`../../static/data/${this.$i18n.locale}/layouts/default`).footer
+    },
     socialLinks() {
       return [
         { url: this.content.twitterUrl,  platform: 'twitter',  icon: 'twitter--blue' },
