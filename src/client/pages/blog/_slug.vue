@@ -199,7 +199,7 @@ export default {
         eventCategory: 'Article',
         eventAction: 'scrolled to end',
         eventLabel: this.$route.fullPath,
-        eventValue: 0
+        eventValue: 100
       }
       this.observer = new IntersectionObserver(function(entries) {
         if (entries.some(entry => entry.isIntersecting)) {
