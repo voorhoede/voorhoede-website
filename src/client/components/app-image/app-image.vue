@@ -14,6 +14,7 @@
         :data="imageUrl()"
         type="image/svg+xml"
         tabindex="-1"
+        :aria-label="imageAlt"
       />
     </div>
     <picture
