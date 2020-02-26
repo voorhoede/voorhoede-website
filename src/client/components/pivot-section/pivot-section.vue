@@ -39,8 +39,6 @@
     methods: {
       createHref,
       trackLink (href) {
-        // eslint-disable-next-line
-        console.log('click it!!!!')
         this.$ga.event('Pivot', 'click cta', href, 0)
       },
     }
