@@ -13,6 +13,7 @@
     >
     </div>
     <app-button
+      @click.native="trackLink(pivot.link.page.slug)"
       :label="pivot.callToActionLabel"
       :to="createHref(pivot.link)"
     />
@@ -36,7 +37,10 @@
       },
     },
     methods: {
-      createHref
+      createHref,
+      trackLink (href) {
+        this.$ga.event('Pivot', 'click cta', href, 0)
+      },
     }
   }
 </script>
