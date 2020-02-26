@@ -98,8 +98,7 @@
         return navigator.share({ url })
       },
       trackShare(platform) {
-        const url = this.url
-        this.$ga.social(platform, 'share', url)
+        this.$ga.social(platform, 'share', this.url)
       },
     },
 
