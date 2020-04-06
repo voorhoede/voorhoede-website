@@ -25,21 +25,23 @@
       :inverse="true"
       class="page-about-us__middle"
     />
-    <div class="page-about-us__jobs-text">
-      <h2 class="page-about-us__jobs-title h2">{{ page.jobsTitle }}</h2>
-      <p class="body-big font-html-blue">{{ page.jobsBody }}</p>
-    </div>
-    <ul class="page-about-us__jobs">
-      <li class="page-about-us__jobs-list" v-for="item in jobs" :key="item.slug">
-        <jobs-excerpt
-          class="page-about-us__jobs-list-item"
-          :title="item.title"
-          :description="item.description"
-          :image="item.jobImage"
-          :slug="item.slug"
-        />
-      </li>
-    </ul>
+    <template v-if="jobs.length > 0">
+      <div class="page-about-us__jobs-text">
+        <h2 class="page-about-us__jobs-title h2">{{ page.jobsTitle }}</h2>
+        <p class="body-big font-html-blue">{{ page.jobsBody }}</p>
+      </div>
+      <ul class="page-about-us__jobs">
+        <li class="page-about-us__jobs-list" v-for="item in jobs" :key="item.slug">
+          <jobs-excerpt
+            class="page-about-us__jobs-list-item"
+            :title="item.title"
+            :description="item.description"
+            :image="item.jobImage"
+            :slug="item.slug"
+          />
+        </li>
+      </ul>
+    </template>
     <section class="page-about-us__blog">
       <h2 class="page-about-us__blog-title h2">{{ $t('latest_blog_posts') }}</h2>
       <ul class="page-about-us__blog-list">
@@ -137,6 +139,7 @@
   }
 
   .page-about-us__blog {
+    padding-top: var(--spacing-larger);
     grid-row: 7;
     margin-bottom: var(--spacing-big);
   }
@@ -155,7 +158,6 @@
     justify-content: center;
   }
 
-  .page-about-us__jobs,
   .page-about-us__image-grid,
   .page-about-us__jobs-text {
     text-align: center;
@@ -219,14 +221,14 @@
     }
 
     .page-about-us__blog {
+      padding-top: var(--spacing-big);
       grid-column-start: 4;
       grid-column-end: 48;
     }
   }
 
   @media (min-width: 1100px) {
-    .page-about-us__image-grid,
-    .page-about-us__jobs {
+    .page-about-us__image-grid {
       margin-bottom: var(--spacing-bigger);
     }
 
@@ -240,6 +242,7 @@
     }
 
     .page-about-us__blog {
+      padding-top: var(--spacing-bigger);
       grid-column-start: 10;
       grid-column-end: 42;
     }
