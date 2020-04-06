@@ -63,7 +63,7 @@
         />
       </div>
     </section>
-    <newsletter-form no-background="true" />
+    <newsletter-form class="page-about-us__newsletter" no-background="true" />
   </div>
 </template>
 
@@ -139,9 +139,12 @@
   }
 
   .page-about-us__blog {
-    padding-top: var(--spacing-larger);
     grid-row: 7;
     margin-bottom: var(--spacing-big);
+  }
+
+  .page-about-us__newsletter {
+    grid-row: 8;
   }
 
   .page-about-us__blog-title {
@@ -158,6 +161,7 @@
     justify-content: center;
   }
 
+  .page-about-us__jobs,
   .page-about-us__image-grid,
   .page-about-us__jobs-text {
     text-align: center;
@@ -221,14 +225,14 @@
     }
 
     .page-about-us__blog {
-      padding-top: var(--spacing-big);
       grid-column-start: 4;
       grid-column-end: 48;
     }
   }
 
   @media (min-width: 1100px) {
-    .page-about-us__image-grid {
+    .page-about-us__image-grid,
+    .page-about-us__jobs {
       margin-bottom: var(--spacing-bigger);
     }
 
@@ -242,7 +246,6 @@
     }
 
     .page-about-us__blog {
-      padding-top: var(--spacing-bigger);
       grid-column-start: 10;
       grid-column-end: 42;
     }
