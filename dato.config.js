@@ -126,7 +126,7 @@ function redirectsToText (redirects, locales, defaultLocale) {
   const redirectToDefaultLocale = `/ /${defaultLocale}/ 302!`
 
   const redirectRulesFromCms = redirects
-    .map(redirect => `${redirect.from} ${redirect.to} ${redirect.httpStatusCode}!`)
+    .map(redirect => `${redirect.from} ${redirect.to} ${redirect.httpStatusCode}`)
   const redirectRules404s = locales.map(locale => `/${locale}/* /${locale}/layouts/error/404/ 404`)
   return [
     ...redirectsToNonDefaultLocales,
