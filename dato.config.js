@@ -122,12 +122,12 @@ function errorPageToJson(errorPage) {
 function redirectsToText (redirects, locales, defaultLocale) {
   const redirectsToNonDefaultLocales = locales
     .filter(locale => locale !== defaultLocale)
-    .map(locale => `/ /${locale}/ 302 Language=${locale}`)
-  const redirectToDefaultLocale = `/ /${defaultLocale}/ 302`
+    .map(locale => `/ /${locale}/ 302! Language=${locale}`)
+  const redirectToDefaultLocale = `/ /${defaultLocale}/ 302!`
 
   const redirectRulesFromCms = redirects
-    .map(redirect => `${redirect.from} ${redirect.to} ${redirect.httpStatusCode}`)
-  const redirectRules404s = locales.map(locale => `/${locale}/* /${locale}/layouts/error/404/ 404`)
+    .map(redirect => `${redirect.from} ${redirect.to} ${redirect.httpStatusCode}!`)
+  const redirectRules404s = locales.map(locale => `/${locale}/* /${locale}/layouts/error/404/ 404!`)
   return [
     ...redirectsToNonDefaultLocales,
     redirectToDefaultLocale,
