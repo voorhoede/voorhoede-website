@@ -8,6 +8,16 @@
       :image="page.headerIllustration"
     />
 
+    <aside class="page-blog-post__aside">
+      <blog-author class="page-blog-post__aside-author" :item="page" />
+      <social-share-buttons
+        :title="page.socialTitle"
+        :twitter-title="page.title"
+        :authors="page.authors"
+      />
+      <toc-section :items="tocItems" />
+    </aside>
+
     <article class="page-blog-post-list">
       <text-block>
         <h3 class="font-html-blue testimonial">{{ page.introTitle }}</h3>
@@ -42,6 +52,7 @@
           v-if="item.__typename === 'ImageRecord' && item.image"
           :key="item.image.url"
           :image="item.image"
+          :caption="item.caption"
         />
 
         <responsive-video
@@ -85,16 +96,9 @@
       </template>
     </article>
 
-    <aside class="page-blog-post__aside">
-      <blog-author class="page-blog-post__aside-author" :item="page" />
-      <social-share-buttons
-        :title="page.socialTitle"
-        :twitter-title="page.title"
-      />
-      <toc-section :items="tocItems" />
-    </aside>
-
-    <div class="page-blog-post__link-container">
+    <div
+      class="page-blog-post__link-container"
+      ref="articleEnd">
       <nuxt-link class="app-button app-button--secondary body font-bold" :to="localeUrl('blog')">
         &larr; {{ $t('all_blogposts') }}
       </nuxt-link>
@@ -157,6 +161,7 @@ export default {
        * to prevent issues with the moment the custom script is executed and hydration.
        */
       loadCustomScript: false,
+      observer: null,
     }
   },
   computed: {
@@ -174,10 +179,38 @@ export default {
   asyncData,
   mounted () {
     this.loadCustomScript = true
+    if ('IntersectionObserver' in window) {
+      this.observeScrolledArticle()
+    }
+  },
+  beforeDestroy() {
+    if (this.observer !== null) {
+      this.unobserveScrolledArticle()
+    }
   },
   methods: {
     slugify(title) {
       return `${title.replace(/[^A-Za-z]+/g, '-').toLowerCase()}`
+    },
+    observeScrolledArticle () {
+      const articleEndElement = this.$refs.articleEnd
+      const ga = this.$ga
+      const event = {
+        eventCategory: 'Article',
+        eventAction: 'scrolled to end',
+        eventLabel: this.$route.fullPath,
+        eventValue: 100
+      }
+      this.observer = new IntersectionObserver(function(entries) {
+        if (entries.some(entry => entry.isIntersecting)) {
+          ga.event(event)
+          this.unobserve(articleEndElement)
+        }
+      })
+      this.observer.observe(articleEndElement)
+    },
+    unobserveScrolledArticle () {
+      this.observer.unobserve(this.$refs.articleEnd)
     }
   },
   head,

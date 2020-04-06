@@ -6,6 +6,7 @@
           class="case-excerpt__link"
           :to="localeUrl({ name: 'cases-slug', params: { slug } })"
           :title="title"
+          :aria-label="title"
         >
           <responsive-image
             :has-fixed-ratio="false"
@@ -99,9 +100,12 @@
     z-index: var(--z-index-low);
   }
 
-  .case-excerpt__image {
-    max-height: 100%;
-    max-width: 100%;
+  /**
+   * The responsive image requires height for the lazy load.
+   * Otherwise the intersection observer doesn't get triggered in chrome android.
+   */
+  .case-excerpt .responsive-image {
+    height: 100%;
   }
 
   .case-excerpt__title {

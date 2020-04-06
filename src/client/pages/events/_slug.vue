@@ -1,103 +1,107 @@
 <template>
-  <article class="page-event-detail grid" lang="en">
-    <page-header
-      class="page-event-detail__header"
-      heading="headline"
-      :byline="page.label.label"
-      :headline="page.title"
-      :image="imageIsIllustration ? page.image : fallbackIllustration" />
+  <div>
+    <article class="page-event-detail grid" lang="en">
+      <page-header
+        class="page-event-detail__header"
+        heading="headline"
+        :byline="page.label.label"
+        :headline="page.title"
+        :image="imageIsIllustration ? page.image : fallbackIllustration" />
 
-    <main class="page-event-detail__main">
-      <responsive-image
-        v-if="!imageIsIllustration && page.image"
-        class="page-event-detail__image"
-        :image="page.image"
-      />
-
-      <template v-for="item in page.items">
-        <image-with-description
-          class="page-event-detail__image page-event-detail__main--not-indented"
-          v-if="item.__typename === 'ImageWithTextRecord'"
-          :key="item.description"
-          :image="item.imageWithDescription.image"
-          :inverse="item.imageWithDescription.inverse"
-          :description="item.imageWithDescription.description" />
-
-        <quote-block
-          v-if="item.quote"
-          :key="item.quote"
-          :quote="item.quote"
-          :cite="item.author"
-          class="page-event-detail__quote" />
-
+      <main class="page-event-detail__main">
         <responsive-image
+          v-if="!imageIsIllustration && page.image"
           class="page-event-detail__image"
-          :class="{ 'page-event-detail__main--not-indented' : item.fullWidth}"
-          v-if="item.__typename === 'ImageRecord' && item.image"
-          :key="item.image.url"
-          :image="item.image" />
+          :image="page.image"
+        />
 
-        <text-block
-          v-if="item.__typename === 'TextSectionRecord' && item.title"
-          :key="item.title">
-          <h2 class="page-event-detail__title h3 font-html-blue">{{ item.title }}</h2>
-        </text-block>
+        <template v-for="item in page.items">
+          <image-with-description
+            class="page-event-detail__image page-event-detail__main--not-indented"
+            v-if="item.__typename === 'ImageWithTextRecord'"
+            :key="item.description"
+            :image="item.imageWithDescription.image"
+            :inverse="item.imageWithDescription.inverse"
+            :description="item.imageWithDescription.description" />
 
-        <rich-text-block
-          class="page-event-detail__rich-text"
-          v-if="item.__typename === 'TextSectionRecord' && item.body"
-          :key="item.body"
-          :text="item.body"
-          large-text />
-      </template>
+          <quote-block
+            v-if="item.quote"
+            :key="item.quote"
+            :quote="item.quote"
+            :cite="item.author"
+            class="page-event-detail__quote" />
 
-      <div v-if="page.callToActionLabel">
-        <app-button
-          :label="page.callToActionLabel"
-          :to="page.url"
-          external />
+          <responsive-image
+            class="page-event-detail__image"
+            :class="{ 'page-event-detail__main--not-indented' : item.fullWidth}"
+            v-if="item.__typename === 'ImageRecord' && item.image"
+            :key="item.image.url"
+            :image="item.image"
+            :caption="item.caption" />
+
+          <text-block
+            v-if="item.__typename === 'TextSectionRecord' && item.title"
+            :key="item.title">
+            <h2 class="page-event-detail__title h3 font-html-blue">{{ item.title }}</h2>
+          </text-block>
+
+          <rich-text-block
+            class="page-event-detail__rich-text"
+            v-if="item.__typename === 'TextSectionRecord' && item.body"
+            :key="item.body"
+            :text="item.body"
+            large-text />
+        </template>
+
+        <div v-if="page.callToActionLabel">
+          <app-button
+            :label="page.callToActionLabel"
+            :to="page.url"
+            external />
+        </div>
+      </main>
+
+      <aside class="page-event-detail__aside">
+        <div>
+          <p class="body font-bold">Date</p>
+          <time
+            :datetime="page.date"
+            class="body"
+          >
+            {{ formattedDate }}
+          </time>
+        </div>
+
+        <div>
+          <p class="body font-bold">Location</p>
+          <rich-text-block
+            v-if="page.address"
+            :key="page.address"
+            :text="page.address" />
+        </div>
+
+        <div>
+          <p v-if="page.price" class="body font-bold">Price</p>
+          <p v-if="page.price" class="body">{{ page.price }}</p>
+        </div>
+
+        <div
+          class="page-event-detail__label body"
+          :class="{ 'page-event__detail__label--alt': isMeetup }">
+          {{ page.label.label }}
+        </div>
+      </aside>
+
+      <div class="page-event-detail__link-container">
+        <nuxt-link
+          class="app-button app-button--secondary body font-bold"
+          :to="localeUrl('events')">
+          &larr; {{ $t('all_events') }}
+        </nuxt-link>
       </div>
-    </main>
-
-    <aside class="page-event-detail__aside">
-      <div>
-        <p class="body font-bold">Date</p>
-        <time
-          :datetime="page.date"
-          class="body"
-        >
-          {{ formattedDate }}
-        </time>
-      </div>
-
-      <div>
-        <p class="body font-bold">Location</p>
-        <rich-text-block
-          v-if="page.address"
-          :key="page.address"
-          :text="page.address" />
-      </div>
-
-      <div>
-        <p v-if="page.price" class="body font-bold">Price</p>
-        <p v-if="page.price" class="body">{{ page.price }}</p>
-      </div>
-
-      <div
-        class="page-event-detail__label body"
-        :class="{ 'page-event__detail__label--alt': isMeetup }">
-        {{ page.label.label }}
-      </div>
-    </aside>
-
-    <div class="page-event-detail__link-container">
-      <nuxt-link
-        class="app-button app-button--secondary body font-bold"
-        :to="localeUrl('events')">
-        &larr; {{ $t('all_events') }}
-      </nuxt-link>
-    </div>
-  </article>
+    </article>
+    <newsletter-form />
+  </div>
 </template>
 
 <script>
@@ -112,6 +116,7 @@
   import ResponsiveImage from '~/components/responsive-image'
   import RichTextBlock from '~/components/rich-text-block'
   import TextBlock from '~/components/text-block'
+  import NewsletterForm from '~/components/newsletter-form'
 
   export default {
     components: {
@@ -122,6 +127,7 @@
       ResponsiveImage,
       RichTextBlock,
       TextBlock,
+      NewsletterForm,
     },
     data() {
       return {

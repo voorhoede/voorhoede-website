@@ -61,6 +61,7 @@
         />
       </div>
     </section>
+    <newsletter-form no-background="true" />
   </div>
 </template>
 
@@ -73,6 +74,7 @@
   import ImageWithTextBlock from '~/components/image-with-text-block'
   import JobsExcerpt from '~/components/jobs-excerpt'
   import PageHeader from '~/components/page-header'
+  import NewsletterForm from '~/components/newsletter-form'
 
   export default {
     components: {
@@ -82,6 +84,7 @@
       ImageWithTextBlock,
       JobsExcerpt,
       PageHeader,
+      NewsletterForm,
     },
     asyncData,
     head,

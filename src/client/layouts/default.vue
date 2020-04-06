@@ -29,15 +29,14 @@ import AppHeader from '~/components/app-header'
 import AppMobileMenu from '~/components/app-mobile-menu'
 import GridDemo from '~/components/grid-demo'
 
+
 export default {
   components: { AppFooter, AppHeader, AppMobileMenu, GridDemo },
-  data() {
-    return {
-      layout: require(`../static/data/${this.$i18n.locale}/layouts/default`), // layout data should always be bundled
-    }
-  },
   computed: {
     ...mapState(['showGrid']),
+    layout () {
+      return require(`../static/data/${this.$i18n.locale}/layouts/default`)
+    }
   },
   head() {
     return {

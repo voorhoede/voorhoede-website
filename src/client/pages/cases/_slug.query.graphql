@@ -35,20 +35,6 @@ query ($locale: SiteLocale, $slug: String) {
         }
       }
     }
-  },
-  caseItemShared: _caseItem {
-    subtitle,
-    contactPerson {
-      name,
-      lastName,
-      jobTitle,
-      image {
-        format,
-        height,
-        width,
-        url,
-      },
-    }
   }
 }
 
@@ -97,7 +83,7 @@ fragment caseItem on CaseItemRecord {
         height
         format
       }
-      alt
+      caption
       fullWidth
     }
     ... on PullquoteRecord {
@@ -173,4 +159,15 @@ fragment caseItem on CaseItemRecord {
   }
   quote
   author
+  contactPerson {
+    name
+    lastName
+    jobTitle
+    image {
+      format
+      height
+      width
+      url
+    }
+  }
 }

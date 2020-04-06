@@ -48,7 +48,7 @@ module.exports = (dato, root, i18n) => {
 }
 
 function appSettingsToJson(app) {
-  return pick(app, ['googleAnalyticsId', 'experimentId'])
+  return pick(app, ['googleAnalyticsId', 'experimentId', 'trackingVersion'])
 }
 
 function localesToJson (locales) {

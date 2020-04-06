@@ -153,6 +153,7 @@
     methods: {
       play() {
         this.isPlaying = true
+        this.$ga.event('Video', `play ${this.video.providerUid}`, this.video.provider, 0)
       },
     },
   }

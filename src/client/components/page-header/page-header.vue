@@ -2,8 +2,9 @@
   <header
     class="page-header grid"
     :class="{
-      'page-header--fill-screen': fillScreen,
       'page-header--curly-bracket': displayCurlyBracket,
+      'page-header--fill-screen': fillScreen,
+      'page-header--has-image': image,
       'page-header--has-slot': displaySlot,
     }"
   >
@@ -14,25 +15,25 @@
        otherwise a `<p>` for the headline should succeed it.
       -->
       <p
-        v-if="(heading === 'headline')"
+        v-if="heading === 'headline'"
         v-html="byline"
         class="sub-title"
       />
       <h1
-        v-html="(heading === 'byline') ? byline : headline"
+        v-html="heading === 'byline' ? byline : headline"
         :class="{
-          'sub-title': (heading === 'byline'),
-          'sr-only': (heading === 'headline')
+          'sub-title': heading === 'byline',
+          'sr-only': heading === 'headline'
         }"
       />
       <p
-        v-if="(heading === 'byline')"
+        v-if="heading === 'byline'"
         class="sr-only"
         v-html="headline"
       />
       <!-- Always visible, but has aria-hidden -->
       <self-typing-text
-        :class="(fillScreen) ? 'hero' : 'h1'"
+        :class="fillScreen ? 'hero' : 'h1'"
         :text="headline"
       />
     </div>
@@ -155,39 +156,39 @@
   .page-header--fill-screen::before {
     content: '';
     display: block;
-    background-color: var(--brand-yellow);
     grid-column: var(--grid-page);
     grid-row: 5 / 8;
+    background-color: var(--brand-yellow);
   }
 
   /* Curly bracket */
   .page-header--curly-bracket::after {
-    margin: calc(-1 * var(--spacing-medium)) 0;
     content: '';
     display: block;
     position: relative;
-    grid-row: 5 / 8;
     grid-column: 44 / 51;
+    grid-row: 5 / 8;
+    margin: calc(-1 * var(--spacing-medium)) 0;
+    transform: rotate(180deg);
     background-image: url('/images/curly-bracket--paper.svg');
     background-repeat: no-repeat;
-    background-size: cover;
     background-position: 100%;
+    background-size: cover;
     mix-blend-mode: screen;
-    transform: rotate(180deg);
   }
 
   .page-header--fill-screen .page-header__image-column {
     display: flex;
+    z-index: var(--z-index-low); /* Make sure to be on top off curly bracket */
+    grid-column: 3 / var(--grid-page-end);
+    grid-row: 6 / 7;
     align-items: flex-end;
     justify-content: flex-end;
-    grid-row: 6 / 7;
-    grid-column: 3 / var(--grid-page-end);
-    z-index: var(--z-index-low); /* Make sure to be on top off curly bracket */
   }
 
   .page-header__image {
-    max-height: 100%;
     max-width: 100%;
+    max-height: 100%;
   }
 
   .page-header .scroll-to {
@@ -211,8 +212,8 @@
   }
 
   .page-header__slot {
-    grid-row: 9 / 10;
     grid-column: 4 / var(--grid-content-end);
+    grid-row: 9 / 10;
   }
 
   @media (min-width: 520px) {
@@ -234,8 +235,8 @@
     /* Curly bracket */
     .page-header--fill-screen::after {
       grid-column: 39 / 50;
-      background-size: contain;
       background-position: unset;
+      background-size: contain;
     }
 
     .page-header--has-slot {
@@ -279,17 +280,17 @@
 
     /* Yellow half */
     .page-header--fill-screen::before {
-      grid-row: 1 / 7;
       grid-column: var(--grid-page-right);
+      grid-row: 1 / 7;
     }
 
     /* Curly bracket */
     .page-header--fill-screen::after {
-      margin: calc(-1 * var(--spacing-medium)) 0;
-      grid-row: 3 / 6;
       grid-column: var(--grid-center) / 48;
-      background-size: contain;
+      grid-row: 3 / 6;
+      margin: calc(-1 * var(--spacing-medium)) 0;
       background-position: left center; /* remember, object is rotated */
+      background-size: contain;
     }
 
     .page-header--fill-screen .scroll-to {
@@ -297,16 +298,20 @@
     }
 
     .page-header__text {
+      grid-column: 2 / 40;
+    }
+
+    .page-header--has-image .page-header__text {
       grid-column: var(--grid-content-left);
     }
 
     .page-header__image-column {
-      margin-bottom: calc(-1 * var(--spacing-small)); /* Make image move outside page header */
-      grid-row: 3 / 5;
       display: flex;
+      grid-column: 29 / 49;
+      grid-row: 3 / 5;
       align-items: flex-end;
       justify-content: flex-end;
-      grid-column: 29 / 49;
+      margin-bottom: calc(-1 * var(--spacing-small)); /* Make image move outside page header */
     }
 
     .page-header__image {
@@ -314,10 +319,10 @@
     }
 
     .page-header--fill-screen .page-header__image-column {
-      margin: 0;
-      grid-row: 5 / 6;
       grid-column: 20 / 49;
+      grid-row: 5 / 6;
       max-height: 100%;
+      margin: 0;
     }
 
     /* Make sure image doesn't float upwards */
@@ -377,6 +382,10 @@
     }
 
     .page-header__text {
+      grid-column: 4 / 40;
+    }
+
+    .page-header--has-image .page-header__text {
       grid-column: 4 / 24;
     }
 
