@@ -25,21 +25,23 @@
       :inverse="true"
       class="page-about-us__middle"
     />
-    <div class="page-about-us__jobs-text">
-      <h2 class="page-about-us__jobs-title h2">{{ page.jobsTitle }}</h2>
-      <p class="body-big font-html-blue">{{ page.jobsBody }}</p>
-    </div>
-    <ul class="page-about-us__jobs">
-      <li class="page-about-us__jobs-list" v-for="item in jobs" :key="item.slug">
-        <jobs-excerpt
-          class="page-about-us__jobs-list-item"
-          :title="item.title"
-          :description="item.description"
-          :image="item.jobImage"
-          :slug="item.slug"
-        />
-      </li>
-    </ul>
+    <template v-if="jobs.length > 0">
+      <div class="page-about-us__jobs-text">
+        <h2 class="page-about-us__jobs-title h2">{{ page.jobsTitle }}</h2>
+        <p class="body-big font-html-blue">{{ page.jobsBody }}</p>
+      </div>
+      <ul class="page-about-us__jobs">
+        <li class="page-about-us__jobs-list" v-for="item in jobs" :key="item.slug">
+          <jobs-excerpt
+            class="page-about-us__jobs-list-item"
+            :title="item.title"
+            :description="item.description"
+            :image="item.jobImage"
+            :slug="item.slug"
+          />
+        </li>
+      </ul>
+    </template>
     <section class="page-about-us__blog">
       <h2 class="page-about-us__blog-title h2">{{ $t('latest_blog_posts') }}</h2>
       <ul class="page-about-us__blog-list">
@@ -61,7 +63,7 @@
         />
       </div>
     </section>
-    <newsletter-form no-background="true" />
+    <newsletter-form class="page-about-us__newsletter" no-background="true" />
   </div>
 </template>
 
@@ -139,6 +141,10 @@
   .page-about-us__blog {
     grid-row: 7;
     margin-bottom: var(--spacing-big);
+  }
+
+  .page-about-us__newsletter {
+    grid-row: 8;
   }
 
   .page-about-us__blog-title {
