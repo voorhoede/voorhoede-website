@@ -20,14 +20,26 @@ module.exports = [
         '/_nuxt/runtime.js',
         '/_nuxt/vendors.app.js',
       ],
+      cacheAssets: false, // disable magic caching for _nuxt folder
       runtimeCaching: [
+        // explicit caching for _nuxt folder
+        {
+          urlPattern: '/_nuxt/',
+          handler: 'cacheFirst',
+          strategyOptions: {
+            cacheName: 'nuxt-assets',
+            cacheExpiration: {
+              maxEntries: 100
+            }
+          }
+        },
         {
           urlPattern: 'https://www.datocms-assets.com/',
           handler: 'cacheFirst',
           strategyOptions: {
             cacheName: 'dato-assets',
             cacheExpiration: {
-              maxEntries: 128,
+              maxEntries: 100,
             }
           }
         }
