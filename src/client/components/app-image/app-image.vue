@@ -15,7 +15,6 @@
         type="image/svg+xml"
         tabindex="-1"
         :aria-label="imageAlt"
-        crossorigin="anonymous"
       />
     </div>
     <picture
