@@ -95,6 +95,7 @@ module.exports = {
     { src: '~/plugins/locale-urls' },
     { src: '~/plugins/ascii-art', mode: 'client' },
     { src: '~/plugins/promise-polyfill', mode: 'client' },
+    { src: '~/plugins/install-prompt', mode: 'client' },
   ],
 
   css: [
