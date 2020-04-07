@@ -15,6 +15,7 @@
         type="image/svg+xml"
         tabindex="-1"
         :aria-label="imageAlt"
+        crossorigin="anonymous"
       />
     </div>
     <picture
@@ -31,7 +32,9 @@
           w: width,
           h: cropAndKeepRatio ? width : null,
           fit: cropAndKeepRatio ? 'crop': null })"
-        :alt="imageAlt">
+        :alt="imageAlt"
+        crossorigin="anonymous"
+      >
     </picture>
   </component>
 </template>
