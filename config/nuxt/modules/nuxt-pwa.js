@@ -27,7 +27,7 @@ module.exports = [
           strategyOptions: {
             cacheName: 'dato-assets',
             cacheExpiration: {
-              maxAgeSeconds: 6 * 31 * 24 * 60 * 60 // 6 months
+              maxEntries: 128,
             }
           }
         }
