@@ -20,7 +20,7 @@
     "build:client": "nuxt generate",
     "postbuild": "run-p postbuild:*",
     "postbuild:feed": "node _scripts/build-feed/index.js",
-    "postbuild:revision": "node _scripts/revision/index.js",
+    "postbuild:revision": "node _scripts/revision-sw-precache/index.js",
     "predev": "run-s data:clean data:app",
     "dev": "PORT=3278 nuxt",
     "predev:pwa": "npm run prebuild",
