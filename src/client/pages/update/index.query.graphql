@@ -1,0 +1,26 @@
+query ($locale: SiteLocale) {
+  page: update(locale: $locale) {
+    ...page
+  }
+}
+
+fragment page on UpdateRecord {
+  title,
+  subtitle,
+  headerIllustration {
+    url,
+    alt
+  },
+  slug,
+  social {
+    title,
+    description
+  },
+  keywords,
+  items {
+     __typename,
+    id,
+    body,
+    title
+  }
+}
