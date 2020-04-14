@@ -62,6 +62,12 @@ function localesToJson (locales) {
 
 function layoutToJson(dato) {
   return {
+    banner: {
+      isVisible: dato.banner.isVisible,
+      link: { ...pick(dato.banner.link, ['slug']) },
+      linkTitle: dato.banner.linkTitle,
+      text: dato.banner.text,
+    },
     menu: {
       title: dato.menu.title,
       links: dato.menu.links.map(formatLink),
