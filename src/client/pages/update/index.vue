@@ -40,7 +40,8 @@
 </script>
 
 <style>
-  .page-update .page-header {
+  .page-update .page-header,
+  .page-update .page-update__article {
     margin-bottom: var(--spacing-large);
   }
 
