@@ -106,17 +106,21 @@ import AppIcon from '../../components/app-icon'
 
 export default {
   components: {
-    AppIcon,
+    AppIcon
   },
   data () {
-    const { menu, footer } = require(`../../static/data/${this.$i18n.locale}/layouts/default`)
     return {
-      links: [].concat(menu.links, menu.callToAction),
-      content: footer,
       observer: null
     }
   },
   computed: {
+    links () {
+      const { menu } = require(`../../static/data/${this.$i18n.locale}/layouts/default`)
+      return [].concat(menu.links, menu.callToAction)
+    },
+    content () {
+      return require(`../../static/data/${this.$i18n.locale}/layouts/default`).footer
+    },
     socialLinks() {
       return [
         { url: this.content.twitterUrl,  platform: 'twitter',  icon: 'twitter--blue' },
@@ -295,6 +299,15 @@ export default {
     display: none;
     width: var(--logo-width);
     margin-bottom: var(--spacing-small);
+  }
+
+  .app-footer__newsletter-title {
+    width: 100%;
+  }
+
+  .app-footer__newsletter-form {
+    width: 80%;
+    text-align: left;
   }
 
   .app-footer__column {

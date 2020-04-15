@@ -4,11 +4,19 @@
       v-if="hasFixedRatio"
       :width="image.width"
       :height="image.height">
-      <app-image :image="image"/>
+      <app-image
+        :image="image"
+        :caption="caption"/>
     </fixed-ratio>
     <app-image
       v-else
-      :image="image"/>
+      :image="image"
+      :caption="caption"/>
+    <div
+      v-if="caption"
+      class="responsive-image__caption body-detail">
+      {{ caption }}
+    </div>
   </div>
 </template>
 
@@ -22,6 +30,10 @@
       AppImage,
     },
     props: {
+      caption: {
+        type: String,
+        default: '',
+      },
       image: {
         type: Object,
         required: true,
@@ -40,5 +52,10 @@
     margin-right: auto;
     height: auto;
     width: 100%;
+  }
+
+  .responsive-image__caption {
+    margin-top: var(--spacing-smaller);
+    text-align: center;
   }
 </style>

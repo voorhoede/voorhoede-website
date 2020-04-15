@@ -83,7 +83,7 @@ fragment caseItem on CaseItemRecord {
         height
         format
       }
-      alt
+      caption
       fullWidth
     }
     ... on PullquoteRecord {

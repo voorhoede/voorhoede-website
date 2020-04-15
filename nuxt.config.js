@@ -89,9 +89,10 @@ module.exports = {
   },
 
   plugins: [
-    { src: '~/plugins/fetch-polyfill', ssr: false },
+    { src: '~/plugins/fetch-polyfill', mode: 'client' },
     { src: '~/plugins/locale-urls' },
-    { src: '~/plugins/promise-polyfill', ssr: false },
+    { src: '~/plugins/ascii-art', mode: 'client' },
+    { src: '~/plugins/promise-polyfill', mode: 'client' },
   ],
 
   css: [

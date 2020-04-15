@@ -1,20 +1,23 @@
 <template>
-  <main class="page-services grid">
-    <page-header
-      heading="byline"
-      :byline="page.title"
-      :headline="page.subtitle"
-      :image="page.headerIllustration" />
-    <services-list :services="page.services"/>
-    <rich-text-block
-      class="services-text"
-      :text="page.smallServices" />
-    <contact-form
-      class="grid"
-      :contact-person="page.contactPerson"
-      :title="$t('lets_discuss')"
-    />
-  </main>
+  <div>
+    <main class="page-services grid">
+      <page-header
+        heading="byline"
+        :byline="page.title"
+        :headline="page.subtitle"
+        :image="page.headerIllustration" />
+      <services-list :services="page.services"/>
+      <rich-text-block
+        class="services-text"
+        :text="page.smallServices" />
+      <contact-form
+        class="grid"
+        :contact-person="page.contactPerson"
+        :title="$t('lets_discuss')"
+      />
+    </main>
+    <newsletter-form />
+  </div>
 </template>
 
 <script>
@@ -24,9 +27,10 @@
   import ServicesList from '~/components/services-list'
   import ContactForm from '~/components/contact-form'
   import RichTextBlock from '~/components/rich-text-block'
+  import NewsletterForm from '~/components/newsletter-form'
 
   export default {
-    components: { ServicesList, ContactForm, PageHeader, RichTextBlock },
+    components: { ServicesList, ContactForm, PageHeader, RichTextBlock, NewsletterForm },
     asyncData,
     head
   }

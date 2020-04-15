@@ -7,7 +7,7 @@
       :image="page.headerIllustration"
     />
     <div class="grid">
-      <ul class="page-jobs__overview">
+      <ul class="page-jobs__overview" v-if="items.length">
         <li
           v-for="item in items"
           :key="item.slug">
@@ -20,6 +20,11 @@
           />
         </li>
       </ul>
+      <generic-text-block
+        v-else
+        class="page-jobs__empty-message"
+        :body="page.noJobsAvailableMessage"
+      />
     </div>
   </div>
 </template>
@@ -29,11 +34,13 @@
   import head from '~/lib/seo-head'
   import PageHeader from '~/components/page-header'
   import JobsExcerpt from '~/components/jobs-excerpt'
+  import GenericTextBlock from '~/components/generic-text-block'
 
   export default {
     components: {
       PageHeader,
-      JobsExcerpt
+      JobsExcerpt,
+      GenericTextBlock
     },
     asyncData,
     head,
@@ -46,9 +53,27 @@
     margin: var(--spacing-large) 0;
   }
 
+  .page-jobs__empty-message {
+    margin-top: var(--spacing-large);
+    margin-bottom: var(--spacing-big);
+  }
+
+  @media (min-width: 720px) {
+    .page-jobs__empty-message {
+      grid-column: var(--grid-content);
+      margin-top: var(--spacing-big);
+      margin-bottom: var(--spacing-bigger);
+    }
+  }
+
   @media (min-width: 1100px) {
     .page-jobs__overview {
       grid-column: var(--grid-content-narrow);
+    }
+
+    .page-jobs__empty-message {
+      grid-column-start: 4;
+      grid-column-end: 48;
     }
   }
 </style>

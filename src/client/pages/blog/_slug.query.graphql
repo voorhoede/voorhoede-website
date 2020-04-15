@@ -57,6 +57,7 @@ fragment page on BlogPostRecord {
   authors {
     name
     lastName
+    twitterHandle
     image {
       url
       format
@@ -80,7 +81,7 @@ fragment page on BlogPostRecord {
         height
         format
       }
-      alt
+      caption
       fullWidth
     }
     ... on ImageWithTextRecord {

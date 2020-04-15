@@ -85,6 +85,9 @@
         v-if="pivots && pivots.length"
         :pivot="pivots[0]"
       />
+    </div>
+    <div class="page-index__newsletter-section grid">
+      <newsletter-form />
       <scroll-to direction="up" />
     </div>
   </main>
@@ -101,6 +104,7 @@
   import CurlyBracket from '~/components/curly-bracket'
   import HighlightedClients from '~/components/highlighted-clients'
   import HorizontalCarousel from '~/components/horizontal-carousel'
+  import NewsletterForm from '~/components/newsletter-form'
   import PageHeader from '~/components/page-header'
   import ScrollHighlightedText from '~/components/scroll-highlighted-text'
   import ScrollTo from '~/components/scroll-to'
@@ -116,6 +120,7 @@
       CurlyBracket,
       HighlightedClients,
       HorizontalCarousel,
+      NewsletterForm,
       PageHeader,
       ScrollHighlightedText,
       ScrollTo,
@@ -151,7 +156,7 @@
     grid-column: 1;
   }
 
-  .page-index__pivot-section .scroll-to {
+  .page-index__newsletter-section .scroll-to {
     display: none;
     position: absolute;
     bottom: var(--spacing-large);
@@ -342,20 +347,20 @@
       padding: var(--spacing-larger) 0;
     }
 
-    .page-index__pivot-section .scroll-to {
+    .page-index__newsletter-section .scroll-to {
       display: flex;
       position: absolute;
       bottom: var(--spacing-larger);
       grid-column: 48;
     }
 
-    .page-index__pivot-section {
+    .page-index__newsletter-section {
       position: relative;
     }
 
     .page-index__pivot-section .pivot-section {
       grid-column-start: 6;
-      grid-column-end: 45;
+      grid-column-end: 46;
     }
   }
 

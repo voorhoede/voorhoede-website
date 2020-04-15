@@ -28,6 +28,10 @@ export default {
   data() {
     return {
       clients: [
+        { image: { url: '/client-logos/pathe-thuis.svg', alt: 'Pathé Thuis' } },
+        { image: { url: '/client-logos/geldmaat.svg', alt: 'Geldmaat' } },
+        { image: { url: '/client-logos/qutech.svg', alt: 'QuTech' } },
+        { image: { url: '/client-logos/jexia.svg', alt: 'Jexia' } },
         { image: { url: '/client-logos/olx.svg', alt: 'OLX' } },
         { image: { url: '/client-logos/hyperloop.svg', alt: 'Delft Hyperloop' } },
         { image: { url: '/client-logos/funda.svg', alt: 'Funda' } },
