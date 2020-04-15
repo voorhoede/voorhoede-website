@@ -1,5 +1,5 @@
-query ($locale: SiteLocale) {
-  page: update(locale: $locale) {
+query ($locale: SiteLocale, $slug: String) {
+  page: update(locale: $locale, filter: { slug: { eq: $slug }}) {
     ...page
   }
 }

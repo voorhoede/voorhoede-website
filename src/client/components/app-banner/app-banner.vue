@@ -2,7 +2,11 @@
   <div class="app-banner grid">
     <div class="app-banner__content">
       <div class="body-petite" v-html="text"></div>
-      <AppButton small :label="linkTitle" :to="linkTo" />
+      <AppButton
+        small
+        :label="linkTitle"
+        :to="localeUrl({ name: 'update-slug', params: link })"
+      />
     </div>
   </div>
 </template>
@@ -24,11 +28,6 @@
       text: {
         type: String,
         required: true,
-      },
-    },
-    computed: {
-      linkTo() {
-        return `/${this.$i18n.locale}/${this.link.slug}/`
       },
     },
   }
