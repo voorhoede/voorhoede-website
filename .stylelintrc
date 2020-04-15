@@ -13,6 +13,7 @@
     ],
     "string-quotes": "single",
     "declaration-colon-newline-after": null,
-    "number-leading-zero": "never"
+    "number-leading-zero": "never",
+    "value-keyword-case": null
   }
 }
