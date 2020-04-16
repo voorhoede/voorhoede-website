@@ -44,6 +44,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin: 0 auto;
   }
 
   .app-banner__content .body-petite a {
@@ -51,10 +52,10 @@
   }
 
   .app-banner .app-button--small {
-    white-space: nowrap;
     margin-top: var(--spacing-tiny);
     background: var(--white);
     color: orangered;
+    white-space: nowrap;
   }
 
   @media screen and (min-width: 720px) {
