@@ -35,8 +35,6 @@
 
 <style>
   .app-banner {
-    align-items: center;
-    width: 100%;
     padding: var(--spacing-small) 0;
     background-color: orangered;
     color: var(--white);
@@ -53,8 +51,7 @@
   }
 
   .app-banner .app-button--small {
-    flex: 0 1 auto;
-    min-width: 100px;
+    white-space: nowrap;
     margin-top: var(--spacing-tiny);
     background: var(--white);
     color: orangered;
