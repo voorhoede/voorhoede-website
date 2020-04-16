@@ -5,7 +5,7 @@
       <AppButton
         small
         :label="linkTitle"
-        :to="localeUrl({ name: 'update-slug', params: link })"
+        :to="localeUrl({ name: 'updates-slug', params: { ...link } })"
       />
     </div>
   </div>
