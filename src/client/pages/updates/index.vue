@@ -1,27 +1,26 @@
 <template>
-  <main class="page-blog">
+  <main class="page-updates">
     <page-header
       heading="byline"
       :byline="page.title"
       :headline="page.subtitle"
       :image="page.headerIllustration"
     />
-    <section class="page-blog-container grid">
-      <h2 class="sr-only">{{ $t('blog_overview') }}</h2>
-      <text-block class="page-blog__text">
+    <section class="page-updates__container grid">
+      <h2 class="sr-only">{{ $t('updates_overview') }}</h2>
+      <text-block class="page-updates__text">
         <p class="testimonial">{{ page.description }}</p>
       </text-block>
-      <ul class="page-blog__posts">
-        <li v-for="blogPost in items.filter(post => post.published)" :key="blogPost.slug">
-          <blog-list-item large :item="blogPost" />
+      <ul class="page-updates__posts">
+        <li v-for="update in publishedUpdates" :key="update.slug">
+          <blog-list-item large :item="update" />
         </li>
       </ul>
     </section>
-    <div class="page-blog__cta grid">
-      <!-- TODO: Make this a section to be defined in DATO (once for all blog pages) -->
+    <div class="page-updates__cta grid">
       <pivot-section
         v-if="pivots && pivots.length"
-        class="page-blog__pivot-section"
+        class="page-updates__pivot-section"
         :pivot="pivots[0]"
       />
       <scroll-to direction="up" />
@@ -40,87 +39,86 @@
   import TextBlock from '~/components/text-block'
 
   export default {
-    components: {
-      BlogListItem,
-      PivotSection,
-      PageHeader,
-      ScrollTo,
-      TextBlock
-    },
+    components: { BlogListItem, PivotSection, PageHeader, ScrollTo, TextBlock },
     asyncData,
-    head
+    computed: {
+      publishedUpdates() {
+        return this.items.filter(post => post.published)
+      },
+    },
+    head,
   }
 </script>
 
 <style>
-  .page-blog-container {
+  .page-updates__container {
     padding-top: var(--spacing-larger);
   }
 
-  .page-blog__text {
-    margin-bottom: var(--spacing-larger);
+  .page-updates__text {
     grid-row: 1;
+    margin-bottom: var(--spacing-larger);
     color: var(--html-blue);
   }
 
-  .page-blog__posts {
+  .page-updates__posts {
     grid-row: 2;
   }
 
-  .page-blog__cta {
-    grid-row: 3;
-    grid-column: var(--grid-page);
-    background-color: var(--bg-pastel);
+  .page-updates__cta {
     position: relative;
+    grid-column: var(--grid-page);
+    grid-row: 3;
+    background-color: var(--bg-pastel);
   }
 
-  .page-blog__cta .pivot-section {
+  .page-updates__cta .pivot-section {
     border: none;
   }
 
-  .page-blog__cta .scroll-to {
+  .page-updates__cta .scroll-to {
     display: none;
   }
 
   @media (min-width: 720px) {
-    .page-blog__text,
-    .page-blog__posts {
-      grid-column-start: 5;
+    .page-updates__text,
+    .page-updates__posts {
       grid-column-end: 47;
+      grid-column-start: 5;
       margin-bottom: var(--spacing-large);
     }
 
-    .page-blog-container {
+    .page-updates__container {
       position: relative;
     }
 
-    .page-blog__cta .scroll-to {
+    .page-updates__cta .scroll-to {
       display: flex;
       position: absolute;
       bottom: var(--spacing-larger);
       grid-column: 48;
     }
 
-    .page-blog__pivot-section {
-      grid-column-start: 8;
+    .page-updates__pivot-section {
       grid-column-end: 46;
+      grid-column-start: 8;
     }
   }
 
   @media (min-width: 1100px) {
-    .page-blog__text,
-    .page-blog__posts {
-      grid-column-start: 14;
+    .page-updates__text,
+    .page-updates__posts {
       grid-column-end: 42;
+      grid-column-start: 14;
       margin-bottom: var(--spacing-large);
     }
 
-    .page-blog__pivot-section {
-      grid-column-start: 14;
+    .page-updates__pivot-section {
       grid-column-end: 38;
+      grid-column-start: 14;
     }
 
-    .page-blog__cta .scroll-to {
+    .page-updates__cta .scroll-to {
       bottom: var(--spacing-big);
     }
   }
