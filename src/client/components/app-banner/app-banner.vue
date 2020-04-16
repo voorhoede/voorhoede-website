@@ -58,6 +58,10 @@
     white-space: nowrap;
   }
 
+  .app-banner .app-button--small:active {
+    background: var(--white);
+  }
+
   @media screen and (min-width: 720px) {
     .app-banner__content {
       flex-direction: row;
