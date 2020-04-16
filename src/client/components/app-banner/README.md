@@ -1,5 +1,6 @@
 # App Banner
-Adds information about a case. When active or hovererd it shows a tooltip. This tooltip can be aligned to the left or the right on a viewport larger than 480px.
+Adds a banner to the page to display a quick note of information with a link for
+more information.
 
 ## Usage
 ```html
