@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-banner
-      v-if="layout.banner.isVisible"
+      v-if="layout.banner.isVisible && isHome"
       :text="layout.banner.text"
       :link="layout.banner.link"
       :link-title="layout.banner.linkTitle"
@@ -45,7 +45,10 @@ export default {
     ...mapState(['showGrid']),
     layout () {
       return require(`../static/data/${this.$i18n.locale}/layouts/default`)
-    }
+    },
+    isHome() {
+      return this.$route.name.includes('index')
+    },
   },
   head() {
     return {
