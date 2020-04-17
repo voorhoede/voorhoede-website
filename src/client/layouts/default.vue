@@ -47,7 +47,7 @@ export default {
       return require(`../static/data/${this.$i18n.locale}/layouts/default`)
     },
     isHome() {
-      return this.$route.name.includes('index')
+      return this.$route.name && this.$route.name.includes('index')
     },
   },
   head() {
