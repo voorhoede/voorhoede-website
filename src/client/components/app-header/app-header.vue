@@ -20,12 +20,7 @@
             class="app-header__link-list-item"
             :class="{ 'font-bold': code === $i18n.locale }"
           >
-            <span
-              v-if="code === $i18n.locale"
-              aria-hidden="true"
-            >
-              {{ code }}
-            </span>
+            <span v-if="code === $i18n.locale" aria-hidden="true">{{ code }}</span>
             <nuxt-link
               v-else
               class="app-header__link"
