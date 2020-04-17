@@ -5,7 +5,7 @@
       class="blog-list-item"
       :class="{'blog-list-item--large' : large}"
       :aria-label="item.title"
-      lang="en"
+      :lang="language"
     >
       <div class="blog-list-item__content">
         <time
@@ -63,6 +63,9 @@
     computed: {
       authors () {
         return `${this.item.authors.map(author => author.name).join(', ')}`
+      },
+      language() {
+        return this.linkName === 'blog-slug' ? 'en' : null
       },
       formattedDate() {
         return formatDate({
