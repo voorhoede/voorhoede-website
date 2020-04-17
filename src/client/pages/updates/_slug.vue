@@ -16,7 +16,11 @@
         </div>
       </template>
     </article>
-    <newsletter-form />
+    <contact-form
+      class="grid"
+      :title="$t('lets_discuss')"
+      :contact-person="page.contactPerson"
+    />
   </div>
 </template>
 
@@ -24,15 +28,15 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
-  import RichTextBlock from '~/components/rich-text-block'
+  import ContactForm from '~/components/contact-form'
   import PageHeader from '~/components/page-header'
-  import NewsletterForm from '~/components/newsletter-form'
+  import RichTextBlock from '~/components/rich-text-block'
 
   export default {
     components: {
-      NewsletterForm,
-      RichTextBlock,
+      ContactForm,
       PageHeader,
+      RichTextBlock,
     },
     asyncData,
     head,

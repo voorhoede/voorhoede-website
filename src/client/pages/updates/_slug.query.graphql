@@ -77,4 +77,15 @@ fragment page on UpdateRecord {
       body
     }
   }
+  contactPerson {
+    name
+    lastName
+    jobTitle
+    image {
+      format
+      height
+      width
+      url
+    }
+  }
 }
