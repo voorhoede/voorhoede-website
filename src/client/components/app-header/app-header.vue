@@ -32,10 +32,7 @@
               :aria-label="$t('switch_to__language_', code, { language: name })"
               :lang="code"
               :to="localizedlocaleUrls[code]"
-              @click.native="saveLocale(code)"
-            >
-              {{ code }}
-            </nuxt-link>
+              @click.native="saveLocale(code)">{{ code }}</nuxt-link>
           </li>
         </ul>
       </div>
