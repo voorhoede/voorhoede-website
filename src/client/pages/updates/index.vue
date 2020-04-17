@@ -13,7 +13,7 @@
       </text-block>
       <ul class="page-updates__posts">
         <li v-for="update in publishedUpdates" :key="update.slug">
-          <blog-list-item large :item="update" />
+          <blog-list-item link-name="updates-slug" :item="update" large />
         </li>
       </ul>
     </section>

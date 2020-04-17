@@ -1,7 +1,7 @@
 <template>
   <article>
     <nuxt-link
-      :to="localeUrl({ name: 'blog-slug', params: { slug: item.slug } })"
+      :to="localeUrl({ name: linkName, params: { slug: item.slug } })"
       class="blog-list-item"
       :class="{'blog-list-item--large' : large}"
       :aria-label="item.title"
@@ -54,7 +54,11 @@
       large: {
         type: Boolean,
         default: false,
-      }
+      },
+      linkName: {
+        type: String,
+        default: 'blog-slug',
+      },
     },
     computed: {
       authors () {
