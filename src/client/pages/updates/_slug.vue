@@ -16,11 +16,13 @@
         </div>
       </template>
     </article>
-    <contact-form
-      class="grid"
-      :title="$t('lets_discuss')"
-      :contact-person="page.contactPerson"
-    />
+    <div class="page-update__cta grid">
+      <pivot-section
+        v-if="pivots && pivots.length"
+        class="page-update__pivot-section"
+        :pivot="pivots[0]"
+      />
+    </div>
   </div>
 </template>
 
@@ -28,14 +30,14 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
-  import ContactForm from '~/components/contact-form'
   import PageHeader from '~/components/page-header'
+  import PivotSection from '~/components/pivot-section'
   import RichTextBlock from '~/components/rich-text-block'
 
   export default {
     components: {
-      ContactForm,
       PageHeader,
+      PivotSection,
       RichTextBlock,
     },
     asyncData,
@@ -56,6 +58,16 @@
     margin: 0 0 var(--spacing-large) 0;
   }
 
+  .page-update__cta {
+    grid-column: var(--grid-page);
+    grid-row: 3;
+    background-color: var(--bg-pastel);
+  }
+
+  .page-update__cta .pivot-section {
+    border: none;
+  }
+
   @media (min-width: 720px) {
     .page-update {
       background-color: var(--bg-pastel);
@@ -67,6 +79,11 @@
       background-color: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
     }
+
+    .page-updates__pivot-section {
+      grid-column-end: 46;
+      grid-column-start: 8;
+    }
   }
 
   @media (min-width: 1100px) {
@@ -77,6 +94,11 @@
     .page-update__article {
       grid-column: var(--grid-content-narrow);
       padding: var(--spacing-big) var(--spacing-bigger);
+    }
+
+    .page-updates__pivot-section {
+      grid-column-end: 38;
+      grid-column-start: 14;
     }
   }
 

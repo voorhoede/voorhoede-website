@@ -2,6 +2,38 @@ query ($locale: SiteLocale, $slug: String) {
   page: update(locale: $locale, filter: {slug: {eq: $slug}}) {
     ...page
   }
+  pivots: allPivotSections(locale: $locale, filter: {routes: {matches: {pattern: "update-slug"}}}) {
+    title
+    body
+    callToActionLabel
+    link {
+      title
+      url
+      page {
+        ... on HomeRecord {
+          slug
+        }
+        ... on ServiceOverviewRecord {
+          slug
+        }
+        ... on CaseOverviewRecord {
+          slug
+        }
+        ... on BlogPostOverviewRecord {
+          slug
+        }
+        ... on JobOverviewRecord {
+          slug
+        }
+        ... on AboutRecord {
+          slug
+        }
+        ... on ContactRecord {
+          slug
+        }
+      }
+    }
+  }
 }
 
 fragment page on UpdateRecord {
@@ -75,17 +107,6 @@ fragment page on UpdateRecord {
     ... on TextSectionRecord {
       title
       body
-    }
-  }
-  contactPerson {
-    name
-    lastName
-    jobTitle
-    image {
-      format
-      height
-      width
-      url
     }
   }
 }
