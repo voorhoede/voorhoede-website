@@ -44,9 +44,8 @@
 </script>
 
 <style>
-  .page-update .page-header,
-  .page-update .page-update__article {
-    margin-bottom: var(--spacing-large);
+  .page-update > * {
+    margin-bottom: var(--spacing-big);
   }
 
   .page-update__article {
@@ -71,6 +70,10 @@
   }
 
   @media (min-width: 1100px) {
+    .page-update > * {
+      margin-bottom: var(--spacing-bigger);
+    }
+
     .page-update__article {
       grid-column: var(--grid-content-narrow);
       padding: var(--spacing-big) var(--spacing-bigger);
