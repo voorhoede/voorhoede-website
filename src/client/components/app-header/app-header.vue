@@ -20,22 +20,14 @@
             class="app-header__link-list-item"
             :class="{ 'font-bold': code === $i18n.locale }"
           >
-            <span
-              v-if="code === $i18n.locale"
-              aria-hidden="true"
-            >
-              {{ code }}
-            </span>
+            <span v-if="code === $i18n.locale" aria-hidden="true">{{ code }}</span>
             <nuxt-link
               v-else
               class="app-header__link"
               :aria-label="$t('switch_to__language_', code, { language: name })"
               :lang="code"
               :to="localizedlocaleUrls[code]"
-              @click.native="saveLocale(code)"
-            >
-              {{ code }}
-            </nuxt-link>
+              @click.native="saveLocale(code)">{{ code }}</nuxt-link>
           </li>
         </ul>
       </div>
