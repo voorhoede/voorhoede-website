@@ -16,6 +16,10 @@ query ($locale: SiteLocale, $slug: String) {
         ... on ServiceOverviewRecord {
           slug
         }
+        ... on ServiceRecord {
+          __typename
+          slug
+        }
         ... on CaseOverviewRecord {
           slug
         }

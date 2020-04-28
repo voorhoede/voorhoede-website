@@ -9,7 +9,26 @@ export function linkValidator (item) {
 }
 
 export function createHref (item) {
-  return (item.page.slug)
-    ? `/${this.$i18n.locale}/${item.page.slug}/`
-    : item.url
+  const { page, url } = item
+  const directory = getDirectoryByTypename(page.__typename)
+
+  if (page.slug && page.__typename) {
+    return `/${this.$i18n.locale}/${directory}/${page.slug}/`
+  } else if (page.slug) {
+    return `/${this.$i18n.locale}/${page.slug}/`
+  } else {
+    return url
+  }
+}
+
+function getDirectoryByTypename (type) {
+  switch (type) {
+    case 'CaseRecord': {
+      return 'cases'
+    }
+    case 'ServiceRecord': {
+      return 'services'
+    }
+    default: ''
+  }
 }
