@@ -23,9 +23,6 @@ export function createHref (item) {
 
 function getDirectoryByTypename (type) {
   switch (type) {
-    case 'CaseRecord': {
-      return 'cases'
-    }
     case 'ServiceRecord': {
       return 'services'
     }
