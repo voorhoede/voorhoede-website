@@ -26,6 +26,7 @@ function getDirectoryByTypename (type) {
     case 'ServiceRecord': {
       return 'services'
     }
-    default: ''
+    default:
+      return null
   }
 }
