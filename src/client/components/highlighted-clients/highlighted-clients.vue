@@ -35,6 +35,7 @@ export default {
         { image: { url: '/client-logos/heineken.svg', alt: 'Heineken' } },
         { image: { url: '/client-logos/tu-delft.svg', alt: 'TU Delft' } },
         { image: { url: '/client-logos/funda.svg', alt: 'Funda' } },
+        { image: { url: '/client-logos/npo.svg', alt: 'NPO' } },
         { image: { url: '/client-logos/unilever.svg', alt: 'Unilever' } },
         { image: { url: '/client-logos/abn-amro.svg', alt: 'ABN AMRO' } },
         { image: { url: '/client-logos/hotelspecials.svg', alt: 'HotelSpecials' } },
