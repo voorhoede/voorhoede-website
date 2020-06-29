@@ -28,6 +28,14 @@
         :services="page.services"
       />
     </section>
+    <section class="page-index__cta grid">
+      <call-to-action
+        :title="page.ctaTitle"
+        :body="page.ctaBody"
+        :label="page.ctaButtonLabel"
+        :link="page.ctaUrl"
+      />
+    </section>
     <section class="page-index__cases grid">
       <h2 class="page-index__section-title page-index__section-title--cases h1">{{ page.casesTitle }}</h2>
       <horizontal-carousel>
@@ -99,6 +107,7 @@
   import AcademyExcerpt from '~/components/academy-excerpt'
   import AppButton from '~/components/app-button'
   import BlogListItem from '~/components/blog-list-item'
+  import CallToAction from '~/components/call-to-action'
   import CaseExcerpt from '~/components/case-excerpt'
   import PivotSection from '~/components/pivot-section'
   import CurlyBracket from '~/components/curly-bracket'
@@ -115,6 +124,7 @@
       AcademyExcerpt,
       AppButton,
       BlogListItem,
+      CallToAction,
       CaseExcerpt,
       PivotSection,
       CurlyBracket,
@@ -182,6 +192,10 @@
   .page-index .services-list {
     grid-row-start: 2;
     grid-row-end: 3;
+  }
+
+  .page-index__cta {
+    margin-bottom: var(--spacing-larger);
   }
 
   .page-index__section-title--clients {
@@ -293,6 +307,10 @@
     }
 
     .page-index__services {
+      margin-bottom: var(--spacing-bigger);
+    }
+
+    .page-index__cta {
       margin-bottom: var(--spacing-bigger);
     }
 
