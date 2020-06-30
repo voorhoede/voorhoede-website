@@ -16,6 +16,7 @@
       v-if="pivot.externalLink"
       :label="pivot.callToActionLabel"
       :to="pivot.externalLink"
+      external
     />
     <app-button
       v-else
