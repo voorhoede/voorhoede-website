@@ -203,11 +203,6 @@
     margin-bottom: var(--spacing-larger);
   }
 
-  .page-index__cta .pivot-section {
-    padding-top: var(--spacing-large);
-    padding-bottom: var(--spacing-large);
-  }
-
   .page-index__section-title--clients {
     color: var(--dim);
     grid-row: 1;
@@ -325,7 +320,7 @@
     }
 
     .page-index__cta .pivot-section {
-      border-top: 1px solid var(--very-dim);
+      border-top: none;
       border-bottom: 1px solid var(--very-dim);
     }
 
@@ -429,11 +424,6 @@
 
     .page-index__cases {
       margin-bottom: var(--spacing-huge);
-    }
-
-    .page-index__cta .pivot-section {
-      padding-top: var(--spacing-big);
-      padding-bottom: var(--spacing-big);
     }
 
     .page-index__clients {
