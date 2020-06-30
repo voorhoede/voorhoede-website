@@ -28,6 +28,11 @@
         :services="page.services"
       />
     </section>
+    <section class="page-index__cta grid">
+      <pivot-section
+        :pivot="ctaPivot"
+      />
+    </section>
     <section class="page-index__cases grid">
       <h2 class="page-index__section-title page-index__section-title--cases h1">{{ page.casesTitle }}</h2>
       <horizontal-carousel>
@@ -127,6 +132,16 @@
       ServicesList,
     },
     asyncData,
+    computed: {
+      ctaPivot () {
+        return {
+          title: this.page.ctaTitle,
+          body: this.page.ctaBody,
+          callToActionLabel: this.page.ctaButtonLabel,
+          externalLink: this.page.ctaUrl,
+        }
+      },
+    },
     methods: {
       isLast(index, usps) {
         return index === Object.keys(usps).length - 1 ? { isSet: true, number: index } : { isSet: false }
@@ -182,6 +197,10 @@
   .page-index .services-list {
     grid-row-start: 2;
     grid-row-end: 3;
+  }
+
+  .page-index__cta {
+    margin-bottom: var(--spacing-larger);
   }
 
   .page-index__section-title--clients {
@@ -294,6 +313,15 @@
 
     .page-index__services {
       margin-bottom: var(--spacing-bigger);
+    }
+
+    .page-index__cta {
+      margin-bottom: var(--spacing-bigger);
+    }
+
+    .page-index__cta .pivot-section {
+      border-top: none;
+      border-bottom: 1px solid var(--very-dim);
     }
 
     .page-index__clients {

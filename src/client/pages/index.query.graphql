@@ -97,6 +97,10 @@ fragment page on HomeRecord {
       alt
     }
   }
+  ctaTitle
+  ctaBody
+  ctaButtonLabel
+  ctaUrl
   servicesHeader
   services {
     tagline
