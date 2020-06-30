@@ -29,11 +29,8 @@
       />
     </section>
     <section class="page-index__cta grid">
-      <call-to-action
-        :title="page.ctaTitle"
-        :body="page.ctaBody"
-        :label="page.ctaButtonLabel"
-        :link="page.ctaUrl"
+      <pivot-section
+        :pivot="ctaPivot"
       />
     </section>
     <section class="page-index__cases grid">
@@ -107,7 +104,6 @@
   import AcademyExcerpt from '~/components/academy-excerpt'
   import AppButton from '~/components/app-button'
   import BlogListItem from '~/components/blog-list-item'
-  import CallToAction from '~/components/call-to-action'
   import CaseExcerpt from '~/components/case-excerpt'
   import PivotSection from '~/components/pivot-section'
   import CurlyBracket from '~/components/curly-bracket'
@@ -124,7 +120,6 @@
       AcademyExcerpt,
       AppButton,
       BlogListItem,
-      CallToAction,
       CaseExcerpt,
       PivotSection,
       CurlyBracket,
@@ -137,6 +132,16 @@
       ServicesList,
     },
     asyncData,
+    computed: {
+      ctaPivot () {
+        return {
+          title: this.page.ctaTitle,
+          body: this.page.ctaBody,
+          callToActionLabel: this.page.ctaButtonLabel,
+          externalLink: this.page.ctaUrl,
+        }
+      },
+    },
     methods: {
       isLast(index, usps) {
         return index === Object.keys(usps).length - 1 ? { isSet: true, number: index } : { isSet: false }
@@ -196,6 +201,11 @@
 
   .page-index__cta {
     margin-bottom: var(--spacing-larger);
+  }
+
+  .page-index__cta .pivot-section {
+    padding-top: var(--spacing-large);
+    padding-bottom: var(--spacing-large);
   }
 
   .page-index__section-title--clients {
@@ -314,6 +324,11 @@
       margin-bottom: var(--spacing-bigger);
     }
 
+    .page-index__cta .pivot-section {
+      border-top: 1px solid var(--very-dim);
+      border-bottom: 1px solid var(--very-dim);
+    }
+
     .page-index__clients {
       margin-bottom: var(--spacing-bigger);
       padding-top: var(--spacing-larger);
@@ -414,6 +429,11 @@
 
     .page-index__cases {
       margin-bottom: var(--spacing-huge);
+    }
+
+    .page-index__cta .pivot-section {
+      padding-top: var(--spacing-big);
+      padding-bottom: var(--spacing-big);
     }
 
     .page-index__clients {

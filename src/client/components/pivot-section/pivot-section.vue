@@ -13,6 +13,12 @@
     >
     </div>
     <app-button
+      v-if="pivot.externalLink"
+      :label="pivot.callToActionLabel"
+      :to="pivot.externalLink"
+    />
+    <app-button
+      v-else
       @click.native="trackLink(pivot.link.page.slug)"
       :label="pivot.callToActionLabel"
       :to="createHref(pivot.link)"
@@ -32,7 +38,7 @@
         required: true,
         validator: pivot => {
           return pivot.hasOwnProperty('callToActionLabel') &&
-            linkValidator(pivot.link)
+            (pivot.hasOwnProperty('externalLink') || linkValidator(pivot.link))
         }
       },
     },
