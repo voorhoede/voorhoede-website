@@ -21,7 +21,7 @@ The tracking version can be managed from datastudio in the settings -> models ->
     - share event mobile native
   - responsive-video:
     - start play event
-  - pivot-section:
+  - pivot-list:
     - click event cta
 - Datastudio:
   - https://datastudio.google.com/open/1jf5FDal5JB1O3pKJxgM0IbuMq_cuHsCr

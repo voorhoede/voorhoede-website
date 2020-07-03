@@ -1,59 +1,66 @@
 <template>
-  <section class="pivot-section grid">
-    <template v-for="(pivot, index) in pivots">
-      <contact-form
-        v-if="isContactForm(pivot)"
-        :key="index"
-        class="grid"
-        :contact-person="pivot.contactPerson"
-        :title="$t('lets_discuss')"
-      />
-      <newsletter-form
-        v-else-if="isNewsletterForm(pivot)"
-        :key="index"
-      />
-      <pivot
-        v-else
-        :key="index"
-        :pivot="pivot"
-        :border="pivotBorder"
-        :narrow="pivotNarrow"
-      />
-    </template>
+  <section
+    class="pivot-section"
+    :class="{
+      'pivot-section--has-border': border,
+      'pivot-section--narrow': narrow,
+    }"
+  >
+    <h2
+      v-if="pivot.title"
+      class="pivot-section__heading h3"
+    >
+      {{ pivot.title }}
+    </h2>
+    <div
+      v-if="pivot.body"
+      v-html="pivot.body"
+      class="pivot-section__body body"
+    >
+    </div>
+    <app-button
+      v-if="pivot.externalLink"
+      :label="pivot.buttonLabel"
+      :to="pivot.externalLink"
+      external
+    />
+    <app-button
+      v-else-if="pivot.link"
+      @click.native="trackLink(pivot.link.page.slug)"
+      :label="pivot.buttonLabel"
+      :to="createHref(pivot.link)"
+    />
   </section>
 </template>
 
 <script>
-  import ContactForm from '../contact-form'
-  import NewsletterForm from '../newsletter-form'
-  import Pivot from '../pivot'
+  import { createHref, linkValidator } from '../../lib/links'
+  import AppButton from '../app-button'
 
   export default {
-    components: {
-      ContactForm,
-      NewsletterForm,
-      Pivot,
-    },
+    components: { AppButton },
     props: {
-      pivots: {
-        type: Array,
+      pivot: {
+        type: Object,
         required: true,
+        validator: pivot => {
+          return pivot.hasOwnProperty('buttonLabel') &&
+            (pivot.hasOwnProperty('externalLink') || linkValidator(pivot.link))
+        },
       },
-      pivotBorder: {
+      border: {
         type: Boolean,
         default: true,
       },
-      pivotNarrow: {
+      narrow: {
         type: Boolean,
         default: false,
       },
     },
     methods: {
-      isContactForm(pivot) {
-        return pivot.formType && pivot.formType === 'contact'
-      },
-      isNewsletterForm(pivot) {
-        return pivot.formType && pivot.formType === 'newsletter'
+      createHref,
+      trackLink (href) {
+        this.$ga.event('Pivot', 'click cta', href, 0)
       },
     },
   }
@@ -61,20 +68,41 @@
 
 <style>
   .pivot-section {
-    position: relative;
-    grid-column-start: 1;
-    grid-column-end: 51;
-  }
-
-  .pivot-section .contact-form {
     padding-top: var(--spacing-large);
     padding-bottom: var(--spacing-larger);
+    text-align: center;
+  }
+
+  .pivot-section__heading {
+    margin-bottom: var(--spacing-medium);
+  }
+
+  .pivot-section__body {
+    margin-right: auto;
+    margin-bottom: var(--spacing-large);
+    margin-left: auto;
+  }
+
+  @media (min-width: 720px) {
+    .pivot-section--has-border {
+      border-top: 1px solid var(--very-dim);
+    }
+
+    .pivot-section--narrow {
+      grid-column-start: 8;
+      grid-column-end: 46;
+    }
   }
 
   @media (min-width: 1100px) {
-    .pivot-section .contact-form {
+    .pivot-section {
       padding-top: var(--spacing-large);
       padding-bottom: var(--spacing-big);
+    }
+
+    .pivot-section--narrow {
+      grid-column-start: 14;
+      grid-column-end: 38;
     }
   }
 </style>

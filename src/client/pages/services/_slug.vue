@@ -26,7 +26,7 @@
         </template>
       </article>
     </main>
-    <pivot-section
+    <pivot-list
       v-if="page.pivots && page.pivots.length"
       :pivots="page.pivots"
     />
@@ -39,14 +39,14 @@
 
   import GenericTextBlock from '~/components/generic-text-block'
   import PageHeader from '~/components/page-header'
-  import PivotSection from '~/components/pivot-section'
+  import PivotList from '~/components/pivot-list'
   import ResponsiveImage from '~/components/responsive-image'
 
   export default {
     components: {
       GenericTextBlock,
       PageHeader,
-      PivotSection,
+      PivotList,
       ResponsiveImage,
     },
     asyncData,

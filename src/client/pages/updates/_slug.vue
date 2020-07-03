@@ -19,7 +19,7 @@
     <section
       v-if="page.pivots && page.pivots.length"
       class="page-update__pivots grid">
-      <pivot-section
+      <pivot-list
         :pivots="page.pivots"
         :pivot-border="false"
         :pivot-narrow="true"
@@ -33,13 +33,13 @@
   import head from '~/lib/seo-head'
 
   import PageHeader from '~/components/page-header'
-  import PivotSection from '~/components/pivot-section'
+  import PivotList from '~/components/pivot-list'
   import RichTextBlock from '~/components/rich-text-block'
 
   export default {
     components: {
       PageHeader,
-      PivotSection,
+      PivotList,
       RichTextBlock,
     },
     asyncData,

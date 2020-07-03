@@ -20,7 +20,7 @@
           </li>
         </ul>
       </section>
-      <pivot-section
+      <pivot-list
         v-if="page.pivots && page.pivots.length"
         :pivots="page.pivots"
       />
@@ -34,13 +34,13 @@
 
   import CaseExcerpt from '~/components/case-excerpt'
   import PageHeader from '~/components/page-header'
-  import PivotSection from '~/components/pivot-section'
+  import PivotList from '~/components/pivot-list'
 
   export default {
     components: {
       CaseExcerpt,
       PageHeader,
-      PivotSection,
+      PivotList,
     },
     asyncData,
     head,

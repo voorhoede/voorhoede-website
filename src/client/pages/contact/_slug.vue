@@ -13,7 +13,7 @@
         </div>
       </div>
     </section>
-    <pivot-section
+    <pivot-list
       v-if="page.pivots && page.pivots.length"
       :pivots="page.pivots"
     />
@@ -25,10 +25,10 @@
   import head from '~/lib/seo-head'
 
   import PageHeader from '~/components/page-header'
-  import PivotSection from '~/components/pivot-section'
+  import PivotList from '~/components/pivot-list'
 
   export default {
-    components: { PageHeader, PivotSection },
+    components: { PageHeader, PivotList },
     asyncData,
     head,
   }

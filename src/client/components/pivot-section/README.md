@@ -1,11 +1,11 @@
-# Pivot section
-A section that is used to display different types of call-to-action or pivot components.
+# Pivot Section
+A section that is used to create a pivot to another page.
 
 ## Usage
 
 ```html
 <pivot-section
-  :pivots="[{title, body, buttonLabel, link, externalLink}, {...}]"
+  :pivot="{title, body, buttonLabel, link, externalLink}"
 />
 ```
 
@@ -13,4 +13,4 @@ A section that is used to display different types of call-to-action or pivot com
 
 | Prop | Type | Required |
 | --- | --- | --- | --- |
-| pivots | Array | true
+| pivot | Object | true
