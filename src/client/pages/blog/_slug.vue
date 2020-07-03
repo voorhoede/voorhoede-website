@@ -104,15 +104,16 @@
       </nuxt-link>
     </div>
 
-    <section
-      v-if="page.pivots && page.pivots.length"
-      class="page-blog-post__pivots">
+    <section class="page-blog-post__pivots grid">
       <pivot-section
+        v-if="page.pivots && page.pivots.length"
         :pivots="page.pivots"
         :pivot-border="false"
         :pivot-narrow="true"
-        :scroll-indicator="true"
       />
+      <div class="page-blog-post__scroll-to">
+        <scroll-to direction="up" />
+      </div>
     </section>
 
     <style v-if="page.customStyling" v-html="page.customStyling"></style>
@@ -134,6 +135,7 @@ import QuoteBlock from '~/components/quote-block'
 import ResponsiveImage from '~/components/responsive-image'
 import ResponsiveVideo from '~/components/responsive-video'
 import RichTextBlock from '~/components/rich-text-block'
+import ScrollTo from '~/components/scroll-to'
 import SocialShareButtons from '~/components/social-share-buttons'
 import TocSection from '~/components/toc-section'
 import TextBlock from '~/components/text-block'
@@ -150,6 +152,7 @@ export default {
     ResponsiveImage,
     ResponsiveVideo,
     RichTextBlock,
+    ScrollTo,
     SocialShareButtons,
     TocSection,
     TextBlock,
@@ -256,9 +259,20 @@ export default {
   }
 
   .page-blog-post__pivots {
+    position: relative;
     grid-column: var(--grid-page);
     grid-row: 5;
     background-color: var(--bg-pastel);
+  }
+
+  .page-blog-post__scroll-to {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 55px;
+    grid-column-start: -2;
+    grid-column-end: -3;
   }
 
   .page-blog-post-list {
@@ -305,6 +319,10 @@ export default {
     .page-blog-post__link-container {
       grid-column-start: 4;
       grid-column-end: 48;
+    }
+
+    .page-blog-post__scroll-to {
+      display: block;
     }
   }
 

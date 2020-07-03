@@ -20,9 +20,6 @@
         :narrow="pivotNarrow"
       />
     </template>
-    <div class="pivot-section__scroll-to">
-      <scroll-to v-if="scrollIndicator" direction="up" />
-    </div>
   </section>
 </template>
 
@@ -30,14 +27,12 @@
   import ContactForm from '../contact-form'
   import NewsletterForm from '../newsletter-form'
   import Pivot from '../pivot'
-  import ScrollTo from '../scroll-to'
 
   export default {
     components: {
       ContactForm,
       NewsletterForm,
       Pivot,
-      ScrollTo,
     },
     props: {
       pivots: {
@@ -49,10 +44,6 @@
         default: true,
       },
       pivotNarrow: {
-        type: Boolean,
-        default: false,
-      },
-      scrollIndicator: {
         type: Boolean,
         default: false,
       },
@@ -78,22 +69,6 @@
   .pivot-section .contact-form {
     padding-top: var(--spacing-large);
     padding-bottom: var(--spacing-larger);
-  }
-
-  .pivot-section .pivot-section__scroll-to {
-    display: none;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 55px;
-    grid-column-start: -2;
-    grid-column-end: -3;
-  }
-
-  @media (min-width: 720px) {
-    .pivot-section .pivot-section__scroll-to {
-      display: block;
-    }
   }
 
   @media (min-width: 1100px) {
