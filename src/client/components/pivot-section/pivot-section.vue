@@ -1,83 +1,92 @@
 <template>
-  <section class="pivot-section">
-    <h2
-      v-if="pivot.title"
-      class="pivot-section__heading h3"
-    >
-      {{ pivot.title }}
-    </h2>
-    <div
-      v-if="pivot.body"
-      v-html="pivot.body"
-      class="pivot-section__body body"
-    >
+  <section class="pivot-section grid">
+    <template v-for="(pivot, index) in pivots">
+      <contact-form
+        v-if="isContactForm(pivot)"
+        :key="index"
+        class="grid"
+        :contact-person="pivot.contactPerson"
+        :title="$t('lets_discuss')"
+      />
+      <newsletter-form
+        v-else-if="isNewsletterForm(pivot)"
+        :key="index"
+      />
+      <pivot
+        v-else
+        :key="index"
+        :pivot="pivot"
+      />
+    </template>
+    <div class="pivot-section__scroll-to">
+      <scroll-to v-if="scrollIndicator" direction="up" />
     </div>
-    <app-button
-      v-if="pivot.externalLink"
-      :label="pivot.callToActionLabel"
-      :to="pivot.externalLink"
-      external
-    />
-    <app-button
-      v-else
-      @click.native="trackLink(pivot.link.page.slug)"
-      :label="pivot.callToActionLabel"
-      :to="createHref(pivot.link)"
-    />
   </section>
 </template>
 
 <script>
-  import { createHref, linkValidator } from '../../lib/links'
-  import AppButton from '../app-button'
+  import ContactForm from '../contact-form'
+  import NewsletterForm from '../newsletter-form'
+  import Pivot from '../pivot'
+  import ScrollTo from '../scroll-to'
 
   export default {
-    components: { AppButton },
+    components: {
+      ContactForm,
+      NewsletterForm,
+      Pivot,
+      ScrollTo,
+    },
     props: {
-      pivot: {
-        type: Object,
+      pivots: {
+        type: Array,
         required: true,
-        validator: pivot => {
-          return pivot.hasOwnProperty('callToActionLabel') &&
-            (pivot.hasOwnProperty('externalLink') || linkValidator(pivot.link))
-        }
+      },
+      scrollIndicator: {
+        type: Boolean,
+        default: false,
       },
     },
     methods: {
-      createHref,
-      trackLink (href) {
-        this.$ga.event('Pivot', 'click cta', href, 0)
+      isContactForm(pivot) {
+        return pivot.formType && pivot.formType === 'contact'
       },
-    }
+      isNewsletterForm(pivot) {
+        return pivot.formType && pivot.formType === 'newsletter'
+      },
+    },
   }
 </script>
 
 <style>
   .pivot-section {
     position: relative;
+    grid-column-start: 1;
+    grid-column-end: 51;
+  }
+
+  .pivot-section .contact-form {
     padding-top: var(--spacing-large);
     padding-bottom: var(--spacing-larger);
-    text-align: center;
   }
 
-  .pivot-section__heading {
-    margin-bottom: var(--spacing-medium);
-  }
-
-  .pivot-section__body {
-    margin-right: auto;
-    margin-bottom: var(--spacing-large);
-    margin-left: auto;
+  .pivot-section .pivot-section__scroll-to {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 55px;
+    grid-column: -2 / -3;
   }
 
   @media (min-width: 720px) {
-    .pivot-section {
-      border-top: 1px solid var(--very-dim);
+    .pivot-section .pivot-section__scroll-to {
+      display: block;
     }
   }
 
   @media (min-width: 1100px) {
-    .pivot-section {
+    .pivot-section .contact-form {
       padding-top: var(--spacing-large);
       padding-bottom: var(--spacing-big);
     }

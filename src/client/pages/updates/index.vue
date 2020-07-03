@@ -17,14 +17,14 @@
         </li>
       </ul>
     </section>
-    <div class="page-updates__cta grid">
+    <section
+      v-if="page.pivots && page.pivots.length"
+      class="page-updates__pivots grid">
       <pivot-section
-        v-if="pivots && pivots.length"
-        class="page-updates__pivot-section"
-        :pivot="pivots[0]"
+        :pivots="page.pivots"
+        :scroll-indicator="true"
       />
-      <scroll-to direction="up" />
-    </div>
+    </section>
   </main>
 </template>
 
@@ -35,11 +35,15 @@
   import BlogListItem from '~/components/blog-list-item'
   import PivotSection from '~/components/pivot-section'
   import PageHeader from '~/components/page-header'
-  import ScrollTo from '~/components/scroll-to'
   import TextBlock from '~/components/text-block'
 
   export default {
-    components: { BlogListItem, PivotSection, PageHeader, ScrollTo, TextBlock },
+    components: {
+      BlogListItem,
+      PivotSection,
+      PageHeader,
+      TextBlock,
+    },
     asyncData,
     computed: {
       publishedUpdates() {
@@ -65,19 +69,15 @@
     grid-row: 2;
   }
 
-  .page-updates__cta {
+  .page-updates__pivots {
     position: relative;
     grid-column: var(--grid-page);
     grid-row: 3;
     background-color: var(--bg-pastel);
   }
 
-  .page-updates__cta .pivot-section {
+  .page-updates__pivots .pivot {
     border: none;
-  }
-
-  .page-updates__cta .scroll-to {
-    display: none;
   }
 
   @media (min-width: 720px) {
@@ -92,14 +92,7 @@
       position: relative;
     }
 
-    .page-updates__cta .scroll-to {
-      display: flex;
-      position: absolute;
-      bottom: var(--spacing-larger);
-      grid-column: 48;
-    }
-
-    .page-updates__pivot-section {
+    .page-updates__pivots .pivot {
       grid-column-end: 46;
       grid-column-start: 8;
     }
@@ -113,13 +106,9 @@
       margin-bottom: var(--spacing-large);
     }
 
-    .page-updates__pivot-section {
+    .page-updates__pivots .pivot {
       grid-column-end: 38;
       grid-column-start: 14;
-    }
-
-    .page-updates__cta .scroll-to {
-      bottom: var(--spacing-big);
     }
   }
 </style>

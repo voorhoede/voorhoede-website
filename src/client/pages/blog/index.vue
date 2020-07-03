@@ -17,15 +17,14 @@
         </li>
       </ul>
     </section>
-    <div class="page-blog__cta grid">
-      <!-- TODO: Make this a section to be defined in DATO (once for all blog pages) -->
+    <section
+      v-if="page.pivots && page.pivots.length"
+      class="page-blog__pivots">
       <pivot-section
-        v-if="pivots && pivots.length"
-        class="page-blog__pivot-section"
-        :pivot="pivots[0]"
+        :pivots="page.pivots"
+        :scroll-indicator="true"
       />
-      <scroll-to direction="up" />
-    </div>
+    </section>
   </main>
 </template>
 
@@ -36,11 +35,15 @@
   import BlogListItem from '~/components/blog-list-item'
   import PivotSection from '~/components/pivot-section'
   import PageHeader from '~/components/page-header'
-  import ScrollTo from '~/components/scroll-to'
   import TextBlock from '~/components/text-block'
 
   export default {
-    components: { BlogListItem, PivotSection, PageHeader, ScrollTo, TextBlock },
+    components: {
+      BlogListItem,
+      PivotSection,
+      PageHeader,
+      TextBlock,
+    },
     asyncData,
     head
   }
@@ -61,19 +64,13 @@
     grid-row: 2;
   }
 
-  .page-blog__cta {
-    grid-row: 3;
-    grid-column: var(--grid-page);
+  .page-blog__pivots {
     background-color: var(--bg-pastel);
     position: relative;
   }
 
-  .page-blog__cta .pivot-section {
+  .page-blog__pivots .pivot {
     border: none;
-  }
-
-  .page-blog__cta .scroll-to {
-    display: none;
   }
 
   @media (min-width: 720px) {
@@ -88,14 +85,7 @@
       position: relative;
     }
 
-    .page-blog__cta .scroll-to {
-      display: flex;
-      position: absolute;
-      bottom: var(--spacing-larger);
-      grid-column: 48;
-    }
-
-    .page-blog__pivot-section {
+    .page-blog__pivots .pivot {
       grid-column-start: 8;
       grid-column-end: 46;
     }
@@ -109,13 +99,9 @@
       margin-bottom: var(--spacing-large);
     }
 
-    .page-blog__pivot-section {
+    .page-blog__pivots .pivot {
       grid-column-start: 14;
       grid-column-end: 38;
-    }
-
-    .page-blog__cta .scroll-to {
-      bottom: var(--spacing-big);
     }
   }
 </style>

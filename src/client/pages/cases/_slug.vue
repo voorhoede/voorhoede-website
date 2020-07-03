@@ -104,17 +104,16 @@
           &larr; {{ $t('all_cases') }}
         </nuxt-link>
       </div>
-
-      <div class="page-case__contact-form grid">
-        <contact-form
-          class="grid"
-          :title="$t('lets_discuss')"
-          :contact-person="page.contactPerson"
-        />
-        <scroll-to direction="up" />
-      </div>
     </main>
-    <newsletter-form />
+
+    <section class="page-cases__pivots">
+      <pivot-section
+        v-if="page.pivots && page.pivots.length"
+        :pivots="page.pivots"
+        :scroll-indicator="true"
+      />
+    </section>
+
   </div>
 </template>
 
@@ -126,33 +125,29 @@
   import CasePullQuoteComposition from '~/components/case-pull-quote-composition'
   import CaseTeaser from '~/components/case-teaser'
   import FullWidthImage from '~/components/full-width-image'
-  import ContactForm from '~/components/contact-form'
   import ImageWithDescription from '~/components/image-with-description'
   import PageHeader from '~/components/page-header'
+  import PivotSection from '~/components/pivot-section'
   import QuoteBlock from '~/components/quote-block'
   import ResponsiveImage from '~/components/responsive-image'
   import ResponsiveVideo from '~/components/responsive-video'
   import RichTextBlock from '~/components/rich-text-block'
-  import ScrollTo from '~/components/scroll-to'
   import StorytellingSection from '~/components/storytelling-section'
-  import NewsletterForm from '~/components/newsletter-form'
 
   export default {
     components: {
       CaseMeta,
       CasePullQuoteComposition,
       CaseTeaser,
-      ContactForm,
       FullWidthImage,
       ImageWithDescription,
       PageHeader,
+      PivotSection,
       QuoteBlock,
       ResponsiveImage,
       ResponsiveVideo,
       RichTextBlock,
-      ScrollTo,
       StorytellingSection,
-      NewsletterForm,
     },
     asyncData,
     methods: {
@@ -186,7 +181,6 @@
     padding: 0 var(--spacing-small);
   }
 
-  .page-case__contact-form,
   .page-case__content,
   .page-case__content > *:not(:last-child) {
     margin-bottom: var(--spacing-larger);
@@ -199,11 +193,6 @@
     margin-bottom: var(--spacing-bigger);
   }
 
-  .page-case__contact-form {
-    grid-column: var(--grid-page);
-    grid-row: 5;
-  }
-
   .page-case__title {
     margin-bottom: var(--spacing-smaller);
   }
@@ -214,10 +203,6 @@
 
   .page-case__text video {
     max-width: 100%; /* temporary fix for mvp should refactored after mvp */
-  }
-
-  .page-case__contact-form .scroll-to {
-    display: none;
   }
 
   .page-case__content .storytelling-section,
@@ -233,6 +218,10 @@
     max-width: var(--case-content-max-width-l);
   }
 
+  .page-cases__pivots .pivot-section__scroll-to {
+    grid-row: 1 / 1;
+  }
+
   @media (min-width: 720px) {
     .page-case__content {
       padding-left: var(--spacing-large);
@@ -246,30 +235,9 @@
       margin-right: calc(-1 * var(--spacing-large));
     }
 
-    .page-case__contact-form,
     .page-case__content,
     .page-case__content > *:not(:last-child) {
       margin-bottom: var(--spacing-big);
-    }
-
-    .page-case__scroll-to {
-      position: relative;
-    }
-
-    .page-case__contact-form .contact-form {
-      grid-column-start: 1;
-      grid-column-end: 49;
-    }
-
-    .page-case__contact-form {
-      position: relative;
-    }
-
-    .page-case__contact-form .scroll-to {
-      grid-column: 49;
-      display: flex;
-      position: absolute;
-      bottom: 0;
     }
   }
 
@@ -303,7 +271,6 @@
       width: 100%;
     }
 
-    .page-case__contact-form,
     .page-case__content,
     .page-case__content > *:not(:last-child) {
       margin-bottom: var(--spacing-bigger);
@@ -320,10 +287,6 @@
 
     .page-case__content .image-with-description {
       max-width: var(--case-content-max-width-m);
-    }
-
-    .page-case__contact-form .contact-form {
-      grid-column: var(--grid-page);
     }
   }
 

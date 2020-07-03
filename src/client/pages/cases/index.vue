@@ -20,14 +20,11 @@
           </li>
         </ul>
       </section>
-      <div class="grid">
-        <pivot-section
-          v-if="pivots && pivots.length"
-          :pivot="pivots[0]"
-        />
-      </div>
+      <pivot-section
+        v-if="page.pivots && page.pivots.length"
+        :pivots="page.pivots"
+      />
     </main>
-    <newsletter-form />
   </div>
 </template>
 
@@ -38,17 +35,15 @@
   import CaseExcerpt from '~/components/case-excerpt'
   import PageHeader from '~/components/page-header'
   import PivotSection from '~/components/pivot-section'
-  import NewsletterForm from '~/components/newsletter-form'
 
   export default {
     components: {
       CaseExcerpt,
       PageHeader,
       PivotSection,
-      NewsletterForm,
     },
     asyncData,
-    head
+    head,
   }
 </script>
 

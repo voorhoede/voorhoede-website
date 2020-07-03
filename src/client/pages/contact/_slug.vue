@@ -12,14 +12,11 @@
           {{ page.body }}
         </div>
       </div>
-      <div class="grid">
-        <pivot-section
-          v-if="pivots && pivots.length"
-          :pivot="pivots[0]"
-        />
-      </div>
     </section>
-    <newsletter-form />
+    <pivot-section
+      v-if="page.pivots && page.pivots.length"
+      :pivots="page.pivots"
+    />
   </div>
 </template>
 
@@ -27,18 +24,13 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
-  import PivotSection from '~/components/pivot-section'
   import PageHeader from '~/components/page-header'
-  import NewsletterForm from '~/components/newsletter-form'
+  import PivotSection from '~/components/pivot-section'
 
   export default {
-    components: {
-      PivotSection,
-      PageHeader,
-      NewsletterForm,
-    },
+    components: { PageHeader, PivotSection },
     asyncData,
-    head
+    head,
   }
 </script>
 

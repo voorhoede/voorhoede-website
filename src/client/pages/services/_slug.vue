@@ -25,32 +25,29 @@
           />
         </template>
       </article>
-      <pivot-section
-        v-if="pivots && pivots.length"
-        class="page-service__pivot-section"
-        :pivot="pivots[0]"
-      />
     </main>
-    <newsletter-form />
+    <pivot-section
+      v-if="page.pivots && page.pivots.length"
+      :pivots="page.pivots"
+    />
   </div>
 </template>
 
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import PageHeader from '~/components/page-header'
+
   import GenericTextBlock from '~/components/generic-text-block'
+  import PageHeader from '~/components/page-header'
   import PivotSection from '~/components/pivot-section'
   import ResponsiveImage from '~/components/responsive-image'
-  import NewsletterForm from '~/components/newsletter-form'
 
   export default {
     components: {
-      PageHeader,
       GenericTextBlock,
+      PageHeader,
       PivotSection,
       ResponsiveImage,
-      NewsletterForm,
     },
     asyncData,
     head,
@@ -74,13 +71,6 @@
     margin: 0 0 var(--spacing-large) 0;
   }
 
-  .page-service__pivot-section.pivot-section {
-    grid-column: var(--grid-page);
-    grid-row: 4;
-    padding: var(--spacing-big) var(--spacing-small);
-    border: none;
-  }
-
   .page-service__overview .generic-text-block__title {
     font-size: 1.5rem;
     line-height: 1.2083333333;
@@ -96,8 +86,7 @@
       margin-bottom: var(--spacing-big);
     }
 
-    .page-service__overview,
-    .page-service__pivot-section.pivot-section {
+    .page-service__overview {
       grid-column: var(--grid-content);
     }
 
