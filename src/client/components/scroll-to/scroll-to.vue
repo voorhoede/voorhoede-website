@@ -54,7 +54,7 @@
     user-select: none;
   }
 
-  .scroll-to__text {
+  .scroll-to__text.body-petite {
     color: var(--html-blue);
     letter-spacing: .0625rem;
     line-height: 32px;
