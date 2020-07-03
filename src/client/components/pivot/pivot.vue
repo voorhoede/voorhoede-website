@@ -1,5 +1,11 @@
 <template>
-  <section class="pivot">
+  <section
+    class="pivot"
+    :class="{
+      'pivot--has-border': border,
+      'pivot--narrow': narrow,
+    }"
+  >
     <h2
       v-if="pivot.title"
       class="pivot__heading h3"
@@ -42,6 +48,14 @@
             (pivot.hasOwnProperty('externalLink') || linkValidator(pivot.link))
         },
       },
+      border: {
+        type: Boolean,
+        default: true,
+      },
+      narrow: {
+        type: Boolean,
+        default: false,
+      },
     },
     methods: {
       createHref,
@@ -70,8 +84,13 @@
   }
 
   @media (min-width: 720px) {
-    .pivot {
+    .pivot--has-border {
       border-top: 1px solid var(--very-dim);
+    }
+
+    .pivot--narrow {
+      grid-column-start: 8;
+      grid-column-end: 46;
     }
   }
 
@@ -79,6 +98,11 @@
     .pivot {
       padding-top: var(--spacing-large);
       padding-bottom: var(--spacing-big);
+    }
+
+    .pivot--narrow {
+      grid-column-start: 14;
+      grid-column-end: 38;
     }
   }
 </style>

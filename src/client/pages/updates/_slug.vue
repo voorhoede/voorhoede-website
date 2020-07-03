@@ -19,7 +19,11 @@
     <section
       v-if="page.pivots && page.pivots.length"
       class="page-update__pivots grid">
-      <pivot-section :pivots="page.pivots" />
+      <pivot-section
+        :pivots="page.pivots"
+        :pivot-border="false"
+        :pivot-narrow="true"
+      />
     </section>
   </div>
 </template>
@@ -62,10 +66,6 @@
     margin-bottom: 0;
   }
 
-  .page-update__pivots .pivot {
-    border: none;
-  }
-
   @media (min-width: 720px) {
     .page-update {
       background-color: var(--bg-pastel);
@@ -81,11 +81,6 @@
     .page-update__pivots {
       margin-bottom: var(--spacing-big);
     }
-
-    .page-update__pivots .pivot {
-      grid-column-end: 46;
-      grid-column-start: 8;
-    }
   }
 
   @media (min-width: 1100px) {
@@ -96,11 +91,6 @@
     .page-update__article {
       grid-column: var(--grid-content-narrow);
       padding: var(--spacing-big) var(--spacing-bigger);
-    }
-
-    .page-update__pivots .pivot {
-      grid-column-end: 38;
-      grid-column-start: 14;
     }
   }
 

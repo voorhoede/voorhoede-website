@@ -22,6 +22,8 @@
       class="page-blog__pivots">
       <pivot-section
         :pivots="page.pivots"
+        :pivot-border="false"
+        :pivot-narrow="true"
         :scroll-indicator="true"
       />
     </section>
@@ -69,10 +71,6 @@
     position: relative;
   }
 
-  .page-blog__pivots .pivot {
-    border: none;
-  }
-
   @media (min-width: 720px) {
     .page-blog__text,
     .page-blog__posts {
@@ -84,11 +82,6 @@
     .page-blog-container {
       position: relative;
     }
-
-    .page-blog__pivots .pivot {
-      grid-column-start: 8;
-      grid-column-end: 46;
-    }
   }
 
   @media (min-width: 1100px) {
@@ -97,11 +90,6 @@
       grid-column-start: 14;
       grid-column-end: 42;
       margin-bottom: var(--spacing-large);
-    }
-
-    .page-blog__pivots .pivot {
-      grid-column-start: 14;
-      grid-column-end: 38;
     }
   }
 </style>
