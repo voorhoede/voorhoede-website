@@ -11,7 +11,7 @@
         class="services-text"
         :text="page.smallServices" />
     </main>
-    <pivot-section
+    <pivot-list
       v-if="page.pivots && page.pivots.length"
       :pivots="page.pivots"
     />
@@ -23,14 +23,14 @@
   import head from '~/lib/seo-head'
 
   import PageHeader from '~/components/page-header'
-  import PivotSection from '~/components/pivot-section'
+  import PivotList from '~/components/pivot-list'
   import ServicesList from '~/components/services-list'
   import RichTextBlock from '~/components/rich-text-block'
 
   export default {
     components: {
       PageHeader,
-      PivotSection,
+      PivotList,
       ServicesList,
       RichTextBlock,
     },

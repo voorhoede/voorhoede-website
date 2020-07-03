@@ -107,7 +107,7 @@
     </main>
 
     <section class="page-cases__pivots grid">
-      <pivot-section
+      <pivot-list
         v-if="page.pivots && page.pivots.length"
         :pivots="page.pivots"
       />
@@ -129,7 +129,7 @@
   import FullWidthImage from '~/components/full-width-image'
   import ImageWithDescription from '~/components/image-with-description'
   import PageHeader from '~/components/page-header'
-  import PivotSection from '~/components/pivot-section'
+  import PivotList from '~/components/pivot-list'
   import QuoteBlock from '~/components/quote-block'
   import ResponsiveImage from '~/components/responsive-image'
   import ResponsiveVideo from '~/components/responsive-video'
@@ -145,7 +145,7 @@
       FullWidthImage,
       ImageWithDescription,
       PageHeader,
-      PivotSection,
+      PivotList,
       QuoteBlock,
       ResponsiveImage,
       ResponsiveVideo,
@@ -222,7 +222,7 @@
     max-width: var(--case-content-max-width-l);
   }
 
-  .page-cases__pivots .pivot-section__scroll-to {
+  .page-cases__pivots .pivot-list__scroll-to {
     grid-row-start: 1;
     grid-row-end: 1;
   }

@@ -18,7 +18,7 @@
       </ul>
     </section>
     <section class="page-blog__pivots grid">
-      <pivot-section
+      <pivot-list
         v-if="page.pivots && page.pivots.length"
         :pivots="page.pivots"
         :pivot-border="false"
@@ -36,7 +36,7 @@
   import head from '~/lib/seo-head'
 
   import BlogListItem from '~/components/blog-list-item'
-  import PivotSection from '~/components/pivot-section'
+  import PivotList from '~/components/pivot-list'
   import PageHeader from '~/components/page-header'
   import ScrollTo from '~/components/scroll-to'
   import TextBlock from '~/components/text-block'
@@ -44,7 +44,7 @@
   export default {
     components: {
       BlogListItem,
-      PivotSection,
+      PivotList,
       PageHeader,
       ScrollTo,
       TextBlock,

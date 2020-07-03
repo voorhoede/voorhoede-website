@@ -105,7 +105,7 @@
     </div>
 
     <section class="page-blog-post__pivots grid">
-      <pivot-section
+      <pivot-list
         v-if="page.pivots && page.pivots.length"
         :pivots="page.pivots"
         :pivot-border="false"
@@ -129,7 +129,7 @@ import AppButton from '~/components/app-button'
 import BlogAuthor from '~/components/blog-author'
 import CodeBlock from '~/components/code-block'
 import ImageWithDescription from '~/components/image-with-description'
-import PivotSection from '~/components/pivot-section'
+import PivotList from '~/components/pivot-list'
 import PageHeader from '~/components/page-header'
 import QuoteBlock from '~/components/quote-block'
 import ResponsiveImage from '~/components/responsive-image'
@@ -146,7 +146,7 @@ export default {
     BlogAuthor,
     CodeBlock,
     ImageWithDescription,
-    PivotSection,
+    PivotList,
     PageHeader,
     QuoteBlock,
     ResponsiveImage,

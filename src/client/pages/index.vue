@@ -29,7 +29,7 @@
       />
     </section>
     <section class="page-index__cta grid">
-      <pivot-section :pivots="ctaPivot"/>
+      <pivot-list :pivots="ctaPivot"/>
     </section>
     <section class="page-index__cases grid">
       <h2 class="page-index__section-title page-index__section-title--cases h1">{{ page.casesTitle }}</h2>
@@ -84,7 +84,7 @@
       <curly-bracket side="right" />
     </section>
     <section class="page-index__pivots grid">
-      <pivot-section
+      <pivot-list
         v-if="page.pivots && page.pivots.length"
         :pivots="page.pivots"
       />
@@ -103,7 +103,7 @@
   import AppButton from '~/components/app-button'
   import BlogListItem from '~/components/blog-list-item'
   import CaseExcerpt from '~/components/case-excerpt'
-  import PivotSection from '~/components/pivot-section'
+  import PivotList from '~/components/pivot-list'
   import CurlyBracket from '~/components/curly-bracket'
   import HighlightedClients from '~/components/highlighted-clients'
   import HorizontalCarousel from '~/components/horizontal-carousel'
@@ -118,7 +118,7 @@
       AppButton,
       BlogListItem,
       CaseExcerpt,
-      PivotSection,
+      PivotList,
       CurlyBracket,
       HighlightedClients,
       HorizontalCarousel,
