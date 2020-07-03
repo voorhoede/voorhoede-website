@@ -16,13 +16,11 @@
         </div>
       </template>
     </article>
-    <div class="page-update__cta grid">
-      <pivot-section
-        v-if="pivots && pivots.length"
-        class="page-update__pivot-section"
-        :pivot="pivots[0]"
-      />
-    </div>
+    <section
+      v-if="page.pivots && page.pivots.length"
+      class="page-update__pivots grid">
+      <pivot-section :pivots="page.pivots" />
+    </section>
   </div>
 </template>
 
@@ -58,13 +56,13 @@
     margin: 0 0 var(--spacing-large) 0;
   }
 
-  .page-update__cta {
+  .page-update__pivots {
     grid-column: var(--grid-page);
-    grid-row: 3;
     background-color: var(--bg-pastel);
+    margin-bottom: 0;
   }
 
-  .page-update__cta .pivot-section {
+  .page-update__pivots .pivot {
     border: none;
   }
 
@@ -80,7 +78,11 @@
       padding: var(--spacing-large) var(--spacing-larger);
     }
 
-    .page-updates__pivot-section {
+    .page-update__pivots {
+      margin-bottom: var(--spacing-big);
+    }
+
+    .page-update__pivots .pivot {
       grid-column-end: 46;
       grid-column-start: 8;
     }
@@ -96,7 +98,7 @@
       padding: var(--spacing-big) var(--spacing-bigger);
     }
 
-    .page-updates__pivot-section {
+    .page-update__pivots .pivot {
       grid-column-end: 38;
       grid-column-start: 14;
     }

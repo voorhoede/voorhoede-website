@@ -104,15 +104,14 @@
       </nuxt-link>
     </div>
 
-    <div class="page-blog-post__cta grid">
-      <!-- TODO: Make this a section to be defined in DATO (once for all blog pages) -->
+    <section
+      v-if="page.pivots && page.pivots.length"
+      class="page-blog-post__pivots">
       <pivot-section
-        v-if="pivots && pivots.length"
-        class="page-blog-post__pivot-section"
-        :pivot="pivots[0]"
+        :pivots="page.pivots"
+        :scroll-indicator="true"
       />
-      <scroll-to direction="up" />
-    </div>
+    </section>
 
     <style v-if="page.customStyling" v-html="page.customStyling"></style>
     <script v-if="page.customScript && loadCustomScript" v-html="page.customScript"/>
@@ -122,17 +121,17 @@
 <script>
 import asyncData from '~/lib/async-page'
 import head from '~/lib/seo-head'
+
 import AppButton from '~/components/app-button'
 import BlogAuthor from '~/components/blog-author'
 import CodeBlock from '~/components/code-block'
-import PivotSection from '~/components/pivot-section'
 import ImageWithDescription from '~/components/image-with-description'
+import PivotSection from '~/components/pivot-section'
 import PageHeader from '~/components/page-header'
 import QuoteBlock from '~/components/quote-block'
 import ResponsiveImage from '~/components/responsive-image'
 import ResponsiveVideo from '~/components/responsive-video'
 import RichTextBlock from '~/components/rich-text-block'
-import ScrollTo from '~/components/scroll-to'
 import SocialShareButtons from '~/components/social-share-buttons'
 import TocSection from '~/components/toc-section'
 import TextBlock from '~/components/text-block'
@@ -142,14 +141,13 @@ export default {
     AppButton,
     BlogAuthor,
     CodeBlock,
-    PivotSection,
     ImageWithDescription,
+    PivotSection,
     PageHeader,
     QuoteBlock,
     ResponsiveImage,
     ResponsiveVideo,
     RichTextBlock,
-    ScrollTo,
     SocialShareButtons,
     TocSection,
     TextBlock,
@@ -255,13 +253,13 @@ export default {
     margin-bottom: var(--spacing-bigger);
   }
 
-  .page-blog-post__cta {
+  .page-blog-post__pivots {
     grid-column: var(--grid-page);
     grid-row: 5;
     background-color: var(--bg-pastel);
   }
 
-  .page-blog-post__pivot-section.pivot-section {
+  .page-blog-post__pivots .pivot {
     border: none;
   }
 
@@ -277,10 +275,6 @@ export default {
   .page-blog-post-list .responsive-video {
     width: 100%;
     max-width: var(--case-content-max-width-l);
-  }
-
-  .page-blog-post__cta .scroll-to {
-    display: none;
   }
 
   @media (min-width: 720px) {
@@ -310,18 +304,7 @@ export default {
       grid-column-end: 9;
     }
 
-    .page-blog-post__cta {
-      position: relative;
-    }
-
-    .page-blog-post__cta .scroll-to {
-      display: flex;
-      position: absolute;
-      bottom: var(--spacing-larger);
-      grid-column: 48;
-    }
-
-    .page-blog-post__pivot-section {
+    .page-blog-post__pivots .pivot {
       grid-column-start: 8;
       grid-column-end: 44;
     }
@@ -347,13 +330,9 @@ export default {
       grid-column-end: 11;
     }
 
-    .page-blog-post__pivot-section {
+    .page-blog-post__pivots .pivot {
       grid-column-start: 14;
       grid-column-end: 38;
-    }
-
-    .page-blog-post__cta .scroll-to {
-      bottom: var(--spacing-big);
     }
   }
 

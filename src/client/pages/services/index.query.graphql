@@ -5,38 +5,6 @@ query ($locale: SiteLocale) {
   items: allServices(locale: $locale) {
     slug
   }
-  pivots: allPivotSections(locale: $locale, filter: {routes: {matches: {pattern: "services"}}}) {
-    title
-    body
-    callToActionLabel
-    link {
-      title
-      url
-      page {
-        ... on HomeRecord {
-          slug
-        }
-        ... on ServiceOverviewRecord {
-          slug
-        }
-        ... on CaseOverviewRecord {
-          slug
-        }
-        ... on BlogPostOverviewRecord {
-          slug
-        }
-        ... on JobOverviewRecord {
-          slug
-        }
-        ... on AboutRecord {
-          slug
-        }
-        ... on ContactRecord {
-          slug
-        }
-      }
-    }
-  }
 }
 
 fragment page on ServiceOverviewRecord {
@@ -70,6 +38,51 @@ fragment page on ServiceOverviewRecord {
       height,
       url,
       format
+    }
+  }
+  pivots {
+    title
+    body
+    buttonLabel: callToActionLabel
+    link {
+      title
+      url
+      page {
+        ... on HomeRecord {
+          slug
+        }
+        ... on ServiceOverviewRecord {
+          slug
+        }
+        ... on CaseOverviewRecord {
+          slug
+        }
+        ... on BlogPostOverviewRecord {
+          slug
+        }
+        ... on JobOverviewRecord {
+          slug
+        }
+        ... on AboutRecord {
+          slug
+        }
+        ... on ContactRecord {
+          slug
+        }
+      }
+    }
+    externalLink
+    formType
+    contactPerson {
+      name
+      lastName
+      jobTitle
+      image {
+        width
+        height
+        url
+        format
+      }
     }
   }
 }

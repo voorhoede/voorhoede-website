@@ -29,9 +29,7 @@
       />
     </section>
     <section class="page-index__cta grid">
-      <pivot-section
-        :pivot="ctaPivot"
-      />
+      <pivot-section :pivots="ctaPivot"/>
     </section>
     <section class="page-index__cases grid">
       <h2 class="page-index__section-title page-index__section-title--cases h1">{{ page.casesTitle }}</h2>
@@ -85,22 +83,21 @@
       </div>
       <curly-bracket side="right" />
     </section>
-    <div class="page-index__pivot-section grid">
+    <section
+      v-if="page.pivots && page.pivots.length"
+      class="page-index__pivots">
       <pivot-section
-        v-if="pivots && pivots.length"
-        :pivot="pivots[0]"
+        :pivots="page.pivots"
+        :scroll-indicator="true"
       />
-    </div>
-    <div class="page-index__newsletter-section grid">
-      <newsletter-form />
-      <scroll-to direction="up" />
-    </div>
+    </section>
   </main>
 </template>
 
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
+
   import AcademyExcerpt from '~/components/academy-excerpt'
   import AppButton from '~/components/app-button'
   import BlogListItem from '~/components/blog-list-item'
@@ -109,10 +106,8 @@
   import CurlyBracket from '~/components/curly-bracket'
   import HighlightedClients from '~/components/highlighted-clients'
   import HorizontalCarousel from '~/components/horizontal-carousel'
-  import NewsletterForm from '~/components/newsletter-form'
   import PageHeader from '~/components/page-header'
   import ScrollHighlightedText from '~/components/scroll-highlighted-text'
-  import ScrollTo from '~/components/scroll-to'
   import ServicesList from '~/components/services-list'
 
   export default {
@@ -125,21 +120,19 @@
       CurlyBracket,
       HighlightedClients,
       HorizontalCarousel,
-      NewsletterForm,
       PageHeader,
       ScrollHighlightedText,
-      ScrollTo,
       ServicesList,
     },
     asyncData,
     computed: {
       ctaPivot () {
-        return {
+        return [{
           title: this.page.ctaTitle,
           body: this.page.ctaBody,
-          callToActionLabel: this.page.ctaButtonLabel,
+          buttonLabel: this.page.ctaButtonLabel,
           externalLink: this.page.ctaUrl,
-        }
+        }]
       },
     },
     methods: {
@@ -158,24 +151,6 @@
   .page-index__header {
     margin-bottom: var(--spacing-big);
     background-color: var(--bg-pastel);
-  }
-
-  .page-index__scroll-to {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-
-  .page-index__scroll-to .scroll-to {
-    grid-column: 1;
-  }
-
-  .page-index__newsletter-section .scroll-to {
-    display: none;
-    position: absolute;
-    bottom: var(--spacing-large);
-    grid-column: -3;
   }
 
   .page-index .scroll-highlighted-text {
@@ -281,10 +256,6 @@
   }
 
   @media (min-width: 720px) {
-    .page-index__scroll-to {
-      bottom: var(--spacing-medium);
-    }
-
     .page-index .page-header {
       margin-bottom: var(--spacing-big);
     }
@@ -319,7 +290,7 @@
       margin-bottom: var(--spacing-bigger);
     }
 
-    .page-index__cta .pivot-section {
+    .page-index__cta .pivot {
       border-top: none;
       border-bottom: 1px solid var(--very-dim);
     }
@@ -344,10 +315,6 @@
       display: inline-block;
       grid-column-start: 8;
       grid-column-end: 30;
-    }
-
-    .page-index__scroll-to .scroll-to {
-      grid-column: 2;
     }
 
     .page-index .blog-list-item__time {
@@ -375,18 +342,7 @@
       padding: var(--spacing-larger) 0;
     }
 
-    .page-index__newsletter-section .scroll-to {
-      display: flex;
-      position: absolute;
-      bottom: var(--spacing-larger);
-      grid-column: 48;
-    }
-
-    .page-index__newsletter-section {
-      position: relative;
-    }
-
-    .page-index__pivot-section .pivot-section {
+    .page-index__pivots .pivot {
       grid-column-start: 6;
       grid-column-end: 46;
     }
@@ -445,14 +401,10 @@
       grid-column-start: 21;
       grid-column-end: 40;
     }
-
-    .page-index__pivot-section .scroll-to {
-      bottom: var(--spacing-big);
-    }
   }
 
   @media (min-width: 1440px) {
-    .page-index__pivot-section {
+    .page-index__pivots {
       /* tweak for the inconsistent spacing of the latest-blog-post component  */
       padding-top: var(--spacing-smaller);
     }

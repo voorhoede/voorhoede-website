@@ -10,27 +10,30 @@
       <rich-text-block
         class="services-text"
         :text="page.smallServices" />
-      <contact-form
-        class="grid"
-        :contact-person="page.contactPerson"
-        :title="$t('lets_discuss')"
-      />
     </main>
-    <newsletter-form />
+    <pivot-section
+      v-if="page.pivots && page.pivots.length"
+      :pivots="page.pivots"
+    />
   </div>
 </template>
 
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
+
   import PageHeader from '~/components/page-header'
+  import PivotSection from '~/components/pivot-section'
   import ServicesList from '~/components/services-list'
-  import ContactForm from '~/components/contact-form'
   import RichTextBlock from '~/components/rich-text-block'
-  import NewsletterForm from '~/components/newsletter-form'
 
   export default {
-    components: { ServicesList, ContactForm, PageHeader, RichTextBlock, NewsletterForm },
+    components: {
+      PageHeader,
+      PivotSection,
+      ServicesList,
+      RichTextBlock,
+    },
     asyncData,
     head
   }
@@ -48,10 +51,6 @@
 
   .page-services .services-text {
     grid-row: 3;
-  }
-
-  .page-services .contact-form {
-    grid-row: 4;
   }
 
   @media (min-width: 720px) {
