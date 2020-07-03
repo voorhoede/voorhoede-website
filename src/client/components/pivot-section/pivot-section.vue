@@ -76,7 +76,8 @@
     left: 0;
     right: 0;
     bottom: 55px;
-    grid-column: -2 / -3;
+    grid-column-start: -2;
+    grid-column-end: -3;
   }
 
   @media (min-width: 720px) {
