@@ -109,6 +109,8 @@
       class="page-blog-post__pivots">
       <pivot-section
         :pivots="page.pivots"
+        :pivot-border="false"
+        :pivot-narrow="true"
         :scroll-indicator="true"
       />
     </section>
@@ -259,10 +261,6 @@ export default {
     background-color: var(--bg-pastel);
   }
 
-  .page-blog-post__pivots .pivot {
-    border: none;
-  }
-
   .page-blog-post-list {
     grid-row: 3;
     max-width: 100%;
@@ -304,11 +302,6 @@ export default {
       grid-column-end: 9;
     }
 
-    .page-blog-post__pivots .pivot {
-      grid-column-start: 8;
-      grid-column-end: 44;
-    }
-
     .page-blog-post__link-container {
       grid-column-start: 4;
       grid-column-end: 48;
@@ -328,11 +321,6 @@ export default {
     .page-blog-post__aside {
       grid-column-start: 4;
       grid-column-end: 11;
-    }
-
-    .page-blog-post__pivots .pivot {
-      grid-column-start: 14;
-      grid-column-end: 38;
     }
   }
 

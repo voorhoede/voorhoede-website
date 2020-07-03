@@ -22,6 +22,8 @@
       class="page-updates__pivots grid">
       <pivot-section
         :pivots="page.pivots"
+        :pivot-border="false"
+        :pivot-narrow="true"
         :scroll-indicator="true"
       />
     </section>
@@ -76,10 +78,6 @@
     background-color: var(--bg-pastel);
   }
 
-  .page-updates__pivots .pivot {
-    border: none;
-  }
-
   @media (min-width: 720px) {
     .page-updates__text,
     .page-updates__posts {
@@ -91,11 +89,6 @@
     .page-updates__container {
       position: relative;
     }
-
-    .page-updates__pivots .pivot {
-      grid-column-end: 46;
-      grid-column-start: 8;
-    }
   }
 
   @media (min-width: 1100px) {
@@ -104,11 +97,6 @@
       grid-column-end: 42;
       grid-column-start: 14;
       margin-bottom: var(--spacing-large);
-    }
-
-    .page-updates__pivots .pivot {
-      grid-column-end: 38;
-      grid-column-start: 14;
     }
   }
 </style>

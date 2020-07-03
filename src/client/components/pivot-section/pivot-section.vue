@@ -16,6 +16,8 @@
         v-else
         :key="index"
         :pivot="pivot"
+        :border="pivotBorder"
+        :narrow="pivotNarrow"
       />
     </template>
     <div class="pivot-section__scroll-to">
@@ -41,6 +43,14 @@
       pivots: {
         type: Array,
         required: true,
+      },
+      pivotBorder: {
+        type: Boolean,
+        default: true,
+      },
+      pivotNarrow: {
+        type: Boolean,
+        default: false,
       },
       scrollIndicator: {
         type: Boolean,
