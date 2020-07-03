@@ -83,13 +83,14 @@
       </div>
       <curly-bracket side="right" />
     </section>
-    <section
-      v-if="page.pivots && page.pivots.length"
-      class="page-index__pivots">
+    <section class="page-index__pivots grid">
       <pivot-section
+        v-if="page.pivots && page.pivots.length"
         :pivots="page.pivots"
-        :scroll-indicator="true"
       />
+      <div class="page-index__scroll-to">
+        <scroll-to direction="up" />
+      </div>
     </section>
   </main>
 </template>
@@ -108,6 +109,7 @@
   import HorizontalCarousel from '~/components/horizontal-carousel'
   import PageHeader from '~/components/page-header'
   import ScrollHighlightedText from '~/components/scroll-highlighted-text'
+  import ScrollTo from '~/components/scroll-to'
   import ServicesList from '~/components/services-list'
 
   export default {
@@ -122,6 +124,7 @@
       HorizontalCarousel,
       PageHeader,
       ScrollHighlightedText,
+      ScrollTo,
       ServicesList,
     },
     asyncData,
@@ -255,6 +258,20 @@
     grid-row: 2;
   }
 
+  .page-index__pivots {
+    position: relative;
+  }
+
+  .page-index__scroll-to {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 55px;
+    grid-column-start: -2;
+    grid-column-end: -3;
+  }
+
   @media (min-width: 720px) {
     .page-index .page-header {
       margin-bottom: var(--spacing-big);
@@ -345,6 +362,10 @@
     .page-index__pivots .pivot {
       grid-column-start: 6;
       grid-column-end: 46;
+    }
+
+    .page-index__scroll-to {
+      display: block;
     }
   }
 

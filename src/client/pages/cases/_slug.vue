@@ -106,12 +106,14 @@
       </div>
     </main>
 
-    <section class="page-cases__pivots">
+    <section class="page-cases__pivots grid">
       <pivot-section
         v-if="page.pivots && page.pivots.length"
         :pivots="page.pivots"
-        :scroll-indicator="true"
       />
+      <div class="page-cases__scroll-to">
+        <scroll-to direction="up" />
+      </div>
     </section>
 
   </div>
@@ -132,6 +134,7 @@
   import ResponsiveImage from '~/components/responsive-image'
   import ResponsiveVideo from '~/components/responsive-video'
   import RichTextBlock from '~/components/rich-text-block'
+  import ScrollTo from '~/components/scroll-to'
   import StorytellingSection from '~/components/storytelling-section'
 
   export default {
@@ -147,6 +150,7 @@
       ResponsiveImage,
       ResponsiveVideo,
       RichTextBlock,
+      ScrollTo,
       StorytellingSection,
     },
     asyncData,
@@ -219,7 +223,22 @@
   }
 
   .page-cases__pivots .pivot-section__scroll-to {
-    grid-row: 1 / 1;
+    grid-row-start: 1;
+    grid-row-end: 1;
+  }
+
+  .page-cases__pivots {
+    position: relative;
+  }
+
+  .page-cases__scroll-to {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 55px;
+    grid-column-start: -2;
+    grid-column-end: -3;
   }
 
   @media (min-width: 720px) {
@@ -238,6 +257,10 @@
     .page-case__content,
     .page-case__content > *:not(:last-child) {
       margin-bottom: var(--spacing-big);
+    }
+
+    .page-cases__scroll-to {
+      display: block;
     }
   }
 

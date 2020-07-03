@@ -17,15 +17,16 @@
         </li>
       </ul>
     </section>
-    <section
-      v-if="page.pivots && page.pivots.length"
-      class="page-updates__pivots grid">
+    <section class="page-updates__pivots grid">
       <pivot-section
+        v-if="page.pivots && page.pivots.length"
         :pivots="page.pivots"
         :pivot-border="false"
         :pivot-narrow="true"
-        :scroll-indicator="true"
       />
+      <div class="page-updates__scroll-to">
+        <scroll-to direction="up" />
+      </div>
     </section>
   </main>
 </template>
@@ -37,6 +38,7 @@
   import BlogListItem from '~/components/blog-list-item'
   import PivotSection from '~/components/pivot-section'
   import PageHeader from '~/components/page-header'
+  import ScrollTo from '~/components/scroll-to'
   import TextBlock from '~/components/text-block'
 
   export default {
@@ -44,6 +46,7 @@
       BlogListItem,
       PivotSection,
       PageHeader,
+      ScrollTo,
       TextBlock,
     },
     asyncData,
@@ -78,6 +81,16 @@
     background-color: var(--bg-pastel);
   }
 
+  .page-updates__scroll-to {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 55px;
+    grid-column-start: -2;
+    grid-column-end: -3;
+  }
+
   @media (min-width: 720px) {
     .page-updates__text,
     .page-updates__posts {
@@ -88,6 +101,10 @@
 
     .page-updates__container {
       position: relative;
+    }
+
+    .page-updates__scroll-to {
+      display: block;
     }
   }
 
