@@ -54,7 +54,6 @@
 
 <style>
   .pivot {
-    position: relative;
     padding-top: var(--spacing-large);
     padding-bottom: var(--spacing-larger);
     text-align: center;
