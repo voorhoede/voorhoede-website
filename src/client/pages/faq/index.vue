@@ -41,6 +41,7 @@
 <style>
   .page-faq .page-header {
     margin-bottom: var(--spacing-large);
+    grid-row: 1;
   }
 
   .page-faq__overview {
@@ -56,6 +57,10 @@
     position: absolute;
     bottom: var(--spacing-big);
     right: var(--spacing-larger);
+  }
+
+  .page-faq .newsletter-form {
+    grid-row: 3;
   }
 
   @media (min-width: 720px) {
