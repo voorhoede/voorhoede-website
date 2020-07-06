@@ -7,10 +7,12 @@
         class="grid"
         :contact-person="pivot.contactPerson"
         :title="$t('lets_discuss')"
+        :style="setGridRow(index)"
       />
       <newsletter-form
         v-else-if="isNewsletterForm(pivot)"
         :key="index"
+        :style="setGridRow(index)"
       />
       <pivot-section
         v-else
@@ -18,6 +20,7 @@
         :pivot="pivot"
         :border="pivotBorder"
         :narrow="pivotNarrow"
+        :style="setGridRow(index)"
       />
     </template>
   </section>
@@ -54,6 +57,14 @@
       },
       isNewsletterForm(pivot) {
         return pivot.formType && pivot.formType === 'newsletter'
+      },
+      setGridRow(index) {
+        const rowNumber = index + 1
+        return {
+          '-ms-grid-row': rowNumber,
+          '-ms-grid-row-span': '1',
+          'grid-row': rowNumber,
+          }
       },
     },
   }
