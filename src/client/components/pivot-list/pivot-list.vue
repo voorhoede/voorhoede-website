@@ -2,16 +2,11 @@
   <section class="pivot-list grid">
     <template v-for="(pivot, index) in pivots">
       <contact-form
-        v-if="isContactForm(pivot)"
+        v-if="pivot.formType && pivot.formType === 'contact'"
         :key="index"
         class="grid"
         :contact-person="pivot.contactPerson"
         :title="$t('lets_discuss')"
-        :style="setGridRow(index)"
-      />
-      <newsletter-form
-        v-else-if="isNewsletterForm(pivot)"
-        :key="index"
         :style="setGridRow(index)"
       />
       <pivot-section
@@ -28,13 +23,11 @@
 
 <script>
   import ContactForm from '../contact-form'
-  import NewsletterForm from '../newsletter-form'
   import PivotSection from '../pivot-section'
 
   export default {
     components: {
       ContactForm,
-      NewsletterForm,
       PivotSection,
     },
     props: {
@@ -52,12 +45,6 @@
       },
     },
     methods: {
-      isContactForm(pivot) {
-        return pivot.formType && pivot.formType === 'contact'
-      },
-      isNewsletterForm(pivot) {
-        return pivot.formType && pivot.formType === 'newsletter'
-      },
       setGridRow(index) {
         const rowNumber = index + 1
         return {

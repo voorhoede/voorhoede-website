@@ -30,15 +30,32 @@
       :label="pivot.buttonLabel"
       :to="createHref(pivot.link)"
     />
+
+    <leads-form
+      v-if="pivot.formType && pivot.formType === 'leads'"
+      :no-background="true"
+      :button-label="pivot.buttonLabel"
+    />
+
+    <newsletter-form
+      v-if="pivot.formType && pivot.formType === 'newsletter'"
+      :no-background="true"
+    />
   </section>
 </template>
 
 <script>
   import { createHref, linkValidator } from '../../lib/links'
   import AppButton from '../app-button'
+  import LeadsForm from '../leads-form'
+  import NewsletterForm from '../newsletter-form'
 
   export default {
-    components: { AppButton },
+    components: {
+      AppButton,
+      LeadsForm,
+      NewsletterForm,
+    },
     props: {
       pivot: {
         type: Object,
@@ -78,9 +95,11 @@
   }
 
   .pivot-section__body {
-    margin-right: auto;
-    margin-bottom: var(--spacing-large);
-    margin-left: auto;
+    margin: 0 auto var(--spacing-large) auto;
+  }
+
+  .pivot-section .newsletter-form {
+    padding: 0;
   }
 
   @media (min-width: 720px) {

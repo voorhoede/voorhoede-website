@@ -3,9 +3,6 @@
     class="newsletter-form grid"
     :class="{ 'newsletter-form--no-background': noBackground }"
   >
-    <h2 class="newsletter-form__title h3">
-      {{ $t('newsletter') }}
-    </h2>
     <form
       @submit="submit"
       action="https://voorhoede.us20.list-manage.com/subscribe/post?u=bd1491faa00c5405cce7ba212&amp;id=76cc576b8d"
@@ -132,6 +129,7 @@
     grid-row: 2;
     margin: 0 auto;
     max-width: 400px;
+    text-align: left;
   }
 
   .newsletter-form__input-field,
