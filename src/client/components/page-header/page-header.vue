@@ -6,8 +6,14 @@
       'page-header--fill-screen': fillScreen,
       'page-header--has-image': image,
       'page-header--has-slot': displaySlot,
+      'is-animated': isAnimated
     }"
+    :style="{'--animation-delay': animationDelay + 's'}"
   >
+    <span
+      v-if="fillScreen"
+      class="page-header__background scale-up-background"
+    />
     <div class="page-header__text">
       <!--
        `<h1>` is either the headline or the byline.
@@ -16,9 +22,13 @@
       -->
       <p
         v-if="heading === 'headline'"
-        v-html="byline"
         class="sub-title"
-      />
+      >
+        <span
+          v-html="byline"
+          class="animation__uncover"
+        />
+      </p>
       <h1
         v-html="heading === 'byline' ? byline : headline"
         :class="{
@@ -38,8 +48,13 @@
       />
     </div>
 
-    <div v-if="image" class="page-header__image-column">
-      <img class="page-header__image" :src="image.url" alt=""/>
+    <div v-if="image" class="page-header__image-column animation__reveal">
+      <div class="page-header__image-column-content animation__reveal-content">
+        <img class="page-header__image" :src="image.url" alt=""/>
+      </div>
+      <!--
+      <img class="page-header__image animation__reveal-content" :src="image.url" alt=""/>
+      -->
     </div>
 
     <!--
@@ -51,7 +66,7 @@
       <slot/>
     </div>
 
-    <scroll-to v-if="fillScreen" direction="down"/>
+    <scroll-to v-if="fillScreen" direction="down" class="animation__fade-in"/>
   </header>
 </template>
 
@@ -94,6 +109,14 @@
       curlyBracket: {
         type: Boolean,
         default: false,
+      },
+      isAnimated: {
+        type: Boolean,
+        default: false
+      },
+      animationDelay: {
+        type: Number,
+        default: 0
       }
     },
     computed: {
@@ -153,7 +176,7 @@
   }
 
   /* Yellow half */
-  .page-header--fill-screen::before {
+  .page-header__background {
     content: '';
     display: block;
     grid-column: var(--grid-page);
@@ -178,10 +201,14 @@
   }
 
   .page-header--fill-screen .page-header__image-column {
-    display: flex;
+    position: relative;
     z-index: var(--z-index-low); /* Make sure to be on top off curly bracket */
     grid-column: 3 / var(--grid-page-end);
     grid-row: 6 / 7;
+  }
+
+  .page-header__image-column-content {
+    display: flex;
     align-items: flex-end;
     justify-content: flex-end;
   }
@@ -279,7 +306,7 @@
     }
 
     /* Yellow half */
-    .page-header--fill-screen::before {
+    .page-header__background {
       grid-column: var(--grid-page-right);
       grid-row: 1 / 7;
     }
@@ -377,7 +404,7 @@
     }
 
     /* Yellow half */
-    .page-header--fill-screen::before {
+    .page-header__background {
       grid-row: 1 / 5;
     }
 

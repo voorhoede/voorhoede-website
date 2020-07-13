@@ -7,6 +7,8 @@
         byline="Case study"
         :headline="page.title"
         :image="page.heroIllustration"
+        is-animated
+        :animation-delay="page.title.length * 0.05"
       >
         <h2 class="sr-only">{{ $t('case_info') }}</h2>
         <case-meta
