@@ -110,6 +110,7 @@
         const element = document.createElement('a')
 
         element.href = this.file.url
+        element.target = '_blank'
         element.download = this.file.filename
         element.dispatchEvent(clickEvent)
       },
@@ -193,6 +194,7 @@
       max-width: 100%;
     }
 
+    .input-field.leads-form__input-field + .input-field.leads-form__input-field,
     .input-field.leads-form__input-field {
       flex: 1 1 auto;
       order: 1;
