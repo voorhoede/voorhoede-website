@@ -2,12 +2,14 @@
   <section
     class="pivot-section"
     :class="{
-      'pivot-section--has-border': border,
+      'pivot-section--has-border': border && !isNewsletterForm,
       'pivot-section--narrow': narrow,
+      'pivot-section--newsletter': isNewsletterForm,
+      'pivot-section--leads': isLeadsForm,
     }"
   >
     <h2
-      v-if="pivot.title"
+      v-if="pivot.title && !isNewsletterForm"
       class="pivot-section__heading h3"
     >
       {{ pivot.title }}
@@ -32,13 +34,14 @@
     />
 
     <leads-form
-      v-if="pivot.formType && pivot.formType === 'leads'"
+      v-if="isLeadsForm"
       :no-background="true"
+      :file="pivot.file"
       :button-label="pivot.buttonLabel"
     />
 
     <newsletter-form
-      v-if="pivot.formType && pivot.formType === 'newsletter'"
+      v-if="isNewsletterForm"
       :no-background="true"
     />
   </section>
@@ -74,6 +77,14 @@
         default: false,
       },
     },
+    computed: {
+      isNewsletterForm() {
+        return this.pivot.formType && this.pivot.formType === 'newsletter'
+      },
+      isLeadsForm() {
+        return this.pivot.formType && this.pivot.formType === 'leads'
+      },
+    },
     methods: {
       createHref,
       trackLink (href) {
@@ -88,6 +99,11 @@
     padding-top: var(--spacing-large);
     padding-bottom: var(--spacing-larger);
     text-align: center;
+  }
+
+  .pivot-section--newsletter {
+    grid-column: var(--grid-page);
+    background-color: var(--bg-pastel);
   }
 
   .pivot-section__heading {

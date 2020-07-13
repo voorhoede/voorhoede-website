@@ -3,6 +3,9 @@
     class="newsletter-form grid"
     :class="{ 'newsletter-form--no-background': noBackground }"
   >
+    <h2 class="newsletter-form__title h3">
+      {{ $t('newsletter') }}
+    </h2>
     <form
       @submit="submit"
       action="https://voorhoede.us20.list-manage.com/subscribe/post?u=bd1491faa00c5405cce7ba212&amp;id=76cc576b8d"
@@ -114,7 +117,7 @@
   }
 
   .newsletter-form--no-background {
-    background-color: var(--white);
+    background-color: transparent;
   }
 
   .newsletter-form__title {
