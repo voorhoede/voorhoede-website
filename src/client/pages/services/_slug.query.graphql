@@ -52,6 +52,12 @@ fragment page on ServiceRecord {
     title
     body
     buttonLabel: callToActionLabel
+    file {
+      id
+      filename
+      url
+      title
+    }
     link {
       title
       url

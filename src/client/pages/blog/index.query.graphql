@@ -40,6 +40,12 @@ fragment blogPostOverview on BlogPostOverviewRecord {
     title
     body
     buttonLabel: callToActionLabel
+    file {
+      id
+      filename
+      url
+      title
+    }
     link {
       title
       url

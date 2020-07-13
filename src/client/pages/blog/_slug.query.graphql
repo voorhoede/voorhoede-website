@@ -105,6 +105,12 @@ fragment page on BlogPostRecord {
     title
     body
     buttonLabel: callToActionLabel
+    file {
+      id
+      filename
+      url
+      title
+    }
     link {
       title
       url

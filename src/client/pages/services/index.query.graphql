@@ -44,6 +44,12 @@ fragment page on ServiceOverviewRecord {
     title
     body
     buttonLabel: callToActionLabel
+    file {
+      id
+      filename
+      url
+      title
+    }
     link {
       title
       url
