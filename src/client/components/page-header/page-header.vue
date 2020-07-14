@@ -160,10 +160,6 @@
     grid-row: 3 / 4;
   }
 
-  .page-header__image-column {
-    display: none;
-  }
-
   .page-header--fill-screen {
     grid-template-rows:
       var(--app-header-height-small) /* 1 - 2 */
@@ -208,6 +204,7 @@
   }
 
   .page-header__image-column-content {
+    min-height: 100%;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
