@@ -22,23 +22,3 @@
     opacity: 1;
   }
 }
-
-@keyframes color-change-in {
-  0% {
-    transform: scale(.94);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes color-change-out {
-  0% {
-    transform: scale(1);
-  }
-
-  100% {
-    transform: scale(.94);
-  }
-}
