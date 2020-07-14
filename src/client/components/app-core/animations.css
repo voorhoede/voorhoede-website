@@ -22,23 +22,3 @@
     opacity: 1;
   }
 }
-
-@keyframes color-change-in {
-  0% {
-    color: var(--brand-yellow);
-  }
-
-  100% {
-    color: var(--html-blue);
-  }
-}
-
-@keyframes color-change-out {
-  0% {
-    color: var(--html-blue);
-  }
-
-  100% {
-    color: var(--brand-yellow);
-  }
-}

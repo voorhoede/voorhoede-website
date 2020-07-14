@@ -1,7 +1,7 @@
 <template>
   <span
     class="scroll-highlighted-text__text h1"
-    :class="isIntersectedClass"
+    :class="{ 'scroll-highlighted-text--active': isIntersected }"
     :data-id="index"
     ref="highlightedText"
   >
@@ -24,7 +24,7 @@
       },
       rootMargin: {
         type: String,
-        default: '-49% 0px -49% 0px',
+        default: '-46% 0px -46% 0px',
       },
       threshold: {
         type: [Number, Array],
@@ -46,17 +46,6 @@
         scrolledAbove: false,
         scrolledBelow: false,
         observerRectTop: 0,
-      }
-    },
-    computed: {
-      isIntersectedClass() {
-        if (this.isIntersected ||
-            this.isFirst && this.scrolledAbove ||
-            this.isLast && this.scrolledBelow) {
-          return 'scroll-highlighted-text--active'
-        } else {
-          return 'scroll-highlighted-text--in-active'
-        }
       }
     },
     mounted() {
@@ -122,27 +111,19 @@
 </script>
 
 <style>
-  :root {
-    --animate-text-in: color-change-in 600ms forwards;
-    --animate-text-out: color-change-out 600ms forwards;
-  }
-
   .scroll-highlighted-text {
     text-align: center;
   }
 
   .scroll-highlighted-text__text {
-    color: var(--brand-yellow);
     display: block;
     margin-bottom: var(--spacing-medium);
+    transform: scale(.94);
+    transition: transform .6s ease-in-out;
   }
 
   .scroll-highlighted-text--active {
-    animation: var(--animate-text-in);
-  }
-
-  .scroll-highlighted-text--in-active {
-    animation: var(--animate-text-out);
+    transform: scale(1);
   }
 
   @media (max-width: 520px) {
