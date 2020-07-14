@@ -25,20 +25,20 @@
 
 @keyframes color-change-in {
   0% {
-    color: var(--brand-yellow);
+    transform: scale(.94);
   }
 
   100% {
-    color: var(--html-blue);
+    transform: scale(1);
   }
 }
 
 @keyframes color-change-out {
   0% {
-    color: var(--html-blue);
+    transform: scale(1);
   }
 
   100% {
-    color: var(--brand-yellow);
+    transform: scale(.94);
   }
 }

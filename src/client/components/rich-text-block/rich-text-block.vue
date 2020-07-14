@@ -79,7 +79,7 @@
     padding: .1em .25rem;
     font-size: .8em;
     background-color: var(--paper);
-    color: var(--dark-blue);
+    color: var(--bg-pastel-inverse);
   }
 
   .rich-text a > code {

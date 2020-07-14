@@ -123,8 +123,8 @@
 
 <style>
   :root {
-    --animate-text-in: color-change-in 600ms forwards;
-    --animate-text-out: color-change-out 600ms forwards;
+    --animate-text-in: color-change-in 500ms forwards;
+    --animate-text-out: color-change-out 500ms forwards;
   }
 
   .scroll-highlighted-text {
@@ -132,7 +132,6 @@
   }
 
   .scroll-highlighted-text__text {
-    color: var(--brand-yellow);
     display: block;
     margin-bottom: var(--spacing-medium);
   }
