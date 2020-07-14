@@ -10,16 +10,18 @@
         :image="page.headerIllustration"
       />
       <div class="grid">
-        <p class="scroll-highlighted-text">
-          <scroll-highlighted-text
-            v-for="(line, index) in page.usps"
-            :key="index"
-            :line="line"
-            :index="index"
-            :is-first="isFirst(index)"
-            :is-last="isLast(index, page.usps)"
-          />
-        </p>
+        <scroll-text>
+          <p class="scroll-highlighted-text">
+            <scroll-highlighted-text
+              v-for="(line, index) in page.usps"
+              :key="index"
+              :line="line"
+              :index="index"
+              :is-first="isFirst(index)"
+              :is-last="isLast(index, page.usps)"
+            />
+          </p>
+        </scroll-text>
       </div>
     </div>
     <section class="page-index__services grid">
@@ -111,6 +113,7 @@
   import ScrollHighlightedText from '~/components/scroll-highlighted-text'
   import ScrollTo from '~/components/scroll-to'
   import ServicesList from '~/components/services-list'
+  import ScrollText from '~/components/scroll-text'
 
   export default {
     components: {
@@ -126,8 +129,8 @@
       ScrollHighlightedText,
       ScrollTo,
       ServicesList,
+      ScrollText,
     },
-    asyncData,
     computed: {
       ctaPivot () {
         return [{
@@ -138,6 +141,7 @@
         }]
       },
     },
+    asyncData,
     methods: {
       isLast(index, usps) {
         return index === Object.keys(usps).length - 1 ? { isSet: true, number: index } : { isSet: false }
