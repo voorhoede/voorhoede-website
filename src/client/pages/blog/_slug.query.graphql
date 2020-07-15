@@ -37,11 +37,20 @@ fragment page on BlogPostRecord {
   introTitle
   items {
     __typename
+    ... on CallToActionRecord {
+      id
+      title
+      body
+      linkLabel
+      linkUrl
+    }
     ... on CodeBlockRecord {
+      id
       language
       body
     }
     ... on ImageRecord {
+      id
       image {
         url
         alt
@@ -53,6 +62,7 @@ fragment page on BlogPostRecord {
       fullWidth
     }
     ... on ImageWithTextRecord {
+      id
       imageWithDescription {
         image {
           url
@@ -66,15 +76,18 @@ fragment page on BlogPostRecord {
       }
     }
     ... on LinkSectionRecord {
+      id
       link
       label
       external
     }
     ... on QuoteRecord {
+      id
       quote
       author
     }
     ... on ResponsiveVideoRecord {
+      id
       mute
       loop
       autoplay
@@ -95,6 +108,7 @@ fragment page on BlogPostRecord {
       }
     }
     ... on TextSectionRecord {
+      id
       title
       body
     }
