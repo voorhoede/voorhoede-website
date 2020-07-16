@@ -4,10 +4,6 @@ let observer = null
 let isAnimating = false
 
 Vue.directive('scroll-highlight', {
-  state: {
-    observer: null,
-    isAnimating: false
-  },
   inserted: function(container) {
     if (!('IntersectionObserver' in window) || !container) return
 
