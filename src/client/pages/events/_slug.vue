@@ -129,7 +129,6 @@
       TextBlock,
       NewsletterForm,
     },
-    asyncData,
     data() {
       return {
         fallbackIllustration: {
@@ -154,6 +153,7 @@
         })
       }
     },
+    asyncData,
     head,
   }
 </script>

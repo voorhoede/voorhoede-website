@@ -149,19 +149,6 @@
 }
 
 /*
-  If the user has expressed their preference for
-  reduced motion, set duration and delay to 0.
-*/
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    --animation-duration: 0s !important;
-    --animation-stagger-offset: 0 !important;
-    --animation-delay: 0s !important;
-  }
-}
-
-/*
-=================== animator
 animator classes to be used with 'animator.js' directive
 1. 'v-animator' binding sets .animator
 2. 'animator-item' sets .animator__slide-up
@@ -210,4 +197,19 @@ animator classes to be used with 'animator.js' directive
 
 .animator.animator--active .animator--stagger-2 {
   animation-delay: calc(var(--animator-delay) + var(--animator-stagger) * 2);
+}
+
+/*
+  If the user has expressed their preference for
+  reduced motion, set duration and delay to 0.
+*/
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --animation-duration: 0s !important;
+    --animation-stagger-offset: 0 !important;
+    --animation-delay: 0s !important;
+    --animator-duration: 0s !important;
+    --animator-delay: 0s !important;
+    --animator-stagger: 0s !important;
+  }
 }
