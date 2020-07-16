@@ -25,31 +25,37 @@
         />
       </page-header>
 
-      <animator class="page-case__case-teaser">
+      <div class="page-case__case-teaser" v-animator>
         <case-teaser
           v-if="page.caseTeaser"
           :title="page.caseTeaser.title"
           :image="page.caseTeaser.image"
         />
-      </animator>
+      </div>
 
       <article class="page-case__content">
         <template v-for="item in page.content">
-          <animator
+          <div
             v-if="item.__typename === 'TextSectionRecord'"
             :key="item.title"
-            class="page-case__text">
+            class="page-case__text"
+            v-animator
+          >
             <h3
-              class="page-case__title h3 animator__slide-up"
-              v-if="item.title">{{ item.title }}</h3>
+              class="page-case__title h3"
+              v-if="item.title"
+              animator-item
+            >
+              {{ item.title }}
+            </h3>
             <rich-text-block
               v-if="item.body"
               :text="item.body"
               large-text
               animator-stagger
-              class="animator__slide-up"
+              animator-item
             />
-          </animator>
+          </div>
 
           <full-width-image
             v-if="item.__typename === 'ImageRecord' && isFullWidth(item)"
@@ -57,18 +63,18 @@
             :image="item.image"
           />
 
-          <animator
+          <div
             v-if="item.__typename === 'ImageRecord' && !isFullWidth(item)"
             :key="item.image.url"
             class="page-case__animator-container"
+            v-animator
           >
-            <div class="animator__slide-up">
-              <responsive-image
-                :image="item.image"
-                :caption="item.caption"
-              />
-            </div>
-          </animator>
+            <responsive-image
+              :image="item.image"
+              :caption="item.caption"
+              animator-item
+            />
+          </div>
 
           <case-pull-quote-composition
             v-if="item.__typename === 'PullquoteRecord'"
@@ -78,57 +84,61 @@
             :text="item.pullquote.richText"
           />
 
-          <animator
+          <div
             v-if="item.__typename === 'ImageWithTextRecord'"
             :key="item.description"
             class="page-case__animator-container"
+            v-animator
           >
             <image-with-description
               :image="item.imageWithDescription.image"
               :inverse="item.imageWithDescription.inverse"
               :description="item.imageWithDescription.description"
-              class="animator__slide-up"
+              animator-item
             />
-          </animator>
+          </div>
 
-          <animator
+          <div
             v-if="item.__typename === 'StorytellingBlockRecord'"
             :key="item.storyItem.title"
             class="page-case__animator-container"
+            v-animator
           >
             <storytelling-section
               :items="item.storyItem.items"
               :title="item.storyItem.title"
-              class="animator__slide-up"
+              animator-item
             />
-          </animator>
+          </div>
 
-          <animator
+          <div
             v-if="item.__typename === 'ResponsiveVideoRecord'"
             :key="item.video.title"
             class="page-case__animator-container"
+            v-animator
           >
             <responsive-video
               :video="item.video"
               :autoplay="item.autoplay"
               :loop="item.loop"
               :mute="item.autoplay"
-              class="animator__slide-up"
+              animator-item
             />
-          </animator>
+          </div>
 
         </template>
 
-        <animator
+        <div
           v-if="page.quote"
           class="page-case__animator-container"
+          v-animator
         >
           <quote-block
             :quote="page.quote"
             :cite="page.author"
-            class="animator__slide-up"
+            animator-item
           />
-        </animator>
+        </div>
       </article>
 
       <div class="page-case__link-container">
@@ -170,7 +180,6 @@
   import RichTextBlock from '~/components/rich-text-block'
   import ScrollTo from '~/components/scroll-to'
   import StorytellingSection from '~/components/storytelling-section'
-  import Animator from '~/components/animator/animator'
 
   export default {
     components: {
@@ -187,7 +196,6 @@
       RichTextBlock,
       ScrollTo,
       StorytellingSection,
-      Animator
     },
     data() {
       return {
