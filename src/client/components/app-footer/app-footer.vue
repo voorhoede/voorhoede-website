@@ -237,6 +237,7 @@ export default {
   .app-footer__privacy:hover,
   .app-footer__privacy:focus {
     color: var(--active-blue);
+    border-bottom: none;
   }
 
   .app-footer__list {
@@ -275,18 +276,47 @@ export default {
     margin: 0 var(--spacing-tiny);
   }
 
+  .app-footer__list-item--icon a {
+    position: relative;
+    display: block;
+  }
+
+  .app-footer__list-item--icon a:hover::before {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+
+  .app-footer__list-item--icon a::before {
+    content: '';
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--white);
+    transform: scale(0);
+    opacity: 0;
+    transition: transform .1s, opacity .1s linear;
+  }
+
+  .app-footer__list-item--icon img {
+    position: relative;
+    z-index: 2;
+  }
+
   .app-footer__link {
     position: relative;
     z-index: var(--z-index-low);
     text-decoration: none;
   }
 
-  .app-footer__link:hover {
-    color: var(--active-blue);
-  }
-
+  .app-footer__link:hover,
   .app-footer__link:focus {
-    border-bottom: 1px solid var(--html-blue);
+    color: var(--active-blue);
+    text-decoration: underline;
+    outline: 0;
   }
 
   .app-footer__link--right {
