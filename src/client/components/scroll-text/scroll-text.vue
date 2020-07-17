@@ -45,7 +45,6 @@ export default {
 
   .scroll-text--active .scroll-text__item {
     transform: translateZ(var(--z-position));
-    transition: transform .1s linear;
   }
 
   @media (max-width: 520px) {

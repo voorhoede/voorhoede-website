@@ -78,10 +78,7 @@ Vue.directive('scroll-highlight', {
   },
   unbind: function(container) {
     if (('IntersectionObserver' in window) && observer && container) {
-      console.log('observer', observer)
-      console.log('container', container)
-      console.log('isAnimating', isAnimating)
-      // observer.unobserve(container)
+      observer.unobserve(container)
       window.cancelAnimationFrame(isAnimating)
       isAnimating = false
     }
