@@ -10,7 +10,8 @@ Vue.directive('scroll-highlight', {
     let items = [...container.querySelectorAll('[scroll-highlight-item]')]
 
     const rootMargin = '0px 0px 0px 0px'
-    const threshold = [0, .25, .5, .75, 1]
+    // const threshold = [0, .25, .5, .75, 1]
+    const threshold = [...new Array(100)].map( (item, index) => index * .01)
 
     let isIntersected = false
     let centerScreen = 0
