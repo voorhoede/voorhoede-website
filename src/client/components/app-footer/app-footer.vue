@@ -281,7 +281,8 @@ export default {
     display: block;
   }
 
-  .app-footer__list-item--icon a:hover::before {
+  .app-footer__list-item--icon a:hover::before,
+  .app-footer__list-item--icon a:focus::before {
     transform: scale(1.5);
     opacity: 1;
   }
@@ -315,14 +316,26 @@ export default {
   .app-footer__link:hover,
   .app-footer__link:focus {
     color: var(--active-blue);
-    text-decoration: underline;
-    outline: 0;
+    background: transparent linear-gradient(to top, var(--html-blue) 1px, transparent 1px);
   }
 
   .app-footer__link--right {
     display: inline-flex;
     flex-direction: column;
     justify-content: flex-end;
+  }
+
+  .app-footer__link--right:hover,
+  .app-footer__link--right:focus {
+    background: none;
+  }
+
+  .app-footer__link--right:hover > span,
+  .app-footer__link--right:focus > span {
+    background-image: linear-gradient(to right, var(--html-blue), var(--html-blue));
+    background-repeat: no-repeat;
+    background-position: 0 80%;
+    background-size: 100% 1px;
   }
 
   .app-footer__header-logo {
