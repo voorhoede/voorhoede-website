@@ -236,7 +236,7 @@ export default {
   .app-footer__copyright:focus,
   .app-footer__privacy:hover,
   .app-footer__privacy:focus {
-    color: var(--active-blue);
+    color: var(--html-blue);
     border-bottom: none;
   }
 
@@ -315,7 +315,7 @@ export default {
 
   .app-footer__link:hover,
   .app-footer__link:focus {
-    color: var(--active-blue);
+    color: var(--html-blue);
     background: transparent linear-gradient(to top, var(--html-blue) 1px, transparent 1px);
   }
 
