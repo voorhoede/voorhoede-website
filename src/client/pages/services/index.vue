@@ -6,9 +6,18 @@
         :byline="page.title"
         :headline="page.subtitle"
         :image="page.headerIllustration" />
-      <services-list :services="page.services"/>
+      <introduction-block
+        v-if="page.introductionBlock"
+        :title="page.introductionBlock.title"
+        :body="page.introductionBlock.body"
+        class="page-services__introduction"
+      />
+      <services-list
+        :services="page.services"
+        class="page-services__services-list"
+      />
       <rich-text-block
-        class="services-text"
+        class="page-services__text"
         :text="page.smallServices" />
     </main>
     <pivot-list
@@ -23,6 +32,7 @@
   import head from '~/lib/seo-head'
 
   import PageHeader from '~/components/page-header'
+  import IntroductionBlock from '~/components/introduction-block'
   import PivotList from '~/components/pivot-list'
   import ServicesList from '~/components/services-list'
   import RichTextBlock from '~/components/rich-text-block'
@@ -30,6 +40,7 @@
   export default {
     components: {
       PageHeader,
+      IntroductionBlock,
       PivotList,
       ServicesList,
       RichTextBlock,
@@ -44,17 +55,31 @@
     margin-bottom: var(--spacing-big);
   }
 
-  .page-services .services-list {
+  .page-services__introduction {
     grid-row: 2;
-    margin-bottom: var(--spacing-larger);
-  }
-
-  .page-services .services-text {
-    grid-row: 3;
   }
 
   @media (min-width: 720px) {
-    .page-services .services-text {
+    .page-services__introduction {
+      grid-column-start: 8;
+      grid-column-end: 44;
+      text-align: center;
+    }
+  }
+
+  .page-services__services-list {
+    grid-row: 3;
+    margin-bottom: var(--spacing-larger);
+  }
+
+  .page-services__text {
+    grid-row: 4;
+  }
+
+  @media (min-width: 720px) {
+    .page-services__text {
+      grid-column-start: 8;
+      grid-column-end: 44;
       text-align: center;
       max-width: var(--small-services-width);
     }
@@ -65,7 +90,7 @@
       margin-bottom: var(--spacing-bigger);
     }
 
-    .page-services .services-list {
+    .page-services__services-list {
       grid-column-start: 4;
       grid-column-end: 48;
     }
