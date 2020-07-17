@@ -17,9 +17,9 @@
           <p class="case-excerpt__body body">{{ body }}</p>
           <div class="case-excerpt__actions">
             <span
-              class="app-button body app-button--primary"
+              class="body font-bold app-button app-button--primary"
             >
-              {{ $t('learn_more') }}
+              <span>{{ $t('learn_more') }}</span>
             </span>
           </div>
         </div>
