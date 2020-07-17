@@ -25,7 +25,7 @@
         />
       </page-header>
 
-      <div class="page-case__case-teaser" v-animator>
+      <div class="page-case__case-teaser">
         <case-teaser
           v-if="page.caseTeaser"
           :title="page.caseTeaser.title"
@@ -39,12 +39,10 @@
             v-if="item.__typename === 'TextSectionRecord'"
             :key="item.title"
             class="page-case__text"
-            v-animator
           >
             <h3
               class="page-case__title h3"
               v-if="item.title"
-              animator-item
             >
               {{ item.title }}
             </h3>
@@ -52,8 +50,6 @@
               v-if="item.body"
               :text="item.body"
               large-text
-              animator-stagger
-              animator-item
             />
           </div>
 
@@ -63,18 +59,12 @@
             :image="item.image"
           />
 
-          <div
+          <responsive-image
             v-if="item.__typename === 'ImageRecord' && !isFullWidth(item)"
             :key="item.image.url"
-            class="page-case__animator-container"
-            v-animator
-          >
-            <responsive-image
-              :image="item.image"
-              :caption="item.caption"
-              animator-item
-            />
-          </div>
+            :image="item.image"
+            :caption="item.caption"
+          />
 
           <case-pull-quote-composition
             v-if="item.__typename === 'PullquoteRecord'"
@@ -84,61 +74,37 @@
             :text="item.pullquote.richText"
           />
 
-          <div
+          <image-with-description
             v-if="item.__typename === 'ImageWithTextRecord'"
             :key="item.description"
-            class="page-case__animator-container"
-            v-animator
-          >
-            <image-with-description
-              :image="item.imageWithDescription.image"
-              :inverse="item.imageWithDescription.inverse"
-              :description="item.imageWithDescription.description"
-              animator-item
-            />
-          </div>
+            :image="item.imageWithDescription.image"
+            :inverse="item.imageWithDescription.inverse"
+            :description="item.imageWithDescription.description"
+          />
 
-          <div
+          <storytelling-section
             v-if="item.__typename === 'StorytellingBlockRecord'"
             :key="item.storyItem.title"
-            class="page-case__animator-container"
-            v-animator
-          >
-            <storytelling-section
-              :items="item.storyItem.items"
-              :title="item.storyItem.title"
-              animator-item
-            />
-          </div>
+            :items="item.storyItem.items"
+            :title="item.storyItem.title"
+          />
 
-          <div
+          <responsive-video
             v-if="item.__typename === 'ResponsiveVideoRecord'"
             :key="item.video.title"
-            class="page-case__animator-container"
-            v-animator
-          >
-            <responsive-video
-              :video="item.video"
-              :autoplay="item.autoplay"
-              :loop="item.loop"
-              :mute="item.autoplay"
-              animator-item
-            />
-          </div>
+            :video="item.video"
+            :autoplay="item.autoplay"
+            :loop="item.loop"
+            :mute="item.autoplay"
+          />
 
         </template>
 
-        <div
+        <quote-block
           v-if="page.quote"
-          class="page-case__animator-container"
-          v-animator
-        >
-          <quote-block
-            :quote="page.quote"
-            :cite="page.author"
-            animator-item
-          />
-        </div>
+          :quote="page.quote"
+          :cite="page.author"
+        />
       </article>
 
       <div class="page-case__link-container">
@@ -237,15 +203,6 @@
   .page-case__content,
   .page-case__content > *:not(:last-child) {
     margin-bottom: var(--spacing-larger);
-  }
-
-  .page-case__animator-container {
-    width: 100%;
-  }
-
-  .page-case__animator-container > * {
-    margin-right: auto;
-    margin-left: auto;
   }
 
   .page-case__link-container {

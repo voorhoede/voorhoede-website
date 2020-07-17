@@ -149,57 +149,6 @@
 }
 
 /*
-animator classes to be used with 'animator.js' directive
-1. 'v-animator' binding sets .animator
-2. 'animator-item' sets .animator__slide-up
-3. on intersection '.animator--active' is set
-*/
-
-.animator {
-  --animator-ease: cubic-bezier(.3, .51, .09, 1);
-  --animator-duration: .25s;
-  --animator-delay: .1s;
-  --animator-stagger: .1s;
-}
-
-/*
-  slide-up and fade-in from bottom
-*/
-.animator .animator__slide-up {
-  opacity: 0;
-  transform: translateY(50px);
-}
-
-.animator.animator--active .animator__slide-up {
-  animation:
-    animator__slide-up var(--animator-duration) var(--animator-delay) var(--animator-ease) forwards,
-    animator__fade var(--animator-duration) var(--animator-delay) linear forwards;
-}
-
-@keyframes animator__slide-up {
-  100% {
-    transform: translateY(0);
-  }
-}
-
-@keyframes animator__fade {
-  100% {
-    opacity: 1;
-  }
-}
-
-/*
-  animation stagger
-*/
-.animator.animator--active .animator--stagger-1 {
-  animation-delay: calc(var(--animator-delay) + var(--animator-stagger));
-}
-
-.animator.animator--active .animator--stagger-2 {
-  animation-delay: calc(var(--animator-delay) + var(--animator-stagger) * 2);
-}
-
-/*
   If the user has expressed their preference for
   reduced motion, set duration and delay to 0.
 */
@@ -208,8 +157,5 @@ animator classes to be used with 'animator.js' directive
     --animation-duration: 0s !important;
     --animation-stagger-offset: 0 !important;
     --animation-delay: 0s !important;
-    --animator-duration: 0s !important;
-    --animator-delay: 0s !important;
-    --animator-stagger: 0s !important;
   }
 }

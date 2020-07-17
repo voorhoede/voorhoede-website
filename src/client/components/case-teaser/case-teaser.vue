@@ -1,10 +1,10 @@
 <template>
   <div>
     <figure class="case-teaser grid">
-      <div class="case-teaser__image" animator-item>
+      <div class="case-teaser__image">
         <responsive-image :image="image" />
       </div>
-      <figcaption class="case-teaser__header" animator-item animator-stagger>
+      <figcaption class="case-teaser__header">
         <span class="case-teaser__title h2">
           {{ title }}
         </span>
