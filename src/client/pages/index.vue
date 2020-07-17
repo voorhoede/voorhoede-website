@@ -8,6 +8,8 @@
         :byline="page.headerTitle"
         :headline="page.subtitle"
         :image="page.headerIllustration"
+        is-animated
+        :animation-delay="page.subtitle.length * typeDurationLetter"
       />
       <div class="grid">
         <p class="scroll-highlighted-text">
@@ -126,6 +128,11 @@
       ScrollHighlightedText,
       ScrollTo,
       ServicesList,
+    },
+    data() {
+      return {
+        typeDurationLetter: .05, // average duration per letter in seconds
+      }
     },
     computed: {
       ctaPivot () {
