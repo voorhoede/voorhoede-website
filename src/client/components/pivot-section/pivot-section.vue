@@ -1,5 +1,5 @@
 <template>
-  <section
+  <div
     class="pivot-section"
     :class="{
       'pivot-section--has-border': border,
@@ -30,7 +30,7 @@
       :label="pivot.buttonLabel"
       :to="createHref(pivot.link)"
     />
-  </section>
+  </div>
 </template>
 
 <script>

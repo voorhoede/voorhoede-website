@@ -37,6 +37,7 @@ fragment blogPostOverview on BlogPostOverviewRecord {
     alt
   }
   pivots {
+    showBackgroundColor
     title
     body
     buttonLabel: callToActionLabel
