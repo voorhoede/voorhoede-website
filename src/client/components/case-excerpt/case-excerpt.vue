@@ -83,10 +83,11 @@
   }
 
   /**
-   * The responsive image requires height for the lazy load.
+   * 1. The responsive image requires height for the lazy load.
    * Otherwise the intersection observer doesn't get triggered in chrome android.
+   * 2. nested in .case-excerpt for Safari to reliable handle the cascade
    */
-  .case-excerpt__image {
+  .case-excerpt .case-excerpt__image {
     height: var(--case-excerpt-image-height);
     background: var(--fog);
   }
