@@ -24,40 +24,59 @@
       </text-block>
 
       <template v-for="item in page.items">
+        <div
+          v-if="item.__typename === 'CallToActionRecord'"
+          :key="item.id"
+          :id="item.id"
+          class="page-blog-post-list__text"
+        >
+          <blockquote-block
+            :title="item.title"
+            :body="item.body"
+            :link-label="item.linkLabel"
+            :link-url="item.linkUrl"
+          />
+        </div>
+
         <code-block
+          :id="item.id"
           class="page-blog-post-list--full-width"
           v-if="item.__typename === 'CodeBlockRecord' && item.body"
           :language="item.language"
           :content="item.body"
-          :key="item.body" />
+          :key="item.id" />
 
         <image-with-description
+          :id="item.id"
           class="page-blog-post-list__image page-blog-post-list--full-width"
           v-if="item.__typename === 'ImageWithTextRecord'"
-          :key="item.description"
+          :key="item.id"
           :image="item.imageWithDescription.image"
           :inverse="item.imageWithDescription.inverse"
           :description="item.imageWithDescription.description" />
 
         <quote-block
+          :id="item.id"
           v-if="item.quote"
-          :key="item.quote"
+          :key="item.id"
           :quote="item.quote"
           :cite="item.author"
         />
 
         <responsive-image
+          :id="item.id"
           class="page-blog-post-list__image"
           :class="{ 'page-blog-post-list--full-width' : item.fullWidth}"
           v-if="item.__typename === 'ImageRecord' && item.image"
-          :key="item.image.url"
+          :key="item.id"
           :image="item.image"
           :caption="item.caption"
         />
 
         <responsive-video
+          :id="item.id"
           v-if="item.__typename === 'ResponsiveVideoRecord'"
-          :key="item.video ? item.video.title : item.gif.title"
+          :key="item.id"
           :video="item.video"
           :gif="item.gif"
           :autoplay="item.autoplay"
@@ -66,8 +85,9 @@
         />
 
         <div
+          :id="item.id"
           v-if="item.__typename === 'TextSectionRecord'"
-          :key="item.title || item.body"
+          :key="item.id"
           class="page-blog-post-list__text"
         >
           <h3
@@ -84,8 +104,9 @@
         </div>
 
         <div
+          :id="item.id"
           v-if="item.__typename === 'LinkSectionRecord'"
-          :key="item.link">
+          :key="item.id">
           <app-button
             class="page-blog-post__button"
             :external="item.external"
@@ -131,6 +152,7 @@ import CodeBlock from '~/components/code-block'
 import ImageWithDescription from '~/components/image-with-description'
 import PivotList from '~/components/pivot-list'
 import PageHeader from '~/components/page-header'
+import BlockquoteBlock from '~/components/blockquote-block'
 import QuoteBlock from '~/components/quote-block'
 import ResponsiveImage from '~/components/responsive-image'
 import ResponsiveVideo from '~/components/responsive-video'
@@ -148,6 +170,7 @@ export default {
     ImageWithDescription,
     PivotList,
     PageHeader,
+    BlockquoteBlock,
     QuoteBlock,
     ResponsiveImage,
     ResponsiveVideo,
