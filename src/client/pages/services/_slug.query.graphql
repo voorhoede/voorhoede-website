@@ -28,6 +28,7 @@ fragment page on ServiceRecord {
   items {
     __typename
     ... on ImageRecord {
+      id
       image {
         url
         alt
@@ -39,6 +40,7 @@ fragment page on ServiceRecord {
       fullWidth
     }
     ... on GenericTextBlockRecord {
+      id
       title
       body
       image {
@@ -46,6 +48,13 @@ fragment page on ServiceRecord {
         format
         alt
       }
+    }
+    ... on CallToActionRecord {
+      id
+      title
+      body
+      linkLabel
+      linkUrl
     }
   }
   pivots {

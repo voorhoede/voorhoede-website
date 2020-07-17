@@ -7,6 +7,8 @@
         byline="Case study"
         :headline="page.title"
         :image="page.heroIllustration"
+        is-animated
+        :animation-delay="page.title.length * typeDurationLetter"
       >
         <h2 class="sr-only">{{ $t('case_info') }}</h2>
         <case-meta
@@ -34,12 +36,16 @@
       <article class="page-case__content">
         <template v-for="item in page.content">
           <div
+            :id="item.id"
             v-if="item.__typename === 'TextSectionRecord'"
-            :key="item.title"
+            :key="item.id"
             class="page-case__text">
             <h3
               class="page-case__title h3"
-              v-if="item.title">{{ item.title }}</h3>
+              v-if="item.title"
+            >
+              {{ item.title }}
+            </h3>
             <rich-text-block
               v-if="item.body"
               :text="item.body"
@@ -47,45 +53,65 @@
             />
           </div>
 
+          <div
+            v-if="item.__typename === 'CallToActionRecord'"
+            :key="item.id"
+            :id="item.id"
+            class="page-case__text"
+          >
+            <blockquote-block
+              :title="item.title"
+              :body="item.body"
+              :link-label="item.linkLabel"
+              :link-url="item.linkUrl"
+            />
+          </div>
+
           <full-width-image
+            :id="item.id"
             v-if="item.__typename === 'ImageRecord' && isFullWidth(item)"
-            :key="item.image.url"
+            :key="item.id"
             :image="item.image"
           />
 
           <responsive-image
+            :id="item.id"
             v-if="item.__typename === 'ImageRecord' && !isFullWidth(item)"
-            :key="item.image.url"
+            :key="item.id"
             :image="item.image"
             :caption="item.caption"
           />
 
           <case-pull-quote-composition
+            :id="item.id"
             v-if="item.__typename === 'PullquoteRecord'"
-            :key="item.pullquote.quote"
+            :key="item.id"
             :pullquote="item.pullquote.quote"
             :image="item.pullquote.illustration"
             :text="item.pullquote.richText"
           />
 
           <image-with-description
+            :id="item.id"
             v-if="item.__typename === 'ImageWithTextRecord'"
-            :key="item.description"
+            :key="item.id"
             :image="item.imageWithDescription.image"
             :inverse="item.imageWithDescription.inverse"
             :description="item.imageWithDescription.description"
           />
 
           <storytelling-section
+            :id="item.id"
             v-if="item.__typename === 'StorytellingBlockRecord'"
-            :key="item.storyItem.title"
+            :key="item.id"
             :items="item.storyItem.items"
             :title="item.storyItem.title"
           />
 
           <responsive-video
+            :id="item.id"
             v-if="item.__typename === 'ResponsiveVideoRecord'"
-            :key="item.video.title"
+            :key="item.id"
             :video="item.video"
             :autoplay="item.autoplay"
             :loop="item.loop"
@@ -94,7 +120,11 @@
 
         </template>
 
-        <quote-block v-if="page.quote" :quote="page.quote" :cite="page.author" />
+        <quote-block
+          v-if="page.quote"
+          :quote="page.quote"
+          :cite="page.author"
+        />
       </article>
 
       <div class="page-case__link-container">
@@ -130,6 +160,7 @@
   import ImageWithDescription from '~/components/image-with-description'
   import PageHeader from '~/components/page-header'
   import PivotList from '~/components/pivot-list'
+  import BlockquoteBlock from '~/components/blockquote-block'
   import QuoteBlock from '~/components/quote-block'
   import ResponsiveImage from '~/components/responsive-image'
   import ResponsiveVideo from '~/components/responsive-video'
@@ -146,12 +177,18 @@
       ImageWithDescription,
       PageHeader,
       PivotList,
+      BlockquoteBlock,
       QuoteBlock,
       ResponsiveImage,
       ResponsiveVideo,
       RichTextBlock,
       ScrollTo,
       StorytellingSection,
+    },
+    data() {
+      return {
+        typeDurationLetter: .05, // average duration per letter in seconds
+      }
     },
     asyncData,
     methods: {
@@ -284,6 +321,7 @@
 
     .page-case__text {
       max-width: var(--page-section-max-width);
+      width: 100%;
     }
 
     .page-case__content {
