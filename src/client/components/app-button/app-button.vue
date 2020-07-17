@@ -5,7 +5,8 @@
     v-bind="$attrs"
     v-on="$listeners"
   >
-    {{ label }}
+    <span v-if="primary || small">{{ label }}</span>
+    <template v-else>{{ label }}</template>
     <svg
       v-if="secondary"
       class="app-button__svg"
@@ -24,7 +25,8 @@
     target="_blank"
     rel="noreferrer noopener"
   >
-    {{ label }}
+    <span v-if="primary || small">{{ label }}</span>
+    <template v-else>{{ label }}</template>
     <svg
       v-if="secondary"
       class="app-button__svg"
@@ -41,7 +43,8 @@
     v-on="$listeners"
     :to="to"
   >
-    {{ label }}
+    <span v-if="primary || small">{{ label }}</span>
+    <template v-else>{{ label }}</template>
     <svg
       v-if="secondary"
       class="app-button__svg"
@@ -85,10 +88,9 @@
         return {
           'app-button': true,
           'body': !this.small,
-          'body-petite': this.small,
-          'app-button--primary': this.primary,
+          'app-button--primary font-bold': this.primary,
           'app-button--secondary': this.secondary,
-          'app-button--small': this.small,
+          'app-button--small body-petite font-bold': this.small,
           'font-bold': this.secondary,
         }
       },
@@ -97,6 +99,10 @@
 </script>
 
 <style>
+  :root {
+    --app-button-duration: .15s;
+  }
+
   .app-button {
     display: inline-block;
     background: none;
@@ -107,42 +113,88 @@
     line-height: 1.18;
   }
 
-  .app-button--primary {
+  .app-button > span {
+    position: relative;
+    z-index: 2;
+  }
+
+  .app-button--primary,
+  .app-button--small {
+    position: relative;
     color: var(--white);
-    background-color: var(--html-blue);
-    border-radius: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .app-button--primary {
     width: 100%;
     min-width: 14.375rem;
-    padding: .75rem 1.5625rem;
-    transition: 200ms transform ease-in-out;
+    padding: .8rem 1.5625rem .7rem 1.5625rem;
   }
 
-  .app-button--primary:hover,
-  .app-button--primary:focus,
-  .app-button--primary.app-button--hover {
-    transform: scale(1.03);
+  .app-button--small {
+    padding: .375rem .9375rem;
   }
 
-  .app-button--primary:active,
-  .app-button--primary.app-button--active {
-    background-color: var(--active-blue);
-    transform: scale(.95);
-    transition: 100ms transform ease-in-out;
+  .app-button--primary::before,
+  .app-button--small::before {
+    content: '';
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--html-blue);
+    border-radius: var(--border-radius);
+    transition: transform var(--app-button-duration);
+    transform: scaleX(1) scaleY(1);
   }
 
-  .app-button--primary:disabled,
-  .app-button--primary[disabled] {
+  .app-button--primary > span::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    right: calc(100% + 10px);
+    width: 0;
+    height: 0;
+    border: 4px solid var(--white);
+    border-top-color: transparent;
+    border-left-color: transparent;
+    transition: transform var(--app-button-duration);
+    transform: scale(0) rotate(-45deg);
+  }
+
+  .app-button--primary:hover::before,
+  .app-button--primary:focus::before,
+  .app-button--hover.app-button--primary::before,
+  .app-button--primary:active::before,
+  .app-button--active.app-button--primary::before,
+  .app-button--small:hover::before,
+  .app-button--small:focus::before,
+  .app-button--hover.app-button--small::before {
+    transform: scaleX(1.05) scaleY(1.3);
+  }
+
+  .app-button--primary:hover > span::before,
+  .app-button--primary:focus > span::before,
+  .app-button--hover.app-button--primary > span::before {
+    transform: scale(1) rotate(-45deg);
+  }
+
+  .app-button--primary:disabled::before,
+  .app-button--primary[disabled]::before {
     pointer-events: none;
-    transform: scale(1);
     background-color: var(--very-dim);
+    transform: scaleX(1) scaleY(1);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .app-button--primary:hover,
-    .app-button--primary:focus,
-    .app-button--primary.app-button--hover,
-    .app-button--primary:active,
-    .app-button--primary.app-button--active {
+    .app-button--primary:hover::before,
+    .app-button--primary:focus::before,
+    .app-button--hover.app-button--primary::before,
+    .app-button--primary:active::before,
+    .app-button--active.app-button--primary::before {
       transform: none;
     }
   }
@@ -159,7 +211,7 @@
     background-color: var(--brand-yellow);
     transform: scaleX(0);
     transform-origin: left;
-    transition: 200ms transform ease-in-out;
+    transition: var(--app-button-duration) transform ease-in-out;
   }
 
   .app-button--secondary:hover::after,
@@ -185,34 +237,6 @@
   .app-button--secondary[disabled] {
     pointer-events: none;
     color: var(--very-dim);
-  }
-
-  .app-button--small {
-    color: var(--white);
-    background-color: var(--html-blue);
-    border-radius: 3px;
-    padding: .375rem .9375rem;
-    transition: 200ms transform ease-in-out;
-  }
-
-  .app-button--small:hover,
-  .app-button--small:focus,
-  .app-button--small--hover {
-    transform: scale(1.05);
-  }
-
-  .app-button--small:active,
-  .app-button--small--active {
-    background-color: var(--active-blue);
-    transform: scale(.9);
-    transition: 100ms transform ease-in-out;
-  }
-
-  .app-button--small:disabled,
-  .app-button--small[disabled] {
-    pointer-events: none;
-    transform: scale(1);
-    background-color: var(--very-dim);
   }
 
   .app-button--yellow {
