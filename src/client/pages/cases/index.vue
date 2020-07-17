@@ -7,6 +7,12 @@
         :headline="page.subtitle"
         :image="page.headerIllustration"
       />
+      <introduction-block
+        v-if="page.introductionBlock"
+        :title="page.introductionBlock.title"
+        :body="page.introductionBlock.body"
+        class="page-cases__introduction grid"
+      />
       <section class="grid">
         <h2 class="sr-only">{{ $t('all_cases') }}</h2>
         <ul class="page-case__overview">
@@ -32,12 +38,14 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
+  import IntroductionBlock from '~/components/introduction-block'
   import CaseExcerpt from '~/components/case-excerpt'
   import PageHeader from '~/components/page-header'
   import PivotList from '~/components/pivot-list'
 
   export default {
     components: {
+      IntroductionBlock,
       CaseExcerpt,
       PageHeader,
       PivotList,
@@ -48,6 +56,18 @@
 </script>
 
 <style>
+  .page-cases__introduction {
+    margin-top: var(--spacing-larger);
+  }
+
+  @media (min-width: 720px) {
+    .page-cases__introduction > * {
+      grid-column-start: 8;
+      grid-column-end: 44;
+      text-align: center;
+    }
+  }
+
   .page-case__overview {
     display: flex;
     flex-direction: column;

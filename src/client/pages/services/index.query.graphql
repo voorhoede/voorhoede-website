@@ -28,6 +28,10 @@ fragment page on ServiceOverviewRecord {
     url
     alt
   }
+  introductionBlock {
+    title
+    body
+  }
   smallServices
   contactPerson {
     name,

@@ -28,6 +28,10 @@ fragment page on CaseOverviewRecord {
     format
     alt
   }
+  introductionBlock {
+    title
+    body
+  }
   pivots {
     title
     body
