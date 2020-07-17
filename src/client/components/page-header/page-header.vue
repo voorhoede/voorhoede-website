@@ -52,9 +52,6 @@
       <div class="page-header__image-column-content animation__reveal-content">
         <img class="page-header__image" :src="image.url" alt=""/>
       </div>
-      <!--
-      <img class="page-header__image animation__reveal-content" :src="image.url" alt=""/>
-      -->
     </div>
 
     <!--
