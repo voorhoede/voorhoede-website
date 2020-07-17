@@ -31,6 +31,9 @@
   --spacing-bigger: 110px;
   --spacing-huge: 150px;
 
+  /* border radius */
+  --border-radius: 3px;
+
   /* COMPONENTS */
   --app-header-height-small: 3.125rem; /* 50px */
   --app-header-height-large: 4.0625rem; /* 65px */
