@@ -191,7 +191,7 @@
     margin: calc(-1 * var(--spacing-medium)) 0;
     background-image: url('/images/curly-bracket--paper-rotated.svg');
     background-repeat: no-repeat;
-    background-position: 100%;
+    background-position: left center;
     background-size: cover;
     mix-blend-mode: screen;
   }
