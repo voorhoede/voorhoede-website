@@ -30,12 +30,16 @@
         />
       </p>
       <h1
-        v-html="heading === 'byline' ? byline : headline"
         :class="{
           'sub-title': heading === 'byline',
           'sr-only': heading === 'headline'
         }"
-      />
+      >
+        <span
+          v-html="heading === 'byline' ? byline : headline"
+          class="animation__uncover"
+        />
+      </h1>
       <p
         v-if="heading === 'byline'"
         class="sr-only"
@@ -185,12 +189,19 @@
     grid-column: 44 / 51;
     grid-row: 5 / 8;
     margin: calc(-1 * var(--spacing-medium)) 0;
-    transform: rotate(180deg);
-    background-image: url('/images/curly-bracket--paper.svg');
+    background-image: url('/images/curly-bracket--paper-rotated.svg');
     background-repeat: no-repeat;
-    background-position: 100%;
+    background-position: left center;
     background-size: cover;
     mix-blend-mode: screen;
+  }
+
+  .is-animated.page-header--curly-bracket::after {
+    opacity: 0;
+    transform: translateX(-100px);
+    animation:
+      animation__slide-in var(--animation-duration) var(--animation-delay) forwards,
+      animation__fade-in var(--animation-duration) var(--animation-delay) forwards;
   }
 
   .page-header--fill-screen .page-header__image-column {
@@ -310,7 +321,7 @@
       grid-column: var(--grid-center) / 48;
       grid-row: 3 / 6;
       margin: calc(-1 * var(--spacing-medium)) 0;
-      background-position: left center; /* remember, object is rotated */
+      background-position: right center;
       background-size: contain;
     }
 

@@ -116,6 +116,23 @@
 }
 
 /*
+  =================== slide in
+*/
+.is-animated .animation__slide-in {
+  opacity: 0;
+  transform: translateX(-100px);
+  animation:
+    animation__slide-in var(--animation-duration) var(--animation-delay) forwards,
+    animation__fade-in var(--animation-duration) var(--animation-delay) forwards;
+}
+
+@keyframes animation__slide-in {
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/*
   =================== fade in
 */
 .is-animated .animation__fade-in {
