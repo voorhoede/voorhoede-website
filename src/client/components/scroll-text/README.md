@@ -1,10 +1,10 @@
-# Scroll Highlighted Text
+# Scroll Text
 
 ## Usage
 
 ```html
-<scroll-highlighted-text
-  :textLines="[
+<scroll-text
+  :items="[
     { line: 'We work lean and agile.' },
     { line: 'Start small and iterate fast' },
     { line: 'to help you from an idea,' },
@@ -17,4 +17,4 @@
 
 | Prop | Type | Required | Description |
 | --- | --- | --- | --- |
-| textLines | Array | true | An array of strings where each string is a new line |
+| items | Array | true | An array of strings where each string is a new line |
