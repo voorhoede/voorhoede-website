@@ -90,6 +90,7 @@
   .case-excerpt .case-excerpt__image {
     height: var(--case-excerpt-image-height);
     background: var(--fog);
+    pointer-events: none; /* containing svg is blocking pointer */
   }
 
   .case-excerpt__title {
