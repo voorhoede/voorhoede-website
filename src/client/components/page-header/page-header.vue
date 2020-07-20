@@ -161,6 +161,10 @@
     grid-row: 3 / 4;
   }
 
+  .page-header__image-column {
+    grid-row: 5 / 6;
+  }
+
   .page-header--fill-screen {
     grid-template-rows:
       var(--app-header-height-small) /* 1 - 2 */
