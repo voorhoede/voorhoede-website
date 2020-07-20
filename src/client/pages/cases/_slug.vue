@@ -133,6 +133,15 @@
           :to="localeUrl('cases')">
           &larr; {{ $t('all_cases') }}
         </nuxt-link>
+        <nuxt-link
+          v-if="nextCase"
+          class="app-button app-button--secondary body font-bold"
+          :to="localeUrl({ name: 'cases-slug', params: { slug: nextCase.slug } })"
+          :title="nextCase.title"
+          :aria-label="nextCase.title"
+        >
+          {{ nextCase.title }} &rarr;
+        </nuxt-link>
       </div>
     </main>
 
@@ -185,12 +194,18 @@
       ScrollTo,
       StorytellingSection,
     },
+    asyncData,
     data() {
       return {
         typeDurationLetter: .05, // average duration per letter in seconds
       }
     },
-    asyncData,
+    computed: {
+      nextCase() {
+        const index = this.items.findIndex( item => item.slug === this.page.slug )
+        return this.items[index + 1]
+      },
+    },
     methods: {
       isFullWidth(item) {
         return item.image && item.fullWidth
@@ -229,9 +244,20 @@
 
   .page-case__link-container {
     grid-row: 4;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-bigger);
     padding-top: var(--spacing-small);
     border-top: 2px solid var(--very-dim);
-    margin-bottom: var(--spacing-bigger);
+  }
+
+  .page-case__link-container > * {
+    max-width: calc(50% - 20px);
+    text-align: left;
+  }
+
+  .page-case__link-container > *:nth-child(2) {
+    text-align: right;
   }
 
   .page-case__title {
