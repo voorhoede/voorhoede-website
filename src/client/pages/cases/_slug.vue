@@ -202,8 +202,10 @@
     },
     computed: {
       nextCase() {
-        const index = this.items.findIndex( item => item.slug === this.page.slug )
-        return this.items[index + 1]
+        const { cases, page } = this
+        const index = cases.findIndex( ({ slug }) => slug === page.slug )
+        const nextCaseIndex = index + 1 < cases.length ? index + 1 : 0
+        return cases[nextCaseIndex]
       },
     },
     methods: {
