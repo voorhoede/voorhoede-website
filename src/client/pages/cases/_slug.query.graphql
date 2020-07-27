@@ -2,6 +2,10 @@ query ($locale: SiteLocale, $slug: String) {
   page: caseItem(locale: $locale, filter: {slug: {eq: $slug}}) {
     ...caseItem
   }
+  cases: allCaseItems(locale: $locale, first: 100) {
+    slug
+    title
+  }
 }
 
 fragment caseItem on CaseItemRecord {
