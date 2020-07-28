@@ -6,11 +6,8 @@
   --active-blue: #0005be;
   --bg-pastel: #fffeca;
   --bg-pastel-inverse: #000146;
-  --dark-blue: var(--bg-pastel-inverse);
   --paper: #fffed9;
-  --bg-pastel-inverse: #000146;
   --paper-inverse: #000137;
-  --dark-blue: var(--bg-pastel-inverse);
   --black: #222222;
   --off-black: #555555;
   --dim: #888888;
@@ -33,6 +30,9 @@
   --spacing-big: 75px;
   --spacing-bigger: 110px;
   --spacing-huge: 150px;
+
+  /* border radius */
+  --border-radius: 3px;
 
   /* COMPONENTS */
   --app-header-height-small: 3.125rem; /* 50px */

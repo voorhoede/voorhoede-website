@@ -7,6 +7,8 @@
         byline="Case study"
         :headline="page.title"
         :image="page.heroIllustration"
+        is-animated
+        :animation-delay="page.title.length * typeDurationLetter"
       >
         <h2 class="sr-only">{{ $t('case_info') }}</h2>
         <case-meta
@@ -34,12 +36,16 @@
       <article class="page-case__content">
         <template v-for="item in page.content">
           <div
+            :id="item.id"
             v-if="item.__typename === 'TextSectionRecord'"
-            :key="item.title"
+            :key="item.id"
             class="page-case__text">
             <h3
               class="page-case__title h3"
-              v-if="item.title">{{ item.title }}</h3>
+              v-if="item.title"
+            >
+              {{ item.title }}
+            </h3>
             <rich-text-block
               v-if="item.body"
               :text="item.body"
@@ -47,45 +53,65 @@
             />
           </div>
 
+          <div
+            v-if="item.__typename === 'CallToActionRecord'"
+            :key="item.id"
+            :id="item.id"
+            class="page-case__text"
+          >
+            <blockquote-block
+              :title="item.title"
+              :body="item.body"
+              :link-label="item.linkLabel"
+              :link-url="item.linkUrl"
+            />
+          </div>
+
           <full-width-image
+            :id="item.id"
             v-if="item.__typename === 'ImageRecord' && isFullWidth(item)"
-            :key="item.image.url"
+            :key="item.id"
             :image="item.image"
           />
 
           <responsive-image
+            :id="item.id"
             v-if="item.__typename === 'ImageRecord' && !isFullWidth(item)"
-            :key="item.image.url"
+            :key="item.id"
             :image="item.image"
             :caption="item.caption"
           />
 
           <case-pull-quote-composition
+            :id="item.id"
             v-if="item.__typename === 'PullquoteRecord'"
-            :key="item.pullquote.quote"
+            :key="item.id"
             :pullquote="item.pullquote.quote"
             :image="item.pullquote.illustration"
             :text="item.pullquote.richText"
           />
 
           <image-with-description
+            :id="item.id"
             v-if="item.__typename === 'ImageWithTextRecord'"
-            :key="item.description"
+            :key="item.id"
             :image="item.imageWithDescription.image"
             :inverse="item.imageWithDescription.inverse"
             :description="item.imageWithDescription.description"
           />
 
           <storytelling-section
+            :id="item.id"
             v-if="item.__typename === 'StorytellingBlockRecord'"
-            :key="item.storyItem.title"
+            :key="item.id"
             :items="item.storyItem.items"
             :title="item.storyItem.title"
           />
 
           <responsive-video
+            :id="item.id"
             v-if="item.__typename === 'ResponsiveVideoRecord'"
-            :key="item.video.title"
+            :key="item.id"
             :video="item.video"
             :autoplay="item.autoplay"
             :loop="item.loop"
@@ -94,7 +120,11 @@
 
         </template>
 
-        <quote-block v-if="page.quote" :quote="page.quote" :cite="page.author" />
+        <quote-block
+          v-if="page.quote"
+          :quote="page.quote"
+          :cite="page.author"
+        />
       </article>
 
       <div class="page-case__link-container">
@@ -103,18 +133,28 @@
           :to="localeUrl('cases')">
           &larr; {{ $t('all_cases') }}
         </nuxt-link>
-      </div>
-
-      <div class="page-case__contact-form grid">
-        <contact-form
-          class="grid"
-          :title="$t('lets_discuss')"
-          :contact-person="page.contactPerson"
-        />
-        <scroll-to direction="up" />
+        <nuxt-link
+          v-if="nextCase"
+          class="app-button app-button--secondary body font-bold"
+          :to="localeUrl({ name: 'cases-slug', params: { slug: nextCase.slug } })"
+          :title="nextCase.title"
+          :aria-label="nextCase.title"
+        >
+          {{ nextCase.title }} &rarr;
+        </nuxt-link>
       </div>
     </main>
-    <newsletter-form />
+
+    <section class="page-cases__pivots grid">
+      <pivot-list
+        v-if="page.pivots && page.pivots.length"
+        :pivots="page.pivots"
+      />
+      <div class="page-cases__scroll-to">
+        <scroll-to direction="up" />
+      </div>
+    </section>
+
   </div>
 </template>
 
@@ -126,35 +166,48 @@
   import CasePullQuoteComposition from '~/components/case-pull-quote-composition'
   import CaseTeaser from '~/components/case-teaser'
   import FullWidthImage from '~/components/full-width-image'
-  import ContactForm from '~/components/contact-form'
   import ImageWithDescription from '~/components/image-with-description'
   import PageHeader from '~/components/page-header'
+  import PivotList from '~/components/pivot-list'
+  import BlockquoteBlock from '~/components/blockquote-block'
   import QuoteBlock from '~/components/quote-block'
   import ResponsiveImage from '~/components/responsive-image'
   import ResponsiveVideo from '~/components/responsive-video'
   import RichTextBlock from '~/components/rich-text-block'
   import ScrollTo from '~/components/scroll-to'
   import StorytellingSection from '~/components/storytelling-section'
-  import NewsletterForm from '~/components/newsletter-form'
 
   export default {
     components: {
       CaseMeta,
       CasePullQuoteComposition,
       CaseTeaser,
-      ContactForm,
       FullWidthImage,
       ImageWithDescription,
       PageHeader,
+      PivotList,
+      BlockquoteBlock,
       QuoteBlock,
       ResponsiveImage,
       ResponsiveVideo,
       RichTextBlock,
       ScrollTo,
       StorytellingSection,
-      NewsletterForm,
     },
     asyncData,
+    data() {
+      return {
+        typeDurationLetter: .05, // average duration per letter in seconds
+      }
+    },
+    computed: {
+      nextCase() {
+        const { cases, page } = this
+        const index = cases.findIndex( ({ slug }) => slug === page.slug )
+        const nextCaseIndex = index + 1 < cases.length ? index + 1 : 0
+        return cases[nextCaseIndex]
+      },
+    },
     methods: {
       isFullWidth(item) {
         return item.image && item.fullWidth
@@ -186,7 +239,6 @@
     padding: 0 var(--spacing-small);
   }
 
-  .page-case__contact-form,
   .page-case__content,
   .page-case__content > *:not(:last-child) {
     margin-bottom: var(--spacing-larger);
@@ -194,14 +246,20 @@
 
   .page-case__link-container {
     grid-row: 4;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-bigger);
     padding-top: var(--spacing-small);
     border-top: 2px solid var(--very-dim);
-    margin-bottom: var(--spacing-bigger);
   }
 
-  .page-case__contact-form {
-    grid-column: var(--grid-page);
-    grid-row: 5;
+  .page-case__link-container > * {
+    max-width: calc(50% - 20px);
+    text-align: left;
+  }
+
+  .page-case__link-container > *:nth-child(2) {
+    text-align: right;
   }
 
   .page-case__title {
@@ -214,10 +272,6 @@
 
   .page-case__text video {
     max-width: 100%; /* temporary fix for mvp should refactored after mvp */
-  }
-
-  .page-case__contact-form .scroll-to {
-    display: none;
   }
 
   .page-case__content .storytelling-section,
@@ -233,6 +287,25 @@
     max-width: var(--case-content-max-width-l);
   }
 
+  .page-cases__pivots .pivot-list__scroll-to {
+    grid-row-start: 1;
+    grid-row-end: 1;
+  }
+
+  .page-cases__pivots {
+    position: relative;
+  }
+
+  .page-cases__scroll-to {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 55px;
+    grid-column-start: -2;
+    grid-column-end: -3;
+  }
+
   @media (min-width: 720px) {
     .page-case__content {
       padding-left: var(--spacing-large);
@@ -246,30 +319,13 @@
       margin-right: calc(-1 * var(--spacing-large));
     }
 
-    .page-case__contact-form,
     .page-case__content,
     .page-case__content > *:not(:last-child) {
       margin-bottom: var(--spacing-big);
     }
 
-    .page-case__scroll-to {
-      position: relative;
-    }
-
-    .page-case__contact-form .contact-form {
-      grid-column-start: 1;
-      grid-column-end: 49;
-    }
-
-    .page-case__contact-form {
-      position: relative;
-    }
-
-    .page-case__contact-form .scroll-to {
-      grid-column: 49;
-      display: flex;
-      position: absolute;
-      bottom: 0;
+    .page-cases__scroll-to {
+      display: block;
     }
   }
 
@@ -293,6 +349,7 @@
 
     .page-case__text {
       max-width: var(--page-section-max-width);
+      width: 100%;
     }
 
     .page-case__content {
@@ -303,7 +360,6 @@
       width: 100%;
     }
 
-    .page-case__contact-form,
     .page-case__content,
     .page-case__content > *:not(:last-child) {
       margin-bottom: var(--spacing-bigger);
@@ -320,10 +376,6 @@
 
     .page-case__content .image-with-description {
       max-width: var(--case-content-max-width-m);
-    }
-
-    .page-case__contact-form .contact-form {
-      grid-column: var(--grid-page);
     }
   }
 

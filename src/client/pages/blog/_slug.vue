@@ -24,40 +24,59 @@
       </text-block>
 
       <template v-for="item in page.items">
+        <div
+          v-if="item.__typename === 'CallToActionRecord'"
+          :key="item.id"
+          :id="item.id"
+          class="page-blog-post-list__text"
+        >
+          <blockquote-block
+            :title="item.title"
+            :body="item.body"
+            :link-label="item.linkLabel"
+            :link-url="item.linkUrl"
+          />
+        </div>
+
         <code-block
+          :id="item.id"
           class="page-blog-post-list--full-width"
           v-if="item.__typename === 'CodeBlockRecord' && item.body"
           :language="item.language"
           :content="item.body"
-          :key="item.body" />
+          :key="item.id" />
 
         <image-with-description
+          :id="item.id"
           class="page-blog-post-list__image page-blog-post-list--full-width"
           v-if="item.__typename === 'ImageWithTextRecord'"
-          :key="item.description"
+          :key="item.id"
           :image="item.imageWithDescription.image"
           :inverse="item.imageWithDescription.inverse"
           :description="item.imageWithDescription.description" />
 
         <quote-block
+          :id="item.id"
           v-if="item.quote"
-          :key="item.quote"
+          :key="item.id"
           :quote="item.quote"
           :cite="item.author"
         />
 
         <responsive-image
+          :id="item.id"
           class="page-blog-post-list__image"
           :class="{ 'page-blog-post-list--full-width' : item.fullWidth}"
           v-if="item.__typename === 'ImageRecord' && item.image"
-          :key="item.image.url"
+          :key="item.id"
           :image="item.image"
           :caption="item.caption"
         />
 
         <responsive-video
+          :id="item.id"
           v-if="item.__typename === 'ResponsiveVideoRecord'"
-          :key="item.video ? item.video.title : item.gif.title"
+          :key="item.id"
           :video="item.video"
           :gif="item.gif"
           :autoplay="item.autoplay"
@@ -66,8 +85,9 @@
         />
 
         <div
+          :id="item.id"
           v-if="item.__typename === 'TextSectionRecord'"
-          :key="item.title || item.body"
+          :key="item.id"
           class="page-blog-post-list__text"
         >
           <h3
@@ -84,8 +104,9 @@
         </div>
 
         <div
+          :id="item.id"
           v-if="item.__typename === 'LinkSectionRecord'"
-          :key="item.link">
+          :key="item.id">
           <app-button
             class="page-blog-post__button"
             :external="item.external"
@@ -104,15 +125,17 @@
       </nuxt-link>
     </div>
 
-    <div class="page-blog-post__cta grid">
-      <!-- TODO: Make this a section to be defined in DATO (once for all blog pages) -->
-      <pivot-section
-        v-if="pivots && pivots.length"
-        class="page-blog-post__pivot-section"
-        :pivot="pivots[0]"
+    <section class="page-blog-post__pivots grid">
+      <pivot-list
+        v-if="page.pivots && page.pivots.length"
+        :pivots="page.pivots"
+        :pivot-border="false"
+        :pivot-narrow="true"
       />
-      <scroll-to direction="up" />
-    </div>
+      <div class="page-blog-post__scroll-to">
+        <scroll-to direction="up" />
+      </div>
+    </section>
 
     <style v-if="page.customStyling" v-html="page.customStyling"></style>
     <script v-if="page.customScript && loadCustomScript" v-html="page.customScript"/>
@@ -122,12 +145,14 @@
 <script>
 import asyncData from '~/lib/async-page'
 import head from '~/lib/seo-head'
+
 import AppButton from '~/components/app-button'
 import BlogAuthor from '~/components/blog-author'
 import CodeBlock from '~/components/code-block'
-import PivotSection from '~/components/pivot-section'
 import ImageWithDescription from '~/components/image-with-description'
+import PivotList from '~/components/pivot-list'
 import PageHeader from '~/components/page-header'
+import BlockquoteBlock from '~/components/blockquote-block'
 import QuoteBlock from '~/components/quote-block'
 import ResponsiveImage from '~/components/responsive-image'
 import ResponsiveVideo from '~/components/responsive-video'
@@ -142,9 +167,10 @@ export default {
     AppButton,
     BlogAuthor,
     CodeBlock,
-    PivotSection,
     ImageWithDescription,
+    PivotList,
     PageHeader,
+    BlockquoteBlock,
     QuoteBlock,
     ResponsiveImage,
     ResponsiveVideo,
@@ -154,7 +180,6 @@ export default {
     TocSection,
     TextBlock,
   },
-  asyncData,
   data () {
     return {
       /*
@@ -177,6 +202,7 @@ export default {
         })
     }
   },
+  asyncData,
   mounted () {
     this.loadCustomScript = true
     if ('IntersectionObserver' in window) {
@@ -255,14 +281,21 @@ export default {
     margin-bottom: var(--spacing-bigger);
   }
 
-  .page-blog-post__cta {
+  .page-blog-post__pivots {
+    position: relative;
     grid-column: var(--grid-page);
     grid-row: 5;
     background-color: var(--bg-pastel);
   }
 
-  .page-blog-post__pivot-section.pivot-section {
-    border: none;
+  .page-blog-post__scroll-to {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 55px;
+    grid-column-start: -2;
+    grid-column-end: -3;
   }
 
   .page-blog-post-list {
@@ -277,10 +310,6 @@ export default {
   .page-blog-post-list .responsive-video {
     width: 100%;
     max-width: var(--case-content-max-width-l);
-  }
-
-  .page-blog-post__cta .scroll-to {
-    display: none;
   }
 
   @media (min-width: 720px) {
@@ -310,25 +339,13 @@ export default {
       grid-column-end: 9;
     }
 
-    .page-blog-post__cta {
-      position: relative;
-    }
-
-    .page-blog-post__cta .scroll-to {
-      display: flex;
-      position: absolute;
-      bottom: var(--spacing-larger);
-      grid-column: 48;
-    }
-
-    .page-blog-post__pivot-section {
-      grid-column-start: 8;
-      grid-column-end: 44;
-    }
-
     .page-blog-post__link-container {
       grid-column-start: 4;
       grid-column-end: 48;
+    }
+
+    .page-blog-post__scroll-to {
+      display: block;
     }
   }
 
@@ -345,15 +362,6 @@ export default {
     .page-blog-post__aside {
       grid-column-start: 4;
       grid-column-end: 11;
-    }
-
-    .page-blog-post__pivot-section {
-      grid-column-start: 14;
-      grid-column-end: 38;
-    }
-
-    .page-blog-post__cta .scroll-to {
-      bottom: var(--spacing-big);
     }
   }
 

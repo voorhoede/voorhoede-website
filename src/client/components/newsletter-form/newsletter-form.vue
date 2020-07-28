@@ -108,6 +108,8 @@
 </script>
 
 <style>
+  @import '../forms/forms.css';
+
   .newsletter-form {
     grid-column-start: 1;
     grid-column-end: 51;
@@ -120,16 +122,18 @@
     background-color: var(--white);
   }
 
-  .newsletter-form__form {
-    margin: 0 auto;
-    max-width: 400px;
-  }
-
   .newsletter-form__title {
+    grid-row: 1;
     grid-column-start: 6;
     grid-column-end: 46;
     margin-bottom: var(--spacing-medium);
     text-align: center;
+  }
+
+  .newsletter-form__form {
+    grid-row: 2;
+    margin: 0 auto;
+    max-width: 400px;
   }
 
   .newsletter-form__input-field,

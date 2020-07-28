@@ -16,13 +16,15 @@
         </div>
       </template>
     </article>
-    <div class="page-update__cta grid">
-      <pivot-section
-        v-if="pivots && pivots.length"
-        class="page-update__pivot-section"
-        :pivot="pivots[0]"
+    <section
+      v-if="page.pivots && page.pivots.length"
+      class="page-update__pivots grid">
+      <pivot-list
+        :pivots="page.pivots"
+        :pivot-border="false"
+        :pivot-narrow="true"
       />
-    </div>
+    </section>
   </div>
 </template>
 
@@ -31,13 +33,13 @@
   import head from '~/lib/seo-head'
 
   import PageHeader from '~/components/page-header'
-  import PivotSection from '~/components/pivot-section'
+  import PivotList from '~/components/pivot-list'
   import RichTextBlock from '~/components/rich-text-block'
 
   export default {
     components: {
       PageHeader,
-      PivotSection,
+      PivotList,
       RichTextBlock,
     },
     asyncData,
@@ -58,14 +60,10 @@
     margin: 0 0 var(--spacing-large) 0;
   }
 
-  .page-update__cta {
+  .page-update__pivots {
     grid-column: var(--grid-page);
-    grid-row: 3;
     background-color: var(--bg-pastel);
-  }
-
-  .page-update__cta .pivot-section {
-    border: none;
+    margin-bottom: 0;
   }
 
   @media (min-width: 720px) {
@@ -80,9 +78,8 @@
       padding: var(--spacing-large) var(--spacing-larger);
     }
 
-    .page-updates__pivot-section {
-      grid-column-end: 46;
-      grid-column-start: 8;
+    .page-update__pivots {
+      margin-bottom: var(--spacing-big);
     }
   }
 
@@ -94,11 +91,6 @@
     .page-update__article {
       grid-column: var(--grid-content-narrow);
       padding: var(--spacing-big) var(--spacing-bigger);
-    }
-
-    .page-updates__pivot-section {
-      grid-column-end: 38;
-      grid-column-start: 14;
     }
   }
 

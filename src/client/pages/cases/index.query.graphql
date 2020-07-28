@@ -1,23 +1,42 @@
-query Case($locale: SiteLocale)  {
-  page: caseOverview(locale:$locale) {
+query Case($locale: SiteLocale) {
+  page: caseOverview(locale: $locale) {
     ...page
-  },
-  items: allCaseItems(locale:$locale, first:100) {
-    slug,
-    title,
-    subtitle,
+  }
+  items: allCaseItems(locale: $locale, first: 100) {
+    slug
+    title
+    subtitle
     heroIllustration {
-      url,
-      format,
+      url
+      format
       alt
     }
-  },
-   pivots: allPivotSections(locale: $locale, filter: {
-    routes:{ matches:{ pattern: "cases" }}
-  }) {
+  }
+}
+
+fragment page on CaseOverviewRecord {
+  title
+  slug
+  social {
+    title
+    description
+  }
+  keywords
+  subtitle
+  headerIllustration {
+    url
+    format
+    alt
+  }
+  introductionBlock {
     title
     body
-    callToActionLabel
+  }
+  pivots {
+    showBackgroundColor
+    title
+    body
+    buttonLabel: callToActionLabel
     link {
       title
       url
@@ -45,21 +64,18 @@ query Case($locale: SiteLocale)  {
         }
       }
     }
-  }
-}
-
-fragment page on CaseOverviewRecord {
-  title,
-  slug,
-  social {
-    title,
-    description
-  },
-  keywords,
-  subtitle,
-  headerIllustration {
-    url,
-    format,
-    alt
+    externalLink
+    formType
+    contactPerson {
+      name
+      lastName
+      jobTitle
+      image {
+        width
+        height
+        url
+        format
+      }
+    }
   }
 }

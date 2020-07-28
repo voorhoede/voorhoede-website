@@ -17,15 +17,17 @@
         </li>
       </ul>
     </section>
-    <div class="page-blog__cta grid">
-      <!-- TODO: Make this a section to be defined in DATO (once for all blog pages) -->
-      <pivot-section
-        v-if="pivots && pivots.length"
-        class="page-blog__pivot-section"
-        :pivot="pivots[0]"
+    <section class="page-blog__pivots grid">
+      <pivot-list
+        v-if="page.pivots && page.pivots.length"
+        :pivots="page.pivots"
+        :pivot-border="false"
+        :pivot-narrow="true"
       />
-      <scroll-to direction="up" />
-    </div>
+      <div class="page-blog__scroll-to">
+        <scroll-to direction="up" />
+      </div>
+    </section>
   </main>
 </template>
 
@@ -34,13 +36,19 @@
   import head from '~/lib/seo-head'
 
   import BlogListItem from '~/components/blog-list-item'
-  import PivotSection from '~/components/pivot-section'
+  import PivotList from '~/components/pivot-list'
   import PageHeader from '~/components/page-header'
   import ScrollTo from '~/components/scroll-to'
   import TextBlock from '~/components/text-block'
 
   export default {
-    components: { BlogListItem, PivotSection, PageHeader, ScrollTo, TextBlock },
+    components: {
+      BlogListItem,
+      PivotList,
+      PageHeader,
+      ScrollTo,
+      TextBlock,
+    },
     asyncData,
     head
   }
@@ -61,19 +69,19 @@
     grid-row: 2;
   }
 
-  .page-blog__cta {
-    grid-row: 3;
-    grid-column: var(--grid-page);
+  .page-blog__pivots {
     background-color: var(--bg-pastel);
     position: relative;
   }
 
-  .page-blog__cta .pivot-section {
-    border: none;
-  }
-
-  .page-blog__cta .scroll-to {
+  .page-blog__scroll-to {
     display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 55px;
+    grid-column-start: -2;
+    grid-column-end: -3;
   }
 
   @media (min-width: 720px) {
@@ -88,16 +96,8 @@
       position: relative;
     }
 
-    .page-blog__cta .scroll-to {
-      display: flex;
-      position: absolute;
-      bottom: var(--spacing-larger);
-      grid-column: 48;
-    }
-
-    .page-blog__pivot-section {
-      grid-column-start: 8;
-      grid-column-end: 46;
+    .page-blog__scroll-to {
+      display: block;
     }
   }
 
@@ -107,15 +107,6 @@
       grid-column-start: 14;
       grid-column-end: 42;
       margin-bottom: var(--spacing-large);
-    }
-
-    .page-blog__pivot-section {
-      grid-column-start: 14;
-      grid-column-end: 38;
-    }
-
-    .page-blog__cta .scroll-to {
-      bottom: var(--spacing-big);
     }
   }
 </style>

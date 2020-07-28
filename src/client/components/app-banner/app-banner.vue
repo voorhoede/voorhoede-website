@@ -53,9 +53,12 @@
 
   .app-banner .app-button--small {
     margin-top: var(--spacing-tiny);
-    background: var(--white);
     color: orangered;
     white-space: nowrap;
+  }
+
+  .app-banner .app-button--small::before {
+    background: var(--white);
   }
 
   .app-banner .app-button--small:active {

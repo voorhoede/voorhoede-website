@@ -165,6 +165,8 @@
     flex-direction: column;
     grid-column: var(--grid-page);
     position: fixed;
+    top: 0;
+    left: 0;
     height: 100vh;
     width: 100vw;
     background-color: var(--brand-yellow);

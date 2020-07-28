@@ -6,8 +6,14 @@
       'page-header--fill-screen': fillScreen,
       'page-header--has-image': image,
       'page-header--has-slot': displaySlot,
+      'is-animated': isAnimated
     }"
+    :style="{'--animation-delay': animationDelay + 's'}"
   >
+    <span
+      v-if="fillScreen"
+      class="page-header__background scale-up-background"
+    />
     <div class="page-header__text">
       <!--
        `<h1>` is either the headline or the byline.
@@ -16,16 +22,24 @@
       -->
       <p
         v-if="heading === 'headline'"
-        v-html="byline"
         class="sub-title"
-      />
+      >
+        <span
+          v-html="byline"
+          class="animation__uncover"
+        />
+      </p>
       <h1
-        v-html="heading === 'byline' ? byline : headline"
         :class="{
           'sub-title': heading === 'byline',
           'sr-only': heading === 'headline'
         }"
-      />
+      >
+        <span
+          v-html="heading === 'byline' ? byline : headline"
+          class="animation__uncover"
+        />
+      </h1>
       <p
         v-if="heading === 'byline'"
         class="sr-only"
@@ -38,8 +52,10 @@
       />
     </div>
 
-    <div v-if="image" class="page-header__image-column">
-      <img class="page-header__image" :src="image.url" alt=""/>
+    <div v-if="image" class="page-header__image-column animation__reveal">
+      <div class="page-header__image-column-content animation__reveal-content">
+        <img class="page-header__image" :src="image.url" alt=""/>
+      </div>
     </div>
 
     <!--
@@ -51,7 +67,7 @@
       <slot/>
     </div>
 
-    <scroll-to v-if="fillScreen" direction="down"/>
+    <scroll-to v-if="fillScreen" direction="down" class="animation__fade-in"/>
   </header>
 </template>
 
@@ -94,6 +110,14 @@
       curlyBracket: {
         type: Boolean,
         default: false,
+      },
+      isAnimated: {
+        type: Boolean,
+        default: false
+      },
+      animationDelay: {
+        type: Number,
+        default: 0
       }
     },
     computed: {
@@ -138,7 +162,7 @@
   }
 
   .page-header__image-column {
-    display: none;
+    grid-row: 5 / 6;
   }
 
   .page-header--fill-screen {
@@ -153,7 +177,7 @@
   }
 
   /* Yellow half */
-  .page-header--fill-screen::before {
+  .page-header__background {
     content: '';
     display: block;
     grid-column: var(--grid-page);
@@ -169,19 +193,31 @@
     grid-column: 44 / 51;
     grid-row: 5 / 8;
     margin: calc(-1 * var(--spacing-medium)) 0;
-    transform: rotate(180deg);
-    background-image: url('/images/curly-bracket--paper.svg');
+    background-image: url('/images/curly-bracket--paper-rotated.svg');
     background-repeat: no-repeat;
-    background-position: 100%;
+    background-position: left center;
     background-size: cover;
     mix-blend-mode: screen;
   }
 
+  .is-animated.page-header--curly-bracket::after {
+    opacity: 0;
+    transform: translateX(-100px);
+    animation:
+      animation__slide-in var(--animation-duration) var(--animation-delay) forwards,
+      animation__fade-in var(--animation-duration) var(--animation-delay) forwards;
+  }
+
   .page-header--fill-screen .page-header__image-column {
-    display: flex;
+    position: relative;
     z-index: var(--z-index-low); /* Make sure to be on top off curly bracket */
     grid-column: 3 / var(--grid-page-end);
     grid-row: 6 / 7;
+  }
+
+  .page-header__image-column-content {
+    min-height: 100%;
+    display: flex;
     align-items: flex-end;
     justify-content: flex-end;
   }
@@ -279,7 +315,7 @@
     }
 
     /* Yellow half */
-    .page-header--fill-screen::before {
+    .page-header__background {
       grid-column: var(--grid-page-right);
       grid-row: 1 / 7;
     }
@@ -289,7 +325,7 @@
       grid-column: var(--grid-center) / 48;
       grid-row: 3 / 6;
       margin: calc(-1 * var(--spacing-medium)) 0;
-      background-position: left center; /* remember, object is rotated */
+      background-position: right center;
       background-size: contain;
     }
 
@@ -377,7 +413,7 @@
     }
 
     /* Yellow half */
-    .page-header--fill-screen::before {
+    .page-header__background {
       grid-row: 1 / 5;
     }
 

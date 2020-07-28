@@ -20,10 +20,27 @@ query ($locale: SiteLocale) {
       }
     }
   }
-  pivots: allPivotSections(locale: $locale, filter: {routes: {matches: {pattern: "update"}}}) {
+}
+
+fragment updateOverview on UpdateOverviewRecord {
+  title
+  slug
+  social {
+    title
+    description
+  }
+  keywords
+  subtitle
+  description
+  headerIllustration {
+    url
+    alt
+  }
+  pivots {
+    showBackgroundColor
     title
     body
-    callToActionLabel
+    buttonLabel: callToActionLabel
     link {
       title
       url
@@ -51,21 +68,18 @@ query ($locale: SiteLocale) {
         }
       }
     }
-  }
-}
-
-fragment updateOverview on UpdateOverviewRecord {
-  title
-  slug
-  social {
-    title
-    description
-  }
-  keywords
-  subtitle
-  description
-  headerIllustration {
-    url
-    alt
+    externalLink
+    formType
+    contactPerson {
+      name
+      lastName
+      jobTitle
+      image {
+        width
+        height
+        url
+        format
+      }
+    }
   }
 }

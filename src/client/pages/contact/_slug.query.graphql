@@ -2,10 +2,32 @@ query ($locale: SiteLocale, $slug: String) {
   page: contactConfirmation(locale: $locale, filter: {slug: {eq: $slug}}) {
     ...page
   }
-  pivots: allPivotSections(locale: $locale, filter: {routes: {matches: {pattern: "contact-slug"}}}) {
+}
+
+fragment page on ContactConfirmationRecord {
+  slug
+  i18nSlugs: _allSlugLocales {
+    locale
+    value
+  }
+  social {
+    title
+    description
+  }
+  keywords
+  title
+  subtitle
+  headerIllustration {
+    url
+    alt
+  }
+  body
+  callToActionLabel
+  pivots {
+    showBackgroundColor
     title
     body
-    callToActionLabel
+    buttonLabel: callToActionLabel
     link {
       title
       url
@@ -33,26 +55,18 @@ query ($locale: SiteLocale, $slug: String) {
         }
       }
     }
+    externalLink
+    formType
+    contactPerson {
+      name
+      lastName
+      jobTitle
+      image {
+        width
+        height
+        url
+        format
+      }
+    }
   }
-}
-
-fragment page on ContactConfirmationRecord {
-  slug
-  i18nSlugs: _allSlugLocales {
-    locale
-    value
-  }
-  social {
-    title
-    description
-  }
-  keywords
-  title
-  subtitle
-  headerIllustration {
-    url
-    alt
-  }
-  body
-  callToActionLabel
 }

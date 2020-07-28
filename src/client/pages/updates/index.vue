@@ -17,14 +17,17 @@
         </li>
       </ul>
     </section>
-    <div class="page-updates__cta grid">
-      <pivot-section
-        v-if="pivots && pivots.length"
-        class="page-updates__pivot-section"
-        :pivot="pivots[0]"
+    <section class="page-updates__pivots grid">
+      <pivot-list
+        v-if="page.pivots && page.pivots.length"
+        :pivots="page.pivots"
+        :pivot-border="false"
+        :pivot-narrow="true"
       />
-      <scroll-to direction="up" />
-    </div>
+      <div class="page-updates__scroll-to">
+        <scroll-to direction="up" />
+      </div>
+    </section>
   </main>
 </template>
 
@@ -33,19 +36,25 @@
   import head from '~/lib/seo-head'
 
   import BlogListItem from '~/components/blog-list-item'
-  import PivotSection from '~/components/pivot-section'
+  import PivotList from '~/components/pivot-list'
   import PageHeader from '~/components/page-header'
   import ScrollTo from '~/components/scroll-to'
   import TextBlock from '~/components/text-block'
 
   export default {
-    components: { BlogListItem, PivotSection, PageHeader, ScrollTo, TextBlock },
-    asyncData,
+    components: {
+      BlogListItem,
+      PivotList,
+      PageHeader,
+      ScrollTo,
+      TextBlock,
+    },
     computed: {
       publishedUpdates() {
         return this.items.filter(post => post.published)
       },
     },
+    asyncData,
     head,
   }
 </script>
@@ -65,19 +74,21 @@
     grid-row: 2;
   }
 
-  .page-updates__cta {
+  .page-updates__pivots {
     position: relative;
     grid-column: var(--grid-page);
     grid-row: 3;
     background-color: var(--bg-pastel);
   }
 
-  .page-updates__cta .pivot-section {
-    border: none;
-  }
-
-  .page-updates__cta .scroll-to {
+  .page-updates__scroll-to {
     display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 55px;
+    grid-column-start: -2;
+    grid-column-end: -3;
   }
 
   @media (min-width: 720px) {
@@ -92,16 +103,8 @@
       position: relative;
     }
 
-    .page-updates__cta .scroll-to {
-      display: flex;
-      position: absolute;
-      bottom: var(--spacing-larger);
-      grid-column: 48;
-    }
-
-    .page-updates__pivot-section {
-      grid-column-end: 46;
-      grid-column-start: 8;
+    .page-updates__scroll-to {
+      display: block;
     }
   }
 
@@ -111,15 +114,6 @@
       grid-column-end: 42;
       grid-column-start: 14;
       margin-bottom: var(--spacing-large);
-    }
-
-    .page-updates__pivot-section {
-      grid-column-end: 38;
-      grid-column-start: 14;
-    }
-
-    .page-updates__cta .scroll-to {
-      bottom: var(--spacing-big);
     }
   }
 </style>
