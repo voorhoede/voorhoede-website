@@ -108,6 +108,8 @@
 </script>
 
 <style>
+  @import '../forms/forms.css';
+
   .newsletter-form {
     grid-column-start: 1;
     grid-column-end: 51;
