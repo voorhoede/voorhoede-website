@@ -1,2 +1,0 @@
-Disallow: /nl/offline/
-Disallow: /en/offline/

@@ -3,7 +3,6 @@ module.exports = [
   {
     workbox: {
       dev: process.env.PWA_DEV,
-      offlinePage: '/en/offline',
       preCaching: [
         '/en?homescreen=true',
         '/nl?homescreen=true',
@@ -14,7 +13,6 @@ module.exports = [
         '/icons/icon_git-hub--blue.svg',
         '/icons/icon_youtube--blue.svg',
         '/icons/icon_linkedin--blue.svg',
-        '/_nuxt/pages/offline.js',
         '/_nuxt/app.js',
         '/_nuxt/commons.app.js',
         '/_nuxt/runtime.js',
