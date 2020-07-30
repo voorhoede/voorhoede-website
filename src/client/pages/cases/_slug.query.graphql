@@ -2,39 +2,9 @@ query ($locale: SiteLocale, $slug: String) {
   page: caseItem(locale: $locale, filter: {slug: {eq: $slug}}) {
     ...caseItem
   }
-  pivots: allPivotSections(locale: $locale, filter: {
-    routes:{ matches:{ pattern: "cases-slug" }}
-  }) {
+  cases: allCaseItems(locale: $locale, first: 100) {
+    slug
     title
-    body
-    callToActionLabel
-    link {
-      title
-      url
-      page {
-        ... on HomeRecord {
-          slug
-        }
-        ... on ServiceOverviewRecord {
-          slug
-        }
-        ... on CaseOverviewRecord {
-          slug
-        }
-        ... on BlogPostOverviewRecord {
-          slug
-        }
-        ... on JobOverviewRecord {
-          slug
-        }
-        ... on AboutRecord {
-          slug
-        }
-        ... on ContactRecord {
-          slug
-        }
-      }
-    }
   }
 }
 
@@ -72,10 +42,12 @@ fragment caseItem on CaseItemRecord {
   content {
     __typename
     ... on TextSectionRecord {
+      id
       title
       body
     }
     ... on ImageRecord {
+      id
       image {
         url
         alt
@@ -87,6 +59,7 @@ fragment caseItem on CaseItemRecord {
       fullWidth
     }
     ... on PullquoteRecord {
+      id
       pullquote {
         quote
         illustration {
@@ -98,6 +71,7 @@ fragment caseItem on CaseItemRecord {
       }
     }
     ... on ImageWithTextRecord {
+      id
       imageWithDescription {
         image {
           url
@@ -111,6 +85,7 @@ fragment caseItem on CaseItemRecord {
       }
     }
     ... on StorytellingBlockRecord {
+      id
       storyItem {
         title
         items {
@@ -126,6 +101,7 @@ fragment caseItem on CaseItemRecord {
       }
     }
     ... on ResponsiveVideoRecord {
+      id
       mute
       loop
       autoplay
@@ -138,6 +114,13 @@ fragment caseItem on CaseItemRecord {
         providerUid
         thumbnailUrl
       }
+    }
+    ... on CallToActionRecord {
+      id
+      title
+      body
+      linkLabel
+      linkUrl
     }
   }
   metaData {
@@ -159,15 +142,50 @@ fragment caseItem on CaseItemRecord {
   }
   quote
   author
-  contactPerson {
-    name
-    lastName
-    jobTitle
-    image {
-      format
-      height
-      width
+  pivots {
+    showBackgroundColor
+    title
+    body
+    buttonLabel: callToActionLabel
+    link {
+      title
       url
+      page {
+        ... on HomeRecord {
+          slug
+        }
+        ... on ServiceOverviewRecord {
+          slug
+        }
+        ... on CaseOverviewRecord {
+          slug
+        }
+        ... on BlogPostOverviewRecord {
+          slug
+        }
+        ... on JobOverviewRecord {
+          slug
+        }
+        ... on AboutRecord {
+          slug
+        }
+        ... on ContactRecord {
+          slug
+        }
+      }
+    }
+    externalLink
+    formType
+    contactPerson {
+      name
+      lastName
+      jobTitle
+      image {
+        width
+        height
+        url
+        format
+      }
     }
   }
 }

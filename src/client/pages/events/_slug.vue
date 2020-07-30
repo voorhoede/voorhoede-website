@@ -129,6 +129,7 @@
       TextBlock,
       NewsletterForm,
     },
+    asyncData,
     data() {
       return {
         fallbackIllustration: {
@@ -153,7 +154,6 @@
         })
       }
     },
-    asyncData,
     head,
   }
 </script>
@@ -270,7 +270,7 @@
       grid-column: 3;
     }
 
-    .page-event-detail__pivot-section {
+    .page-event-detail__pivot-list {
       grid-column-start: 8;
       grid-column-end: 44;
     }
@@ -296,7 +296,7 @@
       grid-column-end: 11;
     }
 
-    .page-event-detail__pivot-section {
+    .page-event-detail__pivot-list {
       grid-column-start: 14;
       grid-column-end: 38;
     }

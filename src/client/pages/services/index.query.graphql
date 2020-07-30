@@ -5,10 +5,50 @@ query ($locale: SiteLocale) {
   items: allServices(locale: $locale) {
     slug
   }
-  pivots: allPivotSections(locale: $locale, filter: {routes: {matches: {pattern: "services"}}}) {
+}
+
+fragment page on ServiceOverviewRecord {
+  title
+  subtitle
+  slug
+  social {
+    title
+    description
+  }
+  keywords
+  services {
+    title
+    tagline
+    slug
+    summary {
+      title
+    }
+  }
+  headerIllustration {
+    url
+    alt
+  }
+  introductionBlock {
     title
     body
-    callToActionLabel
+  }
+  smallServices
+  contactPerson {
+    name,
+    lastName,
+    jobTitle,
+    image {
+      width,
+      height,
+      url,
+      format
+    }
+  }
+  pivots {
+    showBackgroundColor
+    title
+    body
+    buttonLabel: callToActionLabel
     link {
       title
       url
@@ -36,40 +76,18 @@ query ($locale: SiteLocale) {
         }
       }
     }
-  }
-}
-
-fragment page on ServiceOverviewRecord {
-  title
-  subtitle
-  slug
-  social {
-    title
-    description
-  }
-  keywords
-  services {
-    title
-    tagline
-    slug
-    summary {
-      title
-    }
-  }
-  headerIllustration {
-    url
-    alt
-  }
-  smallServices
-  contactPerson {
-    name,
-    lastName,
-    jobTitle,
-    image {
-      width,
-      height,
-      url,
-      format
+    externalLink
+    formType
+    contactPerson {
+      name
+      lastName
+      jobTitle
+      image {
+        width
+        height
+        url
+        format
+      }
     }
   }
 }

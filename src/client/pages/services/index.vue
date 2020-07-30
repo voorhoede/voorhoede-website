@@ -6,31 +6,45 @@
         :byline="page.title"
         :headline="page.subtitle"
         :image="page.headerIllustration" />
-      <services-list :services="page.services"/>
-      <rich-text-block
-        class="services-text"
-        :text="page.smallServices" />
-      <contact-form
-        class="grid"
-        :contact-person="page.contactPerson"
-        :title="$t('lets_discuss')"
+      <introduction-block
+        v-if="page.introductionBlock"
+        :title="page.introductionBlock.title"
+        :body="page.introductionBlock.body"
+        class="page-services__introduction"
       />
+      <services-list
+        :services="page.services"
+        class="page-services__services-list"
+      />
+      <rich-text-block
+        class="page-services__text"
+        :text="page.smallServices" />
     </main>
-    <newsletter-form />
+    <pivot-list
+      v-if="page.pivots && page.pivots.length"
+      :pivots="page.pivots"
+    />
   </div>
 </template>
 
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
+
   import PageHeader from '~/components/page-header'
+  import IntroductionBlock from '~/components/introduction-block'
+  import PivotList from '~/components/pivot-list'
   import ServicesList from '~/components/services-list'
-  import ContactForm from '~/components/contact-form'
   import RichTextBlock from '~/components/rich-text-block'
-  import NewsletterForm from '~/components/newsletter-form'
 
   export default {
-    components: { ServicesList, ContactForm, PageHeader, RichTextBlock, NewsletterForm },
+    components: {
+      PageHeader,
+      IntroductionBlock,
+      PivotList,
+      ServicesList,
+      RichTextBlock,
+    },
     asyncData,
     head
   }
@@ -41,21 +55,31 @@
     margin-bottom: var(--spacing-big);
   }
 
-  .page-services .services-list {
+  .page-services__introduction {
     grid-row: 2;
+  }
+
+  @media (min-width: 720px) {
+    .page-services__introduction {
+      grid-column-start: 8;
+      grid-column-end: 44;
+      text-align: center;
+    }
+  }
+
+  .page-services__services-list {
+    grid-row: 3;
     margin-bottom: var(--spacing-larger);
   }
 
-  .page-services .services-text {
-    grid-row: 3;
-  }
-
-  .page-services .contact-form {
+  .page-services__text {
     grid-row: 4;
   }
 
   @media (min-width: 720px) {
-    .page-services .services-text {
+    .page-services__text {
+      grid-column-start: 8;
+      grid-column-end: 44;
       text-align: center;
       max-width: var(--small-services-width);
     }
@@ -66,7 +90,7 @@
       margin-bottom: var(--spacing-bigger);
     }
 
-    .page-services .services-list {
+    .page-services__services-list {
       grid-column-start: 4;
       grid-column-end: 48;
     }

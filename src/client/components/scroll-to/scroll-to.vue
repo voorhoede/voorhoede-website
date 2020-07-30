@@ -50,11 +50,11 @@
     position: relative;
     z-index: var(--z-index-low);
     width: 32px;
-    height: 150px;
+    height: var(--scroll-to-height);
     user-select: none;
   }
 
-  .scroll-to__text {
+  .scroll-to__text.body-petite {
     color: var(--html-blue);
     letter-spacing: .0625rem;
     line-height: 32px;

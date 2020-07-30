@@ -96,6 +96,7 @@ module.exports = {
     { src: '~/plugins/ascii-art', mode: 'client' },
     { src: '~/plugins/promise-polyfill', mode: 'client' },
     { src: '~/plugins/install-prompt', mode: 'client' },
+    { src: '~/directives/scroll-highlight', mode: 'client' },
   ],
 
   css: [

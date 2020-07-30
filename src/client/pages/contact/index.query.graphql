@@ -13,38 +13,6 @@ query ($locale: SiteLocale) {
       googleMapsLink
     }
   }
-  pivots: allPivotSections(locale: $locale, filter: {routes: {matches: {pattern: "contact"}}}) {
-    title
-    body
-    callToActionLabel
-    link {
-      title
-      url
-      page {
-        ... on HomeRecord {
-          slug
-        }
-        ... on ServiceOverviewRecord {
-          slug
-        }
-        ... on CaseOverviewRecord {
-          slug
-        }
-        ... on BlogPostOverviewRecord {
-          slug
-        }
-        ... on JobOverviewRecord {
-          slug
-        }
-        ... on AboutRecord {
-          slug
-        }
-        ... on ContactRecord {
-          slug
-        }
-      }
-    }
-  }
 }
 
 fragment contact on ContactRecord {
