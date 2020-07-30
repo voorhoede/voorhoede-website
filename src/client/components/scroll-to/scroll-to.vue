@@ -50,7 +50,7 @@
     position: relative;
     z-index: var(--z-index-low);
     width: 32px;
-    height: 150px;
+    height: var(--scroll-to-height);
     user-select: none;
   }
 
