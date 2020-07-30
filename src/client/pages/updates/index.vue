@@ -49,12 +49,12 @@
       ScrollTo,
       TextBlock,
     },
+    asyncData,
     computed: {
       publishedUpdates() {
         return this.items.filter(post => post.published)
       },
     },
-    asyncData,
     head,
   }
 </script>

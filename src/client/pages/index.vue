@@ -120,6 +120,7 @@
       ServicesList,
       ScrollText,
     },
+    asyncData,
     data() {
       return {
         typeDurationLetter: .05, // average duration per letter in seconds
@@ -135,7 +136,6 @@
         }]
       },
     },
-    asyncData,
     methods: {
       isLast(index, usps) {
         return index === Object.keys(usps).length - 1 ? { isSet: true, number: index } : { isSet: false }

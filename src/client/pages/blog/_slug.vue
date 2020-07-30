@@ -180,6 +180,7 @@ export default {
     TocSection,
     TextBlock,
   },
+  asyncData,
   data () {
     return {
       /*
@@ -202,7 +203,6 @@ export default {
         })
     }
   },
-  asyncData,
   mounted () {
     this.loadCustomScript = true
     if ('IntersectionObserver' in window) {
