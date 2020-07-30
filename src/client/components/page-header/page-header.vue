@@ -229,7 +229,7 @@
 
   .page-header .scroll-to {
     position: absolute;
-    bottom: var(--spacing-medium);
+    top: calc(100vh - var(--spacing-medium) - var(--scroll-to-height));
     left: var(--grid-margin);
   }
 
@@ -331,6 +331,8 @@
 
     .page-header--fill-screen .scroll-to {
       left: 0;
+      top: auto;
+      bottom: var(--spacing-medium);
     }
 
     .page-header__text {
