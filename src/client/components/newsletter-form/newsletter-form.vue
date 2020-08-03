@@ -43,7 +43,7 @@
       <input-checkbox
         v-model="form.consent"
         value="Y"
-        id="gdpr_38537"
+        id="newsletter-form-gdpr_38537"
         name="gdpr[38537]"
         :label="$t('newsletter_permission')"
         required

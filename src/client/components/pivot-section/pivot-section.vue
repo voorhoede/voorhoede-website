@@ -38,6 +38,7 @@
       v-if="isLeadsForm"
       :no-background="true"
       :file="pivot.file"
+      :mailchimp-group="mailchimpGroup"
       :button-label="pivot.buttonLabel"
     />
 
@@ -85,6 +86,15 @@
       isLeadsForm() {
         return this.pivot.formType && this.pivot.formType === 'leads'
       },
+      mailchimpGroup() {
+        const { mailchimpValue, mailchimpName, mailchimpId } = this.pivot
+
+        return {
+          id: mailchimpId,
+          name: mailchimpName,
+          value: mailchimpValue,
+        }
+      }
     },
     methods: {
       createHref,
