@@ -8,18 +8,11 @@
         :byline="page.headerTitle"
         :headline="page.subtitle"
         :image="page.headerIllustration"
+        is-animated
+        :animation-delay="page.subtitle.length * typeDurationLetter"
       />
       <div class="grid">
-        <p class="scroll-highlighted-text">
-          <scroll-highlighted-text
-            v-for="(line, index) in page.usps"
-            :key="index"
-            :line="line"
-            :index="index"
-            :is-first="isFirst(index)"
-            :is-last="isLast(index, page.usps)"
-          />
-        </p>
+        <scroll-text :items="page.usps" />
       </div>
     </div>
     <section class="page-index__services grid">
@@ -108,9 +101,9 @@
   import HighlightedClients from '~/components/highlighted-clients'
   import HorizontalCarousel from '~/components/horizontal-carousel'
   import PageHeader from '~/components/page-header'
-  import ScrollHighlightedText from '~/components/scroll-highlighted-text'
   import ScrollTo from '~/components/scroll-to'
   import ServicesList from '~/components/services-list'
+  import ScrollText from '~/components/scroll-text'
 
   export default {
     components: {
@@ -123,11 +116,16 @@
       HighlightedClients,
       HorizontalCarousel,
       PageHeader,
-      ScrollHighlightedText,
       ScrollTo,
       ServicesList,
+      ScrollText,
     },
     asyncData,
+    data() {
+      return {
+        typeDurationLetter: .05, // average duration per letter in seconds
+      }
+    },
     computed: {
       ctaPivot () {
         return [{
@@ -156,8 +154,8 @@
     background-color: var(--bg-pastel);
   }
 
-  .page-index .scroll-highlighted-text {
-    padding: var(--spacing-larger) 0;
+  .page-index .scroll-text {
+    padding-top: var(--spacing-larger);
   }
 
   .page-index__services {
@@ -277,8 +275,8 @@
       margin-bottom: var(--spacing-big);
     }
 
-    .page-index .scroll-highlighted-text {
-      padding: var(--spacing-big) 0;
+    .page-index .scroll-text {
+      padding-top: var(--spacing-big);
     }
 
     .page-index__cases {
@@ -380,8 +378,8 @@
       margin-bottom: var(--spacing-bigger);
     }
 
-    .page-index .scroll-highlighted-text {
-      padding: var(--spacing-bigger) 0;
+    .page-index .scroll-text {
+      padding-top: var(--spacing-bigger);
     }
 
     .page-index__services > *,

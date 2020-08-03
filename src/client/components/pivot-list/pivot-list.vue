@@ -5,6 +5,7 @@
         v-if="pivot.formType && pivot.formType === 'contact'"
         :key="index"
         class="grid"
+        :class="{ 'pivot-list-item--background': pivot.showBackgroundColor }"
         :contact-person="pivot.contactPerson"
         :title="$t('lets_discuss')"
         :style="setGridRow(index)"
@@ -15,6 +16,7 @@
         :pivot="pivot"
         :border="pivotBorder"
         :narrow="pivotNarrow"
+        :class="{ 'pivot-list-item--background': pivot.showBackgroundColor }"
         :style="setGridRow(index)"
       />
     </template>
@@ -64,7 +66,12 @@
     grid-column-end: 51;
   }
 
+  .pivot-list-item--background {
+    background-color: var(--bg-pastel);
+  }
+
   .pivot-list .contact-form {
+    grid-column: 1 / 51;
     padding-top: var(--spacing-large);
     padding-bottom: var(--spacing-larger);
   }

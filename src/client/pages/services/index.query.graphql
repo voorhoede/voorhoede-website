@@ -28,6 +28,10 @@ fragment page on ServiceOverviewRecord {
     url
     alt
   }
+  introductionBlock {
+    title
+    body
+  }
   smallServices
   contactPerson {
     name,
@@ -41,6 +45,7 @@ fragment page on ServiceOverviewRecord {
     }
   }
   pivots {
+    showBackgroundColor
     title
     body
     buttonLabel: callToActionLabel

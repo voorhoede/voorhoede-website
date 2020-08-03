@@ -2,6 +2,10 @@ query ($locale: SiteLocale, $slug: String) {
   page: caseItem(locale: $locale, filter: {slug: {eq: $slug}}) {
     ...caseItem
   }
+  cases: allCaseItems(locale: $locale, first: 100) {
+    slug
+    title
+  }
 }
 
 fragment caseItem on CaseItemRecord {
@@ -38,10 +42,12 @@ fragment caseItem on CaseItemRecord {
   content {
     __typename
     ... on TextSectionRecord {
+      id
       title
       body
     }
     ... on ImageRecord {
+      id
       image {
         url
         alt
@@ -53,6 +59,7 @@ fragment caseItem on CaseItemRecord {
       fullWidth
     }
     ... on PullquoteRecord {
+      id
       pullquote {
         quote
         illustration {
@@ -64,6 +71,7 @@ fragment caseItem on CaseItemRecord {
       }
     }
     ... on ImageWithTextRecord {
+      id
       imageWithDescription {
         image {
           url
@@ -77,6 +85,7 @@ fragment caseItem on CaseItemRecord {
       }
     }
     ... on StorytellingBlockRecord {
+      id
       storyItem {
         title
         items {
@@ -92,6 +101,7 @@ fragment caseItem on CaseItemRecord {
       }
     }
     ... on ResponsiveVideoRecord {
+      id
       mute
       loop
       autoplay
@@ -104,6 +114,13 @@ fragment caseItem on CaseItemRecord {
         providerUid
         thumbnailUrl
       }
+    }
+    ... on CallToActionRecord {
+      id
+      title
+      body
+      linkLabel
+      linkUrl
     }
   }
   metaData {
@@ -126,6 +143,7 @@ fragment caseItem on CaseItemRecord {
   quote
   author
   pivots {
+    showBackgroundColor
     title
     body
     buttonLabel: callToActionLabel
