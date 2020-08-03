@@ -153,6 +153,9 @@ fragment caseItem on CaseItemRecord {
       url
       title
     }
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url

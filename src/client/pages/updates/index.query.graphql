@@ -47,6 +47,9 @@ fragment updateOverview on UpdateOverviewRecord {
       url
       title
     }
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url

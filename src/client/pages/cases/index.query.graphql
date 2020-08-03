@@ -43,6 +43,9 @@ fragment page on CaseOverviewRecord {
       url
       title
     }
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url

@@ -88,6 +88,9 @@ fragment page on UpdateRecord {
       url
       title
     }
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url

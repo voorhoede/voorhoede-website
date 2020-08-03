@@ -55,6 +55,9 @@ fragment page on ServiceOverviewRecord {
       url
       title
     }
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url

@@ -47,6 +47,9 @@ fragment blogPostOverview on BlogPostOverviewRecord {
       url
       title
     }
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url

@@ -68,6 +68,9 @@ fragment page on ServiceRecord {
       url
       title
     }
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url

@@ -126,6 +126,9 @@ fragment page on BlogPostRecord {
       url
       title
     }
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url
