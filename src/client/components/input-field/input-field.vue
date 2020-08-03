@@ -6,7 +6,7 @@
     <textarea
       v-if="textarea"
       :id="id"
-      :name="id"
+      :name="name || id"
       :type="type"
       :placeholder="placeholderLabel"
       :value="value"
@@ -20,7 +20,7 @@
     <input
       v-else
       :id="id"
-      :name="id"
+      :name="name || id"
       :value="value"
       :type="type"
       :placeholder="placeholderLabel"
@@ -44,6 +44,10 @@
       id: {
         type: String,
         required: true
+      },
+      name: {
+        type: String,
+        default: '',
       },
       label: {
         type: String,
