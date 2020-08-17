@@ -36,7 +36,7 @@
 
     <leads-form
       v-if="isLeadsForm"
-      :no-background="true"
+      :has-background="false"
       :file="pivot.file"
       :mailchimp-group="mailchimpGroup"
       :button-label="pivot.buttonLabel"

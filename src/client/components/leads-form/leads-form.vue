@@ -1,7 +1,7 @@
 <template>
   <section
     class="leads-form grid"
-    :class="{ 'leads-form--no-background': noBackground }"
+    :class="{ 'leads-form--has-background': hasBackground }"
   >
     <form
       @submit="submit"
@@ -85,7 +85,7 @@
         type: Object,
         default: () => {},
       },
-      noBackground: {
+      hasBackground: {
         type: Boolean,
         required: false,
       },
@@ -122,11 +122,11 @@
   .leads-form {
     grid-column-start: var(--grid-page-start);
     grid-column-end: var(--grid-page-end);
-    background-color: var(--bg-pastel);
+    background-color: var(--white);
   }
 
-  .leads-form--no-background {
-    background-color: var(--white);
+  .leads-form--has-background {
+    background-color: var(--bg-pastel);
   }
 
   .leads-form__title {
