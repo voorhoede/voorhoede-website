@@ -143,9 +143,8 @@ fragment caseItem on CaseItemRecord {
   quote
   author
   pivots {
-    showBackgroundColor
     title
-    body
+    body(markdown: true)
     buttonLabel: callToActionLabel
     link {
       title

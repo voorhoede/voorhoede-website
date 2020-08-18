@@ -38,6 +38,7 @@
       </article>
     </main>
     <pivot-list
+      class="page-service__pivots"
       v-if="page.pivots && page.pivots.length"
       :pivots="page.pivots"
     />
@@ -70,6 +71,10 @@
 <style>
   .page-service .page-header {
     margin-bottom: var(--spacing-large);
+  }
+
+  .page-service__pivots .contact-form {
+    background-color: var(--bg-pastel);
   }
 
   .page-service__overview {

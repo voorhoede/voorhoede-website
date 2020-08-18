@@ -116,9 +116,8 @@ fragment page on BlogPostRecord {
   customStyling
   customScript
   pivots {
-    showBackgroundColor
     title
-    body
+    body(markdown: true)
     buttonLabel: callToActionLabel
     link {
       title

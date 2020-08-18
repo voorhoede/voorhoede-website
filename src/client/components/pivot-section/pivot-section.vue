@@ -12,12 +12,12 @@
     >
       {{ pivot.title }}
     </h2>
-    <div
+    <rich-text-block
       v-if="pivot.body"
-      v-html="pivot.body"
-      class="pivot-section__body body"
-    >
-    </div>
+      :text="pivot.body"
+      :large-text="true"
+      class="pivot-section__body"
+    />
     <app-button
       v-if="pivot.externalLink"
       @click.native="trackLinkOutbound(pivot.externalLink)"
@@ -37,9 +37,10 @@
 <script>
   import { createHref, linkValidator } from '../../lib/links'
   import AppButton from '../app-button'
+  import RichTextBlock from '../rich-text-block'
 
   export default {
-    components: { AppButton },
+    components: { AppButton, RichTextBlock },
     props: {
       pivot: {
         type: Object,
@@ -88,9 +89,7 @@
   }
 
   .pivot-section__body {
-    margin-right: auto;
     margin-bottom: var(--spacing-large);
-    margin-left: auto;
   }
 
   @media (min-width: 720px) {
