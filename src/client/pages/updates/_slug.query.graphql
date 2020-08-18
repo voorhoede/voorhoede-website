@@ -78,7 +78,6 @@ fragment page on UpdateRecord {
     }
   }
   pivots {
-    showBackgroundColor
     title
     body
     buttonLabel: callToActionLabel

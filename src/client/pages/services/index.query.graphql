@@ -45,7 +45,6 @@ fragment page on ServiceOverviewRecord {
     }
   }
   pivots {
-    showBackgroundColor
     title
     body
     buttonLabel: callToActionLabel

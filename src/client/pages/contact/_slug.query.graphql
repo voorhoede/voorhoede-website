@@ -24,7 +24,6 @@ fragment page on ContactConfirmationRecord {
   body
   callToActionLabel
   pivots {
-    showBackgroundColor
     title
     body
     buttonLabel: callToActionLabel

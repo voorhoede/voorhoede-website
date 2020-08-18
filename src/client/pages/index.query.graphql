@@ -87,7 +87,6 @@ fragment page on HomeRecord {
     height
   }
   pivots {
-    showBackgroundColor
     title
     body
     buttonLabel: callToActionLabel

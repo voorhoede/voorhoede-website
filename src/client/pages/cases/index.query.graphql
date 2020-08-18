@@ -33,7 +33,6 @@ fragment page on CaseOverviewRecord {
     body
   }
   pivots {
-    showBackgroundColor
     title
     body
     buttonLabel: callToActionLabel

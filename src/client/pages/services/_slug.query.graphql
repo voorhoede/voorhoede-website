@@ -58,7 +58,6 @@ fragment page on ServiceRecord {
     }
   }
   pivots {
-    showBackgroundColor
     title
     body
     buttonLabel: callToActionLabel

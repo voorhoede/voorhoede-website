@@ -37,7 +37,6 @@ fragment updateOverview on UpdateOverviewRecord {
     alt
   }
   pivots {
-    showBackgroundColor
     title
     body
     buttonLabel: callToActionLabel
