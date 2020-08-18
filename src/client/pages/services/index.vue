@@ -21,6 +21,7 @@
         :text="page.smallServices" />
     </main>
     <pivot-list
+      class="page-services__pivots"
       v-if="page.pivots && page.pivots.length"
       :pivots="page.pivots"
     />
@@ -57,6 +58,10 @@
 
   .page-services__introduction {
     grid-row: 2;
+  }
+
+  .page-services__pivots .newsletter-form {
+    background-color: var(--bg-pastel);
   }
 
   @media (min-width: 720px) {

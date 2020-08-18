@@ -260,6 +260,10 @@
     position: relative;
   }
 
+  .page-index__pivots .newsletter-form {
+    background-color: var(--bg-pastel);
+  }
+
   .page-index__scroll-to {
     display: none;
     position: absolute;
