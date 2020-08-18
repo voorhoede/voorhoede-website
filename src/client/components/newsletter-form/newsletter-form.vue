@@ -1,7 +1,7 @@
 <template>
   <section
     class="newsletter-form grid"
-    :class="{ 'newsletter-form--no-background': noBackground }"
+    :class="{ 'newsletter-form--has-background': hasBackground }"
   >
     <h2 class="newsletter-form__title h3">
       {{ $t('newsletter') }}
@@ -71,7 +71,7 @@
       AppButton, InputCheckbox, InputField,
     },
     props: {
-      noBackground: {
+      hasBackground: {
         type: Boolean,
         required: false
       }
@@ -115,11 +115,11 @@
     grid-column-end: 51;
     padding-top: var(--spacing-large);
     padding-bottom: var(--spacing-larger);
-    background-color: var(--bg-pastel);
+    background-color: var(--white);
   }
 
-  .newsletter-form--no-background {
-    background-color: transparent;
+  .newsletter-form--has-background {
+    background-color: var(--bg-pastel);
   }
 
   .newsletter-form__title {
