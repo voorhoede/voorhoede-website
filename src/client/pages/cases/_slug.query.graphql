@@ -144,7 +144,7 @@ fragment caseItem on CaseItemRecord {
   author
   pivots {
     title
-    body
+    body(markdown: true)
     buttonLabel: callToActionLabel
     file {
       id

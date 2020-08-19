@@ -38,7 +38,7 @@ fragment blogPostOverview on BlogPostOverviewRecord {
   }
   pivots {
     title
-    body
+    body(markdown: true)
     buttonLabel: callToActionLabel
     file {
       id

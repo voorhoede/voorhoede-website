@@ -59,7 +59,7 @@ fragment page on ServiceRecord {
   }
   pivots {
     title
-    body
+    body(markdown: true)
     buttonLabel: callToActionLabel
     file {
       id

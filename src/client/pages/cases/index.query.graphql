@@ -34,7 +34,7 @@ fragment page on CaseOverviewRecord {
   }
   pivots {
     title
-    body
+    body(markdown: true)
     buttonLabel: callToActionLabel
     file {
       id

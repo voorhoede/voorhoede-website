@@ -46,7 +46,7 @@ fragment page on ServiceOverviewRecord {
   }
   pivots {
     title
-    body
+    body(markdown: true)
     buttonLabel: callToActionLabel
     file {
       id

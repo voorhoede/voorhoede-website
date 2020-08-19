@@ -38,16 +38,16 @@
       >
         <h2
           v-if="pivot.title && !isNewsletterForm(pivot)"
-          class="pivot-list__item__heading h3"
+          class="pivot-list__item-heading h3"
         >
           {{ pivot.title }}
         </h2>
-        <div
+        <rich-text-block
           v-if="pivot.body"
-          v-html="pivot.body"
-          class="pivot-list__item__body body"
-        >
-        </div>
+          :text="pivot.body"
+          :large-text="true"
+          class="pivot-list__item-body"
+        />
         <app-button
           v-if="pivot.externalLink"
           @click.native="trackLinkOutbound(pivot.externalLink)"
@@ -72,6 +72,7 @@
   import ContactForm from '../contact-form'
   import LeadsForm from '../leads-form'
   import NewsletterForm from '../newsletter-form'
+  import RichTextBlock from '../rich-text-block'
 
   export default {
     components: {
@@ -79,6 +80,7 @@
       ContactForm,
       LeadsForm,
       NewsletterForm,
+      RichTextBlock,
     },
     props: {
       pivots: {
@@ -171,12 +173,13 @@
     background-color: var(--bg-pastel);
   }
 
-  .pivot-list__item__heading {
+  .pivot-list__item-heading {
     margin-bottom: var(--spacing-medium);
   }
 
-  .pivot-list__item__body {
-    margin: 0 auto var(--spacing-large) auto;
+  .pivot-list__item-body {
+    margin-top: 0;
+    margin-bottom: var(--spacing-large);
   }
 
   @media (min-width: 720px) {

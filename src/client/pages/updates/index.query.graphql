@@ -38,7 +38,7 @@ fragment updateOverview on UpdateOverviewRecord {
   }
   pivots {
     title
-    body
+    body(markdown: true)
     buttonLabel: callToActionLabel
     file {
       id

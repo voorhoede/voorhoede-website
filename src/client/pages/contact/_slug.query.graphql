@@ -25,7 +25,7 @@ fragment page on ContactConfirmationRecord {
   callToActionLabel
   pivots {
     title
-    body
+    body(markdown: true)
     buttonLabel: callToActionLabel
     file {
       id
