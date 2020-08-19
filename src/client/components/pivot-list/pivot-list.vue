@@ -5,7 +5,6 @@
         v-if="isContactForm(pivot)"
         :key="index"
         class="grid"
-        :class="{ 'pivot-list-item--background': pivot.showBackgroundColor }"
         :contact-person="pivot.contactPerson"
         :title="$t('lets_discuss')"
         :style="setGridRow(index)"
@@ -13,7 +12,6 @@
       <newsletter-form
         v-else-if="isNewsletterForm(pivot)"
         :key="index"
-        :class="{ 'pivot-list-item--background': pivot.showBackgroundColor }"
         :style="setGridRow(index)"
       />
       <pivot-section
@@ -22,7 +20,6 @@
         :pivot="pivot"
         :border="pivotBorder"
         :narrow="pivotNarrow"
-        :class="{ 'pivot-list-item--background': pivot.showBackgroundColor }"
         :style="setGridRow(index)"
       />
     </template>
@@ -78,10 +75,6 @@
     position: relative;
     grid-column-start: 1;
     grid-column-end: 51;
-  }
-
-  .pivot-list-item--background {
-    background-color: var(--bg-pastel);
   }
 
   .pivot-list .contact-form {
