@@ -96,17 +96,6 @@
         default: false,
       },
     },
-    computed: {
-      mailchimpGroup(pivot) {
-        const { mailchimpValue, mailchimpName, mailchimpId } = pivot
-
-        return {
-          id: mailchimpId,
-          name: mailchimpName,
-          value: mailchimpValue,
-        }
-      }
-    },
     methods: {
       createHref,
       isContactForm(pivot) {
@@ -117,6 +106,15 @@
       },
       isLeadsForm(pivot) {
         return pivot.formType && pivot.formType === 'leads'
+      },
+      mailchimpGroup(pivot) {
+        const { mailchimpValue, mailchimpName, mailchimpId } = pivot
+
+        return {
+          id: mailchimpId,
+          name: mailchimpName,
+          value: mailchimpValue,
+        }
       },
       setGridRow(index) {
         const rowNumber = index + 1
