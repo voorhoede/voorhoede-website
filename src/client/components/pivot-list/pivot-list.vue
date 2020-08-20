@@ -10,20 +10,6 @@
         :style="setGridRow(index)"
       />
 
-      <leads-form
-        v-else-if="isLeadsForm(pivot)"
-        :key="index"
-        :has-background="false"
-        :file="pivot.file"
-        :mailchimp-group="mailchimpGroup(pivot)"
-        :button-label="pivot.buttonLabel"
-      />
-
-      <newsletter-form
-        v-else-if="isNewsletterForm(pivot)"
-        :key="index"
-      />
-
       <div
         v-else
         :key="index"
@@ -42,12 +28,14 @@
         >
           {{ pivot.title }}
         </h2>
+
         <rich-text-block
           v-if="pivot.body"
           :text="pivot.body"
           :large-text="true"
           class="pivot-list__item-body"
         />
+
         <app-button
           v-if="pivot.externalLink"
           @click.native="trackLinkOutbound(pivot.externalLink)"
@@ -55,12 +43,26 @@
           :to="pivot.externalLink"
           external
         />
+
         <app-button
           v-else-if="pivot.link"
           @click.native="trackLink(pivot.link.page.slug)"
           :label="pivot.buttonLabel"
           :to="createHref(pivot.link)"
         />
+
+        <leads-form
+          v-if="isLeadsForm(pivot)"
+          :has-background="false"
+          :file="pivot.file"
+          :mailchimp-group="mailchimpGroup(pivot)"
+          :button-label="pivot.buttonLabel"
+        />
+
+        <newsletter-form
+          v-if="isNewsletterForm(pivot)"
+        />
+
       </div>
     </template>
   </section>
