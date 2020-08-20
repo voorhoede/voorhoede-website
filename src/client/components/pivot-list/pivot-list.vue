@@ -173,6 +173,10 @@
     background-color: var(--bg-pastel);
   }
 
+  .pivot-list__item--newsletter .newsletter-form {
+    padding: 0;
+  }
+
   .pivot-list__item-heading {
     margin-bottom: var(--spacing-medium);
   }
