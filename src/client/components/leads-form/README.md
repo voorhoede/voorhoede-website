@@ -17,5 +17,4 @@ A from where users can leave their name and email in exchange for a download.
 | Prop | Type | Required | Description |
 | --- | --- | --- | --- |
 | has-background | Boolean | false | The form has a yellow background by default; enable this Boolean to remove the background color |
-| file | Object | false | The file to be downloaded |
 | button-label | String | false | Label for the button |
