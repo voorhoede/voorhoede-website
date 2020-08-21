@@ -54,8 +54,7 @@
         <leads-form
           v-if="isLeadsForm(pivot)"
           :has-background="false"
-          :file="pivot.file"
-          :mailchimp-group="mailchimpGroup(pivot)"
+          :mailchimp-group="getMailchimpProperties(pivot)"
           :button-label="pivot.buttonLabel"
         />
 
@@ -109,7 +108,7 @@
       isLeadsForm(pivot) {
         return pivot.formType && pivot.formType === 'leads'
       },
-      mailchimpGroup(pivot) {
+      getMailchimpProperties(pivot) {
         const { mailchimpValue, mailchimpName, mailchimpId } = pivot
 
         return {
