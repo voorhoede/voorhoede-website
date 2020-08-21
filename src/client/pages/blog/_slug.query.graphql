@@ -119,6 +119,9 @@ fragment page on BlogPostRecord {
     title
     body(markdown: true)
     buttonLabel: callToActionLabel
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url

@@ -146,6 +146,9 @@ fragment caseItem on CaseItemRecord {
     title
     body(markdown: true)
     buttonLabel: callToActionLabel
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url

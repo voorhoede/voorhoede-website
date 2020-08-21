@@ -48,7 +48,7 @@
         </li>
       </ul>
     </section>
-    <newsletter-form />
+    <newsletter-form :has-background="true" />
   </main>
 </template>
 

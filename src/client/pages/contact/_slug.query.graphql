@@ -27,6 +27,9 @@ fragment page on ContactConfirmationRecord {
     title
     body(markdown: true)
     buttonLabel: callToActionLabel
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url

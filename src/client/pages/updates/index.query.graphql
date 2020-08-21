@@ -40,6 +40,9 @@ fragment updateOverview on UpdateOverviewRecord {
     title
     body(markdown: true)
     buttonLabel: callToActionLabel
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url

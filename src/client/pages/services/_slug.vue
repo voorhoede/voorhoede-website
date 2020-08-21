@@ -73,6 +73,7 @@
     margin-bottom: var(--spacing-large);
   }
 
+  .page-service__pivots .newsletter-form,
   .page-service__pivots .contact-form {
     background-color: var(--bg-pastel);
   }

@@ -63,7 +63,7 @@
         />
       </div>
     </section>
-    <newsletter-form class="page-about-us__newsletter" :no-background="true" />
+    <newsletter-form class="page-about-us__newsletter" />
   </div>
 </template>
 

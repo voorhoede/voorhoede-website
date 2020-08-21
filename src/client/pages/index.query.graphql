@@ -90,6 +90,9 @@ fragment page on HomeRecord {
     title
     body(markdown: true)
     buttonLabel: callToActionLabel
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url

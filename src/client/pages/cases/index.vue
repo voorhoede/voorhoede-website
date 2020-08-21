@@ -27,6 +27,7 @@
         </ul>
       </section>
       <pivot-list
+        class="page-cases__pivots"
         v-if="page.pivots && page.pivots.length"
         :pivots="page.pivots"
       />
@@ -66,6 +67,10 @@
       grid-column-end: 44;
       text-align: center;
     }
+  }
+
+  .page-cases__pivots .newsletter-form {
+    background-color: var(--bg-pastel);
   }
 
   .page-case__overview {
