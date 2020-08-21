@@ -40,12 +40,6 @@ fragment updateOverview on UpdateOverviewRecord {
     title
     body(markdown: true)
     buttonLabel: callToActionLabel
-    file {
-      id
-      filename
-      url
-      title
-    }
     mailchimpValue
     mailchimpName
     mailchimpId

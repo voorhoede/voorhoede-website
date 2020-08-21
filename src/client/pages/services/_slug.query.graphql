@@ -61,12 +61,6 @@ fragment page on ServiceRecord {
     title
     body(markdown: true)
     buttonLabel: callToActionLabel
-    file {
-      id
-      filename
-      url
-      title
-    }
     mailchimpValue
     mailchimpName
     mailchimpId

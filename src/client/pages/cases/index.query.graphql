@@ -36,12 +36,6 @@ fragment page on CaseOverviewRecord {
     title
     body(markdown: true)
     buttonLabel: callToActionLabel
-    file {
-      id
-      filename
-      url
-      title
-    }
     mailchimpValue
     mailchimpName
     mailchimpId

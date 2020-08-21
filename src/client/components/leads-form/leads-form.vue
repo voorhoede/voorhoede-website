@@ -77,10 +77,6 @@
         type: String,
         default: 'Download',
       },
-      file: {
-        type: Object,
-        default: () => {},
-      },
       mailchimpGroup: {
         type: Object,
         default: () => {},

@@ -81,12 +81,6 @@ fragment page on UpdateRecord {
     title
     body(markdown: true)
     buttonLabel: callToActionLabel
-    file {
-      id
-      filename
-      url
-      title
-    }
     mailchimpValue
     mailchimpName
     mailchimpId
