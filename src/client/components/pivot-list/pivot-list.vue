@@ -5,17 +5,21 @@
         v-if="isContactForm(pivot)"
         :key="index"
         class="grid"
+        :class="{
+          'pivot-list__item--has-border': pivotHasBorder(index),
+          'pivot-list__item--has-background': pivotHasBackground(index),
+        }"
         :contact-person="pivot.contactPerson"
         :title="$t('lets_discuss')"
         :style="setGridRow(index)"
       />
-
       <div
         v-else
         :key="index"
         class="pivot-list__item"
         :class="{
-          'pivot-list__item--has-border': pivotBorder && !isNewsletterForm(pivot),
+          'pivot-list__item--has-border': pivotHasBorder(index),
+          'pivot-list__item--has-background': pivotHasBackground(index),
           'pivot-list__item--narrow': pivotNarrow,
           'pivot-list__item--newsletter': isNewsletterForm(pivot),
           'pivot-list__item--leads': isLeadsForm(pivot),
@@ -96,9 +100,28 @@
         type: Boolean,
         default: false,
       },
+      canHaveBorderTop: {
+        type: Boolean,
+        default: true,
+      },
+      lastItemHasBackground: {
+        type: Boolean,
+        default: true,
+      }
     },
     methods: {
       createHref,
+      pivotHasBorder(pivotIndex) {
+        return (pivotIndex === 0 && !this.pivotHasBackground(pivotIndex))
+      },
+      pivotHasBackground(pivotIndex) {
+        const lastPivotIndex = this.pivots.length - 1
+        
+        return (
+          this.lastItemHasBackground === true
+          && pivotIndex === lastPivotIndex
+        )
+      },
       isContactForm(pivot) {
         return pivot.formType && pivot.formType === 'contact'
       },
@@ -167,7 +190,7 @@
     text-align: center;
   }
 
-  .pivot-list__item--newsletter {
+  .pivot-list__item--has-background {
     grid-column: var(--grid-page);
     background-color: var(--bg-pastel);
   }
