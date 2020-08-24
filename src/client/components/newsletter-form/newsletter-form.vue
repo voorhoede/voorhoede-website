@@ -16,13 +16,13 @@
     >
       <input
         type="text"
-        name="b_bd1491faa00c5405cce7ba212_76cc576b8d"
+        :name="mailchimpFieldnamesMapping.honeypot"
         value=""
         class="hidden"
       >
       <input-field
         v-model="form.name"
-        id="FNAME"
+        :id="mailchimpFieldnamesMapping.firstName"
         type="text"
         :label="$t('my_first_name_is')"
         :placeholder-label="$t('your_first_name')"
@@ -31,7 +31,7 @@
       />
       <input-field
         v-model="form.email"
-        id="EMAIL"
+        :id="mailchimpFieldnamesMapping.email"
         type="email"
         :label="$t('you_can_email_me_at')"
         :placeholder-label="$t('email_address')"
@@ -43,8 +43,8 @@
       <input-checkbox
         v-model="form.consent"
         value="Y"
-        id="newsletter-form-gdpr_38537"
-        name="gdpr[38537]"
+        id="newsletter-form-gdpr"
+        :name="mailchimpFieldnamesMapping.gdprConsent"
         :label="$t('newsletter_permission')"
         required
         :validate="formIsValidated"
@@ -82,6 +82,12 @@
           consent: false,
           email: '',
           name: '',
+        },
+        mailchimpFieldnamesMapping: {
+          honeypot: 'b_bd1491faa00c5405cce7ba212_76cc576b8d',
+          firstName: 'FNAME',
+          email: 'EMAIL',
+          gdprConsent: 'gdpr[38537]',
         },
         formIsValidated: false,
         useCustomValidation: false,
