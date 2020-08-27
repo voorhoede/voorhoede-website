@@ -17,8 +17,8 @@ fragment page on ServiceOverviewRecord {
   }
   keywords
   services {
-    title
     tagline
+    excerptTitle
     slug
     summary {
       title

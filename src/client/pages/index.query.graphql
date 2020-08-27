@@ -72,7 +72,7 @@ fragment page on HomeRecord {
   servicesHeader
   services {
     tagline
-    title
+    excerptTitle
     slug
     summary {
       title
