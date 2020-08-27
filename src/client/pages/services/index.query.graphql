@@ -2,7 +2,7 @@ query ($locale: SiteLocale) {
   page: serviceOverview(locale: $locale) {
     ...page
   }
-  items: allServices(locale: $locale) {
+  items: allServices(locale: $locale, first: 100) {
     slug
   }
 }
