@@ -1,3 +1,9 @@
 [build]
   command = "npm run build"
   publish = "dist/client/"
+
+[[plugins]]
+package = "@netlify/plugin-sitemap"
+
+  [plugins.inputs]
+  buildDir = "dist"
