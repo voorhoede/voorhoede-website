@@ -75,7 +75,7 @@ fragment page on HomeRecord {
     excerptTitle
     slug
     summary {
-      title
+      body
     }
   }
   smallServices

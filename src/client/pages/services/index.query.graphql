@@ -21,7 +21,7 @@ fragment page on ServiceOverviewRecord {
     excerptTitle
     slug
     summary {
-      title
+      body
     }
   }
   headerIllustration {
