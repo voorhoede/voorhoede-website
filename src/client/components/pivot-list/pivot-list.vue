@@ -1,5 +1,6 @@
 <template>
   <section class="pivot-list">
+    <div v-if="hasBorderTop" class="pivot-list__border grid"/>
     <div
       v-for="(pivot, index) in pivots"
       :key="index"
@@ -14,7 +15,6 @@
         :class="{
           'pivot-list__item-content--full-width': itemContentIsFullWidth(pivot),
           'pivot-list__item-content--narrow': itemContentIsNarrow(pivot),
-          'pivot-list__item-content--has-border': pivotHasBorder(index),
         }"
       >
         <contact-form
@@ -89,10 +89,6 @@
         type: Array,
         required: true,
       },
-      pivotBorder: {
-        type: Boolean,
-        default: true,
-      },
       pivotNarrow: {
         type: Boolean,
         default: false,
@@ -106,19 +102,18 @@
         default: true,
       }
     },
+    computed: {
+      hasBorderTop() {
+        const firstItemHasBackground = this.pivotHasBackground(0)
+        return this.canHaveBorderTop && !firstItemHasBackground
+      }
+    },
     methods: {
       createHref,
-      pivotHasBorder(pivotIndex) {
-        // The first item doens't have a border when it's already having a background
-        return (this.canHaveBorderTop && pivotIndex === 0 && !this.pivotHasBackground(pivotIndex))
-      },
       pivotHasBackground(pivotIndex) {
         const lastPivotIndex = this.pivots.length - 1
         
-        return (
-          this.lastItemHasBackground === true
-          && pivotIndex === lastPivotIndex
-        )
+        return (this.lastItemHasBackground && pivotIndex === lastPivotIndex)
       },
       itemContentIsFullWidth(pivot) {
         return (
@@ -201,8 +196,11 @@
   }
 
   @media (min-width: 720px) {
-    .pivot-list__item-content--has-border {
+    /* Seperate element to make sure the border isn't dependent on the width of the first pivot */
+    .pivot-list__border::before {
+      content: '';
       border-top: 1px solid var(--very-dim);
+      grid-column: var(--grid-content);
     }
 
     .pivot-list__item-content--narrow {
