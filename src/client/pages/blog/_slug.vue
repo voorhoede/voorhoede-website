@@ -129,7 +129,7 @@
       <pivot-list
         v-if="page.pivots && page.pivots.length"
         :pivots="page.pivots"
-        :pivot-border="false"
+        :can-have-border-top="false"
         :pivot-narrow="true"
       />
       <div class="page-blog-post__scroll-to">

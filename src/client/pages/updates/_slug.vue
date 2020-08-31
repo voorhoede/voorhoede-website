@@ -21,7 +21,7 @@
       class="page-update__pivots grid">
       <pivot-list
         :pivots="page.pivots"
-        :pivot-border="false"
+        :can-have-border-top="false"
         :pivot-narrow="true"
       />
     </section>
