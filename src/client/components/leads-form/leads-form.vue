@@ -124,7 +124,6 @@
   .leads-form {
     grid-column-start: var(--grid-page-start);
     grid-column-end: var(--grid-page-end);
-    background-color: var(--white);
   }
 
   .leads-form--has-background {
