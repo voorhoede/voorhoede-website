@@ -33,6 +33,7 @@
             :body="item.body"
             :link-label="item.linkLabel"
             :link-url="item.linkUrl"
+            :link-is-external="item.linkIsExternal"
           />
         </template>
       </article>
