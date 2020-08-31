@@ -149,6 +149,7 @@
       <pivot-list
         v-if="page.pivots && page.pivots.length"
         :pivots="page.pivots"
+        :can-have-border-top="false"
       />
       <div class="page-cases__scroll-to">
         <scroll-to direction="up" />
