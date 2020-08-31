@@ -18,6 +18,8 @@
       <a
         v-if="linkLabel && linkUrl"
         :href="linkUrl"
+        :target="linkIsExternal && '_blank'"
+        rel="noreferrer noopener"
       >
         {{ linkLabel }}
       </a>
@@ -48,6 +50,10 @@
       linkUrl: {
         type: String,
         default: null
+      },
+      linkIsExternal: {
+        type: Boolean,
+        default: false
       }
     }
   }
