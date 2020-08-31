@@ -1,6 +1,7 @@
 const dotenv = require('dotenv-safe')
 const generate = require('./config/nuxt/generate')
 const modules = require('./config/nuxt/modules')
+const locales = require('./src/client/static/data/app.json').locales
 
 dotenv.config()
 
@@ -14,7 +15,17 @@ const baseUrl = URL
 module.exports = {
   srcDir: 'src/client',
   generate,
-  modules,
+  modules: [
+    ...modules,
+    '@nuxtjs/sitemap',
+  ],
+  sitemap:  {
+    path: '/sitemap.xml',
+    hostname: baseUrl,
+    i18n: {
+        locales: locales.map(locale => locale.code)
+    },
+},
   env: {
     baseUrl,
     DATO_API_TOKEN
