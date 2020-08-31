@@ -55,6 +55,7 @@ fragment page on ServiceRecord {
       body
       linkLabel
       linkUrl
+      linkIsExternal
     }
   }
   pivots {
