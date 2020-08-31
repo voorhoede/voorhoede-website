@@ -8,7 +8,6 @@
         'pivot-list__item--has-background': pivotHasBackground(index),
         'pivot-list__item--narrow': pivotNarrow,
       }"
-      :style="setGridRow(index)"
     >
       <div
         class="pivot-list__item-content"
@@ -146,14 +145,6 @@
           id: mailchimpId,
           name: mailchimpName,
           value: mailchimpValue,
-        }
-      },
-      setGridRow(index) {
-        const rowNumber = index + 1
-        return {
-          '-ms-grid-row': rowNumber,
-          '-ms-grid-row-span': '1',
-          'grid-row': rowNumber,
         }
       },
       trackLink (href) {
