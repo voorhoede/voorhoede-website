@@ -186,17 +186,10 @@
   .pivot-list__item-content--full-width {
     grid-column: var(--grid-page);
   }
-  
-  .pivot-list .contact-form {
-    padding-top: var(--spacing-large);
-    padding-bottom: var(--spacing-larger);
-  }
 
-  @media (min-width: 1100px) {
-    .pivot-list .contact-form {
-      padding-top: var(--spacing-large);
-      padding-bottom: var(--spacing-big);
-    }
+  .pivot-list__item-content {
+    padding-top: var(--spacing-large);
+    padding-bottom: var(--spacing-big);
   }
 
   .pivot-list .newsletter-form {
