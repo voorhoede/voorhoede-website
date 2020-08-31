@@ -1,73 +1,71 @@
 <template>
-  <section class="pivot-list grid">
-    <template v-for="(pivot, index) in pivots">
-      <contact-form
-        v-if="isContactForm(pivot)"
-        :key="index"
-        class="grid"
-        :class="{
-          'pivot-list__item--has-border': pivotHasBorder(index),
-          'pivot-list__item--has-background': pivotHasBackground(index),
-        }"
-        :contact-person="pivot.contactPerson"
-        :title="$t('lets_discuss')"
-        :style="setGridRow(index)"
-      />
+  <section class="pivot-list">
+    <div
+      v-for="(pivot, index) in pivots"
+      :key="index"
+      class="pivot-list__item grid"
+      :class="{
+        'pivot-list__item--has-background': pivotHasBackground(index),
+        'pivot-list__item--narrow': pivotNarrow,
+      }"
+      :style="setGridRow(index)"
+    >
       <div
-        v-else
-        :key="index"
-        class="pivot-list__item"
+        class="pivot-list__item-content"
         :class="{
-          'pivot-list__item--has-border': pivotHasBorder(index),
-          'pivot-list__item--has-background': pivotHasBackground(index),
-          'pivot-list__item--narrow': pivotNarrow,
-          'pivot-list__item--newsletter': isNewsletterForm(pivot),
-          'pivot-list__item--leads': isLeadsForm(pivot),
+          'pivot-list__item-content--full-width': itemContentIsFullWidth(pivot),
+          'pivot-list__item-content--narrow': itemContentIsNarrow(pivot),
+          'pivot-list__item-content--has-border': pivotHasBorder(index),
         }"
-        :style="setGridRow(index)"
       >
-        <h2
-          v-if="pivot.title && !isNewsletterForm(pivot)"
-          class="pivot-list__item-heading h3"
-        >
-          {{ pivot.title }}
-        </h2>
-
-        <rich-text-block
-          v-if="pivot.body"
-          :text="pivot.body"
-          :large-text="true"
-          class="pivot-list__item-body"
+        <contact-form
+          v-if="isContactForm(pivot)"
+          :contact-person="pivot.contactPerson"
+          :title="$t('lets_discuss')"
         />
+        <div v-else class="pivot-list__item-text">
+          <h2
+            v-if="pivot.title && !isNewsletterForm(pivot)"
+            class="pivot-list__item-heading h3"
+          >
+            {{ pivot.title }}
+          </h2>
 
-        <app-button
-          v-if="pivot.externalLink"
-          @click.native="trackLinkOutbound(pivot.externalLink)"
-          :label="pivot.buttonLabel"
-          :to="pivot.externalLink"
-          external
-        />
+          <rich-text-block
+            v-if="pivot.body"
+            :text="pivot.body"
+            :large-text="true"
+            class="pivot-list__item-body"
+          />
 
-        <app-button
-          v-else-if="pivot.link"
-          @click.native="trackLink(pivot.link.page.slug)"
-          :label="pivot.buttonLabel"
-          :to="createHref(pivot.link)"
-        />
+          <app-button
+            v-if="pivot.externalLink"
+            @click.native="trackLinkOutbound(pivot.externalLink)"
+            :label="pivot.buttonLabel"
+            :to="pivot.externalLink"
+            external
+          />
 
-        <leads-form
-          v-if="isLeadsForm(pivot)"
-          :has-background="false"
-          :mailchimp-group="getMailchimpProperties(pivot)"
-          :button-label="pivot.buttonLabel"
-        />
+          <app-button
+            v-else-if="pivot.link"
+            @click.native="trackLink(pivot.link.page.slug)"
+            :label="pivot.buttonLabel"
+            :to="createHref(pivot.link)"
+          />
 
-        <newsletter-form
-          v-if="isNewsletterForm(pivot)"
-        />
+          <leads-form
+            v-if="isLeadsForm(pivot)"
+            :has-background="false"
+            :mailchimp-group="getMailchimpProperties(pivot)"
+            :button-label="pivot.buttonLabel"
+          />
 
+          <newsletter-form
+            v-if="isNewsletterForm(pivot)"
+          />
+        </div>
       </div>
-    </template>
+    </div>
   </section>
 </template>
 
@@ -112,7 +110,8 @@
     methods: {
       createHref,
       pivotHasBorder(pivotIndex) {
-        return (pivotIndex === 0 && !this.pivotHasBackground(pivotIndex))
+        // The first item doens't have a border when it's already having a background
+        return (this.canHaveBorderTop && pivotIndex === 0 && !this.pivotHasBackground(pivotIndex))
       },
       pivotHasBackground(pivotIndex) {
         const lastPivotIndex = this.pivots.length - 1
@@ -121,6 +120,15 @@
           this.lastItemHasBackground === true
           && pivotIndex === lastPivotIndex
         )
+      },
+      itemContentIsFullWidth(pivot) {
+        return (
+          this.isContactForm(pivot)
+          || this.isNewsletterForm(pivot)
+        )
+      },
+      itemContentIsNarrow(pivot) {
+        return !this.itemContentIsFullWidth(pivot) && this.pivotNarrow
       },
       isContactForm(pivot) {
         return pivot.formType && pivot.formType === 'contact'
@@ -146,7 +154,7 @@
           '-ms-grid-row': rowNumber,
           '-ms-grid-row-span': '1',
           'grid-row': rowNumber,
-          }
+        }
       },
       trackLink (href) {
         this.$ga.event('Pivot', 'click cta', href, 0)
@@ -167,12 +175,19 @@
 <style>
   .pivot-list {
     position: relative;
-    grid-column-start: 1;
-    grid-column-end: 51;
+    grid-column-start: var(--grid-page-start);
+    grid-column-end: var(--grid-page-end);
   }
 
+  .pivot-list__item--has-background {
+    background-color: var(--bg-pastel);
+  }
+
+  .pivot-list__item-content--full-width {
+    grid-column: var(--grid-page);
+  }
+  
   .pivot-list .contact-form {
-    grid-column: 1 / 51;
     padding-top: var(--spacing-large);
     padding-bottom: var(--spacing-larger);
   }
@@ -184,19 +199,12 @@
     }
   }
 
-  .pivot-list__item {
-    padding-top: var(--spacing-large);
-    padding-bottom: var(--spacing-larger);
-    text-align: center;
-  }
-
-  .pivot-list__item--has-background {
-    grid-column: var(--grid-page);
-    background-color: var(--bg-pastel);
-  }
-
-  .pivot-list__item--newsletter .newsletter-form {
+  .pivot-list .newsletter-form {
     padding: 0;
+  }
+
+  .pivot-list__item-text {
+    text-align: center;
   }
 
   .pivot-list__item-heading {
@@ -209,23 +217,22 @@
   }
 
   @media (min-width: 720px) {
-    .pivot-list__item--has-border {
+    .pivot-list__item-content--has-border {
       border-top: 1px solid var(--very-dim);
     }
 
-    .pivot-list__item--narrow {
-      grid-column-start: 8;
-      grid-column-end: 46;
+    .pivot-list__item-content--narrow {
+      grid-column: var(--grid-content-narrow);
     }
   }
 
   @media (min-width: 1100px) {
-    .pivot-list__item {
+    .pivot-list__item-content {
       padding-top: var(--spacing-large);
       padding-bottom: var(--spacing-big);
     }
 
-    .pivot-list__item--narrow {
+    .pivot-list__item-content--narrow {
       grid-column-start: 14;
       grid-column-end: 38;
     }
