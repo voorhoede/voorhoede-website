@@ -16,6 +16,8 @@
     <pivot-list
       v-if="page.pivots && page.pivots.length"
       :pivots="page.pivots"
+      :last-item-has-background="false"
+      :can-have-border-top="false"
     />
   </div>
 </template>

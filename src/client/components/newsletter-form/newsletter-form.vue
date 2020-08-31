@@ -121,7 +121,6 @@
     grid-column-end: 51;
     padding-top: var(--spacing-large);
     padding-bottom: var(--spacing-larger);
-    background-color: var(--white);
   }
 
   .newsletter-form--has-background {

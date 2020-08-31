@@ -70,7 +70,6 @@
   }
 
   .page-blog__pivots {
-    background-color: var(--bg-pastel);
     position: relative;
   }
 
