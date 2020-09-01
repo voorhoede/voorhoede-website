@@ -238,6 +238,7 @@
   }
 
   .page-case .breadcrumbs-block {
+    margin-bottom: var(--spacing-bigger);
     grid-row: 4;
   }
 

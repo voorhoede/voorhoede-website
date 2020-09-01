@@ -66,7 +66,6 @@
 <style>
   .breadcrumbs-block__nav-list {
     display: flex;
-    margin-bottom: var(--spacing-bigger);
     padding-top: var(--spacing-small);
     border-top: 2px solid var(--very-dim);
   }
