@@ -1,8 +1,11 @@
 <template>
   <nav class="breadcrumbs-block">
-    <ul class="breadcrumbs-block__nav-list">
+    <ul
+      class="breadcrumbs-block__nav-list"
+      :class="{ 'breadcrumbs-block__nav-list--has-back-and-next-link': hasBackAndNextLink }"
+    >
       <li
-        v-if="backLink && backLinkLabel"
+        v-if="hasBackLink"
         class="breadcrumbs-block__item"
       >
         <nuxt-link
@@ -12,7 +15,7 @@
         >&larr; {{ backLinkLabel }}</nuxt-link>
       </li>
       <li
-        v-if="nextLink && nextLinkLabel"
+        v-if="hasNextLink"
         class="breadcrumbs-block__item breadcrumbs-block__item--next"
       >
         <nuxt-link
@@ -46,24 +49,39 @@
         default: null,
       },
     },
+    computed: {
+      hasBackLink() {
+        return this.backLink && this.backLinkLabel
+      },
+      hasNextLink() {
+        return this.nextLink && this.nextLinkLabel
+      },
+      hasBackAndNextLink() {
+        return this.hasBackLink && this.hasNextLink
+      }
+    }
   }
 </script>
 
 <style>
   .breadcrumbs-block__nav-list {
     display: flex;
-    justify-content: space-between;
     margin-bottom: var(--spacing-bigger);
     padding-top: var(--spacing-small);
     border-top: 2px solid var(--very-dim);
   }
 
+  .breadcrumbs-block__nav-list--has-back-and-next-link {
+    justify-content: space-between;
+  }
+
   .breadcrumbs-block__item {
-    max-width: calc(50% - 20px);
+    max-width: calc(50% - var(--spacing-small));
     text-align: left;
   }
 
   .breadcrumbs-block__item--next {
+    margin-left: auto;
     text-align: right;
   }
 
