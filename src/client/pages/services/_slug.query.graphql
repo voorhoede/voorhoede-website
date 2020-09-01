@@ -58,6 +58,18 @@ fragment page on ServiceRecord {
       linkIsExternal
     }
   }
+  breadcrumbsPreviousService {
+    ... on ServiceRecord {
+      title
+      slug
+    }
+  }
+  breadcrumbsNextService {
+    ... on ServiceRecord {
+      title
+      slug
+    }
+  }
   pivots {
     title
     body(markdown: true)
