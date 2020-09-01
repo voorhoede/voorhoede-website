@@ -37,11 +37,25 @@
           />
         </template>
       </article>
+      <breadcrumbs-block
+        v-if="pageHasBreadcrumbs"
+        :back-link="localeUrl({
+          name: 'services-slug',
+          params: { slug: page.breadcrumbsPreviousService.slug }
+        })"
+        :back-link-label="page.breadcrumbsPreviousService.title"
+        :next-link="localeUrl({
+          name: 'services-slug',
+          params: { slug: page.breadcrumbsNextService.slug }
+        })"
+        :next-link-label="page.breadcrumbsNextService.title"
+      />
     </main>
     <pivot-list
       class="page-service__pivots"
       v-if="page.pivots && page.pivots.length"
       :pivots="page.pivots"
+      :pivot-border="!pageHasBreadcrumbs"
     />
   </div>
 </template>
@@ -50,6 +64,7 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
+  import BreadcrumbsBlock from '~/components/breadcrumbs-block'
   import GenericTextBlock from '~/components/generic-text-block'
   import PageHeader from '~/components/page-header'
   import PivotList from '~/components/pivot-list'
@@ -58,6 +73,7 @@
 
   export default {
     components: {
+      BreadcrumbsBlock,
       GenericTextBlock,
       PageHeader,
       PivotList,
@@ -65,6 +81,11 @@
       ResponsiveImage,
     },
     asyncData,
+    computed: {
+      pageHasBreadcrumbs() {
+        return this.page.breadcrumbsPreviousService || this.page.breadcrumbsPreviousService
+      }
+    },
     head,
   }
 </script>
@@ -110,6 +131,10 @@
   .page-service__overview .generic-text-block__body {
     font-size: 1.125rem;
     line-height: 1.6666666667;
+  }
+
+  .page-service .breadcrumbs-block {
+    margin-bottom: var(--spacing-large);
   }
 
   @media (min-width: 720px) {
