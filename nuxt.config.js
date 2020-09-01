@@ -1,8 +1,6 @@
 const dotenv = require('dotenv-safe')
 const generate = require('./config/nuxt/generate')
 const modules = require('./config/nuxt/modules')
-const locales = require('./src/client/static/data/app.json').locales
-const routes = require('./config/nuxt/lib/routes')
 
 dotenv.config()
 
