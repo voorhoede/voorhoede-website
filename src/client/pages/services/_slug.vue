@@ -54,7 +54,7 @@
 </template>
 
 <script>
-  import { mapState, mapMutations } from 'vuex'
+  import { mapMutations } from 'vuex'
 
   import asyncPage from '~/lib/async-page'
   import head from '~/lib/seo-head'
@@ -79,27 +79,34 @@
     async asyncData(context) {
       try {
         const data = await asyncPage(context)
-        
+
         if (!data.page) {
           'Invalid page data'
         }
 
         const previousRouteIsServiceSlugPage = context.from && context.from.name === context.route.name
-        const backLinkRoute = previousRouteIsServiceSlugPage ? context.from : context.app.localePath('services')
+        const breadcrumbsNextServiceIsPreviousRoute = (
+          previousRouteIsServiceSlugPage
+          && data.page.breadcrumbsNextService
+          && data.page.breadcrumbsNextService.slug === context.from.params.slug
+        )
+        const useFallbackBackRoute = !previousRouteIsServiceSlugPage || breadcrumbsNextServiceIsPreviousRoute
+        const backLinkRoute = useFallbackBackRoute ? context.app.localePath('services') : context.from
 
         return {
           ...data,
-          previousRouteIsServiceSlugPage,
-          backLinkRoute
+          useFallbackBackRoute,
+          backLinkRoute,
+          // Don't use mapState for previousServiceTitle, as it will be replaced on mounted
+          previousServiceTitle: context.store.state.previousServiceTitle
         }
       } catch (error) {
         return context.error({ statusCode: 404 })
       }
     },
     computed: {
-      ...mapState(['previousServiceTitle']),
       backLinkLabel() {
-        return this.previousRouteIsServiceSlugPage ? this.previousServiceTitle : this.$t('back_to_services')
+        return this.useFallbackBackRoute ? this.$t('back_to_services') : this.previousServiceTitle
       },
       nextLinkRoute() {
         return this.page.breadcrumbsNextService && this.localeUrl({
@@ -111,7 +118,8 @@
         return this.page.breadcrumbsNextService && this.page.breadcrumbsNextService.title
       }
     },
-    beforeDestroy() {
+    // Set on mounted as beforeDestroy will trigger just after asyncData
+    mounted() {
       this.SET_PREVIOUS_SERVICE_TITLE(this.page.title)
     },
     methods: {
