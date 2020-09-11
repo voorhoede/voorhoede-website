@@ -7,6 +7,12 @@
         :headline="page.subtitle"
         :image="page.headerIllustration"
       />
+      <series-navigation
+        v-if="page.servicePageSeries"
+        class="page-service__series-navigation"
+        :title-route="seriesNavigationTitleRoutes"
+        :child-routes="seriesNavigationChildRoutes"
+      />
       <article class="page-service__overview">
         <template v-for="item in page.items">
           <generic-text-block
@@ -66,6 +72,7 @@
   import PivotList from '~/components/pivot-list'
   import BlockquoteBlock from '~/components/blockquote-block'
   import ResponsiveImage from '~/components/responsive-image'
+  import SeriesNavigation from '~/components/series-navigation'
 
   export default {
     components: {
@@ -75,6 +82,7 @@
       PivotList,
       BlockquoteBlock,
       ResponsiveImage,
+      SeriesNavigation,
     },
     async asyncData(context) {
       try {
@@ -105,6 +113,18 @@
       }
     },
     computed: {
+      seriesNavigationTitleRoutes() {
+        return {
+          title: this.page.servicePageSeries.mainService.title,
+          route: this.getServiceRoute(this.page.servicePageSeries.mainService.slug)
+        }
+      },
+      seriesNavigationChildRoutes() {
+        return this.page.servicePageSeries.childServices.map(service => ({
+          title: service.title,
+          route: this.getServiceRoute(service.slug)
+        }))
+      },
       backLinkLabel() {
         return this.useFallbackBackRoute ? this.$t('back_to_services') : this.previousServiceTitle
       },
@@ -123,7 +143,15 @@
       this.SET_PREVIOUS_SERVICE_TITLE(this.page.title)
     },
     methods: {
-      ...mapMutations([SET_PREVIOUS_SERVICE_TITLE])
+      ...mapMutations([SET_PREVIOUS_SERVICE_TITLE]),
+      getServiceRoute(slug) {
+        return this.localeUrl({
+          name: 'services-slug',
+          params: {
+            slug
+          }
+        })
+      }
     },
     head,
   }
@@ -139,16 +167,21 @@
     background-color: var(--bg-pastel);
   }
 
+  .page-service__series-navigation {
+    margin-bottom: var(--spacing-big);
+    grid-row: 2;
+  }
+
   .page-service__overview {
     display: flex;
-    grid-row: 2;
+    grid-row: 3;
     flex-direction: column;
   }
 
   .page-service__overview .responsive-image,
   .page-service__overview .generic-text-block,
   .page-service__overview .blockquote-block {
-    grid-row: 3;
+    grid-row: 4;
     margin: 0 0 var(--spacing-large) 0;
   }
 
@@ -179,6 +212,11 @@
   @media (min-width: 720px) {
     .page-service .page-header {
       margin-bottom: var(--spacing-big);
+    }
+
+    .page-services__series-navigation {
+      grid-column-start: var(--grid-content-start);
+      grid-column-end: 35;
     }
 
     .page-service__overview {
@@ -215,9 +253,14 @@
   }
 
   @media (min-width: 1100px) {
+    .page-service__series-navigation,
     .page-service__overview {
       grid-column-start: 4;
       grid-column-end: 48;
+    }
+
+    .page-service__series-navigation {
+      grid-column-end: 35;
     }
 
     .page-service__overview .blockquote-block__body,

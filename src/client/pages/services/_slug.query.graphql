@@ -25,6 +25,16 @@ fragment page on ServiceRecord {
     format
     alt
   }
+  servicePageSeries {
+    mainService {
+      title
+      slug
+    }
+    childServices {
+      title
+      slug
+    }
+  }
   items {
     __typename
     ... on ImageRecord {
