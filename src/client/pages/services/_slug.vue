@@ -54,9 +54,12 @@
 </template>
 
 <script>
+  import { mapState, mapMutations } from 'vuex'
+
   import asyncPage from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
+  import { SET_PREVIOUS_SERVICE_TITLE } from '~/store/mutation-types'
   import BreadcrumbsBlock from '~/components/breadcrumbs-block'
   import GenericTextBlock from '~/components/generic-text-block'
   import PageHeader from '~/components/page-header'
@@ -94,8 +97,9 @@
       }
     },
     computed: {
+      ...mapState(['previousServiceTitle']),
       backLinkLabel() {
-        return 'Terug'
+        return this.previousRouteIsServiceSlugPage ? this.previousServiceTitle : this.$t('back_to_services')
       },
       nextLinkRoute() {
         return this.page.breadcrumbsNextService && this.localeUrl({
@@ -106,6 +110,12 @@
       nextLinkLabel() {
         return this.page.breadcrumbsNextService && this.page.breadcrumbsNextService.title
       }
+    },
+    beforeDestroy() {
+      this.SET_PREVIOUS_SERVICE_TITLE(this.page.title)
+    },
+    methods: {
+      ...mapMutations([SET_PREVIOUS_SERVICE_TITLE])
     },
     head,
   }
