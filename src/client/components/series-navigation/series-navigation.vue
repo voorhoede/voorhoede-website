@@ -9,7 +9,11 @@
         }"
       >
         <h2 class="series-navigation__title h3">
-          <span v-if="!isActive(titleRoute)">&larr;</span>
+          <app-icon
+            v-if="!isActive(titleRoute)"
+            name="arrow-left"
+            class="series-navigation__back-icon"
+          />
           {{ titleRoute.title }}
         </h2>
       </component>
@@ -36,6 +40,8 @@
 </template>
 
 <script>
+  import AppIcon from '../app-icon'
+
   function isValidItem(item) {
     return (
       typeof(item.title) === 'string'
@@ -44,6 +50,7 @@
   }
 
   export default {
+    components: { AppIcon },
     props: {
       titleRoute: {
         type: Object,
@@ -77,7 +84,12 @@
   }
 
   .series-navigation__title {
-    display: inline;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .series-navigation__back-icon {
+    margin-right: var(--spacing-tiny);
   }
 
   .series-navigation__item {
