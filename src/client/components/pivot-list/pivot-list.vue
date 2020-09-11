@@ -161,8 +161,7 @@
 <style>
   .pivot-list {
     position: relative;
-    grid-column-start: var(--grid-page-start);
-    grid-column-end: var(--grid-page-end);
+    grid-column: var(--grid-page);
   }
 
   .pivot-list__item--has-background {
