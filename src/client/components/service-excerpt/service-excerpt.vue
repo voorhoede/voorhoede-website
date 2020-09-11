@@ -42,7 +42,7 @@ export default {
       type: Array,
       required: true,
       validator(summary) {
-        return summary.every(line => 'title' in line)
+        return summary.every(line => 'body' in line)
       }
     },
     slug: {
