@@ -58,12 +58,6 @@ fragment page on ServiceRecord {
       linkIsExternal
     }
   }
-  breadcrumbsPreviousService {
-    ... on ServiceRecord {
-      title
-      slug
-    }
-  }
   breadcrumbsNextService {
     ... on ServiceRecord {
       title

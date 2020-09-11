@@ -38,30 +38,23 @@
         </template>
       </article>
       <breadcrumbs-block
-        v-if="pageHasBreadcrumbs"
-        :back-link="localeUrl({
-          name: 'services-slug',
-          params: { slug: page.breadcrumbsPreviousService.slug }
-        })"
-        :back-link-label="page.breadcrumbsPreviousService.title"
-        :next-link="localeUrl({
-          name: 'services-slug',
-          params: { slug: page.breadcrumbsNextService.slug }
-        })"
-        :next-link-label="page.breadcrumbsNextService.title"
+        :back-link="backLinkRoute"
+        :back-link-label="backLinkLabel"
+        :next-link="nextLinkRoute"
+        :next-link-label="nextLinkLabel"
       />
     </main>
     <pivot-list
       class="page-service__pivots"
       v-if="page.pivots && page.pivots.length"
       :pivots="page.pivots"
-      :pivot-border="!pageHasBreadcrumbs"
+      :can-have-border-top="false"
     />
   </div>
 </template>
 
 <script>
-  import asyncData from '~/lib/async-page'
+  import asyncPage from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
   import BreadcrumbsBlock from '~/components/breadcrumbs-block'
@@ -80,10 +73,38 @@
       BlockquoteBlock,
       ResponsiveImage,
     },
-    asyncData,
+    async asyncData(context) {
+      try {
+        const data = await asyncPage(context)
+        
+        if (!data.page) {
+          'Invalid page data'
+        }
+
+        const previousRouteIsServiceSlugPage = context.from && context.from.name === context.route.name
+        const backLinkRoute = previousRouteIsServiceSlugPage ? context.from : context.app.localePath('services')
+
+        return {
+          ...data,
+          previousRouteIsServiceSlugPage,
+          backLinkRoute
+        }
+      } catch (error) {
+        return context.error({ statusCode: 404 })
+      }
+    },
     computed: {
-      pageHasBreadcrumbs() {
-        return this.page.breadcrumbsPreviousService || this.page.breadcrumbsPreviousService
+      backLinkLabel() {
+        return 'Terug'
+      },
+      nextLinkRoute() {
+        return this.page.breadcrumbsNextService && this.localeUrl({
+          name: 'services-slug',
+          params: { slug: this.page.breadcrumbsNextService.slug }
+        })
+      },
+      nextLinkLabel() {
+        return this.page.breadcrumbsNextService && this.page.breadcrumbsNextService.title
       }
     },
     head,
