@@ -107,6 +107,7 @@
   .series-navigation__link:hover,
   .series-navigation__link:focus {
     color: var(--active-blue);
+    text-decoration: underline;
   }
 
   @media (min-width: 720px) {
