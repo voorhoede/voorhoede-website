@@ -168,7 +168,7 @@
   }
 
   .page-service__series-navigation {
-    margin-bottom: var(--spacing-big);
+    margin-bottom: var(--spacing-large);
     grid-row: 2;
   }
 
@@ -214,9 +214,9 @@
       margin-bottom: var(--spacing-big);
     }
 
-    .page-services__series-navigation {
-      grid-column-start: var(--grid-content-start);
-      grid-column-end: 35;
+    .page-service__series-navigation {
+      margin-bottom: var(--spacing-larger);
+      grid-column: var(--grid-content);
     }
 
     .page-service__overview {

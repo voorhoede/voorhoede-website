@@ -8,7 +8,10 @@
           'series-navigation__link': !isActive(titleRoute)
         }"
       >
-        <h2 class="series-navigation__title h4">{{ titleRoute.title }}</h2>
+        <h2 class="series-navigation__title h3">
+          <span v-if="!isActive(titleRoute)">&larr;</span>
+          {{ titleRoute.title }}
+        </h2>
       </component>
     </header>
     <ul class="series-navigation__child-list">
@@ -20,7 +23,7 @@
         <component
           :is="isActive(childRoute) ? 'span' : 'nuxt-link'"
           :to="!isActive(childRoute) && childRoute.route"
-          class="body"
+          class="body-big"
           :class="{
             'series-navigation__link': !isActive(childRoute)
           }"
@@ -77,10 +80,6 @@
     display: inline;
   }
 
-  .series-navigation__child-list {
-    margin-left: var(--spacing-medium);
-  }
-
   .series-navigation__item {
     margin-bottom: var(--spacing-tiny);
   }
@@ -91,13 +90,25 @@
 
   .series-navigation__link {
     color: var(--html-blue);
-    padding-bottom: .15rem;
-    background: transparent linear-gradient(to top, transparent 1px, var(--html-blue) 1px, var(--html-blue) 2px, transparent 2px);
   }
 
   .series-navigation__link:hover,
   .series-navigation__link:focus {
     color: var(--active-blue);
-    background: transparent linear-gradient(to top, var(--html-blue) 2px, transparent 2px);
+  }
+
+  @media (min-width: 720px) {
+    .series-navigation__child-list {
+      display: flex;
+    }
+
+    .series-navigation__item {
+      margin-right: var(--spacing-medium);
+      margin-bottom: 0;
+    }
+
+    .series-navigation__item:last-child {
+      margin-right: 0;
+    }
   }
 </style>
