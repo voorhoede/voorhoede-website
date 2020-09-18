@@ -67,7 +67,7 @@
     },
     methods: {
       isActive(item) {
-        return item.route === this.localeUrl(this.$route)
+        return item.route === this.$route.path
       }
     }
   }
