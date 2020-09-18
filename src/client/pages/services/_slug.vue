@@ -253,13 +253,13 @@
   }
 
   @media (min-width: 1100px) {
-    .page-service__series-navigation,
     .page-service__overview {
       grid-column-start: 4;
       grid-column-end: 48;
     }
 
     .page-service__series-navigation {
+      grid-column-start: 4;
       grid-column-end: 35;
     }
 
