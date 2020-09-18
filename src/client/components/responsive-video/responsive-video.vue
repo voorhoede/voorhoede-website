@@ -35,7 +35,7 @@
             @click.prevent="play"
           >
             <span class="sr-only">Play video</span>
-            <img class="responsive-video__icon" src="/icons/icon_play.svg">
+            <app-icon class="responsive-video__icon" name="play"/>
           </component>
         </lazy-load>
       </fixed-ratio>
@@ -52,11 +52,12 @@
 <script>
   import FixedRatio from '../fixed-ratio/fixed-ratio'
   import LazyLoad from '../lazy-load/lazy-load'
+  import AppIcon from '../app-icon/app-icon'
 
   const binaryBoolean = value => (value) ? 1 : 0
 
   export default {
-    components: { FixedRatio, LazyLoad },
+    components: { AppIcon, FixedRatio, LazyLoad },
     props: {
       video: {
         type: Object,
@@ -208,6 +209,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 60px;
+    height: 60px;
     transform: translate(-50%, -50%);
   }
 
