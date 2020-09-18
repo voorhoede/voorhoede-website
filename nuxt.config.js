@@ -93,6 +93,7 @@ module.exports = {
     { src: '~/plugins/locale-urls' },
     { src: '~/plugins/ascii-art', mode: 'client' },
     { src: '~/plugins/promise-polyfill', mode: 'client' },
+    { src: '~/plugins/svg-sprite-polyfill', mode: 'client' },
     { src: '~/directives/scroll-highlight', mode: 'client' },
   ],
 

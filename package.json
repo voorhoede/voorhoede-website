@@ -44,6 +44,7 @@
     "nuxt": "^2.12.2",
     "nuxt-i18n": "^4.1.0",
     "prismjs": "^1.20.0",
+    "svg4everybody": "^2.1.9",
     "unfetch": "^4.1.0",
     "url-search-params-polyfill": "^8.0.0"
   },
