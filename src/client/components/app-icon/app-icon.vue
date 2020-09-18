@@ -1,8 +1,10 @@
 <template>
-  <img class="app-icon"
-       :class="{ 'app-icon--large': isLarge }"
-       :src="`/icons/icon_${name}.svg`"
-       :alt="alt">
+  <svg-icon
+    class="app-icon"
+    :class="{ 'app-icon--large': isLarge }"
+    :name="name"
+    :title="alt"
+  />
 </template>
 
 <script>

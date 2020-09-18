@@ -1,5 +1,5 @@
 const googleAnalytics = require('./modules/google-analytics')
-const nuxtI18n = require('./modules/nuxt-i18n')
+const nuxtSprite = require('./modules/nuxt-i18n')
 const sitemap = require('./modules/sitemap')
 
 /**
@@ -7,6 +7,7 @@ const sitemap = require('./modules/sitemap')
  */
 module.exports = [
   googleAnalytics,
-  nuxtI18n,
+  '@nuxtjs/svg-sprite',
+  nuxtSprite,
   sitemap
 ]

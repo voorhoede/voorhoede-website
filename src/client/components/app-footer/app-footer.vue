@@ -302,7 +302,7 @@ export default {
     transition: transform .1s, opacity .1s linear;
   }
 
-  .app-footer__list-item--icon img {
+  .app-footer__list-item--icon .app-icon {
     position: relative;
     z-index: 2;
   }
