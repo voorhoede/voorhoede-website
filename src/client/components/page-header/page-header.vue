@@ -143,10 +143,6 @@
   By making it scoped, the styling defined here is more specific than the core styling
 -->
 <style scoped>
-  :root {
-    --max-height-image: 285px;
-  }
-
   .page-header {
     background-color: var(--bg-pastel);
     grid-column: var(--grid-page); /* Make sure page header doesn't align on grid-content lines */
@@ -213,18 +209,13 @@
     z-index: var(--z-index-low); /* Make sure to be on top off curly bracket */
     grid-column: 3 / var(--grid-page-end);
     grid-row: 6 / 7;
-  }
-
-  .page-header__image-column-content {
-    min-height: 100%;
     display: flex;
     align-items: flex-end;
-    justify-content: flex-end;
   }
 
   .page-header__image {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 285px;
   }
 
   .page-header .scroll-to {
@@ -344,16 +335,9 @@
     }
 
     .page-header__image-column {
-      display: flex;
       grid-column: 29 / 49;
       grid-row: 3 / 5;
-      align-items: flex-end;
-      justify-content: flex-end;
       margin-bottom: calc(-1 * var(--spacing-small)); /* Make image move outside page header */
-    }
-
-    .page-header__image {
-      max-height: var(--max-height-image);
     }
 
     .page-header--fill-screen .page-header__image-column {
@@ -363,8 +347,20 @@
       margin: 0;
     }
 
-    /* Make sure image doesn't float upwards */
+    .page-header__image-column-content {
+      display: flex;
+      height: 100%;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+
+    .page-header__image {
+      height: 100%;
+      max-height: 285px;
+    }
+
     .page-header--fill-screen .page-header__image {
+      height: auto;
       max-height: 100%;
     }
 

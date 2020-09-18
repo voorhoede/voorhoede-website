@@ -100,7 +100,7 @@
         </nuxt-link>
       </div>
     </article>
-    <newsletter-form />
+    <newsletter-form :has-background="true" />
   </div>
 </template>
 

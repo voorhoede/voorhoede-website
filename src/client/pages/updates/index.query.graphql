@@ -37,10 +37,12 @@ fragment updateOverview on UpdateOverviewRecord {
     alt
   }
   pivots {
-    showBackgroundColor
     title
-    body
+    body(markdown: true)
     buttonLabel: callToActionLabel
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url

@@ -22,7 +22,10 @@
       />
     </section>
     <section class="page-index__cta grid">
-      <pivot-list :pivots="ctaPivot"/>
+      <pivot-list
+        :pivots="ctaPivot"
+        :last-item-has-background="false"
+      />
     </section>
     <section class="page-index__cases grid">
       <h2 class="page-index__section-title page-index__section-title--cases h1">{{ page.casesTitle }}</h2>
@@ -258,6 +261,10 @@
 
   .page-index__pivots {
     position: relative;
+  }
+
+  .page-index__pivots .newsletter-form {
+    background-color: var(--bg-pastel);
   }
 
   .page-index__scroll-to {

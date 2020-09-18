@@ -18,7 +18,7 @@
       </ul>
       <scroll-to direction="up" />
     </section>
-    <newsletter-form />
+    <newsletter-form :has-background="true" />
   </div>
 </template>
 

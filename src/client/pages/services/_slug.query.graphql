@@ -25,6 +25,16 @@ fragment page on ServiceRecord {
     format
     alt
   }
+  servicePageSeries {
+    mainService {
+      title
+      slug
+    }
+    childServices {
+      title
+      slug
+    }
+  }
   items {
     __typename
     ... on ImageRecord {
@@ -55,13 +65,22 @@ fragment page on ServiceRecord {
       body
       linkLabel
       linkUrl
+      linkIsExternal
+    }
+  }
+  breadcrumbsNextService {
+    ... on ServiceRecord {
+      title
+      slug
     }
   }
   pivots {
-    showBackgroundColor
     title
-    body
+    body(markdown: true)
     buttonLabel: callToActionLabel
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url

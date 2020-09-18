@@ -1,6 +1,9 @@
 <template>
-  <div class="contact-form">
-    <div v-if="title || contactPerson" class="contact-form__header">
+  <div
+    class="contact-form"
+    :class="{ 'grid': hasSidebar }"
+  >
+    <div v-if="hasSidebar" class="contact-form__header">
       <h2
         v-if="title"
         class="contact-form__header h3"
@@ -157,6 +160,9 @@
       emailValidationErrorMessage() {
         return this.form.email ? this.$t('provide_valid_email') : this.$t('email_is_required')
       },
+      hasSidebar() {
+        return this.title || this.contactPerson
+      }
     },
     mounted() {
       this.useCustomValidation = true

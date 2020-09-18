@@ -21,7 +21,7 @@
       <pivot-list
         v-if="page.pivots && page.pivots.length"
         :pivots="page.pivots"
-        :pivot-border="false"
+        :can-have-border-top="false"
         :pivot-narrow="true"
       />
       <div class="page-blog__scroll-to">
@@ -70,7 +70,6 @@
   }
 
   .page-blog__pivots {
-    background-color: var(--bg-pastel);
     position: relative;
   }
 

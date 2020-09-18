@@ -21,7 +21,7 @@
         </div>
       </div>
     </section>
-    <newsletter-form />
+    <newsletter-form :has-background="true" />
   </div>
 </template>
 

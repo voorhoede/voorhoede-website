@@ -127,28 +127,19 @@
         />
       </article>
 
-      <div class="page-case__link-container">
-        <nuxt-link
-          class="app-button app-button--secondary body font-bold"
-          :to="localeUrl('cases')">
-          &larr; {{ $t('all_cases') }}
-        </nuxt-link>
-        <nuxt-link
-          v-if="nextCase"
-          class="app-button app-button--secondary body font-bold"
-          :to="localeUrl({ name: 'cases-slug', params: { slug: nextCase.slug } })"
-          :title="nextCase.title"
-          :aria-label="nextCase.title"
-        >
-          {{ nextCase.title }} &rarr;
-        </nuxt-link>
-      </div>
+      <breadcrumbs-block
+        :back-link="localeUrl('cases')"
+        :back-link-label="$t('all_cases')"
+        :next-link="localeUrl({ name: 'cases-slug', params: { slug: nextCase.slug } })"
+        :next-link-label="nextCase.title"
+      />
     </main>
 
     <section class="page-cases__pivots grid">
       <pivot-list
         v-if="page.pivots && page.pivots.length"
         :pivots="page.pivots"
+        :can-have-border-top="false"
       />
       <div class="page-cases__scroll-to">
         <scroll-to direction="up" />
@@ -162,6 +153,7 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
+  import BreadcrumbsBlock from '~/components/breadcrumbs-block'
   import CaseMeta from '~/components/case-meta'
   import CasePullQuoteComposition from '~/components/case-pull-quote-composition'
   import CaseTeaser from '~/components/case-teaser'
@@ -179,6 +171,7 @@
 
   export default {
     components: {
+      BreadcrumbsBlock,
       CaseMeta,
       CasePullQuoteComposition,
       CaseTeaser,
@@ -244,22 +237,9 @@
     margin-bottom: var(--spacing-larger);
   }
 
-  .page-case__link-container {
-    grid-row: 4;
-    display: flex;
-    justify-content: space-between;
+  .page-case .breadcrumbs-block {
     margin-bottom: var(--spacing-bigger);
-    padding-top: var(--spacing-small);
-    border-top: 2px solid var(--very-dim);
-  }
-
-  .page-case__link-container > * {
-    max-width: calc(50% - 20px);
-    text-align: left;
-  }
-
-  .page-case__link-container > *:nth-child(2) {
-    text-align: right;
+    grid-row: 4;
   }
 
   .page-case__title {

@@ -72,10 +72,10 @@ fragment page on HomeRecord {
   servicesHeader
   services {
     tagline
-    title
+    excerptTitle
     slug
     summary {
-      title
+      body
     }
   }
   smallServices
@@ -87,10 +87,12 @@ fragment page on HomeRecord {
     height
   }
   pivots {
-    showBackgroundColor
     title
-    body
+    body(markdown: true)
     buttonLabel: callToActionLabel
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url

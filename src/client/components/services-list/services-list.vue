@@ -6,7 +6,7 @@
       class="services-list__item">
       <service-excerpt
         :tagline="service.tagline"
-        :title="service.title"
+        :title="service.excerptTitle"
         :summary="service.summary"
         :slug="service.slug"
       />

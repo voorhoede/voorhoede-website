@@ -2,7 +2,7 @@ query ($locale: SiteLocale) {
   page: serviceOverview(locale: $locale) {
     ...page
   }
-  items: allServices(locale: $locale) {
+  items: allServices(locale: $locale, first: 100) {
     slug
   }
 }
@@ -17,11 +17,11 @@ fragment page on ServiceOverviewRecord {
   }
   keywords
   services {
-    title
     tagline
+    excerptTitle
     slug
     summary {
-      title
+      body
     }
   }
   headerIllustration {
@@ -45,10 +45,12 @@ fragment page on ServiceOverviewRecord {
     }
   }
   pivots {
-    showBackgroundColor
     title
-    body
+    body(markdown: true)
     buttonLabel: callToActionLabel
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url
