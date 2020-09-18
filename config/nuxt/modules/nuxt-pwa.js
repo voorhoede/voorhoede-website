@@ -3,9 +3,11 @@ module.exports = [
   {
     workbox: {
       dev: process.env.PWA_DEV,
+      offlinePage: '/200.html',
       preCaching: [
         '/en?homescreen=true',
         '/nl?homescreen=true',
+        process.env.NODE_ENV === 'production' && '/200.html',
         '/images/logo-with-text.svg',
         '/images/icon_menu-passive--white.svg',
         '/images/icon_menu-exit--white.svg',
@@ -17,7 +19,7 @@ module.exports = [
         '/_nuxt/commons.app.js',
         '/_nuxt/runtime.js',
         '/_nuxt/vendors.app.js',
-      ],
+      ].filter(Boolean),
       cacheAssets: false, // disable magic caching for _nuxt folder
       runtimeCaching: [
         // explicit caching for _nuxt folder
