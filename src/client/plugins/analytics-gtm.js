@@ -6,7 +6,7 @@ export default (context, inject) => {
   inject('tracking', {
     enable() {
       if (!isInitialized() && !doNotTrack()) {
-        initAanalytics()
+        initAnalytics()
       }
     },
   })
@@ -14,7 +14,7 @@ export default (context, inject) => {
   context.app.$tracking.enable()
 }
 
-function initAanalytics() {
+function initAnalytics() {
   const script = document.createElement('script')
   script.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`
   document.head.appendChild(script)
