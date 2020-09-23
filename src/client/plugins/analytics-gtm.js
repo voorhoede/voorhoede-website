@@ -1,11 +1,6 @@
 const appConfig = require('../../../src/client/static/data/app.json')
 
-const GA_ID = appConfig.googleAnalyticsId
-const AW_ID = 'AW-926139478'
-const dimensions = {
-  TRACKING_VERSION: 'dimension1'
-}
-const TRACKING_VERSION = appConfig.trackingVersion
+const GTM_ID = 'GTM-WVVV3KG'
 
 export default (context, inject) => {
   inject('tracking', {
@@ -13,31 +8,27 @@ export default (context, inject) => {
       if (!isInitialized() && !doNotTrack()) {
         initAanalytics()
       }
-      if (isInitialized) {
-        gtag('js', new Date())
-        gtag('config', GA_ID)
-        gtag('config', AW_ID)
-        gtag('set', dimensions.TRACKING_VERSION, TRACKING_VERSION)
-      }
     },
   })
 
   context.app.$tracking.enable()
 }
 
-function gtag() {
-  if (isInitialized()) {
-    window.dataLayer.push(arguments)
-  }
-}
-
 function initAanalytics() {
   const script = document.createElement('script')
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`
+  script.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`
   document.head.appendChild(script)
 
   window.dataLayer = []
 
+  // overwrite push method to datalayer array to we can control memory leaking
+  window.dataLayer.push = function(event) {
+    if (event['gtm.element']) {
+      // clone the node and save that to the event instead of keeping reference to the original node, which causes memory leaks
+      event['gtm.element'] = event['gtm.element'].cloneNode(true);
+    }
+    return Array.prototype.push.apply(this, arguments);
+  }
 }
 
 function isInitialized() {
