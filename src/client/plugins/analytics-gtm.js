@@ -1,4 +1,4 @@
-const appConfig = require('../../../src/client/static/data/app.json')
+// const appConfig = require('../../../src/client/static/data/app.json')
 
 const GTM_ID = 'GTM-WVVV3KG'
 
@@ -25,9 +25,9 @@ function initAanalytics() {
   window.dataLayer.push = function(event) {
     if (event['gtm.element']) {
       // clone the node and save that to the event instead of keeping reference to the original node, which causes memory leaks
-      event['gtm.element'] = event['gtm.element'].cloneNode(true);
+      event['gtm.element'] = event['gtm.element'].cloneNode(true)
     }
-    return Array.prototype.push.apply(this, arguments);
+    return Array.prototype.push.apply(this, arguments)
   }
 }
 
