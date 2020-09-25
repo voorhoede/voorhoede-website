@@ -95,6 +95,13 @@
           throw 'Invalid page data'
         }
 
+        /**
+         * The breadcrumbs back link is linking to the previous route when available
+         * and when the previous route is also a service page.
+         * However, the breadcrumbs next route could also be the same as this previous route.
+         * In that case, a link back to the services overview is displayed.
+         * Also, when no previous route is known, a link back to the service overview page is shown.
+         */
         const previousRouteIsServiceSlugPage = context.from && context.from.name === context.route.name
         const breadcrumbsNextServiceIsPreviousRoute = (
           previousRouteIsServiceSlugPage
@@ -118,6 +125,14 @@
       }
     },
     computed: {
+      /**
+       * The series navigation is dependent on the previous route.
+       * Some service pages are configured in the CMS to be part of multiple service series.
+       * In that case, we make sure the same series navigation is shown as on the previous page,
+       * but only when the series navigation of the previous service page
+       * is allowed on the current service page.
+       * We fallback to the first on in the array, when no matches are found.
+       */
       shownSeriesNavigation() {
         if (!this.page.serviceSeries) {
           return null
