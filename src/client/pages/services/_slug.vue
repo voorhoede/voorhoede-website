@@ -23,6 +23,12 @@
             :body="item.body"
             :image="item.image"
           />
+          <testimonial-block
+            v-if="item.__typename === 'TestimonialBlockRecord'"
+            :key="item.id"
+            :id="item.id"
+            :testimonial="item.testimonial"
+          />
           <responsive-image
             v-if="item.__typename === 'ImageRecord'"
             :key="item.id"
@@ -76,6 +82,7 @@
   import BlockquoteBlock from '~/components/blockquote-block'
   import ResponsiveImage from '~/components/responsive-image'
   import SeriesNavigation from '~/components/series-navigation'
+  import TestimonialBlock from '~/components/testimonial-block'
 
   export default {
     components: {
@@ -86,6 +93,7 @@
       BlockquoteBlock,
       ResponsiveImage,
       SeriesNavigation,
+      TestimonialBlock
     },
     async asyncData(context) {
       try {

@@ -60,6 +60,16 @@ fragment page on ServiceRecord {
         alt
       }
     }
+    ... on TestimonialBlockRecord {
+      id
+      testimonial {
+        company
+        author
+        id
+        quote
+        validated
+      }
+    }
     ... on CallToActionRecord {
       id
       title
