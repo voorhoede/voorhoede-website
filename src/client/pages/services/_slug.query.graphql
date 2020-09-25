@@ -25,7 +25,8 @@ fragment page on ServiceRecord {
     format
     alt
   }
-  servicePageSeries {
+  serviceSeries {
+    id
     mainService {
       title
       slug
