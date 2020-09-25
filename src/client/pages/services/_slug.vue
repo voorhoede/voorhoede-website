@@ -145,7 +145,7 @@
         const validPreviousServiceSeriesNavigation = this.previousServiceSeriesNavigation
           && this.page.serviceSeries.find(
             series => (
-              series.id === this.previousServiceSeriesNavigation && this.previousServiceSeriesNavigation.id
+              series.id === this.previousServiceSeriesNavigation.id
             )
           )
 
