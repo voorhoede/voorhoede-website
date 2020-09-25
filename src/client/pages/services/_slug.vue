@@ -207,6 +207,7 @@
 
   .page-service .breadcrumbs-block {
     margin-bottom: var(--spacing-large);
+    grid-row: 5;
   }
 
   @media (min-width: 720px) {
