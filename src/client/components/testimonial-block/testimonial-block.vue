@@ -1,11 +1,11 @@
 <template>
-  <aside v-if="testimonial.validated" class="testimonial">
+  <blockquote v-if="testimonial.validated" class="testimonial">
     <div class="testimonial-block__container">
       <span class="testimonial-block__title h3">{{ testimonial.quote }}</span>
       <p v-if="testimonial.author" class="testimonial-block__author body-petite">{{ testimonial.author }}</p>
       <p v-if="testimonial.company" class="testimonial-block__company body-petite">{{ testimonial.company }}</p>
     </div>
-  </aside>
+  </blockquote>
 </template>
 
 <script>
