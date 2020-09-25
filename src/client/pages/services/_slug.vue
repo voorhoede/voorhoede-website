@@ -8,7 +8,7 @@
         :image="page.headerIllustration"
       />
       <series-navigation
-        v-if="page.servicePageSeries"
+        v-if="shownSeriesNavigation"
         class="page-service__series-navigation"
         :title-route="seriesNavigationTitleRoutes"
         :child-routes="seriesNavigationChildRoutes"
@@ -65,7 +65,10 @@
   import asyncPage from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
-  import { SET_PREVIOUS_SERVICE_TITLE } from '~/store/mutation-types'
+  import {
+    SET_PREVIOUS_SERVICE_TITLE,
+    SET_PREVIOUS_SERVICE_SERIES_NAVIGATION
+  } from '~/store/mutation-types'
   import BreadcrumbsBlock from '~/components/breadcrumbs-block'
   import GenericTextBlock from '~/components/generic-text-block'
   import PageHeader from '~/components/page-header'
@@ -89,9 +92,16 @@
         const data = await asyncPage(context)
 
         if (!data.page) {
-          'Invalid page data'
+          throw 'Invalid page data'
         }
 
+        /**
+         * The breadcrumbs back link is linking to the previous route when available
+         * and when the previous route is also a service page.
+         * However, the breadcrumbs next route could also be the same as this previous route.
+         * In that case, a link back to the services overview is displayed.
+         * Also, when no previous route is known, a link back to the service overview page is shown.
+         */
         const previousRouteIsServiceSlugPage = context.from && context.from.name === context.route.name
         const breadcrumbsNextServiceIsPreviousRoute = (
           previousRouteIsServiceSlugPage
@@ -105,22 +115,58 @@
           ...data,
           useFallbackBackRoute,
           backLinkRoute,
-          // Don't use mapState for previousServiceTitle, as it will be replaced on mounted
-          previousServiceTitle: context.store.state.previousServiceTitle
+          previousRouteIsServiceSlugPage,
+          // Don't use mapState for previousServiceTitle and previousServiceSeriesNavigation, as it will be replaced on mounted
+          previousServiceTitle: context.store.state.previousServiceTitle,
+          previousServiceSeriesNavigation: context.store.state.previousServiceSeriesNavigation
         }
       } catch (error) {
         return context.error({ statusCode: 404 })
       }
     },
     computed: {
+      /**
+       * The series navigation is dependent on the previous route.
+       * Some service pages are configured in the CMS to be part of multiple service series.
+       * In that case, we make sure the same series navigation is shown as on the previous page,
+       * but only when the series navigation of the previous service page
+       * is allowed on the current service page.
+       * We fallback to the first on in the array, when no matches are found.
+       */
+      shownSeriesNavigation() {
+        if (!this.page.serviceSeries) {
+          return null
+        }
+
+        if (this.page.serviceSeries.length === 1) {
+          return this.page.serviceSeries[0]
+        }
+
+        const validPreviousServiceSeriesNavigation = this.previousServiceSeriesNavigation
+          && this.page.serviceSeries.find(
+            series => (
+              series.id === this.previousServiceSeriesNavigation.id
+            )
+          )
+
+        if (
+          this.previousRouteIsServiceSlugPage
+          && this.previousServiceSeriesNavigation
+          && validPreviousServiceSeriesNavigation
+        ) {
+          return validPreviousServiceSeriesNavigation
+        }
+
+        return this.page.serviceSeries[0]
+      },
       seriesNavigationTitleRoutes() {
         return {
-          title: this.page.servicePageSeries.mainService.title,
-          route: this.getServiceRoute(this.page.servicePageSeries.mainService.slug)
+          title: this.shownSeriesNavigation.mainService.title,
+          route: this.getServiceRoute(this.shownSeriesNavigation.mainService.slug)
         }
       },
       seriesNavigationChildRoutes() {
-        return this.page.servicePageSeries.childServices.map(service => ({
+        return this.shownSeriesNavigation.childServices.map(service => ({
           title: service.title,
           route: this.getServiceRoute(service.slug)
         }))
@@ -141,9 +187,10 @@
     // Set on mounted as beforeDestroy will trigger just after asyncData
     mounted() {
       this.SET_PREVIOUS_SERVICE_TITLE(this.page.title)
+      this.SET_PREVIOUS_SERVICE_SERIES_NAVIGATION(this.shownSeriesNavigation)
     },
     methods: {
-      ...mapMutations([SET_PREVIOUS_SERVICE_TITLE]),
+      ...mapMutations([SET_PREVIOUS_SERVICE_TITLE, SET_PREVIOUS_SERVICE_SERIES_NAVIGATION]),
       getServiceRoute(slug) {
         return this.localeUrl({
           name: 'services-slug',
@@ -207,6 +254,7 @@
 
   .page-service .breadcrumbs-block {
     margin-bottom: var(--spacing-large);
+    grid-row: 5;
   }
 
   @media (min-width: 720px) {
@@ -253,13 +301,13 @@
   }
 
   @media (min-width: 1100px) {
-    .page-service__series-navigation,
     .page-service__overview {
       grid-column-start: 4;
       grid-column-end: 48;
     }
 
     .page-service__series-navigation {
+      grid-column-start: 4;
       grid-column-end: 35;
     }
 
