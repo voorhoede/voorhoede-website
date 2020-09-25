@@ -127,9 +127,12 @@
           return this.page.serviceSeries[0]
         }
 
-        const validPreviousServiceSeriesNavigation = this.page.serviceSeries.find(series => (
-          series.id === this.previousServiceSeriesNavigation?.id
-        ))
+        const validPreviousServiceSeriesNavigation = this.previousServiceSeriesNavigation
+          && this.page.serviceSeries.find(
+            series => (
+              series.id === this.previousServiceSeriesNavigation && this.previousServiceSeriesNavigation.id
+            )
+          )
 
         if (
           this.previousRouteIsServiceSlugPage
