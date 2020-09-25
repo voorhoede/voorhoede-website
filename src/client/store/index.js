@@ -5,6 +5,7 @@ export const state = () => {
     showGrid: false,
     i18nSlugs: undefined,
     previousServiceTitle: undefined,
+    previousServiceSeriesNavigation: undefined,
   }
 }
 
@@ -20,5 +21,8 @@ export const mutations = {
   },
   [types.SET_PREVIOUS_SERVICE_TITLE](state, previousServiceTitle) {
     state.previousServiceTitle = previousServiceTitle
+  },
+  [types.SET_PREVIOUS_SERVICE_SERIES_NAVIGATION](state, previousServiceSeriesNavigation) {
+    state.previousServiceSeriesNavigation = previousServiceSeriesNavigation
   }
 }
