@@ -37,15 +37,23 @@
             :caption="item.caption"
             :has-fixed-ratio="true"
           />
-          <blockquote-block
-            v-if="item.__typename === 'CallToActionRecord'"
+          <cta-image-block
+            v-if="item.__typename === 'CallToActionRecord' && Boolean(item.person)"
             :key="item.id"
-            :id="item.id"
             :title="item.title"
             :body="item.body"
             :link-label="item.linkLabel"
             :link-url="item.linkUrl"
-            :link-is-external="item.linkIsExternal"
+            :person-image="item.person.image.url"
+            :person-name="item.person.name"
+          />
+          <blockquote-block
+            v-if="item.__typename === 'CallToActionRecord' && Boolean(!item.person)"
+            :key="item.id"
+            :title="item.title"
+            :body="item.body"
+            :link-label="item.linkLabel"
+            :link-url="item.linkUrl"
           />
         </template>
       </article>
@@ -76,10 +84,11 @@
     SET_PREVIOUS_SERVICE_SERIES_NAVIGATION
   } from '~/store/mutation-types'
   import BreadcrumbsBlock from '~/components/breadcrumbs-block'
+  import BlockquoteBlock from '~/components/blockquote-block'
+  import CtaImageBlock from '~/components/cta-image-block'
   import GenericTextBlock from '~/components/generic-text-block'
   import PageHeader from '~/components/page-header'
   import PivotList from '~/components/pivot-list'
-  import BlockquoteBlock from '~/components/blockquote-block'
   import ResponsiveImage from '~/components/responsive-image'
   import SeriesNavigation from '~/components/series-navigation'
   import TestimonialBlock from '~/components/testimonial-block'
@@ -87,10 +96,11 @@
   export default {
     components: {
       BreadcrumbsBlock,
+      BlockquoteBlock,
+      CtaImageBlock,
       GenericTextBlock,
       PageHeader,
       PivotList,
-      BlockquoteBlock,
       ResponsiveImage,
       SeriesNavigation,
       TestimonialBlock
@@ -235,7 +245,8 @@
 
   .page-service__overview .responsive-image,
   .page-service__overview .generic-text-block,
-  .page-service__overview .blockquote-block {
+  .page-service__overview .blockquote-block,
+  .page-service__overview .cta-image-block {
     grid-row: 4;
     margin: 0 0 var(--spacing-large) 0;
   }
@@ -279,7 +290,8 @@
       grid-column: var(--grid-content);
     }
 
-    .page-service__overview .generic-text-block {
+    .page-service__overview .generic-text-block,
+    .page-service__overview .cta-image-block {
       grid-template-columns: 70% 1fr;
     }
 
