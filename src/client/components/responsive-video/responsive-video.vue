@@ -35,7 +35,7 @@
             @click.prevent="play"
           >
             <span class="sr-only">Play video</span>
-            <app-icon class="responsive-video__icon" name="play"/>
+            <app-icon name="play"/>
           </component>
         </lazy-load>
       </fixed-ratio>
@@ -205,7 +205,7 @@
     background-color: rgba(0, 0, 0, .25);
   }
 
-  .responsive-video__icon {
+  .responsive-video .app-icon {
     position: absolute;
     top: 50%;
     left: 50%;
