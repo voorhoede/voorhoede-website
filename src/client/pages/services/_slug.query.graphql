@@ -77,6 +77,12 @@ fragment page on ServiceRecord {
       linkLabel
       linkUrl
       linkIsExternal
+      person {
+        name
+        image {
+          url
+        }
+      }
     }
   }
   breadcrumbsNextService {
