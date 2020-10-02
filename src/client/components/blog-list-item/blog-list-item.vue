@@ -22,7 +22,7 @@
               <img
                 class="blog-list-item__image"
                 :class="{ 'blog-list-item__image--large': large }"
-                :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=65&h=65&fit=crop`"
+                :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=65&h=65`"
                 alt=""
               >
             </lazy-load>
@@ -137,7 +137,9 @@
 
   .blog-list-item__image {
     display: block;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: 0 0;
+    filter: saturate(0);
     height: var(--blog-thumbnail-small);
     width: var(--blog-thumbnail-small);
     margin-right: var(--spacing-smaller);

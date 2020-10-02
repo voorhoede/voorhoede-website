@@ -81,6 +81,10 @@
     display: none;
   }
 
+  .blog-author__image img {
+    object-position: 0 0;
+  }
+
   .blog-author__text-time {
     display: block;
     color: var(--dim);
@@ -91,6 +95,7 @@
       display: block;
       padding-right: var(--spacing-small);
       border-right: 2px solid var(--very-dim);
+      filter: saturate(0);
     }
 
     .blog-author__text {
