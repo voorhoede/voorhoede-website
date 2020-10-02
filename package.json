@@ -79,7 +79,6 @@
     "stylelint-config-standard": "^20.0.0",
     "stylelint-processor-html": "1.0.0",
     "util": "^0.12.3",
-    "vue-template-compiler": "^2.6.12",
     "xmlbuilder": "^15.1.1"
   },
   "browserslist": [
