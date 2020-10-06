@@ -25,7 +25,8 @@ fragment page on ServiceRecord {
     format
     alt
   }
-  servicePageSeries {
+  serviceSeries {
+    id
     mainService {
       title
       slug
@@ -57,6 +58,16 @@ fragment page on ServiceRecord {
         url
         format
         alt
+      }
+    }
+    ... on TestimonialBlockRecord {
+      id
+      testimonial {
+        company
+        author
+        id
+        quote
+        validated
       }
     }
     ... on CallToActionRecord {

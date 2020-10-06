@@ -121,10 +121,10 @@ export default {
     },
     socialLinks() {
       return [
-        { url: this.content.twitterUrl,  platform: 'twitter',  icon: 'twitter--blue' },
-        { url: this.content.githubUrl,   platform: 'github',   icon: 'git-hub--blue' },
-        { url: this.content.youtubeUrl,  platform: 'youtube',  icon: 'youtube--blue' },
-        { url: this.content.linkedinUrl, platform: 'linked',   icon: 'linkedin--blue' },
+        { url: this.content.twitterUrl,  platform: 'twitter',  icon: 'twitter' },
+        { url: this.content.githubUrl,   platform: 'github',   icon: 'git-hub' },
+        { url: this.content.youtubeUrl,  platform: 'youtube',  icon: 'youtube' },
+        { url: this.content.linkedinUrl, platform: 'linked',   icon: 'linkedin' },
       ]
     },
     cleanedPhoneNumber() {
@@ -244,6 +244,7 @@ export default {
   .app-footer__list-item--icon a {
     position: relative;
     display: block;
+    color: var(--html-blue);
   }
 
   .app-footer__list-item--icon a:hover::before,
@@ -267,7 +268,7 @@ export default {
     transition: transform .1s, opacity .1s linear;
   }
 
-  .app-footer__list-item--icon img {
+  .app-footer__list-item--icon .app-icon {
     position: relative;
     z-index: 2;
   }

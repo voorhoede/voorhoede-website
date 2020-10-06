@@ -94,6 +94,7 @@ module.exports = {
     { src: '~/plugins/locale-urls' },
     { src: '~/plugins/ascii-art', mode: 'client' },
     { src: '~/plugins/promise-polyfill', mode: 'client' },
+    { src: '~/plugins/svg-sprite-polyfill', mode: 'client' },
     { src: '~/directives/scroll-highlight', mode: 'client' },
   ],
 
@@ -122,13 +123,6 @@ module.exports = {
     ** Run ESLint on save
     */
     extend (config, { isDev, isClient }) {
-      // remove SVG from URL loader, so vue-svg-loader can be used for SVGs instead
-      // based on https://github.com/nuxt/nuxt.js/issues/1332#issuecomment-321694185
-      const urlLoader = config.module.rules.find((rule) => {
-        return String(rule.test) === String(/\.(png|jpe?g|gif|svg|webp)$/i)
-      })
-      urlLoader.test = /\.(png|jpe?g|gif|webp)$/i
-
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -137,11 +131,6 @@ module.exports = {
           exclude: /(node_modules)/,
         })
       }
-
-      config.module.rules.push({
-        test: /\.svg$/,
-        loader: 'vue-svg-loader',
-      })
 
       config.module.rules.push({
         test: /\.(graphql|gql)$/,

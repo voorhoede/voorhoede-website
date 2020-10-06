@@ -63,18 +63,18 @@
       },
       socials () {
         return [
-          { icon: 'twitter--blue',
+          { icon: 'twitter',
             href: `https://twitter.com/intent/tweet?text=${this.twitterTitle} by ${this.blogAuthors} @devoorhoede&url=${this.url}`,
             label: 'twitter',
             alt: 'Share this post on Twitter',
           },
-          { icon: 'facebook--blue',
+          { icon: 'facebook',
             href: `https://www.facebook.com/sharer.php?u=${this.url}`,
             label: 'facebook',
             alt: 'Share this post on Facebook',
           },
           {
-            icon: 'linkedin--blue',
+            icon: 'linkedin',
             href: `https://www.linkedin.com/shareArticle?&url=${this.url}&title=${this.title}`,
             label: 'linkedin',
             alt: 'Share this post on LinkedIn'
@@ -108,6 +108,7 @@
   .social-share-buttons__list-icon {
     display: inline-block;
     margin-right: var(--spacing-small);
+    color: var(--html-blue);
   }
 
   .social-share-buttons__list-icon:last-of-type {
