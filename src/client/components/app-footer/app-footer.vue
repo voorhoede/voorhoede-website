@@ -47,13 +47,11 @@
           </li>
           <li class="app-footer__list-item">
             <a
-              @click="trackLink('phone')"
               :href="`tel:${ cleanedPhoneNumber }`"
               class="app-footer__link">{{ content.phoneNumber }}</a>
           </li>
           <li class="app-footer__list-item">
             <a
-              @click="trackLink('email')"
               :href="`mailto:${ content.emailAddress }`"
               class="app-footer__link">{{ content.emailAddress }}</a>
           </li>
@@ -133,41 +131,8 @@ export default {
       return this.content.phoneNumber.replace(/[^0-9]/g, '')
     }
   },
-  mounted () {
-    if ('IntersectionObserver' in window) {
-      this.observeContact()
-    }
-  },
-  beforeDestroy() {
-    if (this.observer !== null) {
-      this.unobserveContact()
-    }
-  },
   methods: {
-    createHref,
-    observeContact () {
-      const contactElement = this.$refs.contact
-      const ga = this.$ga
-      const event = {
-        eventCategory: 'Contact',
-        eventAction: 'footer view',
-        eventLabel: this.$route.fullPath,
-        eventValue: 0
-      }
-      this.observer = new IntersectionObserver(function(entries) {
-        if (entries.some(entry => entry.isIntersecting)) {
-          ga.event(event)
-          this.unobserve(contactElement)
-        }
-      })
-      this.observer.observe(contactElement)
-    },
-    trackLink (linkType) {
-      this.$ga.event('Contact', `click ${linkType}`, this.$route.fullpath, 0)
-    },
-    unobserveContact () {
-      this.observer.unobserve(this.$refs.contact)
-    }
+    createHref
   },
 }
 </script>
