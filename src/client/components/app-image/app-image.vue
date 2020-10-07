@@ -22,15 +22,35 @@
       class="app-image__picture"
     >
       <!--[if IE 9]><video style="display: none;"><![endif]-->
-      <source type="image/webp" :srcset="imageUrl({ fm: 'webp', w: width })">
-      <source :type="`image/${image.format}`" :srcset="imageUrl({ w: width })">
+      <source
+        type="image/webp"
+        :srcset="imageUrl({
+          fm: 'webp',
+          w: width,
+          h: cropAndKeepRatio ? width : null,
+          fit: cropAndKeepRatio ? 'crop': null,
+          fit: avatarAndFaceFocus ? 'facearea': null,
+          facepad: avatarAndFaceFocus ? '2.25': null
+        })">
+      <source
+        :type="`image/${image.format}`"
+        :srcset="imageUrl({
+          w: width,
+          h: cropAndKeepRatio ? width : null,
+          fit: cropAndKeepRatio ? 'crop': null,
+          fit: avatarAndFaceFocus ? 'facearea': null,
+          facepad: avatarAndFaceFocus ? '2.25': null
+        })">
       <!--[if IE 9]></video><![endif]-->
       <img
         class="app-image__img"
         :src="imageUrl({
           w: width,
           h: cropAndKeepRatio ? width : null,
-          fit: cropAndKeepRatio ? 'crop': null })"
+          fit: cropAndKeepRatio ? 'crop': null,
+          fit: avatarAndFaceFocus ? 'facearea': null,
+          facepad: avatarAndFaceFocus ? '2.25': null
+        })"
         :alt="imageAlt">
     </picture>
   </component>
@@ -71,6 +91,10 @@
         default: 100,
       },
       cropAndKeepRatio: {
+        type: Boolean,
+        default: false
+      },
+      avatarAndFaceFocus: {
         type: Boolean,
         default: false
       },

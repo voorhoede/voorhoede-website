@@ -19,12 +19,18 @@
           <h3 class="blog-list-item__heading" :class="large ? 'h4' : 'body'">{{ item.title }}</h3>
           <div class="blog-list-item__author">
             <lazy-load v-for="author in item.authors" :key="author.name">
-              <img
+              <fixed-ratio
                 class="blog-list-item__image"
                 :class="{ 'blog-list-item__image--large': large }"
-                :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=65&h=65`"
-                alt=""
+                :width="65"
+                :height="65"
               >
+                <app-image
+                  :image="author.image"
+                  :crop-and-keep-ratio="true"
+                  :avatar-and-face-focus="true"
+                />
+              </fixed-ratio>
             </lazy-load>
             <span :class="large ? 'body' : 'body-petite'">{{ $t('by__authors_', { authors }) }}</span>
           </div>
@@ -35,11 +41,12 @@
 </template>
 
 <script>
+  import AppImage from '../app-image'
   import LazyLoad from '../lazy-load'
   import formatDate from '../../lib/format-date'
 
   export default {
-    components: { LazyLoad },
+    components: { AppImage, LazyLoad },
     props: {
       item: {
         type: Object,

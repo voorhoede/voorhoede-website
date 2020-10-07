@@ -11,6 +11,7 @@
         <app-image
           :image="author.image"
           :crop-and-keep-ratio="true"
+          :avatar-and-face-focus="true"
         />
       </fixed-ratio>
     </div>
