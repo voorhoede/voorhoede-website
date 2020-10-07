@@ -1,20 +1,22 @@
 <template>
   <div>
     <div class="blog-author__image">
-      <fixed-ratio
-        class="blog-author__image-ratio"
-        v-for="author in item.authors"
-        :key="author.name"
-        :width="author.image.width"
-        :height="author.image.width"
-      >
-        <app-image
-          :image="author.image"
-          :crop-and-keep-ratio="true"
-          :avatar-and-face-focus="true"
-          :width-step="135"
-        />
-      </fixed-ratio>
+      <div class="blog-author__image-container">
+        <fixed-ratio
+          class="blog-author__image-ratio"
+          v-for="author in item.authors"
+          :key="author.name"
+          :width="author.image.width"
+          :height="author.image.width"
+        >
+          <app-image
+            :image="author.image"
+            :crop-and-keep-ratio="true"
+            :avatar-and-face-focus="true"
+            :width-step="135"
+          />
+        </fixed-ratio>
+      </div>
     </div>
     <div class="blog-author__text body">
       <span>{{ $t('by__authors_', { authors }) }}</span>
@@ -70,21 +72,21 @@
     --thumbnail-size: 135px;
   }
 
-  .blog-author__image-ratio {
-    height: 100%;
-    width: 100%;
-    max-height: var(--thumbnail-size);
+  .blog-author__image-container {
     max-width: var(--thumbnail-size);
-    overflow: hidden;
-    margin-bottom: var(--spacing-small);
   }
 
   .blog-author__image {
     display: none;
+    margin-bottom: var(--spacing-small);
   }
 
-  .blog-author__image img {
-    object-position: 0 0;
+  .blog-author__image-ratio {
+    margin-top: var(--spacing-small);
+  }
+
+  .blog-author__image-ratio:first-child {
+    margin-top: 0;
   }
 
   .blog-author__text-time {

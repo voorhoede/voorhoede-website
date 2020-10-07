@@ -51,7 +51,10 @@
           fit: avatarAndFaceFocus ? 'facearea': null,
           facepad: avatarAndFaceFocus ? '2.25': null
         })"
-        :alt="imageAlt">
+        :alt="imageAlt"
+        :width="width"
+        :height="width"
+      >
     </picture>
   </component>
 </template>
