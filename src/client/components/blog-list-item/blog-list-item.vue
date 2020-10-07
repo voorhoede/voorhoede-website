@@ -20,20 +20,21 @@
           <div class="blog-list-item__author">
             <div
               class="blog-list-item__image-container"
+              :class="{'blog-list-item__image-container--large' : large}"
               v-for="author in item.authors"
               :key="author.name"
             >
               <fixed-ratio
                 class="blog-list-item__image"
                 :class="{ 'blog-list-item__image--large': large }"
-                :width="65"
-                :height="65"
+                :width="large ? 65 : 40"
+                :height="large ? 65 : 40"
               >
                 <app-image
                   :image="author.image"
                   :crop-and-keep-ratio="true"
                   :avatar-and-face-focus="true"
-                  :width-step="65"
+                  :width-step="large ? 65 : 40"
                 />
               </fixed-ratio>
             </div>
@@ -162,6 +163,10 @@
   }
 
   .blog-list-item__image-container {
+    height: var(--blog-thumbnail-small);
+  }
+
+  .blog-list-item__image-container--large {
     height: var(--blog-thumbnail-large);
   }
 
