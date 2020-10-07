@@ -12,6 +12,7 @@
           :image="author.image"
           :crop-and-keep-ratio="true"
           :avatar-and-face-focus="true"
+          :width-step="135"
         />
       </fixed-ratio>
     </div>
