@@ -26,30 +26,18 @@
         type="image/webp"
         :srcset="imageUrl({
           fm: 'webp',
-          w: width,
-          h: cropAndKeepRatio ? width : null,
-          fit: cropAndKeepRatio ? 'crop': null,
-          fit: avatarAndFaceFocus ? 'facearea': null,
-          facepad: avatarAndFaceFocus ? '2.25': null
+          ...cropOptions
         })">
       <source
         :type="`image/${image.format}`"
         :srcset="imageUrl({
-          w: width,
-          h: cropAndKeepRatio ? width : null,
-          fit: cropAndKeepRatio ? 'crop': null,
-          fit: avatarAndFaceFocus ? 'facearea': null,
-          facepad: avatarAndFaceFocus ? '2.25': null
+          ...cropOptions
         })">
       <!--[if IE 9]></video><![endif]-->
       <img
         class="app-image__img"
         :src="imageUrl({
-          w: width,
-          h: cropAndKeepRatio ? width : null,
-          fit: cropAndKeepRatio ? 'crop': null,
-          fit: avatarAndFaceFocus ? 'facearea': null,
-          facepad: avatarAndFaceFocus ? '2.25': null
+          ...cropOptions
         })"
         :alt="imageAlt"
         :width="width"
@@ -105,6 +93,7 @@
     data() {
       return {
         width: null,
+        cropOptions: null
       }
     },
     computed: {
@@ -120,6 +109,18 @@
       const cssWidth = this.$el.getBoundingClientRect().width
       const width = Math.ceil(cssWidth * pixelRatio / this.widthStep) * this.widthStep
       this.width = Math.min(width, this.image.width)
+      const cropOptions = {
+        w: this.width
+      }
+      if (this.cropAndKeepRatio) {
+        cropOptions.h = this.width
+        cropOptions.fit = 'crop'
+      }
+      if(this.avatarAndFaceFocus) {
+        cropOptions.facepad = 2.25
+        cropOptions.fit = 'facearea'
+      }
+      this.cropOptions = cropOptions
     },
     methods: {
       imageUrl(options) {
