@@ -37,23 +37,11 @@
             :caption="item.caption"
             :has-fixed-ratio="true"
           />
-          <cta-image-block
-            v-if="item.__typename === 'CallToActionRecord' && Boolean(item.person)"
+          <cta-block
+            v-if="item.__typename === 'CallToActionRecord'"
             :key="item.id"
-            :title="item.title"
-            :body="item.body"
-            :link-label="item.linkLabel"
-            :link-url="item.linkUrl"
-            :person-image="item.person.image.url"
-            :person-name="item.person.name"
-          />
-          <blockquote-block
-            v-if="item.__typename === 'CallToActionRecord' && Boolean(!item.person)"
-            :key="item.id"
-            :title="item.title"
-            :body="item.body"
-            :link-label="item.linkLabel"
-            :link-url="item.linkUrl"
+            :id="item.id"
+            :modular-item="item"
           />
         </template>
       </article>
@@ -84,8 +72,7 @@
     SET_PREVIOUS_SERVICE_SERIES_NAVIGATION
   } from '~/store/mutation-types'
   import BreadcrumbsBlock from '~/components/breadcrumbs-block'
-  import BlockquoteBlock from '~/components/blockquote-block'
-  import CtaImageBlock from '~/components/cta-image-block'
+  import CtaBlock from '~/components/cta-block'
   import GenericTextBlock from '~/components/generic-text-block'
   import PageHeader from '~/components/page-header'
   import PivotList from '~/components/pivot-list'
@@ -96,8 +83,7 @@
   export default {
     components: {
       BreadcrumbsBlock,
-      BlockquoteBlock,
-      CtaImageBlock,
+      CtaBlock,
       GenericTextBlock,
       PageHeader,
       PivotList,
