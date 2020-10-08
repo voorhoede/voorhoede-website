@@ -1,5 +1,5 @@
 <template>
-  <blockquote v-if="testimonial.validated" class="testimonial">
+  <blockquote v-if="testimonial.validated" class="testimonial-block">
     <div class="testimonial-block__container">
       <span class="testimonial-block__title h3">{{ testimonial.quote }}</span>
       <p v-if="testimonial.author" class="testimonial-block__author body-petite">{{ testimonial.author }}</p>
@@ -28,14 +28,14 @@
 </script>
 
 <style>
-  .testimonial {
+  .testimonial-block {
     margin: var(--spacing-larger) 0;
     padding-left: var(--spacing-larger);
     position: relative;
   }
 
   @media (min-width: 720px) {
-    .testimonial {
+    .testimonial-block {
       display: grid;
       grid-template-rows: repeat(2, auto);
       grid-template-columns: 63% 1fr; /* 63% == 550(text)/877(total width)*100 from design  */
