@@ -1,22 +1,20 @@
 <template>
   <div>
     <div class="blog-author__image">
-      <div class="blog-author__image-container">
-        <fixed-ratio
-          class="blog-author__image-ratio"
-          v-for="author in item.authors"
-          :key="author.name"
-          :width="author.image.width"
-          :height="author.image.width"
-        >
-          <app-image
-            :image="author.image"
-            :crop-and-keep-ratio="true"
-            :avatar-and-face-focus="true"
-            :width-step="135"
-          />
-        </fixed-ratio>
-      </div>
+      <fixed-ratio
+        class="blog-author__image-ratio"
+        v-for="author in item.authors"
+        :key="author.name"
+        :width="author.image.width"
+        :height="author.image.width"
+      >
+        <app-image
+          :image="author.image"
+          :crop-and-keep-ratio="true"
+          :avatar-and-face-focus="true"
+          :width-step="135"
+        />
+      </fixed-ratio>
     </div>
     <div class="blog-author__text body">
       <span>{{ $t('by__authors_', { authors }) }}</span>
@@ -95,14 +93,11 @@
   }
 
   @media (min-width: 720px) {
-    .blog-author__image-container {
-      margin-right: var(--spacing-small);
-    }
-
     .blog-author__image {
       display: block;
       border-right: 2px solid var(--very-dim);
       filter: saturate(0);
+      padding-right: var(--spacing-small);
       max-width: calc(var(--thumbnail-size) + var(--spacing-small) + 2px);
     }
 
@@ -113,11 +108,8 @@
   }
 
   @media (min-width: 1100px) {
-    .blog-author__image-container {
-      margin-right: var(--spacing-larger);
-    }
-
     .blog-author__image {
+      padding-right: var(--spacing-larger);
       max-width: calc(var(--thumbnail-size) + var(--spacing-larger) + 2px);
     }
   }
