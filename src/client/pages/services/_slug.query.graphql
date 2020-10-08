@@ -81,6 +81,10 @@ fragment page on ServiceRecord {
         name
         image {
           url
+          alt
+          width
+          height
+          format
         }
       }
     }

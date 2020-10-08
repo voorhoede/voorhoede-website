@@ -1,11 +1,10 @@
 <template>
   <div class="cta-image-block body-big">
-    <picture class="cta-image-block__picture">
-      <img
-        :src="personImage"
-        class="cta-image-block__image"
-        :alt="personName" />
-    </picture>
+    <app-image
+      :width-step="120"
+      :image="personImage"
+      class="cta-image-block__image"
+      :alt="personName" />
 
     <div class="cta-image-block__content">
       <h2
@@ -37,11 +36,13 @@
 
 <script>
   import AppButton from '../app-button'
+  import AppImage from '../app-image'
   import RichTextBlock from '../rich-text-block'
 
   export default {
     components: {
       AppButton,
+      AppImage,
       RichTextBlock
     },
     props: {
@@ -66,7 +67,7 @@
         default: false
       },
       personImage: {
-        type: String,
+        type: Object,
         required: true,
       },
       personName: {
@@ -81,7 +82,7 @@
   .cta-image-block {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: stretch;
     margin-bottom: var(--spacing-large);
     width: 100%;
   }
@@ -92,30 +93,15 @@
     }
   }
 
-  .cta-image-block__picture {
-    display: flex;
-    min-width: 120px;
-    flex-basis: 40%;
-    max-height: 180px;
+  .cta-image-block__image {
+    max-width: 135px;
+    margin: var(--spacing-small) 0;
     z-index: 1;
   }
 
-  @media (min-width: 720px) {
-    .cta-image-block__picture {
-      flex-basis: 32%;
-      max-width: 160px;
-    }
-  }
-
-  .cta-image-block img {
-    max-width: 100%;
-    object-fit: cover;
-    object-position: 0 -50px;
-  }
-
   @media (min-width: 600px) {
-    .cta-image-block img {
-      object-position: 0 0;
+    .cta-image-block__image {
+      margin: var(--spacing-medium) 0;
     }
   }
 
@@ -123,14 +109,15 @@
     background: var(--bg-pastel);
     display: flex;
     flex-direction: column;
-    padding: var(--spacing-large);
     justify-content: center;
+    padding: var(--spacing-small) var(--spacing-small) var(--spacing-small) var(--spacing-medium);
+    margin-left: calc(-1 * var(--spacing-small));
   }
 
   @media (min-width: 600px) {
     .cta-image-block__content {
-      padding: var(--spacing-large) var(--spacing-large) var(--spacing-large) var(--spacing-larger);
-      margin-left: calc(-1 * (var(--spacing-larger) - var(--spacing-large)));
+      padding: var(--spacing-medium) var(--spacing-medium) var(--spacing-medium) var(--spacing-larger);
+      margin-left: calc(-1 * var(--spacing-medium));
     }
   }
 
