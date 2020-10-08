@@ -11,6 +11,8 @@
         <app-image
           :image="author.image"
           :crop-and-keep-ratio="true"
+          :avatar-and-face-focus="true"
+          :width-step="135"
         />
       </fixed-ratio>
     </div>
@@ -66,23 +68,24 @@
 <style>
   :root {
     --thumbnail-size: 135px;
+    --author-image-border-width: 2px;
   }
 
-  .blog-author__image-ratio {
-    height: 100%;
-    width: 100%;
-    max-height: var(--thumbnail-size);
+  .blog-author__image-container {
     max-width: var(--thumbnail-size);
-    overflow: hidden;
-    margin-bottom: var(--spacing-small);
   }
 
   .blog-author__image {
     display: none;
+    margin-bottom: var(--spacing-small);
   }
 
-  .blog-author__image img {
-    object-position: 0 0;
+  .blog-author__image-ratio {
+    margin-top: var(--spacing-small);
+  }
+
+  .blog-author__image-ratio:first-child {
+    margin-top: 0;
   }
 
   .blog-author__text-time {
@@ -93,9 +96,10 @@
   @media (min-width: 720px) {
     .blog-author__image {
       display: block;
-      padding-right: var(--spacing-small);
       border-right: 2px solid var(--very-dim);
       filter: saturate(0);
+      padding-right: var(--spacing-small);
+      max-width: calc(var(--thumbnail-size) + var(--spacing-small) + var(--author-image-border-width));
     }
 
     .blog-author__text {
@@ -107,6 +111,7 @@
   @media (min-width: 1100px) {
     .blog-author__image {
       padding-right: var(--spacing-larger);
+      max-width: calc(var(--thumbnail-size) + var(--spacing-larger) + var(--author-image-border-width));
     }
   }
 </style>

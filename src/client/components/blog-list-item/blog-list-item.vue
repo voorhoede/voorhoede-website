@@ -18,14 +18,26 @@
         <div class="blog-list-item__details">
           <h3 class="blog-list-item__heading" :class="large ? 'h4' : 'body'">{{ item.title }}</h3>
           <div class="blog-list-item__author">
-            <lazy-load v-for="author in item.authors" :key="author.name">
-              <img
+            <div
+              class="blog-list-item__image-container"
+              :class="{'blog-list-item__image-container--large' : large}"
+              v-for="author in item.authors"
+              :key="author.name"
+            >
+              <fixed-ratio
                 class="blog-list-item__image"
                 :class="{ 'blog-list-item__image--large': large }"
-                :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=65&h=65`"
-                alt=""
+                :width="large ? 65 : 40"
+                :height="large ? 65 : 40"
               >
-            </lazy-load>
+                <app-image
+                  :image="author.image"
+                  :crop-and-keep-ratio="true"
+                  :avatar-and-face-focus="true"
+                  :width-step="large ? 65 : 40"
+                />
+              </fixed-ratio>
+            </div>
             <span :class="large ? 'body' : 'body-petite'">{{ $t('by__authors_', { authors }) }}</span>
           </div>
         </div>
@@ -35,11 +47,11 @@
 </template>
 
 <script>
-  import LazyLoad from '../lazy-load'
+  import AppImage from '../app-image'
   import formatDate from '../../lib/format-date'
 
   export default {
-    components: { LazyLoad },
+    components: { AppImage },
     props: {
       item: {
         type: Object,
@@ -148,6 +160,14 @@
   .blog-list-item__image--large {
     height: var(--blog-thumbnail-large);
     width: var(--blog-thumbnail-large);
+  }
+
+  .blog-list-item__image-container {
+    height: var(--blog-thumbnail-small);
+  }
+
+  .blog-list-item__image-container--large {
+    height: var(--blog-thumbnail-large);
   }
 
   .blog-list-item__author {
