@@ -68,6 +68,7 @@
 <style>
   :root {
     --thumbnail-size: 135px;
+    --author-image-border-width: 2px;
   }
 
   .blog-author__image-container {
@@ -98,7 +99,7 @@
       border-right: 2px solid var(--very-dim);
       filter: saturate(0);
       padding-right: var(--spacing-small);
-      max-width: calc(var(--thumbnail-size) + var(--spacing-small) + 2px);
+      max-width: calc(var(--thumbnail-size) + var(--spacing-small) + var(--author-image-border-width));
     }
 
     .blog-author__text {
@@ -110,7 +111,7 @@
   @media (min-width: 1100px) {
     .blog-author__image {
       padding-right: var(--spacing-larger);
-      max-width: calc(var(--thumbnail-size) + var(--spacing-larger) + 2px);
+      max-width: calc(var(--thumbnail-size) + var(--spacing-larger) + var(--author-image-border-width));
     }
   }
 </style>
