@@ -48,8 +48,9 @@
     margin-left: var(--spacing-smaller);
   }
 
-  .testimonial::before {
+  .testimonial-block::before {
     content: '"';
+    font-family: var(--font-sans);
     color: var(--html-blue);
     display: inline-block;
     position: absolute;
@@ -62,6 +63,7 @@
     color: var(--html-blue);
     background: var(--paper);
     box-shadow: 0 0 0 10px var(--paper), 0 0 0 10px var(--paper);
+    line-height: 1.5;
   }
 
   .testimonial-block__author {
