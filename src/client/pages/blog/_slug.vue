@@ -269,7 +269,6 @@ export default {
   }
 
   .page-blog-post__aside {
-    display: flex;
     justify-content: space-between;
     grid-row: 2;
   }
@@ -334,7 +333,6 @@ export default {
     }
 
     .page-blog-post__aside {
-      display: block;
       grid-column-start: 2;
       grid-column-end: 9;
     }
