@@ -22,20 +22,16 @@
       -->
       <p
         v-if="heading === 'headline'"
-        class="sub-title"
-      >
-        <span
-          v-html="byline"
-          class="animation__uncover"
-        />
-      </p>
+        class="sub-title animation__uncover"
+        v-html="byline"
+      />
       <h1
         :class="{
           'sub-title': heading === 'byline',
           'sr-only': heading === 'headline'
         }"
       >
-        <span
+        <div
           v-html="heading === 'byline' ? byline : headline"
           class="animation__uncover"
         />
