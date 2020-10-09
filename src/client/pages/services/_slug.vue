@@ -280,6 +280,7 @@
       grid-template-columns: 70% 1fr;
     }
 
+    .page-service__overview .blockquote-block,
     .page-service__overview .cta-image-block {
       width: 70%;
     }
