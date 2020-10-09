@@ -15,7 +15,7 @@
         }"
       >
         <h2 v-if="section.title" class="h2">{{ section.title }}</h2>
-        <div class="body" v-html="section.body"/>
+        <div class="body-big" v-html="section.body"/>
       </div>
     </component>
   </div>
