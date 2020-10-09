@@ -34,7 +34,12 @@
     props: {
       modularItem: {
         type: Object,
-        required: true
+        required: true,
+        validator(item) {
+          const titleCheck = item.title && typeof(item.title) === 'string'
+          const bodyCheck = item.body && typeof(item.body) === 'string'
+          return bodyCheck && titleCheck
+        },
       }
     }
   }

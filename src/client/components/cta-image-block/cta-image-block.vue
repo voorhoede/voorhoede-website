@@ -48,11 +48,13 @@
     props: {
       title: {
         type: String,
-        default: null
+        default: null,
+        required: true
       },
       body: {
         type: String,
-        default: null
+        default: null,
+        required: true
       },
       linkLabel: {
         type: String,
