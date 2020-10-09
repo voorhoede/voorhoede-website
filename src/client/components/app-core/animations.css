@@ -66,6 +66,7 @@
   =================== uncover
 */
 .is-animated .animation__uncover {
+  display: inline-block;
   position: relative;
   animation-delay: var(--animation-delay);
 }
