@@ -1,16 +1,16 @@
-on: pull_request
+# on: pull_request
 
-jobs:
-  audit:
-    name: Audit pull request
-    runs-on: ubuntu-latest
-    steps:
-    - name: Audit Netlify deploy preview
-      uses: jakejarvis/lighthouse-action@master
-      with:
-        netlify_site: 'voorhoede-dragonfly.netlify.com'
-    - name: Upload results as an artifact
-      uses: actions/upload-artifact@master
-      with:
-        name: report
-        path: './report'
+# jobs:
+#   audit:
+#     name: Audit pull request
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: Audit Netlify deploy preview
+#       uses: jakejarvis/lighthouse-action@master
+#       with:
+#         netlify_site: 'voorhoede-dragonfly.netlify.com'
+#     - name: Upload results as an artifact
+#       uses: actions/upload-artifact@master
+#       with:
+#         name: report
+#         path: './report'

@@ -1,25 +1,25 @@
-on: pull_request
+# on: pull_request
 
-jobs:
-  build:
-    name: Tests
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
+# jobs:
+#   build:
+#     name: Tests
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
 
-    # Creates a new cache when package-lock changes.
-    - name: Cache node modules
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
+#     # Creates a new cache when package-lock changes.
+#     - name: Cache node modules
+#       uses: actions/cache@v1
+#       with:
+#         path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+#         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+#         restore-keys: |
+#           ${{ runner.os }}-build-${{ env.cache-name }}-
+#           ${{ runner.os }}-build-
+#           ${{ runner.os }}-
 
-    - name: Run unit tests
-      run: |
-        npm ci
-        npm run test
+#     - name: Run unit tests
+#       run: |
+#         npm ci
+#         npm run test
 

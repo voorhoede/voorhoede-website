@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check links
-      id: link-report # add id to use in next step
+      id: link-report
       uses: celinekurpershoek/github-actions-link-checker@master
       with:
         url: 'https://voorhoede.nl'
-        ignoreUrls: 'linkedin'
+        ignorePatterns: 'linkedin'
     - name: Get the result
       run: echo "${{steps.link-report.outputs.result}}"
