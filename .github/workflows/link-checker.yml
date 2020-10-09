@@ -13,7 +13,7 @@ jobs:
       id: link-report
       uses: celinekurpershoek/github-actions-link-checker@master
       with:
-        url: 'https://voorhoede.nl'
+        url: 'https://voorhoede.nl/nl/'
         ignorePatterns: 'linkedin'
         recursiveLinks: true
     - name: Get the result
