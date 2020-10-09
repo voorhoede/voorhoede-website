@@ -157,7 +157,7 @@
   }
 
   .page-index .page-introduction {
-    padding-top: var(--spacing-larger);
+    padding: var(--spacing-larger) 0;
   }
 
   .page-index__services {
