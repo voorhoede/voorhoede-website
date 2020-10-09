@@ -1,5 +1,5 @@
 <template>
-  <div class="cta-image-block body-big">
+  <div class="cta-image-block">
     <app-image
       :width-step="120"
       :image="personImage"
@@ -48,13 +48,11 @@
     props: {
       title: {
         type: String,
-        default: null,
-        required: true
+        default: null
       },
       body: {
         type: String,
-        default: null,
-        required: true
+        default: null
       },
       linkLabel: {
         type: String,
@@ -95,6 +93,14 @@
     }
   }
 
+  .cta-image-block__title {
+    margin-bottom: var(--spacing-tiny);
+  }
+
+  .cta-image-block__link {
+    margin-top: var(--spacing-small);
+  }
+
   .cta-image-block__image {
     max-width: 135px;
     margin: var(--spacing-small) 0;
@@ -121,14 +127,5 @@
       padding: var(--spacing-medium) var(--spacing-medium) var(--spacing-medium) var(--spacing-larger);
       margin-left: calc(-1 * var(--spacing-medium));
     }
-  }
-
-  .cta-image-block__title {
-    padding-top: var(--spacing-tiny);
-    margin-bottom: var(--spacing-tiny);
-  }
-
-  .cta-image-block__link {
-    margin-top: var(--spacing-small);
   }
 </style>

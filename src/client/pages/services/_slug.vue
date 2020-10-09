@@ -41,7 +41,7 @@
             v-if="item.__typename === 'CallToActionRecord'"
             :key="item.id"
             :id="item.id"
-            :modular-item="item"
+            :item="item"
           />
         </template>
       </article>
@@ -276,9 +276,12 @@
       grid-column: var(--grid-content);
     }
 
-    .page-service__overview .generic-text-block,
-    .page-service__overview .cta-image-block {
+    .page-service__overview .generic-text-block {
       grid-template-columns: 70% 1fr;
+    }
+
+    .page-service__overview .cta-image-block {
+      width: 70%;
     }
 
     .page-service__overview .blockquote-block__title {

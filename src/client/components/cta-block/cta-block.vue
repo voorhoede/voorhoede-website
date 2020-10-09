@@ -1,25 +1,23 @@
 <template>
-  <div>
-    <cta-image-block
-      v-if="Boolean(modularItem.person)"
-      :key="modularItem.id"
-      :title="modularItem.title"
-      :body="modularItem.body"
-      :link-label="modularItem.linkLabel"
-      :link-url="modularItem.linkUrl"
-      :person-image="modularItem.person.image"
-      :person-name="modularItem.person.name"
-    />
+  <cta-image-block
+    v-if="Boolean(item.person)"
+    :key="item.id"
+    :title="item.title"
+    :body="item.body"
+    :link-label="item.linkLabel"
+    :link-url="item.linkUrl"
+    :person-image="item.person.image"
+    :person-name="item.person.name"
+  />
 
-    <blockquote-block
-      v-if="Boolean(!modularItem.person)"
-      :key="modularItem.id"
-      :title="modularItem.title"
-      :body="modularItem.body"
-      :link-label="modularItem.linkLabel"
-      :link-url="modularItem.linkUrl"
-    />
-  </div>
+  <blockquote-block
+    v-else
+    :key="item.id"
+    :title="item.title"
+    :body="item.body"
+    :link-label="item.linkLabel"
+    :link-url="item.linkUrl"
+  />
 </template>
 
 <script>
@@ -32,14 +30,9 @@
       CtaImageBlock,
     },
     props: {
-      modularItem: {
+      item: {
         type: Object,
-        required: true,
-        validator(item) {
-          const titleCheck = item.title && typeof(item.title) === 'string'
-          const bodyCheck = item.body && typeof(item.body) === 'string'
-          return bodyCheck && titleCheck
-        },
+        required: true
       }
     }
   }
