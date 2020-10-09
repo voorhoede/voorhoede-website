@@ -52,8 +52,16 @@ fragment page on HomeRecord {
     url
     alt
   }
-  usps {
-    line
+  pageIntroductionSections {
+    title
+    body
+    image {
+      width
+    height
+    format
+    url
+    alt
+    }
   }
   casesTitle
   cases {

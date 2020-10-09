@@ -11,9 +11,9 @@
         is-animated
         :animation-delay="page.headerTitle.length * typeDurationLetter"
       />
-      <div class="grid">
-        <scroll-text :items="page.usps" />
-      </div>
+      <page-introduction
+        :sections="page.pageIntroductionSections"
+      />
     </div>
     <section class="page-index__services grid">
       <h2 class="page-index__section-title h1">{{ page.servicesHeader }}</h2>
@@ -107,7 +107,7 @@
   import PageHeader from '~/components/page-header'
   import ScrollTo from '~/components/scroll-to'
   import ServicesList from '~/components/services-list'
-  import ScrollText from '~/components/scroll-text'
+  import PageIntroduction from '~/components/page-introduction'
 
   export default {
     components: {
@@ -122,7 +122,7 @@
       PageHeader,
       ScrollTo,
       ServicesList,
-      ScrollText,
+      PageIntroduction,
     },
     asyncData,
     computed: {
@@ -156,7 +156,7 @@
     background-color: var(--bg-pastel);
   }
 
-  .page-index .scroll-text {
+  .page-index .page-introduction {
     padding-top: var(--spacing-larger);
   }
 
