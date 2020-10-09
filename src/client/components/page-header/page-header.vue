@@ -47,7 +47,7 @@
       />
       <!-- Always visible, but has aria-hidden -->
       <self-typing-text
-        :class="fillScreen ? 'hero' : 'h1'"
+        class="h1"
         :text="headline"
       />
     </div>
