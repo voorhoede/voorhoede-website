@@ -14,6 +14,7 @@ jobs:
       uses: celinekurpershoek/github-actions-link-checker@master
       with:
         url: 'https://voorhoede.nl'
-        ignorePatterns: 'linkedin'
+        ignorePatterns: 'linkedin',
+        recursiveLinks: true
     - name: Get the result
       run: echo "${{steps.link-report.outputs.result}}"
