@@ -9,7 +9,7 @@
         :headline="page.headerTitle"
         :image="page.headerIllustration"
         is-animated
-        :animation-delay="page.headerTitle.length * typeDurationLetter"
+        :animation-delay="pageHeaderAnimationDelay"
       />
       <page-introduction
         :sections="page.pageIntroductionSections"
@@ -134,8 +134,11 @@
           externalLink: this.page.ctaUrl,
         }]
       },
-      typeDurationLetter() {
+      selfTypingTextInterval() {
         return getSelfTypingTextInterval(this.page.headerTitle) / 1000
+      },
+      pageHeaderAnimationDelay() {
+        return this.page.headerTitle.length * this.selfTypingTextInterval
       }
     },
     methods: {
