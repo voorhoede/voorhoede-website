@@ -93,6 +93,7 @@
 
 <script>
   import asyncData from '~/lib/async-page'
+  import getSelfTypingTextInterval from '~/lib/get-self-typing-text-interval'
   import head from '~/lib/seo-head'
 
   import AcademyExcerpt from '~/components/academy-excerpt'
@@ -124,11 +125,6 @@
       ScrollText,
     },
     asyncData,
-    data() {
-      return {
-        typeDurationLetter: .05, // average duration per letter in seconds
-      }
-    },
     computed: {
       ctaPivot () {
         return [{
@@ -138,6 +134,9 @@
           externalLink: this.page.ctaUrl,
         }]
       },
+      typeDurationLetter() {
+        return getSelfTypingTextInterval(this.page.headerTitle) / 1000
+      }
     },
     methods: {
       isLast(index, usps) {
