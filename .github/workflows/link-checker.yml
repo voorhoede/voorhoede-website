@@ -15,6 +15,6 @@ jobs:
       with:
         url: 'https://voorhoede.nl/nl/'
         ignorePatterns: 'linkedin'
-        recursiveLinks: true
+        recursiveLinks: false
     - name: Get the result
       run: echo "${{steps.link-report.outputs.result}}"
