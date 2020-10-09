@@ -1,6 +1,6 @@
 <template>
   <div class="cta-image-block">
-    <app-image
+    <responsive-image
       :width-step="120"
       :image="personImage"
       class="cta-image-block__image"
@@ -36,13 +36,13 @@
 
 <script>
   import AppButton from '../app-button'
-  import AppImage from '../app-image'
+  import ResponsiveImage from '../responsive-image'
   import RichTextBlock from '../rich-text-block'
 
   export default {
     components: {
       AppButton,
-      AppImage,
+      ResponsiveImage,
       RichTextBlock
     },
     props: {
@@ -85,12 +85,6 @@
     align-items: stretch;
     margin-bottom: var(--spacing-large);
     width: 100%;
-  }
-
-  @media (min-width: 720px) {
-    .cta-image-block {
-      width: 70%;
-    }
   }
 
   .cta-image-block__title {

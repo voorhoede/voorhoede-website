@@ -229,7 +229,7 @@
     flex-direction: column;
   }
 
-  .page-service__overview .responsive-image,
+  .page-service__overview > .responsive-image,
   .page-service__overview .generic-text-block,
   .page-service__overview .blockquote-block,
   .page-service__overview .cta-image-block {
@@ -305,7 +305,7 @@
       line-height: 1.3333333333;
     }
 
-    .page-service__overview .responsive-image {
+    .page-service__overview > .responsive-image {
       width: 70%;
     }
   }
