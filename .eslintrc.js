@@ -22,6 +22,7 @@ module.exports = {
     'no-debugger': 0,
     'no-console': 1,
     'no-unused-vars': 1,
+    'no-prototype-builtins': 0,
     'vue/component-name-in-template-casing': 0,
     'vue/html-closing-bracket-newline': 0,
     'vue/max-attributes-per-line': 0,

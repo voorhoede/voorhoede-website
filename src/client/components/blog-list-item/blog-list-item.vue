@@ -1,11 +1,11 @@
 <template>
   <article>
     <nuxt-link
-      :to="localeUrl({ name: 'blog-slug', params: { slug: item.slug } })"
+      :to="localeUrl({ name: linkName, params: { slug: item.slug } })"
       class="blog-list-item"
       :class="{'blog-list-item--large' : large}"
       :aria-label="item.title"
-      lang="en"
+      :lang="language"
     >
       <div class="blog-list-item__content">
         <time
@@ -18,14 +18,26 @@
         <div class="blog-list-item__details">
           <h3 class="blog-list-item__heading" :class="large ? 'h4' : 'body'">{{ item.title }}</h3>
           <div class="blog-list-item__author">
-            <lazy-load v-for="author in item.authors" :key="author.name">
-              <img
+            <div
+              class="blog-list-item__image-container"
+              :class="{'blog-list-item__image-container--large' : large}"
+              v-for="author in item.authors"
+              :key="author.name"
+            >
+              <fixed-ratio
                 class="blog-list-item__image"
                 :class="{ 'blog-list-item__image--large': large }"
-                :src="`${author.image.url}?auto=compress&auto=quality&fm=jpeg&w=65&h=65&fit=crop`"
-                alt=""
+                :width="large ? 65 : 40"
+                :height="large ? 65 : 40"
               >
-            </lazy-load>
+                <app-image
+                  :image="author.image"
+                  :crop-and-keep-ratio="true"
+                  :avatar-and-face-focus="true"
+                  :width-step="large ? 65 : 40"
+                />
+              </fixed-ratio>
+            </div>
             <span :class="large ? 'body' : 'body-petite'">{{ $t('by__authors_', { authors }) }}</span>
           </div>
         </div>
@@ -35,11 +47,11 @@
 </template>
 
 <script>
-  import LazyLoad from '../lazy-load'
+  import AppImage from '../app-image'
   import formatDate from '../../lib/format-date'
 
   export default {
-    components: { LazyLoad },
+    components: { AppImage },
     props: {
       item: {
         type: Object,
@@ -54,11 +66,18 @@
       large: {
         type: Boolean,
         default: false,
-      }
+      },
+      linkName: {
+        type: String,
+        default: 'blog-slug',
+      },
     },
     computed: {
       authors () {
         return `${this.item.authors.map(author => author.name).join(', ')}`
+      },
+      language() {
+        return this.linkName === 'blog-slug' ? 'en' : null
       },
       formattedDate() {
         return formatDate({
@@ -130,7 +149,9 @@
 
   .blog-list-item__image {
     display: block;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: 0 0;
+    filter: saturate(0);
     height: var(--blog-thumbnail-small);
     width: var(--blog-thumbnail-small);
     margin-right: var(--spacing-smaller);
@@ -139,6 +160,14 @@
   .blog-list-item__image--large {
     height: var(--blog-thumbnail-large);
     width: var(--blog-thumbnail-large);
+  }
+
+  .blog-list-item__image-container {
+    height: var(--blog-thumbnail-small);
+  }
+
+  .blog-list-item__image-container--large {
+    height: var(--blog-thumbnail-large);
   }
 
   .blog-list-item__author {

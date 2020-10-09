@@ -1,0 +1,128 @@
+query ($locale: SiteLocale, $slug: String) {
+  page: update(locale: $locale, filter: {slug: {eq: $slug}}) {
+    ...page
+  }
+}
+
+fragment page on UpdateRecord {
+  title,
+  subtitle,
+  headerIllustration {
+    url,
+    alt
+  },
+  slug,
+  social {
+    title,
+    description
+  },
+  keywords,
+  items {
+    __typename
+    ... on ImageRecord {
+      image {
+        url
+        alt
+        width
+        height
+        format
+      }
+      caption
+      fullWidth
+    }
+    ... on ImageWithTextRecord {
+      imageWithDescription {
+        image {
+          url
+          alt
+          width
+          height
+          format
+        }
+        description
+        inverse
+      }
+    }
+    ... on LinkSectionRecord {
+      link
+      label
+      external
+    }
+    ... on QuoteRecord {
+      quote
+      author
+    }
+    ... on ResponsiveVideoRecord {
+      mute
+      loop
+      autoplay
+      video {
+        url
+        title
+        height
+        width
+        provider
+        providerUid
+        thumbnailUrl
+      }
+      gif {
+        url
+        title
+        width
+        height
+      }
+    }
+    ... on TextSectionRecord {
+      title
+      body
+    }
+  }
+  pivots {
+    title
+    body(markdown: true)
+    buttonLabel: callToActionLabel
+    mailchimpValue
+    mailchimpName
+    mailchimpId
+    link {
+      title
+      url
+      page {
+        ... on HomeRecord {
+          slug
+        }
+        ... on ServiceOverviewRecord {
+          slug
+        }
+        ... on CaseOverviewRecord {
+          slug
+        }
+        ... on BlogPostOverviewRecord {
+          slug
+        }
+        ... on JobOverviewRecord {
+          slug
+        }
+        ... on AboutRecord {
+          slug
+        }
+        ... on ContactRecord {
+          slug
+        }
+      }
+    }
+    externalLink
+    formType
+    contactPerson {
+      name
+      lastName
+      jobTitle
+      image {
+        width
+        height
+        url
+        format
+      }
+    }
+  }
+}

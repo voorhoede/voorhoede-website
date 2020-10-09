@@ -33,6 +33,12 @@ module.exports = appConfig.googleAnalyticsId &&
        */
       { field: 'expId', value: appConfig.experimentId },
       { field: 'expVar', value: process.env.BRANCH },
+      /**
+       * Add tracking version for reference
+       * @see https://philipwalton.com/articles/the-google-analytics-setup-i-use-on-every-site-i-build/
+       * @see /docs/analytics.md
+       */
+      { field: 'dimension1', value: appConfig.trackingVersion },
     ].filter(item => !!item.value),
     /**
      * Extend default tracking behaviour

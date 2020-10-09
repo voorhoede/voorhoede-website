@@ -20,10 +20,29 @@ query ($locale: SiteLocale) {
       }
     }
   }
-  pivots: allPivotSections(locale: $locale, filter: {routes: {matches: {pattern: "blog"}}}) {
+}
+
+fragment blogPostOverview on BlogPostOverviewRecord {
+  title
+  slug
+  social {
     title
-    body
-    callToActionLabel
+    description
+  }
+  keywords
+  subtitle
+  description
+  headerIllustration {
+    url
+    alt
+  }
+  pivots {
+    title
+    body(markdown: true)
+    buttonLabel: callToActionLabel
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url
@@ -51,21 +70,18 @@ query ($locale: SiteLocale) {
         }
       }
     }
-  }
-}
-
-fragment blogPostOverview on BlogPostOverviewRecord {
-  title
-  slug
-  social {
-    title
-    description
-  }
-  keywords
-  subtitle
-  description
-  headerIllustration {
-    url
-    alt
+    externalLink
+    formType
+    contactPerson {
+      name
+      lastName
+      jobTitle
+      image {
+        width
+        height
+        url
+        format
+      }
+    }
   }
 }

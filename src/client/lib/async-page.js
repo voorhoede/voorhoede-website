@@ -29,7 +29,7 @@ const fetchPage = process.env.NODE_ENV === 'production'
     let queryPath
 
     const slug = route.params.slug
-    const routeName = route.name.match(`.*(?=${i18n.routesNameSeparator})`)[0]
+    const routeName = route.name.match('.*(?=___)')[0]
     const variables = {
       locale: i18n.locale,
       currentDate: dayjs().format('YYYY-MM-DD')

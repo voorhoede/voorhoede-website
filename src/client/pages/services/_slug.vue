@@ -1,52 +1,213 @@
 <template>
-  <main class="page-service grid">
-    <page-header
-      heading="headline"
-      :byline="page.title"
-      :headline="page.subtitle"
-      :image="page.headerIllustration"
+  <div>
+    <main class="page-service grid">
+      <page-header
+        heading="headline"
+        :byline="page.title"
+        :headline="page.subtitle"
+        :image="page.headerIllustration"
+      />
+      <series-navigation
+        v-if="shownSeriesNavigation"
+        class="page-service__series-navigation"
+        :title-route="seriesNavigationTitleRoutes"
+        :child-routes="seriesNavigationChildRoutes"
+      />
+      <article class="page-service__overview">
+        <template v-for="item in page.items">
+          <generic-text-block
+            v-if="item.__typename === 'GenericTextBlockRecord'"
+            :key="item.id"
+            :id="item.id"
+            :title="item.title"
+            :body="item.body"
+            :image="item.image"
+          />
+          <testimonial-block
+            v-if="item.__typename === 'TestimonialBlockRecord'"
+            :key="item.id"
+            :id="item.id"
+            :testimonial="item.testimonial"
+          />
+          <responsive-image
+            v-if="item.__typename === 'ImageRecord'"
+            :key="item.id"
+            :id="item.id"
+            :image="item.image"
+            :caption="item.caption"
+            :has-fixed-ratio="true"
+          />
+          <blockquote-block
+            v-if="item.__typename === 'CallToActionRecord'"
+            :key="item.id"
+            :id="item.id"
+            :title="item.title"
+            :body="item.body"
+            :link-label="item.linkLabel"
+            :link-url="item.linkUrl"
+            :link-is-external="item.linkIsExternal"
+          />
+        </template>
+      </article>
+      <breadcrumbs-block
+        :back-link="backLinkRoute"
+        :back-link-label="backLinkLabel"
+        :next-link="nextLinkRoute"
+        :next-link-label="nextLinkLabel"
+      />
+    </main>
+    <pivot-list
+      class="page-service__pivots"
+      v-if="page.pivots && page.pivots.length"
+      :pivots="page.pivots"
+      :can-have-border-top="false"
     />
-    <article class="page-service__overview">
-      <template v-for="item in page.items">
-        <generic-text-block
-          v-if="item.__typename === 'GenericTextBlockRecord'"
-          :key="item.title"
-          :title="item.title"
-          :body="item.body"
-          :image="item.image"
-        />
-        <responsive-image
-          v-if="item.__typename === 'ImageRecord'"
-          :key="item.image.url"
-          :image="item.image"
-          :has-fixed-ratio="true"
-        />
-      </template>
-    </article>
-    <pivot-section
-      v-if="pivots && pivots.length"
-      class="page-service__pivot-section"
-      :pivot="pivots[0]"
-    />
-  </main>
+  </div>
 </template>
 
 <script>
-  import asyncData from '~/lib/async-page'
+  import { mapMutations } from 'vuex'
+
+  import asyncPage from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import PageHeader from '~/components/page-header'
+
+  import {
+    SET_PREVIOUS_SERVICE_TITLE,
+    SET_PREVIOUS_SERVICE_SERIES_NAVIGATION
+  } from '~/store/mutation-types'
+  import BreadcrumbsBlock from '~/components/breadcrumbs-block'
   import GenericTextBlock from '~/components/generic-text-block'
-  import PivotSection from '~/components/pivot-section'
+  import PageHeader from '~/components/page-header'
+  import PivotList from '~/components/pivot-list'
+  import BlockquoteBlock from '~/components/blockquote-block'
   import ResponsiveImage from '~/components/responsive-image'
+  import SeriesNavigation from '~/components/series-navigation'
+  import TestimonialBlock from '~/components/testimonial-block'
 
   export default {
     components: {
-      PageHeader,
+      BreadcrumbsBlock,
       GenericTextBlock,
-      PivotSection,
+      PageHeader,
+      PivotList,
+      BlockquoteBlock,
       ResponsiveImage,
+      SeriesNavigation,
+      TestimonialBlock
     },
-    asyncData,
+    async asyncData(context) {
+      try {
+        const data = await asyncPage(context)
+
+        if (!data.page) {
+          throw 'Invalid page data'
+        }
+
+        /**
+         * The breadcrumbs back link is linking to the previous route when available
+         * and when the previous route is also a service page.
+         * However, the breadcrumbs next route could also be the same as this previous route.
+         * In that case, a link back to the services overview is displayed.
+         * Also, when no previous route is known, a link back to the service overview page is shown.
+         */
+        const previousRouteIsServiceSlugPage = context.from && context.from.name === context.route.name
+        const breadcrumbsNextServiceIsPreviousRoute = (
+          previousRouteIsServiceSlugPage
+          && data.page.breadcrumbsNextService
+          && data.page.breadcrumbsNextService.slug === context.from.params.slug
+        )
+        const useFallbackBackRoute = !previousRouteIsServiceSlugPage || breadcrumbsNextServiceIsPreviousRoute
+        const backLinkRoute = useFallbackBackRoute ? context.app.localePath('services') : context.from
+
+        return {
+          ...data,
+          useFallbackBackRoute,
+          backLinkRoute,
+          previousRouteIsServiceSlugPage,
+          // Don't use mapState for previousServiceTitle and previousServiceSeriesNavigation, as it will be replaced on mounted
+          previousServiceTitle: context.store.state.previousServiceTitle,
+          previousServiceSeriesNavigation: context.store.state.previousServiceSeriesNavigation
+        }
+      } catch (error) {
+        return context.error({ statusCode: 404 })
+      }
+    },
+    computed: {
+      /**
+       * The series navigation is dependent on the previous route.
+       * Some service pages are configured in the CMS to be part of multiple service series.
+       * In that case, we make sure the same series navigation is shown as on the previous page,
+       * but only when the series navigation of the previous service page
+       * is allowed on the current service page.
+       * We fallback to the first on in the array, when no matches are found.
+       */
+      shownSeriesNavigation() {
+        if (!this.page.serviceSeries) {
+          return null
+        }
+
+        if (this.page.serviceSeries.length === 1) {
+          return this.page.serviceSeries[0]
+        }
+
+        const validPreviousServiceSeriesNavigation = this.previousServiceSeriesNavigation
+          && this.page.serviceSeries.find(
+            series => (
+              series.id === this.previousServiceSeriesNavigation.id
+            )
+          )
+
+        if (
+          this.previousRouteIsServiceSlugPage
+          && this.previousServiceSeriesNavigation
+          && validPreviousServiceSeriesNavigation
+        ) {
+          return validPreviousServiceSeriesNavigation
+        }
+
+        return this.page.serviceSeries[0]
+      },
+      seriesNavigationTitleRoutes() {
+        return {
+          title: this.shownSeriesNavigation.mainService.title,
+          route: this.getServiceRoute(this.shownSeriesNavigation.mainService.slug)
+        }
+      },
+      seriesNavigationChildRoutes() {
+        return this.shownSeriesNavigation.childServices.map(service => ({
+          title: service.title,
+          route: this.getServiceRoute(service.slug)
+        }))
+      },
+      backLinkLabel() {
+        return this.useFallbackBackRoute ? this.$t('back_to_services') : this.previousServiceTitle
+      },
+      nextLinkRoute() {
+        return this.page.breadcrumbsNextService && this.localeUrl({
+          name: 'services-slug',
+          params: { slug: this.page.breadcrumbsNextService.slug }
+        })
+      },
+      nextLinkLabel() {
+        return this.page.breadcrumbsNextService && this.page.breadcrumbsNextService.title
+      }
+    },
+    // Set on mounted as beforeDestroy will trigger just after asyncData
+    mounted() {
+      this.SET_PREVIOUS_SERVICE_TITLE(this.page.title)
+      this.SET_PREVIOUS_SERVICE_SERIES_NAVIGATION(this.shownSeriesNavigation)
+    },
+    methods: {
+      ...mapMutations([SET_PREVIOUS_SERVICE_TITLE, SET_PREVIOUS_SERVICE_SERIES_NAVIGATION]),
+      getServiceRoute(slug) {
+        return this.localeUrl({
+          name: 'services-slug',
+          params: {
+            slug
+          }
+        })
+      }
+    },
     head,
   }
 </script>
@@ -56,23 +217,37 @@
     margin-bottom: var(--spacing-large);
   }
 
+  .page-service__pivots .newsletter-form,
+  .page-service__pivots .contact-form {
+    background-color: var(--bg-pastel);
+  }
+
+  .page-service__series-navigation {
+    margin-bottom: var(--spacing-large);
+    grid-row: 2;
+  }
+
   .page-service__overview {
     display: flex;
-    grid-row: 2;
+    grid-row: 3;
     flex-direction: column;
   }
 
   .page-service__overview .responsive-image,
-  .page-service__overview .generic-text-block {
-    grid-row: 3;
+  .page-service__overview .generic-text-block,
+  .page-service__overview .blockquote-block {
+    grid-row: 4;
     margin: 0 0 var(--spacing-large) 0;
   }
 
-  .page-service__pivot-section.pivot-section {
-    grid-column: var(--grid-page);
-    grid-row: 4;
-    padding: var(--spacing-big) var(--spacing-small);
-    border: none;
+  .page-service__overview .blockquote-block__title {
+    font-size: 1.3rem;
+    line-height: 1.2;
+  }
+
+  .page-service__overview .blockquote-block__body {
+    font-size: 1.1rem;
+    line-height: 1.5;
   }
 
   .page-service__overview .generic-text-block__title {
@@ -85,18 +260,37 @@
     line-height: 1.6666666667;
   }
 
+  .page-service .breadcrumbs-block {
+    margin-bottom: var(--spacing-large);
+    grid-row: 5;
+  }
+
   @media (min-width: 720px) {
     .page-service .page-header {
       margin-bottom: var(--spacing-big);
     }
 
-    .page-service__overview,
-    .page-service__pivot-section.pivot-section {
+    .page-service__series-navigation {
+      margin-bottom: var(--spacing-larger);
+      grid-column: var(--grid-content);
+    }
+
+    .page-service__overview {
       grid-column: var(--grid-content);
     }
 
     .page-service__overview .generic-text-block {
       grid-template-columns: 70% 1fr;
+    }
+
+    .page-service__overview .blockquote-block__title {
+      font-size: 1.4rem;
+      line-height: 1.2;
+    }
+
+    .page-service__overview .blockquote-block__body {
+      font-size: 1.2rem;
+      line-height: 1.5;
     }
 
     .page-service__overview .generic-text-block__body {
@@ -120,11 +314,18 @@
       grid-column-end: 48;
     }
 
+    .page-service__series-navigation {
+      grid-column-start: 4;
+      grid-column-end: 35;
+    }
+
+    .page-service__overview .blockquote-block__body,
     .page-service__overview .generic-text-block__body {
       font-size: 1.375rem;
       line-height: 1.8181818182;
     }
 
+    .page-service__overview .blockquote-block__title,
     .page-service__overview .generic-text-block__title {
       font-size: 2.0625rem;
       line-height: 1.3636363636;

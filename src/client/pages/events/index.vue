@@ -48,6 +48,7 @@
         </li>
       </ul>
     </section>
+    <newsletter-form :has-background="true" />
   </main>
 </template>
 
@@ -58,14 +59,17 @@
   import EventCard from '~/components/event-card'
   import PageHeader from '~/components/page-header'
   import RichTextBlock from '~/components/rich-text-block'
+  import NewsletterForm from '~/components/newsletter-form'
 
   export default {
     components: {
       EventListItem,
       EventCard,
       PageHeader,
-      RichTextBlock
+      RichTextBlock,
+      NewsletterForm,
     },
+    asyncData,
     data() {
       return {
         fallbackIllustration: {
@@ -92,7 +96,6 @@
           .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       },
     },
-    asyncData,
     head,
   }
 </script>

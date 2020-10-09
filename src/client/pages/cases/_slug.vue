@@ -1,130 +1,167 @@
 <template>
-  <main class="grid">
-    <page-header
-      fill-screen
-      heading="headline"
-      byline="Case study"
-      :headline="page.title"
-      :image="page.heroIllustration"
-    >
-      <h2 class="sr-only">{{ $t('case_info') }}</h2>
-      <case-meta
-        class="page-case__case-meta"
-        :expertise-title="page.metaData.expertisesTitle"
-        :expertises="page.metaData.expertises"
-        :technologies-title="page.metaData.technologiesTitle"
-        :technologies="page.metaData.technologies"
-        :deliverable-title="page.metaData.deliverableTitle"
-        :deliverables="page.metaData.deliverables"
-        :interested-title="page.metaData.interestedTitle"
-        :interested-link-label="page.metaData.interestedLinkLabel"
-        :interested-link-url="page.metaData.interestedLinkUrl"
-      />
-    </page-header>
+  <div>
+    <main class="grid">
+      <page-header
+        fill-screen
+        heading="headline"
+        byline="Case study"
+        :headline="page.title"
+        :image="page.heroIllustration"
+        is-animated
+        :animation-delay="page.title.length * typeDurationLetter"
+      >
+        <h2 class="sr-only">{{ $t('case_info') }}</h2>
+        <case-meta
+          class="page-case__case-meta"
+          :expertise-title="page.metaData.expertisesTitle"
+          :expertises="page.metaData.expertises"
+          :technologies-title="page.metaData.technologiesTitle"
+          :technologies="page.metaData.technologies"
+          :deliverable-title="page.metaData.deliverableTitle"
+          :deliverables="page.metaData.deliverables"
+          :interested-title="page.metaData.interestedTitle"
+          :interested-link-label="page.metaData.interestedLinkLabel"
+          :interested-link-url="page.metaData.interestedLinkUrl"
+        />
+      </page-header>
 
-    <div class="page-case__case-teaser">
-      <case-teaser
-        v-if="page.caseTeaser"
-        :title="page.caseTeaser.title"
-        :image="page.caseTeaser.image"
-      />
-    </div>
+      <div class="page-case__case-teaser">
+        <case-teaser
+          v-if="page.caseTeaser"
+          :title="page.caseTeaser.title"
+          :image="page.caseTeaser.image"
+        />
+      </div>
 
-    <article class="page-case__content">
-      <template v-for="item in page.content">
-        <div
-          v-if="item.__typename === 'TextSectionRecord'"
-          :key="item.title"
-          class="page-case__text">
-          <h3
-            class="page-case__title h3"
-            v-if="item.title">{{ item.title }}</h3>
-          <rich-text-block
-            v-if="item.body"
-            :text="item.body"
-            large-text
+      <article class="page-case__content">
+        <template v-for="item in page.content">
+          <div
+            :id="item.id"
+            v-if="item.__typename === 'TextSectionRecord'"
+            :key="item.id"
+            class="page-case__text">
+            <h3
+              class="page-case__title h3"
+              v-if="item.title"
+            >
+              {{ item.title }}
+            </h3>
+            <rich-text-block
+              v-if="item.body"
+              :text="item.body"
+              large-text
+            />
+          </div>
+
+          <div
+            v-if="item.__typename === 'CallToActionRecord'"
+            :key="item.id"
+            :id="item.id"
+            class="page-case__text"
+          >
+            <blockquote-block
+              :title="item.title"
+              :body="item.body"
+              :link-label="item.linkLabel"
+              :link-url="item.linkUrl"
+            />
+          </div>
+
+          <full-width-image
+            :id="item.id"
+            v-if="item.__typename === 'ImageRecord' && isFullWidth(item)"
+            :key="item.id"
+            :image="item.image"
           />
-        </div>
 
-        <full-width-image
-          v-if="item.__typename === 'ImageRecord' && isFullWidth(item)"
-          :key="item.image.url"
-          :image="item.image"
+          <responsive-image
+            :id="item.id"
+            v-if="item.__typename === 'ImageRecord' && !isFullWidth(item)"
+            :key="item.id"
+            :image="item.image"
+            :caption="item.caption"
+          />
+
+          <case-pull-quote-composition
+            :id="item.id"
+            v-if="item.__typename === 'PullquoteRecord'"
+            :key="item.id"
+            :pullquote="item.pullquote.quote"
+            :image="item.pullquote.illustration"
+            :text="item.pullquote.richText"
+          />
+
+          <image-with-description
+            :id="item.id"
+            v-if="item.__typename === 'ImageWithTextRecord'"
+            :key="item.id"
+            :image="item.imageWithDescription.image"
+            :inverse="item.imageWithDescription.inverse"
+            :description="item.imageWithDescription.description"
+          />
+
+          <storytelling-section
+            :id="item.id"
+            v-if="item.__typename === 'StorytellingBlockRecord'"
+            :key="item.id"
+            :items="item.storyItem.items"
+            :title="item.storyItem.title"
+          />
+
+          <responsive-video
+            :id="item.id"
+            v-if="item.__typename === 'ResponsiveVideoRecord'"
+            :key="item.id"
+            :video="item.video"
+            :autoplay="item.autoplay"
+            :loop="item.loop"
+            :mute="item.autoplay"
+          />
+
+        </template>
+
+        <quote-block
+          v-if="page.quote"
+          :quote="page.quote"
+          :cite="page.author"
         />
+      </article>
 
-        <responsive-image
-          v-if="item.__typename === 'ImageRecord' && !isFullWidth(item)"
-          :key="item.image.url"
-          :image="item.image"
-        />
-
-        <case-pull-quote-composition
-          v-if="item.__typename === 'PullquoteRecord'"
-          :key="item.pullquote.quote"
-          :pullquote="item.pullquote.quote"
-          :image="item.pullquote.illustration"
-          :text="item.pullquote.richText"
-        />
-
-        <image-with-description
-          v-if="item.__typename === 'ImageWithTextRecord'"
-          :key="item.description"
-          :image="item.imageWithDescription.image"
-          :inverse="item.imageWithDescription.inverse"
-          :description="item.imageWithDescription.description"
-        />
-
-        <storytelling-section
-          v-if="item.__typename === 'StorytellingBlockRecord'"
-          :key="item.storyItem.title"
-          :items="item.storyItem.items"
-          :title="item.storyItem.title"
-        />
-
-        <responsive-video
-          v-if="item.__typename === 'ResponsiveVideoRecord'"
-          :key="item.video.title"
-          :video="item.video"
-          :autoplay="item.autoplay"
-          :loop="item.loop"
-          :mute="item.autoplay"
-        />
-
-      </template>
-
-      <quote-block v-if="page.quote" :quote="page.quote" :cite="page.author" />
-    </article>
-
-    <div class="page-case__link-container">
-      <nuxt-link
-        class="app-button app-button--secondary body font-bold"
-        :to="localeUrl('cases')">
-        &larr; {{ $t('all_cases') }}
-      </nuxt-link>
-    </div>
-
-    <div class="page-case__contact-form grid">
-      <contact-form
-        class="grid"
-        :title="$t('lets_discuss')"
-        :contact-person="page.contactPerson"
+      <breadcrumbs-block
+        :back-link="localeUrl('cases')"
+        :back-link-label="$t('all_cases')"
+        :next-link="localeUrl({ name: 'cases-slug', params: { slug: nextCase.slug } })"
+        :next-link-label="nextCase.title"
       />
-      <scroll-to direction="up" />
-    </div>
-  </main>
+    </main>
+
+    <section class="page-cases__pivots grid">
+      <pivot-list
+        v-if="page.pivots && page.pivots.length"
+        :pivots="page.pivots"
+        :can-have-border-top="false"
+      />
+      <div class="page-cases__scroll-to">
+        <scroll-to direction="up" />
+      </div>
+    </section>
+
+  </div>
 </template>
 
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
+  import BreadcrumbsBlock from '~/components/breadcrumbs-block'
   import CaseMeta from '~/components/case-meta'
   import CasePullQuoteComposition from '~/components/case-pull-quote-composition'
   import CaseTeaser from '~/components/case-teaser'
   import FullWidthImage from '~/components/full-width-image'
-  import ContactForm from '~/components/contact-form'
   import ImageWithDescription from '~/components/image-with-description'
   import PageHeader from '~/components/page-header'
+  import PivotList from '~/components/pivot-list'
+  import BlockquoteBlock from '~/components/blockquote-block'
   import QuoteBlock from '~/components/quote-block'
   import ResponsiveImage from '~/components/responsive-image'
   import ResponsiveVideo from '~/components/responsive-video'
@@ -134,13 +171,15 @@
 
   export default {
     components: {
+      BreadcrumbsBlock,
       CaseMeta,
       CasePullQuoteComposition,
       CaseTeaser,
-      ContactForm,
       FullWidthImage,
       ImageWithDescription,
       PageHeader,
+      PivotList,
+      BlockquoteBlock,
       QuoteBlock,
       ResponsiveImage,
       ResponsiveVideo,
@@ -149,6 +188,19 @@
       StorytellingSection,
     },
     asyncData,
+    data() {
+      return {
+        typeDurationLetter: .05, // average duration per letter in seconds
+      }
+    },
+    computed: {
+      nextCase() {
+        const { cases, page } = this
+        const index = cases.findIndex( ({ slug }) => slug === page.slug )
+        const nextCaseIndex = index + 1 < cases.length ? index + 1 : 0
+        return cases[nextCaseIndex]
+      },
+    },
     methods: {
       isFullWidth(item) {
         return item.image && item.fullWidth
@@ -180,22 +232,14 @@
     padding: 0 var(--spacing-small);
   }
 
-  .page-case__contact-form,
   .page-case__content,
   .page-case__content > *:not(:last-child) {
     margin-bottom: var(--spacing-larger);
   }
 
-  .page-case__link-container {
-    grid-row: 4;
-    padding-top: var(--spacing-small);
-    border-top: 2px solid var(--very-dim);
+  .page-case .breadcrumbs-block {
     margin-bottom: var(--spacing-bigger);
-  }
-
-  .page-case__contact-form {
-    grid-column: var(--grid-page);
-    grid-row: 5;
+    grid-row: 4;
   }
 
   .page-case__title {
@@ -208,10 +252,6 @@
 
   .page-case__text video {
     max-width: 100%; /* temporary fix for mvp should refactored after mvp */
-  }
-
-  .page-case__contact-form .scroll-to {
-    display: none;
   }
 
   .page-case__content .storytelling-section,
@@ -227,6 +267,25 @@
     max-width: var(--case-content-max-width-l);
   }
 
+  .page-cases__pivots .pivot-list__scroll-to {
+    grid-row-start: 1;
+    grid-row-end: 1;
+  }
+
+  .page-cases__pivots {
+    position: relative;
+  }
+
+  .page-cases__scroll-to {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 55px;
+    grid-column-start: -2;
+    grid-column-end: -3;
+  }
+
   @media (min-width: 720px) {
     .page-case__content {
       padding-left: var(--spacing-large);
@@ -240,30 +299,13 @@
       margin-right: calc(-1 * var(--spacing-large));
     }
 
-    .page-case__contact-form,
     .page-case__content,
     .page-case__content > *:not(:last-child) {
       margin-bottom: var(--spacing-big);
     }
 
-    .page-case__scroll-to {
-      position: relative;
-    }
-
-    .page-case__contact-form .contact-form {
-      grid-column-start: 1;
-      grid-column-end: 49;
-    }
-
-    .page-case__contact-form {
-      position: relative;
-    }
-
-    .page-case__contact-form .scroll-to {
-      grid-column: 49;
-      display: flex;
-      position: absolute;
-      bottom: 0;
+    .page-cases__scroll-to {
+      display: block;
     }
   }
 
@@ -287,6 +329,7 @@
 
     .page-case__text {
       max-width: var(--page-section-max-width);
+      width: 100%;
     }
 
     .page-case__content {
@@ -297,7 +340,6 @@
       width: 100%;
     }
 
-    .page-case__contact-form,
     .page-case__content,
     .page-case__content > *:not(:last-child) {
       margin-bottom: var(--spacing-bigger);
@@ -314,10 +356,6 @@
 
     .page-case__content .image-with-description {
       max-width: var(--case-content-max-width-m);
-    }
-
-    .page-case__contact-form .contact-form {
-      grid-column: var(--grid-page);
     }
   }
 

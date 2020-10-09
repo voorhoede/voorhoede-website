@@ -6,8 +6,14 @@
       'page-header--fill-screen': fillScreen,
       'page-header--has-image': image,
       'page-header--has-slot': displaySlot,
+      'is-animated': isAnimated
     }"
+    :style="{'--animation-delay': animationDelay + 's'}"
   >
+    <span
+      v-if="fillScreen"
+      class="page-header__background scale-up-background"
+    />
     <div class="page-header__text">
       <!--
        `<h1>` is either the headline or the byline.
@@ -16,16 +22,24 @@
       -->
       <p
         v-if="heading === 'headline'"
-        v-html="byline"
         class="sub-title"
-      />
+      >
+        <span
+          v-html="byline"
+          class="animation__uncover"
+        />
+      </p>
       <h1
-        v-html="heading === 'byline' ? byline : headline"
         :class="{
           'sub-title': heading === 'byline',
           'sr-only': heading === 'headline'
         }"
-      />
+      >
+        <span
+          v-html="heading === 'byline' ? byline : headline"
+          class="animation__uncover"
+        />
+      </h1>
       <p
         v-if="heading === 'byline'"
         class="sr-only"
@@ -38,8 +52,10 @@
       />
     </div>
 
-    <div v-if="image" class="page-header__image-column">
-      <img class="page-header__image" :src="image.url" alt=""/>
+    <div v-if="image" class="page-header__image-column animation__reveal">
+      <div class="page-header__image-column-content animation__reveal-content">
+        <img class="page-header__image" :src="image.url" alt=""/>
+      </div>
     </div>
 
     <!--
@@ -51,7 +67,7 @@
       <slot/>
     </div>
 
-    <scroll-to v-if="fillScreen" direction="down"/>
+    <scroll-to v-if="fillScreen" direction="down" class="animation__fade-in"/>
   </header>
 </template>
 
@@ -94,6 +110,14 @@
       curlyBracket: {
         type: Boolean,
         default: false,
+      },
+      isAnimated: {
+        type: Boolean,
+        default: false
+      },
+      animationDelay: {
+        type: Number,
+        default: 0
       }
     },
     computed: {
@@ -119,10 +143,6 @@
   By making it scoped, the styling defined here is more specific than the core styling
 -->
 <style scoped>
-  :root {
-    --max-height-image: 285px;
-  }
-
   .page-header {
     background-color: var(--bg-pastel);
     grid-column: var(--grid-page); /* Make sure page header doesn't align on grid-content lines */
@@ -138,7 +158,7 @@
   }
 
   .page-header__image-column {
-    display: none;
+    grid-row: 5 / 6;
   }
 
   .page-header--fill-screen {
@@ -153,7 +173,7 @@
   }
 
   /* Yellow half */
-  .page-header--fill-screen::before {
+  .page-header__background {
     content: '';
     display: block;
     grid-column: var(--grid-page);
@@ -169,31 +189,38 @@
     grid-column: 44 / 51;
     grid-row: 5 / 8;
     margin: calc(-1 * var(--spacing-medium)) 0;
-    transform: rotate(180deg);
-    background-image: url('/images/curly-bracket--paper.svg');
+    background-image: url('/images/curly-bracket--paper-rotated.svg');
     background-repeat: no-repeat;
-    background-position: 100%;
+    background-position: left center;
     background-size: cover;
     mix-blend-mode: screen;
   }
 
+  .is-animated.page-header--curly-bracket::after {
+    opacity: 0;
+    transform: translateX(-100px);
+    animation:
+      animation__slide-in var(--animation-duration) var(--animation-delay) forwards,
+      animation__fade-in var(--animation-duration) var(--animation-delay) forwards;
+  }
+
   .page-header--fill-screen .page-header__image-column {
-    display: flex;
+    position: relative;
     z-index: var(--z-index-low); /* Make sure to be on top off curly bracket */
     grid-column: 3 / var(--grid-page-end);
     grid-row: 6 / 7;
+    display: flex;
     align-items: flex-end;
-    justify-content: flex-end;
   }
 
   .page-header__image {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 285px;
   }
 
   .page-header .scroll-to {
     position: absolute;
-    bottom: var(--spacing-medium);
+    top: calc(100vh - var(--spacing-medium) - var(--scroll-to-height));
     left: var(--grid-margin);
   }
 
@@ -279,7 +306,7 @@
     }
 
     /* Yellow half */
-    .page-header--fill-screen::before {
+    .page-header__background {
       grid-column: var(--grid-page-right);
       grid-row: 1 / 7;
     }
@@ -289,12 +316,14 @@
       grid-column: var(--grid-center) / 48;
       grid-row: 3 / 6;
       margin: calc(-1 * var(--spacing-medium)) 0;
-      background-position: left center; /* remember, object is rotated */
+      background-position: right center;
       background-size: contain;
     }
 
     .page-header--fill-screen .scroll-to {
       left: 0;
+      top: auto;
+      bottom: var(--spacing-medium);
     }
 
     .page-header__text {
@@ -306,16 +335,9 @@
     }
 
     .page-header__image-column {
-      display: flex;
       grid-column: 29 / 49;
       grid-row: 3 / 5;
-      align-items: flex-end;
-      justify-content: flex-end;
       margin-bottom: calc(-1 * var(--spacing-small)); /* Make image move outside page header */
-    }
-
-    .page-header__image {
-      max-height: var(--max-height-image);
     }
 
     .page-header--fill-screen .page-header__image-column {
@@ -325,8 +347,20 @@
       margin: 0;
     }
 
-    /* Make sure image doesn't float upwards */
+    .page-header__image-column-content {
+      display: flex;
+      height: 100%;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+
+    .page-header__image {
+      height: 100%;
+      max-height: 285px;
+    }
+
     .page-header--fill-screen .page-header__image {
+      height: auto;
       max-height: 100%;
     }
 
@@ -377,7 +411,7 @@
     }
 
     /* Yellow half */
-    .page-header--fill-screen::before {
+    .page-header__background {
       grid-row: 1 / 5;
     }
 

@@ -1,12 +1,12 @@
 <template>
   <label class="input-field">
-    <span class="input-field__label body-petite" :class="{ 'field-is-invalid': isInvalid }">
+    <span class="input-field__label" :class="{ 'field-is-invalid': isInvalid }">
       {{ !isInvalid ? label : validationErrorMessage }}
     </span>
     <textarea
       v-if="textarea"
       :id="id"
-      :name="id"
+      :name="name || id"
       :type="type"
       :placeholder="placeholderLabel"
       :value="value"
@@ -20,7 +20,7 @@
     <input
       v-else
       :id="id"
-      :name="id"
+      :name="name || id"
       :value="value"
       :type="type"
       :placeholder="placeholderLabel"
@@ -44,6 +44,10 @@
       id: {
         type: String,
         required: true
+      },
+      name: {
+        type: String,
+        default: '',
       },
       label: {
         type: String,
@@ -75,7 +79,6 @@
     },
     data() {
       return {
-        isFocused: false,
         valid: false
       }
     },
@@ -103,7 +106,7 @@
 </script>
 
 <style>
-  .field-is-invalid {
+  .input-field__label.field-is-invalid {
     color: var(--soft-red);
   }
 </style>

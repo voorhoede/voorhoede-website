@@ -2,13 +2,13 @@
   <div class="highlighted-clients">
     <ul class="highlighted-clients__list">
       <li
-        v-for="{ image } in clients"
-        :key="image.alt"
+        v-for="{ icon } in clients"
+        :key="icon.alt"
         class="highlighted-clients__client"
       >
         <fixed-ratio :width="5" :height="2">
           <lazy-load>
-            <img :src="image.url" :alt="image.alt">
+            <app-icon :name="icon.name" :alt="icon.alt"/>
           </lazy-load>
         </fixed-ratio>
       </li>
@@ -17,33 +17,35 @@
 </template>
 
 <script>
+import AppIcon from '../app-icon'
 import FixedRatio from '../fixed-ratio'
 import LazyLoad from '../lazy-load'
 
 export default {
   components: {
+    AppIcon,
     FixedRatio,
     LazyLoad,
   },
   data() {
     return {
       clients: [
-        { image: { url: '/client-logos/pathe-thuis.svg', alt: 'Pathé Thuis' } },
-        { image: { url: '/client-logos/geldmaat.svg', alt: 'Geldmaat' } },
-        { image: { url: '/client-logos/qutech.svg', alt: 'QuTech' } },
-        { image: { url: '/client-logos/jexia.svg', alt: 'Jexia' } },
-        { image: { url: '/client-logos/olx.svg', alt: 'OLX' } },
-        { image: { url: '/client-logos/hyperloop.svg', alt: 'Delft Hyperloop' } },
-        { image: { url: '/client-logos/funda.svg', alt: 'Funda' } },
-        { image: { url: '/client-logos/npo.svg', alt: 'NPO' } },
-        { image: { url: '/client-logos/abn-amro.svg', alt: 'ABN AMRO' } },
-        { image: { url: '/client-logos/hotelspecials.svg', alt: 'HotelSpecials' } },
-        { image: { url: '/client-logos/2dehands.svg', alt: '2dehands.be' } },
-        { image: { url: '/client-logos/ziggo.svg', alt: 'Ziggo' } },
-        { image: { url: '/client-logos/sita.svg', alt: 'Sita' } },
-        { image: { url: '/client-logos/trouw.svg', alt: 'Trouw' } },
-        { image: { url: '/client-logos/hva.svg', alt: 'Hogeschool van Amsterdam' } },
-        { image: { url: '/client-logos/grandvision.svg', alt: 'GrandVision' } },
+        { icon: { name: 'client-logos/pathe-thuis', alt: 'Pathé Thuis' } },
+        { icon: { name: 'client-logos/geldmaat', alt: 'Geldmaat' } },
+        { icon: { name: 'client-logos/qutech', alt: 'QuTech' } },
+        { icon: { name: 'client-logos/deltares', alt: 'Deltares' } },
+        { icon: { name: 'client-logos/heineken', alt: 'Heineken' } },
+        { icon: { name: 'client-logos/tu-delft', alt: 'TU Delft' } },
+        { icon: { name: 'client-logos/funda', alt: 'Funda' } },
+        { icon: { name: 'client-logos/npo', alt: 'NPO' } },
+        { icon: { name: 'client-logos/unilever', alt: 'Unilever' } },
+        { icon: { name: 'client-logos/abn-amro', alt: 'ABN AMRO' } },
+        { icon: { name: 'client-logos/hotelspecials', alt: 'HotelSpecials' } },
+        { icon: { name: 'client-logos/philips', alt: 'Philips' } },
+        { icon: { name: 'client-logos/ziggo', alt: 'Ziggo' } },
+        { icon: { name: 'client-logos/sita', alt: 'Sita' } },
+        { icon: { name: 'client-logos/trouw', alt: 'Trouw' } },
+        { icon: { name: 'client-logos/hva', alt: 'Hogeschool van Amsterdam' } },
       ]
     }
   },
@@ -77,8 +79,9 @@ export default {
     height: 100%;
   }
 
-  .highlighted-clients__image {
+  .highlighted-clients .app-icon {
     width: 100%;
+    height: 100%;
   }
 
   @media (min-width: 720px) {

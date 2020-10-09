@@ -5,7 +5,7 @@
       v-if="hasNativeShare"
       label="Share"
       small
-      @click="share"
+      @click="shareNative"
     />
     <ul
       v-else
@@ -21,6 +21,7 @@
           target="_blank"
           rel="noreferrer noopener"
           :aria-label="item.label"
+          @click="trackShare(item.label)"
         >
           <app-icon :name="item.icon" is-large :alt="item.alt" />
         </a>
@@ -36,6 +37,10 @@
   export default {
     components: { AppIcon, AppButton },
     props: {
+      authors: {
+        type: Array,
+        default: null,
+      },
       title: {
         type: String,
         default: '',
@@ -52,18 +57,29 @@
       }
     },
     computed: {
+      blogAuthors () {
+        return this.authors.map(author => {
+          return author.twitterHandle ? author.twitterHandle : author.name
+        }).join(' ')
+      },
       socials () {
         return [
-          { icon: 'twitter--blue',
-            href: `https://twitter.com/intent/tweet?text=${this.twitterTitle}&url=${this.url}`,
+          { icon: 'twitter',
+            href: `https://twitter.com/intent/tweet?text=${this.twitterTitle} by ${this.blogAuthors} @devoorhoede&url=${this.url}`,
             label: 'twitter',
             alt: 'Share this post on Twitter',
           },
-          { icon: 'facebook--blue',
+          { icon: 'facebook',
             href: `https://www.facebook.com/sharer.php?u=${this.url}`,
             label: 'facebook',
             alt: 'Share this post on Facebook',
           },
+          {
+            icon: 'linkedin',
+            href: `https://www.linkedin.com/shareArticle?&url=${this.url}&title=${this.title}`,
+            label: 'linkedin',
+            alt: 'Share this post on LinkedIn'
+          }
         ]
       },
     },
@@ -76,10 +92,14 @@
       })
     },
     methods: {
-      share () {
+      shareNative () {
         const url = this.url
+        this.$ga.social('native', 'share', url)
         return navigator.share({ url })
-      }
+      },
+      trackShare(platform) {
+        this.$ga.social(platform, 'share', this.url)
+      },
     },
 
   }
@@ -93,6 +113,7 @@
   .social-share-buttons__list-icon {
     display: inline-block;
     margin-right: var(--spacing-small);
+    color: var(--html-blue);
   }
 
   .social-share-buttons__list-icon:last-of-type {

@@ -106,23 +106,27 @@ import AppIcon from '../../components/app-icon'
 
 export default {
   components: {
-    AppIcon,
+    AppIcon
   },
   data () {
-    const { menu, footer } = require(`../../static/data/${this.$i18n.locale}/layouts/default`)
     return {
-      links: [].concat(menu.links, menu.callToAction),
-      content: footer,
       observer: null
     }
   },
   computed: {
+    links () {
+      const { menu } = require(`../../static/data/${this.$i18n.locale}/layouts/default`)
+      return [].concat(menu.links, menu.callToAction)
+    },
+    content () {
+      return require(`../../static/data/${this.$i18n.locale}/layouts/default`).footer
+    },
     socialLinks() {
       return [
-        { url: this.content.twitterUrl,  platform: 'twitter',  icon: 'twitter--blue' },
-        { url: this.content.githubUrl,   platform: 'github',   icon: 'git-hub--blue' },
-        { url: this.content.youtubeUrl,  platform: 'youtube',  icon: 'youtube--blue' },
-        { url: this.content.linkedinUrl, platform: 'linked',   icon: 'linkedin--blue' },
+        { url: this.content.twitterUrl,  platform: 'twitter',  icon: 'twitter' },
+        { url: this.content.githubUrl,   platform: 'github',   icon: 'git-hub' },
+        { url: this.content.youtubeUrl,  platform: 'youtube',  icon: 'youtube' },
+        { url: this.content.linkedinUrl, platform: 'linked',   icon: 'linkedin' },
       ]
     },
     cleanedPhoneNumber() {
@@ -232,7 +236,8 @@ export default {
   .app-footer__copyright:focus,
   .app-footer__privacy:hover,
   .app-footer__privacy:focus {
-    color: var(--active-blue);
+    color: var(--html-blue);
+    border-bottom: none;
   }
 
   .app-footer__list {
@@ -271,18 +276,48 @@ export default {
     margin: 0 var(--spacing-tiny);
   }
 
+  .app-footer__list-item--icon a {
+    position: relative;
+    display: block;
+    color: var(--html-blue);
+  }
+
+  .app-footer__list-item--icon a:hover::before,
+  .app-footer__list-item--icon a:focus::before {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+
+  .app-footer__list-item--icon a::before {
+    content: '';
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--white);
+    transform: scale(0);
+    opacity: 0;
+    transition: transform .1s, opacity .1s linear;
+  }
+
+  .app-footer__list-item--icon .app-icon {
+    position: relative;
+    z-index: 2;
+  }
+
   .app-footer__link {
     position: relative;
     z-index: var(--z-index-low);
     text-decoration: none;
   }
 
-  .app-footer__link:hover {
-    color: var(--active-blue);
-  }
-
+  .app-footer__link:hover,
   .app-footer__link:focus {
-    border-bottom: 1px solid var(--html-blue);
+    color: var(--html-blue);
+    background: transparent linear-gradient(to top, var(--html-blue) 1px, transparent 1px);
   }
 
   .app-footer__link--right {
@@ -291,10 +326,32 @@ export default {
     justify-content: flex-end;
   }
 
+  .app-footer__link--right:hover,
+  .app-footer__link--right:focus {
+    background: none;
+  }
+
+  .app-footer__link--right:hover > span,
+  .app-footer__link--right:focus > span {
+    background-image: linear-gradient(to right, var(--html-blue), var(--html-blue));
+    background-repeat: no-repeat;
+    background-position: 0 80%;
+    background-size: 100% 1px;
+  }
+
   .app-footer__header-logo {
     display: none;
     width: var(--logo-width);
     margin-bottom: var(--spacing-small);
+  }
+
+  .app-footer__newsletter-title {
+    width: 100%;
+  }
+
+  .app-footer__newsletter-form {
+    width: 80%;
+    text-align: left;
   }
 
   .app-footer__column {

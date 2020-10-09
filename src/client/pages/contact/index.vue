@@ -1,37 +1,41 @@
 <template>
-  <section class="page-contact">
-    <page-header
-      heading="byline"
-      :byline="page.title"
-      :headline="page.subtitle"
-      :image="page.headerIllustration"
-    />
-    <div class="page-contact__backdrop grid">
-      <div class="page-contact__content">
-        <contact-sidebar
-          :email-label="page.emailLabel"
-          :phone-label="page.phoneLabel"
-          :address-label="page.addressLabel"
-          :addresses="app.addresses"
-        />
-        <contact-form
-          :aria-label="$t('lets_discuss')"
-        />
+  <div>
+    <section class="page-contact">
+      <page-header
+        heading="byline"
+        :byline="page.title"
+        :headline="page.subtitle"
+        :image="page.headerIllustration"
+      />
+      <div class="page-contact__backdrop grid">
+        <div class="page-contact__content">
+          <contact-sidebar
+            :email-label="page.emailLabel"
+            :phone-label="page.phoneLabel"
+            :address-label="page.addressLabel"
+            :addresses="app.addresses"
+          />
+          <contact-form
+            :aria-label="$t('lets_discuss')"
+          />
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+    <newsletter-form :has-background="true" />
+  </div>
 </template>
 
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  
+
   import ContactSidebar from '~/components/contact-sidebar'
   import ContactForm from '~/components/contact-form'
   import PageHeader from '~/components/page-header'
+  import NewsletterForm from '~/components/newsletter-form'
 
   export default {
-    components: { ContactSidebar, ContactForm, PageHeader },
+    components: { ContactSidebar, ContactForm, PageHeader, NewsletterForm },
     asyncData,
     head,
   }

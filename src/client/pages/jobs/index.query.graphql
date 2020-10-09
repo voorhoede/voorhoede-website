@@ -22,6 +22,7 @@ fragment jobOverview on JobOverviewRecord {
     format
     alt
   }
+  noJobsAvailableMessage
   slug
   social {
     title

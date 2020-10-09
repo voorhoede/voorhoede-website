@@ -2,10 +2,126 @@ query ($locale: SiteLocale, $slug: String) {
   page: blogPost(locale: $locale, filter: {slug: {eq: $slug}}) {
     ...page
   }
-  pivots: allPivotSections(locale: $locale, filter: {routes: {matches: {pattern: "blog-slug"}}}) {
+}
+
+fragment page on BlogPostRecord {
+  slug
+  social {
     title
-    body
-    callToActionLabel
+    description
+    image {
+      url
+    }
+  }
+  keywords
+  title
+  subtitle
+  headerIllustration {
+    url
+    format
+    alt
+  }
+  date: publishDate
+  authors {
+    name
+    lastName
+    twitterHandle
+    image {
+      url
+      format
+      alt
+      width
+      height
+    }
+  }
+  introTitle
+  items {
+    __typename
+    ... on CallToActionRecord {
+      id
+      title
+      body
+      linkLabel
+      linkUrl
+    }
+    ... on CodeBlockRecord {
+      id
+      language
+      body
+    }
+    ... on ImageRecord {
+      id
+      image {
+        url
+        alt
+        width
+        height
+        format
+      }
+      caption
+      fullWidth
+    }
+    ... on ImageWithTextRecord {
+      id
+      imageWithDescription {
+        image {
+          url
+          alt
+          width
+          height
+          format
+        }
+        description
+        inverse
+      }
+    }
+    ... on LinkSectionRecord {
+      id
+      link
+      label
+      external
+    }
+    ... on QuoteRecord {
+      id
+      quote
+      author
+    }
+    ... on ResponsiveVideoRecord {
+      id
+      mute
+      loop
+      autoplay
+      video {
+        url
+        title
+        height
+        width
+        provider
+        providerUid
+        thumbnailUrl
+      }
+      gif {
+        url
+        title
+        width
+        height
+      }
+    }
+    ... on TextSectionRecord {
+      id
+      title
+      body
+    }
+  }
+  customStyling
+  customScript
+  pivots {
+    title
+    body(markdown: true)
+    buttonLabel: callToActionLabel
+    mailchimpValue
+    mailchimpName
+    mailchimpId
     link {
       title
       url
@@ -33,103 +149,18 @@ query ($locale: SiteLocale, $slug: String) {
         }
       }
     }
-  }
-}
-
-fragment page on BlogPostRecord {
-  slug
-  social {
-    title
-    description
-    image {
-      url
-    }
-  }
-  keywords
-  title
-  subtitle
-  headerIllustration {
-    url
-    format
-    alt
-  }
-  date: publishDate
-  authors {
-    name
-    lastName
-    image {
-      url
-      format
-      alt
-      width
-      height
-    }
-  }
-  introTitle
-  items {
-    __typename
-    ... on CodeBlockRecord {
-      language
-      body
-    }
-    ... on ImageRecord {
+    externalLink
+    formType
+    contactPerson {
+      name
+      lastName
+      jobTitle
       image {
-        url
-        alt
         width
         height
+        url
         format
       }
-      alt
-      fullWidth
-    }
-    ... on ImageWithTextRecord {
-      imageWithDescription {
-        image {
-          url
-          alt
-          width
-          height
-          format
-        }
-        description
-        inverse
-      }
-    }
-    ... on LinkSectionRecord {
-      link
-      label
-      external
-    }
-    ... on QuoteRecord {
-      quote
-      author
-    }
-    ... on ResponsiveVideoRecord {
-      mute
-      loop
-      autoplay
-      video {
-        url
-        title
-        height
-        width
-        provider
-        providerUid
-        thumbnailUrl
-      }
-      gif {
-        url
-        title
-        width
-        height
-      }
-    }
-    ... on TextSectionRecord {
-      title
-      body
     }
   }
-  customStyling
-  customScript
 }

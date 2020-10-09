@@ -5,8 +5,12 @@
       <h4 class="service-excerpt__sub-title h3">{{ title }}</h4>
       <div class="service-excerpt__divider"/>
       <ul class="list">
-        <li class="body" v-for="line in summary" :key="line.title">
-          {{ line.title }}
+        <li
+          v-for="line in summary"
+          :key="line.body"
+          class="body"
+        >
+          <rich-text-block :text="line.body"/>
         </li>
       </ul>
     </div>
@@ -21,9 +25,10 @@
 
 <script>
 import AppButton from '../app-button'
+import RichTextBlock from '../rich-text-block'
 
 export default {
-  components: { AppButton },
+  components: { AppButton, RichTextBlock },
   props: {
     tagline: {
       type: String,
@@ -37,7 +42,7 @@ export default {
       type: Array,
       required: true,
       validator(summary) {
-        return summary.every(line => 'title' in line)
+        return summary.every(line => 'body' in line)
       }
     },
     slug: {
@@ -49,10 +54,6 @@ export default {
 </script>
 
 <style>
-  .service-excerpt {
-    position: relative;
-  }
-
   .service-excerpt__title {
     margin-bottom: var(--spacing-medium);
     padding-top: .125rem; /* 2px */
@@ -74,15 +75,6 @@ export default {
   .service-excerpt .app-button {
     margin-top: var(--spacing-small);
     margin-left: var(--spacing-small);
-  }
-
-  .service-excerpt .app-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
   }
 
   @media (min-width: 720px) {

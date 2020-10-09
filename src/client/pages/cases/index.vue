@@ -1,53 +1,78 @@
 <template>
-  <main class="page-cases">
-    <page-header
-      heading="byline"
-      :byline="page.title"
-      :headline="page.subtitle"
-      :image="page.headerIllustration"
-    />
-    <section class="grid">
-      <h2 class="sr-only">{{ $t('all_cases') }}</h2>
-      <ul class="page-case__overview">
-        <li class="page-case__overview-item" v-for="caseItem in items" :key="caseItem.slug">
-          <case-excerpt
-            :slug="caseItem.slug"
-            :image="caseItem.heroIllustration"
-            :title="caseItem.title"
-            :body="caseItem.subtitle"
-          />
-        </li>
-      </ul>
-    </section>
-    <div class="grid">
-      <pivot-section
-        v-if="pivots && pivots.length"
-        :pivot="pivots[0]"
+  <div>
+    <main class="page-cases">
+      <page-header
+        heading="byline"
+        :byline="page.title"
+        :headline="page.subtitle"
+        :image="page.headerIllustration"
       />
-    </div>
-  </main>
+      <introduction-block
+        v-if="page.introductionBlock"
+        :title="page.introductionBlock.title"
+        :body="page.introductionBlock.body"
+        class="page-cases__introduction grid"
+      />
+      <section class="grid">
+        <h2 class="sr-only">{{ $t('all_cases') }}</h2>
+        <ul class="page-case__overview">
+          <li class="page-case__overview-item" v-for="caseItem in items" :key="caseItem.slug">
+            <case-excerpt
+              :slug="caseItem.slug"
+              :image="caseItem.heroIllustration"
+              :title="caseItem.title"
+              :body="caseItem.subtitle"
+            />
+          </li>
+        </ul>
+      </section>
+      <pivot-list
+        class="page-cases__pivots"
+        v-if="page.pivots && page.pivots.length"
+        :pivots="page.pivots"
+      />
+    </main>
+  </div>
 </template>
 
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
+  import IntroductionBlock from '~/components/introduction-block'
   import CaseExcerpt from '~/components/case-excerpt'
   import PageHeader from '~/components/page-header'
-  import PivotSection from '~/components/pivot-section'
+  import PivotList from '~/components/pivot-list'
 
   export default {
     components: {
+      IntroductionBlock,
       CaseExcerpt,
       PageHeader,
-      PivotSection
+      PivotList,
     },
     asyncData,
-    head
+    head,
   }
 </script>
 
 <style>
+  .page-cases__introduction {
+    margin-top: var(--spacing-larger);
+  }
+
+  @media (min-width: 720px) {
+    .page-cases__introduction > * {
+      grid-column-start: 8;
+      grid-column-end: 44;
+      text-align: center;
+    }
+  }
+
+  .page-cases__pivots .newsletter-form {
+    background-color: var(--bg-pastel);
+  }
+
   .page-case__overview {
     display: flex;
     flex-direction: column;

@@ -35,7 +35,7 @@
             @click.prevent="play"
           >
             <span class="sr-only">Play video</span>
-            <img class="responsive-video__icon" src="/icons/icon_play.svg">
+            <app-icon name="play"/>
           </component>
         </lazy-load>
       </fixed-ratio>
@@ -52,11 +52,12 @@
 <script>
   import FixedRatio from '../fixed-ratio/fixed-ratio'
   import LazyLoad from '../lazy-load/lazy-load'
+  import AppIcon from '../app-icon/app-icon'
 
   const binaryBoolean = value => (value) ? 1 : 0
 
   export default {
-    components: { FixedRatio, LazyLoad },
+    components: { AppIcon, FixedRatio, LazyLoad },
     props: {
       video: {
         type: Object,
@@ -153,6 +154,7 @@
     methods: {
       play() {
         this.isPlaying = true
+        this.$ga.event('Video', `play ${this.video.providerUid}`, this.video.provider, 0)
       },
     },
   }
@@ -203,10 +205,12 @@
     background-color: rgba(0, 0, 0, .25);
   }
 
-  .responsive-video__icon {
+  .responsive-video .app-icon {
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 60px;
+    height: 60px;
     transform: translate(-50%, -50%);
   }
 

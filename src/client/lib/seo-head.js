@@ -6,6 +6,15 @@ export default function () {
   const defaultShareImg = `${baseUrl}/images/social/logo-wide.jpg`
   const pageTitle = page.social.title ? page.social.title : defaultShareTitle
 
+  let socialDescription = page.social.description
+  if(page.authors) {
+    const authors = page.authors.map(author => {
+      return author.twitterHandle ? author.twitterHandle : author.name
+    }).join(' ')
+
+    socialDescription = `${socialDescription} by ${authors} @devoorhoede`
+  }
+
   return {
     htmlAttrs: {
       lang: currentLocale
@@ -26,7 +35,7 @@ export default function () {
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:creator', content: '@devoorhoede' },
       { name: 'twitter:title', content: pageTitle },
-      { name: 'twitter:description', content: page.social.description },
+      { name: 'twitter:description', content: socialDescription },
       { name: 'twitter:image', content: page.social.image ? page.social.image.url : defaultShareImg },
     ],
   }
