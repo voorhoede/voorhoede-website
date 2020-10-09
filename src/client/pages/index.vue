@@ -4,12 +4,12 @@
       <page-header
         fill-screen
         curly-bracket
-        heading="byline"
-        :byline="page.headerTitle"
-        :headline="page.subtitle"
+        heading="headline"
+        :byline="page.subtitle"
+        :headline="page.headerTitle"
         :image="page.headerIllustration"
         is-animated
-        :animation-delay="page.subtitle.length * typeDurationLetter"
+        :animation-delay="page.headerTitle.length * typeDurationLetter"
       />
       <div class="grid">
         <scroll-text :items="page.usps" />
