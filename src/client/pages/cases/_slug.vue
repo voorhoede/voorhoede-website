@@ -120,10 +120,13 @@
 
         </template>
 
-        <quote-block
+        <testimonial-block
           v-if="page.quote"
-          :quote="page.quote"
-          :cite="page.author"
+          :testimonial="{
+            validated: true,
+            quote: page.quote,
+            author: page.author
+          }"
         />
       </article>
 
@@ -162,12 +165,12 @@
   import PageHeader from '~/components/page-header'
   import PivotList from '~/components/pivot-list'
   import BlockquoteBlock from '~/components/blockquote-block'
-  import QuoteBlock from '~/components/quote-block'
   import ResponsiveImage from '~/components/responsive-image'
   import ResponsiveVideo from '~/components/responsive-video'
   import RichTextBlock from '~/components/rich-text-block'
   import ScrollTo from '~/components/scroll-to'
   import StorytellingSection from '~/components/storytelling-section'
+  import TestimonialBlock from '~/components/testimonial-block'
 
   export default {
     components: {
@@ -180,12 +183,12 @@
       PageHeader,
       PivotList,
       BlockquoteBlock,
-      QuoteBlock,
       ResponsiveImage,
       ResponsiveVideo,
       RichTextBlock,
       ScrollTo,
       StorytellingSection,
+      TestimonialBlock
     },
     asyncData,
     data() {

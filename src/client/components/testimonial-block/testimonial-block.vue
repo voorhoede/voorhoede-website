@@ -31,31 +31,22 @@
   .testimonial-block {
     margin: var(--spacing-larger) 0;
     padding-left: var(--spacing-larger);
-    position: relative;
-  }
-
-  @media (min-width: 720px) {
-    .testimonial-block {
-      display: grid;
-      grid-template-rows: repeat(2, auto);
-      grid-template-columns: 63% 1fr; /* 63% == 550(text)/877(total width)*100 from design  */
-      grid-row-gap: var(--spacing-smaller);
-      grid-column-gap: var(--spacing-large);
-    }
+    display: grid;
   }
 
   .testimonial-block__container {
     margin-left: var(--spacing-smaller);
+    position: relative;
   }
 
-  .testimonial-block::before {
+  .testimonial-block__container::before {
     content: '"';
     font-family: var(--font-sans);
     color: var(--html-blue);
     display: inline-block;
     position: absolute;
-    top: -70px;
-    left: -7px;
+    top: -40px;
+    left: -70px;
     font-size: 160px;
   }
 

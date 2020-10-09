@@ -55,12 +55,15 @@
           :inverse="item.imageWithDescription.inverse"
           :description="item.imageWithDescription.description" />
 
-        <quote-block
-          :id="item.id"
+        <testimonial-block
           v-if="item.quote"
           :key="item.id"
-          :quote="item.quote"
-          :cite="item.author"
+          :id="item.id"
+          :testimonial="{
+            validated: true,
+            quote: item.quote,
+            author: item.author
+          }"
         />
 
         <responsive-image
@@ -153,7 +156,7 @@ import ImageWithDescription from '~/components/image-with-description'
 import PivotList from '~/components/pivot-list'
 import PageHeader from '~/components/page-header'
 import BlockquoteBlock from '~/components/blockquote-block'
-import QuoteBlock from '~/components/quote-block'
+import TestimonialBlock from '~/components/testimonial-block'
 import ResponsiveImage from '~/components/responsive-image'
 import ResponsiveVideo from '~/components/responsive-video'
 import RichTextBlock from '~/components/rich-text-block'
@@ -171,7 +174,7 @@ export default {
     PivotList,
     PageHeader,
     BlockquoteBlock,
-    QuoteBlock,
+    TestimonialBlock,
     ResponsiveImage,
     ResponsiveVideo,
     RichTextBlock,

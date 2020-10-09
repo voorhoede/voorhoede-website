@@ -24,12 +24,16 @@
             :inverse="item.imageWithDescription.inverse"
             :description="item.imageWithDescription.description" />
 
-          <quote-block
+          <testimonial-block
             v-if="item.quote"
-            :key="item.quote"
-            :quote="item.quote"
-            :cite="item.author"
-            class="page-event-detail__quote" />
+            :key="item.id"
+            :id="item.id"
+            :testimonial="{
+              validated: true,
+              quote: item.quote,
+              author: item.author
+            }"
+          />
 
           <responsive-image
             class="page-event-detail__image"
@@ -112,7 +116,7 @@
   import AppButton from '~/components/app-button'
   import ImageWithDescription from '~/components/image-with-description'
   import PageHeader from '~/components/page-header'
-  import QuoteBlock from '~/components/quote-block'
+  import TestimonialBlock from '~/components/testimonial-block'
   import ResponsiveImage from '~/components/responsive-image'
   import RichTextBlock from '~/components/rich-text-block'
   import TextBlock from '~/components/text-block'
@@ -123,7 +127,7 @@
       AppButton,
       ImageWithDescription,
       PageHeader,
-      QuoteBlock,
+      TestimonialBlock,
       ResponsiveImage,
       RichTextBlock,
       TextBlock,

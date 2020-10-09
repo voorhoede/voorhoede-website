@@ -276,6 +276,7 @@
       grid-column: var(--grid-content);
     }
 
+    .page-service__overview .testimonial-block,
     .page-service__overview .generic-text-block {
       grid-template-columns: 70% 1fr;
     }
