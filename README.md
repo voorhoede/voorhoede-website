@@ -56,6 +56,9 @@ available:
 All components are documented with a README.md file in their own folder.
 Other documentation can be found [here](_docs/)
 
+## Analytics measurement
+Analytics is managed with Google Tag Manager further info can be found [here](_docs/analytics.md)
+
 ## Useful links
 
 * [Local environment](http://localhost:3278)

@@ -16,7 +16,14 @@ export default () => {
     'trackingTransport': TRACKING_TRANSPORT,
     'environmentName': ENVIRONMENT_NAME,
   })
-  // 3. add gtm script to page
+  // 3. prevent google tag manager memory leak
+  window.dataLayer.push = function (event) {
+    if(event['gtm.element']) {
+      event['gtm.element'] = event['gtm.element'].cloneNode(true)
+    }
+    return Array.prototype.push.apply(this, arguments)
+  }
+  // 4. add gtm script to page
   const script = document.createElement('script')
   script.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`
   document.head.appendChild(script)
