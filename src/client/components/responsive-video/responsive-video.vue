@@ -154,7 +154,11 @@
     methods: {
       play() {
         this.isPlaying = true
-        this.$ga.event('Video', `play ${this.video.providerUid}`, this.video.provider, 0)
+        this.$gtag('event', `play ${this.video.providerUid}`, {
+          'event_category': 'Video',
+          'event_label': this.video.provide,
+          'value': 0
+        })
       },
     },
   }

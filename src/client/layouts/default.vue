@@ -38,7 +38,6 @@ import AppHeader from '~/components/app-header'
 import AppMobileMenu from '~/components/app-mobile-menu'
 import GridDemo from '~/components/grid-demo'
 
-
 export default {
   components: { AppBanner, AppFooter, AppHeader, AppMobileMenu, GridDemo },
   computed: {
@@ -56,7 +55,7 @@ export default {
         lang: this.$i18n.locale
       }
     }
-  },
+  }
 }
 </script>
 

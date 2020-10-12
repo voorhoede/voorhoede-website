@@ -39,7 +39,7 @@
 
           <app-button
             v-if="pivot.externalLink"
-            @click.native="trackLinkOutbound(pivot.externalLink)"
+            @click.native="trackLink(pivot.externalLink)"
             :label="pivot.buttonLabel"
             :to="pivot.externalLink"
             external
@@ -112,7 +112,7 @@
       createHref,
       pivotHasBackground(pivotIndex) {
         const lastPivotIndex = this.pivots.length - 1
-        
+
         return (this.lastItemHasBackground && pivotIndex === lastPivotIndex)
       },
       itemContentIsFullWidth(pivot) {
@@ -143,15 +143,10 @@
         }
       },
       trackLink (href) {
-        this.$ga.event('Pivot', 'click cta', href, 0)
-      },
-      trackLinkOutbound (href) {
-        this.$ga.query('send', 'event', {
-          transport: 'beacon',
-          eventCategory: 'Pivot',
-          eventAction: 'click cta',
-          eventLabel: href,
-          eventValue: 0
+        this.$gtag('event', 'click cta' , {
+          'event_category': 'Pivot',
+          'event_label': href,
+          'value': 0
         })
       },
     },

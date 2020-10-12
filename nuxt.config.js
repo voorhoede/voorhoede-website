@@ -89,6 +89,7 @@ module.exports = {
   },
 
   plugins: [
+    { src: '~/plugins/analytics-gtag', mode: 'client' },
     { src: '~/plugins/fetch-polyfill', mode: 'client' },
     { src: '~/plugins/locale-urls' },
     { src: '~/plugins/ascii-art', mode: 'client' },
