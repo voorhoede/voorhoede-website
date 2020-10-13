@@ -147,14 +147,16 @@ export default {
     createHref,
     observeContact () {
       const contactElement = this.$refs.contact
+      const gtag = this.$gtag
       const event = {
-        'event_category': 'Contact',
-        'event_label': this.$route.fullPath,
-        'value': 0
+        eventCategory: 'Contact',
+        eventAction: 'footer view',
+        eventLabel: this.$route.fullPath,
+        eventValue: 0
       }
       this.observer = new IntersectionObserver(function(entries) {
         if (entries.some(entry => entry.isIntersecting)) {
-          this.$gtag('event', 'footer view' , event)
+          gtag('event', 'footer view' , event)
           this.unobserve(contactElement)
         }
       })

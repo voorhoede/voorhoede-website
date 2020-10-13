@@ -220,11 +220,13 @@ export default {
     },
     observeScrolledArticle () {
       const articleEndElement = this.$refs.articleEnd
+      const gtag = this.$gtag
+      const url = this.$route.fullPath
       this.observer = new IntersectionObserver(function(entries) {
         if (entries.some(entry => entry.isIntersecting)) {
-          this.$gtag('event', 'scrolled to end', {
+          gtag('event', 'scrolled to end', {
             'event_category': 'Article',
-            'event_label': this.$route.fullPath,
+            'event_label': url,
             'value': 100
           })
           this.unobserve(articleEndElement)
