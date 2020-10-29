@@ -3,6 +3,6 @@
   publish = "dist/client/"
 
 [[redirects]]
-  from = "/energy-first"
+  from = "/nl/energy-first"
   to = "https://voorhoede-energy-first.netlify.app/"
   status = 200
