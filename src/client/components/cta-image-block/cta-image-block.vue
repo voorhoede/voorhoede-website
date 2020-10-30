@@ -3,7 +3,6 @@
     <responsive-image
       :width-step="120"
       :image="personImage"
-      class="cta-image-block__image"
       :alt="personName" />
 
     <div class="cta-image-block__content">
@@ -95,14 +94,14 @@
     margin-top: var(--spacing-small);
   }
 
-  .cta-image-block__image {
+  .cta-image-block .responsive-image {
     max-width: 135px;
     margin: var(--spacing-small) 0;
     z-index: 1;
   }
 
   @media (min-width: 600px) {
-    .cta-image-block__image {
+    .cta-image-block .responsive-image {
       margin: var(--spacing-medium) 0;
     }
   }
