@@ -96,6 +96,15 @@
         display: flex;
         flex-direction: column-reverse;
         justify-content: flex-end;
+        height: 100%;
+      }
+
+      .page-introduction__section:nth-child(2n + 1) .page-introduction__section-content::before {
+        content: '';
+        display: block;
+        flex-grow: 1;
+        width: 50vw;
+        background: var(--white);
       }
 
       .page-introduction__section:nth-child(2n + 1) .page-introduction__section-text,
@@ -116,6 +125,17 @@
 
       .page-introduction__section:nth-child(2n + 1) .responsive-image {
         margin-top: var(--spacing-larger);
+        position: relative;
+      }
+
+      .page-introduction__section:nth-child(2n + 1) .responsive-image::before {
+        content: '';
+        position: absolute;
+        top: 85%;
+        right: calc(100% - 50vw);
+        bottom: 0;
+        left: 0;
+        background: var(--white);
       }
 
       .page-introduction__section-text {
