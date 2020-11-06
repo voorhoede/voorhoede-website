@@ -156,11 +156,10 @@
 <style>
   .page-index__header {
     margin-bottom: var(--spacing-big);
-    background-color: var(--bg-pastel);
   }
 
   .page-index .page-introduction {
-    padding: var(--spacing-larger) 0;
+    margin-bottom: var(--spacing-larger);
   }
 
   .page-index__services {
@@ -280,10 +279,6 @@
   }
 
   @media (min-width: 720px) {
-    .page-index .page-header {
-      margin-bottom: var(--spacing-big);
-    }
-
     .page-index .scroll-text {
       padding-top: var(--spacing-big);
     }
