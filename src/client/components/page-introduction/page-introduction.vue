@@ -78,7 +78,7 @@
       .page-introduction__section {
         margin: 0;
         padding: 0;
-        padding-top: var(--spacing-larger);
+        padding-top: var(--spacing-big);
       }
 
       .page-introduction__section:nth-child(2n) {
@@ -86,7 +86,6 @@
       }
 
       .page-introduction__section:nth-child(2n + 1) {
-        padding-top: var(--spacing-bigger);
         grid-column: var(--grid-content-right);
         background-color: var(--bg-pastel);
       }
@@ -142,6 +141,11 @@
         margin-left: 0;
         margin-right: 0;
         position: relative;
+      }
+
+      .page-introduction__section:nth-child(2n + 1) .page-introduction__section-text {
+        margin-top: 0;
+        padding-top: 0;
       }
 
       .page-introduction__section:nth-child(2n) .page-introduction__section-text::before {
