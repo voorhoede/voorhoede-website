@@ -1,14 +1,14 @@
 <template>
-  <ul class="services-list">
+  <ul class="services-list grid">
     <li
       v-for="service in services"
       :key="service.ctaLink"
       class="services-list__item">
       <service-excerpt
-        :tagline="service.tagline"
         :title="service.excerptTitle"
-        :summary="service.summary"
         :slug="service.slug"
+        :image="service.cardImage"
+        :body="service.cardBody"
       />
     </li>
   </ul>
@@ -32,55 +32,49 @@ export default {
 </script>
 
 <style>
-  :root {
-    --services-list-border: 1px solid var(--very-dim);
-  }
-
-  .services-list__item {
-    margin-bottom: var(--spacing-larger);
-    padding-bottom: var(--spacing-large);
-    border-bottom: var(--services-list-border);
-  }
-
-  .services-list__item:last-of-type {
-    margin-bottom: 0;
+  .services-list__item > * {
+    min-height: 100%;
+    max-width: 340px;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   @media (min-width: 720px) {
     .services-list {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr var(--spacing-large) 1fr;
     }
 
-    .services-list__item {
-      display: flex;
-      flex: 1 1 0%; /* a flex-basis of 0 makes all columns equal, but IE11 needs a unit in flex-basis for it to work */
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: none;
+    .services-list__item:nth-child(1) {
+      grid-column: 1;
     }
 
-    .services-list__item:first-child {
-      margin-right: var(--spacing-medium);
-      padding-right: var(--spacing-medium);
-      border-right: var(--services-list-border);
+    .services-list__item:nth-child(2) {
+      grid-column: 3;
     }
 
-    .services-list__item:last-child {
-      padding-left: var(--spacing-medium);
-      margin-left: var(--spacing-medium);
-      border-left: var(--services-list-border);
+    .services-list__item:nth-child(3) {
+      grid-column: 1 / -1;
+      margin-top: var(--spacing-medium);
+    }
+
+    .services-list__item > * {
+      max-width: 430px;
     }
   }
 
-  @media (min-width: 1100px) {
-    .services-list__item:first-child {
-      margin-right: var(--spacing-larger);
-      padding-right: var(--spacing-larger);
+  @media (min-width: 1000px) {
+    .services-list {
+      grid-template-columns: 1fr var(--spacing-large) 1fr var(--spacing-large) 1fr;
     }
 
-    .services-list__item:last-child {
-      padding-left: var(--spacing-larger);
-      margin-left: var(--spacing-larger);
+    .services-list__item:nth-child(3) {
+      grid-column: 5;
+      margin-top: 0;
+    }
+
+    .services-list__item > * {
+      max-width: none;
     }
   }
 </style>

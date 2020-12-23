@@ -4,28 +4,20 @@
       <page-header
         fill-screen
         curly-bracket
-        heading="headline"
         :byline="page.subtitle"
         :headline="page.headerTitle"
         :image="page.headerIllustration"
         is-animated
         :animation-delay="pageHeaderAnimationDelay"
       />
-      <page-introduction
-        :sections="page.pageIntroductionSections"
-      />
     </div>
+    <page-introduction :sections="page.pageIntroductionSections" />
+    <section class="page-index__cta grid">
+      <cta-block v-if="ctaSectionTop" :item="ctaSectionTop"/>
+    </section>
     <section class="page-index__services grid">
       <h2 class="page-index__section-title h1">{{ page.servicesHeader }}</h2>
-      <services-list
-        :services="page.services"
-      />
-    </section>
-    <section class="page-index__cta grid">
-      <pivot-list
-        :pivots="ctaPivot"
-        :last-item-has-background="false"
-      />
+      <services-list :services="page.services" />
     </section>
     <section class="page-index__cases grid">
       <h2 class="page-index__section-title page-index__section-title--cases h1">{{ page.casesTitle }}</h2>
@@ -107,7 +99,9 @@
   import PageHeader from '~/components/page-header'
   import ScrollTo from '~/components/scroll-to'
   import ServicesList from '~/components/services-list'
+  import CtaBlock from '~/components/cta-block'
   import PageIntroduction from '~/components/page-introduction'
+
 
   export default {
     components: {
@@ -122,17 +116,13 @@
       PageHeader,
       ScrollTo,
       ServicesList,
+      CtaBlock,
       PageIntroduction,
     },
     asyncData,
     computed: {
-      ctaPivot () {
-        return [{
-          title: this.page.ctaTitle,
-          body: this.page.ctaBody,
-          buttonLabel: this.page.ctaButtonLabel,
-          externalLink: this.page.ctaUrl,
-        }]
+      ctaSectionTop() {
+        return this.page.pageCtaSection[0]
       },
       selfTypingTextInterval() {
         return getSelfTypingTextInterval(this.page.headerTitle) / 1000
@@ -154,10 +144,6 @@
 </script>
 
 <style>
-  .page-index__header {
-    margin-bottom: var(--spacing-big);
-  }
-
   .page-index .page-introduction {
     margin-bottom: var(--spacing-larger);
   }
@@ -378,10 +364,6 @@
   }
 
   @media (min-width: 1100px) {
-    .page-index__header {
-      margin-bottom: var(--spacing-bigger);
-    }
-
     .page-index .scroll-text {
       padding-top: var(--spacing-bigger);
     }

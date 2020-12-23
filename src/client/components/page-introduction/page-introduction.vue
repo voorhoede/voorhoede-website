@@ -1,20 +1,18 @@
 <template>
-  <div class="page-introduction grid">
-    <component
-      v-for="section in sections"
+  <section class="grid page-introduction">
+    <article
+      v-for="(section, index) in sections"
       :key="section.id"
-      :is="section.title ? 'section' : 'div'"
-      class="page-introduction__section"
+      class="page-introduction__column"
+      :class="(index + 1) % 2 === 0 ? 'page-introduction__column--even' : 'page-introduction__column--odd'"
     >
-      <div class="page-introduction__section-content">
-        <responsive-image :image="section.image"/>
-        <div class="page-introduction__section-text">
-          <h2 v-if="section.title" class="h2">{{ section.title }}</h2>
-          <div class="body-big" v-html="section.body"/>
-        </div>
+      <responsive-image class="page-introduction__image" :image="section.image"/>
+      <div class="page-introduction__content">
+        <h2 v-if="section.title" class="h3">{{ section.title }}</h2>
+        <div class="body-big font-html-blue" v-html="section.body" />
       </div>
-    </component>
-  </div>
+    </article>
+  </section>
 </template>
 
 <script>
@@ -43,131 +41,118 @@
 
 <style>
   .page-introduction {
-    overflow: hidden;
-  }
-
-  .page-introduction__section {
-    margin-top: var(--spacing-big);
-    padding: 0 var(--grid-margin);
-    grid-column: var(--grid-page);
-  }
-
-  .page-introduction__section-text {
-    margin: 0 calc(-1 * var(--grid-margin));
-    margin-top: calc(-1 * var(--spacing-large));
-    padding: var(--spacing-medium) var(--grid-margin);
-    padding-top: calc(var(--spacing-large) + var(--spacing-medium));
-    color: var(--html-blue);
-  }
-
-  .page-introduction__section:nth-child(2n - 1) .page-introduction__section-text {
+    margin-bottom: var(--spacing-big);
+    padding-top: var(--spacing-big);
     background-color: var(--bg-pastel);
+    background-image: linear-gradient(var(--white), var(--white));
+    background-size: 100% var(--spacing-huge);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
   }
 
-  .page-introduction__section:nth-child(2n) .page-introduction__section-text {
+  .page-introduction__column {
+    padding-right: var(--spacing-large);
+    padding-left: var(--spacing-large);
+  }
+
+  .page-introduction__column > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .page-introduction__column--odd {
+    position: relative;
+    margin-bottom: var(--spacing-large);
+  }
+
+  .page-introduction__column--odd::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: calc(100% - var(--spacing-huge));
     background-color: var(--brand-yellow);
   }
 
-  @supports (grid-auto-flow: dense) {
-    @media (min-width: 720px) {
-      .page-introduction {
-        grid-auto-flow: dense;
-        background-color: var(--bg-pastel);
-      }
+  .page-introduction__column--even {
+    display: flex;
+    flex-direction: column;
+  }
 
-      .page-introduction__section {
-        margin: 0;
-        padding: 0;
-        padding-top: var(--spacing-big);
-      }
+  .page-introduction__column--even .page-introduction__content {
+    order: 1;
+  }
 
-      .page-introduction__section:nth-child(2n) {
-        grid-column: var(--grid-content-left);
-      }
+  .page-introduction__column--even .page-introduction__image {
+    order: 2;
+  }
 
-      .page-introduction__section:nth-child(2n + 1) {
-        grid-column: var(--grid-content-right);
-        background-color: var(--bg-pastel);
-      }
+  .page-introduction__content {
+    margin-bottom: var(--spacing-larger);
+  }
 
-      .page-introduction__section:nth-child(2n + 1) .page-introduction__section-content {
-        /* align image on bottom */
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: flex-end;
-        height: 100%;
-      }
+  .page-introduction__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: var(--spacing-larger);
+  }
 
-      .page-introduction__section:nth-child(2n + 1) .page-introduction__section-content::before {
-        content: '';
-        display: block;
-        flex-grow: 1;
-        width: 50vw;
-        background: var(--white);
-      }
-
-      .page-introduction__section:nth-child(2n + 1) .page-introduction__section-text,
-      .page-introduction__section:nth-child(2n + 1) .responsive-image {
-        padding-right: 0;
-        padding-left: var(--spacing-big);
-      }
-
-      .page-introduction__section:nth-child(2n) .page-introduction__section-text,
-      .page-introduction__section:nth-child(2n) .responsive-image {
-        padding-right: var(--spacing-big);
-      }
-
-      .page-introduction .responsive-image {
-        position: relative;
-        z-index: var(--z-index-low);
-      }
-
-      .page-introduction__section:nth-child(2n + 1) .responsive-image {
-        margin-top: var(--spacing-larger);
-        position: relative;
-      }
-
-      .page-introduction__section:nth-child(2n + 1) .responsive-image::before {
-        content: '';
-        position: absolute;
-        top: 85%;
-        right: calc(100% - 50vw);
-        bottom: 0;
-        left: 0;
-        background: var(--white);
-      }
-
-      .page-introduction__section-text {
-        margin-left: 0;
-        margin-right: 0;
-        position: relative;
-      }
-
-      .page-introduction__section:nth-child(2n + 1) .page-introduction__section-text {
-        margin-top: 0;
-        padding-top: 0;
-      }
-
-      .page-introduction__section:nth-child(2n) .page-introduction__section-text::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 100%;
-        bottom: 0;
-        left: calc(-50vw + 100%);
-        background-color: var(--brand-yellow);
-      }
+  @media (min-width: 650px) {
+    .page-introduction__column {
+      padding-right: var(--spacing-larger);
+      padding-left: var(--spacing-larger);
     }
 
-    /* Align columns with page header */
-    @media (min-width: 1100px) {
-      .page-introduction__section:nth-child(2n - 1) {
-        grid-column: var(--grid-center) / 47;
-      }
+    .page-introduction__column--odd {
+      grid-column: 1 / 26;
+      margin-bottom: 0;
+    }
 
-      .page-introduction__section:nth-child(2n) {
-        grid-column: 4 / var(--grid-center);
-      }
+    .page-introduction__column--odd::before {
+      width: 50vw;
+    }
+
+    .page-introduction__column--even {
+      grid-column: 26 / 51;
+    }
+  }
+
+  @media (min-width: 800px) {
+    .page-introduction__column {
+      padding-right: var(--spacing-larger);
+      padding-left: var(--spacing-larger);
+    }
+
+    .page-introduction__column--odd {
+      grid-column: var(--grid-content-left);
+    }
+
+    .page-introduction__column--even {
+      grid-column: var(--grid-content-right);
+    }
+
+    .page-introduction__image {
+      padding-right: var(--spacing-small);
+      padding-left: var(--spacing-small);
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .page-introduction {
+      margin-bottom: var(--spacing-bigger);
+      padding-top: var(--spacing-bigger);
+    }
+
+    .page-introduction__column--odd::before {
+      width: 100%;
+    }
+
+    .page-introduction__image {
+      padding-right: var(--spacing-large);
+      padding-left: var(--spacing-large);
     }
   }
 </style>
