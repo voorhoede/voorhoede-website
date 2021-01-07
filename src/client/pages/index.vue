@@ -4,8 +4,8 @@
       <page-header
         fill-screen
         curly-bracket
-        :byline="page.subtitle"
-        :headline="page.headerTitle"
+        :byline="page.headerTitle"
+        :headline="page.subtitle"
         :image="page.headerIllustration"
         is-animated
         :animation-delay="pageHeaderAnimationDelay"
