@@ -264,6 +264,12 @@
     grid-column-end: -3;
   }
 
+  @media (min-width: 650px) {
+    .page-index .page-introduction {
+      margin-bottom: var(--spacing-bigger);
+    }
+  }
+
   @media (min-width: 720px) {
     .page-index .scroll-text {
       padding-top: var(--spacing-big);
@@ -364,6 +370,10 @@
   }
 
   @media (min-width: 1100px) {
+    .page-index .page-introduction {
+      margin-bottom: var(--spacing-huge);
+    }
+
     .page-index .scroll-text {
       padding-top: var(--spacing-bigger);
     }
