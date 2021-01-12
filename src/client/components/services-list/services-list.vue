@@ -32,49 +32,49 @@ export default {
 </script>
 
 <style>
+  .services-list {
+    grid-column: 1 / 51;
+  }
+
   .services-list__item > * {
     min-height: 100%;
-    max-width: 340px;
-    margin-right: auto;
-    margin-left: auto;
+  }
+
+  @media (max-width: 719px) {
+    .services-list__item + .services-list__item {
+      margin-top: var(--spacing-medium);
+    }
   }
 
   @media (min-width: 720px) {
     .services-list {
-      display: grid;
-      grid-template-columns: 1fr var(--spacing-large) 1fr;
+      grid-column: var(--grid-content);
     }
 
-    .services-list__item:nth-child(1) {
-      grid-column: 1;
+    .services-list__item:nth-child(odd) {
+      grid-column: 1 / 25;
     }
 
-    .services-list__item:nth-child(2) {
-      grid-column: 3;
+    .services-list__item:nth-child(even) {
+      grid-column: 27 / 51;
     }
 
-    .services-list__item:nth-child(3) {
-      grid-column: 1 / -1;
-      margin-top: var(--spacing-medium);
-    }
-
-    .services-list__item > * {
-      max-width: 430px;
+    .services-list__item:nth-child(n+3) {
+      margin-top: var(--spacing-large);
     }
   }
 
-  @media (min-width: 1000px) {
-    .services-list {
-      grid-template-columns: 1fr var(--spacing-large) 1fr var(--spacing-large) 1fr;
+  @media (min-width: 1100px) {
+    .services-list__item:nth-child(odd) {
+      grid-column: var(--grid-page-left);
     }
 
-    .services-list__item:nth-child(3) {
-      grid-column: 5;
-      margin-top: 0;
+    .services-list__item:nth-child(even) {
+      grid-column: var(--grid-page-right);
     }
 
-    .services-list__item > * {
-      max-width: none;
+    .services-list__item:nth-child(n+3) {
+      margin-top: var(--spacing-larger);
     }
   }
 </style>

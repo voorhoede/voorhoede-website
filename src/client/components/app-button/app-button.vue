@@ -44,15 +44,7 @@
     :to="to"
   >
     <span v-if="primary || small">{{ label }}</span>
-    <template v-else>{{ label }}</template>
-    <svg
-      v-if="secondary"
-      class="app-button__svg"
-      width="16"
-      height="16"
-      viewBox="0 0 15 15">
-      <path d="M8.461 7.5L4.177 5.273V3.046l6.646 3.468v1.972l-6.646 3.468V9.727z"/>
-    </svg>
+    <template v-else>{{ label }} &rarr;</template>
   </nuxt-link>
 </template>
 
@@ -90,8 +82,7 @@
           'body': !this.small,
           'app-button--primary font-bold': this.primary,
           'app-button--secondary': this.secondary,
-          'app-button--small body-petite font-bold': this.small,
-          'font-bold': this.secondary,
+          'app-button--small body-petite font-bold': this.small
         }
       },
     },
@@ -207,10 +198,10 @@
     content: '';
     display: block;
     width: 100%;
-    height: 2px;
-    background-color: var(--brand-yellow);
-    transform: scaleX(0);
-    transform-origin: left;
+    height: 1px;
+    background-color: var(--html-blue);
+    transform: scaleX(1);
+    transform-origin: 0% 50%;
     transition: var(--app-button-duration) transform ease-in-out;
   }
 
@@ -219,7 +210,8 @@
   .app-button--secondary:active::after,
   .app-button--secondary.app-button--hover::after,
   .app-button--secondary.app-button--active::after {
-    transform: scaleX(1);
+    transform: scaleX(0);
+    transform-origin: 100% 50%;
   }
 
   @media (prefers-reduced-motion: reduce) {

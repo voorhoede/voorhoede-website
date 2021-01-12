@@ -1,15 +1,18 @@
 <template>
   <article class="service-excerpt">
+    <responsive-image v-if="image" class="service-excerpt__image" :image="image"/>
     <div class="service-excerpt__content">
-      <h3 v-if="title" class="h3">{{ title }}</h3>
+      <h3 v-if="title" class="service-excerpt__title h3">{{ title }}</h3>
       <rich-text-block v-if="body" class="service-excerpt__body body" :text="body"/>
-      <responsive-image v-if="image" class="service-excerpt__image" :image="image"/>
+      <p class="service-excerpt__actions">
+        <AppButton
+          secondary
+          :aria-label="$t('learn_more_about__title_', { title })"
+          :label="$t('learn_more')"
+          :to="localeUrl({ name: 'services-slug', params: { slug } })"
+        />
+      </p>
     </div>
-    <AppButton
-      :aria-label="$t('learn_more_about__title_', { title })"
-      :label="$t('learn_more')"
-      :to="localeUrl({ name: 'services-slug', params: { slug } })"
-    />
   </article>
 </template>
 
@@ -50,59 +53,69 @@ export default {
 
 <style>
   .service-excerpt {
-    position: relative;
     padding: var(--spacing-medium);
-    display: flex;
-    flex-direction: column;
-  }
-
-  .service-excerpt::before {
-    content: '';
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding-top: 50%;
     background-color: var(--bg-pastel);
-  }
-
-  .service-excerpt__content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 2;
-  }
-
-  .service-excerpt__content > * + * {
-    margin-top: var(--spacing-small);
-  }
-
-  .service-excerpt__body {
-    flex-grow: 2;
+    background-image: linear-gradient(var(--white), var(--white));
+    background-size: 100% var(--spacing-huge);
+    background-repeat: no-repeat;
+    background-position: 0 0;
   }
 
   .service-excerpt__image {
     display: block;
     width: 100%;
-    max-width: 400px;
+    max-width: 230px;
     height: auto;
+    margin-right: auto;
+    margin-left: auto;
   }
 
-  .service-excerpt .app-button--primary {
-    width: 100%;
-    margin-top: var(--spacing-medium);
+  .service-excerpt__content {
+    margin-top: var(--spacing-large);
   }
 
-  @media (min-width: 720px) {
-    .service-excerpt::before {
-      padding-top: 100%;
+  .service-excerpt__title {
+    text-align: center;
+  }
+
+  .service-excerpt__body {
+    margin-top: var(--spacing-small);
+  }
+
+  .service-excerpt__actions {
+    margin-top: var(--spacing-small);
+    text-align: center;
+  }
+
+  @media (min-width: 1100px) {
+    .service-excerpt {
+      display: flex;
+      align-items: center;
+      background-size: 25% 100%;
+      background-position: 0 0;
     }
 
     .service-excerpt__image {
+      width: calc(50% - var(--spacing-large));
       max-width: none;
+    }
+
+    .service-excerpt__content {
+      width: 50%;
+      align-self: stretch;
+      margin-top: 0;
+      margin-left: var(--spacing-large);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-excerpt__body {
+      flex-grow: 2;
+    }
+
+    .service-excerpt__title,
+    .service-excerpt__actions {
+      text-align: left;
     }
   }
 </style>

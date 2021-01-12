@@ -150,7 +150,6 @@
 
   .page-index__services {
     margin-bottom: var(--spacing-larger);
-    grid-template-rows: repeat(2, auto);
   }
 
   .page-index__section-title {
@@ -158,11 +157,6 @@
     grid-row-start: 1;
     grid-row-end: 2;
     text-align: center;
-  }
-
-  .page-index .services-list {
-    grid-row-start: 2;
-    grid-row-end: 3;
   }
 
   .page-index__cta {
@@ -378,7 +372,6 @@
       padding-top: var(--spacing-bigger);
     }
 
-    .page-index__services > *,
     .page-index__clients > * {
       grid-column-start: 4;
       grid-column-end: 47;
