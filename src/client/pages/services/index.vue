@@ -5,11 +5,12 @@
         heading="byline"
         :byline="page.title"
         :headline="page.subtitle" />
-      <introduction-block
-        v-if="page.introductionBlock"
-        :title="page.introductionBlock.title"
-        :body="page.introductionBlock.body"
-        class="page-services__introduction"
+      <image-with-text-block
+        :title="page.introTitle"
+        :body="page.introBody"
+        :image="page.introImage"
+        :inverse="true"
+        class="page-services__intro"
       />
       <ul class="page-services__services-list">
         <li
@@ -46,7 +47,7 @@
   import head from '~/lib/seo-head'
 
   import PageHeader from '~/components/page-header'
-  import IntroductionBlock from '~/components/introduction-block'
+  import ImageWithTextBlock from '~/components/image-with-text-block'
   import PivotList from '~/components/pivot-list'
   import ServiceExcerpt from '~/components/service-excerpt'
   import RichTextBlock from '~/components/rich-text-block'
@@ -55,7 +56,7 @@
   export default {
     components: {
       PageHeader,
-      IntroductionBlock,
+      ImageWithTextBlock,
       PivotList,
       ServiceExcerpt,
       RichTextBlock,
@@ -81,8 +82,8 @@
     margin-bottom: var(--spacing-big);
   }
 
-  .page-services__introduction {
-    grid-row: 2;
+  .page-services__intro {
+    grid-column: var(--grid-page);
   }
 
   .page-services__pivots .newsletter-form {
@@ -109,10 +110,8 @@
   }
 
   @media (min-width: 720px) {
-    .page-services__introduction {
-      grid-column-start: 8;
-      grid-column-end: 44;
-      text-align: center;
+    .page-services__intro {
+      grid-column: var(--grid-content);
     }
 
     .page-services__text {

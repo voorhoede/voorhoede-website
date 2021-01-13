@@ -37,6 +37,15 @@ fragment page on ServiceOverviewRecord {
     url
     alt
   }
+  introTitle
+  introBody
+  introImage {
+    width
+    url
+    height
+    alt
+    format
+  }
   introductionBlock {
     title
     body
