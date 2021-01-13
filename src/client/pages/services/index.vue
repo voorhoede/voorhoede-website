@@ -4,18 +4,32 @@
       <page-header
         heading="byline"
         :byline="page.title"
-        :headline="page.subtitle"
-        :image="page.headerIllustration" />
+        :headline="page.subtitle" />
       <introduction-block
         v-if="page.introductionBlock"
         :title="page.introductionBlock.title"
         :body="page.introductionBlock.body"
         class="page-services__introduction"
       />
-      <services-list
-        :services="page.services"
-        class="page-services__services-list"
-      />
+      <ul class="page-services__services-list">
+        <li
+          v-for="(service, index) in page.services"
+          :key="service.ctaLink"
+          class="page-services__services-list-item">
+          <service-excerpt
+            :title="service.excerptTitle"
+            :slug="service.slug"
+            :image="service.cardImage"
+            :body="service.cardBody"
+            :is-flipped="index % 2 !== 0"
+          />
+          <services-shortlinks
+            class="page-services__shortlinks"
+            :class="{'page-services__shortlinks--indented': index % 2 == 0}"
+            :services="childServices(service.slug)"
+          />
+        </li>
+      </ul>
       <rich-text-block
         class="page-services__text"
         :text="page.smallServices" />
@@ -35,23 +49,35 @@
   import PageHeader from '~/components/page-header'
   import IntroductionBlock from '~/components/introduction-block'
   import PivotList from '~/components/pivot-list'
-  import ServicesList from '~/components/services-list'
+  import ServiceExcerpt from '~/components/service-excerpt'
   import RichTextBlock from '~/components/rich-text-block'
+  import ServicesShortlinks from '~/components/services-shortlinks'
 
   export default {
     components: {
       PageHeader,
       IntroductionBlock,
       PivotList,
-      ServicesList,
+      ServiceExcerpt,
       RichTextBlock,
+      ServicesShortlinks
     },
     asyncData,
+    methods: {
+      childServices(slug) {
+        const { serviceSeries } = this.page.services.find(service => service.slug === slug)
+        return serviceSeries[0].childServices
+      }
+    },
     head
   }
 </script>
 
 <style>
+  .page-services {
+    background-color: var(--bg-pastel);
+  }
+
   .page-services > * {
     margin-bottom: var(--spacing-big);
   }
@@ -64,17 +90,19 @@
     background-color: var(--bg-pastel);
   }
 
-  @media (min-width: 720px) {
-    .page-services__introduction {
-      grid-column-start: 8;
-      grid-column-end: 44;
-      text-align: center;
-    }
+  .page-services__services-list {
+    grid-column: var(--grid-content);
+    margin-bottom: var(--spacing-larger);
+    list-style: none;
   }
 
-  .page-services__services-list {
-    grid-row: 3;
-    margin-bottom: var(--spacing-larger);
+  .page-services__services-list > * + * {
+    margin-top: var(--spacing-large);
+  }
+
+  .page-services__shortlinks {
+    margin-top: var(--spacing-small);
+    margin-left: var(--spacing-medium);
   }
 
   .page-services__text {
@@ -82,11 +110,29 @@
   }
 
   @media (min-width: 720px) {
+    .page-services__introduction {
+      grid-column-start: 8;
+      grid-column-end: 44;
+      text-align: center;
+    }
+
     .page-services__text {
       grid-column-start: 8;
       grid-column-end: 44;
       text-align: center;
       max-width: var(--small-services-width);
+    }
+
+    .page-services__services-list > * + * {
+      margin-top: var(--spacing-larger);
+    }
+
+    .page-services__shortlinks {
+      margin-top: var(--spacing-medium);
+    }
+
+    .page-services__shortlinks--indented {
+      margin-left: 40%;
     }
   }
 
@@ -95,9 +141,14 @@
       margin-bottom: var(--spacing-bigger);
     }
 
+    .page-services__shortlinks:not(.page-services__shortlinks--indented) {
+      margin-left: var(--spacing-larger);
+    }
+  }
+
+  @media (min-width: 1200px) {
     .page-services__services-list {
-      grid-column-start: 4;
-      grid-column-end: 48;
+      grid-column: var(--grid-content-narrow);
     }
   }
 </style>

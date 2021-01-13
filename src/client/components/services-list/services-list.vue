@@ -9,6 +9,7 @@
         :slug="service.slug"
         :image="service.cardImage"
         :body="service.cardBody"
+        :secondary="true"
       />
     </li>
   </ul>

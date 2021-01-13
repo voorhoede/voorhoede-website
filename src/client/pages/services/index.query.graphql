@@ -26,6 +26,12 @@ fragment page on ServiceOverviewRecord {
       url
       format
     }
+    serviceSeries {
+      childServices {
+        slug
+        title
+      }
+    }
   }
   headerIllustration {
     url
