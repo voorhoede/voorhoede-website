@@ -14,8 +14,7 @@
       <ul class="page-services__services-list">
         <li
           v-for="(service, index) in page.services"
-          :key="service.ctaLink"
-          class="page-services__services-list-item">
+          :key="service.ctaLink">
           <service-excerpt
             :title="service.excerptTitle"
             :slug="service.slug"
@@ -139,6 +138,10 @@
   @media (min-width: 1100px) {
     .page-services > * {
       margin-bottom: var(--spacing-bigger);
+    }
+
+    .page-services__services-list > * + * {
+      margin-top: var(--spacing-big);
     }
 
     .page-services__shortlinks:not(.page-services__shortlinks--indented) {
