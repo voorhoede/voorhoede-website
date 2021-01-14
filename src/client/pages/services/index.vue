@@ -52,6 +52,7 @@
       class="page-services__pivots"
       v-if="page.pivots && page.pivots.length"
       :pivots="page.pivots"
+      :can-have-border-top="false"
     />
   </div>
 </template>
