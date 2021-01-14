@@ -159,7 +159,7 @@
   .rich-text h1,
   .rich-text .h1,
   .h1 {
-    font-size: 3.375rem; /* 54px */
+    font-size: 3.125rem; /* 50px */
     line-height: 1.2037037037; /* 65px */
   }
 
@@ -251,8 +251,8 @@
   .rich-text h1,
   .rich-text .h1,
   .h1 {
-    font-size: 4.6875rem; /* 75px */
-    line-height: 1.2; /* 90px */
+    font-size: 3.313rem; /* 53px */
+    line-height: 1.2;
   }
 
   .rich-text h2,
