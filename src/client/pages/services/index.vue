@@ -6,31 +6,45 @@
         :byline="page.title"
         :headline="page.subtitle" />
       <image-with-text-block
+        v-if="page.introTitle && page.introBody && page.introImage"
         :title="page.introTitle"
         :body="page.introBody"
         :image="page.introImage"
         :inverse="true"
         class="page-services__intro"
       />
-      <ul class="page-services__services-list">
-        <li
-          v-for="(service, index) in page.services"
-          :key="service.ctaLink">
-          <service-excerpt
-            :title="service.excerptTitle"
-            :slug="service.slug"
-            :image="service.cardImage"
-            :body="service.cardBody"
-            :is-flipped="index % 2 !== 0"
-          />
-          <services-shortlinks
-            class="page-services__shortlinks"
-            :class="{'page-services__shortlinks--indented': index % 2 == 0}"
-            :services="childServices(service.slug)"
-          />
-        </li>
-      </ul>
+      <div v-if="page.contactBody" class="page-services__contact">
+        <p class="pullquote">{{ page.contactBody }}</p>
+        <AppButton
+          :aria-label="$t('get_in_touch')"
+          :label="$t('get_in_touch')"
+          :to="localeUrl('contact')"
+        />
+      </div>
+      <div class="page-services__services-list">
+        <h3 v-if="page.servicesTitle" class="h2">{{ page.servicesTitle }}</h3>
+        <ul>
+          <li
+            v-for="(service, index) in page.services"
+            :key="service.ctaLink">
+            <service-excerpt
+              :title="service.excerptTitle"
+              :slug="service.slug"
+              :image="service.cardImage"
+              :body="service.cardBody"
+              :body-long="service.cardBodyLong"
+              :is-flipped="index % 2 !== 0"
+            />
+            <services-shortlinks
+              class="page-services__shortlinks"
+              :class="{'page-services__shortlinks--indented': index % 2 == 0}"
+              :services="childServices(service.slug)"
+            />
+          </li>
+        </ul>
+      </div>
       <rich-text-block
+        v-if="page.smallServices"
         class="page-services__text"
         :text="page.smallServices" />
     </main>
@@ -52,6 +66,7 @@
   import ServiceExcerpt from '~/components/service-excerpt'
   import RichTextBlock from '~/components/rich-text-block'
   import ServicesShortlinks from '~/components/services-shortlinks'
+  import AppButton from '~/components/app-button'
 
   export default {
     components: {
@@ -60,7 +75,8 @@
       PivotList,
       ServiceExcerpt,
       RichTextBlock,
-      ServicesShortlinks
+      ServicesShortlinks,
+      AppButton
     },
     asyncData,
     methods: {
@@ -79,11 +95,26 @@
   }
 
   .page-services > * {
-    margin-bottom: var(--spacing-big);
+    margin-bottom: var(--spacing-large);
+  }
+
+  .page-services > *:last-child {
+    margin-bottom: var(--spacing-bigger);
   }
 
   .page-services__intro {
     grid-column: var(--grid-page);
+  }
+
+  .page-services__contact {
+    grid-column: var(--grid-content);
+    padding-right: var(--spacing-medium);
+    padding-left: var(--spacing-medium);
+    text-align: center;
+  }
+
+  .page-services__contact > * + * {
+    margin-top: var(--spacing-small);
   }
 
   .page-services__pivots .newsletter-form {
@@ -91,12 +122,21 @@
   }
 
   .page-services__services-list {
+    grid-row: 4;
     grid-column: var(--grid-content);
     margin-bottom: var(--spacing-larger);
+  }
+
+  .page-services__services-list > h3 {
+    margin-bottom: var(--spacing-small);
+    text-align: center;
+  }
+
+  .page-services__services-list ul {
     list-style: none;
   }
 
-  .page-services__services-list > * + * {
+  .page-services__services-list ul > * + * {
     margin-top: var(--spacing-large);
   }
 
@@ -114,6 +154,15 @@
       grid-column: var(--grid-content);
     }
 
+    .page-services__contact {
+      padding-left: var(--spacing-larger);
+      text-align: left;
+    }
+
+    .page-services__contact > p {
+      max-width: 500px;
+    }
+
     .page-services__text {
       grid-column-start: 8;
       grid-column-end: 44;
@@ -121,7 +170,11 @@
       max-width: var(--small-services-width);
     }
 
-    .page-services__services-list > * + * {
+    .page-services__services-list > h3 {
+      margin-bottom: var(--spacing-large);
+    }
+
+    .page-services__services-list ul > * + * {
       margin-top: var(--spacing-larger);
     }
 
@@ -136,11 +189,15 @@
 
   @media (min-width: 1100px) {
     .page-services > * {
-      margin-bottom: var(--spacing-bigger);
+      margin-bottom: var(--spacing-big);
     }
 
-    .page-services__services-list > * + * {
+    .page-services__services-list ul > * + * {
       margin-top: var(--spacing-big);
+    }
+
+    .page-services__services-list > h3 {
+      margin-bottom: var(--spacing-larger);
     }
 
     .page-services__shortlinks:not(.page-services__shortlinks--indented) {

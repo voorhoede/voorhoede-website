@@ -20,6 +20,7 @@ fragment page on ServiceOverviewRecord {
     excerptTitle
     slug
     cardBody
+    cardBodyLong
     cardImage {
       width
       height
@@ -46,6 +47,8 @@ fragment page on ServiceOverviewRecord {
     alt
     format
   }
+  contactBody
+  servicesTitle
   introductionBlock {
     title
     body

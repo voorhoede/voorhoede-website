@@ -5,7 +5,8 @@
     </div>
     <div class="service-excerpt__content">
       <h3 v-if="title" class="service-excerpt__title h3">{{ title }}</h3>
-      <rich-text-block v-if="body" class="service-excerpt__body body" :text="body"/>
+      <rich-text-block v-if="!secondary" class="service-excerpt__body body" :text="bodyLong || body"/>
+      <rich-text-block v-if="secondary" class="service-excerpt__body body" :text="body"/>
       <p class="service-excerpt__actions">
         <AppButton
           :secondary="secondary"
@@ -37,6 +38,10 @@ export default {
     body: {
       type: String,
       required: true,
+    },
+    bodyLong: {
+      type: String,
+      default: null
     },
     image: {
       type: Object,

@@ -6,15 +6,7 @@
     v-on="$listeners"
   >
     <span v-if="primary || small">{{ label }}</span>
-    <template v-else>{{ label }}</template>
-    <svg
-      v-if="secondary"
-      class="app-button__svg"
-      width="16"
-      height="16"
-      viewBox="0 0 15 15">
-      <path d="M8.461 7.5L4.177 5.273V3.046l6.646 3.468v1.972l-6.646 3.468V9.727z"/>
-    </svg>
+    <template v-else>{{ label }} &rarr;</template>
   </button>
   <a
     v-else-if="external"
@@ -26,15 +18,7 @@
     rel="noreferrer noopener"
   >
     <span v-if="primary || small">{{ label }}</span>
-    <template v-else>{{ label }}</template>
-    <svg
-      v-if="secondary"
-      class="app-button__svg"
-      width="16"
-      height="16"
-      viewBox="0 0 15 15">
-      <path d="M8.461 7.5L4.177 5.273V3.046l6.646 3.468v1.972l-6.646 3.468V9.727z"/>
-    </svg>
+    <template v-else>{{ label }} &rarr;</template>
   </a>
   <nuxt-link
     v-else
@@ -118,9 +102,7 @@
   }
 
   .app-button--primary {
-    width: 100%;
-    min-width: 14.375rem;
-    padding: .8rem 1.5625rem .7rem 1.5625rem;
+    padding: .85rem 1.5rem .7rem 1.5rem;
   }
 
   .app-button--small {
@@ -142,18 +124,15 @@
     transform: scaleX(1) scaleY(1);
   }
 
-  .app-button--primary > span::before {
-    content: '';
-    position: absolute;
-    top: 4px;
-    right: calc(100% + 10px);
-    width: 0;
-    height: 0;
-    border: 4px solid var(--white);
-    border-top-color: transparent;
-    border-left-color: transparent;
+  .app-button--primary > span::after {
+    content: '\2192';
+    display: inline-block;
+    margin-left: .3em;
+    font-size: 1.2em;
+    line-height: .5;
+    vertical-align: middle;
     transition: transform var(--app-button-duration);
-    transform: scale(0) rotate(-45deg);
+    transform: translateX(0);
   }
 
   .app-button--primary:hover::before,
@@ -167,10 +146,10 @@
     transform: scaleX(1.05) scaleY(1.3);
   }
 
-  .app-button--primary:hover > span::before,
-  .app-button--primary:focus > span::before,
-  .app-button--hover.app-button--primary > span::before {
-    transform: scale(1) rotate(-45deg);
+  .app-button--primary:hover > span::after,
+  .app-button--primary:focus > span::after,
+  .app-button--hover.app-button--primary > span::after {
+    transform: translateX(.5em);
   }
 
   .app-button--primary:disabled::before,
