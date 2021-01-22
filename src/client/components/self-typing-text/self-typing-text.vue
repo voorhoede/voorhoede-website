@@ -26,10 +26,10 @@ export default {
   },
   data () {
     return {
-      /* by adding the this.text initally it will calculate the height needed.
-      This way the header doesnt get larger when the sentence is typed */
       animationEnded: false,
       enhanced: false,
+      index: 0,
+      letters: this.text.split(''),
       selfTypingText: this.text,
     }
   },
@@ -38,29 +38,25 @@ export default {
       return
     }
 
-    const letters = this.text.split('')
     const intervalByDuration = (BASE_DURATION / this.text.length)
     /* Get interval that is not higher than max or lower than min */
     const interval = [MIN_INTERVAL, Math.round(intervalByDuration), MAX_INTERVAL].sort()[1]
-
     this.enhanced = true // Only enhance when javascript in the client is available
     this.selfTypingText = ''
-
-    letters.forEach((letter, index) => {
-      setTimeout(() => {
+    this.interval = setInterval(this.renderLetter, interval)
+  },
+  methods: {
+    renderLetter() {
+      if (this.index >= this.letters.length) {
+        clearInterval(this.interval)
+        this.animationEnded = true // Remove cursor
+      }
+      const letter = this.letters[this.index]
+      if (letter) {
         this.selfTypingText += letter
-        /*
-         * By removing the height property when the last letter is typed,
-         * it will scale normaly when window is resized.
-         *
-         * this.$refs.text is checked, because the component might be unmounted,
-         * by the time the code is run, because of the timeout.
-         */
-        if (index === this.text.length - 1) {
-          this.animationEnded = true // Remove cursor
-        }
-      }, interval * index)
-    })
+        this.index++
+      }
+    }
   }
 }
 </script>
