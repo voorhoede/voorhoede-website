@@ -48,10 +48,11 @@
 
 <script>
   import AppImage from '../app-image'
+  import FixedRatio from '../fixed-ratio'
   import formatDate from '../../lib/format-date'
 
   export default {
-    components: { AppImage },
+    components: { AppImage, FixedRatio },
     props: {
       item: {
         type: Object,
