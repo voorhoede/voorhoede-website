@@ -13,8 +13,8 @@
 </template>
 
 <script>
-const MIN_INTERVAL = 35 // Time between letters should be at least 35ms
-const MAX_INTERVAL = 70 // Time between letters should be no more than 70ms
+const MIN_INTERVAL = 35 // Time between characters should be at least 35ms
+const MAX_INTERVAL = 70 // Time between characters should be no more than 70ms
 const BASE_DURATION = 1000 // Transition duration to aim for is 1s
 
 export default {
@@ -29,7 +29,7 @@ export default {
       animationEnded: false,
       enhanced: false,
       index: 0,
-      letters: this.text.split(''),
+      characters: this.text.split(''),
       selfTypingText: this.text,
     }
   },
@@ -43,17 +43,17 @@ export default {
     const interval = [MIN_INTERVAL, Math.round(intervalByDuration), MAX_INTERVAL].sort()[1]
     this.enhanced = true // Only enhance when javascript in the client is available
     this.selfTypingText = ''
-    this.interval = setInterval(this.renderLetter, interval)
+    this.interval = setInterval(this.renderCharacter, interval)
   },
   methods: {
-    renderLetter() {
-      if (this.index >= this.letters.length) {
+    renderCharacter() {
+      if (this.index >= this.characters.length) {
         clearInterval(this.interval)
         this.animationEnded = true // Remove cursor
       }
-      const letter = this.letters[this.index]
-      if (letter) {
-        this.selfTypingText += letter
+      const character = this.characters[this.index]
+      if (character) {
+        this.selfTypingText += character
         this.index++
       }
     }
