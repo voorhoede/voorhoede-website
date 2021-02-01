@@ -124,7 +124,7 @@
   }
 
   .cta-image-block__ctas {
-    margin-top: var(--spacing-small);
+    margin: var(--spacing-small) calc(-1 * var(--spacing-medium)) 0 0;
   }
 
   @media (min-width: 600px) {
@@ -132,6 +132,11 @@
       display: flex;
       align-items: center;
     }
+  }
+  
+  .cta_image-block__primary-cta,
+  .cta_image-block__secondary-cta {
+    margin-right: var(--spacing-medium);
   }
 
   .cta_image-block__primary-cta + .cta_image-block__secondary-cta {
@@ -141,7 +146,6 @@
   @media (min-width: 600px) {
     .cta_image-block__primary-cta + .cta_image-block__secondary-cta {
       margin-top: 0;
-      margin-left: var(--spacing-medium);
     }
   }
 
