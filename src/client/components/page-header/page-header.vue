@@ -214,8 +214,10 @@
   }
 
   .page-header__image {
+    margin-left: auto;
+    display: block;
     max-width: 100%;
-    max-height: 285px;
+    max-height: 200px;
   }
 
   .page-header .scroll-to {
@@ -355,7 +357,8 @@
     }
 
     .page-header__image {
-      height: 100%;
+      margin-left: 0;
+      object-fit: contain;
       max-height: 285px;
     }
 
