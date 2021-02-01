@@ -20,13 +20,22 @@
         class="cta-image-block__body"
       />
 
-      <div class="cta-image-block__link">
+      <div v-if="hasCta" class="cta-image-block__ctas">
         <app-button
+          :v-if="hasPrimaryCta"
+          class="cta_image-block__primary-cta"
           small
-          :v-if="linkUrl && linkLabel"
           :label="linkLabel"
           :to="linkUrl"
-          external
+          :external="linkIsExternal"
+        />
+        <app-button
+          v-if="hasSecondaryCta"
+          class="cta_image-block__secondary-cta"
+          secondary
+          :label="secondaryLinkLabel"
+          :to="secondaryLinkUrl"
+          :external="secondaryLinkIsExternal"
         />
       </div>
     </div>
@@ -65,6 +74,18 @@
         type: Boolean,
         default: false
       },
+      secondaryLinkLabel: {
+        type: String,
+        default: null
+      },
+      secondaryLinkUrl: {
+        type: String,
+        default: null
+      },
+      secondaryLinkIsExternal: {
+        type: Boolean,
+        default: false
+      },
       personImage: {
         type: Object,
         required: true,
@@ -72,6 +93,17 @@
       personName: {
         type: String,
         required: true,
+      }
+    },
+    computed: {
+      hasPrimaryCta() {
+        return !!this.linkUrl && !!this.linkLabel
+      },
+      hasSecondaryCta() {
+        return !!this.secondaryLinkUrl && !!this.secondaryLinkLabel
+      },
+      hasCta() {
+        return this.hasPrimaryCta || this.hasSecondaryCta
       }
     }
   }
@@ -90,8 +122,30 @@
     margin-bottom: var(--spacing-tiny);
   }
 
-  .cta-image-block__link {
-    margin-top: var(--spacing-small);
+  .cta-image-block__ctas {
+    margin: var(--spacing-small) calc(-1 * var(--spacing-medium)) 0 0;
+  }
+
+  @media (min-width: 600px) {
+    .cta-image-block__ctas {
+      display: flex;
+      align-items: center;
+    }
+  }
+  
+  .cta_image-block__primary-cta,
+  .cta_image-block__secondary-cta {
+    margin-right: var(--spacing-medium);
+  }
+
+  .cta_image-block__primary-cta + .cta_image-block__secondary-cta {
+    margin-top: var(--spacing-medium);
+  }
+
+  @media (min-width: 600px) {
+    .cta_image-block__primary-cta + .cta_image-block__secondary-cta {
+      margin-top: 0;
+    }
   }
 
   .cta-image-block .responsive-image {
