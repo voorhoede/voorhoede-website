@@ -125,10 +125,10 @@
         return this.page.pageCtaSection[0]
       },
       selfTypingTextInterval() {
-        return getSelfTypingTextInterval(this.page.headerTitle) / 1000
+        return getSelfTypingTextInterval(this.page.subtitle) / 1000
       },
       pageHeaderAnimationDelay() {
-        return this.page.headerTitle.length * this.selfTypingTextInterval
+        return this.page.subtitle.length * this.selfTypingTextInterval
       }
     },
     methods: {
