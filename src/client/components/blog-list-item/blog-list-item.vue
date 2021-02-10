@@ -24,19 +24,14 @@
               v-for="author in item.authors"
               :key="author.name"
             >
-              <fixed-ratio
+              <app-image
                 class="blog-list-item__image"
                 :class="{ 'blog-list-item__image--large': large }"
-                :width="large ? 65 : 40"
-                :height="large ? 65 : 40"
-              >
-                <app-image
-                  :image="author.image"
-                  :crop-and-keep-ratio="true"
-                  :avatar-and-face-focus="true"
-                  :width-step="large ? 65 : 40"
-                />
-              </fixed-ratio>
+                :image="author.image"
+                :crop-and-keep-ratio="true"
+                :avatar-and-face-focus="true"
+                :width-step="large ? 65 : 40"
+              />
             </div>
             <span :class="large ? 'body' : 'body-petite'">{{ $t('by__authors_', { authors }) }}</span>
           </div>
@@ -48,11 +43,10 @@
 
 <script>
   import AppImage from '../app-image'
-  import FixedRatio from '../fixed-ratio'
   import formatDate from '../../lib/format-date'
 
   export default {
-    components: { AppImage, FixedRatio },
+    components: { AppImage },
     props: {
       item: {
         type: Object,
