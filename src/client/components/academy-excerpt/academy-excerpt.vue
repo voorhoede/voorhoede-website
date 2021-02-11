@@ -72,10 +72,6 @@
 </script>
 
 <style>
-  :root {
-    --button-group-spacing: var(--spacing-large);
-  }
-
   .academy-excerpt__content {
     grid-column-start: 17;
     grid-column-end: var(--grid-content-end);
