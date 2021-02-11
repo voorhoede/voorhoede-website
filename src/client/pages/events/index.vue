@@ -38,8 +38,8 @@
       <h2 class="page-event__events-list-title h2">Past events</h2>
       <ul class="page-event__past-events-list">
         <li
-          v-for="event in pastEvents"
-          :key="event.description"
+          v-for="(event, index) in pastEvents"
+          :key="event.description + index"
           class="page-event__past-events-item"
         >
           <event-list-item :event="event"/>
