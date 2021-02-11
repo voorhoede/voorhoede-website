@@ -7,34 +7,32 @@
       :image="page.headerIllustration ? page.headerIllustration : fallbackIllustration"
     />
 
-    <div class="page-event__content grid">
-      <div class="page-event__content--grid-left">
-        <div class="page-event__intro">
-          <rich-text-block
-            v-if="page.introductionText"
-            :key="page.introductionText"
-            :text="page.introductionText"
-            large-text />
-        </div>
-
-        <section class="page-event__upcoming-events">
-          <h2 class="page-event__events-list-title h2">Upcoming events</h2>
-          <ul class="page-event__upcoming-events-list">
-            <li
-              v-for="event in upcomingEvents"
-              :key="event.description"
-              class="page-event__upcoming-events-item">
-              <event-card
-                :date-string="event.date"
-                :title="event.title"
-                :description="event.description"
-                :illustration="event.image"
-                :slug="event.slug"
-                :label="event.label.label"/>
-            </li>
-          </ul>
-        </section>
+    <div class="page-event__content grid" :class="{'page-event__content--upcoming-events': upcomingEvents}">
+      <div class="page-event__intro">
+        <rich-text-block
+          v-if="page.introductionText"
+          :key="page.introductionText"
+          :text="page.introductionText"
+          large-text />
       </div>
+
+      <section v-if="upcomingEvents" class="page-event__upcoming-events">
+        <h2 class="page-event__events-list-title h2">Upcoming events</h2>
+        <ul class="page-event__upcoming-events-list">
+          <li
+            v-for="event in upcomingEvents"
+            :key="event.description"
+            class="page-event__upcoming-events-item">
+            <event-card
+              :date-string="event.date"
+              :title="event.title"
+              :description="event.description"
+              :illustration="event.image"
+              :slug="event.slug"
+              :label="event.label.label"/>
+          </li>
+        </ul>
+      </section>
     </div>
     <section class="page-event__past-events grid">
       <h2 class="page-event__events-list-title h2">Past events</h2>
@@ -101,6 +99,18 @@
 </script>
 
 <style>
+  .page-event .page-header {
+    position: relative;
+    z-index: 2;
+  }
+
+  .page-event__content {
+    position: relative;
+    z-index: 1;
+    padding-top: var(--spacing-larger);
+    background-color: var(--bg-pastel);
+  }
+
   .page-event__events-list-title {
     margin-bottom: var(--spacing-medium);
     text-align: center;
@@ -108,46 +118,26 @@
 
   .page-event__intro {
     position: relative;
-    margin-bottom: var(--spacing-larger);
+    max-width: 550px;
     padding-bottom: var(--spacing-larger);
     color: var(--html-blue);
-    background-color: var(--bg-pastel);
   }
 
   .page-event__upcoming-events {
     position: relative;
+    grid-column: var(--grid-page);
+    padding-top: var(--spacing-larger);
+    padding-right: calc(var(--grid-margin) * 2);
+    padding-left: calc(var(--grid-margin) * 2);
+    background-color: var(--white);
   }
 
   .page-event__upcoming-events-item {
     position: relative;
   }
 
-  .page-event__intro::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    height: 100%;
-    width: 100%;
-    background-color: var(--bg-pastel);
-  }
-
-  .page-event__intro::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -140%;
-    height: 100%;
-    width: 140%;
-    background-color: var(--bg-pastel);
-  }
-
-  .page-event__content {
-    overflow: hidden; /* hide right pseudo content from .page-event__intro */
-  }
-
   .page-event__past-events {
-    margin: var(--spacing-large) 0;
+    margin-bottom: var(--spacing-large);
   }
 
   .page-event__past-events-item + .page-event__past-events-item {
@@ -156,10 +146,6 @@
   }
 
   @media (min-width: 720px) {
-    .page-event__intro {
-      width: 500px;
-    }
-
     .page-event__upcoming-events-list {
       margin-left: calc(var(--spacing-medium) * -1);
     }
@@ -186,56 +172,55 @@
   }
 
   @media (min-width: 1100px) {
-    .page-event__content--grid-left::after {
-      content: '';
-      clear: both;
-      display: table;
+    .page-event__content {
+      padding-top: 0;
     }
 
-    .page-event__upcoming-events-item {
-      max-width: 29%;
-      margin-bottom: var(--spacing-larger);
+    .page-event__content--upcoming-events {
+      background-image: linear-gradient(var(--white), var(--white));
+      background-size: 50% 100%;
+      background-repeat: no-repeat;
+      background-position: 100% 0;
     }
 
     .page-event__intro {
-      float: left;
-      width: 29%;
-      padding-right: var(--spacing-larger);
-      margin-bottom: var(--spacing-small);
-      color: var(--html-blue);
+      grid-column: 4 / var(--grid-center);
+      max-width: none;
+    }
+
+    .page-event__content--upcoming-events .page-event__intro {
+      grid-column: 4 / 16;
+    }
+
+    .page-event__upcoming-events {
+      grid-column: 18 / 50;
+      padding-top: 0;
+      padding-right: 0;
+      padding-left: var(--spacing-larger);
     }
 
     .page-event__upcoming-events-item:last-child {
       margin-bottom: 0;
     }
 
-    .page-event__intro::after {
-      display: none;
-    }
-
-    .page-event__content--grid-left {
-      grid-column-start: 4;
-    }
-
     .page-event__upcoming-events .page-event__events-list-title {
       position: absolute;
-      left: 101%;
+      top: var(--spacing-larger);
+      left: calc(100% + var(--spacing-larger));
       width: 100%;
       transform-origin: top left;
       transform: rotate(90deg);
       text-align: left;
+    }
+
+    .page-event__past-events {
+      margin-top: var(--spacing-bigger);
     }
   }
 
   @media (min-width: 1000px) {
     .page-event__past-events-list {
       grid-column: var(--grid-content-smallest);
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .page-event__upcoming-events .page-event__events-list-title {
-      left: 100%;
     }
   }
 </style>
