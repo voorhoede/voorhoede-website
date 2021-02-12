@@ -68,6 +68,7 @@ fragment page on HomeRecord {
     body
     linkLabel
     linkUrl
+    linkIsExternal
     person {
       name
       image {
