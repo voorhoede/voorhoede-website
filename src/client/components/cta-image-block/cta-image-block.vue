@@ -39,13 +39,6 @@
           :to="secondaryLinkUrl"
           :external="secondaryLinkIsExternal"
         />
-        <app-button
-          class="cta_image-block__secondary-cta"
-          secondary
-          label="Link label"
-          to="https://google.com"
-          :external="true"
-        />
       </div>
     </div>
   </div>
