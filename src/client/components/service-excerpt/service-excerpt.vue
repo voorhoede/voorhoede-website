@@ -1,115 +1,220 @@
 <template>
-  <article class="service-excerpt">
-    <div class="service-excerpt__content">
-      <h3 class="service-excerpt__title h5">{{ tagline }}</h3>
-      <h4 class="service-excerpt__sub-title h3">{{ title }}</h4>
-      <div class="service-excerpt__divider"/>
-      <ul class="list">
-        <li
-          v-for="line in summary"
-          :key="line.body"
-          class="body"
-        >
-          <rich-text-block :text="line.body"/>
-        </li>
-      </ul>
+  <article :class="rootClass">
+    <div class="service-excerpt__image">
+      <responsive-image v-if="image" :image="image"/>
     </div>
-    <AppButton
-      secondary
-      :aria-label="$t('learn_more_about__title_', { title })"
-      :label="$t('learn_more')"
-      :to="localeUrl({ name: 'services-slug', params: { slug } })"
-    />
+    <div class="service-excerpt__content">
+      <h3 v-if="title" class="service-excerpt__title h3">{{ title }}</h3>
+      <rich-text-block v-if="!secondary" class="service-excerpt__body body" :text="bodyLong || body"/>
+      <rich-text-block v-if="secondary" class="service-excerpt__body body" :text="body"/>
+      <p class="service-excerpt__actions">
+        <AppButton
+          :secondary="secondary"
+          :aria-label="$t('learn_more_about__title_', { title })"
+          :label="$t('learn_more')"
+          :to="localeUrl({ name: 'services-slug', params: { slug } })"
+        />
+      </p>
+    </div>
   </article>
 </template>
 
 <script>
 import AppButton from '../app-button'
+import ResponsiveImage from '../responsive-image'
 import RichTextBlock from '../rich-text-block'
 
 export default {
-  components: { AppButton, RichTextBlock },
+  components: {
+    AppButton,
+    ResponsiveImage,
+    RichTextBlock
+  },
   props: {
-    tagline: {
-      type: String,
-      required: true,
-    },
     title: {
       type: String,
       required: true,
     },
-    summary: {
-      type: Array,
+    body: {
+      type: String,
       required: true,
-      validator(summary) {
-        return summary.every(line => 'body' in line)
-      }
+    },
+    bodyLong: {
+      type: String,
+      default: null
+    },
+    image: {
+      type: Object,
+      default: null,
+      validator(image) {
+        return image && typeof(image.url) === 'string'
+      },
     },
     slug: {
       type: String,
       required: true,
+    },
+    secondary: {
+      type: Boolean,
+      default: false
+    },
+    isFlipped: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    rootClass() {
+      return {
+        'service-excerpt': true,
+        'service-excerpt--primary': !this.secondary,
+        'service-excerpt--secondary': this.secondary,
+        'service-excerpt--is-flipped': this.isFlipped,
+      }
     },
   },
 }
 </script>
 
 <style>
+  .service-excerpt {
+    padding: var(--spacing-medium);
+    background-color: var(--white);
+    background-image: linear-gradient(var(--bg-pastel), var(--bg-pastel));
+    background-size: 100% var(--spacing-huge);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+  }
+
+  .service-excerpt--secondary {
+    background-color: var(--bg-pastel);
+    background-image: linear-gradient(var(--white), var(--white));
+  }
+
+  .service-excerpt__image {
+    max-width: 230px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .service-excerpt__image > * {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .service-excerpt__content {
+    margin-top: var(--spacing-large);
+  }
+
   .service-excerpt__title {
-    margin-bottom: var(--spacing-medium);
-    padding-top: .125rem; /* 2px */
-    padding-left: var(--spacing-smaller);
-    background-color: var(--brand-yellow);
+    text-align: center;
   }
 
-  .service-excerpt__sub-title {
-    margin-bottom: var(--spacing-small);
-  }
-
-  .service-excerpt__divider {
-    margin-bottom: var(--spacing-small);
-    width: var(--spacing-medium);
-    height: 2px;
-    background-color: var(--html-blue);
-  }
-
-  .service-excerpt .app-button {
+  .service-excerpt__body {
     margin-top: var(--spacing-small);
-    margin-left: var(--spacing-small);
+  }
+
+  .service-excerpt__actions {
+    margin-top: var(--spacing-small);
+    text-align: center;
   }
 
   @media (min-width: 720px) {
-    .service-excerpt {
+    .service-excerpt--primary {
       display: flex;
-      flex: 1;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: flex-start; /* Reset stretch */
+      align-items: center;
+      background-size: 20% 100%;
+      background-position: 0 0;
     }
 
-    .service-excerpt__content {
-      width: 100%;
+    .service-excerpt--is-flipped {
+      background-position: 100% 0;
     }
 
-    .service-excerpt__title {
-      padding-top: .25rem; /* 4px */
-      padding-bottom: .125rem; /* 2px */
+    .service-excerpt--is-flipped .service-excerpt__image {
+      order: 2;
     }
 
-    .service-excerpt__divider {
-      margin-bottom: var(--spacing-medium);
-      width: var(--spacing-large);
+    .service-excerpt--primary .service-excerpt__image {
+      width: calc(40% - var(--spacing-big));
+      max-width: none;
     }
 
-    .service-excerpt .app-button {
-      margin-top: var(--spacing-large);
+    .service-excerpt--primary .service-excerpt__image > * {
+      max-width: 330px;
+    }
+
+    .service-excerpt--primary .service-excerpt__content {
+      flex-basis: 60%;
+      flex-grow: 2;
+      align-self: stretch;
+      margin-top: 0;
+      margin-left: var(--spacing-big);
+    }
+
+    .service-excerpt--is-flipped .service-excerpt__content {
+      order: 1;
+      margin-right: var(--spacing-big);
       margin-left: 0;
+    }
+
+    .service-excerpt--primary .service-excerpt__body {
+      max-width: 600px;
+    }
+
+    .service-excerpt--primary .service-excerpt__title,
+    .service-excerpt--primary .service-excerpt__actions {
+      text-align: left;
+    }
+
+    .service-excerpt--primary .service-excerpt__actions {
+      margin-top: var(--spacing-medium);
     }
   }
 
   @media (min-width: 1100px) {
-    .service-excerpt__title {
-      padding-top: .375em; /* 6px */
-      padding-bottom: .25rem; /* 4px */
+    .service-excerpt--primary .service-excerpt__content {
+      padding-top: var(--spacing-medium);
+      padding-right: var(--spacing-medium);
+      padding-bottom: var(--spacing-medium);
+    }
+
+    .service-excerpt--is-flipped .service-excerpt__content {
+      padding-right: 0;
+      padding-left: var(--spacing-medium);
+    }
+
+    .service-excerpt--secondary {
+      display: flex;
+      align-items: center;
+      background-size: 25% 100%;
+      background-position: 0 0;
+    }
+
+    .service-excerpt--secondary .service-excerpt__image {
+      width: calc(50% - var(--spacing-large));
+      max-width: none;
+    }
+
+    .service-excerpt--secondary .service-excerpt__content {
+      width: 50%;
+      align-self: stretch;
+      margin-top: 0;
+      margin-left: var(--spacing-large);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-excerpt--secondary .service-excerpt__body {
+      flex-grow: 2;
+    }
+
+    .service-excerpt__title,
+    .service-excerpt__actions {
+      text-align: left;
     }
   }
 </style>

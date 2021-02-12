@@ -9,7 +9,7 @@
     :link-is-external="item.linkIsExternal"
     :secondary-link-label="item.secondaryLinkLabel"
     :secondary-link-url="item.secondaryLinkUrl"
-    :seconary-link-is-external="item.secondaryLinkIsExternal" 
+    :secondary-link-is-external="item.secondaryLinkIsExternal"
     :person-image="item.person.image"
     :person-name="item.person.name"
   />

@@ -17,17 +17,38 @@ fragment page on ServiceOverviewRecord {
   }
   keywords
   services {
-    tagline
     excerptTitle
     slug
-    summary {
-      body
+    cardBody
+    cardBodyLong
+    cardImage {
+      width
+      height
+      url
+      format
+    }
+    serviceSeries {
+      childServices {
+        slug
+        title
+      }
     }
   }
   headerIllustration {
     url
     alt
   }
+  introTitle
+  introBody
+  introImage {
+    width
+    url
+    height
+    alt
+    format
+  }
+  contactBody
+  servicesTitle
   introductionBlock {
     title
     body
