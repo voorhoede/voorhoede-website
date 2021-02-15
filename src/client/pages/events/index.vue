@@ -101,12 +101,12 @@
 <style>
   .page-event .page-header {
     position: relative;
-    z-index: 2;
+    z-index: var(--z-index-high);
   }
 
   .page-event__content {
     position: relative;
-    z-index: 1;
+    z-index: var(--z-index-low);
     padding-top: var(--spacing-larger);
     background-color: var(--bg-pastel);
   }
@@ -118,7 +118,7 @@
 
   .page-event__intro {
     position: relative;
-    max-width: 550px;
+    max-width: var(--event-intro-width);
     padding-bottom: var(--spacing-larger);
     color: var(--html-blue);
   }
