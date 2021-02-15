@@ -99,6 +99,11 @@
 </script>
 
 <style>
+  .page-event {
+    position: relative;
+    z-index: var(--z-index-low);
+  }
+
   .page-event .page-header {
     position: relative;
     z-index: var(--z-index-high);
