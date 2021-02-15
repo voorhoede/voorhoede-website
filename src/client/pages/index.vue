@@ -4,28 +4,20 @@
       <page-header
         fill-screen
         curly-bracket
-        heading="byline"
         :byline="page.headerTitle"
         :headline="page.subtitle"
         :image="page.headerIllustration"
         is-animated
-        :animation-delay="page.subtitle.length * typeDurationLetter"
+        :animation-delay="pageHeaderAnimationDelay"
       />
-      <div class="grid">
-        <scroll-text :items="page.usps" />
-      </div>
     </div>
+    <page-introduction :sections="page.pageIntroductionSections" />
+    <section class="page-index__cta grid">
+      <cta-block v-if="ctaSectionTop" :item="ctaSectionTop"/>
+    </section>
     <section class="page-index__services grid">
       <h2 class="page-index__section-title h1">{{ page.servicesHeader }}</h2>
-      <services-list
-        :services="page.services"
-      />
-    </section>
-    <section class="page-index__cta grid">
-      <pivot-list
-        :pivots="ctaPivot"
-        :last-item-has-background="false"
-      />
+      <services-list :services="page.services" />
     </section>
     <section class="page-index__cases grid">
       <h2 class="page-index__section-title page-index__section-title--cases h1">{{ page.casesTitle }}</h2>
@@ -93,6 +85,7 @@
 
 <script>
   import asyncData from '~/lib/async-page'
+  import getSelfTypingTextInterval from '~/lib/get-self-typing-text-interval'
   import head from '~/lib/seo-head'
 
   import AcademyExcerpt from '~/components/academy-excerpt'
@@ -106,7 +99,9 @@
   import PageHeader from '~/components/page-header'
   import ScrollTo from '~/components/scroll-to'
   import ServicesList from '~/components/services-list'
-  import ScrollText from '~/components/scroll-text'
+  import CtaBlock from '~/components/cta-block'
+  import PageIntroduction from '~/components/page-introduction'
+
 
   export default {
     components: {
@@ -121,23 +116,20 @@
       PageHeader,
       ScrollTo,
       ServicesList,
-      ScrollText,
+      CtaBlock,
+      PageIntroduction,
     },
     asyncData,
-    data() {
-      return {
-        typeDurationLetter: .05, // average duration per letter in seconds
-      }
-    },
     computed: {
-      ctaPivot () {
-        return [{
-          title: this.page.ctaTitle,
-          body: this.page.ctaBody,
-          buttonLabel: this.page.ctaButtonLabel,
-          externalLink: this.page.ctaUrl,
-        }]
+      ctaSectionTop() {
+        return this.page.pageCtaSection[0]
       },
+      selfTypingTextInterval() {
+        return getSelfTypingTextInterval(this.page.subtitle) / 1000
+      },
+      pageHeaderAnimationDelay() {
+        return this.page.subtitle.length * this.selfTypingTextInterval
+      }
     },
     methods: {
       isLast(index, usps) {
@@ -152,18 +144,12 @@
 </script>
 
 <style>
-  .page-index__header {
-    margin-bottom: var(--spacing-big);
-    background-color: var(--bg-pastel);
-  }
-
-  .page-index .scroll-text {
-    padding-top: var(--spacing-larger);
+  .page-index .page-introduction {
+    margin-bottom: var(--spacing-larger);
   }
 
   .page-index__services {
     margin-bottom: var(--spacing-larger);
-    grid-template-rows: repeat(2, auto);
   }
 
   .page-index__section-title {
@@ -171,11 +157,6 @@
     grid-row-start: 1;
     grid-row-end: 2;
     text-align: center;
-  }
-
-  .page-index .services-list {
-    grid-row-start: 2;
-    grid-row-end: 3;
   }
 
   .page-index__cta {
@@ -277,11 +258,13 @@
     grid-column-end: -3;
   }
 
-  @media (min-width: 720px) {
-    .page-index .page-header {
-      margin-bottom: var(--spacing-big);
+  @media (min-width: 650px) {
+    .page-index .page-introduction {
+      margin-bottom: var(--spacing-bigger);
     }
+  }
 
+  @media (min-width: 720px) {
     .page-index .scroll-text {
       padding-top: var(--spacing-big);
     }
@@ -381,15 +364,14 @@
   }
 
   @media (min-width: 1100px) {
-    .page-index__header {
-      margin-bottom: var(--spacing-bigger);
+    .page-index .page-introduction {
+      margin-bottom: var(--spacing-huge);
     }
 
     .page-index .scroll-text {
       padding-top: var(--spacing-bigger);
     }
 
-    .page-index__services > *,
     .page-index__clients > * {
       grid-column-start: 4;
       grid-column-end: 47;

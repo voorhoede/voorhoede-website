@@ -4,7 +4,7 @@
       v-if="direction === 'down'"
       class="scroll-to__point-down"
     >
-      <span class="scroll-to__text body-petite font-bold">
+      <span class="sr-only">
         {{ $t('scroll') }}
       </span>
       <img

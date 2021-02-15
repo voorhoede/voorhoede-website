@@ -1,9 +1,11 @@
 <template>
   <div class="cta-image-block">
-    <responsive-image
-      :width-step="120"
-      :image="personImage"
-      :alt="personName" />
+    <div class="cta-image-block__image">
+      <responsive-image
+        :width-step="120"
+        :image="personImage"
+        :alt="personName" />
+    </div>
 
     <div class="cta-image-block__content">
       <h2
@@ -111,9 +113,6 @@
 
 <style>
   .cta-image-block {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
     margin-bottom: var(--spacing-large);
     width: 100%;
   }
@@ -130,12 +129,14 @@
     .cta-image-block__ctas {
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
     }
   }
-  
+
   .cta_image-block__primary-cta,
   .cta_image-block__secondary-cta {
     margin-right: var(--spacing-medium);
+    margin-bottom: var(--spacing-small);
   }
 
   .cta_image-block__primary-cta + .cta_image-block__secondary-cta {
@@ -148,31 +149,59 @@
     }
   }
 
-  .cta-image-block .responsive-image {
-    max-width: 135px;
-    margin: var(--spacing-small) 0;
-    z-index: 1;
+  .cta-image-block__image {
+    --size: 180px;
+
+    position: relative;
+    width: var(--size);
+    min-width: var(--size);
+    height: var(--size);
+    margin-right: auto;
+    margin-left: auto;
+    overflow: hidden;
+    border-radius: 50%;
   }
 
-  @media (min-width: 600px) {
-    .cta-image-block .responsive-image {
-      margin: var(--spacing-medium) 0;
-    }
+  .cta-image-block__image > * {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 
   .cta-image-block__content {
-    background: var(--bg-pastel);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: var(--spacing-small) var(--spacing-small) var(--spacing-small) var(--spacing-medium);
-    margin-left: calc(-1 * var(--spacing-small));
+    margin-top: var(--spacing-medium);
   }
 
   @media (min-width: 600px) {
+    .cta-image-block {
+      display: flex;
+      align-items: center;
+    }
+
     .cta-image-block__content {
-      padding: var(--spacing-medium) var(--spacing-medium) var(--spacing-medium) var(--spacing-larger);
-      margin-left: calc(-1 * var(--spacing-medium));
+      margin-top: 0;
+      padding-right: var(--spacing-medium);
+      padding-left: var(--spacing-larger);
+    }
+
+    .cta-image-block__image {
+      --size: 25vw;
+
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+
+  @media (min-width: 800px) {
+    .cta-image-block__image {
+      --size: 200px;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .cta-image-block {
+      grid-column-start: 8;
+      grid-column-end: 47;
     }
   }
 </style>

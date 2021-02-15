@@ -2,7 +2,7 @@
   <div class="image-with-text" :class="{ 'image-with-text--inverse': inverse }">
     <responsive-image :image="image" />
     <div class="image-with-text__body">
-      <h3 v-if="title" class="image-with-text__body-title h2">{{ title }}</h3>
+      <h3 v-if="title" class="image-with-text__body-title h3">{{ title }}</h3>
       <p class="pullquote">{{ body }}</p>
     </div>
   </div>
@@ -36,36 +36,47 @@
 
 <style>
   .image-with-text {
-    display: flex;
-    flex-direction: column;
     width: 100%;
   }
 
   .image-with-text .responsive-image {
+    position: relative;
+    z-index: var(--z-index-low);
     width: 100%;
   }
 
   .image-with-text__body {
-    background-color: var(--white);
+    position: relative;
+    z-index: var(--z-index-high);
     margin-top: calc(-1 * var(--spacing-bigger));
-    margin-right: var(--spacing-larger);
-    padding: var(--spacing-medium);
-    z-index: var(--z-index-low);
   }
 
-  .image-with-text--inverse .image-with-text__body {
-    margin-right: 0;
-    margin-left: var(--spacing-larger);
+  .image-with-text__body > * {
+    padding-top: var(--spacing-medium);
+    padding-right: var(--spacing-medium);
+    padding-left: var(--spacing-medium);
   }
 
   .image-with-text__body-title {
-    margin-bottom: var(--spacing-smaller);
+    margin-left: var(--spacing-larger);
+    background-color: var(--white);
+  }
+
+  .image-with-text--inverse .image-with-text__body-title {
+    margin-left: 0;
+    margin-right: var(--spacing-larger);
+  }
+
+  .image-with-text__body > p {
+    padding-bottom: var(--spacing-medium);
+    background-color: var(--white);
   }
 
   @media (min-width: 720px) {
     .image-with-text {
-      padding: var(--spacing-larger) var(--spacing-larger) var(--spacing-larger) 0;
+      display: flex;
       flex-direction: row;
+      padding: var(--spacing-larger) var(--spacing-larger) var(--spacing-larger) 0;
       background-image: linear-gradient(
         to right,
         transparent,
@@ -102,6 +113,22 @@
     .image-with-text--inverse .image-with-text__body {
       margin-right: var(--spacing-large);
       margin-left: 0;
+    }
+
+    .image-with-text__body > * {
+      padding: 0;
+    }
+
+    .image-with-text__body-title,
+    .image-with-text--inverse .image-with-text__body-title {
+      margin-right: 0;
+      margin-left: 0;
+    }
+
+    .image-with-text__body > p {
+      margin-top: var(--spacing-small);
+      padding-bottom: 0;
+      background-color: transparent;
     }
   }
 
