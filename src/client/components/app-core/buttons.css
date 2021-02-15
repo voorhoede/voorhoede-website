@@ -1,21 +1,17 @@
 :root {
-  --button-group-spacing: var(--spacing-medium);
-}
-
-.button-group {
-  display: flex;
-  align-items: center;
-}
-
-.button-group .app-button + .app-button {
-  margin-left: var(--button-group-spacing);
+  --button-group-spacing: var(--spacing-smaller);
 }
 
 .button-group .app-button {
-  min-width: auto;
-  width: calc(50% - var(--button-group-spacing) / 2);
+  vertical-align: middle;
+  margin-top: var(--button-group-spacing);
+  margin-right: var(--button-group-spacing);
+}
+
+.button-group .app-button--primary {
+  min-width: min-content;
 }
 
 .button-group .app-button--secondary {
-  width: auto;
+  margin-top: calc(var(--button-group-spacing) * 2);
 }

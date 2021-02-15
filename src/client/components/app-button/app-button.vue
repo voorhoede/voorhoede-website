@@ -84,8 +84,9 @@
     border: 0;
     text-align: center;
     text-decoration: none;
-    cursor: pointer;
     line-height: 1.18;
+    white-space: nowrap;
+    cursor: pointer;
   }
 
   .app-button > span {
