@@ -1,6 +1,5 @@
 <template>
   <component
-    class="app-image"
     :class="{ 'app-image--pastel' : svgFormat === false }"
     :is="(lazyLoad) ? 'LazyLoad' : 'div'"
   >
@@ -129,11 +128,6 @@
 </script>
 
 <style>
-  .app-image {
-    width: 100%;
-    height: 100%;
-  }
-
   .app-image--pastel {
     background-color: var(--bg-pastel);
   }
