@@ -9,14 +9,8 @@
 </template>
 
 <script>
-  import LazyLoad from '../lazy-load'
-  import RichTextBlock from '../rich-text-block'
 
   export default {
-    components: {
-      RichTextBlock,
-      LazyLoad
-    },
     props: {
       title: {
         type: String,

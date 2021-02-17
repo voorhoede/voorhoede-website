@@ -88,37 +88,7 @@
   import getSelfTypingTextInterval from '~/lib/get-self-typing-text-interval'
   import head from '~/lib/seo-head'
 
-  import AcademyExcerpt from '~/components/academy-excerpt'
-  import AppButton from '~/components/app-button'
-  import BlogListItem from '~/components/blog-list-item'
-  import CaseExcerpt from '~/components/case-excerpt'
-  import PivotList from '~/components/pivot-list'
-  import CurlyBracket from '~/components/curly-bracket'
-  import HighlightedClients from '~/components/highlighted-clients'
-  import HorizontalCarousel from '~/components/horizontal-carousel'
-  import PageHeader from '~/components/page-header'
-  import ScrollTo from '~/components/scroll-to'
-  import ServicesList from '~/components/services-list'
-  import CtaBlock from '~/components/cta-block'
-  import PageIntroduction from '~/components/page-introduction'
-
-
   export default {
-    components: {
-      AcademyExcerpt,
-      AppButton,
-      BlogListItem,
-      CaseExcerpt,
-      PivotList,
-      CurlyBracket,
-      HighlightedClients,
-      HorizontalCarousel,
-      PageHeader,
-      ScrollTo,
-      ServicesList,
-      CtaBlock,
-      PageIntroduction,
-    },
     asyncData,
     computed: {
       ctaSectionTop() {

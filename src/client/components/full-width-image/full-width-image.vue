@@ -8,13 +8,10 @@
 </template>
 
 <script>
-  import ResponsiveImage from '../responsive-image'
+
   import imageUrl from '../../lib/image-url'
 
   export default {
-    components: {
-      ResponsiveImage,
-    },
     props: {
       image: {
         type: Object,

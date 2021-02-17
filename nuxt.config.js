@@ -13,6 +13,7 @@ const baseUrl = URL
 
 module.exports = {
   srcDir: 'src/client',
+  components: true,
   generate,
   modules,
   env: {

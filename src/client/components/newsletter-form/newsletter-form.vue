@@ -62,14 +62,7 @@
 </template>
 
 <script>
-  import AppButton from '../app-button'
-  import InputCheckbox from '../input-checkbox'
-  import InputField from '../input-field'
-
   export default {
-    components: {
-      AppButton, InputCheckbox, InputField,
-    },
     props: {
       hasBackground: {
         type: Boolean,

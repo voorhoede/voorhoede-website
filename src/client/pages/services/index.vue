@@ -61,24 +61,7 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
-  import PageHeader from '~/components/page-header'
-  import ImageWithTextBlock from '~/components/image-with-text-block'
-  import PivotList from '~/components/pivot-list'
-  import ServiceExcerpt from '~/components/service-excerpt'
-  import RichTextBlock from '~/components/rich-text-block'
-  import ServicesShortlinks from '~/components/services-shortlinks'
-  import AppButton from '~/components/app-button'
-
   export default {
-    components: {
-      PageHeader,
-      ImageWithTextBlock,
-      PivotList,
-      ServiceExcerpt,
-      RichTextBlock,
-      ServicesShortlinks,
-      AppButton
-    },
     asyncData,
     methods: {
       childServices(slug) {

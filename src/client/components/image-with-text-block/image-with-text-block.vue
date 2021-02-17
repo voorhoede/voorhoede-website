@@ -9,10 +9,7 @@
 </template>
 
 <script>
-  import ResponsiveImage from '../responsive-image'
-
   export default {
-    components: { ResponsiveImage },
     props: {
       title: {
         type: String,

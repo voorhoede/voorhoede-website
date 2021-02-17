@@ -16,12 +16,7 @@
 </template>
 
 <script>
-  import ResponsiveImage from '../responsive-image'
-
   export default {
-    components: {
-      ResponsiveImage,
-    },
     props: {
       sections: {
         type: Array,

@@ -71,26 +71,8 @@
     SET_PREVIOUS_SERVICE_TITLE,
     SET_PREVIOUS_SERVICE_SERIES_NAVIGATION
   } from '~/store/mutation-types'
-  import BreadcrumbsBlock from '~/components/breadcrumbs-block'
-  import CtaBlock from '~/components/cta-block'
-  import GenericTextBlock from '~/components/generic-text-block'
-  import PageHeader from '~/components/page-header'
-  import PivotList from '~/components/pivot-list'
-  import ResponsiveImage from '~/components/responsive-image'
-  import SeriesNavigation from '~/components/series-navigation'
-  import TestimonialBlock from '~/components/testimonial-block'
 
   export default {
-    components: {
-      BreadcrumbsBlock,
-      CtaBlock,
-      GenericTextBlock,
-      PageHeader,
-      PivotList,
-      ResponsiveImage,
-      SeriesNavigation,
-      TestimonialBlock
-    },
     async asyncData(context) {
       try {
         const data = await asyncPage(context)

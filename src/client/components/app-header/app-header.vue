@@ -37,10 +37,8 @@
 
 <script>
   import { createHref, linkValidator } from '../../lib/links'
-  import AppButton from '../app-button'
 
   export default {
-    components: { AppButton },
     props: {
       title: {
         type: String,

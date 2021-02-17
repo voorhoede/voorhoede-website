@@ -48,7 +48,7 @@
 
 <script>
   import imageUrl from '../../lib/image-url'
-  import LazyLoad from '../lazy-load'
+  import LazyLoad from '../lazy-load/lazy-load'
 
   export default {
     components: {

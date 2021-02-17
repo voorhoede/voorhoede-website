@@ -17,12 +17,7 @@
 </template>
 
 <script>
-import RichTextBlock from '../rich-text-block'
-
 export default {
-  components: {
-    RichTextBlock,
-  },
   props: {
     inverse: {
       type: Boolean,

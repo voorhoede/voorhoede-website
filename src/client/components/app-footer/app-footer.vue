@@ -102,12 +102,8 @@
 
 <script>
 import { createHref } from '../../lib/links'
-import AppIcon from '../../components/app-icon'
 
 export default {
-  components: {
-    AppIcon
-  },
   data () {
     return {
       observer: null

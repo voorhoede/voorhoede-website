@@ -38,19 +38,7 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-
-  import IntroductionBlock from '~/components/introduction-block'
-  import CaseExcerpt from '~/components/case-excerpt'
-  import PageHeader from '~/components/page-header'
-  import PivotList from '~/components/pivot-list'
-
   export default {
-    components: {
-      IntroductionBlock,
-      CaseExcerpt,
-      PageHeader,
-      PivotList,
-    },
     asyncData,
     head,
   }

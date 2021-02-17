@@ -53,20 +53,7 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import EventListItem from '~/components/event-list-item'
-  import EventCard from '~/components/event-card'
-  import PageHeader from '~/components/page-header'
-  import RichTextBlock from '~/components/rich-text-block'
-  import NewsletterForm from '~/components/newsletter-form'
-
   export default {
-    components: {
-      EventListItem,
-      EventCard,
-      PageHeader,
-      RichTextBlock,
-      NewsletterForm,
-    },
     asyncData,
     data() {
       return {

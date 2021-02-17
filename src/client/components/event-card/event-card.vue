@@ -27,12 +27,7 @@
 </template>
 
 <script>
-  import CalendarIcon from '../calendar-icon'
-  import ResponsiveImage from '../responsive-image'
-  import RichTextBlock from '../rich-text-block'
-
   export default {
-    components: { CalendarIcon, ResponsiveImage, RichTextBlock },
     props: {
       dateString: {
         type: String,

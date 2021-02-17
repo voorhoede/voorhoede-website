@@ -33,16 +33,7 @@
 </template>
 
 <script>
-  import AppButton from '../app-button'
-  import CalendarIcon from '../calendar-icon'
-  import LazyLoad from '../lazy-load'
-
   export default {
-    components: {
-      AppButton,
-      CalendarIcon,
-      LazyLoad,
-    },
     props: {
       date: {
         type: String,

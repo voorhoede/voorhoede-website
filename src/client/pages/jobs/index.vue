@@ -32,16 +32,7 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-  import PageHeader from '~/components/page-header'
-  import JobsExcerpt from '~/components/jobs-excerpt'
-  import GenericTextBlock from '~/components/generic-text-block'
-
   export default {
-    components: {
-      PageHeader,
-      JobsExcerpt,
-      GenericTextBlock
-    },
     asyncData,
     head,
   }

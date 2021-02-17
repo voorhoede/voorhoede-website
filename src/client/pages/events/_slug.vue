@@ -108,27 +108,7 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
   import formatDate from '~/lib/format-date'
-
-  import AppButton from '~/components/app-button'
-  import ImageWithDescription from '~/components/image-with-description'
-  import PageHeader from '~/components/page-header'
-  import QuoteBlock from '~/components/quote-block'
-  import ResponsiveImage from '~/components/responsive-image'
-  import RichTextBlock from '~/components/rich-text-block'
-  import TextBlock from '~/components/text-block'
-  import NewsletterForm from '~/components/newsletter-form'
-
   export default {
-    components: {
-      AppButton,
-      ImageWithDescription,
-      PageHeader,
-      QuoteBlock,
-      ResponsiveImage,
-      RichTextBlock,
-      TextBlock,
-      NewsletterForm,
-    },
     asyncData,
     data() {
       return {

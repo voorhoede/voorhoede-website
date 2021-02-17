@@ -16,13 +16,12 @@
 </template>
 
 <script>
-  import PageHeader from '../components/page-header'
+
   import layoutEn from '~/static/data/en/layouts/error/404/index.json'
   import layoutNl from '~/static/data/nl/layouts/error/404/index.json'
 
   const DEFAULT_STATUSCODE = 404
   export default {
-    components: { PageHeader },
     props: {
       error: {
         type: [Object, Error],

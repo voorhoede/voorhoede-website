@@ -146,40 +146,7 @@
 import asyncData from '~/lib/async-page'
 import head from '~/lib/seo-head'
 
-import AppButton from '~/components/app-button'
-import BlogAuthor from '~/components/blog-author'
-import CodeBlock from '~/components/code-block'
-import ImageWithDescription from '~/components/image-with-description'
-import PivotList from '~/components/pivot-list'
-import PageHeader from '~/components/page-header'
-import BlockquoteBlock from '~/components/blockquote-block'
-import QuoteBlock from '~/components/quote-block'
-import ResponsiveImage from '~/components/responsive-image'
-import ResponsiveVideo from '~/components/responsive-video'
-import RichTextBlock from '~/components/rich-text-block'
-import ScrollTo from '~/components/scroll-to'
-import SocialShareButtons from '~/components/social-share-buttons'
-import TocSection from '~/components/toc-section'
-import TextBlock from '~/components/text-block'
-
 export default {
-  components: {
-    AppButton,
-    BlogAuthor,
-    CodeBlock,
-    ImageWithDescription,
-    PivotList,
-    PageHeader,
-    BlockquoteBlock,
-    QuoteBlock,
-    ResponsiveImage,
-    ResponsiveVideo,
-    RichTextBlock,
-    ScrollTo,
-    SocialShareButtons,
-    TocSection,
-    TextBlock,
-  },
   asyncData,
   data () {
     return {

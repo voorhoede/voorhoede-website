@@ -40,8 +40,6 @@
 </template>
 
 <script>
-  import AppIcon from '../app-icon'
-
   function isValidItem(item) {
     return (
       typeof(item.title) === 'string'
@@ -50,7 +48,6 @@
   }
 
   export default {
-    components: { AppIcon },
     props: {
       titleRoute: {
         type: Object,
@@ -87,7 +84,7 @@
     display: inline-flex;
     align-items: center;
   }
-  
+
   .series-navigation__back-icon {
     margin-right: var(--spacing-tiny);
   }

@@ -17,16 +17,7 @@
 </template>
 
 <script>
-import AppIcon from '../app-icon'
-import FixedRatio from '../fixed-ratio'
-import LazyLoad from '../lazy-load'
-
 export default {
-  components: {
-    AppIcon,
-    FixedRatio,
-    LazyLoad,
-  },
   data() {
     return {
       clients: [

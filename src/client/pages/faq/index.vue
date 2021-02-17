@@ -25,14 +25,7 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-
-  import GenericTextBlock from '~/components/generic-text-block'
-  import PageHeader from '~/components/page-header'
-  import ScrollTo from '~/components/scroll-to'
-  import NewsletterForm from '~/components/newsletter-form'
-
   export default {
-    components: { GenericTextBlock, PageHeader, ScrollTo, NewsletterForm },
     asyncData,
     head
   }

@@ -12,10 +12,7 @@
 </template>
 
 <script>
-  import AppButton from '../app-button/app-button'
-
   export default {
-    components: { AppButton },
     props: {
       link: {
         type: Object,

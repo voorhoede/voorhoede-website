@@ -41,11 +41,10 @@
 </template>
 
 <script>
-  import AppImage from '../app-image'
+
   import formatDate from '../../lib/format-date'
 
   export default {
-    components: { AppImage },
     props: {
       item: {
         type: Object,
