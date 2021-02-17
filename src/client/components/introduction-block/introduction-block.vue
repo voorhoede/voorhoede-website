@@ -15,12 +15,7 @@
 </template>
 
 <script>
-  import RichTextBlock from '~/components/rich-text-block'
-
   export default {
-    components: {
-      RichTextBlock
-    },
     props: {
       title: {
         type: String,

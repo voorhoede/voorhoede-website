@@ -31,11 +31,8 @@
 </template>
 
 <script>
-  import AppIcon from '../app-icon'
-  import AppButton from '../app-button'
 
   export default {
-    components: { AppIcon, AppButton },
     props: {
       authors: {
         type: Array,

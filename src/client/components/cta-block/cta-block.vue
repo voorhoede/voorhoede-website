@@ -25,14 +25,8 @@
 </template>
 
 <script>
-  import CtaImageBlock from '../cta-image-block'
-  import BlockquoteBlock from '../blockquote-block'
 
   export default {
-    components: {
-      BlockquoteBlock,
-      CtaImageBlock,
-    },
     props: {
       item: {
         type: Object,

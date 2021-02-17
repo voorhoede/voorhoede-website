@@ -50,14 +50,9 @@
 </template>
 
 <script>
-  import FixedRatio from '../fixed-ratio/fixed-ratio'
-  import LazyLoad from '../lazy-load/lazy-load'
-  import AppIcon from '../app-icon/app-icon'
-
   const binaryBoolean = value => (value) ? 1 : 0
 
   export default {
-    components: { AppIcon, FixedRatio, LazyLoad },
     props: {
       video: {
         type: Object,

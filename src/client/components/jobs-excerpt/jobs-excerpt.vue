@@ -17,10 +17,7 @@
 </template>
 
 <script>
-  import AppButton from '../app-button'
-
   export default {
-    components: { AppButton },
     props: {
       title: {
         type: String,

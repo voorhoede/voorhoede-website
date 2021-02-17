@@ -45,16 +45,7 @@
 </template>
 
 <script>
-  import AppButton from '../app-button'
-  import ResponsiveImage from '../responsive-image'
-  import RichTextBlock from '../rich-text-block'
-
   export default {
-    components: {
-      AppButton,
-      ResponsiveImage,
-      RichTextBlock
-    },
     props: {
       title: {
         type: String,

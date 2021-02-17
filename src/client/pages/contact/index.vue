@@ -28,14 +28,7 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-
-  import ContactSidebar from '~/components/contact-sidebar'
-  import ContactForm from '~/components/contact-form'
-  import PageHeader from '~/components/page-header'
-  import NewsletterForm from '~/components/newsletter-form'
-
   export default {
-    components: { ContactSidebar, ContactForm, PageHeader, NewsletterForm },
     asyncData,
     head,
   }

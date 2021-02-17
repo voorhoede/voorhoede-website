@@ -17,14 +17,8 @@
 </template>
 
 <script>
-  import CalendarIcon from '../calendar-icon'
-  import RichTextBlock from '../rich-text-block'
 
   export default {
-    components: {
-      CalendarIcon,
-      RichTextBlock,
-    },
     props: {
       event: {
         type: Object,

@@ -21,14 +21,8 @@
 </template>
 
 <script>
-  import AppImage from '../app-image'
-  import FixedRatio from '../fixed-ratio'
 
   export default {
-    components: {
-      FixedRatio,
-      AppImage,
-    },
     props: {
       caption: {
         type: String,

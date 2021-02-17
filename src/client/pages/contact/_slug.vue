@@ -25,12 +25,7 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-
-  import PageHeader from '~/components/page-header'
-  import PivotList from '~/components/pivot-list'
-
   export default {
-    components: { PageHeader, PivotList },
     asyncData,
     head,
   }

@@ -153,40 +153,7 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
-  import BreadcrumbsBlock from '~/components/breadcrumbs-block'
-  import CaseMeta from '~/components/case-meta'
-  import CasePullQuoteComposition from '~/components/case-pull-quote-composition'
-  import CaseTeaser from '~/components/case-teaser'
-  import FullWidthImage from '~/components/full-width-image'
-  import ImageWithDescription from '~/components/image-with-description'
-  import PageHeader from '~/components/page-header'
-  import PivotList from '~/components/pivot-list'
-  import BlockquoteBlock from '~/components/blockquote-block'
-  import QuoteBlock from '~/components/quote-block'
-  import ResponsiveImage from '~/components/responsive-image'
-  import ResponsiveVideo from '~/components/responsive-video'
-  import RichTextBlock from '~/components/rich-text-block'
-  import ScrollTo from '~/components/scroll-to'
-  import StorytellingSection from '~/components/storytelling-section'
-
   export default {
-    components: {
-      BreadcrumbsBlock,
-      CaseMeta,
-      CasePullQuoteComposition,
-      CaseTeaser,
-      FullWidthImage,
-      ImageWithDescription,
-      PageHeader,
-      PivotList,
-      BlockquoteBlock,
-      QuoteBlock,
-      ResponsiveImage,
-      ResponsiveVideo,
-      RichTextBlock,
-      ScrollTo,
-      StorytellingSection,
-    },
     asyncData,
     data() {
       return {

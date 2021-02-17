@@ -29,14 +29,8 @@
 </template>
 
 <script>
-  import FixedRatio from '../fixed-ratio'
-  import ResponsiveImage from '../responsive-image'
 
   export default {
-    components: {
-      FixedRatio,
-      ResponsiveImage,
-    },
     props: {
       image: {
         type: Object,

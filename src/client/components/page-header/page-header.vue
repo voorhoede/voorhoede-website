@@ -68,14 +68,7 @@
 </template>
 
 <script>
-  import SelfTypingText from '../self-typing-text'
-  import ScrollTo from '../scroll-to'
-
   export default {
-    components: {
-      SelfTypingText,
-      ScrollTo,
-    },
     props: {
       headline: {
         type: String,

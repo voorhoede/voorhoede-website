@@ -106,13 +106,9 @@
 </template>
 
 <script>
-  import AppButton from '../app-button'
-  import InputField from '../input-field'
   import submitContactForm from '../../lib/submit-contact-form'
-  import ResponsiveImage from '../responsive-image'
 
   export default {
-    components: { AppButton, InputField, ResponsiveImage },
     props: {
       title: {
         type: String,

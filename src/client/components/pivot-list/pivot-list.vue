@@ -70,20 +70,7 @@
 
 <script>
   import { createHref } from '../../lib/links'
-  import AppButton from '../app-button'
-  import ContactForm from '../contact-form'
-  import LeadsForm from '../leads-form'
-  import NewsletterForm from '../newsletter-form'
-  import RichTextBlock from '../rich-text-block'
-
   export default {
-    components: {
-      AppButton,
-      ContactForm,
-      LeadsForm,
-      NewsletterForm,
-      RichTextBlock,
-    },
     props: {
       pivots: {
         type: Array,
@@ -112,7 +99,7 @@
       createHref,
       pivotHasBackground(pivotIndex) {
         const lastPivotIndex = this.pivots.length - 1
-        
+
         return (this.lastItemHasBackground && pivotIndex === lastPivotIndex)
       },
       itemContentIsFullWidth(pivot) {

@@ -16,10 +16,7 @@
 </template>
 
 <script>
-import ServiceExcerpt from '../service-excerpt'
-
 export default {
-  components: { ServiceExcerpt },
   props: {
     services: {
       type: Array,

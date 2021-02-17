@@ -8,11 +8,7 @@
 </template>
 
 <script>
-import NoScript from '../no-script'
 export default {
-  components: {
-    NoScript
-  },
   props: {
     rootMargin: {
       type: String,

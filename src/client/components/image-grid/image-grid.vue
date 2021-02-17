@@ -20,10 +20,7 @@
 </template>
 
 <script>
-  import AppImage from '../app-image'
-
   export default {
-    components: { AppImage },
     props: {
       title: {
         type: String,

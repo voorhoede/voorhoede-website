@@ -32,16 +32,7 @@
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
 
-  import PageHeader from '~/components/page-header'
-  import PivotList from '~/components/pivot-list'
-  import RichTextBlock from '~/components/rich-text-block'
-
   export default {
-    components: {
-      PageHeader,
-      PivotList,
-      RichTextBlock,
-    },
     asyncData,
     head,
   }
