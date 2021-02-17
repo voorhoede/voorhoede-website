@@ -29,7 +29,6 @@
                 :class="{ 'blog-list-item__image--large': large }"
                 :image="author.image"
                 :crop-and-keep-ratio="true"
-                :avatar-and-face-focus="true"
                 :width-step="large ? 65 : 40"
               />
             </div>

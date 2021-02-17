@@ -28,10 +28,13 @@ fragment page on BlogPostRecord {
     twitterHandle
     image {
       url
-      format
-      alt
       width
       height
+      format
+      focalPoint {
+        x
+        y
+      }
     }
   }
   introTitle

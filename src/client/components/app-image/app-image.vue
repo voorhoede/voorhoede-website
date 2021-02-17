@@ -85,10 +85,6 @@
         type: Boolean,
         default: false
       },
-      avatarAndFaceFocus: {
-        type: Boolean,
-        default: false
-      },
     },
     data() {
       return {
@@ -115,10 +111,12 @@
       if (this.cropAndKeepRatio) {
         cropOptions.h = this.width
         cropOptions.fit = 'crop'
-      }
-      if(this.avatarAndFaceFocus) {
-        cropOptions.facepad = 2.25
-        cropOptions.fit = 'facearea'
+
+        if (this.image.focalPoint) {
+          cropOptions.crop = 'focalpoint'
+          cropOptions['fp-x'] = this.image.focalPoint.x
+          cropOptions['fp-y'] = this.image.focalPoint.y
+        }
       }
       this.cropOptions = cropOptions
     },

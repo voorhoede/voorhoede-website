@@ -13,9 +13,13 @@ query ($locale: SiteLocale) {
       name
       image {
         url
-        format
         width
         height
+        format
+        focalPoint {
+          x
+          y
+        }
       }
     }
   }
