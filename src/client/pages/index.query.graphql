@@ -26,6 +26,10 @@ query HomePage($locale: SiteLocale, $currentDate: DateTime) {
         width
         height
         format
+        focalPoint {
+          x
+          y
+        }
       }
     }
   }

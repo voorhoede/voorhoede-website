@@ -17,6 +17,10 @@ query ($locale: SiteLocale) {
         width
         height
         format
+        focalPoint {
+          x
+          y
+        }
       }
     }
   }
