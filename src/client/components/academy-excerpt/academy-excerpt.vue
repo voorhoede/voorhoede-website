@@ -24,16 +24,21 @@
     </div>
     <div v-if="illustration" class="academy-excerpt__illustration-column">
       <div class="academy-excerpt__illustration-wrapper">
-        <lazy-load>
+        <vue-lazy-load>
           <img class="academy-excerpt__illustration" :src="illustration.url" alt="">
-        </lazy-load>
+        </vue-lazy-load>
       </div>
     </div>
   </article>
 </template>
 
 <script>
+  import VueLazyLoad from '@voorhoede/vue-lazy-load'
+
   export default {
+    components: {
+      VueLazyLoad,
+    },
     props: {
       date: {
         type: String,

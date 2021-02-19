@@ -7,9 +7,9 @@
         class="highlighted-clients__client"
       >
         <fixed-ratio :width="5" :height="2">
-          <lazy-load>
+          <vue-lazy-load>
             <app-icon :name="icon.name" :alt="icon.alt"/>
-          </lazy-load>
+          </vue-lazy-load>
         </fixed-ratio>
       </li>
     </ul>
@@ -17,7 +17,11 @@
 </template>
 
 <script>
+import VueLazyLoad from '@voorhoede/vue-lazy-load'
 export default {
+  components: {
+    VueLazyLoad,
+  },
   data() {
     return {
       clients: [
@@ -44,6 +48,10 @@ export default {
 </script>
 
 <style>
+  .vue-lazy-load {
+    height: 100%;
+  }
+
   :root {
     --highlighted-clients-columns: 2;
 

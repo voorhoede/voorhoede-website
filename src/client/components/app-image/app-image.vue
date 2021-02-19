@@ -1,7 +1,7 @@
 <template>
   <component
     :class="{ 'app-image--pastel' : svgFormat === false }"
-    :is="(lazyLoad) ? 'LazyLoad' : 'div'"
+    :is="(lazyLoad) ? 'VueLazyLoad' : 'div'"
   >
     <div
       v-if="svgFormat"
@@ -48,11 +48,11 @@
 
 <script>
   import imageUrl from '../../lib/image-url'
-  import LazyLoad from '../lazy-load/lazy-load'
+  import VueLazyLoad from '@voorhoede/vue-lazy-load'
 
   export default {
     components: {
-      LazyLoad,
+      VueLazyLoad,
     },
     props: {
       caption: {
