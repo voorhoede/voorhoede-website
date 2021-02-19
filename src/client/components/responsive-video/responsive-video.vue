@@ -2,7 +2,7 @@
   <div class="responsive-video">
     <figure>
       <fixed-ratio class="responsive-video__canvas" :width="canvasWidth" :height="canvasHeight">
-        <lazy-load>
+        <vue-lazy-load>
           <div
             class="responsive-video__background"
             :style="{ backgroundImage: `url(${imageUrl})` }"
@@ -37,7 +37,7 @@
             <span class="sr-only">Play video</span>
             <app-icon name="play"/>
           </component>
-        </lazy-load>
+        </vue-lazy-load>
       </fixed-ratio>
       <figcaption>
         <a v-if="video" class="responsive-video__caption body-detail" target="_blank" rel="noreferrer noopener" :href="video.url" >
@@ -50,9 +50,13 @@
 </template>
 
 <script>
+  import VueLazyLoad from '@voorhoede/vue-lazy-load'
   const binaryBoolean = value => (value) ? 1 : 0
 
   export default {
+    components: {
+      VueLazyLoad,
+    },
     props: {
       video: {
         type: Object,
