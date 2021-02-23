@@ -20,7 +20,7 @@
     "prebuild:predump": "dato dump",
     "prebuild:dump": "npm run data",
     "build": "NODE_ENV=production run-s build:*",
-    "build:client": "nuxt generate --modern=client",
+    "build:client": "nuxt generate --modern=client --fail-on-error",
     "postbuild": "node _scripts/build-feed/index.js",
     "predev": "run-s prebuild:clean prebuild:predump",
     "dev": "PORT=3278 nuxt",
