@@ -37,7 +37,7 @@ export default {
   computed: {
     ...mapState(['showGrid']),
     layout () {
-      return require(`../static/data/${this.$i18n.locale}/layouts/default`)
+      return require(`../static/data/layouts/${this.$i18n.locale}/default`)
     },
     isHome() {
       return this.$route.name && this.$route.name.includes('index')

@@ -111,11 +111,11 @@ export default {
   },
   computed: {
     links () {
-      const { menu } = require(`../../static/data/${this.$i18n.locale}/layouts/default`)
+      const { menu } = require(`../../static/data/layouts/${this.$i18n.locale}/default`)
       return [].concat(menu.links, menu.callToAction)
     },
     content () {
-      return require(`../../static/data/${this.$i18n.locale}/layouts/default`).footer
+      return require(`../../static/data/layouts/${this.$i18n.locale}/default`).footer
     },
     socialLinks() {
       return [

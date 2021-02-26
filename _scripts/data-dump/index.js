@@ -90,7 +90,7 @@ function readQueryFile(query) {
 }
 
 async function writeJsonFile({ filePath, data }) {
-  const outputFileDir = path.join(__dirname, '../../src/client/static/data/', filePath)
+  const outputFileDir = path.join(__dirname, '../../src/client/static/data/pages/', filePath)
   const outputFilePath = path.join(outputFileDir, 'index.json')
   if (!fs.existsSync(outputFileDir)) {
     await createDirectory(outputFileDir)
