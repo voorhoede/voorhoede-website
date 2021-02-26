@@ -17,8 +17,8 @@
 
 <script>
 
-  import layoutEn from '~/static/data/en/layouts/error/404/index.json'
-  import layoutNl from '~/static/data/nl/layouts/error/404/index.json'
+  import layoutEn from '~/static/data/layouts/en/error/404/index.json'
+  import layoutNl from '~/static/data/layouts/nl/error/404/index.json'
 
   const DEFAULT_STATUSCODE = 404
   export default {

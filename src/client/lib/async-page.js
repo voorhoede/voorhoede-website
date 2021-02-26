@@ -8,7 +8,7 @@ import { SET_I18N_SLUGS } from '~/store/mutation-types'
  */
 const fetchPage = process.env.NODE_ENV === 'production'
   ? function ({ route }) {
-    const filepath = path.join('/data', route.path, 'index.json')
+    const filepath = path.join('/data/pages', route.path, 'index.json')
     if (process.client) {
       // On client load over http
       return fetch(filepath).then(res => res.json())

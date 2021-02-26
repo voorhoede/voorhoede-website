@@ -36,10 +36,10 @@ module.exports = (dato, root, i18n) => {
 
     messages[locale] = translationsToJson(dato.translations)
 
-    root.createDataFile(`${dataDir}/${locale}/layouts/default/index.json`, 'json', layoutToJson(dato), 'utf8')
+    root.createDataFile(`${dataDir}/layouts/${locale}/default/index.json`, 'json', layoutToJson(dato), 'utf8')
 
     dato.errorPages.forEach(errorPage => {
-      root.createDataFile(`${dataDir}/${locale}/layouts/error/${errorPage.errorCode}/index.json`, 'json', errorPageToJson(errorPage), 'utf8')
+      root.createDataFile(`${dataDir}/layouts/${locale}/error/${errorPage.errorCode}/index.json`, 'json', errorPageToJson(errorPage), 'utf8')
     })
 
     fs.writeFileSync(`${__dirname}/${staticDir}/_redirects`, redirectsToText(dato.redirects, locales, defaultLocale), 'utf8')

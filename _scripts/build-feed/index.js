@@ -1,7 +1,7 @@
 const { writeFileSync } = require('fs')
 const path = require('path')
 const builder = require('xmlbuilder')
-const { items, page: { social: { description } } } = require('../../src/client/static/data/en/blog/')
+const { items, page: { social: { description } } } = require('../../src/client/static/data/pages/en/blog/')
 const url = process.env.URL || 'https://voorhoede.nl'
 
 const feedObject = {

@@ -1,6 +1,6 @@
 const glob = require('glob')
 
-const pagesDir = './src/client/static/data/'
+const pagesDir = './src/client/static/data/pages/'
 
 const routes = glob.sync(`${pagesDir}**/index.json`)
   .map(path => path.replace(pagesDir, ''))
