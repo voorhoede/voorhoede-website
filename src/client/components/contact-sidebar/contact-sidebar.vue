@@ -23,7 +23,7 @@
       <dt>BTW</dt>
       <dd class="font-html-blue">NL851944620B01</dd>
       <dt>IBAN</dt>
-      <dd class="font-html-blue">NL20ABNA0442829159</dd>
+      <dd class="font-html-blue">NL14TRIO0320142078</dd>
     </dl>
   </address>
 </template>
