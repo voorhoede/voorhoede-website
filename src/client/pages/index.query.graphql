@@ -73,6 +73,9 @@ fragment page on HomeRecord {
     linkLabel
     linkUrl
     linkIsExternal
+    secondaryLinkIsExternal
+    secondaryLinkLabel
+    secondaryLinkUrl
     person {
       name
       image {
@@ -94,10 +97,6 @@ fragment page on HomeRecord {
       alt
     }
   }
-  ctaTitle
-  ctaBody
-  ctaButtonLabel
-  ctaUrl
   servicesHeader
   services {
     excerptTitle
