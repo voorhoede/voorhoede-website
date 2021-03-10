@@ -32,7 +32,7 @@
         validator: (items) => {
           return (
             items.every(item => {
-              return item instanceof Object &&
+              return typeof item === 'object' &&
                 typeof item.title === 'string' &&
                 typeof item.description === 'string' &&
                 typeof item.image === 'object' &&
