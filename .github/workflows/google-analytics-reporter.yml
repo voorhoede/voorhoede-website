@@ -1,0 +1,18 @@
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@v2
+
+    - name: Webstats Google Analytics reporter
+      id: webstats-google-analytics-reporter
+      uses: voorhoede/webstats-google-analytics-reporter@master
+      env:
+        GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
+        GOOGLE_ANALYTICS_VIEW_ID: ${{ secrets.GOOGLE_ANALYTICS_VIEW_ID }}
+        GOOGLE_ANALYTICS_EMAIL: ${{ secrets.GOOGLE_ANALYTICS_EMAIL }}
+        WEBSTATS_API_KEY: ${{ secrets.WEBSTATS_API_KEY }}
+        WEBSTATS_PROJECT_ID: ${{ secrets.WEBSTATS_PROJECT_ID }}
