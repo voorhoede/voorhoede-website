@@ -20,7 +20,7 @@
         <contact-form
           v-if="isContactForm(pivot)"
           :contact-person="pivot.contactPerson"
-          :title="$t('lets_discuss')"
+          :title="pivot.title || $t('lets_discuss')"
         />
         <div v-else class="pivot-list__item-text">
           <h2
