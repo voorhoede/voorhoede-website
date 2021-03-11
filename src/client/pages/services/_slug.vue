@@ -213,10 +213,14 @@
 
   .page-service__overview > .responsive-image,
   .page-service__overview .generic-text-block,
-  .page-service__overview .blockquote-block,
-  .page-service__overview .cta-image-block {
+  .page-service__overview .blockquote-block {
     grid-row: 4;
     margin: 0 0 var(--spacing-large) 0;
+  }
+
+  .page-service__overview .cta-image-block {
+    margin-bottom: var(--spacing-big);
+    padding-top: var(--spacing-large);
   }
 
   .page-service__overview .blockquote-block__title {
@@ -293,7 +297,8 @@
   }
 
   @media (min-width: 1100px) {
-    .page-service__overview {
+    .page-service__overview,
+    .page-service .breadcrumbs-block {
       grid-column-start: 4;
       grid-column-end: 48;
     }
@@ -313,6 +318,11 @@
     .page-service__overview .generic-text-block__title {
       font-size: 2.0625rem;
       line-height: 1.3636363636;
+    }
+
+    .page-service .breadcrumbs-block {
+      margin-top: var(--spacing-larger);
+      margin-bottom: var(--spacing-larger);
     }
   }
 </style>
