@@ -1,6 +1,6 @@
 <template>
   <div>
-    <main class="grid">
+    <main class="grid page-case">
       <page-header
         fill-screen
         heading="headline"
@@ -205,7 +205,7 @@
   }
 
   .page-case .breadcrumbs-block {
-    margin-bottom: var(--spacing-bigger);
+    margin-bottom: var(--spacing-large);
     grid-row: 4;
   }
 
@@ -323,6 +323,12 @@
 
     .page-case__content .image-with-description {
       max-width: var(--case-content-max-width-m);
+    }
+
+    .page-case .breadcrumbs-block {
+      grid-column-start: 6;
+      grid-column-end: 46;
+      margin-bottom: var(--spacing-larger);
     }
   }
 
