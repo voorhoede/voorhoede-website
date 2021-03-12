@@ -72,6 +72,10 @@
     margin-bottom: var(--spacing-big);
   }
 
+  .page-case__overview-item .case-excerpt {
+    height: 100%;
+  }
+
   @media (min-width: 540px) {
     .page-case__overview {
       flex-flow: row wrap;
