@@ -5,18 +5,19 @@
         heading="byline"
         :byline="page.title"
         :headline="page.subtitle"
-        :image="page.headerIllustration"
       />
+
       <introduction-block
         v-if="page.introductionBlock"
         :title="page.introductionBlock.title"
         :body="page.introductionBlock.body"
         class="page-cases__introduction grid"
       />
-      <section class="grid">
-        <h2 class="sr-only">{{ $t('all_cases') }}</h2>
-        <ul class="page-case__overview">
-          <li class="page-case__overview-item" v-for="caseItem in items" :key="caseItem.slug">
+
+      <section class="grid page-case__overview">
+        <h2 class="h2 page-case__overview-title">{{ $t('all_cases') }}</h2>
+        <ul class="page-case__grid">
+          <li v-for="caseItem in items" :key="caseItem.slug">
             <case-excerpt
               :slug="caseItem.slug"
               :image="caseItem.caseTeaser.image"
@@ -26,6 +27,7 @@
           </li>
         </ul>
       </section>
+
       <pivot-list
         class="page-cases__pivots"
         v-if="page.pivots && page.pivots.length"
@@ -49,58 +51,71 @@
     margin-top: var(--spacing-larger);
   }
 
+  .page-cases__pivots .newsletter-form {
+    background-color: var(--bg-pastel);
+  }
+
+  .page-case__overview {
+    background-image: linear-gradient(var(--bg-pastel), var(--bg-pastel));
+    background-size: 100% 150px;
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+  }
+
+  .page-case__overview-title {
+    margin-bottom: var(--spacing-small);
+    text-align: center;
+  }
+
+  .page-case__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-medium);
+  }
+
+  .page-case__grid .case-excerpt {
+    height: 100%;
+  }
+
+  @media (min-width: 400px) {
+    .page-case__overview {
+      background-size: 100% 200px;
+    }
+  }
+
   @media (min-width: 720px) {
     .page-cases__introduction > * {
       grid-column-start: 8;
       grid-column-end: 44;
       text-align: center;
     }
+
+    .page-case__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
-  .page-cases__pivots .newsletter-form {
-    background-color: var(--bg-pastel);
-  }
-
-  .page-case__overview {
-    display: flex;
-    flex-direction: column;
-    margin: var(--spacing-large) 0 0 0;
-  }
-
-  .page-case__overview-item {
-    width: 100%;
-    margin-bottom: var(--spacing-big);
-  }
-
-  .page-case__overview-item .case-excerpt {
-    height: 100%;
-  }
-
-  @media (min-width: 540px) {
+  @media (min-width: 1000px) {
     .page-case__overview {
-      flex-flow: row wrap;
+      background-size: 100% 250px;
     }
 
-    .page-case__overview-item {
-      width: calc(50% - (var(--spacing-smaller) * 2));
-      margin-left: var(--spacing-smaller);
-      margin-right: var(--spacing-smaller);
+    .page-case__overview-title {
       margin-bottom: var(--spacing-larger);
     }
-  }
 
-  @media (min-width: 720px) {
-    .page-case__overview {
-      margin: var(--spacing-larger) 0;
+    .page-case__grid {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 
   @media (min-width: 1200px) {
-    .page-case__overview-item {
-      width: calc(33% - (var(--spacing-medium) * 2));
-      margin-bottom: var(--spacing-larger);
-      margin-left: var(--spacing-medium);
-      margin-right: var(--spacing-medium);
+    .page-case__overview {
+      background-size: 100% 300px;
+    }
+
+    .page-case__grid {
+      gap: var(--spacing-large);
     }
   }
 </style>

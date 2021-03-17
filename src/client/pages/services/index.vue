@@ -5,6 +5,7 @@
         heading="byline"
         :byline="page.title"
         :headline="page.subtitle" />
+
       <image-with-text-block
         v-if="page.introTitle && page.introBody && page.introImage"
         :title="page.introTitle"
@@ -13,6 +14,7 @@
         :inverse="true"
         class="page-services__intro"
       />
+
       <div v-if="page.contactBody" class="page-services__contact">
         <p class="pullquote">{{ page.contactBody }}</p>
         <AppButton
@@ -21,6 +23,7 @@
           :to="localeUrl('contact')"
         />
       </div>
+
       <div class="page-services__services-list">
         <h3 v-if="page.servicesTitle" class="h2">{{ page.servicesTitle }}</h3>
         <ul>
@@ -43,11 +46,13 @@
           </li>
         </ul>
       </div>
+
       <rich-text-block
         v-if="page.smallServices"
         class="page-services__text"
         :text="page.smallServices" />
     </main>
+
     <pivot-list
       class="page-services__pivots"
       v-if="page.pivots && page.pivots.length"
