@@ -34,6 +34,16 @@ fragment page on CaseOverviewRecord {
     title
     body
   }
+  introTitle
+  introBody
+  introImage {
+    width
+    url
+    height
+    alt
+    format
+  }
+  contactBody
   pivots {
     title
     body(markdown: true)

@@ -1,18 +1,31 @@
 <template>
   <div>
     <main class="page-cases">
-      <page-header
-        heading="byline"
-        :byline="page.title"
-        :headline="page.subtitle"
-      />
+      <div class="grid page-cases__top">
+        <page-header
+          heading="byline"
+          :byline="page.title"
+          :headline="page.subtitle"
+        />
 
-      <introduction-block
-        v-if="page.introductionBlock"
-        :title="page.introductionBlock.title"
-        :body="page.introductionBlock.body"
-        class="page-cases__introduction grid"
-      />
+        <image-with-text-block
+          v-if="page.introTitle && page.introBody && page.introImage"
+          :title="page.introTitle"
+          :body="page.introBody"
+          :image="page.introImage"
+          :inverse="true"
+          class="page-cases__intro"
+        />
+
+        <div v-if="page.contactBody" class="page-cases__contact">
+          <p class="pullquote">{{ page.contactBody }}</p>
+          <AppButton
+            :aria-label="$t('get_in_touch')"
+            :label="$t('get_in_touch')"
+            :to="localeUrl('contact')"
+          />
+        </div>
+      </div>
 
       <section class="grid page-case__overview">
         <h2 class="h2 page-case__overview-title">{{ $t('all_cases') }}</h2>
@@ -47,8 +60,28 @@
 </script>
 
 <style>
-  .page-cases__introduction {
-    margin-top: var(--spacing-larger);
+  .page-cases__top {
+    padding-bottom: var(--spacing-large);
+    background-color: var(--bg-pastel);
+  }
+
+  .page-cases__top > *:not(:last-child) {
+    margin-bottom: var(--spacing-large);
+  }
+
+  .page-cases__intro {
+    grid-column: var(--grid-page);
+  }
+
+  .page-cases__contact {
+    grid-column: var(--grid-content);
+    padding-right: var(--spacing-medium);
+    padding-left: var(--spacing-medium);
+    text-align: center;
+  }
+
+  .page-cases__contact > * + * {
+    margin-top: var(--spacing-small);
   }
 
   .page-cases__pivots .newsletter-form {
@@ -84,10 +117,17 @@
   }
 
   @media (min-width: 720px) {
-    .page-cases__introduction > * {
-      grid-column-start: 8;
-      grid-column-end: 44;
-      text-align: center;
+    .page-cases__intro {
+      grid-column: var(--grid-content);
+    }
+
+    .page-cases__contact {
+      padding-left: var(--spacing-larger);
+      text-align: left;
+    }
+
+    .page-cases__contact > p {
+      max-width: 500px;
     }
 
     .page-case__grid {
@@ -96,6 +136,14 @@
   }
 
   @media (min-width: 1000px) {
+    .page-cases__top {
+      padding-bottom: var(--spacing-big);
+    }
+
+    .page-cases__top > *:not(:last-child) {
+      margin-bottom: var(--spacing-big);
+    }
+
     .page-case__overview {
       background-size: 100% 250px;
     }
