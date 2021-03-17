@@ -19,7 +19,7 @@
           <li class="page-case__overview-item" v-for="caseItem in items" :key="caseItem.slug">
             <case-excerpt
               :slug="caseItem.slug"
-              :image="caseItem.heroIllustration"
+              :image="caseItem.caseTeaser.image"
               :title="caseItem.title"
               :body="caseItem.subtitle"
             />

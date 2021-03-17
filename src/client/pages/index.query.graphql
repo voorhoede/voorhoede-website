@@ -92,9 +92,12 @@ fragment page on HomeRecord {
     slug
     title
     subtitle
-    heroIllustration {
-      url
-      alt
+    caseTeaser {
+      image {
+        url
+        width
+        height
+      }
     }
   }
   servicesHeader

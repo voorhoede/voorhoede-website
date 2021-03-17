@@ -6,10 +6,12 @@ query Case($locale: SiteLocale) {
     slug
     title
     subtitle
-    heroIllustration {
-      url
-      format
-      alt
+    caseTeaser {
+      image {
+        url
+        width
+        height
+      }
     }
   }
 }

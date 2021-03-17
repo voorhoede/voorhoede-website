@@ -27,7 +27,7 @@
             v-for="caseExcerpt in page.cases"
             :key="caseExcerpt.slug"
             :slug="caseExcerpt.slug"
-            :image="caseExcerpt.heroIllustration"
+            :image="caseExcerpt.caseTeaser.image"
             :title="caseExcerpt.title"
             :body="caseExcerpt.subtitle"
           />
