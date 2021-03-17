@@ -14,6 +14,7 @@ const baseUrl = URL
 module.exports = {
   srcDir: 'src/client',
   components: true,
+  telemetry: true,
   generate,
   modules,
   env: {
