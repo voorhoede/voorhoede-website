@@ -3,7 +3,7 @@ on:
     - cron: "5 6 * * *"
 
 jobs:
-  test:
+  report:
     runs-on: ubuntu-latest
     steps:
 
