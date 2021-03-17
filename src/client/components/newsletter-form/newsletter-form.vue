@@ -52,6 +52,7 @@
         class="newsletter-form__input-checkbox body-petite"
       />
       <app-button
+        @click.native="trackEvent()"
         :label="$t('subscribe')"
         type="submit"
         :small="true"
@@ -95,6 +96,13 @@
       this.useCustomValidation = true
     },
     methods: {
+      trackEvent () {
+        if(this.formIsValidated === true ) {
+          return this.$ga.event('Newsletter form', 'click submit', 'success', 0)
+        } else {
+          return this.$ga.event('Newsletter form', 'click submit', 'failed', 0)
+        }
+      },
       submit(event) {
         this.formIsValidated = true
         if (!event.target.checkValidity()) {
@@ -102,7 +110,7 @@
           return false
         }
       },
-    },
+    }
   }
 </script>
 

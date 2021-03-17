@@ -96,6 +96,7 @@
           class="body-petite"
         />
         <app-button
+          @click.native="trackEvent()"
           class="contact-form__button"
           :label="$t('get_in_touch')"
           type="submit"
@@ -177,7 +178,14 @@
           router: this.$router,
           localeUrl: this.localeUrl,
         })
-      }
+      },
+      trackEvent () {
+        if(this.formIsValidated === true ) {
+          return this.$ga.event('Contact form', 'click submit', 'success', 0)
+        } else {
+          return this.$ga.event('Contact form', 'click submit', 'failed', 0)
+        }
+      },
     }
   }
 </script>
