@@ -25,6 +25,7 @@
       <div v-if="hasCta" class="cta-image-block__ctas">
         <app-button
           :v-if="hasPrimaryCta"
+          @click.native="trackLink(linkUrl, linkIsExternal)"
           class="cta_image-block__primary-cta"
           small
           :label="linkLabel"
@@ -33,6 +34,7 @@
         />
         <app-button
           v-if="hasSecondaryCta"
+          @click.native="trackLink(secondaryLinkUrl, secondaryLinkIsExternal)"
           class="cta_image-block__secondary-cta"
           secondary
           :label="secondaryLinkLabel"
@@ -97,7 +99,22 @@
       },
       hasCta() {
         return this.hasPrimaryCta || this.hasSecondaryCta
-      }
+      },
+    },
+    methods: {
+      trackLink (href, external = false ) {
+        if(external === false) {
+          return this.$ga.event('CTA-image', 'click cta', href, 0)
+        } else {
+          return this.$ga.query('send', 'event', {
+            transport: 'beacon',
+            eventCategory: 'CTA-image',
+            eventAction: 'click cta',
+            eventLabel: href,
+            eventValue: 0
+          })
+        }
+      },
     }
   }
 </script>
