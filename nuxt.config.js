@@ -12,6 +12,7 @@ const { URL, DATO_API_TOKEN } = process.env
 const baseUrl = URL
 
 module.exports = {
+  target: 'static',
   srcDir: 'src/client',
   components: true,
   telemetry: true,
