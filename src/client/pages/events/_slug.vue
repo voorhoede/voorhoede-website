@@ -118,6 +118,7 @@
         }
       }
     },
+    head,
     computed: {
       isMeetup() {
         return this.page.label.label.toLowerCase() === 'meet-up'
@@ -134,7 +135,6 @@
         })
       }
     },
-    head,
   }
 </script>
 

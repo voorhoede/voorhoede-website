@@ -63,6 +63,7 @@
         }
       }
     },
+    head,
     computed: {
       upcomingEvents() {
         const items = this.items
@@ -81,7 +82,6 @@
           .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       },
     },
-    head,
   }
 </script>
 

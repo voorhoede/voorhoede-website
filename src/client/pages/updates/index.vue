@@ -37,12 +37,12 @@
 
   export default {
     asyncData,
+    head,
     computed: {
       publishedUpdates() {
         return this.items.filter(post => post.published)
       },
     },
-    head,
   }
 </script>
 

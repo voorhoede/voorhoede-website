@@ -47,9 +47,9 @@ const fetchPage = process.env.NODE_ENV === 'production'
 
     let query
     if (process.client) {
-      query = require(`../pages/${queryPath}.query.graphql`)
+      query = require(`../pages/${queryPath}.query.graphql`).default
     } else {
-      query = require('fs').readFileSync(`src/client/pages/${queryPath}.query.graphql`, 'utf8')
+      query = require('fs').readFileSync(`src/client/pages/${queryPath}.query.graphql`, 'utf8').default
     }
 
     return fetch(

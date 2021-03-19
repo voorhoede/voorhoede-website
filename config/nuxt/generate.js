@@ -6,5 +6,7 @@ const googleAnalytics = require('./modules/google-analytics')
 module.exports = {
   dir: 'dist/client/',
   googleAnalytics,
+  crawler: false,
+  // routes: ['/en/about-us']
   routes,
 }
