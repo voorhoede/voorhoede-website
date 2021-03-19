@@ -46,8 +46,7 @@
     "nuxt-i18n": "^6.15.1",
     "prismjs": "^1.21.0",
     "svg4everybody": "^2.1.9",
-    "unfetch": "^4.1.0",
-    "url-search-params-polyfill": "^8.1.0"
+    "unfetch": "^4.1.0"
   },
   "devDependencies": {
     "@nuxtjs/sitemap": "^2.4.0",
@@ -78,8 +77,6 @@
     "sinon": "^9.0.3",
     "stylelint": "^13.7.1",
     "stylelint-config-standard": "^20.0.0",
-    "stylelint-processor-html": "1.0.0",
-    "util": "^0.12.3",
     "xmlbuilder": "^15.1.1"
   },
   "browserslist": [
