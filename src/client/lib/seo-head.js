@@ -23,7 +23,7 @@ export default function () {
     meta: [
       { name: 'description', content: page.social.description },
       { name: 'keywords', content: page.keywords },
-      { property: 'og:url', content: `${baseUrl}/` },
+      { property: 'og:url', content: `${baseUrl}${this.$route.path}` },
       { property: 'og:type', content: 'website' },
       { property: 'og:title', content: pageTitle },
       { property: 'og:description', content: page.social.description },
