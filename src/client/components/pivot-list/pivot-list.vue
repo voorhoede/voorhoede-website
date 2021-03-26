@@ -195,11 +195,6 @@
   }
 
   @media (min-width: 1100px) {
-    .pivot-list__item-content {
-      padding-top: var(--spacing-large);
-      padding-bottom: var(--spacing-big);
-    }
-
     .pivot-list__item-content--narrow {
       grid-column-start: 14;
       grid-column-end: 38;

@@ -27,8 +27,8 @@
         </div>
       </div>
 
-      <section class="grid page-case__overview">
-        <h2 class="h2 page-case__overview-title">{{ $t('all_cases') }}</h2>
+      <section class="grid page-cases__overview">
+        <h2 class="h2 page-cases__overview-title">{{ $t('all_cases') }}</h2>
         <ul class="page-case__grid">
           <li v-for="caseItem in items" :key="caseItem.slug">
             <case-excerpt
@@ -41,10 +41,16 @@
         </ul>
       </section>
 
+      <highlighted-clients
+        class="page-cases__highlighted-clients"
+        :title="page.clientsTitle"
+      />
+
       <pivot-list
         class="page-cases__pivots"
         v-if="page.pivots && page.pivots.length"
         :pivots="page.pivots"
+        :can-have-border-top="false"
       />
     </main>
   </div>
@@ -88,14 +94,15 @@
     background-color: var(--bg-pastel);
   }
 
-  .page-case__overview {
+  .page-cases__overview {
+    margin-bottom: var(--spacing-larger);
     background-image: linear-gradient(var(--bg-pastel), var(--bg-pastel));
     background-size: 100% 150px;
     background-repeat: no-repeat;
     background-position: 50% 0;
   }
 
-  .page-case__overview-title {
+  .page-cases__overview-title {
     margin-bottom: var(--spacing-small);
     text-align: center;
   }
@@ -111,7 +118,7 @@
   }
 
   @media (min-width: 400px) {
-    .page-case__overview {
+    .page-cases__overview {
       background-size: 100% 200px;
     }
   }
@@ -119,6 +126,14 @@
   @media (min-width: 720px) {
     .page-cases__intro {
       grid-column: var(--grid-content);
+    }
+
+    .page-cases__overview {
+      margin-bottom: var(--spacing-bigger);
+    }
+
+    .page-cases__highlighted-clients.highlighted-clients {
+      margin-bottom: var(--spacing-large);
     }
 
     .page-cases__contact {
@@ -144,11 +159,11 @@
       margin-bottom: var(--spacing-big);
     }
 
-    .page-case__overview {
+    .page-cases__overview {
       background-size: 100% 250px;
     }
 
-    .page-case__overview-title {
+    .page-cases__overview-title {
       margin-bottom: var(--spacing-larger);
     }
 
@@ -157,8 +172,18 @@
     }
   }
 
+  @media (min-width: 1100px) {
+    .page-cases__overview {
+      margin-bottom: var(--spacing-huge);
+    }
+
+    .page-cases__highlighted-clients.highlighted-clients {
+      margin-bottom: var(--spacing-larger);
+    }
+  }
+
   @media (min-width: 1200px) {
-    .page-case__overview {
+    .page-cases__overview {
       background-size: 100% 300px;
     }
 
