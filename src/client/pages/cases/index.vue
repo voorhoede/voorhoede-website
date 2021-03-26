@@ -30,12 +30,12 @@
       <section class="grid page-cases__overview">
         <h2 class="h2 page-cases__overview-title">{{ $t('all_cases') }}</h2>
         <ul class="page-case__grid">
-          <li v-for="caseItem in items" :key="caseItem.slug">
+          <li v-for="caseItem in page.projects" :key="caseItem.slug">
             <case-excerpt
               :slug="caseItem.slug"
               :image="caseItem.caseTeaser.image"
               :title="caseItem.title"
-              :body="caseItem.subtitle"
+              :body="caseItem.caseTeaser.title"
             />
           </li>
         </ul>
