@@ -17,7 +17,14 @@
     </section>
     <section class="page-index__services grid">
       <h2 class="page-index__section-title h1">{{ page.servicesHeader }}</h2>
-      <services-list :services="page.services" />
+      <services-list class="page-index__services-list" :services="page.services" />
+      <div class="page-index__blog-posts-button">
+        <app-button
+          secondary
+          :label="$t('all_services')"
+          :to="localeUrl('services')"
+        />
+      </div>
     </section>
     <section class="page-index__cases grid">
       <h2 class="page-index__section-title page-index__section-title--cases h1">{{ page.casesTitle }}</h2>
@@ -259,6 +266,10 @@
 
     .page-index__services {
       margin-bottom: var(--spacing-bigger);
+    }
+
+    .page-index__services-list {
+      margin-bottom: var(--spacing-large);
     }
 
     .page-index__cta {
