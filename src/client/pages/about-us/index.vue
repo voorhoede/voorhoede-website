@@ -156,17 +156,13 @@
   }
 
   .page-about-us__jobs-list {
-    border-bottom: 2px solid var(--html-blue);
+    background-color: var(--white);
     padding: 0 var(--spacing-large);
     transition: background var(--job-excerpt-easing);
   }
 
-  .page-about-us__jobs-list:first-child {
+  .page-about-us__jobs-list:not(:first-child) {
     border-top: 2px solid var(--html-blue);
-  }
-
-  .page-about-us__jobs-list:hover {
-    background-color: var(--white);
   }
 
   .page-about-us__jobs-list .job-excerpt__image,
