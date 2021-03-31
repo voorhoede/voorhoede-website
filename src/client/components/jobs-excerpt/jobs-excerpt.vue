@@ -57,6 +57,8 @@
   }
 
   .job-excerpt__image {
+    display: flex;
+    align-items: center;
     grid-row-start: 1;
     grid-row-end: 3;
   }
@@ -80,7 +82,7 @@
   }
 
   .job-excerpt__text-description {
-    display: none;
+    margin: var(--spacing-smaller) 0;
   }
 
   .job-excerpt__button {
