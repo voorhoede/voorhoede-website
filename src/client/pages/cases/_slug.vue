@@ -108,6 +108,14 @@
             :title="item.storyItem.title"
           />
 
+          <testimonial-block
+            :id="item.id"
+            v-if="item.__typename === 'TestimonialBlockRecord'"
+            :key="item.id"
+            :testimonial="item.testimonial"
+            class="page-case__text page-case__testimonial"
+          />
+
           <responsive-video
             :id="item.id"
             v-if="item.__typename === 'ResponsiveVideoRecord'"
@@ -243,6 +251,10 @@
     position: relative;
   }
 
+  .page-case__content .testimonial-block {
+    margin-top: var(--spacing-bigger);
+  }
+
   .page-cases__scroll-to {
     display: none;
     position: absolute;
@@ -264,6 +276,10 @@
       width: calc(100% + (var(--spacing-large) * 2));
       margin-left: calc(-1 * var(--spacing-large));
       margin-right: calc(-1 * var(--spacing-large));
+    }
+
+    .page-case__content .testimonial-block {
+      margin-top: 0;
     }
 
     .page-case__content,
