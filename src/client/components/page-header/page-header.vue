@@ -348,7 +348,6 @@
     .page-header__image {
       margin-left: 0;
       object-fit: contain;
-      height: 285px;
       max-height: 285px;
     }
 
