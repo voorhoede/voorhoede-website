@@ -13,18 +13,6 @@
       :image="page.introImage"
       class="page-about-us__intro"
     />
-    <image-grid
-      :title="page.teamGridTitle"
-      :items="page.teamGrid"
-      class="page-about-us__image-grid"
-    />
-    <image-with-text-block
-      :title="page.middleTitle"
-      :body="page.middleBody"
-      :image="page.middleImage"
-      :inverse="true"
-      class="page-about-us__middle"
-    />
     <template v-if="jobs.length > 0">
       <div class="page-about-us__jobs-text">
         <h2 class="page-about-us__jobs-title h2">{{ page.jobsTitle }}</h2>
@@ -42,6 +30,18 @@
         </li>
       </ul>
     </template>
+    <image-grid
+      :title="page.teamGridTitle"
+      :items="page.teamGrid"
+      class="page-about-us__image-grid"
+    />
+    <image-with-text-block
+      :title="page.middleTitle"
+      :body="page.middleBody"
+      :image="page.middleImage"
+      :inverse="true"
+      class="page-about-us__middle"
+    />
     <section class="page-about-us__blog">
       <h2 class="page-about-us__blog-title h2">{{ $t('latest_blog_posts') }}</h2>
       <ul class="page-about-us__blog-list">
@@ -103,22 +103,22 @@
     margin-bottom: var(--spacing-large);
   }
 
-  .page-about-us__image-grid {
+  .page-about-us__jobs-text {
     grid-row: 3;
+  }
+
+  .page-about-us__jobs {
+    grid-row: 4;
+  }
+
+  .page-about-us__image-grid {
+    grid-row: 5;
     margin-bottom: var(--spacing-larger);
   }
 
   .page-about-us__middle {
-    grid-row: 4;
-    margin-bottom: var(--spacing-large);
-  }
-
-  .page-about-us__jobs-text {
-    grid-row: 5;
-  }
-
-  .page-about-us__jobs {
     grid-row: 6;
+    margin-bottom: var(--spacing-large);
   }
 
   .page-about-us__blog {
@@ -156,17 +156,13 @@
   }
 
   .page-about-us__jobs-list {
-    border-bottom: 2px solid var(--html-blue);
+    background-color: var(--white);
     padding: 0 var(--spacing-large);
     transition: background var(--job-excerpt-easing);
   }
 
-  .page-about-us__jobs-list:first-child {
+  .page-about-us__jobs-list:not(:first-child) {
     border-top: 2px solid var(--html-blue);
-  }
-
-  .page-about-us__jobs-list:hover {
-    background-color: var(--white);
   }
 
   .page-about-us__jobs-list .job-excerpt__image,
