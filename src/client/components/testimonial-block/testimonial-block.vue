@@ -1,5 +1,9 @@
 <template>
-  <blockquote v-if="testimonial.validated" class="testimonial-block">
+  <blockquote
+    v-if="testimonial.validated"
+    class="testimonial-block"
+    :class="{'testimonial-block--fullwidth' : isFullWidth}"
+  >
     <div class="testimonial-block__container">
       <span class="testimonial-block__title h3">{{ testimonial.quote }}</span>
       <p v-if="testimonial.author" class="testimonial-block__author body-petite">{{ testimonial.author }}</p>
@@ -22,6 +26,12 @@
           const companyCheck = !testimonial.company || typeof(testimonial.company) === 'string'
           return validatedCheck && quoteCheck && authorCheck && companyCheck
         },
+      },
+    },
+
+    computed: {
+      isFullWidth() {
+        return this.testimonial.fullwidth
       }
     }
   }
@@ -41,6 +51,11 @@
       grid-template-columns: 63% 1fr; /* 63% == 550(text)/877(total width)*100 from design  */
       grid-row-gap: var(--spacing-smaller);
       grid-column-gap: var(--spacing-large);
+    }
+
+    .testimonial-block--fullwidth {
+      grid-template-rows: auto;
+      grid-template-columns: 1fr;
     }
   }
 

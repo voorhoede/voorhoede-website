@@ -68,6 +68,7 @@ fragment page on ServiceRecord {
         id
         quote
         validated
+        fullwidth
       }
     }
     ... on CallToActionRecord {
