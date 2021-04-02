@@ -1,6 +1,10 @@
 <template>
   <div>
-    <main class="grid page-case">
+    <main
+      id="content"
+      class="page-case grid"
+      tabindex="-1"
+    >
       <page-header
         fill-screen
         heading="headline"

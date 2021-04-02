@@ -1,5 +1,9 @@
 <template>
-  <div class="grid page-update">
+  <main
+    id="content"
+    class="grid page-update"
+    tabindex="-1"
+  >
     <page-header
       heading="byline"
       :byline="page.title"
@@ -25,7 +29,7 @@
         :pivot-narrow="true"
       />
     </section>
-  </div>
+  </main>
 </template>
 
 <script>

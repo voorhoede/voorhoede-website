@@ -1,5 +1,9 @@
 <template>
-  <div class="page-jobs">
+  <main
+    id="content"
+    class="page-jobs"
+    tabindex="-1"
+  >
     <page-header
       heading="byline"
       :byline="page.title"
@@ -26,7 +30,7 @@
         :body="page.noJobsAvailableMessage"
       />
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

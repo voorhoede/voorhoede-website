@@ -1,5 +1,9 @@
 <template>
-  <main class="page-event">
+  <main
+    id="content"
+    class="page-event"
+    tabindex="-1"
+  >
     <page-header
       heading="byline"
       :byline="page.title"
