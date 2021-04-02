@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <main
+    id="content"
+    tabindex="-1"
+  >
     <article class="page-event-detail grid" lang="en">
       <page-header
         class="page-event-detail__header"
@@ -101,7 +104,7 @@
       </div>
     </article>
     <newsletter-form :has-background="true" />
-  </div>
+  </main>
 </template>
 
 <script>

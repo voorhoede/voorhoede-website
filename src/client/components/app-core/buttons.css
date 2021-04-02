@@ -15,3 +15,14 @@
 .button-group .app-button--secondary {
   margin-top: calc(var(--button-group-spacing) * 2);
 }
+
+.skip-link.app-button {
+  position: absolute;
+  z-index: var(--z-index-overlay);
+  top: var(--spacing-small);
+  left: -9999rem;
+}
+
+.skip-link:focus {
+  left: var(--spacing-small);
+}

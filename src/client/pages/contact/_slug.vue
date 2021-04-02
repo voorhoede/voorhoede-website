@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <main
+    id="content"
+    tabindex="-1"
+  >
     <section class="page-contact-confirmation">
       <page-header
         heading="byline"
@@ -19,7 +22,7 @@
       :last-item-has-background="false"
       :can-have-border-top="false"
     />
-  </div>
+  </main>
 </template>
 
 <script>

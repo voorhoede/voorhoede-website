@@ -1,5 +1,9 @@
 <template>
-  <main class="page-index">
+  <main
+    id="content"
+    class="page-index"
+    tabindex="-1"
+  >
     <div class="page-index__header">
       <page-header
         fill-screen

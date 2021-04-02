@@ -1,38 +1,40 @@
 <template>
-  <div>
-    <main class="page-cases">
-      <page-header
-        heading="byline"
-        :byline="page.title"
-        :headline="page.subtitle"
-        :image="page.headerIllustration"
-      />
-      <introduction-block
-        v-if="page.introductionBlock"
-        :title="page.introductionBlock.title"
-        :body="page.introductionBlock.body"
-        class="page-cases__introduction grid"
-      />
-      <section class="grid">
-        <h2 class="sr-only">{{ $t('all_cases') }}</h2>
-        <ul class="page-case__overview">
-          <li class="page-case__overview-item" v-for="caseItem in items" :key="caseItem.slug">
-            <case-excerpt
-              :slug="caseItem.slug"
-              :image="caseItem.heroIllustration"
-              :title="caseItem.title"
-              :body="caseItem.subtitle"
-            />
-          </li>
-        </ul>
-      </section>
-      <pivot-list
-        class="page-cases__pivots"
-        v-if="page.pivots && page.pivots.length"
-        :pivots="page.pivots"
-      />
-    </main>
-  </div>
+  <main
+    id="content"
+    class="page-cases"
+    tabindex="-1"
+  >
+    <page-header
+      heading="byline"
+      :byline="page.title"
+      :headline="page.subtitle"
+      :image="page.headerIllustration"
+    />
+    <introduction-block
+      v-if="page.introductionBlock"
+      :title="page.introductionBlock.title"
+      :body="page.introductionBlock.body"
+      class="page-cases__introduction grid"
+    />
+    <section class="grid">
+      <h2 class="sr-only">{{ $t('all_cases') }}</h2>
+      <ul class="page-case__overview">
+        <li class="page-case__overview-item" v-for="caseItem in items" :key="caseItem.slug">
+          <case-excerpt
+            :slug="caseItem.slug"
+            :image="caseItem.heroIllustration"
+            :title="caseItem.title"
+            :body="caseItem.subtitle"
+          />
+        </li>
+      </ul>
+    </section>
+    <pivot-list
+      class="page-cases__pivots"
+      v-if="page.pivots && page.pivots.length"
+      :pivots="page.pivots"
+    />
+  </main>
 </template>
 
 <script>

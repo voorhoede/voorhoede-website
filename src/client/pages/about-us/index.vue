@@ -1,5 +1,9 @@
 <template>
-  <div class="grid page-about-us">
+  <main
+    id="content"
+    class="page-about-us grid"
+    tabindex="-1"
+  >
     <page-header
       class="page-about-us__header"
       heading="byline"
@@ -64,7 +68,7 @@
       </div>
     </section>
     <newsletter-form class="page-about-us__newsletter" />
-  </div>
+  </main>
 </template>
 
 <script>

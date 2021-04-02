@@ -1,5 +1,9 @@
 <template>
-  <div class="grid page-faq">
+  <main
+    id="content"
+    class="page-faq"
+    tabindex="-1"
+  >
     <page-header
       heading="byline"
       :byline="page.title"
@@ -19,7 +23,7 @@
       <scroll-to direction="up" />
     </section>
     <newsletter-form :has-background="true" />
-  </div>
+  </main>
 </template>
 
 <script>
