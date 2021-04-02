@@ -37,6 +37,15 @@
             :caption="item.caption"
             :has-fixed-ratio="true"
           />
+          <responsive-video
+            :id="item.id"
+            v-if="item.__typename === 'ResponsiveVideoRecord'"
+            :key="item.id"
+            :video="item.video"
+            :autoplay="item.autoplay"
+            :loop="item.loop"
+            :mute="item.autoplay"
+          />
           <cta-block
             v-if="item.__typename === 'CallToActionRecord'"
             :key="item.id"
@@ -213,7 +222,8 @@
 
   .page-service__overview > .responsive-image,
   .page-service__overview .generic-text-block,
-  .page-service__overview .blockquote-block {
+  .page-service__overview .blockquote-block,
+  .page-service__overview > .responsive-video {
     grid-row: 4;
     margin: 0 0 var(--spacing-large) 0;
   }
@@ -291,7 +301,9 @@
       line-height: 1.3333333333;
     }
 
-    .page-service__overview > .responsive-image {
+    .page-service__overview > .responsive-image,
+    .page-service__overview > .responsive-video,
+    .page-service__overview > .testimonial-block {
       width: 70%;
     }
   }

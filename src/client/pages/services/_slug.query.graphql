@@ -71,6 +71,21 @@ fragment page on ServiceRecord {
         fullwidth
       }
     }
+    ... on ResponsiveVideoRecord {
+      id
+      mute
+      loop
+      autoplay
+      video {
+        url
+        title
+        height
+        width
+        provider
+        providerUid
+        thumbnailUrl
+      }
+    }
     ... on CallToActionRecord {
       id
       title
