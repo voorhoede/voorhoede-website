@@ -86,6 +86,7 @@ export default {
     max-width: 230px;
     margin-right: auto;
     margin-left: auto;
+    padding: var(--spacing-small);
   }
 
   .service-excerpt__image > * {
