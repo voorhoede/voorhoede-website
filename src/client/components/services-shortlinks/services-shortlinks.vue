@@ -5,7 +5,12 @@
     <ul>
       <li v-for="(service, index) in services" :key="service.slug" class="body">
         <template v-if="index !== 0">, </template>
-        <a :href="service.slug" class="body">{{ service.title }}</a>
+        <nuxt-link
+          :to="localeUrl({ name: 'services-slug', params: { slug: service.slug } })"
+          class="body"
+        >
+          {{ service.title }}
+        </nuxt-link>
       </li>
     </ul>
   </div>
