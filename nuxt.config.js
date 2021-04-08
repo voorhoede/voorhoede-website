@@ -87,7 +87,6 @@ module.exports = {
     middleware: [
       'meta-canonical',
     ],
-    trailingSlash: true,
   },
 
   plugins: [

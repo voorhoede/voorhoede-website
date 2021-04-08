@@ -79,6 +79,7 @@
 
   import asyncPage from '~/lib/async-page'
   import head from '~/lib/seo-head'
+  import { enforceTrailingSlash } from '~/plugins/locale-urls'
 
   import {
     SET_PREVIOUS_SERVICE_TITLE,
@@ -107,8 +108,10 @@
           && data.page.breadcrumbsNextService
           && data.page.breadcrumbsNextService.slug === context.from.params.slug
         )
+        const services = context.app.localePath('services')
+        const servicesRoute = enforceTrailingSlash(services)
         const useFallbackBackRoute = !previousRouteIsServiceSlugPage || breadcrumbsNextServiceIsPreviousRoute
-        const backLinkRoute = useFallbackBackRoute ? context.app.localePath('services') : context.from
+        const backLinkRoute = useFallbackBackRoute ? servicesRoute : context.from
 
         return {
           ...data,
