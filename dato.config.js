@@ -62,6 +62,11 @@ function localesToJson (locales) {
 
 function layoutToJson(dato) {
   return {
+    cookieNotification: {
+      title: dato.cookieNotification.title,
+      body: dato.cookieNotification.body,
+      approveButtonLabel: dato.cookieNotification.approveButtonLabel,
+    },
     banner: {
       isVisible: dato.banner.isVisible,
       link: { ...pick(dato.banner.link, ['slug']) },
