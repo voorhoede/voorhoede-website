@@ -1,5 +1,8 @@
 <template>
-  <div class="cookie-notification">
+  <div
+    v-if="showCookieNotification"
+    class="cookie-notification"
+  >
     <h1
       v-if="title"
       class="cookie-notification__title h4"
@@ -12,7 +15,10 @@
       class="cookie-notification__body rich-text body"
     />
 
-    <button class="app-button app-button--small body font-bold">
+    <button
+      class="app-button app-button--small body font-bold"
+      @click="recordConsent"
+    >
       <span>
         {{ approveButtonLabel }}
       </span>
@@ -21,6 +27,8 @@
 </template>
 
 <script>
+  import localStorageSupported from '../../lib/local-storage-supported'
+
   export default {
     props: {
       title: {
@@ -37,6 +45,24 @@
         required: true,
       },
     },
+    data() {
+      return {
+        showCookieNotification: false,
+      }
+    },
+    mounted() {
+      if(localStorageSupported) {
+        this.showCookieNotification = !localStorage.getItem('cookiesAccepted')
+      }
+    },
+    methods: {
+      recordConsent() {
+        if(localStorageSupported) {
+          localStorage.setItem('cookiesAccepted', true)
+          this.showCookieNotification = false
+        }
+      }
+    }
   }
 </script>
 
