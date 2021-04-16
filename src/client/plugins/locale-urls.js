@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-const enforceTrailingSlash = url => (url.endsWith('/') ? url : `${url}/`)
+export const enforceTrailingSlash = url => (url.endsWith('/') ? url : `${url}/`)
 
 Vue.mixin({
   methods: {
