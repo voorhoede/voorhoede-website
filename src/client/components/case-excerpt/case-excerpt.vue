@@ -6,28 +6,26 @@
       :title="title"
       :aria-label="title"
     >
-      <div class="case-excerpt__media">
-        <picture class="case-excerpt__picture">
-          <source
-            type="image/webp"
-            :srcset="getImageUrl(image.url, {
-              fm: 'webp'
-            })">
-          <source
-            type="image/png"
-            :srcset="getImageUrl(image.url,{
-              fm: 'png'
-            })">
-          <img
-            class="case-excerpt__image"
-            :src="getImageUrl(image.url)"
-            :width="image.width"
-            :height="image.height"
-            :alt="title"
-            loading="lazy"
-          >
-        </picture>
-      </div>
+      <picture class="case-excerpt__media">
+        <source
+          type="image/webp"
+          :srcset="getImageUrl(image.url, {
+            fm: 'webp'
+          })">
+        <source
+          type="image/png"
+          :srcset="getImageUrl(image.url,{
+            fm: 'png'
+          })">
+        <img
+          class="case-excerpt__image"
+          :src="getImageUrl(image.url)"
+          :width="image.width"
+          :height="image.height"
+          :alt="title"
+          loading="lazy"
+        >
+      </picture>
       <div class="case-excerpt__caption">
         <h2 class="h4 case-excerpt__title">{{ title }}</h2>
         <p class="case-excerpt__body body">{{ body }}</p>
@@ -79,6 +77,7 @@
   }
 
   .case-excerpt__media {
+    display: block;
     position: relative;
     padding-top: calc(var(--case-excerpt-image-ratio) * 100%);
   }
@@ -133,11 +132,9 @@
     margin-top: .5em;
   }
 
-  @media (min-width: 1100px) {
-    @media (prefers-reduced-motion: reduce) {
-      :root {
-        --duration: 0s;
-      }
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --duration: 0s;
     }
   }
 </style>
