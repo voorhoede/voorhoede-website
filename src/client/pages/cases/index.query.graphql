@@ -38,6 +38,26 @@ fragment page on CaseOverviewRecord {
       }
     }
   }
+  pageCtaSection {
+    title
+    body
+    linkLabel
+    linkUrl
+    linkIsExternal
+    secondaryLinkIsExternal
+    secondaryLinkLabel
+    secondaryLinkUrl
+    person {
+      name
+      image {
+        alt
+        format
+        height
+        url
+        width
+      }
+    }
+  }
   clientsTitle
   pivots {
     title

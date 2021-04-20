@@ -41,6 +41,13 @@
         </ul>
       </section>
 
+      <section class="page-cases__cta grid">
+        <cta-block
+          v-if="ctaSectionTop"
+          :item="ctaSectionTop"
+        />
+      </section>
+
       <highlighted-clients
         class="page-cases__highlighted-clients"
         :title="page.clientsTitle"
@@ -62,6 +69,11 @@
   export default {
     asyncData,
     head,
+    computed: {
+      ctaSectionTop() {
+        return this.page.pageCtaSection[0]
+      },
+    }
   }
 </script>
 
@@ -117,6 +129,10 @@
     height: 100%;
   }
 
+  .page-cases__cta {
+    margin-bottom: var(--spacing-medium);
+  }
+
   @media (min-width: 400px) {
     .page-cases__overview {
       background-size: 100% 200px;
@@ -147,6 +163,10 @@
 
     .page-case__grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-cases__cta {
+      margin-bottom: var(--spacing-big);
     }
   }
 
