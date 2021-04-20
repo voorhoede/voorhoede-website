@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <main
+    id="content"
+    tabindex="-1"
+  >
     <section class="page-contact">
       <page-header
         heading="byline"
@@ -22,7 +25,7 @@
       </div>
     </section>
     <newsletter-form :has-background="true" />
-  </div>
+  </main>
 </template>
 
 <script>

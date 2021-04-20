@@ -328,7 +328,7 @@
     .page-header__image-column {
       grid-column: 29 / 49;
       grid-row: 3 / 5;
-      margin-bottom: calc(-1 * var(--spacing-small)); /* Make image move outside page header */
+      margin-bottom: var(--spacing-medium);
     }
 
     .page-header--fill-screen .page-header__image-column {

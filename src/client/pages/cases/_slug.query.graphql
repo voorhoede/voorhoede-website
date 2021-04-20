@@ -100,6 +100,17 @@ fragment caseItem on CaseItemRecord {
         }
       }
     }
+    ... on TestimonialBlockRecord {
+      id
+      testimonial {
+        company
+        author
+        id
+        quote
+        validated
+        fullwidth
+      }
+    }
     ... on ResponsiveVideoRecord {
       id
       mute

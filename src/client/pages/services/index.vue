@@ -1,6 +1,10 @@
 <template>
   <div>
-    <main class="page-services grid">
+    <main
+      id="content"
+      class="page-services grid"
+      tabindex="-1"
+    >
       <page-header
         heading="byline"
         :byline="page.title"

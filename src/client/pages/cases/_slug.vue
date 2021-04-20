@@ -1,6 +1,10 @@
 <template>
   <div>
-    <main class="grid">
+    <main
+      id="content"
+      class="page-case grid"
+      tabindex="-1"
+    >
       <page-header
         fill-screen
         heading="headline"
@@ -108,6 +112,14 @@
             :title="item.storyItem.title"
           />
 
+          <testimonial-block
+            :id="item.id"
+            v-if="item.__typename === 'TestimonialBlockRecord'"
+            :key="item.id"
+            :testimonial="item.testimonial"
+            class="page-case__text page-case__testimonial"
+          />
+
           <responsive-video
             :id="item.id"
             v-if="item.__typename === 'ResponsiveVideoRecord'"
@@ -205,7 +217,7 @@
   }
 
   .page-case .breadcrumbs-block {
-    margin-bottom: var(--spacing-bigger);
+    margin-bottom: var(--spacing-large);
     grid-row: 4;
   }
 
@@ -243,6 +255,10 @@
     position: relative;
   }
 
+  .page-case__content .testimonial-block {
+    margin-top: var(--spacing-bigger);
+  }
+
   .page-cases__scroll-to {
     display: none;
     position: absolute;
@@ -264,6 +280,10 @@
       width: calc(100% + (var(--spacing-large) * 2));
       margin-left: calc(-1 * var(--spacing-large));
       margin-right: calc(-1 * var(--spacing-large));
+    }
+
+    .page-case__content .testimonial-block {
+      margin-top: 0;
     }
 
     .page-case__content,
@@ -323,6 +343,12 @@
 
     .page-case__content .image-with-description {
       max-width: var(--case-content-max-width-m);
+    }
+
+    .page-case .breadcrumbs-block {
+      grid-column-start: 6;
+      grid-column-end: 46;
+      margin-bottom: var(--spacing-larger);
     }
   }
 

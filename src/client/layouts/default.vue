@@ -1,5 +1,10 @@
 <template>
   <div>
+    <cookie-notification
+      :title="layout.cookieNotification.title"
+      :body="layout.cookieNotification.body"
+      :approve-button-label="layout.cookieNotification.approveButtonLabel"
+    />
     <app-banner
       v-if="layout.banner.isVisible && isHome"
       :text="layout.banner.text"
@@ -14,7 +19,20 @@
         makes the element only focusable using .focus() but prevents the
         element from being focusable using the keyboard.
       -->
-      <a id="top" ref="id" class="sr-only" tabindex="-1">{{ $t('top_of_page') }}</a>
+      <a
+        id="top"
+        ref="id"
+        class="sr-only"
+        tabindex="-1"
+      >
+        {{ $t('top_of_page') }}
+      </a>
+      <a
+        href="#content"
+        class="skip-link app-button app-button--small body font-bold"
+      >
+        <span>{{ $t('skip_link') }}</span>
+      </a>
       <app-header
         :title="layout.menu.title"
         :links="layout.menu.links"

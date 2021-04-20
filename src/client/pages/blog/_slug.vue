@@ -1,5 +1,10 @@
 <template>
-  <div class="page-blog-post grid" lang="en">
+  <main
+    id="content"
+    class="page-blog-post grid"
+    tabindex="-1"
+    lang="en"
+  >
     <page-header
       class="page-blog-post__header"
       heading="headline"
@@ -139,7 +144,7 @@
 
     <style v-if="page.customStyling" v-html="page.customStyling"></style>
     <script v-if="page.customScript && loadCustomScript" v-html="page.customScript"/>
-  </div>
+  </main>
 </template>
 
 <script>

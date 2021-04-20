@@ -4,8 +4,8 @@
       <img v-if="image" class="job-excerpt__image-item" :src="image.url" alt="">
     </div>
     <div class="job-excerpt__text">
-      <h3 class="job-excerpt__text-title h5">{{ title }}</h3>
-      <p class="job-excerpt__text-description body-detail">{{ description }}</p>
+      <h3 class="job-excerpt__text-title h4">{{ title }}</h3>
+      <p class="job-excerpt__text-description body-petite">{{ description }}</p>
     </div>
     <app-button
       class="job-excerpt__button"
@@ -53,10 +53,12 @@
     display: grid;
     grid-template-columns: 85px 1fr;
     grid-column-gap: var(--spacing-smaller);
-    padding: var(--spacing-small) 0;
+    padding: var(--spacing-medium) 0;
   }
 
   .job-excerpt__image {
+    display: flex;
+    align-items: center;
     grid-row-start: 1;
     grid-row-end: 3;
   }
@@ -80,7 +82,7 @@
   }
 
   .job-excerpt__text-description {
-    display: none;
+    margin: var(--spacing-smaller) 0;
   }
 
   .job-excerpt__button {
@@ -129,55 +131,17 @@
       grid-row: 1;
       grid-column: 3;
       align-self: center;
-      margin: 0;
     }
 
     .job-excerpt__text {
       grid-column: 2;
       align-self: center;
       text-align: left;
-      overflow: hidden;
-    }
-
-    .job-excerpt__text-title,
-    .job-excerpt__text-description {
-      transform: translateY(34px);
-    }
-
-    .job-excerpt__text-title {
-      transition: transform var(--job-excerpt-easing);
     }
 
     .job-excerpt__text-description {
       display: block;
-      opacity: 0;
-      transition: all var(--job-excerpt-easing);
       margin-top: var(--spacing-tiny);
-    }
-
-    .job-excerpt:hover .job-excerpt__text-title,
-    .job-excerpt:hover .job-excerpt__text-description {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .job-excerpt:hover .job-excerpt__image {
-      opacity: 1;
-    }
-
-    /* This is only applied when browsers support :focus-within
-       Don't combine this with :hover, otherwise it will break */
-    .job-excerpt:focus-within .job-excerpt__text-title,
-    .job-excerpt:focus-within .job-excerpt__text-description {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .job-excerpt__text-title,
-      .job-excerpt__text-description {
-        transform: translateY(0);
-      }
     }
   }
 
@@ -185,18 +149,6 @@
     .job-excerpt {
       grid-template-columns: 90px 1fr 160px;
       grid-column-gap: var(--spacing-big);
-    }
-
-    .job-excerpt__text-title,
-    .job-excerpt__text-description {
-      transform: translateY(26px);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .job-excerpt__text-title,
-      .job-excerpt__text-description {
-        transform: translateY(0);
-      }
     }
   }
 

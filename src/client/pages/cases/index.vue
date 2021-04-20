@@ -1,66 +1,68 @@
 <template>
-  <div>
-    <main class="page-cases">
-      <div class="grid page-cases__top">
-        <page-header
-          heading="byline"
-          :byline="page.title"
-          :headline="page.subtitle"
-        />
+  <main
+    id="content"
+    class="page-cases"
+    tabindex="-1"
+  >
+    <div class="grid page-cases__top">
+      <page-header
+        heading="byline"
+        :byline="page.title"
+        :headline="page.subtitle"
+      />
 
-        <image-with-text-block
-          v-if="page.introTitle && page.introBody && page.introImage"
-          :title="page.introTitle"
-          :body="page.introBody"
-          :image="page.introImage"
-          :inverse="true"
-          class="page-cases__intro"
-        />
+      <image-with-text-block
+        v-if="page.introTitle && page.introBody && page.introImage"
+        :title="page.introTitle"
+        :body="page.introBody"
+        :image="page.introImage"
+        :inverse="true"
+        class="page-cases__intro"
+      />
 
-        <div v-if="page.contactBody" class="page-cases__contact">
-          <p class="pullquote">{{ page.contactBody }}</p>
-          <AppButton
-            :aria-label="$t('get_in_touch')"
-            :label="$t('get_in_touch')"
-            :to="localeUrl('contact')"
-          />
-        </div>
+      <div v-if="page.contactBody" class="page-cases__contact">
+        <p class="pullquote">{{ page.contactBody }}</p>
+        <AppButton
+          :aria-label="$t('get_in_touch')"
+          :label="$t('get_in_touch')"
+          :to="localeUrl('contact')"
+        />
       </div>
+    </div>
 
-      <section class="grid page-cases__overview">
-        <h2 class="h2 page-cases__overview-title">{{ $t('all_cases') }}</h2>
-        <ul class="page-case__grid">
-          <li v-for="caseItem in page.projects" :key="caseItem.slug">
-            <case-excerpt
-              :slug="caseItem.slug"
-              :image="caseItem.caseTeaser.image"
-              :title="caseItem.title"
-              :body="caseItem.caseTeaser.title"
-            />
-          </li>
-        </ul>
-      </section>
+    <section class="grid page-cases__overview">
+      <h2 class="h2 page-cases__overview-title">{{ $t('all_cases') }}</h2>
+      <ul class="page-case__grid">
+        <li v-for="caseItem in page.projects" :key="caseItem.slug">
+          <case-excerpt
+            :slug="caseItem.slug"
+            :image="caseItem.caseTeaser.image"
+            :title="caseItem.title"
+            :body="caseItem.caseTeaser.title"
+          />
+        </li>
+      </ul>
+    </section>
 
-      <section class="page-cases__cta grid">
-        <cta-block
-          v-if="ctaSectionTop"
-          :item="ctaSectionTop"
-        />
-      </section>
-
-      <highlighted-clients
-        class="page-cases__highlighted-clients"
-        :title="page.clientsTitle"
+    <section class="page-cases__cta grid">
+      <cta-block
+        v-if="ctaSectionTop"
+        :item="ctaSectionTop"
       />
+    </section>
 
-      <pivot-list
-        class="page-cases__pivots"
-        v-if="page.pivots && page.pivots.length"
-        :pivots="page.pivots"
-        :can-have-border-top="false"
-      />
-    </main>
-  </div>
+    <highlighted-clients
+      class="page-cases__highlighted-clients"
+      :title="page.clientsTitle"
+    />
+
+    <pivot-list
+      class="page-cases__pivots"
+      v-if="page.pivots && page.pivots.length"
+      :pivots="page.pivots"
+      :can-have-border-top="false"
+    />
+  </main>
 </template>
 
 <script>

@@ -1,5 +1,9 @@
 <template>
-  <article class="page-job">
+  <main
+    id="content"
+    class="page-job"
+    tabindex="-1"
+  >
     <page-header
       heading="headline"
       :byline="page.subtitle"
@@ -17,7 +21,6 @@
         />
         <footer class="page-job__footer button-group">
           <app-button
-            class=""
             :label="$t('apply')"
             :to="page.url"
             external
@@ -31,7 +34,7 @@
         </footer>
       </div>
     </div>
-  </article>
+  </main>
 </template>
 
 <script>
@@ -69,8 +72,12 @@
   }
 
   .page-job__footer .app-button {
-    width: 50%;
     white-space: nowrap;
+    margin-top: var(--spacing-small);
+  }
+
+  .page-job__footer .app-button:not(:first-child) {
+    margin-left: var(--spacing-small);
   }
 
   @media (min-width: 720px) {
@@ -91,6 +98,10 @@
 
     .page-job__content .button-group {
       width: var(--button-group-width);
+    }
+
+    .page-job__footer .app-button {
+      margin-top: 0;
     }
   }
 

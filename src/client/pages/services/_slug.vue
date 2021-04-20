@@ -1,6 +1,10 @@
 <template>
   <div>
-    <main class="page-service grid">
+    <main
+      id="content"
+      class="page-service grid"
+      tabindex="-1"
+    >
       <page-header
         heading="headline"
         :byline="page.title"
@@ -37,6 +41,15 @@
             :caption="item.caption"
             :has-fixed-ratio="true"
           />
+          <responsive-video
+            :id="item.id"
+            v-if="item.__typename === 'ResponsiveVideoRecord'"
+            :key="item.id"
+            :video="item.video"
+            :autoplay="item.autoplay"
+            :loop="item.loop"
+            :mute="item.autoplay"
+          />
           <cta-block
             v-if="item.__typename === 'CallToActionRecord'"
             :key="item.id"
@@ -66,6 +79,7 @@
 
   import asyncPage from '~/lib/async-page'
   import head from '~/lib/seo-head'
+  import { enforceTrailingSlash } from '~/plugins/locale-urls'
 
   import {
     SET_PREVIOUS_SERVICE_TITLE,
@@ -94,8 +108,10 @@
           && data.page.breadcrumbsNextService
           && data.page.breadcrumbsNextService.slug === context.from.params.slug
         )
+        const services = context.app.localePath('services')
+        const servicesRoute = enforceTrailingSlash(services)
         const useFallbackBackRoute = !previousRouteIsServiceSlugPage || breadcrumbsNextServiceIsPreviousRoute
-        const backLinkRoute = useFallbackBackRoute ? context.app.localePath('services') : context.from
+        const backLinkRoute = useFallbackBackRoute ? servicesRoute : context.from
 
         return {
           ...data,
@@ -214,9 +230,14 @@
   .page-service__overview > .responsive-image,
   .page-service__overview .generic-text-block,
   .page-service__overview .blockquote-block,
-  .page-service__overview .cta-image-block {
+  .page-service__overview > .responsive-video {
     grid-row: 4;
     margin: 0 0 var(--spacing-large) 0;
+  }
+
+  .page-service__overview .cta-image-block {
+    margin-bottom: var(--spacing-big);
+    padding-top: var(--spacing-large);
   }
 
   .page-service__overview .blockquote-block__title {
@@ -287,13 +308,16 @@
       line-height: 1.3333333333;
     }
 
-    .page-service__overview > .responsive-image {
+    .page-service__overview > .responsive-image,
+    .page-service__overview > .responsive-video,
+    .page-service__overview > .testimonial-block {
       width: 70%;
     }
   }
 
   @media (min-width: 1100px) {
-    .page-service__overview {
+    .page-service__overview,
+    .page-service .breadcrumbs-block {
       grid-column-start: 4;
       grid-column-end: 48;
     }
@@ -313,6 +337,11 @@
     .page-service__overview .generic-text-block__title {
       font-size: 2.0625rem;
       line-height: 1.3636363636;
+    }
+
+    .page-service .breadcrumbs-block {
+      margin-top: var(--spacing-larger);
+      margin-bottom: var(--spacing-larger);
     }
   }
 </style>

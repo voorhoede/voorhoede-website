@@ -9,7 +9,7 @@
         class="breadcrumbs-block__item"
       >
         <nuxt-link
-          class="breadcrumbs-block__link app-button app-button--secondary body font-bold"
+          class="breadcrumbs-block__link app-button app-button--secondary body"
           :to="backLink"
           secondary
         >&larr; {{ backLinkLabel }}</nuxt-link>
@@ -19,7 +19,7 @@
         class="breadcrumbs-block__item breadcrumbs-block__item--next"
       >
         <nuxt-link
-          class="breadcrumbs-block__link app-button app-button--secondary body font-bold"
+          class="breadcrumbs-block__link app-button app-button--secondary body"
           :to="nextLink"
           secondary
         >{{ nextLinkLabel }} &rarr;</nuxt-link>
