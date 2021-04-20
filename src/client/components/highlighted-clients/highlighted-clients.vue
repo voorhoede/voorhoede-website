@@ -11,7 +11,7 @@
         >
           <fixed-ratio :width="5" :height="2">
             <vue-lazy-load>
-              <app-icon :name="icon.name" :alt="icon.alt"/>
+              <app-icon :name="icon.name" :aria-label="icon.alt"/>
             </vue-lazy-load>
           </fixed-ratio>
         </li>
