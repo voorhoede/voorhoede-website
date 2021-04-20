@@ -35,7 +35,6 @@
       </horizontal-carousel>
       <div class="page-index__blog-posts-button">
         <app-button
-          secondary
           :label="$t('all_cases')"
           :to="localeUrl('cases')"
         />
