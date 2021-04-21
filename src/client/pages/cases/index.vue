@@ -70,12 +70,12 @@
   import head from '~/lib/seo-head'
   export default {
     asyncData,
-    head,
     computed: {
       ctaSectionTop() {
         return this.page.pageCtaSection[0]
       },
-    }
+    },
+    head,
   }
 </script>
 

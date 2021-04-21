@@ -1,21 +1,14 @@
 <template>
-  <div class="horizontal-carousel grid">
-    <div class="horizontal-carousel__scroll-container">
-      <div class="horizontal-carousel__slides">
-        <slot name="slides"/>
-      </div>
+  <div class="horizontal-carousel">
+    <div class="horizontal-carousel__slides">
+      <slot name="slides"/>
     </div>
   </div>
 </template>
 
 <style>
   :root {
-    --horizontal-carousel-slides-count: 3;
-    --horizontal-carousel-slide-width-small: calc(100vw - 2 * (var(--grid-margin)));
-    --horizontal-carousel-slide-width-medium: calc(100vw / (var(--horizontal-carousel-slides-count) - 1) - (var(--grid-margin) * 2));
-    --horizontal-carousel-slide-width-large: calc(100vw / var(--horizontal-carousel-slides-count));
-    --horizontal-carousel-width-small: calc(100vw * var(--horizontal-carousel-slides-count) - (var(--grid-margin) * (var(--horizontal-carousel-slides-count) + 1)));
-    --horizontal-carousel-width-medium: calc((100vw * var(--horizontal-carousel-slides-count) - (var(--grid-margin) * (var(--horizontal-carousel-slides-count) + 1))) / 2);
+    --carousel-items: 3;
   }
 
   .horizontal-carousel {
@@ -27,16 +20,12 @@
     display: none;
   }
 
-  .horizontal-carousel__scroll-container {
-    width: var(--horizontal-carousel-width-small);
-  }
-
   .horizontal-carousel__slides {
     display: flex;
   }
 
   .horizontal-carousel__slides > * {
-    width: var(--horizontal-carousel-slide-width-small);
+    flex: 0 0 90%;
   }
 
   .horizontal-carousel__slides > *:not(:first-child):not(:last-child) {
@@ -45,12 +34,8 @@
   }
 
   @media (min-width: 400px) {
-    .horizontal-carousel__scroll-container {
-      width: var(--horizontal-carousel-width-medium);
-    }
-
     .horizontal-carousel__slides > * {
-      width: var(--horizontal-carousel-slide-width-medium);
+      flex: 0 0 60%;
     }
   }
 
@@ -59,16 +44,8 @@
       overflow-x: unset;
     }
 
-    .horizontal-carousel__scroll-container {
-      width: 100%;
-    }
-
-    .horizontal-carousel__slides {
-      width: 100%;
-    }
-
     .horizontal-carousel__slides > * {
-      width: var(--horizontal-carousel-slide-width-large);
+      flex: 0 0 calc(100% / var(--carousel-items) - calc(var(--spacing-medium) * 2 / var(--carousel-items)));
     }
 
     .horizontal-carousel__slides > *:not(:first-child):not(:last-child) {
