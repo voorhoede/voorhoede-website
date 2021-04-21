@@ -1,16 +1,9 @@
-query Case($locale: SiteLocale) {
+query ($locale: SiteLocale) {
   page: caseOverview(locale: $locale) {
     ...page
   }
   items: allCaseItems(locale: $locale, first: 100) {
     slug
-    title
-    subtitle
-    heroIllustration {
-      url
-      format
-      alt
-    }
   }
 }
 
@@ -28,10 +21,47 @@ fragment page on CaseOverviewRecord {
     format
     alt
   }
-  introductionBlock {
+  introTitle
+  introBody
+  introImage {
+    width
+    url
+    height
+    alt
+    format
+  }
+  contactBody
+  projects {
+    title
+    slug
+    caseTeaser {
+      title
+      image {
+        url
+      }
+    }
+  }
+  pageCtaSection {
     title
     body
+    linkLabel
+    linkUrl
+    linkIsExternal
+    secondaryLinkIsExternal
+    secondaryLinkLabel
+    secondaryLinkUrl
+    person {
+      name
+      image {
+        alt
+        format
+        height
+        url
+        width
+      }
+    }
   }
+  clientsTitle
   pivots {
     title
     body(markdown: true)

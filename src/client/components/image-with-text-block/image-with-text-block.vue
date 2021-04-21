@@ -3,7 +3,7 @@
     <responsive-image :image="image" />
     <div class="image-with-text__body">
       <h3 v-if="title" class="image-with-text__body-title h3">{{ title }}</h3>
-      <p class="pullquote">{{ body }}</p>
+      <div class="pullquote image-with-text__body-text" v-html="body"></div>
     </div>
   </div>
 </template>
@@ -64,7 +64,7 @@
     margin-right: var(--spacing-larger);
   }
 
-  .image-with-text__body > p {
+  .image-with-text__body-text {
     padding-bottom: var(--spacing-medium);
     background-color: var(--white);
   }
@@ -122,7 +122,7 @@
       margin-left: 0;
     }
 
-    .image-with-text__body > p {
+    .image-with-text__body-text {
       margin-top: var(--spacing-small);
       padding-bottom: 0;
       background-color: transparent;

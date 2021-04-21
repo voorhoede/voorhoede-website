@@ -38,7 +38,7 @@
             v-for="caseExcerpt in page.cases"
             :key="caseExcerpt.slug"
             :slug="caseExcerpt.slug"
-            :image="caseExcerpt.heroIllustration"
+            :image="caseExcerpt.caseTeaser.image"
             :title="caseExcerpt.title"
             :body="caseExcerpt.subtitle"
           />
@@ -46,16 +46,12 @@
       </horizontal-carousel>
       <div class="page-index__blog-posts-button">
         <app-button
-          secondary
           :label="$t('all_cases')"
           :to="localeUrl('cases')"
         />
       </div>
     </section>
-    <section class="page-index__clients grid">
-      <h2 class="page-index__section-title page-index__section-title--clients h3 font-normal">{{ page.clientsTitle }}</h2>
-      <highlighted-clients :cta-label="page.clientsButtonLabel"/>
-    </section>
+    <highlighted-clients :title="page.clientsTitle" />
     <div class="page-index__academy grid" v-if="upcomingEvents[0]">
       <academy-excerpt
         :date="upcomingEvents[0].date"
@@ -144,11 +140,6 @@
     margin-bottom: var(--spacing-larger);
   }
 
-  .page-index__section-title--clients {
-    color: var(--dim);
-    grid-row: 1;
-  }
-
   .page-index__section-title--blog-posts {
     margin-bottom: var(--spacing-medium);
     grid-row: 1;
@@ -156,18 +147,6 @@
 
   .page-index__section-title--cases {
     margin-bottom: calc(var(--spacing-large) - var(--spacing-smaller));
-  }
-
-  .page-index__clients {
-    margin-bottom: var(--spacing-larger);
-    padding-top: var(--spacing-larger);
-    padding-bottom: var(--spacing-larger);
-    background-color: var(--fog);
-    grid-template-rows: repeat(2, auto);
-  }
-
-  .page-index .highlighted-clients {
-    grid-row: 2;
   }
 
   .page-index__academy {
@@ -285,11 +264,6 @@
       border-bottom: 1px solid var(--very-dim);
     }
 
-    .page-index__clients {
-      margin-bottom: var(--spacing-bigger);
-      padding-top: var(--spacing-larger);
-    }
-
     .page-index__blog-posts {
       position: relative;
       margin-bottom: var(--spacing-big);
@@ -357,11 +331,6 @@
       padding-top: var(--spacing-bigger);
     }
 
-    .page-index__clients > * {
-      grid-column-start: 4;
-      grid-column-end: 47;
-    }
-
     .page-index__section-title {
       margin-bottom: var(--spacing-big);
     }
@@ -373,11 +342,6 @@
 
     .page-index__cases {
       margin-bottom: var(--spacing-huge);
-    }
-
-    .page-index__clients {
-      margin-bottom: var(--spacing-huge);
-      padding-top: var(--spacing-big);
     }
 
     .page-index .blog-list-item__time {

@@ -1,19 +1,23 @@
 <template>
-  <div class="highlighted-clients">
-    <ul class="highlighted-clients__list">
-      <li
-        v-for="{ icon } in clients"
-        :key="icon.alt"
-        class="highlighted-clients__client"
-      >
-        <fixed-ratio :width="5" :height="2">
-          <vue-lazy-load>
-            <app-icon :name="icon.name" :alt="icon.alt"/>
-          </vue-lazy-load>
-        </fixed-ratio>
-      </li>
-    </ul>
-  </div>
+  <section class="highlighted-clients grid">
+    <div class="highlighted-clients__content">
+      <h2 class="highlighted-clients__title h3 font-normal">{{ title }}</h2>
+
+      <ul class="highlighted-clients__list">
+        <li
+          v-for="{ icon } in clients"
+          :key="icon.alt"
+          class="highlighted-clients__client"
+        >
+          <fixed-ratio :width="5" :height="2">
+            <vue-lazy-load>
+              <app-icon :name="icon.name" :aria-label="icon.alt"/>
+            </vue-lazy-load>
+          </fixed-ratio>
+        </li>
+      </ul>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -21,6 +25,12 @@ import VueLazyLoad from '@voorhoede/vue-lazy-load'
 export default {
   components: {
     VueLazyLoad,
+  },
+  props: {
+    title: {
+      type: String,
+      required: true,
+    }
   },
   data() {
     return {
@@ -62,6 +72,20 @@ export default {
     );
   }
 
+  .highlighted-clients {
+    margin-bottom: var(--spacing-larger);
+    padding-top: var(--spacing-larger);
+    padding-bottom: var(--spacing-larger);
+    background-color: var(--fog);
+    grid-template-rows: repeat(2, auto);
+  }
+
+  .highlighted-clients__title {
+    margin-bottom: var(--spacing-large);
+    text-align: center;
+    color: var(--dim);
+  }
+
   .highlighted-clients__list {
     display: flex;
     flex-wrap: wrap;
@@ -87,11 +111,29 @@ export default {
     :root {
       --highlighted-clients-width: 150px;
     }
+
+    .highlighted-clients {
+      margin-bottom: var(--spacing-bigger);
+      padding-top: var(--spacing-larger);
+    }
+
+    .highlighted-clients__title {
+      margin-bottom: var(--spacing-larger);
+    }
   }
 
   @media (min-width: 1100px) {
     :root {
       --highlighted-clients-width: 210px;
+    }
+
+    .highlighted-clients {
+      margin-bottom: var(--spacing-huge);
+      padding-top: var(--spacing-big);
+    }
+
+    .highlighted-clients__title {
+      margin-bottom: var(--spacing-big);
     }
   }
 
@@ -110,6 +152,13 @@ export default {
     @media (min-width: 720px) {
       :root {
         --highlighted-clients-columns: 4;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .highlighted-clients__content {
+        grid-column-start: 4;
+        grid-column-end: 47;
       }
     }
   }
