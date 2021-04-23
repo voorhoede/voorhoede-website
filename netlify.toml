@@ -10,3 +10,9 @@
     NPM_FLAGS = "--ignore-scripts"
   [build.processing]
     skip_processing = true
+
+[[redirects]]
+  from = "http://voorhoede.nl/"
+  to = "https://www.voorhoede.nl/"
+  force = true
+  status = 301
