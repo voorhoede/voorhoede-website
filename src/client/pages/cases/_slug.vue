@@ -6,35 +6,32 @@
       tabindex="-1"
     >
       <page-header
-        fill-screen
         heading="headline"
         byline="Case study"
         :headline="page.title"
         :image="page.heroIllustration"
+        break-out-image
         is-animated
         :animation-delay="page.title.length * typeDurationLetter"
-      >
-        <h2 class="sr-only">{{ $t('case_info') }}</h2>
-        <case-meta
-          class="page-case__case-meta"
-          :expertise-title="page.metaData.expertisesTitle"
-          :expertises="page.metaData.expertises"
-          :technologies-title="page.metaData.technologiesTitle"
-          :technologies="page.metaData.technologies"
-          :deliverable-title="page.metaData.deliverableTitle"
-          :deliverables="page.metaData.deliverables"
-          :interested-title="page.metaData.interestedTitle"
-          :interested-link-label="page.metaData.interestedLinkLabel"
-          :interested-link-url="page.metaData.interestedLinkUrl"
-        />
-      </page-header>
+      />
+
+      <case-meta
+        class="page-case__case-meta"
+        :expertise-title="page.metaData.expertisesTitle"
+        :expertises="page.metaData.expertises"
+        :technologies-title="page.metaData.technologiesTitle"
+        :technologies="page.metaData.technologies"
+        :deliverable-title="page.metaData.deliverableTitle"
+        :deliverables="page.metaData.deliverables"
+        :interested-title="page.metaData.interestedTitle"
+        :interested-link-label="page.metaData.interestedLinkLabel"
+        :interested-link-url="page.metaData.interestedLinkUrl"
+      />
 
       <div class="page-case__case-teaser">
-        <case-teaser
-          v-if="page.caseTeaser"
-          :title="page.caseTeaser.title"
-          :image="page.caseTeaser.image"
-        />
+        <h2 class="h2">
+          {{ page.caseTeaser.title }}
+        </h2>
       </div>
 
       <article class="page-case__content">
@@ -195,18 +192,26 @@
     --image-resizer-max-width-l: 1300px;
     --case-content-max-width-m: 935px;
     --case-content-max-width-l: 1440px;
-    --page-section-max-width: 640px;
+    --page-section-max-width: 830px;
     --case-full-width-image-height: 515px; /* value according to design */
   }
 
-  .page-case__case-teaser {
-    grid-column: var(--grid-page);
+  .page-case__case-meta {
+    margin-bottom: var(--spacing-larger);
+    grid-column-start: 2;
+    grid-column-end: 50;
     grid-row: 2;
-    margin: var(--spacing-large) 0;
+  }
+
+  .page-case__case-teaser {
+    grid-column-start: 2;
+    grid-column-end: 50;
+    grid-row: 3;
+    margin-bottom: var(--spacing-large);
   }
 
   .page-case__content {
-    grid-row: 3;
+    grid-row: 4;
     grid-column: var(--grid-page);
     padding: 0 var(--spacing-small);
   }
@@ -218,7 +223,7 @@
 
   .page-case .breadcrumbs-block {
     margin-bottom: var(--spacing-large);
-    grid-row: 4;
+    grid-row: 5;
   }
 
   .page-case__title {
@@ -306,12 +311,14 @@
       padding-right: 0;
     }
 
-    .page-case__case-meta-container {
-      padding: 0;
+    .page-case__case-meta {
+      margin-bottom: var(--spacing-big);
     }
 
+    .page-case__case-meta,
     .page-case__case-teaser {
-      margin: var(--spacing-larger) 0 0 0;
+      grid-column-start: 4;
+      grid-column-end: 49;
     }
 
     .page-case__text {

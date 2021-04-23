@@ -84,6 +84,10 @@
   animation-delay: inherit;
 }
 
+.is-animated .animation__uncover--white-background::after {
+  background-color: var(--white);
+}
+
 @keyframes animation__uncover {
   100% {
     transform: scaleX(0);
