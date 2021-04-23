@@ -50,7 +50,7 @@
 
     <div v-if="image" class="page-header__image-column animation__reveal">
       <div class="page-header__image-column-content animation__reveal-content">
-        <img class="page-header__image" :src="image.url" alt=""/>
+        <img class="page-header__image" :src="image.url" :width="image.width" :height="image.height" alt=""/>
       </div>
     </div>
 
