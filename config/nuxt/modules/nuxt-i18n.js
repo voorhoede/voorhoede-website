@@ -9,16 +9,12 @@ module.exports = [
   'nuxt-i18n',
   {
     defaultLocale,
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_redirected'
-    },
+    detectBrowserLanguage: false,
     locales: locales.map(({ code, name }) => ({
       code,
       iso: code,
       name,
     })),
-    rootRedirect: defaultLocale,
     strategy: 'prefix',
     vueI18n: {
       fallbackLocale: defaultLocale,

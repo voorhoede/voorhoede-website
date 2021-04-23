@@ -16,3 +16,15 @@
   to = "https://www.voorhoede.nl/"
   force = true
   status = 301
+
+[[redirects]]
+  from = "/"
+  to = "/en/"
+  status = 302
+  conditions = {Language = ["en"]}
+
+[[redirects]]
+  from = "/"
+  to = "/nl/"
+  status = 302
+  conditions = {Language = ["nl"]}
