@@ -132,6 +132,12 @@
     margin-top: .5em;
   }
 
+  @media (min-width: 1100px) {
+    .case-excerpt__caption {
+      padding-left: calc(var(--spacing-large) + var(--spacing-smaller));
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     :root {
       --duration: 0s;
