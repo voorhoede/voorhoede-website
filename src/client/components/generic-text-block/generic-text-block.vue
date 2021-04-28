@@ -1,12 +1,23 @@
 <template>
   <div class="generic-text-block">
     <h3 v-if="title" class="generic-text-block__title h4">{{ title }}</h3>
+
     <rich-text-block class="generic-text-block__body" :text="body" />
-    <img v-if="image" class="generic-text-block__image" :src="image.url" alt="">
+
+    <img
+      v-if="image"
+      class="generic-text-block__image"
+      :src="imageUrl(image.url, {
+        w: '1500'
+      })"
+      alt=""
+    >
   </div>
 </template>
 
 <script>
+  import imageUrl from '../../lib/image-url'
+
   export default {
     props: {
       title: {
@@ -28,8 +39,13 @@
           return image && typeof(image.url) === 'string'
         },
       }
+    },
+    methods: {
+        imageUrl(image, options) {
+          return imageUrl(image, options)
+        }
+      }
     }
-  }
 </script>
 
 <style>

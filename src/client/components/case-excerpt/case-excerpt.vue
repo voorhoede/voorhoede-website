@@ -10,16 +10,20 @@
         <source
           type="image/webp"
           :srcset="getImageUrl(image.url, {
-            fm: 'webp'
+            fm: 'webp',
+            w: '800'
           })">
         <source
           type="image/png"
           :srcset="getImageUrl(image.url,{
-            fm: 'png'
+            fm: 'png',
+            w: '800'
           })">
         <img
           class="case-excerpt__image"
-          :src="getImageUrl(image.url)"
+          :src="getImageUrl(image.url, {
+            w: '800'
+          })"
           :width="image.width"
           :height="image.height"
           :alt="title"
@@ -58,7 +62,7 @@
     },
     methods: {
       getImageUrl(url, options) {
-        return imageUrl(url, { ...options, width: 400 })
+        return imageUrl(url, options)
       }
     }
   }

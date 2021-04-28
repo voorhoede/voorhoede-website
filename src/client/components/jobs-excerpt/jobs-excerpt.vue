@@ -1,12 +1,21 @@
 <template>
   <div class="job-excerpt">
     <div class="job-excerpt__image">
-      <img v-if="image" class="job-excerpt__image-item" :src="image.url" alt="">
+      <img
+        v-if="image"
+        class="job-excerpt__image-item"
+        :src="imageUrl(image.url, {
+          w: '150'
+        })"
+        alt=""
+      >
     </div>
+
     <div class="job-excerpt__text">
       <h3 class="job-excerpt__text-title h4">{{ title }}</h3>
       <p class="job-excerpt__text-description body-petite">{{ description }}</p>
     </div>
+
     <app-button
       class="job-excerpt__button"
       :aria-label="title"
@@ -17,6 +26,8 @@
 </template>
 
 <script>
+  import imageUrl from '../../lib/image-url'
+
   export default {
     props: {
       title: {
@@ -39,7 +50,11 @@
         },
       }
     },
-
+    methods: {
+      imageUrl(image, options) {
+        return imageUrl(image, options)
+      }
+    }
   }
 </script>
 

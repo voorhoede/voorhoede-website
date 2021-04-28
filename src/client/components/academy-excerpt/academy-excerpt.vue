@@ -25,7 +25,13 @@
     <div v-if="illustration" class="academy-excerpt__illustration-column">
       <div class="academy-excerpt__illustration-wrapper">
         <vue-lazy-load>
-          <img class="academy-excerpt__illustration" :src="illustration.url" alt="">
+          <img
+            class="academy-excerpt__illustration"
+            :src="imageUrl(illustration.url, {
+              w: '300'
+            })"
+            alt=""
+          >
         </vue-lazy-load>
       </div>
     </div>
@@ -33,6 +39,7 @@
 </template>
 
 <script>
+  import imageUrl from '../../lib/image-url'
   import VueLazyLoad from '@voorhoede/vue-lazy-load'
 
   export default {
@@ -64,6 +71,11 @@
         }
       },
     },
+    methods: {
+      imageUrl(image, options) {
+        return imageUrl(image, options)
+      }
+    }
   }
 </script>
 
