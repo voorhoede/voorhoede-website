@@ -121,6 +121,11 @@ fragment caseItem on CaseItemRecord {
       linkLabel
       linkUrl
     }
+    ... on QuoteRecord {
+      id
+      quote
+      author
+    }
   }
   metaData {
     expertisesTitle

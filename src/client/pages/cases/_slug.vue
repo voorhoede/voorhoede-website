@@ -105,7 +105,16 @@
             v-if="item.__typename === 'TestimonialBlockRecord'"
             :key="item.id"
             :testimonial="item.testimonial"
-            class="page-case__text page-case__testimonial"
+            class="page-case__text"
+          />
+
+          <quote-block
+            :id="item.id"
+            v-if="item.quote"
+            :key="item.id"
+            :quote="item.quote"
+            :cite="item.author"
+            class="page-case__text page-case__quote"
           />
 
           <responsive-video
@@ -117,7 +126,6 @@
             :loop="item.loop"
             :mute="item.autoplay"
           />
-
         </template>
 
         <quote-block
@@ -184,6 +192,7 @@
     --case-content-max-width-m: 935px;
     --case-content-max-width-l: 1440px;
     --page-section-max-width: 830px;
+    --page-section-breakout-width: 1050px;
     --case-full-width-image-height: 515px; /* value according to design */
   }
 
@@ -225,6 +234,12 @@
     padding: var(--spacing-larger) var(--spacing-small);
   }
 
+  .page-case__text {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--page-section-max-width);
+  }
+
   .page-case__text video {
     max-width: 100%; /* temporary fix for mvp should refactored after mvp */
   }
@@ -251,10 +266,6 @@
     position: relative;
   }
 
-  .page-case__content .testimonial-block {
-    margin-top: var(--spacing-bigger);
-  }
-
   .page-cases__scroll-to {
     display: none;
     position: absolute;
@@ -276,10 +287,6 @@
       width: calc(100% + (var(--spacing-large) * 2));
       margin-left: calc(-1 * var(--spacing-large));
       margin-right: calc(-1 * var(--spacing-large));
-    }
-
-    .page-case__content .testimonial-block {
-      margin-top: 0;
     }
 
     .page-case__content,
@@ -312,11 +319,6 @@
       grid-column-end: 49;
     }
 
-    .page-case__text {
-      max-width: var(--page-section-max-width);
-      width: 100%;
-    }
-
     .page-case__content {
       display: flex;
       flex-direction: column;
@@ -328,6 +330,10 @@
     .page-case__content,
     .page-case__content > *:not(:last-child) {
       margin-bottom: var(--spacing-bigger);
+    }
+
+    .page-case__quote {
+      max-width: var(--page-section-breakout-width);
     }
 
     .page-case__link-container {
