@@ -83,15 +83,6 @@
             :caption="item.caption"
           />
 
-          <case-pull-quote-composition
-            :id="item.id"
-            v-if="item.__typename === 'PullquoteRecord'"
-            :key="item.id"
-            :pullquote="item.pullquote.quote"
-            :image="item.pullquote.illustration"
-            :text="item.pullquote.richText"
-          />
-
           <image-with-description
             :id="item.id"
             v-if="item.__typename === 'ImageWithTextRecord'"

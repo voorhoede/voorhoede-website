@@ -58,18 +58,6 @@ fragment caseItem on CaseItemRecord {
       caption
       fullWidth
     }
-    ... on PullquoteRecord {
-      id
-      pullquote {
-        quote
-        illustration {
-          url
-          alt
-          format
-        }
-        richText
-      }
-    }
     ... on ImageWithTextRecord {
       id
       imageWithDescription {
