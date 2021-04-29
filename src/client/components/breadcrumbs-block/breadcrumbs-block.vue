@@ -66,7 +66,7 @@
 <style>
   .breadcrumbs-block__nav-list {
     display: flex;
-    padding-top: var(--spacing-small);
+    flex-wrap: wrap;
     border-top: 2px solid var(--very-dim);
   }
 
@@ -75,12 +75,13 @@
   }
 
   .breadcrumbs-block__item {
-    max-width: calc(50% - var(--spacing-small));
+    flex: 1 1 auto;
+    margin-top: var(--spacing-small);
     text-align: left;
   }
 
   .breadcrumbs-block__item--next {
-    margin-left: auto;
+    margin-left: var(--spacing-medium);
     text-align: right;
   }
 
