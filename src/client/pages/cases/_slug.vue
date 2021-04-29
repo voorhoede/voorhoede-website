@@ -6,35 +6,32 @@
       tabindex="-1"
     >
       <page-header
-        fill-screen
         heading="headline"
         byline="Case study"
         :headline="page.title"
         :image="page.heroIllustration"
+        break-out-image
         is-animated
         :animation-delay="page.title.length * typeDurationLetter"
-      >
-        <h2 class="sr-only">{{ $t('case_info') }}</h2>
-        <case-meta
-          class="page-case__case-meta"
-          :expertise-title="page.metaData.expertisesTitle"
-          :expertises="page.metaData.expertises"
-          :technologies-title="page.metaData.technologiesTitle"
-          :technologies="page.metaData.technologies"
-          :deliverable-title="page.metaData.deliverableTitle"
-          :deliverables="page.metaData.deliverables"
-          :interested-title="page.metaData.interestedTitle"
-          :interested-link-label="page.metaData.interestedLinkLabel"
-          :interested-link-url="page.metaData.interestedLinkUrl"
-        />
-      </page-header>
+      />
+
+      <case-meta
+        class="page-case__case-meta"
+        :expertise-title="page.metaData.expertisesTitle"
+        :expertises="page.metaData.expertises"
+        :technologies-title="page.metaData.technologiesTitle"
+        :technologies="page.metaData.technologies"
+        :deliverable-title="page.metaData.deliverableTitle"
+        :deliverables="page.metaData.deliverables"
+        :interested-title="page.metaData.interestedTitle"
+        :interested-link-label="page.metaData.interestedLinkLabel"
+        :interested-link-url="page.metaData.interestedLinkUrl"
+      />
 
       <div class="page-case__case-teaser">
-        <case-teaser
-          v-if="page.caseTeaser"
-          :title="page.caseTeaser.title"
-          :image="page.caseTeaser.image"
-        />
+        <h2 class="h2">
+          {{ page.caseTeaser.title }}
+        </h2>
       </div>
 
       <article class="page-case__content">
@@ -86,15 +83,6 @@
             :caption="item.caption"
           />
 
-          <case-pull-quote-composition
-            :id="item.id"
-            v-if="item.__typename === 'PullquoteRecord'"
-            :key="item.id"
-            :pullquote="item.pullquote.quote"
-            :image="item.pullquote.illustration"
-            :text="item.pullquote.richText"
-          />
-
           <image-with-description
             :id="item.id"
             v-if="item.__typename === 'ImageWithTextRecord'"
@@ -117,7 +105,16 @@
             v-if="item.__typename === 'TestimonialBlockRecord'"
             :key="item.id"
             :testimonial="item.testimonial"
-            class="page-case__text page-case__testimonial"
+            class="page-case__text"
+          />
+
+          <quote-block
+            :id="item.id"
+            v-if="item.quote"
+            :key="item.id"
+            :quote="item.quote"
+            :cite="item.author"
+            class="page-case__text page-case__quote"
           />
 
           <responsive-video
@@ -129,7 +126,6 @@
             :loop="item.loop"
             :mute="item.autoplay"
           />
-
         </template>
 
         <quote-block
@@ -195,18 +191,27 @@
     --image-resizer-max-width-l: 1300px;
     --case-content-max-width-m: 935px;
     --case-content-max-width-l: 1440px;
-    --page-section-max-width: 640px;
+    --page-section-max-width: 830px;
+    --page-section-breakout-width: 1050px;
     --case-full-width-image-height: 515px; /* value according to design */
   }
 
-  .page-case__case-teaser {
-    grid-column: var(--grid-page);
+  .page-case__case-meta {
+    margin-bottom: var(--spacing-larger);
+    grid-column-start: 2;
+    grid-column-end: 50;
     grid-row: 2;
-    margin: var(--spacing-large) 0;
+  }
+
+  .page-case__case-teaser {
+    grid-column-start: 2;
+    grid-column-end: 50;
+    grid-row: 3;
+    margin-bottom: var(--spacing-large);
   }
 
   .page-case__content {
-    grid-row: 3;
+    grid-row: 4;
     grid-column: var(--grid-page);
     padding: 0 var(--spacing-small);
   }
@@ -218,7 +223,7 @@
 
   .page-case .breadcrumbs-block {
     margin-bottom: var(--spacing-large);
-    grid-row: 4;
+    grid-row: 5;
   }
 
   .page-case__title {
@@ -227,6 +232,12 @@
 
   .page-case__content .storytelling-section {
     padding: var(--spacing-larger) var(--spacing-small);
+  }
+
+  .page-case__text {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--page-section-max-width);
   }
 
   .page-case__text video {
@@ -255,10 +266,6 @@
     position: relative;
   }
 
-  .page-case__content .testimonial-block {
-    margin-top: var(--spacing-bigger);
-  }
-
   .page-cases__scroll-to {
     display: none;
     position: absolute;
@@ -282,10 +289,6 @@
       margin-right: calc(-1 * var(--spacing-large));
     }
 
-    .page-case__content .testimonial-block {
-      margin-top: 0;
-    }
-
     .page-case__content,
     .page-case__content > *:not(:last-child) {
       margin-bottom: var(--spacing-big);
@@ -306,17 +309,14 @@
       padding-right: 0;
     }
 
-    .page-case__case-meta-container {
-      padding: 0;
+    .page-case__case-meta {
+      margin-bottom: var(--spacing-big);
     }
 
+    .page-case__case-meta,
     .page-case__case-teaser {
-      margin: var(--spacing-larger) 0 0 0;
-    }
-
-    .page-case__text {
-      max-width: var(--page-section-max-width);
-      width: 100%;
+      grid-column-start: 4;
+      grid-column-end: 49;
     }
 
     .page-case__content {
@@ -330,6 +330,10 @@
     .page-case__content,
     .page-case__content > *:not(:last-child) {
       margin-bottom: var(--spacing-bigger);
+    }
+
+    .page-case__quote {
+      max-width: var(--page-section-breakout-width);
     }
 
     .page-case__link-container {

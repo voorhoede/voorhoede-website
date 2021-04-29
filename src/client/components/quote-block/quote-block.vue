@@ -31,13 +31,15 @@
 
 <style>
   .quote-block {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
   }
 
   .quote-block__quote {
     display: block;
     quotes: '\201c' '\201d';
     margin-bottom: var(--spacing-small);
+    color: var(--html-blue);
   }
 
   .quote-block__quote::before {
@@ -49,6 +51,13 @@
   }
 
   .quote-block__cite {
-    color: var(--dim);
+    margin: 0 0 0 auto;
+    color: var(--html-blue);
+  }
+
+  @media (min-width: 720px) {
+    .quote-block__quote::before {
+      margin-left: -1rem;
+    }
   }
 </style>

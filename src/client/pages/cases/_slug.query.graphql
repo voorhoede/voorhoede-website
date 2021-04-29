@@ -58,18 +58,6 @@ fragment caseItem on CaseItemRecord {
       caption
       fullWidth
     }
-    ... on PullquoteRecord {
-      id
-      pullquote {
-        quote
-        illustration {
-          url
-          alt
-          format
-        }
-        richText
-      }
-    }
     ... on ImageWithTextRecord {
       id
       imageWithDescription {
@@ -132,6 +120,11 @@ fragment caseItem on CaseItemRecord {
       body
       linkLabel
       linkUrl
+    }
+    ... on QuoteRecord {
+      id
+      quote
+      author
     }
   }
   metaData {
