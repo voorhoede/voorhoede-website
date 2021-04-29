@@ -59,10 +59,6 @@
     }
   }
 
-  .testimonial-block__container {
-    margin-left: var(--spacing-smaller);
-  }
-
   .testimonial-block::before {
     content: '"';
     font-family: var(--font-sans);
@@ -75,18 +71,15 @@
   }
 
   .testimonial-block__title {
+    display: inline;
     color: var(--html-blue);
-    background: var(--paper);
-    box-shadow: 0 0 0 10px var(--paper), 0 0 0 10px var(--paper);
+    background-color: var(--paper);
     line-height: 1.5;
+    box-decoration-break: clone;
+    padding: .25em .5em;
   }
 
   .testimonial-block__author {
     margin-top: var(--spacing-small);
-  }
-
-  .testimonial-block__author,
-  .testimonial-block__company {
-    margin-left: calc(-1 * var(--spacing-smaller));
   }
 </style>
