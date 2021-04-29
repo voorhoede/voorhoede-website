@@ -51,7 +51,15 @@
 
     <div v-if="image" class="page-header__image-column animation__reveal">
       <div class="page-header__image-column-content animation__reveal-content">
-        <img class="page-header__image" :src="image.url" :width="image.width" :height="image.height" alt=""/>
+        <img
+          class="page-header__image"
+          :src="imageUrl(image.url, {
+            w: 1000
+          })"
+          :width="image.width"
+          :height="image.height"
+          alt=""
+        />
       </div>
     </div>
 
@@ -69,6 +77,8 @@
 </template>
 
 <script>
+  import imageUrl from '../../lib/image-url'
+
   export default {
     props: {
       headline: {
@@ -127,6 +137,11 @@
           throw new Error('The curly bracket is only available in combination with fhe fill-screen prop')
         }
         return (this.curlyBracket && this.fillScreen)
+      }
+    },
+    methods: {
+      imageUrl(image, options) {
+        return imageUrl(image, options)
       }
     }
   }
