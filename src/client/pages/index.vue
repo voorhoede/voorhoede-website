@@ -108,6 +108,9 @@
         return this.page.subtitle.length * this.selfTypingTextInterval
       }
     },
+    mounted() {
+      this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
+    },
     methods: {
       isLast(index, usps) {
         return index === Object.keys(usps).length - 1 ? { isSet: true, number: index } : { isSet: false }

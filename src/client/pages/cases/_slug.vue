@@ -176,6 +176,9 @@
         return cases[nextCaseIndex]
       },
     },
+    mounted() {
+      this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
+    },
     methods: {
       isFullWidth(item) {
         return item.image && item.fullWidth
