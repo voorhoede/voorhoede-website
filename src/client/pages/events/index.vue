@@ -85,6 +85,9 @@
           .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       },
     },
+    mounted() {
+      this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
+    },
     head,
   }
 </script>
