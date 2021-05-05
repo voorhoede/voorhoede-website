@@ -5,7 +5,10 @@
     ref="topOfPage"
     tabindex="-1"
   >
-    <VueAnnouncer v-if="isBrowser"/>
+    <VueAnnouncer
+      v-if="isBrowser"
+      :lang="pageTitleLocale"
+    />
     <cookie-notification
       :title="layout.cookieNotification.title"
       :body="layout.cookieNotification.body"
@@ -57,6 +60,9 @@ export default {
     isHome() {
       return this.$route.name && this.$route.name.includes('index')
     },
+    pageTitleLocale() {
+      return this.$route.name && this.$route.name.includes('blog-slug') ? 'en' : this.$i18n.locale
+    }
   },
   watch: {
     // Please do not remove this watcher, see: https://marcus.io/blog/improved-accessible-routing-vuejs
@@ -68,6 +74,7 @@ export default {
   },
   mounted() {
     this.isBrowser = true
+    console.log(this.$route.name)
   },
   head() {
     return {
