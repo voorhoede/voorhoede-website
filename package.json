@@ -52,6 +52,7 @@
     "@nuxtjs/sitemap": "^2.4.0",
     "autoprefixer": "^9.8.6",
     "ava": "^3.12.1",
+    "axe-core": "^4.2.0",
     "babel-eslint": "^10.1.0",
     "backoff": "^2.5.0",
     "chalk": "^4.1.0",
@@ -77,6 +78,7 @@
     "sinon": "^9.0.3",
     "stylelint": "^13.7.1",
     "stylelint-config-standard": "^20.0.0",
+    "vue-axe": "^2.4.4",
     "xmlbuilder": "^15.1.1"
   },
   "browserslist": [
