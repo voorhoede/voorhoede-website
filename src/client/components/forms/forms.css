@@ -9,11 +9,6 @@
   font-family: var(--font-sans);
 }
 
-input.hidden,
-.input-field.hidden {
-  display: none;
-}
-
 .input-field__label {
   color: var(--html-blue);
 }

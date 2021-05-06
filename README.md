@@ -52,6 +52,10 @@ available:
 `start` | Serves production version of client app from (`/dist/`) on [`http://localhost:3278`](http://localhost:3278).
 `data` | Imports all data from Dato CMS.
 
+### Accessibility
+
+This project uses [eslint-plugin-vuejs-accessibility](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility) to test Vue components for accessibility issues. 
+
 ## Documentation
 
 All components are documented with a README.md file in their own folder.

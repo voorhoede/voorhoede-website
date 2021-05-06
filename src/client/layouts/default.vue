@@ -74,7 +74,6 @@ export default {
   },
   mounted() {
     this.isBrowser = true
-    console.log(this.$route.name)
   },
   head() {
     return {
