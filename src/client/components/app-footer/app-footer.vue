@@ -1,5 +1,5 @@
 <template>
-  <footer class="app-footer grid" role="contentinfo">
+  <footer class="app-footer grid">
     <div class="app-footer__layout">
       <div class="app-footer__header">
         <nuxt-link :to="localeUrl('index')" :aria-label="$t('home')" :title="$t('home')">
@@ -67,7 +67,10 @@
             class="app-footer__list-item--icon"
           >
             <a :href="socialLink.url" target="_blank" rel="noreferrer noopener">
-              <app-icon :alt="socialLink.platform" :name="socialLink.icon" :is-large="true" />
+              <span class="sr-only">
+                {{ socialLink.platform }}
+              </span>
+              <app-icon :name="socialLink.icon" :is-large="true" />
             </a>
           </li>
         </ul>
@@ -119,10 +122,10 @@ export default {
     },
     socialLinks() {
       return [
-        { url: this.content.twitterUrl,  platform: 'twitter',  icon: 'twitter' },
-        { url: this.content.githubUrl,   platform: 'github',   icon: 'git-hub' },
-        { url: this.content.youtubeUrl,  platform: 'youtube',  icon: 'youtube' },
-        { url: this.content.linkedinUrl, platform: 'linked',   icon: 'linkedin' },
+        { url: this.content.twitterUrl,  platform: 'Twitter',  icon: 'twitter' },
+        { url: this.content.githubUrl,   platform: 'GitHub',   icon: 'git-hub' },
+        { url: this.content.youtubeUrl,  platform: 'YouTube',  icon: 'youtube' },
+        { url: this.content.linkedinUrl, platform: 'LinkedIn', icon: 'linkedin' },
       ]
     },
     cleanedPhoneNumber() {

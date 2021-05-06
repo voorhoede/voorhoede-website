@@ -27,19 +27,23 @@
         :placeholder-label="$t('email_address')"
         class="leads-form__input-field body"
       />
-      <input
-        type="checkbox"
-        :value="mailchimpGroup.value"
-        :name="mailchimpGroup.name"
-        :id="mailchimpGroup.id"
-        class="hidden"
-        checked>
-      <input
-        type="text"
-        :name="mailchimpFieldnamesMapping.honeypot"
-        tabindex="-1"
-        class="hidden"
-        value="">
+      <label class="hidden">
+        Don't uncheck this if you're human
+        <input
+          type="checkbox"
+          :value="mailchimpGroup.value"
+          :name="mailchimpGroup.name"
+          :id="mailchimpGroup.id"
+          checked>
+      </label>
+      <label class="hidden">
+        Don't fill this out if you're human
+        <input
+          type="text"
+          :name="mailchimpFieldnamesMapping.honeypot"
+          tabindex="-1"
+          value="">
+      </label>
       <input-checkbox
         v-model="form.consent"
         value="Y"
