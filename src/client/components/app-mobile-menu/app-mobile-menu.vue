@@ -16,13 +16,11 @@
       class="app-mobile-menu__content"
       @touchmove="prevent"
     >
-      <nuxt-link :to="localeUrl('index')" :title="$t('home')" tabindex="-1">
-        <img
-          class="app-mobile-menu__logo"
-          src="/images/logo--blue-and-yellow.svg"
-          @click="showMenu = !showMenu"
-          alt="">
-      </nuxt-link>
+      <img
+        class="app-mobile-menu__logo"
+        src="/images/logo--blue-and-yellow.svg"
+        alt="">
+
       <ul class="app-mobile-menu__list body-petite">
         <li
           class="app-mobile-menu__list-item">
@@ -112,6 +110,7 @@
   }
 
   .app-mobile-menu__logo {
+    margin: 0 auto 0 0;
     width: auto;
     height: 1.4375rem; /* 23px */
   }

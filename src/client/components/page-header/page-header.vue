@@ -27,16 +27,13 @@
         v-html="byline"
       />
       <h1
+        class="animation__uncover"
         :class="{
           'sub-title': heading === 'byline',
           'sr-only': heading === 'headline'
         }"
-      >
-        <div
-          v-html="heading === 'byline' ? byline : headline"
-          class="animation__uncover"
-        />
-      </h1>
+        v-html="heading === 'byline' ? byline : headline"
+      />
       <p
         v-if="heading === 'byline'"
         class="sr-only"
