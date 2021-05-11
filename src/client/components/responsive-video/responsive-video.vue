@@ -219,8 +219,8 @@
   }
 
   .responsive-video__caption-content {
-    margin-top: var(--spacing-smaller);
     display: inline-block;
+    margin-top: var(--spacing-smaller);
   }
 
   @media (min-width: 1440px) {

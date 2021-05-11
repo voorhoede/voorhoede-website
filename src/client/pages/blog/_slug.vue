@@ -180,6 +180,7 @@ export default {
     if ('IntersectionObserver' in window) {
       this.observeScrolledArticle()
     }
+    this.$announcer.set(`Page: ${this.page.social.title}`, 'polite')
   },
   beforeDestroy() {
     if (this.observer !== null) {

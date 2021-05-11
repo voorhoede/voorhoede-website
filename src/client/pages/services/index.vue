@@ -72,6 +72,9 @@
 
   export default {
     asyncData,
+    mounted() {
+      this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
+    },
     methods: {
       childServices(slug) {
         const { serviceSeries } = this.page.services.find(service => service.slug === slug)

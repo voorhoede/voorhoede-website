@@ -14,12 +14,14 @@
       :novalidate="useCustomValidation"
       class="newsletter-form__form"
     >
-      <input
-        type="text"
-        :name="mailchimpFieldnamesMapping.honeypot"
-        value=""
-        class="hidden"
-      >
+      <label class="hidden">
+        Don't fill this out if you're human
+        <input
+          type="text"
+          :name="mailchimpFieldnamesMapping.honeypot"
+          value=""
+        >
+      </label>
       <input-field
         v-model="form.name"
         :id="mailchimpFieldnamesMapping.firstName"

@@ -190,6 +190,7 @@
     mounted() {
       this.SET_PREVIOUS_SERVICE_TITLE(this.page.title)
       this.SET_PREVIOUS_SERVICE_SERIES_NAVIGATION(this.shownSeriesNavigation)
+      this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
     },
     methods: {
       ...mapMutations([SET_PREVIOUS_SERVICE_TITLE, SET_PREVIOUS_SERVICE_SERIES_NAVIGATION]),

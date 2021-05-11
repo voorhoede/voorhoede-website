@@ -1,5 +1,14 @@
 <template>
-  <div>
+  <!-- Please do not remove these attributes, see: https://marcus.io/blog/improved-accessible-routing-vuejs -->
+  <div
+    id="top"
+    ref="topOfPage"
+    tabindex="-1"
+  >
+    <VueAnnouncer
+      v-if="isBrowser"
+      :lang="pageTitleLocale"
+    />
     <cookie-notification
       :title="layout.cookieNotification.title"
       :body="layout.cookieNotification.body"
@@ -13,20 +22,6 @@
     />
     <div class="layout-default">
       <grid-demo :show="showGrid" />
-      <!--
-        Set focus on this element on route change, so that the user can
-        tab to the next focusable element. Giving a negative tabindex
-        makes the element only focusable using .focus() but prevents the
-        element from being focusable using the keyboard.
-      -->
-      <a
-        id="top"
-        ref="id"
-        class="sr-only"
-        tabindex="-1"
-      >
-        {{ $t('top_of_page') }}
-      </a>
       <a
         href="#content"
         class="skip-link app-button app-button--small body font-bold"
@@ -52,6 +47,11 @@
 import { mapState } from 'vuex'
 
 export default {
+  data() {
+    return {
+      isBrowser: false,
+    }
+  },
   computed: {
     ...mapState(['showGrid']),
     layout () {
@@ -60,6 +60,20 @@ export default {
     isHome() {
       return this.$route.name && this.$route.name.includes('index')
     },
+    pageTitleLocale() {
+      return this.$route.name && this.$route.name.includes('blog-slug') ? 'en' : this.$i18n.locale
+    }
+  },
+  watch: {
+    // Please do not remove this watcher, see: https://marcus.io/blog/improved-accessible-routing-vuejs
+    $route: function() {
+      this.$nextTick(() => {
+        this.$refs.topOfPage.focus()
+      })
+    }
+  },
+  mounted() {
+    this.isBrowser = true
   },
   head() {
     return {
