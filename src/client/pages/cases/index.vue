@@ -127,7 +127,8 @@
   .page-case__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--spacing-medium);
+    row-gap: var(--spacing-medium);
+    column-gap: var(--spacing-medium);
   }
 
   .page-case__grid .case-excerpt {
@@ -213,7 +214,8 @@
     }
 
     .page-case__grid {
-      gap: var(--spacing-large);
+      row-gap: var(--spacing-large);
+      column-gap: var(--spacing-large);
     }
   }
 </style>

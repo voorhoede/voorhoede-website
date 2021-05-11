@@ -110,6 +110,13 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    // Fix for console spamming of Babel warning, see:
+    // https://stackoverflow.com/questions/67350359/nuxt-js-fresh-install-of-nuxt-2-14-6-contains-babel-loose-option-warnings
+    babel:{
+      plugins: [
+        ['@babel/plugin-proposal-private-methods', { loose: true }]
+      ]
+    },
     postcss: {
       plugins: {
         'postcss-import': {},
