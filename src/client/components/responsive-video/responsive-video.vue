@@ -39,11 +39,11 @@
           </component>
         </vue-lazy-load>
       </fixed-ratio>
-      <figcaption>
-        <a v-if="video" class="responsive-video__caption body-detail" target="_blank" rel="noreferrer noopener" :href="video.url" >
+      <figcaption class="responsive-video__caption">
+        <a v-if="video" class="responsive-video__caption-content body-detail link" target="_blank" rel="noreferrer noopener" :href="video.url" >
           {{ video.title }}
         </a>
-        <span v-if="gif" class="responsive-video__caption body-detail">{{ gif.title }}</span>
+        <span v-if="gif" class="responsive-video__caption-content body-detail">{{ gif.title }}</span>
       </figcaption>
     </figure>
   </div>
@@ -214,9 +214,13 @@
   }
 
   .responsive-video__caption {
-    display: block;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .responsive-video__caption-content {
     margin-top: var(--spacing-smaller);
+    display: inline-block;
   }
 
   @media (min-width: 1440px) {

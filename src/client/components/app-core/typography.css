@@ -332,9 +332,13 @@ em,
   color: var(--html-blue);
 }
 
+.link {
+  padding-bottom: .15rem;
+}
+
 .link:hover,
 .link:focus,
 .link.active {
   color: var(--html-blue);
-  outline: none;
+  background: transparent linear-gradient(to top, var(--html-blue) 1px, transparent 1px);
 }
