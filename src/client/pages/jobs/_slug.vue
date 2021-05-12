@@ -14,12 +14,17 @@
       <div class="page-job__content">
         <generic-text-block
           v-for="item in page.jobContent"
+          :is-nested="false"
           :key="item.title || item.body"
           :title="item.title"
           :body="item.body"
           :image="item.image"
         />
         <footer class="page-job__footer button-group">
+          <h2 class="page-job__title h3">
+            {{ page.callToActionTitle }}
+          </h2>
+
           <app-button
             :label="$t('apply')"
             :to="page.url"
@@ -70,6 +75,10 @@
     right: var(--spacing-larger);
   }
 
+  .page-job__title {
+    margin-bottom: var(--spacing-tiny);
+  }
+
   .page-job__footer {
     margin-bottom: var(--spacing-large);
   }
@@ -79,7 +88,7 @@
     margin-top: var(--spacing-small);
   }
 
-  .page-job__footer .app-button:not(:first-child) {
+  .page-job__footer .app-button:not(:first-of-type) {
     margin-left: var(--spacing-small);
   }
 
@@ -101,6 +110,10 @@
 
     .page-job__content .button-group {
       width: var(--button-group-width);
+    }
+
+    .page-job__title {
+      margin-bottom: var(--spacing-small);
     }
 
     .page-job__footer .app-button {

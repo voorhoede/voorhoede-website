@@ -26,6 +26,7 @@
         <li class="page-about-us__jobs-list" v-for="item in jobs" :key="item.slug">
           <jobs-excerpt
             class="page-about-us__jobs-list-item"
+            :is-nested="true"
             :title="item.title"
             :description="item.description"
             :image="item.jobImage"

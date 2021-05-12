@@ -29,7 +29,7 @@
       </div>
 
       <div class="page-services__services-list">
-        <h3 v-if="page.servicesTitle" class="h2">{{ page.servicesTitle }}</h3>
+        <h2 v-if="page.servicesTitle" class="h2">{{ page.servicesTitle }}</h2>
         <ul>
           <li
             v-for="(service, index) in page.services"

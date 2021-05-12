@@ -1,6 +1,6 @@
 <template>
   <section class="image-grid">
-    <h3 v-if="title" class="image-grid__title h2">{{ title }}</h3>
+    <h2 v-if="title" class="image-grid__title h2">{{ title }}</h2>
     <ul class="image-grid__list">
       <li
         v-for="(item, index) in items"
@@ -11,7 +11,7 @@
           'image-grid__item--full-width': item.isFullWidth }">
         <app-image v-if="item.image" :image="item.image" />
         <div v-if="item.title && item.description" class="image-grid__item-content">
-          <h4 class="image-grid__item-title h3">{{ item.title }}</h4>
+          <h3 class="image-grid__item-title h3">{{ item.title }}</h3>
           <p class="body-petite">{{ item.description }}</p>
         </div>
       </li>

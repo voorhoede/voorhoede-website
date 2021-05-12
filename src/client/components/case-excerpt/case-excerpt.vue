@@ -31,7 +31,7 @@
         >
       </picture>
       <div class="case-excerpt__caption">
-        <h2 class="h4 case-excerpt__title">{{ title }}</h2>
+        <h3 class="h4 case-excerpt__title">{{ title }}</h3>
         <p class="case-excerpt__body body">{{ body }}</p>
       </div>
     </nuxt-link>

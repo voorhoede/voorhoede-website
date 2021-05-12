@@ -12,7 +12,8 @@
     </div>
 
     <div class="job-excerpt__text">
-      <h3 class="job-excerpt__text-title h4">{{ title }}</h3>
+      <h3 v-if="isNested" class="job-excerpt__text-title h4">{{ title }}</h3>
+      <h2 v-else class="job-excerpt__text-title h4">{{ title }}</h2>
       <p class="job-excerpt__text-description body-petite">{{ description }}</p>
     </div>
 
@@ -30,6 +31,10 @@
 
   export default {
     props: {
+      isNested: {
+        type: Boolean,
+        default: false,
+      },
       title: {
         type: String,
         required: true,
