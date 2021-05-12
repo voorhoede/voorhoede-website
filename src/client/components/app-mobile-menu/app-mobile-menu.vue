@@ -18,7 +18,7 @@
     <vue-focus-lock
       v-if="showMenu"
       class="app-mobile-menu__content"
-      @touchmove="prevent"
+      @touchmove.native="prevent"
     >
       <img
         class="app-mobile-menu__logo"
