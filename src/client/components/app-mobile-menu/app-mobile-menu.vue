@@ -3,15 +3,19 @@
     <button
       v-if="!showMenu"
       class="app-mobile-menu__button app-mobile-menu__button--open"
-      @click="showMenu = !showMenu"
+      @click="openMenu()"
       @touchmove="prevent"
-      :aria-label="$t('open_menu')"
+      ref="openButton"
     >
       <div
         class="app-mobile-menu__button-icon app-mobile-menu__button-icon--open">
       </div>
+
+      <span class="sr-only">
+        {{ $t('open_menu') }}
+      </span>
     </button>
-    <div
+    <vue-focus-lock
       v-if="showMenu"
       class="app-mobile-menu__content"
       @touchmove="prevent"
@@ -43,24 +47,33 @@
           </nuxt-link>
         </li>
       </ul>
-    </div>
-    <button
-      v-if="showMenu"
-      class="app-mobile-menu__button app-mobile-menu__button--close"
-      @click="showMenu = !showMenu"
-      @touchmove="prevent"
-      :aria-label="$t('close_menu')"
-    >
-      <div
-        class="app-mobile-menu__button-icon app-mobile-menu__button-icon--close">
-      </div>
-    </button>
+
+      <button
+        v-if="showMenu"
+        class="app-mobile-menu__button app-mobile-menu__button--close"
+        @click="closeMenu()"
+        @touchmove="prevent"
+        ref="closeButton"
+      >
+        <div
+          class="app-mobile-menu__button-icon app-mobile-menu__button-icon--close">
+        </div>
+
+        <span class="sr-only">
+          {{ $t('close_menu') }}
+        </span>
+      </button>
+    </vue-focus-lock>
   </nav>
 </template>
 <script>
   import { createHref, linkValidator } from '../../lib/links'
+  import VueFocusLock from 'vue-focus-lock'
 
   export default {
+    components: {
+      VueFocusLock,
+    },
     props: {
       title: {
         type: String,
@@ -85,6 +98,18 @@
       }
     },
     methods: {
+      closeMenu() {
+        this.showMenu = false
+        this.$nextTick(() => {
+          this.$refs.openButton.focus()
+        })
+      },
+      openMenu() {
+        this.showMenu = true
+        this.$nextTick(() => {
+          this.$refs.closeButton.focus()
+        })
+      },
       prevent(event) {
         event.preventDefault()
       },
@@ -129,6 +154,7 @@
     outline: none;
     background-color: var(--html-blue);
     box-shadow: var(--mobile-icon-shadow);
+    cursor: pointer;
   }
 
   .app-mobile-menu__button:focus,

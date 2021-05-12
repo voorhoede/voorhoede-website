@@ -47,7 +47,8 @@
     "nuxt-i18n": "^6.15.1",
     "prismjs": "^1.21.0",
     "svg4everybody": "^2.1.9",
-    "unfetch": "^4.1.0"
+    "unfetch": "^4.1.0",
+    "vue-focus-lock": "^1.4.1"
   },
   "devDependencies": {
     "@nuxtjs/sitemap": "^2.4.0",
