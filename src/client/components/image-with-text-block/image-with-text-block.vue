@@ -2,7 +2,7 @@
   <div class="image-with-text" :class="{ 'image-with-text--inverse': inverse }">
     <responsive-image :image="image" />
     <div class="image-with-text__body">
-      <h3 v-if="title" class="image-with-text__body-title h3">{{ title }}</h3>
+      <h2 v-if="title" class="image-with-text__body-title h3">{{ title }}</h2>
       <div class="pullquote image-with-text__body-text" v-html="body"></div>
     </div>
   </div>

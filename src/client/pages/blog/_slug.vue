@@ -25,7 +25,7 @@
 
     <article class="page-blog-post-list">
       <text-block>
-        <h3 class="font-html-blue testimonial">{{ page.introTitle }}</h3>
+        <h2 class="font-html-blue testimonial">{{ page.introTitle }}</h2>
       </text-block>
 
       <template v-for="item in page.items">

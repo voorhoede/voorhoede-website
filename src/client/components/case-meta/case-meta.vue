@@ -1,5 +1,8 @@
 <template>
   <div class="case-meta is-animated">
+    <h2 class="sr-only">
+      {{ $t('case_summary') }}
+    </h2>
     <div class="case-meta__section animation__uncover animation__uncover--white-background animation-stagger-1">
       <h3 class="case-meta__title body font-bold">{{ expertiseTitle }}</h3>
       <p class="body-petite">{{ toMetaString(expertises) }}</p>

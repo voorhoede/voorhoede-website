@@ -35,4 +35,5 @@ fragment job on JobRecord {
       alt
     }
   }
+  callToActionTitle
 }

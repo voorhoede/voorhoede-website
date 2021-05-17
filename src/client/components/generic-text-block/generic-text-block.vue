@@ -1,6 +1,6 @@
 <template>
   <div class="generic-text-block">
-    <h3 v-if="title" class="generic-text-block__title h4">{{ title }}</h3>
+    <h2 v-if="title" class="generic-text-block__title h4">{{ title }}</h2>
 
     <rich-text-block class="generic-text-block__body" :text="body" />
 
