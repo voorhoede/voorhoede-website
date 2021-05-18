@@ -52,6 +52,7 @@
   },
   "devDependencies": {
     "@nuxtjs/sitemap": "^2.4.0",
+    "@nuxtjs/web-vitals": "^0.1.4",
     "autoprefixer": "^9.8.6",
     "ava": "^3.12.1",
     "babel-eslint": "^10.1.0",

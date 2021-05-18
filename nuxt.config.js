@@ -4,6 +4,8 @@ const modules = require('./config/nuxt/modules')
 
 dotenv.config()
 
+const appConfig = require('./src/client/static/data/app.json')
+
 /**
  * Use Netlify's URL variable:
  * @see https://www.netlify.com/docs/continuous-deployment/#build-environment-variables
@@ -17,10 +19,14 @@ module.exports = {
   components: true,
   telemetry: true,
   generate,
-  modules,
+  modules: modules.runtimeModules,
+  buildModules: modules.buildModules,
   env: {
     baseUrl,
     DATO_API_TOKEN
+  },
+  googleAnalytics: {
+    id: appConfig.googleAnalyticsId,
   },
 
   /*
