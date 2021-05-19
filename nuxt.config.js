@@ -92,6 +92,7 @@ module.exports = {
   },
 
   plugins: [
+    { src: '~/plugins/axe.js', mode: 'client' },
     { src: '~/plugins/fetch-polyfill', mode: 'client' },
     { src: '~/plugins/locale-urls' },
     { src: '~/plugins/ascii-art', mode: 'client' },

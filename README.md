@@ -56,6 +56,8 @@ available:
 
 This project uses [eslint-plugin-vuejs-accessibility](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility) to test Vue components for accessibility issues. 
 
+For accessibility checking in the browser [Vue Axe](https://axe.vue-a11y.com) is used. Results of the tests can be seen in the browser console. When navigating to a new page it is best to refresh the page, as Vue Axe doesn't always trigger a rerun on navigation.
+
 ## Documentation
 
 All components are documented with a README.md file in their own folder.
