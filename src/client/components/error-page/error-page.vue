@@ -1,5 +1,9 @@
 <template>
-  <section class="error-page">
+  <main
+    id="content"
+    class="error-page"
+    tabindex="-1"
+  >
     <page-header
       v-if="content"
       heading="byline"
@@ -12,7 +16,7 @@
         {{ content.body }}
       </div>
     </div>
-  </section>
+  </main>
 </template>
 
 <script>
