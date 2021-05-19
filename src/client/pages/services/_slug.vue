@@ -64,13 +64,13 @@
         :next-link="nextLinkRoute"
         :next-link-label="nextLinkLabel"
       />
+      <pivot-list
+        class="page-service__pivots"
+        v-if="page.pivots && page.pivots.length"
+        :pivots="page.pivots"
+        :can-have-border-top="false"
+      />
     </main>
-    <pivot-list
-      class="page-service__pivots"
-      v-if="page.pivots && page.pivots.length"
-      :pivots="page.pivots"
-      :can-have-border-top="false"
-    />
   </div>
 </template>
 

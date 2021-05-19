@@ -141,19 +141,18 @@
         :next-link="localeUrl({ name: 'cases-slug', params: { slug: nextCase.slug } })"
         :next-link-label="nextCase.title"
       />
+
+      <section class="page-cases__pivots grid">
+        <pivot-list
+          v-if="page.pivots && page.pivots.length"
+          :pivots="page.pivots"
+          :can-have-border-top="false"
+        />
+        <div class="page-cases__scroll-to">
+          <scroll-to direction="up" />
+        </div>
+      </section>
     </main>
-
-    <section class="page-cases__pivots grid">
-      <pivot-list
-        v-if="page.pivots && page.pivots.length"
-        :pivots="page.pivots"
-        :can-have-border-top="false"
-      />
-      <div class="page-cases__scroll-to">
-        <scroll-to direction="up" />
-      </div>
-    </section>
-
   </div>
 </template>
 
@@ -267,6 +266,7 @@
 
   .page-cases__pivots {
     position: relative;
+    grid-column: var(--grid-page);
   }
 
   .page-cases__scroll-to {

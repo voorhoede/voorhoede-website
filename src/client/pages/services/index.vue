@@ -55,14 +55,14 @@
         v-if="page.smallServices"
         class="page-services__text"
         :text="page.smallServices" />
-    </main>
 
-    <pivot-list
-      class="page-services__pivots"
-      v-if="page.pivots && page.pivots.length"
-      :pivots="page.pivots"
-      :can-have-border-top="false"
-    />
+      <pivot-list
+        class="page-services__pivots"
+        v-if="page.pivots && page.pivots.length"
+        :pivots="page.pivots"
+        :can-have-border-top="false"
+      />
+    </main>
   </div>
 </template>
 
