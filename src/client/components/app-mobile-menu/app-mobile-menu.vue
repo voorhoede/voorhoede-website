@@ -1,5 +1,5 @@
 <template>
-  <nav class="app-mobile-menu grid" :aria-label="title">
+  <div class="app-mobile-menu grid">
     <button
       v-if="!showMenu"
       class="app-mobile-menu__button app-mobile-menu__button--open"
@@ -64,7 +64,7 @@
         </span>
       </button>
     </vue-focus-lock>
-  </nav>
+  </div>
 </template>
 <script>
   import { createHref, linkValidator } from '../../lib/links'
@@ -75,10 +75,6 @@
       VueFocusLock,
     },
     props: {
-      title: {
-        type: String,
-        default: 'Site menu'
-      },
       links: {
         type: Array,
         validator (links) {

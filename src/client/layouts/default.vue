@@ -28,15 +28,15 @@
       >
         <span>{{ $t('skip_link') }}</span>
       </a>
-      <app-header
-        :title="layout.menu.title"
-        :links="layout.menu.links"
-        :call-to-action="layout.menu.callToAction"
-      />
-      <app-mobile-menu
-        :title="layout.menu.title"
-        :links="[].concat(layout.menu.links, layout.menu.callToAction)"
-      />
+      <nav :aria-label="layout.menu.title">
+        <app-header
+          :links="layout.menu.links"
+          :call-to-action="layout.menu.callToAction"
+        />
+        <app-mobile-menu
+          :links="[].concat(layout.menu.links, layout.menu.callToAction)"
+        />
+      </nav>
       <nuxt />
       <app-footer />
     </div>

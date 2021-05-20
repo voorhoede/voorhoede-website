@@ -1,5 +1,5 @@
 <template>
-  <nav class="app-header grid" :aria-label="title">
+  <div class="app-header grid">
     <div class="app-header__content">
       <nuxt-link class="app-header__home-link" :to="localeUrl('index')">
         <img class="app-header__logo" src="/images/logo-with-text.svg" alt="Home" width="190" height="32">
@@ -32,7 +32,7 @@
         </ul>
       </div>
     </div>
-  </nav>
+  </div>
 </template>
 
 <script>
@@ -40,10 +40,6 @@
 
   export default {
     props: {
-      title: {
-        type: String,
-        default: 'Site menu'
-      },
       links: {
         type: Array,
         validator (links) {
