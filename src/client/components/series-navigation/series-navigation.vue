@@ -1,5 +1,8 @@
 <template>
-  <nav class="series-navigation">
+  <nav
+    class="series-navigation"
+    aria-labelledby="series-navigation-title"
+  >
     <header class="series-navigation__header">
       <component
         :is="isActive(titleRoute) ? 'span' : 'nuxt-link'"
@@ -8,7 +11,10 @@
           'series-navigation__link': !isActive(titleRoute)
         }"
       >
-        <h2 class="series-navigation__title h3">
+        <h2
+          id="series-navigation-title"
+          class="series-navigation__title h3"
+        >
           <app-icon
             v-if="!isActive(titleRoute)"
             name="arrow-left"

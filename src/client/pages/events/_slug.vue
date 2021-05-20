@@ -3,7 +3,10 @@
     id="content"
     tabindex="-1"
   >
-    <article class="page-event-detail grid" lang="en">
+    <div
+      class="page-event-detail grid"
+      lang="en"
+    >
       <page-header
         class="page-event-detail__header"
         heading="headline"
@@ -11,7 +14,7 @@
         :headline="page.title"
         :image="imageIsIllustration ? page.image : fallbackIllustration" />
 
-      <main class="page-event-detail__main">
+      <article class="page-event-detail__main">
         <responsive-image
           v-if="!imageIsIllustration && page.image"
           class="page-event-detail__image"
@@ -62,7 +65,7 @@
             :to="page.url"
             external />
         </div>
-      </main>
+      </article>
 
       <aside class="page-event-detail__aside">
         <div>
@@ -102,7 +105,8 @@
           &larr; {{ $t('all_events') }}
         </nuxt-link>
       </div>
-    </article>
+    </div>
+
     <newsletter-form :has-background="true" />
   </main>
 </template>
