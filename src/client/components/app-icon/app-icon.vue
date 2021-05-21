@@ -4,6 +4,7 @@
     :class="{ 'app-icon--large': isLarge }"
     :name="name"
     :title="alt"
+    role="img"
   />
 </template>
 
