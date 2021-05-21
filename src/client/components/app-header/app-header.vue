@@ -1,5 +1,5 @@
 <template>
-  <nav class="app-header grid" :aria-label="title">
+  <div class="app-header grid">
     <div class="app-header__content">
       <nuxt-link class="app-header__home-link" :to="localeUrl('index')">
         <img class="app-header__logo" src="/images/logo-with-text.svg" alt="Home" width="190" height="32">
@@ -13,26 +13,36 @@
             <app-button small :label="callToAction.title" :to="createHref(callToAction)"/>
           </li>
         </ul>
-        <ul class="app-header__link-list app-header__link-list--languages">
-          <li
+        <div class="app-header__link-list app-header__link-list--languages">
+          <template
             v-for="({ code, name }) in $i18n.locales"
-            :key="code"
-            class="app-header__link-list-item"
             :class="{ 'font-bold': code === $i18n.locale }"
           >
-            <span v-if="code === $i18n.locale" aria-hidden="true">{{ code }}</span>
-            <nuxt-link
+            <span
+              v-if="code === $i18n.locale"
+              :key="code"
+              aria-hidden="true"
+              class="app-header__link-list-item app-header__link-list-item--highlighted"
+            >
+              {{ code }}
+            </span>
+            <div
               v-else
-              class="app-header__link"
-              :aria-label="$t('switch_to__language_', code, { language: name })"
-              :lang="code"
-              :to="localizedlocaleUrls[code]"
-              @click.native="saveLocale(code)">{{ code }}</nuxt-link>
-          </li>
-        </ul>
+              :key="code"
+              class="app-header__link-list-item"
+            >
+              <nuxt-link
+                class="app-header__link"
+                :aria-label="$t('switch_to__language_', code, { language: name })"
+                :lang="code"
+                :to="localizedlocaleUrls[code]"
+                @click.native="saveLocale(code)">{{ code }}</nuxt-link>
+            </div>
+          </template>
+        </div>
       </div>
     </div>
-  </nav>
+  </div>
 </template>
 
 <script>
@@ -40,10 +50,6 @@
 
   export default {
     props: {
-      title: {
-        type: String,
-        default: 'Site menu'
-      },
       links: {
         type: Array,
         validator (links) {
@@ -150,6 +156,10 @@
     padding: 0 calc(var(--spacing-small) / 2);
     font-family: var(--font-sans);
     color: var(--html-blue);
+  }
+
+  .app-header__link-list-item--highlighted {
+    font-weight: bold;
   }
 
   .app-header__link {
