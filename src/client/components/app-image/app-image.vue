@@ -14,6 +14,8 @@
         type="image/svg+xml"
         tabindex="-1"
         :aria-label="imageAlt"
+        aria-hidden="true"
+        role="img"
       />
     </div>
     <picture
