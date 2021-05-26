@@ -1,0 +1,25 @@
+name: linting
+on: push
+jobs:
+  lint-website:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '10'
+      - uses: actions/checkout@v2
+      - env:
+          cache-name: cache-node-modules
+        name: 'Cache node modules'
+        uses: actions/cache@v2
+        with:
+          key: "${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}"
+          path: ~/.npm
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install Dependencies
+        run: npm ci
+      - name: Lint
+        run: 'npm run lint'
