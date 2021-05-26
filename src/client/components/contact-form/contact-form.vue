@@ -12,21 +12,19 @@
       </h2>
       <div v-if="contactPerson" class="contact-form__contact-person">
         <responsive-image :image="contactPerson.image"/>
-        <dl>
-          <dt class="sr-only">{{ $t('name') }}</dt>
-          <dd class="h5">{{ contactPerson.name }} {{ contactPerson.lastName }}</dd>
-          <template v-if="contactPerson.jobTitle">
-            <dt class="sr-only">{{ $t('job_title') }}</dt>
-            <dd class="body-petite">{{ contactPerson.jobTitle }}</dd>
-          </template>
-          <dt class="sr-only">{{ $t('email') }}</dt>
-          <dd class="body-petite">
-            <a
-              class="link"
-              href="mailto:post@voorhoede.nl"
-            >post@voorhoede.nl</a>
-          </dd>
-        </dl>
+        <p class="h5">{{ contactPerson.name }} {{ contactPerson.lastName }}</p>
+        <p
+          v-if="contactPerson.jobTitle"
+          class="body-petite"
+        >
+          {{ contactPerson.jobTitle }}
+        </p>
+        <a
+          class="body-petite link"
+          href="mailto:post@voorhoede.nl"
+        >
+          post@voorhoede.nl
+        </a>
       </div>
     </div>
     <form
