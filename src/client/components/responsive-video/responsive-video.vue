@@ -28,10 +28,10 @@
             <source :src="`${gif.url}?fm=mp4`" type="video/mp4">
           </video>
           <component
-            :is="video ? 'a' : 'button'"
+            :is="video ? 'button' : 'a'"
             v-if="!isPlaying"
             class="responsive-video__button"
-            :href="video ? video.url : null"
+            :href="video ? null : video.url"
             @click.prevent="play"
           >
             <span class="sr-only">Play video</span>
