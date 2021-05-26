@@ -27,16 +27,14 @@
           >
             <source :src="`${gif.url}?fm=mp4`" type="video/mp4">
           </video>
-          <component
-            :is="video ? 'button' : 'a'"
+          <button
             v-if="!isPlaying"
             class="responsive-video__button"
-            :href="video ? null : video.url"
             @click.prevent="play"
           >
             <span class="sr-only">Play video</span>
             <app-icon name="play"/>
-          </component>
+          </button>
         </vue-lazy-load>
       </fixed-ratio>
       <figcaption class="responsive-video__caption">
@@ -196,6 +194,7 @@
     border: 0;
     background-color: rgba(0, 0, 0, 0);
     transition: background-color .25s ease;
+    cursor: pointer;
   }
 
   .responsive-video__button:hover,
