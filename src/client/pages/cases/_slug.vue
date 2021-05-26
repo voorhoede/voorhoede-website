@@ -122,6 +122,7 @@
             v-if="item.__typename === 'ResponsiveVideoRecord'"
             :key="item.id"
             :video="item.video"
+            :gif="item.gif"
             :autoplay="item.autoplay"
             :loop="item.loop"
             :mute="item.autoplay"
