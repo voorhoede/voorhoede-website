@@ -4,9 +4,6 @@
       v-if="direction === 'down'"
       class="scroll-to__point-down"
     >
-      <span class="sr-only">
-        {{ $t('scroll') }}
-      </span>
       <img
         class="scroll-to__image"
         src="/images/scroll-to-arrow--down.svg"
