@@ -79,9 +79,13 @@
     <div class="app-footer__bottom">
       <div class="body-detail app-footer__bottom-text">
         <div class="app-footer__definition-list">
-          <dl v-for="{ title, value } in content.legal" :key="title" class="app-footer__definition-item">
-            <dt>{{ title }}:</dt> <dd class="app-footer__definition-value">{{ value }}</dd>
-          </dl>
+          <p
+            v-for="{ title, value } in content.legal"
+            :key="title"
+            class="app-footer__definition-item"
+          >
+            {{ title }}: <span class="app-footer__definition-value">{{ value }}</span>
+          </p>
         </div>
       </div>
       <div class="body-detail app-footer__legal">
@@ -212,7 +216,6 @@ export default {
   }
 
   .app-footer__definition-item {
-    display: flex;
     margin: var(--spacing-smaller);
   }
 
@@ -442,6 +445,7 @@ export default {
 
     .app-footer__definition-item {
       margin-left: var(--spacing-smaller);
+      white-space: nowrap;
     }
 
     .app-footer__list {
