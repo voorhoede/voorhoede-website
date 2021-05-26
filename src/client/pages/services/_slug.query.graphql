@@ -76,6 +76,12 @@ fragment page on ServiceRecord {
       mute
       loop
       autoplay
+      gif {
+        url
+        title
+        height
+        width
+      }
       video {
         url
         title

@@ -151,7 +151,7 @@
     methods: {
       play() {
         this.isPlaying = true
-        this.$ga.event('Video', `play ${this.video.providerUid}`, this.video.provider, 0)
+        this.$ga.event('Video', `play ${this.video ? this.video.providerUid : 'gif'}`, this.video ? this.video.provider : 'gif', 0)
       },
     },
   }

@@ -104,6 +104,12 @@ fragment caseItem on CaseItemRecord {
       mute
       loop
       autoplay
+      gif {
+        url
+        title
+        height
+        width
+      }
       video {
         url
         title
