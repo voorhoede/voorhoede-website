@@ -150,8 +150,11 @@
     },
     methods: {
       play() {
+        const providerUid = this.video ? this.video.providerUid : 'gif'
+        const provider = this.video ? this.video.provider : 'gif'
+
         this.isPlaying = true
-        this.$ga.event('Video', `play ${this.video ? this.video.providerUid : 'gif'}`, this.video ? this.video.provider : 'gif', 0)
+        this.$ga.event('Video', `play ${providerUid}`, provider, 0)
       },
     },
   }
