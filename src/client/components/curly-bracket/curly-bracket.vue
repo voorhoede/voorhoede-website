@@ -1,7 +1,6 @@
 <template>
   <div :class="`curly-bracket curly-bracket--${side}`">
     <img
-      alt=""
       class="curly-bracket__image"
       :src="`/images/curly-bracket--${color}.svg`"
     >
