@@ -1,40 +1,40 @@
 <template>
   <article class="case-excerpt">
-    <nuxt-link
-      class="case-excerpt__link"
-      :to="localeUrl({ name: 'cases-slug', params: { slug } })"
-      :title="title"
-      :aria-label="title"
-    >
-      <picture class="case-excerpt__media">
-        <source
-          type="image/webp"
-          :srcset="getImageUrl(image.url, {
-            fm: 'webp',
-            w: '800'
-          })">
-        <source
-          type="image/png"
-          :srcset="getImageUrl(image.url,{
-            fm: 'png',
-            w: '800'
-          })">
-        <img
-          class="case-excerpt__image"
-          :src="getImageUrl(image.url, {
-            w: '800'
-          })"
-          :width="image.width"
-          :height="image.height"
-          :alt="title"
-          loading="lazy"
-        >
-      </picture>
-      <div class="case-excerpt__caption">
-        <h3 class="h4 case-excerpt__title">{{ title }}</h3>
-        <p class="case-excerpt__body body">{{ body }}</p>
-      </div>
-    </nuxt-link>
+    <picture class="case-excerpt__media">
+      <source
+        type="image/webp"
+        :srcset="getImageUrl(image.url, {
+          fm: 'webp',
+          w: '800'
+        })">
+      <source
+        type="image/png"
+        :srcset="getImageUrl(image.url,{
+          fm: 'png',
+          w: '800'
+        })">
+      <img
+        class="case-excerpt__image"
+        :src="getImageUrl(image.url, {
+          w: '800'
+        })"
+        :width="image.width"
+        :height="image.height"
+        alt=""
+        loading="lazy"
+      >
+    </picture>
+    <div class="case-excerpt__caption">
+      <nuxt-link
+        class="case-excerpt__link"
+        :to="localeUrl({ name: 'cases-slug', params: { slug } })"
+      >
+        <h3 class="h4 case-excerpt__title">
+          {{ title }}
+        </h3>
+      </nuxt-link>
+      <p class="case-excerpt__body body">{{ body }}</p>
+    </div>
   </article>
 </template>
 
@@ -74,9 +74,8 @@
     --duration: .15s;
   }
 
-  .case-excerpt__link {
-    display: block;
-    min-height: 100%;
+  .case-excerpt {
+    position: relative;
     background-color: var(--fog);
   }
 
@@ -101,6 +100,16 @@
       var(--spacing-medium)
       var(--spacing-medium)
       var(--spacing-large);
+  }
+
+  .case-excerpt__link::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
   }
 
   .case-excerpt__title {
