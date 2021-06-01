@@ -60,7 +60,7 @@ select {
 }
 
 ::placeholder {
-  color: var(--very-dim);
+  color: var(--dim);
 }
 
 @media screen and (min-width: 1100px) {
