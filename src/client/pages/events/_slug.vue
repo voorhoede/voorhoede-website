@@ -14,6 +14,37 @@
         :headline="page.title"
         :image="imageIsIllustration ? page.image : fallbackIllustration" />
 
+      <aside class="page-event-detail__aside">
+        <div>
+          <p class="body font-bold">Date</p>
+          <time
+            :datetime="page.date"
+            class="body"
+          >
+            {{ formattedDate }}
+          </time>
+        </div>
+
+        <div>
+          <p class="body font-bold">Location</p>
+          <rich-text-block
+            v-if="page.address"
+            :key="page.address"
+            :text="page.address" />
+        </div>
+
+        <div>
+          <p v-if="page.price" class="body font-bold">Price</p>
+          <p v-if="page.price" class="body">{{ page.price }}</p>
+        </div>
+
+        <div
+          class="page-event-detail__label body"
+          :class="{ 'page-event__detail__label--alt': isMeetup }">
+          {{ page.label.label }}
+        </div>
+      </aside>
+
       <article class="page-event-detail__main">
         <responsive-image
           v-if="!imageIsIllustration && page.image"
@@ -66,37 +97,6 @@
             external />
         </div>
       </article>
-
-      <aside class="page-event-detail__aside">
-        <div>
-          <p class="body font-bold">Date</p>
-          <time
-            :datetime="page.date"
-            class="body"
-          >
-            {{ formattedDate }}
-          </time>
-        </div>
-
-        <div>
-          <p class="body font-bold">Location</p>
-          <rich-text-block
-            v-if="page.address"
-            :key="page.address"
-            :text="page.address" />
-        </div>
-
-        <div>
-          <p v-if="page.price" class="body font-bold">Price</p>
-          <p v-if="page.price" class="body">{{ page.price }}</p>
-        </div>
-
-        <div
-          class="page-event-detail__label body"
-          :class="{ 'page-event__detail__label--alt': isMeetup }">
-          {{ page.label.label }}
-        </div>
-      </aside>
 
       <div class="page-event-detail__link-container">
         <nuxt-link
