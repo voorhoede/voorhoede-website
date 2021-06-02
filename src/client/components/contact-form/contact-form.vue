@@ -54,6 +54,7 @@
           :placeholder-label="$t('your_name')"
           required
           :validate="formIsValidated"
+          :reset-validation="resetValidation"
           :validation-error-message="$t('name_is_required')"
           class="body-petite"
         />
@@ -73,6 +74,7 @@
           :placeholder-label="$t('email_address')"
           required
           :validate="formIsValidated"
+          :reset-validation="resetValidation"
           :validation-error-message="emailValidationErrorMessage"
           class="body-petite"
         />
@@ -145,6 +147,7 @@
           subject: '',
         },
         formIsValidated: false,
+        resetValidation: false,
         useCustomValidation: false,
       }
     },
@@ -169,6 +172,10 @@
       submit(event) {
         this.formIsValidated = true
         if (!event.target.checkValidity()) {
+          this.resetValidation = true
+          this.$nextTick(() => {
+            this.resetValidation = false
+          })
           return false
         }
         submitContactForm({
@@ -179,7 +186,7 @@
       },
       trackEvent () {
         const formValidationState = this.formIsValidated ? 'success' : 'failed'
-        return this.$ga.event('Newsletter form', 'click submit', formValidationState, 0)
+        return this.$ga.event('Contact form', 'click submit', formValidationState, 0)
       },
     }
   }

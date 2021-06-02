@@ -13,6 +13,11 @@
   color: var(--html-blue);
 }
 
+.input-field__error {
+  display: block;
+  color: var(--soft-red);
+}
+
 .input-field + .input-field {
   margin-top: var(--spacing-medium);
 }
@@ -65,27 +70,34 @@ select {
 
 @media screen and (min-width: 1100px) {
   .input-field {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto 66%;
+    grid-template-rows: auto auto;
   }
 
   .input-field + .input-field {
     margin-top: var(--spacing-small);
   }
 
-  .input-field__label {
-    flex-basis: 33%;
+  .input-field__label,
+  .input-field__error {
+    grid-column: 1 / 2;
     padding-right: var(--spacing-small);
   }
 
-  .input-field > input,
-  .input-field > select {
-    margin-top: 0;
-    flex-basis: 66%;
+  .input-field__label {
+    grid-row: 1 / 2;
   }
 
+  .input-field__error {
+    grid-row: 2 / 3;
+  }
+
+  .input-field > input,
+  .input-field > select,
   .input-field > textarea {
-    flex-basis: 66%;
+    margin-top: 0;
+    grid-row-start: 1;
+    grid-column-start: 2 / 3;
   }
 }

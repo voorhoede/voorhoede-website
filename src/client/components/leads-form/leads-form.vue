@@ -17,6 +17,10 @@
         type="text"
         :label="$t('my_first_name_is')"
         :placeholder-label="$t('your_first_name')"
+        required
+        :validate="formIsValidated"
+        :reset-validation="resetValidation"
+        :validation-error-message="$t('name_is_required')"
         class="leads-form__input-field body"
       />
       <input-field
@@ -25,6 +29,10 @@
         type="email"
         :label="$t('you_can_email_me_at')"
         :placeholder-label="$t('email_address')"
+        required
+        :validate="formIsValidated"
+        :reset-validation="resetValidation"
+        :validation-error-message="emailValidationErrorMessage"
         class="leads-form__input-field body"
       />
       <label class="hidden">
@@ -52,7 +60,8 @@
         :label="$t('leads_form_consent')"
         required
         :validate="formIsValidated"
-        :validation-error-message="$t('leads_form_consent')"
+        :reset-validation="resetValidation"
+        :validation-error-message="$t('leads_consent_is_required')"
         class="leads-form__input-checkbox body-petite"
       />
       <app-button
@@ -96,7 +105,13 @@
           gdprConsent: 'leads-form-gdpr_38537',
         },
         formIsValidated: false,
+        resetValidation: false,
         useCustomValidation: false,
+      }
+    },
+    computed: {
+      emailValidationErrorMessage() {
+        return this.form.email ? this.$t('provide_valid_email') : this.$t('email_is_required')
       }
     },
     mounted () {
@@ -108,6 +123,10 @@
 
         if (!event.target.checkValidity()) {
           event.preventDefault()
+          this.resetValidation = true
+          this.$nextTick(() => {
+            this.resetValidation = false
+          })
           return false
         }
       },
