@@ -81,6 +81,7 @@
     padding-bottom: var(--spacing-small);
     margin-bottom: var(--spacing-large);
     border-bottom: 1px solid var(--very-dim);
+    overflow: hidden;
   }
 
   .event-card__link {

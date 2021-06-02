@@ -49,6 +49,18 @@
     overflow: hidden;
   }
 
+  .event-list-item__transition-box:hover,
+  .event-list-item__transition-box:focus {
+    transform: var(--animation-shift-transform);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .event-list-item__transition-box:hover,
+    .event-list-item__transition-box:focus {
+      transform: none;
+    }
+  }
+
   .event-list-item__link::before {
     content: '';
     display: block;
@@ -57,11 +69,6 @@
     right: 0;
     top: 0;
     bottom: 0;
-  }
-
-  .event-list-item__link:hover .event-list-item__transition-box,
-  .event-list-item__link:focus .event-list-item__transition-box {
-    transform: var(--animation-shift-transform);
   }
 
   .event-list-item .calendar-icon {
