@@ -12,7 +12,7 @@
         heading="headline"
         :byline="page.label.label"
         :headline="page.title"
-        :image="imageIsIllustration ? page.image : fallbackIllustration" />
+        :image="page.headerIllustration" />
 
       <aside class="page-event-detail__aside">
         <div>
@@ -117,14 +117,6 @@
   import formatDate from '~/lib/format-date'
   export default {
     asyncData,
-    data() {
-      return {
-        fallbackIllustration: {
-          url: '/illustrations/event.svg',
-          format: 'svg'
-        }
-      }
-    },
     computed: {
       isMeetup() {
         return this.page.label.label.toLowerCase() === 'meet-up'

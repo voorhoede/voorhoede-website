@@ -17,7 +17,6 @@ fragment eventOverview on EventOverviewRecord {
   }
   headerIllustration {
     url
-    alt
   }
   introductionText
   keywords
