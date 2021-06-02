@@ -1,42 +1,38 @@
 <template>
-  <article>
+  <article
+    class="blog-list-item"
+    :class="{'blog-list-item--large' : large}"
+  >
     <nuxt-link
       :to="localeUrl({ name: linkName, params: { slug: item.slug } })"
-      class="blog-list-item"
-      :class="{'blog-list-item--large' : large}"
-      :aria-label="item.title"
       :lang="language"
     >
-      <div class="blog-list-item__content">
-        <time
-          :datetime="item.date"
-          class="blog-list-item__time"
-          :class="large ? 'body' : 'body-petite'"
-        >
-          {{ formattedDate }}
-        </time>
-        <div class="blog-list-item__details">
-          <h3 class="blog-list-item__heading" :class="large ? 'h4' : 'body'">{{ item.title }}</h3>
-          <div class="blog-list-item__author">
-            <div
-              class="blog-list-item__image-container"
-              :class="{'blog-list-item__image-container--large' : large}"
-              v-for="author in item.authors"
-              :key="author.name"
-            >
-              <app-image
-                class="blog-list-item__image"
-                :class="{ 'blog-list-item__image--large': large }"
-                :image="author.image"
-                :crop-and-keep-ratio="true"
-                :width-step="large ? 65 : 40"
-              />
-            </div>
-            <span :class="large ? 'body' : 'body-petite'">{{ $t('by__authors_', { authors }) }}</span>
-          </div>
-        </div>
-      </div>
+      <h3 class="blog-list-item__title font-html-blue" :class="large ? 'h4' : 'body'">
+        {{ item.title }}
+      </h3>
     </nuxt-link>
+    <time
+      :datetime="item.date"
+      class="blog-list-item__time"
+      :class="large ? 'body' : 'body-petite'"
+    >
+      {{ formattedDate }}
+    </time>
+    <div class="blog-list-item__content">
+      <div
+        class="blog-list-item__image-container"
+        v-for="author in item.authors"
+        :key="author.name"
+      >
+        <app-image
+          class="blog-list-item__image"
+          :image="author.image"
+          :crop-and-keep-ratio="true"
+          :width-step="large ? 65 : 40"
+        />
+      </div>
+      <span :class="large ? 'body' : 'body-petite'">{{ $t('by__authors_', { authors }) }}</span>
+    </div>
   </article>
 </template>
 
@@ -90,54 +86,79 @@
   }
 
   .blog-list-item {
-    display: block;
-  }
-
-  .blog-list-item__content {
+    position: relative;
+    margin-bottom: var(--spacing-medium);
     transition: var(--animation-shift-transition);
   }
 
-  .blog-list-item:hover .blog-list-item__content,
-  .blog-list-item:focus .blog-list-item__content {
+  .blog-list-item::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    background: var(--very-dim);
+    height: 100%;
+  }
+
+  .blog-list-item:hover,
+  .blog-list-item:focus {
     transform: var(--animation-shift-transform);
   }
 
+  .blog-list-item:hover::before,
+  .blog-list-item:focus::before {
+    width: 3px;
+    background: var(--html-blue);
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .blog-list-item:hover .blog-list-item__content,
-    .blog-list-item:focus .blog-list-item__content {
+    .blog-list-item:hover,
+    .blog-list-item:focus {
       transform: none;
+    }
+
+    .blog-list-item:hover::before,
+    .blog-list-item:focus::before {
+      width: 2px;
+      background: var(--very-dim);
     }
   }
 
-  .blog-list-item__heading {
-    color: var(--html-blue);
+  .blog-list-item__title {
+    padding-left: var(--spacing-medium);
   }
 
-  .blog-list-item--large .blog-list-item__heading {
+  .blog-list-item--large .blog-list-item__title {
     margin-bottom: var(--spacing-small);
+  }
+
+  .blog-list-item__title::after {
+    z-index: var(--z-index-low);
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
   }
 
   .blog-list-item__time {
     display: none;
   }
 
+  .blog-list-item__content {
+    display: flex;
+    align-items: center;
+    padding-left: var(--spacing-medium);
+  }
+
   .blog-list-item__details {
     padding-left: var(--spacing-medium);
     border-left: 2px solid var(--very-dim);
     margin-bottom: var(--spacing-medium);
-    transition: border-left var(--blog-list-item-transition);
-  }
-
-  .blog-list-item:hover .blog-list-item__details,
-  .blog-list-item:focus .blog-list-item__details {
-    border-left: 3px solid var(--html-blue);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .blog-list-item:hover .blog-list-item__details,
-    .blog-list-item:focus .blog-list-item__details {
-      border-left: 2px solid var(--html-blue);
-    }
   }
 
   .blog-list-item__image {
@@ -150,7 +171,7 @@
     margin-right: var(--spacing-smaller);
   }
 
-  .blog-list-item__image--large {
+  .blog-list-item--large .blog-list-item__image {
     height: var(--blog-thumbnail-large);
     width: var(--blog-thumbnail-large);
   }
@@ -159,51 +180,33 @@
     height: var(--blog-thumbnail-small);
   }
 
-  .blog-list-item__image-container--large {
+  .blog-list-item--large .blog-list-item__image-container {
     height: var(--blog-thumbnail-large);
   }
 
-  .blog-list-item__author {
-    display: flex;
-    align-items: center;
-    color: var(--off-black);
-  }
-
   @media (min-width: 720px) {
-    .blog-list-item__content {
-      display: flex;
-      flex-direction: row;
-    }
-
-    .blog-list-item__time {
-      margin-right: var(--spacing-medium);
-      display: block;
-      color: var(--off-black);
-      min-width: 6rem;
+    .blog-list-item {
+      margin-bottom: var(--spacing-larger);
+      padding-left: 6.25rem;
     }
 
     .blog-list-item--large {
-      padding: var(--spacing-medium) 0;
+      padding-left: 13.5rem;
     }
 
-    .blog-list-item--large .blog-list-item__details {
-      margin: 0;
-      padding-left: var(--spacing-larger);
+    .blog-list-item::before {
+      left: 6.25rem;
     }
 
-    .blog-list-item--large .blog-list-item__time {
-      margin-right: var(--spacing-larger);
-      min-width: 8rem;
-    }
-  }
-
-  @media (min-width: 1100px) {
-    .blog-list-item--large .blog-list-item__details {
-      padding-left: var(--spacing-larger);
+    .blog-list-item--large::before {
+      left: 11.5rem;
     }
 
-    .blog-list-item--large .blog-list-item__time {
-      margin-right: var(--spacing-big);
+    .blog-list-item__time {
+      position: absolute;
+      display: block;
+      left: 0;
+      top: 0;
     }
   }
 </style>
