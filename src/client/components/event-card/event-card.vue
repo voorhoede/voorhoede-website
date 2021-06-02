@@ -100,13 +100,13 @@
     bottom: 0;
   }
 
-  .event-card__link:hover::before ,
-  .event-card__link:focus::before  {
+  .event-card__link:hover::before,
+  .event-card__link:focus::before {
     outline: var(--spacing-tiny) solid var(--html-blue);
   }
 
-  .event-card__link--alt:hover::before ,
-  .event-card__link--alt:focus::before  {
+  .event-card__link--alt:hover::before,
+  .event-card__link--alt:focus::before {
     outline: var(--spacing-tiny) solid var(--brand-yellow);
   }
 
