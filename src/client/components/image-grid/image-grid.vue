@@ -91,7 +91,7 @@
     }
 
     .image-grid__item--full-width {
-      order: 7;
+      /*order: 7;*/
       flex: 0 0 100%;
     }
 
@@ -106,7 +106,7 @@
     }
 
     .image-grid__item--full-width {
-      order: initial;
+      /*order: initial;*/
       flex: 0 0 50%;
     }
 

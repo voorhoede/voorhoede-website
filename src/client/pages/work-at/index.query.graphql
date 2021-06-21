@@ -5,24 +5,6 @@ query ($locale: SiteLocale) {
   alternate: workat(locale: $locale) {
     slug
   }
-  latestBlogposts: allBlogPosts(locale: $locale, first: 3, orderBy: publishDate_DESC, filter: {published: {eq: true}}) {
-    slug
-    title
-    date: publishDate
-    authors {
-      name
-      image {
-        url
-        width
-        height
-        format
-        focalPoint {
-          x
-          y
-        }
-      }
-    }
-  }
   jobs: allJobs(locale: $locale, filter: {published: {eq: true}}) {
     title
     description
@@ -52,6 +34,15 @@ fragment workat on WorkatRecord {
   introTitle
   introBody
   introImage {
+    url
+    alt
+    width
+    height
+    format
+  }
+  middleTitle
+  middleBody
+  middleImage {
     url
     alt
     width

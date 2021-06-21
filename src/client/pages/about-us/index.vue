@@ -103,39 +103,39 @@
   }
 
   .page-about-us__header {
-    grid-row: 1;
+    /*grid-row: 1;*/
   }
 
   .page-about-us__intro {
-    grid-row: 2;
+    /*grid-row: 2;*/
     margin-bottom: var(--spacing-large);
   }
 
   .page-about-us__jobs-text {
-    grid-row: 3;
+    /*grid-row: 3;*/
   }
 
   .page-about-us__jobs {
-    grid-row: 4;
+    /*grid-row: 4;*/
   }
 
   .page-about-us__image-grid {
-    grid-row: 5;
+    /*grid-row: 5;*/
     margin-bottom: var(--spacing-larger);
   }
 
   .page-about-us__middle {
-    grid-row: 6;
+    /*grid-row: 6;*/
     margin-bottom: var(--spacing-large);
   }
 
   .page-about-us__blog {
-    grid-row: 7;
+    /*grid-row: 7;*/
     margin-bottom: var(--spacing-big);
   }
 
   .page-about-us__newsletter {
-    grid-row: 8;
+    /*grid-row: 8;*/
   }
 
   .page-about-us__blog-title {

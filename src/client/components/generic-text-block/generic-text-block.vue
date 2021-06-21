@@ -63,7 +63,7 @@
   }
 
   .generic-text-block__image-container {
-    order: -1;
+    /*order: -1;*/
     margin-bottom: var(--spacing-smaller);
     height: var(--image-height);
     text-align: center;
@@ -96,7 +96,7 @@
     }
 
     .generic-text-block__image-container {
-      order: 0;
+      /*order: 0;*/
       margin: 0;
       height: 100%;
       text-align: left;

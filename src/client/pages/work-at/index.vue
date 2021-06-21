@@ -17,6 +17,27 @@
       :image="page.introImage"
       class="page-about-us__intro"
     />
+    <div class="page-services__contact">
+      <p class="pullquote">Ben je er eigenlijk al wel uit? Bel of app met Jennifer, onze recruiter:</p>
+      <AppButton
+        :aria-label="belle"
+        label="Ik bel je op 06 1234 5678"
+        to="0031638283028"
+      />
+      &nbsp;&nbsp;
+      <AppButton
+        label="Ik mail je op jennifer@voorhoede.nl"
+        to="`mailto:jennifer@voorhoede.nl`"
+      />
+      <p class="pullquote">&nbsp;</p>
+    </div>
+    <image-with-text-block
+      :title="page.middleTitle"
+      :body="page.middleBody"
+      :image="page.middleImage"
+      :inverse="true"
+      class="page-about-us__middle"
+    />
     <template v-if="jobs.length > 0">
       <div class="page-about-us__jobs-text">
         <h2 class="page-about-us__jobs-title h2">{{ page.jobsTitle }}</h2>
@@ -40,27 +61,9 @@
       :items="page.teamGrid"
       class="page-about-us__image-grid"
     />
-    <section class="page-about-us__blog">
-      <h2 class="page-about-us__blog-title h2">{{ $t('latest_blog_posts') }}</h2>
-      <ul class="page-about-us__blog-list">
-        <li
-          v-for="blogPost in latestBlogposts"
-          :key="blogPost.slug"
-        >
-          <blog-list-item
-            large
-            :item="blogPost"
-          />
-        </li>
-      </ul>
-      <div class="page-about-us__blog-button">
-        <app-button
-          :to="localeUrl('blog')"
-          :label="$t('all_blogposts')"
-          secondary
-        />
-      </div>
-    </section>
+    <div class="page-services__contact">
+      <p class="pullquote">Niet op een van de CTA’s hierboven geklikt? No worries, we houden je in de loop:</p>
+    </div>
     <newsletter-form class="page-about-us__newsletter" />
   </main>
 </template>
