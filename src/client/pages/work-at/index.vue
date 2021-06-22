@@ -17,20 +17,15 @@
       :image="page.introImage"
       class="page-about-us__intro"
     />
-    <div class="page-services__contact">
-      <p class="pullquote">Ben je er eigenlijk al wel uit? Bel of app met Jennifer, onze recruiter:</p>
-      <AppButton
-        :aria-label="belle"
-        label="Ik bel je op 06 1234 5678"
-        to="0031638283028"
-      />
-      &nbsp;&nbsp;
-      <AppButton
-        label="Ik mail je op jennifer@voorhoede.nl"
-        to="`mailto:jennifer@voorhoede.nl`"
-      />
-      <p class="pullquote">&nbsp;</p>
-    </div>
+
+    <interstitial-cta
+      cta="Ben je er eigenlijk al wel uit? Bel of app met Jennifer, onze recruiter:"
+      :buttons="[
+        { label: 'Ik bel je op 06 3828 3028', to: 'tel:0031638283028', external: true },
+        { label: 'Ik mail je op jennifer@voorhoede.nl', to: 'mailto:jennifer@voorhoede.nl', external: true },
+      ]"
+    />
+
     <image-with-text-block
       :title="page.middleTitle"
       :body="page.middleBody"
@@ -79,3 +74,9 @@
     head,
   }
 </script>
+
+<style>
+  .page-about-us > * {
+    margin-bottom: var(--spacing-big);
+  }
+</style>
