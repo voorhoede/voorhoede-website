@@ -62,13 +62,6 @@
     margin-bottom: var(--spacing-smaller);
   }
 
-  .generic-text-block__image-container {
-    /*order: -1;*/
-    margin-bottom: var(--spacing-smaller);
-    height: var(--image-height);
-    text-align: center;
-  }
-
   .generic-text-block__image {
     max-width: 100%;
     max-height: 100%;
@@ -93,13 +86,6 @@
     .generic-text-block__body {
       grid-column: 1;
       grid-row: 2;
-    }
-
-    .generic-text-block__image-container {
-      /*order: 0;*/
-      margin: 0;
-      height: 100%;
-      text-align: left;
     }
 
     .generic-text-block__image {
