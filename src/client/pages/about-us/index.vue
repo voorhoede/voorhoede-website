@@ -1,9 +1,5 @@
 <template>
-  <main
-    id="content"
-    class="page-about-us grid"
-    tabindex="-1"
-  >
+  <main class="page-about-us grid">
     <page-header
       class="page-about-us__header"
       heading="byline"

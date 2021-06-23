@@ -1,9 +1,5 @@
 <template>
-  <main
-    id="content"
-    class="page-work-at grid"
-    tabindex="-1"
-  >
+  <main class="page-work-at grid">
     <page-header
       heading="byline"
       :byline="page.title"

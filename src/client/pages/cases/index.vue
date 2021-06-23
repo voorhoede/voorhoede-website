@@ -1,9 +1,5 @@
 <template>
-  <main
-    id="content"
-    class="page-cases"
-    tabindex="-1"
-  >
+  <main class="page-cases">
     <div class="grid page-cases__top">
       <page-header
         heading="byline"
