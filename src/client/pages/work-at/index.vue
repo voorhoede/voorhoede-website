@@ -1,11 +1,10 @@
 <template>
   <main
     id="content"
-    class="page-about-us grid"
+    class="page-work-at grid"
     tabindex="-1"
   >
     <page-header
-      class="page-about-us__header"
       heading="byline"
       :byline="page.title"
       :headline="page.subtitle"
@@ -15,14 +14,13 @@
       :title="page.introTitle"
       :body="page.introBody"
       :image="page.introImage"
-      class="page-about-us__intro"
     />
 
     <interstitial-cta
-      cta="Ben je er eigenlijk al wel uit? Bel of app met Jennifer, onze recruiter:"
+      :cta="page.interstitialCta.title"
       :buttons="[
-        { label: 'Ik bel je op 06 3828 3028', to: 'tel:0031638283028', external: true },
-        { label: 'Ik mail je op jennifer@voorhoede.nl', to: 'mailto:jennifer@voorhoede.nl', external: true },
+        { label: page.interstitialCta.callUsTitle, to: page.interstitialCta.callUsNumber, external: true },
+        { label: page.interstitialCta.mailUsTitle, to: page.interstitialCta.mailUsAddress, external: true },
       ]"
     />
 
@@ -31,35 +29,43 @@
       :body="page.middleBody"
       :image="page.middleImage"
       :inverse="true"
-      class="page-about-us__middle"
     />
-    <template v-if="jobs.length > 0">
-      <div class="page-about-us__jobs-text">
-        <h2 class="page-about-us__jobs-title h2">{{ page.jobsTitle }}</h2>
-        <p class="body-big font-html-blue">{{ page.jobsBody }}</p>
+
+    <div class="usps">
+      <h2 class="h3 page-work-at__layout">{{ page.uspsTitle }}</h2>
+      <div class="usps__items">
+        <div class="usps__item" v-for="usp in page.usps" :key="usp.title">
+          <responsive-image :image="usp.image" class="usps__item-image"/>
+          <h3 class="h4 usps__item-heading">{{ usp.title }}</h3>
+          <div v-html="usp.body" class="body"/>
+        </div>
       </div>
-      <ul class="page-about-us__jobs">
-        <li class="page-about-us__jobs-list" v-for="item in jobs" :key="item.slug">
-          <jobs-excerpt
-            class="page-about-us__jobs-list-item"
-            :is-nested="true"
-            :title="item.title"
-            :description="item.description"
-            :image="item.jobImage"
-            :slug="item.slug"
-          />
-        </li>
-      </ul>
-    </template>
+    </div>
+
+    <div class="body-big font-html-blue page-work-at__layout" v-html="page.uspsAfter" />
+
+    <div class="page-work-at__layout">
+      <h2 class="h2">{{ page.jobsTitle }}</h2>
+      <p class="body-big font-html-blue" v-html="page.jobsBody" />
+    </div>
+
+    <div class="page-work-at__layout page-work-at__job-buttons">
+      <app-button
+        v-for="job in page.jobs"
+        :key="job.title"
+        :label="job.title"
+        :to="localeUrl({ name: 'jobs-slug', params: { slug: job.job.slug } })"
+      />
+    </div>
+
+    <p class="body-big font-html-blue page-work-at__layout" v-html="page.jobsAfter" />
+
     <image-grid
       :title="page.teamGridTitle"
       :items="page.teamGrid"
-      class="page-about-us__image-grid"
     />
-    <div class="page-services__contact">
-      <p class="pullquote">Niet op een van de CTA’s hierboven geklikt? No worries, we houden je in de loop:</p>
-    </div>
-    <newsletter-form class="page-about-us__newsletter" />
+    <p class="pullquote page-work-at__layout">Niet op een van de CTA’s hierboven geklikt? No worries, we houden je in de loop:</p>
+    <newsletter-form />
   </main>
 </template>
 
@@ -76,7 +82,81 @@
 </script>
 
 <style>
-  .page-about-us > * {
+  .page-work-at {
+    background-color: var(--bg-pastel);
+  }
+
+  .page-work-at > * {
     margin-bottom: var(--spacing-big);
+  }
+
+  .page-work-at__layout {
+    text-align: center;
+    grid-column: var(--grid-content);
+  }
+
+  .page-work-at__layout > * + * {
+    margin-top: var(--spacing-small);
+  }
+
+  .page-work-at__job-buttons > .app-button + .app-button {
+    margin-left: var(--spacing-small);
+  }
+
+  @media (min-width: 720px) {
+    .page-work-at__layout {
+      grid-column-start: 6;
+      grid-column-end: 44;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .page-work-at__layout {
+      grid-column-start: 10;
+      grid-column-end: 42;
+    }
+  }
+
+  .usps {
+    grid-column: var(--grid-page);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .usps__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .usps__item {
+    flex: 0 1 300px;
+    padding: var(--spacing-medium);
+    margin-top: 150px;
+    margin-left: var(--spacing-small);
+    margin-right: var(--spacing-small);
+    background-color: var(--white);
+  }
+
+  .usps__item-heading {
+    text-align: center;
+    margin-top: var(--spacing-small);
+    margin-bottom: var(--spacing-small);
+  }
+
+  .usps__item-image {
+    max-width: 200px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: -150px;
+    padding: var(--spacing-small);
+  }
+
+  @media (min-width: 1200px) {
+    .usps__item {
+      margin-left: var(--spacing-medium);
+      margin-right: var(--spacing-medium);
+      flex: 0 1 320px;
+    }
   }
 </style>

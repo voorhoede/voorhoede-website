@@ -5,16 +5,6 @@ query ($locale: SiteLocale) {
   alternate: workat(locale: $locale) {
     slug
   }
-  jobs: allJobs(locale: $locale, filter: {published: {eq: true}}) {
-    title
-    description
-    slug
-    jobImage {
-      url
-      format
-      alt
-    }
-  }
 }
 
 fragment workat on WorkatRecord {
@@ -40,6 +30,13 @@ fragment workat on WorkatRecord {
     height
     format
   }
+  interstitialCta {
+    title
+    callUsTitle
+    callUsNumber
+    mailUsTitle
+    mailUsAddress
+  }
   middleTitle
   middleBody
   middleImage {
@@ -49,6 +46,28 @@ fragment workat on WorkatRecord {
     height
     format
   }
+  uspsTitle
+  usps {
+    title
+    body(markdown: true)
+    image {
+      url
+      alt
+      width
+      height
+      format
+    }
+  }
+  uspsAfter(markdown: true)
+  jobsTitle
+  jobsBody(markdown: true)
+  jobs {
+    title
+    job {
+      slug
+    }
+  }
+  jobsAfter(markdown: true)
   teamGridTitle
   teamGrid {
     id
@@ -64,6 +83,4 @@ fragment workat on WorkatRecord {
     isFullWidth
     isHighlighted
   }
-  jobsTitle
-  jobsBody
 }
