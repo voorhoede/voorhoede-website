@@ -1,78 +1,72 @@
 <template>
-  <div>
-    <main
-      id="content"
-      class="page-service grid"
-      tabindex="-1"
-    >
-      <page-header
-        heading="headline"
-        :byline="page.title"
-        :headline="page.subtitle"
-        :image="page.headerIllustration"
-      />
-      <series-navigation
-        v-if="shownSeriesNavigation"
-        class="page-service__series-navigation"
-        :title-route="seriesNavigationTitleRoutes"
-        :child-routes="seriesNavigationChildRoutes"
-      />
-      <article class="page-service__overview">
-        <template v-for="item in page.items">
-          <generic-text-block
-            v-if="item.__typename === 'GenericTextBlockRecord'"
-            :key="item.id"
-            :id="item.id"
-            :title="item.title"
-            :body="item.body"
-            :image="item.image"
-          />
-          <testimonial-block
-            v-if="item.__typename === 'TestimonialBlockRecord'"
-            :key="item.id"
-            :id="item.id"
-            :testimonial="item.testimonial"
-          />
-          <responsive-image
-            v-if="item.__typename === 'ImageRecord'"
-            :key="item.id"
-            :id="item.id"
-            :image="item.image"
-            :caption="item.caption"
-            :has-fixed-ratio="true"
-          />
-          <responsive-video
-            :id="item.id"
-            v-if="item.__typename === 'ResponsiveVideoRecord'"
-            :key="item.id"
-            :video="item.video"
-            :gif="item.gif"
-            :autoplay="item.autoplay"
-            :loop="item.loop"
-            :mute="item.autoplay"
-          />
-          <cta-block
-            v-if="item.__typename === 'CallToActionRecord'"
-            :key="item.id"
-            :id="item.id"
-            :item="item"
-          />
-        </template>
-      </article>
-      <breadcrumbs-block
-        :back-link="backLinkRoute"
-        :back-link-label="backLinkLabel"
-        :next-link="nextLinkRoute"
-        :next-link-label="nextLinkLabel"
-      />
-      <pivot-list
-        class="page-service__pivots"
-        v-if="page.pivots && page.pivots.length"
-        :pivots="page.pivots"
-        :can-have-border-top="false"
-      />
-    </main>
-  </div>
+  <main class="page-service grid">
+    <page-header
+      heading="headline"
+      :byline="page.title"
+      :headline="page.subtitle"
+      :image="page.headerIllustration"
+    />
+    <series-navigation
+      v-if="shownSeriesNavigation"
+      class="page-service__series-navigation"
+      :title-route="seriesNavigationTitleRoutes"
+      :child-routes="seriesNavigationChildRoutes"
+    />
+    <article class="page-service__overview">
+      <template v-for="item in page.items">
+        <generic-text-block
+          v-if="item.__typename === 'GenericTextBlockRecord'"
+          :key="item.id"
+          :id="item.id"
+          :title="item.title"
+          :body="item.body"
+          :image="item.image"
+        />
+        <testimonial-block
+          v-if="item.__typename === 'TestimonialBlockRecord'"
+          :key="item.id"
+          :id="item.id"
+          :testimonial="item.testimonial"
+        />
+        <responsive-image
+          v-if="item.__typename === 'ImageRecord'"
+          :key="item.id"
+          :id="item.id"
+          :image="item.image"
+          :caption="item.caption"
+          :has-fixed-ratio="true"
+        />
+        <responsive-video
+          :id="item.id"
+          v-if="item.__typename === 'ResponsiveVideoRecord'"
+          :key="item.id"
+          :video="item.video"
+          :gif="item.gif"
+          :autoplay="item.autoplay"
+          :loop="item.loop"
+          :mute="item.autoplay"
+        />
+        <cta-block
+          v-if="item.__typename === 'CallToActionRecord'"
+          :key="item.id"
+          :id="item.id"
+          :item="item"
+        />
+      </template>
+    </article>
+    <breadcrumbs-block
+      :back-link="backLinkRoute"
+      :back-link-label="backLinkLabel"
+      :next-link="nextLinkRoute"
+      :next-link-label="nextLinkLabel"
+    />
+    <pivot-list
+      class="page-service__pivots"
+      v-if="page.pivots && page.pivots.length"
+      :pivots="page.pivots"
+      :can-have-border-top="false"
+    />
+  </main>
 </template>
 
 <script>

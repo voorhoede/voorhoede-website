@@ -50,6 +50,7 @@
   .image-grid {
     display: inline-block;
     width: 100%;
+    grid-column: var(--grid-page);
   }
 
   .image-grid__title {

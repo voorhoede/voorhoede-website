@@ -1,9 +1,5 @@
 <template>
-  <main
-    id="content"
-    class="page-updates"
-    tabindex="-1"
-  >
+  <main class="page-updates">
     <page-header
       heading="byline"
       :byline="page.title"

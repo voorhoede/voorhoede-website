@@ -1,8 +1,5 @@
 <template>
-  <main
-    id="content"
-    tabindex="-1"
-  >
+  <main>
     <section class="page-contact-confirmation">
       <page-header
         heading="byline"

@@ -1,9 +1,5 @@
 <template>
-  <main
-    id="content"
-    class="error-page"
-    tabindex="-1"
-  >
+  <main class="error-page">
     <page-header
       v-if="content"
       heading="byline"
