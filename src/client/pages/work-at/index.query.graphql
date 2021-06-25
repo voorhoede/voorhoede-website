@@ -22,7 +22,7 @@ fragment workat on WorkatRecord {
   }
   keywords
   introTitle
-  introBody
+  introBody(markdown: true)
   introImage {
     url
     alt
@@ -38,7 +38,7 @@ fragment workat on WorkatRecord {
     mailUsAddress
   }
   middleTitle
-  middleBody
+  middleBody(markdown: true)
   middleImage {
     url
     alt
