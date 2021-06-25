@@ -60,7 +60,7 @@
       :title="page.teamGridTitle"
       :items="page.teamGrid"
     />
-    <p class="pullquote page-work-at__layout rich-text">Niet op een van de CTA’s hierboven geklikt? No worries, we houden je in de loop:</p>
+    <p class="pullquote page-work-at__layout rich-text" v-html="page.stayInTouch" />
     <newsletter-form />
   </main>
 </template>
