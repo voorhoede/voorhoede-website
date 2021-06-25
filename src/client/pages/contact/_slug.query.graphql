@@ -13,6 +13,9 @@ fragment page on ContactConfirmationRecord {
   social {
     title
     description
+    image {
+      url
+    }
   }
   keywords
   title

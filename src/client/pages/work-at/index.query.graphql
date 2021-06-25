@@ -19,6 +19,9 @@ fragment workat on WorkatRecord {
   social {
     title
     description
+    image {
+      url
+    }
   }
   keywords
   introTitle

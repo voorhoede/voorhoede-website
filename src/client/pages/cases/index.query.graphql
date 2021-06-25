@@ -13,6 +13,9 @@ fragment page on CaseOverviewRecord {
   social {
     title
     description
+    image {
+      url
+    }
   }
   keywords
   subtitle

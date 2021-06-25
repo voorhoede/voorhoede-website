@@ -27,6 +27,9 @@ fragment jobOverview on JobOverviewRecord {
   social {
     title
     description
+    image {
+      url
+    }
   }
   keywords
 }

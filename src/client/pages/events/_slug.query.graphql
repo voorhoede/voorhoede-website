@@ -10,6 +10,9 @@ fragment eventItem on EventItemRecord {
   social {
     title
     description
+    image {
+      url
+    }
   }
   keywords
   date

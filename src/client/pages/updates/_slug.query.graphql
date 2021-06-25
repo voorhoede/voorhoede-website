@@ -13,8 +13,11 @@ fragment page on UpdateRecord {
   },
   slug,
   social {
-    title,
+    title
     description
+    image {
+      url
+    }
   },
   keywords,
   items {

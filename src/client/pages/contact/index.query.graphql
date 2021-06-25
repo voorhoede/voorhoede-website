@@ -21,6 +21,9 @@ fragment contact on ContactRecord {
   social {
     title
     description
+    image {
+      url
+    }
   }
   keywords
   headerIllustration {

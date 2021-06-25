@@ -47,6 +47,9 @@ fragment about on AboutRecord {
   social {
     title
     description
+    image {
+      url
+    }
   }
   keywords
   introTitle
