@@ -38,9 +38,9 @@
       </div>
     </div>
 
-    <div class="body-big font-html-blue page-work-at__layout" v-html="page.uspsAfter" />
+    <div class="body-big font-html-blue page-work-at__layout rich-text" v-html="page.uspsAfter" />
 
-    <div class="page-work-at__layout">
+    <div class="page-work-at__layout rich-text">
       <h2 class="h2">{{ page.jobsTitle }}</h2>
       <p class="body-big font-html-blue" v-html="page.jobsBody" />
     </div>
@@ -54,13 +54,13 @@
       />
     </div>
 
-    <p class="body-big font-html-blue page-work-at__layout" v-html="page.jobsAfter" />
+    <p class="body-big font-html-blue page-work-at__layout rich-text" v-html="page.jobsAfter" />
 
     <image-grid
       :title="page.teamGridTitle"
       :items="page.teamGrid"
     />
-    <p class="pullquote page-work-at__layout">Niet op een van de CTA’s hierboven geklikt? No worries, we houden je in de loop:</p>
+    <p class="pullquote page-work-at__layout rich-text">Niet op een van de CTA’s hierboven geklikt? No worries, we houden je in de loop:</p>
     <newsletter-form />
   </main>
 </template>
