@@ -2,14 +2,16 @@
   <div class="interstitial-cta">
     <p class="pullquote">{{ cta }}</p>
 
-    <template v-for="button in buttons">
-      <AppButton
-        :key="button.to"
-        :label="button.label"
-        :to="button.to"
-        :external="button.external"
-      />
-    </template>
+    <div class="interstitial-cta__buttons">
+      <template v-for="button in buttons">
+        <AppButton
+          :key="button.to"
+          :label="button.label"
+          :to="button.to"
+          :external="button.external"
+        />
+      </template>
+    </div>
   </div>
 </template>
 
@@ -40,8 +42,19 @@ export default {
     margin-top: var(--spacing-small);
   }
 
-  .interstitial-cta .app-button + .app-button {
+  .interstitial-cta__buttons {
+    margin-left: calc(-1 * var(--spacing-small));
+  }
+
+  .interstitial-cta .app-button {
     margin-left: var(--spacing-small);
+    margin-right: var(--spacing-small);
+    margin-bottom: var(--spacing-medium);
+    white-space: normal;
+  }
+
+  .interstitial-cta .app-button:last-of-type {
+    margin-bottom: 0;
   }
 
   @media (min-width: 720px) {

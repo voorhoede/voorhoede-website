@@ -95,8 +95,9 @@
     margin-top: var(--spacing-small);
   }
 
-  .page-work-at__job-buttons > .app-button + .app-button {
+  .page-work-at__job-buttons > .app-button {
     margin-left: var(--spacing-small);
+    margin-right: var(--spacing-small);
   }
 
   @media (min-width: 720px) {
