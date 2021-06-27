@@ -27,7 +27,7 @@ fragment job on JobRecord {
   url
   jobContent {
     title
-    body
+    body(markdown: true)
     image {
       url
       format
