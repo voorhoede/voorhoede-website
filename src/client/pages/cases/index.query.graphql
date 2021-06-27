@@ -17,7 +17,6 @@ fragment page on CaseOverviewRecord {
       url
     }
   }
-  keywords
   subtitle
   headerIllustration {
     url

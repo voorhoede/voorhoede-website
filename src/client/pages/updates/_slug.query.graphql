@@ -19,7 +19,6 @@ fragment page on UpdateRecord {
       url
     }
   },
-  keywords,
   items {
     __typename
     ... on ImageRecord {

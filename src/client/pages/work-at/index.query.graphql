@@ -23,7 +23,6 @@ fragment workat on WorkatRecord {
       url
     }
   }
-  keywords
   introTitle
   introBody(markdown: true)
   introImage {

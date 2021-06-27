@@ -23,7 +23,6 @@ fragment eventOverview on EventOverviewRecord {
     alt
   }
   introductionText
-  keywords
 }
 
 fragment event on EventItemRecord {

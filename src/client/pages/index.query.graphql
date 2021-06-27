@@ -46,7 +46,6 @@ fragment page on HomeRecord {
       url
     }
   }
-  keywords
   headerTitle
   subtitle
   headerIllustration {

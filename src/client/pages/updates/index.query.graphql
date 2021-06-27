@@ -40,7 +40,6 @@ fragment updateOverview on UpdateOverviewRecord {
       url
     }
   }
-  keywords
   subtitle
   description
   headerIllustration {

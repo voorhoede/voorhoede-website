@@ -22,7 +22,6 @@ fragment caseItem on CaseItemRecord {
       url
     }
   }
-  keywords
   heroIllustration {
     url
     format

@@ -25,7 +25,6 @@ fragment contact on ContactRecord {
       url
     }
   }
-  keywords
   headerIllustration {
     url
     alt

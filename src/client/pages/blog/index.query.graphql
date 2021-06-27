@@ -40,7 +40,6 @@ fragment blogPostOverview on BlogPostOverviewRecord {
       url
     }
   }
-  keywords
   subtitle
   description
   headerIllustration {

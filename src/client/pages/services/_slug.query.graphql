@@ -17,7 +17,6 @@ fragment page on ServiceRecord {
       url
     }
   }
-  keywords
   title
   subtitle
   headerIllustration {

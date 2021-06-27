@@ -17,7 +17,6 @@ fragment page on ContactConfirmationRecord {
       url
     }
   }
-  keywords
   title
   subtitle
   headerIllustration {

@@ -19,7 +19,6 @@ fragment page on FaqRecord {
       url
     }
   }
-  keywords
   items {
     title
     body
