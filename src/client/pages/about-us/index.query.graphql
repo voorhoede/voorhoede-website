@@ -25,7 +25,6 @@ query ($locale: SiteLocale) {
   }
   jobs: allJobs(locale: $locale, filter: {published: {eq: true}}) {
     title
-    description
     slug
     jobImage {
       url
