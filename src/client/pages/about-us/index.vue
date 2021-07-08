@@ -24,7 +24,6 @@
             class="page-about-us__jobs-list-item"
             :is-nested="true"
             :title="item.title"
-            :description="item.description"
             :image="item.jobImage"
             :slug="item.slug"
           />
