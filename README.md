@@ -1,7 +1,7 @@
 # Voorhoede Dragonfly
 [![netlify](https://tinyshields.dev/netlify/78ad00d3-2f77-483e-a470-29984085a443.svg)](https://app.netlify.com/sites/voorhoede-dragonfly/overview)
 
-> Website for De Voorhoede
+> Website for De Voorhoede.
 
 ## Development
 
@@ -54,7 +54,7 @@ available:
 
 ### Accessibility
 
-This project uses [eslint-plugin-vuejs-accessibility](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility) to test Vue components for accessibility issues. 
+This project uses [eslint-plugin-vuejs-accessibility](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility) to test Vue components for accessibility issues.
 
 For accessibility checking in the browser [Vue Axe](https://axe.vue-a11y.com) is used. Results of the tests can be seen in the browser console. When navigating to a new page it is best to refresh the page, as Vue Axe doesn't always trigger a rerun on navigation.
 
