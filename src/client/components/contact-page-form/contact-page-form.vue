@@ -223,6 +223,7 @@
 
   .contact-form__button {
     margin-top: var(--spacing-larger);
+    float: right;
   }
 
   @media (min-width: 520px) {

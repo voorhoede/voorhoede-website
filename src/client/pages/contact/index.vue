@@ -1,6 +1,6 @@
 <template>
-  <main class="page-contact grid">
-    <section>
+  <main class="page-contact">
+    <section class="grid">
       <!-- <page-header
         heading="byline"
         :byline="page.title"
@@ -9,23 +9,22 @@
       /> -->
       <page-header
         heading="byline"
-        :byline="dummyContent.subtitle"
+        :byline="page.title"
         :headline="dummyContent.title"
         :image="page.headerIllustration"
       />
-      
-      <div class="usps">
-        <!-- <h2 class="h3 page-work-at__layout">{{ dummyContent.subtitle }}</h2> -->
-        <div class="usps__items page-contact__usps-items">
-          <div class="usps__item page-contact__usps-item" v-for="usp in usps" :key="usp.title">
-            <section class="page-contact__usps-item-body rich-text">
-              <img :src="usp.image.url" class="usps__item-image page-contact__usps-item-image" alt="">
-              <h3 class="h4 subtitle page-contact__usps-title">{{ usp.title }}</h3>
-              <div v-html="usp.body" class="body h2 font-bold" />
+    
+      <section class="page-contact__contacts">
+        <div v-for="contact in contacts" :key="contact.title">
+          <section class="page-contact__contact">
+            <img :src="contact.image.url" class="page-contact__contact-image" alt="">
+            <section class="page-contact__contact-body">
+              <h3 class="h4 subtitle page-contact__contact-title">{{ contact.title }}</h3>
+              <div v-html="contact.body" class="body h2 font-bold " />
             </section>
-          </div>
+          </section>
         </div>
-      </div>
+      </section>
     </section>
 
     <section class="page-contact__form-container rich-text grid">
@@ -51,11 +50,14 @@
 
     </section>
     
-    <section class="rich-text page-contact__visit">
-      <h2 class="h2">{{ visit.title }}</h2>
-      <p class="body">{{ visit.body }}</p>
-      <ul>
-        <li v-for="location in visit.location" :key="location.title">
+    <section class="page-contact__visit grid">
+      <div class="page-contact__visit-header">
+        <h2 class="h2">{{ visit.title }}</h2>
+        <p class="pullquote ">{{ visit.body }}</p>
+      </div>
+
+      <ul class="page-contact__grid page-contact__locations">
+        <li class="page-contact__location" v-for="location in visit.location" :key="location.title">
           <article class="case-excerpt">
             <picture class="case-excerpt__media"><img :src="location.image" class="case-excerpt__image" alt=""></picture>
             <div class="case-excerpt__caption">
@@ -104,7 +106,7 @@
             image: 'https://imgur.com/dRWZrhX.png'
           }]
         },
-        usps: [{
+        contacts: [{
           title: 'Give us a call at',
           body: '<a href="tel:+31 (0)20 2610954" class="body"> <h3 class="h3"> +31 (0)20 2610954 </h3> </a>',
           image: {
@@ -137,18 +139,70 @@
 <style>
   .page-contact {
     background-color: var(--bg-pastel);
+    overflow-x: hidden;
   }
 
   .page-contact__content {
     padding-top: var(--spacing-large);
   }
 
-  .page-contact .page-contact__backdrop {
+  .page-contact__contact {
+    display: block;
+    position: relative;
+  }
+
+  .page-contact__contact-title {
+    color: var(--black);
+  }
+
+  /* remove when illustrations are in datocms */
+  .page-contact__contacts div:nth-child(1) >
+  .page-contact__contact .page-contact__contact-image {
+    position: absolute;
+    width: 7rem;
+    transform: translate(0, -5rem);
+  }
+
+  .page-contact__contacts div:nth-child(2) >
+  .page-contact__contact .page-contact__contact-image {
+    display: block;
+    position: absolute;
+    width: 10rem;
+    transform: translate(0, 7rem);
+    z-index: var(--z-index-overlay);
+  }
+
+  .page-contact__contacts {
+    margin-top: var(--spacing-big);
+    margin-bottom: var(--spacing-big);
+  }
+
+  .page-contact__contact {
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin-bottom: var(--spacing-medium);
+  }
+
+  .page-contact__contacts div:nth-child(odd) > 
+  .page-contact__contact {
+    flex-direction: row-reverse;
+  }
+
+  .page-contact__contact-body {
+    display: block;
+    width: 100%;
+    padding: var(--spacing-medium);
+    background: var(--white);
+    z-index: var(--z-index-high);
+  }
+
+  .page-contact__backdrop {
     background-color: var(--white);
     position: relative;
   }
   
-  .page-contact .page-contact__backdrop::after {
+  .page-contact__backdrop::after {
     content: "";
     position: absolute;
     height: 100%;
@@ -156,6 +210,18 @@
     top: 0;
     right: -2rem;
     background: var(--white);
+  }
+
+  @media screen and (min-width: 720px) {
+    .page-contact .page-contact__backdrop {
+      display: block;
+      width: 58%;
+    }
+
+    .page-contact .page-contact__backdrop::after {
+      width: 0;
+      height: 0;
+    }
   }
 
   .page-contact .contact-sidebar {
@@ -171,16 +237,6 @@
   }
 
   @media screen and (min-width: 720px) {
-    .page-contact .page-contact__backdrop {
-      display: block;
-      width: 58%;
-    }
-
-    .page-contact .page-contact__backdrop::after {
-      width: 0;
-      height: 0;
-    }
-
     .page-contact__content {
       flex-direction: row;
       justify-content: space-between;
@@ -204,6 +260,13 @@
       height: 20rem;
       width: 40%;
     }
+
+    .page-contact__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      row-gap: var(--spacing-large);
+      column-gap: var(--spacing-large);
+    }
   }
 
   @media screen and (min-width: 1100px) {
@@ -213,24 +276,7 @@
     }
   }
 
-  .page-contact .page-contact__usps-title {
-    color: var(--black);
-  }
-
-  .page-contact .page-contact__usps-items {
-    position: relative;
-  }
-  
-  .page-contact .page-contact__usps-item-body {
-    display: block;
-  }
-
-  .page-contact .page-contact__usps-item-image {
-    display: block;
-    width: 60%;
-  }
-
-  .page-contact .page-contact__form-container {
+  .page-contact__form-container {
     margin-top: var(--spacing-small);
     margin-bottom: var(--spacing-big);
     padding-top: var(--spacing-medium);
@@ -243,30 +289,34 @@
   }
 
   @media screen and (min-width: 720px) {
-    .page-contact .page-contact__form-container {
+    .page-contact__form-container {
       padding-top: var(--spacing-bigger);
       margin-top: var(--spacing-big);
     }
 
-    .page-contact .page-contact__form-container {
+    .page-contact__form-container {
       display: flex;
       position: relative;
+      justify-content: center;
+      /* margin: auto; */
+      /* width: 70%; */
+      height: 90vh;
       background: linear-gradient(180deg, transparent 30%, var(--brand-yellow) 0%, var(--brand-yellow) 80%, transparent 0%);
     }
 
-    .page-contact .page-contact__form-container::after, 
-    .page-contact .page-contact__form-container::before {
+    .page-contact__form-container::after, 
+    .page-contact__form-container::before {
       content: "";
       position: absolute;
       width: 3rem;
       height: 100%;
-      right: -2rem;
+      right: -3rem;
       top: 0;
       background: linear-gradient(180deg, transparent 30%, var(--brand-yellow) 0%, var(--brand-yellow) 80%, transparent 0%);
       z-index: var(--z-index-low);
     }
 
-    .page-contact .page-contact__form-container::before {
+    .page-contact__form-container::before {
       left: -3rem;
     }
   }
@@ -275,5 +325,31 @@
     margin-top: var(--spacing-medium);
     margin-bottom: var(--spacing-medium);
   }
+  
+  .page-contact__visit {
+    background-image: linear-gradient(var(--white), var(--white));
+  }
 
+  .page-contact__visit-header {
+    text-align: center;
+    margin: var(--spacing-large);
+    background-color: var(--bg-pastel);
+  }
+
+  .page-contact__visit-header {
+    grid-column: var(--grid-page-start) / var(--grid-page-end);
+    background-color: var(--bg-pastel);
+    margin: 0;
+    padding-bottom: var(--spacing-big)
+  }
+
+  .page-contact__locations {
+    padding-left: 0;
+    margin-top: -1rem;
+    margin-bottom: var(--spacing-large);
+  }
+
+  .page-contact__location {
+    margin-bottom: var(--spacing-large);
+  }
 </style>
