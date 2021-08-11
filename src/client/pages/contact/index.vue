@@ -1,6 +1,6 @@
 <template>
-  <main class="page-contact">
-    <section class="grid">
+  <main class="page-contact grid">
+    <section class="page-contact__header grid">
       <!-- <page-header
         heading="byline"
         :byline="page.title"
@@ -14,20 +14,20 @@
         :image="page.headerIllustration"
       />
     
-      <section class="page-contact__contacts">
+      <div class="page-contact__contacts">
         <div v-for="contact in contacts" :key="contact.title">
-          <section class="page-contact__contact">
+          <div class="page-contact__contact">
             <img :src="contact.image.url" class="page-contact__contact-image" alt="">
-            <section class="page-contact__contact-body">
+            <div class="page-contact__contact-body">
               <h3 class="h4 subtitle page-contact__contact-title">{{ contact.title }}</h3>
               <div v-html="contact.body" class="body h2 font-bold " />
-            </section>
-          </section>
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
     </section>
 
-    <section class="page-contact__form-container rich-text grid">
+    <div class="page-contact__form-container rich-text grid">
       <div class="page-contact__form-header">
         <h2 class="h2 page-contact__body-title">{{ form.title }}</h2>
         <p class="sub-title page-contact__body-subtitle">{{ form.subtitle }} </p>
@@ -43,14 +43,14 @@
           /> -->
     
         <contact-page-form
-          class="page-contact__form page-contact__content"
+          class="page-contact__form-body"
           :aria-label="$t('lets_discuss')"
         />
       </div>
 
-    </section>
+    </div>
     
-    <section class="page-contact__visit grid">
+    <div class="page-contact__visit grid">
       <div class="page-contact__visit-header">
         <h2 class="h2">{{ visit.title }}</h2>
         <p class="pullquote ">{{ visit.body }}</p>
@@ -67,7 +67,7 @@
           </article>  
         </li>
       </ul>
-    </section>
+    </div>
     
     <newsletter-form :has-background="true" />
   </main>
@@ -141,14 +141,45 @@
     background-color: var(--bg-pastel);
     overflow-x: hidden;
   }
-
-  .page-contact__content {
-    padding-top: var(--spacing-large);
+  
+  .page-contact__header, 
+  .page-contact__header .page-header {
+    grid-column: var(--grid-page);
   }
 
-  .page-contact__contact {
-    display: block;
+  @media screen and (min-width: 720px) {
+    .page-contact__header .page-header {
+      grid-row-start: var(--grid-page-start);
+      grid-row-end: var(--grid-content-start);
+    }
+
+    .page-contact__header .page-header__text {
+      grid-column-start: var(--grid-content-start);
+      grid-column-end: var(--grid-center);
+    }
+  }
+
+  @media screen and (min-width: 1100px) {
+    .page-contact__header .page-header__text {
+      grid-column-start: 3;
+      grid-column-end: var(--grid-center);
+    }
+  }
+
+  .page-contact__contacts {
     position: relative;
+    margin-top: var(--spacing-big);
+    margin-bottom: var(--spacing-big);
+  }
+
+  @media screen and (min-width: 720px) {
+    .page-contact__contacts {
+      transform: translate(0, 5rem);
+      grid-row-start: var(--grid-page-start);
+      grid-row-end: var(--grid-content-start);
+      grid-column-start: 30;
+      grid-column-end: var(--grid-content-end);
+    }
   }
 
   .page-contact__contact-title {
@@ -169,12 +200,7 @@
     position: absolute;
     width: 10rem;
     transform: translate(0, 7rem);
-    z-index: var(--z-index-overlay);
-  }
-
-  .page-contact__contacts {
-    margin-top: var(--spacing-big);
-    margin-bottom: var(--spacing-big);
+    z-index: var(--z-index-high);
   }
 
   .page-contact__contact {
@@ -194,7 +220,7 @@
     width: 100%;
     padding: var(--spacing-medium);
     background: var(--white);
-    z-index: var(--z-index-high);
+    z-index: var(--z-index-low);
   }
 
   .page-contact__backdrop {
@@ -224,20 +250,16 @@
     }
   }
 
-  .page-contact .contact-sidebar {
-    margin-bottom: var(--spacing-larger);
-  }
-
-  .page-contact .contact-sidebar dd {
-    margin-bottom: var(--spacing-small);
-  }
-
   .page-contact .contact-form {
     margin-bottom: var(--spacing-larger);
   }
 
+  .page-contact__form-body {
+    padding-top: var(--spacing-large);
+  }
+
   @media screen and (min-width: 720px) {
-    .page-contact__content {
+    .page-contact__form-body {
       flex-direction: row;
       justify-content: space-between;
       padding: var(--spacing-larger) var(--spacing-large);
@@ -247,32 +269,9 @@
       width: 30%;
     }
 
-    .page-contact .contact-form {
-      /* width: 65%; */
-    }
-
-    .page-contact__form-container {
-      display: flex;
-      align-items: center;
-    }
-
     .page-contact__form-header {
       height: 20rem;
       width: 40%;
-    }
-
-    .page-contact__grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      row-gap: var(--spacing-large);
-      column-gap: var(--spacing-large);
-    }
-  }
-
-  @media screen and (min-width: 1100px) {
-    .page-contact__content {
-      grid-column: var(--grid-content-narrow);
-      padding: var(--spacing-larger) var(--spacing-larger);
     }
   }
 
@@ -281,6 +280,7 @@
     margin-bottom: var(--spacing-big);
     padding-top: var(--spacing-medium);
     background: linear-gradient(180deg, transparent 0%, var(--brand-yellow) 0%, var(--brand-yellow) 95%, transparent 0%);
+
   }
 
   .page-contact__form-header {
@@ -290,6 +290,8 @@
 
   @media screen and (min-width: 720px) {
     .page-contact__form-container {
+      display: flex;
+      align-items: center;
       padding-top: var(--spacing-bigger);
       margin-top: var(--spacing-big);
     }
@@ -298,9 +300,6 @@
       display: flex;
       position: relative;
       justify-content: center;
-      /* margin: auto; */
-      /* width: 70%; */
-      height: 90vh;
       background: linear-gradient(180deg, transparent 30%, var(--brand-yellow) 0%, var(--brand-yellow) 80%, transparent 0%);
     }
 
@@ -321,19 +320,27 @@
     }
   }
 
+  @media screen and (min-width: 1100px) {
+    .page-contact__form-body {
+      grid-column: var(--grid-content-narrow);
+      padding: var(--spacing-larger) var(--spacing-larger);
+    }
+  }
+
   .page-contact__form-header {
     margin-top: var(--spacing-medium);
     margin-bottom: var(--spacing-medium);
   }
   
   .page-contact__visit {
-    background-image: linear-gradient(var(--white), var(--white));
+    grid-column: var(--grid-page);
+    background-color: var(--white);
   }
 
   .page-contact__visit-header {
     text-align: center;
     margin: var(--spacing-large);
-    background-color: var(--bg-pastel);
+    padding-top: var(--spacing-medium);
   }
 
   .page-contact__visit-header {
@@ -341,6 +348,19 @@
     background-color: var(--bg-pastel);
     margin: 0;
     padding-bottom: var(--spacing-big)
+  }
+
+  .page-contact__grid {
+    display: grid;
+    justify-self: center;
+  }
+
+  @media screen and (min-width: 720px) {
+    .page-contact__grid {
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: var(--spacing-large);
+      column-gap: var(--spacing-large);
+    }
   }
 
   .page-contact__locations {
@@ -351,5 +371,16 @@
 
   .page-contact__location {
     margin-bottom: var(--spacing-large);
+    width: 20rem;
+  }
+
+  .page-contact__location .case-excerpt {
+    height: 100%;
+  }
+  
+  @media screen and (min-width: 720px) {
+    .page-contact__location {
+      margin-bottom: 0;
+    }  
   }
 </style>
