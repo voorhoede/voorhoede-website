@@ -8,7 +8,6 @@
         :image="page.headerIllustration"
       />
       <div class="page-contact__contacts">
-        <!-- <div v-for="contact in page.contacts" :key="contact.title"> -->
         <div class="page-contact__contact" v-for="contact in page.contacts" :key="contact.title">
           <responsive-image :image="contact.image" class="page-contact__contact-image"/>
           <div class="page-contact__contact-body">
@@ -19,7 +18,6 @@
           </div>
         </div>
       </div>
-      <!-- </div> -->
     </section>
 
     <div class="page-contact__form-container rich-text grid">
@@ -267,6 +265,7 @@
   .page-contact__visit {
     grid-column: var(--grid-page);
     background: var(--white);
+    padding-bottom: var(--spacing-large);
   }
 
   .page-contact__visit-header {
@@ -276,7 +275,6 @@
     padding-bottom: var(--spacing-larger);
     text-align: center;
     background-color: var(--bg-pastel);
-    background-size: 100%;
   }
 
   @media screen and (min-width: 720px) {
