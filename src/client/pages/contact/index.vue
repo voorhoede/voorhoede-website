@@ -7,24 +7,23 @@
         :headline="page.subtitle"
         :image="page.headerIllustration"
       />
-    
-      <div class="page-contact__contacts" >
-        <div v-for="contact in page.contacts" :key="contact.title">
-          <div class="page-contact__contact">
-            <responsive-image :image="contact.image" class="page-contact__contact-image"/>
-            <div class="page-contact__contact-body">
-              <h3 class="h4 subtitle page-contact__contact-title">{{ contact.title }}</h3>
-              <a :href="contactType(contact.body)">
-                <h3 class="h3 font-bold">{{ contact.body }}</h3>
-              </a>
-            </div>
+      <div class="page-contact__contacts">
+        <!-- <div v-for="contact in page.contacts" :key="contact.title"> -->
+        <div class="page-contact__contact" v-for="contact in page.contacts" :key="contact.title">
+          <responsive-image :image="contact.image" class="page-contact__contact-image"/>
+          <div class="page-contact__contact-body">
+            <h3 class="h4 subtitle page-contact__contact-title">{{ contact.title }}</h3>
+            <a :href="contactType(contact.body)">
+              <h3 class="h3 font-bold">{{ contact.body }}</h3>
+            </a>
           </div>
         </div>
       </div>
+      <!-- </div> -->
     </section>
 
     <div class="page-contact__form-container rich-text grid">
-      <div class="page-contact__form-header">
+      <div class="page-contact__form-header grid">
         <h2 class="h2 page-contact__body-title">{{ page.introTitle }}</h2>
         <p class="sub-title page-contact__body-subtitle">{{ page.introBody }} </p>
       </div>
@@ -37,7 +36,7 @@
     </div>
     
     <div class="page-contact__visit grid">
-      <div class="page-contact__visit-header rich-text">
+      <div class="page-contact__visit-header rich-text grid">
         <h2 class="h2">{{ page.locationTitle }}</h2>
         <p class="body-big font-html-blue page-contact__visit-body">{{ page.locationBody }}</p>
       </div>
@@ -81,7 +80,7 @@
 
 <style>
   :root {
-    --page-contact-brand-bg: linear-gradient(180deg, transparent 10%, var(--brand-yellow) 0%, var(--brand-yellow) 95%, transparent 0%);
+    --page-contact-brand-bg: linear-gradient(180deg, transparent 15%, var(--brand-yellow) 0%, var(--brand-yellow) 95%, transparent 0%);
     --page-contact-brand-bg--small: linear-gradient(180deg, transparent 0%, var(--brand-yellow) 0%, var(--brand-yellow) 95%, transparent 0%);
   }
 
@@ -103,14 +102,13 @@
 
     .page-contact__header .page-header__text {
       grid-column-start: var(--grid-content-start);
-      grid-column-end: var(--grid-center);
+      grid-column-end: 21;
     }
   }
 
   @media screen and (min-width: 1100px) {
     .page-contact__header .page-header__text {
       grid-column-start: 3;
-      grid-column-end: var(--grid-center);
     }
   }
 
@@ -118,16 +116,16 @@
     position: relative;
     margin-top: var(--spacing-big);
     margin-bottom: var(--spacing-big);
+    text-align: center;
   }
 
   @media screen and (min-width: 720px) {
     .page-contact__contacts {
-      transform: translate(0, 5rem);
+      margin-top: 10rem;
       grid-row-start: var(--grid-page-start);
       grid-row-end: var(--grid-content-start);
-      grid-column-start: var(--grid-center);
+      grid-column-start: 28;
       grid-column-end: var(--grid-content-end);
-      text-align: center;
     }
   }
 
@@ -137,20 +135,19 @@
     width: 7rem;
   }
 
-  .page-contact__contacts div:nth-child(1) >
-  .page-contact__contact .page-contact__contact-image {
+  .page-contact__contact:nth-child(1) >
+  .page-contact__contact-image {
     transform: translate(0, -5rem);
   }
 
-  .page-contact__contacts div:nth-child(2) >
-  .page-contact__contact .page-contact__contact-image {
+  .page-contact__contact:nth-child(2) >
+  .page-contact__contact-image {
     display: block;
     transform: translate(0, 6rem);
     z-index: var(--z-index-high);
   }
 
-  .page-contact__contacts div:nth-child(odd) > 
-  .page-contact__contact {
+  .page-contact__contact:nth-child(odd) {
     flex-direction: row-reverse;
   }
 
@@ -163,6 +160,7 @@
 
   .page-contact__contact-title {
     color: var(--black);
+    padding: var(--spacing-smaller);
   }
 
   .page-contact__contact-body {
@@ -268,7 +266,7 @@
   
   .page-contact__visit {
     grid-column: var(--grid-page);
-    background: linear-gradient(180deg, var(--bg-pastel) 30%, var(--white) 30%);
+    background: var(--white);
   }
 
   .page-contact__visit-header {
@@ -277,11 +275,13 @@
     margin-bottom: var(--spacing-medium);
     padding-bottom: var(--spacing-larger);
     text-align: center;
+    background-color: var(--bg-pastel);
+    background-size: 100%;
   }
 
   @media screen and (min-width: 720px) {
-    .page-contact__visit-header {
-      grid-column: var(--grid-content-narrow);
+    .page-contact__visit-header .page-contact__visit-body {
+      grid-column: var(--grid-content-smallest);
     }
   }
 
