@@ -8,10 +8,10 @@
         :image="page.headerIllustration"
       />
     
-      <div class="page-contact__contacts">
+      <div class="page-contact__contacts" >
         <div v-for="contact in page.contacts" :key="contact.title">
           <div class="page-contact__contact">
-            <responsive-image :image="contact.image" class="page-contact__contact-image" alt=""/>
+            <responsive-image :image="contact.image" class="page-contact__contact-image"/>
             <div class="page-contact__contact-body">
               <h3 class="h4 subtitle page-contact__contact-title">{{ contact.title }}</h3>
               <a :href="contactType(contact.body)">
@@ -37,9 +37,9 @@
     </div>
     
     <div class="page-contact__visit grid">
-      <div class="page-contact__visit-header">
+      <div class="page-contact__visit-header rich-text">
         <h2 class="h2">{{ page.locationTitle }}</h2>
-        <p class="pullquote ">{{ page.locationBody }}</p>
+        <p class="body-big font-html-blue page-contact__visit-body">{{ page.locationBody }}</p>
       </div>
       <ul class="page-contact__grid page-contact__locations">
         <li class="page-contact__location" v-for="location in page.addresses" :key="location.title">
@@ -80,6 +80,11 @@
 </script>
 
 <style>
+  :root {
+    --page-contact-brand-bg: linear-gradient(180deg, transparent 10%, var(--brand-yellow) 0%, var(--brand-yellow) 95%, transparent 0%);
+    --page-contact-brand-bg--small: linear-gradient(180deg, transparent 0%, var(--brand-yellow) 0%, var(--brand-yellow) 95%, transparent 0%);
+  }
+
   .page-contact {
     background-color: var(--bg-pastel);
     overflow-x: hidden;
@@ -126,23 +131,27 @@
     }
   }
 
-  .page-contact__contact-title {
-    color: var(--black);
+  .page-contact__contacts 
+  .page-contact__contact-image {
+    position: absolute;
+    width: 7rem;
   }
 
   .page-contact__contacts div:nth-child(1) >
   .page-contact__contact .page-contact__contact-image {
-    position: absolute;
-    width: 7rem;
     transform: translate(0, -5rem);
   }
 
   .page-contact__contacts div:nth-child(2) >
   .page-contact__contact .page-contact__contact-image {
     display: block;
-    position: absolute;
-    width: 10rem;
-    transform: translate(0, 7rem);
+    transform: translate(0, 6rem);
+    z-index: var(--z-index-high);
+  }
+
+  .page-contact__contacts div:nth-child(odd) > 
+  .page-contact__contact {
+    flex-direction: row-reverse;
   }
 
   .page-contact__contact {
@@ -152,9 +161,8 @@
     margin-bottom: var(--spacing-medium);
   }
 
-  .page-contact__contacts div:nth-child(odd) > 
-  .page-contact__contact {
-    flex-direction: row-reverse;
+  .page-contact__contact-title {
+    color: var(--black);
   }
 
   .page-contact__contact-body {
@@ -206,59 +214,9 @@
       justify-content: space-between;
       padding: var(--spacing-larger) var(--spacing-large);
     }
-
-    .page-contact .contact-sidebar {
-      width: 30%;
-    }
-
+    
     .page-contact__form-header {
-      height: 20rem;
       width: 40%;
-    }
-  }
-
-  .page-contact__form-container {
-    margin-top: var(--spacing-small);
-    margin-bottom: var(--spacing-big);
-    padding-top: var(--spacing-medium);
-    background: linear-gradient(180deg, transparent 0%, var(--brand-yellow) 0%, var(--brand-yellow) 95%, transparent 0%);
-
-  }
-
-  .page-contact__form-header {
-    padding-top: var(--spacing-medium);
-    padding-bottom: var(--spacing-medium);
-  }
-
-  @media screen and (min-width: 720px) {
-    .page-contact__form-container {
-      display: flex;
-      align-items: center;
-      padding-top: var(--spacing-bigger);
-      margin-top: var(--spacing-big);
-    }
-
-    .page-contact__form-container {
-      display: flex;
-      position: relative;
-      justify-content: center;
-      background: linear-gradient(180deg, transparent 30%, var(--brand-yellow) 0%, var(--brand-yellow) 80%, transparent 0%);
-    }
-
-    .page-contact__form-container::after, 
-    .page-contact__form-container::before {
-      content: "";
-      position: absolute;
-      width: 3rem;
-      height: 100%;
-      right: -3rem;
-      top: 0;
-      background: linear-gradient(180deg, transparent 30%, var(--brand-yellow) 0%, var(--brand-yellow) 80%, transparent 0%);
-      z-index: var(--z-index-low);
-    }
-
-    .page-contact__form-container::before {
-      left: -3rem;
     }
   }
 
@@ -269,6 +227,40 @@
     }
   }
 
+  .page-contact__form-container {
+    margin-top: var(--spacing-small);
+    margin-bottom: var(--spacing-big);
+    padding-top: var(--spacing-medium);
+    background-image: var(--page-contact-brand-bg--small);
+  }
+
+  @media screen and (min-width: 720px) {
+    .page-contact__form-container {
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      margin-top: var(--spacing-bigger);
+      background: var(--page-contact-brand-bg);
+    }
+
+    .page-contact__form-container::after, 
+    .page-contact__form-container::before {
+      content: "";
+      position: absolute;
+      width: 3rem;
+      height: 100%;
+      right: -3rem;
+      top: 0;
+      background: var(--page-contact-brand-bg);
+      z-index: var(--z-index-low);
+    }
+
+    .page-contact__form-container::before {
+      left: -3rem;
+    }
+  }
+
   .page-contact__form-header {
     margin-top: var(--spacing-medium);
     margin-bottom: var(--spacing-medium);
@@ -276,20 +268,21 @@
   
   .page-contact__visit {
     grid-column: var(--grid-page);
-    background-color: var(--white);
-  }
-
-  .page-contact__visit-header {
-    text-align: center;
-    margin: var(--spacing-large);
-    padding-top: var(--spacing-medium);
+    background: linear-gradient(180deg, var(--bg-pastel) 30%, var(--white) 30%);
   }
 
   .page-contact__visit-header {
     grid-column: var(--grid-page-start) / var(--grid-page-end);
-    background-color: var(--bg-pastel);
-    margin: 0;
-    padding-bottom: var(--spacing-big)
+    margin-top: 0;
+    margin-bottom: var(--spacing-medium);
+    padding-bottom: var(--spacing-larger);
+    text-align: center;
+  }
+
+  @media screen and (min-width: 720px) {
+    .page-contact__visit-header {
+      grid-column: var(--grid-content-narrow);
+    }
   }
 
   .page-contact__grid {
@@ -306,17 +299,12 @@
   }
 
   .page-contact__locations {
-    padding-left: 0;
-    margin-top: -1rem;
     margin-bottom: var(--spacing-large);
+    margin-top: -3rem;
   }
 
   .page-contact__location {
     margin-bottom: var(--spacing-large);
-  }
-
-  .page-contact__location .link-card {
-    height: 100%;
   }
   
   @media screen and (min-width: 720px) {
