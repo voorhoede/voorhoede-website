@@ -1,12 +1,6 @@
 <template>
   <main class="page-contact grid">
     <section class="page-contact__header grid">
-      <!-- <page-header
-        heading="byline"
-        :byline="page.title"
-        :headline="page.subtitle"
-        :image="page.headerIllustration"
-      /> -->
       <page-header
         heading="byline"
         :byline="page.title"
@@ -17,6 +11,7 @@
       <div class="page-contact__contacts">
         <div v-for="contact in contacts" :key="contact.title">
           <div class="page-contact__contact">
+            <!-- <responsive-image :image="page.image"/> -->
             <img :src="contact.image.url" class="page-contact__contact-image" alt="">
             <div class="page-contact__contact-body">
               <h3 class="h4 subtitle page-contact__contact-title">{{ contact.title }}</h3>
@@ -32,16 +27,7 @@
         <h2 class="h2 page-contact__body-title">{{ form.title }}</h2>
         <p class="sub-title page-contact__body-subtitle">{{ form.subtitle }} </p>
       </div>
-      <!-- <img src="https://i.imgur.com/2GjGyOX.png" alt="" class="usps__item-image page-contact__usps-item-image"> -->
       <div class="page-contact__backdrop grid">
-   
-        <!-- <contact-sidebar
-            :email-label="page.emailLabel"
-            :phone-label="page.phoneLabel"
-            :address-label="page.addressLabel"
-            :addresses="app.addresses"
-          /> -->
-    
         <contact-page-form
           class="page-contact__form-body"
           :aria-label="$t('lets_discuss')"
@@ -58,13 +44,12 @@
 
       <ul class="page-contact__grid page-contact__locations">
         <li class="page-contact__location" v-for="location in visit.location" :key="location.title">
-          <article class="case-excerpt">
-            <picture class="case-excerpt__media"><img :src="location.image" class="case-excerpt__image" alt=""></picture>
-            <div class="case-excerpt__caption">
-              <a href="" class="case-except__link"><h3 class="h4 case-excerpt__title">{{ location.title }} </h3></a>
-              <p class="case-excerpt__body body">{{ location.address }}</p>
-            </div>
-          </article>  
+          <link-card
+            :image="location.image"
+            :title="location.title"
+            :body="location.body"
+            :external-link="location.googleMapsLink"
+          />
         </li>
       </ul>
     </div>
@@ -81,7 +66,7 @@
     asyncData,
     data(){
       return {
-        dummyContent: {
+          dummyContent: {
           title: 'Tell us all about your awesome project!',
           subtitle: 'Are you excited to start your project but dont’t know where to begin? We are all ears, let’s build it together!',
           introTitle: 'call us',
@@ -97,13 +82,15 @@
           body: 'We too love coffee! Head over to one of our location!',
           location: [{
             title: 'Amsterdam',
-            address: 'Rijnsburgstraat 9-11 1059 AT Amsterdam',
-            image: 'https://imgur.com/pfUlN9C.png'
+            body: 'Rijnsburgstraat 9-11 1059 AT Amsterdam',
+            image: 'https://imgur.com/pfUlN9C.png',
+            googleMapsLink: 'https://www.google.com/maps/place/De+Voorhoede+%7C+Front-end+Development/@52.3475863,4.8479712,17z/data=!4m12!1m6!3m5!1s0x47c5e21d502d2d59:0xbf570944a96ebf45!2sDe+Voorhoede+%7C+Front-end+Development!8m2!3d52.3476469!4d4.8502154!3m4!1s0x47c5e21d502d2d59:0xbf570944a96ebf45!8m2!3d52.3476469!4d4.8502154'
             },
             {
             title: 'Delft',
-            address: 'Koornmarkt 22 2611 EG Delft',
-            image: 'https://imgur.com/dRWZrhX.png'
+            body: 'Koornmarkt 22 2611 EG Delft',
+            image: 'https://imgur.com/dRWZrhX.png',
+            googleMapsLink: 'https://www.google.com/maps/place/De+Voorhoede+%7C+Front-end+Development/@52.0093477,4.3573001,17z/data=!3m1!4b1!4m5!3m4!1s0x47c5b50f683c505b:0x250fe1ab6927e35d!8m2!3d52.0093165!4d4.3593873'
           }]
         },
         contacts: [{
@@ -177,7 +164,7 @@
       transform: translate(0, 5rem);
       grid-row-start: var(--grid-page-start);
       grid-row-end: var(--grid-content-start);
-      grid-column-start: 30;
+      grid-column-start: var(--grid-center);
       grid-column-end: var(--grid-content-end);
     }
   }
@@ -352,11 +339,11 @@
 
   .page-contact__grid {
     display: grid;
-    justify-self: center;
   }
 
   @media screen and (min-width: 720px) {
     .page-contact__grid {
+      justify-self: center;
       grid-template-columns: repeat(2, 1fr);
       row-gap: var(--spacing-large);
       column-gap: var(--spacing-large);
@@ -371,10 +358,9 @@
 
   .page-contact__location {
     margin-bottom: var(--spacing-large);
-    width: 20rem;
   }
 
-  .page-contact__location .case-excerpt {
+  .page-contact__location .link-card {
     height: 100%;
   }
   

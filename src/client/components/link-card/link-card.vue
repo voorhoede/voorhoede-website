@@ -1,6 +1,6 @@
 <template>
-  <article class="case-excerpt">
-    <picture class="case-excerpt__media">
+  <article class="link-card">
+    <picture class="link-card__media">
       <source
         type="image/webp"
         :srcset="getImageUrl(image.url, {
@@ -14,7 +14,7 @@
           w: '800'
         })">
       <img
-        class="case-excerpt__image"
+        class="link-card__image"
         :src="getImageUrl(image.url, {
           w: '800'
         })"
@@ -24,16 +24,28 @@
         loading="lazy"
       >
     </picture>
-    <div class="case-excerpt__caption">
+    <div class="link-card__caption">
       <nuxt-link
-        class="case-excerpt__link"
-        :to="localeUrl({ name: 'cases-slug', params: { slug } })"
+        v-if="internalLink"
+        class="link-card__link"
+        :to="internalLink"
       >
-        <h3 class="h4 case-excerpt__title">
+        <h3 class="h4 link-card__title">
           {{ title }}
         </h3>
       </nuxt-link>
-      <p class="case-excerpt__body body">{{ body }}</p>
+      <a
+        v-else-if="externalLink"
+        class="link-card__link"
+        :href="externalLink"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        <h3 class="h4 link-card__title">
+          {{ title }}
+        </h3>
+      </a>
+      <p class="link-card__body body">{{ body }}</p>
     </div>
   </article>
 </template>
@@ -55,10 +67,14 @@
         type: String,
         required: true
       },
-      slug: {
-        type: String,
-        required: true
+      internalLink: {
+        type: [Object, String],
+        default: null
       },
+      externalLink: {
+        type: String,
+        default: null
+      }
     },
     methods: {
       getImageUrl(url, options) {
@@ -70,22 +86,22 @@
 
 <style>
   :root {
-    --case-excerpt-image-ratio: .7043795620437956;
+    --link-card-image-ratio: .7043795620437956;
     --duration: .15s;
   }
 
-  .case-excerpt {
+  .link-card {
     position: relative;
     background-color: var(--fog);
   }
 
-  .case-excerpt__media {
+  .link-card__media {
     display: block;
     position: relative;
-    padding-top: calc(var(--case-excerpt-image-ratio) * 100%);
+    padding-top: calc(var(--link-card-image-ratio) * 100%);
   }
 
-  .case-excerpt__image {
+  .link-card__image {
     position: absolute;
     top: 0;
     left: 0;
@@ -94,7 +110,7 @@
     object-fit: cover;
   }
 
-  .case-excerpt__caption {
+  .link-card__caption {
     padding:
       var(--spacing-medium)
       var(--spacing-medium)
@@ -102,7 +118,7 @@
       var(--spacing-large);
   }
 
-  .case-excerpt__link::before {
+  .link-card__link::before {
     content: '';
     display: block;
     position: absolute;
@@ -112,11 +128,11 @@
     bottom: 0;
   }
 
-  .case-excerpt__title {
+  .link-card__title {
     position: relative;
   }
 
-  .case-excerpt__title::before {
+  .link-card__title::before {
     content: '\2192';
     position: absolute;
     top: 0;
@@ -126,27 +142,27 @@
     font-weight: 300;
   }
 
-  .case-excerpt__title,
-  .case-excerpt__title::before {
+  .link-card__title,
+  .link-card__title::before {
     transition: transform var(--duration);
   }
 
-  .case-excerpt__link:hover .case-excerpt__title,
-  .case-excerpt__link:focus .case-excerpt__title {
+  .link-card__link:hover .link-card__title,
+  .link-card__link:focus .link-card__title {
     transform: translateX(var(--spacing-small));
   }
 
-  .case-excerpt__link:hover .case-excerpt__title::before,
-  .case-excerpt__link:focus .case-excerpt__title::before {
+  .link-card__link:hover .link-card__title::before,
+  .link-card__link:focus .link-card__title::before {
     transform: translateX(calc(var(--spacing-tiny) * -1));
   }
 
-  .case-excerpt__body {
+  .link-card__body {
     margin-top: .5em;
   }
 
   @media (min-width: 1100px) {
-    .case-excerpt__caption {
+    .link-card__caption {
       padding-left: calc(var(--spacing-large) + var(--spacing-smaller));
     }
   }
