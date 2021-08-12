@@ -4,18 +4,19 @@
       <page-header
         heading="byline"
         :byline="page.title"
-        :headline="dummyContent.title"
+        :headline="page.subtitle"
         :image="page.headerIllustration"
       />
     
       <div class="page-contact__contacts">
-        <div v-for="contact in contacts" :key="contact.title">
+        <div v-for="contact in page.contacts" :key="contact.title">
           <div class="page-contact__contact">
-            <!-- <responsive-image :image="page.image"/> -->
-            <img :src="contact.image.url" class="page-contact__contact-image" alt="">
+            <responsive-image :image="contact.image" class="page-contact__contact-image" alt=""/>
             <div class="page-contact__contact-body">
               <h3 class="h4 subtitle page-contact__contact-title">{{ contact.title }}</h3>
-              <div v-html="contact.body" class="body h2 font-bold " />
+              <a :href="contactType(contact.body)">
+                <h3 class="h3 font-bold">{{ contact.body }}</h3>
+              </a>
             </div>
           </div>
         </div>
@@ -24,8 +25,8 @@
 
     <div class="page-contact__form-container rich-text grid">
       <div class="page-contact__form-header">
-        <h2 class="h2 page-contact__body-title">{{ form.title }}</h2>
-        <p class="sub-title page-contact__body-subtitle">{{ form.subtitle }} </p>
+        <h2 class="h2 page-contact__body-title">{{ page.introTitle }}</h2>
+        <p class="sub-title page-contact__body-subtitle">{{ page.introBody }} </p>
       </div>
       <div class="page-contact__backdrop grid">
         <contact-page-form
@@ -33,22 +34,20 @@
           :aria-label="$t('lets_discuss')"
         />
       </div>
-
     </div>
     
     <div class="page-contact__visit grid">
       <div class="page-contact__visit-header">
-        <h2 class="h2">{{ visit.title }}</h2>
-        <p class="pullquote ">{{ visit.body }}</p>
+        <h2 class="h2">{{ page.locationTitle }}</h2>
+        <p class="pullquote ">{{ page.locationBody }}</p>
       </div>
-
       <ul class="page-contact__grid page-contact__locations">
-        <li class="page-contact__location" v-for="location in visit.location" :key="location.title">
+        <li class="page-contact__location" v-for="location in page.addresses" :key="location.title">
           <link-card
             :image="location.image"
             :title="location.title"
             :body="location.body"
-            :external-link="location.googleMapsLink"
+            :external-link="location.googleMaps"
           />
         </li>
       </ul>
@@ -64,60 +63,17 @@
 
   export default {
     asyncData,
-    data(){
-      return {
-          dummyContent: {
-          title: 'Tell us all about your awesome project!',
-          subtitle: 'Are you excited to start your project but dont’t know where to begin? We are all ears, let’s build it together!',
-          introTitle: 'call us',
-          introBody: '0112343203',
-          image: 'https://i.imgur.com/Ccgdl26.png'
-        },
-        form: {
-          title: 'Say Hello!',
-          subtitle: 'We would like to hear something from you!'
-        },
-        visit: {
-          title: 'Coffee?',
-          body: 'We too love coffee! Head over to one of our location!',
-          location: [{
-            title: 'Amsterdam',
-            body: 'Rijnsburgstraat 9-11 1059 AT Amsterdam',
-            image: 'https://imgur.com/pfUlN9C.png',
-            googleMapsLink: 'https://www.google.com/maps/place/De+Voorhoede+%7C+Front-end+Development/@52.3475863,4.8479712,17z/data=!4m12!1m6!3m5!1s0x47c5e21d502d2d59:0xbf570944a96ebf45!2sDe+Voorhoede+%7C+Front-end+Development!8m2!3d52.3476469!4d4.8502154!3m4!1s0x47c5e21d502d2d59:0xbf570944a96ebf45!8m2!3d52.3476469!4d4.8502154'
-            },
-            {
-            title: 'Delft',
-            body: 'Koornmarkt 22 2611 EG Delft',
-            image: 'https://imgur.com/dRWZrhX.png',
-            googleMapsLink: 'https://www.google.com/maps/place/De+Voorhoede+%7C+Front-end+Development/@52.0093477,4.3573001,17z/data=!3m1!4b1!4m5!3m4!1s0x47c5b50f683c505b:0x250fe1ab6927e35d!8m2!3d52.0093165!4d4.3593873'
-          }]
-        },
-        contacts: [{
-          title: 'Give us a call at',
-          body: '<a href="tel:+31 (0)20 2610954" class="body"> <h3 class="h3"> +31 (0)20 2610954 </h3> </a>',
-          image: {
-            url:'https://i.imgur.com/OdQfz5J.png',
-            alt:'icon-one',
-            width: '40px',
-            height: '40px',
-            format: ''
-            },
-        },{
-          title: '...or mail us',
-          body: '<a href="mailto:post@voorhoede.nl" class="body"> <h3 class="h3"> post@voorhoede.nl </h3> </a>',
-          image: {
-            url:'https://imgur.com/zgRP4L5.png',
-            alt:'icon-two',
-            width: '40px',
-            height: '40px',
-            format: ''
-            },
-        }],
-      }
-    },
     mounted() {
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
+    },
+    methods: {
+      contactType(value) {
+        if(value.includes('@')) {
+          return `mailto:${ value }`
+        } else {
+            return `tel:${ value }`
+        }
+      }
     },
     head,
   }
@@ -166,6 +122,7 @@
       grid-row-end: var(--grid-content-start);
       grid-column-start: var(--grid-center);
       grid-column-end: var(--grid-content-end);
+      text-align: center;
     }
   }
 
@@ -173,7 +130,6 @@
     color: var(--black);
   }
 
-  /* remove when illustrations are in datocms */
   .page-contact__contacts div:nth-child(1) >
   .page-contact__contact .page-contact__contact-image {
     position: absolute;
@@ -187,7 +143,6 @@
     position: absolute;
     width: 10rem;
     transform: translate(0, 7rem);
-    z-index: var(--z-index-high);
   }
 
   .page-contact__contact {

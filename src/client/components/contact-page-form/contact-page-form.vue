@@ -1,16 +1,16 @@
 <template>
   <div
-    class="contact-form"
+    class="contact-page-form"
     :class="{ 'grid': hasSidebar }"
   >
-    <div v-if="hasSidebar" class="contact-form__header">
+    <div v-if="hasSidebar" class="contact-page-form__header">
       <h2
         v-if="title"
-        class="contact-form__header h3"
+        class="contact-page-form__header h3"
       >
         {{ title }}
       </h2>
-      <div v-if="contactPerson" class="contact-form__contact-person">
+      <div v-if="contactPerson" class="contact-page-form__contact-person">
         <responsive-image :image="contactPerson.image"/>
         <p class="h5">{{ contactPerson.name }} {{ contactPerson.lastName }}</p>
         <p
@@ -32,7 +32,7 @@
       method="POST"
       :name="form['form-name']"
       :action="localeUrl({ name: 'contact-slug', params: { slug: 'confirmation' } })"
-      class="contact-form__form"
+      class="contact-page-form__form"
       data-netlify="true"
       netlify-honeypot="magic-castle"
       :novalidate="useCustomValidation"
@@ -103,7 +103,7 @@
         />
         <app-button
           @click.native="trackEvent()"
-          class="contact-form__button"
+          class="contact-page-form__button"
           :label="$t('get_in_touch')"
           type="submit"
         />
@@ -197,36 +197,37 @@
   @import '../forms/forms.css';
 
   :root {
-    --contact-form-thumbnail-size: 120px;
+    --contact-page-form-thumbnail-size: 120px;
   }
 
-  .contact-form__header {
+  .contact-page-form__header {
     grid-row: 1;
   }
 
-  .contact-form__contact-person {
+  .contact-page-form__contact-person {
     display: none;
   }
 
-  .contact-form__contact-person .responsive-image {
+  .contact-page-form__contact-person .responsive-image {
     margin-bottom: var(--spacing-small);
-    width: var(--contact-form-thumbnail-size-small);
+    width: var(--contact-page-form-thumbnail-size-small);
   }
 
-  .contact-form__header ~ .contact-form__form {
+  .contact-page-form__header ~ .contact-page-form__form {
     grid-row: 2;
   }
 
-  .contact-form__label:first-of-type {
+  .contact-page-form__label:first-of-type {
     margin-top: 0;
   }
 
-  .contact-form__button {
-    margin-top: var(--spacing-larger);
+  .contact-page-form__button {
+    margin-top: var(--spacing-large);
+    margin-bottom: var(--spacing-small);
   }
 
   @media (min-width: 520px) {
-    .contact-form__contact-person .responsive-image {
+    .contact-page-form__contact-person .responsive-image {
       margin-left: 0;
       margin-right: 0;
     }
@@ -247,27 +248,27 @@
   }
 
   @media (min-width: 1100px) {
-    .contact-form__header {
+    .contact-page-form__header {
       grid-column-start: 6;
       grid-column-end: 18;
       margin-bottom: var(--spacing-medium);
     }
 
-    .contact-form__contact-person {
+    .contact-page-form__contact-person {
       display: block;
     }
 
-    .contact-form__contact-person .responsive-image {
-      width: var(--contact-form-thumbnail-size);
+    .contact-page-form__contact-person .responsive-image {
+      width: var(--contact-page-form-thumbnail-size);
     }
 
-    .contact-form__header ~ .contact-form__form {
+    .contact-page-form__header ~ .contact-page-form__form {
       grid-column-start: 21;
       grid-column-end: 46;
       grid-row: 1;
     }
 
-    .contact-form__header ~ .contact-form__form > .contact-form__label-text {
+    .contact-page-form__header ~ .contact-page-form__form > .contact-page-form__label-text {
       width: 9rem;
     }
   }

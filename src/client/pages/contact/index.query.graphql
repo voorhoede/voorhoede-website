@@ -29,8 +29,38 @@ fragment contact on ContactRecord {
     url
     alt
   }
+  contacts {
+    title
+    body
+    image {
+      url
+      alt
+      width
+      height
+      format
+    }
+  }
   title
   emailLabel
   phoneLabel
   addressLabel
+  introTitle
+  introBody
+  locationBody
+  locationTitle
+  addresses {
+    ... on LocationRecord {
+      id
+      image {
+        width
+        url
+        height
+        alt
+        format
+      }
+      title
+      body
+      googleMaps
+    }
+  }
 }
