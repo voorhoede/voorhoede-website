@@ -202,6 +202,12 @@
   }
 
   @media screen and (min-width: 720px) {
+    .page-contact__body-subtitle,
+    .page-contact__body-title {
+      grid-column-start: 2;
+      grid-column-end: 19;
+    }
+    
     .page-contact__form-body {
       flex-direction: row;
       justify-content: space-between;
