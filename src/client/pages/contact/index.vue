@@ -11,9 +11,9 @@
         <div class="page-contact__contact" v-for="contact in page.contacts" :key="contact.title">
           <responsive-image :image="contact.image" class="page-contact__contact-image"/>
           <div class="page-contact__contact-body">
-            <h3 class="h4 subtitle page-contact__contact-title">{{ contact.title }}</h3>
             <a :href="contactType(contact.body)">
-              <h3 class="h3 font-bold">{{ contact.body }}</h3>
+              <span class="body subtitle page-contact__contact-title font-bold">{{ contact.title }}</span>
+              <p class="body page-contact__font--big font-html-blue font-bold">{{ contact.body }}</p>
             </a>
           </div>
         </div>
@@ -80,6 +80,12 @@
   :root {
     --page-contact-brand-bg: linear-gradient(180deg, transparent 15%, var(--brand-yellow) 0%, var(--brand-yellow) 95%, transparent 0%);
     --page-contact-brand-bg--small: linear-gradient(180deg, transparent 0%, var(--brand-yellow) 0%, var(--brand-yellow) 95%, transparent 0%);
+    --page-contact-white-overlap: linear-gradient(var(--white), var(--white));
+  }
+
+  .page-contact__font--big {
+    font-size: 1.6875rem; /* 27px */
+    line-height: 1.3333333333; /* 36px */
   }
 
   .page-contact {
@@ -152,6 +158,25 @@
     align-items: center;
     margin-bottom: var(--spacing-medium);
   }
+  
+  .page-contact__contact::before {
+    content: '';
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    transition: .15s;
+    transform: scaleX(1) scaleY(1);
+  }
+
+  .page-contact__contact:hover::before,
+  .page-contact__contact:active::before {
+    transform: scaleX(1.1) scaleY(1.1);
+  }
 
   .page-contact__contact-title {
     color: var(--black);
@@ -160,7 +185,8 @@
 
   .page-contact__contact-body {
     display: block;
-    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     padding: var(--spacing-medium);
     background: var(--white);
     z-index: var(--z-index-low);
@@ -267,8 +293,11 @@
   
   .page-contact__visit {
     grid-column: var(--grid-page);
-    background: var(--white);
+    background-image: var(--page-contact-white-overlap);
     padding-bottom: var(--spacing-large);
+    background-size: 100% 65%;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
   }
 
   .page-contact__visit-header {
@@ -277,7 +306,6 @@
     margin-bottom: var(--spacing-medium);
     padding-bottom: var(--spacing-larger);
     text-align: center;
-    background-color: var(--bg-pastel);
   }
 
   @media screen and (min-width: 720px) {
@@ -301,7 +329,6 @@
 
   .page-contact__locations {
     margin-bottom: var(--spacing-large);
-    margin-top: -3rem;
   }
 
   .page-contact__location {
