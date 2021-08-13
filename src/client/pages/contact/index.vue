@@ -175,7 +175,7 @@
 
   .page-contact__contact:hover::before,
   .page-contact__contact:active::before {
-    transform: scaleX(1.1) scaleY(1.1);
+    transform: scaleX(1.05) scaleY(1.05);
   }
 
   .page-contact__contact-title {
