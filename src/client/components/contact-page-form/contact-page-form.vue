@@ -1,115 +1,86 @@
 <template>
-  <div
-    class="contact-page-form"
-    :class="{ 'grid': hasSidebar }"
+  <form
+    @submit.prevent="submit"
+    method="POST"
+    :name="form['form-name']"
+    :action="localeUrl({ name: 'contact-slug', params: { slug: 'confirmation' } })"
+    class="contact-page-form__form"
+    data-netlify="true"
+    netlify-honeypot="magic-castle"
+    :novalidate="useCustomValidation"
   >
-    <div v-if="hasSidebar" class="contact-page-form__header">
-      <h2
-        v-if="title"
-        class="contact-page-form__header h3"
-      >
-        {{ title }}
-      </h2>
-      <div v-if="contactPerson" class="contact-page-form__contact-person">
-        <responsive-image :image="contactPerson.image"/>
-        <p class="h5">{{ contactPerson.name }} {{ contactPerson.lastName }}</p>
-        <p
-          v-if="contactPerson.jobTitle"
-          class="body-petite contact-page-form__input-field"
-        >
-          {{ contactPerson.jobTitle }}
-        </p>
-        <a
-          class="body-petite contact-page-form__input-field link"
-          href="mailto:post@voorhoede.nl"
-        >
-          post@voorhoede.nl
-        </a>
-      </div>
-    </div>
-    <form
-      @submit.prevent="submit"
-      method="POST"
-      :name="form['form-name']"
-      :action="localeUrl({ name: 'contact-slug', params: { slug: 'confirmation' } })"
-      class="contact-page-form__form"
-      data-netlify="true"
-      netlify-honeypot="magic-castle"
-      :novalidate="useCustomValidation"
-    >
-      <fieldset>
-        <legend class="sr-only">{{ ariaLabelOrTitle }}</legend>
-        <div class="contact-page-form__personal-details">
-          <div class="contact-page-form__input">
-            <input type="hidden" name="form-name" :value="form['form-name']">
-            <input type="text" name="subject" :value="form.name" class="hidden"/>
-            <label class="hidden">
-              Don't fill this out if you're human:
-              <input v-model="form.magicCastle" name="magic-castle">
-            </label>
-            <input-field
-              v-model="form.name"
-              id="name"
-              type="text"
-              @input="createEmailSubject"
-              :label="$t('my_name_is')"
-              :placeholder-label="$t('your_name')"
-              required
-              :validate="formIsValidated"
-              :validation-error-message="$t('name_is_required')"
-              class="body-petite contact-page-form__input-field"
-            />
-            <input-field
-              v-model="form.business"
-              id="business"
-              type="text"
-              :label="$t('my_business_is')"
-              :placeholder-label="$t('company_name')"
-              class="body-petite contact-page-form__input-field"
-            />
-          </div>
-          
-          <div class="contact-page-form__input">
-            <input-field
-              v-model="form.email"
-              id="email"
-              type="email"
-              :label="$t('you_can_email_me_at')"
-              :placeholder-label="$t('email_address')"
-              required
-              :validate="formIsValidated"
-              :validation-error-message="emailValidationErrorMessage"
-              class="body-petite contact-page-form__input-field"
-            />
-            <input-field
-              v-model="form.phone"
-              id="phone"
-              type="tel"
-              :label="$t('you_can_call_me_at')"
-              :placeholder-label="$t('phone_number')"
-              class="body-petite contact-page-form__input-field"
-            />
-          </div>
+    <fieldset>
+      <legend class="sr-only">{{ ariaLabelOrTitle }}</legend>
+      <div class="contact-page-form__personal-details">
+        <div class="contact-page-form__column">
+          <input type="hidden" name="form-name" :value="form['form-name']">
+          <input type="text" name="subject" :value="form.name" class="hidden"/>
+          <label class="hidden">
+            Don't fill this out if you're human:
+            <input v-model="form.magicCastle" name="magic-castle">
+          </label>
+          <input-field
+            v-model="form.name"
+            id="name"
+            type="text"
+            @input="createEmailSubject"
+            :label="$t('my_name_is')"
+            :placeholder-label="$t('your_name')"
+            required
+            :validate="formIsValidated"
+            :validation-error-message="$t('name_is_required')"
+            class="body-petite contact-page-form__input-field"
+          />
+          <input-field
+            v-model="form.business"
+            id="business"
+            type="text"
+            :label="$t('my_business_is')"
+            :placeholder-label="$t('company_name')"
+            class="body-petite contact-page-form__input-field"
+          />
         </div>
+          
+        <div class="contact-page-form__column">
+          <input-field
+            v-model="form.email"
+            id="email"
+            type="email"
+            :label="$t('you_can_email_me_at')"
+            :placeholder-label="$t('email_address')"
+            required
+            :validate="formIsValidated"
+            :validation-error-message="emailValidationErrorMessage"
+            class="body-petite contact-page-form__input-field"
+          />
+          <input-field
+            v-model="form.phone"
+            id="phone"
+            type="tel"
+            :label="$t('you_can_call_me_at')"
+            :placeholder-label="$t('phone_number')"
+            class="body-petite contact-page-form__input-field"
+          />
+        </div>
+      </div>
 
-        <input-field
-          textarea
-          v-model="form.explanation"
-          id="explanation"
-          type="text"
-          :label="$t('my_project_is')"
-          :placeholder-label="$t('project_description')"
-          class="body-petite contact-page-form__input-field"
-        />
-        <app-button
-          @click.native="trackEvent()"
-          class="contact-page-form__button"
-          :label="$t('get_in_touch')"
-          type="submit"
-        />
-      </fieldset>
-    </form>
-  </div>
+      <input-field
+        textarea
+        v-model="form.explanation"
+        id="explanation"
+        type="text"
+        :label="$t('my_project_is')"
+        :placeholder-label="$t('project_description')"
+        class="body-petite contact-page-form__input-field"
+      />
+      <app-button
+        @click.native="trackEvent()"
+        class="contact-page-form__button"
+        :label="$t('get_in_touch')"
+        type="submit"
+      />
+    </fieldset>
+  </form>
 </template>
 
 <script>
@@ -129,17 +100,6 @@
           this.$t('lets_discuss')
         },
       },
-      contactPerson: {
-        type: Object,
-        default: undefined,
-        validator(contactPerson) {
-          return !contactPerson || (
-            typeof(contactPerson.name) === 'string'
-            && typeof(contactPerson.lastName) === 'string'
-            && typeof(contactPerson.image) === 'object'
-          )
-        }
-      }
     },
     data() {
       return {
@@ -162,9 +122,6 @@
       },
       emailValidationErrorMessage() {
         return this.form.email ? this.$t('provide_valid_email') : this.$t('email_is_required')
-      },
-      hasSidebar() {
-        return this.title || this.contactPerson
       }
     },
     mounted() {
@@ -200,10 +157,6 @@
     --contact-page-form-thumbnail-size: 120px;
   }
 
-  .contact-page-form__header {
-    grid-row: 1;
-  }
-
   .contact-page-form__contact-person {
     display: none;
   }
@@ -211,10 +164,6 @@
   .contact-page-form__contact-person .responsive-image {
     margin-bottom: var(--spacing-small);
     width: var(--contact-page-form-thumbnail-size-small);
-  }
-
-  .contact-page-form__header ~ .contact-page-form__form {
-    grid-row: 2;
   }
 
   .contact-page-form__label:first-of-type {
@@ -249,28 +198,12 @@
   }
 
   @media (min-width: 1100px) {
-    .contact-page-form__header {
-      grid-column-start: 6;
-      grid-column-end: 18;
-      margin-bottom: var(--spacing-medium);
-    }
-
     .contact-page-form__contact-person {
       display: block;
     }
 
     .contact-page-form__contact-person .responsive-image {
       width: var(--contact-page-form-thumbnail-size);
-    }
-
-    .contact-page-form__header ~ .contact-page-form__form {
-      grid-column-start: 21;
-      grid-column-end: 46;
-      grid-row: 1;
-    }
-
-    .contact-page-form__header ~ .contact-page-form__form > .contact-page-form__label-text {
-      width: 9rem;
     }
   }
 </style>

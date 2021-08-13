@@ -11,9 +11,9 @@
         <div class="page-contact__contact" v-for="contact in page.contacts" :key="contact.title">
           <responsive-image :image="contact.image" class="page-contact__contact-image"/>
           <div class="page-contact__contact-body">
-            <a :href="contactType(contact.body)">
-              <span class="body subtitle page-contact__contact-title font-bold">{{ contact.title }}</span>
-              <p class="body page-contact__font--big font-html-blue font-bold">{{ contact.body }}</p>
+            <a :href="contactType(contact.contactType, contact.body)" class="page-contact__contact-link">
+              <span class="h4 page-contact__contact-title page-contact-z-index--high">{{ contact.title }}</span>
+              <p class="h3 page-contact-z-index--high">{{ contact.body }}</p>
             </a>
           </div>
         </div>
@@ -64,11 +64,11 @@
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
     },
     methods: {
-      contactType(value) {
-        if(value.includes('@')) {
-          return `mailto:${ value }`
+      contactType(type, body) {
+        if(type === 'email') {
+          return `mailto:${ body }`
         } else {
-            return `tel:${ value }`
+            return `tel:${ body }`
         }
       }
     },
@@ -83,25 +83,18 @@
     --page-contact-white-overlap: linear-gradient(var(--white), var(--white));
   }
 
-  .page-contact__font--big {
-    font-size: 1.6875rem; /* 27px */
-    line-height: 1.3333333333; /* 36px */
-  }
-
   .page-contact {
     background-color: var(--bg-pastel);
-    overflow-x: hidden;
   }
   
-  .page-contact__header,
-  .page-contact__header > .page-header {
+  .page-contact__header .page-header {
     grid-column: var(--grid-page);
   }
 
   @media screen and (min-width: 720px) {
     .page-contact__header .page-header {
-      grid-row-start: var(--grid-page-start);
-      grid-row-end: var(--grid-content-start);
+      grid-row-start: 1;
+      grid-row-end: 2;
     }
 
     .page-contact__header .page-header__text {
@@ -126,8 +119,8 @@
   @media screen and (min-width: 720px) {
     .page-contact__contacts {
       margin-top: 10rem;
-      grid-row-start: var(--grid-page-start);
-      grid-row-end: var(--grid-content-start);
+      grid-row-start: 1;
+      grid-row-end: 2;
       grid-column-start: 28;
       grid-column-end: var(--grid-content-end);
     }
@@ -158,10 +151,25 @@
     align-items: center;
     margin-bottom: var(--spacing-medium);
   }
+
+  .page-contact__contact-body {
+    position: relative;
+    padding: var(--spacing-medium);
+    flex: 1;
+  }
+
+  .page-contact__contact-link {
+    margin: var(--spacing-medium);
+  }
   
-  .page-contact__contact::before {
+  .page-contact-z-index--high {
+    position: relative;
+    z-index: var(--z-index-high);
+  }
+  
+  .page-contact__contact-link::before {
     content: '';
-    z-index: 1;
+    z-index: var(--z-index-low);
     position: absolute;
     top: 0;
     left: 0;
@@ -170,26 +178,16 @@
     background-color: var(--white);
     border-radius: var(--border-radius);
     transition: .15s;
-    transform: scaleX(1) scaleY(1);
   }
 
-  .page-contact__contact:hover::before,
-  .page-contact__contact:active::before {
+  .page-contact__contact-link:hover::before,
+  .page-contact__contact-link:active::before {
     transform: scaleX(1.05) scaleY(1.05);
   }
 
   .page-contact__contact-title {
     color: var(--black);
     padding: var(--spacing-smaller);
-  }
-
-  .page-contact__contact-body {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding: var(--spacing-medium);
-    background: var(--white);
-    z-index: var(--z-index-low);
   }
 
   .page-contact__backdrop {

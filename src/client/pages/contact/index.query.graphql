@@ -32,6 +32,7 @@ fragment contact on ContactRecord {
   contacts {
     title
     body
+    contactType
     image {
       url
       alt
