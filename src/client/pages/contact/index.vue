@@ -121,7 +121,7 @@
       margin-top: 10rem;
       grid-row-start: 1;
       grid-row-end: 2;
-      grid-column-start: 28;
+      grid-column-start: 27;
       grid-column-end: var(--grid-content-end);
     }
   }
@@ -154,14 +154,11 @@
 
   .page-contact__contact-body {
     position: relative;
-    padding: var(--spacing-medium);
+    padding-top: var(--spacing-medium);
+    padding-bottom: var(--spacing-medium);
     flex: 1;
   }
 
-  .page-contact__contact-link {
-    margin: var(--spacing-medium);
-  }
-  
   .page-contact-z-index--high {
     position: relative;
     z-index: var(--z-index-high);
@@ -187,7 +184,6 @@
 
   .page-contact__contact-title {
     color: var(--black);
-    padding: var(--spacing-smaller);
   }
 
   .page-contact__backdrop {
