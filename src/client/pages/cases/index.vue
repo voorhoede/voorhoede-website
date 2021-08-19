@@ -64,9 +64,9 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
-import linkCard from '../../components/link-card/link-card.vue'
+  import linkCard from '../../components/link-card/link-card.vue'
   export default {
-  components: { linkCard },
+    components: { linkCard },
     asyncData,
     computed: {
       ctaSectionTop() {

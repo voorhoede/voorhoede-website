@@ -68,7 +68,7 @@
         if(type === 'email') {
           return `mailto:${ body }`
         } else {
-            return `tel:${ body }`
+          return `tel:${ body }`
         }
       }
     },
