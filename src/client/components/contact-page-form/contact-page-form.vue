@@ -40,7 +40,7 @@
             class="body-petite contact-page-form__input-field"
           />
         </div>
-          
+
         <div class="contact-page-form__column">
           <input-field
             v-model="form.email"
@@ -187,10 +187,10 @@
       justify-content: space-between;
     }
 
-    .contact-page-form__input {
-      width: 40%;
+    .contact-page-form__column {
+      width: calc(50% - var(--spacing-medium));
     }
-    
+
     .contact-page-form__input-field {
       flex-direction: column;
       margin: var(--spacing-large) 0;
