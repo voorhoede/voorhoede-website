@@ -46,6 +46,7 @@
             :title="location.title"
             :body="location.body"
             :external-link="location.googleMaps"
+            class="page-contact__location-card"
           />
         </li>
       </ul>
@@ -188,29 +189,16 @@
   }
 
   .page-contact__backdrop {
+    margin-right: calc(-1 * var(--spacing-large));
     background-color: var(--white);
     position: relative;
-  }
-
-  .page-contact__backdrop::after {
-    content: '';
-    position: absolute;
-    height: 100%;
-    width: 2rem;
-    top: 0;
-    right: -2rem;
-    background: var(--white);
   }
 
   @media screen and (min-width: 720px) {
     .page-contact .page-contact__backdrop {
       display: block;
+      margin-right: 0;
       width: 58%;
-    }
-
-    .page-contact .page-contact__backdrop::after {
-      width: 0;
-      height: 0;
     }
   }
 
@@ -328,6 +316,10 @@
 
   .page-contact__location {
     margin-bottom: var(--spacing-large);
+  }
+
+  .page-contact__location-card {
+    height: 100%;
   }
 
   @media screen and (min-width: 720px) {
