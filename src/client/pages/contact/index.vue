@@ -22,7 +22,7 @@
     </section>
 
     <div class="page-contact__form-container rich-text grid">
-      <div class="page-contact__form-header grid">
+      <div class="page-contact__form-header">
         <h2 class="h2 page-contact__body-title">{{ page.introTitle }}</h2>
         <p class="sub-title page-contact__body-subtitle">{{ page.introBody }} </p>
       </div>
@@ -197,8 +197,14 @@
   @media screen and (min-width: 720px) {
     .page-contact .page-contact__backdrop {
       display: block;
-      margin-right: 0;
+      margin-right: var(--spacing-large);
       width: 58%;
+    }
+  }
+
+  @media screen and (min-width: 1100px) {
+    .page-contact .page-contact__backdrop {
+      margin-right: var(--spacing-larger);
     }
   }
 
@@ -222,10 +228,6 @@
       justify-content: space-between;
       padding: var(--spacing-larger) var(--spacing-large);
     }
-
-    .page-contact__form-header {
-      width: 40%;
-    }
   }
 
   @media screen and (min-width: 1100px) {
@@ -244,6 +246,7 @@
 
   @media screen and (min-width: 720px) {
     .page-contact__form-container {
+      grid-column: var(--grid-page);
       display: flex;
       position: relative;
       align-items: center;
@@ -251,27 +254,24 @@
       margin-top: var(--spacing-bigger);
       background: var(--page-contact-brand-bg);
     }
+  }
 
-    .page-contact__form-container::after,
-    .page-contact__form-container::before {
-      content: '';
-      position: absolute;
-      width: 3rem;
-      height: 100%;
-      right: -3rem;
-      top: 0;
-      background: var(--page-contact-brand-bg);
-      z-index: var(--z-index-low);
-    }
-
-    .page-contact__form-container::before {
-      left: -3rem;
+  @media screen and (min-width: 1100px) {
+    .page-contact__form-container {
+      grid-column: var(--grid-content);
     }
   }
 
   .page-contact__form-header {
-    margin-top: var(--spacing-medium);
-    margin-bottom: var(--spacing-medium);
+    margin: var(--spacing-medium) 0 var(--spacing-medium) var(--spacing-small);
+  }
+
+  @media screen and (min-width: 720px) {
+    .page-contact__form-header {
+      margin-left: var(--spacing-big);
+      margin-right: var(--spacing-larger);
+      width: 30%;
+    }
   }
 
   .page-contact__visit {
