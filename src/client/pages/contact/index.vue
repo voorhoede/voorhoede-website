@@ -1,11 +1,12 @@
 <template>
   <main class="page-contact grid">
-    <section class="page-contact__header grid">
+    <section class="page-contact__header-wrapper grid">
       <page-header
         heading="byline"
         :byline="page.title"
         :headline="page.subtitle"
         :image="page.headerIllustration"
+        class="page-contact__header"
       />
       <div class="page-contact__contacts">
         <div class="page-contact__contact" v-for="contact in page.contacts" :key="contact.title">
@@ -32,7 +33,7 @@
         />
       </div>
     </div>
-    
+
     <div class="page-contact__visit grid">
       <div class="page-contact__visit-header rich-text grid">
         <h2 class="h2">{{ page.locationTitle }}</h2>
@@ -49,7 +50,7 @@
         </li>
       </ul>
     </div>
-    
+
     <newsletter-form :has-background="true" />
   </main>
 </template>
@@ -86,25 +87,25 @@
   .page-contact {
     background-color: var(--bg-pastel);
   }
-  
-  .page-contact__header .page-header {
+
+  .page-contact__header {
     grid-column: var(--grid-page);
   }
 
   @media screen and (min-width: 720px) {
-    .page-contact__header .page-header {
+    .page-contact__header {
       grid-row-start: 1;
       grid-row-end: 2;
     }
 
-    .page-contact__header .page-header__text {
+    .page-contact__header-wrapper .page-contact__header .page-header__text {
       grid-column-start: var(--grid-content-start);
       grid-column-end: 21;
     }
   }
 
   @media screen and (min-width: 1100px) {
-    .page-contact__header .page-header__text {
+    .page-contact__header-wrapper .page-contact__header .page-header__text {
       grid-column-start: 3;
     }
   }
@@ -163,7 +164,7 @@
     position: relative;
     z-index: var(--z-index-high);
   }
-  
+
   .page-contact__contact-link::before {
     content: '';
     z-index: var(--z-index-low);
@@ -190,7 +191,7 @@
     background-color: var(--white);
     position: relative;
   }
-  
+
   .page-contact__backdrop::after {
     content: '';
     position: absolute;
@@ -227,13 +228,13 @@
       grid-column-start: 2;
       grid-column-end: 19;
     }
-    
+
     .page-contact__form-body {
       flex-direction: row;
       justify-content: space-between;
       padding: var(--spacing-larger) var(--spacing-large);
     }
-    
+
     .page-contact__form-header {
       width: 40%;
     }
@@ -284,7 +285,7 @@
     margin-top: var(--spacing-medium);
     margin-bottom: var(--spacing-medium);
   }
-  
+
   .page-contact__visit {
     grid-column: var(--grid-page);
     background-image: var(--page-contact-white-overlap);
@@ -328,7 +329,7 @@
   .page-contact__location {
     margin-bottom: var(--spacing-large);
   }
-  
+
   @media screen and (min-width: 720px) {
     .page-contact__location {
       margin-bottom: 0;
