@@ -1,8 +1,5 @@
 <template>
-  <main
-    id="content"
-    tabindex="-1"
-  >
+  <main>
     <div
       class="page-event-detail grid"
       lang="en"

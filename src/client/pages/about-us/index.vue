@@ -1,9 +1,5 @@
 <template>
-  <main
-    id="content"
-    class="page-about-us grid"
-    tabindex="-1"
-  >
+  <main class="page-about-us grid">
     <page-header
       class="page-about-us__header"
       heading="byline"
@@ -28,7 +24,6 @@
             class="page-about-us__jobs-list-item"
             :is-nested="true"
             :title="item.title"
-            :description="item.description"
             :image="item.jobImage"
             :slug="item.slug"
           />
@@ -85,7 +80,6 @@
 </script>
 
 <style>
-
   :root {
     --job-excerpt-easing: .25s cubic-bezier(.5, 0, .25, 1);
   }

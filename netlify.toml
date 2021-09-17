@@ -8,6 +8,7 @@
     NPM_CONFIG_PRODUCTION = "false"
     NPM_CONFIG_OPTIONAL = "false"
     NPM_FLAGS = "--ignore-scripts"
+    DEFAULT_LOCALE = "nl"
   [build.processing]
     skip_processing = true
 

@@ -1,0 +1,89 @@
+query ($locale: SiteLocale) {
+  page: workat(locale: $locale) {
+    ...workat
+  }
+  alternate: workat(locale: $locale) {
+    slug
+  }
+}
+
+fragment workat on WorkatRecord {
+  title
+  subtitle
+  headerIllustration {
+    url
+    format
+    alt
+  }
+  slug
+  social {
+    title
+    description
+    image {
+      url
+    }
+  }
+  introTitle
+  introBody(markdown: true)
+  introImage {
+    url
+    alt
+    width
+    height
+    format
+  }
+  interstitialCta {
+    title
+    callUsTitle
+    callUsNumber
+    mailUsTitle
+    mailUsAddress
+  }
+  middleTitle
+  middleBody(markdown: true)
+  middleImage {
+    url
+    alt
+    width
+    height
+    format
+  }
+  uspsTitle
+  usps {
+    title
+    body(markdown: true)
+    image {
+      url
+      alt
+      width
+      height
+      format
+    }
+  }
+  uspsAfter(markdown: true)
+  jobsTitle
+  jobsBody(markdown: true)
+  jobs {
+    title
+    job {
+      slug
+    }
+  }
+  jobsAfter(markdown: true)
+  teamGridTitle
+  teamGrid {
+    id
+    title
+    description
+    image {
+      url
+      alt
+      width
+      height
+      format
+    }
+    isFullWidth
+    isHighlighted
+  }
+  stayInTouch(markdown: true)
+}

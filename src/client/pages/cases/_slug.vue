@@ -1,160 +1,154 @@
 <template>
-  <div>
-    <main
-      id="content"
-      class="page-case grid"
-      tabindex="-1"
-    >
-      <page-header
-        heading="headline"
-        byline="Case study"
-        :headline="page.title"
-        :image="page.heroIllustration"
-        break-out-image
-        is-animated
-        :animation-delay="page.title.length * typeDurationLetter"
-      />
+  <main class="page-case grid">
+    <page-header
+      heading="headline"
+      byline="Case study"
+      :headline="page.title"
+      :image="page.heroIllustration"
+      break-out-image
+      is-animated
+      :animation-delay="page.title.length * typeDurationLetter"
+    />
 
-      <case-meta
-        class="page-case__case-meta"
-        :expertise-title="page.metaData.expertisesTitle"
-        :expertises="page.metaData.expertises"
-        :technologies-title="page.metaData.technologiesTitle"
-        :technologies="page.metaData.technologies"
-        :deliverable-title="page.metaData.deliverableTitle"
-        :deliverables="page.metaData.deliverables"
-        :interested-title="page.metaData.interestedTitle"
-        :interested-link-label="page.metaData.interestedLinkLabel"
-        :interested-link-url="page.metaData.interestedLinkUrl"
-      />
+    <case-meta
+      class="page-case__case-meta"
+      :expertise-title="page.metaData.expertisesTitle"
+      :expertises="page.metaData.expertises"
+      :technologies-title="page.metaData.technologiesTitle"
+      :technologies="page.metaData.technologies"
+      :deliverable-title="page.metaData.deliverableTitle"
+      :deliverables="page.metaData.deliverables"
+      :interested-title="page.metaData.interestedTitle"
+      :interested-link-label="page.metaData.interestedLinkLabel"
+      :interested-link-url="page.metaData.interestedLinkUrl"
+    />
 
-      <div class="page-case__case-teaser">
-        <h2 class="h2">
-          {{ page.caseTeaser.title }}
-        </h2>
-      </div>
+    <div class="page-case__case-teaser">
+      <h2 class="h2">
+        {{ page.caseTeaser.title }}
+      </h2>
+    </div>
 
-      <article class="page-case__content">
-        <template v-for="item in page.content">
-          <div
-            :id="item.id"
-            v-if="item.__typename === 'TextSectionRecord'"
-            :key="item.id"
-            class="page-case__text">
-            <h3
-              class="page-case__title h3"
-              v-if="item.title"
-            >
-              {{ item.title }}
-            </h3>
-            <rich-text-block
-              v-if="item.body"
-              :text="item.body"
-              large-text
-            />
-          </div>
-
-          <div
-            v-if="item.__typename === 'CallToActionRecord'"
-            :key="item.id"
-            :id="item.id"
-            class="page-case__text"
+    <article class="page-case__content">
+      <template v-for="item in page.content">
+        <div
+          :id="item.id"
+          v-if="item.__typename === 'TextSectionRecord'"
+          :key="item.id"
+          class="page-case__text">
+          <h3
+            class="page-case__title h3"
+            v-if="item.title"
           >
-            <blockquote-block
-              :title="item.title"
-              :body="item.body"
-              :link-label="item.linkLabel"
-              :link-url="item.linkUrl"
-            />
-          </div>
-
-          <full-width-image
-            :id="item.id"
-            v-if="item.__typename === 'ImageRecord' && isFullWidth(item)"
-            :key="item.id"
-            :image="item.image"
+            {{ item.title }}
+          </h3>
+          <rich-text-block
+            v-if="item.body"
+            :text="item.body"
+            large-text
           />
+        </div>
 
-          <responsive-image
-            :id="item.id"
-            v-if="item.__typename === 'ImageRecord' && !isFullWidth(item)"
-            :key="item.id"
-            :image="item.image"
-            :caption="item.caption"
+        <div
+          v-if="item.__typename === 'CallToActionRecord'"
+          :key="item.id"
+          :id="item.id"
+          class="page-case__text"
+        >
+          <blockquote-block
+            :title="item.title"
+            :body="item.body"
+            :link-label="item.linkLabel"
+            :link-url="item.linkUrl"
           />
+        </div>
 
-          <image-with-description
-            :id="item.id"
-            v-if="item.__typename === 'ImageWithTextRecord'"
-            :key="item.id"
-            :image="item.imageWithDescription.image"
-            :inverse="item.imageWithDescription.inverse"
-            :description="item.imageWithDescription.description"
-          />
+        <full-width-image
+          :id="item.id"
+          v-if="item.__typename === 'ImageRecord' && isFullWidth(item)"
+          :key="item.id"
+          :image="item.image"
+        />
 
-          <storytelling-section
-            :id="item.id"
-            v-if="item.__typename === 'StorytellingBlockRecord'"
-            :key="item.id"
-            :items="item.storyItem.items"
-            :title="item.storyItem.title"
-          />
+        <responsive-image
+          :id="item.id"
+          v-if="item.__typename === 'ImageRecord' && !isFullWidth(item)"
+          :key="item.id"
+          :image="item.image"
+          :caption="item.caption"
+        />
 
-          <testimonial-block
-            :id="item.id"
-            v-if="item.__typename === 'TestimonialBlockRecord'"
-            :key="item.id"
-            :testimonial="item.testimonial"
-            class="page-case__text"
-          />
+        <image-with-description
+          :id="item.id"
+          v-if="item.__typename === 'ImageWithTextRecord'"
+          :key="item.id"
+          :image="item.imageWithDescription.image"
+          :inverse="item.imageWithDescription.inverse"
+          :description="item.imageWithDescription.description"
+        />
 
-          <quote-block
-            :id="item.id"
-            v-if="item.quote"
-            :key="item.id"
-            :quote="item.quote"
-            :cite="item.author"
-            class="page-case__text page-case__quote"
-          />
+        <storytelling-section
+          :id="item.id"
+          v-if="item.__typename === 'StorytellingBlockRecord'"
+          :key="item.id"
+          :items="item.storyItem.items"
+          :title="item.storyItem.title"
+        />
 
-          <responsive-video
-            :id="item.id"
-            v-if="item.__typename === 'ResponsiveVideoRecord'"
-            :key="item.id"
-            :video="item.video"
-            :gif="item.gif"
-            :autoplay="item.autoplay"
-            :loop="item.loop"
-            :mute="item.autoplay"
-          />
-        </template>
+        <testimonial-block
+          :id="item.id"
+          v-if="item.__typename === 'TestimonialBlockRecord'"
+          :key="item.id"
+          :testimonial="item.testimonial"
+          class="page-case__text"
+        />
 
         <quote-block
-          v-if="page.quote"
-          :quote="page.quote"
-          :cite="page.author"
+          :id="item.id"
+          v-if="item.quote"
+          :key="item.id"
+          :quote="item.quote"
+          :cite="item.author"
+          class="page-case__text page-case__quote"
         />
-      </article>
 
-      <breadcrumbs-block
-        :back-link="localeUrl('cases')"
-        :back-link-label="$t('all_cases')"
-        :next-link="localeUrl({ name: 'cases-slug', params: { slug: nextCase.slug } })"
-        :next-link-label="nextCase.title"
+        <responsive-video
+          :id="item.id"
+          v-if="item.__typename === 'ResponsiveVideoRecord'"
+          :key="item.id"
+          :video="item.video"
+          :gif="item.gif"
+          :autoplay="item.autoplay"
+          :loop="item.loop"
+          :mute="item.autoplay"
+        />
+      </template>
+
+      <quote-block
+        v-if="page.quote"
+        :quote="page.quote"
+        :cite="page.author"
       />
+    </article>
 
-      <section class="page-cases__pivots grid">
-        <pivot-list
-          v-if="page.pivots && page.pivots.length"
-          :pivots="page.pivots"
-          :can-have-border-top="false"
-        />
-        <div class="page-cases__scroll-to">
-          <scroll-to direction="up" />
-        </div>
-      </section>
-    </main>
-  </div>
+    <breadcrumbs-block
+      :back-link="localeUrl('cases')"
+      :back-link-label="$t('all_cases')"
+      :next-link="localeUrl({ name: 'cases-slug', params: { slug: nextCase.slug } })"
+      :next-link-label="nextCase.title"
+    />
+
+    <section class="page-cases__pivots grid">
+      <pivot-list
+        v-if="page.pivots && page.pivots.length"
+        :pivots="page.pivots"
+        :can-have-border-top="false"
+      />
+      <div class="page-cases__scroll-to">
+        <scroll-to direction="up" />
+      </div>
+    </section>
+  </main>
 </template>
 
 <script>

@@ -1,0 +1,21 @@
+name: "Report Netlify Analytics data to Webstats"
+
+on:
+  schedule:
+  - cron: "5 6 * * *"
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@v2
+
+    - name: Webstats Netlify reporter
+      id: webstats-netlify-reporter
+      uses: voorhoede/webstats-netlify-reporter@master
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_ID: ${{ secrets.NETLIFY_ID }}
+        WEBSTATS_API_KEY: ${{ secrets.WEBSTATS_API_KEY }}
+        WEBSTATS_PROJECT_ID: ${{ secrets.WEBSTATS_PROJECT_ID }}

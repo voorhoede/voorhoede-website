@@ -1,9 +1,5 @@
 <template>
-  <main
-    id="content"
-    class="page-jobs"
-    tabindex="-1"
-  >
+  <main class="page-jobs">
     <page-header
       heading="byline"
       :byline="page.title"
@@ -17,7 +13,6 @@
           :key="item.slug">
           <jobs-excerpt
             :title="item.title"
-            :description="item.description"
             :label="item.callToActionLabel"
             :image="item.jobImage"
             :slug="item.slug"

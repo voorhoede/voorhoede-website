@@ -1,69 +1,62 @@
 <template>
-  <div>
-    <main
-      id="content"
-      class="page-services grid"
-      tabindex="-1"
-    >
-      <page-header
-        heading="byline"
-        :byline="page.title"
-        :headline="page.subtitle" />
+  <main class="page-services grid">
+    <page-header
+      heading="byline"
+      :byline="page.title"
+      :headline="page.subtitle" />
 
-      <image-with-text-block
-        v-if="page.introTitle && page.introBody && page.introImage"
-        :title="page.introTitle"
-        :body="page.introBody"
-        :image="page.introImage"
-        :inverse="true"
-        class="page-services__intro"
-      />
+    <image-with-text-block
+      v-if="page.introTitle && page.introBody && page.introImage"
+      :title="page.introTitle"
+      :body="page.introBody"
+      :image="page.introImage"
+      :inverse="true"
+      class="page-services__intro"
+    />
 
-      <div v-if="page.contactBody" class="page-services__contact">
-        <p class="pullquote">{{ page.contactBody }}</p>
-        <AppButton
-          :aria-label="$t('get_in_touch')"
-          :label="$t('get_in_touch')"
-          :to="localeUrl('contact')"
-        />
-      </div>
+    <interstitial-cta
+      v-if="page.contactBody"
+      :cta="page.contactBody"
+      :buttons="[
+        { label: $t('get_in_touch'), to: localeUrl('contact') },
+      ]"
+    />
 
-      <div class="page-services__services-list">
-        <h2 v-if="page.servicesTitle" class="h2">{{ page.servicesTitle }}</h2>
-        <ul>
-          <li
-            v-for="(service, index) in page.services"
-            :key="service.ctaLink">
-            <service-excerpt
-              :title="service.excerptTitle"
-              :slug="service.slug"
-              :image="service.cardImage"
-              :body="service.cardBody"
-              :body-long="service.cardBodyLong"
-              :is-flipped="index % 2 !== 0"
-            />
-            <services-shortlinks
-              class="page-services__shortlinks"
-              :class="{'page-services__shortlinks--indented': index % 2 == 0}"
-              :services="childServices(service.slug)"
-            />
-          </li>
-        </ul>
-      </div>
+    <div class="page-services__services-list">
+      <h2 v-if="page.servicesTitle" class="h2">{{ page.servicesTitle }}</h2>
+      <ul>
+        <li
+          v-for="(service, index) in page.services"
+          :key="service.ctaLink">
+          <service-excerpt
+            :title="service.excerptTitle"
+            :slug="service.slug"
+            :image="service.cardImage"
+            :body="service.cardBody"
+            :body-long="service.cardBodyLong"
+            :is-flipped="index % 2 !== 0"
+          />
+          <services-shortlinks
+            class="page-services__shortlinks"
+            :class="{'page-services__shortlinks--indented': index % 2 == 0}"
+            :services="childServices(service.slug)"
+          />
+        </li>
+      </ul>
+    </div>
 
-      <rich-text-block
-        v-if="page.smallServices"
-        class="page-services__text"
-        :text="page.smallServices" />
+    <rich-text-block
+      v-if="page.smallServices"
+      class="page-services__text"
+      :text="page.smallServices" />
 
-      <pivot-list
-        class="page-services__pivots"
-        v-if="page.pivots && page.pivots.length"
-        :pivots="page.pivots"
-        :can-have-border-top="false"
-      />
-    </main>
-  </div>
+    <pivot-list
+      class="page-services__pivots"
+      v-if="page.pivots && page.pivots.length"
+      :pivots="page.pivots"
+      :can-have-border-top="false"
+    />
+  </main>
 </template>
 
 <script>
@@ -102,17 +95,6 @@
     grid-column: var(--grid-page);
   }
 
-  .page-services__contact {
-    grid-column: var(--grid-content);
-    padding-right: var(--spacing-medium);
-    padding-left: var(--spacing-medium);
-    text-align: center;
-  }
-
-  .page-services__contact > * + * {
-    margin-top: var(--spacing-small);
-  }
-
   .page-services__pivots .newsletter-form {
     background-color: var(--bg-pastel);
   }
@@ -123,7 +105,7 @@
     margin-bottom: var(--spacing-larger);
   }
 
-  .page-services__services-list > h3 {
+  .page-services__services-list > h2 {
     margin-bottom: var(--spacing-small);
     text-align: center;
   }
@@ -148,15 +130,6 @@
   @media (min-width: 720px) {
     .page-services__intro {
       grid-column: var(--grid-content);
-    }
-
-    .page-services__contact {
-      padding-left: var(--spacing-larger);
-      text-align: left;
-    }
-
-    .page-services__contact > p {
-      max-width: 500px;
     }
 
     .page-services__text {

@@ -14,7 +14,6 @@
     <div class="job-excerpt__text">
       <h3 v-if="isNested" class="job-excerpt__text-title h4">{{ title }}</h3>
       <h2 v-else class="job-excerpt__text-title h4">{{ title }}</h2>
-      <p class="job-excerpt__text-description body-petite">{{ description }}</p>
     </div>
 
     <app-button
@@ -36,10 +35,6 @@
         default: false,
       },
       title: {
-        type: String,
-        required: true,
-      },
-      description: {
         type: String,
         required: true,
       },
@@ -101,10 +96,6 @@
     text-align: center;
   }
 
-  .job-excerpt__text-description {
-    margin: var(--spacing-smaller) 0;
-  }
-
   .job-excerpt__button {
     grid-row: 2;
     min-width: auto;
@@ -157,11 +148,6 @@
       grid-column: 2;
       align-self: center;
       text-align: left;
-    }
-
-    .job-excerpt__text-description {
-      display: block;
-      margin-top: var(--spacing-tiny);
     }
   }
 

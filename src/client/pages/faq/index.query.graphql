@@ -15,8 +15,10 @@ fragment page on FaqRecord {
   social {
     title
     description
+    image {
+      url
+    }
   }
-  keywords
   items {
     title
     body

@@ -1,8 +1,6 @@
 <template>
   <main
-    id="content"
     class="page-blog-post grid"
-    tabindex="-1"
     lang="en"
   >
     <page-header

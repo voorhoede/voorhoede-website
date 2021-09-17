@@ -22,7 +22,6 @@ export default function () {
     title: pageTitle,
     meta: [
       { name: 'description', content: page.social.description },
-      { name: 'keywords', content: page.keywords },
       { property: 'og:url', content: `${baseUrl}${this.$route.path}` },
       { property: 'og:type', content: 'website' },
       { property: 'og:title', content: pageTitle },
