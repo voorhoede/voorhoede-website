@@ -1,28 +1,29 @@
 <template>
   <article class="event-card">
-    <nuxt-link
-      :to="localeUrl({ name: 'events-slug', params: { slug } })"
-      class="event-card__link"
-      :class="{ 'event-card__link--alt': isMeetup }">
-      <header class="event-card__header">
-        <div v-if="illustration" class="event-card__illustration">
-          <responsive-image :image="illustration"/>
-        </div>
-        <calendar-icon
-          :date="dateString"
-          :fill="(isMeetup) ? 'yellow' : 'blue'"
-        />
-      </header>
-      <div class="event-card__body">
-        <div class="event-card__type body-detail" :class="{ 'event-card__type--alt': isMeetup }">{{ label }}</div>
-        <h2 class="event-card__title h4">{{ title }}</h2>
-        <rich-text-block
-          v-if="description"
-          :key="description"
-          :text="description"
-        />
+    <header class="event-card__header">
+      <div v-if="illustration" class="event-card__illustration">
+        <responsive-image :image="illustration"/>
       </div>
-    </nuxt-link>
+      <calendar-icon
+        :date="dateString"
+        :fill="(isMeetup) ? 'yellow' : 'blue'"
+      />
+    </header>
+    <div class="event-card__body">
+      <div class="event-card__type body-detail" :class="{ 'event-card__type--alt': isMeetup }">{{ label }}</div>
+      <nuxt-link
+        :to="localeUrl({ name: 'events-slug', params: { slug } })"
+        class="event-card__link"
+        :class="{ 'event-card__link--alt': isMeetup }"
+      >
+        <h2 class="event-card__title h4">{{ title }}</h2>
+      </nuxt-link>
+      <rich-text-block
+        v-if="description"
+        :key="description"
+        :text="description"
+      />
+    </div>
   </article>
 </template>
 
@@ -75,10 +76,12 @@
 
 <style>
   .event-card {
+    position: relative;
     width: 100%;
     padding-bottom: var(--spacing-small);
     margin-bottom: var(--spacing-large);
     border-bottom: 1px solid var(--very-dim);
+    overflow: hidden;
   }
 
   .event-card__link {
@@ -87,13 +90,23 @@
     overflow: hidden;
   }
 
-  .event-card__link:hover,
-  .event-card__link:focus {
+  .event-card__link::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  .event-card__link:hover::before,
+  .event-card__link:focus::before {
     outline: var(--spacing-tiny) solid var(--html-blue);
   }
 
-  .event-card__link--alt:hover,
-  .event-card__link--alt:focus {
+  .event-card__link--alt:hover::before,
+  .event-card__link--alt:focus::before {
     outline: var(--spacing-tiny) solid var(--brand-yellow);
   }
 
@@ -133,6 +146,7 @@
   }
 
   .event-card__type {
+    position: relative;
     display: inline-block;
     margin-left: var(--spacing-small);
     margin-bottom: var(--spacing-small);
@@ -149,7 +163,6 @@
   }
 
   .event-card__body {
-    position: relative;
     margin-top: calc(var(--spacing-small) * -1);
   }
 

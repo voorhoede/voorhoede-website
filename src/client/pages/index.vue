@@ -1,9 +1,5 @@
 <template>
-  <main
-    id="content"
-    class="page-index"
-    tabindex="-1"
-  >
+  <main class="page-index">
     <div class="page-index__header">
       <page-header
         fill-screen
@@ -34,10 +30,10 @@
       <h2 class="page-index__section-title page-index__section-title--cases h1">{{ page.casesTitle }}</h2>
       <horizontal-carousel>
         <template slot="slides">
-          <case-excerpt
+          <link-card
             v-for="caseExcerpt in page.cases"
             :key="caseExcerpt.slug"
-            :slug="caseExcerpt.slug"
+            :internal-link="localeUrl({ name: 'cases-slug', params: { slug: caseExcerpt.slug } })"
             :image="caseExcerpt.caseTeaser.image"
             :title="caseExcerpt.title"
             :body="caseExcerpt.subtitle"
@@ -320,7 +316,7 @@
   }
 
   @media (min-width: 720px) and (max-width: 1100px) {
-    .page-index__cases .case-excerpt__title {
+    .page-index__cases .link-card__title {
       font-size: 1.15rem;
     }
   }

@@ -13,7 +13,6 @@ fragment page on BlogPostRecord {
       url
     }
   }
-  keywords
   title
   subtitle
   headerIllustration {

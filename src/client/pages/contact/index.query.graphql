@@ -21,14 +21,47 @@ fragment contact on ContactRecord {
   social {
     title
     description
+    image {
+      url
+    }
   }
-  keywords
   headerIllustration {
     url
     alt
+  }
+  contacts {
+    title
+    body
+    contactType
+    image {
+      url
+      alt
+      width
+      height
+      format
+    }
   }
   title
   emailLabel
   phoneLabel
   addressLabel
+  introTitle
+  introBody
+  locationBody
+  locationTitle
+  addresses {
+    ... on LocationRecord {
+      id
+      image {
+        width
+        url
+        height
+        alt
+        format
+      }
+      title
+      body
+      googleMaps
+    }
+  }
 }

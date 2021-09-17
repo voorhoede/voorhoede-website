@@ -19,7 +19,6 @@ fragment job on JobRecord {
       url
     }
   }
-  keywords
   jobImage {
     url
     format

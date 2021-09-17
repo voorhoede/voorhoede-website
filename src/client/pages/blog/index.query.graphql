@@ -5,7 +5,11 @@ query ($locale: SiteLocale) {
   items: allBlogPosts(locale: $locale, first: 100, orderBy: publishDate_DESC, filter: {published: {eq: true}}) {
     slug
     social {
+      title
       description
+      image {
+        url
+      }
     }
     title
     published
@@ -32,8 +36,10 @@ fragment blogPostOverview on BlogPostOverviewRecord {
   social {
     title
     description
+    image {
+      url
+    }
   }
-  keywords
   subtitle
   description
   headerIllustration {

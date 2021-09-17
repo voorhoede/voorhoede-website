@@ -14,8 +14,10 @@ fragment page on ServiceOverviewRecord {
   social {
     title
     description
+    image {
+      url
+    }
   }
-  keywords
   services {
     excerptTitle
     slug

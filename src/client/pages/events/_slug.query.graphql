@@ -10,8 +10,13 @@ fragment eventItem on EventItemRecord {
   social {
     title
     description
+    image {
+      url
+    }
   }
-  keywords
+  headerIllustration {
+    url
+  }
   date
   url
   callToActionLabel

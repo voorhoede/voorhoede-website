@@ -14,13 +14,14 @@ fragment eventOverview on EventOverviewRecord {
   social {
     title
     description
+    image {
+      url
+    }
   }
   headerIllustration {
     url
-    alt
   }
   introductionText
-  keywords
 }
 
 fragment event on EventItemRecord {

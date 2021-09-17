@@ -1,9 +1,5 @@
 <template>
-  <main
-    id="content"
-    class="page-job"
-    tabindex="-1"
-  >
+  <main class="page-job">
     <page-header
       heading="headline"
       :byline="page.subtitle"
