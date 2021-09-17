@@ -14,6 +14,9 @@ fragment eventItem on EventItemRecord {
       url
     }
   }
+  headerIllustration {
+    url
+  }
   date
   url
   callToActionLabel

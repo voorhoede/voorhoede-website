@@ -4,7 +4,7 @@
       heading="byline"
       :byline="page.title"
       :headline="page.subtitle"
-      :image="page.headerIllustration ? page.headerIllustration : fallbackIllustration"
+      :image="page.headerIllustration"
     />
 
     <div class="page-event__content grid" :class="{'page-event__content--upcoming-events': upcomingEvents}">
@@ -55,14 +55,6 @@
   import head from '~/lib/seo-head'
   export default {
     asyncData,
-    data() {
-      return {
-        fallbackIllustration: {
-          url: '/illustrations/event.svg',
-          format: 'svg'
-        }
-      }
-    },
     computed: {
       upcomingEvents() {
         const items = this.items
