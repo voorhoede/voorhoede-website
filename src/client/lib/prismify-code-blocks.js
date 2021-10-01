@@ -7,6 +7,7 @@ const Prism = require('prismjs')
  * The required languages here will also be highlighted in development.
  */
 require('prismjs/components/prism-bash')
+require('prismjs/components/prism-graphql')
 require('prismjs/components/prism-wasm')
 
 module.exports = function prismifyCodeBlocks(items) {
