@@ -1,7 +1,17 @@
 <template>
-  <label class="input-field">
-    <span class="input-field__label" :class="{ 'field-is-invalid': isInvalid }">
-      {{ !isInvalid ? label : validationErrorMessage }}
+  <div class="input-field">
+    <label
+      :for="id"
+      class="input-field__label"
+    >
+      {{ label }}
+    </label>
+    <span
+      v-if="isInvalid"
+      role="alert"
+      class="input-field__error"
+    >
+      {{ validationErrorMessage }}
     </span>
     <textarea
       v-if="textarea"
@@ -15,6 +25,7 @@
       v-bind="$attrs"
       rows="5"
       ref="input"
+      :aria-invalid="isInvalid"
       @input="updateInput"
     />
     <input
@@ -28,9 +39,10 @@
       :class="{ 'is-invalid': isInvalid }"
       v-bind="$attrs"
       ref="input"
+      :aria-invalid="isInvalid"
       @input="updateInput"
     >
-  </label>
+  </div>
 </template>
 
 <script>
@@ -62,6 +74,10 @@
         type: String,
         required: true
       },
+      resetValidation: {
+        type: Boolean,
+        default: false
+      },
       validate: {
         type: Boolean,
         required: false,
@@ -90,23 +106,26 @@
     watch: {
       value() {
         this.$nextTick(() => {
-          this.valid = this.$refs.input.checkValidity()
+          this.checkValidity()
         })
       },
+      resetValidation() {
+        this.valid = true
+        this.$nextTick(() => {
+          this.checkValidity()
+        })
+      }
     },
     mounted() {
-      this.valid = this.$refs.input.checkValidity()
+      this.checkValidity()
     },
     methods: {
       updateInput(e) {
         this.$emit('input', e.target.value)
       },
+      checkValidity() {
+        this.valid = this.$refs.input.checkValidity()
+      }
     },
   }
 </script>
-
-<style>
-  .input-field__label.field-is-invalid {
-    color: var(--soft-red);
-  }
-</style>

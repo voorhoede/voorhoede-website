@@ -28,6 +28,10 @@
         type="text"
         :label="$t('my_first_name_is')"
         :placeholder-label="$t('your_first_name')"
+        required
+        :validate="formIsValidated"
+        :reset-validation="resetValidation"
+        :validation-error-message="$t('name_is_required')"
         class="newsletter-form__input-field body"
 
       />
@@ -39,6 +43,7 @@
         :placeholder-label="$t('email_address')"
         required
         :validate="formIsValidated"
+        :reset-validation="resetValidation"
         :validation-error-message="emailValidationErrorMessage"
         class="newsletter-form__input-field body"
       />
@@ -50,7 +55,8 @@
         :label="$t('newsletter_permission')"
         required
         :validate="formIsValidated"
-        :validation-error-message="$t('newsletter_permission')"
+        :reset-validation="resetValidation"
+        :validation-error-message="$t('newsletter_consent_is_required')"
         class="newsletter-form__input-checkbox body-petite"
       />
       <app-button
@@ -86,6 +92,7 @@
           gdprConsent: 'gdpr[38537]',
         },
         formIsValidated: false,
+        resetValidation: false,
         useCustomValidation: false,
       }
     },
@@ -106,6 +113,10 @@
         this.formIsValidated = true
         if (!event.target.checkValidity()) {
           event.preventDefault()
+          this.resetValidation = true
+          this.$nextTick(() => {
+            this.resetValidation = false
+          })
           return false
         }
       },
@@ -159,7 +170,7 @@
     .input-field.newsletter-form__input-field + .input-field.newsletter-form__input-field,
     .input-field.newsletter-form__input-field {
       order: 1;
-      flex: 1 1 auto;
+      flex: 1 1 33%;
       margin-top: 0;
       margin-right: var(--spacing-medium);
       margin-bottom: var(--spacing-medium);

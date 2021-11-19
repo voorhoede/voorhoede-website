@@ -4,6 +4,7 @@
       type="checkbox"
       :id="id"
       :name="name"
+      :aria-invalid="isInvalid"
       ref="input"
       v-bind="$attrs"
       @input="updateInput"
@@ -12,10 +13,16 @@
     <label
       :for="id"
       class="input-checkbox__label"
-      :class="{ 'field-is-invalid': isInvalid }"
     >
-      {{ isInvalid ? validationErrorMessage : label }}
+      {{ label }}
     </label>
+    <span
+      v-if="isInvalid"
+      role="alert"
+      class="input-checkbox__error"
+    >
+      {{ validationErrorMessage }}
+    </span>
   </div>
 </template>
 
@@ -38,6 +45,10 @@
       name: {
         type: String,
         required: true
+      },
+      resetValidation: {
+        type: Boolean,
+        default: false
       },
       validate: {
         type: Boolean,
@@ -65,17 +76,26 @@
     watch: {
       checked() {
         this.$nextTick(() => {
-          this.valid = this.$refs.input.checkValidity()
+          this.checkValidity()
         })
       },
+      resetValidation() {
+        this.valid = true
+        this.$nextTick(() => {
+          this.checkValidity()
+        })
+      }
     },
     mounted() {
-      this.valid = this.$refs.input.checkValidity()
+      this.checkValidity()
     },
     methods: {
       updateInput(e) {
         this.$emit('change', e.target.checked)
       },
+      checkValidity() {
+        this.valid = this.$refs.input.checkValidity()
+      }
     },
   }
 </script>
@@ -83,6 +103,7 @@
 <style>
   .input-checkbox {
     display: flex;
+    flex-wrap: wrap;
   }
 
   .input-checkbox__input {
@@ -131,7 +152,11 @@
     background-size: 10px;
   }
 
-  .field-is-invalid {
+  .input-checkbox__error {
+    flex: 0 0 100%;
+    order: 3;
+    margin-top: var(--spacing-tiny);
+    margin-left: 25px;
     color: var(--soft-red);
   }
 </style>
