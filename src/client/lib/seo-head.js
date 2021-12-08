@@ -37,5 +37,6 @@ export default function () {
       { name: 'twitter:description', content: socialDescription },
       { name: 'twitter:image', content: page.social.image ? page.social.image.url : defaultShareImg },
     ],
+    ...page.customHead,
   }
 }
