@@ -85,12 +85,6 @@ module.exports = {
   */
   loading: { color: '#070de9' },
 
-  router: {
-    middleware: [
-      'meta-canonical',
-    ],
-  },
-
   plugins: [
     { src: '~/plugins/axe.js', mode: 'client' },
     { src: '~/plugins/fetch-polyfill', mode: 'client' },
