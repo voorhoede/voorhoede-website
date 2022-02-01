@@ -199,7 +199,7 @@
     }
 
     .contact-page-form__input-field {
-      flex-direction: column;
+      display: block !important;
       margin: var(--spacing-large) 0;
     }
   }
