@@ -182,7 +182,6 @@
     margin-bottom: var(--spacing-small);
   }
 
-
   @media (min-width: 520px) {
     .contact-page-form__contact-person .responsive-image {
       margin-left: 0;
