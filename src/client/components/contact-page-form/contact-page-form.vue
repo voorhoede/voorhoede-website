@@ -182,6 +182,7 @@
     margin-bottom: var(--spacing-small);
   }
 
+
   @media (min-width: 520px) {
     .contact-page-form__contact-person .responsive-image {
       margin-left: 0;
@@ -198,8 +199,8 @@
       width: calc(50% - var(--spacing-medium));
     }
 
-    .contact-page-form__input-field {
-      display: block !important;
+    .contact-page-form__form .contact-page-form__input-field {
+      display: block;
       margin: var(--spacing-large) 0;
     }
   }
