@@ -198,8 +198,8 @@
       width: calc(50% - var(--spacing-medium));
     }
 
-    .contact-page-form__input-field {
-      flex-direction: column;
+    .contact-page-form__form .contact-page-form__input-field {
+      display: block;
       margin: var(--spacing-large) 0;
     }
   }
