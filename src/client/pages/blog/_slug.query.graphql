@@ -51,6 +51,11 @@ fragment page on BlogPostRecord {
       language
       body
     }
+    ... on CodePenBlockRecord {
+      id
+      iframe
+      title
+    }
     ... on ImageRecord {
       id
       image {
