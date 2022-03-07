@@ -53,8 +53,9 @@ fragment page on BlogPostRecord {
     }
     ... on CodePenBlockRecord {
       id
-      iframe
+      url
       title
+      caption
     }
     ... on ImageRecord {
       id

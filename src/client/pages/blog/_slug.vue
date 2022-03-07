@@ -40,12 +40,13 @@
             :link-url="item.linkUrl"
           />
         </div>
-        
+
         <code-pen-block
           :id="item.id"
           class="page-blog-post-list--full-width"
-          v-if="item.__typename === 'CodePenBlockRecord' && item.iframe"
-          :iframe="item.iframe"
+          v-if="item.__typename === 'CodePenBlockRecord' && item.url"
+          :url="item.url"
+          :caption="item.caption"
           :title="item.title"
           :key="item.id"
         />

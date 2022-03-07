@@ -1,17 +1,64 @@
 <template>
-  <div class="code-pen-block" v-html="iframe" />
+  <figure>
+    <iframe
+      scrolling="no"
+      :title="title"
+      :src="iframeLink"
+      class="code-pen-block__i-frame"
+      frameborder="no"
+      loading="lazy"
+      allowtransparency="true"
+      allowfullscreen="true"
+    >
+    </iframe>
+    <figcaption class="code-pen-block__caption body-detail">
+      {{ caption }}
+    </figcaption>
+  </figure>
 </template>
 <script>
 export default {
   props: {
     title: {
       type: String,
-      required: true,
+      required: true
     },
-    iframe: {
+    caption: {
       type: String,
-      required: true,
+      required: false,
+      default: ''
     },
+    url: {
+      type: String,
+      required: true
+    }
   },
+  data() {
+    return {
+      isPlaying: this.autoplay,
+      width: null,
+      canvasWidth: null,
+      canvasHeight: null
+    }
+  },
+  computed: {
+    iframeLink() {
+      const replaceString = this.url.replace('/pen', '/embed/preview')
+      let url = `${replaceString}?default-tab=css%2Cresult`
+      return url
+    }
+  }
 }
 </script>
+
+<style>
+  .code-pen-block__i-frame {
+    width: 100%;
+    height: 25rem;
+  }
+
+  .code-pen-block__caption {
+    margin-top: var(--spacing-smaller);
+    text-align: center;
+  }
+</style>
