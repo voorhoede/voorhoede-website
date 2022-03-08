@@ -3,7 +3,7 @@
     <iframe
       scrolling="no"
       :title="title"
-      :src="iframeLink"
+      :src="iframeSrc"
       class="code-pen-block__i-frame"
       frameborder="no"
       loading="lazy"
@@ -33,19 +33,10 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      isPlaying: this.autoplay,
-      width: null,
-      canvasWidth: null,
-      canvasHeight: null
-    }
-  },
   computed: {
-    iframeLink() {
-      const replaceString = this.url.replace('/pen', '/embed/preview')
-      let url = `${replaceString}?default-tab=css%2Cresult`
-      return url
+    iframeSrc() {
+      const embedUrl = this.url.replace('/pen', '/embed/preview')
+      return `${embedUrl}?default-tab=css%2Cresult`
     }
   }
 }
