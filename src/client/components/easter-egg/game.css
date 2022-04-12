@@ -1,0 +1,145 @@
+.game {
+  --egg-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  --egg-width: clamp(20px, 10vmin, 100px);
+  --egg-height: clamp(30px, 14vmin, 150px);
+}
+
+.game button {
+  appearance: none;
+  border: 0;
+  box-shadow: 0;
+  cursor: pointer;
+}
+
+.game {
+  position: fixed;
+  z-index: var(--z-index-overlay);
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--brand-yellow);
+}
+
+.game--open {
+  height: 100%;
+}
+
+.game__fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================== intro */
+.game__intro {
+  position: relative;
+  text-align: center;
+}
+
+.game__intro > * + * {
+  margin-top: var(--spacing-small);
+}
+
+/* ============================== end screen */
+.game__end-screen {
+  position: relative;
+  text-align: center;
+}
+
+.game__end-screen .app-button {
+  margin-top: var(--spacing-small);
+}
+
+.game__end-screen .game-share {
+  margin-top: var(--spacing-large);
+}
+
+/* ============================== scores */
+.game__current-scores {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  padding: var(--spacing-smaller);
+}
+
+.game__current-scores dd:not(:first-child) {
+  margin-left: 0.3em;
+}
+
+.game__current-scores dt:not(:first-child) {
+  margin-left: 1em;
+}
+
+/* ============================== open button */
+.game__open-button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: var(--egg-width);
+  height: var(--egg-height);
+
+  border-radius: var(--egg-radius);
+  background-color: red;
+
+  transform: translateX(-55%) translateY(55%) rotate(30deg);
+  transition: transform 0.2s;
+}
+
+.game__open-button:hover {
+  transform: translateX(-20%) translateY(20%) rotate(25deg);
+}
+
+/* ============================== close button */
+.game__close-button {
+  z-index: 2;
+  position: absolute;
+  top: var(--spacing-smaller);
+  right: var(--spacing-smaller);
+  width: 40px;
+  height: 40px;
+
+  background-color: var(--html-blue);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 var(--html-blue);
+  transition: box-shadow 0.1s;
+}
+
+.game__close-button svg {
+  fill: var(--white);
+}
+
+.game__close-button:hover {
+  box-shadow: 0 0 0 2px var(--html-blue);
+}
+
+/* ============================== egg */
+.game__egg {
+  position: absolute;
+  top: 0;
+  left: calc( var(--x-offset) * 100vw );
+  width: var(--egg-width);
+  height: var(--egg-height);
+
+  border-radius: var(--egg-radius);
+  background-color: var(--theme);
+  overflow: hidden;
+  transform: translateY(-100%);
+}
+
+.game__egg button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}

@@ -1,0 +1,37 @@
+.game-share {
+  --game-share-duration: 0.2s;
+  --game-share-size: 30px;
+}
+
+.game-share .game-share__options {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, var(--game-share-size));
+  gap: var(--spacing-tiny);
+  justify-content: center;
+
+  list-style: none;
+}
+
+.game-share__option {
+  display: block;
+  width: var(--game-share-size);
+  height: var(--game-share-size);
+
+  text-decoration: none;
+  background: transparent;
+  /*color: clr(text);*/
+  transition: color 0.1s linear;
+  outline: none;
+}
+
+.game-share__option:hover {
+  /*color: $blue;*/
+}
+
+.game-share__option svg {
+  display: block;
+  width: var(--game-share-size);
+  height: var(--game-share-size);
+  fill: currentColor;
+}
