@@ -68,7 +68,10 @@
     </ul>
 
     <div v-if="step === 3" class="game__end-screen">
-      <h3 class="h1">{{ feedback }}</h3>
+      <h3 class="h1">
+        {{ currentScore }}<br/>
+        {{ feedback }}
+      </h3>
 
       <button
         @click="play"
