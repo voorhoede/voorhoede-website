@@ -3,8 +3,8 @@
   --stroke: 3;
 
   position: absolute;
-  top: calc(50% - var(--size) * 0.5);
-  left: calc(50% - var(--size) * 0.5);
+  top: calc(50% - var(--size) * .5);
+  left: calc(50% - var(--size) * .5);
   width: var(--size);
   height: var(--size);
 }
@@ -20,5 +20,5 @@
   fill: transparent;
   stroke: var(--white);
   stroke-width: var(--stroke);
-  opacity: 0.5;
+  opacity: .5;
 }
