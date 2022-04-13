@@ -5,9 +5,7 @@
 
 .game-share .game-share__options {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, var(--game-share-size));
-  gap: var(--spacing-tiny);
+  display: flex;
   justify-content: center;
 
   list-style: none;
@@ -17,16 +15,17 @@
   display: block;
   width: var(--game-share-size);
   height: var(--game-share-size);
+  margin-right: var(--spacing-tiny);
+  margin-left: var(--spacing-tiny);
 
   text-decoration: none;
   background: transparent;
-  /*color: clr(text);*/
   transition: color 0.1s linear;
   outline: none;
 }
 
 .game-share__option:hover {
-  /*color: $blue;*/
+  color: var(--html-blue);
 }
 
 .game-share__option svg {

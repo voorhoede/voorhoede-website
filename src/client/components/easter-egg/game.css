@@ -1,7 +1,9 @@
 .game {
   --egg-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  --egg-width: clamp(20px, 10vmin, 100px);
-  --egg-height: clamp(30px, 14vmin, 150px);
+  --egg-shadow: inset -10px -10px 10px rgba(0, 0, 0, 0.4);
+  --egg-width: clamp(40px, 10vmin, 100px);
+  --egg-height: clamp(60px, 15vmin, 150px);
+  --duration: .5s;
 }
 
 .game button {
@@ -17,19 +19,48 @@
   bottom: 0;
   left: 0;
   width: 100%;
+  height: 0%;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  background-color: var(--brand-yellow);
+  transition: height 0s var(--duration);
 }
 
 .game--open {
   height: 100%;
+  transition: height 0s 0s;
 }
 
+.game__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.game__background::before {
+  content:'';
+  position: absolute;
+  top: calc(100% - 50vmax);
+  left: calc(50% - 50vmax);
+  width: 100vmax;
+  height: 100vmax;
+  background-color: var(--brand-yellow);
+  transform: scale(0);
+  transition: transform var(--duration);
+  border-radius: 50%;
+}
+
+.game--open .game__background::before {
+  transform: scale(2.5);
+}
+
+/* ============================== layout */
 .game__fill {
   position: absolute;
   bottom: 0;
@@ -41,11 +72,32 @@
 /* ============================== intro */
 .game__intro {
   position: relative;
+  max-width: 800px;
   text-align: center;
+  padding: var(--spacing-medium);
 }
 
 .game__intro > * + * {
   margin-top: var(--spacing-small);
+}
+
+.step-animation-enter-active,
+.step-animation-leave-active {
+  transition:
+    transform calc(var(--duration) * 0.7),
+    opacity calc(var(--duration) * 0.5);
+}
+
+.step-animation-enter-to,
+.step-animation-leave {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.step-animation-enter,
+.step-animation-leave-to {
+  transform: translateY(10vh) scale(.9);
+  opacity: 0;
 }
 
 /* ============================== end screen */
@@ -81,21 +133,35 @@
 
 /* ============================== open button */
 .game__open-button {
+  --duration: 10s;
+
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: calc(var(--egg-height) * -1);
+  left: calc(50% - var(--egg-width) * 0.5);
   width: var(--egg-width);
   height: var(--egg-height);
 
   border-radius: var(--egg-radius);
-  background-color: red;
+  background-image: url('/images/game/game-07.jpg');
+  box-shadow: var(--egg-shadow);
+  background-size: cover;
+  animation: picaboo 10s infinite;
+  transform-origin: 50% 90%;
+}
 
-  transform: translateX(-55%) translateY(55%) rotate(30deg);
-  transition: transform 0.2s;
+@keyframes picaboo {
+  10% { transform: translateY(-60%) rotate(10deg) }
+  12% { transform: translateY(-60%) rotate(-10deg) }
+  14% { transform: translateY(-60%) rotate(10deg) }
+  16% { transform: translateY(-60%) rotate(-10deg) }
+  18%, 40% { transform: translateY(-60%) rotate(0) }
+  8%, 42% { transform: translateY(0) rotate(0) }
 }
 
 .game__open-button:hover {
+  /*
   transform: translateX(-20%) translateY(20%) rotate(25deg);
+  */
 }
 
 /* ============================== close button */
@@ -124,15 +190,10 @@
 /* ============================== egg */
 .game__egg {
   position: absolute;
-  top: 0;
-  left: calc( var(--x-offset) * 100vw );
+  top: calc( var(--egg-height) * -1);
+  left: 0;
   width: var(--egg-width);
   height: var(--egg-height);
-
-  border-radius: var(--egg-radius);
-  background-color: var(--theme);
-  overflow: hidden;
-  transform: translateY(-100%);
 }
 
 .game__egg button {
@@ -142,4 +203,6 @@
   width: 100%;
   height: 100%;
   background-size: cover;
+  border-radius: var(--egg-radius);
+  box-shadow: var(--egg-shadow);
 }

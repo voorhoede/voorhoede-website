@@ -1,12 +1,13 @@
 <template>
   <div class="game" :class="{'game--open': isOpen }">
+    <span class="game__background" />
     <button
       v-if="!isOpen"
       @click="open"
       class="game__open-button"
       type="button"
       aria-label="Play the eastern game"
-    />
+    ></button>
 
     <button
       v-if="isOpen"
@@ -18,33 +19,40 @@
       <app-icon name="close" alt="" />
     </button>
 
-    <div v-if="step === 1" class="game__intro">
-      <h3 class="sub-title">
-        This is how it works
-      </h3>
+    <transition name="step-animation">
+      <div v-if="step === 1" class="game__intro">
+        <h3 class="h1">
+          Awesome, you discovered our secret easter egg. Now let's hunt some more.
+        </h3>
+        <p class="body">
+          Collect as many eggs as possible by tapping on the eggs before they disappear.
+        </p>
 
-      <button
-        @click="play"
-        class="app-button app-button--small body-petite font-bold"
-        type="button"
-      >
-        <span>Play</span>
-      </button>
-    </div>
+        <button
+          @click="play"
+          class="app-button app-button--small body-petite font-bold"
+          type="button"
+        >
+          <span>Play</span>
+        </button>
+      </div>
+    </transition>
 
-    <div v-if="step === 2" class="game__fill">
-      <dl class="game__current-scores body-petite">
-        <dt>score</dt>
-        <dd>{{ currentScore }}</dd>
+    <transition name="step-animation">
+      <div v-if="step === 2" class="game__fill">
+        <dl class="game__current-scores body-petite">
+          <dt>score</dt>
+          <dd>{{ currentScore }}</dd>
 
-        <template v-if="highScore">
-          <dt>high score</dt>
-          <dd>{{ highScore }}</dd>
-        </template>
-      </dl>
+          <template v-if="highScore">
+            <dt>high score</dt>
+            <dd>{{ highScore }}</dd>
+          </template>
+        </dl>
 
-      <game-timer :progress="progress" />
-    </div>
+        <game-timer :progress="progress" />
+      </div>
+    </transition>
 
     <ul
       v-if="step === 2"
@@ -63,26 +71,28 @@
           type="button"
           aria-label="Click me"
           :style="{'background-image': `url(/images/game/${egg}.jpg)`}"
-        />
+        ></button>
       </li>
     </ul>
 
-    <div v-if="step === 3" class="game__end-screen">
-      <h3 class="h1">
-        {{ currentScore }}<br/>
-        {{ feedback }}
-      </h3>
+    <transition name="step-animation">
+      <div v-if="step === 3" class="game__end-screen">
+        <h3 class="h1">
+          {{ currentScore }}<br/>
+          {{ feedback }}
+        </h3>
 
-      <button
-        @click="play"
-        class="app-button app-button--small body-petite font-bold"
-        type="button"
-      >
-        <span>Play again</span>
-      </button>
+        <button
+          @click="play"
+          class="app-button app-button--small body-petite font-bold"
+          type="button"
+        >
+          <span>Play again</span>
+        </button>
 
-      <game-share :share-text="shareText" />
-    </div>
+        <game-share :share-text="shareText" />
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -102,7 +112,7 @@
     components: { GameTimer, GameShare },
 
     data: () => ({
-      eggs: ['game-01', 'game-02', 'game-03'],
+      eggs: ['game-01', 'game-02', 'game-03', 'game-04', 'game-05', 'game-06', 'game-07', 'game-08'],
       isOpen: false,
       step: 0,
       currentScore: 0,
@@ -117,15 +127,15 @@
 
      computed: {
        shareText() {
-         return `Check my score of ${this.currentScore}`
+         return `I went on an easter egg hunt @devoorhoede and collected ${this.currentScore}! Can you beat me? #easteregghunt #easteratdevoorhoede`
        },
 
        feedback() {
          return this.currentScore < 4
           ? feedbacks[0]
-          : this.currentScore < 10
+          : this.currentScore < 12
           ? feedbacks[1]
-          : this.currentScore < 20
+          : this.currentScore < 22
           ? feedbacks[2]
           : feedbacks[3]
        }
@@ -154,10 +164,10 @@
        play() {
          this.step = 2
          this.currentScore = 0
-         requestAnimationFrame(this.handleTiming)
 
          this.$nextTick(() => {
           this.animateEggs()
+          requestAnimationFrame(this.handleTiming)
         })
        },
 
@@ -203,20 +213,18 @@
 
        animateEggs() {
           [...this.$refs.eggs.children].forEach((egg, index) => {
-            egg.style.setProperty('--x-offset', Math.random())
+            const xPosition = Math.random() * 90
             this.tweens[index] = egg.animate({
               transform: [
-                `translateY(-100%) rotate(${Math.random() * -200}deg)`,
-                `translateY(105vh) rotate(${Math.random() * 360}deg)`
+                `translateX(${xPosition}vw) translateY(0) rotate(${Math.random() * -200}deg)`,
+                `translateX(${xPosition}vw) translateY(130vh) rotate(${Math.random() * 360}deg)`
               ]
             }, {
-              duration: 10000,
-              delay: Math.random() * 3000
+              duration: 8000 + Math.random() * 4000,
+              delay: Math.random() * 4000,
             })
 
             this.tweens[index].onfinish = () => {
-              egg.style.setProperty('--x-offset', Math.random())
-
               this.tweens[index].effect.updateTiming({
                 delay: Math.random() * 1000
               })
@@ -227,12 +235,19 @@
 
        score(index) {
          this.playbackRate += .2
-         this.updatePlaybackRate()
 
+        this.tweens[index].pause()
+        const tween = this.tweens[index].effect.target.animate({
+          transform: 'translate(0, 100vh) scale(.3) rotate(360deg)'
+        }, 300)
+
+        tween.onfinish = () => {
+          this.updatePlaybackRate()
          this.tweens[index].finish()
          this.tweens[index].cancel()
          this.tweens[index].play()
          this.currentScore++
+        }
        },
 
        updatePlaybackRate() {

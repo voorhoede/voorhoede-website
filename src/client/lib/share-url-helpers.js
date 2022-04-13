@@ -1,8 +1,7 @@
 function getTwitterUrl(url, shareText = '') {
   const parameters = new URLSearchParams({
     text: shareText,
-    url,
-    via: 'devoorhoede'
+    url
   })
 
   return `https://twitter.com/intent/tweet?${ parameters.toString() }`
