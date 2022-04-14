@@ -3,7 +3,9 @@
     <aside
       class="game-share"
     >
-      <h3 class="body-petite">Share your score</h3>
+      <h3 class="body-petite">
+        {{ translations.shareTitle[$i18n.locale] }}
+      </h3>
       <ul class="game-share__options">
         <li
           v-for="option in shareOptions"
@@ -37,7 +39,13 @@ export default {
 
   data () {
     return {
-      shareUrl: 'https://www.voorhoede.nl/'
+      shareUrl: 'https://www.voorhoede.nl/easter-egg/',
+      translations: {
+        shareTitle: {
+          en: 'Share your score',
+          nl: 'Deel jouw score'
+        }
+      }
     }
   },
 

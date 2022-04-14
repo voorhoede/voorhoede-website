@@ -6,7 +6,7 @@
       @click="open"
       class="game__open-button"
       type="button"
-      aria-label="Play the eastern game"
+      :aria-label="translations.open[$i18n.locale]"
     ></button>
 
     <button
@@ -14,7 +14,7 @@
       @click="close"
       class="game__close-button"
       type="button"
-      aria-label="Close"
+      :aria-label="translations.close[$i18n.locale]"
     >
       <app-icon name="close" alt="" />
     </button>
@@ -33,7 +33,7 @@
           class="app-button app-button--small body-petite font-bold"
           type="button"
         >
-          <span>Play</span>
+          <span>{{ translations.play[$i18n.locale] }}</span>
         </button>
       </div>
     </transition>
@@ -121,12 +121,34 @@
       startTime: undefined,
       duration: 20000,
       progress: 0,
-      highScore: undefined
+      highScore: undefined,
+      translations: {
+        shareText: {
+          en: 'I went on an easter egg hunt @devoorhoede and collected {{currentScore}}! Can you beat me? #easteregghunt #easteratdevoorhoede',
+          nl: 'Ik ging op paaseitjes jacht bij @devoorhoede en heb er {{currentScore}} verzameld! Kun jij t beter? #easteregghunt #easteratdevoorhoede'
+        },
+        open: {
+          en: 'Play the eastern game',
+          nl: 'Ga op paaseitjes jacht'
+        },
+        close: {
+          en: 'Close',
+          nl: 'Sluiten'
+        },
+        play: {
+          en: 'Play',
+          nl: 'Speel nu'
+        },
+        playAgain: {
+          en: 'Play again',
+          nl: 'Speel opnieuw'
+        }
+      }
      }),
 
      computed: {
        shareText() {
-         return `I went on an easter egg hunt @devoorhoede and collected ${this.currentScore}! Can you beat me? #easteregghunt #easteratdevoorhoede`
+         return this.translations.shareText[this.$i18n.locale].replace('{{currentScore}}', this.currentScore)
        },
 
        feedback() {
@@ -250,7 +272,9 @@
           })
 
           subTween.onfinish = () => {
-            subTween.cancel()
+            setTimeout(() => {
+              subTween.cancel()
+            }, 10)
             tween.finish()
             this.currentScore++
             button.disabled = false

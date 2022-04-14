@@ -133,12 +133,12 @@
 
   position: absolute;
   bottom: calc(var(--egg-height) * -1);
-  left: calc(33% - var(--egg-width) * .5);
+  left: calc(66% - var(--egg-width) * .5);
   width: var(--egg-width);
   height: var(--egg-height);
   border-radius: var(--egg-radius);
   background-image: url('/images/game/game-07.jpg');
-  box-shadow: var(--egg-shadow);
+  box-shadow: var(--egg-shadow), 10px 10px 30px rgba(0, 0, 0, .2);
   background-size: cover;
   animation: picaboo 10s infinite;
   transform-origin: 50% 90%;
