@@ -1,8 +1,8 @@
 .game {
   --egg-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   --egg-shadow: inset -10px -10px 10px rgba(0, 0, 0, .4);
-  --egg-width: clamp(70px, 10vmin, 100px);
-  --egg-height: clamp(105px, 15vmin, 150px);
+  --egg-width: clamp(50px, 10vmin, 100px);
+  --egg-height: clamp(75px, 15vmin, 150px);
   --duration: .5s;
 
   position: fixed;
