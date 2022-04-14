@@ -65,7 +65,7 @@
         ref="items"
       >
         <button
-          @click="() => score(index)"
+          @click="(event) => score(event, index)"
           tabindex="-1"
           type="button"
           aria-label="Click me"
@@ -132,9 +132,9 @@
        feedback() {
          return this.currentScore < 4
           ? feedbacks[0]
-          : this.currentScore < 12
+          : this.currentScore < 15
           ? feedbacks[1]
-          : this.currentScore < 22
+          : this.currentScore < 30
           ? feedbacks[2]
           : feedbacks[3]
        }
@@ -235,10 +235,11 @@
           })
        },
 
-        score(index) {
+        score(event, index) {
           this.playbackRate += .2
           const tween = this.tweens[index]
-          const button = tween.effect.target.querySelector('button')
+          const button = event.target
+          button.disabled = true
 
           const subTween = button.animate({
             transform: ['scale(1)', 'scale(2)'],
@@ -252,6 +253,7 @@
             subTween.cancel()
             tween.finish()
             this.currentScore++
+            button.disabled = false
           }
         }
      }
