@@ -136,7 +136,6 @@
   left: calc(33% - var(--egg-width) * .5);
   width: var(--egg-width);
   height: var(--egg-height);
-
   border-radius: var(--egg-radius);
   background-image: url('/images/game/game-07.jpg');
   box-shadow: var(--egg-shadow);
@@ -150,8 +149,10 @@
   12% { transform: translateY(-60%) rotate(-10deg); }
   14% { transform: translateY(-60%) rotate(10deg); }
   16% { transform: translateY(-60%) rotate(-10deg); }
-  18%, 40% { transform: translateY(-60%) rotate(0); }
-  8%, 42% { transform: translateY(0) rotate(0); }
+  18%,
+  40% { transform: translateY(-60%) rotate(0); }
+  8%,
+  42% { transform: translateY(0) rotate(0); }
 }
 
 /* ============================== close button */
@@ -162,7 +163,6 @@
   right: var(--spacing-smaller);
   width: 40px;
   height: 40px;
-
   background-color: var(--html-blue);
   border-radius: 50%;
   box-shadow: 0 0 0 0 var(--html-blue);
