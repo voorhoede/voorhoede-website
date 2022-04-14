@@ -1,8 +1,8 @@
 .game {
   --egg-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   --egg-shadow: inset -10px -10px 10px rgba(0, 0, 0, .4);
-  --egg-width: clamp(40px, 10vmin, 100px);
-  --egg-height: clamp(60px, 15vmin, 150px);
+  --egg-width: clamp(70px, 10vmin, 100px);
+  --egg-height: clamp(105px, 15vmin, 150px);
   --duration: .5s;
 
   position: fixed;
@@ -133,7 +133,7 @@
 
   position: absolute;
   bottom: calc(var(--egg-height) * -1);
-  left: calc(50% - var(--egg-width) * .5);
+  left: calc(33% - var(--egg-width) * .5);
   width: var(--egg-width);
   height: var(--egg-height);
 
@@ -170,6 +170,11 @@
 }
 
 .game__close-button svg {
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  width: 30%;
+  height: 30%;
   fill: var(--white);
 }
 
@@ -184,6 +189,7 @@
   left: 0;
   width: var(--egg-width);
   height: var(--egg-height);
+  backface-visibility: visible;
 }
 
 .game__egg button {

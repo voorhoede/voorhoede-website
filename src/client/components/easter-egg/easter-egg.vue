@@ -57,7 +57,6 @@
     <ul
       v-if="step === 2"
       class="game__fill"
-      ref="eggs"
     >
       <li
         v-for="(egg, index) in eggs"
@@ -148,115 +147,113 @@
     },
 
      methods: {
-       open() {
-          this.isOpen = true
-          this.step = 1
-       },
+        open() {
+            this.isOpen = true
+            this.step = 1
+        },
 
-       close() {
-         this.isOpen = false
-         this.step = 0
-         this.currentScore = 0
-         this.playbackRate = 1
-         this.cancelTweens()
-       },
+        close() {
+          this.isOpen = false
+          this.step = 0
+          this.currentScore = 0
+          this.playbackRate = 1
+          this.cancelTweens()
+        },
 
-       play() {
-         this.step = 2
-         this.currentScore = 0
+        play() {
+          this.step = 2
+          this.currentScore = 0
 
-         this.$nextTick(() => {
-          this.animateEggs()
-          requestAnimationFrame(this.handleTiming)
-        })
-       },
+          this.$nextTick(() => {
+            this.animateEggs()
+            requestAnimationFrame(this.handleTiming)
+          })
+        },
 
-       finish() {
-        if(localStorageSupported) {
-          this.setHighScore()
-        }
+        finish() {
+          if(localStorageSupported) {
+            this.setHighScore()
+          }
 
-        this.cancelTweens()
-        this.step = this.isOpen ? 3 : 0
-        this.playbackRate = 1
-        this.startTime = undefined
-        this.progress = 0
-       },
+          this.cancelTweens()
+          this.step = this.isOpen ? 3 : 0
+          this.playbackRate = 1
+          this.startTime = undefined
+          this.progress = 0
+        },
 
-       setHighScore() {
-        const hightScore = localStorage.getItem('gameHighScore')
-        if(hightScore < this.currentScore) {
-          localStorage.setItem('gameHighScore', this.currentScore)
-          this.highScore = this.currentScore
-        }
-       },
+        setHighScore() {
+          const hightScore = localStorage.getItem('gameHighScore')
+          if(hightScore < this.currentScore) {
+            localStorage.setItem('gameHighScore', this.currentScore)
+            this.highScore = this.currentScore
+          }
+        },
 
-       handleTiming(timeStamp) {
-         if(this.startTime === undefined) {
-           this.startTime = timeStamp
-         }
+        handleTiming(timeStamp) {
+          if(this.startTime === undefined) {
+            this.startTime = timeStamp
+          }
 
-         this.progress = (timeStamp - this.startTime) / this.duration
+          this.progress = (timeStamp - this.startTime) / this.duration
 
-         if(this.step === 2 && (this.startTime + this.duration > timeStamp)) {
-           this.animationFrame = requestAnimationFrame(this.handleTiming)
-         } else {
-           cancelAnimationFrame(this.handleTiming)
-           this.finish()
-         }
-       },
+          if(this.step === 2 && (this.startTime + this.duration > timeStamp)) {
+            this.animationFrame = requestAnimationFrame(this.handleTiming)
+          } else {
+            cancelAnimationFrame(this.handleTiming)
+            this.finish()
+          }
+        },
 
-       cancelTweens() {
-         this.tweens.forEach(tween => tween.cancel())
-         this.tweens = []
-       },
+        cancelTweens() {
+          this.tweens.forEach(tween => tween.cancel())
+          this.tweens = []
+        },
 
        animateEggs() {
-          [...this.$refs.eggs.children].forEach((egg, index) => {
-            const xPosition = Math.random() * 90
-            this.tweens[index] = egg.animate({
+          this.$refs.items.forEach((egg, index) => {
+            const xPosition = +(Math.random() * 90).toPrecision(2)
+            const tween = egg.animate({
               transform: [
-                `translateX(${xPosition}vw) translateY(0) rotate(${Math.random() * -200}deg)`,
-                `translateX(${xPosition}vw) translateY(130vh) rotate(${Math.random() * 360}deg)`
+                `translateX(${xPosition}vw) translateY(0vh) rotate(${+(Math.random() * -200).toPrecision(2)}deg)`,
+                `translateX(${xPosition}vw) translateY(130vh) rotate(${+(Math.random() * 360).toPrecision(2)}deg)`
               ]
             }, {
-              duration: 8000 + Math.random() * 4000,
+              duration: 4000 + Math.random() * 4000,
               delay: Math.random() * 4000,
+              fill: 'both'
             })
 
-            this.tweens[index].onfinish = () => {
-              this.tweens[index].effect.updateTiming({
+            tween.onfinish = ({ target }) => {
+              target.effect.updateTiming({
                 delay: Math.random() * 1000
               })
-              this.tweens[index].play()
+              target.play()
             }
+
+            this.tweens.splice(index, 0, tween)
           })
        },
 
-       score(index) {
-         this.playbackRate += .2
+        score(index) {
+          this.playbackRate += .2
+          const tween = this.tweens[index]
+          const button = tween.effect.target.querySelector('button')
 
-        this.tweens[index].pause()
-        const tween = this.tweens[index].effect.target.animate({
-          transform: 'translate(0, 100vh) scale(.3) rotate(360deg)'
-        }, 300)
+          const subTween = button.animate({
+            transform: ['scale(1)', 'scale(2)'],
+            opacity: [1, 0]
+          }, {
+            duration: 150,
+            fill: 'both'
+          })
 
-        tween.onfinish = () => {
-          this.updatePlaybackRate()
-         this.tweens[index].finish()
-         this.tweens[index].cancel()
-         this.tweens[index].play()
-         this.currentScore++
+          subTween.onfinish = () => {
+            subTween.cancel()
+            tween.finish()
+            this.currentScore++
+          }
         }
-       },
-
-       updatePlaybackRate() {
-         if(!this.tweens.length) {
-           return
-         }
-
-         this.tweens.forEach(tween => tween.updatePlaybackRate(this.playbackRate))
-       }
      }
   }
 </script>
