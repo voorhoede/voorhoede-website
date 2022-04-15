@@ -22,10 +22,10 @@
     <transition name="step-animation">
       <div v-if="step === 1" class="game__intro">
         <h3 class="h1">
-          Awesome, you discovered our secret easter egg. Now let's hunt some more.
+          {{ translations.introTitle[$i18n.locale] }}
         </h3>
         <p class="body">
-          Collect as many eggs as possible by tapping on the eggs before they disappear.
+          {{ translations.introBody[$i18n.locale] }}
         </p>
 
         <button
@@ -86,7 +86,7 @@
           class="app-button app-button--small body-petite font-bold"
           type="button"
         >
-          <span>Play again</span>
+          <span>{{ translations.playAgain[$i18n.locale] }}</span>
         </button>
 
         <game-share :share-text="shareText" />
@@ -97,6 +97,7 @@
 
 <script>
   import localStorageSupported from '../../lib/local-storage-supported'
+  import translations from './game-translations'
   import GameTimer from './game-timer'
   import GameShare from './game-share'
 
@@ -122,28 +123,7 @@
       duration: 20000,
       progress: 0,
       highScore: undefined,
-      translations: {
-        shareText: {
-          en: 'I went on an easter egg hunt @devoorhoede and collected {{currentScore}}! Can you beat me? #easteregghunt #easteratdevoorhoede',
-          nl: 'Ik ging op paaseitjes jacht bij @devoorhoede en heb er {{currentScore}} verzameld! Kun jij t beter? #easteregghunt #easteratdevoorhoede'
-        },
-        open: {
-          en: 'Play the eastern game',
-          nl: 'Ga op paaseitjes jacht'
-        },
-        close: {
-          en: 'Close',
-          nl: 'Sluiten'
-        },
-        play: {
-          en: 'Play',
-          nl: 'Speel nu'
-        },
-        playAgain: {
-          en: 'Play again',
-          nl: 'Speel opnieuw'
-        }
-      }
+      translations
      }),
 
      computed: {
@@ -241,7 +221,7 @@
                 `translateX(${xPosition}vw) translateY(130vh) rotate(${+(Math.random() * 360).toPrecision(2)}deg)`
               ]
             }, {
-              duration: 4000 + Math.random() * 4000,
+              duration: 3000 + Math.random() * 4000,
               delay: Math.random() * 4000,
               fill: 'both'
             })

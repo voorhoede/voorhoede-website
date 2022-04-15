@@ -28,6 +28,7 @@
 
 <script>
 import { getTwitterUrl, getFacebookUrl, getLinkedinUrl } from '@/lib/share-url-helpers'
+import translations from './game-translations'
 
 export default {
   props: {
@@ -40,12 +41,7 @@ export default {
   data () {
     return {
       shareUrl: 'https://www.voorhoede.nl/easter-egg/',
-      translations: {
-        shareTitle: {
-          en: 'Share your score',
-          nl: 'Deel jouw score'
-        }
-      }
+      translations
     }
   },
 

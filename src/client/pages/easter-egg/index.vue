@@ -1,20 +1,22 @@
 <template>
   <h1>
-    Easter Game
+    {{ page.social.title }}
   </h1>
 </template>
 
 <script>
   import head from '~/lib/seo-head'
+  import translations from '~/components/easter-egg/game-translations'
+
   export default {
     data() {
       return {
         page: {
           social: {
-            title: 'Happy easter!',
-            description: 'Join the easter egg hunt on voorhoede.nl',
+            title: translations.title[this.$i18n.locale],
+            description: translations.description[this.$i18n.locale],
             image: {
-              url: 'https://images.unsplash.com/photo-1638913658179-18c9a9c943f7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3270&q=80'
+              url: translations.images[this.$i18n.locale]
             }
           }
         }
