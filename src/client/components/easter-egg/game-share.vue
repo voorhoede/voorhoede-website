@@ -40,7 +40,7 @@ export default {
 
   data () {
     return {
-      shareUrl: 'https://www.voorhoede.nl/easter-egg/',
+      shareUrl: 'https://www.voorhoede.nl/easter-egg',
       translations
     }
   },
