@@ -1,0 +1,204 @@
+.game {
+  --egg-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  --egg-shadow: inset -10px -10px 10px rgba(0, 0, 0, .4);
+  --egg-width: clamp(50px, 10vmin, 100px);
+  --egg-height: clamp(75px, 15vmin, 150px);
+  --duration: .5s;
+
+  position: fixed;
+  z-index: var(--z-index-overlay);
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: height 0s var(--duration);
+}
+
+.game button {
+  appearance: none;
+  border: 0;
+  box-shadow: 0;
+  cursor: pointer;
+}
+
+.game--open {
+  height: 100%;
+  transition: height 0s 0s;
+}
+
+.game__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.game__background::before {
+  content: '';
+  position: absolute;
+  top: calc(100% - 50vmax);
+  left: calc(50% - 50vmax);
+  width: 100vmax;
+  height: 100vmax;
+  background-color: var(--brand-yellow);
+  transform: scale(0);
+  transition: transform var(--duration);
+  border-radius: 50%;
+}
+
+.game--open .game__background::before {
+  transform: scale(2.5);
+}
+
+/* ============================== layout */
+.game__fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================== intro */
+.game__intro {
+  position: relative;
+  max-width: 800px;
+  text-align: center;
+  padding: var(--spacing-medium);
+}
+
+.game__intro > * + * {
+  margin-top: var(--spacing-small);
+}
+
+.step-animation-enter-active,
+.step-animation-leave-active {
+  transition:
+    transform calc(var(--duration) * .7),
+    opacity calc(var(--duration) * .5);
+}
+
+.step-animation-enter-to,
+.step-animation-leave {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.step-animation-enter,
+.step-animation-leave-to {
+  transform: translateY(10vh) scale(.9);
+  opacity: 0;
+}
+
+/* ============================== end screen */
+.game__end-screen {
+  position: relative;
+  text-align: center;
+}
+
+.game__end-screen .app-button {
+  margin-top: var(--spacing-small);
+}
+
+.game__end-screen .game-share {
+  margin-top: var(--spacing-large);
+}
+
+/* ============================== scores */
+.game__current-scores {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  padding: var(--spacing-smaller);
+}
+
+.game__current-scores dd:not(:first-child) {
+  margin-left: .3em;
+}
+
+.game__current-scores dt:not(:first-child) {
+  margin-left: 1em;
+}
+
+/* ============================== open button */
+.game__open-button {
+  --duration: 10s;
+
+  position: absolute;
+  bottom: calc(var(--egg-height) * -1);
+  left: calc(66% - var(--egg-width) * .5);
+  width: var(--egg-width);
+  height: var(--egg-height);
+  border-radius: var(--egg-radius);
+  background-image: url('/images/game/game-07.jpg');
+  box-shadow: var(--egg-shadow), 10px 10px 30px rgba(0, 0, 0, .2);
+  background-size: cover;
+  animation: picaboo 10s infinite;
+  transform-origin: 50% 90%;
+}
+
+@keyframes picaboo {
+  10% { transform: translateY(-60%) rotate(10deg); }
+  12% { transform: translateY(-60%) rotate(-10deg); }
+  14% { transform: translateY(-60%) rotate(10deg); }
+  16% { transform: translateY(-60%) rotate(-10deg); }
+  18%,
+  40% { transform: translateY(-60%) rotate(0); }
+  8%,
+  42% { transform: translateY(0) rotate(0); }
+}
+
+/* ============================== close button */
+.game__close-button {
+  z-index: 2;
+  position: absolute;
+  top: var(--spacing-smaller);
+  right: var(--spacing-smaller);
+  width: 40px;
+  height: 40px;
+  background-color: var(--html-blue);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 var(--html-blue);
+  transition: box-shadow .1s;
+}
+
+.game__close-button svg {
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  width: 30%;
+  height: 30%;
+  fill: var(--white);
+}
+
+.game__close-button:hover {
+  box-shadow: 0 0 0 2px var(--html-blue);
+}
+
+/* ============================== egg */
+.game__egg {
+  position: absolute;
+  top: calc(var(--egg-height) * -1);
+  left: 0;
+  width: var(--egg-width);
+  height: var(--egg-height);
+  backface-visibility: visible;
+}
+
+.game__egg button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  border-radius: var(--egg-radius);
+  box-shadow: var(--egg-shadow);
+}
