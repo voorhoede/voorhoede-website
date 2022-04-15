@@ -139,11 +139,16 @@ function redirectsToText (redirects, locales, defaultLocale) {
   const redirectRulesFromCms = redirects
     .map(redirect => `${redirect.from} ${redirect.to} ${redirect.httpStatusCode}`)
   const redirectRules404s = locales.map(locale => `/${locale}/* /${locale}/404/ 404`)
+  const catchallRedirectRules = [ // Should be the last rules as they catch 'all'
+    '/en/* /en/layouts/error/404/index.html 404',
+    '/*    /nl/layouts/error/404/index.html 404',
+  ]
   return [
     ...redirectsToNonDefaultLocales,
     redirectToDefaultLocale,
     ...redirectRulesFromCms,
-    ...redirectRules404s
+    ...redirectRules404s,
+    ...catchallRedirectRules,
   ]
     .join('\n')
 }
