@@ -47,7 +47,7 @@
 
     <div class="page-work-at__layout page-work-at__job-buttons">
       <app-button
-        v-for="job in page.jobs"
+        v-for="job in filteredJobs"
         :key="job.title"
         :label="job.title"
         :to="localeUrl({ name: 'jobs-slug', params: { slug: job.job.slug } })"
@@ -70,6 +70,13 @@
   import head from '~/lib/seo-head'
   export default {
     asyncData,
+    computed: {
+      filteredJobs() {
+        return this.page.jobs.filter(job => {
+          return job.job.published
+        })
+      }
+    },
     mounted() {
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
     },
