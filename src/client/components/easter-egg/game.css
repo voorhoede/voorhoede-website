@@ -149,8 +149,10 @@
   12% { transform: translateY(-60%) rotate(-10deg); }
   14% { transform: translateY(-60%) rotate(10deg); }
   16% { transform: translateY(-60%) rotate(-10deg); }
+
   18%,
   40% { transform: translateY(-60%) rotate(0); }
+
   8%,
   42% { transform: translateY(0) rotate(0); }
 }
