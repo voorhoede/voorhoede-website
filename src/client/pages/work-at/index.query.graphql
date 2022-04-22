@@ -66,6 +66,7 @@ fragment workat on WorkatRecord {
   jobs {
     title
     job {
+      published
       slug
     }
   }
