@@ -40,7 +40,6 @@
       <nuxt />
       <app-footer />
     </div>
-    <easter-egg />
   </div>
 </template>
 
