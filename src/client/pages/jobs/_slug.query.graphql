@@ -25,14 +25,45 @@ fragment job on JobRecord {
     alt
   }
   url
-  jobContent {
+  salary
+  jobTagline {
     title
     body
-    image {
-      url
-      format
-      alt
+  }
+  jobIntro {
+    title
+    body
+  }
+  jobContent {
+    ... on GalleryBlockRecord {
+      _modelApiKey
+      id
+      gallery {
+        images {
+          id
+          width
+          url
+          height
+          alt
+          format
+        }
+      }
     }
+    ... on GenericTextBlockRecord {
+      _modelApiKey
+      id
+      title
+      body
+      image {
+        url
+        format
+        alt
+      }
+    }
+  }
+  jobOutro {
+    title
+    body
   }
   callToActionTitle
 }
