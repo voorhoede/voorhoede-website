@@ -25,6 +25,15 @@ fragment job on JobRecord {
     alt
   }
   url
+  salary
+  jobTagline {
+    title
+    body
+  }
+  jobIntro {
+    title
+    body
+  }
   jobContent {
     title
     body
@@ -33,6 +42,10 @@ fragment job on JobRecord {
       format
       alt
     }
+  }
+  jobOutro {
+    title
+    body
   }
   callToActionTitle
 }

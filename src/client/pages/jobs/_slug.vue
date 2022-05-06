@@ -9,12 +9,36 @@
     <div class="grid">
       <div class="page-job__content">
         <generic-text-block
+          v-if="page.jobTagline"
+          :is-nested="false"
+          :key="page.jobTagline.title || page.jobTagline.body"
+          :title="page.jobTagline.title"
+          :body="page.jobTagline.body"
+          :image="page.jobTagline.image"
+        />
+        <generic-text-block
+          v-if="page.jobIntro"
+          :is-nested="false"
+          :key="page.jobIntro.title || page.jobIntro.body"
+          :title="page.jobIntro.title"
+          :body="page.jobIntro.body"
+          :image="page.jobIntro.image"
+        />
+        <generic-text-block
           v-for="item in page.jobContent"
           :is-nested="false"
           :key="item.title || item.body"
           :title="item.title"
           :body="item.body"
           :image="item.image"
+        />
+        <generic-text-block
+          v-if="page.jobOutro"
+          :is-nested="false"
+          :key="page.jobOutro.title || page.jobOutro.body"
+          :title="page.jobOutro.title"
+          :body="page.jobOutro.body | replaceSalary(page.salary)"
+          :image="page.jobOutro.image"
         />
         <footer class="page-job__footer button-group">
           <h2 class="page-job__title h3">
@@ -43,11 +67,16 @@
   import head from '~/lib/seo-head'
 
   export default {
+    filters: {
+      replaceSalary: function (value, arg) {
+        return value.replace('[SALARY]', arg)
+      }
+    },
     asyncData,
       mounted() {
         this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
       },
-      head,
+    head,
   }
 </script>
 
