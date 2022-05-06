@@ -24,14 +24,22 @@
           :body="page.jobIntro.body"
           :image="page.jobIntro.image"
         />
-        <generic-text-block
-          v-for="item in page.jobContent"
-          :is-nested="false"
-          :key="item.title || item.body"
-          :title="item.title"
-          :body="item.body"
-          :image="item.image"
-        />
+        <template v-for="item in page.jobContent">
+          <generic-text-block
+            v-if="item._modelApiKey === 'generic_text_block'"
+            :key="item.id"
+            :is-nested="false"
+            :title="item.title"
+            :body="item.body"
+            :image="item.image"
+          />
+          <gallery-block
+            v-if="item._modelApiKey === 'gallery_block'"
+            :key="item.id"
+            :images="item.gallery.images"
+            class="page-job__gallery"
+          />
+        </template>
         <generic-text-block
           v-if="page.jobOutro"
           :is-nested="false"
@@ -102,6 +110,11 @@
 
   .page-job__title {
     margin-bottom: var(--spacing-tiny);
+  }
+
+  .page-job__gallery {
+    margin-top: var(--spacing-larger);
+    margin-bottom: var(--spacing-big);
   }
 
   .page-job__footer {

@@ -35,12 +35,30 @@ fragment job on JobRecord {
     body
   }
   jobContent {
-    title
-    body
-    image {
-      url
-      format
-      alt
+    ... on GalleryBlockRecord {
+      _modelApiKey
+      id
+      gallery {
+        images {
+          id
+          width
+          url
+          height
+          alt
+          format
+        }
+      }
+    }
+    ... on GenericTextBlockRecord {
+      _modelApiKey
+      id
+      title
+      body
+      image {
+        url
+        format
+        alt
+      }
     }
   }
   jobOutro {
