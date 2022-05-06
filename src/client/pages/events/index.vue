@@ -26,7 +26,7 @@
             <event-card
               :date-string="event.date"
               :title="event.title"
-              :description="event.description"
+              :description="event.social.description"
               :illustration="event.image"
               :slug="event.slug"
               :label="event.label.label"/>

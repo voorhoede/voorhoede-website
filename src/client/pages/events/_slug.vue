@@ -29,7 +29,7 @@
             :text="formattedAddress" />
         </div>
 
-        <div v-if="page.price">
+        <div v-if="page.price && page.price !== '0'">
           <p class="body font-bold">Price</p>
           <p class="body">€ {{ page.price }}</p>
         </div>
@@ -122,9 +122,12 @@
         return (image && image.format === 'svg')
       },
       formattedAddress() {
-        return this.page.eventIsOnline
-          ? 'This event is online'
-          : `${this.page.location.name}<br>${this.page.location.street}<br>${this.page.location.postcode}${this.page.location.city}`
+        if (this.page.eventIsOnline) {
+          return 'This event is online'
+        } else if (this.page.location) {
+          return `${this.page.location.name}<br>${this.page.location.street}<br>${this.page.location.postcode} ${this.page.location.city}`
+        }
+        return ''
       },
       formattedDate() {
         return formatDate({
@@ -139,13 +142,14 @@
     },
     head,
     jsonld() {
-      const location = this.page.eventIsOnline ?
-        {
+      let location
+      if(this.page.eventIsOnline) {
+        location = {
           '@type': 'VirtualLocation',
           'url': this.page.onlineEventUrl,
         }
-      :
-        {
+      } else if (this.page.location) {
+        location = {
           '@type': 'Place',
           'name': this.page.location.name,
           'address': {
@@ -156,6 +160,7 @@
             'addressCountry': this.page.location.countryCode,
           },
         }
+      }
 
       return {
         '@context': 'https://schema.org',
