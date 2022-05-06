@@ -27,7 +27,8 @@
   }
 
   .gallery-block__image {
-    flex: 1 1 50%;
+    flex-grow: 1;
+    flex-basis: 50%;
   }
 
   .gallery-block__image .fixed-ratio {
@@ -42,7 +43,7 @@
     }
 
     .gallery-block__image {
-      flex: 1 1 33%;
+      flex-basis: 33%;
     }
   }
 
@@ -53,7 +54,7 @@
     }
 
     .gallery-block__image {
-      flex: 1 1 25%;
+      flex-basis: 25%;
     }
   }
 </style>
