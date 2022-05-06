@@ -69,7 +69,7 @@
   export default {
     filters: {
       replaceSalary: function (value, arg) {
-        return value.replace('[SALARY]', arg)
+        return arg ? value.replace('[SALARY]', arg) : value
       }
     },
     asyncData,
