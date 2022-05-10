@@ -21,12 +21,12 @@
         <ul class="page-event__upcoming-events-list">
           <li
             v-for="event in upcomingEvents"
-            :key="event.description"
+            :key="event.social.description"
             class="page-event__upcoming-events-item">
             <event-card
               :date-string="event.date"
               :title="event.title"
-              :description="event.description"
+              :description="event.social.description"
               :illustration="event.image"
               :slug="event.slug"
               :label="event.label.label"/>
@@ -39,7 +39,7 @@
       <ul class="page-event__past-events-list">
         <li
           v-for="(event, index) in pastEvents"
-          :key="event.description + index"
+          :key="event.social.description + index"
           class="page-event__past-events-item"
         >
           <event-list-item :event="event"/>

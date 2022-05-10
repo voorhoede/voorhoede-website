@@ -52,7 +52,7 @@
       <academy-excerpt
         :date="upcomingEvents[0].date"
         :title="upcomingEvents[0].title"
-        :description="upcomingEvents[0].description"
+        :description="upcomingEvents[0].social.description"
         :illustration="page.academyIllustration"
         :link="upcomingEvents[0].url"
       />

@@ -30,7 +30,15 @@ fragment eventItem on EventItemRecord {
   label {
     label
   }
-  address
+  eventIsOnline
+  onlineEventUrl
+  location {
+    name
+    street
+    postcode
+    city
+    countryCode
+  }
   price
   items {
     __typename

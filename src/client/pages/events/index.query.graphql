@@ -26,7 +26,9 @@ fragment eventOverview on EventOverviewRecord {
 
 fragment event on EventItemRecord {
   date
-  description
+  social {
+    description
+  }
   title
   slug
   url
