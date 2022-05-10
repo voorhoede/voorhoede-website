@@ -10,7 +10,7 @@
           <h3 class="event-list-item__title event-list-item__title--compact body">{{ event.title }}</h3>
           <h3 class="event-list-item__title event-list-item__title--large h4">{{ event.title }}</h3>
         </nuxt-link>
-        <rich-text-block v-if="event.description" :text="event.description"/>
+        <rich-text-block v-if="event.social.description" :text="event.social.description"/>
       </div>
     </div>
   </article>
@@ -28,7 +28,7 @@
             typeof(event.slug) === 'string'
             && typeof(event.date) === 'string'
             && typeof(event.title) === 'string'
-            && typeof(event.description) === 'string'
+            && typeof(event.social.description) === 'string'
           )
         }
       }

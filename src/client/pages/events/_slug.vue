@@ -25,14 +25,13 @@
         <div>
           <p class="body font-bold">Location</p>
           <rich-text-block
-            v-if="page.address"
-            :key="page.address"
-            :text="page.address" />
+            :key="formattedAddress"
+            :text="formattedAddress" />
         </div>
 
-        <div>
-          <p v-if="page.price" class="body font-bold">Price</p>
-          <p v-if="page.price" class="body">{{ page.price }}</p>
+        <div v-if="page.price && page.price !== '0'">
+          <p class="body font-bold">Price</p>
+          <p class="body">€ {{ page.price }}</p>
         </div>
 
         <div
@@ -53,7 +52,7 @@
           <image-with-description
             class="page-event-detail__image page-event-detail__main--not-indented"
             v-if="item.__typename === 'ImageWithTextRecord'"
-            :key="item.description"
+            :key="item.social.description"
             :image="item.imageWithDescription.image"
             :inverse="item.imageWithDescription.inverse"
             :description="item.imageWithDescription.description" />
@@ -128,7 +127,15 @@
           locale: this.$i18n.locale,
           format: 'DD MMM HH:mm'
         })
-      }
+      },
+      formattedAddress() {
+        if (this.page.eventIsOnline) {
+          return 'This event is online'
+        } else if (this.page.location) {
+          return `${this.page.location.name}<br>${this.page.location.street}<br>${this.page.location.postcode} ${this.page.location.city}`
+        }
+        return ''
+      },
     },
     mounted() {
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
