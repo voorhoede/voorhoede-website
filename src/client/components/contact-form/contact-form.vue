@@ -15,12 +15,12 @@
         <p class="h5">{{ contactPerson.name }} {{ contactPerson.lastName }}</p>
         <p
           v-if="contactPerson.jobTitle"
-          class="body-petite"
+          class="body-small"
         >
           {{ contactPerson.jobTitle }}
         </p>
         <a
-          class="body-petite link"
+          class="body-small link"
           href="mailto:post@voorhoede.nl"
         >
           post@voorhoede.nl
@@ -56,7 +56,7 @@
           :validate="formIsValidated"
           :reset-validation="resetValidation"
           :validation-error-message="$t('name_is_required')"
-          class="body-petite"
+          class="body-small"
         />
         <input-field
           v-model="form.business"
@@ -64,7 +64,7 @@
           type="text"
           :label="$t('my_business_is')"
           :placeholder-label="$t('company_name')"
-          class="body-petite"
+          class="body-small"
         />
         <input-field
           v-model="form.email"
@@ -76,7 +76,7 @@
           :validate="formIsValidated"
           :reset-validation="resetValidation"
           :validation-error-message="emailValidationErrorMessage"
-          class="body-petite"
+          class="body-small"
         />
         <input-field
           v-model="form.phone"
@@ -84,7 +84,7 @@
           type="tel"
           :label="$t('you_can_call_me_at')"
           :placeholder-label="$t('phone_number')"
-          class="body-petite"
+          class="body-small"
         />
         <input-field
           textarea
@@ -93,7 +93,7 @@
           type="text"
           :label="$t('my_project_is')"
           :placeholder-label="$t('project_description')"
-          class="body-petite"
+          class="body-small"
         />
         <app-button
           @click.native="trackEvent()"

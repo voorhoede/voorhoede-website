@@ -12,7 +12,7 @@
         <app-image v-if="item.image" :image="item.image" />
         <div v-if="item.title && item.description" class="image-grid__item-content">
           <h3 class="image-grid__item-title h3">{{ item.title }}</h3>
-          <p class="body-petite">{{ item.description }}</p>
+          <p class="body-small">{{ item.description }}</p>
         </div>
       </li>
     </ul>

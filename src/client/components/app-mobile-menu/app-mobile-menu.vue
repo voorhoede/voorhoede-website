@@ -25,7 +25,7 @@
         src="/images/logo--blue-and-yellow.svg"
         alt="">
 
-      <ul class="app-mobile-menu__list body-petite">
+      <ul class="app-mobile-menu__list body-small">
         <li
           class="app-mobile-menu__list-item">
           <nuxt-link

@@ -3,7 +3,7 @@
     <aside
       class="game-share"
     >
-      <h3 class="body-petite">
+      <h3 class="body-small">
         {{ translations.shareTitle[$i18n.locale] }}
       </h3>
       <ul class="game-share__options">

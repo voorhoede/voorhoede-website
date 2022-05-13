@@ -7,7 +7,7 @@
         </nuxt-link>
       </div>
       <div class="app-footer__column">
-        <h2 class="app-footer__title body-petite font-bold font-html-blue">
+        <h2 class="app-footer__title body-small font-bold font-html-blue">
           Explore
         </h2>
         <ul class="app-footer__list">
@@ -27,7 +27,7 @@
         class="app-footer__column app-footer__column--right"
         ref="contact"
       >
-        <h2 class="app-footer__title body-petite font-bold font-html-blue">
+        <h2 class="app-footer__title body-small font-bold font-html-blue">
           Contact
         </h2>
         <ul class="body-detail app-footer__list app-footer__list--contact">

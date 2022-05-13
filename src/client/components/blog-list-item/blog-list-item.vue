@@ -14,7 +14,7 @@
     <time
       :datetime="item.date"
       class="blog-list-item__time"
-      :class="large ? 'body' : 'body-petite'"
+      :class="large ? 'body' : 'body-small'"
     >
       {{ formattedDate }}
     </time>
@@ -31,7 +31,7 @@
           :width-step="large ? 65 : 40"
         />
       </div>
-      <span :class="large ? 'body' : 'body-petite'">{{ $t('by__authors_', { authors }) }}</span>
+      <span :class="large ? 'body' : 'body-small'">{{ $t('by__authors_', { authors }) }}</span>
     </div>
   </article>
 </template>

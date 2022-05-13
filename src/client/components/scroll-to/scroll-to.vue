@@ -18,7 +18,7 @@
         class="scroll-to__image"
         src="/images/scroll-to-arrow--up.svg"
         alt="">
-      <span class="scroll-to__text body-petite font-bold" aria-hidden="true">
+      <span class="scroll-to__text body-small font-bold" aria-hidden="true">
         {{ $t('return') }}
       </span>
       <span class="sr-only">
@@ -51,7 +51,7 @@
     user-select: none;
   }
 
-  .scroll-to__text.body-petite {
+  .scroll-to__text.body-small {
     color: var(--html-blue);
     letter-spacing: .0625rem;
     line-height: 32px;

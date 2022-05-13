@@ -1,7 +1,7 @@
 <template>
   <div class="app-banner grid">
     <div class="app-banner__content">
-      <div class="body-petite" v-html="text"></div>
+      <div class="body-small" v-html="text"></div>
       <AppButton
         small
         :label="linkTitle"
@@ -44,7 +44,7 @@
     margin: 0 auto;
   }
 
-  .app-banner__content .body-petite a {
+  .app-banner__content .body-small a {
     text-decoration: underline;
   }
 

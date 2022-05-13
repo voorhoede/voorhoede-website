@@ -30,7 +30,7 @@
             :validate="formIsValidated"
             :reset-validation="resetValidation"
             :validation-error-message="$t('name_is_required')"
-            class="body-petite contact-page-form__input-field"
+            class="body-small contact-page-form__input-field"
           />
           <input-field
             v-model="form.business"
@@ -38,7 +38,7 @@
             type="text"
             :label="$t('my_business_is')"
             :placeholder-label="$t('company_name')"
-            class="body-petite contact-page-form__input-field"
+            class="body-small contact-page-form__input-field"
           />
         </div>
 
@@ -53,7 +53,7 @@
             :validate="formIsValidated"
             :reset-validation="resetValidation"
             :validation-error-message="emailValidationErrorMessage"
-            class="body-petite contact-page-form__input-field"
+            class="body-small contact-page-form__input-field"
           />
           <input-field
             v-model="form.phone"
@@ -61,7 +61,7 @@
             type="tel"
             :label="$t('you_can_call_me_at')"
             :placeholder-label="$t('phone_number')"
-            class="body-petite contact-page-form__input-field"
+            class="body-small contact-page-form__input-field"
           />
         </div>
       </div>
@@ -73,7 +73,7 @@
         type="text"
         :label="$t('my_project_is')"
         :placeholder-label="$t('project_description')"
-        class="body-petite contact-page-form__input-field"
+        class="body-small contact-page-form__input-field"
       />
       <app-button
         @click.native="trackEvent()"

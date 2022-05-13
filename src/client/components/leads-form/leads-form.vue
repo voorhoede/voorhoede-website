@@ -62,7 +62,7 @@
         :validate="formIsValidated"
         :reset-validation="resetValidation"
         :validation-error-message="$t('leads_consent_is_required')"
-        class="leads-form__input-checkbox body-petite"
+        class="leads-form__input-checkbox body-small"
       />
       <app-button
         :label="buttonLabel"

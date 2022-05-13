@@ -30,7 +30,7 @@
 
         <button
           @click="play"
-          class="app-button app-button--small body-petite font-bold"
+          class="app-button app-button--small body-small font-bold"
           type="button"
         >
           <span>{{ translations.play[$i18n.locale] }}</span>
@@ -40,7 +40,7 @@
 
     <transition name="step-animation">
       <div v-if="step === 2" class="game__fill">
-        <dl class="game__current-scores body-petite">
+        <dl class="game__current-scores body-small">
           <dt>score</dt>
           <dd>{{ currentScore }}</dd>
 
@@ -83,7 +83,7 @@
 
         <button
           @click="play"
-          class="app-button app-button--small body-petite font-bold"
+          class="app-button app-button--small body-small font-bold"
           type="button"
         >
           <span>{{ translations.playAgain[$i18n.locale] }}</span>

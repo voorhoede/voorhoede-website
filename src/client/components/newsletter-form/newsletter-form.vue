@@ -57,7 +57,7 @@
         :validate="formIsValidated"
         :reset-validation="resetValidation"
         :validation-error-message="$t('newsletter_consent_is_required')"
-        class="newsletter-form__input-checkbox body-petite"
+        class="newsletter-form__input-checkbox body-small"
       />
       <app-button
         @click.native="trackEvent()"

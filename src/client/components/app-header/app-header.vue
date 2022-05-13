@@ -4,7 +4,7 @@
       <nuxt-link class="app-header__home-link" :to="localeUrl('index')">
         <img class="app-header__logo" src="/images/logo-with-text.svg" alt="Home" width="190" height="32">
       </nuxt-link>
-      <div class="app-header__link-lists body-petite">
+      <div class="app-header__link-lists body-small">
         <ul class="app-header__link-list">
           <li v-for="link in links" :key="link.title" class="app-header__link-list-item">
             <nuxt-link class="app-header__link" :to="createHref(link)">{{ link.title }}</nuxt-link>

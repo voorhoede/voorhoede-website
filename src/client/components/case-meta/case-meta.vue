@@ -5,22 +5,22 @@
     </h2>
     <div class="case-meta__section animation__uncover animation__uncover--white-background animation-stagger-1">
       <h3 class="case-meta__title body font-bold">{{ expertiseTitle }}</h3>
-      <p class="body-petite">{{ toMetaString(expertises) }}</p>
+      <p class="body-small">{{ toMetaString(expertises) }}</p>
     </div>
 
     <div class="case-meta__section animation__uncover animation__uncover--white-background animation-stagger-2">
       <h3 class="case-meta__title body font-bold">{{ technologiesTitle }}</h3>
-      <p class="body-petite">{{ toMetaString(technologies) }}</p>
+      <p class="body-small">{{ toMetaString(technologies) }}</p>
     </div>
 
     <div class="case-meta__section animation__uncover animation__uncover--white-background animation-stagger-3">
       <h3 class="case-meta__title body font-bold">{{ deliverableTitle }}</h3>
-      <p class="body-petite">{{ toMetaString(deliverables) }}</p>
+      <p class="body-small">{{ toMetaString(deliverables) }}</p>
     </div>
 
     <div v-if="interestedTitle" class="case-meta__section animation__uncover animation__uncover--white-background animation-stagger-4">
       <h3 class="case-meta__title body font-bold">{{ interestedTitle }}</h3>
-      <a class="link body-petite" :href="interestedLinkUrl" target="_blank" rel="noreferrer noopener">
+      <a class="link body-small" :href="interestedLinkUrl" target="_blank" rel="noreferrer noopener">
         {{ interestedLinkLabel }} &raquo;
       </a>
     </div>

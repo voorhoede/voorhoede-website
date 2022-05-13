@@ -116,7 +116,7 @@
 }
 
 .rich-text tr,
-.body-petite {
+.body-small {
   font-family: var(--font-sans);
   font-size: .875rem; /* 14px */
   font-weight: 400;
@@ -211,7 +211,7 @@
   }
 
   .rich-text tr,
-  .body-petite {
+  .body-small {
     font-size: .9375rem; /* 15px */
     line-height: 1.4; /* 21px */
   }
@@ -303,7 +303,7 @@
   }
 
   .rich-text tr,
-  .body-petite {
+  .body-small {
     font-size: 1rem; /* 16px */
     line-height: 1.375; /* 22px */
   }
