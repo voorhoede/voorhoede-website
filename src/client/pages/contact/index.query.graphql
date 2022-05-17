@@ -61,6 +61,9 @@ fragment contact on ContactRecord {
       }
       title
       body
+      address
+      postalCode
+      city
       googleMaps
     }
   }
