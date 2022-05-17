@@ -123,30 +123,35 @@
 
         return `${min} ${this.$t('and')} ${max}`
       },
+      structuredData() {
+        const { _publishedAt, jobDescription, title, validUntil } = this.page
+
+        return {
+          '@context': 'https://schema.org',
+          '@type': 'JobPosting',
+          title,
+          'description': jobDescription,
+          'datePosted': _publishedAt,
+          ...(validUntil && { 'validThrough': validUntil }),
+          'employmentType': this.employmentType,
+          'hiringOrganization': {
+            '@type': 'Organization',
+            'name': 'De Voorhoede',
+            'url': 'https://www.voorhoede.nl',
+            'logo': 'https://www.voorhoede.nl/images/social/logo-wide.jpg',
+          },
+          'jobLocation': this.jobLocation,
+          ...(this.baseSalary && { 'baseSalary': this.baseSalary }),
+        }
+      },
     },
     mounted() {
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
     },
-    head,
-    jsonld() {
-      const { _publishedAt, jobDescription, title, validUntil } = this.page
-
+    head() {
       return {
-        '@context': 'https://schema.org',
-        '@type': 'JobPosting',
-        title,
-        'description': jobDescription,
-        'datePosted': _publishedAt,
-        ...(validUntil && { 'validThrough': validUntil }),
-        'employmentType': this.employmentType,
-        'hiringOrganization': {
-          '@type': 'Organization',
-          'name': 'De Voorhoede',
-          'url': 'https://www.voorhoede.nl',
-          'logo': 'https://www.voorhoede.nl/images/social/logo-wide.jpg',
-        },
-        'jobLocation': this.jobLocation,
-        ...(this.baseSalary && { 'baseSalary': this.baseSalary }),
+        ...head,
+        script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }],
       }
     },
   }
