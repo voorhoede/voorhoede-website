@@ -45,7 +45,7 @@
           :is-nested="false"
           :key="page.jobOutro.title || page.jobOutro.body"
           :title="page.jobOutro.title"
-          :body="page.jobOutro.body | replaceSalary(page.salary)"
+          :body="page.jobOutro.body | replaceSalary(salaryString)"
           :image="page.jobOutro.image"
         />
         <footer class="page-job__footer button-group">
@@ -81,10 +81,74 @@
       }
     },
     asyncData,
-      mounted() {
-        this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
+    computed: {
+      baseSalary() {
+        const { maxSalary, minSalary } = this.page
+
+        if (!minSalary || !maxSalary) { return null }
+
+        return {
+          '@type': 'MonetaryAmount',
+          'currency': 'EUR',
+          'value': {
+            '@type': 'QuantitativeValue',
+            'minValue': parseFloat(minSalary, 10).toFixed(2),
+            'maxValue': parseFloat(maxSalary, 10).toFixed(2),
+            'unitText': 'MONTH'
+          }
+        }
+
       },
+      employmentType() {
+        return this.page.employmentType.toUpperCase().replace(' ', '_')
+      },
+      jobLocation() {
+        return this.page.location.map(place => ({
+          '@type': 'Place',
+          'address': {
+            '@type': 'PostalAddress',
+            'streetAddress': place.address,
+            'addressLocality': place.city,
+            'postalCode': place.postalCode,
+            'addressCountry': place.countryCode
+          }
+        }))
+      },
+      salaryString() {
+        const { minSalary, maxSalary } = this.page
+        const locale = this.$i18n.locale === 'nl' ? 'nl-NL' : 'en-EN'
+        const formatOptions = { style: 'currency', currency: 'EUR', maximumSignificantDigits: 1 }
+        const min = new Intl.NumberFormat(locale, formatOptions).format(minSalary)
+        const max = new Intl.NumberFormat(locale, formatOptions).format(maxSalary)
+
+        return `${min} ${this.$t('and')} ${max}`
+      },
+    },
+    mounted() {
+      this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
+    },
     head,
+    jsonld() {
+      const { _publishedAt, title, validUntil } = this.page
+
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'JobPosting',
+        title,
+        'description': '<p>Google aspires to be an organization that reflects the globally diverse audience that our products and technology serve. We believe that in addition to hiring the best talent, a diversity of perspectives, ideas and cultures leads to the creation of better products and services.</p>',
+        'datePosted': _publishedAt,
+        ...(validUntil && { 'validThrough': validUntil }),
+        'employmentType': this.employmentType,
+        'hiringOrganization': {
+          '@type': 'Organization',
+          'name': 'De Voorhoede',
+          'url': 'https://www.voorhoede.nl',
+          'logo': 'https://www.voorhoede.nl/images/social/logo-wide.jpg',
+        },
+        'jobLocation': this.jobLocation,
+        ...(this.baseSalary && { 'baseSalary': this.baseSalary }),
+      }
+    },
   }
 </script>
 

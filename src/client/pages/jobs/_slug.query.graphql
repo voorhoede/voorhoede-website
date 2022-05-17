@@ -5,6 +5,7 @@ query ($locale: SiteLocale, $slug: String) {
 }
 
 fragment job on JobRecord {
+  _publishedAt
   title
   subtitle
   slug
@@ -25,7 +26,11 @@ fragment job on JobRecord {
     alt
   }
   url
+  validUntil
+  employmentType
   salary
+  minSalary
+  maxSalary
   jobTagline {
     title
     body
@@ -66,4 +71,13 @@ fragment job on JobRecord {
     body
   }
   callToActionTitle
+  location {
+    ... on LocationRecord {
+      id
+      address
+      postalCode
+      city
+      countryCode
+    }
+  }
 }
