@@ -190,6 +190,7 @@
     head() {
       return {
         ...head,
+        __dangerouslyDisableSanitizers: ['script'],
         script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }],
       }
     },
