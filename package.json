@@ -44,6 +44,7 @@
     "dotenv-safe": "^8.2.0",
     "nuxt": "^2.14.6",
     "nuxt-i18n": "^6.15.1",
+    "nuxt-jsonld": "^1.5.3",
     "prismjs": "^1.21.0",
     "svg4everybody": "^2.1.9",
     "unfetch": "^4.1.0",

@@ -121,6 +121,14 @@
         const image = this.page.image
         return (image && image.format === 'svg')
       },
+      formattedAddress() {
+        if (this.page.eventIsOnline) {
+          return 'This event is online'
+        } else if (this.page.location) {
+          return `${this.page.location.name}<br>${this.page.location.street}<br>${this.page.location.postcode} ${this.page.location.city}`
+        }
+        return ''
+      },
       formattedDate() {
         return formatDate({
           date: this.page.date,
@@ -141,6 +149,53 @@
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
     },
     head,
+    jsonld() {
+      let location
+      if(this.page.eventIsOnline) {
+        location = {
+          '@type': 'VirtualLocation',
+          'url': this.page.onlineEventUrl,
+        }
+      } else if (this.page.location) {
+        location = {
+          '@type': 'Place',
+          'name': this.page.location.name,
+          'address': {
+            '@type': 'PostalAddress',
+            'streetAddress': this.page.location.street,
+            'addressLocality': this.page.location.city,
+            'postalCode': this.page.location.postcode,
+            'addressCountry': this.page.location.countryCode,
+          },
+        }
+      }
+
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Event',
+        'eventAttendanceMode': this.page.eventIsOnline
+          ? 'OnlineEventAttendanceMode'
+          : 'OfflineEventAttendanceMode',
+        'name': this.page.title,
+        'startDate': this.page.date,
+        'description': this.page.social.description,
+        'image': this.page.image
+          ? [ this.page.image.url ]
+          : null,
+        location,
+        'organizer': {
+          '@type': 'Organization',
+          'name': 'De Voorhoede',
+          'url': 'https://voorhoede.nl'
+        },
+        'offers': {
+          '@type': 'Offer',
+          'url': this.page.url,
+          'price': this.page.price,
+          'priceCurrency': 'EUR',
+        },
+      }
+    },
   }
 </script>
 
