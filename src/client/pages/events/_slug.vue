@@ -136,14 +136,6 @@
           format: 'DD MMM HH:mm'
         })
       },
-      formattedAddress() {
-        if (this.page.eventIsOnline) {
-          return 'This event is online'
-        } else if (this.page.location) {
-          return `${this.page.location.name}<br>${this.page.location.street}<br>${this.page.location.postcode} ${this.page.location.city}`
-        }
-        return ''
-      },
     },
     mounted() {
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
