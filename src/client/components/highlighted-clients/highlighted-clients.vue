@@ -86,7 +86,7 @@ export default {
     grid-template-rows: repeat(2, auto);
   }
 
-  .highlighted-clients--light {
+  .highlighted-clients.highlighted-clients--light {
     background-color: var(--white);
   }
 
