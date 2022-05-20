@@ -32,6 +32,12 @@ fragment lustrum on LustrumRecord {
     height
     format
   }
+  factsTitle
+  factsList {
+    id
+    label
+    amount
+  }
   middleTitle
   middleBody(markdown: true)
   middleImage {
