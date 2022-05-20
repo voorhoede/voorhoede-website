@@ -1,0 +1,26 @@
+query ($locale: SiteLocale) {
+  page: lustrum(locale: $locale) {
+    ...lustrum
+  }
+  alternate: lustrum(locale: $locale) {
+    slug
+  }
+}
+
+fragment lustrum on LustrumRecord {
+  title
+  subtitle
+  headerIllustration {
+    url
+    format
+    alt
+  }
+  slug
+  social {
+    title
+    description
+    image {
+      url
+    }
+  }
+}
