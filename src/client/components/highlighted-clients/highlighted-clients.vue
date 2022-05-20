@@ -1,5 +1,7 @@
 <template>
-  <section class="highlighted-clients grid">
+  <section
+    class="highlighted-clients grid"
+    :class="{'highlighted-clients--light' : light}">
     <div class="highlighted-clients__content">
       <h2 class="highlighted-clients__title h3 font-normal">{{ title }}</h2>
 
@@ -30,7 +32,11 @@ export default {
     title: {
       type: String,
       required: true,
-    }
+    },
+    light: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -78,6 +84,10 @@ export default {
     padding-bottom: var(--spacing-larger);
     background-color: var(--fog);
     grid-template-rows: repeat(2, auto);
+  }
+
+  .highlighted-clients--light {
+    background-color: var(--white);
   }
 
   .highlighted-clients__title {
