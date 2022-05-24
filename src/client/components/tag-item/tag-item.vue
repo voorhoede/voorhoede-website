@@ -1,12 +1,16 @@
 <template>
-  <div class="tag-item body-big">
+  <component :is="tag" class="tag-item body-big">
     <strong>{{ amount }}</strong> {{ label }}
-  </div>
+  </component>
 </template>
 
 <script>
   export default {
     props: {
+      tag: {
+        type: String,
+        default: 'div',
+      },
       amount: {
         type: Number,
         required: true,
@@ -21,7 +25,7 @@
 
 <style>
   .tag-item {
-    padding: .2rem 1rem .1rem 1rem;
+    padding: .2em 1em .1em 1em;
     color: var(--html-blue);
     background: var(--brand-yellow);
     border-radius: 2rem;

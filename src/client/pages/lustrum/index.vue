@@ -17,14 +17,12 @@
     <div class="page-lustrum__facts">
       <h2 class="page-lustrum__title-facts h3">{{ page.factsTitle }}</h2>
       <ul class="page-lustrum__facts-list">
-        <li
+        <tag-item
           v-for="fact in page.factsList"
-          :key="fact.id">
-          <tag-item
-            :amount="fact.amount"
-            :label="fact.label"
-          />
-        </li>
+          :key="fact.id"
+          :amount="fact.amount"
+          :label="fact.label"
+        />
       </ul>
     </div>
 
