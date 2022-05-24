@@ -1,0 +1,125 @@
+query ($locale: SiteLocale) {
+  page: lustrum(locale: $locale) {
+    ...lustrum
+  }
+  alternate: lustrum(locale: $locale) {
+    slug
+  }
+}
+
+fragment lustrum on LustrumRecord {
+  title
+  subtitle
+  headerIllustration {
+    url
+    format
+    alt
+  }
+  slug
+  social {
+    title
+    description
+    image {
+      url
+    }
+  }
+  introTitle
+  introBody(markdown: true)
+  introImage {
+    url
+    alt
+    width
+    height
+    format
+  }
+  factsTitle
+  factsList {
+    id
+    label
+    amount
+  }
+  middleTitle
+  middleBody(markdown: true)
+  middleImage {
+    url
+    alt
+    width
+    height
+    format
+  }
+  quote {
+    title
+    body
+    linkLabel
+    linkUrl
+    linkIsExternal
+    secondaryLinkIsExternal
+    secondaryLinkLabel
+    secondaryLinkUrl
+    person {
+      name
+      image {
+        alt
+        format
+        height
+        url
+        width
+      }
+    }
+  }
+  teamGridTitle
+  teamGrid {
+    id
+    title
+    description
+    image {
+      url
+      alt
+      width
+      height
+      format
+    }
+    isFullWidth
+    isHighlighted
+  }
+  eventsTitle
+  eventsList {
+    id
+    title
+    social {
+      description
+    }
+    date
+    slug
+    label {
+      label
+    }
+    image {
+      url
+      format
+      width
+      height
+    }
+  }
+  clientsTitle
+  blogsTitle
+  blogsList {
+    slug
+    title
+    published
+    date: publishDate
+    authors {
+      name
+      image {
+        url
+        width
+        height
+        format
+        focalPoint {
+          x
+          y
+        }
+      }
+    }
+  }
+}

@@ -63,15 +63,15 @@ function localesToJson (locales) {
 function layoutToJson(dato) {
   return {
     cookieNotification: {
-      title: dato.cookieNotification.title,
-      body: dato.cookieNotification.body,
-      approveButtonLabel: dato.cookieNotification.approveButtonLabel,
+      title: dato.app.cookieNotification[0].title,
+      body: dato.app.cookieNotification[0].body,
+      approveButtonLabel: dato.app.cookieNotification[0].approveButtonLabel,
     },
     banner: {
-      isVisible: dato.banner.isVisible,
-      link: { ...pick(dato.banner.link, ['slug']) },
-      linkTitle: dato.banner.linkTitle,
-      text: dato.banner.text,
+      isVisible: dato.app.banner[0].isVisible,
+      link: { ...pick(dato.app.banner[0].link, ['slug']) },
+      linkTitle: dato.app.banner[0].linkTitle,
+      text: dato.app.banner[0].text,
     },
     menu: {
       title: dato.menu.title,
