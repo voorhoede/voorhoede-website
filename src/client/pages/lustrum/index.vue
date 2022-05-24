@@ -1,6 +1,7 @@
 <template>
   <main class="page-lustrum grid">
     <page-header
+      class="page-lustrum__header"
       heading="byline"
       :byline="page.title"
       :headline="page.subtitle"
@@ -12,6 +13,18 @@
       :body="page.introBody"
       :image="page.introImage"
     />
+
+    <div class="page-lustrum__facts">
+      <h2 class="page-lustrum__title-facts h3">{{ page.factsTitle }}</h2>
+      <ul class="page-lustrum__facts-list">
+        <tag-item
+          v-for="fact in page.factsList"
+          :key="fact.id"
+          :amount="fact.amount"
+          :label="fact.label"
+        />
+      </ul>
+    </div>
 
     <image-with-text-block
       :title="page.middleTitle"
@@ -76,6 +89,10 @@
 
   .page-lustrum > *,
   .page-lustrum > *.highlighted-clients {
+    margin-bottom: var(--spacing-bigger);
+  }
+
+  .page-lustrum > .page-lustrum__header {
     margin-bottom: var(--spacing-big);
   }
 
@@ -122,6 +139,7 @@
     grid-column-end: var(--grid-page-end);
   }
 
+  .page-lustrum__title-facts,
   .page-lustrum__title-events {
     text-align: center;
     margin-bottom: var(--spacing-large);
@@ -134,5 +152,16 @@
 
   .page-lustrum__list {
     grid-column: var(--grid-content-smallest);
+  }
+
+  .page-lustrum__facts {
+    grid-column: var(--grid-content-narrow);
+  }
+
+  .page-lustrum__facts-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-smaller);
   }
 </style>
