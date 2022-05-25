@@ -73,6 +73,7 @@
     .image-with-text {
       display: flex;
       flex-direction: row;
+      align-items: center;
       padding: var(--spacing-larger) var(--spacing-larger) var(--spacing-larger) 0;
       background-image: linear-gradient(
         to right,
