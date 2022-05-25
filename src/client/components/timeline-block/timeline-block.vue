@@ -47,6 +47,7 @@
     padding-bottom: var(--spacing-big);
   }
 
+  /* vertical blue line with gradient */
   .timeline-block__items::after {
     content: '';
     position: absolute;
@@ -101,6 +102,7 @@
   .timeline-block__item-title {
     position: relative;
     margin-top: var(--spacing-tiny);
+    /* make it easier to position the dot in relation to the title */
     line-height: 1;
   }
 
@@ -116,6 +118,7 @@
     content: '';
     position: absolute;
     top: 3px;
+    /* use spacing and bullet size to calculate negative left offset */
     left: calc(-1 * calc(var(--spacing-medium)) + calc(-1 * var(--timeline-bullet-size) / 2));
     width: var(--timeline-bullet-size);
     height: var(--timeline-bullet-size);
@@ -129,6 +132,7 @@
     }
 
     .timeline-block__item:nth-child(odd) .timeline-block__item-title::after {
+      /* use spacing and bullet size to calculate negative right offset */
       right: calc(-1 * calc(var(--spacing-medium)) + calc(-1 * var(--timeline-bullet-size) / 2));
       left: auto;
     }
