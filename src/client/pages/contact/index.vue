@@ -44,7 +44,7 @@
           <link-card
             :image="location.image"
             :title="location.title"
-            :body="location.body"
+            :body="`${location.address} - ${location.postalCode} ${location.city}`"
             :external-link="location.googleMaps"
             class="page-contact__location-card"
           />
