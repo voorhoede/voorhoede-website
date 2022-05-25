@@ -11,6 +11,7 @@
             v-if="video && isPlaying"
             class="responsive-video__i-frame"
             :src="videoUrl"
+            :title="video.title"
             frameborder="0"
             webkitallowfullscreen
             mozallowfullscreen
