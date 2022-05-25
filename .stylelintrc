@@ -1,19 +1,35 @@
 {
   "extends": "stylelint-config-standard",
+  "overrides": [
+    {
+      "files": ["*.vue", "**/*.vue"],
+      "customSyntax": "postcss-html"
+    }
+  ],
   "rules": {
-    "no-empty-source": null,
-    "no-eol-whitespace": null,
-    "no-descending-specificity": null,
+    "alpha-value-notation": "number",
     "color-hex-length": "long",
+    "color-function-notation": "legacy",
+    "custom-property-pattern": null,
+    "declaration-colon-newline-after": null,
+    "declaration-block-no-redundant-longhand-properties": null,
     "indentation": [
       2,
       {
         "baseIndentLevel": 1
       }
     ],
-    "string-quotes": "single",
-    "declaration-colon-newline-after": null,
+    "keyframes-name-pattern": null,
+    "max-line-length": 150,
+    "no-empty-source": null,
+    "no-eol-whitespace": null,
+    "no-descending-specificity": null,
     "number-leading-zero": "never",
+    "number-max-precision": null,
+    "property-no-vendor-prefix": null,
+    "string-quotes": "single",
+    "selector-class-pattern": null,
+    "shorthand-property-no-redundant-values": null,
     "value-keyword-case": null
   }
 }
