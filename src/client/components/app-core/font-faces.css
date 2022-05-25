@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'apercu';
+  font-family: apercu;
   font-weight: 400;
   src: url('/fonts/apercu-regular-latin.woff2') format('woff2'),
     url('/fonts/apercu-regular-latin.woff') format('woff');
@@ -7,7 +7,7 @@
 }
 
 @font-face {
-  font-family: 'apercu';
+  font-family: apercu;
   font-weight: 700;
   src: url('/fonts/apercu-bold-latin.woff2') format('woff2'),
     url('/fonts/apercu-bold-latin.woff') format('woff');
@@ -15,7 +15,7 @@
 }
 
 @font-face {
-  font-family: 'apercu';
+  font-family: apercu;
   font-style: italic;
   src: url('/fonts/apercu-italic-latin.woff2') format('woff2'),
     url('/fonts/apercu-italic-latin.woff') format('woff');
