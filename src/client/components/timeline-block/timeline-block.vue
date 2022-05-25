@@ -102,6 +102,7 @@
   .timeline-block__item-title {
     position: relative;
     margin-top: var(--spacing-tiny);
+
     /* make it easier to position the dot in relation to the title */
     line-height: 1;
   }
@@ -118,6 +119,7 @@
     content: '';
     position: absolute;
     top: 3px;
+
     /* use spacing and bullet size to calculate negative left offset */
     left: calc(-1 * calc(var(--spacing-medium)) + calc(-1 * var(--timeline-bullet-size) / 2));
     width: var(--timeline-bullet-size);
