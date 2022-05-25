@@ -67,6 +67,18 @@ fragment lustrum on LustrumRecord {
       }
     }
   }
+  timeline {
+    date
+    description
+    image {
+      url
+      alt
+      width
+      height
+      format
+    }
+    title
+  }
   teamGridTitle
   teamGrid {
     id
