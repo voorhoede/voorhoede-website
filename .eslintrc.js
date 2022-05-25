@@ -36,15 +36,15 @@ module.exports = {
     'vue/no-use-v-if-with-v-for': 0,
     'vue/html-self-closing': 0,
     'vue/no-v-html': 0,
-    "vuejs-accessibility/label-has-for": [2, {
-      "required": {
-        "some": ["nesting", "id"]
+    'vuejs-accessibility/label-has-for': [2, {
+      'required': {
+        'some': ['nesting', 'id']
       },
-      "allowChildren": true
+      'allowChildren': true
     }],
     'quotes': [2, 'single'],
     'curly': [2, 'multi-line'],
     'object-curly-spacing': [2, 'always'],
-    'semi': [1, "never", { "beforeStatementContinuationChars": "never"}],
+    'semi': [1, 'never', { 'beforeStatementContinuationChars': 'never' }],
   }
 }
