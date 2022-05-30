@@ -1,164 +1,292 @@
 <template>
-  <main class="energy-first-container" lang="en">
-    <div class="container container-large x-spaced-medium">
-      <h1 class="h1">An energy efficient web</h1>
-    </div>
+  <main class="energy-first-container">
+    <div v-if="$i18n.locale === 'en'">
+      <div class="container container-large x-spaced-medium">
+        <h1 class="h1">An energy efficient web</h1>
+      </div>
 
-    <article class="x-spaced-medium y-spaced-xlarge">
-      <div class="container">
-        <div class="shapes" data-shapes style="--x: 30;">
-          <div class="shape yellow"></div>
-          <div class="shape blue"></div>
-          <div class="battery"></div>
+      <article class="x-spaced-medium y-spaced-xlarge">
+        <div class="container">
+          <div class="shapes" data-shapes style="--x: 30;">
+            <div class="shape yellow"></div>
+            <div class="shape blue"></div>
+            <div class="battery"></div>
+          </div>
+          <div class="slider">
+            <h2 class="h2">How much do you know about energy first?</h2>
+            <form action="">
+              <label for="range" class="typo-small">I have no clue</label>
+              <input type="range" name="range" id="range" min="0" max="50" value="30" data-range>
+              <label for="range" class="typo-small">Yeah, that’s my thing</label>
+            </form>
+          </div>
         </div>
-        <div class="slider">
-          <h2 class="h2">How much do you know about energy first?</h2>
-          <form action="">
-            <label for="range" class="typo-small">I have no clue</label>
-            <input type="range" name="range" id="range" min="0" max="50" value="30" data-range>
-            <label for="range" class="typo-small">Yeah, that’s my thing</label>
-          </form>
+      </article>
+
+      <div class="container container-large x-spaced-medium y-spaced-large intro">
+        <p class="typo-large">Why do websites cost energy? Sure, they have to be designed, developed, deployed and run on
+          servers and devices. But let’s break it down to the physics. What is it that actually consumes energy? It’s a
+          CPU or GPU that has to perform calculations, it’s a network of servers, routers and wi-fi antennas that have to
+          connect to each other, it’s screens that have to produce photons to light up and display a website. So in every
+          stage of a website, from its inception to a user visiting it, we have to minimise or avoid these aspects
+          entirely.</p>
+      </div>
+
+      <article class="filled-primary y-spaced-xlarge x-spaced-medium">
+        <div class="container design">
+          <h2 class="h2">Energy efficiency starts with design</h2>
+          <p>Images, videos, custom fonts, they all require energy to download, process and display. The less resources
+            you use, the more energy you save.</p>
+          <p>And not every resource has the same footprint:</p>
+          <ol class="list">
+            <li>images require less energy than videos</li>
+            <li>text requires less than images</li>
+            <li>a system font requires less than a custom one</li>
+          </ol>
+          <p>Fewer resources are not just a good way to save energy. Lightweight sites are faster, which is great for
+            users and SEO. And text-heavy sites are typically more accessible.</p>
+        </div>
+      </article>
+
+      <article class="filled-primary-half x-spaced-medium">
+        <div class="container x-spaced-large y-spaced-large filled-secondary darkmode">
+          <p class="color-light">
+            Remember those photons? Dark mode can save up to 20-30% on OLED screens. So maybe it’s time to design a dark theme for your website. We're working on that ourselves too!
+          </p>
+        </div>
+      </article>
+
+      <article class="x-spaced-medium y-spaced-xlarge">
+        <div class="container web-development">
+          <h2 class="h2">Energy efficient web development in the ’20s</h2>
+          <p>It’s the roaring twenties again. Gone are the days where a developer simply edits the designed resources and
+            copies them onto a web server. Instead we rely on package managers, build tools, continuous integration
+            servers, cloud services (like a headless CMS), preview environments and finally our actual website. Needless
+            to say, all these moving parts consume energy. It’s difficult to know just how much, as it’s a web of parts
+            depending on other parts depending on other parts.</p>
+          <p>The good thing is that we can also use these modern development tools to save energy. We can automatically
+            create smaller versions of the same videos and images, we can remove unused code from our styles, scripts and
+            font files and generate static versions of our sites that only use all those connected cloud services during
+            build.</p>
+        </div>
+      </article>
+
+      <div class="sticky">
+        <div class="container sticky-inner">
+          <p class="typo-small typo-bold">Pick from the options to improve energy efficiency</p>
+          <div class="battery" data-chart style="--value: 0;"></div>
         </div>
       </div>
-    </article>
 
-    <div class="container container-large x-spaced-medium y-spaced-large intro">
-      <p class="typo-large">Why do websites cost energy? Sure, they have to be designed, developed, deployed and run on
-        servers and devices. But let’s break it down to the physics. What is it that actually consumes energy? It’s a
-        CPU or GPU that has to perform calculations, it’s a network of servers, routers and wi-fi antennas that have to
-        connect to each other, it’s screens that have to produce photons to light up and display a website. So in every
-        stage of a website, from its inception to a user visiting it, we have to minimise or avoid these aspects
-        entirely.</p>
+      <article class="filled-primary y-spaced-xlarge x-spaced-medium">
+        <form class="container" data-chart-form>
+          <h2 class="h2">Running websites efficiently</h2>
+          <ul class="options">
+            <li>
+              <div class="checkbox pulse">
+                <input type="checkbox" name="ssr-and-caching" id="ssr-and-caching">
+                <label for="ssr-and-caching" class="typo-bold">
+                  <span>SSR and caching</span>
+                </label>
+              </div>
+              <p>A lot of web pages are the same for every visitor. So it makes no sense to generate a new version of the
+                page every time. Instead we only generate a new version of the page when its content changes. We use
+                static site generators for this. The same can be achieved with server-side caching and a good cache
+                busting strategy. As a result the server only has to serve the pre-generated / cached web page. This saves
+                a lot of energy, especially on frequently visited sites.</p>
+            </li>
+            <li>
+              <div class="checkbox pulse">
+                <input type="checkbox" name="cdn-and-compression" id="cdn-and-compression">
+                <label for="cdn-and-compression" class="typo-bold">
+                  <span>CDN and compression</span>
+                </label>
+              </div>
+              <p>When a user visits a page, it has to be served over the network. A request starts in the user’s browser,
+                travels through the network to the server and back to the user. This could mean a full trip around the
+                world. To save on network costs, we can use a world-wide content delivery network (CDN), to serve web
+                pages from a server near the user. CDN’s are very easy to use with static sites, as they can simply store
+                a copy of the pre-generated pages. We also use as little of the network as possible by compressing
+                resources with gzip and brotli.</p>
+            </li>
+            <li>
+              <div class="checkbox pulse">
+                <input type="checkbox" name="cloud-functions" id="cloud-functions">
+                <label for="cloud-functions" class="typo-bold">
+                  <span>Cloud functions</span>
+                </label>
+              </div>
+              <p>For dynamic pages we use cloud functions (lambdas) on an edge network. Just like the CDN, they run close
+                to our users. Unlike a regular server, a cloud function only runs when it receives a request. When more
+                requests are made at the same time, more instances of the cloud functions spin up. When the requests
+                decrease, the cloud functions scale down. This way, we only use the energy we need when we need it.</p>
+            </li>
+            <li>
+              <div class="checkbox pulse">
+                <input type="checkbox" name="client-side-caching" id="client-side-caching">
+                <label for="client-side-caching" class="typo-bold">
+                  <span>Client-side caching</span>
+                </label>
+              </div>
+              <p>Once a user received a resource we can ensure it never has to request it again. We achieve this using
+                client-side caching. We ensure a resource never changes (or revision the resource name if it does). Then
+                we tell the browser it can keep the file “forever” (using ’Cache-Control’, ‘public, max-age=31536000,
+                immutable’).</p>
+            </li>
+            <li>
+              <div class="checkbox pulse">
+                <input type="checkbox" name="green-hosting" id="green-hosting">
+                <label for="green-hosting" class="typo-bold">
+                  <span>Green hosting</span>
+                </label>
+              </div>
+              <p>At the end of the day, our websites will still require websites to run. The best we can do, is make sure
+                they run on sustainable energy. Our websites partially use green hosting providers, so we still have some
+                work to do here. You can check if your site has green hosting.</p>
+            </li>
+          </ul>
+        </form>
+      </article>
+
+      <article class="filled-primary-half x-spaced-medium">
+        <div class="container x-spaced-large y-spaced-large filled-secondary web-manifest">
+          <h2 class="h2 color-light">Commit to energy efficient websites</h2>
+          <p class="color-light">We’ll continue to improve the energy efficiency of our websites. And will push our design
+            partners, hosting providers and clients to do the same. We are committed to creating a more sustainable web.
+            So all of us at De Voorhoede signed the <a href="https://www.sustainablewebmanifesto.com/" target="_blank"
+                                                       rel="noreferrer noopener">Sustainable Web Manifesto</a>. You should commit and sign it too.</p>
+          <a class="button" href="https://www.sustainablewebmanifesto.com/#signature" target="_blank"
+             rel="noreferrer noopener">Sign now</a>
+        </div>
+      </article>
     </div>
-
-    <article class="filled-primary y-spaced-xlarge x-spaced-medium">
-      <div class="container design">
-        <h2 class="h2">Energy efficiency starts with design</h2>
-        <p>Images, videos, custom fonts, they all require energy to download, process and display. The less resources
-          you use, the more energy you save.</p>
-        <p>And not every resource has the same footprint:</p>
-        <ol class="list">
-          <li>images require less energy than videos</li>
-          <li>text requires less than images</li>
-          <li>a system font requires less than a custom one</li>
-        </ol>
-        <p>Fewer resources are not just a good way to save energy. Lightweight sites are faster, which is great for
-          users and SEO. And text-heavy sites are typically more accessible.</p>
+    <div v-if="$i18n.locale === 'nl'">
+      <div class="container container-large x-spaced-medium">
+        <h1 class="h1">Een energiezuinig web</h1>
       </div>
-    </article>
 
-    <article class="filled-primary-half x-spaced-medium">
-      <div class="container x-spaced-large y-spaced-large filled-secondary darkmode">
-        <p class="color-light">
-          Remember those photons? Dark mode can save up to 20-30% on OLED screens. So maybe it’s time to design a dark
-          theme for your website.
+      <article class="x-spaced-medium y-spaced-xlarge">
+        <div class="container">
+          <div class="shapes" data-shapes style="--x: 30;">
+            <div class="shape yellow"></div>
+            <div class="shape blue"></div>
+            <div class="battery"></div>
+          </div>
+          <div class="slider">
+            <h2 class="h2">Hoeveel weet je over energie?</h2>
+            <form action="">
+              <label for="range" class="typo-small">Ik heb geen idee</label>
+              <input type="range" name="range" id="range" min="0" max="50" value="30" data-range>
+              <label for="range" class="typo-small">Helemaal mijn ding</label>
+            </form>
+          </div>
+        </div>
+      </article>
+
+      <div class="container container-large x-spaced-medium y-spaced-large intro">
+        <p class="typo-large">
+          Waarom kosten websites energie? Natuurlijk moeten ze worden ontworpen, ontwikkeld, geïmplementeerd en uitgevoerd op servers en apparaten. Maar laten we het bekijken vanuit een natuurkundig perspectief. Wat verbruikt eigenlijk energie? Het is een CPU of GPU die berekeningen moet uitvoeren, het is een netwerk van servers, routers en wifi-antennes die met elkaar moeten verbinden, het zijn schermen die fotonen moeten produceren om een website op te lichten en weer te geven. Dus in elke fase van een website, vanaf het begin tot het bezoek van een gebruiker, moeten we deze aspecten minimaliseren of volledig vermijden.
         </p>
       </div>
-    </article>
 
-    <article class="x-spaced-medium y-spaced-xlarge">
-      <div class="container web-development">
-        <h2 class="h2">Energy efficient web development in the ’20s</h2>
-        <p>It’s the roaring twenties again. Gone are the days where a developer simply edits the designed resources and
-          copies them onto a web server. Instead we rely on package managers, build tools, continuous integration
-          servers, cloud services (like a headless CMS), preview environments and finally our actual website. Needless
-          to say, all these moving parts consume energy. It’s difficult to know just how much, as it’s a web of parts
-          depending on other parts depending on other parts.</p>
-        <p>The good thing is that we can also use these modern development tools to save energy. We can automatically
-          create smaller versions of the same videos and images, we can remove unused code from our styles, scripts and
-          font files and generate static versions of our sites that only use all those connected cloud services during
-          build.</p>
-      </div>
-    </article>
+      <article class="filled-primary y-spaced-xlarge x-spaced-medium">
+        <div class="container design">
+          <h2 class="h2">Energie-efficiëntie begint bij het ontwerp</h2>
+          <p>Afbeeldingen, video's, aangepaste lettertypes, ze kosten allemaal energie om te downloaden, te verwerken en weer te geven. Hoe minder bronnen je gebruikt, hoe meer energie je bespaart.</p>
+          <p>En niet elk item heeft dezelfde footprint:</p>
+          <ol class="list">
+            <li>afbeeldingen hebben minder energie nodig dan videos</li>
+            <li>tekst vereist minder dan afbeeldingen</li>
+            <li>een systeemlettertype vereist minder dan een aangepast lettertype</li>
+          </ol>
+          <p>Minder hulpbronnen zijn niet alleen een goede manier om energie te besparen. Lichtgewicht sites zijn sneller, wat geweldig is voor gebruikers en SEO. Daarnaast zijn sites met veel tekst doorgaans beter toegankelijk.</p>
+        </div>
+      </article>
 
-    <div class="sticky">
-      <div class="container sticky-inner">
-        <p class="typo-small typo-bold">Pick from the options to improve energy efficiency</p>
-        <div class="battery" data-chart style="--value: 0;"></div>
+      <article class="filled-primary-half x-spaced-medium">
+        <div class="container x-spaced-large y-spaced-large filled-secondary darkmode">
+          <p class="color-light">
+            Herinner je je die fotonen nog? De donkere modus kan tot 20-30% besparen op OLED-schermen. Dus misschien is het tijd om een donker thema voor je website te ontwerpen? Dat staat bij ons in ieder geval hoog op de agenda.
+          </p>
+        </div>
+      </article>
+
+      <article class="x-spaced-medium y-spaced-xlarge">
+        <div class="container web-development">
+          <h2 class="h2">Energiezuinige webontwikkeling in de jaren '20</h2>
+          <p>Weer zijn weer terug in de roaring twenties. Voorbij zijn de dagen dat een ontwikkelaar de ontworpen bronnen eenvoudigweg bewerkt en naar een webserver kopieert. In plaats daarvan vertrouwen we op pakketbeheerders, bouw tools, continuous integration servers, cloud services (zoals een headless CMS), preview-omgevingen en tot slot onze eigen website. Waarschijnlijk is het je wel duidelijk dat al deze dingen energie verbruiken. Het is moeilijk om te ontdekken hoeveel precies, omdat het web afhankelijk is van onderdelen, die weer van andere onderdelen afhankelijk zijn, enzovoorts.</p>
+          <p>Het mooie is dat we deze moderne ontwikkeltools ook kunnen gebruiken om energie te besparen. We kunnen automatisch kleinere versies van dezelfde video's en afbeeldingen maken, we kunnen ongebruikte code uit onze styling, scripts en lettertypebestanden verwijderen en statische versies van onze sites genereren die alleen die verbonden cloudservices gebruiken tijdens het bouwen.</p>
+        </div>
+      </article>
+
+      <div class="sticky">
+        <div class="container sticky-inner">
+          <p class="typo-small typo-bold">Kies uit de verschillende opties om energie te besparen</p>
+          <div class="battery" data-chart style="--value: 0;"></div>
+        </div>
       </div>
+
+      <article class="filled-primary y-spaced-xlarge x-spaced-medium">
+        <form class="container" data-chart-form>
+          <h2 class="h2">Websites efficiënt laten draaien</h2>
+          <ul class="options">
+            <li>
+              <div class="checkbox pulse">
+                <input type="checkbox" name="ssr-and-caching" id="ssr-and-caching">
+                <label for="ssr-and-caching" class="typo-bold">
+                  <span>SSR en caching</span>
+                </label>
+              </div>
+              <p>Veel webpagina's zijn voor elke bezoeker hetzelfde. Het heeft dus geen zin om elke keer een nieuwe versie van de pagina te genereren. In plaats daarvan genereren we alleen een nieuwe versie van de pagina wanneer de inhoud verandert. Hiervoor gebruiken we statische site generators. Hetzelfde kunnen we doen met server-side caching en een goede cache-busting-strategie. Hierdoor hoeft de server alleen de vooraf gegenereerde / in de cache opgeslagen webpagina te tonen. Dit bespaart veel energie, vooral op veelbezochte sites.</p>
+            </li>
+            <li>
+              <div class="checkbox pulse">
+                <input type="checkbox" name="cdn-and-compression" id="cdn-and-compression">
+                <label for="cdn-and-compression" class="typo-bold">
+                  <span>CDN en compressie</span>
+                </label>
+              </div>
+              <p>Wanneer een gebruiker een pagina bezoekt, moet deze via het netwerk worden getoond. Een verzoek begint in de browser van de gebruiker, gaat via het netwerk naar de server en terug naar de gebruiker. Dit is soms een volledige wereldreis. Om die reis korter te maken, gebruiken we een wereldwijd content delivery network (CDN) om webpagina's te tonen vanaf een server in de buurt van de gebruiker. CDN's zijn heel gemakkelijk te gebruiken met statische sites, omdat ze eenvoudig een kopie van de vooraf gegenereerde pagina's kunnen opslaan. We gebruiken ook zo min mogelijk energie van het netwerk door bronnen te comprimeren met gzip en brotli.</p>
+            </li>
+            <li>
+              <div class="checkbox pulse">
+                <input type="checkbox" name="cloud-functions" id="cloud-functions">
+                <label for="cloud-functions" class="typo-bold">
+                  <span>Cloud functions</span>
+                </label>
+              </div>
+              <p>Voor dynamische pagina's gebruiken we cloud functions (lambdas) op een edge network. Net als CDN draaien ze dicht bij onze gebruikers. In tegenstelling tot een reguliere server, wordt een cloud function alleen uitgevoerd wanneer deze een verzoek ontvangt. Wanneer er meer verzoeken tegelijkertijd worden gedaan, draaien er meer instanties van de cloud function. Op het moment dat de verzoeken afnemen, worden de cloud functions kleiner. Zo gebruiken we de energie die we nodig hebben alleen wanneer we die nodig hebben.</p>
+            </li>
+            <li>
+              <div class="checkbox pulse">
+                <input type="checkbox" name="client-side-caching" id="client-side-caching">
+                <label for="client-side-caching" class="typo-bold">
+                  <span>Client-side caching</span>
+                </label>
+              </div>
+              <p>Zodra een gebruiker een bron heeft ontvangen, zorgen we ervoor dat deze deze nooit meer opgevraagd hoef te worden. Dit bereiken we met behulp van client-side caching. We zorgen ervoor dat een resource nooit verandert (of herzien de resourcenaam als dat wel het geval is). Vervolgens vertellen we de browser dat hij het bestand "voor altijd" kan houden (met behulp van 'Cache-Control', 'public, max-age=31536000, immutable').</p>
+            </li>
+            <li>
+              <div class="checkbox pulse">
+                <input type="checkbox" name="green-hosting" id="green-hosting">
+                <label for="green-hosting" class="typo-bold">
+                  <span>Groene hosting</span>
+                </label>
+              </div>
+              <p>Aan het eind van de dag hebben onze websites nog steeds andere websites nodig om te draaien. Het beste wat we kunnen doen, is ervoor zorgen dat ze op duurzame energie draaien. Onze websites maken deels gebruik van groene hosting providers, dus hier hebben we nog wat werk aan. Controleer of jouw site groene hosting heeft.</p>
+            </li>
+          </ul>
+        </form>
+      </article>
+
+      <article class="filled-primary-half x-spaced-medium">
+        <div class="container x-spaced-large y-spaced-large filled-secondary web-manifest">
+          <h2 class="h2 color-light">Zet in op energiezuinige websites</h2>
+          <p class="color-light">We blijven de energie-efficiëntie van onze websites verbeteren. En we zetten onze ontwerppartners, hostingproviders en klanten ertoe aan hetzelfde te doen. We streven naar een duurzamer internet. Daarom hebben we bij De Voorhoede allemaal het Sustainable Web Manifesto ondertekend. Dat zou jij ook moeten doen.</p>
+          <a class="button" href="https://www.sustainablewebmanifesto.com/#signature" target="_blank" rel="noreferrer noopener">Nu tekenen</a>
+        </div>
+      </article>
     </div>
-
-    <article class="filled-primary y-spaced-xlarge x-spaced-medium">
-      <form class="container" data-chart-form>
-        <h2 class="h2">Running websites efficiently</h2>
-        <ul class="options">
-          <li>
-            <div class="checkbox pulse">
-              <input type="checkbox" name="ssr-and-caching" id="ssr-and-caching">
-              <label for="ssr-and-caching" class="typo-bold">
-                <span>SSR and caching</span>
-              </label>
-            </div>
-            <p>A lot of web pages are the same for every visitor. So it makes no sense to generate a new version of the
-              page every time. Instead we only generate a new version of the page when its content changes. We use
-              static site generators for this. The same can be achieved with server-side caching and a good cache
-              busting strategy. As a result the server only has to serve the pre-generated / cached web page. This saves
-              a lot of energy, especially on frequently visited sites.</p>
-          </li>
-          <li>
-            <div class="checkbox pulse">
-              <input type="checkbox" name="cdn-and-compression" id="cdn-and-compression">
-              <label for="cdn-and-compression" class="typo-bold">
-                <span>CDN and compression</span>
-              </label>
-            </div>
-            <p>When a user visits a page, it has to be served over the network. A request starts in the user’s browser,
-              travels through the network to the server and back to the user. This could mean a full trip around the
-              world. To save on network costs, we can use a world-wide content delivery network (CDN), to serve web
-              pages from a server near the user. CDN’s are very easy to use with static sites, as they can simply store
-              a copy of the pre-generated pages. We also use as little of the network as possible by compressing
-              resources with gzip and brotli.</p>
-          </li>
-          <li>
-            <div class="checkbox pulse">
-              <input type="checkbox" name="cloud-functions" id="cloud-functions">
-              <label for="cloud-functions" class="typo-bold">
-                <span>Cloud functions</span>
-              </label>
-            </div>
-            <p>For dynamic pages we use cloud functions (lambdas) on an edge network. Just like the CDN, they run close
-              to our users. Unlike a regular server, a cloud function only runs when it receives a request. When more
-              requests are made at the same time, more instances of the cloud functions spin up. When the requests
-              decrease, the cloud functions scale down. This way, we only use the energy we need when we need it.</p>
-          </li>
-          <li>
-            <div class="checkbox pulse">
-              <input type="checkbox" name="client-side-caching" id="client-side-caching">
-              <label for="client-side-caching" class="typo-bold">
-                <span>Client-side caching</span>
-              </label>
-            </div>
-            <p>Once a user received a resource we can ensure it never has to request it again. We achieve this using
-              client-side caching. We ensure a resource never changes (or revision the resource name if it does). Then
-              we tell the browser it can keep the file “forever” (using ’Cache-Control’, ‘public, max-age=31536000,
-              immutable’).</p>
-          </li>
-          <li>
-            <div class="checkbox pulse">
-              <input type="checkbox" name="green-hosting" id="green-hosting">
-              <label for="green-hosting" class="typo-bold">
-                <span>Green hosting</span>
-              </label>
-            </div>
-            <p>At the end of the day, our websites will still require websites to run. The best we can do, is make sure
-              they run on sustainable energy. Our websites partially use green hosting providers, so we still have some
-              work to do here. You can check if your site has green hosting.</p>
-          </li>
-        </ul>
-      </form>
-    </article>
-
-    <article class="filled-primary-half x-spaced-medium">
-      <div class="container x-spaced-large y-spaced-large filled-secondary web-manifest">
-        <h2 class="h2 color-light">Commit to energy efficient websites</h2>
-        <p class="color-light">We’ll continue to improve the energy efficiency of our websites. And will push our design
-          partners, hosting providers and clients to do the same. We are committed to creating a more sustainable web.
-          So all of us at De Voorhoede signed the <a href="https://www.sustainablewebmanifesto.com/" target="_blank"
-                                                     rel="noreferrer noopener">Sustainable Web Manifesto</a>. You should commit and sign it too.</p>
-        <a class="button" href="https://www.sustainablewebmanifesto.com/#signature" target="_blank"
-           rel="noreferrer noopener">Sign now</a>
-      </div>
-    </article>
   </main>
 </template>
 
