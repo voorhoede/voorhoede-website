@@ -164,7 +164,7 @@
 
 <style scoped>
   .energy-first-container {
-    font-family: var(--font-base);
+    font-family: var(--font-sans);
     box-sizing: border-box;
     line-height: 1.7em;
     padding-top: calc(var(--spacing-medium) + var(--app-header-height-large));
@@ -190,18 +190,6 @@
     --spacing-xlarge: 60px;
     --spacing-xxlarge: 100px;
     --checkbox: 20px;
-    --font-fallback: -apple-system,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      Roboto,
-      Oxygen,
-      Ubuntu,
-      Cantarell,
-      'Open Sans',
-      'Helvetica Neue',
-      sans-serif;
-    --font-base: 'apercu', var(--font-fallback);
-    --font-bold: 'apercu', var(--font-fallback);
   }
 
   @media (prefers-color-scheme: dark) {
@@ -216,7 +204,6 @@
   *::after {
     margin: 0;
     padding: 0;
-    box-sizing: inherit;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -226,18 +213,10 @@
   }
 
   /* ============================== typo */
-  body {
-    font-size: 1.125rem;
-    line-height: 1.7em;
-    color: var(--black);
-    font-family: var(--font-base);
-  }
-
   .h1 {
     font-size: 3.125rem;
     line-height: 1.1em;
     color: var(--blue);
-    font-family: var(--font-bold);
     text-align: center;
   }
 
@@ -245,7 +224,6 @@
     font-size: 1.625rem;
     line-height: 1.3em;
     color: var(--blue);
-    font-family: var(--font-bold);
   }
 
   .typo-large {
@@ -259,13 +237,11 @@
   }
 
   .typo-bold {
-    font-family: var(--font-bold);
+    font-weight: bold;
   }
 
   .color-light {
     color: var(--white);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -273,8 +249,6 @@
     .h1,
     .h2 {
       color: var(--white);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
   }
 
@@ -401,7 +375,6 @@
   .button {
     display: inline-block;
     padding: 6px 20px 3px 20px;
-    font-family: var(--font-bold);
     text-align: center;
     color: var(--blue);
     text-decoration: none;
@@ -1040,7 +1013,6 @@
   .web-manifest p a {
     color: var(--white);
     text-decoration: none;
-    font-family: var(--font-bold);
   }
 
   .web-manifest p a:hover,
