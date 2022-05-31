@@ -68,7 +68,7 @@
     },
     methods: {
       contactType(type, body) {
-        if(type === 'email') {
+        if (type === 'email') {
           return `mailto:${ body }`
         } else {
           return `tel:${ body }`

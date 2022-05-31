@@ -103,7 +103,7 @@
     },
     methods: {
       trackLink (href, external = false ) {
-        if(external === false) {
+        if (external === false) {
           return this.$ga.event('CTA-image', 'click cta', href, 0)
         } else {
           return this.$ga.query('send', 'event', {

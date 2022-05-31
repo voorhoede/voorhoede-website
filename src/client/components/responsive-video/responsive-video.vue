@@ -88,7 +88,7 @@
     },
     computed: {
       imageUrl() {
-        if(this.gif) {
+        if (this.gif) {
           return `${this.gif.url}?fm=jpg`
         }
 

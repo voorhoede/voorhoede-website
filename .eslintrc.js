@@ -47,5 +47,9 @@ module.exports = {
     'comma-dangle': [2, 'always-multiline'],
     'object-curly-spacing': [2, 'always'],
     'semi': [1, 'never', { 'beforeStatementContinuationChars': 'never' }],
+    'keyword-spacing': [2, {
+      'before': true,
+      'after': true,
+    }],
   },
 }

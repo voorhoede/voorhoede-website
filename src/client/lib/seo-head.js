@@ -7,7 +7,7 @@ export default function () {
   const pageTitle = page.social.title ? page.social.title : defaultShareTitle
 
   let socialDescription = page.social.description
-  if(page.authors) {
+  if (page.authors) {
     const authors = page.authors.map(author => {
       return author.twitterHandle ? author.twitterHandle : author.name
     }).join(' ')

@@ -17,7 +17,7 @@ Vue.directive('scroll-highlight', {
     let containerTop = 0
 
     container.classList.add('scroll-text--active')
-    for(let i = 0; i < items.length; i++) {
+    for (let i = 0; i < items.length; i++) {
       items[i].style.setProperty('--z-position', '-1px')
     }
 
@@ -42,7 +42,7 @@ Vue.directive('scroll-highlight', {
 
     function animate() {
       setScaleVector()
-      if(isAnimating) {
+      if (isAnimating) {
         isAnimating = window.requestAnimationFrame(animate)
       }
     }
@@ -52,7 +52,7 @@ Vue.directive('scroll-highlight', {
       containerTop = container.getBoundingClientRect().top
       let item, top, height, centerItem, distance, zPosition
 
-      for(let i = 0; i < items.length; i++) {
+      for (let i = 0; i < items.length; i++) {
         item = items[i]
         top = containerTop + item.offsetTop
         height = item.clientHeight

@@ -143,7 +143,7 @@
      },
 
      mounted() {
-      if(localStorageSupported) {
+      if (localStorageSupported) {
         this.highScore = localStorage.getItem('gameHighScore')
       }
     },
@@ -173,7 +173,7 @@
         },
 
         finish() {
-          if(localStorageSupported) {
+          if (localStorageSupported) {
             this.setHighScore()
           }
 
@@ -186,20 +186,20 @@
 
         setHighScore() {
           const hightScore = localStorage.getItem('gameHighScore')
-          if(hightScore < this.currentScore) {
+          if (hightScore < this.currentScore) {
             localStorage.setItem('gameHighScore', this.currentScore)
             this.highScore = this.currentScore
           }
         },
 
         handleTiming(timeStamp) {
-          if(this.startTime === undefined) {
+          if (this.startTime === undefined) {
             this.startTime = timeStamp
           }
 
           this.progress = (timeStamp - this.startTime) / this.duration
 
-          if(this.step === 2 && (this.startTime + this.duration > timeStamp)) {
+          if (this.step === 2 && (this.startTime + this.duration > timeStamp)) {
             this.animationFrame = requestAnimationFrame(this.handleTiming)
           } else {
             cancelAnimationFrame(this.handleTiming)

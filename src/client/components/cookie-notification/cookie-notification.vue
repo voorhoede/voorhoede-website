@@ -51,13 +51,13 @@
       }
     },
     mounted() {
-      if(localStorageSupported) {
+      if (localStorageSupported) {
         this.showCookieNotification = !localStorage.getItem('cookiesAccepted')
       }
     },
     methods: {
       recordConsent() {
-        if(localStorageSupported) {
+        if (localStorageSupported) {
           localStorage.setItem('cookiesAccepted', true)
           this.showCookieNotification = false
         }

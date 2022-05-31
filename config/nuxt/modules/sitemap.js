@@ -13,7 +13,7 @@ function getPriority (route) {
         blog: 0.7,
         events: 0.6,
     }
-    for(let key in priorties) {
+    for (let key in priorties) {
         if (route.includes(key.toString())) {
             value = priorties[key]
         }
