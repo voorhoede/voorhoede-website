@@ -31,24 +31,24 @@
     inheritAttrs: false,
     model: {
       prop: 'checked',
-      event: 'change'
+      event: 'change',
     },
     props: {
       id: {
         type: String,
-        required: true
+        required: true,
       },
       label: {
         type: String,
-        required: true
+        required: true,
       },
       name: {
         type: String,
-        required: true
+        required: true,
       },
       resetValidation: {
         type: Boolean,
-        default: false
+        default: false,
       },
       validate: {
         type: Boolean,
@@ -56,22 +56,22 @@
       },
       validationErrorMessage: {
         type: String,
-        default: ''
+        default: '',
       },
       checked: {
         type: Boolean,
-        default: false
-      }
+        default: false,
+      },
     },
     data() {
       return {
-        valid: false
+        valid: false,
       }
     },
     computed: {
       isInvalid() {
         return this.validate && !this.valid
-      }
+      },
     },
     watch: {
       checked() {
@@ -84,7 +84,7 @@
         this.$nextTick(() => {
           this.checkValidity()
         })
-      }
+      },
     },
     mounted() {
       this.checkValidity()
@@ -95,7 +95,7 @@
       },
       checkValidity() {
         this.valid = this.$refs.input.checkValidity()
-      }
+      },
     },
   }
 </script>

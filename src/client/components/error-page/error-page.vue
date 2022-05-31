@@ -28,8 +28,8 @@
         }
 
         return contentMap[this.$i18n.locale]
-      }
-    }
+      },
+    },
   }
 </script>
 

@@ -32,52 +32,52 @@
     props: {
       expertiseTitle: {
         type: String,
-        required: true
+        required: true,
       },
       expertises: {
         type: Array,
         required: true,
         validator(value) {
           return value.every(item => item.title)
-        }
+        },
       },
       technologiesTitle: {
         type: String,
-        required: true
+        required: true,
       },
       technologies: {
         type: Array,
         required: true,
         validator(value) {
           return value.every(item => item.title)
-        }
+        },
       },
       deliverableTitle: {
         type: String,
-        required: true
+        required: true,
       },
       deliverables: {
         type: Array,
         required: true,
         validator(value) {
           return value.every(item => item.title)
-        }
+        },
       },
       interestedTitle: {
         type: String,
         required: false,
-        default: ''
+        default: '',
       },
       interestedLinkLabel: {
         type: String,
         required: false,
-        default: ''
+        default: '',
       },
       interestedLinkUrl: {
         type: String,
         required: false,
-        default: ''
-      }
+        default: '',
+      },
     },
     methods: {
       toMetaString(array) {
@@ -87,8 +87,8 @@
           .slice(0, lastIndex)
           .map(({ title }) => title)
           .join(', ') + ` ${(array.length > 1) ? this.$t('and') : ''} ${title}`
-      }
-    }
+      },
+    },
   }
 </script>
 

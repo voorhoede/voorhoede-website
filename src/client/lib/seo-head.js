@@ -17,7 +17,7 @@ export default function () {
 
   return {
     htmlAttrs: {
-      lang: currentLocale
+      lang: currentLocale,
     },
     title: pageTitle,
     meta: [

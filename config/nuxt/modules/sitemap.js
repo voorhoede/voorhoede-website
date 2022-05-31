@@ -11,7 +11,7 @@ function getPriority (route) {
         services: 0.9,
         cases: 0.8,
         blog: 0.7,
-        events: 0.6
+        events: 0.6,
     }
     for(let key in priorties) {
         if (route.includes(key.toString())) {
@@ -40,10 +40,10 @@ module.exports = [
                     return {
                         url: route,
                         priority: getPriority(route),
-                        gzip: true
+                        gzip: true,
                     }
-                })
+                }),
             }
-        })
-    }
+        }),
+    },
 ]

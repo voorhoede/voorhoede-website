@@ -59,11 +59,11 @@
     props: {
       video: {
         type: Object,
-        default: null
+        default: null,
       },
       gif: {
         type: Object,
-        default: null
+        default: null,
       },
       autoplay: {
         type: Boolean,

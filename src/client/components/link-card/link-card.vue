@@ -57,30 +57,30 @@
     props: {
       image: {
         type: Object,
-        required: true
+        required: true,
       },
       title: {
         type: String,
-        required: true
+        required: true,
       },
       body: {
         type: String,
-        required: true
+        required: true,
       },
       internalLink: {
         type: [Object, String],
-        default: null
+        default: null,
       },
       externalLink: {
         type: String,
-        default: null
-      }
+        default: null,
+      },
     },
     methods: {
       getImageUrl(url, options) {
         return imageUrl(url, options)
-      }
-    }
+      },
+    },
   }
 </script>
 

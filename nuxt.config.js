@@ -20,7 +20,7 @@ module.exports = {
   modules,
   env: {
     baseUrl,
-    DATO_API_TOKEN
+    DATO_API_TOKEN,
   },
 
   /*
@@ -97,7 +97,7 @@ module.exports = {
   ],
 
   css: [
-    '~/components/app-core/index.css'
+    '~/components/app-core/index.css',
   ],
 
   /*
@@ -108,20 +108,20 @@ module.exports = {
     // https://stackoverflow.com/questions/67350359/nuxt-js-fresh-install-of-nuxt-2-14-6-contains-babel-loose-option-warnings
     babel:{
       plugins: [
-        ['@babel/plugin-proposal-private-methods', { loose: true }]
-      ]
+        ['@babel/plugin-proposal-private-methods', { loose: true }],
+      ],
     },
     postcss: {
       plugins: {
         'postcss-import': {},
         'postcss-custom-properties': {
-          importFrom: './src/client/components/app-core/variables.css'
+          importFrom: './src/client/components/app-core/variables.css',
         },
         'autoprefixer': {
           overrideBrowserslist: ['ie 11', 'last 2 versions'],
           grid: true,
-        }
-      }
+        },
+      },
     },
 
     /*
@@ -142,6 +142,6 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'raw-loader',
       })
-    }
-  }
+    },
+  },
 }

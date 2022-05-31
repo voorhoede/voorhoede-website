@@ -112,7 +112,7 @@
     computed: {
       emailValidationErrorMessage() {
         return this.form.email ? this.$t('provide_valid_email') : this.$t('email_is_required')
-      }
+      },
     },
     mounted () {
       this.useCustomValidation = true

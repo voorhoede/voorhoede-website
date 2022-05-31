@@ -21,7 +21,7 @@ export default {
       default: 'blue',
       validator: color => ['blue', 'paper'].indexOf(color) !== -1,
     },
-  }
+  },
 }
 </script>
 

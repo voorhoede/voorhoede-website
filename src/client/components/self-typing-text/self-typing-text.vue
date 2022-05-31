@@ -56,8 +56,8 @@ export default {
         this.selfTypingText += character
         this.index++
       }
-    }
-  }
+    },
+  },
 }
 </script>
 <style>

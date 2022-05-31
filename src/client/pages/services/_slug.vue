@@ -78,7 +78,7 @@
 
   import {
     SET_PREVIOUS_SERVICE_TITLE,
-    SET_PREVIOUS_SERVICE_SERIES_NAVIGATION
+    SET_PREVIOUS_SERVICE_SERIES_NAVIGATION,
   } from '~/store/mutation-types'
 
   export default {
@@ -115,7 +115,7 @@
           previousRouteIsServiceSlugPage,
           // Don't use mapState for previousServiceTitle and previousServiceSeriesNavigation, as it will be replaced on mounted
           previousServiceTitle: context.store.state.previousServiceTitle,
-          previousServiceSeriesNavigation: context.store.state.previousServiceSeriesNavigation
+          previousServiceSeriesNavigation: context.store.state.previousServiceSeriesNavigation,
         }
       } catch (error) {
         return context.error({ statusCode: 404 })
@@ -144,7 +144,7 @@
           && this.page.serviceSeries.find(
             series => (
               series.id === this.previousServiceSeriesNavigation.id
-            )
+            ),
           )
 
         if (
@@ -160,13 +160,13 @@
       seriesNavigationTitleRoutes() {
         return {
           title: this.shownSeriesNavigation.mainService.title,
-          route: this.getServiceRoute(this.shownSeriesNavigation.mainService.slug)
+          route: this.getServiceRoute(this.shownSeriesNavigation.mainService.slug),
         }
       },
       seriesNavigationChildRoutes() {
         return this.shownSeriesNavigation.childServices.map(service => ({
           title: service.title,
-          route: this.getServiceRoute(service.slug)
+          route: this.getServiceRoute(service.slug),
         }))
       },
       backLinkLabel() {
@@ -175,12 +175,12 @@
       nextLinkRoute() {
         return this.page.breadcrumbsNextService && this.localeUrl({
           name: 'services-slug',
-          params: { slug: this.page.breadcrumbsNextService.slug }
+          params: { slug: this.page.breadcrumbsNextService.slug },
         })
       },
       nextLinkLabel() {
         return this.page.breadcrumbsNextService && this.page.breadcrumbsNextService.title
-      }
+      },
     },
     // Set on mounted as beforeDestroy will trigger just after asyncData
     mounted() {
@@ -194,10 +194,10 @@
         return this.localeUrl({
           name: 'services-slug',
           params: {
-            slug
-          }
+            slug,
+          },
         })
-      }
+      },
     },
   }
 </script>

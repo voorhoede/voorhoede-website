@@ -35,9 +35,9 @@
         type: String,
         default: 'down',
         required: false,
-        validator: direction => ['up', 'down'].indexOf(direction) !== -1
+        validator: direction => ['up', 'down'].indexOf(direction) !== -1,
       },
-    }
+    },
   }
 </script>
 

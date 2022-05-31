@@ -3,26 +3,26 @@ const proxyquire = require('proxyquire')
 const sinon = require('sinon')
 
 const fetchResponseStub = {
-  json: sinon.stub().resolves({ data: 'bar' })
+  json: sinon.stub().resolves({ data: 'bar' }),
 }
 
 const failResponseStub = {
-  json: sinon.stub().rejects(new Error('some error'))
+  json: sinon.stub().rejects(new Error('some error')),
 }
 
 const okResponse = {
-  ok: true
+  ok: true,
 }
 
 const nOkResponse = {
-  ok: false
+  ok: false,
 }
 
 test.beforeEach(t => {
   const stub = sinon.stub()
   t.context.fetchStub = stub
   t.context.queryApi = proxyquire('../../../../src/client/lib/query-api', {
-    'node-fetch': stub
+    'node-fetch': stub,
   })
 })
 
@@ -33,7 +33,7 @@ test('query api with all requests failing', async t => {
 
   fetchStub.resolves({
     ...nOkResponse,
-    ...fetchResponseStub
+    ...fetchResponseStub,
   })
 
   await t.throwsAsync(queryApi({}), null, 'fails if all attempts fail')
@@ -47,13 +47,13 @@ test('query api with first 3 requests failing', async t => {
   // fail first three calls
   fetchStub.resolves({
     ...nOkResponse,
-    ...fetchResponseStub
+    ...fetchResponseStub,
   })
 
   // Succeed the fourth call
   fetchStub.onCall(3).resolves({
     ...okResponse,
-    ...fetchResponseStub
+    ...fetchResponseStub,
   })
 
   await t.notThrowsAsync(queryApi({}), null, 'retry & succeed works')
@@ -66,7 +66,7 @@ test('query api and succeed immediately', async t => {
   // instant success: node-fetch returns an ok response
   fetchStub.resolves({
     ...okResponse,
-    ...fetchResponseStub
+    ...fetchResponseStub,
   })
 
   await t.notThrowsAsync(queryApi({}), null, 'query is successful')
@@ -80,7 +80,7 @@ test('query api and error while parsing json', async t => {
   // instant success
   fetchStub.resolves({
     ...okResponse,
-    ...failResponseStub
+    ...failResponseStub,
   })
 
   await t.throwsAsync(queryApi({}), { message: 'some error' }, 'rejects with the expected error (message)')

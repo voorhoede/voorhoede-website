@@ -177,7 +177,7 @@
     methods: {
       isFullWidth(item) {
         return item.image && item.fullWidth
-      }
+      },
     },
   }
 </script>

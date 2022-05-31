@@ -91,7 +91,7 @@
         default: 'headline',
         validator(heading) {
           return ['headline', 'byline'].indexOf(heading) >= 0
-        }
+        },
       },
       image: {
         type: Object,
@@ -102,11 +102,11 @@
       },
       breakOutImage: {
         type: Boolean,
-        default: false
+        default: false,
       },
       fillScreen: {
         type: Boolean,
-        default: false
+        default: false,
       },
       curlyBracket: {
         type: Boolean,
@@ -114,12 +114,12 @@
       },
       isAnimated: {
         type: Boolean,
-        default: false
+        default: false,
       },
       animationDelay: {
         type: Number,
-        default: 0
-      }
+        default: 0,
+      },
     },
     computed: {
       /* The slot and curly bracket are only available within the fill screen variant */
@@ -134,13 +134,13 @@
           throw new Error('The curly bracket is only available in combination with fhe fill-screen prop')
         }
         return (this.curlyBracket && this.fillScreen)
-      }
+      },
     },
     methods: {
       imageUrl(image, options) {
         return imageUrl(image, options)
-      }
-    }
+      },
+    },
   }
 </script>
 

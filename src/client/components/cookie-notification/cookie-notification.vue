@@ -61,8 +61,8 @@
           localStorage.setItem('cookiesAccepted', true)
           this.showCookieNotification = false
         }
-      }
-    }
+      },
+    },
   }
 </script>
 

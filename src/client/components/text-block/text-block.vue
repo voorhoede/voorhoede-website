@@ -10,18 +10,18 @@
     props: {
       title: {
         type: String,
-        default: null
+        default: null,
       },
       slug: {
         type: String,
-        default: ''
-      }
+        default: '',
+      },
     },
     mounted () {
       if (!this.$slots.default) {
         throw new Error('Text block requires content be provided in the slot.')
       }
-    }
+    },
   }
 </script>
 

@@ -2,10 +2,10 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true
+    node: true,
   },
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: 'babel-eslint',
   },
   extends: [
     // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
@@ -38,13 +38,14 @@ module.exports = {
     'vue/no-v-html': 0,
     'vuejs-accessibility/label-has-for': [2, {
       'required': {
-        'some': ['nesting', 'id']
+        'some': ['nesting', 'id'],
       },
-      'allowChildren': true
+      'allowChildren': true,
     }],
     'quotes': [2, 'single'],
     'curly': [2, 'multi-line'],
+    'comma-dangle': [2, 'always-multiline'],
     'object-curly-spacing': [2, 'always'],
     'semi': [1, 'never', { 'beforeStatementContinuationChars': 'never' }],
-  }
+  },
 }

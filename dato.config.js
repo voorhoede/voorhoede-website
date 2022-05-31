@@ -19,7 +19,7 @@ module.exports = (dato, root, i18n) => {
 
   root.createDataFile(`${dataDir}/app.json`, 'json', {
     ...appSettingsToJson(dato.app),
-    locales: localesToJson(locales)
+    locales: localesToJson(locales),
   })
 
   defaultLocale = defaultLocale || locales[0]
@@ -55,7 +55,7 @@ function localesToJson (locales) {
   return locales.map(code => {
     return {
       code,
-      name: getNativeName(code)
+      name: getNativeName(code),
     }
   })
 }
@@ -76,7 +76,7 @@ function layoutToJson(dato) {
     menu: {
       title: dato.menu.title,
       links: dato.menu.links.map(formatLink),
-      callToAction: formatLink(dato.menu.callToAction)
+      callToAction: formatLink(dato.menu.callToAction),
     },
     footer: {
       ...pick(dato.app, [
@@ -101,7 +101,7 @@ function layoutToJson(dato) {
         'copyrightTitle',
         'copyrightLink',
       ]),
-    }
+    },
   }
 }
 
@@ -109,8 +109,8 @@ function formatLink(link) {
   return {
     ...pick(link, ['title', 'url']),
     page: {
-      slug: link.page.slug
-    }
+      slug: link.page.slug,
+    },
   }
 }
 
@@ -121,7 +121,7 @@ function errorPageToJson(errorPage) {
       'title',
       'body',
     ]),
-    headerImage: pick(errorPage.headerImage.upload, ['url', 'alt'])
+    headerImage: pick(errorPage.headerImage.upload, ['url', 'alt']),
   }
 }
 

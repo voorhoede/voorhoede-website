@@ -34,14 +34,14 @@ export default {
   props: {
     shareText: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   data () {
     return {
       shareUrl: 'https://www.voorhoede.nl/easter-egg',
-      translations
+      translations,
     }
   },
 
@@ -51,21 +51,21 @@ export default {
         {
           name: 'Facebook',
           url: getFacebookUrl(this.shareUrl, this.shareText),
-          icon: 'facebook'
+          icon: 'facebook',
         },
         {
           name: 'Twitter',
           url: getTwitterUrl(this.shareUrl, this.shareText),
-          icon: 'twitter'
+          icon: 'twitter',
         },
         {
           name: 'Linkedin',
           url: getLinkedinUrl(this.shareUrl, this.shareText),
-          icon: 'linkedin'
-        }
+          icon: 'linkedin',
+        },
       ]
-    }
-  }
+    },
+  },
 }
 </script>
 

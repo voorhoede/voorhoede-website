@@ -57,7 +57,7 @@ export default {
         { icon: { name: 'client-logos/sita', alt: 'Sita' } },
         { icon: { name: 'client-logos/trouw', alt: 'Trouw' } },
         { icon: { name: 'client-logos/hva', alt: 'Hogeschool van Amsterdam' } },
-      ]
+      ],
     }
   },
 }

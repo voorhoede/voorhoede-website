@@ -58,8 +58,8 @@
       },
       hasBackAndNextLink() {
         return this.hasBackLink && this.hasNextLink
-      }
-    }
+      },
+    },
   }
 </script>
 

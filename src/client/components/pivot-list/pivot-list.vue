@@ -87,13 +87,13 @@
       lastItemHasBackground: {
         type: Boolean,
         default: true,
-      }
+      },
     },
     computed: {
       hasBorderTop() {
         const firstItemHasBackground = this.pivotHasBackground(0)
         return this.canHaveBorderTop && !firstItemHasBackground
-      }
+      },
     },
     methods: {
       createHref,
@@ -138,7 +138,7 @@
           eventCategory: 'Pivot',
           eventAction: 'click cta',
           eventLabel: href,
-          eventValue: 0
+          eventValue: 0,
         })
       },
     },

@@ -76,7 +76,7 @@
       },
       lazyLoad: {
         type: Boolean,
-        default: true
+        default: true,
       },
       widthStep: {
         type: Number,
@@ -84,13 +84,13 @@
       },
       cropAndKeepRatio: {
         type: Boolean,
-        default: false
+        default: false,
       },
     },
     data() {
       return {
         width: null,
-        cropOptions: null
+        cropOptions: null,
       }
     },
     computed: {
@@ -99,7 +99,7 @@
       },
       svgFormat () {
         return this.image.url.includes('.svg')
-      }
+      },
     },
     mounted() {
       const pixelRatio = window.devicePixelRatio || 1
@@ -107,7 +107,7 @@
       const width = Math.ceil(cssWidth * pixelRatio / this.widthStep) * this.widthStep
       this.width = Math.min(width, this.image.width)
       const cropOptions = {
-        w: this.width
+        w: this.width,
       }
       if (this.cropAndKeepRatio) {
         cropOptions.h = this.width

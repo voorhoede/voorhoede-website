@@ -21,24 +21,24 @@ export default {
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     caption: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
     url: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     iframeSrc() {
       const embedUrl = this.url.replace('/pen', '/embed/preview')
       return `${embedUrl}?default-tab=css%2Cresult`
-    }
-  }
+    },
+  },
 }
 </script>
 

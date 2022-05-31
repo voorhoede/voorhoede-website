@@ -12,7 +12,7 @@ const feedObject = {
       'atom:link': {
         '@href': `${url}/blog-feed.xml`,
         '@ref': 'self',
-        '@type': 'application/rss+xml'
+        '@type': 'application/rss+xml',
       },
       title: 'Voorhoede Blog',
       description,
@@ -30,12 +30,12 @@ const feedObject = {
             link,
             guid: {
               '@isPermaLink': true,
-              '#text': link
+              '#text': link,
             },
           }
-        })
-    }
-  }
+        }),
+    },
+  },
 }
 
 const feed = builder.create(feedObject, { encoding: 'utf-8' })

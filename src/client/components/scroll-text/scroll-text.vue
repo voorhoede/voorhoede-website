@@ -19,9 +19,9 @@ export default {
       required: true,
       validator(value) {
         return value.every(item => item)
-      }
-    }
-  }
+      },
+    },
+  },
 }
 
 </script>

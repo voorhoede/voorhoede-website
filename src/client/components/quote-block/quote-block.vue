@@ -19,13 +19,13 @@
     props: {
       quote: {
         type: String,
-        required: true
+        required: true,
       },
       cite: {
         type: String,
-        default: null
-      }
-    }
+        default: null,
+      },
+    },
   }
 </script>
 

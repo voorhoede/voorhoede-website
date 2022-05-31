@@ -61,7 +61,7 @@
         type: Object,
         validator: linkValidator,
         default: () => {},
-      }
+      },
     },
     computed: {
       /**
@@ -74,7 +74,7 @@
             // Get the route name (without the language suffix).
             const name = this.$route.name.replace(/___.*$/,'')
             // Return localized url as a property keyed by lang code.
-            obj[locale] = this.localeUrl({ name, params: { slug: value }, }, locale)
+            obj[locale] = this.localeUrl({ name, params: { slug: value } }, locale)
             return obj
           }, {})
         } else {
@@ -83,7 +83,7 @@
             return obj
           }, {})
         }
-      }
+      },
     },
     methods: {
       createHref,
@@ -95,7 +95,7 @@
         } else {
           document.cookie = `${langKey}=${code}; path=/; ${cookie}`
         }
-      }
+      },
     },
   }
 </script>

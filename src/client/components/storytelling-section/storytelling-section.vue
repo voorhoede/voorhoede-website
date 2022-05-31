@@ -26,7 +26,7 @@
     props: {
       title: {
         type: String,
-        default: ''
+        default: '',
       },
       items: {
         type: Array,
@@ -41,9 +41,9 @@
               item.image ? isImageValid : true
             )
           })
-        }
-      }
-    }
+        },
+      },
+    },
   }
 </script>
 

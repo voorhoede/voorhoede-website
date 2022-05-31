@@ -31,7 +31,7 @@ export default {
     solid: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   computed: {
     dateObject () {
@@ -44,7 +44,7 @@ export default {
       return formatDate({
         date: this.dateObject,
         locale: this.$i18n.locale,
-        format: 'MMM'
+        format: 'MMM',
       })
     },
   },

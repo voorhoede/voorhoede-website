@@ -33,9 +33,9 @@
       },
       hasFixedRatio: {
         type: Boolean,
-        default: true
-      }
-    }
+        default: true,
+      },
+    },
   }
 </script>
 

@@ -32,8 +32,8 @@
     computed: {
       isFullWidth() {
         return this.testimonial.fullwidth
-      }
-    }
+      },
+    },
   }
 </script>
 

@@ -20,8 +20,8 @@ export default {
   computed: {
     codeLanguage(){
       return Array.of(`language-${this.language}`)
-    }
-  }
+    },
+  },
 }
 </script>
 

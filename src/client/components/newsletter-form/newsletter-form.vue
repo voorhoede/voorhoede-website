@@ -75,8 +75,8 @@
     props: {
       hasBackground: {
         type: Boolean,
-        required: false
-      }
+        required: false,
+      },
     },
     data () {
       return {
@@ -99,7 +99,7 @@
     computed: {
       emailValidationErrorMessage() {
         return this.form.email ? this.$t('provide_valid_email') : this.$t('email_is_required')
-      }
+      },
     },
     mounted () {
       this.useCustomValidation = true
@@ -120,7 +120,7 @@
           return false
         }
       },
-    }
+    },
   }
 </script>
 

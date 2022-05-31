@@ -9,5 +9,5 @@ module.exports = [
   googleAnalytics,
   '@nuxtjs/svg-sprite',
   nuxtI18n,
-  sitemap
+  sitemap,
 ]

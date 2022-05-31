@@ -52,5 +52,5 @@ module.exports = appConfig.googleAnalyticsId &&
         location: window.location.href,
       }),
     },
-  }
+  },
 ]

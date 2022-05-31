@@ -76,7 +76,7 @@
         return this.page.jobs.filter(job => {
           return job.job.published
         })
-      }
+      },
     },
     mounted() {
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')

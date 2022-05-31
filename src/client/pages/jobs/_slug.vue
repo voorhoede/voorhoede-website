@@ -78,7 +78,7 @@
     filters: {
       replaceSalary: function (value, arg) {
         return arg ? value.replace('[SALARY]', arg) : value
-      }
+      },
     },
     asyncData,
     head() {
@@ -101,8 +101,8 @@
             '@type': 'QuantitativeValue',
             'minValue': parseFloat(minSalary, 10).toFixed(2),
             'maxValue': parseFloat(maxSalary, 10).toFixed(2),
-            'unitText': 'MONTH'
-          }
+            'unitText': 'MONTH',
+          },
         }
 
       },
@@ -117,8 +117,8 @@
             'streetAddress': place.address,
             'addressLocality': place.city,
             'postalCode': place.postalCode,
-            'addressCountry': place.countryCode
-          }
+            'addressCountry': place.countryCode,
+          },
         }))
       },
       salaryString() {

@@ -10,23 +10,23 @@
     props: {
       progress: {
         type: Number,
-        required: true
-      }
+        required: true,
+      },
     },
 
     data: () => ({
-      pathLength: 0
+      pathLength: 0,
     }),
 
     computed: {
       progressLength() {
         return this.pathLength - (this.pathLength * this.progress)
-      }
+      },
     },
 
     mounted() {
       this.pathLength = this.$refs.path.getTotalLength()
-    }
+    },
   }
 </script>
 

@@ -113,7 +113,7 @@ import { createHref } from '../../lib/links'
 export default {
   data () {
     return {
-      observer: null
+      observer: null,
     }
   },
   computed: {
@@ -134,7 +134,7 @@ export default {
     },
     cleanedPhoneNumber() {
       return this.content.phoneNumber.replace(/[^0-9]/g, '')
-    }
+    },
   },
   mounted () {
     if ('IntersectionObserver' in window) {
@@ -155,7 +155,7 @@ export default {
         eventCategory: 'Contact',
         eventAction: 'footer view',
         eventLabel: this.$route.fullPath,
-        eventValue: 0
+        eventValue: 0,
       }
       this.observer = new IntersectionObserver(function(entries) {
         if (entries.some(entry => entry.isIntersecting)) {
@@ -170,7 +170,7 @@ export default {
     },
     unobserveContact () {
       this.observer.unobserve(this.$refs.contact)
-    }
+    },
   },
 }
 </script>

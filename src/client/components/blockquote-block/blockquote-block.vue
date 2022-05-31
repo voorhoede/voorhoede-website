@@ -32,25 +32,25 @@
     props: {
       title: {
         type: String,
-        default: null
+        default: null,
       },
       body: {
         type: String,
-        default: null
+        default: null,
       },
       linkLabel: {
         type: String,
-        default: null
+        default: null,
       },
       linkUrl: {
         type: String,
-        default: null
+        default: null,
       },
       linkIsExternal: {
         type: Boolean,
-        default: false
-      }
-    }
+        default: false,
+      },
+    },
   }
 </script>
 

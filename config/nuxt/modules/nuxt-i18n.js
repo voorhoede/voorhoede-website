@@ -11,7 +11,7 @@ module.exports = [
     defaultLocale,
     detectBrowserLanguage: {
       useCookie: true,
-      cookieKey: 'i18n_redirected'
+      cookieKey: 'i18n_redirected',
     },
     locales: locales.map(({ code, name }) => ({
       code,
@@ -22,7 +22,7 @@ module.exports = [
     strategy: 'prefix',
     vueI18n: {
       fallbackLocale: defaultLocale,
-      messages
-    }
-  }
+      messages,
+    },
+  },
 ]

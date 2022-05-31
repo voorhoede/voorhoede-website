@@ -14,13 +14,13 @@
         },
         default: () => ({
           statusCode: DEFAULT_STATUSCODE,
-        })
+        }),
       },
     },
     head () {
       return {
-        title: `${this.error ? this.error.statusCode : DEFAULT_STATUSCODE} | De Voorhoede`
+        title: `${this.error ? this.error.statusCode : DEFAULT_STATUSCODE} | De Voorhoede`,
       }
-    }
+    },
   }
 </script>

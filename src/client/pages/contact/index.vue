@@ -73,7 +73,7 @@
         } else {
           return `tel:${ body }`
         }
-      }
+      },
     },
   }
 </script>

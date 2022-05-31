@@ -30,9 +30,9 @@
             && typeof(event.title) === 'string'
             && typeof(event.social.description) === 'string'
           )
-        }
-      }
-    }
+        },
+      },
+    },
   }
 </script>
 

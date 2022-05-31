@@ -5,7 +5,7 @@ const token = process.env.DATO_API_TOKEN
 
 module.exports = function({ query, variables }) {
   const queryBackoff = backoff.fibonacci({
-    maxDelay: 5000
+    maxDelay: 5000,
   })
 
   queryBackoff.failAfter(5)
@@ -37,7 +37,7 @@ function doQuery({ query, variables }) {
         'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify({ query, variables }),
-    }
+    },
   )
     .then(res => {
       if (!res.ok) {

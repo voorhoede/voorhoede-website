@@ -81,7 +81,7 @@
           return links.every(linkValidator)
         },
         default: () => [],
-      }
+      },
     },
     data() {
       return {
@@ -91,7 +91,7 @@
     watch: {
       $route() {
         this.showMenu = false
-      }
+      },
     },
     methods: {
       closeMenu() {
@@ -109,7 +109,7 @@
       prevent(event) {
         event.preventDefault()
       },
-      createHref
+      createHref,
     },
   }
 </script>

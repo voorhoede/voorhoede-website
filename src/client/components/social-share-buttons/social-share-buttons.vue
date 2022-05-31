@@ -50,7 +50,7 @@
     data () {
       return {
         hasNativeShare: false,
-        url: `${process.env.URL}${this.$route.fullPath}`
+        url: `${process.env.URL}${this.$route.fullPath}`,
       }
     },
     computed: {
@@ -75,8 +75,8 @@
             icon: 'linkedin',
             href: `https://www.linkedin.com/shareArticle?&url=${this.url}&title=${this.title}`,
             label: 'linkedin',
-            alt: 'Share this post on LinkedIn'
-          }
+            alt: 'Share this post on LinkedIn',
+          },
         ]
       },
     },

@@ -51,17 +51,17 @@
         default: null,
         validator(illustration) {
           return typeof(illustration.url) === 'string'
-        }
+        },
       },
       price: {
         type: String,
         required: false,
-        default: ''
+        default: '',
       },
       slug: {
         type: String,
-        required: true
-      }
+        required: true,
+      },
     },
     computed: {
       date() {
@@ -69,7 +69,7 @@
       },
       isMeetup() {
         return this.label.toLowerCase() === 'meet-up'
-      }
+      },
     },
   }
 </script>

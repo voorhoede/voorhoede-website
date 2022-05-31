@@ -32,7 +32,7 @@ export default {
     },
     bodyLong: {
       type: String,
-      default: null
+      default: null,
     },
     image: {
       type: Object,
@@ -47,12 +47,12 @@ export default {
     },
     secondary: {
       type: Boolean,
-      default: false
+      default: false,
     },
     isFlipped: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     rootClass() {

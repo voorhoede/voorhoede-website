@@ -48,13 +48,13 @@ export default {
           && typeof(address.city) === 'string'
           && typeof(address.postalCode) === 'string'
         ))
-      }
+      },
     },
     addressLabel: {
       type: String,
       default: '',
     },
-  }
+  },
 }
 </script>
 

@@ -25,8 +25,8 @@ export default {
     inverse: {
       type: Boolean,
       default: false,
-    }
-  }
+    },
+  },
 }
 </script>
 

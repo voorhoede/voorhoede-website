@@ -140,7 +140,7 @@
         return formatDate({
           date: this.page.date,
           locale: this.$i18n.locale,
-          format: 'DD MMM HH:mm'
+          format: 'DD MMM HH:mm',
         })
       },
       structuredData() {
@@ -180,7 +180,7 @@
           'organizer': {
             '@type': 'Organization',
             'name': 'De Voorhoede',
-            'url': 'https://voorhoede.nl'
+            'url': 'https://voorhoede.nl',
           },
           'offers': {
             '@type': 'Offer',

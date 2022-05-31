@@ -58,21 +58,21 @@
       titleRoute: {
         type: Object,
         required: true,
-        validator: isValidItem
+        validator: isValidItem,
       },
       childRoutes: {
         type: Array,
         required: true,
         validator(children) {
           return children.every(isValidItem)
-        }
-      }
+        },
+      },
     },
     methods: {
       isActive(item) {
         return item.route === this.$route.path
-      }
-    }
+      },
+    },
   }
 </script>
 

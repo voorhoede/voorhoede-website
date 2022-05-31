@@ -68,14 +68,14 @@
         default: null,
         validator(illustration) {
           return typeof(illustration.url) === 'string'
-        }
+        },
       },
     },
     methods: {
       imageUrl(image, options) {
         return imageUrl(image, options)
-      }
-    }
+      },
+    },
   }
 </script>
 

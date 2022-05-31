@@ -22,11 +22,11 @@
     props: {
       title: {
         type: String,
-        default: ''
+        default: '',
       },
       body: {
         type: String,
-        required: true
+        required: true,
       },
       image: {
         type: Object,
@@ -38,13 +38,13 @@
 
           return image && typeof(image.url) === 'string'
         },
-      }
+      },
     },
     methods: {
         imageUrl(image, options) {
           return imageUrl(image, options)
-        }
-      }
+        },
+      },
     }
 </script>
 

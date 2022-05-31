@@ -114,7 +114,7 @@
       title: {
         type: String,
         required: false,
-        default: undefined
+        default: undefined,
       },
       ariaLabel: {
         type: String,
@@ -132,8 +132,8 @@
             && typeof(contactPerson.lastName) === 'string'
             && typeof(contactPerson.image) === 'object'
           )
-        }
-      }
+        },
+      },
     },
     data() {
       return {
@@ -160,7 +160,7 @@
       },
       hasSidebar() {
         return this.title || this.contactPerson
-      }
+      },
     },
     mounted() {
       this.useCustomValidation = true
@@ -188,7 +188,7 @@
         const formValidationState = this.formIsValidated ? 'success' : 'failed'
         return this.$ga.event('Contact form', 'click submit', formValidationState, 0)
       },
-    }
+    },
   }
 </script>
 

@@ -105,7 +105,7 @@
     'You just don\'t carrot all.',
     'Keep on eggs-ercising',
     'That\'s egg-cellent!',
-    'You\'re egg-ceptional!'
+    'You\'re egg-ceptional!',
   ]
 
   export default {
@@ -123,7 +123,7 @@
       duration: 20000,
       progress: 0,
       highScore: undefined,
-      translations
+      translations,
      }),
 
      computed: {
@@ -139,7 +139,7 @@
           : this.currentScore < 30
           ? feedbacks[2]
           : feedbacks[3]
-       }
+       },
      },
 
      mounted() {
@@ -218,17 +218,17 @@
             const tween = egg.animate({
               transform: [
                 `translateX(${xPosition}vw) translateY(0vh) rotate(${+(Math.random() * -200).toPrecision(2)}deg)`,
-                `translateX(${xPosition}vw) translateY(130vh) rotate(${+(Math.random() * 360).toPrecision(2)}deg)`
-              ]
+                `translateX(${xPosition}vw) translateY(130vh) rotate(${+(Math.random() * 360).toPrecision(2)}deg)`,
+              ],
             }, {
               duration: 3000 + Math.random() * 4000,
               delay: Math.random() * 4000,
-              fill: 'both'
+              fill: 'both',
             })
 
             tween.onfinish = ({ target }) => {
               target.effect.updateTiming({
-                delay: Math.random() * 1000
+                delay: Math.random() * 1000,
               })
               target.play()
             }
@@ -245,10 +245,10 @@
 
           const subTween = button.animate({
             transform: ['scale(1)', 'scale(2)'],
-            opacity: [1, 0]
+            opacity: [1, 0],
           }, {
             duration: 150,
-            fill: 'both'
+            fill: 'both',
           })
 
           subTween.onfinish = () => {
@@ -259,8 +259,8 @@
             this.currentScore++
             button.disabled = false
           }
-        }
-     }
+        },
+     },
   }
 </script>
 

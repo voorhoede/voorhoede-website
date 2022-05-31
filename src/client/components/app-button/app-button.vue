@@ -54,7 +54,7 @@
       external: {
         type: Boolean,
         default: false,
-      }
+      },
     },
     computed: {
       primary() {
@@ -66,7 +66,7 @@
           'body': !this.small,
           'app-button--primary font-bold': this.primary,
           'app-button--secondary': this.secondary,
-          'app-button--small body-small font-bold': this.small
+          'app-button--small body-small font-bold': this.small,
         }
       },
     },

@@ -93,7 +93,7 @@
       title: {
         type: String,
         required: false,
-        default: undefined
+        default: undefined,
       },
       ariaLabel: {
         type: String,
@@ -125,7 +125,7 @@
       },
       emailValidationErrorMessage() {
         return this.form.email ? this.$t('provide_valid_email') : this.$t('email_is_required')
-      }
+      },
     },
     mounted() {
       this.useCustomValidation = true
@@ -153,7 +153,7 @@
         const formValidationState = this.formIsValidated ? 'success' : 'failed'
         return this.$ga.event('Contact form', 'click submit', formValidationState, 0)
       },
-    }
+    },
   }
 </script>
 

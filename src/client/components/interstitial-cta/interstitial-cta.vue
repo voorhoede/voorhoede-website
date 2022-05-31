@@ -20,13 +20,13 @@ export default {
   props: {
     cta: {
       type: String,
-      required: true
+      required: true,
     },
     buttons: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 

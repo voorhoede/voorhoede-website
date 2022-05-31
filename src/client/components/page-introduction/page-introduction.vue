@@ -28,9 +28,9 @@
             && typeof(section.body) === 'string'
             && typeof(section.image) === 'object'
           ))
-        }
-      }
-    }
+        },
+      },
+    },
   }
 </script>
 

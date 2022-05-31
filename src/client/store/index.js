@@ -24,5 +24,5 @@ export const mutations = {
   },
   [types.SET_PREVIOUS_SERVICE_SERIES_NAVIGATION](state, previousServiceSeriesNavigation) {
     state.previousServiceSeriesNavigation = previousServiceSeriesNavigation
-  }
+  },
 }

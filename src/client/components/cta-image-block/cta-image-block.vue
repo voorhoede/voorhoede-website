@@ -51,35 +51,35 @@
     props: {
       title: {
         type: String,
-        default: null
+        default: null,
       },
       body: {
         type: String,
-        default: null
+        default: null,
       },
       linkLabel: {
         type: String,
-        default: null
+        default: null,
       },
       linkUrl: {
         type: String,
-        default: null
+        default: null,
       },
       linkIsExternal: {
         type: Boolean,
-        default: false
+        default: false,
       },
       secondaryLinkLabel: {
         type: String,
-        default: null
+        default: null,
       },
       secondaryLinkUrl: {
         type: String,
-        default: null
+        default: null,
       },
       secondaryLinkIsExternal: {
         type: Boolean,
-        default: false
+        default: false,
       },
       personImage: {
         type: Object,
@@ -88,7 +88,7 @@
       personName: {
         type: String,
         required: true,
-      }
+      },
     },
     computed: {
       hasPrimaryCta() {
@@ -111,11 +111,11 @@
             eventCategory: 'CTA-image',
             eventAction: 'click cta',
             eventLabel: href,
-            eventValue: 0
+            eventValue: 0,
           })
         }
       },
-    }
+    },
   }
 </script>
 

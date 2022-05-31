@@ -32,7 +32,7 @@ const fetchPage = process.env.NODE_ENV === 'production'
     const routeName = route.name.match('.*(?=___)')[0]
     const variables = {
       locale: i18n.locale,
-      currentDate: dayjs().format('YYYY-MM-DD')
+      currentDate: dayjs().format('YYYY-MM-DD'),
     }
 
     if (slug) {
@@ -62,7 +62,7 @@ const fetchPage = process.env.NODE_ENV === 'production'
           'Authorization': `Bearer ${process.env.DATO_API_TOKEN}`,
         },
         body: JSON.stringify({ query, variables }),
-      }
+      },
     )
       .then(res => {
         if (!res.ok) {

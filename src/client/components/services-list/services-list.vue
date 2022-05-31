@@ -24,7 +24,7 @@ export default {
       validator(services) {
         return services.every(service => typeof service === 'object')
       },
-    }
+    },
   },
 }
 </script>

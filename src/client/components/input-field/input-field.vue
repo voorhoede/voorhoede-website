@@ -51,11 +51,11 @@
     props: {
       type: {
         type: String,
-        required: true
+        required: true,
       },
       id: {
         type: String,
-        required: true
+        required: true,
       },
       name: {
         type: String,
@@ -63,20 +63,20 @@
       },
       label: {
         type: String,
-        required: true
+        required: true,
       },
       value: {
         type: String,
         required: false,
-        default: ''
+        default: '',
       },
       placeholderLabel: {
         type: String,
-        required: true
+        required: true,
       },
       resetValidation: {
         type: Boolean,
-        default: false
+        default: false,
       },
       validate: {
         type: Boolean,
@@ -86,22 +86,22 @@
       validationErrorMessage: {
         type: String,
         required: false,
-        default: ''
+        default: '',
       },
       textarea: {
         type: Boolean,
         default: false,
-      }
+      },
     },
     data() {
       return {
-        valid: false
+        valid: false,
       }
     },
     computed: {
       isInvalid() {
         return this.validate && !this.valid
-      }
+      },
     },
     watch: {
       value() {
@@ -114,7 +114,7 @@
         this.$nextTick(() => {
           this.checkValidity()
         })
-      }
+      },
     },
     mounted() {
       this.checkValidity()
@@ -125,7 +125,7 @@
       },
       checkValidity() {
         this.valid = this.$refs.input.checkValidity()
-      }
+      },
     },
   }
 </script>

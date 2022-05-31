@@ -179,10 +179,10 @@ export default {
         .map(({ title }) => {
           return {
             slug: this.slugify(title),
-            title
+            title,
           }
         })
-    }
+    },
   },
   mounted () {
     this.loadCustomScript = true
@@ -207,7 +207,7 @@ export default {
         eventCategory: 'Article',
         eventAction: 'scrolled to end',
         eventLabel: this.$route.fullPath,
-        eventValue: 100
+        eventValue: 100,
       }
       this.observer = new IntersectionObserver(function(entries) {
         if (entries.some(entry => entry.isIntersecting)) {
@@ -219,7 +219,7 @@ export default {
     },
     unobserveScrolledArticle () {
       this.observer.unobserve(this.$refs.articleEnd)
-    }
+    },
   },
 }
 </script>

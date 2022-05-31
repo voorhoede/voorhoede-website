@@ -73,8 +73,8 @@
       childServices(slug) {
         const { serviceSeries } = this.page.services.find(service => service.slug === slug)
         return serviceSeries[0].childServices
-      }
-    }
+      },
+    },
   }
 </script>
 

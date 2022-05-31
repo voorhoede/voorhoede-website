@@ -16,10 +16,10 @@
             title: translations.title[this.$i18n.locale],
             description: translations.description[this.$i18n.locale],
             image: {
-              url: translations.images[this.$i18n.locale]
-            }
-          }
-        }
+              url: translations.images[this.$i18n.locale],
+            },
+          },
+        },
       }
     },
     head,

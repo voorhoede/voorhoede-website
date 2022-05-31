@@ -103,7 +103,7 @@
       },
       pageHeaderAnimationDelay() {
         return this.page.subtitle.length * this.selfTypingTextInterval
-      }
+      },
     },
     mounted() {
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
@@ -114,7 +114,7 @@
       },
       isFirst(index) {
         return index === 0 ? { isSet: true, number: 0 } : { isSet: false }
-      }
+      },
     },
   }
 </script>

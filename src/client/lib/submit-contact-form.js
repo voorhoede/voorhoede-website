@@ -9,17 +9,17 @@ export default async function({ form, router, localeUrl }) {
     await fetch('./', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body
+      body,
     })
 
     router.push(localeUrl({
       name: 'contact-slug',
-      params: { slug: 'confirmation' }
+      params: { slug: 'confirmation' },
     }))
   } catch (error) {
     router.push(localeUrl({
       name: 'contact-slug',
-      params: { slug: 'error' }
+      params: { slug: 'error' },
     }))
   }
 }

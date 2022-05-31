@@ -26,8 +26,8 @@
       inverse: {
         type: Boolean,
         default: false,
-      }
-    }
+      },
+    },
   }
 </script>
 
