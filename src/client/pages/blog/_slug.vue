@@ -168,7 +168,6 @@ export default {
        * to prevent issues with the moment the custom script is executed and hydration.
        */
       loadCustomScript: false,
-      observer: null,
     }
   },
   computed: {

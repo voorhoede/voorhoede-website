@@ -109,11 +109,6 @@
 import { createHref } from '../../lib/links'
 
 export default {
-  data () {
-    return {
-      observer: null
-    }
-  },
   computed: {
     links () {
       const { menu } = require(`../../static/data/layouts/${this.$i18n.locale}/default`)
@@ -132,16 +127,6 @@ export default {
     },
     cleanedPhoneNumber() {
       return this.content.phoneNumber.replace(/[^0-9]/g, '')
-    }
-  },
-  mounted () {
-    if ('IntersectionObserver' in window) {
-      this.observeContact()
-    }
-  },
-  beforeDestroy() {
-    if (this.observer !== null) {
-      this.unobserveContact()
     }
   },
   methods: {
