@@ -166,6 +166,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: var(--spacing-smaller);
+  }
+
+  .page-lustrum__facts-list .tag-item {
+    margin: 0 var(--spacing-smaller) var(--spacing-smaller) 0;
   }
 </style>
