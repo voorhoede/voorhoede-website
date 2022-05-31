@@ -1,7 +1,7 @@
 require('dotenv-safe').config()
 
 const appConfig = require('../../../src/client/static/data/app.json')
-const isProduction = (process.env.NODE_ENV === 'production')
+const isProduction = process.env.NODE_ENV === 'production'
 
 /**
  * https://github.com/nuxt-community/gtm-module
