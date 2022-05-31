@@ -1072,7 +1072,11 @@
 </style>
 
 <script>
+  import asyncData from '~/lib/async-page'
+  import head from '~/lib/seo-head'
+
   export default {
+    asyncData,
     mounted() {
       const shapes = document.querySelector('[data-shapes]')
       const range = document.querySelector('[data-range]')
@@ -1082,6 +1086,7 @@
       initShapes(shapes, range)
       initChart(chart, inputs)
     },
+    head,
   }
 
   const get = key => {
