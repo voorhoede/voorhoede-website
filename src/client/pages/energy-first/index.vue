@@ -320,24 +320,12 @@
     --checkbox: 20px;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .energy-first-container {
-      --section-background: var(--blue-darken);
-    }
-  }
-
   /* ============================== globals */
   *,
   *::before,
   *::after {
     margin: 0;
     padding: 0;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .energy-first-container {
-      background-color: var(--deepblue);
-    }
   }
 
   /* ============================== typo */
@@ -370,14 +358,6 @@
 
   .color-light {
     color: var(--white);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .energy-first-container,
-    .h1,
-    .h2 {
-      color: var(--white);
-    }
   }
 
   @media screen and (min-width: 800px) {
@@ -529,19 +509,6 @@
   .button-secondary:hover,
   .button-secondary:focus {
     box-shadow: 0 0 0 3px var(--blue);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .button-secondary {
-      background-color: var(--white);
-      box-shadow: 0 0 0 var(--white);
-      color: var(--deepblue);
-    }
-
-    .button-secondary:hover,
-    .button-secondary:focus {
-      box-shadow: 0 0 0 3px var(--white);
-    }
   }
 
   /* ============================== overlapping shapes */
@@ -752,25 +719,6 @@
     animation: pulse 1.5s infinite;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .checkbox label::before {
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100' fill='none' stroke-width='15px' stroke='%23ffffff'><line x1='50' y1='5' x2='50' y2='95'/><line x1='95' y1='50' x2='5' y2='50'/></svg>");
-    }
-
-    .checkbox label {
-      color: var(--white);
-    }
-
-    .checkbox input:focus + label span::before {
-      box-shadow: inset 0 0 0 2px var(--white);
-    }
-
-    .checkbox.pulse::before {
-      opacity: .6;
-      background-color: var(--white);
-    }
-  }
-
   /* ============================== intro */
   .intro {
     margin-bottom: var(--spacing-large);
@@ -817,14 +765,6 @@
     color: var(--blue);
   }
 
-  @media (prefers-color-scheme: dark) {
-    .sticky-inner p {
-      color: var(--white);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-  }
-
   .sticky .battery {
     position: relative;
     width: 100px;
@@ -853,21 +793,6 @@
     transform-origin: 0 50%;
     transform: scaleX(var(--value));
     transition: transform .15s;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .sticky {
-      background-color: var(--deepblue);
-    }
-
-    .sticky .battery {
-      box-shadow: inset 0 0 0 5px var(--white);
-    }
-
-    .sticky .battery::before,
-    .sticky .battery::after {
-      background-color: var(--white);
-    }
   }
 
   /* ============================== slider */
@@ -940,21 +865,6 @@
 
     .slider form label:first-child {
       text-align: right;
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .slider {
-      --input-color: var(--white);
-    }
-
-    .slider form:focus-within::before {
-      background-color: var(--blue-darken);
-      opacity: 1;
-    }
-
-    .slider form label {
-      color: var(--white);
     }
   }
 
