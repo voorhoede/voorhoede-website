@@ -90,7 +90,6 @@
     methods: {
       shareNative () {
         const url = this.url
-        this.$ga.social('native', 'share', url)
         return navigator.share({ url })
       },
     },
