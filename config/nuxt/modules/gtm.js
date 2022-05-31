@@ -9,7 +9,6 @@ const isProduction = (process.env.NODE_ENV === 'production')
 module.exports = appConfig.googleTagManagerId &&
   ['@nuxtjs/gtm',
   {
-    // enabled: undefined, /* see below */
     enabled: true,
     debug: !isProduction,
 
