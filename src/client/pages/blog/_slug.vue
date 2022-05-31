@@ -185,39 +185,11 @@ export default {
   },
   mounted () {
     this.loadCustomScript = true
-    if ('IntersectionObserver' in window) {
-      this.observeScrolledArticle()
-    }
     this.$announcer.set(`Page: ${this.page.social.title}`, 'polite')
-  },
-  beforeDestroy() {
-    if (this.observer !== null) {
-      this.unobserveScrolledArticle()
-    }
   },
   methods: {
     slugify(title) {
       return `${title.replace(/[^A-Za-z]+/g, '-').toLowerCase()}`
-    },
-    observeScrolledArticle () {
-      const articleEndElement = this.$refs.articleEnd
-      const ga = this.$ga
-      const event = {
-        eventCategory: 'Article',
-        eventAction: 'scrolled to end',
-        eventLabel: this.$route.fullPath,
-        eventValue: 100
-      }
-      this.observer = new IntersectionObserver(function(entries) {
-        if (entries.some(entry => entry.isIntersecting)) {
-          ga.event(event)
-          this.unobserve(articleEndElement)
-        }
-      })
-      this.observer.observe(articleEndElement)
-    },
-    unobserveScrolledArticle () {
-      this.observer.unobserve(this.$refs.articleEnd)
     }
   },
   head,

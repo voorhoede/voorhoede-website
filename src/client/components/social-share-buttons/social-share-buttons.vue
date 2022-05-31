@@ -21,7 +21,6 @@
           target="_blank"
           rel="noreferrer noopener"
           :aria-label="item.label"
-          @click="trackShare(item.label)"
         >
           <app-icon :name="item.icon" is-large :alt="item.alt" />
         </a>
@@ -93,9 +92,6 @@
         const url = this.url
         this.$ga.social('native', 'share', url)
         return navigator.share({ url })
-      },
-      trackShare(platform) {
-        this.$ga.social(platform, 'share', this.url)
       },
     },
 
