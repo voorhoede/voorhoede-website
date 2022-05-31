@@ -23,10 +23,7 @@
           </li>
         </ul>
       </div>
-      <div
-        class="app-footer__column app-footer__column--right"
-        ref="contact"
-      >
+      <div class="app-footer__column app-footer__column--right">
         <h2 class="app-footer__title body-small font-bold font-html-blue">
           Contact
         </h2>

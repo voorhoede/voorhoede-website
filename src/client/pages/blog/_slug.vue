@@ -130,9 +130,7 @@
       </template>
     </article>
 
-    <div
-      class="page-blog-post__link-container"
-      ref="articleEnd">
+    <div class="page-blog-post__link-container">
       <nuxt-link class="app-button app-button--secondary body font-bold" :to="localeUrl('blog')">
         &larr; {{ $t('all_blogposts') }}
       </nuxt-link>
