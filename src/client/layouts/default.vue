@@ -12,7 +12,6 @@
     <cookie-notification
       :title="layout.cookieNotification.title"
       :body="layout.cookieNotification.body"
-      :approve-button-label="layout.cookieNotification.approveButtonLabel"
     />
     <app-banner
       v-if="layout.banner.isVisible && isHome"
