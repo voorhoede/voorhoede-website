@@ -14,7 +14,6 @@ module.exports = appConfig.googleTagManagerId &&
 
     id: appConfig.googleTagManagerId,
     layer: 'dataLayer',
-    variables: { isProduction: isProduction },
 
     pageTracking: false,
     pageViewEventName: 'nuxtRoute',
