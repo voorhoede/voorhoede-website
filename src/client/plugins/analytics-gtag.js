@@ -11,7 +11,7 @@ const TRACKING_TRANSPORT = 'gtag.js'
 const dimensions = {
   TRACKING_VERSION: 'dimension1',
   ENVIRONMENT_NAME: 'dimension2',
-  TRACKING_TRANSPORT: 'dimension3'
+  TRACKING_TRANSPORT: 'dimension3',
 }
 
 export default ({ app }, inject) => {

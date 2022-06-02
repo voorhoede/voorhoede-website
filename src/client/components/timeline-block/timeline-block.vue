@@ -23,14 +23,14 @@
       items: {
         type: Array,
         default: () => [],
-      }
+      },
     },
     methods: {
       formattedDate (value) {
         return formatDate({
           date: value,
           locale: this.$i18n.locale,
-          format: 'DD MMMM YYYY'
+          format: 'DD MMMM YYYY',
         })
       },
     },

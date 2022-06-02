@@ -53,7 +53,7 @@ function appSettingsToJson(app) {
     'googleAnalytics4Id',
     'googleAdwordsId',
     'experimentId',
-    'trackingVersion'
+    'trackingVersion',
   ])
 }
 
