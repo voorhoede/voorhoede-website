@@ -20,7 +20,7 @@
       @click="recordConsent"
     >
       <span>
-        {{ approveButtonLabel }}
+        {{ $t('cookie_consent') }}
       </span>
     </button>
   </div>
@@ -37,10 +37,6 @@
         default: '',
       },
       body: {
-        type: String,
-        required: true,
-      },
-      approveButtonLabel: {
         type: String,
         required: true,
       },
