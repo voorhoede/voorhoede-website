@@ -39,6 +39,7 @@
 
           <app-button
             v-if="pivot.externalLink"
+            @click.native="trackLinkOutbound(pivot.externalLink)"
             :label="pivot.buttonLabel"
             :to="pivot.externalLink"
             external
@@ -46,6 +47,7 @@
 
           <app-button
             v-else-if="pivot.link"
+            @click.native="trackLink(pivot.link.page.slug)"
             :label="pivot.buttonLabel"
             :to="createHref(pivot.link)"
           />
@@ -126,6 +128,18 @@
           name: mailchimpName,
           value: mailchimpValue,
         }
+      },
+      trackLink (href) {
+        this.$ga.event('Pivot', 'click cta', href, 0)
+      },
+      trackLinkOutbound (href) {
+        this.$ga.query('send', 'event', {
+          transport: 'beacon',
+          eventCategory: 'Pivot',
+          eventAction: 'click cta',
+          eventLabel: href,
+          eventValue: 0
+        })
       },
     },
   }
