@@ -19,7 +19,7 @@
       <span>{{ $t('by__authors_', { authors }) }}</span>
       <time
         class="blog-author__text-time"
-        datetime="item.date">
+        :datetime="item.date">
         {{ formattedDate }}
       </time>
     </div>

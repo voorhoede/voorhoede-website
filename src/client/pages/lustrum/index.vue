@@ -37,6 +37,10 @@
       <cta-block :item="page.quote[0]"/>
     </div>
 
+    <div class="page-lustrum__timeline grid">
+      <timeline-block :items="page.timeline" />
+    </div>
+
     <image-grid
       :title="page.teamGridTitle"
       :items="page.teamGrid"
