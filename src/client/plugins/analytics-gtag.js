@@ -1,7 +1,8 @@
 import datoConstants from '@/static/data/app.json'
 
 const GA_ID = datoConstants.googleAnalyticsId
-const AW_ID = 'AW-926139478'
+const GA_4_ID = datoConstants.googleAnalytics4Id
+const AW_ID = datoConstants.googleAdwordsId
 
 const TRACKING_VERSION = datoConstants.trackingVersion
 const ENVIRONMENT_NAME = process.env.NODE_ENV
@@ -34,15 +35,22 @@ export default ({ app }, inject) => {
     'transport_type': 'beacon',
     'anonimize_ip': true,
   })
-  // TODO: get user choices here.
+
+  gtag('config', GA_4_ID, {
+    'send_page_view': false,
+    'transport_type': 'beacon',
+    'anonimize_ip': true,
+  })
+
   gtag('consent', 'default', {
-    ad_storage: 'denied',
-    analytics_storage: 'denied',
-    functionality_storage: 'denied',
-    personalization_storage: 'denied',
-    security_storage: 'denied',
+    ad_storage: 'granted',
+    analytics_storage: 'granted',
+    functionality_storage: 'granted',
+    personalization_storage: 'granted',
+    security_storage: 'granted',
     wait_for_update: 2000,
   })
+
   gtag('set', dimensions.TRACKING_VERSION, TRACKING_VERSION)
   gtag('set', dimensions.ENVIRONMENT_NAME, ENVIRONMENT_NAME)
   gtag('set', dimensions.TRACKING_TRANSPORT, TRACKING_TRANSPORT)
@@ -69,7 +77,7 @@ export default ({ app }, inject) => {
     document.head.appendChild(script)
   }
 
-  function gtag () {
+  function gtag() {
     window.dataLayer.push(arguments)
 
     if (ENVIRONMENT_NAME === 'development') {
