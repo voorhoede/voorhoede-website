@@ -150,7 +150,7 @@ export default {
     createHref,
     observeContact () {
       const contactElement = this.$refs.contact
-      const ga = this.$ga
+      const gtag = this.$gtag
       const event = {
         eventCategory: 'Contact',
         eventAction: 'footer view',
@@ -159,14 +159,18 @@ export default {
       }
       this.observer = new IntersectionObserver(function(entries) {
         if (entries.some(entry => entry.isIntersecting)) {
-          ga.event(event)
+          gtag('event', 'footer view' , event)
           this.unobserve(contactElement)
         }
       })
       this.observer.observe(contactElement)
     },
     trackLink (linkType) {
-      this.$ga.event('Contact', `click ${linkType}`, this.$route.fullpath, 0)
+      this.$gtag('event', 'Contact' , {
+        'event_category': `click ${linkType}`,
+        'event_label': this.$route.fullpath,
+        'value': 0
+      })
     },
     unobserveContact () {
       this.observer.unobserve(this.$refs.contact)
