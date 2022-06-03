@@ -13,6 +13,8 @@
       v-if="!doNotTrack"
       :title="layout.cookieNotification.title"
       :body="layout.cookieNotification.body"
+      :options="layout.cookieNotification.cookieOptions"
+      :options-body="layout.cookieNotification.cookieOptionsBody"
     />
     <app-banner
       v-if="layout.banner.isVisible && isHome"

@@ -71,6 +71,10 @@ function layoutToJson(dato) {
     cookieNotification: {
       title: dato.app.cookieNotification[0].title,
       body: dato.app.cookieNotification[0].body,
+      cookieOptions: dato.app.cookieNotification[0].cookieOptions.map(option => {
+        return pick(option, ['body', 'id', 'key', 'title', 'required'])
+      }),
+      cookieOptionsBody: dato.app.cookieNotification[0].cookieOptionsBody,
     },
     banner: {
       isVisible: dato.app.banner[0].isVisible,

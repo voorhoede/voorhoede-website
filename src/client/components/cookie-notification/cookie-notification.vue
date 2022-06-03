@@ -10,50 +10,42 @@
 
     <div v-else class="cookie-notification__settings">
       <p class="body cookie-notification__body">
-        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec at iaculis ipsum, vitae condimentum tellus. Sed dignissim laoreet orci a tempor. Nunc ullamcorper at augue et tincidunt. Sed nunc enim, dapibus vitae risus in, imperdiet ullamcorper lectus. Sed a ullamcorper risus.
+        {{ optionsBody }}
       </p>
       <ul class="cookie-options__list">
-        <li class="cookie-options__item">
+        <li
+          v-for="option in options"
+          class="cookie-options__item"
+          :key="option.id"
+        >
           <div class="cookie-option__text">
-            <h4 class="h4">Fuctional cookies</h4>
-            <p class="body-small">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras malesuada odio turpis, nec elementum nulla aliquam in. Nunc ultrices elementum laoreet. Donec suscipit ex congue blandit mattis.
-            </p>
+            <h4 class="h5">{{ option.title }}</h4>
+            <p class="body-detail">{{ option.body }}</p>
           </div>
           <div class="cookie-option__toggle">
-            <input type="checkbox" id="option-1" aria-checked="true" role="switch" checked disabled />
-            <label for="option-1">
-              <span class="body-detail">Fuctional cookies</span>
-            </label>
-          </div>
-        </li>
-
-        <li class="cookie-options__item">
-          <div class="cookie-option__text">
-            <h4 class="h4">Marketing cookies</h4>
-            <p class="body-small">
-              Duis eget lectus sed elit facilisis aliquam et sagittis tortor. Fusce at dolor nec nulla pretium convallis sodales et ante.
-            </p>
-          </div>
-          <div class="cookie-option__toggle">
-            <input type="checkbox" id="option-2" aria-checked="true" role="switch" checked />
-            <label for="option-2">
-              <span class="body-detail">Marketing cookies</span>
-            </label>
-          </div>
-        </li>
-
-        <li class="cookie-options__item">
-          <div class="cookie-option__text">
-            <h4 class="h4">Targeting cookies</h4>
-            <p class="body-small">
-              Donec ultrices, dolor non maximus dapibus, nisl ipsum commodo nulla, eu pretium diam risus quis tellus.
-            </p>
-          </div>
-          <div class="cookie-option__toggle">
-            <input type="checkbox" id="option-3" aria-checked="true" role="switch" checked />
-            <label for="option-3">
-              <span class="body-detail">Targeting cookies</span>
+            <input
+              v-if="option.required"
+              type="checkbox"
+              :id="option.id"
+              class="sr-only"
+              aria-checked="true"
+              role="switch"
+              :value="option.value"
+              disabled
+              checked
+            />
+            <input
+              v-else
+              type="checkbox"
+              :id="`option-${option.id}`"
+              class="sr-only"
+              :aria-checked="option.required"
+              role="switch"
+              :value="option.key"
+              v-model="checkedOptions"
+            />
+            <label :for="`option-${option.id}`">
+              <span class="sr-only">{{ option.title }}</span>
             </label>
           </div>
         </li>
@@ -101,16 +93,27 @@
         type: String,
         required: true,
       },
+      optionsBody: {
+        type: String,
+        required: false,
+        default: '',
+      },
+      options: {
+        type: Array,
+        required: true,
+      },
     },
     data() {
       return {
         showCookieNotification: false,
         showCookieSettigns: false,
+        checkedOptions: [],
       }
     },
     mounted() {
       if (localStorageSupported) {
         this.showCookieNotification = !localStorage.getItem('cookiesAccepted')
+        this.checkedOptions = this.options.map(({ key }) => key)
       }
     },
     methods: {
@@ -121,17 +124,34 @@
         }
       },
       saveSettings() {
-        // TODO: save cookie settings
+        this.updateConsentSettings()
         this.showCookieSettigns = false
       },
       showSettings() {
         this.showCookieSettigns = true
+      },
+      updateConsentSettings() {
+        const consentSettings = this.options.map(({ key }) => ({
+          [key]: this.checkedOptions.includes(key) ? 'granted' : 'denied'
+        }))
+
+        this.$gtag('consent', 'update', {
+          ...consentSettings,
+          'wait_for_update': 500,
+        })
       },
     },
   }
 </script>
 
 <style>
+  :root {
+    --toggle-height: 26px;
+    --toggle-radius: calc(var(--toggle-height) / 2);
+    --toggle-width: 50px;
+    --knob-size: calc(var(--toggle-height) - 10px);
+  }
+
   .cookie-notification {
     position: fixed;
     z-index: var(--z-index-overlay);
@@ -188,12 +208,70 @@
     margin-right: var(--spacing-small);
   }
 
+  .cookie-option__text .h5 {
+    margin-bottom: var(--spacing-tiny);
+  }
+
   .cookie-option__toggle {
     flex: 0 0 80px;
   }
 
   .cookie-option__toggle input {
-    margin: 0;
     width: auto;
+    margin: 0;
+  }
+
+  .cookie-option__toggle label {
+    display: block;
+    position: relative;
+    width: var(--toggle-width);
+    height: var(--toggle-height);
+    cursor: pointer;
+  }
+
+  .cookie-option__toggle label::before,
+  .cookie-option__toggle label::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+
+  .cookie-option__toggle label::before {
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--dim);
+    border-radius: var(--toggle-radius);
+  }
+
+  .cookie-option__toggle label::after {
+    top: 50%;
+    width: var(--knob-size);
+    height: var(--knob-size);
+    transform: translate(5px, -50%);
+    transition: transform 0.2s ease-in-out;
+    border-radius: 50%;
+    background-color: var(--dim);
+  }
+
+  .cookie-option__toggle input:checked + label::after {
+    transform: translate(calc(var(--toggle-width) - var(--knob-size) - 5px), -50%);
+    background-color: var(--html-blue);
+  }
+
+  .cookie-option__toggle input:disabled + label {
+    cursor: not-allowed;
+  }
+
+  .cookie-option__toggle input:disabled + label::before,
+  .cookie-option__toggle input:disabled + label::after {
+    opacity: .5;
+  }
+
+  .cookie-option__toggle input:disabled + label::before {
+    background-color: var(--fog);
+  }
+
+  .cookie-option__toggle input:disabled + label::after {
+    background-color: var(--dim);
   }
 </style>
