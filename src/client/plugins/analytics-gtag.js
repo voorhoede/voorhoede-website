@@ -14,17 +14,15 @@ const dimensions = {
   TRACKING_TRANSPORT: 'dimension3'
 }
 
-export default ({ app }, inject) => {
-  loadScript()
-
-  const doNotTrack = (window?.doNotTrack === '1') ||
-    (navigator?.doNotTrack === 'yes' || navigator?.doNotTrack === '1') ||
-    (navigator?.msDoNotTrack === '1')
+export default ({ app, store }, inject) => {
+  const { doNotTrack } = store.state
 
   if (doNotTrack) {
     inject('gtag', () => {})
     return
   }
+
+  loadScript()
 
   window.dataLayer = window.dataLayer || []
 

@@ -10,6 +10,7 @@
       :lang="pageTitleLocale"
     />
     <cookie-notification
+      v-if="!doNotTrack"
       :title="layout.cookieNotification.title"
       :body="layout.cookieNotification.body"
     />
@@ -43,7 +44,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   data() {
@@ -52,7 +53,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['showGrid']),
+    ...mapState(['doNotTrack', 'showGrid']),
     layout () {
       return require(`../static/data/layouts/${this.$i18n.locale}/default`)
     },
@@ -73,6 +74,15 @@ export default {
   },
   mounted() {
     this.isBrowser = true
+
+    const doNotTrack = !!((window.doNotTrack && window.doNotTrack === '1') ||
+      (navigator.doNotTrack && (navigator.doNotTrack === 'yes' || navigator.doNotTrack === '1' )) ||
+      (navigator.msDoNotTrack && navigator.msDoNotTrack === '1'))
+
+    this.setDoNotTrack({ doNotTrack })
+  },
+  methods: {
+    ...mapActions(['setDoNotTrack']),
   },
   head() {
     return {
