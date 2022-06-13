@@ -2,9 +2,6 @@ query ($locale: SiteLocale) {
   page: caseOverview(locale: $locale) {
     ...page
   }
-  items: allCaseItems(locale: $locale, first: 100) {
-    slug
-  }
 }
 
 fragment page on CaseOverviewRecord {
@@ -36,6 +33,7 @@ fragment page on CaseOverviewRecord {
   projects {
     title
     slug
+    published
     caseTeaser {
       title
       image {
