@@ -2,7 +2,7 @@ query ($locale: SiteLocale) {
   page: eventOverview(locale: $locale) {
     ...eventOverview
   }
-  items: allEventItems(locale: $locale, first: 100, orderBy: date_DESC) {
+  items: allEventItems(locale: $locale, first: 100, orderBy: date_DESC, filter: {published: {eq: true}}) {
     ...event
   }
 }
