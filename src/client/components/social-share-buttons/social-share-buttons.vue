@@ -90,12 +90,19 @@
     },
     methods: {
       shareNative () {
-        const url = this.url
-        this.$ga.social('native', 'share', url)
-        return navigator.share({ url })
+        this.$gtag('event', 'social share', {
+          'event_category': 'native',
+          'event_label': this.url,
+          'value': 0,
+        })
+        return navigator.share({ url: this.url })
       },
       trackShare(platform) {
-        this.$ga.social(platform, 'share', this.url)
+        this.$gtag('event', 'social share', {
+          'event_category': platform,
+          'event_label': this.url,
+          'value': 0
+        })
       },
     },
 

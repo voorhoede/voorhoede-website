@@ -171,7 +171,6 @@ export default {
       observer: null,
     }
   },
-  head,
   computed: {
     tocItems () {
       return this.page.items
@@ -202,16 +201,15 @@ export default {
     },
     observeScrolledArticle () {
       const articleEndElement = this.$refs.articleEnd
-      const ga = this.$ga
-      const event = {
-        eventCategory: 'Article',
-        eventAction: 'scrolled to end',
-        eventLabel: this.$route.fullPath,
-        eventValue: 100,
-      }
+      const gtag = this.$gtag
+      const path = this.$route.fullPath
       this.observer = new IntersectionObserver(function(entries) {
         if (entries.some(entry => entry.isIntersecting)) {
-          ga.event(event)
+          gtag('event', 'scrolled to end', {
+            'event_category': 'Article',
+            'event_label': path,
+            'value': 100,
+          })
           this.unobserve(articleEndElement)
         }
       })
@@ -221,6 +219,7 @@ export default {
       this.observer.unobserve(this.$refs.articleEnd)
     },
   },
+  head,
 }
 </script>
 

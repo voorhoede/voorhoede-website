@@ -54,6 +54,23 @@
       />
     </div>
 
+    <!-- We had to combine the ImageWithText with
+      the RichTextBlock to get the desired 'custom' layout -->
+    <div class="image-with-text">
+      <responsive-image
+        :image="page.endImage"
+      />
+      <div class="image-with-text__body">
+        <h2 class="image-with-text__body-title h3">
+          {{ page.endTitle }}
+        </h2>
+        <rich-text-block
+          class="image-with-text__body-text generic-text-block__body"
+          :text="page.endBody"
+        />
+      </div>
+    </div>
+
     <p class="body-big font-html-blue page-work-at__layout rich-text" v-html="page.jobsAfter" />
 
     <image-grid

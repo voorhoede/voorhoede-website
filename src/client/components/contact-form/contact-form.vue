@@ -185,8 +185,11 @@
         })
       },
       trackEvent () {
-        const formValidationState = this.formIsValidated ? 'success' : 'failed'
-        return this.$ga.event('Contact form', 'click submit', formValidationState, 0)
+        this.$gtag('event', 'Contact form' , {
+          'event_category': 'click submit',
+          'event_label': this.formIsValidated ? 'success' : 'failed',
+          'value': 0,
+        })
       },
     },
   }

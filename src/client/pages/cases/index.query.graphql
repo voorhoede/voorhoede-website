@@ -36,6 +36,7 @@ fragment page on CaseOverviewRecord {
   projects {
     title
     slug
+    published
     caseTeaser {
       title
       image {

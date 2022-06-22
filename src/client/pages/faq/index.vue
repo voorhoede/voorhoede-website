@@ -1,5 +1,5 @@
 <template>
-  <main class="page-faq">
+  <main class="page-faq grid">
     <page-header
       heading="byline"
       :byline="page.title"
@@ -36,11 +36,12 @@
 
 <style>
   .page-faq .page-header {
-    margin-bottom: var(--spacing-large);
     grid-row: 1;
+    margin-bottom: var(--spacing-large);
   }
 
   .page-faq__overview {
+    grid-column: var(--grid-content);
     grid-row: 2;
   }
 
@@ -51,8 +52,8 @@
   .page-faq__overview .scroll-to {
     display: none;
     position: absolute;
-    bottom: var(--spacing-big);
     right: var(--spacing-larger);
+    bottom: var(--spacing-big);
   }
 
   .page-faq .newsletter-form {
@@ -60,15 +61,12 @@
   }
 
   @media (min-width: 720px) {
-    .page-faq {
-      background-color: var(--bg-pastel);
+    .page-faq .page-header {
+      margin-bottom: var(--spacing-big);
     }
 
     .page-faq__overview {
       position: relative;
-      grid-column: var(--grid-content);
-      background-color: var(--white);
-      padding: var(--spacing-large) var(--spacing-larger);
     }
 
     .page-faq__overview .scroll-to {
@@ -78,9 +76,8 @@
 
   @media (min-width: 1100px) {
     .page-faq__overview {
-      grid-column: var(--grid-content-narrow);
-      padding: var(--spacing-big) var(--spacing-bigger);
+      grid-column-end: 48;
+      grid-column-start: 4;
     }
   }
-
 </style>

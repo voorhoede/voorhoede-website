@@ -48,6 +48,15 @@ fragment workat on WorkatRecord {
     height
     format
   }
+  endTitle
+  endBody(markdown: true)
+  endImage {
+    url
+    alt
+    width
+    height
+    format
+  }
   uspsTitle
   usps {
     title

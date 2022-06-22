@@ -106,8 +106,11 @@
     },
     methods: {
       trackEvent () {
-        const formValidationState = this.formIsValidated ? 'success' : 'failed'
-        return this.$ga.event('Newsletter form', 'click submit', formValidationState, 0)
+        this.$gtag('event', 'Newsletter form' , {
+          'event_category': 'click submit',
+          'event_label': this.formIsValidated ? 'success' : 'failed',
+          'value': 0,
+        })
       },
       submit(event) {
         this.formIsValidated = true
