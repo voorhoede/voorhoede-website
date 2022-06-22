@@ -51,13 +51,6 @@ export default {
       isBrowser: false,
     }
   },
-  head() {
-    return {
-      htmlAttrs: {
-        lang: this.$i18n.locale,
-      },
-    }
-  },
   computed: {
     ...mapState(['showGrid']),
     layout () {
@@ -80,6 +73,13 @@ export default {
   },
   mounted() {
     this.isBrowser = true
+  },
+  head() {
+    return {
+      htmlAttrs: {
+        lang: this.$i18n.locale,
+      },
+    }
   },
 }
 </script>

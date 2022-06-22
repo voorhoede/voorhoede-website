@@ -1100,7 +1100,7 @@
   }
 
   function initShapes(shapes, range) {
-    if(!shapes || !range) {
+    if (!shapes || !range) {
       return
     }
 
@@ -1112,7 +1112,7 @@
   }
 
   function initChart(chart, inputs) {
-    if(!chart || !inputs) {
+    if (!chart || !inputs) {
       return
     }
 
@@ -1131,7 +1131,7 @@
     })
 
     function onClick() {
-      if(!isClicked) {
+      if (!isClicked) {
         isClicked = true
         document.body.classList.add('is-clicked')
         set('isClicked', true)

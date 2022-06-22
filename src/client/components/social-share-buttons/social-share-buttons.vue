@@ -101,7 +101,7 @@
         this.$gtag('event', 'social share', {
           'event_category': platform,
           'event_label': this.url,
-          'value': 0
+          'value': 0,
         })
       },
     },

@@ -65,7 +65,6 @@
 
   export default {
     asyncData,
-    head,
     mounted() {
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
     },
@@ -75,6 +74,7 @@
         return serviceSeries[0].childServices
       },
     },
+    head,
   }
 </script>
 

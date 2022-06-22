@@ -169,7 +169,7 @@ export default {
       this.$gtag('event', 'Contact' , {
         'event_category': `click ${linkType}`,
         'event_label': this.$route.fullpath,
-        'value': 0
+        'value': 0,
       })
     },
     unobserveContact () {

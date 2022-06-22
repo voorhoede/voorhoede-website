@@ -68,7 +68,6 @@
   export default {
     components: { linkCard },
     asyncData,
-    head,
     computed: {
       ctaSectionTop() {
         return this.page.pageCtaSection[0]
@@ -77,6 +76,7 @@
     mounted() {
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
     },
+    head,
   }
 </script>
 

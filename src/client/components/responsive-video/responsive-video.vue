@@ -155,7 +155,7 @@
         this.$gtag('event', `play ${this.video.providerUid}`, {
           'event_category': 'Video',
           'event_label': this.video.provider,
-          'value': 0
+          'value': 0,
         })
       },
     },

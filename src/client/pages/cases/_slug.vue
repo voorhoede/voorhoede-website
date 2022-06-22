@@ -162,7 +162,6 @@
         typeDurationLetter: .05, // average duration per letter in seconds
       }
     },
-    head,
     computed: {
       nextCase() {
         const { cases, page } = this
@@ -179,6 +178,7 @@
         return item.image && item.fullWidth
       },
     },
+    head,
   }
 </script>
 

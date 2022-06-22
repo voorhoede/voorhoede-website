@@ -113,13 +113,6 @@
   import formatDate from '~/lib/format-date'
   export default {
     asyncData,
-    head() {
-      return {
-        ...head,
-        __dangerouslyDisableSanitizers: ['script'],
-        script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }],
-      }
-    },
     computed: {
       isMeetup() {
         return this.page.label.label.toLowerCase() === 'meet-up'
@@ -193,6 +186,13 @@
     },
     mounted() {
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
+    },
+    head() {
+      return {
+        ...head,
+        __dangerouslyDisableSanitizers: ['script'],
+        script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }],
+      }
     },
   }
 </script>

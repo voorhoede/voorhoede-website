@@ -121,7 +121,6 @@
         return context.error({ statusCode: 404 })
       }
     },
-    head,
     computed: {
       /**
        * The series navigation is dependent on the previous route.
@@ -199,6 +198,7 @@
         })
       },
     },
+    head,
   }
 </script>
 
