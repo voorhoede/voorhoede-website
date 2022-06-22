@@ -9,8 +9,8 @@
     "url": "https://github.com/voorhoede/voorhoede-dragonfly"
   },
   "engines": {
-    "node": ">=10.8.0",
-    "npm": ">=6.2.0"
+    "node": ">=16.15.0",
+    "npm": ">=8.5.5"
   },
   "private": true,
   "scripts": {
