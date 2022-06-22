@@ -17,7 +17,7 @@
             <form action="">
               <label for="range" class="typo-small">I have no clue</label>
               <input type="range" name="range" id="range" min="0" max="50" value="30" data-range>
-              <label for="range" class="typo-small">Yeah, that’s my thing</label>
+              <label for="range" class="typo-small">Yeah, that's my thing</label>
             </form>
           </div>
         </div>
@@ -25,9 +25,9 @@
 
       <div class="container container-large x-spaced-medium y-spaced-large intro">
         <p class="typo-large">Why do websites cost energy? Sure, they have to be designed, developed, deployed and run on
-          servers and devices. But let’s break it down to the physics. What is it that actually consumes energy? It’s a
-          CPU or GPU that has to perform calculations, it’s a network of servers, routers and wi-fi antennas that have to
-          connect to each other, it’s screens that have to produce photons to light up and display a website. So in every
+          servers and devices. But let's break it down to the physics. What is it that actually consumes energy? It's a
+          CPU or GPU that has to perform calculations, it's a network of servers, routers and wi-fi antennas that have to
+          connect to each other, it's screens that have to produce photons to light up and display a website. So in every
           stage of a website, from its inception to a user visiting it, we have to minimise or avoid these aspects
           entirely.</p>
       </div>
@@ -51,18 +51,18 @@
       <article class="filled-primary-half x-spaced-medium">
         <div class="container x-spaced-large y-spaced-large filled-secondary darkmode">
           <p class="color-light">
-            Remember those photons? Dark mode can save up to 20-30% on OLED screens. So maybe it’s time to design a dark theme for your website. We're working on that ourselves too!
+            Remember those photons? Dark mode can save up to 20-30% on OLED screens. So maybe it's time to design a dark theme for your website. We're working on that ourselves too!
           </p>
         </div>
       </article>
 
       <article class="x-spaced-medium y-spaced-xlarge">
         <div class="container web-development">
-          <h2 class="h2">Energy efficient web development in the ’20s</h2>
-          <p>It’s the roaring twenties again. Gone are the days where a developer simply edits the designed resources and
+          <h2 class="h2">Energy efficient web development in the '20s</h2>
+          <p>It's the roaring twenties again. Gone are the days where a developer simply edits the designed resources and
             copies them onto a web server. Instead we rely on package managers, build tools, continuous integration
             servers, cloud services (like a headless CMS), preview environments and finally our actual website. Needless
-            to say, all these moving parts consume energy. It’s difficult to know just how much, as it’s a web of parts
+            to say, all these moving parts consume energy. It's difficult to know just how much, as it's a web of parts
             depending on other parts depending on other parts.</p>
           <p>The good thing is that we can also use these modern development tools to save energy. We can automatically
             create smaller versions of the same videos and images, we can remove unused code from our styles, scripts and
@@ -102,10 +102,10 @@
                   <span>CDN and compression</span>
                 </label>
               </div>
-              <p>When a user visits a page, it has to be served over the network. A request starts in the user’s browser,
+              <p>When a user visits a page, it has to be served over the network. A request starts in the user's browser,
                 travels through the network to the server and back to the user. This could mean a full trip around the
                 world. To save on network costs, we can use a world-wide content delivery network (CDN), to serve web
-                pages from a server near the user. CDN’s are very easy to use with static sites, as they can simply store
+                pages from a server near the user. CDN's are very easy to use with static sites, as they can simply store
                 a copy of the pre-generated pages. We also use as little of the network as possible by compressing
                 resources with gzip and brotli.</p>
             </li>
@@ -130,8 +130,8 @@
               </div>
               <p>Once a user received a resource we can ensure it never has to request it again. We achieve this using
                 client-side caching. We ensure a resource never changes (or revision the resource name if it does). Then
-                we tell the browser it can keep the file “forever” (using ’Cache-Control’, ‘public, max-age=31536000,
-                immutable’).</p>
+                we tell the browser it can keep the file “forever” (using 'Cache-Control', ‘public, max-age=31536000,
+                immutable').</p>
             </li>
             <li>
               <div class="checkbox pulse">
@@ -151,7 +151,7 @@
       <article class="filled-primary-half x-spaced-medium">
         <div class="container x-spaced-large y-spaced-large filled-secondary web-manifest">
           <h2 class="h2 color-light">Commit to energy efficient websites</h2>
-          <p class="color-light">We’ll continue to improve the energy efficiency of our websites. And will push our design
+          <p class="color-light">We'll continue to improve the energy efficiency of our websites. And will push our design
             partners, hosting providers and clients to do the same. We are committed to creating a more sustainable web.
             So all of us at De Voorhoede signed the <a href="https://www.sustainablewebmanifesto.com/" target="_blank"
                                                        rel="noreferrer noopener">Sustainable Web Manifesto</a>. You should commit and sign it too.</p>
@@ -289,6 +289,84 @@
     </div>
   </main>
 </template>
+
+<script>
+  import asyncData from '~/lib/async-page'
+  import head from '~/lib/seo-head'
+
+  export default {
+    asyncData,
+    head,
+    mounted() {
+      const shapes = document.querySelector('[data-shapes]')
+      const range = document.querySelector('[data-range]')
+      const chart = document.querySelector('[data-chart]')
+      const inputs = [...document.querySelectorAll('[data-chart-form] input')]
+
+      initShapes(shapes, range)
+      initChart(chart, inputs)
+    },
+  }
+
+  const get = key => {
+    const state = localStorage.getItem(key)
+    if (state === null) return null
+    return JSON.parse(state)
+  }
+
+  const set = (key, state) => {
+    localStorage.setItem(key, JSON.stringify(state))
+  }
+
+  function initShapes(shapes, range) {
+    if (!shapes || !range) {
+      return
+    }
+
+    range.addEventListener('input', onInput)
+
+    function onInput(e) {
+      shapes.style.setProperty('--x', e.currentTarget.value)
+    }
+  }
+
+  function initChart(chart, inputs) {
+    if (!chart || !inputs) {
+      return
+    }
+
+    const strength = 100 / inputs.length
+    let value = 0
+    let isClicked = get('isClicked')
+
+    if (isClicked) {
+      document.body.classList.add('is-clicked')
+    }
+
+    setValue()
+
+    inputs.forEach(input => {
+      input.addEventListener('input', onClick)
+    })
+
+    function onClick() {
+      if (!isClicked) {
+        isClicked = true
+        document.body.classList.add('is-clicked')
+        set('isClicked', true)
+      }
+      setValue()
+    }
+
+    function setValue() {
+      value = 0
+      inputs.forEach(input => {
+        value += input.checked ? strength : 0
+      })
+      chart.style.setProperty('--value', value * .01)
+    }
+  }
+</script>
 
 <style scoped>
   .energy-first-container {
@@ -842,7 +920,7 @@
   }
 
   @media screen and (max-width: 599px) {
-    .slider input[type=range] {
+    .slider input[type='range'] {
       margin-top: var(--spacing-medium);
       margin-bottom: var(--spacing-medium);
     }
@@ -869,7 +947,7 @@
   }
 
   /* ========= reset range input to an invisible element */
-  .slider input[type=range] {
+  .slider input[type='range'] {
     position: relative;
     z-index: 2;
     display: block;
@@ -879,15 +957,15 @@
     background: transparent;
   }
 
-  .slider input[type=range]::-webkit-slider-thumb {
+  .slider input[type='range']::-webkit-slider-thumb {
     -webkit-appearance: none;
   }
 
-  .slider input[type=range]:focus {
+  .slider input[type='range']:focus {
     outline: none;
   }
 
-  .slider input[type=range]::-ms-track {
+  .slider input[type='range']::-ms-track {
     width: 100%;
     cursor: pointer;
     background: transparent;
@@ -896,7 +974,7 @@
   }
 
   /* ========= thumb / handle */
-  input[type=range]::-webkit-slider-thumb {
+  input[type='range']::-webkit-slider-thumb {
     -webkit-appearance: none;
     height: var(--range-thumb);
     width: var(--range-thumb);
@@ -909,11 +987,11 @@
     transition: box-shadow var(--range-duration);
   }
 
-  input[type=range]:hover::-webkit-slider-thumb {
+  input[type='range']:hover::-webkit-slider-thumb {
     box-shadow: 0 0 0 3px var(--input-color);
   }
 
-  input[type=range]::-moz-range-thumb {
+  input[type='range']::-moz-range-thumb {
     height: var(--range-thumb);
     width: var(--range-thumb);
     border: none;
@@ -923,11 +1001,11 @@
     transition: transform var(--range-duration);
   }
 
-  input[type=range]:hover::-moz-range-thumb {
+  input[type='range']:hover::-moz-range-thumb {
     transform: scale(1.1);
   }
 
-  input[type=range]::-ms-thumb {
+  input[type='range']::-ms-thumb {
     height: var(--range-thumb);
     width: var(--range-thumb);
     border-radius: 50%;
@@ -936,30 +1014,30 @@
     transition: transform var(--range-duration);
   }
 
-  input[type=range]:hover::-ms-thumb {
+  input[type='range']:hover::-ms-thumb {
     transform: scale(1.1);
   }
 
   /* ==== track */
-  input[type=range]::-webkit-slider-runnable-track {
+  input[type='range']::-webkit-slider-runnable-track {
     width: 100%;
     height: var(--range-track);
     cursor: pointer;
     background: var(--input-color);
   }
 
-  input[type=range]:focus::-webkit-slider-runnable-track {
+  input[type='range']:focus::-webkit-slider-runnable-track {
     background: var(--input-color);
   }
 
-  input[type=range]::-moz-range-track {
+  input[type='range']::-moz-range-track {
     width: 100%;
     height: var(--range-track);
     cursor: pointer;
     background: var(--input-color);
   }
 
-  input[type=range]::-ms-track {
+  input[type='range']::-ms-track {
     width: 100%;
     height: var(--range-track);
     cursor: pointer;
@@ -969,19 +1047,19 @@
     color: var(--input-color);
   }
 
-  input[type=range]::-ms-fill-lower {
+  input[type='range']::-ms-fill-lower {
     background: var(--input-color);
   }
 
-  input[type=range]:focus::-ms-fill-lower {
+  input[type='range']:focus::-ms-fill-lower {
     background: var(--input-color);
   }
 
-  input[type=range]::-ms-fill-upper {
+  input[type='range']::-ms-fill-upper {
     background: var(--input-color);
   }
 
-  input[type=range]:focus::-ms-fill-upper {
+  input[type='range']:focus::-ms-fill-upper {
     background: var(--input-color);
   }
 
@@ -1070,81 +1148,3 @@
   }
 
 </style>
-
-<script>
-  import asyncData from '~/lib/async-page'
-  import head from '~/lib/seo-head'
-
-  export default {
-    asyncData,
-    mounted() {
-      const shapes = document.querySelector('[data-shapes]')
-      const range = document.querySelector('[data-range]')
-      const chart = document.querySelector('[data-chart]')
-      const inputs = [...document.querySelectorAll('[data-chart-form] input')]
-
-      initShapes(shapes, range)
-      initChart(chart, inputs)
-    },
-    head,
-  }
-
-  const get = key => {
-    const state = localStorage.getItem(key)
-    if (state === null) return null
-    return JSON.parse(state)
-  }
-
-  const set = (key, state) => {
-    localStorage.setItem(key, JSON.stringify(state))
-  }
-
-  function initShapes(shapes, range) {
-    if (!shapes || !range) {
-      return
-    }
-
-    range.addEventListener('input', onInput)
-
-    function onInput(e) {
-      shapes.style.setProperty('--x', e.currentTarget.value)
-    }
-  }
-
-  function initChart(chart, inputs) {
-    if (!chart || !inputs) {
-      return
-    }
-
-    const strength = 100 / inputs.length
-    let value = 0
-    let isClicked = get('isClicked')
-
-    if (isClicked) {
-      document.body.classList.add('is-clicked')
-    }
-
-    setValue()
-
-    inputs.forEach(input => {
-      input.addEventListener('input', onClick)
-    })
-
-    function onClick() {
-      if (!isClicked) {
-        isClicked = true
-        document.body.classList.add('is-clicked')
-        set('isClicked', true)
-      }
-      setValue()
-    }
-
-    function setValue() {
-      value = 0
-      inputs.forEach(input => {
-        value += input.checked ? strength : 0
-      })
-      chart.style.setProperty('--value', value * .01)
-    }
-  }
-</script>

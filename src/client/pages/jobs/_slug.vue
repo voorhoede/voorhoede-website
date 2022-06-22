@@ -81,6 +81,13 @@
       },
     },
     asyncData,
+    head() {
+      return {
+        ...head,
+        __dangerouslyDisableSanitizers: ['script'],
+        script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }],
+      }
+    },
     computed: {
       baseSalary() {
         const { maxSalary, minSalary } = this.page
@@ -147,13 +154,6 @@
     },
     mounted() {
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
-    },
-    head() {
-      return {
-        ...head,
-        __dangerouslyDisableSanitizers: ['script'],
-        script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }],
-      }
     },
   }
 </script>

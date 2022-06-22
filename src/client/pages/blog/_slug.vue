@@ -171,6 +171,7 @@ export default {
       observer: null,
     }
   },
+  head,
   computed: {
     tocItems () {
       return this.page.items
@@ -219,7 +220,6 @@ export default {
       this.observer.unobserve(this.$refs.articleEnd)
     },
   },
-  head,
 }
 </script>
 
