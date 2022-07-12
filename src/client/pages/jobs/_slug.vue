@@ -149,8 +149,9 @@
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
     },
     head() {
+      const defaultHead = head.bind(this)
       return {
-        ...head,
+        ...defaultHead(),
         __dangerouslyDisableSanitizers: ['script'],
         script: [{ innerHTML: JSON.stringify(this.structuredData), type: 'application/ld+json' }],
       }
