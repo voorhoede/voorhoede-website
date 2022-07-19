@@ -19,6 +19,9 @@
             <nuxt-link class="app-footer__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
           </li>
           <li class="app-footer__list-item body-detail">
+            <nuxt-link class="app-footer__link" :to="createHref({ page: { slug: 'lustrum' } })">Lustrum</nuxt-link>
+          </li>
+          <li class="app-footer__list-item body-detail">
             <nuxt-link class="app-footer__link" :to="createHref({ page: { slug: 'faq' } })">FAQ</nuxt-link>
           </li>
         </ul>
