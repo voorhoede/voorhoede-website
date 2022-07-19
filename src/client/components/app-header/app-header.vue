@@ -2,7 +2,7 @@
   <div class="app-header grid">
     <div class="app-header__content">
       <nuxt-link class="app-header__home-link" :to="localeUrl('index')">
-        <img class="app-header__logo" src="/images/logo-with-text.svg" alt="Home" width="190" height="32">
+        <img class="app-header__logo" src="/images/logo--lustrum-with-text.svg" alt="Home" width="190" height="32">
       </nuxt-link>
       <div class="app-header__link-lists body-small">
         <ul class="app-header__link-list">
