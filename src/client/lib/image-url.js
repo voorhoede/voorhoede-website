@@ -17,6 +17,7 @@ const defaults = {
  * @param {Object} [params]     - Imgix manipulation parameters, see https://docs.imgix.com/apis/url
  */
 const imageUrl = (imagePath, params) => {
+  if (!imagePath) return ''
   if (imagePath.endsWith('.svg')) {
     return imagePath
   }
