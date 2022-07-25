@@ -12,7 +12,10 @@
         <p class="testimonial">{{ page.description }}</p>
       </text-block>
       <ul class="page-blog__posts">
-        <li v-for="blogPost in items.filter(post => post.published)" :key="blogPost.slug">
+        <li v-for="blogPost in pinnedBlogPosts" :key="blogPost.slug">
+          <blog-list-item large pinned :item="blogPost" />
+        </li>
+        <li v-for="blogPost in unpinnedBlogPosts" :key="blogPost.slug">
           <blog-list-item large :item="blogPost" />
         </li>
       </ul>
@@ -37,10 +40,22 @@
 
   export default {
     asyncData,
+    head,
+    computed: {
+      pinnedBlogPosts() {
+        return this.page.pinnedPosts.filter(post => post.published)
+      },
+      unpinnedBlogPosts() {
+        return this.items.filter(
+          post =>
+            post.published &&
+            this.pinnedBlogPosts.find(pinned => pinned.slug !== post.slug)
+        )
+      }
+    },
     mounted() {
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
     },
-    head
   }
 </script>
 

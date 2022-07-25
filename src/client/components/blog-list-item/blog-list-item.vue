@@ -8,7 +8,7 @@
       :lang="language"
     >
       <h3 class="blog-list-item__title font-html-blue" :class="large ? 'h4' : 'body'">
-        {{ item.title }}
+        <app-icon v-if="pinned" name="pin" /> {{ item.title }}
       </h3>
     </nuxt-link>
     <time
@@ -53,6 +53,10 @@
         },
       },
       large: {
+        type: Boolean,
+        default: false,
+      },
+      pinned: {
         type: Boolean,
         default: false,
       },
