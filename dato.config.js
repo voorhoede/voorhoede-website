@@ -149,11 +149,11 @@ function redirectsToText (redirects, locales, defaultLocale) {
     '/*    /nl/layouts/error/404/index.html 404',
   ]
   return [
-    // ...redirectsToNonDefaultLocales,
-    // redirectToDefaultLocale,
-    ...redirectRulesFromCms,
-    ...redirectRules404s,
-    ...catchallRedirectRules,
+    ...redirectsToNonDefaultLocales,
+    redirectToDefaultLocale,
+    // ...redirectRulesFromCms,
+    // ...redirectRules404s,
+    // ...catchallRedirectRules,
   ]
     .join('\n')
 }
