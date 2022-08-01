@@ -19,14 +19,14 @@
   status = 301
 
 [[redirects]]
-  from = "/"
-  to = "/nl"
+  from = "https://www.voorhoede.nl/"
+  to = "https://www.voorhoede.nl/nl/"
   force = true
   status = 302
   conditions = {Language = ["nl"]}
 
 [[redirects]]
-  from = "/"
-  to = "/en"
+  from = "https://www.voorhoede.nl/"
+  to = "https://www.voorhoede.nl/en/"
   force = true
   status = 302
