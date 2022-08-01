@@ -3,12 +3,18 @@
     class="blog-list-item"
     :class="{'blog-list-item--large' : large}"
   >
+    <span
+      v-if="pinned"
+      class="body-small blog-list-item__pin-badge"
+    >
+      <app-icon name="pin" /> {{ $t('pinned_blog') }}
+    </span>
     <nuxt-link
       :to="localeUrl({ name: linkName, params: { slug: item.slug } })"
       :lang="language"
     >
       <h3 class="blog-list-item__title font-html-blue" :class="large ? 'h4' : 'body'">
-        <app-icon v-if="pinned" name="pin" /> {{ item.title }}
+        {{ item.title }}
       </h3>
     </nuxt-link>
     <time
@@ -128,6 +134,10 @@
       width: 2px;
       background: var(--very-dim);
     }
+  }
+
+  .blog-list-item__pin-badge {
+    padding-left: var(--spacing-medium);
   }
 
   .blog-list-item__title {
