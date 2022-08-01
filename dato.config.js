@@ -151,9 +151,9 @@ function redirectsToText (redirects, locales, defaultLocale) {
   return [
     ...redirectsToNonDefaultLocales,
     redirectToDefaultLocale,
-    // ...redirectRulesFromCms,
-    // ...redirectRules404s,
-    // ...catchallRedirectRules,
+    ...redirectRulesFromCms,
+    ...redirectRules404s,
+    ...catchallRedirectRules,
   ]
     .join('\n')
 }
