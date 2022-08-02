@@ -5,8 +5,8 @@
     :name="form['form-name']"
     :action="localeUrl({ name: 'contact-slug', params: { slug: 'confirmation' } })"
     class="contact-page-form__form"
-    netlify
-    netlify-honeypot
+    data-netlify="true"
+    data-netlify-honeypot="url-page"
     :novalidate="useCustomValidation"
   >
     <fieldset>
@@ -15,15 +15,10 @@
         <div class="contact-page-form__column">
           <input type="hidden" name="form-name" :value="form['form-name']">
           <input type="text" name="subject" :value="form.name" class="hidden"/>
-          <p class="hidden">
-            <label>
-              Don't fill this out if you're human: <input name="bot-field" />
-            </label>
-          </p>
-          <!-- <label class="sr-only">
+          <label class="sr-only">
             Don't fill this out if you're human:
             <input v-model="form.urlPage" name="url-page" type="url">
-          </label> -->
+          </label>
           <input-field
             v-model="form.name"
             id="name"
