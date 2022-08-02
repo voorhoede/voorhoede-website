@@ -49,7 +49,7 @@
         return this.items.filter(
           post =>
             post.published &&
-            this.pinnedBlogPosts.find(pinned => pinned.slug !== post.slug)
+            !this.pinnedBlogPosts.find(pinned => pinned.slug === post.slug)
         )
       }
     },
