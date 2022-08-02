@@ -54,6 +54,8 @@
       />
     </div>
 
+    <p class="body-big font-html-blue page-work-at__layout rich-text" v-html="page.jobsAfter" />
+
     <!-- We had to combine the ImageWithText with
       the RichTextBlock to get the desired 'custom' layout -->
     <div class="image-with-text">
@@ -70,8 +72,6 @@
         />
       </div>
     </div>
-
-    <p class="body-big font-html-blue page-work-at__layout rich-text" v-html="page.jobsAfter" />
 
     <image-grid
       :title="page.teamGridTitle"
