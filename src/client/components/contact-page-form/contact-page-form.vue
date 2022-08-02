@@ -6,7 +6,7 @@
     :action="localeUrl({ name: 'contact-slug', params: { slug: 'confirmation' } })"
     class="contact-page-form__form"
     data-netlify="true"
-    netlify-honeypot="url-page"
+    data-netlify-honeypot="url-page"
     :novalidate="useCustomValidation"
   >
     <fieldset>
