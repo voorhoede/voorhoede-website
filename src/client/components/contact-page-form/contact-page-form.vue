@@ -6,7 +6,7 @@
     :action="localeUrl({ name: 'contact-slug', params: { slug: 'confirmation' } })"
     class="contact-page-form__form"
     data-netlify="true"
-    netlify-honeypot="url-page"
+    data-netlify-honeypot="url-page"
     :novalidate="useCustomValidation"
   >
     <fieldset>
@@ -17,7 +17,7 @@
           <input type="text" name="subject" :value="form.name" class="hidden"/>
           <label class="sr-only">
             Don't fill this out if you're human:
-            <input v-model="form.urlPage" name="url-page" type="url">
+            <input v-model="form['url-page']" name="url-page" type="url">
           </label>
           <input-field
             v-model="form.name"
