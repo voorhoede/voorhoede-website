@@ -25,13 +25,13 @@
       :inverse="true"
       class="page-about-us__middle"
     />
-    <template v-if="jobs.length > 0">
+    <template v-if="page.jobs.length > 0">
       <div class="page-about-us__jobs-text">
         <h2 class="page-about-us__jobs-title h2">{{ page.jobsTitle }}</h2>
         <p class="body-big font-html-blue">{{ page.jobsBody }}</p>
       </div>
       <ul class="page-about-us__jobs">
-        <li class="page-about-us__jobs-list" v-for="item in jobs" :key="item.slug">
+        <li class="page-about-us__jobs-list" v-for="item in page.jobs" :key="item.slug">
           <jobs-excerpt
             class="page-about-us__jobs-list-item"
             :is-nested="true"

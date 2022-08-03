@@ -5,15 +5,6 @@ query ($locale: SiteLocale) {
   alternate: about(locale: $locale) {
     slug
   }
-  jobs: allJobs(locale: $locale, filter: {published: {eq: true}}) {
-    title
-    slug
-    jobImage {
-      url
-      format
-      alt
-    }
-  }
 }
 
 fragment about on AboutRecord {
@@ -67,4 +58,13 @@ fragment about on AboutRecord {
   }
   jobsTitle
   jobsBody
+  jobs {
+    title
+    slug
+    jobImage {
+      url
+      format
+      alt
+    }
+  }
 }
