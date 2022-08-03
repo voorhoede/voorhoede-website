@@ -5,24 +5,6 @@ query ($locale: SiteLocale) {
   alternate: about(locale: $locale) {
     slug
   }
-  latestBlogposts: allBlogPosts(locale: $locale, first: 3, orderBy: publishDate_DESC, filter: {published: {eq: true}}) {
-    slug
-    title
-    date: publishDate
-    authors {
-      name
-      image {
-        url
-        width
-        height
-        format
-        focalPoint {
-          x
-          y
-        }
-      }
-    }
-  }
   jobs: allJobs(locale: $locale, filter: {published: {eq: true}}) {
     title
     slug
