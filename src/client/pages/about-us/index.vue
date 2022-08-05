@@ -13,23 +13,6 @@
       :image="page.introImage"
       class="page-about-us__intro"
     />
-    <template v-if="jobs.length > 0">
-      <div class="page-about-us__jobs-text">
-        <h2 class="page-about-us__jobs-title h2">{{ page.jobsTitle }}</h2>
-        <p class="body-big font-html-blue">{{ page.jobsBody }}</p>
-      </div>
-      <ul class="page-about-us__jobs">
-        <li class="page-about-us__jobs-list" v-for="item in jobs" :key="item.slug">
-          <jobs-excerpt
-            class="page-about-us__jobs-list-item"
-            :is-nested="true"
-            :title="item.title"
-            :image="item.jobImage"
-            :slug="item.slug"
-          />
-        </li>
-      </ul>
-    </template>
     <image-grid
       :title="page.teamGridTitle"
       :items="page.teamGrid"
@@ -42,27 +25,23 @@
       :inverse="true"
       class="page-about-us__middle"
     />
-    <section class="page-about-us__blog">
-      <h2 class="page-about-us__blog-title h2">{{ $t('latest_blog_posts') }}</h2>
-      <ul class="page-about-us__blog-list">
-        <li
-          v-for="blogPost in latestBlogposts"
-          :key="blogPost.slug"
-        >
-          <blog-list-item
-            large
-            :item="blogPost"
+    <template v-if="page.jobs.length > 0">
+      <div class="page-about-us__jobs-text">
+        <h2 class="page-about-us__jobs-title h2">{{ page.jobsTitle }}</h2>
+        <p class="body-big font-html-blue">{{ page.jobsBody }}</p>
+      </div>
+      <ul class="page-about-us__jobs">
+        <li class="page-about-us__jobs-list" v-for="item in page.jobs" :key="item.slug">
+          <jobs-excerpt
+            class="page-about-us__jobs-list-item"
+            :is-nested="true"
+            :title="item.title"
+            :image="item.jobImage"
+            :slug="item.slug"
           />
         </li>
       </ul>
-      <div class="page-about-us__blog-button">
-        <app-button
-          :to="localeUrl('blog')"
-          :label="$t('all_blogposts')"
-          secondary
-        />
-      </div>
-    </section>
+    </template>
     <newsletter-form class="page-about-us__newsletter" />
   </main>
 </template>
@@ -72,10 +51,10 @@
   import head from '~/lib/seo-head'
   export default {
     asyncData,
+    head,
     mounted() {
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
     },
-    head,
   }
 </script>
 
@@ -105,45 +84,26 @@
     margin-bottom: var(--spacing-large);
   }
 
-  .page-about-us__jobs-text {
-    grid-row: 3;
-  }
-
-  .page-about-us__jobs {
-    grid-row: 4;
-  }
-
   .page-about-us__image-grid {
-    grid-row: 5;
+    grid-row: 3;
     margin-bottom: var(--spacing-larger);
   }
 
   .page-about-us__middle {
-    grid-row: 6;
+    grid-row: 4;
     margin-bottom: var(--spacing-large);
   }
 
-  .page-about-us__blog {
-    grid-row: 7;
-    margin-bottom: var(--spacing-big);
+  .page-about-us__jobs-text {
+    grid-row: 5;
+  }
+
+  .page-about-us__jobs {
+    grid-row: 6;
   }
 
   .page-about-us__newsletter {
-    grid-row: 8;
-  }
-
-  .page-about-us__blog-title {
-    text-align: center;
-    margin-bottom: var(--spacing-large);
-  }
-
-  .page-about-us__blog-list {
-    margin-bottom: var(--spacing-small);
-  }
-
-  .page-about-us__blog-button {
-    display: flex;
-    justify-content: center;
+    grid-row: 7;
   }
 
   .page-about-us__jobs,
@@ -204,11 +164,6 @@
       width: 600px;
       margin: 0 auto;
     }
-
-    .page-about-us__blog {
-      grid-column-start: 4;
-      grid-column-end: 48;
-    }
   }
 
   @media (min-width: 1100px) {
@@ -224,11 +179,6 @@
 
     .page-about-us__jobs-list-item {
       width: 800px;
-    }
-
-    .page-about-us__blog {
-      grid-column-start: 10;
-      grid-column-end: 42;
     }
   }
 </style>
