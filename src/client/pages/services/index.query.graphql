@@ -51,10 +51,6 @@ fragment page on ServiceOverviewRecord {
   }
   contactBody
   servicesTitle
-  introductionBlock {
-    title
-    body
-  }
   contactPerson {
     name,
     lastName,
