@@ -42,6 +42,10 @@
 
     <div class="body-big font-html-blue page-work-at__layout rich-text" v-html="page.uspsAfter" />
 
+    <div class="page-work-at__quote grid">
+      <cta-block :item="page.quote[0]"/>
+    </div>
+
     <div class="page-work-at__layout rich-text">
       <h2 class="h2">{{ page.jobsTitle }}</h2>
       <p class="body-big font-html-blue" v-html="page.jobsBody" />
@@ -117,15 +121,6 @@
     grid-column: var(--grid-content);
   }
 
-  .page-work-at__layout > * + * {
-    margin-top: var(--spacing-small);
-  }
-
-  .page-work-at__job-buttons > .app-button {
-    margin-left: var(--spacing-small);
-    margin-right: var(--spacing-small);
-  }
-
   @media (min-width: 720px) {
     .page-work-at__layout {
       grid-column-start: 6;
@@ -138,6 +133,15 @@
       grid-column-start: 10;
       grid-column-end: 42;
     }
+  }
+
+  .page-work-at__layout > * + * {
+    margin-top: var(--spacing-small);
+  }
+
+  .page-work-at__job-buttons > .app-button {
+    margin-left: var(--spacing-small);
+    margin-right: var(--spacing-small);
   }
 
   .usps {
@@ -161,6 +165,14 @@
     background-color: var(--white);
   }
 
+  @media (min-width: 1200px) {
+    .usps__item {
+      margin-left: var(--spacing-medium);
+      margin-right: var(--spacing-medium);
+      flex: 0 1 320px;
+    }
+  }
+
   .usps__item-heading {
     text-align: center;
     margin-top: var(--spacing-small);
@@ -175,11 +187,19 @@
     padding: var(--spacing-small);
   }
 
+  .page-work-at__quote {
+    margin-top: var(--spacing-medium);
+  }
+
+  @media (min-width: 720px) {
+    .page-work-at__quote {
+      margin-top: var(--spacing-large);
+    }
+  }
+
   @media (min-width: 1200px) {
-    .usps__item {
-      margin-left: var(--spacing-medium);
-      margin-right: var(--spacing-medium);
-      flex: 0 1 320px;
+    .page-work-at__quote {
+      margin-top: var(--spacing-larger);
     }
   }
 </style>

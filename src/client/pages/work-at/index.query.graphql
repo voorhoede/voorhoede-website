@@ -70,6 +70,26 @@ fragment workat on WorkatRecord {
     }
   }
   uspsAfter(markdown: true)
+  quote {
+    title
+    body
+    linkLabel
+    linkUrl
+    linkIsExternal
+    secondaryLinkIsExternal
+    secondaryLinkLabel
+    secondaryLinkUrl
+    person {
+      name
+      image {
+        alt
+        format
+        height
+        url
+        width
+      }
+    }
+  }
   jobsTitle
   jobsBody(markdown: true)
   jobs {
