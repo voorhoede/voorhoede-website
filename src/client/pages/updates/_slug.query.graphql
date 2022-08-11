@@ -5,20 +5,20 @@ query ($locale: SiteLocale, $slug: String) {
 }
 
 fragment page on UpdateRecord {
-  title,
-  subtitle,
+  title
+  subtitle
   headerIllustration {
-    url,
+    url
     alt
-  },
-  slug,
+  }
+  slug
   social {
     title
     description
     image {
       url
     }
-  },
+  }
   items {
     __typename
     ... on ImageRecord {

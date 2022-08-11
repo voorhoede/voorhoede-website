@@ -52,13 +52,13 @@ fragment page on ServiceOverviewRecord {
   contactBody
   servicesTitle
   contactPerson {
-    name,
-    lastName,
-    jobTitle,
+    name
+    lastName
+    jobTitle
     image {
-      width,
-      height,
-      url,
+      width
+      height
+      url
       format
     }
   }
