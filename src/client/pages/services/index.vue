@@ -65,6 +65,7 @@
 
   export default {
     asyncData,
+    head,
     mounted() {
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
     },
@@ -73,8 +74,7 @@
         const { serviceSeries } = this.page.services.find(service => service.slug === slug)
         return serviceSeries[0].childServices
       }
-    },
-    head
+    }
   }
 </script>
 

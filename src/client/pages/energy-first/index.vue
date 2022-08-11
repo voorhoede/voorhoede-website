@@ -290,6 +290,74 @@
   </main>
 </template>
 
+<script>
+  import asyncData from '~/lib/async-page'
+  import head from '~/lib/seo-head'
+
+  export default {
+    asyncData,
+    head,
+    mounted() {
+      const shapes = document.querySelector('[data-shapes]')
+      const range = document.querySelector('[data-range]')
+      const chart = document.querySelector('[data-chart]')
+      const inputs = [...document.querySelectorAll('[data-chart-form] input')]
+
+      initShapes(shapes, range)
+      initChart(chart, inputs)
+    },
+  }
+
+  const get = (key) => {
+    const state = localStorage.getItem(key)
+    if (state === null) { return null }
+    return JSON.parse(state)
+  }
+
+  const set = (key, state) => localStorage.setItem(key, JSON.stringify(state))
+
+  function initShapes(shapes, range) {
+    if (!shapes || !range) { return }
+
+    range.addEventListener('input', onInput)
+
+    function onInput(e) {
+      shapes.style.setProperty('--x', e.currentTarget.value)
+    }
+  }
+
+  function initChart(chart, inputs) {
+    if (!chart || !inputs) { return }
+
+    const strength = 100 / inputs.length
+    let value = 0
+    let isClicked = get('isClicked')
+
+    if (isClicked) {
+      document.body.classList.add('is-clicked')
+    }
+
+    setValue()
+
+    inputs.forEach(input => input.addEventListener('input', onClick))
+
+    function onClick() {
+      if (!isClicked) {
+        isClicked = true
+        document.body.classList.add('is-clicked')
+        set('isClicked', true)
+      }
+      setValue()
+    }
+
+    function setValue() {
+      value = 0
+      inputs.forEach(input => value += input.checked ? strength : 0)
+      chart.style.setProperty('--value', value * .01)
+    }
+  }
+</script>
+
 <style scoped>
   .energy-first-container {
     font-family: var(--font-sans);
@@ -1068,83 +1136,4 @@
       transform: scale(1);
     }
   }
-
 </style>
-
-<script>
-  import asyncData from '~/lib/async-page'
-  import head from '~/lib/seo-head'
-
-  export default {
-    asyncData,
-    mounted() {
-      const shapes = document.querySelector('[data-shapes]')
-      const range = document.querySelector('[data-range]')
-      const chart = document.querySelector('[data-chart]')
-      const inputs = [...document.querySelectorAll('[data-chart-form] input')]
-
-      initShapes(shapes, range)
-      initChart(chart, inputs)
-    },
-    head,
-  }
-
-  const get = key => {
-    const state = localStorage.getItem(key)
-    if (state === null) return null
-    return JSON.parse(state)
-  }
-
-  const set = (key, state) => {
-    localStorage.setItem(key, JSON.stringify(state))
-  }
-
-  function initShapes(shapes, range) {
-    if(!shapes || !range) {
-      return
-    }
-
-    range.addEventListener('input', onInput)
-
-    function onInput(e) {
-      shapes.style.setProperty('--x', e.currentTarget.value)
-    }
-  }
-
-  function initChart(chart, inputs) {
-    if(!chart || !inputs) {
-      return
-    }
-
-    const strength = 100 / inputs.length
-    let value = 0
-    let isClicked = get('isClicked')
-
-    if (isClicked) {
-      document.body.classList.add('is-clicked')
-    }
-
-    setValue()
-
-    inputs.forEach(input => {
-      input.addEventListener('input', onClick)
-    })
-
-    function onClick() {
-      if(!isClicked) {
-        isClicked = true
-        document.body.classList.add('is-clicked')
-        set('isClicked', true)
-      }
-      setValue()
-    }
-
-    function setValue() {
-      value = 0
-      inputs.forEach(input => {
-        value += input.checked ? strength : 0
-      })
-      chart.style.setProperty('--value', value * .01)
-    }
-  }
-</script>
