@@ -45,11 +45,6 @@
       </ul>
     </div>
 
-    <rich-text-block
-      v-if="page.smallServices"
-      class="page-services__text"
-      :text="page.smallServices" />
-
     <pivot-list
       class="page-services__pivots"
       v-if="page.pivots && page.pivots.length"

@@ -55,7 +55,6 @@ fragment page on ServiceOverviewRecord {
     title
     body
   }
-  smallServices
   contactPerson {
     name,
     lastName,
