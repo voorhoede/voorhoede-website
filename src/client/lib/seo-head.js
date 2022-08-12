@@ -1,5 +1,6 @@
 export default function () {
   const page = this.page
+  if (!this.page) { return }
   const currentLocale = this.currentLocale
   const baseUrl = process.env.baseUrl
   const defaultShareTitle = 'De Voorhoede'
