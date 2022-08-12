@@ -47,15 +47,9 @@ export default {
         { icon: { name: 'client-logos/deltares', alt: 'Deltares' } },
         { icon: { name: 'client-logos/heineken', alt: 'Heineken' } },
         { icon: { name: 'client-logos/tu-delft', alt: 'TU Delft' } },
-        { icon: { name: 'client-logos/funda', alt: 'Funda' } },
-        { icon: { name: 'client-logos/npo', alt: 'NPO' } },
-        { icon: { name: 'client-logos/unilever', alt: 'Unilever' } },
         { icon: { name: 'client-logos/abn-amro', alt: 'ABN AMRO' } },
-        { icon: { name: 'client-logos/hotelspecials', alt: 'HotelSpecials' } },
         { icon: { name: 'client-logos/brainbay', alt: 'Brainbay' } },
-        { icon: { name: 'client-logos/ziggo', alt: 'Ziggo' } },
         { icon: { name: 'client-logos/sita', alt: 'Sita' } },
-        { icon: { name: 'client-logos/trouw', alt: 'Trouw' } },
         { icon: { name: 'client-logos/hva', alt: 'Hogeschool van Amsterdam' } },
       ]
     }
