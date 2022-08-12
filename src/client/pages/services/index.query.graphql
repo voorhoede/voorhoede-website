@@ -51,19 +51,14 @@ fragment page on ServiceOverviewRecord {
   }
   contactBody
   servicesTitle
-  introductionBlock {
-    title
-    body
-  }
-  smallServices
   contactPerson {
-    name,
-    lastName,
-    jobTitle,
+    name
+    lastName
+    jobTitle
     image {
-      width,
-      height,
-      url,
+      width
+      height
+      url
       format
     }
   }

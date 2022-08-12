@@ -6,6 +6,7 @@
       :headline="page.subtitle"
       :image="page.headerIllustration"
     />
+
     <image-with-text-block
       :title="page.introTitle"
       :body="page.introBody"
@@ -21,6 +22,7 @@
     />
 
     <image-with-text-block
+      v-if="page.middleTitle || page.middleBody || page.middleImage"
       :title="page.middleTitle"
       :body="page.middleBody"
       :image="page.middleImage"
