@@ -2,29 +2,38 @@ query ($locale: SiteLocale) {
   page: blogPostOverview(locale: $locale) {
     ...blogPostOverview
   }
-  items: allBlogPosts(locale: $locale, first: 100, orderBy: publishDate_DESC, filter: {published: {eq: true}}) {
-    slug
-    social {
-      title
-      description
-      image {
-        url
-      }
-    }
+  items: allBlogPosts(
+    filter: { published: { eq: true } }
+    first: 100
+    locale: $locale
+    orderBy: publishDate_DESC
+  ) {
+    ...blogPost
+  }
+}
+
+fragment blogPost on BlogPostRecord {
+  slug
+  social {
     title
-    published
-    date: publishDate
-    authors {
-      name
-      image {
-        url
-        width
-        height
-        format
-        focalPoint {
-          x
-          y
-        }
+    description
+    image {
+      url
+    }
+  }
+  title
+  published
+  date: publishDate
+  authors {
+    name
+    image {
+      url
+      width
+      height
+      format
+      focalPoint {
+        x
+        y
       }
     }
   }
@@ -45,6 +54,9 @@ fragment blogPostOverview on BlogPostOverviewRecord {
   headerIllustration {
     url
     alt
+  }
+  pinnedPosts {
+    ...blogPost
   }
   pivots {
     title

@@ -45,11 +45,6 @@
       </ul>
     </div>
 
-    <rich-text-block
-      v-if="page.smallServices"
-      class="page-services__text"
-      :text="page.smallServices" />
-
     <pivot-list
       class="page-services__pivots"
       v-if="page.pivots && page.pivots.length"
@@ -65,6 +60,7 @@
 
   export default {
     asyncData,
+    head,
     mounted() {
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
     },
@@ -73,8 +69,7 @@
         const { serviceSeries } = this.page.services.find(service => service.slug === slug)
         return serviceSeries[0].childServices
       }
-    },
-    head
+    }
   }
 </script>
 

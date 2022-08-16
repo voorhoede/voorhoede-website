@@ -38,8 +38,9 @@ module.exports = (dato, root, i18n) => {
 
     root.createDataFile(`${dataDir}/layouts/${locale}/default/index.json`, 'json', layoutToJson(dato), 'utf8')
 
-    dato.errorPages.forEach(errorPage => {
-      root.createDataFile(`${dataDir}/layouts/${locale}/error/${errorPage.errorCode}/index.json`, 'json', errorPageToJson(errorPage), 'utf8')
+    dato.errorPages.forEach(page => {
+      const mappedPage = page.toMap()
+      root.createDataFile(`${dataDir}/layouts/${locale}/error/${page.errorCode}/index.json`, 'json', errorPageToJson(mappedPage), 'utf8')
     })
 
     fs.writeFileSync(`${__dirname}/${staticDir}/_redirects`, redirectsToText(dato.redirects, locales, defaultLocale), 'utf8')
@@ -123,16 +124,9 @@ function formatLink(link) {
   }
 }
 
-function errorPageToJson(errorPage) {
-  return {
-    ...pick(errorPage, [
-      'errorCode',
-      'title',
-      'body',
-    ]),
-    headerImage: pick(errorPage.headerImage.upload, ['url', 'alt'])
-  }
-}
+const errorPageToJson = (errorPage) => ({
+  ...pick(errorPage, [ 'errorCode', 'title', 'body', 'headerImage' ]),
+})
 
 /**
  * Write redirects to text with 1 redirect per line
@@ -142,8 +136,8 @@ function errorPageToJson(errorPage) {
 function redirectsToText (redirects, locales, defaultLocale) {
   const redirectsToNonDefaultLocales = locales
     .filter(locale => locale !== defaultLocale)
-    .map(locale => `/ /${locale}/ 302 Language=${locale}`)
-  const redirectToDefaultLocale = `/ /${defaultLocale}/ 302`
+    .map(locale => `/ /${locale}/ 302! Language=${locale}`)
+  const redirectToDefaultLocale = `/ /${defaultLocale}/ 302!`
 
   const redirectRulesFromCms = redirects
     .map(redirect => `${redirect.from} ${redirect.to} ${redirect.httpStatusCode}`)

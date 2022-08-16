@@ -6,6 +6,7 @@
       :headline="page.subtitle"
       :image="page.headerIllustration"
     />
+
     <image-with-text-block
       :title="page.introTitle"
       :body="page.introBody"
@@ -21,6 +22,7 @@
     />
 
     <image-with-text-block
+      v-if="page.middleTitle || page.middleBody || page.middleImage"
       :title="page.middleTitle"
       :body="page.middleBody"
       :image="page.middleImage"
@@ -40,6 +42,10 @@
 
     <div class="body-big font-html-blue page-work-at__layout rich-text" v-html="page.uspsAfter" />
 
+    <div class="page-work-at__quote grid">
+      <cta-block :item="page.quote[0]"/>
+    </div>
+
     <div class="page-work-at__layout rich-text">
       <h2 class="h2">{{ page.jobsTitle }}</h2>
       <p class="body-big font-html-blue" v-html="page.jobsBody" />
@@ -56,6 +62,23 @@
 
     <p class="body-big font-html-blue page-work-at__layout rich-text" v-html="page.jobsAfter" />
 
+    <!-- We had to combine the ImageWithText with
+      the RichTextBlock to get the desired 'custom' layout -->
+    <div class="image-with-text">
+      <responsive-image
+        :image="page.endImage"
+      />
+      <div class="image-with-text__body">
+        <h2 class="image-with-text__body-title h3">
+          {{ page.endTitle }}
+        </h2>
+        <rich-text-block
+          class="image-with-text__body-text generic-text-block__body"
+          :text="page.endBody"
+        />
+      </div>
+    </div>
+
     <image-grid
       :title="page.teamGridTitle"
       :items="page.teamGrid"
@@ -70,6 +93,7 @@
   import head from '~/lib/seo-head'
   export default {
     asyncData,
+    head,
     computed: {
       filteredJobs() {
         return this.page.jobs.filter(job => {
@@ -80,7 +104,6 @@
     mounted() {
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
     },
-    head,
   }
 </script>
 
@@ -98,15 +121,6 @@
     grid-column: var(--grid-content);
   }
 
-  .page-work-at__layout > * + * {
-    margin-top: var(--spacing-small);
-  }
-
-  .page-work-at__job-buttons > .app-button {
-    margin-left: var(--spacing-small);
-    margin-right: var(--spacing-small);
-  }
-
   @media (min-width: 720px) {
     .page-work-at__layout {
       grid-column-start: 6;
@@ -119,6 +133,15 @@
       grid-column-start: 10;
       grid-column-end: 42;
     }
+  }
+
+  .page-work-at__layout > * + * {
+    margin-top: var(--spacing-small);
+  }
+
+  .page-work-at__job-buttons > .app-button {
+    margin-left: var(--spacing-small);
+    margin-right: var(--spacing-small);
   }
 
   .usps {
@@ -142,6 +165,14 @@
     background-color: var(--white);
   }
 
+  @media (min-width: 1200px) {
+    .usps__item {
+      margin-left: var(--spacing-medium);
+      margin-right: var(--spacing-medium);
+      flex: 0 1 320px;
+    }
+  }
+
   .usps__item-heading {
     text-align: center;
     margin-top: var(--spacing-small);
@@ -156,11 +187,19 @@
     padding: var(--spacing-small);
   }
 
+  .page-work-at__quote {
+    margin-top: var(--spacing-medium);
+  }
+
+  @media (min-width: 720px) {
+    .page-work-at__quote {
+      margin-top: var(--spacing-large);
+    }
+  }
+
   @media (min-width: 1200px) {
-    .usps__item {
-      margin-left: var(--spacing-medium);
-      margin-right: var(--spacing-medium);
-      flex: 0 1 320px;
+    .page-work-at__quote {
+      margin-top: var(--spacing-larger);
     }
   }
 </style>

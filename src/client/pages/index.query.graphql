@@ -113,7 +113,6 @@ fragment page on HomeRecord {
       format
     }
   }
-  smallServices
   clientsTitle
   academyIllustration {
     url

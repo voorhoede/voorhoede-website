@@ -93,6 +93,7 @@
 
   export default {
     asyncData,
+    head,
     computed: {
       ctaSectionTop() {
         return this.page.pageCtaSection[0]
@@ -115,7 +116,6 @@
         return index === 0 ? { isSet: true, number: 0 } : { isSet: false }
       }
     },
-    head,
   }
 </script>
 

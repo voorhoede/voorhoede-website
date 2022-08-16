@@ -54,6 +54,13 @@ export default {
       isBrowser: false,
     }
   },
+  head() {
+    return {
+      htmlAttrs: {
+        lang: this.$i18n.locale
+      }
+    }
+  },
   computed: {
     ...mapState(['doNotTrack', 'showGrid']),
     layout () {
@@ -85,13 +92,6 @@ export default {
   },
   methods: {
     ...mapActions(['setDoNotTrack']),
-  },
-  head() {
-    return {
-      htmlAttrs: {
-        lang: this.$i18n.locale
-      }
-    }
   },
 }
 </script>

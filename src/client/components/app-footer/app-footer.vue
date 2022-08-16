@@ -3,7 +3,7 @@
     <div class="app-footer__layout">
       <div class="app-footer__header">
         <nuxt-link :to="localeUrl('index')" :aria-label="$t('home')" :title="$t('home')">
-          <img class="app-footer__header-logo" src="/images/logo-with-text.svg" alt="" width="190" height="32">
+          <img class="app-footer__header-logo" src="/images/logo--lustrum-with-text.svg" alt="" width="190" height="32">
         </nuxt-link>
       </div>
       <div class="app-footer__column">
@@ -17,6 +17,9 @@
             class="app-footer__list-item body-detail"
           >
             <nuxt-link class="app-footer__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
+          </li>
+          <li class="app-footer__list-item body-detail">
+            <nuxt-link class="app-footer__link" :to="createHref({ page: { slug: 'lustrum' } })">Lustrum</nuxt-link>
           </li>
           <li class="app-footer__list-item body-detail">
             <nuxt-link class="app-footer__link" :to="createHref({ page: { slug: 'faq' } })">FAQ</nuxt-link>

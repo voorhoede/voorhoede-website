@@ -22,7 +22,7 @@
     >
       <img
         class="app-mobile-menu__logo"
-        src="/images/logo--blue-and-yellow.svg"
+        src="/images/logo--lustrum-blue-and-yellow.svg"
         alt="">
 
       <ul class="app-mobile-menu__list body-small">
