@@ -55,6 +55,7 @@ export default {
         { icon: { name: 'client-logos/qutech', alt: 'QuTech' } },
         { icon: { name: 'client-logos/sita', alt: 'Sita' } },
         { icon: { name: 'client-logos/startmail', alt: 'Start Mail' } },
+        { icon: { name: 'client-logos/tech-me-up', alt: 'TechMeUp' } },
         { icon: { name: 'client-logos/tu-delft', alt: 'TU Delft' } },
       ]
     }
