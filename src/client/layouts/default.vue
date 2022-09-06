@@ -5,16 +5,7 @@
     ref="topOfPage"
     tabindex="-1"
   >
-    <div class="colour-blindness">
-      <app-button-vue
-        small
-        :label="colourBlindnessLabel"
-        @click="colourBlindnessEnabled = !colourBlindnessEnabled"
-      />
-    </div>
-    <div
-      :class="{'colour-filter': colourBlindnessEnabled }"
-    >
+    <a11y-viewer>
       <VueAnnouncer
         v-if="isBrowser"
         :lang="pageTitleLocale"
@@ -49,22 +40,21 @@
         <nuxt />
         <app-footer />
       </div>
-    </div>
+    </a11y-viewer>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import appButtonVue from '../components/app-button/app-button.vue'
+import A11yViewer from '../components/a11y-viewer/a11y-viewer'
 
 export default {
   components: {
-    appButtonVue
+    A11yViewer,
   },
   data() {
     return {
       isBrowser: false,
-      colourBlindnessEnabled: true
     }
   },
   head() {
@@ -102,20 +92,3 @@ export default {
   },
 }
 </script>
-
-<style>
-  .colour-filter {
-    filter: url('/images/svg-filters.svg#achromatopsia') blur(1px);
-  }
-
-  .colour-blindness {
-    position: fixed;
-    bottom: 0;
-    padding: var(--spacing-larger);
-    z-index: 9999;
-  }
-
-  .layout-default {
-    position: relative;
-  }
-</style>
