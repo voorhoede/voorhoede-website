@@ -75,9 +75,6 @@ export default {
     pageTitleLocale() {
       return this.$route.name && this.$route.name.includes('blog-slug') ? 'en' : this.$i18n.locale
     },
-    colourBlindnessLabel() {
-      return `${this.colourBlindnessEnabled ? 'Disable': 'Enable'} colour blindness`
-    }
   },
   watch: {
     // Please do not remove this watcher, see: https://marcus.io/blog/improved-accessible-routing-vuejs
