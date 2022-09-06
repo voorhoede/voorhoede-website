@@ -1,6 +1,6 @@
 <template>
   <div class="root">
-    <header class="a11y-viewer" :class="{'is-open': open}">
+    <header class="a11y-viewer">
       <div class="a11y-viewer__title-wrapper">
         <p class="h4">Colour blindness awareness day</p>
         <p class="h5 a11y-viewer__title">Simulate visual impairment</p>

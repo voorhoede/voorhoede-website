@@ -14,9 +14,8 @@
   display: flex;
   width: 100%;
   flex: 0 1 auto;
-  padding: 0.25rem;
+  padding: .25rem;
   background-color: var(--white);
-  box-shadow: 1px 1px 5px 0 rgb(0 0 0 / 27%);
   line-height: 2.5;
 }
 
@@ -50,27 +49,35 @@
 .moderate {
   filter: blur(var(--moderate-blur));
 }
+
 .moderate.no-red {
   filter: url('~assets/svg-filters.svg#protanopia')  blur(var(--moderate-blur));
 }
+
 .moderate.low-red {
   filter: url('~assets/svg-filters.svg#protanomaly') blur(var(--moderate-blur));
 }
+
 .moderate.no-green {
   filter: url('~assets/svg-filters.svg#deuteranopia') blur(var(--moderate-blur));
 }
+
 .moderate.low-green {
   filter: url('~assets/svg-filters.svg#deuteranomaly') blur(var(--moderate-blur));
 }
+
 .moderate.no-blue {
   filter: url('~assets/svg-filters.svg#tritanopia') blur(var(--moderate-blur));
 }
+
 .moderate.low-blue {
   filter: url('~assets/svg-filters.svg#tritanomaly') blur(var(--moderate-blur));
 }
+
 .moderate.no-color {
   filter: url('~assets/svg-filters.svg#achromatopsia') blur(var(--moderate-blur));
 }
+
 .moderate.almost-no-color {
   filter: url('~assets/svg-filters.svg#achromatomaly') blur(var(--moderate-blur));
 }
@@ -79,27 +86,35 @@
 .severe {
   filter: blur(var(--severe-blur));
 }
+
 .severe.no-red {
   filter: url('~assets/svg-filters.svg#protanopia') blur(var(--severe-blur));
 }
+
 .severe.low-red {
   filter: url('~assets/svg-filters.svg#protanomaly') blur(var(--severe-blur));
 }
+
 .severe.no-green {
   filter: url('~assets/svg-filters.svg#deuteranopia') blur(var(--severe-blur));
 }
+
 .severe.low-green {
   filter: url('~assets/svg-filters.svg#deuteranomaly') blur(var(--severe-blur));
 }
+
 .severe.no-blue {
   filter: url('~assets/svg-filters.svg#tritanopia') blur(var(--severe-blur));
 }
+
 .severe.low-blue {
   filter: url('~assets/svg-filters.svg#tritanomaly') blur(var(--severe-blur));
 }
+
 .severe.no-color {
   filter: url('~assets/svg-filters.svg#achromatopsia') blur(var(--severe-blur));
 }
+
 .severe.almost-no-color {
   filter: url('~assets/svg-filters.svg#achromatomaly') blur(var(--severe-blur));
 }
@@ -108,27 +123,35 @@
 .blindness {
   filter: brightness(0);
 }
+
 .blindness.no-red {
   filter: url('~assets/svg-filters.svg#protanopia') brightness(0);
 }
+
 .blindness.low-red {
   filter: url('~assets/svg-filters.svg#protanomaly') brightness(0);
 }
+
 .blindness.no-green {
   filter: url('~assets/svg-filters.svg#deuteranopia') brightness(0);
 }
+
 .blindness.low-green {
   filter: url('~assets/svg-filters.svg#deuteranomaly') brightness(0);
 }
+
 .blindness.no-blue {
   filter: url('~assets/svg-filters.svg#tritanopia') brightness(0);
 }
+
 .blindness.low-blue {
   filter: url('~assets/svg-filters.svg#tritanomaly') brightness(0);
 }
+
 .blindness.no-color {
   filter: url('~assets/svg-filters.svg#achromatopsia') brightness(0);
 }
+
 .blindness.almost-no-color {
   filter: url('~assets/svg-filters.svg#achromatomaly') brightness(0);
 }
@@ -137,24 +160,31 @@
 .no-red {
   filter: url('~assets/svg-filters.svg#protanopia');
 }
+
 .low-red {
   filter: url('~assets/svg-filters.svg#protanomaly');
 }
+
 .no-green {
   filter: url('~assets/svg-filters.svg#deuteranopia');
 }
+
 .low-green {
   filter: url('~assets/svg-filters.svg#deuteranomaly');
 }
+
 .no-blue {
   filter: url('~assets/svg-filters.svg#tritanopia');
 }
+
 .low-blue {
   filter: url('~assets/svg-filters.svg#tritanomaly');
 }
+
 .no-color {
   filter: url('~assets/svg-filters.svg#achromatopsia');
 }
+
 .almost-no-color {
   filter: url('~assets/svg-filters.svg#achromatomaly');
 }
@@ -165,11 +195,13 @@ optgroup,
 select {
   /* Use parent font-size (instead of browser default 11px) */
   font-size: inherit;
+
   /* Remove the margin in Firefox and Safari */
   margin: 0;
 }
 
 /* firefox button height issue */
+
 /* https://davidwalsh.name/firefox-buttons */
 button::-moz-focus-inner {
   border: 0;
@@ -183,7 +215,7 @@ select:focus {
 }
 
 /* checkbox */
-input[type="checkbox"] {
+input[type='checkbox'] {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -194,27 +226,27 @@ input[type="checkbox"] {
   width: 1px;
 }
 
-input[type="checkbox"] ~ .label-text {
+input[type='checkbox'] ~ .label-text {
   cursor: pointer;
 }
 
-input[type="checkbox"] ~ .label-text:before {
+input[type='checkbox'] ~ .label-text::before {
   content: '';
   display: inline-block;
   height: 1.125rem;
   width: 1.125rem;
   border: 2px solid var(--html-blue);
   border-radius: 2px;
-  margin-right: 0.5rem;
-  vertical-align: -0.25em;
+  margin-right: .5rem;
+  vertical-align: -.25em;
   transition: border-color 250ms ease;
 }
 
-input[type="checkbox"]:hover ~ .label-text:before {
+input[type='checkbox']:hover ~ .label-text::before {
   border: 2px solid var(--active-blue);
 }
 
-input[type="checkbox"]:checked ~ .label-text:before {
+input[type='checkbox']:checked ~ .label-text::before {
   background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%3E%3Cpath%20fill%3D%22%231A4E57%22%20d%3D%22M5.86%2012.36L1.3%207.16%203%205.13l2.56%202.92%205.3-6.64%201.87%202-6.87%208.94z%22%2F%3E%3C%2Fsvg%3E');
   background-repeat: no-repeat;
 }
@@ -226,14 +258,14 @@ input[type="checkbox"]:checked ~ .label-text:before {
   background-color: var(--color-grey-light);
   border: 1px solid transparent;
   border-radius: 0;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 3px rgba(0, 0, 0, .2);
   padding-right: 2.5rem; /* make space for caret icon */
   padding-left: 1rem;
   width: 100%;
 }
 
 .select-input:hover {
-  transition: all 0.2s ease-in;
+  transition: all .2s ease-in;
   background-color: var(--color-grey-dark);
   cursor: pointer;
 }
@@ -251,13 +283,13 @@ input[type="checkbox"]:checked ~ .label-text:before {
   position: absolute;
   height: 2.25rem;
   width: 2.5rem;
-  top: 0.125rem;
+  top: .125rem;
   right: 0;
   text-align: center;
   line-height: 2.375rem;
 }
 
-.select-icon:before {
+.select-icon::before {
   content: '';
   display: inline-block;
   height: 1.25rem;
@@ -274,7 +306,7 @@ input[type="checkbox"]:checked ~ .label-text:before {
   }
 
   .select-label:last-of-type {
-    padding-left: 0.5rem;
+    padding-left: .5rem;
   }
 }
 
@@ -282,19 +314,19 @@ form {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  /*margin-left: 10px;*/
+
+  /* margin-left: 10px; */
   gap: 10px;
   margin-right: 10px;
 }
 
 @media screen and (min-width: 1055px) {
-
   form > * {
     flex: 0 1 auto;
   }
 
   form > * + * {
-    margin-left: 0.5rem;
+    margin-left: .5rem;
   }
 
   form > *:not(:last-child) {
