@@ -2,10 +2,17 @@
   <div class="root">
     <header class="a11y-viewer">
       <div class="a11y-viewer__title-wrapper">
-        <p class="h4">Colour blindness awareness day</p>
-        <p class="h5 a11y-viewer__title">Simulate visual impairment</p>
+        <a
+          href="https://www.colourblindawareness.org/about-us/campaigns/colour-blind-awareness-day/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="h4 a11y-viewer__more-info"
+        >
+          Colour blindness awareness day
+        </a>
+        <span class="h5">Simulate visual impairment</span>
       </div>
-      <form class="form">
+      <form class="form" @change="setQueryParams">
         <label for="vision">
           <span class="sr-only">Select level of visual imparity</span>
           <select id="vision" v-model="vision">
@@ -57,12 +64,31 @@
 
 <script>
 export default {
-  data() {
+  data({ $route }) {
     return {
-      vision: 'normal',
-      color: 'normal',
-      keyboardOnly: false,
+      vision: $route.query.vision || 'normal',
+      color: $route.query.color || 'normal',
+      keyboardOnly: $route.query.keyboardOnly || false,
     }
+  },
+  watch: {
+    $route(oldRoute, newRoute) {
+      if (oldRoute.name !== newRoute.name) {
+        this.setQueryParams()
+      }
+    },
+  },
+  methods: {
+    setQueryParams() {
+      this.$router.replace({
+        name: this.$route.name,
+        query: {
+          ...( this.vision !== 'normal' && { vision: this.vision } ),
+          ...( this.color !== 'normal' && { color: this.color } ),
+          ...( this.keyboardOnly && { keyboardOnly: this.keyboardOnly } ),
+        }
+      })
+    },
   },
 }
 </script>

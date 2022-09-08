@@ -350,3 +350,8 @@ form {
   flex-direction: column;
   margin-right: auto;
 }
+
+.a11y-viewer__more-info:hover,
+.a11y-viewer__more-info:focus {
+  text-decoration: underline;
+}
