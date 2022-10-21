@@ -1,5 +1,6 @@
 import Analytics from 'analytics'
 import plausiblePlugin from 'analytics-plugin-plausible'
+import simpleAnalyticsPlugin from '@analytics/simple-analytics'
 
 export default ({ app }, inject) => {
   const analytics = new Analytics({
@@ -8,7 +9,8 @@ export default ({ app }, inject) => {
       plausiblePlugin({
         domain: location.host,
         trackLocalhost: true,
-      })
+      }),
+      simpleAnalyticsPlugin()
     ]
   })
 
