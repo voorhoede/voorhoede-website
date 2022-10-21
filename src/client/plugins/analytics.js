@@ -6,7 +6,7 @@ export default ({ app }, inject) => {
     app: 'voorhoede-website',
     plugins: [
       plausiblePlugin({
-        domain: 'voorhoede.nl',
+        domain: location.host,
         trackLocalhost: true,
       })
     ]
