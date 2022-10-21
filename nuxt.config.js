@@ -86,7 +86,8 @@ module.exports = {
   loading: { color: '#070de9' },
 
   plugins: [
-    { src: '~/plugins/analytics-gtag', mode: 'client' },
+    // { src: '~/plugins/analytics-gtag', mode: 'client' },
+    { src: '~/plugins/analytics', mode: 'client' },
     { src: '~/plugins/axe.js', mode: 'client' },
     { src: '~/plugins/fetch-polyfill', mode: 'client' },
     { src: '~/plugins/locale-urls' },
