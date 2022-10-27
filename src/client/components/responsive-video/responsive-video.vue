@@ -1,7 +1,7 @@
 <template>
   <div class="responsive-video">
     <figure>
-      <fixed-ratio class="responsive-video__canvas" :width="canvasWidth" :height="canvasHeight">
+      <fixed-ratio v-if="showBlock" class="responsive-video__canvas" :width="canvasWidth" :height="canvasHeight">
         <vue-lazy-load>
           <div
             class="responsive-video__background"
@@ -38,6 +38,11 @@
           </button>
         </vue-lazy-load>
       </fixed-ratio>
+      <cookie-consent-card
+        v-else
+        :title="title"
+        :url="externalUrl"
+      />
       <figcaption class="responsive-video__caption">
         <a v-if="video" class="responsive-video__caption-content body-detail link" target="_blank" rel="noreferrer noopener" :href="video.url" >
           {{ video.title }}
@@ -49,7 +54,9 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   import VueLazyLoad from '@voorhoede/vue-lazy-load'
+
   const binaryBoolean = value => (value) ? 1 : 0
 
   export default {
@@ -87,8 +94,37 @@
       }
     },
     computed: {
+      ...mapState(['allowedCookies']),
+      externalUrl() {
+        const { provider, providerUid } = this.video
+
+        switch (provider) {
+          case 'vimeo':
+            return `https://player.vimeo.com/video/${providerUid}`
+          case 'youtube':
+            return `https://www.youtube.com/embed/${providerUid}`
+          default:
+            return ''
+        }
+      },
+      showBlock() {
+        return this.allowedCookies.find(item => item.toLowerCase() === this.video.provider)
+      },
+      title() {
+        switch (this.video.provider) {
+          case 'vimeo': {
+            return 'Vimeo'
+          }
+          case 'youtube': {
+            return 'YouTube'
+          }
+          default: {
+            return this.video.provider
+          }
+        }
+      },
       imageUrl() {
-        if(this.gif) {
+        if (this.gif) {
           return `${this.gif.url}?fm=jpg`
         }
 

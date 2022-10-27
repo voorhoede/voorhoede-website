@@ -1,6 +1,7 @@
 <template>
   <figure>
     <iframe
+      v-if="showBlock"
       scrolling="no"
       :title="title"
       :src="iframeSrc"
@@ -11,12 +12,20 @@
       allowfullscreen="true"
     >
     </iframe>
+    <cookie-consent-card
+      v-else
+      title="CodePen"
+      :url="iframeSrc"
+    />
     <figcaption class="code-pen-block__caption body-detail">
       {{ caption }}
     </figcaption>
   </figure>
 </template>
+
 <script>
+import { mapState } from 'vuex'
+
 export default {
   props: {
     title: {
@@ -34,11 +43,15 @@ export default {
     }
   },
   computed: {
+    ...mapState(['allowedCookies']),
     iframeSrc() {
       const embedUrl = this.url.replace('/pen', '/embed/preview')
       return `${embedUrl}?default-tab=css%2Cresult`
-    }
-  }
+    },
+    showBlock() {
+      return this.allowedCookies.includes('CodePen')
+    },
+  },
 }
 </script>
 

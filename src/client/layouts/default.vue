@@ -48,6 +48,8 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 
+import localStorageSupported from '~/lib/local-storage-supported'
+
 export default {
   data() {
     return {
@@ -84,6 +86,13 @@ export default {
   mounted() {
     this.isBrowser = true
 
+    if (localStorageSupported) {
+      const vendors = JSON.parse(localStorage.getItem('cookiesAccepted')) || []
+
+      this.setShowCookieBar({ show: Boolean(!vendors.length) })
+      this.setAllowedCookies({ allowed: vendors })
+    }
+
     const doNotTrack = !!((window.doNotTrack && window.doNotTrack === '1') ||
       (navigator.doNotTrack && (navigator.doNotTrack === 'yes' || navigator.doNotTrack === '1' )) ||
       (navigator.msDoNotTrack && navigator.msDoNotTrack === '1'))
@@ -91,7 +100,7 @@ export default {
     this.setDoNotTrack({ doNotTrack })
   },
   methods: {
-    ...mapActions(['setDoNotTrack']),
+    ...mapActions(['setAllowedCookies', 'setDoNotTrack', 'setShowCookieBar']),
   },
 }
 </script>

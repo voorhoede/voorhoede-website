@@ -1,6 +1,6 @@
 <template>
-  <div v-if="showCookieNotification" class="cookie-notification">
-    <div v-if="!showCookieSettigns" class="cookie-notification__content">
+  <div v-if="showCookieBar" class="cookie-notification">
+    <div v-if="!showCookieSettings" class="cookie-notification__content">
       <h1 v-if="title" class="cookie-notification__title h4">
         {{ title }}
       </h1>
@@ -48,11 +48,37 @@
               <span class="sr-only">{{ option.title }}</span>
             </label>
           </div>
+          <div v-if="option.vendors" class="cookie-option__vendors">
+            <li
+              v-for="(vendor, index) in option.vendors"
+              :key="index"
+              class="cookie-options__item"
+            >
+              <div class="cookie-option__text">
+                <h4 class="body-detail font-bold">{{ vendor.title }}</h4>
+                <p class="body-detail">{{ vendor.body }}</p>
+              </div>
+              <div class="cookie-option__toggle">
+                <input
+                  type="checkbox"
+                  :id="`vendor-option-${index}`"
+                  class="sr-only"
+                  :aria-checked="checkedVendors.includes(vendor.title)"
+                  role="switch"
+                  :value="vendor.title"
+                  v-model="checkedVendors"
+                />
+                <label :for="`vendor-option-${index}`">
+                  <span class="sr-only">{{ vendor.title }}</span>
+                </label>
+              </div>
+            </li>
+          </div>
         </li>
       </ul>
     </div>
 
-    <template v-if="!showCookieSettigns">
+    <template v-if="!showCookieSettings">
       <button
         class="app-button app-button--small body font-bold"
         @click="recordConsent"
@@ -80,7 +106,8 @@
 </template>
 
 <script>
-  import localStorageSupported from '../../lib/local-storage-supported'
+  import { mapActions, mapState } from 'vuex'
+  import localStorageSupported from '~/lib/local-storage-supported'
 
   export default {
     props: {
@@ -105,30 +132,49 @@
     },
     data() {
       return {
-        showCookieNotification: false,
-        showCookieSettigns: false,
         checkedOptions: [],
+        checkedVendors: [],
+        showCookieSettings: false,
       }
     },
-    mounted() {
-      if (localStorageSupported) {
-        this.showCookieNotification = !localStorage.getItem('cookiesAccepted')
-        this.checkedOptions = this.options.map(({ key }) => key)
-      }
+    computed: {
+      ...mapState(['showCookieBar']),
     },
-    methods: {
-      recordConsent() {
-        if (localStorageSupported) {
-          localStorage.setItem('cookiesAccepted', true)
-          this.showCookieNotification = false
+    watch: {
+      checkedOptions(newVal, oldVal) {
+        if (newVal !== oldVal) {
+          this.setCheckedOptionVendors(newVal)
         }
       },
+    },
+    methods: {
+      ...mapActions(['setAllowedCookies', 'setShowCookieBar']),
+      recordConsent() {
+        const allVendors = this.options
+          .filter(({ vendors }) => vendors)
+          .map(({ vendors }) => vendors.map(({ title }) => title))
+          .flat()
+
+        if (localStorageSupported) {
+          localStorage.setItem('cookiesAccepted', JSON.stringify(allVendors))
+        }
+
+        this.setAllowedCookies({ allowed: allVendors })
+        this.setShowCookieBar({ show: false })
+      },
       saveSettings() {
+        if (localStorageSupported) {
+          localStorage.setItem('cookiesAccepted', JSON.stringify(this.checkedVendors))
+        }
+
+        this.showCookieSettings = false
+
         this.updateConsentSettings()
-        this.showCookieSettigns = false
+        this.setAllowedCookies({ allowed: this.checkedVendors })
+        this.setShowCookieBar({ show: false })
       },
       showSettings() {
-        this.showCookieSettigns = true
+        this.showCookieSettings = true
       },
       updateConsentSettings() {
         const consentSettings = this.options.map(({ key }) => ({
@@ -139,6 +185,15 @@
           ...consentSettings,
           'wait_for_update': 500,
         })
+      },
+      setCheckedOptionVendors(checkedOptions) {
+        const checkedOption = this.options.find((option) =>
+          checkedOptions.includes(option.key) && option.vendors.length
+        )
+
+        this.checkedVendors = checkedOption
+          ? checkedOption.vendors.map(({ title }) => title).flat()
+          : []
       },
     },
   }
@@ -198,14 +253,22 @@
   .cookie-options__item {
     display: flex;
     align-items: center;
+    flex-flow: wrap;
+    justify-content: space-between;
   }
 
   .cookie-options__item + .cookie-options__item {
     margin-top: var(--spacing-small);
   }
 
+  .cookie-option__vendors {
+    flex: 0 0 100%;
+    margin-top: var(--spacing-small);
+  }
+
   .cookie-option__text {
     margin-right: var(--spacing-small);
+    flex: 0 0 calc(100% - 80px - var(--spacing-small));
   }
 
   .cookie-option__text .h5 {
@@ -248,7 +311,7 @@
     width: var(--knob-size);
     height: var(--knob-size);
     transform: translate(5px, -50%);
-    transition: transform 0.2s ease-in-out;
+    transition: transform .2s ease-in-out;
     border-radius: 50%;
     background-color: var(--dim);
   }
