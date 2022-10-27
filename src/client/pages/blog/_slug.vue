@@ -41,13 +41,14 @@
           />
         </div>
 
-        <code-pen-block
+        <code-preview-block
           :id="item.id"
           class="page-blog-post-list--full-width"
           v-if="item.__typename === 'CodePenBlockRecord' && item.url"
           :url="item.url"
           :caption="item.caption"
           :title="item.title"
+          :type="item.previewType"
           :key="item.id"
         />
 
