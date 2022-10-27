@@ -96,6 +96,10 @@
     computed: {
       ...mapState(['allowedCookies']),
       externalUrl() {
+        if (!this.video) {
+          return
+        }
+
         const { provider, providerUid } = this.video
 
         switch (provider) {
@@ -111,6 +115,10 @@
         return this.allowedCookies.find(item => item.toLowerCase() === this.video.provider)
       },
       title() {
+        if (!this.video) {
+          return
+        }
+
         switch (this.video.provider) {
           case 'vimeo': {
             return 'Vimeo'
