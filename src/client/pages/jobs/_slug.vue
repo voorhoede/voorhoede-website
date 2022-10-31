@@ -57,7 +57,7 @@
             :label="$t('apply')"
             :to="page.url"
             external
-            @click="trackApplyButton()"
+            @click="trackApplyButton"
           />
           <app-button
             :label="$t('all_jobs')"
