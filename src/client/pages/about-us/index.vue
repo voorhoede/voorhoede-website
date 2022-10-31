@@ -124,11 +124,6 @@
     margin-bottom: var(--spacing-larger);
   }
 
-  .page-about-us__text-blocks {
-    grid-row: 4;
-    margin-bottom: var(--spacing-large);
-  }
-
   .page-about-us__middle {
     grid-row: 5;
     margin-bottom: var(--spacing-large);
@@ -147,10 +142,11 @@
   }
 
   .page-about-us__text-blocks {
-    grid-column: var(--grid-page);
+    grid-row: 4;
     grid-column: var(--grid-content);
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 110px;
   }
 
   .page-about-us__text-blocks-title {
@@ -169,24 +165,30 @@
 
   .page-about-us__text-blocks-items {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
   }
 
   .page-about-us__text-blocks-item {
-    flex: 0 1 300px;
-    margin-top: 20px;
-    margin-bottom: 110px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: var(--spacing-small);
     margin-right: var(--spacing-small);
     padding: var(--spacing-medium);
     background-color: var(--white);
   }
 
+  .page-about-us__text-blocks-item:first-child {
+    margin-top: 20px;
+  }
+
+  .page-about-us__text-blocks-item:last-child {
+    margin-bottom: 20px;
+  }
+
   .page-about-us__text-blocks-item-heading {
     margin-top: var(--spacing-small);
     margin-bottom: var(--spacing-small);
-    text-align: center;
   }
 
   .page-about-us__jobs,
@@ -267,7 +269,6 @@
 
   @media (min-width: 1200px) {
     .page-about-us__text-blocks-item {
-      flex: 0 1 320px;
       margin-left: var(--spacing-medium);
       margin-right: var(--spacing-medium);
     }
