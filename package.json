@@ -50,6 +50,7 @@
   },
   "devDependencies": {
     "@nuxtjs/sitemap": "^2.4.0",
+    "@vue/composition-api": "^1.7.1",
     "autoprefixer": "^9.8.6",
     "ava": "^3.12.1",
     "axe-core": "^4.4.2",
@@ -81,6 +82,8 @@
     "stylelint": "^14.8.4",
     "stylelint-config-standard": "^25.0.0",
     "vue-axe": "^2.4.4",
+    "vue-datocms": "^1.1.0",
+    "vue-demi": "^0.13.11",
     "xmlbuilder": "^15.1.1"
   },
   "browserslist": [

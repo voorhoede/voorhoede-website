@@ -67,4 +67,18 @@ fragment about on AboutRecord {
       alt
     }
   }
+  textBlocksTitle
+  textBlocksDescription
+  textBlocksSubtitle
+  textBlocksItems {
+    id
+    title
+    description {
+      value
+      links {
+        id
+        slug
+      }
+    }
+  }
 }

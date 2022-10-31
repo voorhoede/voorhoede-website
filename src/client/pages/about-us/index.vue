@@ -18,6 +18,21 @@
       :items="page.teamGrid"
       class="page-about-us__image-grid"
     />
+    <section class="page-about-us__text-blocks">
+      <h2 class="h3 page-about-us__text-blocks-title">{{ page.textBlocksTitle }}</h2>
+      <p class="body-big page-about-us__text-blocks-description">{{ page.textBlocksDescription }}</p>
+      <h3 v-if="page.textBlocksSubtitle" class="h4 page-about-us__text-blocks-subtitle">{{ page.textBlocksSubtitle }}</h3>
+      <div class="page-about-us__text-blocks-items">
+        <div v-for="item in page.textBlocksItems" :key="item.id" class="page-about-us__text-blocks-item">
+          <h4 class="h4 page-about-us__text-blocks-item-heading">{{ item.title }}</h4>
+          <structured-text
+            class="body rich-text"
+            :data="item.description"
+            :render-link-to-record="renderLinkToRecord"
+          />
+        </div>
+      </div>
+    </section>
     <image-with-text-block
       :title="page.middleTitle"
       :body="page.middleBody"
@@ -47,13 +62,33 @@
 </template>
 
 <script>
+  import { h as renderNode } from 'vue-demi'
+  import { StructuredText } from 'vue-datocms'
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
+
   export default {
+    components: {
+      StructuredText,
+    },
     asyncData,
     head,
     mounted() {
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
+    },
+    methods: {
+      renderLinkToRecord({ record, children, transformedMeta }) {
+        return renderNode(
+          'nuxt-link',
+          {
+            ...transformedMeta,
+            props: {
+              to: `/${this.$i18n.locale}/${record.slug}/`,
+            },
+          },
+          children[0]
+        )
+      },
     },
   }
 </script>
@@ -89,21 +124,69 @@
     margin-bottom: var(--spacing-larger);
   }
 
-  .page-about-us__middle {
+  .page-about-us__text-blocks {
     grid-row: 4;
     margin-bottom: var(--spacing-large);
   }
 
-  .page-about-us__jobs-text {
+  .page-about-us__middle {
     grid-row: 5;
+    margin-bottom: var(--spacing-large);
   }
 
-  .page-about-us__jobs {
+  .page-about-us__jobs-text {
     grid-row: 6;
   }
 
-  .page-about-us__newsletter {
+  .page-about-us__jobs {
     grid-row: 7;
+  }
+
+  .page-about-us__newsletter {
+    grid-row: 8;
+  }
+
+  .page-about-us__text-blocks {
+    grid-column: var(--grid-page);
+    grid-column: var(--grid-content);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-about-us__text-blocks-title {
+    text-align: center;
+  }
+
+  .page-about-us__text-blocks-description {
+    text-align: center;
+    color: var(--html-blue);
+  }
+
+  .page-about-us__text-blocks-subtitle {
+    margin-top: var(--spacing-medium);
+    text-align: center;
+  }
+
+  .page-about-us__text-blocks-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .page-about-us__text-blocks-item {
+    flex: 0 1 300px;
+    margin-top: 20px;
+    margin-bottom: 110px;
+    margin-left: var(--spacing-small);
+    margin-right: var(--spacing-small);
+    padding: var(--spacing-medium);
+    background-color: var(--white);
+  }
+
+  .page-about-us__text-blocks-item-heading {
+    margin-top: var(--spacing-small);
+    margin-bottom: var(--spacing-small);
+    text-align: center;
   }
 
   .page-about-us__jobs,
@@ -179,6 +262,14 @@
 
     .page-about-us__jobs-list-item {
       width: 800px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .page-about-us__text-blocks-item {
+      flex: 0 1 320px;
+      margin-left: var(--spacing-medium);
+      margin-right: var(--spacing-medium);
     }
   }
 </style>
