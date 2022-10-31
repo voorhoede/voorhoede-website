@@ -46,6 +46,7 @@
     "prismjs": "^1.28.0",
     "svg4everybody": "^2.1.9",
     "unfetch": "^4.2.0",
+    "vue-datocms": "^3.0.3",
     "vue-demi": "^0.13.11",
     "vue-focus-lock": "^2.0.0"
   },
@@ -83,7 +84,6 @@
     "stylelint": "^14.8.4",
     "stylelint-config-standard": "^25.0.0",
     "vue-axe": "^2.4.4",
-    "vue-datocms": "^1.1.0",
     "xmlbuilder": "^15.1.1"
   },
   "browserslist": [
