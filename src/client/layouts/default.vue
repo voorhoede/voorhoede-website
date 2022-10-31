@@ -85,7 +85,7 @@ export default {
 </script>
 
 <style>
-.layout-default {
-  position: relative;
-}
+  .layout-default {
+    position: relative;
+  }
 </style>
