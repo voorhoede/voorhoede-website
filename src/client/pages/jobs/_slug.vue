@@ -57,6 +57,7 @@
             :label="$t('apply')"
             :to="page.url"
             external
+            @click="trackApplyButton"
           />
           <app-button
             :label="$t('all_jobs')"
@@ -155,6 +156,13 @@
     },
     mounted() {
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
+    },
+    methods: {
+      trackApplyButton() {
+        this.$gtag('event', 'conversion', {
+          'send_to': 'AW-926139478/JGdACMbP1OYDENaIz7kD',
+        })
+      }
     },
   }
 </script>
