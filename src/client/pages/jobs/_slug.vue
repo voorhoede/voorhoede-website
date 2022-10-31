@@ -162,7 +162,6 @@
         this.$gtag('event', 'conversion', {
           'send_to': 'AW-926139478/JGdACMbP1OYDENaIz7kD',
         })
-        return false
       }
     },
   }
