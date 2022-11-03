@@ -25,11 +25,12 @@
       <div class="page-about-us__text-blocks-items">
         <div v-for="item in page.textBlocksItems" :key="item.id" class="page-about-us__text-blocks-item">
           <h4 class="h4 page-about-us__text-blocks-item-heading">{{ item.title }}</h4>
-          <structured-text
-            class="body rich-text"
-            :data="item.description"
-            :render-link-to-record="renderLinkToRecord"
-          />
+          <p class="body body-small rich-text">
+            <structured-text
+              :data="item.description"
+              :render-link-to-record="renderLinkToRecord"
+            />
+          </p>
         </div>
       </div>
     </section>
@@ -62,7 +63,6 @@
 </template>
 
 <script>
-  import { h as renderNode } from 'vue-demi'
   import { StructuredText } from 'vue-datocms'
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
@@ -77,10 +77,11 @@
       this.$announcer.set(`${this.$t('page')}: ${this.page.social.title}`, 'polite')
     },
     methods: {
-      renderLinkToRecord({ record, children, transformedMeta }) {
-        return renderNode(
+      renderLinkToRecord({ record, children, key, h, transformedMeta }) {
+        return h(
           'nuxt-link',
           {
+            key,
             ...transformedMeta,
             props: {
               to: `/${this.$i18n.locale}/${record.slug}/`,
