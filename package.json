@@ -48,7 +48,7 @@
     "svg4everybody": "^2.1.9",
     "unfetch": "^4.2.0",
     "vue-datocms": "1.1.0",
-    "vue-demi": "0.13.11",
+    "vue-demi": "0.12.5",
     "vue-focus-lock": "^2.0.0"
   },
   "devDependencies": {
