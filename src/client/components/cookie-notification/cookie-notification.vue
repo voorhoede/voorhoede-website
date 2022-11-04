@@ -241,6 +241,8 @@
     padding: var(--spacing-small);
     background: var(--white);
     box-shadow: var(--box-shadow);
+    max-height: calc(100% - 150px);
+    overflow: auto;
   }
 
   @media (min-width: 720px) {
