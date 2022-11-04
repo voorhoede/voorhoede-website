@@ -87,7 +87,7 @@ export default {
     this.isBrowser = true
 
     if (localStorageSupported) {
-      const vendors = JSON.parse(localStorage.getItem('cookiesAccepted')) || []
+      const vendors = JSON.parse(localStorage.getItem('vendorCookiesAccepted')) || []
 
       this.setShowCookieBar({ show: Boolean(!vendors.length) })
       this.setAllowedCookies({ allowed: vendors })
