@@ -57,7 +57,7 @@ export default {
       }
     },
     showBlock() {
-      return this.allowedCookies.find(item => item.toLowerCase() === this.type)
+      return this.allowedCookies.some(item => item.toLowerCase() === this.type)
     },
     cardTitle() {
       switch (this.type) {

@@ -40,9 +40,9 @@
       },
     },
     methods: {
-      ...mapActions(['setShowCookieBar']),
+      ...mapActions(['setShowCookieSettings']),
       onClick() {
-        this.setShowCookieBar({ show: true })
+        this.setShowCookieSettings({ show: true })
       },
     },
   }

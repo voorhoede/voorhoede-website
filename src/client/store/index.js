@@ -9,6 +9,7 @@ export const state = () => {
     previousServiceTitle: undefined,
     showGrid: false,
     showCookieBar: true,
+    showCookieSettings: false,
   }
 }
 
@@ -21,6 +22,10 @@ export const actions = {
   },
   setShowCookieBar({ commit }, { show }) {
     commit(types.SET_SHOW_COOKIE_BAR, { show })
+  },
+  setShowCookieSettings({ commit }, { show }) {
+    commit(types.SET_SHOW_COOKIE_BAR, { show })
+    commit(types.SET_SHOW_COOKIE_SETTINGS, { show })
   },
 }
 
@@ -48,5 +53,8 @@ export const mutations = {
   },
   [types.SET_SHOW_COOKIE_BAR](state, { show }) {
     state.showCookieBar = show
+  },
+  [types.SET_SHOW_COOKIE_SETTINGS](state, { show }) {
+    state.showCookieSettings = show
   },
 }

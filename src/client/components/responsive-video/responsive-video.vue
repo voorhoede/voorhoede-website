@@ -114,7 +114,7 @@
       showBlock() {
         return this.gif
           ? true
-          : this.allowedCookies.find(item => item.toLowerCase() === this.video.provider)
+          : this.allowedCookies.some(item => item.toLowerCase() === this.video.provider)
       },
       title() {
         if (!this.video) {

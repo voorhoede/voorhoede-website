@@ -1,10 +1,6 @@
 <template>
   <div v-if="showCookieBar" class="cookie-notification">
     <div v-if="!showCookieSettings" class="cookie-notification__content">
-      <h1 v-if="title" class="cookie-notification__title h4">
-        {{ title }}
-      </h1>
-
       <div v-html="body" class="cookie-notification__body rich-text body" />
     </div>
 
@@ -19,7 +15,7 @@
           :key="type.id"
         >
           <div class="cookie-option__text">
-            <h4 class="h5">{{ type.title }}</h4>
+            <h2 class="h5">{{ type.title }}</h2>
             <p class="body-detail">{{ type.body }}</p>
           </div>
           <div class="cookie-option__toggle">
@@ -49,49 +45,40 @@
               <span class="sr-only">{{ type.title }}</span>
             </label>
           </div>
-          <div
-            v-if="type.vendors"
-            class="cookie-option__vendors"
-            :class="{ 'cookie-option__vendors--open': openDetails.includes(type.id) }"
-          >
-            <button
-              v-if="type.vendors.length"
-              class="app-button body-smaller font-bold"
-              @click="toggleDetails(type.id)"
-            >
-              {{ $t('view_details') }}
-              <app-icon name="caret" />
-            </button>
-            <ul
-              class="cookie-option__vendors-list"
-              v-if="openDetails.includes(type.id)"
-            >
-              <li
-                v-for="(vendor, vendorIndex) in type.vendors"
-                :key="vendorIndex"
-                class="cookie-options__item"
-              >
-                <div class="cookie-option__text">
-                  <h4 class="body-detail font-bold">{{ vendor.title }}</h4>
-                  <p class="body-detail">{{ vendor.body }}</p>
-                </div>
-                <div class="cookie-option__toggle">
-                  <input
-                    type="checkbox"
-                    :id="`vendor-option-${vendor.id}`"
-                    class="sr-only"
-                    :aria-checked="types[typeIndex].vendors[vendorIndex].title === type.title"
-                    role="switch"
-                    :value="vendor.title"
-                    v-model="checkedVendors"
-                    @change="checkType(typeIndex)"
-                  />
-                  <label :for="`vendor-option-${vendor.id}`">
-                    <span class="sr-only">{{ vendor.title }}</span>
-                  </label>
-                </div>
-              </li>
-            </ul>
+          <div v-if="type.vendors.length" class="cookie-option__vendors">
+            <details>
+              <summary class="app-button body-detail font-bold">
+                {{ $t('view_details') }}
+                <app-icon name="caret" />
+              </summary>
+              <ul class="cookie-option__vendors-list">
+                <li
+                  v-for="(vendor, vendorIndex) in type.vendors"
+                  :key="vendorIndex"
+                  class="cookie-options__item"
+                >
+                  <div class="cookie-option__text">
+                    <h3 class="body-detail font-bold">{{ vendor.title }}</h3>
+                    <p class="body-detail">{{ vendor.body }}</p>
+                  </div>
+                  <div class="cookie-option__toggle">
+                    <input
+                      type="checkbox"
+                      :id="`vendor-option-${vendor.id}`"
+                      class="sr-only"
+                      :aria-checked="types[typeIndex].vendors[vendorIndex].title === type.title"
+                      role="switch"
+                      :value="vendor.title"
+                      v-model="checkedVendors"
+                      @change="checkType(typeIndex)"
+                    />
+                    <label :for="`vendor-option-${vendor.id}`">
+                      <span class="sr-only">{{ vendor.title }}</span>
+                    </label>
+                  </div>
+                </li>
+              </ul>
+            </details>
           </div>
         </li>
       </ul>
@@ -134,11 +121,6 @@
         type: String,
         required: true,
       },
-      title: {
-        type: String,
-        required: false,
-        default: '',
-      },
       types: {
         type: Array,
         required: true,
@@ -154,20 +136,13 @@
         checkedTypes: [],
         checkedTypescheckedTypes: [],
         checkedVendors: [],
-        openDetails: [],
-        showCookieSettings: false,
       }
     },
     computed: {
-      ...mapState(['showCookieBar']),
+      ...mapState(['showCookieBar', 'showCookieSettings']),
     },
     methods: {
-      ...mapActions(['setAllowedCookies', 'setShowCookieBar']),
-      toggleDetails(id) {
-        this.openDetails.includes(id)
-          ? this.openDetails = this.openDetails.filter((item) => item !== id)
-          : this.openDetails.push(id)
-      },
+      ...mapActions(['setAllowedCookies', 'setShowCookieBar', 'setShowCookieSettings']),
       recordConsent() {
         const allVendors = this.types
           .filter(({ vendors }) => vendors)
@@ -186,14 +161,14 @@
           localStorage.setItem('vendorCookiesAccepted', JSON.stringify(this.checkedVendors))
         }
 
-        this.showCookieSettings = false
+        this.setShowCookieSettings({ show: false })
 
         this.updateConsentSettings()
         this.setAllowedCookies({ allowed: this.checkedVendors })
         this.setShowCookieBar({ show: false })
       },
       showSettings() {
-        this.showCookieSettings = true
+        this.setShowCookieSettings({ show: true })
       },
       updateConsentSettings() {
         const consentSettings = this.types.map(({ key }) => ({
@@ -238,11 +213,11 @@
     top: var(--spacing-medium);
     right: var(--spacing-medium);
     left: var(--spacing-medium);
+    max-height: calc(100% - 150px);
     padding: var(--spacing-small);
+    overflow: auto;
     background: var(--white);
     box-shadow: var(--box-shadow);
-    max-height: calc(100% - 150px);
-    overflow: auto;
   }
 
   @media (min-width: 720px) {
@@ -279,8 +254,8 @@
 
   .cookie-options__item {
     display: flex;
-    align-items: center;
     flex-flow: wrap;
+    align-items: center;
     justify-content: space-between;
   }
 
@@ -293,11 +268,16 @@
     margin-top: var(--spacing-smaller);
   }
 
-  .cookie-option__vendors--open .app-button svg {
+  .cookie-option__vendors .app-button:focus {
+    border-radius: var(--border-radius);
+    outline: 3px solid var(--html-blue);
+  }
+
+  .cookie-option__vendors details[open] .app-button svg {
     transform: rotate(180deg);
   }
 
-  .cookie-option__vendors .app-button + .cookie-option__vendors-list {
+  .cookie-option__vendors-list {
     margin-top: var(--spacing-smaller);
     padding: var(--spacing-smaller) 0;
     border-top: 1px solid var(--very-dim);
@@ -305,8 +285,8 @@
   }
 
   .cookie-option__text {
-    margin-right: var(--spacing-small);
     flex: 0 0 calc(100% - 50px - var(--spacing-small));
+    margin-right: var(--spacing-small);
   }
 
   .cookie-option__text .h5 {
@@ -352,6 +332,11 @@
     transition: transform .2s ease-in-out;
     border-radius: 50%;
     background-color: var(--dim);
+  }
+
+  .cookie-option__toggle input:focus + label {
+    border-radius: var(--border-radius);
+    outline: 3px solid var(--html-blue);
   }
 
   .cookie-option__toggle input:checked + label::after {

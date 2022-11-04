@@ -11,7 +11,6 @@
     />
     <cookie-notification
       v-if="!doNotTrack"
-      :title="layout.cookieNotification.title"
       :body="layout.cookieNotification.body"
       :types="layout.cookieNotification.cookieTypes"
       :types-body="layout.cookieNotification.cookieTypesBody"
@@ -89,7 +88,7 @@ export default {
     if (localStorageSupported) {
       const vendors = JSON.parse(localStorage.getItem('vendorCookiesAccepted')) || []
 
-      this.setShowCookieBar({ show: Boolean(!vendors.length) })
+      this.setShowCookieBar({ show: !vendors.length })
       this.setAllowedCookies({ allowed: vendors })
     }
 
