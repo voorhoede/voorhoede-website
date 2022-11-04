@@ -10,69 +10,88 @@
 
     <div v-else class="cookie-notification__settings">
       <p class="body cookie-notification__body">
-        {{ optionsBody }}
+        {{ typesBody }}
       </p>
       <ul class="cookie-options__list">
         <li
-          v-for="option in options"
+          v-for="(type, typeIndex) in types"
           class="cookie-options__item"
-          :key="option.id"
+          :key="type.id"
         >
           <div class="cookie-option__text">
-            <h4 class="h5">{{ option.title }}</h4>
-            <p class="body-detail">{{ option.body }}</p>
+            <h4 class="h5">{{ type.title }}</h4>
+            <p class="body-detail">{{ type.body }}</p>
           </div>
           <div class="cookie-option__toggle">
             <input
-              v-if="option.required"
+              v-if="type.required"
               type="checkbox"
-              :id="option.id"
+              :id="`option-${type.id}`"
               class="sr-only"
               aria-checked="true"
               role="switch"
-              :value="option.value"
+              :value="type.value"
               disabled
               checked
             />
             <input
               v-else
               type="checkbox"
-              :id="`option-${option.id}`"
+              :id="`option-${type.id}`"
               class="sr-only"
-              :aria-checked="option.required"
+              :aria-checked="types[typeIndex].title === type.title"
               role="switch"
-              :value="option.key"
-              v-model="checkedOptions"
+              :value="type.key"
+              v-model="checkedTypes"
+              @click="checkVendors(typeIndex)"
             />
-            <label :for="`option-${option.id}`">
-              <span class="sr-only">{{ option.title }}</span>
+            <label :for="`option-${type.id}`">
+              <span class="sr-only">{{ type.title }}</span>
             </label>
           </div>
-          <div v-if="option.vendors" class="cookie-option__vendors">
-            <li
-              v-for="(vendor, index) in option.vendors"
-              :key="index"
-              class="cookie-options__item"
+          <div
+            v-if="type.vendors"
+            class="cookie-option__vendors"
+            :class="{ 'cookie-option__vendors--open': openDetails.includes(type.id) }"
+          >
+            <button
+              v-if="type.vendors.length"
+              class="app-button body-smaller font-bold"
+              @click="toggleDetails(type.id)"
             >
-              <div class="cookie-option__text">
-                <h4 class="body-detail font-bold">{{ vendor.title }}</h4>
-                <p class="body-detail">{{ vendor.body }}</p>
-              </div>
-              <div class="cookie-option__toggle">
-                <input
-                  type="checkbox"
-                  :id="`vendor-option-${index}`"
-                  class="sr-only"
-                  :aria-checked="checkedVendors.includes(vendor.title)"
-                  role="switch"
-                  :value="vendor.title"
-                  v-model="checkedVendors"
-                />
-                <label :for="`vendor-option-${index}`">
-                  <span class="sr-only">{{ vendor.title }}</span>
-                </label>
-              </div>
-            </li>
+              {{ $t('view_details') }}
+              <app-icon name="caret" />
+            </button>
+            <ul
+              class="cookie-option__vendors-list"
+              v-if="openDetails.includes(type.id)"
+            >
+              <li
+                v-for="(vendor, vendorIndex) in type.vendors"
+                :key="vendorIndex"
+                class="cookie-options__item"
+              >
+                <div class="cookie-option__text">
+                  <h4 class="body-detail font-bold">{{ vendor.title }}</h4>
+                  <p class="body-detail">{{ vendor.body }}</p>
+                </div>
+                <div class="cookie-option__toggle">
+                  <input
+                    type="checkbox"
+                    :id="`vendor-option-${vendor.id}`"
+                    class="sr-only"
+                    :aria-checked="types[typeIndex].vendors[vendorIndex].title === type.title"
+                    role="switch"
+                    :value="vendor.title"
+                    v-model="checkedVendors"
+                    @change="checkType(typeIndex)"
+                  />
+                  <label :for="`vendor-option-${vendor.id}`">
+                    <span class="sr-only">{{ vendor.title }}</span>
+                  </label>
+                </div>
+              </li>
+            </ul>
           </div>
         </li>
       </ul>
@@ -111,52 +130,52 @@
 
   export default {
     props: {
+      body: {
+        type: String,
+        required: true,
+      },
       title: {
         type: String,
         required: false,
         default: '',
       },
-      body: {
-        type: String,
+      types: {
+        type: Array,
         required: true,
       },
-      optionsBody: {
+      typesBody: {
         type: String,
         required: false,
         default: '',
       },
-      options: {
-        type: Array,
-        required: true,
-      },
     },
     data() {
       return {
-        checkedOptions: [],
+        checkedTypes: [],
+        checkedTypescheckedTypes: [],
         checkedVendors: [],
+        openDetails: [],
         showCookieSettings: false,
       }
     },
     computed: {
       ...mapState(['showCookieBar']),
     },
-    watch: {
-      checkedOptions(newVal, oldVal) {
-        if (newVal !== oldVal) {
-          this.setCheckedOptionVendors(newVal)
-        }
-      },
-    },
     methods: {
       ...mapActions(['setAllowedCookies', 'setShowCookieBar']),
+      toggleDetails(id) {
+        this.openDetails.includes(id)
+          ? this.openDetails = this.openDetails.filter((item) => item !== id)
+          : this.openDetails.push(id)
+      },
       recordConsent() {
-        const allVendors = this.options
+        const allVendors = this.types
           .filter(({ vendors }) => vendors)
           .map(({ vendors }) => vendors.map(({ title }) => title))
           .flat()
 
         if (localStorageSupported) {
-          localStorage.setItem('cookiesAccepted', JSON.stringify(allVendors))
+          localStorage.setItem('vendorCookiesAccepted', JSON.stringify(allVendors))
         }
 
         this.setAllowedCookies({ allowed: allVendors })
@@ -164,7 +183,7 @@
       },
       saveSettings() {
         if (localStorageSupported) {
-          localStorage.setItem('cookiesAccepted', JSON.stringify(this.checkedVendors))
+          localStorage.setItem('vendorCookiesAccepted', JSON.stringify(this.checkedVendors))
         }
 
         this.showCookieSettings = false
@@ -177,8 +196,8 @@
         this.showCookieSettings = true
       },
       updateConsentSettings() {
-        const consentSettings = this.options.map(({ key }) => ({
-          [key]: this.checkedOptions.includes(key) ? 'granted' : 'denied'
+        const consentSettings = this.types.map(({ key }) => ({
+          [key]: this.checkedTypes.includes(key) ? 'granted' : 'denied'
         }))
 
         this.$gtag('consent', 'update', {
@@ -186,14 +205,20 @@
           'wait_for_update': 500,
         })
       },
-      setCheckedOptionVendors(checkedOptions) {
-        const checkedOption = this.options.find((option) =>
-          checkedOptions.includes(option.key) && option.vendors.length
-        )
+      checkVendors(index) {
+        const vendors = this.types[index].vendors.map(({ title }) => title)
+        const noCheckedOptions = !this.checkedVendors.length
 
-        this.checkedVendors = checkedOption
-          ? checkedOption.vendors.map(({ title }) => title).flat()
-          : []
+        noCheckedOptions
+          ? this.checkedVendors.push(...vendors)
+          : this.checkedVendors = []
+      },
+      checkType(index) {
+        const key = this.types[index].key
+
+        this.checkedVendors.length
+          ? this.checkedTypes.push(key)
+          : this.checkedTypes = this.checkedTypes.filter((item) => item !== key)
       },
     },
   }
@@ -263,12 +288,23 @@
 
   .cookie-option__vendors {
     flex: 0 0 100%;
-    margin-top: var(--spacing-small);
+    margin-top: var(--spacing-smaller);
+  }
+
+  .cookie-option__vendors--open .app-button svg {
+    transform: rotate(180deg);
+  }
+
+  .cookie-option__vendors .app-button + .cookie-option__vendors-list {
+    margin-top: var(--spacing-smaller);
+    padding: var(--spacing-smaller) 0;
+    border-top: 1px solid var(--very-dim);
+    border-bottom: 1px solid var(--very-dim);
   }
 
   .cookie-option__text {
     margin-right: var(--spacing-small);
-    flex: 0 0 calc(100% - 80px - var(--spacing-small));
+    flex: 0 0 calc(100% - 50px - var(--spacing-small));
   }
 
   .cookie-option__text .h5 {
@@ -276,7 +312,7 @@
   }
 
   .cookie-option__toggle {
-    flex: 0 0 80px;
+    flex: 0 0 50px;
   }
 
   .cookie-option__toggle input {
