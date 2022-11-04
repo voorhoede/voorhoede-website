@@ -67,6 +67,10 @@
   .rich-text ol {
     padding-left: var(--spacing-medium);
   }
+  
+  .rich-text ol {
+    list-style: decimal;
+  }
 
   /* Paragraph followed by a list? Pull them closer together! */
   .rich-text p + ul,
