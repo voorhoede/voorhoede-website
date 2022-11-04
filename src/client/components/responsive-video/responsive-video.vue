@@ -112,7 +112,9 @@
         }
       },
       showBlock() {
-        return this.allowedCookies.find(item => item.toLowerCase() === this.video.provider)
+        return this.gif
+          ? true
+          : this.allowedCookies.find(item => item.toLowerCase() === this.video.provider)
       },
       title() {
         if (!this.video) {
@@ -195,10 +197,14 @@
     },
     methods: {
       play() {
+        const event = this.gif ? 'play gif' : `play ${this.video.providerUid}`
+        const provider = this.gif ? 'datocms' : this.video.provider
+
         this.isPlaying = true
-        this.$gtag('event', `play ${this.video.providerUid}`, {
+
+        this.$gtag('event',event, {
           'event_category': 'Video',
-          'event_label': this.video.provider,
+          'event_label': provider,
           'value': 0
         })
       },
