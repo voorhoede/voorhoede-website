@@ -70,8 +70,14 @@ function localesToJson (locales) {
 function layoutToJson(dato) {
   return {
     cookieNotification: {
-      title: dato.app.cookieNotification[0].title,
       body: dato.app.cookieNotification[0].body,
+      cookieTypes: dato.app.cookieNotification[0].cookieTypes.map(option => {
+        return {
+          ...pick(option, ['body', 'id', 'key', 'title', 'required']),
+          vendors: option.vendors.toMap(),
+        }
+      }),
+      cookieTypesBody: dato.app.cookieNotification[0].cookieTypesBody,
     },
     banner: {
       isVisible: dato.app.banner[0].isVisible,

@@ -34,6 +34,9 @@
   /* BORDER RADIUS */
   --border-radius: 3px;
 
+  /* BOX SHADOWS */
+  --box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, .27);
+
   /* COMPONENTS */
   --app-header-height-small: 3.125rem; /* 50px */
   --app-header-height-large: 4.0625rem; /* 65px */

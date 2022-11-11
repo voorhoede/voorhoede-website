@@ -1,7 +1,7 @@
 <template>
   <div class="responsive-video">
     <figure>
-      <fixed-ratio class="responsive-video__canvas" :width="canvasWidth" :height="canvasHeight">
+      <fixed-ratio v-if="showBlock" class="responsive-video__canvas" :width="canvasWidth" :height="canvasHeight">
         <vue-lazy-load>
           <div
             class="responsive-video__background"
@@ -38,6 +38,11 @@
           </button>
         </vue-lazy-load>
       </fixed-ratio>
+      <cookie-consent-card
+        v-else
+        :title="title"
+        :url="externalUrl"
+      />
       <figcaption class="responsive-video__caption">
         <a v-if="video" class="responsive-video__caption-content body-detail link" target="_blank" rel="noreferrer noopener" :href="video.url" >
           {{ video.title }}
@@ -49,7 +54,9 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   import VueLazyLoad from '@voorhoede/vue-lazy-load'
+
   const binaryBoolean = value => (value) ? 1 : 0
 
   export default {
@@ -87,8 +94,47 @@
       }
     },
     computed: {
+      ...mapState(['allowedCookies']),
+      externalUrl() {
+        if (!this.video) {
+          return
+        }
+
+        const { provider, providerUid } = this.video
+
+        switch (provider) {
+          case 'vimeo':
+            return `https://player.vimeo.com/video/${providerUid}`
+          case 'youtube':
+            return `https://www.youtube.com/embed/${providerUid}`
+          default:
+            return ''
+        }
+      },
+      showBlock() {
+        return this.gif
+          ? true
+          : this.allowedCookies.some(item => item.toLowerCase() === this.video.provider)
+      },
+      title() {
+        if (!this.video) {
+          return
+        }
+
+        switch (this.video.provider) {
+          case 'vimeo': {
+            return 'Vimeo'
+          }
+          case 'youtube': {
+            return 'YouTube'
+          }
+          default: {
+            return this.video.provider
+          }
+        }
+      },
       imageUrl() {
-        if(this.gif) {
+        if (this.gif) {
           return `${this.gif.url}?fm=jpg`
         }
 
@@ -151,10 +197,14 @@
     },
     methods: {
       play() {
+        const event = this.gif ? 'play gif' : `play ${this.video.providerUid}`
+        const provider = this.gif ? 'datocms' : this.video.provider
+
         this.isPlaying = true
-        this.$gtag('event', `play ${this.video.providerUid}`, {
+
+        this.$gtag('event',event, {
           'event_category': 'Video',
-          'event_label': this.video.provider,
+          'event_label': provider,
           'value': 0
         })
       },

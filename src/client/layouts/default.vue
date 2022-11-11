@@ -10,8 +10,10 @@
       :lang="pageTitleLocale"
     />
     <cookie-notification
-      :title="layout.cookieNotification.title"
+      v-if="!doNotTrack"
       :body="layout.cookieNotification.body"
+      :types="layout.cookieNotification.cookieTypes"
+      :types-body="layout.cookieNotification.cookieTypesBody"
     />
     <app-banner
       v-if="layout.banner.isVisible && isHome"
@@ -43,7 +45,9 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
+
+import localStorageSupported from '~/lib/local-storage-supported'
 
 export default {
   data() {
@@ -59,7 +63,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['showGrid']),
+    ...mapState(['doNotTrack', 'showGrid']),
     layout () {
       return require(`../static/data/layouts/${this.$i18n.locale}/default`)
     },
@@ -80,6 +84,22 @@ export default {
   },
   mounted() {
     this.isBrowser = true
+
+    if (localStorageSupported) {
+      const vendors = JSON.parse(localStorage.getItem('vendorCookiesAccepted')) || []
+
+      this.setShowCookieBar({ show: !vendors.length })
+      this.setAllowedCookies({ allowed: vendors })
+    }
+
+    const doNotTrack = !!((window.doNotTrack && window.doNotTrack === '1') ||
+      (navigator.doNotTrack && (navigator.doNotTrack === 'yes' || navigator.doNotTrack === '1' )) ||
+      (navigator.msDoNotTrack && navigator.msDoNotTrack === '1'))
+
+    this.setDoNotTrack({ doNotTrack })
+  },
+  methods: {
+    ...mapActions(['setAllowedCookies', 'setDoNotTrack', 'setShowCookieBar']),
   },
 }
 </script>
