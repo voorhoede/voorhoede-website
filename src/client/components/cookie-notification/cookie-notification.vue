@@ -1,11 +1,11 @@
 <template>
   <div v-if="showCookieBar" class="cookie-notification">
     <div v-if="!showCookieSettings" class="cookie-notification__content">
-      <div v-html="body" class="cookie-notification__body rich-text body" />
+      <div v-html="body" class="cookie-notification__body rich-text body-small" />
     </div>
 
     <div v-else class="cookie-notification__settings">
-      <p class="body cookie-notification__body">
+      <p class="body-small cookie-notification__body">
         {{ typesBody }}
       </p>
       <ul class="cookie-options__list">
