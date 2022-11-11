@@ -141,6 +141,12 @@
     computed: {
       ...mapState(['showCookieBar', 'showCookieSettings']),
     },
+    created() {
+      this.checkedTypes = this.types.map(({ key }) => key)
+      this.checkedVendors = this.types
+        .map(({ vendors }) => vendors.map(({ title }) => title))
+        .flat()
+    },
     methods: {
       ...mapActions(['setAllowedCookies', 'setShowCookieBar', 'setShowCookieSettings']),
       recordConsent() {
