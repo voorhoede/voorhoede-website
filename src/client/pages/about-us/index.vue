@@ -25,7 +25,7 @@
       <div class="page-about-us__text-blocks-items">
         <div v-for="item in page.textBlocksItems" :key="item.id" class="page-about-us__text-blocks-item">
           <h4 class="h4 page-about-us__text-blocks-item-heading">{{ item.title }}</h4>
-          <p class="body-big rich-text" v-html="item.description" />
+          <div class="body-big rich-text" v-html="item.description"></div>
         </div>
       </div>
     </section>
