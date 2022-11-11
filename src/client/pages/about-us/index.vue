@@ -18,6 +18,17 @@
       :items="page.teamGrid"
       class="page-about-us__image-grid"
     />
+    <section class="page-about-us__text-blocks">
+      <h2 class="h3 page-about-us__text-blocks-title">{{ page.textBlocksTitle }}</h2>
+      <p class="body-big page-about-us__text-blocks-description">{{ page.textBlocksDescription }}</p>
+      <h3 v-if="page.textBlocksSubtitle" class="h4 page-about-us__text-blocks-subtitle">{{ page.textBlocksSubtitle }}</h3>
+      <div class="page-about-us__text-blocks-items">
+        <div v-for="item in page.textBlocksItems" :key="item.id" class="page-about-us__text-blocks-item">
+          <h4 class="h4 page-about-us__text-blocks-item-heading">{{ item.title }}</h4>
+          <p class="body-big rich-text" v-html="item.description" />
+        </div>
+      </div>
+    </section>
     <image-with-text-block
       :title="page.middleTitle"
       :body="page.middleBody"
@@ -49,6 +60,7 @@
 <script>
   import asyncData from '~/lib/async-page'
   import head from '~/lib/seo-head'
+
   export default {
     asyncData,
     head,
@@ -90,20 +102,70 @@
   }
 
   .page-about-us__middle {
-    grid-row: 4;
+    grid-row: 5;
     margin-bottom: var(--spacing-large);
   }
 
   .page-about-us__jobs-text {
-    grid-row: 5;
-  }
-
-  .page-about-us__jobs {
     grid-row: 6;
   }
 
-  .page-about-us__newsletter {
+  .page-about-us__jobs {
     grid-row: 7;
+  }
+
+  .page-about-us__newsletter {
+    grid-row: 8;
+  }
+
+  .page-about-us__text-blocks {
+    grid-row: 4;
+    grid-column: var(--grid-content);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 110px;
+  }
+
+  .page-about-us__text-blocks-title {
+    text-align: center;
+  }
+
+  .page-about-us__text-blocks-description {
+    text-align: center;
+    color: var(--html-blue);
+  }
+
+  .page-about-us__text-blocks-subtitle {
+    margin-top: var(--spacing-medium);
+    text-align: center;
+  }
+
+  .page-about-us__text-blocks-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .page-about-us__text-blocks-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: var(--spacing-small);
+    margin-right: var(--spacing-small);
+    padding: var(--spacing-medium);
+    background-color: var(--white);
+  }
+
+  .page-about-us__text-blocks-item:first-child {
+    margin-top: 20px;
+  }
+
+  .page-about-us__text-blocks-item:last-child {
+    margin-bottom: 20px;
+  }
+
+  .page-about-us__text-blocks-item-heading {
+    margin-top: var(--spacing-small);
+    margin-bottom: var(--spacing-small);
   }
 
   .page-about-us__jobs,
@@ -179,6 +241,13 @@
 
     .page-about-us__jobs-list-item {
       width: 800px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .page-about-us__text-blocks-item {
+      margin-left: var(--spacing-medium);
+      margin-right: var(--spacing-medium);
     }
   }
 </style>

@@ -67,4 +67,12 @@ fragment about on AboutRecord {
       alt
     }
   }
+  textBlocksTitle
+  textBlocksDescription
+  textBlocksSubtitle
+  textBlocksItems {
+    id
+    title
+    description(markdown: true)
+  }
 }
