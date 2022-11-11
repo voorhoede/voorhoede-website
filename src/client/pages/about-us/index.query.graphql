@@ -73,12 +73,6 @@ fragment about on AboutRecord {
   textBlocksItems {
     id
     title
-    description {
-      value
-      links {
-        id
-        slug
-      }
-    }
+    description(markdown: true)
   }
 }
