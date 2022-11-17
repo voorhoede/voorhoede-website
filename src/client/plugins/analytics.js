@@ -1,6 +1,7 @@
 import Analytics from 'analytics'
 import plausiblePlugin from 'analytics-plugin-plausible'
 import simpleAnalyticsPlugin from '@analytics/simple-analytics'
+import matamoPlugin from '../lib/matamo-analytics'
 
 export default ({ app }, inject) => {
   const analytics = new Analytics({
@@ -10,7 +11,10 @@ export default ({ app }, inject) => {
         domain: location.host,
         trackLocalhost: true,
       }),
-      simpleAnalyticsPlugin()
+      simpleAnalyticsPlugin(),
+      matamoPlugin({
+        domain: 'fairtradefrontend.matomo.cloud'
+      })
     ]
   })
 
