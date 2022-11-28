@@ -14,13 +14,11 @@ const dimensions = {
   TRACKING_TRANSPORT: 'dimension3'
 }
 
-export default ({ app, store }, inject) => {
-  const { doNotTrack } = store.state
+export default ({ app }, inject) => {
 
-  if (doNotTrack) {
-    inject('gtag', () => {})
-    return
-  }
+  const allowedCookies = JSON.parse(localStorage.getItem('vendorCookiesAccepted')) || []
+  const isGoogleAnalyticsAllowed = allowedCookies.includes('Google Analytics')
+  const isGoogleAdsAllowed =  allowedCookies.includes('Google Ads')
 
   loadScript()
 
@@ -41,10 +39,10 @@ export default ({ app, store }, inject) => {
   })
 
   gtag('consent', 'default', {
-    ad_storage: 'granted',
-    analytics_storage: 'granted',
+    ad_storage: isGoogleAdsAllowed ? 'granted' : 'denied',
+    analytics_storage: isGoogleAnalyticsAllowed ? 'granted' : 'denied',
+    personalization_storage: (isGoogleAnalyticsAllowed || isGoogleAdsAllowed) ? 'granted' : 'denied',
     functionality_storage: 'granted',
-    personalization_storage: 'granted',
     security_storage: 'granted',
     wait_for_update: 2000,
   })
