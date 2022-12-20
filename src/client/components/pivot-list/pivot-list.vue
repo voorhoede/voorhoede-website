@@ -49,15 +49,16 @@
             v-else-if="pivot.link"
             @click.native="trackLink(pivot.link.page.slug)"
             :label="pivot.buttonLabel"
-            :to="createHref(pivot.link)"
+            :to="createHref($i18n, pivot.link)"
           />
 
-          <leads-form
+          <!-- @todo: it seems <leads-form> is never used, do we still need this? -->
+          <!-- <leads-form
             v-if="isLeadsForm(pivot)"
             :has-background="false"
             :mailchimp-group="getMailchimpProperties(pivot)"
             :button-label="pivot.buttonLabel"
-          />
+          /> -->
 
           <newsletter-form
             v-if="isNewsletterForm(pivot)"
@@ -70,6 +71,7 @@
 
 <script>
   import { createHref } from '../../lib/links'
+
   export default {
     props: {
       pivots: {
@@ -130,11 +132,14 @@
         }
       },
       trackLink (href) {
-        this.$gtag('event', 'click cta' , {
-          'event_category': 'Pivot',
-          'event_label': href,
-          'value': 0,
-        })
+        useTrackEvent(
+          'event',
+          {
+            props: {
+              category: 'pivot',
+              label: href,
+            },
+        });
       },
     },
   }

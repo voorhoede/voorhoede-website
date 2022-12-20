@@ -8,11 +8,11 @@
       <rich-text-block v-if="!secondary" class="service-excerpt__body body" :text="bodyLong || body"/>
       <rich-text-block v-if="secondary" class="service-excerpt__body body" :text="body"/>
       <p class="service-excerpt__actions">
-        <AppButton
+        <app-button
           :secondary="secondary"
           :aria-label="$t('learn_more_about__title_', { title })"
           :label="$t('learn_more')"
-          :to="localeUrl({ name: 'services-slug', params: { slug } })"
+          :to="$localeUrl({ name: 'services-slug', params: { slug } })"
         />
       </p>
     </div>

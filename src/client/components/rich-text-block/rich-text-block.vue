@@ -67,7 +67,7 @@
   .rich-text ol {
     padding-left: var(--spacing-medium);
   }
-  
+
   .rich-text ol {
     list-style: decimal;
   }

@@ -3,14 +3,14 @@
     @submit.prevent="submit"
     method="POST"
     :name="form['form-name']"
-    :action="localeUrl({ name: 'contact-slug', params: { slug: 'confirmation' } })"
+    :action="`/${$i18n.locale}/contact/confirmation/`"
     class="contact-page-form__form"
     data-netlify="true"
     data-netlify-honeypot="url-page"
     :novalidate="useCustomValidation"
   >
     <fieldset>
-      <legend class="sr-only">{{ ariaLabelOrTitle }}</legend>
+      <legend v-if="ariaLabelOrTitle" class="sr-only">{{ ariaLabelOrTitle }}</legend>
       <div class="contact-page-form__personal-details">
         <div class="contact-page-form__column">
           <input type="hidden" name="form-name" :value="form['form-name']">
@@ -98,9 +98,7 @@
       ariaLabel: {
         type: String,
         required: false,
-        default () {
-          this.$t('lets_discuss')
-        },
+        default: undefined
       },
     },
     data() {
@@ -144,25 +142,26 @@
           return false
         }
         submitContactForm({
-          form: this.form,
+          form: event.target,
           router: this.$router,
-          localeUrl: this.localeUrl,
+          localeUrl: this.$localeUrl,
         })
       },
       trackEvent () {
-        this.$gtag('event', 'Contact form' , {
-          'event_category': 'click submit',
-          'event_label': this.formIsValidated ? 'success' : 'failed',
-          'value': 0,
-        })
+        useTrackEvent(
+          'contact-form',
+          {
+            props: {
+              category: 'click submit',
+              label: this.formIsValidated ? 'success' : 'failed',
+            },
+        });
       },
     }
   }
 </script>
 
 <style>
-  @import '../forms/forms.css';
-
   :root {
     --contact-page-form-thumbnail-size: 120px;
   }

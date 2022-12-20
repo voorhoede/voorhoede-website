@@ -1,7 +1,7 @@
 <template>
   <div class="horizontal-carousel">
     <div class="horizontal-carousel__slides">
-      <slot name="slides"/>
+      <slot />
     </div>
   </div>
 </template>

@@ -4,25 +4,9 @@
     aria-labelledby="series-navigation-title"
   >
     <header class="series-navigation__header">
-      <component
-        :is="isActive(titleRoute) ? 'span' : 'nuxt-link'"
-        :to="!isActive(titleRoute) && titleRoute.route"
-        :class="{
-          'series-navigation__link': !isActive(titleRoute)
-        }"
-      >
-        <h2
-          id="series-navigation-title"
-          class="series-navigation__title h3"
-        >
-          <app-icon
-            v-if="!isActive(titleRoute)"
-            name="arrow-left"
-            class="series-navigation__back-icon"
-          />
-          {{ titleRoute.title }}
-        </h2>
-      </component>
+      <h2 id="series-navigation-title" class="series-navigation__title h3">
+        {{ titleRoute.title }}
+      </h2>
     </header>
     <ul class="series-navigation__child-list">
       <li
@@ -30,8 +14,8 @@
         :key="childRoute.routePath"
         class="series-navigation__item"
       >
-        <component
-          :is="isActive(childRoute) ? 'span' : 'nuxt-link'"
+        <nuxt-link
+          v-if="!isActive(childRoute.route)"
           :to="!isActive(childRoute) && childRoute.route"
           class="body-big"
           :class="{
@@ -39,7 +23,10 @@
           }"
         >
           {{ childRoute.title }}
-        </component>
+        </nuxt-link>
+        <span class="body-big" v-else>
+          {{childRoute.title}}
+        </span>
       </li>
     </ul>
   </nav>
@@ -49,7 +36,7 @@
   function isValidItem(item) {
     return (
       typeof(item.title) === 'string'
-      && typeof(item.routePath === 'string')
+      && typeof(item.slug === 'string')
     )
   }
 
@@ -70,7 +57,7 @@
     },
     methods: {
       isActive(item) {
-        return item.route === this.$route.path
+        return this.$route.params.slug === item?.params?.slug
       }
     }
   }

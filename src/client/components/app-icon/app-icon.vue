@@ -1,5 +1,5 @@
 <template>
-  <svg-icon
+  <nuxt-icon
     class="app-icon"
     :class="{ 'app-icon--large': isLarge }"
     :name="name"
@@ -36,8 +36,7 @@
 
   @media (min-width: 720px) {
     .app-icon--large {
-      width: 1.4em;
-      height: 1.4em;
+      font-size: 1.4em;
     }
   }
 </style>

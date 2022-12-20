@@ -17,22 +17,21 @@
         />
         <app-button
           :label="$t('all_events')"
-          :to="localeUrl('events')"
+          :to="$localeUrl({ name: 'events' })"
           secondary
         />
       </footer>
     </div>
     <div v-if="illustration" class="academy-excerpt__illustration-column">
       <div class="academy-excerpt__illustration-wrapper">
-        <vue-lazy-load>
-          <img
-            class="academy-excerpt__illustration"
-            :src="imageUrl(illustration.url, {
-              w: '300'
-            })"
-            alt=""
-          >
-        </vue-lazy-load>
+        <img
+          class="academy-excerpt__illustration"
+          :src="imageUrl(illustration.url, {
+            w: '300'
+          })"
+          alt=""
+          loading="lazy"
+        >
       </div>
     </div>
   </article>
@@ -40,12 +39,8 @@
 
 <script>
   import imageUrl from '../../lib/image-url'
-  import VueLazyLoad from '@voorhoede/vue-lazy-load'
 
   export default {
-    components: {
-      VueLazyLoad,
-    },
     props: {
       date: {
         type: String,
@@ -146,6 +141,8 @@
     }
 
     .academy-excerpt__illustration {
+      widows: 100%;
+      height: 100%;
       max-width: 100%;
       max-height: 100%;
     }

@@ -16,7 +16,7 @@
 
   <blockquote-block
     v-else
-    :key="item.id"
+    :key="'else' + item.id"
     :title="item.title"
     :body="item.body"
     :link-label="item.linkLabel"

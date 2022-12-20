@@ -1,0 +1,14 @@
+query Error {
+  page: errorPage(filter: {errorCode: {eq: "404"}}) {
+    title
+    errorCode
+    headerImage {
+      url
+      alt
+      width
+      height
+    }
+    body
+  }
+}
+

@@ -3,7 +3,6 @@
     :class="rootClass"
     v-if="to === ''"
     v-bind="$attrs"
-    v-on="$listeners"
   >
     <span v-if="primary || small">{{ label }}</span>
     <template v-else>{{ label }} &rarr;</template>
@@ -12,7 +11,6 @@
     v-else-if="external"
     :class="rootClass"
     v-bind="$attrs"
-    v-on="$listeners"
     :href="to"
     target="_blank"
     rel="noreferrer noopener"
@@ -24,7 +22,6 @@
     v-else
     :class="rootClass"
     v-bind="$attrs"
-    v-on="$listeners"
     :to="to"
   >
     <span v-if="primary || small">{{ label }}</span>

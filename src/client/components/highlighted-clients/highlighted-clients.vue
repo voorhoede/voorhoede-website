@@ -12,9 +12,12 @@
           class="highlighted-clients__client"
         >
           <fixed-ratio :width="5" :height="2">
-            <vue-lazy-load>
-              <app-icon :name="icon.name" :aria-label="icon.alt"/>
-            </vue-lazy-load>
+            <img
+              class="highlighted-clients__logo"
+              :src="`/images/${icon.name}.svg`"
+              :alt="`${icon.alt} logo`"
+              loading="lazy"
+            >
           </fixed-ratio>
         </li>
       </ul>
@@ -23,11 +26,7 @@
 </template>
 
 <script>
-import VueLazyLoad from '@voorhoede/vue-lazy-load'
 export default {
-  components: {
-    VueLazyLoad,
-  },
   props: {
     title: {
       type: String,
@@ -64,10 +63,6 @@ export default {
 </script>
 
 <style>
-  .vue-lazy-load {
-    height: 100%;
-  }
-
   :root {
     --highlighted-clients-columns: 2;
 
@@ -107,12 +102,7 @@ export default {
     width: var(--highlighted-clients-width);
   }
 
-  .highlighted-clients .lazy-load {
-    width: 100%;
-    height: 100%;
-  }
-
-  .highlighted-clients .app-icon {
+  .highlighted-clients__logo {
     width: 100%;
     height: 100%;
   }

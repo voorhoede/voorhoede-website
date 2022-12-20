@@ -15,15 +15,16 @@
         {{ $t('open_menu') }}
       </span>
     </button>
-    <vue-focus-lock
+    <div
       v-if="showMenu"
       class="app-mobile-menu__content"
       @touchmove.native="prevent"
     >
       <img
         class="app-mobile-menu__logo"
-        src="/images/logo--lustrum-blue-and-yellow.svg"
-        alt="">
+        src="/images/voorhoede-logo.svg"
+        alt="Voorhoede logo"
+      >
 
       <ul class="app-mobile-menu__list body-small">
         <li
@@ -41,7 +42,7 @@
           class="app-mobile-menu__list-item">
           <nuxt-link
             class="h3"
-            :to="createHref(link)"
+            :to="createHref($i18n, link)"
           >
             {{ link.title }}
           </nuxt-link>
@@ -63,17 +64,14 @@
           {{ $t('close_menu') }}
         </span>
       </button>
-    </vue-focus-lock>
+    </div>
   </div>
 </template>
+
 <script>
   import { createHref, linkValidator } from '../../lib/links'
-  import VueFocusLock from 'vue-focus-lock'
 
   export default {
-    components: {
-      VueFocusLock,
-    },
     props: {
       links: {
         type: Array,
@@ -85,7 +83,7 @@
     },
     data() {
       return {
-        showMenu : false,
+        showMenu: false,
       }
     },
     watch: {
@@ -96,12 +94,14 @@
     methods: {
       closeMenu() {
         this.showMenu = false
+        this.$emit('toggle-mobile-menu')
         this.$nextTick(() => {
           this.$refs.openButton.focus()
         })
       },
       openMenu() {
         this.showMenu = true
+        this.$emit('toggle-mobile-menu')
         this.$nextTick(() => {
           this.$refs.closeButton.focus()
         })
@@ -121,6 +121,7 @@
     --mobile-icon-height: 52px;
     --mobile-icon-width: var(--mobile-icon-height);
     --mobile-icon-image: 25px;
+    --mobile-icon-shadow: 2px 2px 4px 0 rgba(0, 0, 0, .27);
     --mobile-spacing: 12px 20px;
   }
 
@@ -148,7 +149,7 @@
     border: none;
     outline: none;
     background-color: var(--html-blue);
-    box-shadow: var(--box-shadow);
+    box-shadow: var(--mobile-icon-shadow);
     cursor: pointer;
   }
 

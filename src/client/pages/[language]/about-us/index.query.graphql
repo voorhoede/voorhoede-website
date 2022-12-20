@@ -1,0 +1,78 @@
+query AboutUs($locale: SiteLocale) {
+  page: about(locale: $locale) {
+    ...about
+  }
+  alternate: about(locale: $locale) {
+    slug
+  }
+}
+
+fragment about on AboutRecord {
+  title
+  subtitle
+  headerIllustration {
+    url
+    format
+    alt
+  }
+  slug
+  social {
+    title
+    description
+    image {
+      url
+    }
+  }
+  introTitle
+  introBody
+  introImage {
+    url
+    alt
+    width
+    height
+    format
+  }
+  teamGridTitle
+  teamGrid {
+    id
+    title
+    description
+    image {
+      url
+      alt
+      width
+      height
+      format
+    }
+    isFullWidth
+    isHighlighted
+  }
+  middleTitle
+  middleBody
+  middleImage {
+    url
+    alt
+    width
+    height
+    format
+  }
+  jobsTitle
+  jobsBody
+  jobs {
+    title
+    slug
+    jobImage {
+      url
+      format
+      alt
+    }
+  }
+  textBlocksTitle
+  textBlocksDescription
+  textBlocksSubtitle
+  textBlocksItems {
+    id
+    title
+    description(markdown: true)
+  }
+}

@@ -1,19 +1,32 @@
 [build]
-  command = "npm run build"
-  publish = "dist/client"
-  [build.environment]
-    NODE_ENV = "development"
-    NODE_VERSION="14"
-    NPM_CONFIG_AUDIT = "false"
-    NPM_CONFIG_PRODUCTION = "false"
-    NPM_CONFIG_OPTIONAL = "false"
-    NPM_FLAGS = "--ignore-scripts"
-    DEFAULT_LOCALE = "nl"
-  [build.processing]
-    skip_processing = true
+command = "npm run build"
+
+[build.environment]
+NPM_CONFIG_AUDIT = "false"
+NPM_CONFIG_FUND = "false"
+NPM_FLAGS = "--ignore-scripts"
+
+[build.processing]
+skip_processing = true
+
+[[headers]]
+for = "/*"
+[headers.values]
+Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+Referrer-Policy = "no-referrer-when-downgrade"
 
 [[redirects]]
-  from = "http://voorhoede.nl/"
-  to = "https://www.voorhoede.nl/"
-  force = true
-  status = 301
+from = "/"
+to = "/nl/"
+status = 302
+conditions = { Language = ["nl"] }
+
+[[redirects]]
+from = "/"
+to = "/en/"
+status = 302
+
+[[redirects]]
+from = "/blog-feed.xml"
+to = "/blog/feed.json"
+status = 301

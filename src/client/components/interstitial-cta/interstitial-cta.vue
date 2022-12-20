@@ -4,8 +4,7 @@
 
     <div class="interstitial-cta__buttons">
       <template v-for="button in buttons">
-        <AppButton
-          :key="button.to"
+        <app-button
           :label="button.label"
           :to="button.to"
           :external="button.external"

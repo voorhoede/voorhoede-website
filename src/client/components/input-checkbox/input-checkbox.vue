@@ -1,12 +1,15 @@
 <template>
-  <div class="input-checkbox">
+  <div
+    class="input-checkbox"
+    :class="$attrs.class"
+  >
     <input
       type="checkbox"
       :id="id"
       :name="name"
+      :required="required"
       :aria-invalid="isInvalid"
       ref="input"
-      v-bind="$attrs"
       @input="updateInput"
       class="input-checkbox__input"
     >
@@ -61,6 +64,10 @@
       checked: {
         type: Boolean,
         default: false
+      },
+      required: {
+        type: Boolean,
+        default: false,
       }
     },
     data() {

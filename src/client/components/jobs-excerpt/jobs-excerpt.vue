@@ -20,7 +20,7 @@
       class="job-excerpt__button"
       :aria-label="title"
       :label="$t('view_details')"
-      :to="localeUrl({ name: 'jobs-slug', params: { slug } })"
+      :to="$localeUrl({ name: 'jobs-slug', params: { slug } })"
     />
   </div>
 </template>

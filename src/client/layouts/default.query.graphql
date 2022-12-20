@@ -1,0 +1,74 @@
+query DefaultLayout($locale: SiteLocale) {
+  app(locale: $locale) {
+    twitterUrl
+    githubUrl
+    youtubeUrl
+    linkedinUrl
+    phoneNumber
+    emailAddress
+    legal {
+      title
+      value
+    }
+    addresses {
+      address
+      city
+      googleMapsLink
+      postalCode
+    }
+  }
+  menu(locale: $locale) {
+    title
+    callToAction {
+      title
+      page {
+        ... on ContactRecord {
+          slug
+        }
+      }
+    }
+    links {
+      title
+      page {
+        ... on AboutRecord {
+          slug
+        }
+        ... on BlogPostOverviewRecord {
+          slug
+        }
+        ... on CaseOverviewRecord {
+          slug
+        }
+        ... on ContactRecord {
+          slug
+        }
+        ... on EventOverviewRecord {
+          slug
+        }
+        ... on HomeRecord {
+          slug
+        }
+        ... on JobOverviewRecord {
+          slug
+        }
+        ... on ServiceOverviewRecord {
+          slug
+        }
+        ... on ServiceRecord {
+          slug
+        }
+        ... on WorkatRecord {
+          slug
+        }
+      }
+    }
+  }
+  footer(locale: $locale) {
+    copyrightTitle
+    copyrightLabel
+    copyrightLink
+    privacyTitle
+    privacyLabel
+    privacyLink
+  }
+}

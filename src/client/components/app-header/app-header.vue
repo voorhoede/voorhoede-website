@@ -1,26 +1,22 @@
 <template>
   <div class="app-header grid">
     <div class="app-header__content">
-      <nuxt-link class="app-header__home-link" :to="localeUrl('index')">
-        <img class="app-header__logo" src="/images/logo--lustrum-with-text.svg" alt="Home" width="190" height="32">
+      <nuxt-link class="app-header__home-link" :href="$localeUrl()">
+        <img class="app-header__logo" src="/images/logo-with-text.svg" alt="Home" width="190" height="32">
       </nuxt-link>
       <div class="app-header__link-lists body-small">
         <ul class="app-header__link-list">
           <li v-for="link in links" :key="link.title" class="app-header__link-list-item">
-            <nuxt-link class="app-header__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
+            <nuxt-link class="app-header__link" :to="createHref($i18n, link)">{{ link.title }}</nuxt-link>
           </li>
           <li v-if="callToAction" class="app-header__link-list-item">
-            <app-button small :label="callToAction.title" :to="createHref(callToAction)"/>
+            <app-button small :label="callToAction.title" :to="createHref($i18n, callToAction)"/>
           </li>
         </ul>
         <div class="app-header__link-list app-header__link-list--languages">
-          <template
-            v-for="({ code, name }) in $i18n.locales"
-            :class="{ 'font-bold': code === $i18n.locale }"
-          >
+          <template v-for="({ code, name }) in $i18n.locales">
             <span
               v-if="code === $i18n.locale"
-              :key="code"
               aria-hidden="true"
               class="app-header__link-list-item app-header__link-list-item--highlighted"
             >
@@ -28,15 +24,17 @@
             </span>
             <div
               v-else
-              :key="code"
               class="app-header__link-list-item"
             >
-              <nuxt-link
+              <a
                 class="app-header__link"
-                :aria-label="$t('switch_to__language_', code, { language: name })"
+                :aria-label="$t('switch_to__language_', { language: name }, code)"
                 :lang="code"
-                :to="localizedlocaleUrls[code]"
-                @click.native="saveLocale(code)">{{ code }}</nuxt-link>
+                :href="`/${code}`"
+                @click.native="saveLocale(code)"
+              >
+                {{ code }}
+              </a>
             </div>
           </template>
         </div>
@@ -61,28 +59,6 @@
         type: Object,
         validator: linkValidator,
         default: () => {},
-      }
-    },
-    computed: {
-      /**
-       * Pages can have localized slugs, stored as an array in Vuex on asyncData.
-       * When switching locale, the localized slug is needed instead of the current slug.
-       */
-      localizedlocaleUrls () {
-        if (this.$store.state.i18nSlugs) {
-          return this.$store.state.i18nSlugs.reduce((obj, { locale, value }) => {
-            // Get the route name (without the language suffix).
-            const name = this.$route.name.replace(/___.*$/,'')
-            // Return localized url as a property keyed by lang code.
-            obj[locale] = this.localeUrl({ name, params: { slug: value }, }, locale)
-            return obj
-          }, {})
-        } else {
-          return this.$i18n.locales.reduce((obj, { code }) => {
-            obj[code] = this.switchLocaleUrl(code)
-            return obj
-          }, {})
-        }
       }
     },
     methods: {
