@@ -1,0 +1,34 @@
+query Jobs($locale: SiteLocale) {
+  page: jobOverview(locale: $locale) {
+    ...jobOverview
+  }
+  items: allJobs(locale: $locale, filter: {published: {eq: true}}) {
+    title
+    slug
+    jobImage {
+      url
+      format
+      alt
+    }
+  }
+}
+
+fragment jobOverview on JobOverviewRecord {
+  title
+  subtitle
+  headerIllustration {
+    url
+    format
+    alt
+  }
+  noJobsAvailableMessage
+  slug
+  social {
+    title
+    description
+    image {
+      url
+    }
+  }
+}
+

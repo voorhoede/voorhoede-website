@@ -28,7 +28,7 @@
         type="text"
         :label="$t('my_first_name_is')"
         :placeholder-label="$t('your_first_name')"
-        required
+        :required="true"
         :validate="formIsValidated"
         :reset-validation="resetValidation"
         :validation-error-message="$t('name_is_required')"
@@ -41,7 +41,7 @@
         type="email"
         :label="$t('you_can_email_me_at')"
         :placeholder-label="$t('email_address')"
-        required
+        :required="true"
         :validate="formIsValidated"
         :reset-validation="resetValidation"
         :validation-error-message="emailValidationErrorMessage"
@@ -53,7 +53,7 @@
         id="newsletter-form-gdpr"
         :name="mailchimpFieldnamesMapping.gdprConsent"
         :label="$t('newsletter_permission')"
-        required
+        :required="true"
         :validate="formIsValidated"
         :reset-validation="resetValidation"
         :validation-error-message="$t('newsletter_consent_is_required')"
@@ -106,11 +106,14 @@
     },
     methods: {
       trackEvent () {
-        this.$gtag('event', 'Newsletter form' , {
-          'event_category': 'click submit',
-          'event_label': this.formIsValidated ? 'success' : 'failed',
-          'value': 0,
-        })
+        useTrackEvent(
+          'newsletter-form',
+          {
+            props: {
+              category: 'click submit',
+              label: this.formIsValidated ? 'success' : 'failed',
+            },
+        });
       },
       submit(event) {
         this.formIsValidated = true
@@ -128,8 +131,6 @@
 </script>
 
 <style>
-  @import '../forms/forms.css';
-
   .newsletter-form {
     grid-column-start: 1;
     grid-column-end: 51;

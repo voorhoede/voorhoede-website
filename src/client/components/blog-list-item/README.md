@@ -5,7 +5,7 @@
 
 ```html
   <blog-list-item
-    :item="{                           
+    :item="{
       slug: 'some-slug',
       title: 'Peer-to-peer apis Peer-to-peer apis Peer-to-peer apis',
       date: '2018-04-20T00:00:00.000Z',

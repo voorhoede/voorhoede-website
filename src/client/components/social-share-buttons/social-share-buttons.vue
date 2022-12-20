@@ -31,9 +31,12 @@
 </template>
 
 <script>
-
   export default {
     props: {
+      baseUrl: {
+        type: String,
+        required: true,
+      },
       authors: {
         type: Array,
         default: null,
@@ -50,7 +53,7 @@
     data () {
       return {
         hasNativeShare: false,
-        url: `${process.env.URL}${this.$route.fullPath}`
+        url: new URL(this.$route.fullPath, this.baseUrl)
       }
     },
     computed: {
@@ -82,7 +85,7 @@
     },
     created () {
       this.$nextTick(() => {
-        if (process.browser) {
+        if (process.client) {
           this.hasNativeShare = (typeof window.navigator.share === 'function')
           this.url = window.location.href
         }

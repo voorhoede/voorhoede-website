@@ -8,14 +8,14 @@ export function linkValidator (item) {
   )
 }
 
-export function createHref (item) {
+export function createHref ($i18n, item) {
   const { page, url } = item
   const directory = getDirectoryByTypename(page.__typename)
 
   if (page.slug && page.__typename) {
-    return `/${this.$i18n.locale}/${directory}/${page.slug}/`
+    return `/${$i18n.locale}/${directory}/${page.slug}/`
   } else if (page.slug) {
-    return `/${this.$i18n.locale}/${page.slug}/`
+    return `/${$i18n.locale}/${page.slug}/`
   } else {
     return url
   }

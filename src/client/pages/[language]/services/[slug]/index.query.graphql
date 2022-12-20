@@ -1,0 +1,170 @@
+query ServiceSlug($locale: SiteLocale, $slug: String) {
+  page: service(locale: $locale, filter: {slug: {eq: $slug}}) {
+    ...page
+  }
+}
+
+fragment page on ServiceRecord {
+  slug
+  i18nSlugs: _allSlugLocales {
+    locale
+    value
+  }
+  social {
+    title
+    description
+    image {
+      url
+    }
+  }
+  title
+  subtitle
+  headerIllustration {
+    url
+    format
+    alt
+  }
+  serviceSeries {
+    id
+    mainService {
+      title
+      slug
+    }
+    childServices {
+      title
+      slug
+    }
+  }
+  items {
+    __typename
+    ... on ImageRecord {
+      id
+      image {
+        url
+        alt
+        width
+        height
+        format
+      }
+      caption
+      fullWidth
+    }
+    ... on GenericTextBlockRecord {
+      id
+      title
+      body
+      image {
+        url
+        format
+        alt
+      }
+    }
+    ... on TestimonialBlockRecord {
+      id
+      testimonial {
+        company
+        author
+        id
+        quote
+        validated
+        fullwidth
+      }
+    }
+    ... on ResponsiveVideoRecord {
+      id
+      mute
+      loop
+      autoplay
+      gif {
+        url
+        title
+        height
+        width
+      }
+      video {
+        url
+        title
+        height
+        width
+        provider
+        providerUid
+        thumbnailUrl
+      }
+    }
+    ... on CallToActionRecord {
+      id
+      title
+      body
+      linkLabel
+      linkUrl
+      linkIsExternal
+      secondaryLinkLabel
+      secondaryLinkUrl
+      secondaryLinkIsExternal
+      person {
+        name
+        image {
+          url
+          alt
+          width
+          height
+          format
+        }
+      }
+    }
+  }
+  breadcrumbsNextService {
+    ... on ServiceRecord {
+      title
+      slug
+    }
+  }
+  pivots {
+    title
+    body(markdown: true)
+    buttonLabel: callToActionLabel
+    mailchimpValue
+    mailchimpName
+    mailchimpId
+    link {
+      title
+      url
+      page {
+        ... on HomeRecord {
+          slug
+        }
+        ... on ServiceOverviewRecord {
+          slug
+        }
+        ... on CaseOverviewRecord {
+          slug
+        }
+        ... on BlogPostOverviewRecord {
+          slug
+        }
+        ... on JobOverviewRecord {
+          slug
+        }
+        ... on AboutRecord {
+          slug
+        }
+        ... on ContactRecord {
+          slug
+        }
+      }
+    }
+    externalLink
+    formType
+    contactPerson {
+      name
+      lastName
+      jobTitle
+      image {
+        width
+        height
+        url
+        format
+      }
+    }
+  }
+}

@@ -1,7 +1,6 @@
 <template>
-  <component
+  <div
     :class="{ 'app-image--pastel' : svgFormat === false }"
-    :is="(lazyLoad) ? 'VueLazyLoad' : 'div'"
   >
     <div
       v-if="svgFormat"
@@ -37,6 +36,7 @@
       <!--[if IE 9]></video><![endif]-->
       <img
         class="app-image__img"
+        :loading="lazyLoad ? 'lazy' : 'eager'"
         :src="imageUrl({
           ...cropOptions
         })"
@@ -45,17 +45,13 @@
         :height="width"
       >
     </picture>
-  </component>
+  </div>
 </template>
 
 <script>
   import imageUrl from '../../lib/image-url'
-  import VueLazyLoad from '@voorhoede/vue-lazy-load'
 
   export default {
-    components: {
-      VueLazyLoad,
-    },
     props: {
       caption: {
         type: String,
@@ -131,6 +127,8 @@
 
 <style>
   .app-image--pastel {
+    height: 100%;
+    width: 100%;
     background-color: var(--bg-pastel);
   }
 

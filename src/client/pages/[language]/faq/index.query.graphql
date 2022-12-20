@@ -1,0 +1,30 @@
+query Faq($locale: SiteLocale) {
+  page: faq(locale: $locale) {
+    ...page
+  }
+}
+
+fragment page on FaqRecord {
+  title
+  subtitle
+  headerIllustration {
+    url
+    alt
+  }
+  slug
+  social {
+    title
+    description
+    image {
+      url
+    }
+  }
+  items {
+    title
+    body
+    image {
+      url
+      alt
+    }
+  }
+}

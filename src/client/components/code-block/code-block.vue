@@ -1,4 +1,6 @@
 <template>
+  <!-- @todo: fix code syntax highlighting -->
+  <!-- @todo: fix missing code, e.g. in http://localhost:3000/en/blog/how-to-multilingual-website-rtl-html-css -->
   <div class="code-block">
     <pre
       :class="codeLanguage"

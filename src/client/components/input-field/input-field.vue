@@ -1,5 +1,8 @@
 <template>
-  <div class="input-field">
+  <div
+    class="input-field"
+    :class="$attrs.class"
+  >
     <label
       :for="id"
       class="input-field__label"
@@ -19,10 +22,10 @@
       :name="name || id"
       :type="type"
       :placeholder="placeholderLabel"
+      :required="required"
       :value="value"
       class="body"
       :class="{ 'is-invalid': isInvalid }"
-      v-bind="$attrs"
       rows="5"
       ref="input"
       :aria-invalid="isInvalid"
@@ -35,9 +38,9 @@
       :value="value"
       :type="type"
       :placeholder="placeholderLabel"
+      :required="required"
       class="input-field__input body"
       :class="{ 'is-invalid': isInvalid }"
-      v-bind="$attrs"
       ref="input"
       :aria-invalid="isInvalid"
       @input="updateInput"
@@ -91,6 +94,10 @@
       textarea: {
         type: Boolean,
         default: false,
+      },
+      required: {
+        type: Boolean,
+        default: false
       }
     },
     data() {

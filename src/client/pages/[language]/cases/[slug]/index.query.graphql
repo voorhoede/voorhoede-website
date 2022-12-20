@@ -1,0 +1,202 @@
+query CaseSlug($locale: SiteLocale, $slug: String) {
+  page: caseItem(locale: $locale, filter: {slug: {eq: $slug}}) {
+    ...caseItem
+  }
+  cases: allCaseItems(locale: $locale, first: 100) {
+    slug
+    title
+  }
+}
+
+fragment caseItem on CaseItemRecord {
+  title
+  slug
+  i18nSlugs: _allSlugLocales {
+    locale
+    value
+  }
+  social {
+    title
+    description
+    image {
+      url
+    }
+  }
+  heroIllustration {
+    url
+    format
+    alt
+  }
+  caseTeaser {
+    title
+    image {
+      url
+      format
+      alt
+      width
+      height
+      format
+    }
+  }
+  content {
+    __typename
+    ... on TextSectionRecord {
+      id
+      title
+      body
+    }
+    ... on ImageRecord {
+      id
+      image {
+        url
+        alt
+        width
+        height
+        format
+      }
+      caption
+      fullWidth
+    }
+    ... on ImageWithTextRecord {
+      id
+      imageWithDescription {
+        image {
+          url
+          alt
+          width
+          height
+          format
+        }
+        description
+        inverse
+      }
+    }
+    ... on StorytellingBlockRecord {
+      id
+      storyItem {
+        title
+        items {
+          title
+          body
+          image {
+            url
+            alt
+            width
+            height
+          }
+        }
+      }
+    }
+    ... on TestimonialBlockRecord {
+      id
+      testimonial {
+        company
+        author
+        id
+        quote
+        validated
+        fullwidth
+      }
+    }
+    ... on ResponsiveVideoRecord {
+      id
+      mute
+      loop
+      autoplay
+      gif {
+        url
+        title
+        height
+        width
+      }
+      video {
+        url
+        title
+        height
+        width
+        provider
+        providerUid
+        thumbnailUrl
+      }
+    }
+    ... on CallToActionRecord {
+      id
+      title
+      body
+      linkLabel
+      linkUrl
+    }
+    ... on QuoteRecord {
+      id
+      quote
+      author
+    }
+  }
+  metaData {
+    expertisesTitle
+    expertises {
+      title
+    }
+    deliverableTitle
+    deliverables {
+      title
+    }
+    technologiesTitle
+    technologies {
+      title
+    }
+    interestedTitle
+    interestedLinkUrl
+    interestedLinkLabel
+  }
+  quote
+  author
+  pivots {
+    title
+    body(markdown: true)
+    buttonLabel: callToActionLabel
+    mailchimpValue
+    mailchimpName
+    mailchimpId
+    link {
+      title
+      url
+      page {
+        ... on HomeRecord {
+          slug
+        }
+        ... on ServiceOverviewRecord {
+          slug
+        }
+        ... on CaseOverviewRecord {
+          slug
+        }
+        ... on BlogPostOverviewRecord {
+          slug
+        }
+        ... on JobOverviewRecord {
+          slug
+        }
+        ... on AboutRecord {
+          slug
+        }
+        ... on ContactRecord {
+          slug
+        }
+      }
+    }
+    externalLink
+    formType
+    contactPerson {
+      name
+      lastName
+      jobTitle
+      image {
+        width
+        height
+        url
+        format
+      }
+    }
+  }
+}

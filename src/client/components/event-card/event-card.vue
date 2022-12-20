@@ -12,7 +12,7 @@
     <div class="event-card__body">
       <div class="event-card__type body-detail" :class="{ 'event-card__type--alt': isMeetup }">{{ label }}</div>
       <nuxt-link
-        :to="localeUrl({ name: 'events-slug', params: { slug } })"
+        :to="$localeUrl({ name: 'events-slug', params: { slug } })"
         class="event-card__link"
         :class="{ 'event-card__link--alt': isMeetup }"
       >

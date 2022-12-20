@@ -10,7 +10,7 @@
       <app-icon name="pin" /> {{ $t('pinned_blog') }}
     </span>
     <nuxt-link
-      :to="localeUrl({ name: linkName, params: { slug: item.slug } })"
+      :to="$localeUrl({ name: linkName, params: { slug: item.slug } })"
       :lang="language"
     >
       <h3 class="blog-list-item__title font-html-blue" :class="large ? 'h4' : 'body'">
@@ -43,7 +43,6 @@
 </template>
 
 <script>
-
   import formatDate from '../../lib/format-date'
 
   export default {

@@ -2,8 +2,8 @@
   <footer class="app-footer grid">
     <div class="app-footer__layout">
       <div class="app-footer__header">
-        <nuxt-link :to="localeUrl('index')" :aria-label="$t('home')" :title="$t('home')">
-          <img class="app-footer__header-logo" src="/images/logo--lustrum-with-text.svg" alt="" width="190" height="32">
+        <nuxt-link :to="$localeUrl()" :aria-label="$t('home')" :title="$t('home')">
+          <img class="app-footer__header-logo" src="/images/logo-with-text.svg" alt="" width="190" height="32">
         </nuxt-link>
       </div>
       <div class="app-footer__column">
@@ -16,13 +16,10 @@
             :key="link.slug"
             class="app-footer__list-item body-detail"
           >
-            <nuxt-link class="app-footer__link" :to="createHref(link)">{{ link.title }}</nuxt-link>
+            <nuxt-link class="app-footer__link" :to="createHref($i18n, link)">{{ link.title }}</nuxt-link>
           </li>
           <li class="app-footer__list-item body-detail">
-            <nuxt-link class="app-footer__link" :to="createHref({ page: { slug: 'lustrum' } })">Lustrum</nuxt-link>
-          </li>
-          <li class="app-footer__list-item body-detail">
-            <nuxt-link class="app-footer__link" :to="createHref({ page: { slug: 'faq' } })">FAQ</nuxt-link>
+            <nuxt-link class="app-footer__link" :to="createHref($i18n, { page: { slug: 'faq' } })">FAQ</nuxt-link>
           </li>
         </ul>
       </div>
@@ -35,7 +32,7 @@
         </h2>
         <ul class="body-detail app-footer__list app-footer__list--contact">
           <li
-            v-for="address in content.addresses"
+            v-for="address in app.addresses"
             :key="address.address"
             class="app-footer__list-item app-footer__list-item--address"
           >
@@ -52,13 +49,13 @@
             <a
               @click="trackLink('phone')"
               :href="`tel:${ cleanedPhoneNumber }`"
-              class="app-footer__link">{{ content.phoneNumber }}</a>
+              class="app-footer__link">{{ app.phoneNumber }}</a>
           </li>
           <li class="app-footer__list-item">
             <a
               @click="trackLink('email')"
-              :href="`mailto:${ content.emailAddress }`"
-              class="app-footer__link">{{ content.emailAddress }}</a>
+              :href="`mailto:${ app.emailAddress }`"
+              class="app-footer__link">{{ app.emailAddress }}</a>
           </li>
         </ul>
       </div>
@@ -83,7 +80,7 @@
       <div class="body-detail app-footer__bottom-text">
         <div class="app-footer__definition-list">
           <p
-            v-for="{ title, value } in content.legal"
+            v-for="{ title, value } in app.legal"
             :key="title"
             class="app-footer__definition-item"
           >
@@ -93,18 +90,18 @@
       </div>
       <div class="body-detail app-footer__legal">
         <a
-          :href="content.copyrightLink"
+          :href="footer.copyrightLink"
           class="app-footer__copyright"
-          :aria-label="content.copyrightTitle"
+          :aria-label="footer.copyrightTitle"
           target="_blank"
-          rel="noreferrer noopener">{{ content.copyrightLabel }}</a>
+          rel="noreferrer noopener">{{ footer.copyrightLabel }}</a>
         <span> - </span>
         <a
-          :href="content.privacyLink"
+          :href="footer.privacyLink"
           class="app-footer__privacy"
-          :aria-label="content.privacyTitle"
+          :aria-label="footer.privacyTitle"
           target="_blank"
-          rel="noreferrer noopener">{{ content.privacyLabel }}</a>
+          rel="noreferrer noopener">{{ footer.privacyLabel }}</a>
       </div>
     </div>
   </footer>
@@ -114,29 +111,27 @@
 import { createHref } from '../../lib/links'
 
 export default {
+  props: {
+    links: { type: Object },
+    app: { type: Object },
+    footer: { type: Object },
+  },
   data () {
     return {
       observer: null
     }
   },
   computed: {
-    links () {
-      const { menu } = require(`../../static/data/layouts/${this.$i18n.locale}/default`)
-      return [].concat(menu.links, menu.callToAction)
-    },
-    content () {
-      return require(`../../static/data/layouts/${this.$i18n.locale}/default`).footer
-    },
     socialLinks() {
       return [
-        { url: this.content.twitterUrl,  platform: 'Twitter',  icon: 'twitter' },
-        { url: this.content.githubUrl,   platform: 'GitHub',   icon: 'git-hub' },
-        { url: this.content.youtubeUrl,  platform: 'YouTube',  icon: 'youtube' },
-        { url: this.content.linkedinUrl, platform: 'LinkedIn', icon: 'linkedin' },
+        { url: this.app.twitterUrl,  platform: 'Twitter',  icon: 'twitter' },
+        { url: this.app.githubUrl,   platform: 'GitHub',   icon: 'git-hub' },
+        { url: this.app.youtubeUrl,  platform: 'YouTube',  icon: 'youtube' },
+        { url: this.app.linkedinUrl, platform: 'LinkedIn', icon: 'linkedin' },
       ]
     },
     cleanedPhoneNumber() {
-      return this.content.phoneNumber.replace(/[^0-9]/g, '')
+      return this.app.phoneNumber.replace(/[^0-9]/g, '')
     }
   },
   mounted () {
@@ -153,7 +148,6 @@ export default {
     createHref,
     observeContact () {
       const contactElement = this.$refs.contact
-      const gtag = this.$gtag
       const event = {
         eventCategory: 'Contact',
         eventAction: 'footer view',
@@ -162,18 +156,13 @@ export default {
       }
       this.observer = new IntersectionObserver(function(entries) {
         if (entries.some(entry => entry.isIntersecting)) {
-          gtag('event', 'footer view' , event)
           this.unobserve(contactElement)
         }
       })
       this.observer.observe(contactElement)
     },
     trackLink (linkType) {
-      this.$gtag('event', 'Contact' , {
-        'event_category': `click ${linkType}`,
-        'event_label': this.$route.fullpath,
-        'value': 0
-      })
+      useTrackEvent('contact', { props: { category: linkType, label: this.$route.fullPath } });
     },
     unobserveContact () {
       this.observer.unobserve(this.$refs.contact)

@@ -1,48 +1,41 @@
 <template>
   <div class="responsive-video">
     <figure>
-      <fixed-ratio v-if="showBlock" class="responsive-video__canvas" :width="canvasWidth" :height="canvasHeight">
-        <vue-lazy-load>
-          <div
-            class="responsive-video__background"
-            :style="{ backgroundImage: `url(${imageUrl})` }"
-          />
-          <iframe
-            v-if="video && isPlaying"
-            class="responsive-video__i-frame"
-            :src="videoUrl"
-            :title="video.title"
-            frameborder="0"
-            webkitallowfullscreen
-            mozallowfullscreen
-            allowfullscreen
-            allow="autoplay"
-          />
-          <video
-            v-if="gif && isPlaying"
-            class="responsive-video__i-frame"
-            autoplay="true"
-            :loop="loop"
-            muted
-            controls
-          >
-            <source :src="`${gif.url}?fm=mp4`" type="video/mp4">
-          </video>
-          <button
-            v-if="!isPlaying"
-            class="responsive-video__button"
-            @click.prevent="play"
-          >
-            <span class="sr-only">Play video</span>
-            <app-icon name="play"/>
-          </button>
-        </vue-lazy-load>
+      <fixed-ratio class="responsive-video__canvas" :width="canvasWidth" :height="canvasHeight">
+        <div
+          class="responsive-video__background"
+          :style="{ backgroundImage: `url(${imageUrl})` }"
+        />
+        <iframe
+          v-if="video && isPlaying"
+          class="responsive-video__i-frame"
+          :src="videoUrl"
+          :title="video.title"
+          frameborder="0"
+          webkitallowfullscreen
+          mozallowfullscreen
+          allowfullscreen
+          allow="autoplay"
+        />
+        <video
+          v-if="gif && isPlaying"
+          class="responsive-video__i-frame"
+          autoplay="true"
+          :loop="loop"
+          muted
+          controls
+        >
+          <source :src="`${gif.url}?fm=mp4`" type="video/mp4">
+        </video>
+        <button
+          v-if="!isPlaying"
+          class="responsive-video__button"
+          @click.prevent="play"
+        >
+          <span class="sr-only">Play video</span>
+          <app-icon fill="white" name="play" />
+        </button>
       </fixed-ratio>
-      <cookie-consent-card
-        v-else
-        :title="title"
-        :url="externalUrl"
-      />
       <figcaption class="responsive-video__caption">
         <a v-if="video" class="responsive-video__caption-content body-detail link" target="_blank" rel="noreferrer noopener" :href="video.url" >
           {{ video.title }}
@@ -54,15 +47,9 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-  import VueLazyLoad from '@voorhoede/vue-lazy-load'
-
   const binaryBoolean = value => (value) ? 1 : 0
 
   export default {
-    components: {
-      VueLazyLoad,
-    },
     props: {
       video: {
         type: Object,
@@ -94,47 +81,8 @@
       }
     },
     computed: {
-      ...mapState(['allowedCookies']),
-      externalUrl() {
-        if (!this.video) {
-          return
-        }
-
-        const { provider, providerUid } = this.video
-
-        switch (provider) {
-          case 'vimeo':
-            return `https://player.vimeo.com/video/${providerUid}`
-          case 'youtube':
-            return `https://www.youtube.com/embed/${providerUid}`
-          default:
-            return ''
-        }
-      },
-      showBlock() {
-        return this.gif
-          ? true
-          : this.allowedCookies.some(item => item.toLowerCase() === this.video.provider)
-      },
-      title() {
-        if (!this.video) {
-          return
-        }
-
-        switch (this.video.provider) {
-          case 'vimeo': {
-            return 'Vimeo'
-          }
-          case 'youtube': {
-            return 'YouTube'
-          }
-          default: {
-            return this.video.provider
-          }
-        }
-      },
       imageUrl() {
-        if (this.gif) {
+        if(this.gif) {
           return `${this.gif.url}?fm=jpg`
         }
 
@@ -182,10 +130,6 @@
       },
     },
     created() {
-      if (process.env.NODE_ENV !== 'production' && !this.video && !this.gif) {
-        throw new Error('Responsive video requires a video or a gif prop')
-      }
-
       this.canvasWidth = this.video ? this.video.width : this.gif.width
       this.canvasHeight = this.video ? this.video.height : this.gif.height
     },
@@ -197,16 +141,8 @@
     },
     methods: {
       play() {
-        const event = this.gif ? 'play gif' : `play ${this.video.providerUid}`
-        const provider = this.gif ? 'datocms' : this.video.provider
-
         this.isPlaying = true
-
-        this.$gtag('event',event, {
-          'event_category': 'Video',
-          'event_label': provider,
-          'value': 0
-        })
+        useTrackEvent('event', { props: { category: 'video', label: this.video.provider, } });
       },
     },
   }
@@ -260,11 +196,17 @@
 
   .responsive-video .app-icon {
     position: absolute;
+    display: block;
     top: 50%;
     left: 50%;
     width: 60px;
     height: 60px;
     transform: translate(-50%, -50%);
+  }
+
+  .responsive-video .app-icon svg {
+    width: 100%;
+    height: 100%;
   }
 
   .responsive-video__caption {

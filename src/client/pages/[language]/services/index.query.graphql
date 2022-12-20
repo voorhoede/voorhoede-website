@@ -1,0 +1,113 @@
+query Services($locale: SiteLocale) {
+  page: serviceOverview(locale: $locale) {
+    ...servicespage
+  }
+  items: allServices(locale: $locale, first: 100) {
+    slug
+  }
+}
+
+fragment servicespage on ServiceOverviewRecord {
+  title
+  subtitle
+  slug
+  social {
+    title
+    description
+    image {
+      url
+    }
+  }
+  services {
+    excerptTitle
+    slug
+    cardBody
+    cardBodyLong
+    cardImage {
+      width
+      height
+      url
+      format
+    }
+    serviceSeries {
+      childServices {
+        slug
+        title
+      }
+    }
+  }
+  headerIllustration {
+    url
+    alt
+  }
+  introTitle
+  introBody
+  introImage {
+    width
+    url
+    height
+    alt
+    format
+  }
+  contactBody
+  servicesTitle
+  contactPerson {
+    name
+    lastName
+    jobTitle
+    image {
+      width
+      height
+      url
+      format
+    }
+  }
+  pivots {
+    title
+    body(markdown: true)
+    buttonLabel: callToActionLabel
+    mailchimpValue
+    mailchimpName
+    mailchimpId
+    link {
+      title
+      url
+      page {
+        ... on HomeRecord {
+          slug
+        }
+        ... on ServiceOverviewRecord {
+          slug
+        }
+        ... on CaseOverviewRecord {
+          slug
+        }
+        ... on BlogPostOverviewRecord {
+          slug
+        }
+        ... on JobOverviewRecord {
+          slug
+        }
+        ... on AboutRecord {
+          slug
+        }
+        ... on ContactRecord {
+          slug
+        }
+      }
+    }
+    externalLink
+    formType
+    contactPerson {
+      name
+      lastName
+      jobTitle
+      image {
+        width
+        height
+        url
+        format
+      }
+    }
+  }
+}

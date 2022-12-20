@@ -1,0 +1,45 @@
+query Events($locale: SiteLocale) {
+  page: eventOverview(locale: $locale) {
+    ...eventOverview
+  }
+  items: allEventItems(locale: $locale, first: 100, orderBy: date_DESC, filter: {published: {eq: true}}) {
+    ...event
+  }
+}
+
+fragment eventOverview on EventOverviewRecord {
+  title
+  subtitle
+  slug
+  social {
+    title
+    description
+    image {
+      url
+    }
+  }
+  headerIllustration {
+    url
+  }
+  introductionText
+}
+
+fragment event on EventItemRecord {
+  date
+  social {
+    description
+  }
+  title
+  slug
+  url
+  image {
+    url
+    alt
+    format
+    width
+    height
+  }
+  label {
+    label
+  }
+}

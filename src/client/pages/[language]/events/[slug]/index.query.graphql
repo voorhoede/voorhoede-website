@@ -1,0 +1,78 @@
+query EventSlug($locale: SiteLocale, $slug: String) {
+  page: eventItem(locale: $locale, filter: {slug: {eq: $slug}}) {
+    ...eventItem
+  }
+}
+
+fragment eventItem on EventItemRecord {
+  title
+  slug
+  social {
+    title
+    description
+    image {
+      url
+    }
+  }
+  headerIllustration {
+    url
+  }
+  date
+  url
+  callToActionLabel
+  image {
+    url
+    format
+    alt
+    width
+    height
+  }
+  label {
+    label
+  }
+  eventIsOnline
+  onlineEventUrl
+  location {
+    name
+    street
+    postcode
+    city
+    countryCode
+  }
+  price
+  items {
+    __typename
+    ... on ImageRecord {
+      image {
+        url
+        alt
+        width
+        height
+        format
+      }
+      caption
+      fullWidth
+    }
+    ... on ImageWithTextRecord {
+      imageWithDescription {
+        image {
+          url
+          alt
+          width
+          height
+          format
+        }
+        description
+        inverse
+      }
+    }
+    ... on QuoteRecord {
+      quote
+      author
+    }
+    ... on TextSectionRecord {
+      title
+      body
+    }
+  }
+}

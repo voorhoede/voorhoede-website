@@ -5,7 +5,7 @@
       <div class="event-list-item__content">
         <nuxt-link
           class="event-list-item__link"
-          :to="localeUrl({ name: 'events-slug', params: { slug: event.slug } })"
+          :to="$localeUrl({ name: 'events-slug', params: { slug: event.slug } })"
         >
           <h3 class="event-list-item__title event-list-item__title--compact body">{{ event.title }}</h3>
           <h3 class="event-list-item__title event-list-item__title--large h4">{{ event.title }}</h3>

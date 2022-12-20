@@ -103,11 +103,10 @@
     },
     methods: {
       trackLink (href) {
-        this.$gtag('event', 'CTA-image' , {
-          'event_category': 'click cta',
-          'event_label': href,
-          'value': 0,
-        })
+        useTrackEvent(
+          'cta-image',
+          { props: { category: 'click cta', label: href },
+        });
       },
     }
   }

@@ -1,0 +1,14 @@
+query EnergyFirstPage($locale: SiteLocale) {
+  page: customPage(locale: $locale, filter: {slug: {eq: "energy-first"}}) {
+    slug
+    title
+    social {
+      title
+      description
+      image {
+        url
+      }
+    }
+  }
+}
+
