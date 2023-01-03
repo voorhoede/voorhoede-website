@@ -52,14 +52,6 @@
             :to="createHref($i18n, pivot.link)"
           />
 
-          <!-- @todo: it seems <leads-form> is never used, do we still need this? -->
-          <!-- <leads-form
-            v-if="isLeadsForm(pivot)"
-            :has-background="false"
-            :mailchimp-group="getMailchimpProperties(pivot)"
-            :button-label="pivot.buttonLabel"
-          /> -->
-
           <newsletter-form
             v-if="isNewsletterForm(pivot)"
           />
@@ -118,18 +110,6 @@
       },
       isNewsletterForm(pivot) {
         return pivot.formType && pivot.formType === 'newsletter'
-      },
-      isLeadsForm(pivot) {
-        return pivot.formType && pivot.formType === 'leads'
-      },
-      getMailchimpProperties(pivot) {
-        const { mailchimpValue, mailchimpName, mailchimpId } = pivot
-
-        return {
-          id: mailchimpId,
-          name: mailchimpName,
-          value: mailchimpValue,
-        }
       },
       trackLink (href) {
         useTrackEvent(
