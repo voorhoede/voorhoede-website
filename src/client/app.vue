@@ -8,6 +8,7 @@
 
 <script setup>
   const route = useRoute();
+  const config = useRuntimeConfig();
 
   useHead({
     htmlAttrs: {
@@ -18,6 +19,12 @@
       { rel: 'icon', href: '/images/voorhoede-favicon.png', type: 'image/png' },
       { rel: 'apple-touch-icon', href: '/images/voorhoede-apple-touch-icon.png' },
       { rel: 'manifest', href: '/site.webmanifest' },
+      {
+        rel: 'alternate',
+        title: 'Blog',
+        type: 'application/feed+json',
+        href: new URL('/blog/feed.json', config.public.baseUrl).toString(),
+      },
     ],
     meta: [
       { name: 'theme-color', content: '#ffe400' },
