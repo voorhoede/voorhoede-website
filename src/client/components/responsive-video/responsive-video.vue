@@ -4,7 +4,7 @@
       <fixed-ratio class="responsive-video__canvas" :width="canvasWidth" :height="canvasHeight">
         <div
           class="responsive-video__background"
-          :style="{ backgroundImage: `url(${imageUrl})` }"
+          :style="{ backgroundImage: imageUrl ? `url(${imageUrl})` : null }"
         />
         <iframe
           v-if="video && isPlaying"
