@@ -13,6 +13,7 @@
     "dayjs": "^1.11.3",
     "nuxt": "^3.0.0",
     "nuxt-icons": "^3.0.0",
+    "prismjs": "^1.29.0",
     "query-string": "^7.1.1",
     "rosetta": "^1.1.0"
   },
