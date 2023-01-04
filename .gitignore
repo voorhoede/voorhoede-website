@@ -4,3 +4,4 @@ dist
 .nuxt
 .output
 .cache
+feed.json

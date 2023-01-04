@@ -3,7 +3,7 @@ import { locales } from '../client/lib/i18n.js';
 export const fetchTranslations = ({ datoApiToken }) => (
   fetch(`https://graphql.datocms.com/`, {
     method: 'post',
-    headers: { 'Authorization': datoApiToken },
+    headers: { 'authorization': datoApiToken },
     body: JSON.stringify({
       query: `
         query Translations {
