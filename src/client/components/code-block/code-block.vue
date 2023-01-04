@@ -1,10 +1,6 @@
 <template>
-  <!-- @todo: fix code syntax highlighting -->
-  <!-- @todo: fix missing code, e.g. in http://localhost:3000/en/blog/how-to-multilingual-website-rtl-html-css -->
   <div class="code-block">
-    <pre
-      :class="codeLanguage"
-    ><code v-html="content"/></pre>
+    <pre :class="codeLanguage"><code v-html="content"/></pre>
   </div>
 </template>
 <script>
@@ -22,7 +18,7 @@ export default {
   computed: {
     codeLanguage(){
       return Array.of(`language-${this.language}`)
-    }
+    },
   }
 }
 </script>

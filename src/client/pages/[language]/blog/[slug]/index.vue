@@ -58,7 +58,7 @@
           class="page-blog-post-list--full-width"
           v-if="item.__typename === 'CodeBlockRecord' && item.body"
           :language="item.language"
-          :content="item.body"
+          :content="prismify({ body: item.body, language: item.language })"
           :key="item.id" />
 
         <image-with-description
@@ -156,6 +156,8 @@
 
 <script setup>
   import query from './index.query.graphql?raw';
+  import prismjs from 'prismjs';
+  import('prismjs/components/prism-graphql')
 
   const runtimeConfig = useRuntimeConfig();
 
@@ -169,6 +171,12 @@
   });
 
   useSeoHead(data.value.page);
+
+  const prismify = ({ body, language }) => (
+    prismjs.languages[language]
+      ? prismjs.highlight(body, prismjs.languages[language], language)
+      : body
+  );
 
   const tocItems = computed(() => {
     return data.value.page.items
