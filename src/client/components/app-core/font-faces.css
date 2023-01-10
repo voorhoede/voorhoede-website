@@ -1,23 +1,26 @@
 @font-face {
   font-family: 'apercu';
+  font-style: normal;
   font-weight: 400;
-  src: url('/fonts/apercu-regular-latin.woff2') format('woff2'),
-    url('/fonts/apercu-regular-latin.woff') format('woff');
+  src: url('/fonts/apercu-regular--subset.woff2') format('woff2');
+  unicode-range: U+20-7E,U+B1,U+F7,U+2BB,U+2BC,U+200F,U+2018-201F,U+2032,U+2033,U+2035,U+2036,U+20AC;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'apercu';
+  font-style: normal;
   font-weight: 700;
-  src: url('/fonts/apercu-bold-latin.woff2') format('woff2'),
-    url('/fonts/apercu-bold-latin.woff') format('woff');
+  src: url('/fonts/apercu-bold--subset.woff2') format('woff2');
+  unicode-range: U+20-7E,U+B1,U+F7,U+2BB,U+2BC,U+200F,U+2018-201F,U+2032,U+2033,U+2035,U+2036,U+20AC;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'apercu';
   font-style: italic;
-  src: url('/fonts/apercu-italic-latin.woff2') format('woff2'),
-    url('/fonts/apercu-italic-latin.woff') format('woff');
+  font-weight: 400;
+  src: url('/fonts/apercu-italic--subset.woff2') format('woff2');
+  unicode-range: U+20-7E,U+B1,U+F7,U+2BB,U+2BC,U+200F,U+2018-201F,U+2032,U+2033,U+2035,U+2036,U+20AC;
   font-display: swap;
 }
