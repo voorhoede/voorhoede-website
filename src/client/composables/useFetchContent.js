@@ -36,7 +36,7 @@ export async function useFetchContent({ key = null, query, variables }) {
     })
       .then((response) => {
         if (response.errors)
-          console.error(response)
+          console.error('response to dato failed', response)
 
         return response.data
       })
@@ -46,6 +46,7 @@ export async function useFetchContent({ key = null, query, variables }) {
 
   // can not rely on this being a page content query if a 'custom' key is set
   if (!key && initialData.value.page === null) {
+    console.error('no page data found for page ', path)
     throw createError({ statusCode: 404 })
   }
 
