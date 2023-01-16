@@ -95,11 +95,11 @@
       </article>
 
       <div class="page-event-detail__link-container">
-        <nuxt-link
+        <app-link
           class="app-button app-button--secondary body font-bold"
-          :to="$localeUrl('events')">
+          :to="$localeUrl({ name: 'events' })">
           &larr; {{ $t('all_events') }}
-        </nuxt-link>
+        </app-link>
       </div>
     </div>
 

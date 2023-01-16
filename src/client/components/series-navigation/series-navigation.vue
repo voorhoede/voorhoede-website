@@ -14,7 +14,7 @@
         :key="childRoute.routePath"
         class="series-navigation__item"
       >
-        <nuxt-link
+        <app-link
           v-if="!isActive(childRoute.route)"
           :to="!isActive(childRoute) && childRoute.route"
           class="body-big"
@@ -23,7 +23,7 @@
           }"
         >
           {{ childRoute.title }}
-        </nuxt-link>
+        </app-link>
         <span class="body-big" v-else>
           {{childRoute.title}}
         </span>

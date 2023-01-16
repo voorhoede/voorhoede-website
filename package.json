@@ -15,7 +15,8 @@
     "nuxt-icons": "^3.0.0",
     "prismjs": "^1.29.0",
     "query-string": "^7.1.1",
-    "rosetta": "^1.1.0"
+    "rosetta": "^1.1.0",
+    "ufo": "^1.0.1"
   },
   "engines": {
     "node": ">=18"

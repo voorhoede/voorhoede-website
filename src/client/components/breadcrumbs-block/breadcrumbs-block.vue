@@ -8,21 +8,21 @@
         v-if="hasBackLink"
         class="breadcrumbs-block__item"
       >
-        <nuxt-link
+        <app-link
           class="breadcrumbs-block__link app-button app-button--secondary body"
           :to="backLink"
           secondary
-        >&larr; {{ backLinkLabel }}</nuxt-link>
+        >&larr; {{ backLinkLabel }}</app-link>
       </li>
       <li
         v-if="hasNextLink"
         class="breadcrumbs-block__item breadcrumbs-block__item--next"
       >
-        <nuxt-link
+        <app-link
           class="breadcrumbs-block__link app-button app-button--secondary body"
           :to="nextLink"
           secondary
-        >{{ nextLinkLabel }} &rarr;</nuxt-link>
+        >{{ nextLinkLabel }} &rarr;</app-link>
       </li>
     </ul>
   </nav>

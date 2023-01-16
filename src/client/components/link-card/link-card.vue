@@ -25,7 +25,7 @@
       >
     </picture>
     <div class="link-card__caption">
-      <nuxt-link
+      <app-link
         v-if="internalLink"
         class="link-card__link"
         :to="internalLink"
@@ -33,7 +33,7 @@
         <h3 class="h4 link-card__title">
           {{ title }}
         </h3>
-      </nuxt-link>
+      </app-link>
       <a
         v-else-if="externalLink"
         class="link-card__link"
