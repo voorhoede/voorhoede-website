@@ -11,13 +11,13 @@
     </header>
     <div class="event-card__body">
       <div class="event-card__type body-detail" :class="{ 'event-card__type--alt': isMeetup }">{{ label }}</div>
-      <nuxt-link
+      <app-link
         :to="$localeUrl({ name: 'events-slug', params: { slug } })"
         class="event-card__link"
         :class="{ 'event-card__link--alt': isMeetup }"
       >
         <h2 class="event-card__title h4">{{ title }}</h2>
-      </nuxt-link>
+      </app-link>
       <rich-text-block
         v-if="description"
         :key="description"

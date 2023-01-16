@@ -3,13 +3,13 @@
     <div class="event-list-item__transition-box">
       <calendar-icon :date="event.date" fill="dim"/>
       <div class="event-list-item__content">
-        <nuxt-link
+        <app-link
           class="event-list-item__link"
           :to="$localeUrl({ name: 'events-slug', params: { slug: event.slug } })"
         >
           <h3 class="event-list-item__title event-list-item__title--compact body">{{ event.title }}</h3>
           <h3 class="event-list-item__title event-list-item__title--large h4">{{ event.title }}</h3>
-        </nuxt-link>
+        </app-link>
         <rich-text-block v-if="event.social.description" :text="event.social.description"/>
       </div>
     </div>

@@ -2,9 +2,9 @@
   <footer class="app-footer grid">
     <div class="app-footer__layout">
       <div class="app-footer__header">
-        <nuxt-link :to="$localeUrl()" :aria-label="$t('home')" :title="$t('home')">
+        <app-link :to="$localeUrl()" :aria-label="$t('home')" :title="$t('home')">
           <img class="app-footer__header-logo" src="/images/logo-with-text.svg" alt="" width="190" height="32">
-        </nuxt-link>
+        </app-link>
       </div>
       <div class="app-footer__column">
         <h2 class="app-footer__title body-small font-bold font-html-blue">
@@ -16,10 +16,10 @@
             :key="link.slug"
             class="app-footer__list-item body-detail"
           >
-            <nuxt-link class="app-footer__link" :to="createHref($i18n, link)">{{ link.title }}</nuxt-link>
+            <app-link class="app-footer__link" :to="createHref($i18n, link)">{{ link.title }}</app-link>
           </li>
           <li class="app-footer__list-item body-detail">
-            <nuxt-link class="app-footer__link" :to="createHref($i18n, { page: { slug: 'faq' } })">FAQ</nuxt-link>
+            <app-link class="app-footer__link" :to="createHref($i18n, { page: { slug: 'faq' } })">FAQ</app-link>
           </li>
         </ul>
       </div>

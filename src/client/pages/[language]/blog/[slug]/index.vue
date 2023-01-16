@@ -135,9 +135,9 @@
     <div
       class="page-blog-post__link-container"
       ref="articleEnd">
-      <nuxt-link class="app-button app-button--secondary body font-bold" :to="$localeUrl({ name: 'blog' })">
+      <app-link class="app-button app-button--secondary body font-bold" :to="$localeUrl({ name: 'blog' })">
         &larr; {{ $t('all_blogposts') }}
-      </nuxt-link>
+      </app-link>
     </div>
 
     <section class="page-blog-post__pivots grid">

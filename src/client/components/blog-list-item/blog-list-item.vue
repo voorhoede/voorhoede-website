@@ -9,14 +9,14 @@
     >
       <app-icon name="pin" /> {{ $t('pinned_blog') }}
     </span>
-    <nuxt-link
+    <app-link
       :to="$localeUrl({ name: linkName, params: { slug: item.slug } })"
       :lang="language"
     >
       <h3 class="blog-list-item__title font-html-blue" :class="large ? 'h4' : 'body'">
         {{ item.title }}
       </h3>
-    </nuxt-link>
+    </app-link>
     <time
       :datetime="item.date"
       class="blog-list-item__time"

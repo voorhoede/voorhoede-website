@@ -18,7 +18,7 @@
     <span v-if="primary || small">{{ label }}</span>
     <template v-else>{{ label }} &rarr;</template>
   </a>
-  <nuxt-link
+  <app-link
     v-else
     :class="rootClass"
     v-bind="$attrs"
@@ -26,7 +26,7 @@
   >
     <span v-if="primary || small">{{ label }}</span>
     <template v-else>{{ label }} &rarr;</template>
-  </nuxt-link>
+  </app-link>
 </template>
 
 <script>

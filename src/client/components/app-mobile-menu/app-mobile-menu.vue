@@ -29,23 +29,23 @@
       <ul class="app-mobile-menu__list body-small">
         <li
           class="app-mobile-menu__list-item">
-          <nuxt-link
+          <app-link
             class="h3"
-            to="/"
+            :to="$localeUrl()"
           >
             {{ $t('home') }}
-          </nuxt-link>
+          </app-link>
         </li>
         <li
           v-for="link in links"
           :key="link.href"
           class="app-mobile-menu__list-item">
-          <nuxt-link
+          <app-link
             class="h3"
             :to="createHref($i18n, link)"
           >
             {{ link.title }}
-          </nuxt-link>
+          </app-link>
         </li>
       </ul>
 

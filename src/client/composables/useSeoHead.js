@@ -1,9 +1,11 @@
+import { withTrailingSlash } from 'ufo';
+
 export function useSeoHead({ slug, i18nSlugs, social }) {
   if (!slug || !social) {
     throw new Error('Missing required SEO data');
   }
 
-  const nuxtApp = useNuxtApp();
+  const { $i18n } = useNuxtApp();
   const runtimeConfig = useRuntimeConfig();
   const route = useRoute();
   const router = useRouter();
@@ -29,20 +31,22 @@ export function useSeoHead({ slug, i18nSlugs, social }) {
       { name: 'twitter:image', content: social.image?.url || defaultShareImg },
     ],
     link: [
-      ...nuxtApp.$i18n.locales
-        .filter(({ code }) => nuxtApp.$i18n.locale !== code)
+      ...$i18n.locales
+        .filter(({ code }) => $i18n.locale !== code)
         .map(({ code }) => ({
           rel: 'alternate',
           hreflang: code,
-          href: new URL(
-            router.resolve({
-              params: {
-                language: code,
-                slug: i18nSlugs?.find((i18nSlug) => i18nSlug.locale === code).value || slug,
-              },
-            }).path,
-            new URL(runtimeConfig.public.baseUrl).toString(),
-          ).href
+          href: withTrailingSlash(
+            new URL(
+              router.resolve({
+                params: {
+                  language: code,
+                  slug: i18nSlugs?.find((i18nSlug) => i18nSlug.locale === code).value || slug,
+                },
+              }).path,
+              runtimeConfig.public.baseUrl,
+            ).href
+          )
         })),
     ],
   });
