@@ -1,6 +1,14 @@
 <template>
   <div id="top">
     <div class="layout-default">
+      <div tabindex="-1" ref="skipLink" />
+      <a
+        href="#content"
+        class="skip-link app-button app-button--small body font-bold"
+        :inert="focusTrapMobileMenu"
+      >
+        <span>{{ $t('skip_link') }}</span>
+      </a>
       <nav :aria-label="data.menu.title">
         <app-header
           :links="data.menu.links"
@@ -12,7 +20,7 @@
           @toggle-mobile-menu="mobileMenuIsOpen = !mobileMenuIsOpen"
         />
       </nav>
-      <div :inert="focusTrapMobileMenu">
+      <div id="content" :inert="focusTrapMobileMenu">
         <slot />
         <app-footer
           :app="data.app"
@@ -26,6 +34,14 @@
 
 <script setup>
   import query from './default.query.graphql?raw';
+  const { afterEach } = useRouter();
+  const skipLink = ref(null);
+
+  afterEach((from, to) => {
+    if (from.path !== to.path) {
+      skipLink.value.focus();
+    }
+  });
 
   const mobileMenuIsOpen = ref(false);
   const focusTrapMobileMenu = computed(() => mobileMenuIsOpen.value ? true : null);
