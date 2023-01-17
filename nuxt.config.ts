@@ -2,8 +2,9 @@ import { defineNuxtConfig } from 'nuxt/config';
 import { writeFile, mkdir } from 'node:fs/promises';
 import { default as nuxtIcons } from 'nuxt-icons';
 import { default as plausible } from '@nuxtjs/plausible';
-import { fetchTranslations } from './src/scripts/fetch-translations.js';
+import { fetchTranslations } from './src/scripts/fetch-translations';
 import { fetchBlogFeed } from './src/scripts/fetch-blog-feed';
+import { fetchRedirects } from './src/scripts/fetch-redirects';
 
 export default defineNuxtConfig({
   srcDir: 'src/client',
@@ -40,6 +41,8 @@ export default defineNuxtConfig({
           await mkdir('./src/client/public/blog', { recursive: true });
           await writeFile('./src/client/public/blog/feed.json', JSON.stringify(blogFeed));
         }),
+      fetchRedirects({ datoApiToken: process.env.DATO_API_TOKEN })
+        .then((redirects) => writeFile('./src/client/public/_redirects', redirects)),
     ])
       // hook expects a promise with no return data
       .then(() => {}),
