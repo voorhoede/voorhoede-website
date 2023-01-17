@@ -5,3 +5,4 @@ dist
 .output
 .cache
 feed.json
+_redirects
