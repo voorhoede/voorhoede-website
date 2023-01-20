@@ -119,11 +119,12 @@
         const { autoplay, loop, mute = autoplay } = this
         const { provider, providerUid } = this.video
 
+        // using embeds that do not track the user
         switch (provider) {
           case 'vimeo':
-            return `https://player.vimeo.com/video/${providerUid}?autoplay=1&muted=${binaryBoolean(mute)}&loop=${binaryBoolean(loop)}`
+            return `https://player.vimeo.com/video/${providerUid}?autoplay=1&muted=${binaryBoolean(mute)}&loop=${binaryBoolean(loop)}&dnt=true`
           case 'youtube':
-            return `https://www.youtube.com/embed/${providerUid}?autoplay=1&mute=${binaryBoolean(mute)}&loop=${binaryBoolean(loop)}&playlist=${providerUid}`
+            return `https://www.youtube-nocookie.com/embed/${providerUid}?autoplay=1&mute=${binaryBoolean(mute)}&loop=${binaryBoolean(loop)}&playlist=${providerUid}`
           default:
             throw Error(`unsupported video provider: ${provider}`)
         }
