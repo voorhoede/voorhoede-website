@@ -79,6 +79,9 @@ module.exports = {
       /* Prefetch */
       { rel: 'dns-prefetch', href: 'https://www.datocms-assets.com/' },
     ],
+    script: [
+      { src: '/clarity.js' },
+    ]
   },
   /*
   ** Customize the progress bar color
