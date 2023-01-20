@@ -39,6 +39,7 @@
     "@nuxtjs/svg-sprite": "^0.5.2",
     "@voorhoede/vue-lazy-load": "^1.2.9",
     "@vue-a11y/announcer": "^2.1.0",
+    "bottleneck": "^2.19.5",
     "dayjs": "^1.11.2",
     "dotenv-safe": "^8.2.0",
     "nuxt": "^2.14.6",

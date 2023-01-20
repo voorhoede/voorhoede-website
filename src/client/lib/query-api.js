@@ -1,7 +1,12 @@
 const fetch = require('node-fetch')
 const backoff = require('backoff')
-
+const Bottleneck = require('bottleneck')
 const token = process.env.DATO_API_TOKEN
+
+const limiter = new Bottleneck({
+  maxConcurrent: 1,
+  minTime: 50,
+})
 
 module.exports = function({ query, variables }) {
   const queryBackoff = backoff.fibonacci({
@@ -27,26 +32,28 @@ module.exports = function({ query, variables }) {
 }
 
 function doQuery({ query, variables }) {
-  return fetch(
-    'https://graphql.datocms.com/',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-      body: JSON.stringify({ query, variables }),
-    }
-  )
-    .then(res => {
-      if (!res.ok) {
-        throw new Error(`Error fetching data. ${res.statusText}`)
+  return limiter.schedule(() => {
+    return fetch(
+      'https://graphql.datocms.com/',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({ query, variables }),
       }
-      if (res.errors) {
-        throw new Error(JSON.stringify(res.errors))
-      }
-      return res.json()
-    })
-    .then((res) => res.data)
+    )
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`Error fetching data. ${res.statusText}`)
+        }
+        if (res.errors) {
+          throw new Error(JSON.stringify(res.errors))
+        }
+        return res.json()
+      })
+      .then((res) => res.data)
+  })
 }
