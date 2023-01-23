@@ -25,6 +25,7 @@ fragment page on BlogPostRecord {
     name
     lastName
     twitterHandle
+    slug
     image {
       url
       width

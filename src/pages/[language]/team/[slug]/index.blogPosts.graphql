@@ -1,0 +1,18 @@
+query TeamSlug($personId: [ItemId]) {
+  blogPosts: allBlogPosts(first: 100, filter: { authors: { anyIn: $personId } }) {
+    ...blogPost
+  }
+}
+
+fragment blogPost on BlogPostRecord {
+  id
+  title
+  introTitle
+  slug
+  date: publishDate
+  authors {
+    id
+    name
+    slug
+  }
+}
