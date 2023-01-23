@@ -22,9 +22,10 @@
           @close-menu="mobileMenuIsOpen = false"
         />
       </nav>
-      <div id="content" :inert="focusTrapMobileMenu">
+      <div id="content" :inert="focusTrapMobileMenu" class="layout-default__content">
         <slot />
         <app-footer
+          class="layout-default__footer"
           :app="data.app"
           :links="[].concat(data.menu.links, data.menu.callToAction)"
           :footer="data.footer"
@@ -63,5 +64,11 @@
 <style>
   .layout-default {
     position: relative;
+    min-height: 100vh;
+    background-color: var(--brand-yellow);
+  }
+
+  .layout-default__content {
+    background-color: var(--white);
   }
 </style>
