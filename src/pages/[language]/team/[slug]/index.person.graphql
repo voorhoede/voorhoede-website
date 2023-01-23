@@ -1,0 +1,23 @@
+query TeamSlug($slug: String) {
+  person(filter: { slug: { eq: $slug } }) {
+    ...person
+  }
+}
+
+fragment person on PersonRecord {
+  name
+  id
+  jobTitle
+  lastName
+  employmentStatus
+  twitterHandle
+  slug
+  biography
+  image {
+    url
+    alt
+    width
+    height
+    format
+  }
+}

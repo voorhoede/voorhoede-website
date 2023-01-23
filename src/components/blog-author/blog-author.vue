@@ -8,15 +8,29 @@
         :width="author.image.width"
         :height="author.image.width"
       >
-        <app-image
-          :image="author.image"
-          :crop-and-keep-ratio="true"
-          :width-step="135"
-        />
+        <app-link :to="$localeUrl({ name: 'team-slug', params: { slug: author.slug } })">
+          <app-image
+            :image="author.image"
+            :crop-and-keep-ratio="true"
+            :width-step="135"
+            class="blog-author__image-test"
+          />
+        </app-link>
       </fixed-ratio>
     </div>
     <div class="blog-author__text body">
-      <span>{{ $t('by__authors_', { authors }) }}</span>
+      <div class="blog-author__links">
+        <span>
+          {{ $t('by__authors_') }}
+        </span>
+        <app-link
+          v-for="author in authorLinks" :key="author.slug"
+          :to="$localeUrl({ name: 'team-slug', params: { slug: author.slug } })">
+          <span class="blog-author__author-link">
+            {{ author.name }}
+          </span>
+        </app-link>
+      </div>
       <time
         class="blog-author__text-time"
         :datetime="item.date">
@@ -47,8 +61,13 @@
       },
     },
     computed: {
-      authors () {
-        return `${this.item.authors.map(author => author.name).join(', ')}`
+      authorLinks() {
+        return this.item.authors.map(author => {
+          return {
+            name: author.name,
+            slug: author.slug,
+          }
+        })
       },
       formattedDate() {
         return formatDate({
@@ -78,10 +97,40 @@
 
   .blog-author__image-ratio {
     margin-top: var(--spacing-small);
+    transform: translateX(0);
+    transition: transform 0.2s ease-in-out;
   }
 
   .blog-author__image-ratio:first-child {
     margin-top: 0;
+  }
+
+  .blog-author__image-ratio:hover, .blog-author__image-ratio:focus {
+    transform: translateX(10px);
+  }
+
+  .blog-author__author-link {
+    display: block;
+    color: var(--html-blue);
+  }
+
+  .blog-author__author-link:hover,
+  .blog-author__author-link:focus {
+    font-weight: bolder;
+  }
+
+  .blog-author__links {
+    display: inline-flex;
+    gap: 5px;
+    position: relative;
+  }
+
+  .blog-author__links a span::after {
+    content: ',';
+  }
+
+  .blog-author__links a:last-child span::after {
+    content: '';
   }
 
   .blog-author__text-time {
