@@ -1,4 +1,4 @@
-import { locales } from '../client/lib/i18n.js';
+import { locales } from '../lib/i18n.js';
 
 export const fetchTranslations = ({ datoApiToken }) => (
   fetch(`https://graphql.datocms.com/`, {
