@@ -17,7 +17,9 @@
         />
         <app-mobile-menu
           :links="[].concat(data.menu.links, data.menu.callToAction)"
-          @toggle-mobile-menu="mobileMenuIsOpen = !mobileMenuIsOpen"
+          :isOpen="mobileMenuIsOpen"
+          @open-menu="mobileMenuIsOpen = true"
+          @close-menu="mobileMenuIsOpen = false"
         />
       </nav>
       <div id="content" :inert="focusTrapMobileMenu">
@@ -36,15 +38,17 @@
   import query from './default.query.graphql?raw';
   const { afterEach } = useRouter();
   const skipLink = ref(null);
+  const mobileMenuIsOpen = ref(false);
+  const focusTrapMobileMenu = computed(() => mobileMenuIsOpen.value ? true : null);
 
   afterEach((from, to) => {
+    mobileMenuIsOpen.value = false;
+
     if (from.path !== to.path) {
       skipLink.value.focus();
     }
   });
 
-  const mobileMenuIsOpen = ref(false);
-  const focusTrapMobileMenu = computed(() => mobileMenuIsOpen.value ? true : null);
   const { params } = useRoute();
 
   const { data } = await useFetchContent({

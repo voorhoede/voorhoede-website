@@ -1,7 +1,7 @@
 <template>
   <div class="app-mobile-menu grid">
     <button
-      v-if="!showMenu"
+      v-if="!isOpen"
       class="app-mobile-menu__button app-mobile-menu__button--open"
       @click="openMenu()"
       @touchmove="prevent"
@@ -16,7 +16,7 @@
       </span>
     </button>
     <div
-      v-if="showMenu"
+      v-if="isOpen"
       class="app-mobile-menu__content"
       @touchmove.native="prevent"
     >
@@ -50,7 +50,7 @@
       </ul>
 
       <button
-        v-if="showMenu"
+        v-if="isOpen"
         class="app-mobile-menu__button app-mobile-menu__button--close"
         @click="closeMenu()"
         @touchmove="prevent"
@@ -73,35 +73,29 @@
 
   export default {
     props: {
+      isOpen: {
+        type: Boolean,
+        required: true,
+      },
       links: {
         type: Array,
         validator (links) {
           return links.every(linkValidator)
         },
         default: () => [],
-      }
-    },
-    data() {
-      return {
-        showMenu: false,
-      }
-    },
-    watch: {
-      $route() {
-        this.showMenu = false
-      }
+      },
     },
     methods: {
       closeMenu() {
-        this.showMenu = false
-        this.$emit('toggle-mobile-menu')
+        this.$emit('close-menu')
+        console.log('close')
         this.$nextTick(() => {
           this.$refs.openButton.focus()
         })
       },
       openMenu() {
-        this.showMenu = true
-        this.$emit('toggle-mobile-menu')
+        this.$emit('open-menu')
+        console.log('open')
         this.$nextTick(() => {
           this.$refs.closeButton.focus()
         })
