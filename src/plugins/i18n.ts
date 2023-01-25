@@ -1,6 +1,6 @@
 import rosetta from 'rosetta';
 import { locales } from '../lib/i18n';
-import messages from '../../../.cache/ui-translations.json';
+import messages from '../../.cache/ui-translations.json';
 
 const i18n = rosetta(messages);
 

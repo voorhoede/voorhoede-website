@@ -7,7 +7,7 @@ import { fetchBlogFeed } from './src/scripts/fetch-blog-feed';
 import { fetchRedirects } from './src/scripts/fetch-redirects';
 
 export default defineNuxtConfig({
-  srcDir: 'src/client',
+  srcDir: 'src',
   typescript: {
     shim: false,
   },
@@ -38,11 +38,11 @@ export default defineNuxtConfig({
         }),
       fetchBlogFeed({ datoApiToken: process.env.DATO_API_TOKEN, baseUrl: process.env.BASE_URL })
         .then(async (blogFeed) => {
-          await mkdir('./src/client/public/blog', { recursive: true });
-          await writeFile('./src/client/public/blog/feed.json', JSON.stringify(blogFeed));
+          await mkdir('./src/public/blog', { recursive: true });
+          await writeFile('./src/public/blog/feed.json', JSON.stringify(blogFeed));
         }),
       fetchRedirects({ datoApiToken: process.env.DATO_API_TOKEN })
-        .then((redirects) => writeFile('./src/client/public/_redirects', redirects)),
+        .then((redirects) => writeFile('./src/public/_redirects', redirects)),
     ])
       // hook expects a promise with no return data
       .then(() => {}),
