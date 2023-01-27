@@ -162,7 +162,7 @@ export default {
       this.observer.observe(contactElement)
     },
     trackLink (linkType) {
-      useTrackEvent('contact', { props: { category: linkType, label: this.$route.fullPath } });
+      useTrackEvent(`Click on ${linkType}`);
     },
     unobserveContact () {
       this.observer.unobserve(this.$refs.contact)

@@ -14,7 +14,11 @@
           <responsive-image :image="contact.image" class="page-contact__contact-image"/>
 
           <div class="page-contact__contact-body">
-            <a :href="contactType(contact.contactType, contact.body)" class="page-contact__contact-link">
+            <a
+              :href="contactType(contact.contactType, contact.body)"
+              class="page-contact__contact-link"
+              @click="trackLink(contact.contactType)"
+            >
               <span class="h4 page-contact__contact-title page-contact-z-index--high">{{ contact.title }}</span>
               <p class="h3 page-contact-z-index--high">{{ contact.body }}</p>
             </a>
@@ -79,6 +83,10 @@
     } else {
       return `tel:${ body }`
     }
+  }
+
+  function trackLink(contactType) {
+    useTrackEvent(`Click on ${contactType}`);
   }
 </script>
 

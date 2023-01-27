@@ -60,7 +60,7 @@
         class="newsletter-form__input-checkbox body-small"
       />
       <app-button
-        @click.native="trackEvent()"
+        @click.native="trackEvent"
         :label="$t('subscribe')"
         type="submit"
         :small="true"
@@ -105,15 +105,8 @@
       this.useCustomValidation = true
     },
     methods: {
-      trackEvent () {
-        useTrackEvent(
-          'newsletter-form',
-          {
-            props: {
-              category: 'click submit',
-              label: this.formIsValidated ? 'success' : 'failed',
-            },
-        });
+      trackEvent() {
+        useTrackEvent('Subscribe to newsletter');
       },
       submit(event) {
         this.formIsValidated = true

@@ -25,7 +25,6 @@
       <div v-if="hasCta" class="cta-image-block__ctas">
         <app-button
           :v-if="hasPrimaryCta"
-          @click.native="trackLink(linkUrl)"
           class="cta_image-block__primary-cta"
           small
           :label="linkLabel"
@@ -34,7 +33,6 @@
         />
         <app-button
           v-if="hasSecondaryCta"
-          @click.native="trackLink(secondaryLinkUrl)"
           class="cta_image-block__secondary-cta"
           secondary
           :label="secondaryLinkLabel"
@@ -101,14 +99,6 @@
         return this.hasPrimaryCta || this.hasSecondaryCta
       },
     },
-    methods: {
-      trackLink (href) {
-        useTrackEvent(
-          'cta-image',
-          { props: { category: 'click cta', label: href },
-        });
-      },
-    }
   }
 </script>
 

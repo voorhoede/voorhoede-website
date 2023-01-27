@@ -182,15 +182,7 @@
         })
       },
       trackEvent () {
-        useTrackEvent(
-          'contact-form',
-          {
-            props: {
-              category: 'click submit',
-              label: this.formIsValidated ? 'success' : 'failed',
-            },
-          },
-        );
+        useTrackEvent('Send Contact Form SP');
       },
     }
   }

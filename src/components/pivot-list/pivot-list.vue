@@ -47,7 +47,6 @@
 
           <app-button
             v-else-if="pivot.link"
-            @click.native="trackLink(pivot.link.page.slug)"
             :label="pivot.buttonLabel"
             :to="createHref($i18n, pivot.link)"
           />
@@ -113,13 +112,9 @@
       },
       trackLink (href) {
         useTrackEvent(
-          'event',
-          {
-            props: {
-              category: 'pivot',
-              label: href,
-            },
-        });
+          'Click on Schedule Meeting',
+          { props: { url: href, }, },
+        );
       },
     },
   }

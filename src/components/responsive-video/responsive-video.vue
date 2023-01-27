@@ -143,7 +143,6 @@
     methods: {
       play() {
         this.isPlaying = true
-        useTrackEvent('event', { props: { category: 'video', label: this.video.provider, } });
       },
     },
   }
