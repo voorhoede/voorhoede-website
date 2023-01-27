@@ -131,7 +131,7 @@
   });
 
   function trackApplyButton() {
-    useTrackEvent('conversion');
+    useTrackEvent('Click on Apply');
   }
 </script>
 
