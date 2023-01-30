@@ -19,7 +19,7 @@
     </header>
 
     <ul v-if="blogs" class="page-team__blogs">
-      <li v-for="blogPost in blogs.blogPosts" :key="blogPost.id" class="page-team__blog">
+      <li v-for="blogPost in sortedBlogs" :key="blogPost.id" class="page-team__blog">
         <app-link :to="$localeUrl({ name: 'blog-slug', params: { slug: blogPost.slug } })">
           <div class="page-team__blog-details">
             <span class="body page-team__date">{{ formattedDate(blogPost.date) }}</span>
@@ -61,6 +61,11 @@ const { data: blogs } = await useFetchContent({
 })
 
 const formattedDate = (date) => formatDate({ date, locale: route.params.language, format: 'D MMM YYYY' })
+
+const sortedBlogs = computed(() => {
+  return blogs.value.blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date))
+})
+
 </script>
 
 <style>
