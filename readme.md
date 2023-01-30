@@ -1,4 +1,5 @@
 # De Voorhoede Website
+[![netlify deploy status](https://tinyshields.dev/netlify/0b43ae43-afe1-44cc-95be-5618c8eb1457.svg)][netlify]
 
 ## Development
 
@@ -10,3 +11,5 @@
 cp .env.example .env
 ```
 * Run app in development mode (`npm run dev`).
+
+[netlify]: https://app.netlify.com/sites/voorhoede-website/overview
