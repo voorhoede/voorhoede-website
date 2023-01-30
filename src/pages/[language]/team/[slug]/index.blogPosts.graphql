@@ -1,5 +1,9 @@
 query TeamSlug($personId: [ItemId]) {
-  blogPosts: allBlogPosts(first: 100, filter: { authors: { anyIn: $personId } }) {
+  blogPosts: allBlogPosts(
+    first: 100
+    filter: { authors: { anyIn: $personId } }
+    orderBy: publishDate_DESC
+  ) {
     ...blogPost
   }
 }
