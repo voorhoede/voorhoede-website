@@ -11,56 +11,38 @@
       action="https://voorhoede.us20.list-manage.com/subscribe/post?u=bd1491faa00c5405cce7ba212&amp;id=76cc576b8d"
       method="post"
       target="_blank"
-      :novalidate="useCustomValidation"
       class="newsletter-form__form"
     >
-      <label class="hidden">
+      <label class="sr-only">
         Don't fill this out if you're human
-        <input
-          type="text"
-          :name="mailchimpFieldnamesMapping.honeypot"
-          value=""
-        >
+        <input type="text" :name="mailchimpFieldnamesMapping.honeypot" value="">
       </label>
       <input-field
-        v-model="form.name"
         :id="mailchimpFieldnamesMapping.firstName"
         type="text"
         :label="$t('my_first_name_is')"
         :placeholder-label="$t('your_first_name')"
         :required="true"
-        :validate="formIsValidated"
-        :reset-validation="resetValidation"
-        :validation-error-message="$t('name_is_required')"
         class="newsletter-form__input-field body"
-
       />
       <input-field
-        v-model="form.email"
         :id="mailchimpFieldnamesMapping.email"
         type="email"
         :label="$t('you_can_email_me_at')"
         :placeholder-label="$t('email_address')"
         :required="true"
-        :validate="formIsValidated"
-        :reset-validation="resetValidation"
-        :validation-error-message="emailValidationErrorMessage"
         class="newsletter-form__input-field body"
       />
       <input-checkbox
-        v-model="form.consent"
         value="Y"
         id="newsletter-form-gdpr"
         :name="mailchimpFieldnamesMapping.gdprConsent"
         :label="$t('newsletter_permission')"
         :required="true"
-        :validate="formIsValidated"
-        :reset-validation="resetValidation"
-        :validation-error-message="$t('newsletter_consent_is_required')"
         class="newsletter-form__input-checkbox body-small"
       />
       <app-button
-        @click.native="trackEvent"
+        @click="trackEvent"
         :label="$t('subscribe')"
         type="submit"
         :small="true"
@@ -80,46 +62,19 @@
     },
     data () {
       return {
-        form: {
-          consent: false,
-          email: '',
-          name: '',
-        },
         mailchimpFieldnamesMapping: {
           honeypot: 'b_bd1491faa00c5405cce7ba212_76cc576b8d',
           firstName: 'FNAME',
           email: 'EMAIL',
           gdprConsent: 'gdpr[38537]',
         },
-        formIsValidated: false,
-        resetValidation: false,
-        useCustomValidation: false,
       }
-    },
-    computed: {
-      emailValidationErrorMessage() {
-        return this.form.email ? this.$t('provide_valid_email') : this.$t('email_is_required')
-      }
-    },
-    mounted () {
-      this.useCustomValidation = true
     },
     methods: {
       trackEvent() {
         useTrackEvent('Subscribe to newsletter');
       },
-      submit(event) {
-        this.formIsValidated = true
-        if (!event.target.checkValidity()) {
-          event.preventDefault()
-          this.resetValidation = true
-          this.$nextTick(() => {
-            this.resetValidation = false
-          })
-          return false
-        }
-      },
-    }
+    },
   }
 </script>
 
