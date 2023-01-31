@@ -1,6 +1,6 @@
 <template>
-  <article :class="$style['link-card']">
-    <picture :class="$style['link-card__media']">
+  <article :class="$style.root">
+    <picture :class="$style.media">
       <source
         type="image/webp"
         :srcset="getImageUrl(image.url, {
@@ -14,7 +14,7 @@
           w: '800'
         })">
       <img
-        :class="$style['link-card__image']"
+        :class="$style.image"
         :src="getImageUrl(image.url, {
           w: '800'
         })"
@@ -24,28 +24,28 @@
         loading="lazy"
       >
     </picture>
-    <div :class="$style['link-card__caption']">
+    <div :class="$style.caption">
       <app-link
         v-if="internalLink"
-        :class="$style['link-card__link']"
+        :class="$style.link"
         :to="internalLink"
       >
-        <h3 :class="['h4', $style['link-card__title']]">
+        <h3 :class="['h4', $style.title]">
           {{ title }}
         </h3>
       </app-link>
       <a
         v-else-if="externalLink"
-        :class="$style['link-card__link']"
+        :class="$style.link"
         :href="externalLink"
         target="_blank"
         rel="noreferrer noopener"
       >
-        <h3 :class="['h4', $style['link-card__title']]">
+        <h3 :class="['h4', $style.title]">
           {{ title }}
         </h3>
       </a>
-      <p :class="['body', $style['link-card__body']]">{{ body }}</p>
+      <p :class="['body', $style.body]">{{ body }}</p>
       Medium breakpoint: {{ breakpoints.medium }}
     </div>
   </article>
@@ -95,18 +95,18 @@
     --duration: .15s;
   }
 
-  .link-card {
+  .root {
     position: relative;
     background-color: var(--fog);
   }
 
-  .link-card__media {
+  .media {
     display: block;
     position: relative;
     padding-top: calc(var(--link-card-image-ratio) * 100%);
   }
 
-  .link-card__image {
+  .image {
     position: absolute;
     top: 0;
     left: 0;
@@ -115,7 +115,7 @@
     object-fit: cover;
   }
 
-  .link-card__caption {
+  .caption {
     padding:
       var(--spacing-medium)
       var(--spacing-medium)
@@ -123,7 +123,7 @@
       var(--spacing-large);
   }
 
-  .link-card__link::before {
+  .link::before {
     content: '';
     display: block;
     position: absolute;
@@ -133,11 +133,11 @@
     bottom: 0;
   }
 
-  .link-card__title {
+  .title {
     position: relative;
   }
 
-  .link-card__title::before {
+  .title::before {
     content: '\2192';
     position: absolute;
     top: 0;
@@ -147,27 +147,27 @@
     font-weight: 300;
   }
 
-  .link-card__title,
-  .link-card__title::before {
+  .title,
+  .title::before {
     transition: transform var(--duration);
   }
 
-  .link-card__link:hover .link-card__title,
-  .link-card__link:focus .link-card__title {
+  .link:hover .title,
+  .link:focus .title {
     transform: translateX(var(--spacing-small));
   }
 
-  .link-card__link:hover .link-card__title::before,
-  .link-card__link:focus .link-card__title::before {
+  .link:hover .title::before,
+  .link:focus .title::before {
     transform: translateX(calc(var(--spacing-tiny) * -1));
   }
 
-  .link-card__body {
+  .body {
     margin-top: .5em;
   }
 
   @media medium {
-    .link-card__caption {
+    .caption {
       padding-left: calc(var(--spacing-large) + var(--spacing-smaller));
     }
   }
