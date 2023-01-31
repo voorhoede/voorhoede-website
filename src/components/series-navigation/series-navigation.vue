@@ -16,7 +16,7 @@
       >
         <app-link
           v-if="!isActive(childRoute.route)"
-          :to="!isActive(childRoute) && childRoute.route"
+          :to="childRoute.route"
           class="body-big"
           :class="{
             'series-navigation__link': !isActive(childRoute)
