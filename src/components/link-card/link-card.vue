@@ -1,6 +1,6 @@
 <template>
-  <article class="link-card">
-    <picture class="link-card__media">
+  <article :class="$style['link-card']">
+    <picture :class="$style['link-card__media']">
       <source
         type="image/webp"
         :srcset="getImageUrl(image.url, {
@@ -14,7 +14,7 @@
           w: '800'
         })">
       <img
-        class="link-card__image"
+        :class="$style['link-card__image']"
         :src="getImageUrl(image.url, {
           w: '800'
         })"
@@ -24,33 +24,35 @@
         loading="lazy"
       >
     </picture>
-    <div class="link-card__caption">
+    <div :class="$style['link-card__caption']">
       <app-link
         v-if="internalLink"
-        class="link-card__link"
+        :class="$style['link-card__link']"
         :to="internalLink"
       >
-        <h3 class="h4 link-card__title">
+        <h3 :class="['h4', $style['link-card__title']]">
           {{ title }}
         </h3>
       </app-link>
       <a
         v-else-if="externalLink"
-        class="link-card__link"
+        :class="$style['link-card__link']"
         :href="externalLink"
         target="_blank"
         rel="noreferrer noopener"
       >
-        <h3 class="h4 link-card__title">
+        <h3 :class="['h4', $style['link-card__title']]">
           {{ title }}
         </h3>
       </a>
-      <p class="link-card__body body">{{ body }}</p>
+      <p :class="['body', $style['link-card__body']]">{{ body }}</p>
+      Medium breakpoint: {{ breakpoints.medium }}
     </div>
   </article>
 </template>
 
 <script>
+  import breakpoints from '../app-core/breakpoints.module.css';
   import imageUrl from '../../lib/image-url'
 
   export default {
@@ -80,11 +82,14 @@
       getImageUrl(url, options) {
         return imageUrl(url, options)
       }
-    }
+    },
+    data: () => ({ breakpoints }),
   }
 </script>
 
-<style>
+<style module>
+  @value medium from "../app-core/breakpoints.module.css";
+
   :root {
     --link-card-image-ratio: .7043795620437956;
     --duration: .15s;
@@ -161,7 +166,7 @@
     margin-top: .5em;
   }
 
-  @media (min-width: 1100px) {
+  @media medium {
     .link-card__caption {
       padding-left: calc(var(--spacing-large) + var(--spacing-smaller));
     }
