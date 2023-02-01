@@ -23,7 +23,7 @@ export const fetchTranslations = ({ datoApiToken }) => (
         code,
         Object.fromEntries(data[code].map(({ key, value }) => [
           key,
-          value.replace('{', '{{').replace('}', '}}'),
+          value,
         ]))
       ])
     ))
