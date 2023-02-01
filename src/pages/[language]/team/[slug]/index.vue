@@ -61,6 +61,14 @@ const { data: blogs } = await useFetchContent({
 })
 
 const formattedDate = (date) => formatDate({ date, locale: route.params.language, format: 'D MMM YYYY' })
+
+useSeoHead({
+  ...route.params,
+  social: {
+    title: person.name,
+    description: person.biography,
+  }
+})
 </script>
 
 <style>
