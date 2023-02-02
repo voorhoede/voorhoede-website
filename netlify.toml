@@ -1,6 +1,15 @@
 [build]
 command = "npm run build"
 
+# setup netlify dev with local dev server
+[dev]
+framework = "#custom"
+command = "nuxt dev"
+targetPort = 3000
+debug = true
+port = 8888
+publish = "dist"
+
 [build.environment]
 NPM_CONFIG_AUDIT = "false"
 NPM_CONFIG_FUND = "false"

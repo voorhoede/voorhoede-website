@@ -3,14 +3,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "nuxt dev",
+    "dev": "netlify dev",
     "build": "nuxt generate"
   },
   "dependencies": {
     "@json-feed-types/1_1": "^1.0.2",
     "@nuxtjs/plausible": "^0.2.0",
+    "@vercel/og": "^0.0.27",
     "datocms-listen": "^0.1.14",
     "dayjs": "^1.11.7",
+    "netlify-cli": "^12.10.0",
     "nuxt": "^3.1.1",
     "nuxt-icons": "^3.1.0",
     "prismjs": "^1.29.0",

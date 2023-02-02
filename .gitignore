@@ -6,3 +6,6 @@ dist
 .cache
 feed.json
 _redirects
+
+# Local Netlify folder
+.netlify
