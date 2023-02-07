@@ -47,7 +47,7 @@
       <div class="page-contact__backdrop grid">
         <contact-page-form
           class="page-contact__form-body"
-          :aria-label="$t('lets_discuss')"
+          :title="$t('lets_discuss')"
         />
       </div>
     </div>
