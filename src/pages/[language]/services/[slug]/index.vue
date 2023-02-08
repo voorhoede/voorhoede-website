@@ -120,6 +120,10 @@
     background-color: var(--bg-pastel);
   }
 
+  .page-service__pivots {
+    grid-row: 4;
+  }
+
   .page-service__series-navigation {
     margin-bottom: var(--spacing-large);
     grid-row: 2;
