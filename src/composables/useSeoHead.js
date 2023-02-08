@@ -32,7 +32,6 @@ export function useSeoHead({ slug, i18nSlugs, social }) {
     ],
     link: [
       ...$i18n.locales
-        .filter(({ code }) => $i18n.locale !== code)
         .map(({ code }) => ({
           rel: 'alternate',
           hreflang: code,
