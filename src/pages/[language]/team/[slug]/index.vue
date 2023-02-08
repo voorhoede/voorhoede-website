@@ -61,7 +61,6 @@
 import formatDate from '../../../../lib/format-date';
 import personQuery from './index.person.graphql?raw';
 import blogPostsQuery from './index.blogPosts.graphql?raw';
-import { createHref } from '../../../../lib/links';
 
 const route = useRoute()
 
