@@ -23,6 +23,19 @@
         <span v-if="person.twitterHandle" class="body-small page-team__social">
           {{ person.twitterHandle }}
         </span>
+
+        <ul class="page-team__links">
+          <li v-for="link in person.links" :key="link.title">
+            <a
+              :href="link.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="body-small page-team__link"
+            >
+              {{ link.title }}
+            </a>
+          </li>
+        </ul>
       </div>
     </header>
 
@@ -48,6 +61,7 @@
 import formatDate from '../../../../lib/format-date';
 import personQuery from './index.person.graphql?raw';
 import blogPostsQuery from './index.blogPosts.graphql?raw';
+import { createHref } from '../../../../lib/links';
 
 const route = useRoute()
 
@@ -131,6 +145,24 @@ useSeoHead({
   .page-team__social {
     margin-top: var(--spacing-small);
     color: var(--off-black);
+  }
+
+  .page-team__links {
+    margin-top: var(--spacing-small);
+    list-style: none;
+  }
+
+  .page-team__link {
+    width: fit-content;
+    padding-bottom: .15rem;
+    color: var(--html-blue);
+    background: transparent linear-gradient(to top, transparent 1px, var(--html-blue) 1px, var(--html-blue) 2px, transparent 2px);
+  }
+
+  .page-team__link:hover,
+  .page-team__link:focus {
+    color: var(--active-blue);
+    background: transparent linear-gradient(to top, var(--html-blue) 2px, transparent 2px);
   }
 
   .page-team__blogs {
