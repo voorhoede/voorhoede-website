@@ -139,7 +139,6 @@
   .page-service__overview .generic-text-block,
   .page-service__overview .blockquote-block,
   .page-service__overview > .responsive-video {
-    grid-row: 4;
     margin: 0 0 var(--spacing-large) 0;
   }
 
