@@ -8,22 +8,6 @@
     />
     <div class="grid">
       <div class="page-job__content">
-        <generic-text-block
-          v-if="data.page.jobTagline"
-          :is-nested="false"
-          :key="data.page.jobTagline.title || data.page.jobTagline.body"
-          :title="data.page.jobTagline.title"
-          :body="data.page.jobTagline.body"
-          :image="data.page.jobTagline.image"
-        />
-        <generic-text-block
-          v-if="data.page.jobIntro"
-          :is-nested="false"
-          :key="data.page.jobIntro.title || data.page.jobIntro.body"
-          :title="data.page.jobIntro.title"
-          :body="data.page.jobIntro.body"
-          :image="data.page.jobIntro.image"
-        />
         <template v-for="item in data.page.jobContent">
           <generic-text-block
             v-if="item._modelApiKey === 'generic_text_block'"

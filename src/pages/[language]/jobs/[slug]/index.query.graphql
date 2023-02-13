@@ -32,14 +32,6 @@ fragment job on JobRecord {
   minSalary
   maxSalary
   jobDescription
-  jobTagline {
-    title
-    body
-  }
-  jobIntro {
-    title
-    body
-  }
   jobContent {
     ... on GalleryBlockRecord {
       _modelApiKey
@@ -66,10 +58,6 @@ fragment job on JobRecord {
         alt
       }
     }
-  }
-  jobOutro {
-    title
-    body
   }
   callToActionTitle
   location {
