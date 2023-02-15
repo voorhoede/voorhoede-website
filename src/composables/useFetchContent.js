@@ -14,7 +14,7 @@ export async function useFetchContent({ key = null, query, variables }) {
         variables,
         token: runtimeConfig.public.datoApiToken,
         includeDrafts: true,
-        onUpdate: ({ response }) => { data.value = response.data },
+        onUpdate: ({ response }) => { data.value = response.data; },
         onError: console.error,
         onChannelError: console.error,
       });
@@ -40,9 +40,13 @@ export async function useFetchContent({ key = null, query, variables }) {
     })
       .then((response) => {
         if (response.errors)
-          console.error('response to dato failed', response)
+          console.error(
+            'request to dato failed',
+            '\n',
+            JSON.stringify(response.errors, null, 2),
+          );
 
-        return response.data
+        return response.data;
       })
   ));
 
@@ -50,9 +54,9 @@ export async function useFetchContent({ key = null, query, variables }) {
 
   // can not rely on this being a page content query if a 'custom' key is set
   if (!key && initialData.value.page === null) {
-    console.error('no page data found for', route.path)
-    throw createError({ statusCode: 404 })
+    console.error('no page data found for', route.path);
+    throw createError({ statusCode: 404 });
   }
 
   return { data };
-};
+}
