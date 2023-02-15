@@ -18,7 +18,6 @@
 
 <script setup>
   import query from './error.query.graphql?raw';
-  const props = defineProps({ error: Object });
 
   const { params } = useRoute();
 
