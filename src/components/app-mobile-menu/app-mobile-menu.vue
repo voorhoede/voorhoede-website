@@ -18,7 +18,7 @@
     <div
       v-if="isOpen"
       class="app-mobile-menu__content"
-      @touchmove.native="prevent"
+      @touchmove="prevent"
     >
       <img
         class="app-mobile-menu__logo"
