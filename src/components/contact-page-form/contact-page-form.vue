@@ -76,7 +76,7 @@
         class="body-small contact-page-form__input-field"
       />
       <app-button
-        @click.native="trackEvent()"
+        @click="trackEvent()"
         class="contact-page-form__button"
         :label="$t('get_in_touch')"
         type="submit"

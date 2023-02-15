@@ -139,7 +139,7 @@ export default {
       this.observeContact()
     }
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.observer !== null) {
       this.unobserveContact()
     }

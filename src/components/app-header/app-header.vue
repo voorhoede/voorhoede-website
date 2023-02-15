@@ -14,7 +14,7 @@
           </li>
         </ul>
         <div class="app-header__link-list app-header__link-list--languages">
-          <template v-for="({ code, name }) in $i18n.locales">
+          <template v-for="({ code, name }) in $i18n.locales" :key="code">
             <span
               v-if="code === $i18n.locale"
               aria-hidden="true"
@@ -31,7 +31,7 @@
                 :aria-label="$t('switch_to__language_', { language: name }, code)"
                 :lang="code"
                 :href="`/${code}/`"
-                @click.native="saveLocale(code)"
+                @click="saveLocale(code)"
               >
                 {{ code }}
               </a>

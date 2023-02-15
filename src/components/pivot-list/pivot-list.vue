@@ -39,7 +39,7 @@
 
           <app-button
             v-if="pivot.externalLink"
-            @click.native="trackLink(pivot.externalLink)"
+            @click="trackLink(pivot.externalLink)"
             :label="pivot.buttonLabel"
             :to="pivot.externalLink"
             external
