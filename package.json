@@ -20,6 +20,7 @@
     "ufo": "^1.0.1"
   },
   "devDependencies": {
+    "@typescript-eslint/parser": "^5.52.0",
     "eslint": "^8.34.0",
     "eslint-plugin-vue": "^9.9.0"
   },

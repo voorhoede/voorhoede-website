@@ -11,6 +11,7 @@ module.exports = {
     'plugin:vue/vue3-essential',
   ],
   parserOptions: {
+    parser: '@typescript-eslint/parser',
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
