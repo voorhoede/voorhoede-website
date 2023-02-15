@@ -10,7 +10,7 @@
 </script>
 
 <template>
- 	<nuxt-link :to="normalizedTo">
- 	 	<slot />
- 	</nuxt-link>
+  <nuxt-link :to="normalizedTo">
+    <slot />
+  </nuxt-link>
 </template>

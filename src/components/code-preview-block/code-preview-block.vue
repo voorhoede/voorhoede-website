@@ -1,6 +1,6 @@
 <template>
   <figure>
-	  <iframe
+    <iframe
       scrolling="no"
       :title="title"
       :src="iframeSrc"
