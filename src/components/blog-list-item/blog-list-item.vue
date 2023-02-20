@@ -30,11 +30,14 @@
         v-for="author in item.authors"
         :key="author.name"
       >
-        <app-image
+        <dato-image
           class="blog-list-item__image"
-          :image="author.image"
-          :crop-and-keep-ratio="true"
-          :width-step="large ? 65 : 40"
+          :src="author.image.url"
+          alt=""
+          :width="large ? 65 : 40"
+          :height="large ? 65 : 40"
+          loading="lazy"
+          :quality="85"
         />
       </div>
       <span :class="large ? 'body' : 'body-small'">{{ $t('by__authors_', { authors }) }}</span>

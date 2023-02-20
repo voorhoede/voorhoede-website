@@ -16,10 +16,16 @@ fragment eventOverview on EventOverviewRecord {
     description
     image {
       url
+      alt
+      width
+      height
     }
   }
   headerIllustration {
     url
+    alt
+    width
+    height
   }
   introductionText
 }
@@ -35,7 +41,6 @@ fragment event on EventItemRecord {
   image {
     url
     alt
-    format
     width
     height
   }

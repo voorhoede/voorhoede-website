@@ -6,7 +6,14 @@
       class="page-introduction__column"
       :class="(index + 1) % 2 === 0 ? 'page-introduction__column--even' : 'page-introduction__column--odd'"
     >
-      <responsive-image class="page-introduction__image" :image="section.image"/>
+      <dato-image
+        class="page-introduction__image"
+        :src="section.image.url"
+        alt=""
+        :width="section.image.width"
+        :height="section.image.height"
+        loading="eager"
+      />
       <div class="page-introduction__content">
         <h2 v-if="section.title" class="h3">{{ section.title }}</h2>
         <div class="body-big font-html-blue" v-html="section.body" />

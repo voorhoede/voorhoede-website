@@ -7,6 +7,9 @@ query EnergyFirstPage($locale: SiteLocale) {
       description
       image {
         url
+        alt
+        width
+        height
       }
     }
   }

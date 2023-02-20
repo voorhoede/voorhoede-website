@@ -11,7 +11,14 @@
         {{ title }}
       </h2>
       <div v-if="contactPerson" class="contact-form__contact-person">
-        <responsive-image :image="contactPerson.image"/>
+        <dato-image
+          class="contact-form__contact-person-image"
+          :src="contactPerson.image.url"
+          alt=""
+          :width="144"
+          :height="170"
+          loading="lazy"
+        />
         <p class="h5">{{ contactPerson.name }} {{ contactPerson.lastName }}</p>
         <p
           v-if="contactPerson.jobTitle"
@@ -201,9 +208,9 @@
     display: none;
   }
 
-  .contact-form__contact-person .responsive-image {
+  .contact-form__contact-person-image {
     margin-bottom: var(--spacing-small);
-    width: var(--contact-form-thumbnail-size-small);
+    width: var(--contact-form-thumbnail-size);
   }
 
   .contact-form__header ~ .contact-form__form {
@@ -218,13 +225,6 @@
     margin-top: var(--spacing-larger);
   }
 
-  @media (min-width: 520px) {
-    .contact-form__contact-person .responsive-image {
-      margin-left: 0;
-      margin-right: 0;
-    }
-  }
-
   @media (min-width: 1100px) {
     .contact-form__header {
       grid-column-start: 6;
@@ -234,10 +234,6 @@
 
     .contact-form__contact-person {
       display: block;
-    }
-
-    .contact-form__contact-person .responsive-image {
-      width: var(--contact-form-thumbnail-size);
     }
 
     .contact-form__header ~ .contact-form__form {

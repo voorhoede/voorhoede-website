@@ -1,8 +1,14 @@
 <template>
   <figure class="image-with-description" :class="{ 'image-with-description--inverse': inverse }">
-    <div class="image-with-description__image">
-      <responsive-image :image="image" />
-    </div>
+    <dato-image
+      class="image-with-description__image"
+      :src="image.url"
+      alt=""
+      :width="image.width"
+      :height="image.height"
+      sizes="(min-width: 720px) 50vw, 100vw"
+      loading="eager"
+    />
     <figcaption
       v-if="description"
       class="pullquote font-bold image-with-description__description">
@@ -43,6 +49,10 @@ export default {
 
   .image-with-description__description {
     margin: 0 0 var(--spacing-small);
+  }
+
+  .image-with-description__image {
+    height: auto;
   }
 
   @media (min-width: 720px) {

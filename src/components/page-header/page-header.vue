@@ -48,14 +48,13 @@
 
     <div v-if="image" class="page-header__image-column animation__reveal">
       <div class="page-header__image-column-content animation__reveal-content">
-        <img
+        <dato-image
           class="page-header__image"
-          :src="imageUrl(image.url, {
-            w: 1000
-          })"
+          :src="image.url"
+          alt=""
           :width="image.width"
           :height="image.height"
-          alt=""
+          loading="eager"
         />
       </div>
     </div>
@@ -74,8 +73,6 @@
 </template>
 
 <script>
-  import imageUrl from '../../lib/image-url'
-
   export default {
     props: {
       headline: {
@@ -136,11 +133,6 @@
         return (this.curlyBracket && this.fillScreen)
       }
     },
-    methods: {
-      imageUrl(image, options) {
-        return imageUrl(image, options)
-      }
-    }
   }
 </script>
 
@@ -228,10 +220,11 @@
   }
 
   .page-header__image {
-    margin-left: auto;
     display: block;
+    width: auto;
     max-width: 100%;
     max-height: 200px;
+    margin-left: auto;
   }
 
   .page-header .scroll-to {

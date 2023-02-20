@@ -8,8 +8,22 @@
         class="image-grid__item"
         :class="{
           'image-grid__item--highlighted': item.isHighlighted,
-          'image-grid__item--full-width': item.isFullWidth }">
-        <app-image v-if="item.image" :image="item.image" />
+          'image-grid__item--full-width': item.isFullWidth,
+        }"
+      >
+        <dato-image
+          v-if="item.image"
+          class="image-grid__item-image"
+          :src="item.image.url"
+          alt=""
+          :width="item.image.width"
+          :height="item.image.height"
+          :sizes="item.isFullWidth
+            ? '(min-width: 1100px) 50vw, 100vw'
+            : '(min-width: 1100px) 25vw, (min-width: 720px) 33vw, 50vw'
+          "
+          loading="eager"
+        />
         <div v-if="item.title && item.description" class="image-grid__item-content">
           <h3 class="image-grid__item-title h3">{{ item.title }}</h3>
           <p class="body-small">{{ item.description }}</p>
@@ -75,6 +89,12 @@
 
   .image-grid__item--highlighted {
     background-color: var(--brand-yellow);
+  }
+
+  .image-grid__item-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 
   .image-grid__item-content {

@@ -1,6 +1,12 @@
 <template>
   <figure class="full-width-image">
-    <responsive-image :has-fixed-ratio="false" :image="image" />
+    <dato-image
+      :src="image.url"
+      alt=""
+      :width="image.width"
+      :height="image.height"
+      loading="eager"
+    />
     <figcaption class="full-width-image__caption" v-if="image.title">
       {{ image.title }}
     </figcaption>
@@ -8,9 +14,6 @@
 </template>
 
 <script>
-
-  import imageUrl from '../../lib/image-url'
-
   export default {
     props: {
       image: {
@@ -32,17 +35,6 @@
       const cssWidth = this.$el.getBoundingClientRect().width
       const width = cssWidth * pixelRatio
       this.width = width
-    },
-    methods: {
-      imageUrl(options) {
-        if (this.width < 720) {
-          Object.assign(options, { fit:'crop', 'h': 288, crop: 'faces' })
-        } else {
-          Object.assign(options, { fit:'crop', 'h': 512, 'w': 1440, crop: 'faces' })
-        }
-
-        return imageUrl(this.image.url, options)
-      },
     },
   }
 </script>

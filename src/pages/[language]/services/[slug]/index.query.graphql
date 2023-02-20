@@ -21,8 +21,9 @@ fragment page on ServiceRecord {
   subtitle
   headerIllustration {
     url
-    format
     alt
+    width
+    height
   }
   serviceSeries {
     id
@@ -44,7 +45,6 @@ fragment page on ServiceRecord {
         alt
         width
         height
-        format
       }
       caption
       fullWidth
@@ -55,8 +55,9 @@ fragment page on ServiceRecord {
       body
       image {
         url
-        format
         alt
+        width
+        height
       }
     }
     ... on TestimonialBlockRecord {
@@ -108,7 +109,6 @@ fragment page on ServiceRecord {
           alt
           width
           height
-          format
         }
       }
     }
@@ -160,10 +160,10 @@ fragment page on ServiceRecord {
       lastName
       jobTitle
       image {
+        url
+        alt
         width
         height
-        url
-        format
       }
     }
   }

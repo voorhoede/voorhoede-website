@@ -1,7 +1,14 @@
 <template>
   <article :class="rootClass">
     <div class="service-excerpt__image">
-      <responsive-image v-if="image" :image="image"/>
+      <dato-image
+        v-if="image"
+        :src="image.url"
+        alt=""
+        :width="image.width"
+        :height="image.height"
+        loading="eager"
+      />
     </div>
     <div class="service-excerpt__content">
       <h3 v-if="title" class="service-excerpt__title h3">{{ title }}</h3>

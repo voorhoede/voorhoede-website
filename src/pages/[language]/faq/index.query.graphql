@@ -10,6 +10,8 @@ fragment page on FaqRecord {
   headerIllustration {
     url
     alt
+    width
+    height
   }
   slug
   social {
@@ -25,6 +27,8 @@ fragment page on FaqRecord {
     image {
       url
       alt
+      width
+      height
     }
   }
 }

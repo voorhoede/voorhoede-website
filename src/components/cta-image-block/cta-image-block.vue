@@ -1,10 +1,13 @@
 <template>
   <div class="cta-image-block">
     <div class="cta-image-block__image">
-      <responsive-image
-        :width-step="120"
-        :image="personImage"
-        :alt="personName" />
+      <dato-image
+        :src="personImage.url"
+        alt=""
+        :width="200"
+        :height="200"
+        loading="eager"
+      />
     </div>
 
     <div class="cta-image-block__content">
@@ -133,7 +136,6 @@
   .cta-image-block__image {
     --size: 180px;
 
-    position: relative;
     width: var(--size);
     min-width: var(--size);
     height: var(--size);
@@ -144,9 +146,8 @@
   }
 
   .cta-image-block__image > * {
-    position: absolute;
-    top: 0;
-    left: 0;
+    object-fit: cover;
+    object-position: top;
   }
 
   .cta-image-block__content {
@@ -167,9 +168,6 @@
 
     .cta-image-block__image {
       --size: 25vw;
-
-      margin-right: 0;
-      margin-left: 0;
     }
   }
 

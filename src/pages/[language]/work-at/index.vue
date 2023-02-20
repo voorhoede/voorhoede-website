@@ -33,7 +33,14 @@
       <h2 class="h3 page-work-at__layout">{{ data.page.uspsTitle }}</h2>
       <div class="usps__items">
         <div class="usps__item" v-for="usp in data.page.usps" :key="usp.title">
-          <responsive-image :image="usp.image" class="usps__item-image"/>
+          <dato-image
+            class="usps__item-image"
+            :src="usp.image.url"
+            alt=""
+            :width="usp.image.width"
+            :height="usp.image.height"
+            loading="eager"
+          />
           <h3 class="h4 usps__item-heading">{{ usp.title }}</h3>
           <div v-html="usp.body" class="body"/>
         </div>
@@ -65,8 +72,14 @@
     <!-- We had to combine the ImageWithText with
       the RichTextBlock to get the desired 'custom' layout -->
     <div class="image-with-text">
-      <responsive-image
-        :image="data.page.endImage"
+      <dato-image
+        class="image-with-text__image"
+        :src="data.page.endImage.url"
+        alt=""
+        :width="data.page.endImage.width"
+        :height="data.page.endImage.height"
+        sizes="(min-width: 1100px) 730px, (min-width: 720px) 40vw, 90vw"
+        loading="lazy"
       />
       <div class="image-with-text__body">
         <h2 class="image-with-text__body-title h3">
@@ -179,6 +192,7 @@
 
   .usps__item-image {
     max-width: 200px;
+    height: auto;
     margin-right: auto;
     margin-left: auto;
     margin-top: -150px;

@@ -28,6 +28,8 @@ fragment contact on ContactRecord {
   headerIllustration {
     url
     alt
+    width
+    height
   }
   contacts {
     title
@@ -38,7 +40,6 @@ fragment contact on ContactRecord {
       alt
       width
       height
-      format
     }
   }
   title
@@ -53,11 +54,10 @@ fragment contact on ContactRecord {
     ... on LocationRecord {
       id
       image {
-        width
         url
-        height
         alt
-        format
+        width
+        height
       }
       title
       body

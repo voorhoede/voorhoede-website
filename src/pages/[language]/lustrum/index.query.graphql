@@ -12,8 +12,9 @@ fragment lustrum on LustrumRecord {
   subtitle
   headerIllustration {
     url
-    format
     alt
+    width
+    height
   }
   slug
   social {
@@ -30,7 +31,6 @@ fragment lustrum on LustrumRecord {
     alt
     width
     height
-    format
   }
   factsTitle
   factsList {
@@ -45,7 +45,6 @@ fragment lustrum on LustrumRecord {
     alt
     width
     height
-    format
   }
   quote {
     title
@@ -59,11 +58,10 @@ fragment lustrum on LustrumRecord {
     person {
       name
       image {
-        alt
-        format
-        height
         url
+        alt
         width
+        height
       }
     }
   }
@@ -75,7 +73,6 @@ fragment lustrum on LustrumRecord {
       alt
       width
       height
-      format
     }
     title
   }
@@ -89,7 +86,6 @@ fragment lustrum on LustrumRecord {
       alt
       width
       height
-      format
     }
     isFullWidth
     isHighlighted
@@ -108,7 +104,7 @@ fragment lustrum on LustrumRecord {
     }
     image {
       url
-      format
+      alt
       width
       height
     }
@@ -124,13 +120,9 @@ fragment lustrum on LustrumRecord {
       name
       image {
         url
+        alt
         width
         height
-        format
-        focalPoint {
-          x
-          y
-        }
       }
     }
   }

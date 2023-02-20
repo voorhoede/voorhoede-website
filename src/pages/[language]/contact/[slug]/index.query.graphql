@@ -18,6 +18,8 @@ fragment page on ContactConfirmationRecord {
   headerIllustration {
     url
     alt
+    width
+    height
   }
   body
   callToActionLabel
@@ -62,10 +64,10 @@ fragment page on ContactConfirmationRecord {
       lastName
       jobTitle
       image {
+        url
+        alt
         width
         height
-        url
-        format
       }
     }
   }

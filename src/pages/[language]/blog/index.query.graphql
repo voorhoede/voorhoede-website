@@ -28,13 +28,9 @@ fragment blogPost on BlogPostRecord {
     name
     image {
       url
+      alt
       width
       height
-      format
-      focalPoint {
-        x
-        y
-      }
     }
   }
 }
@@ -54,6 +50,8 @@ fragment blogPostOverview on BlogPostOverviewRecord {
   headerIllustration {
     url
     alt
+    width
+    height
   }
   pinnedPosts {
     ...blogPost
@@ -99,10 +97,10 @@ fragment blogPostOverview on BlogPostOverviewRecord {
       lastName
       jobTitle
       image {
+        url
+        alt
         width
         height
-        url
-        format
       }
     }
   }

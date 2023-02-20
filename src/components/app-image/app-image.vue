@@ -1,162 +1,43 @@
 <template>
-  <div
-    :class="{ 'app-image--pastel' : svgFormat === false }"
-  >
-    <div
-      v-if="svgFormat"
-      class="app-image__picture"
-    >
-      <!-- Safari fix for animated svgs -->
-      <object
-        class="app-image__img"
-        :data="imageUrl()"
-        type="image/svg+xml"
-        tabindex="-1"
-        :aria-label="imageAlt"
-        aria-hidden="true"
-        role="img"
-      />
-    </div>
-    <picture
-      v-else
-      class="app-image__picture"
-    >
-      <!--[if IE 9]><video style="display: none;"><![endif]-->
-      <source
-        type="image/webp"
-        :srcset="imageUrl({
-          fm: 'webp',
-          ...cropOptions
-        })">
-      <source
-        :type="`image/${image.format}`"
-        :srcset="imageUrl({
-          ...cropOptions
-        })">
-      <!--[if IE 9]></video><![endif]-->
-      <img
-        class="app-image__img"
-        :loading="lazyLoad ? 'lazy' : 'eager'"
-        :src="imageUrl({
-          ...cropOptions
-        })"
-        :alt="imageAlt"
-        :width="width"
-        :height="width"
-      >
-    </picture>
-  </div>
+  <img
+    :src="loader({ src: props.src, width: props.width, quality: props.quality })"
+    :alt="props.alt"
+    :width="props.width"
+    :height="props.height"
+    :loading="props.loading"
+    :sizes="props.sizes"
+    :srcset="props.srcset ?? generateSrcSet({
+      loader: props.loader,
+      src: props.src,
+      width: props.width,
+      quality: props.quality,
+      sizes: props.sizes,
+    })"
+    :decoding="props.decoding"
+  />
 </template>
 
-<script>
-  import imageUrl from '../../lib/image-url'
+<script setup lang="ts">
+  import { ImageLoader } from './types';
+  import { generateSrcSet } from './generate-src-set';
 
-  export default {
-    props: {
-      caption: {
-        type: String,
-        default: '',
-      },
-      image: {
-        type: Object,
-        required: true,
-        validator(image) {
-          let imageDimensions =
-            (image.width && image.height) ?
-            typeof(image.width && image.height) === 'number' : true
+  export type ImageProps = {
+    src: string
+    alt: string
+    width: number;
+    height: number;
+    loading: 'eager' | 'lazy';
+    sizes?: string
+    srcset?: string
+    decoding?: 'async' | 'auto' | 'sync'
+    loader?: ImageLoader;
+    // Quality passed to the loader
+    quality?: number;
+  };
 
-          let imageFormat = image.format ? typeof(image.format === 'string') : true
-
-          return imageDimensions && imageFormat && typeof(image.url) === 'string'
-        },
-      },
-      lazyLoad: {
-        type: Boolean,
-        default: true
-      },
-      widthStep: {
-        type: Number,
-        default: 100,
-      },
-      cropAndKeepRatio: {
-        type: Boolean,
-        default: false
-      },
-    },
-    data() {
-      return {
-        width: null,
-        cropOptions: null
-      }
-    },
-    computed: {
-      imageAlt () {
-        return this.image.alt ? this.image.alt : ''
-      },
-      svgFormat () {
-        return this.image.url.includes('.svg')
-      }
-    },
-    mounted() {
-      const pixelRatio = window.devicePixelRatio || 1
-      const cssWidth = this.$el.getBoundingClientRect().width
-      const width = Math.ceil(cssWidth * pixelRatio / this.widthStep) * this.widthStep
-      this.width = Math.min(width, this.image.width)
-      const cropOptions = {
-        w: this.width
-      }
-      if (this.cropAndKeepRatio) {
-        cropOptions.h = this.width
-        cropOptions.fit = 'crop'
-
-        if (this.image.focalPoint) {
-          cropOptions.crop = 'focalpoint'
-          cropOptions['fp-x'] = this.image.focalPoint.x
-          cropOptions['fp-y'] = this.image.focalPoint.y
-        }
-      }
-      this.cropOptions = cropOptions
-    },
-    methods: {
-      imageUrl(options) {
-        return imageUrl(this.image.url, options)
-      },
-    },
-  }
+  const props = withDefaults(defineProps<ImageProps>(), {
+    decoding: 'async',
+    loader: () => ({ src }) => src,
+    quality: 45,
+  });
 </script>
-
-<style>
-  .app-image--pastel {
-    height: 100%;
-    width: 100%;
-    background-color: var(--bg-pastel);
-  }
-
-  .app-image__picture,
-  .app-image__img {
-    display: block;
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-  }
-
-  .app-image__img::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background-color: var(--bg-pastel);
-  }
-
-  .app-image__img::after {
-    content: attr(alt);
-    display: block;
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    text-align: center;
-  }
-</style>

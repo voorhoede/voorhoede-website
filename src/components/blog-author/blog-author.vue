@@ -9,11 +9,12 @@
         :height="author.image.width"
       >
         <app-link :to="$localeUrl({ name: 'team-slug', params: { slug: author.slug } })">
-          <app-image
-            :image="author.image"
-            :crop-and-keep-ratio="true"
-            :width-step="135"
-            class="blog-author__image-test"
+          <dato-image
+            :src="author.image.url"
+            alt=""
+            :width="135"
+            :height="135"
+            loading="eager"
           />
         </app-link>
       </fixed-ratio>

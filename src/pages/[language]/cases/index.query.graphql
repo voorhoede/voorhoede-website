@@ -20,17 +20,17 @@ fragment page on CaseOverviewRecord {
   subtitle
   headerIllustration {
     url
-    format
     alt
+    width
+    height
   }
   introTitle
   introBody
   introImage {
-    width
     url
-    height
     alt
-    format
+    width
+    height
   }
   contactBody
   projects {
@@ -41,6 +41,9 @@ fragment page on CaseOverviewRecord {
       title
       image {
         url
+        alt
+        width
+        height
       }
     }
   }
@@ -56,11 +59,10 @@ fragment page on CaseOverviewRecord {
     person {
       name
       image {
-        alt
-        format
-        height
         url
+        alt
         width
+        height
       }
     }
   }
@@ -106,10 +108,10 @@ fragment page on CaseOverviewRecord {
       lastName
       jobTitle
       image {
+        url
+        alt
         width
         height
-        url
-        format
       }
     }
   }

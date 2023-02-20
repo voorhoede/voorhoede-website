@@ -12,8 +12,9 @@ fragment about on AboutRecord {
   subtitle
   headerIllustration {
     url
-    format
     alt
+    width
+    height
   }
   slug
   social {
@@ -30,7 +31,6 @@ fragment about on AboutRecord {
     alt
     width
     height
-    format
   }
   teamGridTitle
   teamGrid {
@@ -42,7 +42,6 @@ fragment about on AboutRecord {
       alt
       width
       height
-      format
     }
     isFullWidth
     isHighlighted
@@ -54,7 +53,6 @@ fragment about on AboutRecord {
     alt
     width
     height
-    format
   }
   jobsTitle
   jobsBody
@@ -63,8 +61,9 @@ fragment about on AboutRecord {
     slug
     jobImage {
       url
-      format
       alt
+      width
+      height
     }
   }
   textBlocksTitle
