@@ -17,8 +17,9 @@ fragment page on BlogPostRecord {
   subtitle
   headerIllustration {
     url
-    format
     alt
+    width
+    height
   }
   date: publishDate
   authors {
@@ -28,13 +29,9 @@ fragment page on BlogPostRecord {
     slug
     image {
       url
+      alt
       width
       height
-      format
-      focalPoint {
-        x
-        y
-      }
     }
   }
   introTitle
@@ -66,7 +63,6 @@ fragment page on BlogPostRecord {
         alt
         width
         height
-        format
       }
       caption
       fullWidth
@@ -79,7 +75,6 @@ fragment page on BlogPostRecord {
           alt
           width
           height
-          format
         }
         description
         inverse
@@ -164,10 +159,10 @@ fragment page on BlogPostRecord {
       lastName
       jobTitle
       image {
+        url
+        alt
         width
         height
-        url
-        format
       }
     }
   }

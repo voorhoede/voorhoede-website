@@ -16,13 +16,15 @@ fragment eventItem on EventItemRecord {
   }
   headerIllustration {
     url
+    alt
+    width
+    height
   }
   date
   url
   callToActionLabel
   image {
     url
-    format
     alt
     width
     height
@@ -48,7 +50,6 @@ fragment eventItem on EventItemRecord {
         alt
         width
         height
-        format
       }
       caption
       fullWidth
@@ -60,7 +61,6 @@ fragment eventItem on EventItemRecord {
           alt
           width
           height
-          format
         }
         description
         inverse

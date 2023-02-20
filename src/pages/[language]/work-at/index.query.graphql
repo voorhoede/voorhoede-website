@@ -12,8 +12,9 @@ fragment workat on WorkatRecord {
   subtitle
   headerIllustration {
     url
-    format
     alt
+    width
+    height
   }
   slug
   social {
@@ -30,7 +31,6 @@ fragment workat on WorkatRecord {
     alt
     width
     height
-    format
   }
   interstitialCta {
     title
@@ -46,7 +46,6 @@ fragment workat on WorkatRecord {
     alt
     width
     height
-    format
   }
   endTitle
   endBody(markdown: true)
@@ -55,7 +54,6 @@ fragment workat on WorkatRecord {
     alt
     width
     height
-    format
   }
   uspsTitle
   usps {
@@ -66,7 +64,6 @@ fragment workat on WorkatRecord {
       alt
       width
       height
-      format
     }
   }
   uspsAfter(markdown: true)
@@ -82,11 +79,10 @@ fragment workat on WorkatRecord {
     person {
       name
       image {
-        alt
-        format
-        height
         url
+        alt
         width
+        height
       }
     }
   }
@@ -110,7 +106,6 @@ fragment workat on WorkatRecord {
       alt
       width
       height
-      format
     }
     isFullWidth
     isHighlighted

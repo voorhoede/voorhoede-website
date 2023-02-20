@@ -7,8 +7,9 @@ query Jobs($locale: SiteLocale) {
     slug
     jobImage {
       url
-      format
       alt
+      width
+      height
     }
   }
 }
@@ -18,8 +19,9 @@ fragment jobOverview on JobOverviewRecord {
   subtitle
   headerIllustration {
     url
-    format
     alt
+    width
+    height
   }
   noJobsAvailableMessage
   slug

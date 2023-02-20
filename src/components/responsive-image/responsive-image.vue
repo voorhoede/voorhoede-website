@@ -1,17 +1,14 @@
 <template>
   <div class="responsive-image">
-    <fixed-ratio
-      v-if="hasFixedRatio"
+    <dato-image
+      class="responsive-image__image"
+      :src="image.url"
+      alt=""
       :width="image.width"
-      :height="image.height">
-      <app-image
-        :image="image"
-        :caption="caption"/>
-    </fixed-ratio>
-    <app-image
-      v-else
-      :image="image"
-      :caption="caption"/>
+      :height="image.height"
+      loading="eager"
+      sizes="100vw"
+    />
     <div
       v-if="caption"
       class="responsive-image__caption body-detail">
@@ -31,20 +28,17 @@
         type: Object,
         required: true,
       },
-      hasFixedRatio: {
-        type: Boolean,
-        default: true
-      }
     }
   }
 </script>
 
 <style>
-  .responsive-image {
+  .responsive-image__image {
     margin-left: auto;
     margin-right: auto;
-    height: auto;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .responsive-image__caption {

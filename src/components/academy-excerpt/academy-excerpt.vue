@@ -24,22 +24,20 @@
     </div>
     <div v-if="illustration" class="academy-excerpt__illustration-column">
       <div class="academy-excerpt__illustration-wrapper">
-        <img
+        <dato-image
           class="academy-excerpt__illustration"
-          :src="imageUrl(illustration.url, {
-            w: '300'
-          })"
+          :src="illustration.url"
+          :width="illustration.width"
+          :height="illustration.height"
           alt=""
           loading="lazy"
-        >
+        />
       </div>
     </div>
   </article>
 </template>
 
 <script>
-  import imageUrl from '../../lib/image-url'
-
   export default {
     props: {
       date: {
@@ -66,11 +64,6 @@
         }
       },
     },
-    methods: {
-      imageUrl(image, options) {
-        return imageUrl(image, options)
-      }
-    }
   }
 </script>
 
@@ -141,10 +134,10 @@
     }
 
     .academy-excerpt__illustration {
-      widows: 100%;
       height: 100%;
       max-width: 100%;
       max-height: 100%;
+      width: 300px;
     }
   }
 

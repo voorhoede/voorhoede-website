@@ -1,14 +1,15 @@
 <template>
   <div class="job-excerpt">
     <div class="job-excerpt__image">
-      <img
+      <dato-image
         v-if="image"
         class="job-excerpt__image-item"
-        :src="imageUrl(image.url, {
-          w: '150'
-        })"
+        :src="image.url"
         alt=""
-      >
+        :width="image.width"
+        :height="image.height"
+        loading="eager"
+      />
     </div>
 
     <div class="job-excerpt__text">
@@ -26,8 +27,6 @@
 </template>
 
 <script>
-  import imageUrl from '../../lib/image-url'
-
   export default {
     props: {
       isNested: {
@@ -50,11 +49,6 @@
         },
       }
     },
-    methods: {
-      imageUrl(image, options) {
-        return imageUrl(image, options)
-      }
-    }
   }
 </script>
 

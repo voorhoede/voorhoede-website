@@ -4,20 +4,19 @@
 
     <rich-text-block class="generic-text-block__body" :text="body" />
 
-    <img
+    <dato-image
       v-if="image"
       class="generic-text-block__image"
-      :src="imageUrl(image.url, {
-        w: '1500'
-      })"
+      :src="image.url"
       alt=""
-    >
+      :width="image.width"
+      :height="image.height"
+      sizes="80vw"
+    />
   </div>
 </template>
 
 <script>
-  import imageUrl from '../../lib/image-url'
-
   export default {
     props: {
       title: {

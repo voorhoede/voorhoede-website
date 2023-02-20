@@ -1,29 +1,14 @@
 <template>
   <article class="link-card">
-    <picture class="link-card__media">
-      <source
-        type="image/webp"
-        :srcset="getImageUrl(image.url, {
-          fm: 'webp',
-          w: '800'
-        })">
-      <source
-        type="image/png"
-        :srcset="getImageUrl(image.url,{
-          fm: 'png',
-          w: '800'
-        })">
-      <img
-        class="link-card__image"
-        :src="getImageUrl(image.url, {
-          w: '800'
-        })"
-        :width="image.width"
-        :height="image.height"
-        alt=""
-        loading="lazy"
-      >
-    </picture>
+    <dato-image
+      class="link-card__image"
+      :src="image.url"
+      alt=""
+      :width="image.width"
+      :height="image.height"
+      loading="lazy"
+      sizes="(min-width: 1300px) 420px, (min-width: 800px) 33vw, (min-width: 400px) 60vw, 90vw"
+    />
     <div class="link-card__caption">
       <app-link
         v-if="internalLink"
@@ -51,8 +36,6 @@
 </template>
 
 <script>
-  import imageUrl from '../../lib/image-url'
-
   export default {
     props: {
       image: {
@@ -76,17 +59,11 @@
         default: null
       }
     },
-    methods: {
-      getImageUrl(url, options) {
-        return imageUrl(url, options)
-      }
-    }
   }
 </script>
 
 <style>
   :root {
-    --link-card-image-ratio: .7043795620437956;
     --duration: .15s;
   }
 
@@ -95,19 +72,11 @@
     background-color: var(--fog);
   }
 
-  .link-card__media {
-    display: block;
-    position: relative;
-    padding-top: calc(var(--link-card-image-ratio) * 100%);
-  }
-
   .link-card__image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     object-fit: cover;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 11;
   }
 
   .link-card__caption {

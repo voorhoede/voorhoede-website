@@ -22,8 +22,9 @@ fragment job on JobRecord {
   }
   jobImage {
     url
-    format
     alt
+    width
+    height
   }
   url
   validUntil
@@ -39,11 +40,10 @@ fragment job on JobRecord {
       gallery {
         images {
           id
-          width
           url
-          height
           alt
-          format
+          width
+          height
         }
       }
     }
@@ -54,8 +54,9 @@ fragment job on JobRecord {
       body
       image {
         url
-        format
         alt
+        width
+        height
       }
     }
   }

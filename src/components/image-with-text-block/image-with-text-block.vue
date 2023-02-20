@@ -1,6 +1,15 @@
 <template>
   <div class="image-with-text" :class="{ 'image-with-text--inverse': inverse }">
-    <responsive-image :image="image" />
+    <dato-image
+      class="image-with-text__image"
+      :src="image.url"
+      alt=""
+      :width="image.width"
+      :height="image.height"
+      sizes="(min-width: 1100px) 730px, (min-width: 720px) 40vw, 100vw"
+      loading="eager"
+      :quality="55"
+    />
     <div class="image-with-text__body">
       <h2 v-if="title" class="image-with-text__body-title h3">{{ title }}</h2>
       <div class="pullquote image-with-text__body-text" v-html="body"></div>
@@ -36,10 +45,8 @@
     width: 100%;
   }
 
-  .image-with-text .responsive-image {
-    position: relative;
-    z-index: var(--z-index-low);
-    width: 100%;
+  .image-with-text__image {
+    height: auto;
   }
 
   .image-with-text__body {
@@ -96,7 +103,7 @@
       );
     }
 
-    .image-with-text .responsive-image {
+    .image-with-text__image {
       width: 50%;
     }
 
@@ -153,7 +160,7 @@
       );
     }
 
-    .image-with-text .responsive-image {
+    .image-with-text__image {
       width: 60%;
     }
 

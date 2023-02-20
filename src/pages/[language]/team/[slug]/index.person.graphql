@@ -18,6 +18,5 @@ fragment person on PersonRecord {
     alt
     width
     height
-    format
   }
 }

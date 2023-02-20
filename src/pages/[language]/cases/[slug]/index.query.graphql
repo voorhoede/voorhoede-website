@@ -24,18 +24,17 @@ fragment caseItem on CaseItemRecord {
   }
   heroIllustration {
     url
-    format
     alt
+    width
+    height
   }
   caseTeaser {
     title
     image {
       url
-      format
       alt
       width
       height
-      format
     }
   }
   content {
@@ -52,7 +51,6 @@ fragment caseItem on CaseItemRecord {
         alt
         width
         height
-        format
       }
       caption
       fullWidth
@@ -65,7 +63,6 @@ fragment caseItem on CaseItemRecord {
           alt
           width
           height
-          format
         }
         description
         inverse
@@ -192,10 +189,10 @@ fragment caseItem on CaseItemRecord {
       lastName
       jobTitle
       image {
+        url
+        alt
         width
         height
-        url
-        format
       }
     }
   }

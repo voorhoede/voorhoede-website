@@ -1,7 +1,15 @@
 <template>
   <main class="page-team grid">
     <header class="page-team__header">
-      <app-image class="page-team__image" :image="person.image" />
+      <dato-image
+        class="page-team__image"
+        :src="person.image.url"
+        alt=""
+        :width="person.image.width"
+        :height="person.image.height"
+        sizes="(min-width: 768px) 200px, 100px"
+        loading="eager"
+      />
       <div class="page-team__details">
         <div>
           <h1 class="h2">
@@ -96,9 +104,8 @@ useSeoHead({
   }
 
   .page-team__image {
-    min-width: calc(var(--image-size) / 2);
-    width: 10rem;
-    min-height: 150px;
+    width: calc(var(--image-size) / 2);
+    height: calc(var(--image-size) / 2);
     object-fit: cover;
     z-index: var(--z-index-high);
   }
@@ -106,7 +113,7 @@ useSeoHead({
   @media (min-width: 768px) {
     .page-team__image {
       width: var(--image-size);
-      min-height: var(--image-size);
+      height: var(--image-size);
     }
   }
 
