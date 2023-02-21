@@ -10,7 +10,6 @@ fragment person on PersonRecord {
   jobTitle
   lastName
   employmentStatus
-  twitterHandle
   slug
   biography
   image {
@@ -18,5 +17,9 @@ fragment person on PersonRecord {
     alt
     width
     height
+  }
+  links {
+    title
+    url
   }
 }
