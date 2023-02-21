@@ -20,16 +20,12 @@
           </p>
         </div>
 
-        <span v-if="person.twitterHandle" class="body-small page-team__social">
-          {{ person.twitterHandle }}
-        </span>
-
         <ul class="page-team__links">
           <li v-for="link in person.links" :key="link.title">
             <a
               :href="link.url"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               class="body-small page-team__link"
             >
               {{ link.title }}
@@ -141,19 +137,16 @@ useSeoHead({
     }
   }
 
-  .page-team__social {
-    margin-top: var(--spacing-small);
-    color: var(--off-black);
-  }
-
   .page-team__links {
     margin-top: var(--spacing-small);
     list-style: none;
   }
 
   .page-team__link {
+    display: inline-block;
     width: fit-content;
     padding-bottom: .15rem;
+    margin-bottom: 0.6rem;
     color: var(--html-blue);
     background: transparent linear-gradient(to top, transparent 1px, var(--html-blue) 1px, var(--html-blue) 2px, transparent 2px);
   }
