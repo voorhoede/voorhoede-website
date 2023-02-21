@@ -38,6 +38,7 @@
           :height="large ? 65 : 40"
           loading="lazy"
           :quality="85"
+          :modifiers="{ ar: '1:1', fit: 'crop', crop: 'faces', sat: -100 }"
         />
       </div>
       <span :class="large ? 'body' : 'body-small'">{{ $t('by__authors_', { authors }) }}</span>
@@ -181,7 +182,6 @@
     display: block;
     object-fit: cover;
     object-position: 0 0;
-    filter: saturate(0);
     height: var(--blog-thumbnail-small);
     width: var(--blog-thumbnail-small);
     margin-right: var(--spacing-smaller);
