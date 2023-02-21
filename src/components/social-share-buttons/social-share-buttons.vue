@@ -58,9 +58,7 @@
     },
     computed: {
       blogAuthors () {
-        return this.authors.map(author => {
-          return author.twitterHandle ? author.twitterHandle : author.name
-        }).join(' ')
+        return this.authors.map((author) => author.name).join(' ');
       },
       socials () {
         return [

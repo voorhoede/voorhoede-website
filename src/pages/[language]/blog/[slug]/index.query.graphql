@@ -25,7 +25,6 @@ fragment page on BlogPostRecord {
   authors {
     name
     lastName
-    twitterHandle
     slug
     image {
       url
