@@ -8,12 +8,13 @@
 </template>
 
 <script setup lang="ts">
+  import { withQuery } from 'ufo';
   import { ImageLoader } from '../app-image/types';
 
-  const props = defineProps(['src', 'srcset']);
+  const props = defineProps(['src', 'srcset', 'modifiers']);
 
   const imgixLoader: ImageLoader = ({ src, width, quality }) => (
-    `${src}?w=${width}&q=${quality}&auto=format,compress`
+    withQuery(src, { w: width, q: quality, auto: 'format,compress', ...props.modifiers })
   );
 
   const loader = computed(() => (
