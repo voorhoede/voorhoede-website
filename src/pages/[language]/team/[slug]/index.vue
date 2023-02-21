@@ -9,6 +9,7 @@
         :height="person.image.height"
         sizes="(min-width: 768px) 200px, 100px"
         loading="eager"
+        :modifiers="{ ar: '1:1', fit: 'crop', crop: 'faces' }"
       />
       <div class="page-team__details">
         <div>

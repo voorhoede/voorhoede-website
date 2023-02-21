@@ -1,24 +1,21 @@
 <template>
   <div>
-    <div class="blog-author__image">
-      <fixed-ratio
-        class="blog-author__image-ratio"
-        v-for="author in item.authors"
-        :key="author.name"
-        :width="author.image.width"
-        :height="author.image.width"
-      >
-        <app-link :to="$localeUrl({ name: 'team-slug', params: { slug: author.slug } })">
-          <dato-image
-            :src="author.image.url"
-            alt=""
-            :width="135"
-            :height="135"
-            loading="eager"
-          />
-        </app-link>
-      </fixed-ratio>
-    </div>
+    <app-link
+      v-for="author in item.authors"
+      :key="author.name"
+      class="blog-author__image-wrapper"
+      :to="$localeUrl({ name: 'team-slug', params: { slug: author.slug } })"
+    >
+      <dato-image
+        class="blog-author__image"
+        :src="author.image.url"
+        alt=""
+        :width="135"
+        :height="135"
+        loading="eager"
+        :modifiers="{ ar: '1:1', fit: 'crop', crop: 'faces' }"
+      />
+    </app-link>
     <div class="blog-author__text body">
       <div class="blog-author__links">
         <span>
@@ -83,31 +80,11 @@
 
 <style>
   :root {
-    --thumbnail-size: 135px;
     --author-image-border-width: 2px;
-  }
-
-  .blog-author__image-container {
-    max-width: var(--thumbnail-size);
   }
 
   .blog-author__image {
     display: none;
-    margin-bottom: var(--spacing-small);
-  }
-
-  .blog-author__image-ratio {
-    margin-top: var(--spacing-small);
-    transform: translateX(0);
-    transition: transform 0.2s ease-in-out;
-  }
-
-  .blog-author__image-ratio:first-child {
-    margin-top: 0;
-  }
-
-  .blog-author__image-ratio:hover, .blog-author__image-ratio:focus {
-    transform: translateX(10px);
   }
 
   .blog-author__author-link {
@@ -140,14 +117,6 @@
   }
 
   @media (min-width: 720px) {
-    .blog-author__image {
-      display: block;
-      border-right: 2px solid var(--very-dim);
-      filter: saturate(0);
-      padding-right: var(--spacing-small);
-      max-width: calc(var(--thumbnail-size) + var(--spacing-small) + var(--author-image-border-width));
-    }
-
     .blog-author__text {
       display: flex;
       flex-direction: column;
@@ -155,9 +124,20 @@
   }
 
   @media (min-width: 1100px) {
+    .blog-author__image-wrapper {
+      display: block;
+      border-right: 2px solid var(--very-dim);
+    }
+
     .blog-author__image {
-      padding-right: var(--spacing-larger);
-      max-width: calc(var(--thumbnail-size) + var(--spacing-larger) + var(--author-image-border-width));
+      display: block;
+      margin-bottom: var(--spacing-small);
+      transform: translateX(0);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .blog-author__image:hover, .blog-author__image:focus {
+      transform: translateX(10px);
     }
   }
 </style>
