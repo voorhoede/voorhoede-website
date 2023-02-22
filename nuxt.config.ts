@@ -29,6 +29,9 @@ export default defineNuxtConfig({
     nuxtIcons,
     plausible,
   ],
+  plausible: {
+    apiHost: '/mogelijk',
+  },
   hooks: {
     'build:before': () => Promise.all([
       fetchTranslations({ datoApiToken: process.env.DATO_API_TOKEN })
