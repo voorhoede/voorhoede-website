@@ -3,14 +3,20 @@
     class="contact-form"
     :class="{ 'grid': hasSidebar }"
   >
-    <div v-if="hasSidebar" class="contact-form__header">
+    <div
+      v-if="hasSidebar"
+      class="contact-form__header"
+    >
       <h2
         v-if="title"
         class="contact-form__header h3"
       >
         {{ title }}
       </h2>
-      <div v-if="contactPerson" class="contact-form__contact-person">
+      <div
+        v-if="contactPerson"
+        class="contact-form__contact-person"
+      >
         <dato-image
           class="contact-form__contact-person-image"
           :src="contactPerson.image.url"
@@ -19,7 +25,9 @@
           :height="170"
           loading="lazy"
         />
-        <p class="h5">{{ contactPerson.name }} {{ contactPerson.lastName }}</p>
+        <p class="h5">
+          {{ contactPerson.name }} {{ contactPerson.lastName }}
+        </p>
         <p
           v-if="contactPerson.jobTitle"
           class="body-small"
@@ -45,12 +53,29 @@
       :novalidate="useCustomValidation"
     >
       <fieldset>
-        <legend v-if="ariaLabelOrTitle" class="sr-only">{{ ariaLabelOrTitle }}</legend>
-        <input type="hidden" name="form-name" :value="form['form-name']">
-        <input type="text" name="subject" :value="form.name" class="hidden"/>
+        <legend
+          v-if="ariaLabelOrTitle"
+          class="sr-only"
+        >
+          {{ ariaLabelOrTitle }}
+        </legend>
+        <input
+          type="hidden"
+          name="form-name"
+          :value="form['form-name']"
+        >
+        <input
+          type="text"
+          name="subject"
+          :value="form.name"
+          class="hidden"
+        >
         <label class="hidden">
           Don't fill this out if you're human:
-          <input v-model="form.magicCastle" name="magic-castle">
+          <input
+            v-model="form.magicCastle"
+            name="magic-castle"
+          >
         </label>
         <input-field
           v-model="form.name"
@@ -126,6 +151,7 @@
       ariaLabel: {
         type: String,
         required: false,
+        default: undefined,
       },
       contactPerson: {
         type: Object,

@@ -11,7 +11,8 @@
     />
     <div
       v-if="caption"
-      class="responsive-image__caption body-detail">
+      class="responsive-image__caption body-detail"
+    >
       {{ caption }}
     </div>
   </div>

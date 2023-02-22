@@ -15,8 +15,16 @@
         loading="eager"
       />
       <div class="page-introduction__content">
-        <h2 v-if="section.title" class="h3">{{ section.title }}</h2>
-        <div class="body-big font-html-blue" v-html="section.body" />
+        <h2
+          v-if="section.title"
+          class="h3"
+        >
+          {{ section.title }}
+        </h2>
+        <div
+          class="body-big font-html-blue"
+          v-html="section.body"
+        />
       </div>
     </article>
   </section>

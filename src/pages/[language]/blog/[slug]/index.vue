@@ -12,9 +12,12 @@
     />
 
     <aside class="page-blog-post__aside">
-      <blog-author class="page-blog-post__aside-author" :item="data.page" />
+      <blog-author
+        class="page-blog-post__aside-author"
+        :item="data.page"
+      />
       <social-share-buttons
-        :baseUrl="runtimeConfig.public.baseUrl"
+        :base-url="runtimeConfig.public.baseUrl"
         :title="data.page.socialTitle"
         :twitter-title="data.page.title"
         :authors="data.page.authors"
@@ -24,7 +27,9 @@
 
     <article class="page-blog-post-list">
       <text-block>
-        <h2 class="font-html-blue testimonial">{{ data.page.introTitle }}</h2>
+        <h2 class="font-html-blue testimonial">
+          {{ data.page.introTitle }}
+        </h2>
       </text-block>
 
       <template v-for="item in data.page.items">
@@ -59,7 +64,8 @@
           v-if="item.__typename === 'CodeBlockRecord' && item.body"
           :language="item.language"
           :content="prismify({ body: item.body, language: item.language })"
-          :key="item.id" />
+          :key="item.id"
+        />
 
         <image-with-description
           :id="item.id"
@@ -68,7 +74,8 @@
           :key="item.id"
           :image="item.imageWithDescription.image"
           :inverse="item.imageWithDescription.inverse"
-          :description="item.imageWithDescription.description" />
+          :description="item.imageWithDescription.description"
+        />
 
         <quote-block
           :id="item.id"
@@ -108,7 +115,8 @@
           <h3
             v-if="item.title"
             class="page-blog-post-list__title h3 font-html-blue"
-            :id="slugify(item.title)">
+            :id="slugify(item.title)"
+          >
             {{ item.title }}
           </h3>
           <rich-text-block
@@ -121,7 +129,8 @@
         <div
           :id="item.id"
           v-if="item.__typename === 'LinkSectionRecord'"
-          :key="item.id">
+          :key="item.id"
+        >
           <app-button
             class="page-blog-post__button"
             :external="item.external"
@@ -134,8 +143,12 @@
 
     <div
       class="page-blog-post__link-container"
-      ref="articleEnd">
-      <app-link class="app-button app-button--secondary body font-bold" :to="$localeUrl({ name: 'blog' })">
+      ref="articleEnd"
+    >
+      <app-link
+        class="app-button app-button--secondary body font-bold"
+        :to="$localeUrl({ name: 'blog' })"
+      >
         &larr; {{ $t('all_blogposts') }}
       </app-link>
     </div>

@@ -14,7 +14,7 @@
       sizes: props.sizes,
     })"
     :decoding="props.decoding"
-  />
+  >
 </template>
 
 <script setup lang="ts">
@@ -36,6 +36,8 @@
   };
 
   const props = withDefaults(defineProps<ImageProps>(), {
+    sizes: undefined,
+    srcset: undefined,
     decoding: 'async',
     loader: () => ({ src }) => src,
     quality: 45,

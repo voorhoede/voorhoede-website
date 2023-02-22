@@ -12,7 +12,9 @@
           class="breadcrumbs-block__link app-button app-button--secondary body"
           :to="backLink"
           secondary
-        >&larr; {{ backLinkLabel }}</app-link>
+        >
+          &larr; {{ backLinkLabel }}
+        </app-link>
       </li>
       <li
         v-if="hasNextLink"
@@ -22,7 +24,9 @@
           class="breadcrumbs-block__link app-button app-button--secondary body"
           :to="nextLink"
           secondary
-        >{{ nextLinkLabel }} &rarr;</app-link>
+        >
+          {{ nextLinkLabel }} &rarr;
+        </app-link>
       </li>
     </ul>
   </nav>

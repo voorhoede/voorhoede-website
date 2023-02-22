@@ -1,9 +1,14 @@
 <template>
   <div class="interstitial-cta">
-    <p class="pullquote">{{ cta }}</p>
+    <p class="pullquote">
+      {{ cta }}
+    </p>
 
     <div class="interstitial-cta__buttons">
-      <template v-for="button in buttons" :key="button.label">
+      <template
+        v-for="button in buttons"
+        :key="button.label"
+      >
         <app-button
           :label="button.label"
           :to="button.to"

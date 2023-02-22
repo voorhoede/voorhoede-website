@@ -3,7 +3,8 @@
     <li
       v-for="service in services"
       :key="service.ctaLink"
-      class="services-list__item">
+      class="services-list__item"
+    >
       <service-excerpt
         :title="service.excerptTitle"
         :slug="service.slug"

@@ -19,6 +19,7 @@
     <textarea
       v-if="textarea"
       :id="id"
+      ref="input"
       :name="name || id"
       :type="type"
       :placeholder="placeholderLabel"
@@ -27,13 +28,13 @@
       class="body"
       :class="{ 'is-invalid': isInvalid }"
       rows="5"
-      ref="input"
       :aria-invalid="isInvalid"
       @input="updateInput"
     />
     <input
       v-else
       :id="id"
+      ref="input"
       :name="name || id"
       :value="value"
       :type="type"
@@ -41,7 +42,6 @@
       :required="required"
       class="input-field__input body"
       :class="{ 'is-invalid': isInvalid }"
-      ref="input"
       :aria-invalid="isInvalid"
       @input="updateInput"
     >
@@ -100,6 +100,7 @@
         default: false
       }
     },
+    emits: ['input'],
     data() {
       return {
         valid: false

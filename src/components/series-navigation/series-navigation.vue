@@ -4,7 +4,10 @@
     aria-labelledby="series-navigation-title"
   >
     <header class="series-navigation__header">
-      <h2 id="series-navigation-title" class="series-navigation__title h3">
+      <h2
+        id="series-navigation-title"
+        class="series-navigation__title h3"
+      >
         {{ titleRoute.title }}
       </h2>
     </header>
@@ -24,8 +27,11 @@
         >
           {{ childRoute.title }}
         </app-link>
-        <span class="body-big" v-else>
-          {{childRoute.title}}
+        <span
+          class="body-big"
+          v-else
+        >
+          {{ childRoute.title }}
         </span>
       </li>
     </ul>

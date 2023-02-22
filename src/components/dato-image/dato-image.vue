@@ -11,7 +11,20 @@
   import { withQuery } from 'ufo';
   import { ImageLoader } from '../app-image/types';
 
-  const props = defineProps(['src', 'srcset', 'modifiers']);
+  const props = defineProps({
+    src: {
+      type: String,
+      required: true,
+    },
+    'srcset': {
+      type: String,
+      default: undefined,
+    },
+    'modifiers': {
+      type: Object,
+      default: undefined,
+    },
+  });
 
   const imgixLoader: ImageLoader = ({ src, width, quality }) => (
     withQuery(src, { w: width, q: quality, auto: 'format,compress', ...props.modifiers })

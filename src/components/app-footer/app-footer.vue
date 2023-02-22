@@ -2,8 +2,18 @@
   <footer class="app-footer grid">
     <div class="app-footer__layout">
       <div class="app-footer__header">
-        <app-link :to="$localeUrl()" :aria-label="$t('home')" :title="$t('home')">
-          <img class="app-footer__header-logo" src="/images/logo-with-text.svg" alt="" width="190" height="32">
+        <app-link
+          :to="$localeUrl()"
+          :aria-label="$t('home')"
+          :title="$t('home')"
+        >
+          <img
+            class="app-footer__header-logo"
+            src="/images/logo-with-text.svg"
+            alt=""
+            width="190"
+            height="32"
+          >
         </app-link>
       </div>
       <div class="app-footer__column">
@@ -16,16 +26,26 @@
             :key="link.slug"
             class="app-footer__list-item body-detail"
           >
-            <app-link class="app-footer__link" :to="createHref($i18n, link)">{{ link.title }}</app-link>
+            <app-link
+              class="app-footer__link"
+              :to="createHref($i18n, link)"
+            >
+              {{ link.title }}
+            </app-link>
           </li>
           <li class="app-footer__list-item body-detail">
-            <app-link class="app-footer__link" :to="createHref($i18n, { page: { slug: 'faq' } })">FAQ</app-link>
+            <app-link
+              class="app-footer__link"
+              :to="createHref($i18n, { page: { slug: 'faq' } })"
+            >
+              FAQ
+            </app-link>
           </li>
         </ul>
       </div>
       <div
-        class="app-footer__column app-footer__column--right"
         ref="contact"
+        class="app-footer__column app-footer__column--right"
       >
         <h2 class="app-footer__title body-small font-bold font-html-blue">
           Contact
@@ -40,22 +60,25 @@
               :href="address.googleMapsLink"
               class="app-footer__link app-footer__link--right"
               target="_blank"
-              rel="noreferrer noopener">
+              rel="noreferrer noopener"
+            >
               <span>{{ address.address }}</span>
               <span>{{ address.postalCode }} {{ address.city }}</span>
             </a>
           </li>
           <li class="app-footer__list-item">
             <a
-              @click="trackLink('phone')"
               :href="`tel:${ cleanedPhoneNumber }`"
-              class="app-footer__link">{{ app.phoneNumber }}</a>
+              class="app-footer__link"
+              @click="trackLink('phone')"
+            >{{ app.phoneNumber }}</a>
           </li>
           <li class="app-footer__list-item">
             <a
-              @click="trackLink('email')"
               :href="`mailto:${ app.emailAddress }`"
-              class="app-footer__link">{{ app.emailAddress }}</a>
+              class="app-footer__link"
+              @click="trackLink('email')"
+            >{{ app.emailAddress }}</a>
           </li>
         </ul>
       </div>
@@ -66,11 +89,18 @@
             :key="socialLink.url"
             class="app-footer__list-item--icon"
           >
-            <a :href="socialLink.url" target="_blank" rel="noreferrer noopener">
+            <a
+              :href="socialLink.url"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span class="sr-only">
                 {{ socialLink.platform }}
               </span>
-              <app-icon :name="socialLink.icon" :is-large="true" />
+              <app-icon
+                :name="socialLink.icon"
+                :is-large="true"
+              />
             </a>
           </li>
         </ul>
@@ -94,14 +124,16 @@
           class="app-footer__copyright"
           :aria-label="footer.copyrightTitle"
           target="_blank"
-          rel="noreferrer noopener">{{ footer.copyrightLabel }}</a>
+          rel="noreferrer noopener"
+        >{{ footer.copyrightLabel }}</a>
         <span> - </span>
         <a
           :href="footer.privacyLink"
           class="app-footer__privacy"
           :aria-label="footer.privacyTitle"
           target="_blank"
-          rel="noreferrer noopener">{{ footer.privacyLabel }}</a>
+          rel="noreferrer noopener"
+        >{{ footer.privacyLabel }}</a>
       </div>
     </div>
   </footer>
@@ -112,9 +144,9 @@ import { createHref } from '../../lib/links'
 
 export default {
   props: {
-    links: { type: Object },
-    app: { type: Object },
-    footer: { type: Object },
+    links: { type: Object, required: true },
+    app: { type: Object, required: true },
+    footer: { type: Object, required: true },
   },
   data () {
     return {

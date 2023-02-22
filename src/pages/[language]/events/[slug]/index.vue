@@ -9,11 +9,14 @@
         heading="headline"
         :byline="data.page.label.label"
         :headline="data.page.title"
-        :image="data.page.headerIllustration" />
+        :image="data.page.headerIllustration"
+      />
 
       <aside class="page-event-detail__aside">
         <div>
-          <p class="body font-bold">Date</p>
+          <p class="body font-bold">
+            Date
+          </p>
           <time
             :datetime="data.page.date"
             class="body"
@@ -23,20 +26,28 @@
         </div>
 
         <div>
-          <p class="body font-bold">Location</p>
+          <p class="body font-bold">
+            Location
+          </p>
           <rich-text-block
             :key="formattedAddress"
-            :text="formattedAddress" />
+            :text="formattedAddress"
+          />
         </div>
 
         <div v-if="data.page.price && data.page.price !== '0'">
-          <p class="body font-bold">Price</p>
-          <p class="body">€ {{ data.page.price }}</p>
+          <p class="body font-bold">
+            Price
+          </p>
+          <p class="body">
+            € {{ data.page.price }}
+          </p>
         </div>
 
         <div
           class="page-event-detail__label body"
-          :class="{ 'page-event__detail__label--alt': isMeetup }">
+          :class="{ 'page-event__detail__label--alt': isMeetup }"
+        >
           {{ data.page.label.label }}
         </div>
       </aside>
@@ -55,14 +66,16 @@
             :key="item.social.description"
             :image="item.imageWithDescription.image"
             :inverse="item.imageWithDescription.inverse"
-            :description="item.imageWithDescription.description" />
+            :description="item.imageWithDescription.description"
+          />
 
           <quote-block
             v-if="item.quote"
             :key="item.quote"
             :quote="item.quote"
             :cite="item.author"
-            class="page-event-detail__quote" />
+            class="page-event-detail__quote"
+          />
 
           <responsive-image
             class="page-event-detail__image"
@@ -70,12 +83,16 @@
             v-if="item.__typename === 'ImageRecord' && item.image"
             :key="item.image.url"
             :image="item.image"
-            :caption="item.caption" />
+            :caption="item.caption"
+          />
 
           <text-block
             v-if="item.__typename === 'TextSectionRecord' && item.title"
-            :key="item.title">
-            <h2 class="page-event-detail__title h3 font-html-blue">{{ item.title }}</h2>
+            :key="item.title"
+          >
+            <h2 class="page-event-detail__title h3 font-html-blue">
+              {{ item.title }}
+            </h2>
           </text-block>
 
           <rich-text-block
@@ -83,21 +100,24 @@
             v-if="item.__typename === 'TextSectionRecord' && item.body"
             :key="item.body"
             :text="item.body"
-            large-text />
+            large-text
+          />
         </template>
 
         <div v-if="data.page.callToActionLabel">
           <app-button
             :label="data.page.callToActionLabel"
             :to="data.page.url"
-            external />
+            external
+          />
         </div>
       </article>
 
       <div class="page-event-detail__link-container">
         <app-link
           class="app-button app-button--secondary body font-bold"
-          :to="$localeUrl({ name: 'events' })">
+          :to="$localeUrl({ name: 'events' })"
+        >
           &larr; {{ $t('all_events') }}
         </app-link>
       </div>

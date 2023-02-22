@@ -1,8 +1,16 @@
 <template>
   <div class="generic-text-block">
-    <h2 v-if="title" class="generic-text-block__title h4">{{ title }}</h2>
+    <h2
+      v-if="title"
+      class="generic-text-block__title h4"
+    >
+      {{ title }}
+    </h2>
 
-    <rich-text-block class="generic-text-block__body" :text="body" />
+    <rich-text-block
+      class="generic-text-block__body"
+      :text="body"
+    />
 
     <dato-image
       v-if="image"

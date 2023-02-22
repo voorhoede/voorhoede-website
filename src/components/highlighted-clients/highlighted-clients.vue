@@ -1,9 +1,12 @@
 <template>
   <section
     class="highlighted-clients grid"
-    :class="{'highlighted-clients--light' : light}">
+    :class="{'highlighted-clients--light' : light}"
+  >
     <div class="highlighted-clients__content">
-      <h2 class="highlighted-clients__title h3 font-normal">{{ title }}</h2>
+      <h2 class="highlighted-clients__title h3 font-normal">
+        {{ title }}
+      </h2>
 
       <ul class="highlighted-clients__list">
         <li
@@ -11,7 +14,10 @@
           :key="icon.alt"
           class="highlighted-clients__client"
         >
-          <fixed-ratio :width="5" :height="2">
+          <fixed-ratio
+            :width="5"
+            :height="2"
+          >
             <img
               class="highlighted-clients__logo"
               :src="`/images/${icon.name}.svg`"

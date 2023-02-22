@@ -4,14 +4,14 @@
     :class="$attrs.class"
   >
     <input
-      type="checkbox"
       :id="id"
+      ref="input"
+      type="checkbox"
       :name="name"
       :required="required"
       :aria-invalid="isInvalid"
-      ref="input"
-      @input="updateInput"
       class="input-checkbox__input"
+      @input="updateInput"
     >
     <label
       :for="id"
@@ -70,6 +70,7 @@
         default: false,
       }
     },
+    emits: ['change'],
     data() {
       return {
         valid: false

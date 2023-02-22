@@ -16,8 +16,13 @@
         class="page-cases__intro"
       />
 
-      <div v-if="data.page.contactBody" class="page-cases__contact">
-        <p class="pullquote">{{ data.page.contactBody }}</p>
+      <div
+        v-if="data.page.contactBody"
+        class="page-cases__contact"
+      >
+        <p class="pullquote">
+          {{ data.page.contactBody }}
+        </p>
         <app-button
           :aria-label="$t('get_in_touch')"
           :label="$t('get_in_touch')"
@@ -27,9 +32,14 @@
     </div>
 
     <section class="grid page-cases__overview">
-      <h2 class="h2 page-cases__overview-title">{{ $t('all_cases') }}</h2>
+      <h2 class="h2 page-cases__overview-title">
+        {{ $t('all_cases') }}
+      </h2>
       <ul class="page-case__grid">
-        <li v-for="caseItem in data.page.projects.filter(caseItem => caseItem.published)" :key="caseItem.slug">
+        <li
+          v-for="caseItem in data.page.projects.filter(caseItem => caseItem.published)"
+          :key="caseItem.slug"
+        >
           <link-card
             :internal-link="$localeUrl({ name: 'cases-slug', params: { slug: caseItem.slug} })"
             :image="caseItem.caseTeaser.image"

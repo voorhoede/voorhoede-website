@@ -2,14 +2,14 @@
   <div class="app-mobile-menu grid">
     <button
       v-if="!isOpen"
+      ref="openButton"
       class="app-mobile-menu__button app-mobile-menu__button--open"
       @click="openMenu()"
       @touchmove="prevent"
-      ref="openButton"
     >
       <div
-        class="app-mobile-menu__button-icon app-mobile-menu__button-icon--open">
-      </div>
+        class="app-mobile-menu__button-icon app-mobile-menu__button-icon--open"
+      />
 
       <span class="sr-only">
         {{ $t('open_menu') }}
@@ -28,7 +28,8 @@
 
       <ul class="app-mobile-menu__list body-small">
         <li
-          class="app-mobile-menu__list-item">
+          class="app-mobile-menu__list-item"
+        >
           <app-link
             class="h3"
             :to="$localeUrl()"
@@ -39,7 +40,8 @@
         <li
           v-for="link in links"
           :key="link.href"
-          class="app-mobile-menu__list-item">
+          class="app-mobile-menu__list-item"
+        >
           <app-link
             class="h3"
             :to="createHref($i18n, link)"
@@ -51,14 +53,14 @@
 
       <button
         v-if="isOpen"
+        ref="closeButton"
         class="app-mobile-menu__button app-mobile-menu__button--close"
         @click="closeMenu()"
         @touchmove="prevent"
-        ref="closeButton"
       >
         <div
-          class="app-mobile-menu__button-icon app-mobile-menu__button-icon--close">
-        </div>
+          class="app-mobile-menu__button-icon app-mobile-menu__button-icon--close"
+        />
 
         <span class="sr-only">
           {{ $t('close_menu') }}
@@ -85,6 +87,7 @@
         default: () => [],
       },
     },
+    emits: ['open-menu', 'close-menu'],
     methods: {
       closeMenu() {
         this.$emit('close-menu')

@@ -1,5 +1,8 @@
 <template>
-  <component :is="tag" class="tag-item body-big">
+  <component
+    :is="tag"
+    class="tag-item body-big"
+  >
     <strong>{{ amount }}</strong> {{ label }}
   </component>
 </template>

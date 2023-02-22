@@ -1,8 +1,11 @@
 <template>
   <article class="event-card">
     <header class="event-card__header">
-      <div v-if="illustration" class="event-card__illustration">
-        <responsive-image :image="illustration"/>
+      <div
+        v-if="illustration"
+        class="event-card__illustration"
+      >
+        <responsive-image :image="illustration" />
       </div>
       <calendar-icon
         :date="dateString"
@@ -10,13 +13,20 @@
       />
     </header>
     <div class="event-card__body">
-      <div class="event-card__type body-detail" :class="{ 'event-card__type--alt': isMeetup }">{{ label }}</div>
+      <div
+        class="event-card__type body-detail"
+        :class="{ 'event-card__type--alt': isMeetup }"
+      >
+        {{ label }}
+      </div>
       <app-link
         :to="$localeUrl({ name: 'events-slug', params: { slug } })"
         class="event-card__link"
         :class="{ 'event-card__link--alt': isMeetup }"
       >
-        <h2 class="event-card__title h4">{{ title }}</h2>
+        <h2 class="event-card__title h4">
+          {{ title }}
+        </h2>
       </app-link>
       <rich-text-block
         v-if="description"

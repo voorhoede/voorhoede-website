@@ -8,21 +8,35 @@
     />
 
     <section class="page-blog-container grid">
-      <h2 class="sr-only">{{ $t('blog_overview') }}</h2>
+      <h2 class="sr-only">
+        {{ $t('blog_overview') }}
+      </h2>
 
       <text-block class="page-blog__text">
-        <p class="testimonial">{{ data.page.description }}</p>
+        <p class="testimonial">
+          {{ data.page.description }}
+        </p>
       </text-block>
 
       <ul class="page-blog__posts">
-        <li v-for="blogPost in data.page.pinnedPosts" :key="blogPost.slug">
-          <blog-list-item large pinned :item="blogPost" />
+        <li
+          v-for="blogPost in data.page.pinnedPosts"
+          :key="blogPost.slug"
+        >
+          <blog-list-item
+            large
+            pinned
+            :item="blogPost"
+          />
         </li>
         <li
           v-for="blogPost in data.items.filter(post => post.published)"
           :key="blogPost.slug"
         >
-          <blog-list-item large :item="blogPost" />
+          <blog-list-item
+            large
+            :item="blogPost"
+          />
         </li>
       </ul>
     </section>

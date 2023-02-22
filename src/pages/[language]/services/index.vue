@@ -3,7 +3,8 @@
     <page-header
       heading="byline"
       :byline="data.page.title"
-      :headline="data.page.subtitle" />
+      :headline="data.page.subtitle"
+    />
 
     <image-with-text-block
       v-if="data.page.introTitle && data.page.introBody && data.page.introImage"
@@ -23,11 +24,17 @@
     />
 
     <div class="page-services__services-list">
-      <h2 v-if="data.page.servicesTitle" class="h2">{{ data.page.servicesTitle }}</h2>
+      <h2
+        v-if="data.page.servicesTitle"
+        class="h2"
+      >
+        {{ data.page.servicesTitle }}
+      </h2>
       <ul>
         <li
           v-for="(service, index) in data.page.services"
-          :key="service.ctaLink">
+          :key="service.ctaLink"
+        >
           <service-excerpt
             :title="service.excerptTitle"
             :slug="service.slug"

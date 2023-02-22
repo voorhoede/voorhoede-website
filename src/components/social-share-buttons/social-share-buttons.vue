@@ -1,6 +1,11 @@
 <template>
   <div>
-    <p v-if="title" class="social-share-buttons__text body">{{ title }}</p>
+    <p
+      v-if="title"
+      class="social-share-buttons__text body"
+    >
+      {{ title }}
+    </p>
     <app-button
       v-if="hasNativeShare"
       label="Share"
@@ -23,7 +28,11 @@
           :aria-label="item.label"
           @click="trackShare(item.label)"
         >
-          <app-icon :name="item.icon" is-large :alt="item.alt" />
+          <app-icon
+            :name="item.icon"
+            is-large
+            :alt="item.alt"
+          />
         </a>
       </li>
     </ul>

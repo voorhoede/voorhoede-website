@@ -7,7 +7,8 @@
       <img
         class="scroll-to__image"
         src="/images/scroll-to-arrow--down.svg"
-        alt="">
+        alt=""
+      >
     </div>
     <a
       v-if="direction === 'up'"
@@ -17,8 +18,12 @@
       <img
         class="scroll-to__image"
         src="/images/scroll-to-arrow--up.svg"
-        alt="">
-      <span class="scroll-to__text body-small font-bold" aria-hidden="true">
+        alt=""
+      >
+      <span
+        class="scroll-to__text body-small font-bold"
+        aria-hidden="true"
+      >
         {{ $t('return') }}
       </span>
       <span class="sr-only">

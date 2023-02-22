@@ -46,7 +46,10 @@
       />
     </div>
 
-    <div v-if="image" class="page-header__image-column animation__reveal">
+    <div
+      v-if="image"
+      class="page-header__image-column animation__reveal"
+    >
       <div class="page-header__image-column-content animation__reveal-content">
         <dato-image
           class="page-header__image"
@@ -64,11 +67,18 @@
       taking up `23.5%` of the viewport.
       It is only rendered when the `fillScreen` prop is `true`.
     -->
-    <div class="page-header__slot" v-if="displaySlot">
-      <slot/>
+    <div
+      class="page-header__slot"
+      v-if="displaySlot"
+    >
+      <slot />
     </div>
 
-    <scroll-to v-if="fillScreen" direction="down" class="animation__fade-in"/>
+    <scroll-to
+      v-if="fillScreen"
+      direction="down"
+      class="animation__fade-in"
+    />
   </header>
 </template>
 

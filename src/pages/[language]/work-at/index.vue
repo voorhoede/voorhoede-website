@@ -13,7 +13,7 @@
       :image="data.page.introImage"
     />
 
-   <interstitial-cta
+    <interstitial-cta
       :cta="data.page.interstitialCta.title"
       :buttons="[
         { label: data.page.interstitialCta.callUsTitle, to: data.page.interstitialCta.callUsNumber, external: true },
@@ -29,10 +29,16 @@
       :inverse="true"
     />
 
-   <div class="usps">
-      <h2 class="h3 page-work-at__layout">{{ data.page.uspsTitle }}</h2>
+    <div class="usps">
+      <h2 class="h3 page-work-at__layout">
+        {{ data.page.uspsTitle }}
+      </h2>
       <div class="usps__items">
-        <div class="usps__item" v-for="usp in data.page.usps" :key="usp.title">
+        <div
+          class="usps__item"
+          v-for="usp in data.page.usps"
+          :key="usp.title"
+        >
           <dato-image
             class="usps__item-image"
             :src="usp.image.url"
@@ -41,21 +47,34 @@
             :height="usp.image.height"
             loading="eager"
           />
-          <h3 class="h4 usps__item-heading">{{ usp.title }}</h3>
-          <div v-html="usp.body" class="body"/>
+          <h3 class="h4 usps__item-heading">
+            {{ usp.title }}
+          </h3>
+          <div
+            v-html="usp.body"
+            class="body"
+          />
         </div>
       </div>
     </div>
 
-    <div class="body-big font-html-blue page-work-at__layout rich-text" v-html="data.page.uspsAfter" />
+    <div
+      class="body-big font-html-blue page-work-at__layout rich-text"
+      v-html="data.page.uspsAfter"
+    />
 
     <div class="page-work-at__quote grid">
-      <cta-block :item="data.page.quote[0]"/>
+      <cta-block :item="data.page.quote[0]" />
     </div>
 
     <div class="page-work-at__layout rich-text">
-      <h2 class="h2">{{ data.page.jobsTitle }}</h2>
-      <div class="body-big font-html-blue" v-html="data.page.jobsBody" />
+      <h2 class="h2">
+        {{ data.page.jobsTitle }}
+      </h2>
+      <div
+        class="body-big font-html-blue"
+        v-html="data.page.jobsBody"
+      />
     </div>
 
     <div class="page-work-at__layout page-work-at__job-buttons">
@@ -67,7 +86,10 @@
       />
     </div>
 
-    <div class="body-big font-html-blue page-work-at__layout rich-text" v-html="data.page.jobsAfter" />
+    <div
+      class="body-big font-html-blue page-work-at__layout rich-text"
+      v-html="data.page.jobsAfter"
+    />
 
     <!-- We had to combine the ImageWithText with
       the RichTextBlock to get the desired 'custom' layout -->
@@ -97,7 +119,10 @@
       :items="data.page.teamGrid"
     />
 
-    <div class="pullquote page-work-at__layout rich-text" v-html="data.page.stayInTouch" />
+    <div
+      class="pullquote page-work-at__layout rich-text"
+      v-html="data.page.stayInTouch"
+    />
     <newsletter-form />
   </main>
 </template>

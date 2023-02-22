@@ -7,8 +7,14 @@
       'self-typing-text--ended': animationEnded
     }"
   >
-    <div class="self-typing-text__placeholder" v-html="text"/>
-    <div class="self-typing-text__text" v-html="selfTypingText"/>
+    <div
+      class="self-typing-text__placeholder"
+      v-html="text"
+    />
+    <div
+      class="self-typing-text__text"
+      v-html="selfTypingText"
+    />
   </div>
 </template>
 

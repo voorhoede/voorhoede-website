@@ -10,14 +10,32 @@
     :novalidate="useCustomValidation"
   >
     <fieldset>
-      <legend v-if="ariaLabelOrTitle" class="sr-only">{{ ariaLabelOrTitle }}</legend>
+      <legend
+        v-if="ariaLabelOrTitle"
+        class="sr-only"
+      >
+        {{ ariaLabelOrTitle }}
+      </legend>
       <div class="contact-page-form__personal-details">
         <div class="contact-page-form__column">
-          <input type="hidden" name="form-name" :value="form['form-name']">
-          <input type="text" name="subject" :value="form.name" class="hidden"/>
+          <input
+            type="hidden"
+            name="form-name"
+            :value="form['form-name']"
+          >
+          <input
+            type="text"
+            name="subject"
+            :value="form.name"
+            class="hidden"
+          >
           <label class="sr-only">
             Don't fill this out if you're human:
-            <input v-model="form['url-page']" name="url-page" type="url">
+            <input
+              v-model="form['url-page']"
+              name="url-page"
+              type="url"
+            >
           </label>
           <input-field
             v-model="form.name"

@@ -10,8 +10,15 @@
       />
 
       <div class="page-contact__contacts">
-        <div class="page-contact__contact" v-for="contact in data.page.contacts" :key="contact.title">
-          <responsive-image :image="contact.image" class="page-contact__contact-image"/>
+        <div
+          class="page-contact__contact"
+          v-for="contact in data.page.contacts"
+          :key="contact.title"
+        >
+          <responsive-image
+            :image="contact.image"
+            class="page-contact__contact-image"
+          />
 
           <div class="page-contact__contact-body">
             <a
@@ -29,8 +36,12 @@
 
     <div class="page-contact__form-container rich-text grid">
       <div class="page-contact__form-header">
-        <h2 class="h2 page-contact__body-title">{{ data.page.introTitle }}</h2>
-        <p class="sub-title page-contact__body-subtitle">{{ data.page.introBody }} </p>
+        <h2 class="h2 page-contact__body-title">
+          {{ data.page.introTitle }}
+        </h2>
+        <p class="sub-title page-contact__body-subtitle">
+          {{ data.page.introBody }}
+        </p>
       </div>
 
       <div class="page-contact__backdrop grid">
@@ -43,12 +54,20 @@
 
     <div class="page-contact__visit grid">
       <div class="page-contact__visit-header rich-text grid">
-        <h2 class="h2">{{ data.page.locationTitle }}</h2>
-        <p class="body-big font-html-blue page-contact__visit-body">{{ data.page.locationBody }}</p>
+        <h2 class="h2">
+          {{ data.page.locationTitle }}
+        </h2>
+        <p class="body-big font-html-blue page-contact__visit-body">
+          {{ data.page.locationBody }}
+        </p>
       </div>
 
       <ul class="page-contact__grid page-contact__locations">
-        <li class="page-contact__location" v-for="location in data.page.addresses" :key="location.title">
+        <li
+          class="page-contact__location"
+          v-for="location in data.page.addresses"
+          :key="location.title"
+        >
           <link-card
             :image="location.image"
             :title="location.title"

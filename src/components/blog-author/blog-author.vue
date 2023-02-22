@@ -22,8 +22,10 @@
           {{ $t('by__authors_') }}
         </span>
         <app-link
-          v-for="author in authorLinks" :key="author.slug"
-          :to="$localeUrl({ name: 'team-slug', params: { slug: author.slug } })">
+          v-for="author in authorLinks"
+          :key="author.slug"
+          :to="$localeUrl({ name: 'team-slug', params: { slug: author.slug } })"
+        >
           <span class="blog-author__author-link">
             {{ author.name }}
           </span>
@@ -31,7 +33,8 @@
       </div>
       <time
         class="blog-author__text-time"
-        :datetime="item.date">
+        :datetime="item.date"
+      >
         {{ formattedDate }}
       </time>
     </div>

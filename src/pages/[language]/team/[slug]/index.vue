@@ -16,13 +16,19 @@
           <h1 class="h2">
             {{ person.name }} {{ person.lastName }}
           </h1>
-          <p class="body" v-if="person.biography">
+          <p
+            class="body"
+            v-if="person.biography"
+          >
             {{ person.biography }}
           </p>
         </div>
 
         <ul class="page-team__links">
-          <li v-for="link in person.links" :key="link.title">
+          <li
+            v-for="link in person.links"
+            :key="link.title"
+          >
             <a
               :href="link.url"
               target="_blank"
@@ -36,8 +42,15 @@
       </div>
     </header>
 
-    <ul v-if="blogs" class="page-team__blogs">
-      <li v-for="blogPost in blogs.blogPosts" :key="blogPost.id" class="page-team__blog">
+    <ul
+      v-if="blogs"
+      class="page-team__blogs"
+    >
+      <li
+        v-for="blogPost in blogs.blogPosts"
+        :key="blogPost.id"
+        class="page-team__blog"
+      >
         <app-link :to="$localeUrl({ name: 'blog-slug', params: { slug: blogPost.slug } })">
           <div class="page-team__blog-details">
             <span class="body page-team__date">{{ formattedDate(blogPost.date) }}</span>

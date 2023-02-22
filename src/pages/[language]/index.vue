@@ -13,11 +13,19 @@
     </div>
     <page-introduction :sections="data.page.pageIntroductionSections" />
     <section class="page-index__cta grid">
-      <cta-block v-if="ctaSectionTop" :item="ctaSectionTop"/>
+      <cta-block
+        v-if="ctaSectionTop"
+        :item="ctaSectionTop"
+      />
     </section>
     <section class="page-index__services grid">
-      <h2 class="page-index__section-title h1">{{ data.page.servicesHeader }}</h2>
-      <services-list class="page-index__services-list" :services="data.page.services" />
+      <h2 class="page-index__section-title h1">
+        {{ data.page.servicesHeader }}
+      </h2>
+      <services-list
+        class="page-index__services-list"
+        :services="data.page.services"
+      />
       <div class="page-index__blog-posts-button">
         <app-button
           secondary
@@ -25,9 +33,11 @@
           :to="$localeUrl({ name: 'services' })"
         />
       </div>
-      </section>
-      <section class="page-index__cases grid">
-      <h2 class="page-index__section-title page-index__section-title--cases h1">{{ data.page.casesTitle }}</h2>
+    </section>
+    <section class="page-index__cases grid">
+      <h2 class="page-index__section-title page-index__section-title--cases h1">
+        {{ data.page.casesTitle }}
+      </h2>
       <horizontal-carousel>
         <link-card
           v-for="caseExcerpt in data.page.cases"
@@ -46,7 +56,10 @@
       </div>
     </section>
     <highlighted-clients :title="data.page.clientsTitle" />
-    <div class="page-index__academy grid" v-if="data.upcomingEvents[0]">
+    <div
+      class="page-index__academy grid"
+      v-if="data.upcomingEvents[0]"
+    >
       <academy-excerpt
         :date="data.upcomingEvents[0].date"
         :title="data.upcomingEvents[0].title"
@@ -57,9 +70,15 @@
       <curly-bracket />
     </div>
     <section class="page-index__blog-posts grid">
-      <h2 class="page-index__section-title page-index__section-title--blog-posts h3">{{ $t('latest_blog_posts') }}</h2>
+      <h2 class="page-index__section-title page-index__section-title--blog-posts h3">
+        {{ $t('latest_blog_posts') }}
+      </h2>
       <ul class="page-index__blog-posts-list grid">
-        <li v-for="blogPost in data.latestBlogposts" :key="blogPost.slug" class="page-index__blog-posts-list-item">
+        <li
+          v-for="blogPost in data.latestBlogposts"
+          :key="blogPost.slug"
+          class="page-index__blog-posts-list-item"
+        >
           <blog-list-item :item="blogPost" />
         </li>
       </ul>

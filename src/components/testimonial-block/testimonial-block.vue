@@ -6,8 +6,18 @@
   >
     <div class="testimonial-block__container">
       <span class="testimonial-block__title h3">{{ testimonial.quote }}</span>
-      <p v-if="testimonial.author" class="testimonial-block__author body-small">{{ testimonial.author }}</p>
-      <p v-if="testimonial.company" class="testimonial-block__company body-small">{{ testimonial.company }}</p>
+      <p
+        v-if="testimonial.author"
+        class="testimonial-block__author body-small"
+      >
+        {{ testimonial.author }}
+      </p>
+      <p
+        v-if="testimonial.company"
+        class="testimonial-block__company body-small"
+      >
+        {{ testimonial.company }}
+      </p>
     </div>
   </blockquote>
 </template>

@@ -1,19 +1,24 @@
 <template>
   <aside class="storytelling-section">
     <div class="storytelling-section__container">
-      <h3 class="storytelling-section__title h3">{{ title }}</h3>
+      <h3 class="storytelling-section__title h3">
+        {{ title }}
+      </h3>
       <section
         class="storytelling-section__item"
         v-for="item in items"
-        :key="item.title">
-
+        :key="item.title"
+      >
         <div
           class="storytelling-section__image"
           v-if="item.image"
-          :style="`background-image: url(${item.image.url})`" />
+          :style="`background-image: url(${item.image.url})`"
+        />
 
         <div class="storytelling-section__card">
-          <h4 class="body-big font-bold">{{ item.title }}</h4>
+          <h4 class="body-big font-bold">
+            {{ item.title }}
+          </h4>
           <rich-text-block :text="item.body" />
         </div>
       </section>

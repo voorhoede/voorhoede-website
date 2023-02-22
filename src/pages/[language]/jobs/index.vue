@@ -7,10 +7,14 @@
       :image="data.page.headerIllustration"
     />
     <div class="grid">
-      <ul class="page-jobs__overview" v-if="data.items.length">
+      <ul
+        class="page-jobs__overview"
+        v-if="data.items.length"
+      >
         <li
           v-for="item in data.items"
-          :key="item.slug">
+          :key="item.slug"
+        >
           <jobs-excerpt
             :title="item.title"
             :label="item.callToActionLabel"
