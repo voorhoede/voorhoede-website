@@ -30,3 +30,8 @@ status = 302
 from = "/blog-feed.xml"
 to = "/blog/feed.json"
 status = 301
+
+[[redirects]]
+from = "/mogelijk/api/event"
+to = "https://plausible.io/api/event"
+status = 200
