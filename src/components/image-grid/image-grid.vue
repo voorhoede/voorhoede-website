@@ -1,6 +1,11 @@
 <template>
   <section class="image-grid">
-    <h2 v-if="title" class="image-grid__title h2">{{ title }}</h2>
+    <h2
+      v-if="title"
+      class="image-grid__title h2"
+    >
+      {{ title }}
+    </h2>
     <ul class="image-grid__list">
       <li
         v-for="(item, index) in items"
@@ -24,9 +29,16 @@
           "
           loading="eager"
         />
-        <div v-if="item.title && item.description" class="image-grid__item-content">
-          <h3 class="image-grid__item-title h3">{{ item.title }}</h3>
-          <p class="body-small">{{ item.description }}</p>
+        <div
+          v-if="item.title && item.description"
+          class="image-grid__item-content"
+        >
+          <h3 class="image-grid__item-title h3">
+            {{ item.title }}
+          </h3>
+          <p class="body-small">
+            {{ item.description }}
+          </p>
         </div>
       </li>
     </ul>

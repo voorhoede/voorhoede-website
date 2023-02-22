@@ -1,5 +1,8 @@
 <template>
-  <figure class="image-with-description" :class="{ 'image-with-description--inverse': inverse }">
+  <figure
+    class="image-with-description"
+    :class="{ 'image-with-description--inverse': inverse }"
+  >
     <dato-image
       class="image-with-description__image"
       :src="image.url"
@@ -11,7 +14,8 @@
     />
     <figcaption
       v-if="description"
-      class="pullquote font-bold image-with-description__description">
+      class="pullquote font-bold image-with-description__description"
+    >
       {{ description }}
     </figcaption>
   </figure>

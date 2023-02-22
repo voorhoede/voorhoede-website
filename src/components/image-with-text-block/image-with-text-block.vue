@@ -1,5 +1,8 @@
 <template>
-  <div class="image-with-text" :class="{ 'image-with-text--inverse': inverse }">
+  <div
+    class="image-with-text"
+    :class="{ 'image-with-text--inverse': inverse }"
+  >
     <dato-image
       class="image-with-text__image"
       :src="image.url"
@@ -11,8 +14,16 @@
       :quality="55"
     />
     <div class="image-with-text__body">
-      <h2 v-if="title" class="image-with-text__body-title h3">{{ title }}</h2>
-      <div class="pullquote image-with-text__body-text" v-html="body"></div>
+      <h2
+        v-if="title"
+        class="image-with-text__body-title h3"
+      >
+        {{ title }}
+      </h2>
+      <div
+        class="pullquote image-with-text__body-text"
+        v-html="body"
+      />
     </div>
   </div>
 </template>

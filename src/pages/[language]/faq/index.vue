@@ -8,7 +8,11 @@
     />
     <section class="page-faq__overview">
       <ul>
-        <li class="page-faq__overview-item" v-for="item in data.page.items" :key="item.title">
+        <li
+          class="page-faq__overview-item"
+          v-for="item in data.page.items"
+          :key="item.title"
+        >
           <generic-text-block
             :title="item.title"
             :body="item.body"

@@ -1,20 +1,48 @@
 <template>
   <div class="app-header grid">
     <div class="app-header__content">
-      <app-link class="app-header__home-link" :to="$localeUrl()">
-        <img class="app-header__logo" src="/images/logo-with-text.svg" alt="Home" width="190" height="32">
+      <app-link
+        class="app-header__home-link"
+        :to="$localeUrl()"
+      >
+        <img
+          class="app-header__logo"
+          src="/images/logo-with-text.svg"
+          alt="Home"
+          width="190"
+          height="32"
+        >
       </app-link>
       <div class="app-header__link-lists body-small">
         <ul class="app-header__link-list">
-          <li v-for="link in links" :key="link.title" class="app-header__link-list-item">
-            <app-link class="app-header__link" :to="createHref($i18n, link)">{{ link.title }}</app-link>
+          <li
+            v-for="link in links"
+            :key="link.title"
+            class="app-header__link-list-item"
+          >
+            <app-link
+              class="app-header__link"
+              :to="createHref($i18n, link)"
+            >
+              {{ link.title }}
+            </app-link>
           </li>
-          <li v-if="callToAction" class="app-header__link-list-item">
-            <app-button small :label="callToAction.title" :to="createHref($i18n, callToAction)"/>
+          <li
+            v-if="callToAction"
+            class="app-header__link-list-item"
+          >
+            <app-button
+              small
+              :label="callToAction.title"
+              :to="createHref($i18n, callToAction)"
+            />
           </li>
         </ul>
         <div class="app-header__link-list app-header__link-list--languages">
-          <template v-for="({ code, name }) in $i18n.locales" :key="code">
+          <template
+            v-for="({ code, name }) in $i18n.locales"
+            :key="code"
+          >
             <span
               v-if="code === $i18n.locale"
               aria-hidden="true"

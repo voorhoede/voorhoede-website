@@ -1,7 +1,12 @@
 <script setup>
   import { withTrailingSlash } from 'ufo';
 
-  const props = defineProps(['to']);
+  const props = defineProps({
+    to: {
+      type: [String, Object],
+      required: true,
+    },
+  });
   const router = useRouter();
 
   const normalizedTo = withTrailingSlash(

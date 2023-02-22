@@ -13,8 +13,18 @@
     </div>
 
     <div class="job-excerpt__text">
-      <h3 v-if="isNested" class="job-excerpt__text-title h4">{{ title }}</h3>
-      <h2 v-else class="job-excerpt__text-title h4">{{ title }}</h2>
+      <h3
+        v-if="isNested"
+        class="job-excerpt__text-title h4"
+      >
+        {{ title }}
+      </h3>
+      <h2
+        v-else
+        class="job-excerpt__text-title h4"
+      >
+        {{ title }}
+      </h2>
     </div>
 
     <app-button

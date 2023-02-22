@@ -7,7 +7,10 @@
       :height="image.height"
       loading="eager"
     />
-    <figcaption class="full-width-image__caption" v-if="image.title">
+    <figcaption
+      class="full-width-image__caption"
+      v-if="image.title"
+    >
       {{ image.title }}
     </figcaption>
   </figure>

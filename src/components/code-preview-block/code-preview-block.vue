@@ -9,8 +9,7 @@
       loading="lazy"
       allowtransparency="true"
       allowfullscreen="true"
-    >
-    </iframe>
+    />
     <figcaption class="code-preview-block__caption body-detail">
       {{ caption }}
     </figcaption>

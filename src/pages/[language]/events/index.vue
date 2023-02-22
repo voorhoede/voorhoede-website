@@ -7,42 +7,55 @@
       :image="data.page.headerIllustration"
     />
 
-    <div class="page-event__content grid" :class="{'page-event__content--upcoming-events': upcomingEvents}">
+    <div
+      class="page-event__content grid"
+      :class="{'page-event__content--upcoming-events': upcomingEvents}"
+    >
       <div class="page-event__intro">
         <rich-text-block
           v-if="data.page.introductionText"
           :key="data.page.introductionText"
           :text="data.page.introductionText"
-          large-text />
+          large-text
+        />
       </div>
 
-      <section v-if="upcomingEvents" class="page-event__upcoming-events">
-        <h2 class="page-event__events-list-title h2">Upcoming events</h2>
+      <section
+        v-if="upcomingEvents"
+        class="page-event__upcoming-events"
+      >
+        <h2 class="page-event__events-list-title h2">
+          Upcoming events
+        </h2>
         <ul class="page-event__upcoming-events-list">
           <li
             v-for="event in upcomingEvents"
             :key="event.social.description"
-            class="page-event__upcoming-events-item">
+            class="page-event__upcoming-events-item"
+          >
             <event-card
               :date-string="event.date"
               :title="event.title"
               :description="event.social.description"
               :illustration="event.image"
               :slug="event.slug"
-              :label="event.label.label"/>
+              :label="event.label.label"
+            />
           </li>
         </ul>
       </section>
     </div>
     <section class="page-event__past-events grid">
-      <h2 class="page-event__events-list-title h2">Past events</h2>
+      <h2 class="page-event__events-list-title h2">
+        Past events
+      </h2>
       <ul class="page-event__past-events-list">
         <li
           v-for="(event, index) in pastEvents"
           :key="event.social.description + index"
           class="page-event__past-events-item"
         >
-          <event-list-item :event="event"/>
+          <event-list-item :event="event" />
         </li>
       </ul>
     </section>

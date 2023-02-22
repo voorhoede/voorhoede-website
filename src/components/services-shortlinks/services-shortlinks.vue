@@ -1,10 +1,19 @@
 <template>
   <div
-    class="services-shortlinks">
-    <p class="body">{{ $t('go_directly_to') }}</p>
+    class="services-shortlinks"
+  >
+    <p class="body">
+      {{ $t('go_directly_to') }}
+    </p>
     <ul>
-      <li v-for="(service, index) in services" :key="service.slug" class="body">
-        <template v-if="index !== 0">, </template>
+      <li
+        v-for="(service, index) in services"
+        :key="service.slug"
+        class="body"
+      >
+        <template v-if="index !== 0">
+          ,
+        </template>
         <app-link
           :to="$localeUrl({ name: 'services-slug', params: { slug: service.slug } })"
           class="body"

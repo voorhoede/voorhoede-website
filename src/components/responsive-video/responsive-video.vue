@@ -1,7 +1,11 @@
 <template>
   <div class="responsive-video">
     <figure>
-      <fixed-ratio class="responsive-video__canvas" :width="canvasWidth" :height="canvasHeight">
+      <fixed-ratio
+        class="responsive-video__canvas"
+        :width="canvasWidth"
+        :height="canvasHeight"
+      >
         <div
           class="responsive-video__background"
           :style="{ backgroundImage: imageUrl ? `url(${imageUrl})` : null }"
@@ -25,7 +29,10 @@
           muted
           controls
         >
-          <source :src="`${gif.url}?fm=mp4`" type="video/mp4">
+          <source
+            :src="`${gif.url}?fm=mp4`"
+            type="video/mp4"
+          >
         </video>
         <button
           v-if="!isPlaying"
@@ -33,14 +40,26 @@
           @click.prevent="play"
         >
           <span class="sr-only">Play video</span>
-          <app-icon fill="white" name="play" />
+          <app-icon
+            fill="white"
+            name="play"
+          />
         </button>
       </fixed-ratio>
       <figcaption class="responsive-video__caption">
-        <a v-if="video" class="responsive-video__caption-content body-detail link" target="_blank" rel="noreferrer noopener" :href="video.url" >
+        <a
+          v-if="video"
+          class="responsive-video__caption-content body-detail link"
+          target="_blank"
+          rel="noreferrer noopener"
+          :href="video.url"
+        >
           {{ video.title }}
         </a>
-        <span v-if="gif" class="responsive-video__caption-content body-detail">{{ gif.title }}</span>
+        <span
+          v-if="gif"
+          class="responsive-video__caption-content body-detail"
+        >{{ gif.title }}</span>
       </figcaption>
     </figure>
   </div>

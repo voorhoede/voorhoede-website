@@ -15,7 +15,9 @@
     />
 
     <div class="page-lustrum__facts">
-      <h2 class="page-lustrum__title-facts h3">{{ data.page.factsTitle }}</h2>
+      <h2 class="page-lustrum__title-facts h3">
+        {{ data.page.factsTitle }}
+      </h2>
       <ul class="page-lustrum__facts-list">
         <tag-item
           v-for="fact in data.page.factsList"
@@ -34,7 +36,7 @@
     />
 
     <div class="page-lustrum__quote grid">
-      <cta-block :item="data.page.quote[0]"/>
+      <cta-block :item="data.page.quote[0]" />
     </div>
 
     <div class="page-lustrum__timeline grid">
@@ -47,12 +49,15 @@
     />
 
     <div class="page-lustrum__list">
-      <h2 class="page-lustrum__title-events h3">{{ data.page.eventsTitle }}</h2>
+      <h2 class="page-lustrum__title-events h3">
+        {{ data.page.eventsTitle }}
+      </h2>
       <ul>
         <li
           v-for="event in data.page.eventsList"
-          :key="event.id">
-          <event-list-item :event="event"/>
+          :key="event.id"
+        >
+          <event-list-item :event="event" />
         </li>
       </ul>
     </div>
@@ -63,10 +68,18 @@
     />
 
     <div class="page-lustrum__list">
-      <h2 class="page-lustrum__title-blogs h3">{{ data.page.blogsTitle }}</h2>
+      <h2 class="page-lustrum__title-blogs h3">
+        {{ data.page.blogsTitle }}
+      </h2>
       <ul>
-        <li v-for="blogPost in data.page.blogsList.filter(post => post.published)" :key="blogPost.slug">
-          <blog-list-item large :item="blogPost" />
+        <li
+          v-for="blogPost in data.page.blogsList.filter(post => post.published)"
+          :key="blogPost.slug"
+        >
+          <blog-list-item
+            large
+            :item="blogPost"
+          />
         </li>
       </ul>
     </div>

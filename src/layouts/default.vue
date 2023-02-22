@@ -1,7 +1,10 @@
 <template>
   <div id="top">
     <div class="layout-default">
-      <div tabindex="-1" ref="skipLink" />
+      <div
+        tabindex="-1"
+        ref="skipLink"
+      />
       <a
         href="#content"
         class="skip-link app-button app-button--small body font-bold"
@@ -17,12 +20,16 @@
         />
         <app-mobile-menu
           :links="[].concat(data.menu.links, data.menu.callToAction)"
-          :isOpen="mobileMenuIsOpen"
+          :is-open="mobileMenuIsOpen"
           @open-menu="mobileMenuIsOpen = true"
           @close-menu="mobileMenuIsOpen = false"
         />
       </nav>
-      <div id="content" :inert="focusTrapMobileMenu" class="layout-default__content">
+      <div
+        id="content"
+        :inert="focusTrapMobileMenu"
+        class="layout-default__content"
+      >
         <slot />
         <app-footer
           class="layout-default__footer"

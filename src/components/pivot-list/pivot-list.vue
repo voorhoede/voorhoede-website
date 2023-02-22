@@ -1,6 +1,9 @@
 <template>
   <section class="pivot-list">
-    <div v-if="hasBorderTop" class="pivot-list__border grid"/>
+    <div
+      v-if="hasBorderTop"
+      class="pivot-list__border grid"
+    />
     <div
       v-for="(pivot, index) in pivots"
       :key="index"
@@ -22,7 +25,10 @@
           :contact-person="pivot.contactPerson"
           :title="pivot.title || $t('lets_discuss')"
         />
-        <div v-else class="pivot-list__item-text">
+        <div
+          v-else
+          class="pivot-list__item-text"
+        >
           <h2
             v-if="pivot.title && !isNewsletterForm(pivot)"
             class="pivot-list__item-heading h3"

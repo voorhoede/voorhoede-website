@@ -1,13 +1,30 @@
 <template>
   <div class="timeline-block">
     <ul class="timeline-block__items">
-      <li v-for="item in items" :key="item.id" class="timeline-block__item">
-        <time class="body" :datetime="item.date">
+      <li
+        v-for="item in items"
+        :key="item.id"
+        class="timeline-block__item"
+      >
+        <time
+          class="body"
+          :datetime="item.date"
+        >
           {{ formattedDate(item.date) }}
         </time>
-        <h3 class="timeline-block__item-title h3">{{ item.title }}</h3>
-        <p v-if="item.description" class="timeline-block__item-description body">{{ item.description }}</p>
-        <div v-if="item.image" class="timeline-block__item-image">
+        <h3 class="timeline-block__item-title h3">
+          {{ item.title }}
+        </h3>
+        <p
+          v-if="item.description"
+          class="timeline-block__item-description body"
+        >
+          {{ item.description }}
+        </p>
+        <div
+          v-if="item.image"
+          class="timeline-block__item-image"
+        >
           <responsive-image :image="item.image" />
         </div>
       </li>

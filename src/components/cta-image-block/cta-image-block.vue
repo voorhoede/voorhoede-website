@@ -25,7 +25,10 @@
         class="cta-image-block__body"
       />
 
-      <div v-if="hasCta" class="cta-image-block__ctas">
+      <div
+        v-if="hasCta"
+        class="cta-image-block__ctas"
+      >
         <app-button
           :v-if="hasPrimaryCta"
           class="cta_image-block__primary-cta"

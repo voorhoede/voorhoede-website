@@ -9,8 +9,14 @@
     :datetime="date"
     :aria-label="`${ day } ${ month }`"
   >
-    <span aria-hidden="true" class="calendar-icon__day font-bold">{{ day }}</span>
-    <span aria-hidden="true" class="calendar-icon__month">{{ month }}</span>
+    <span
+      aria-hidden="true"
+      class="calendar-icon__day font-bold"
+    >{{ day }}</span>
+    <span
+      aria-hidden="true"
+      class="calendar-icon__month"
+    >{{ month }}</span>
   </time>
 </template>
 

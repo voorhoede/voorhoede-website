@@ -19,13 +19,31 @@
       class="page-about-us__image-grid"
     />
     <section class="page-about-us__text-blocks">
-      <h2 class="h3 page-about-us__text-blocks-title">{{ data.page.textBlocksTitle }}</h2>
-      <p class="body-big page-about-us__text-blocks-description">{{ data.page.textBlocksDescription }}</p>
-      <h3 v-if="data.page.textBlocksSubtitle" class="h4 page-about-us__text-blocks-subtitle">{{ data.page.textBlocksSubtitle }}</h3>
+      <h2 class="h3 page-about-us__text-blocks-title">
+        {{ data.page.textBlocksTitle }}
+      </h2>
+      <p class="body-big page-about-us__text-blocks-description">
+        {{ data.page.textBlocksDescription }}
+      </p>
+      <h3
+        v-if="data.page.textBlocksSubtitle"
+        class="h4 page-about-us__text-blocks-subtitle"
+      >
+        {{ data.page.textBlocksSubtitle }}
+      </h3>
       <div class="page-about-us__text-blocks-items">
-        <div v-for="item in data.page.textBlocksItems" :key="item.id" class="page-about-us__text-blocks-item">
-          <h4 class="h4 page-about-us__text-blocks-item-heading">{{ item.title }}</h4>
-          <div class="body-big rich-text" v-html="item.description"></div>
+        <div
+          v-for="item in data.page.textBlocksItems"
+          :key="item.id"
+          class="page-about-us__text-blocks-item"
+        >
+          <h4 class="h4 page-about-us__text-blocks-item-heading">
+            {{ item.title }}
+          </h4>
+          <div
+            class="body-big rich-text"
+            v-html="item.description"
+          />
         </div>
       </div>
     </section>
@@ -38,11 +56,19 @@
     />
     <template v-if="data.page.jobs.length > 0">
       <div class="page-about-us__jobs-text">
-        <h2 class="page-about-us__jobs-title h2">{{ data.page.jobsTitle }}</h2>
-        <p class="body-big font-html-blue">{{ data.page.jobsBody }}</p>
+        <h2 class="page-about-us__jobs-title h2">
+          {{ data.page.jobsTitle }}
+        </h2>
+        <p class="body-big font-html-blue">
+          {{ data.page.jobsBody }}
+        </p>
       </div>
       <ul class="page-about-us__jobs">
-        <li class="page-about-us__jobs-list" v-for="item in data.page.jobs" :key="item.slug">
+        <li
+          class="page-about-us__jobs-list"
+          v-for="item in data.page.jobs"
+          :key="item.slug"
+        >
           <jobs-excerpt
             class="page-about-us__jobs-list-item"
             :is-nested="true"

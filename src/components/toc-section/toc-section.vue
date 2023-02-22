@@ -1,12 +1,22 @@
 <template>
-  <section v-if="items.length" class="toc-section">
-    <h2 class="body-big font-html-blue">{{ $t('table_of_content') }}</h2>
+  <section
+    v-if="items.length"
+    class="toc-section"
+  >
+    <h2 class="body-big font-html-blue">
+      {{ $t('table_of_content') }}
+    </h2>
     <nav>
       <ul class="flat-list">
         <li
           class="toc-section__list-item"
-          v-for="({slug, title}) in items" :key="slug">
-          <a :href="`#${slug}`" class="body">
+          v-for="({slug, title}) in items"
+          :key="slug"
+        >
+          <a
+            :href="`#${slug}`"
+            class="body"
+          >
             {{ title }}
           </a>
         </li>

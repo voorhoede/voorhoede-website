@@ -5,7 +5,9 @@
     v-bind="$attrs"
   >
     <span v-if="primary || small">{{ label }}</span>
-    <template v-else>{{ label }} &rarr;</template>
+    <template v-else>
+      {{ label }} &rarr;
+    </template>
   </button>
   <a
     v-else-if="external"
@@ -25,7 +27,9 @@
     :to="to"
   >
     <span v-if="primary || small">{{ label }}</span>
-    <template v-else>{{ label }} &rarr;</template>
+    <template v-else>
+      {{ label }} &rarr;
+    </template>
   </app-link>
 </template>
 

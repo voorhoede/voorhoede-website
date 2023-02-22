@@ -15,7 +15,11 @@
     >
       <label class="sr-only">
         Don't fill this out if you're human
-        <input type="text" :name="mailchimpFieldnamesMapping.honeypot" value="">
+        <input
+          type="text"
+          :name="mailchimpFieldnamesMapping.honeypot"
+          value=""
+        >
       </label>
       <input-field
         :id="mailchimpFieldnamesMapping.firstName"

@@ -35,7 +35,8 @@
           :id="item.id"
           v-if="item.__typename === 'TextSectionRecord'"
           :key="item.id"
-          class="page-case__text">
+          class="page-case__text"
+        >
           <h3
             class="page-case__title h3"
             v-if="item.title"

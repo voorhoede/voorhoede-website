@@ -1,7 +1,10 @@
 <template>
-  <div class="fixed-ratio" :style="{ paddingBottom: `${ratio}%` }">
+  <div
+    class="fixed-ratio"
+    :style="{ paddingBottom: `${ratio}%` }"
+  >
     <div class="fixed-ratio__content">
-      <slot/>
+      <slot />
     </div>
   </div>
 </template>

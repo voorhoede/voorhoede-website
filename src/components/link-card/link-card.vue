@@ -30,7 +30,9 @@
           {{ title }}
         </h3>
       </a>
-      <p class="link-card__body body">{{ body }}</p>
+      <p class="link-card__body body">
+        {{ body }}
+      </p>
     </div>
   </article>
 </template>

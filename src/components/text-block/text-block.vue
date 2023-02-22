@@ -1,6 +1,12 @@
 <template>
   <div class="text-block">
-    <h3 v-if="title" :id="slug" class="text-block__title h3">{{ title }}</h3>
+    <h3
+      v-if="title"
+      :id="slug"
+      class="text-block__title h3"
+    >
+      {{ title }}
+    </h3>
     <slot />
   </div>
 </template>

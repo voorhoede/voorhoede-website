@@ -5,8 +5,13 @@
       :date="date"
     />
     <div class="academy-excerpt__content">
-      <h2 class="academy-excerpt__title h3">{{ title }}</h2>
-      <div class="academy-excerpt__description body" v-html="description" />
+      <h2 class="academy-excerpt__title h3">
+        {{ title }}
+      </h2>
+      <div
+        class="academy-excerpt__description body"
+        v-html="description"
+      />
       <footer class="academy-excerpt__actions button-group">
         <app-button
           class="academy-excerpt__primary-button"
@@ -22,7 +27,10 @@
         />
       </footer>
     </div>
-    <div v-if="illustration" class="academy-excerpt__illustration-column">
+    <div
+      v-if="illustration"
+      class="academy-excerpt__illustration-column"
+    >
       <div class="academy-excerpt__illustration-wrapper">
         <dato-image
           class="academy-excerpt__illustration"
