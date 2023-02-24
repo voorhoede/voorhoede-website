@@ -54,15 +54,16 @@
               v-else
               class="app-header__link-list-item"
             >
-              <a
+              <app-link
                 class="app-header__link"
+                external
                 :aria-label="$t('switch_to__language_', { language: name }, code)"
                 :lang="code"
-                :href="`/${code}/`"
+                :to="$localeUrl({ name: $route.name, params: { language: code } })"
                 @click="saveLocale(code)"
               >
                 {{ code }}
-              </a>
+              </app-link>
             </div>
           </template>
         </div>

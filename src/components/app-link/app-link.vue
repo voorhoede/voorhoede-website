@@ -9,9 +9,9 @@
   });
   const router = useRouter();
 
-  const normalizedTo = withTrailingSlash(
+  const normalizedTo = computed(() => withTrailingSlash(
     typeof props.to === 'object' ? router.resolve(props.to).path : props.to
-  );
+  ));
 </script>
 
 <template>
