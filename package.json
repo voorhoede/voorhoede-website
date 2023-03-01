@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "nuxt dev",
+    "dev": "netlify dev",
     "build": "nuxt generate",
     "lint": "eslint '**/*.vue'",
     "lint-staged": "nano-staged",
@@ -25,7 +25,8 @@
     "eslint": "^8.34.0",
     "eslint-plugin-vue": "^9.9.0",
     "husky": "^8.0.3",
-    "nano-staged": "^0.8.0"
+    "nano-staged": "^0.8.0",
+    "netlify-cli": "^13.0.0"
   },
   "engines": {
     "node": ">=18"
