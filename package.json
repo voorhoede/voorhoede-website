@@ -12,6 +12,7 @@
   "dependencies": {
     "@json-feed-types/1_1": "^1.0.2",
     "@nuxtjs/plausible": "^0.2.0",
+    "@vercel/og": "^0.2.0",
     "datocms-listen": "^0.1.14",
     "dayjs": "^1.11.7",
     "nuxt": "^3.2.2",
