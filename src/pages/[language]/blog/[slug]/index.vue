@@ -186,6 +186,8 @@
 
   useSeoHead(data.value.page);
 
+  useOpenGraphImage(data.value.page.openGraphImage)
+
   const prismify = ({ body, language }) => (
     prismjs.languages[language]
       ? prismjs.highlight(body, prismjs.languages[language], language)

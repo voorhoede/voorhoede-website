@@ -1,5 +1,5 @@
 query BlogSlug($locale: SiteLocale, $slug: String) {
-  page: blogPost(locale: $locale, filter: {slug: {eq: $slug}}) {
+  page: blogPost(locale: $locale, filter: { slug: { eq: $slug } }) {
     ...page
   }
 }
@@ -162,6 +162,18 @@ fragment page on BlogPostRecord {
         alt
         width
         height
+      }
+    }
+  }
+  openGraphImage {
+    title
+    image {
+      url
+    }
+    authors {
+      name
+      image {
+        url
       }
     }
   }
