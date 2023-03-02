@@ -16,10 +16,10 @@
           >
         </app-link>
       </div>
-      <div class="app-footer__column">
-        <h2 class="app-footer__title body-small font-bold font-html-blue">
-          Explore
-        </h2>
+      <nav
+        class="app-footer__column"
+        aria-label="Explore"
+      >
         <ul class="app-footer__list">
           <li
             v-for="link in links"
@@ -42,14 +42,12 @@
             </app-link>
           </li>
         </ul>
-      </div>
-      <div
+      </nav>
+      <nav
         ref="contact"
         class="app-footer__column app-footer__column--right"
+        aria-label="Contact"
       >
-        <h2 class="app-footer__title body-small font-bold font-html-blue">
-          Contact
-        </h2>
         <ul class="body-detail app-footer__list app-footer__list--contact">
           <li
             v-for="address in app.addresses"
@@ -81,7 +79,7 @@
             >{{ app.emailAddress }}</a>
           </li>
         </ul>
-      </div>
+      </nav>
       <div class="app-footer__column app-footer__column--bottom">
         <ul class="app-footer__list--icon">
           <li
@@ -390,10 +388,6 @@ export default {
     margin-bottom: var(--spacing-medium);
   }
 
-  .app-footer__title {
-    margin-bottom: var(--spacing-smaller);
-  }
-
   @media (min-width: 800px) {
     .app-footer {
       position: relative;
@@ -404,11 +398,6 @@ export default {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-    }
-
-    .app-footer__title {
-      width: 100%;
-      border-bottom: 1px solid;
     }
 
     .app-footer__header {
