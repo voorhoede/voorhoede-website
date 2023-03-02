@@ -1,5 +1,5 @@
-query TeamSlug($slug: String) {
-  person(filter: { slug: { eq: $slug } }) {
+query TeamSlug($slug: String, $locale: SiteLocale) {
+  person(filter: { slug: { eq: $slug } }, locale: $locale) {
     ...person
   }
 }
