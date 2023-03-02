@@ -29,9 +29,9 @@
 
 <style>
   .app-icon {
+    display: flex;
     width: 1em;
     height: 1em;
-    vertical-align: middle;
   }
 
   @media (min-width: 720px) {
