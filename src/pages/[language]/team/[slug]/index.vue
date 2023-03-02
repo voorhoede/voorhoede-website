@@ -79,7 +79,7 @@ const { data: { value: { person } } } = await useFetchContent({
   query: personQuery,
   variables: {
     slug: route.params.slug,
-    language: route.params.language,
+    locale: route.params.language,
   },
 })
 
