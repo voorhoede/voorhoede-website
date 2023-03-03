@@ -54,7 +54,9 @@ export default async function handler(req: Request) {
   const authors = url.searchParams.get("authors");
   const parsedAuthors = JSON.parse(authors || "[]");
 
-  return new ImageResponse(
+  console.log('generating image...')
+
+  const response = new ImageResponse(
     (
       <div
         style={{
@@ -144,6 +146,10 @@ export default async function handler(req: Request) {
       ],
     }
   );
+
+  response.headers.set("Cache-Control", "public, max-age=31536000");
+
+  return response;
 }
 
 export const config: Config = {
