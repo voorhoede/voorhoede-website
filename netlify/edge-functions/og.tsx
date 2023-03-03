@@ -31,7 +31,6 @@ const AuthorBadge = ({ name, image }: Author) => (
     <div
       style={{
         fontSize: 30,
-        fontWeight: "bold",
       }}
     >
       {name}
@@ -41,10 +40,14 @@ const AuthorBadge = ({ name, image }: Author) => (
 
 export default async function handler(req: Request) {
   const { origin } = new URL(req.url);
-  const font = fetch(new URL("/fonts/apercu-regular-pro.ttf", origin)).then(
+  const fontRegular = fetch(new URL("/fonts/apercu-regular-pro.ttf", origin)).then(
     (res) => res.arrayBuffer()
   );
-  const fontData = await font;
+  const fontBold = fetch(new URL("/fonts/apercu-bold-pro.ttf", origin)).then(
+    (res) => res.arrayBuffer()
+  );
+  const fontRegularData = await fontRegular;
+  const fontBoldData = await fontBold;
   const url = new URL(req.url);
   const title = url.searchParams.get("title");
   const imageUrl = url.searchParams.get("imageUrl");
@@ -66,6 +69,7 @@ export default async function handler(req: Request) {
         <div
           style={{
             display: "flex",
+            justifyContent: "center",
             flexDirection: "column",
             padding: "40px 0 40px 40px",
             height: "100%",
@@ -77,23 +81,27 @@ export default async function handler(req: Request) {
             style={{
               display: "flex",
               fontSize: 60,
+              fontStyle: "italic",
+              fontWeight: 800,
             }}
           >
             {title}
           </div>
 
           {/* authors */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              marginTop: "auto",
-            }}
-          >
-            {parsedAuthors.map(({ name, image }: Author) => (
-              <AuthorBadge name={name} image={image} />
-            ))}
-          </div>
+          {parsedAuthors.length ? (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                marginTop: '40px',
+              }}
+            >
+              {parsedAuthors.map(({ name, image }: Author) => (
+                <AuthorBadge name={name} image={image} />
+              ))}
+            </div>
+          ) : 'doei'}
         </div>
         {/* image */}
         {imageUrl && (
@@ -101,6 +109,8 @@ export default async function handler(req: Request) {
             style={{
               width: "40%",
               display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
               padding: "40px",
               backgroundColor: "#ffe400",
               height: "100%",
@@ -121,8 +131,15 @@ export default async function handler(req: Request) {
       fonts: [
         {
           name: "Apercu",
-          data: fontData,
+          data: fontRegularData,
           style: "normal",
+          weight: 400,
+        },
+        {
+          name: "Apercu",
+          data: fontBoldData,
+          style: "normal",
+          weight: 800,
         },
       ],
     }
