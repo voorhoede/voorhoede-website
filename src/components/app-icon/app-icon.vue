@@ -29,7 +29,7 @@
 
 <style>
   .app-icon {
-    display: flex;
+    display: inline-flex;
     width: 1em;
     height: 1em;
   }
