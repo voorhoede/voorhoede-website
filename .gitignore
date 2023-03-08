@@ -7,3 +7,4 @@ dist
 feed.json
 _redirects
 .netlify
+.vscode
