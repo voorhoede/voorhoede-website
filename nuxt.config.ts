@@ -5,6 +5,7 @@ import { default as plausible } from '@nuxtjs/plausible';
 import { fetchTranslations } from './src/scripts/fetch-translations';
 import { fetchBlogFeed } from './src/scripts/fetch-blog-feed';
 import { fetchRedirects } from './src/scripts/fetch-redirects';
+import { fetchRoutes } from './src/scripts/fetch-routes';
 
 export default defineNuxtConfig({
   srcDir: 'src',
@@ -16,7 +17,7 @@ export default defineNuxtConfig({
   ],
   nitro: {
     prerender: {
-      routes: ['/en/', '/nl/'],
+      crawlLinks: false
     }
   },
   runtimeConfig: {
@@ -33,6 +34,15 @@ export default defineNuxtConfig({
     apiHost: '/mogelijk',
   },
   hooks: {
+    'prerender:routes': ({ routes }) => {
+      fetchRoutes()
+        .then((generatedRoutes) => {
+          generatedRoutes.forEach((route) => {
+            // routes is of type Set, so we need to add each route individually
+            routes.add(route);
+          })
+        })
+    },
     'build:before': () => Promise.all([
       fetchTranslations({ datoApiToken: process.env.DATO_API_TOKEN })
         .then(async (translations) => {
