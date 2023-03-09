@@ -54,8 +54,6 @@ export default async function handler(req: Request) {
   const authors = url.searchParams.get("authors");
   const parsedAuthors = JSON.parse(authors || "[]");
 
-  console.log('generating image...')
-
   const response = new ImageResponse(
     (
       <div
@@ -103,7 +101,7 @@ export default async function handler(req: Request) {
                 <AuthorBadge name={name} image={image} />
               ))}
             </div>
-          ) : 'doei'}
+          ) : null}
         </div>
         {/* image */}
         {imageUrl && (
