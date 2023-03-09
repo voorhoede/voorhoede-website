@@ -119,7 +119,7 @@
             :class="`h${item.headingLevel || '3'}`"
             :id="slugify(item.title)"
           >
-            {{ item.headingLevel }} {{ item.title }}
+            {{ item.title }}
           </component>
           <rich-text-block
             v-if="item.body"
