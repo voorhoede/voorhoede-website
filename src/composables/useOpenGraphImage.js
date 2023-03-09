@@ -5,11 +5,12 @@ export function useOpenGraphImage(openGraphImage) {
         return
     }
 
+    const { title, image, authors } = openGraphImage;
+
     const url = withQuery('/api/og', {
         title,
         imageUrl: image?.url,
-        authors: authors.length ? JSON.stringify(authors): null,
-    })
+    }) + `&authors=${JSON.stringify(authors)}`;
 
     useHead({
         meta: [
