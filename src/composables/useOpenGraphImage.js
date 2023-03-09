@@ -5,8 +5,9 @@ export function useOpenGraphImage(openGraphImage) {
         return
     }
 
-    const { title, image, authors } = openGraphImage;
+    const { title, image, authors = [] } = openGraphImage;
 
+    // withQuery doesn't seem to handle JSON properly, so we add it to the url ourselves
     const url = withQuery('/api/og', {
         title,
         imageUrl: image?.url,
