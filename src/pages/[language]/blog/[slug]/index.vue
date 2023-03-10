@@ -116,7 +116,6 @@
             v-if="item.title"
             class="page-blog-post-list__title h3 font-html-blue"
             :is="`h${item.headingLevel || '3'}`"
-            :class="`h${item.headingLevel || '3'}`"
             :id="slugify(item.title)"
           >
             {{ item.title }}
