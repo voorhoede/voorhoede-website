@@ -1,6 +1,7 @@
 import { withTrailingSlash } from 'ufo';
+import { useOpenGraphImage } from './useOpenGraphImage';
 
-export function useSeoHead({ slug, i18nSlugs, social }) {
+export function useSeoHead({ slug, i18nSlugs, social, openGraphImage }) {
   if (!slug || !social) {
     throw new Error('Missing required SEO data');
   }
@@ -49,4 +50,6 @@ export function useSeoHead({ slug, i18nSlugs, social }) {
         })),
     ],
   });
+  
+  useOpenGraphImage(openGraphImage)
 }

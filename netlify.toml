@@ -9,6 +9,10 @@ NPM_FLAGS = "--ignore-scripts"
 [build.processing.html]
 pretty_urls = true
 
+[dev]
+command = "nuxt dev"
+targetPort = 3000
+
 [[headers]]
 for = "/*"
 [headers.values]
