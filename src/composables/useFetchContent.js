@@ -3,7 +3,9 @@ export async function useFetchContent({ key = null, query, variables }) {
   const route = useRoute();
   const data = ref(null);
 
-  if (runtimeConfig.public.baseUrl.includes('localhost')) {
+  if (runtimeConfig.public.baseUrl.includes('localhost') ||
+    (route.query.preview === 'true' && route.query.previewSecret === runtimeConfig.public.previewSecret)
+  ) {
     let unsubscribe;
 
     onMounted(async () => {
