@@ -9,16 +9,13 @@ const staticRoutesConfig = [
     '/work-at/',
     '/lustrum/',
     '/events/',
-    '/faq/'
+    '/faq/',
+    '/energy-first/'
 ]
 
 // these routes are generated dynamically by fetching all slugs for each page type
 // the slugs are appended to the value of the 'baseRoute' property
 const dynamicRoutesConfig = [
-    {
-        modelName: 'CustomPages',
-        path: '/'
-    },
     {
         modelName: 'Services',
         path: '/services/'
