@@ -35,6 +35,14 @@ const dynamicRoutesConfig = [
     {
         modelName: 'EventItems',
         path: '/events/'
+    },
+    {
+        modelName: 'ContactConfirmations',
+        path: '/contact/'
+    },
+    {
+        modelName: 'Jobs',
+        path: '/jobs/'
     }
 ]
 
