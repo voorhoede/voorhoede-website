@@ -17,31 +17,31 @@ const staticRoutesConfig = [
 // the slugs are appended to the value of the 'baseRoute' property
 const dynamicRoutesConfig = [
     {
-        modelName: 'Services',
+        queryOperation: 'allServices',
         path: '/services/'
     },
     {
-        modelName: 'BlogPosts',
+        queryOperation: 'allBlogPosts',
         path: '/blog/'
     },
     {
-        modelName: 'CaseItems',
+        queryOperation: 'allCaseItems',
         path: '/cases/'
     },
     {
-        modelName: 'People',
+        queryOperation: 'allPeople',
         path: '/team/'
     },
     {
-        modelName: 'EventItems',
+        queryOperation: 'allEventItems',
         path: '/events/'
     },
     {
-        modelName: 'ContactConfirmations',
+        queryOperation: 'allContactConfirmations',
         path: '/contact/'
     },
     {
-        modelName: 'Jobs',
+        queryOperation: 'allJobs',
         path: '/jobs/'
     }
 ]
@@ -69,12 +69,12 @@ const fetchDatoQuery = async ({ query, variables = {} }) => {
         })
 }
 
-// fetches a paginated list of slugs for a given model
-const fetchPaginatedSlugsForModel = async ({ model, locale, skip }) => {
+// fetches a paginated list of slugs for a given operation
+const fetchPaginatedSlugsForOperation = async ({ operation, locale, skip }) => {
     return fetchDatoQuery({
         query: `
-                query ${model}($skip: IntType, $locale: SiteLocale) {
-                    all${model}(first: 100, skip: $skip, locale: $locale) {
+                query ${operation}($skip: IntType, $locale: SiteLocale) {
+                    ${operation}(first: 100, skip: $skip, locale: $locale) {
                         slug
                     }
                 }
@@ -83,15 +83,15 @@ const fetchPaginatedSlugsForModel = async ({ model, locale, skip }) => {
             locale,
             skip
         }
-    }).then(data => data[`all${model}`])
+    }).then(data => data[operation])
 }
 
-// fetches the total number of items for a given model
-const fetchMetaForModel = async ({ model, locale }) => {
+// fetches the total number of items for a given operation
+const fetchMetaForOperation = async ({ operation, locale }) => {
     return fetchDatoQuery({
         query: `
             query Meta ($locale: SiteLocale) {
-                _all${model}Meta(locale: $locale) {
+                _${operation}Meta(locale: $locale) {
                     count
                 }
             }
@@ -102,21 +102,21 @@ const fetchMetaForModel = async ({ model, locale }) => {
     })
 }
 
-// fetches all slugs for model
-const fetchSlugsForModel = async ({ model, locale }) => {
-    const meta = await fetchMetaForModel({ model, locale })
-    const { count } = meta[`_all${model}Meta`]
+// fetches all slugs for operation
+const fetchSlugsForOperation = async ({ operation, locale }) => {
+    const meta = await fetchMetaForOperation({ operation, locale })
+    const { count } = meta[`_${operation}Meta`]
     const pages = Math.ceil(count / 100)
 
     return Promise.all(
-        [...Array(pages)].map((_, index) => fetchPaginatedSlugsForModel({ model, locale, skip: index * 100 }))
+        [...Array(pages)].map((_, index) => fetchPaginatedSlugsForOperation({ operation, locale, skip: index * 100 }))
     ).then(data => data.flat().map(data => data.slug))
 }
 
 // fetches all routes for a given locale
 const fetchDynamicRoutes = async ({ locale, dynamicRoutesConfig }) => {
-    return Promise.all(dynamicRoutesConfig.map(async ({ modelName, path }) => {
-        const slugs = await fetchSlugsForModel({ model: modelName, locale })
+    return Promise.all(dynamicRoutesConfig.map(async ({ queryOperation, path }) => {
+        const slugs = await fetchSlugsForOperation({ operation: queryOperation, locale })
 
         return slugs.map(slug => `/${locale}${path}${slug}/`)
     })).then(data => data.flat())
