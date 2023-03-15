@@ -1,3 +1,5 @@
+import { locales } from '../lib/i18n'
+
 // these route are static and will not need any further processing
 const staticRoutesConfig = [
     '/',
@@ -128,12 +130,15 @@ const fetchDynamicRoutes = async ({ locale, dynamicRoutesConfig }) => {
  * @returns {Promise<Array<string>>} - an array of routes 
  */
 export const fetchRoutes = async () => (
-    Promise.all(['en', 'nl'].map(async (locale) => {
-        const dynamicRoutes = await fetchDynamicRoutes({ locale, dynamicRoutesConfig })
+    Promise.all(locales
+        .map(locale => locale.code)
+        .map(async (locale) => {
+            const dynamicRoutes = await fetchDynamicRoutes({ locale, dynamicRoutesConfig })
 
-        return [
-            ...staticRoutesConfig.map(route => `/${locale}${route}`),
-            ...dynamicRoutes
-        ]
-    })).then(data => data.flat())
+            return [
+                ...staticRoutesConfig.map(route => `/${locale}${route}`),
+                ...dynamicRoutes
+            ]
+        })
+    ).then(data => data.flat())
 )
