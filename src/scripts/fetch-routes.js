@@ -30,7 +30,7 @@ const dynamicRoutesConfig = [
     },
     {
         modelName: 'People',
-        path: '/people/'
+        path: '/team/'
     },
     {
         modelName: 'EventItems',
