@@ -114,9 +114,9 @@
         >
           <component
             v-if="item.title"
-            class="page-blog-post-list__title h3 font-html-blue"
-            :is="`h${item.headingLevel || '3'}`"
-            :id="slugify(item.title)"
+            class="page-blog-post-list__title font-html-blue"
+            :class="headingLevelClassMap[item.headingLevel || defaultHeadingLevel]"
+            :is="`h${item.headingLevel || defaultHeadingLevel}`"
           >
             {{ item.title }}
           </component>
@@ -173,6 +173,15 @@
   import prismjs from 'prismjs';
   import('prismjs/components/prism-graphql');
   import('prismjs/components/prism-rust');
+
+  const defaultHeadingLevel = 3;
+
+  const headingLevelClassMap = {
+    2: 'h3',
+    3: 'h4',
+    4: 'h5',
+    5: 'h6',
+  }
 
   const runtimeConfig = useRuntimeConfig();
 
