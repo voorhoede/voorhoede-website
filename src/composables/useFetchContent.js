@@ -5,6 +5,7 @@ export async function useFetchContent({ key = null, query, variables }) {
   const data = ref(null);
 
   if (!key && !$i18n.isValidLocale({ locale: route.params.language })) {
+    console.log({key,params: route.params})
     console.error('invalid locale for', route.path);
     throw createError({ statusCode: 404 });
   }
@@ -64,6 +65,7 @@ export async function useFetchContent({ key = null, query, variables }) {
   // can not rely on this being a page content query if a 'custom' key is set
   if (!key && initialData.value.page === null) {
     console.error('no page data found for', route.path);
+    console.log({key, d: initialData.value.page})
     throw createError({ statusCode: 404 });
   }
 
