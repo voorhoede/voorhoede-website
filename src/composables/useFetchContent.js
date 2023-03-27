@@ -1,7 +1,13 @@
 export async function useFetchContent({ key = null, query, variables }) {
   const runtimeConfig = useRuntimeConfig();
+  const { $i18n } = useNuxtApp();
   const route = useRoute();
   const data = ref(null);
+
+  if (!key && !$i18n.isValidLocale()) {
+    console.error('invalid locale for', route.path);
+    throw createError({ statusCode: 404 });
+  }
 
   if (runtimeConfig.public.baseUrl.includes('localhost') ||
     (route.query.preview === 'true' && route.query.previewSecret === runtimeConfig.public.previewSecret)
