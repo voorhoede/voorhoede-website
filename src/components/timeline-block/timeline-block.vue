@@ -46,7 +46,7 @@
       formattedDate (value) {
         return formatDate({
           date: value,
-          locale: this.$i18n.locale,
+          locale: this.$i18n.locale(),
           format: 'DD MMMM YYYY'
         })
       },

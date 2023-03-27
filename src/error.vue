@@ -17,15 +17,14 @@
 </template>
 
 <script setup>
+  const { $i18n } = useNuxtApp();
   import query from './error.query.graphql?raw';
-
-  const { params } = useRoute();
 
   const { data } = await useFetchContent({
     key: 'ErrorPage',
     query,
     variables: {
-      locale: params.language,
+      locale: $i18n.locale(),
     },
   });
 </script>

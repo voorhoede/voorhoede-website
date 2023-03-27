@@ -44,7 +44,7 @@
             :key="code"
           >
             <span
-              v-if="code === $i18n.locale"
+              v-if="code === $i18n.locale()"
               aria-hidden="true"
               class="app-header__link-list-item app-header__link-list-item--highlighted"
             >

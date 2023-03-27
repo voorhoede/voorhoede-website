@@ -3,7 +3,7 @@
     @submit.prevent="submit"
     method="POST"
     :name="form['form-name']"
-    :action="`/${$i18n.locale}/contact/confirmation/`"
+    :action="`/${$i18n.locale()}/contact/confirmation/`"
     class="contact-page-form__form"
     data-netlify="true"
     data-netlify-honeypot="url-page"
