@@ -4,7 +4,7 @@ export async function useFetchContent({ key = null, query, variables }) {
   const route = useRoute();
   const data = ref(null);
 
-  if (!key && !$i18n.isValidLocale()) {
+  if (!key && !$i18n.isValidLocale({ locale: route.params.language })) {
     console.error('invalid locale for', route.path);
     throw createError({ statusCode: 404 });
   }

@@ -7,8 +7,8 @@ const i18n = rosetta(messages);
 export default defineNuxtPlugin((nuxtApp) => {
   i18n.locale(nuxtApp._route.params.language);
 
-  function isValidLocale() {
-    return locales.find(({ code }) => code === nuxtApp._route.params.language);
+  function isValidLocale({ locale }) {
+    return locales.find(({ code }) => code === locale);
   }
 
   return {
@@ -18,7 +18,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         locales,
         isValidLocale,
         locale: () => {
-          if (!isValidLocale()) {
+          if (!isValidLocale({ locale: nuxtApp._route.params.language })) {
             return "en";
           }
 
