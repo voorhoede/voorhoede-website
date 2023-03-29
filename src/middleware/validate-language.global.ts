@@ -4,7 +4,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
 
   if (!$i18n.isValidLocale({ locale: to.params.language }) && from.path === to.path) {
     console.warn('abortNavigation');
-    return abortNavigation({ statusCode: 404 });
+    return abortNavigation({ statusCode: 404, fatal: true });
   }
 })
 
