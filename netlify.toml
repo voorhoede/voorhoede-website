@@ -2,6 +2,7 @@
 command = "npm run build"
 
 [build.environment]
+NODE_ENV = "production"
 NPM_CONFIG_AUDIT = "false"
 NPM_CONFIG_FUND = "false"
 NPM_FLAGS = "--ignore-scripts"
