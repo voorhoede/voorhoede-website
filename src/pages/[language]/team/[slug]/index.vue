@@ -83,6 +83,10 @@ const { data: { value: { person } } } = await useFetchContent({
   },
 })
 
+if (!person) {
+  throw createError({ statusCode: 404, fatal: true });
+}
+
 const { data: blogs } = await useFetchContent({
   key: ['blogs', route.name, ...Object.values(route.params)].filter(Boolean).join('-'),
   query: blogPostsQuery,

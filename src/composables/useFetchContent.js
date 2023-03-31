@@ -58,7 +58,7 @@ export async function useFetchContent({ key = null, query, variables }) {
   // can not rely on this being a page content query if a 'custom' key is set
   if (!key && initialData.value.page === null) {
     console.error('no page data found for', route.path);
-    throw createError({ statusCode: 404 });
+    throw createError({ statusCode: 404, fatal: true });
   }
 
   return { data };

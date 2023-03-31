@@ -43,6 +43,7 @@
 </template>
 
 <script setup>
+  const { $i18n } = useNuxtApp();
   import query from './default.query.graphql?raw';
   const { afterEach } = useRouter();
   const skipLink = ref(null);
@@ -57,13 +58,11 @@
     }
   });
 
-  const { params } = useRoute();
-
   const { data } = await useFetchContent({
-    key: `DefaultLayout${params.language}`,
+    key: `DefaultLayout${$i18n.locale()}`,
     query,
     variables: {
-      locale: params.language,
+      locale: $i18n.locale(),
     },
   });
 </script>
