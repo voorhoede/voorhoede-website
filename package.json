@@ -27,7 +27,7 @@
     "eslint-plugin-vue": "^9.9.0",
     "husky": "^8.0.3",
     "nano-staged": "^0.8.0",
-    "netlify-cli": "^13.0.0"
+    "netlify-cli": "^13.2.2"
   },
   "engines": {
     "node": ">=18"
