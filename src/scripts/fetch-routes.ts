@@ -5,6 +5,11 @@ type RouteConfig = {
   path: string;
 };
 
+type Locale = {
+  code: string;
+  name: string;
+}
+
 // these route are static and will not need any further processing
 const staticRoutesConfig = [
   "/",
@@ -54,7 +59,7 @@ const dynamicRoutesConfig: RouteConfig[] = [
 ];
 
 // fetches data from DatoCMS using the GraphQL API
-const fetchDatoQuery = async ({
+const fetchDatoQuery = ({
   query,
   variables = {},
 }: {
@@ -84,7 +89,7 @@ const fetchDatoQuery = async ({
 };
 
 // fetches a paginated list of slugs for a given operation
-const fetchPaginatedSlugsForOperation = async ({
+const fetchPaginatedSlugsForOperation = ({
   operation,
   locale,
   skip,
@@ -95,12 +100,12 @@ const fetchPaginatedSlugsForOperation = async ({
 }) => {
   return fetchDatoQuery({
     query: `
-                query ${operation}($skip: IntType, $locale: SiteLocale) {
-                    ${operation}(first: 100, skip: $skip, locale: $locale) {
-                        slug
-                    }
-                }
-            `,
+        query ${operation}($skip: IntType, $locale: SiteLocale) {
+            ${operation}(first: 100, skip: $skip, locale: $locale) {
+                slug
+            }
+        }
+    `,
     variables: {
       locale,
       skip,
@@ -109,7 +114,7 @@ const fetchPaginatedSlugsForOperation = async ({
 };
 
 // fetches the total number of items for a given operation
-const fetchMetaForOperation = async ({
+const fetchMetaForOperation = ({
   operation,
   locale,
 }: {
@@ -118,12 +123,12 @@ const fetchMetaForOperation = async ({
 }) => {
   return fetchDatoQuery({
     query: `
-            query Meta ($locale: SiteLocale) {
-                _${operation}Meta(locale: $locale) {
-                    count
-                }
+        query Meta ($locale: SiteLocale) {
+            _${operation}Meta(locale: $locale) {
+                count
             }
-        `,
+        }
+    `,
     variables: {
       locale,
     },
@@ -150,7 +155,7 @@ const fetchSlugsForOperation = async ({
 };
 
 // fetches all routes for a given locale
-const fetchDynamicRoutes = async ({
+const fetchDynamicRoutes = ({
   locale,
   dynamicRoutesConfig,
 }: {
@@ -172,8 +177,8 @@ const fetchDynamicRoutes = async ({
 export const fetchRoutes = () =>
   Promise.all(
     locales
-      .map((locale) => locale.code)
-      .map(async (locale) => {
+      .map((locale: Locale) => locale.code)
+      .map(async (locale: string) => {
         const dynamicRoutes = await fetchDynamicRoutes({
           locale,
           dynamicRoutesConfig,
