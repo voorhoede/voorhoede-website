@@ -21,8 +21,8 @@
         <app-mobile-menu
           :links="[].concat(data.menu.links, data.menu.callToAction)"
           :is-open="mobileMenuIsOpen"
-          @open-menu="mobileMenuIsOpen = true"
-          @close-menu="mobileMenuIsOpen = false"
+          @open-menu="openMenu"
+          @close-menu="closeMenu"
         />
       </nav>
       <div
@@ -50,7 +50,7 @@
   const focusTrapMobileMenu = computed(() => mobileMenuIsOpen.value ? true : null);
 
   afterEach((from, to) => {
-    mobileMenuIsOpen.value = false;
+    closeMenu()
 
     if (from.path !== to.path) {
       skipLink.value.focus();
@@ -66,6 +66,16 @@
       locale: params.language,
     },
   });
+
+  function openMenu() {
+    mobileMenuIsOpen.value = true;
+    document.body.classList.add("scroll-lock")
+  }
+
+  function closeMenu() {
+    mobileMenuIsOpen.value = false;
+    document.body.classList.remove("scroll-lock")
+  }
 </script>
 
 <style>
