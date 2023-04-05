@@ -2,10 +2,11 @@ export async function useFetchContent({ key = null, query, variables }) {
   const runtimeConfig = useRuntimeConfig();
   const route = useRoute();
   const data = ref(null);
+  const isPreview =
+    runtimeConfig.public.baseUrl.includes('localhost') ||
+    (route.query.preview === 'true' && route.query.previewSecret === runtimeConfig.public.previewSecret);
 
-  if (runtimeConfig.public.baseUrl.includes('localhost') ||
-    (route.query.preview === 'true' && route.query.previewSecret === runtimeConfig.public.previewSecret)
-  ) {
+  if (isPreview) {
     let unsubscribe;
 
     onMounted(async () => {
@@ -28,14 +29,16 @@ export async function useFetchContent({ key = null, query, variables }) {
     });
   }
 
-  const pageKey =
-    key ||
+  const pageKey = key ||
     [route.name, ...Object.values(route.params)].filter(Boolean).join('-');
 
   const { data: initialData } = await useAsyncData(pageKey, () => (
     $fetch(`https://graphql.datocms.com/`, {
       method: 'post',
-      headers: { 'Authorization': runtimeConfig.public.datoApiToken },
+      headers: {
+        'Authorization': runtimeConfig.public.datoApiToken,
+        'X-Include-Drafts': isPreview,
+      },
       body: {
         query,
         variables,
