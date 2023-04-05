@@ -1,0 +1,72 @@
+query LandingPage($locale: SiteLocale, $slug: String) {
+  page: landingPage(locale: $locale, filter: {slug: {eq: $slug}}) {
+    title
+    slug
+    social {
+      title
+      description
+    }
+    sections {
+      __typename
+
+      ... on SectionHeaderRecord {
+        title
+        subtitle
+        illustration {
+          url
+          alt
+          width
+          height
+        }
+      }
+      ... on SectionImageTextRecord {
+        title
+        body(markdown: true)
+        image {
+          url
+          alt
+          width
+          height
+        }
+      }
+      ... on SectionInterstitialCtaRecord {
+        title
+        ctas {
+          __typename
+
+          ... on InternalLinkRecord {
+            title
+            link {
+              ... on LandingPageRecord {
+                slug
+              }
+            }
+          }
+          ... on ExternalLinkRecord {
+            title
+            url
+          }
+        }
+      }
+      ... on SectionNewsletterRecord {
+        __typename # can be removed if record contains fields
+      }
+      ... on SectionImageGridRecord {
+        title
+        items {
+          title
+          description
+          image {
+            url
+            alt
+            width
+            height
+          }
+          isHighlighted
+          isFullWidth
+        }
+      }
+    }
+  }
+}
+
