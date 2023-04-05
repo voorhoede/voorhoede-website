@@ -1,6 +1,6 @@
 import { withTrailingSlash } from 'ufo';
 
-export function useSeoHead({ slug, i18nSlugs, social }) {
+export function useSeoHead({ title, slug, i18nSlugs, social }) {
   if (!slug || !social) {
     throw new Error('Missing required SEO data');
   }
@@ -14,17 +14,17 @@ export function useSeoHead({ slug, i18nSlugs, social }) {
   const defaultShareImg = new URL('/images/logo-wide.jpg', runtimeConfig.public.baseUrl).toString();
 
   useHead({
-    title: social.title,
+    title: social.title || title,
     meta: [
       { name: 'description', content: social.description },
       { property: 'og:type', content: 'website' },
       { property: 'og:url', content: pageUrl },
-      { property: 'og:title', content: social.title || 'De Voorhoede' },
+      { property: 'og:title', content: social.title || title || 'De Voorhoede' },
       { property: 'og:description', content: social.description },
       { property: 'og:image', content: social.image?.url || defaultShareImg },
       { property: 'og:image:width', content: '1000' },
       { property: 'og:image:height', content: '500' },
-      { name: 'twitter:title', content: social.title || 'De Voorhoede' },
+      { name: 'twitter:title', content: social.title || title || 'De Voorhoede' },
       { name: 'twitter:description', content: social.description },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:creator', content: '@devoorhoede' },
