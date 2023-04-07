@@ -1,6 +1,6 @@
 <template>
   <main class="energy-first-container">
-    <div v-if="$i18n.locale === 'en'">
+    <div v-if="$i18n.locale() === 'en'">
       <div class="container container-large x-spaced-medium">
         <h1 class="h1">
           An energy efficient web
@@ -263,7 +263,7 @@
         </div>
       </article>
     </div>
-    <div v-if="$i18n.locale === 'nl'">
+    <div v-if="$i18n.locale() === 'nl'">
       <div class="container container-large x-spaced-medium">
         <h1 class="h1">
           Een energiezuinig web

@@ -5,7 +5,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         return {
           name: ['language', name].filter(Boolean).join('-'),
           params: {
-            language: nuxtApp._route.params.language || 'en',
+            language: nuxtApp.$i18n.locale(),
             ...params,
           },
         };
