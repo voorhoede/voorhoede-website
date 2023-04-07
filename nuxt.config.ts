@@ -61,4 +61,7 @@ export default defineNuxtConfig({
       // hook expects a promise with no return data
       .then(() => {}),
   },
+  routeRules: {
+    '/*': { static: true },
+  }
 });
