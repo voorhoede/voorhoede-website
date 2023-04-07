@@ -19,16 +19,18 @@
       </text-block>
 
       <ul class="page-blog__posts">
-        <li
-          v-for="blogPost in data.page.pinnedPosts"
-          :key="blogPost.slug"
-        >
-          <blog-list-item
-            large
-            pinned
-            :item="blogPost"
-          />
-        </li>
+        <template v-if="currentPage === 1">
+          <li
+            v-for="blogPost in data.page.pinnedPosts"
+            :key="blogPost.slug"
+          >
+            <blog-list-item
+              large
+              pinned
+              :item="blogPost"
+            />
+          </li>
+        </template>
         <li
           v-for="blogPost in data.items.filter(post => post.published)"
           :key="blogPost.slug"
@@ -39,6 +41,14 @@
           />
         </li>
       </ul>
+
+      <pagination-nav
+        :total-items="data.itemsMeta.count"
+        :current-page="currentPage"
+        :per-page="PER_PAGE"
+        :base-path="route.path"
+        class="page-blog__pagination"
+      />
     </section>
 
     <section class="page-blog__pivots grid">
@@ -59,11 +69,27 @@
 <script setup>
   import query from './index.query.graphql?raw';
 
-  const { params } = useRoute();
+  const PER_PAGE = 5;
+
+  const route = useRoute();
+
+  const currentPage = computed(() => {
+    if (route.query.page) {
+      return parseInt(route.query.page, 10);
+    }
+
+    return 1;
+  });
+  const skip = computed(() => {
+    return (currentPage.value - 1) * PER_PAGE;
+  });
+
   const { data } = await useFetchContent({
     query,
     variables: {
-      locale: params.language,
+      locale: route.params.language,
+      skip: skip.value,
+      first: PER_PAGE,
     },
   });
 
@@ -83,6 +109,12 @@
 
   .page-blog__posts {
     grid-row: 2;
+    margin-bottom: var(--spacing-large);
+  }
+
+  .page-blog__pagination {
+    grid-row: 3;
+    margin: auto;
   }
 
   .page-blog__pivots {
@@ -101,7 +133,8 @@
 
   @media (min-width: 720px) {
     .page-blog__text,
-    .page-blog__posts {
+    .page-blog__posts,
+    .page-blog__pagination {
       grid-column-start: 5;
       grid-column-end: 47;
       margin-bottom: var(--spacing-large);
@@ -118,7 +151,8 @@
 
   @media (min-width: 1100px) {
     .page-blog__text,
-    .page-blog__posts {
+    .page-blog__posts,
+    .page-blog__pagination {
       grid-column-start: 14;
       grid-column-end: 42;
       margin-bottom: var(--spacing-large);
