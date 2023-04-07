@@ -8,7 +8,7 @@
         <app-link
           v-if="props.currentPage > 1"
           :to="toLink(previousPage)"
-          aria-label="Previous Page"
+          aria-label="Previous page"
         >
           &lt; Previous
         </app-link>
@@ -24,24 +24,31 @@
         <app-link
           v-if="page === props.currentPage"
           :to="toLink(page)"
-          aria-label="Current Page, Page 3"
+          aria-label="Current page: page 3"
           aria-current="true"
         >
           {{ page }}
         </app-link>
         <app-link
-          v-else
+          v-else-if="page !== DOTS"
           :to="toLink(page)"
-          :aria-label="`Goto Page ${page}`"
+          :aria-label="`Go to page ${page}`"
         >
           {{ page }}
         </app-link>
+        <span
+          v-else
+          class="pagination-nav__item"
+          aria-hidden="true"
+        >
+          {{ DOTS }}
+        </span>
       </li>
       <li class="pagination-nav__item">
         <app-link
           v-if="props.currentPage < totalPages"
           :to="toLink(nextPage)"
-          aria-label="Next Page"
+          aria-label="Next page"
         >
           Next >
         </app-link>
@@ -51,6 +58,8 @@
 </template>
 
 <script setup>
+  const DOTS = '...'
+
   const props = defineProps({
     totalItems: {
       type: Number,
@@ -85,10 +94,9 @@
 
   const paginationRange = computed(() => {
     const siblingCount = 1
-    const dots = '...'
     const firstPage = 1
     const lastPage = totalPages.value
-    // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*dots
+    // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
     const totalPageNumbers = 2 * siblingCount + 5
 
     /*
@@ -110,41 +118,41 @@
     )
 
     /*
-      We do not show dots just when there is just one page number to be inserted
+      We do not show DOTS just when there is just one page number to be inserted
       between the extremes of sibling and the page limits i.e 1 and totalPages.
       Hence we are using leftSibling > 1 and rightSibling < totalPages.value - 1
     */
-    const showLeftdots = leftSibling > 1
-    const showRightdots = rightSibling <= totalPages.value - 1
+    const showLeftDOTS = leftSibling > 1
+    const showRightDOTS = rightSibling <= totalPages.value - 1
 
     /*
-      Case 2: No left dots to show, but rights dots to be shown
+      Case 2: No left DOTS to show, but rights DOTS to be shown
     */
-    if (!showLeftdots && showRightdots) {
+    if (!showLeftDOTS && showRightDOTS) {
       let leftItemCount = totalPageNumbers - 2
       let leftRange = range(1, leftItemCount)
 
-      return [...leftRange, dots, lastPage]
+      return [...leftRange, DOTS, lastPage]
     }
 
     /*
-      Case 3: No right dots to show, but left dots to be shown
+      Case 3: No right DOTS to show, but left DOTS to be shown
     */
-    if (showLeftdots && !showRightdots) {
+    if (showLeftDOTS && !showRightDOTS) {
       let rightItemCount = totalPageNumbers - 2
       let rightRange = range(
         lastPage - rightItemCount + 1,
         lastPage
       )
-      return [firstPage, dots, ...rightRange]
+      return [firstPage, DOTS, ...rightRange]
     }
 
     /*
-      Case 4: Both left and right dots to be shown
+      Case 4: Both left and right DOTS to be shown
     */
-    if (showLeftdots && showRightdots) {
+    if (showLeftDOTS && showRightDOTS) {
       let middleRange = range(leftSibling, rightSibling)
-      return [firstPage, dots, ...middleRange, dots, lastPage]
+      return [firstPage, DOTS, ...middleRange, DOTS, lastPage]
     }
   })
 
