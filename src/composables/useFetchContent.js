@@ -24,7 +24,7 @@ export async function useFetchContent({ key = null, query, variables }) {
     });
 
     onUnmounted(() => {
-      unsubscribe();
+      unsubscribe?.();
     });
   }
 
