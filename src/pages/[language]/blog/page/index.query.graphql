@@ -1,0 +1,111 @@
+query Blog($locale: SiteLocale, $skip: IntType, $first: IntType) {
+  page: blogPostOverview(locale: $locale) {
+    ...blogPostOverview
+  }
+  items: allBlogPosts(
+    filter: { published: { eq: true } }
+    first: $first
+    skip: $skip
+    locale: $locale
+    orderBy: publishDate_DESC
+  ) {
+    ...blogPost
+  }
+  itemsMeta: _allBlogPostsMeta(filter: { published: { eq: true } }, locale: $locale) {
+    count
+  }
+}
+
+fragment blogPost on BlogPostRecord {
+  slug
+  social {
+    title
+    description
+    image {
+      url
+    }
+  }
+  title
+  published
+  date: publishDate
+  authors {
+    name
+    image {
+      url
+      alt
+      width
+      height
+    }
+  }
+}
+
+fragment blogPostOverview on BlogPostOverviewRecord {
+  title
+  slug
+  social {
+    title
+    description
+    image {
+      url
+    }
+  }
+  subtitle
+  description
+  headerIllustration {
+    url
+    alt
+    width
+    height
+  }
+  pinnedPosts {
+    ...blogPost
+  }
+  pivots {
+    title
+    body(markdown: true)
+    buttonLabel: callToActionLabel
+    mailchimpValue
+    mailchimpName
+    mailchimpId
+    link {
+      title
+      url
+      page {
+        ... on HomeRecord {
+          slug
+        }
+        ... on ServiceOverviewRecord {
+          slug
+        }
+        ... on CaseOverviewRecord {
+          slug
+        }
+        ... on BlogPostOverviewRecord {
+          slug
+        }
+        ... on JobOverviewRecord {
+          slug
+        }
+        ... on AboutRecord {
+          slug
+        }
+        ... on ContactRecord {
+          slug
+        }
+      }
+    }
+    externalLink
+    formType
+    contactPerson {
+      name
+      lastName
+      jobTitle
+      image {
+        url
+        alt
+        width
+        height
+      }
+    }
+  }
+}

@@ -1,16 +1,16 @@
 <template>
   <nav
     role="navigation"
-    aria-label="Pagination Navigation"
+    :aria-label="$t('pagination_navigation')"
   >
     <ul class="pagination-nav__list body">
       <li class="pagination-nav__item">
         <app-link
           v-if="props.currentPage > 1"
           :to="toLink(previousPage)"
-          aria-label="Previous page"
+          :aria-label="$t('previous_page')"
         >
-          &lt; Previous
+          &lt; {{ $t('previous') }}
         </app-link>
       </li>
       <li
@@ -24,7 +24,7 @@
         <app-link
           v-if="page === props.currentPage"
           :to="toLink(page)"
-          aria-label="Current page: page 3"
+          :aria-label="$t('current_page', { page })"
           aria-current="true"
         >
           {{ page }}
@@ -32,7 +32,7 @@
         <app-link
           v-else-if="page !== DOTS"
           :to="toLink(page)"
-          :aria-label="`Go to page ${page}`"
+          :aria-label="$t('go_to_page', { page })"
         >
           {{ page }}
         </app-link>
@@ -48,9 +48,9 @@
         <app-link
           v-if="props.currentPage < totalPages"
           :to="toLink(nextPage)"
-          aria-label="Next page"
+          :aria-label="$t('next_page')"
         >
-          Next >
+          {{ $t('next') }} >
         </app-link>
       </li>
     </ul>
@@ -73,24 +73,11 @@
       type: Number,
       required: true,
     },
-    basePath: {
-      type: String,
-      required: true,
-    },
   })
 
   const totalPages = computed(() => Math.ceil(props.totalItems / props.perPage))
   const previousPage = computed(() => props.currentPage - 1)
   const nextPage = computed(() => props.currentPage + 1)
-
-  function toLink(page) {
-    return {
-      path: props.basePath,
-      query: {
-        page,
-      },
-    }
-  }
 
   const paginationRange = computed(() => {
     const siblingCount = 1
@@ -159,6 +146,10 @@
   function range(start, end) {
     const size = end - start + 1
     return [...Array(size).keys()].map(i => i + start)
+  }
+
+  function toLink(page) {
+    return { params: { page } }
   }
 </script>
 
