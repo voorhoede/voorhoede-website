@@ -1,3 +1,5 @@
+import { datocmsFetch } from '../lib/datocms-fetch.ts';
+
 export async function useFetchContent({ key = null, query, variables }) {
   const runtimeConfig = useRuntimeConfig();
   const route = useRoute();
@@ -33,24 +35,13 @@ export async function useFetchContent({ key = null, query, variables }) {
     [route.name, ...Object.values(route.params)].filter(Boolean).join('-');
 
   const { data: initialData } = await useAsyncData(pageKey, () => (
-    $fetch(`https://graphql.datocms.com/`, {
-      method: 'post',
-      headers: { 'Authorization': runtimeConfig.public.datoApiToken },
-      body: {
-        query,
-        variables,
-      },
+    datocmsFetch({
+      fetcher: $fetch,
+      apiToken: runtimeConfig.public.datoApiToken,
+      query,
+      variables,
     })
-      .then((response) => {
-        if (response.errors)
-          console.error(
-            'request to dato failed',
-            '\n',
-            JSON.stringify(response.errors, null, 2),
-          );
-
-        return response.data;
-      })
+      .then(({ data }) => data)
   ));
 
   data.value = initialData.value;
