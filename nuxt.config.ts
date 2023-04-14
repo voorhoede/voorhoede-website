@@ -17,8 +17,8 @@ export default defineNuxtConfig({
   ],
   nitro: {
     prerender: {
-      crawlLinks: false
-    }
+      crawlLinks: false,
+    },
   },
   runtimeConfig: {
     public: {
@@ -35,14 +35,12 @@ export default defineNuxtConfig({
     apiHost: '/mogelijk',
   },
   hooks: {
-    'prerender:routes': ({ routes }) => {
-      fetchRoutes()
-        .then((generatedRoutes) => {
-          generatedRoutes.forEach((route) => {
-            // routes is of type Set, so we need to add each route individually
-            routes.add(route);
-          })
-        })
+    'nitro:config': async (config) => {
+      const routes = await fetchRoutes()
+
+      if (config.prerender?.routes) {
+        config.prerender.routes.push(...routes)
+      }
     },
     'build:before': () => Promise.all([
       fetchTranslations({ datoApiToken: process.env.DATO_API_TOKEN })
@@ -62,6 +60,13 @@ export default defineNuxtConfig({
       .then(() => {}),
   },
   routeRules: {
-    '/*': { static: true },
+    '/en/services': { static: true },
+    '/nl/services': { static: true },
+    '/en/services/*': { static: true },
+    '/nl/services/*': { static: true },
+    '/en/blog': { swr: true },
+    '/nl/blog': { swr: true },
+    '/en/blog/*': { swr: true },
+    '/nl/blog/*': { swr: true },
   }
 });
