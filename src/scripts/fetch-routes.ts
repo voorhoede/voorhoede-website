@@ -88,6 +88,14 @@ const fetchDatoQuery = ({
     });
 };
 
+const fetchBlogPagesRoutes = async ({ locale } : { locale: string }) => {
+  const operation = "allBlogPosts";
+  const meta = await fetchMetaForOperation({ operation, locale });
+  const { count } = meta[`_${operation}Meta`];
+  const pages = Math.ceil(count / 20);
+  return  [...Array(pages)].map((_, index) => `/${locale}/blog/page/${index + 1}/`);
+};
+
 // fetches a paginated list of slugs for a given operation
 const fetchPaginatedSlugsForOperation = ({
   operation,
@@ -184,9 +192,12 @@ export const fetchRoutes = () =>
           dynamicRoutesConfig,
         });
 
+        const blogRoutes = await fetchBlogPagesRoutes({ locale });
+
         return [
           ...staticRoutesConfig.map((route) => `/${locale}${route}`),
           ...dynamicRoutes,
+          ...blogRoutes,
         ];
       })
   ).then((data) => data.flat());
