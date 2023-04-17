@@ -8,7 +8,7 @@ type RouteConfig = {
 type Locale = {
   code: string;
   name: string;
-}
+};
 
 // these route are static and will not need any further processing
 const staticRoutesConfig = [
@@ -23,6 +23,7 @@ const staticRoutesConfig = [
   "/events/",
   "/faq/",
   "/energy-first/",
+  "/about-us/",
 ];
 
 // these routes are generated dynamically by fetching all slugs for each page type
