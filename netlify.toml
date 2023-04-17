@@ -36,13 +36,3 @@ status = 301
 from = "/mogelijk/api/event"
 to = "https://plausible.io/api/event"
 status = 200
-
-[[redirects]]
-from = "/en/blog/"
-to = "/en/blog/page/1"
-status = 301
-
-[[redirects]]
-from = "/nl/blog/"
-to = "/nl/blog/page/1"
-status = 301
