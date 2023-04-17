@@ -1,6 +1,5 @@
 <template>
   <nav
-    role="navigation"
     :aria-label="$t('pagination_navigation')"
   >
     <ul class="pagination-nav__list body">
@@ -83,7 +82,7 @@
     const siblingCount = 1
     const firstPage = 1
     const lastPage = totalPages.value
-    // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
+    // totalPageNumbers = 2 * siblingCount + firstPage + lastPage + currentPage + 2 * DOTS
     const totalPageNumbers = 2 * siblingCount + 5
 
     /*
