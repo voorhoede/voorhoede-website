@@ -45,17 +45,17 @@ export default defineNuxtConfig({
         })
     },
     'build:before': () => Promise.all([
-      fetchTranslations({ datoApiToken: process.env.DATO_API_TOKEN })
+      fetchTranslations()
         .then(async (translations) => {
           await mkdir('.cache', { recursive: true });
           await writeFile('.cache/ui-translations.json', JSON.stringify(translations));
         }),
-      fetchBlogFeed({ datoApiToken: process.env.DATO_API_TOKEN, baseUrl: process.env.BASE_URL })
+      fetchBlogFeed()
         .then(async (blogFeed) => {
           await mkdir('./src/public/blog', { recursive: true });
           await writeFile('./src/public/blog/feed.json', JSON.stringify(blogFeed));
         }),
-      fetchRedirects({ datoApiToken: process.env.DATO_API_TOKEN })
+      fetchRedirects()
         .then((redirects) => writeFile('./src/public/_redirects', redirects)),
     ])
       // hook expects a promise with no return data

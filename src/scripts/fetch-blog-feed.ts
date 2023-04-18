@@ -15,10 +15,10 @@ type BlogFeedResponse = {
   };
 };
 
-export const fetchBlogFeed = ({ datoApiToken, baseUrl }) => {
+export const fetchBlogFeed = () => {
+  const baseUrl = process.env.BASE_URL;
+
   return datocmsFetch({
-    fetcher: fetch,
-    apiToken: datoApiToken,
     query: `
       query BlogFeed {
         allBlogPosts(first: 10, orderBy: publishDate_DESC, filter: {published: {eq: true}}) {

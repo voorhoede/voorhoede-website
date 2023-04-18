@@ -1,10 +1,8 @@
 import { locales } from '../lib/i18n.js';
 import { datocmsFetch } from '../lib/datocms-fetch.ts';
 
-export const fetchTranslations = ({ datoApiToken }) => (
+export const fetchTranslations = () => (
   datocmsFetch({
-    fetcher: fetch,
-    apiToken: datoApiToken,
     query: `
       query Translations {
         ${locales.map(({ code }) => `

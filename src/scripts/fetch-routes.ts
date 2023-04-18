@@ -70,8 +70,6 @@ const fetchPaginatedSlugsForOperation = ({
   skip: number;
 }) => {
   return datocmsFetch({
-    fetcher: fetch,
-    apiToken: process.env.DATO_API_TOKEN,
     query: `
         query ${operation}($skip: IntType, $locale: SiteLocale) {
             ${operation}(first: 100, skip: $skip, locale: $locale) {
@@ -95,8 +93,6 @@ const fetchMetaForOperation = ({
   locale: string;
 }) => {
   return datocmsFetch({
-    fetcher: fetch,
-    apiToken: process.env.DATO_API_TOKEN,
     query: `
         query Meta ($locale: SiteLocale) {
             _${operation}Meta(locale: $locale) {
