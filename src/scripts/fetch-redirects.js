@@ -1,9 +1,7 @@
 import { datocmsFetch } from '../lib/datocms-fetch.ts';
 
-export const fetchRedirects = ({ datoApiToken }) => (
+export const fetchRedirects = () => (
   datocmsFetch({
-    fetcher: fetch,
-    apiToken: datoApiToken,
     query: `
       query Redirects {
         allRedirects {
