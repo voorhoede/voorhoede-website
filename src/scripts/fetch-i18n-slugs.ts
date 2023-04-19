@@ -1,3 +1,5 @@
+import { datocmsFetch } from "../lib/datocms-fetch";
+
 const operationsWithTranslatedSlugs = [
   {
     route: "language-jobs-slug",
@@ -20,8 +22,8 @@ const fetchPaginatedTranslatedSlugsForOperation = ({
 }: {
   operation: string;
   skip: number;
-}) => {
-  return fetchDatoQuery({
+}) =>
+  datocmsFetch({
     query: `
         query ${operation}($skip: IntType) {
             ${operation}(first: 100, skip: $skip) {
@@ -36,17 +38,15 @@ const fetchPaginatedTranslatedSlugsForOperation = ({
     variables: {
       skip,
     },
-  })
-    .then((data) =>
-      data[operation].map(
-        ({ _allSlugLocales }: { _allSlugLocales: any }) => _allSlugLocales
-      )
-    );
-};
+  }).then(({ data }) =>
+    data[operation].map(
+      ({ _allSlugLocales }: { _allSlugLocales: any }) => _allSlugLocales
+    )
+  );
 
 // fetches the total number of items for a given operation
-const fetchMetaForOperation = ({ operation }: { operation: string }) => {
-  return fetchDatoQuery({
+const fetchMetaForOperation = ({ operation }: { operation: string }) =>
+  datocmsFetch({
     query: `
         query Meta {
             _${operation}Meta {
@@ -54,8 +54,7 @@ const fetchMetaForOperation = ({ operation }: { operation: string }) => {
             }
         }
     `,
-  });
-};
+  }).then(({ data }) => data);
 
 // fetches all slugs for operation
 const fetchTranslatedSlugsForOperation = async ({
@@ -77,43 +76,12 @@ const fetchTranslatedSlugsForOperation = async ({
   );
 };
 
-// fetches data from DatoCMS using the GraphQL API
-const fetchDatoQuery = ({
-  query,
-  variables = {},
-}: {
-  query: string;
-  variables?: Record<string, unknown>;
-}) => {
-  return fetch("https://graphql.datocms.com/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: process.env.DATO_API_TOKEN,
-    } as HeadersInit,
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  })
-    .then((res) => res.json())
-    .then(({ data, errors }) => {
-      if (errors) {
-        console.log(errors);
-      }
-
-      return data;
-    });
-};
-
-export const fetchI18nSlugs = async () => {
-  const test = await Promise.all(
+export const fetchI18nSlugs = () =>
+  Promise.all(
     operationsWithTranslatedSlugs.map(async ({ route, operation }) => ({
       route,
-      slugs: (await fetchTranslatedSlugsForOperation({ operation: operation })).flat(),
+      slugs: (
+        await fetchTranslatedSlugsForOperation({ operation: operation })
+      ).flat(),
     }))
   );
-
-  return test;
-};
