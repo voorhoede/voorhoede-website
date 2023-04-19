@@ -4,10 +4,12 @@ export async function useFetchContent({ key = null, query, variables }) {
   const runtimeConfig = useRuntimeConfig();
   const route = useRoute();
   const data = ref(null);
+  const isPreview =
+    runtimeConfig.public.baseUrl.includes("localhost") ||
+    (route.query.preview === "true" &&
+      route.query.previewSecret === runtimeConfig.public.previewSecret);
 
-  if (runtimeConfig.public.baseUrl.includes('localhost') ||
-    (route.query.preview === 'true' && route.query.previewSecret === runtimeConfig.public.previewSecret)
-  ) {
+  if (isPreview) {
     let unsubscribe;
 
     onMounted(async () => {
@@ -40,6 +42,7 @@ export async function useFetchContent({ key = null, query, variables }) {
       apiToken: runtimeConfig.public.datoApiToken,
       query,
       variables,
+      preview: isPreview,
     })
       .then(({ data }) => data)
   ));

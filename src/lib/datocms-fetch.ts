@@ -4,11 +4,15 @@ export function datocmsFetch(
     apiToken = process.env.DATO_API_TOKEN,
     query,
     variables = {},
+    preview = false,
   },
 ) {
   return fetcher('https://graphql.datocms.com/', {
     method: 'post',
-    headers: { 'Authorization': apiToken },
+    headers: {
+      'Authorization': apiToken,
+      ...(preview && { 'X-Include-Drafts': 'true' }),
+    },
     body: JSON.stringify({
       query,
       variables,
