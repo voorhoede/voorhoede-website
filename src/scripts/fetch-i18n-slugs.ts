@@ -11,7 +11,7 @@ const operationsWithTranslatedSlugs = [
   },
   {
     route: "language-cases-slug",
-    operation: "allServices",
+    operation: "allCaseItems",
   },
 ];
 
