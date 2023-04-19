@@ -36,6 +36,12 @@
         :title="section.title"
         :items="section.items"
       />
+      <logo-grid
+        v-if="section.__typename === 'SectionLogoGridRecord'"
+        :key="index"
+        :title="section.title"
+        :logos="section.logos"
+      />
     </template>
   </div>
 </template>
