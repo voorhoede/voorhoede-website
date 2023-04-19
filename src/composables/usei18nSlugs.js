@@ -12,7 +12,11 @@ export async function useI18nSlugs() {
             return null
         }
 
-        return i18nSlugs.slugs.find(localeConfig => localeConfig.find(({ locale, value }) => value === route.params.slug && locale === route.params.language))
+        return i18nSlugs.slugs.find(
+            localeConfig => localeConfig.find(
+                ({ locale, value }) => value === route.params.slug && locale === route.params.language
+            )
+        )
     }, {
         watch: [route]
     })
