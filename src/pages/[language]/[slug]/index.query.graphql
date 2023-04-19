@@ -66,6 +66,15 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           isFullWidth
         }
       }
+      ... on SectionLogoGridRecord {
+        title
+        logos {
+          url
+          alt
+          width
+          height
+        }
+      }
     }
   }
 }
