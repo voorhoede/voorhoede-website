@@ -1,5 +1,5 @@
 import { locales } from "../lib/i18n";
-import { datocmsFetch } from '../lib/datocms-fetch.ts';
+import { datocmsFetch } from '../lib/datocms-fetch';
 
 type RouteConfig = {
   queryOperation: string;
