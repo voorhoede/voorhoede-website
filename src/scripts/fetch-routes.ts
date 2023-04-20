@@ -1,5 +1,7 @@
 import { locales } from "../lib/i18n";
 
+const BLOG_PER_PAGE = 20;
+
 type RouteConfig = {
   queryOperation: string;
   path: string;
@@ -89,11 +91,12 @@ const fetchDatoQuery = ({
     });
 };
 
+// fetches all routes for blog pages for a given locale
 const fetchBlogPagesRoutes = async ({ locale } : { locale: string }) => {
   const operation = "allBlogPosts";
   const meta = await fetchMetaForOperation({ operation, locale });
   const { count } = meta[`_${operation}Meta`];
-  const pages = Math.ceil(count / 20);
+  const pages = Math.ceil(count / BLOG_PER_PAGE);
   return  [...Array(pages)].map((_, index) => `/${locale}/blog/page/${index + 1}/`);
 };
 

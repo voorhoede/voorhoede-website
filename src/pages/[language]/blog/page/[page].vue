@@ -68,6 +68,7 @@
 <script setup>
   import query from './index.query.graphql?raw';
 
+  // If you change this, also change it in fetch-routes.ts
   const PER_PAGE = 20;
 
   const { params } = useRoute();
