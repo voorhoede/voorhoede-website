@@ -1,4 +1,5 @@
 import type { default as Feed } from '@json-feed-types/1_1';
+import { datocmsFetch } from '../lib/datocms-fetch.ts';
 
 type BlogFeedResponse = {
   data: {
@@ -14,27 +15,24 @@ type BlogFeedResponse = {
   };
 };
 
-export const fetchBlogFeed = ({ datoApiToken, baseUrl }) => {
-  return fetch(`https://graphql.datocms.com/`, {
-    method: 'post',
-    headers: { 'authorization': datoApiToken },
-    body: JSON.stringify({
-      query: `
-        query BlogFeed {
-          allBlogPosts(first: 10, orderBy: publishDate_DESC, filter: {published: {eq: true}}) {
-            title
-            slug
-            publishDate
-            introTitle
-            social {
-              description
-            }
+export const fetchBlogFeed = () => {
+  const baseUrl = process.env.BASE_URL;
+
+  return datocmsFetch({
+    query: `
+      query BlogFeed {
+        allBlogPosts(first: 10, orderBy: publishDate_DESC, filter: {published: {eq: true}}) {
+          title
+          slug
+          publishDate
+          introTitle
+          social {
+            description
           }
         }
-      `,
-    }),
+      }
+    `
   })
-    .then((response) => response.json())
     .then(({ data }: BlogFeedResponse): Feed => ({
       version: 'https://jsonfeed.org/version/1.1',
       title: 'De Voorhoede Blog',

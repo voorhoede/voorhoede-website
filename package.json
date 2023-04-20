@@ -14,7 +14,7 @@
     "@nuxtjs/plausible": "^0.2.0",
     "datocms-listen": "^0.1.14",
     "dayjs": "^1.11.7",
-    "nuxt": "^3.3.1",
+    "nuxt": "^3.3.3",
     "nuxt-icons": "^3.1.0",
     "prismjs": "^1.29.0",
     "rosetta": "^1.1.0",
