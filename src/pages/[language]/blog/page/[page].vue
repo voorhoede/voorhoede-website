@@ -7,7 +7,10 @@
       :image="data.page.headerIllustration"
     />
 
-    <section class="page-blog-container grid">
+    <section
+      :id="SECTION_ID"
+      class="page-blog-container grid"
+    >
       <h2 class="sr-only">
         {{ $t('blog_overview') }}
       </h2>
@@ -46,6 +49,7 @@
         :total-items="data.itemsMeta.count"
         :current-page="currentPage"
         :per-page="PER_PAGE"
+        :scroll-to="`#${SECTION_ID}`"
         class="page-blog__pagination"
       />
     </section>
@@ -70,6 +74,8 @@
 
   // If you change this, also change it in fetch-routes.ts
   const PER_PAGE = 20;
+
+  const SECTION_ID = 'blog-container';
 
   const { params } = useRoute();
 

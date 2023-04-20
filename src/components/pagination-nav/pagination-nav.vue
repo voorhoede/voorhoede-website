@@ -72,6 +72,10 @@
       type: Number,
       required: true,
     },
+    scrollTo: {
+      type: String,
+      default: null,
+    },
   })
 
   const totalPages = computed(() => Math.ceil(props.totalItems / props.perPage))
@@ -148,7 +152,7 @@
   }
 
   function toLink(page) {
-    return { params: { page } }
+    return { params: { page }, ...(props.scrollTo && { hash: props.scrollTo })}
   }
 </script>
 
