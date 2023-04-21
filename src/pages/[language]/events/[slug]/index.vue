@@ -40,7 +40,7 @@
             {{ $t('price') }}
           </p>
           <p class="body">
-            € {{ data.page.price }}
+            {{ data.page.price }}
           </p>
         </div>
 
