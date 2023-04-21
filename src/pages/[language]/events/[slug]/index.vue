@@ -15,7 +15,7 @@
       <aside class="page-event-detail__aside">
         <div>
           <p class="body font-bold">
-            Date
+            {{ $t('date') }}
           </p>
           <time
             :datetime="data.page.date"
@@ -27,7 +27,7 @@
 
         <div>
           <p class="body font-bold">
-            Location
+            {{ $t('location') }}
           </p>
           <rich-text-block
             :key="formattedAddress"
@@ -37,7 +37,7 @@
 
         <div v-if="data.page.price && data.page.price !== '0'">
           <p class="body font-bold">
-            Price
+            {{ $t('price') }}
           </p>
           <p class="body">
             € {{ data.page.price }}
