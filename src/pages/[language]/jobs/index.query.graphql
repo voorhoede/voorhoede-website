@@ -2,7 +2,7 @@ query Jobs($locale: SiteLocale) {
   page: jobOverview(locale: $locale) {
     ...jobOverview
   }
-  items: allJobs(locale: $locale, filter: {published: {eq: true}}) {
+  items: allJobs(locale: $locale) {
     title
     slug
     jobImage {

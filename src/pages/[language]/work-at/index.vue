@@ -79,7 +79,7 @@
 
     <div class="page-work-at__layout page-work-at__job-buttons">
       <app-button
-        v-for="job in filteredJobs"
+        v-for="job in data.page.jobs"
         :key="job.title"
         :label="job.title"
         :to="$localeUrl({ name: 'jobs-slug', params: { slug: job.job.slug } })"
@@ -139,8 +139,6 @@
   });
 
   useSeoHead(data.value.page);
-
-  const filteredJobs = computed(() => data.value?.page.jobs.filter(job => job.job.published))
 </script>
 
 <style>
