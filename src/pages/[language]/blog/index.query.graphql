@@ -3,10 +3,9 @@ query Blog($locale: SiteLocale) {
     ...blogPostOverview
   }
   items: allBlogPosts(
-    filter: { published: { eq: true } }
     first: 100
     locale: $locale
-    orderBy: publishDate_DESC
+    orderBy: _firstPublishedAt_DESC
   ) {
     ...blogPost
   }
@@ -22,8 +21,7 @@ fragment blogPost on BlogPostRecord {
     }
   }
   title
-  published
-  date: publishDate
+  date: _firstPublishedAt
   authors {
     name
     image {

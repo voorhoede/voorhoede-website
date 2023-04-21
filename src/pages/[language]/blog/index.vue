@@ -30,7 +30,7 @@
           />
         </li>
         <li
-          v-for="blogPost in data.items.filter(post => post.published)"
+          v-for="blogPost in data.items"
           :key="blogPost.slug"
         >
           <blog-list-item

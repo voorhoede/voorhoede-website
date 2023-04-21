@@ -21,7 +21,7 @@ fragment page on BlogPostRecord {
     width
     height
   }
-  date: publishDate
+  date: _firstPublishedAt
   authors {
     name
     lastName

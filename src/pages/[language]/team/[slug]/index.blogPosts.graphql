@@ -2,7 +2,7 @@ query TeamSlug($personId: [ItemId]) {
   blogPosts: allBlogPosts(
     first: 100
     filter: { authors: { anyIn: $personId } }
-    orderBy: publishDate_DESC
+    orderBy: _firstPublishedAt_DESC
   ) {
     ...blogPost
   }
@@ -13,7 +13,7 @@ fragment blogPost on BlogPostRecord {
   title
   introTitle
   slug
-  date: publishDate
+  date: _firstPublishedAt
   authors {
     id
     name

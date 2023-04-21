@@ -21,6 +21,7 @@
       </h3>
     </app-link>
     <time
+      v-if="item.date"
       :datetime="item.date"
       class="blog-list-item__time"
       :class="large ? 'body' : 'body-small'"
@@ -60,7 +61,6 @@
         validator(item) {
           return typeof(item.slug) === 'string' &&
                  typeof(item.title) === 'string' &&
-                 !!Date.parse(item.date) &&
                  item.authors.length >= 1
         },
       },

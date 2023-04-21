@@ -32,6 +32,7 @@
         </app-link>
       </div>
       <time
+        v-if="item.date"
         class="blog-author__text-time"
         :datetime="item.date"
       >
@@ -52,7 +53,6 @@
         validator(item) {
           return typeof(item.slug) === 'string' &&
                  typeof(item.title) === 'string' &&
-                 !!Date.parse(item.date) &&
                  item.authors.length >= 1
         },
       },
