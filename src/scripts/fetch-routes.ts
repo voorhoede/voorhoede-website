@@ -1,6 +1,8 @@
 import { locales } from "../lib/i18n";
 import { datocmsFetch } from '../lib/datocms-fetch';
 
+const BLOG_PER_PAGE = 20;
+
 type RouteConfig = {
   queryOperation: string;
   path: string;
@@ -59,6 +61,15 @@ const dynamicRoutesConfig: RouteConfig[] = [
     path: "/jobs/",
   },
 ];
+
+// fetches all routes for blog pages for a given locale
+const fetchBlogPagesRoutes = async ({ locale } : { locale: string }) => {
+  const operation = "allBlogPosts";
+  const { data: meta } = await fetchMetaForOperation({ operation, locale });
+  const { count } = meta[`_${operation}Meta`];
+  const pages = Math.ceil(count / BLOG_PER_PAGE);
+  return  [...Array(pages)].map((_, index) => `/${locale}/blog/page/${index + 1}/`);
+};
 
 // fetches a paginated list of slugs for a given operation
 const fetchPaginatedSlugsForOperation = ({
@@ -156,9 +167,12 @@ export const fetchRoutes = () =>
           dynamicRoutesConfig,
         });
 
+        const blogRoutes = await fetchBlogPagesRoutes({ locale });
+
         return [
           ...staticRoutesConfig.map((route) => `/${locale}${route}`),
           ...dynamicRoutes,
+          ...blogRoutes,
         ];
       })
   ).then((data) => data.flat());
