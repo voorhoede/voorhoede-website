@@ -73,7 +73,7 @@
       </h2>
       <ul>
         <li
-          v-for="blogPost in data.page.blogsList.filter(post => post.published)"
+          v-for="blogPost in data.page.blogsList"
           :key="blogPost.slug"
         >
           <blog-list-item
