@@ -148,7 +148,7 @@
     >
       <app-link
         class="app-button app-button--secondary body font-bold"
-        :to="$localeUrl({ name: 'blog' })"
+        :to="$localeUrl({ name: 'blog-page-page', params: { page: 1 } })"
       >
         &larr; {{ $t('all_blogposts') }}
       </app-link>
