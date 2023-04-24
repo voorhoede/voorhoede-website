@@ -114,7 +114,7 @@ fragment lustrum on LustrumRecord {
   blogsList {
     slug
     title
-    date: _firstPublishedAt
+    date: publishDate
     authors {
       name
       image {

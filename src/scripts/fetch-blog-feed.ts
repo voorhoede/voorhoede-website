@@ -21,10 +21,10 @@ export const fetchBlogFeed = () => {
   return datocmsFetch({
     query: `
       query BlogFeed {
-        allBlogPosts(first: 10, orderBy: _firstPublishedAt_DESC) {
+        allBlogPosts(first: 10, orderBy: publishDate_DESC) {
           title
           slug
-          publishDate: _firstPublishedAt
+          publishDate: publishDate
           introTitle
           social {
             description

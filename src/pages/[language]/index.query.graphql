@@ -16,10 +16,10 @@ query HomePage($locale: SiteLocale, $currentDate: DateTime) {
       height
     }
   }
-  latestBlogposts: allBlogPosts(locale: $locale, first: 3, orderBy: _firstPublishedAt_DESC) {
+  latestBlogposts: allBlogPosts(locale: $locale, first: 3, orderBy: publishDate_DESC) {
     slug
     title
-    date: _firstPublishedAt
+    date: publishDate
     authors {
       name
       image {
