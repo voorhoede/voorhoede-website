@@ -24,7 +24,7 @@ export const fetchBlogFeed = () => {
         allBlogPosts(first: 10, orderBy: publishDate_DESC) {
           title
           slug
-          publishDate: publishDate
+          publishDate
           introTitle
           social {
             description
