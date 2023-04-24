@@ -65,7 +65,7 @@ const dynamicRoutesConfig: RouteConfig[] = [
 // fetches all routes for blog pages for a given locale
 const fetchBlogPagesRoutes = async ({ locale } : { locale: string }) => {
   const operation = "allBlogPosts";
-  const meta = await fetchMetaForOperation({ operation, locale });
+  const { data: meta } = await fetchMetaForOperation({ operation, locale });
   const { count } = meta[`_${operation}Meta`];
   const pages = Math.ceil(count / BLOG_PER_PAGE);
   return  [...Array(pages)].map((_, index) => `/${locale}/blog/page/${index + 1}/`);
