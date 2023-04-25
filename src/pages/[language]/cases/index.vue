@@ -37,7 +37,7 @@
       </h2>
       <ul class="page-case__grid">
         <li
-          v-for="caseItem in data.page.projects.filter(caseItem => caseItem.published)"
+          v-for="caseItem in data.page.projects"
           :key="caseItem.slug"
         >
           <link-card

@@ -2,7 +2,7 @@ query HomePage($locale: SiteLocale, $currentDate: DateTime) {
   page: home(locale: $locale) {
     ...homepage
   }
-  upcomingEvents: allEventItems(locale: $locale, first: 1, orderBy: date_ASC, filter: {date: {gte: $currentDate}, published: {eq: true}}) {
+  upcomingEvents: allEventItems(locale: $locale, first: 1, orderBy: date_ASC, filter: {date: {gte: $currentDate}}) {
     date
     social {
       description
@@ -16,10 +16,9 @@ query HomePage($locale: SiteLocale, $currentDate: DateTime) {
       height
     }
   }
-  latestBlogposts: allBlogPosts(locale: $locale, first: 3, orderBy: publishDate_DESC, filter: {published: {eq: true}}) {
+  latestBlogposts: allBlogPosts(locale: $locale, first: 3, orderBy: publishDate_DESC) {
     slug
     title
-    published
     date: publishDate
     authors {
       name

@@ -3,7 +3,6 @@ query Blog($locale: SiteLocale, $skip: IntType, $first: IntType) {
     ...blogPostOverview
   }
   items: allBlogPosts(
-    filter: { published: { eq: true } }
     first: $first
     skip: $skip
     locale: $locale
@@ -11,7 +10,7 @@ query Blog($locale: SiteLocale, $skip: IntType, $first: IntType) {
   ) {
     ...blogPost
   }
-  itemsMeta: _allBlogPostsMeta(filter: { published: { eq: true } }, locale: $locale) {
+  itemsMeta: _allBlogPostsMeta(locale: $locale) {
     count
   }
 }
@@ -26,7 +25,6 @@ fragment blogPost on BlogPostRecord {
     }
   }
   title
-  published
   date: publishDate
   authors {
     name
