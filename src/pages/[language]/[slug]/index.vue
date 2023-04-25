@@ -1,9 +1,11 @@
 <template>
   <div class="landing-page grid">
-    <template v-for="(section, index) in data.page.sections">
+    <template
+      v-for="(section, index) in data.page.sections"
+      :key="index"
+    >
       <page-header
         v-if="section.__typename === 'SectionHeaderRecord'"
-        :key="index"
         heading="byline"
         :byline="section.title"
         :headline="section.subtitle"
@@ -11,14 +13,12 @@
       />
       <image-with-text-block
         v-if="section.__typename === 'SectionImageTextRecord'"
-        :key="index"
         :title="section.title"
         :body="section.body"
         :image="section.image"
       />
       <interstitial-cta
         v-if="section.__typename === 'SectionInterstitialCtaRecord'"
-        :key="index"
         :cta="section.title"
         :buttons="section.ctas.map((cta) => ({
           label: cta.title,
@@ -28,17 +28,14 @@
       />
       <newsletter-form
         v-if="section.__typename === 'SectionNewsletterRecord'"
-        :key="index"
       />
       <image-grid
         v-if="section.__typename === 'SectionImageGridRecord'"
-        :key="index"
         :title="section.title"
         :items="section.items"
       />
       <logo-grid
         v-if="section.__typename === 'SectionLogoGridRecord'"
-        :key="index"
         :title="section.title"
         :logos="section.logos"
       />
