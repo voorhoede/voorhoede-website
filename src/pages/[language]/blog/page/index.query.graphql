@@ -1,13 +1,17 @@
-query Blog($locale: SiteLocale) {
+query Blog($locale: SiteLocale, $skip: IntType, $first: IntType) {
   page: blogPostOverview(locale: $locale) {
     ...blogPostOverview
   }
   items: allBlogPosts(
-    first: 100
+    first: $first
+    skip: $skip
     locale: $locale
     orderBy: publishDate_DESC
   ) {
     ...blogPost
+  }
+  itemsMeta: _allBlogPostsMeta(locale: $locale) {
+    count
   }
 }
 
