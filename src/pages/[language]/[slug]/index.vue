@@ -46,11 +46,8 @@
       <structured-text-block
         v-if="section.__typename === 'SectionStructuredTextRecord'"
         :key="index"
-        :value="section.body.value"
+        :content="section.body"
         :grid-alignment="section.gridAlignment"
-        :text-alignment="section.textAlignment"
-        :text-color="section.textColor"
-        :body-size="section.bodySize"
       />
     </template>
   </div>

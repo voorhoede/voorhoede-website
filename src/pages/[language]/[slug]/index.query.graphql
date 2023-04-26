@@ -80,13 +80,39 @@ query LandingPage($locale: SiteLocale, $slug: String) {
       ...on SectionStructuredTextRecord {
         body {
           value
+          blocks {
+            __typename
+            ... on StructuredTextBlueTextRecord {
+              id
+              body {
+                value
+              }
+            }
+            ... on StructuredTextCtaListRecord {
+              ctas {
+                ...link
+              }
+            }
+          }
         }
         gridAlignment
-        textAlignment
-        textColor
-        bodySize
       }
     }
   }
 }
 
+fragment link on RecordInterface {
+  __typename
+  ... on InternalLinkRecord {
+    title
+    link {
+      ... on LandingPageRecord {
+        slug
+      }
+    }
+  }
+  ... on ExternalLinkRecord {
+    title
+    url
+  }
+}
