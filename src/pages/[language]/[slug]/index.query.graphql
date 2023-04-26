@@ -64,6 +64,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
         }
       }
       ...on SectionStructuredTextRecord {
+        gridAlignment
         body {
           value
           blocks {
@@ -90,7 +91,6 @@ query LandingPage($locale: SiteLocale, $slug: String) {
             }
           }
         }
-        gridAlignment
       }
     }
   }
