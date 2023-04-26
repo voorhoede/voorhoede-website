@@ -39,6 +39,18 @@
         :title="section.title"
         :logos="section.logos"
       />
+      <dialogue-cta
+        v-if="section.__typename === 'SectionDialogueCtaRecord'"
+        :variant="section.variant"
+        :title="section.title"
+        :body="section.body"
+        :person="section.person"
+        :ctas="section.ctas.map((cta) => ({
+          label: cta.title,
+          to: cta.url || cta.link,
+          external: cta.__typename === 'ExternalLinkRecord',
+        }))"
+      />
     </template>
   </div>
 </template>
