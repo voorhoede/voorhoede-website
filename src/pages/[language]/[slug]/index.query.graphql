@@ -76,6 +76,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
               }
             }
             ... on StructuredTextCtaListRecord {
+              id
               ctas {
                 ...link
               }

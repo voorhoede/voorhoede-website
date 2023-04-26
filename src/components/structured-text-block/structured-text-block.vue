@@ -64,11 +64,23 @@
         class="structured-text__blue-text"
       />
 
-      <template
+      <div
         v-else-if="child.type === 'block' && getBlock(child.item).__typename === 'StructuredTextCtaListRecord'"
+        class="structured-text__cta-list"
+        :key="`${index}-cta-list`"
       >
-        {{ getBlock(child.item) }}
-      </template>
+        <app-button
+          v-for="(cta, ctaIndex) in getBlock(child.item).ctas.map((cta) => ({
+            label: cta.title,
+            to: cta.url || cta.link,
+            external: cta.__typename === 'ExternalLinkRecord',
+          }))"
+          :key="ctaIndex"
+          :label="cta.label"
+          :to="cta.to"
+          :external="cta.external"
+        />
+      </div>
     </template>
   </div>
 </template>
@@ -94,6 +106,8 @@
   .structured-text {
     grid-column: var(--grid-content);
     word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
   }
 
   @media (min-width: 720px) {
@@ -114,14 +128,14 @@
     margin-bottom: var(--spacing-medium);
   }
 
-  .structured-text a {
+  .structured-text p a {
     color: var(--html-blue);
     padding-bottom: .15rem;
     background: transparent linear-gradient(to top, transparent 1px, var(--html-blue) 1px, var(--html-blue) 2px, transparent 2px);
   }
 
-  .structured-text a:hover,
-  .structured-text a:focus {
+  .structured-text p a:hover,
+  .structured-text p a:focus {
     color: var(--active-blue);
     background: transparent linear-gradient(to top, var(--html-blue) 2px, transparent 2px);
   }
@@ -129,5 +143,14 @@
   .structured-text__blue-text {
     color: var(--html-blue);
     text-align: center;
+  }
+
+  .structured-text__cta-list {
+    margin-top: var(--spacing-medium);
+    display: inline-flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: var(--spacing-small);
+    align-self: center;
   }
 </style>
