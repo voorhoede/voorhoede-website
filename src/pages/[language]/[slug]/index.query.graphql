@@ -63,7 +63,6 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           ...link
         }
       }
-
       ...on SectionStructuredTextRecord {
         body {
           value
@@ -79,6 +78,14 @@ query LandingPage($locale: SiteLocale, $slug: String) {
               id
               ctas {
                 ...link
+              }
+            }
+            ... on StructuredTextHighlightedListRecord {
+              id
+              items {
+                body {
+                  value
+                }
               }
             }
           }

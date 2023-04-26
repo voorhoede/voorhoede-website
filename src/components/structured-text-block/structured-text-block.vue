@@ -58,14 +58,14 @@
       </component>
 
       <structured-text-block
-        v-else-if="child.type === 'block' && getBlock(child.item).__typename === 'StructuredTextBlueTextRecord'"
+        v-else-if="child.type === 'block' && getBlock(child.item)?.__typename === 'StructuredTextBlueTextRecord'"
         :key="`${index}-blue-text`"
         :content="getBlock(child.item).body"
         class="structured-text__blue-text"
       />
 
       <div
-        v-else-if="child.type === 'block' && getBlock(child.item).__typename === 'StructuredTextCtaListRecord'"
+        v-else-if="child.type === 'block' && getBlock(child.item)?.__typename === 'StructuredTextCtaListRecord'"
         class="structured-text__cta-list"
         :key="`${index}-cta-list`"
       >
@@ -81,6 +81,20 @@
           :external="cta.external"
         />
       </div>
+
+      <ul
+        v-else-if="child.type === 'block' && getBlock(child.item)?.__typename === 'StructuredTextHighlightedListRecord'"
+        class="structured-text__highlighted-list"
+        :key="`${index}-highlighted-list`"
+      >
+        <li
+          v-for="(listItem, listItemIndex) in getBlock(child.item).items"
+          :key="listItemIndex"
+          class="structured-text__highlighted-list-item"
+        >
+          <structured-text-block :content="listItem.body" />
+        </li>
+      </ul>
     </template>
   </div>
 </template>
@@ -143,6 +157,7 @@
   .structured-text__blue-text {
     color: var(--html-blue);
     text-align: center;
+    margin-bottom: var(--spacing-medium);
   }
 
   .structured-text__cta-list {
@@ -152,5 +167,14 @@
     flex-wrap: wrap;
     gap: var(--spacing-small);
     align-self: center;
+  }
+
+  .structured-text__highlighted-list-item {
+    padding: var(--spacing-medium);
+    background-color: var(--white);
+  }
+
+  .structured-text__highlighted-list-item + .structured-text__highlighted-list-item {
+    margin-top: var(--spacing-medium);
   }
 </style>
