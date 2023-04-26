@@ -16,6 +16,7 @@
         :title="section.title"
         :body="section.body"
         :image="section.image"
+        :inverse="section.imagePosition === 'right'"
       />
       <interstitial-cta
         v-if="section.__typename === 'SectionInterstitialCtaRecord'"
@@ -50,6 +51,11 @@
           to: cta.url || cta.link,
           external: cta.__typename === 'ExternalLinkRecord',
         }))"
+      />
+      <structured-text-block
+        v-if="section.__typename === 'SectionStructuredTextRecord'"
+        :content="section.body"
+        :grid-alignment="section.gridAlignment"
       />
     </template>
   </div>

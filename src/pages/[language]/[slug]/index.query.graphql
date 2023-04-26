@@ -21,6 +21,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
         image {
           ...image
         }
+        imagePosition
       }
       ... on SectionInterstitialCtaRecord {
         title
@@ -60,6 +61,35 @@ query LandingPage($locale: SiteLocale, $slug: String) {
         }
         ctas {
           ...link
+        }
+      }
+      ...on SectionStructuredTextRecord {
+        gridAlignment
+        body {
+          value
+          blocks {
+            __typename
+            ... on StructuredTextBlueTextRecord {
+              id
+              body {
+                value
+              }
+            }
+            ... on StructuredTextCtaListRecord {
+              id
+              ctas {
+                ...link
+              }
+            }
+            ... on StructuredTextHighlightedListRecord {
+              id
+              items {
+                body {
+                  value
+                }
+              }
+            }
+          }
         }
       }
     }
