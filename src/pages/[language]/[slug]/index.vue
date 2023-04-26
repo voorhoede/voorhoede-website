@@ -15,6 +15,7 @@
         :title="section.title"
         :body="section.body"
         :image="section.image"
+        :inverse="section.imagePosition === 'right'"
       />
       <interstitial-cta
         v-if="section.__typename === 'SectionInterstitialCtaRecord'"

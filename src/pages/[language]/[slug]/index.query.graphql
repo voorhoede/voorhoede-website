@@ -28,6 +28,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           width
           height
         }
+        imagePosition
       }
       ... on SectionInterstitialCtaRecord {
         title
