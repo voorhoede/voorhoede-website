@@ -8,44 +8,24 @@ query LandingPage($locale: SiteLocale, $slug: String) {
     }
     sections {
       __typename
-
       ... on SectionHeaderRecord {
         title
         subtitle
         illustration {
-          url
-          alt
-          width
-          height
+          ...image
         }
       }
       ... on SectionImageTextRecord {
         title
         body(markdown: true)
         image {
-          url
-          alt
-          width
-          height
+          ...image
         }
       }
       ... on SectionInterstitialCtaRecord {
         title
         ctas {
-          __typename
-
-          ... on InternalLinkRecord {
-            title
-            link {
-              ... on LandingPageRecord {
-                slug
-              }
-            }
-          }
-          ... on ExternalLinkRecord {
-            title
-            url
-          }
+          ...link
         }
       }
       ... on SectionNewsletterRecord {
@@ -57,10 +37,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           title
           description
           image {
-            url
-            alt
-            width
-            height
+            ...image
           }
           isHighlighted
           isFullWidth
@@ -69,13 +46,45 @@ query LandingPage($locale: SiteLocale, $slug: String) {
       ... on SectionLogoGridRecord {
         title
         logos {
-          url
-          alt
-          width
-          height
+          ...image
+        }
+      }
+      ... on SectionDialogueCtaRecord {
+        variant
+        title
+        body
+        person {
+          image {
+            ...image
+          }
+        }
+        ctas {
+          ...link
         }
       }
     }
   }
 }
 
+fragment image on FileField {
+  url
+  alt
+  width
+  height
+}
+
+fragment link on RecordInterface {
+  __typename
+  ... on InternalLinkRecord {
+    title
+    link {
+      ... on LandingPageRecord {
+        slug
+      }
+    }
+  }
+  ... on ExternalLinkRecord {
+    title
+    url
+  }
+}
