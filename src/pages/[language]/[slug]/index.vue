@@ -43,6 +43,15 @@
         :title="section.title"
         :logos="section.logos"
       />
+      <structured-text-block
+        v-if="section.__typename === 'SectionStructuredTextRecord'"
+        :key="index"
+        :value="section.body.value"
+        :grid-alignment="section.gridAlignment"
+        :text-alignment="section.textAlignment"
+        :text-color="section.textColor"
+        :body-size="section.bodySize"
+      />
     </template>
   </div>
 </template>

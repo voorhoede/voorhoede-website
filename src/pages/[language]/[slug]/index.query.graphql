@@ -76,6 +76,16 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           height
         }
       }
+
+      ...on SectionStructuredTextRecord {
+        body {
+          value
+        }
+        gridAlignment
+        textAlignment
+        textColor
+        bodySize
+      }
     }
   }
 }
