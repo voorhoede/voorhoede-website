@@ -15,7 +15,7 @@
     "datocms-listen": "^0.1.14",
     "dayjs": "^1.11.7",
     "nuxt": "^3.3.3",
-    "nuxt-icons": "^3.1.0",
+    "nuxt-icons": "^3.2.1",
     "prismjs": "^1.29.0",
     "rosetta": "^1.1.0",
     "ufo": "^1.0.1"
