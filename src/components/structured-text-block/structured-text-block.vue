@@ -5,102 +5,22 @@
       'structured-text--center-grid': gridAlignment === 'center',
     }"
   >
-    <template v-for="(child, index) in props.content.value.document.children">
-      <p
-        v-if="child.type === 'paragraph'"
-        :key="index"
-        class="body-big"
-      >
-        <template v-for="(paragraphChild, paragraphIndex) in child.children">
-          <template v-if="paragraphChild.type === 'span'">
-            <strong
-              v-if="paragraphChild.marks?.includes('strong')"
-              :key="`${paragraphIndex}-strong`"
-              :class="{
-                'font-italic': paragraphChild.marks?.includes('emphasis'),
-              }"
-            >
-              {{ paragraphChild.value }}
-            </strong>
-            <em
-              v-else-if="paragraphChild.marks?.includes('emphasis')"
-              :key="`${paragraphIndex}-em`"
-            >
-              {{ paragraphChild.value }}
-            </em>
-            <span
-              v-else
-              :key="paragraphIndex"
-            >
-              {{ paragraphChild.value }}
-            </span>
-          </template>
-          <template v-else-if="paragraphChild.type === 'link'">
-            <a
-              :key="paragraphIndex"
-              :href="paragraphChild.url"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {{ paragraphChild.children[0].value }}
-            </a>
-          </template>
-        </template>
-      </p>
-
-      <component
-        :is="`h${child.type}`"
-        v-else-if="child.type === 'heading'"
-        :key="`${index}-h${child.level}`"
-        :class="`h${child.level}`"
-      >
-        {{ child.children[0].value }}
-      </component>
-
-      <structured-text-block
-        v-else-if="child.type === 'block' && getBlock(child.item)?.__typename === 'StructuredTextBlueTextRecord'"
-        :key="`${index}-blue-text`"
-        :content="getBlock(child.item).body"
-        class="structured-text__blue-text"
-      />
-
-      <div
-        v-else-if="child.type === 'block' && getBlock(child.item)?.__typename === 'StructuredTextCtaListRecord'"
-        class="structured-text__cta-list"
-        :key="`${index}-cta-list`"
-      >
-        <app-button
-          v-for="(cta, ctaIndex) in getBlock(child.item).ctas.map((cta) => ({
-            label: cta.title,
-            to: cta.url || cta.link,
-            external: cta.__typename === 'ExternalLinkRecord',
-          }))"
-          :key="ctaIndex"
-          :label="cta.label"
-          :to="cta.to"
-          :external="cta.external"
-        />
-      </div>
-
-      <ul
-        v-else-if="child.type === 'block' && getBlock(child.item)?.__typename === 'StructuredTextHighlightedListRecord'"
-        class="structured-text__highlighted-list"
-        :key="`${index}-highlighted-list`"
-      >
-        <li
-          v-for="(listItem, listItemIndex) in getBlock(child.item).items"
-          :key="listItemIndex"
-          class="structured-text__highlighted-list-item"
-        >
-          <structured-text-block :content="listItem.body" />
-        </li>
-      </ul>
-    </template>
+    <DatocmsStructuredText
+      :data="content"
+      :render-block="renderBlock"
+      :custom-node-rules="customNodeRules"
+    />
   </div>
 </template>
 
 <script setup>
-  const props = defineProps({
+  import { h } from 'vue'
+  import { StructuredText as DatocmsStructuredText, renderNodeRule } from 'vue-datocms'
+  import { isHeading, isParagraph } from 'datocms-structured-text-utils'
+  import AppButton from '../app-button/app-button.vue'
+  import StructuredTextBlock from './structured-text-block.vue'
+
+  defineProps({
     content: {
       type: Object,
       default: null
@@ -111,8 +31,52 @@
     },
   });
 
-  function getBlock(blockId) {
-    return props.content.blocks.find((block) => block.id === blockId);
+  const customNodeRules = [
+    renderNodeRule(isHeading, ({ node, key, children }) => {
+      return h(`h${node.level}`, { key, class: `h${node.level}` }, children)
+    }),
+    renderNodeRule(isParagraph, ({ key, children }) => {
+      return h('p', { key, class: 'body-big' }, children)
+    }),
+  ]
+
+  function renderBlock({ record, key }) {
+    switch (record.__typename) {
+      case 'StructuredTextHighlightedListRecord': {
+        return h('ul', {
+          key,
+          class: 'structured-text__highlighted-list',
+        }, record.items.map((listItem, listItemIndex) => h('li', {
+          key: listItemIndex,
+          class: 'structured-text__highlighted-list-item',
+        }, h(StructuredTextBlock, {
+          content: listItem.body,
+        }))))
+      }
+      case 'StructuredTextBlueTextRecord': {
+        return h(StructuredTextBlock, {
+          key,
+          content: record.body,
+          class: 'structured-text__blue-text',
+        })
+      }
+      case 'StructuredTextCtaListRecord': {
+        return h('div', {
+          key,
+          class: 'structured-text__cta-list',
+        }, record.ctas.map((cta, ctaIndex) => {
+          return h(AppButton, {
+            key: ctaIndex,
+            label: cta.title,
+            to: cta.url || cta.link,
+            external: cta.__typename === 'ExternalLinkRecord',
+          })
+        }))
+      }
+      default: {
+        return null
+      }
+    }
   }
 </script>
 
