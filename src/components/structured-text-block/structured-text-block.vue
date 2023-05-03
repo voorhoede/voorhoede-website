@@ -1,16 +1,13 @@
 <template>
-  <div
+  <DatocmsStructuredText
+    :data="content"
+    :render-block="renderBlock"
+    :custom-node-rules="customNodeRules"
     class="structured-text"
     :class="{
       'structured-text--center-grid': gridAlignment === 'center',
     }"
-  >
-    <DatocmsStructuredText
-      :data="content"
-      :render-block="renderBlock"
-      :custom-node-rules="customNodeRules"
-    />
-  </div>
+  />
 </template>
 
 <script setup>
