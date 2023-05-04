@@ -34,7 +34,6 @@
           :id="item.id"
           :image="item.image"
           :caption="item.caption"
-          :has-fixed-ratio="true"
         />
         <responsive-video
           :id="item.id"
