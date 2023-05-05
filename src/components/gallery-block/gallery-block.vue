@@ -1,10 +1,10 @@
 <template>
   <div class="gallery-block">
-    <responsive-image
+    <image-with-caption
       v-for="image in images"
       :key="image.id"
-      :image="image"
       class="gallery-block__image"
+      :image="image"
     />
   </div>
 </template>
@@ -31,7 +31,7 @@
     flex-basis: 50%;
   }
 
-  .gallery-block__image .fixed-ratio {
+  .gallery-block__image .image-with-caption__image {
     padding-bottom: 0;
     height: 100%;
   }

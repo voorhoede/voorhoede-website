@@ -1,7 +1,7 @@
 <template>
-  <div class="responsive-image">
+  <div class="image-with-caption">
     <dato-image
-      class="responsive-image__image"
+      class="image-with-caption__image"
       :src="image.url"
       alt=""
       :width="image.width"
@@ -11,7 +11,7 @@
     />
     <div
       v-if="caption"
-      class="responsive-image__caption body-detail"
+      class="image-with-caption__caption body-detail"
     >
       {{ caption }}
     </div>
@@ -23,7 +23,7 @@
     props: {
       caption: {
         type: String,
-        default: '',
+        default: null
       },
       image: {
         type: Object,
@@ -34,14 +34,14 @@
 </script>
 
 <style>
-  .responsive-image__image {
+  .image-with-caption__image {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    height: 100%;
+    height: auto;
   }
 
-  .responsive-image__caption {
+  .image-with-caption__caption {
     margin-top: var(--spacing-smaller);
     text-align: center;
   }

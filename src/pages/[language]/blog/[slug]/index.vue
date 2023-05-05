@@ -85,7 +85,7 @@
           :cite="item.author"
         />
 
-        <responsive-image
+        <image-with-caption
           :id="item.id"
           class="page-blog-post-list__image"
           :class="{ 'page-blog-post-list--full-width' : item.fullWidth}"

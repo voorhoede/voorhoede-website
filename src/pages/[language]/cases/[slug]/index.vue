@@ -71,7 +71,7 @@
           :image="item.image"
         />
 
-        <responsive-image
+        <image-with-caption
           :id="item.id"
           v-if="item.__typename === 'ImageRecord' && !(item.image && item.fullWidth)"
           :key="item.id"
@@ -292,7 +292,7 @@
   }
 
   @media (min-width: 1100px) {
-    .page-case__content .responsive-image {
+    .page-case__content .image-with-caption {
       max-width: var(--image-resizer-max-width-m);
     }
 
@@ -349,7 +349,7 @@
   }
 
   @media (min-width: 1440px) {
-    .page-case__content .responsive-image {
+    .page-case__content .image-with-caption {
       max-width: var(--image-resizer-max-width-l);
     }
 
