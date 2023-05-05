@@ -28,7 +28,7 @@
           :id="item.id"
           :testimonial="item.testimonial"
         />
-        <responsive-image
+        <image-with-caption
           v-if="item.__typename === 'ImageRecord'"
           :key="item.id"
           :id="item.id"
@@ -134,7 +134,7 @@
     flex-direction: column;
   }
 
-  .page-service__overview > .responsive-image,
+  .page-service__overview > .image-with-caption,
   .page-service__overview .generic-text-block,
   .page-service__overview .blockquote-block,
   .page-service__overview > .responsive-video {
@@ -214,7 +214,7 @@
       line-height: 1.3333333333;
     }
 
-    .page-service__overview > .responsive-image,
+    .page-service__overview > .image-with-caption,
     .page-service__overview > .responsive-video,
     .page-service__overview > .testimonial-block {
       width: 70%;

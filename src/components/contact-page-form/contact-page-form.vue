@@ -177,15 +177,6 @@
     --contact-page-form-thumbnail-size: 120px;
   }
 
-  .contact-page-form__contact-person {
-    display: none;
-  }
-
-  .contact-page-form__contact-person .responsive-image {
-    margin-bottom: var(--spacing-small);
-    width: var(--contact-page-form-thumbnail-size-small);
-  }
-
   .contact-page-form__label:first-of-type {
     margin-top: 0;
   }
@@ -196,7 +187,7 @@
   }
 
   @media (min-width: 520px) {
-    .contact-page-form__contact-person .responsive-image {
+    .contact-page-form__contact-person .image-with-caption {
       margin-left: 0;
       margin-right: 0;
     }
@@ -214,16 +205,6 @@
     .contact-page-form__form .contact-page-form__input-field {
       display: block;
       margin: var(--spacing-large) 0;
-    }
-  }
-
-  @media (min-width: 1100px) {
-    .contact-page-form__contact-person {
-      display: block;
-    }
-
-    .contact-page-form__contact-person .responsive-image {
-      width: var(--contact-page-form-thumbnail-size);
     }
   }
 </style>

@@ -53,7 +53,7 @@
       </aside>
 
       <article class="page-event-detail__main">
-        <responsive-image
+        <image-with-caption
           v-if="!imageIsIllustration && data.page.image"
           class="page-event-detail__image"
           :image="data.page.image"
@@ -77,7 +77,7 @@
             class="page-event-detail__quote"
           />
 
-          <responsive-image
+          <image-with-caption
             class="page-event-detail__image"
             :class="{ 'page-event-detail__main--not-indented' : item.fullWidth}"
             v-if="item.__typename === 'ImageRecord' && item.image"
