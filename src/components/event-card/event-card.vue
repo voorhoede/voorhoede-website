@@ -11,6 +11,7 @@
           :height="illustration.height"
           alt=""
           loading="lazy"
+          sizes="(min-width: 1100px) 350px, (min-width: 720px) 50vw, 100vw"
         />
       </div>
       <calendar-icon

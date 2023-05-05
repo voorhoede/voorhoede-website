@@ -6,6 +6,7 @@
       :width="image.width"
       :height="image.height"
       loading="eager"
+      sizes="100vw"
     />
     <figcaption
       class="full-width-image__caption"
