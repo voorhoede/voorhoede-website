@@ -1,4 +1,5 @@
 import { datocmsFetch } from '../lib/datocms-fetch.ts';
+import { datocmsEnvironment } from '../constants.mjs';
 
 export async function useFetchContent({ key = null, query, variables }) {
   const runtimeConfig = useRuntimeConfig();
@@ -18,6 +19,7 @@ export async function useFetchContent({ key = null, query, variables }) {
       unsubscribe = await subscribeToQuery({
         query,
         variables,
+        environment: datocmsEnvironment,
         token: runtimeConfig.public.datoApiToken,
         includeDrafts: true,
         onUpdate: ({ response }) => { data.value = response.data; },

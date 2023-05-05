@@ -1,7 +1,9 @@
+import { datocmsEnvironment } from '../constants.mjs';
+
 export function datocmsFetch(
   {
     fetcher = fetch,
-    apiToken = process.env.DATO_API_TOKEN,
+    apiToken = process.env.DATOCMS_API_READ_TOKEN,
     query,
     variables = {},
     preview = false,
@@ -11,6 +13,7 @@ export function datocmsFetch(
     method: 'post',
     headers: {
       'Authorization': apiToken,
+      'X-Environment': datocmsEnvironment,
       ...(preview && { 'X-Include-Drafts': 'true' }),
     },
     body: JSON.stringify({
