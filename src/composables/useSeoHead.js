@@ -31,6 +31,7 @@ export function useSeoHead({ title, slug, i18nSlugs, social }) {
       { name: 'twitter:image', content: social.image?.url || defaultShareImg },
     ],
     link: [
+      { rel: 'canonical', href: pageUrl },
       ...$i18n.locales
         .map(({ code }) => ({
           rel: 'alternate',
