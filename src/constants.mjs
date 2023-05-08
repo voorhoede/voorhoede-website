@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'master';
+export const datocmsEnvironment = 'add-image-card';

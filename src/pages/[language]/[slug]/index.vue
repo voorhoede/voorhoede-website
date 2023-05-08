@@ -57,6 +57,11 @@
         :content="section.body"
         :grid-alignment="section.gridAlignment"
       />
+      <image-card-grid
+        v-if="section.__typename === 'SectionImageCardGridRecord'"
+        :title="section.title"
+        :items="section.items"
+      />
     </template>
   </div>
 </template>
