@@ -105,6 +105,19 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           }
         }
       }
+      ... on SectionJobsListRecord {
+        id
+        jobs {
+          title
+          slug
+          jobImage {
+            url
+            alt
+            width
+            height
+          }
+        }
+      }
     }
   }
 }

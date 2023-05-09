@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'image-card-grid-deploy';
+export const datocmsEnvironment = 'landing-page-jobs-list';
