@@ -17,7 +17,7 @@
   import AppButton from '../app-button/app-button.vue'
   import StructuredTextBlock from './structured-text-block.vue'
 
-  defineProps({
+  const props = defineProps({
     content: {
       type: Object,
       default: null
@@ -26,6 +26,11 @@
       type: String,
       default: 'left'
     },
+    paragraphVariant: {
+      type: String,
+      default: 'medium',
+      validator: (variant) => ['medium', 'big'].includes(variant),
+    },
   });
 
   const customNodeRules = [
@@ -33,7 +38,17 @@
       return h(`h${node.level}`, { key, class: `h${node.level}` }, children)
     }),
     renderNodeRule(isParagraph, ({ key, children }) => {
-      return h('p', { key, class: 'body-big' }, children)
+      return h(
+        'p',
+        {
+          key,
+          class: {
+            'body': props.paragraphVariant === 'medium',
+            'body-big': props.paragraphVariant === 'big',
+          },
+        },
+        children
+      );
     }),
   ]
 
@@ -54,6 +69,7 @@
         return h(StructuredTextBlock, {
           key,
           content: record.body,
+          paragraphVariant: props.paragraphVariant,
           class: 'structured-text__blue-text',
         })
       }

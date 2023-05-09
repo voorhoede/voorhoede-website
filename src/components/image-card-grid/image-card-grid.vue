@@ -5,8 +5,8 @@
     </h2>
     <ul class="image-card-grid__list">
       <li
-        v-for="(card, index) in items"
-        :key="index"
+        v-for="card in items"
+        :key="card.id"
         class="image-card-grid__card"
       >
         <dato-image
@@ -20,9 +20,10 @@
         <h3 class="h4">
           {{ card.title }}
         </h3>
-        <span class="body">
-          {{ card.body }}
-        </span>
+
+        <structured-text-block
+          :content="card.body"
+        />
       </li>
     </ul>
   </section>

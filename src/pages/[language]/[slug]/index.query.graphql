@@ -95,8 +95,11 @@ query LandingPage($locale: SiteLocale, $slug: String) {
       ... on SectionImageCardGridRecord {
         title
         items {
+          id
           title
-          body
+          body {
+            value
+          }
           image {
             ...image
           }
