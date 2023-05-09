@@ -9,7 +9,7 @@ export default async function (client: Client) {
   console.log(
     'Create block model "Section Image Card Grid" (`section_image_card_grid`)'
   );
-  newItemTypes["1440862"] = await client.itemTypes.create(
+  newItemTypes["1449705"] = await client.itemTypes.create(
     {
       name: "Section Image Card Grid",
       api_key: "section_image_card_grid",
@@ -22,7 +22,7 @@ export default async function (client: Client) {
   console.log(
     'Create block model "Section Image Card Grid Item" (`section_image_card_grid_item`)'
   );
-  newItemTypes["1440863"] = await client.itemTypes.create(
+  newItemTypes["1449706"] = await client.itemTypes.create(
     {
       name: "Section Image Card Grid Item",
       api_key: "section_image_card_grid_item",
@@ -37,7 +37,7 @@ export default async function (client: Client) {
   console.log(
     'Create Single-line string field "Title" (`title`) in block model "Section Image Card Grid" (`section_image_card_grid`)'
   );
-  newFields["7363639"] = await client.fields.create(newItemTypes["1440862"], {
+  newFields["7405783"] = await client.fields.create(newItemTypes["1449705"], {
     label: "Title",
     field_type: "string",
     api_key: "title",
@@ -54,12 +54,12 @@ export default async function (client: Client) {
   console.log(
     'Create Modular content field "Items" (`items`) in block model "Section Image Card Grid" (`section_image_card_grid`)'
   );
-  newFields["7363640"] = await client.fields.create(newItemTypes["1440862"], {
+  newFields["7405784"] = await client.fields.create(newItemTypes["1449705"], {
     label: "Items",
     field_type: "rich_text",
     api_key: "items",
     validators: {
-      rich_text_blocks: { item_types: [newItemTypes["1440863"].id] },
+      rich_text_blocks: { item_types: [newItemTypes["1449706"].id] },
     },
     appearance: {
       addons: [],
@@ -71,7 +71,7 @@ export default async function (client: Client) {
   console.log(
     'Create Single-line string field "Title" (`title`) in block model "Section Image Card Grid Item" (`section_image_card_grid_item`)'
   );
-  newFields["7363641"] = await client.fields.create(newItemTypes["1440863"], {
+  newFields["7405786"] = await client.fields.create(newItemTypes["1449706"], {
     label: "Title",
     field_type: "string",
     api_key: "title",
@@ -88,7 +88,7 @@ export default async function (client: Client) {
   console.log(
     'Create Single asset field "Image" (`image`) in block model "Section Image Card Grid Item" (`section_image_card_grid_item`)'
   );
-  newFields["7364028"] = await client.fields.create(newItemTypes["1440863"], {
+  newFields["7405787"] = await client.fields.create(newItemTypes["1449706"], {
     label: "Image",
     field_type: "file",
     api_key: "image",
@@ -100,20 +100,34 @@ export default async function (client: Client) {
   });
 
   console.log(
-    'Create Multiple-paragraph text field "Body" (`body`) in block model "Section Image Card Grid Item" (`section_image_card_grid_item`)'
+    'Create Structured text field "Body" (`body`) in block model "Section Image Card Grid Item" (`section_image_card_grid_item`)'
   );
-  newFields["7364029"] = await client.fields.create(newItemTypes["1440863"], {
+  newFields["7405788"] = await client.fields.create(newItemTypes["1449706"], {
     label: "Body",
-    field_type: "text",
+    field_type: "structured_text",
     api_key: "body",
-    validators: { required: {} },
+    validators: {
+      required: {},
+      structured_text_blocks: { item_types: [] },
+      structured_text_links: {
+        on_publish_with_unpublished_references_strategy: "fail",
+        on_reference_unpublish_strategy: "delete_references",
+        on_reference_delete_strategy: "delete_references",
+        item_types: [],
+      },
+    },
     appearance: {
       addons: [],
-      editor: "markdown",
-      parameters: { toolbar: [] },
-      type: "markdown",
+      editor: "structured_text",
+      parameters: {
+        marks: [],
+        nodes: [],
+        heading_levels: [1, 2, 3, 4, 5, 6],
+        blocks_start_collapsed: false,
+        show_links_meta_editor: false,
+        show_links_target_blank: false,
+      },
     },
-    default_value: "",
   });
 
   console.log("Update existing fields/fieldsets");
@@ -125,7 +139,7 @@ export default async function (client: Client) {
     validators: {
       rich_text_blocks: {
         item_types: [
-          newItemTypes["1440862"].id,
+          newItemTypes["1449705"].id,
           "2037668",
           "2037669",
           "2037920",
@@ -138,4 +152,6 @@ export default async function (client: Client) {
       },
     },
   });
+
+  console.log("Finalize models/block models");
 }
