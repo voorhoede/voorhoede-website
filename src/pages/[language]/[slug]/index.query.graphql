@@ -89,6 +89,14 @@ query LandingPage($locale: SiteLocale, $slug: String) {
                 }
               }
             }
+            ... on TagListRecord {
+              id
+              items {
+                id
+                amount
+                label
+              }
+            }
           }
         }
       }
