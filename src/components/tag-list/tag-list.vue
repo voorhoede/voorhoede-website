@@ -10,18 +10,16 @@
   </ul>
 </template>
 
-<script>
-  export default {
-    props: {
-      items: {
-        type: Object,
-        required: true,
-        validator(items) {
-          return items.every(item => typeof item.amount === 'number' && typeof item.label === 'string')
-        }
-      },
-    }
+<script lang="ts" setup>
+  type Props = {
+    items: {
+      id: string
+      amount: number
+      label: string
+    }[]
   }
+
+  defineProps<Props>()
 </script>
 
 <style>
