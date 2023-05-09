@@ -3,19 +3,8 @@ import { Client, SimpleSchemaTypes } from "@datocms/cli/lib/cma-client-node";
 export default async function (client: Client) {
   const newFields: Record<string, SimpleSchemaTypes.Field> = {};
   const newItemTypes: Record<string, SimpleSchemaTypes.ItemType> = {};
-  const newMenuItems: Record<string, SimpleSchemaTypes.MenuItem> = {};
 
   console.log("Create new models/block models");
-
-  console.log('Create model "Schema migration" (`schema_migration`)');
-  newItemTypes["1447538"] = await client.itemTypes.create(
-    {
-      name: "Schema migration",
-      api_key: "schema_migration",
-      inverse_relationships_enabled: false,
-    },
-    { skip_menu_item_creation: true }
-  );
 
   console.log('Create block model "Section Jobs List" (`section_jobs_list`)');
   newItemTypes["1447539"] = await client.itemTypes.create(
@@ -29,22 +18,6 @@ export default async function (client: Client) {
   );
 
   console.log("Creating new fields/fieldsets");
-
-  console.log(
-    'Create Single-line string field "Migration file name" (`name`) in model "Schema migration" (`schema_migration`)'
-  );
-  newFields["7395752"] = await client.fields.create(newItemTypes["1447538"], {
-    label: "Migration file name",
-    field_type: "string",
-    api_key: "name",
-    validators: { required: {} },
-    appearance: {
-      addons: [],
-      editor: "single_line",
-      parameters: { heading: false },
-    },
-    default_value: "",
-  });
 
   console.log(
     'Create Multiple links field "Jobs" (`jobs`) in block model "Section Jobs List" (`section_jobs_list`)'
@@ -86,20 +59,5 @@ export default async function (client: Client) {
         ],
       },
     },
-  });
-
-  console.log("Finalize models/block models");
-
-  console.log('Update model "Schema migration" (`schema_migration`)');
-  await client.itemTypes.update(newItemTypes["1447538"], {
-    title_field: newFields["7395752"],
-  });
-
-  console.log("Manage menu items");
-
-  console.log('Create menu item "Schema migration"');
-  newMenuItems["752165"] = await client.menuItems.create({
-    label: "Schema migration",
-    item_type: newItemTypes["1447538"],
   });
 }
