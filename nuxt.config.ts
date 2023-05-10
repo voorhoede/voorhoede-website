@@ -18,6 +18,12 @@ export default defineNuxtConfig({
     '@/components/app-core/index.css',
   ],
   nitro: {
+    esbuild: {
+      options: {
+        // allow graphql loader to use async/await in root
+        target: 'esnext',
+      }
+    },
     prerender: {
       crawlLinks: false
     }
@@ -69,6 +75,10 @@ export default defineNuxtConfig({
       .then(() => { }),
   },
   vite: {
+    build: {
+      // allow graphql loader to use async/await in root
+      target: 'esnext',
+    },
     plugins: [
       graphqlLoader()
     ]
