@@ -1,7 +1,6 @@
 {
   "name": "voorhoede-website",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt generate",
@@ -23,6 +22,7 @@
     "vue-datocms": "^4.0.5"
   },
   "devDependencies": {
+    "@datocms/cli": "^1.1.7",
     "@typescript-eslint/parser": "^5.57.0",
     "eslint": "^8.39.0",
     "eslint-plugin-vue": "^9.10.0",

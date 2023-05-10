@@ -92,6 +92,19 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           }
         }
       }
+      ... on SectionImageCardGridRecord {
+        title
+        items {
+          id
+          title
+          body {
+            value
+          }
+          image {
+            ...image
+          }
+        }
+      }
     }
   }
 }

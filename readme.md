@@ -15,3 +15,26 @@ cp .env.example .env
 
 [netlify]: https://app.netlify.com/sites/voorhoede-website/overview
 [depfu]: https://depfu.com/repos/github/voorhoede/voorhoede-website?project_id=37720
+
+### Scripted migrations
+
+We use scripted migrations for CMS model changes. Use [DatoCMS's scripted migrations guide](https://www.datocms.com/docs/scripting-migrations/scripting-migrations-with-the-datocms-cli), to add a migration script and test it.
+
+#### Apply your migration to the main environment
+
+Once your PR is ready to merge, we have to apply the migrations to DatoCMS's main environment. Follow the following script **on your branch, before merging**:
+
+1. Turn on maintenance mode in DatoCMS
+2. Apply migrations to a fresh sandbox
+    1. Run `datocms migrations:run <env-name>-deploy` to create a fresh fork of the primary environment with the new migrations applied. We use the `-deploy` suffix so it's clear it's a deployment environment.
+    2. Fill in the required content. Make sure to **not enter dummy content**, as this environment will go to production!
+3. Commit the updated constants.mjs, containing your new environment
+4. Merge the PR
+5. Await the production deploy to succeed
+6. Promote the new environment in DatoCMS
+7. Turn off maintenance mode
+8. Once you've made sure everything is in order, you can remove your deploy sandbox environment. Be aware that you forfeit the option to rollback by performing this action.
+
+## Decision log
+
+Key decisions that are made during the course of the project are documented in [docs/decision-log/](docs/decision-log/). Please read the log so you understand why decisions are made and document key decisions when you make them.
