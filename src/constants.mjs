@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'add-image-card';
+export const datocmsEnvironment = 'image-card-grid-deploy';
