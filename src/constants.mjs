@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'landing-page-links-deploy';
+export const datocmsEnvironment = 'tag-list';
