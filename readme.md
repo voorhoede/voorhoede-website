@@ -15,3 +15,7 @@ cp .env.example .env
 
 [netlify]: https://app.netlify.com/sites/voorhoede-website/overview
 [depfu]: https://depfu.com/repos/github/voorhoede/voorhoede-website?project_id=37720
+
+## Decision log
+
+Key decisions that are made during the course of the project are documented in [docs/decision-log/](docs/decision-log/). Please read the log so you understand why decisions are made and document key decisions when you make them.
