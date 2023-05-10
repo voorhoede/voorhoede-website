@@ -28,8 +28,8 @@
     },
     paragraphVariant: {
       type: String,
-      default: 'medium',
-      validator: (variant) => ['medium', 'big'].includes(variant),
+      default: 'body',
+      validator: (variant) => ['body', 'body-big'].includes(variant),
     },
   });
 
@@ -42,10 +42,7 @@
         'p',
         {
           key,
-          class: {
-            'body': props.paragraphVariant === 'medium',
-            'body-big': props.paragraphVariant === 'big',
-          },
+          class: props.paragraphVariant,
         },
         children
       );
