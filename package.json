@@ -27,7 +27,8 @@
     "eslint": "^8.39.0",
     "eslint-plugin-vue": "^9.10.0",
     "husky": "^8.0.3",
-    "nano-staged": "^0.8.0"
+    "nano-staged": "^0.8.0",
+    "vite-plugin-graphql-loader": "^2.0.0"
   },
   "engines": {
     "node": ">=18"
