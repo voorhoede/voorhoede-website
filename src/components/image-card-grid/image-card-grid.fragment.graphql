@@ -1,0 +1,13 @@
+fragment ImageCardGridFragment on SectionImageCardGridRecord {
+  title
+  items {
+    id
+    title
+    body {
+      value
+    }
+    image {
+      ...image
+    }
+  }
+}
