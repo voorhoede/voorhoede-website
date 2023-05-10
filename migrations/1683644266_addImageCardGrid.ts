@@ -122,7 +122,7 @@ export default async function (client: Client) {
       parameters: {
         marks: [],
         nodes: [],
-        heading_levels: [1, 2, 3, 4, 5, 6],
+        heading_levels: [],
         blocks_start_collapsed: false,
         show_links_meta_editor: false,
         show_links_target_blank: false,
