@@ -70,7 +70,7 @@
 </template>
 
 <script setup>
-  import query from './index.query.graphql?raw';
+  import query from './index.query.graphql';
 
   // If you change this, also change it in fetch-routes.ts
   const PER_PAGE = 20;

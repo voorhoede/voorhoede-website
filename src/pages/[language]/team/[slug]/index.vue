@@ -69,8 +69,8 @@
 
 <script setup>
 import formatDate from '../../../../lib/format-date';
-import personQuery from './index.person.graphql?raw';
-import blogPostsQuery from './index.blogPosts.graphql?raw';
+import personQuery from './index.person.graphql';
+import blogPostsQuery from './index.blogPosts.graphql';
 
 const route = useRoute()
 

@@ -44,7 +44,7 @@
 
 <script setup>
   const { $i18n } = useNuxtApp();
-  import query from './default.query.graphql?raw';
+  import query from './default.query.graphql';
   const { afterEach } = useRouter();
   const skipLink = ref(null);
   const mobileMenuIsOpen = ref(false);

@@ -18,7 +18,7 @@
 
 <script setup>
   const { $i18n } = useNuxtApp();
-  import query from './error.query.graphql?raw';
+  import query from './error.query.graphql';
 
   const { data } = await useFetchContent({
     key: 'ErrorPage',

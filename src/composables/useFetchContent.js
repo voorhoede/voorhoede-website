@@ -1,7 +1,8 @@
 import { datocmsFetch } from '../lib/datocms-fetch.ts';
 import { datocmsEnvironment } from '../constants.mjs';
 
-export async function useFetchContent({ key = null, query, variables }) {
+export async function useFetchContent({ key = null, query: queryDocument, variables }) {
+  const query = queryDocument.loc.source.body
   const runtimeConfig = useRuntimeConfig();
   const route = useRoute();
   const data = ref(null);

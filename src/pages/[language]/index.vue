@@ -104,7 +104,7 @@
 </template>
 
 <script setup>
-  import query from './index.query.graphql?raw';
+  import query from './index.query.graphql';
   import getSelfTypingTextInterval from '~/lib/get-self-typing-text-interval'
 
   const { params } = useRoute();

@@ -128,7 +128,7 @@
 </template>
 
 <script setup>
-  import query from './index.query.graphql?raw';
+  import query from './index.query.graphql';
 
   const { params } = useRoute();
   const { data } = await useFetchContent({
