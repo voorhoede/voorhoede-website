@@ -24,10 +24,14 @@
   "devDependencies": {
     "@datocms/cli": "^1.1.7",
     "@typescript-eslint/parser": "^5.57.0",
+    "datocms-html-to-structured-text": "^2.1.11",
     "eslint": "^8.39.0",
     "eslint-plugin-vue": "^9.10.0",
     "husky": "^8.0.3",
-    "nano-staged": "^0.8.0"
+    "mdast-util-to-hast": "^12.3.0",
+    "nano-staged": "^0.8.0",
+    "remark-parse": "^10.0.1",
+    "unified": "^10.1.2"
   },
   "engines": {
     "node": ">=18"
