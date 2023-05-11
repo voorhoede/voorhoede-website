@@ -84,7 +84,7 @@
           })
         }))
       }
-      case 'TagListRecord': {
+      case 'StructuredTextTagListRecord': {
         return h(TagList, {
           key: record.id,
           items: record.items

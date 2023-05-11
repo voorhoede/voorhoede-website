@@ -6,11 +6,11 @@ export default async function (client: Client) {
 
   console.log("Create new models/block models");
 
-  console.log('Create block model "Tag list" (`tag_list`)');
+  console.log('Create block model "Structured text - Structured text - Tag list" (`tag_list`)');
   newItemTypes["1751533"] = await client.itemTypes.create(
     {
-      name: "Tag list",
-      api_key: "tag_list",
+      name: "Structured text - Tag list",
+      api_key: "structured_text_tag_list",
       modular_block: true,
       inverse_relationships_enabled: false,
     },
@@ -20,7 +20,7 @@ export default async function (client: Client) {
   console.log("Creating new fields/fieldsets");
 
   console.log(
-    'Create Modular content field "Items" (`items`) in block model "Tag list" (`tag_list`)'
+    'Create Modular content field "Items" (`items`) in block model "Structured text - Tag list" (`structured_text_tag_list`)'
   );
   newFields["9072594"] = await client.fields.create(newItemTypes["1751533"], {
     label: "Items",
