@@ -74,9 +74,9 @@
         return h('div', {
           key,
           class: 'structured-text__buttons-list',
-        }, record.buttons.map((button, buttonIndex) => {
+        }, record.buttons.map((button) => {
           return h(AppButton, {
-            key: buttonIndex,
+            key: button.id,
             label: button.title,
             to: button.url || button.link,
             external: button.__typename === 'ExternalLinkRecord',
