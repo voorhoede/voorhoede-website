@@ -90,6 +90,9 @@ fragment blogPostOverview on BlogPostOverviewRecord {
         ... on ContactRecord {
           slug
         }
+        ... on LandingPageRecord {
+          slug
+        }
       }
     }
     externalLink
