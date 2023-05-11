@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'landing-page-jobs-list';
+export const datocmsEnvironment = 'jobs-list-deploy';
