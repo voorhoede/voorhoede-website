@@ -75,9 +75,9 @@ query LandingPage($locale: SiteLocale, $slug: String) {
                 value
               }
             }
-            ... on StructuredTextCtaListRecord {
+            ... on StructuredTextButtonsListRecord {
               id
-              ctas {
+              buttons {
                 ...link
               }
             }
@@ -129,6 +129,7 @@ fragment image on FileField {
 fragment link on RecordInterface {
   __typename
   ... on InternalLinkRecord {
+    id
     title
     link {
       ... on LandingPageRecord {
@@ -137,6 +138,7 @@ fragment link on RecordInterface {
     }
   }
   ... on ExternalLinkRecord {
+    id
     title
     url
   }

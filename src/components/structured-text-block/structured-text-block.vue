@@ -70,16 +70,16 @@
           class: 'structured-text__blue-text',
         })
       }
-      case 'StructuredTextCtaListRecord': {
+      case 'StructuredTextButtonsListRecord': {
         return h('div', {
           key,
-          class: 'structured-text__cta-list',
-        }, record.ctas.map((cta, ctaIndex) => {
+          class: 'structured-text__buttons-list',
+        }, record.buttons.map((button) => {
           return h(AppButton, {
-            key: ctaIndex,
-            label: cta.title,
-            to: cta.url || cta.link,
-            external: cta.__typename === 'ExternalLinkRecord',
+            key: button.id,
+            label: button.title,
+            to: button.url || button.link,
+            external: button.__typename === 'ExternalLinkRecord',
           })
         }))
       }
@@ -134,7 +134,7 @@
     margin-bottom: var(--spacing-medium);
   }
 
-  .structured-text__cta-list {
+  .structured-text__buttons-list {
     margin-top: var(--spacing-medium);
     display: inline-flex;
     align-items: flex-start;
