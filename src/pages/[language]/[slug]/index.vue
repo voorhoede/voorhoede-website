@@ -63,6 +63,10 @@
         :title="section.title"
         :items="section.items"
       />
+      <jobs-list
+        v-if="section.__typename === 'SectionJobsListRecord'"
+        :jobs="section.jobs"
+      />
     </template>
   </div>
 </template>

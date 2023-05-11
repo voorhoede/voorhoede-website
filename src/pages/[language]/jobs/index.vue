@@ -7,22 +7,10 @@
       :image="data.page.headerIllustration"
     />
     <div class="grid">
-      <ul
-        class="page-jobs__overview"
+      <jobs-list
         v-if="data.items.length"
-      >
-        <li
-          v-for="item in data.items"
-          :key="item.slug"
-        >
-          <jobs-excerpt
-            :title="item.title"
-            :label="item.callToActionLabel"
-            :image="item.jobImage"
-            :slug="item.slug"
-          />
-        </li>
-      </ul>
+        :jobs="data.items"
+      />
       <generic-text-block
         v-else
         class="page-jobs__empty-message"
@@ -48,11 +36,6 @@
 </script>
 
 <style>
-  .page-jobs__overview {
-    grid-column: var(--grid-content);
-    margin: var(--spacing-large) 0;
-  }
-
   .page-jobs__empty-message {
     margin-top: var(--spacing-large);
     margin-bottom: var(--spacing-big);
@@ -67,10 +50,6 @@
   }
 
   @media (min-width: 1100px) {
-    .page-jobs__overview {
-      grid-column: var(--grid-content-narrow);
-    }
-
     .page-jobs__empty-message {
       grid-column-start: 4;
       grid-column-end: 48;
