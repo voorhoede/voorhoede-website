@@ -46,8 +46,8 @@ export default async function (client: Client) {
     validators: {
       rich_text_blocks: {
         item_types: [
-          "1440862",
           newItemTypes["1447539"].id,
+          "1757574",
           "2037668",
           "2037669",
           "2037920",
