@@ -115,6 +115,16 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           }
         }
       }
+      ... on SectionTimelineRecord {
+        items {
+          date
+          description
+          image {
+            ...image
+          }
+          title
+        }
+      }
     }
   }
 }
