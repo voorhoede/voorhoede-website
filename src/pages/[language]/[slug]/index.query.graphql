@@ -111,10 +111,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           title
           slug
           jobImage {
-            url
-            alt
-            width
-            height
+            ...image
           }
         }
       }
