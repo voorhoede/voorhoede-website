@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'jobs-list-deploy';
+export const datocmsEnvironment = 'structured-text-buttons';
