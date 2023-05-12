@@ -170,10 +170,4 @@
     grid-column: var(--grid-content-narrow);
   }
 
-  .page-lustrum__facts-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--spacing-smaller);
-  }
 </style>
