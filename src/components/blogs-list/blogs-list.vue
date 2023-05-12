@@ -45,12 +45,12 @@
 
 <style>
 .blogs-list {
-  grid-column: var(--grid-content-smallest);
+  grid-column: var(--grid-content);
 }
 
 @media (min-width: 720px) {
   .blogs-list {
-    grid-column: var(--grid-content);
+    grid-column: var(--grid-content-smallest);
   }
 }
 </style>
