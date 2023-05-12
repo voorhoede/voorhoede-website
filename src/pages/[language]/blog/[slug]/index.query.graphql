@@ -150,6 +150,9 @@ fragment page on BlogPostRecord {
         ... on ContactRecord {
           slug
         }
+        ... on LandingPageRecord {
+          slug
+        }
       }
     }
     externalLink

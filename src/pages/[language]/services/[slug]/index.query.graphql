@@ -151,6 +151,9 @@ fragment page on ServiceRecord {
         ... on ContactRecord {
           slug
         }
+        ... on LandingPageRecord {
+          slug
+        }
       }
     }
     externalLink
