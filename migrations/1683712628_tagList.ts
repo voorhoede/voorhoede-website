@@ -6,7 +6,7 @@ export default async function (client: Client) {
 
   console.log("Create new models/block models");
 
-  console.log('Create block model "Structured text - Structured text - Tag list" (`tag_list`)');
+  console.log('Create block model "Structured text - Tag list" (`structured_text_tag_list`)');
   newItemTypes["1751533"] = await client.itemTypes.create(
     {
       name: "Structured text - Tag list",
