@@ -31,7 +31,7 @@
   }
 
   .tag-list__item {
-    padding: .2em 1em .1em 1em;
+    padding: .2rem 1rem .1rem;
     color: var(--html-blue);
     background: var(--brand-yellow);
     border-radius: 2rem;
