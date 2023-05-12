@@ -73,15 +73,11 @@
       <h2 class="page-index__section-title page-index__section-title--blog-posts h3">
         {{ $t('latest_blog_posts') }}
       </h2>
-      <ul class="page-index__blog-posts-list grid">
-        <li
-          v-for="blogPost in data.latestBlogposts"
-          :key="blogPost.slug"
-          class="page-index__blog-posts-list-item"
-        >
-          <blog-list-item :item="blogPost" />
-        </li>
-      </ul>
+      <blogs-list
+        :items="data.latestBlogposts"
+        item-size="small"
+        class="page-index__blog-posts-list grid"
+      />
       <div class="page-index__blog-posts-button">
         <app-button
           secondary
@@ -176,15 +172,15 @@
     grid-template-rows: repeat(3, auto);
   }
 
-  .page-index__blog-posts-list-item {
+  .page-index__blog-posts-list li {
     grid-row: 1;
   }
 
-  .page-index__blog-posts-list-item:nth-child(2) {
+  .page-index__blog-posts-list li:nth-child(2) {
     grid-row: 2;
   }
 
-  .page-index__blog-posts-list-item:nth-child(3) {
+  .page-index__blog-posts-list li:nth-child(3) {
     grid-row: 3;
   }
 
@@ -278,7 +274,7 @@
       overflow: hidden;
     }
 
-    .page-index__blog-posts-list-item {
+    .page-index__blog-posts-list li {
       transition: transform var(--blog-list-item-animation-timing) ease-out;
       display: inline-block;
       grid-column-start: 8;
@@ -353,7 +349,7 @@
       grid-column-end: 21;
     }
 
-    .page-index__blog-posts-list-item {
+    .page-index__blog-posts-list li {
       grid-column-start: 16;
       grid-column-end: 45;
     }

@@ -71,6 +71,12 @@
         v-if="section.__typename === 'SectionTimelineRecord'"
         :items="section.items"
       />
+      <blogs-list
+        v-if="section.__typename === 'SectionBlogsListRecord'"
+        :items="section.items"
+        :pinned-items="section.pinnedItems"
+        :item-size="section.itemSize"
+      />
     </template>
   </div>
 </template>
