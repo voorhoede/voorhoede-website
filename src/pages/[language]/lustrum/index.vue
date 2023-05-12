@@ -45,14 +45,9 @@
       <h2 class="page-lustrum__title-events h3">
         {{ data.page.eventsTitle }}
       </h2>
-      <ul>
-        <li
-          v-for="event in data.page.eventsList"
-          :key="event.id"
-        >
-          <event-list-item :event="event" />
-        </li>
-      </ul>
+      <events-list
+        :items="data.page.eventsList"
+      />
     </div>
 
     <highlighted-clients

@@ -49,15 +49,9 @@
       <h2 class="page-event__events-list-title h2">
         Past events
       </h2>
-      <ul class="page-event__past-events-list">
-        <li
-          v-for="(event, index) in pastEvents"
-          :key="event.social.description + index"
-          class="page-event__past-events-item"
-        >
-          <event-list-item :event="event" />
-        </li>
-      </ul>
+      <events-list
+        :items="pastEvents"
+      />
     </section>
     <newsletter-form :has-background="true" />
   </main>
@@ -161,11 +155,6 @@
       margin-bottom: var(--spacing-bigger);
     }
 
-    .page-event__past-events-list {
-      grid-column: var(--grid-content);
-      grid-row: 2;
-    }
-
     .page-event__past-events-item + .page-event__past-events-item {
       border: none;
     }
@@ -215,12 +204,6 @@
 
     .page-event__past-events {
       margin-top: var(--spacing-bigger);
-    }
-  }
-
-  @media (min-width: 1000px) {
-    .page-event__past-events-list {
-      grid-column: var(--grid-content-smallest);
     }
   }
 </style>

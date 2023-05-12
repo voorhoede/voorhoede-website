@@ -143,6 +143,16 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           ...blogpost
         }
       }
+      ... on SectionEventsListRecord {
+        items {
+          title
+          social {
+            description
+          }
+          date
+          slug
+        }
+      }
     }
   }
 }

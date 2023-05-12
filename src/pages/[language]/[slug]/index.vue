@@ -78,6 +78,10 @@
         :pinned-items="section.pinnedItems"
         :item-size="section.itemSize"
       />
+      <events-list
+        v-if="section.__typename === 'SectionEventsListRecord'"
+        :items="section.items"
+      />
     </template>
   </div>
 </template>
