@@ -26,7 +26,7 @@ Once your PR is ready to merge, we have to apply the migrations to DatoCMS's mai
 
 1. Turn on maintenance mode in DatoCMS
 2. Apply migrations to a fresh sandbox
-    1. Run `datocms migrations:run <env-name>-deploy` to create a fresh fork of the primary environment with the new migrations applied. We use the `-deploy` suffix so it's clear it's a deployment environment.
+    1. Run `npx datocms migrations:run --destination=<env-name>-deploy --api-token=<token>` to create a fresh fork of the primary environment with the new migrations applied. We use the `-deploy` suffix so it's clear it's a deployment environment.
     2. Fill in the required content. Make sure to **not enter dummy content**, as this environment will go to production!
 3. Commit the updated constants.mjs, containing your new environment
 4. Merge the PR
