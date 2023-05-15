@@ -2,48 +2,45 @@
   <article class="event-list-item">
     <div class="event-list-item__transition-box">
       <calendar-icon
-        :date="event.date"
+        :date="props.event.date"
         fill="dim"
       />
       <div class="event-list-item__content">
         <app-link
           class="event-list-item__link"
-          :to="$localeUrl({ name: 'events-slug', params: { slug: event.slug } })"
+          :to="$localeUrl({ name: 'events-slug', params: { slug: props.event.slug } })"
         >
           <h3 class="event-list-item__title event-list-item__title--compact body">
-            {{ event.title }}
+            {{ props.event.title }}
           </h3>
           <h3 class="event-list-item__title event-list-item__title--large h4">
-            {{ event.title }}
+            {{ props.event.title }}
           </h3>
         </app-link>
         <rich-text-block
-          v-if="event.social.description"
-          :text="event.social.description"
+          v-if="props.event.social.description"
+          :text="props.event.social.description"
         />
       </div>
     </div>
   </article>
 </template>
 
-<script>
-
-  export default {
-    props: {
-      event: {
-        type: Object,
-        required: true,
-        validator(event) {
-          return (
-            typeof(event.slug) === 'string'
-            && typeof(event.date) === 'string'
-            && typeof(event.title) === 'string'
-            && typeof(event.social.description) === 'string'
-          )
-        }
+<script setup>
+  const props = defineProps({
+    event: {
+      type: Object,
+      required: true,
+      validator(event) {
+        return (
+          typeof(event.slug) === 'string'
+          && typeof(event.date) === 'string'
+          && typeof(event.title) === 'string'
+          && typeof(event.social.description) === 'string'
+        )
       }
     }
-  }
+  })
 </script>
 
 <style>

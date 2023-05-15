@@ -50,6 +50,7 @@
         Past events
       </h2>
       <events-list
+        class="page-event__past-events-list"
         :items="pastEvents"
       />
     </section>
@@ -110,6 +111,10 @@
     text-align: center;
   }
 
+  .page-event__past-events-list {
+    grid-column: var(--grid-content);
+  }
+
   .page-event__intro {
     position: relative;
     max-width: var(--event-intro-width);
@@ -153,6 +158,11 @@
 
     .page-event__past-events {
       margin-bottom: var(--spacing-bigger);
+    }
+
+    .page-event__past-events-list {
+      grid-column: var(--grid-content);
+      grid-row: 2;
     }
 
     .page-event__past-events-item + .page-event__past-events-item {
@@ -204,6 +214,12 @@
 
     .page-event__past-events {
       margin-top: var(--spacing-bigger);
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .page-event__past-events-list {
+      grid-column: var(--grid-content-smallest);
     }
   }
 </style>

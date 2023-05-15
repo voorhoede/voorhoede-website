@@ -3,7 +3,7 @@
     class="event-list"
   >
     <li
-      v-for="event in items"
+      v-for="event in props.items"
       :key="event.slug"
     >
       <event-list-item
@@ -13,15 +13,13 @@
   </ul>
 </template>
 
-<script>
-  export default {
-    props: {
-      items: {
-        type: Array,
-        required: true,
-      },
+<script setup>
+  const props = defineProps({
+    items: {
+      type: Array,
+      required: true,
     },
-  }
+  })
 </script>
 
 <style>
