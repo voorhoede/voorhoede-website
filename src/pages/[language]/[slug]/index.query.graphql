@@ -89,6 +89,14 @@ query LandingPage($locale: SiteLocale, $slug: String) {
                 }
               }
             }
+            ... on StructuredTextTagListRecord {
+              id
+              items {
+                id
+                amount
+                label
+              }
+            }
           }
         }
       }

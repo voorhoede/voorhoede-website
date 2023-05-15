@@ -15,6 +15,7 @@
   import { StructuredText as DatocmsStructuredText, renderNodeRule } from 'vue-datocms'
   import { isHeading, isParagraph } from 'datocms-structured-text-utils'
   import AppButton from '../app-button/app-button.vue'
+  import TagList from '../tag-list/tag-list.vue'
   import StructuredTextBlock from './structured-text-block.vue'
 
   const props = defineProps({
@@ -35,7 +36,7 @@
 
   const customNodeRules = [
     renderNodeRule(isHeading, ({ node, key, children }) => {
-      return h(`h${node.level}`, { key, class: `h${node.level}` }, children)
+      return h(`h${node.level}`, { key, class: `h${node.level} structured-text__title` }, children)
     }),
     renderNodeRule(isParagraph, ({ key, children }) => {
       return h(
@@ -83,6 +84,12 @@
           })
         }))
       }
+      case 'StructuredTextTagListRecord': {
+        return h(TagList, {
+          key: record.id,
+          items: record.items
+        })
+      }
       default: {
         return null
       }
@@ -110,6 +117,10 @@
       grid-column-start: 10;
       grid-column-end: 42;
     }
+  }
+
+  .structured-text__title:not(:last-child) {
+    margin-bottom: var(--spacing-medium);
   }
 
   .structured-text p:not(:last-child) {
