@@ -13,7 +13,7 @@
 <script setup>
   import { h } from 'vue'
   import { StructuredText as DatocmsStructuredText, renderNodeRule } from 'vue-datocms'
-  import { isHeading, isParagraph } from 'datocms-structured-text-utils'
+  import { isHeading, isParagraph, isList  } from 'datocms-structured-text-utils'
   import AppButton from '../app-button/app-button.vue'
   import TagList from '../tag-list/tag-list.vue'
   import StructuredTextBlock from './structured-text-block.vue'
@@ -47,6 +47,9 @@
         },
         children
       );
+    }),
+    renderNodeRule(isList, ({ node, key, children }) => {
+      return h(node.style === 'numbered' ? 'ol' : 'ul', { key, class: 'structured-text__list' }, children)
     }),
   ]
 
@@ -160,6 +163,24 @@
   }
 
   .structured-text__highlighted-list-item + .structured-text__highlighted-list-item {
+    margin-top: var(--spacing-medium);
+  }
+
+  .structured-text__list {
+    padding-left: var(--spacing-medium);
+  }
+
+  ul.structured-text__list {
+    list-style: initial;
+  }
+
+  ol.structured-text__list {
+    list-style: decimal;
+    font-family: var(--font-sans);
+    font-weight: 700;
+  }
+
+  .structured-text__list li + li {
     margin-top: var(--spacing-medium);
   }
 </style>
