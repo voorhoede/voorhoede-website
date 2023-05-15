@@ -73,8 +73,7 @@
 </template>
 
 <script setup>
-  import BlogsList from '~/components/blogs-list/blogs-list.vue';
-import query from './index.query.graphql?raw';
+  import query from './index.query.graphql?raw';
 
   const { params } = useRoute();
 

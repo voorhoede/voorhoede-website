@@ -1,98 +1,91 @@
 <template>
   <article
     class="blog-list-item"
-    :class="{'blog-list-item--large' : large}"
+    :class="{'blog-list-item--large' : props.large}"
   >
     <span
-      v-if="pinned"
+      v-if="props.pinned"
       class="body-small blog-list-item__pin-badge"
     >
       <app-icon name="pin" /> {{ $t('pinned_blog') }}
     </span>
     <app-link
-      :to="$localeUrl({ name: linkName, params: { slug: item.slug } })"
+      :to="$localeUrl({ name: props.linkName, params: { slug: props.item.slug } })"
       :lang="language"
     >
       <h3
         class="blog-list-item__title font-html-blue"
-        :class="large ? 'h4' : 'body'"
+        :class="props.large ? 'h4' : 'body'"
       >
-        {{ item.title }}
+        {{ props.item.title }}
       </h3>
     </app-link>
     <time
-      :datetime="item.date"
+      :datetime="props.item.date"
       class="blog-list-item__time"
-      :class="large ? 'body' : 'body-small'"
+      :class="props.large ? 'body' : 'body-small'"
     >
       {{ formattedDate }}
     </time>
     <div class="blog-list-item__content">
       <div
         class="blog-list-item__image-container"
-        v-for="author in item.authors"
+        v-for="author in props.item.authors"
         :key="author.name"
       >
         <dato-image
           class="blog-list-item__image"
           :src="author.image.url"
           alt=""
-          :width="large ? 65 : 40"
-          :height="large ? 65 : 40"
+          :width="props.large ? 65 : 40"
+          :height="props.large ? 65 : 40"
           loading="lazy"
           :quality="85"
           :modifiers="{ ar: '1:1', fit: 'crop', crop: 'faces', sat: -100 }"
         />
       </div>
-      <span :class="large ? 'body' : 'body-small'">{{ $t('by__authors_', { authors }) }}</span>
+      <span :class="props.large ? 'body' : 'body-small'">{{ $t('by__authors_', { authors }) }}</span>
     </div>
   </article>
 </template>
 
-<script>
+<script setup>
   import formatDate from '../../lib/format-date'
 
-  export default {
-    props: {
-      item: {
-        type: Object,
-        required: true,
-        validator(item) {
-          return typeof(item.slug) === 'string' &&
-                 typeof(item.title) === 'string' &&
-                 !!Date.parse(item.date) &&
-                 item.authors.length >= 1
-        },
-      },
-      large: {
-        type: Boolean,
-        default: false,
-      },
-      pinned: {
-        type: Boolean,
-        default: false,
-      },
-      linkName: {
-        type: String,
-        default: 'blog-slug',
+  const { $i18n } = useNuxtApp();
+
+  const props = defineProps({
+    item: {
+      type: Object,
+      required: true,
+      validator(item) {
+        return typeof(item.slug) === 'string' &&
+                typeof(item.title) === 'string' &&
+                !!Date.parse(item.date) &&
+                item.authors.length >= 1
       },
     },
-    computed: {
-      authors () {
-        return `${this.item.authors.map(author => author.name).join(', ')}`
-      },
-      language() {
-        return this.linkName === 'blog-slug' ? 'en' : null
-      },
-      formattedDate() {
-        return formatDate({
-          date: this.item.date,
-          format: 'D MMM YYYY',
-          locale: this.$i18n.locale(),
-        })
-      },
+    large: {
+      type: Boolean,
+      default: false,
     },
-  }
+    pinned: {
+      type: Boolean,
+      default: false,
+    },
+    linkName: {
+      type: String,
+      default: 'blog-slug',
+    },
+  })
+
+  const authors = computed(() => `${props.item.authors.map(author => author.name).join(', ')}`)
+  const language = computed(() => props.linkName === 'blog-slug' ? 'en' : null)
+  const formattedDate = computed(()=> formatDate({
+    date: props.item.date,
+    format: 'D MMM YYYY',
+    locale: $i18n.locale(),
+  }))
 </script>
 
 <style>
