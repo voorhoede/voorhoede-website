@@ -3,6 +3,7 @@
     <h2
       v-if="title"
       class="blockquote-block__title h4"
+      :id="slug"
     >
       {{ title }}
     </h2>
@@ -49,6 +50,10 @@
       linkIsExternal: {
         type: Boolean,
         default: false
+      },
+      slug: {
+        type: String,
+        default: null
       }
     }
   }

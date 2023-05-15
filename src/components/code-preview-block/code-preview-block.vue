@@ -4,6 +4,7 @@
       scrolling="no"
       :title="title"
       :src="iframeSrc"
+      :id="slug"
       class="code-preview-block__i-frame"
       frameborder="no"
       loading="lazy"
@@ -36,6 +37,10 @@ export default {
       type: String,
       default: 'codepen'
     },
+    slug: {
+      type: String,
+      default: null
+    }
   },
   computed: {
     iframeSrc() {

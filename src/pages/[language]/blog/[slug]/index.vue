@@ -32,7 +32,7 @@
         </p>
       </text-block>
 
-      <template v-for="item in data.page.items">
+      <template v-for="item in items">
         <div
           v-if="item.__typename === 'CallToActionRecord'"
           :key="item.id"
@@ -44,6 +44,7 @@
             :body="item.body"
             :link-label="item.linkLabel"
             :link-url="item.linkUrl"
+            :slug="item.slug"
           />
         </div>
 
@@ -56,6 +57,7 @@
           :title="item.title"
           :type="item.previewType"
           :key="item.id"
+          :slug="item.slug"
         />
 
         <code-block
@@ -117,6 +119,7 @@
             class="page-blog-post-list__title font-html-blue"
             :class="headingLevelClassMap[item.headingLevel || defaultHeadingLevel]"
             :is="`h${item.headingLevel || defaultHeadingLevel}`"
+            :id="item.slug"
           >
             {{ item.title }}
           </component>
@@ -202,15 +205,20 @@
       : body
   );
 
-  const tocItems = computed(() => {
+  const items = computed(() => {
     return data.value.page.items
-      .filter(item => item.title)
-      .map(({ title }) => {
-        return {
-          slug: slugify(title),
-          title
+      .map((item) => {
+        return item.title ? {
+          slug: slugify(item.title),
+          ...item
+        } : {
+          ...item
         }
       })
+  })
+
+  const tocItems = computed(() => {
+    return items.value.filter(item => item.slug)
   })
 
   function slugify(title) {
