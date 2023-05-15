@@ -25,7 +25,6 @@ const staticRoutesConfig = [
   "/events/",
   "/faq/",
   "/energy-first/",
-  "/about-us/",
 ];
 
 // these routes are generated dynamically by fetching all slugs for each page type

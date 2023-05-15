@@ -141,9 +141,6 @@ fragment page on BlogPostRecord {
         ... on BlogPostOverviewRecord {
           slug
         }
-        ... on AboutRecord {
-          slug
-        }
         ... on ContactRecord {
           slug
         }

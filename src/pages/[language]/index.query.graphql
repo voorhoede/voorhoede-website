@@ -136,9 +136,6 @@ fragment homepage on HomeRecord {
         ... on BlogPostOverviewRecord {
           slug
         }
-        ... on AboutRecord {
-          slug
-        }
         ... on ContactRecord {
           slug
         }

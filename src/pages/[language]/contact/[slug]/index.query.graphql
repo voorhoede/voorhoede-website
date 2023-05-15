@@ -46,9 +46,6 @@ fragment page on ContactConfirmationRecord {
         ... on BlogPostOverviewRecord {
           slug
         }
-        ... on AboutRecord {
-          slug
-        }
         ... on ContactRecord {
           slug
         }

@@ -30,9 +30,6 @@ query DefaultLayout($locale: SiteLocale) {
     links {
       title
       page {
-        ... on AboutRecord {
-          slug
-        }
         ... on BlogPostOverviewRecord {
           slug
         }

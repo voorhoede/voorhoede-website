@@ -89,9 +89,6 @@ fragment page on CaseOverviewRecord {
         ... on BlogPostOverviewRecord {
           slug
         }
-        ... on AboutRecord {
-          slug
-        }
         ... on ContactRecord {
           slug
         }
