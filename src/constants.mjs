@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'tag-list';
+export const datocmsEnvironment = 'tag-list-deploy';
