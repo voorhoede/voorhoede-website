@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'tag-list-deploy';
+export const datocmsEnvironment = 'switch-jobs';

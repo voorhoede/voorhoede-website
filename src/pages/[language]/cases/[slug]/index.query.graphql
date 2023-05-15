@@ -171,9 +171,6 @@ fragment caseItem on CaseItemRecord {
         ... on BlogPostOverviewRecord {
           slug
         }
-        ... on JobOverviewRecord {
-          slug
-        }
         ... on AboutRecord {
           slug
         }

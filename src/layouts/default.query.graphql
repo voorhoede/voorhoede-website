@@ -48,9 +48,6 @@ query DefaultLayout($locale: SiteLocale) {
         ... on HomeRecord {
           slug
         }
-        ... on JobOverviewRecord {
-          slug
-        }
         ... on ServiceOverviewRecord {
           slug
         }
