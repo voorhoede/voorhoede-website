@@ -1,3 +1,4 @@
 update_strategy: individual
-resonably_up_to_date: true
+reasonably_up_to_date: true
 update_out_of_spec: true
+branch_name_separator: '-'
