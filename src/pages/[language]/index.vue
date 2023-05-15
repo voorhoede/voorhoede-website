@@ -73,11 +73,14 @@
       <h2 class="page-index__section-title page-index__section-title--blog-posts h3">
         {{ $t('latest_blog_posts') }}
       </h2>
-      <blogs-list
-        :items="data.latestBlogposts"
-        item-size="small"
-        class="page-index__blog-posts-list grid"
-      />
+      <div class="page-index__blog-posts-list-container grid">
+        <blogs-list
+          :items="data.latestBlogposts"
+          item-size="small"
+          class="page-index__blog-posts-list"
+        />
+      </div>
+
       <div class="page-index__blog-posts-button">
         <app-button
           secondary
@@ -165,23 +168,11 @@
     margin-bottom: var(--spacing-large);
   }
 
-  .page-index__blog-posts-list {
+  .page-index__blog-posts-list-container {
     margin-bottom: var(--spacing-small);
     grid-row: 2;
     grid-column: var(--grid-content-start) / 48;
     grid-template-rows: repeat(3, auto);
-  }
-
-  .page-index__blog-posts-list li {
-    grid-row: 1;
-  }
-
-  .page-index__blog-posts-list li:nth-child(2) {
-    grid-row: 2;
-  }
-
-  .page-index__blog-posts-list li:nth-child(3) {
-    grid-row: 3;
   }
 
   .page-index__blog-posts-button {
@@ -269,12 +260,12 @@
       margin-bottom: var(--spacing-big);
     }
 
-    .page-index__blog-posts-list {
+    .page-index__blog-posts-list-container {
       grid-column: var(--grid-page);
       overflow: hidden;
     }
 
-    .page-index__blog-posts-list li {
+    .page-index__blog-posts-list {
       transition: transform var(--blog-list-item-animation-timing) ease-out;
       display: inline-block;
       grid-column-start: 8;
@@ -349,7 +340,7 @@
       grid-column-end: 21;
     }
 
-    .page-index__blog-posts-list li {
+    .page-index__blog-posts-list {
       grid-column-start: 16;
       grid-column-end: 45;
     }
