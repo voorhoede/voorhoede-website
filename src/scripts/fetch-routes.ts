@@ -62,7 +62,7 @@ const dynamicRoutesConfig: RouteConfig[] = [
   },
   {
     queryOperation: "allLandingPages",
-    path: "",
+    path: "/",
   },
 ];
 
