@@ -60,8 +60,6 @@
     },
   });
 
-  console.log(data.value.overview)
-
   useSeoHead(data.value.page);
 
   function baseSalary() {
