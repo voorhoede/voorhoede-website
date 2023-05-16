@@ -55,6 +55,9 @@ fragment page on ContactConfirmationRecord {
         ... on ContactRecord {
           slug
         }
+        ... on LandingPageRecord {
+          slug
+        }
       }
     }
     externalLink

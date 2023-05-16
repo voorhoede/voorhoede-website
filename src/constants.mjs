@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'structured-text-buttons-rename-deploy';
+export const datocmsEnvironment = 'tag-list-deploy';

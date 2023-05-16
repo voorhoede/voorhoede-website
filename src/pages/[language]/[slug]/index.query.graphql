@@ -91,6 +91,14 @@ query LandingPage($locale: SiteLocale, $slug: String) {
                 }
               }
             }
+            ... on StructuredTextTagListRecord {
+              id
+              items {
+                id
+                amount
+                label
+              }
+            }
           }
         }
       }
@@ -105,6 +113,16 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           jobImage {
             ...image
           }
+        }
+      }
+      ... on SectionTimelineRecord {
+        items {
+          date
+          description
+          image {
+            ...image
+          }
+          title
         }
       }
     }

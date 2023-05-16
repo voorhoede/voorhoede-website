@@ -180,6 +180,9 @@ fragment caseItem on CaseItemRecord {
         ... on ContactRecord {
           slug
         }
+        ... on LandingPageRecord {
+          slug
+        }
       }
     }
     externalLink

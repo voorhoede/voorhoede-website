@@ -67,6 +67,10 @@
         v-if="section.__typename === 'SectionJobsListRecord'"
         :jobs="section.jobs"
       />
+      <timeline-block
+        v-if="section.__typename === 'SectionTimelineRecord'"
+        :items="section.items"
+      />
     </template>
   </div>
 </template>

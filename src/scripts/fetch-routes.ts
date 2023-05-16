@@ -60,6 +60,10 @@ const dynamicRoutesConfig: RouteConfig[] = [
     queryOperation: "allJobs",
     path: "/jobs/",
   },
+  {
+    queryOperation: "allLandingPages",
+    path: "/",
+  },
 ];
 
 // fetches all routes for blog pages for a given locale
