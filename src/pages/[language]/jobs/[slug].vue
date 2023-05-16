@@ -48,7 +48,7 @@
 </template>
 
 <script setup>
-  import query from './_slug.query.graphql?raw';
+  import query from './[slug].query.graphql?raw';
 
   const { params } = useRoute();
 
