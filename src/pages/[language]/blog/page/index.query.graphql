@@ -81,12 +81,6 @@ fragment blogPostOverview on BlogPostOverviewRecord {
         ... on BlogPostOverviewRecord {
           slug
         }
-        ... on JobOverviewRecord {
-          slug
-        }
-        ... on AboutRecord {
-          slug
-        }
         ... on ContactRecord {
           slug
         }

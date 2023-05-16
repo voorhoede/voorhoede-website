@@ -30,9 +30,6 @@ query DefaultLayout($locale: SiteLocale) {
     links {
       title
       page {
-        ... on AboutRecord {
-          slug
-        }
         ... on BlogPostOverviewRecord {
           slug
         }
@@ -46,9 +43,6 @@ query DefaultLayout($locale: SiteLocale) {
           slug
         }
         ... on HomeRecord {
-          slug
-        }
-        ... on JobOverviewRecord {
           slug
         }
         ... on ServiceOverviewRecord {

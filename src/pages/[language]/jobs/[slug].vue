@@ -37,7 +37,7 @@
           />
           <app-button
             :label="$t('all_jobs')"
-            :to="$localeUrl({ name: 'jobs' })"
+            :to="$localeUrl({ name: 'slug', params: { slug: data.overview.page.slug } })"
             secondary
           />
           <scroll-to direction="up" />
@@ -48,7 +48,7 @@
 </template>
 
 <script setup>
-  import query from './index.query.graphql?raw';
+  import query from './[slug].query.graphql?raw';
 
   const { params } = useRoute();
 
