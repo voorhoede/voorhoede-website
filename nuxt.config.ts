@@ -1,5 +1,6 @@
 import { defineNuxtConfig } from 'nuxt/config';
 import { writeFile, mkdir } from 'node:fs/promises';
+import graphqlLoader from 'vite-plugin-graphql-loader'
 import { default as nuxtIcons } from 'nuxt-icons';
 import { default as plausible } from '@nuxtjs/plausible';
 import { fetchTranslations } from './src/scripts/fetch-translations';
@@ -17,6 +18,12 @@ export default defineNuxtConfig({
     '@/components/app-core/index.css',
   ],
   nitro: {
+    esbuild: {
+      options: {
+        // allow graphql loader to use async/await in root
+        target: 'esnext',
+      }
+    },
     prerender: {
       crawlLinks: false
     }
@@ -65,6 +72,15 @@ export default defineNuxtConfig({
         }),
     ])
       // hook expects a promise with no return data
-      .then(() => {}),
+      .then(() => { }),
   },
+  vite: {
+    build: {
+      // allow graphql loader to use async/await in root
+      target: 'esnext',
+    },
+    plugins: [
+      graphqlLoader()
+    ]
+  }
 });

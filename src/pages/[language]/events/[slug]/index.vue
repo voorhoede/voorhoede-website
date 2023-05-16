@@ -128,7 +128,7 @@
 </template>
 
 <script setup>
-  import query from './index.query.graphql?raw';
+  import query from './index.query.graphql';
   import formatDate from '../../../../lib/format-date';
 
   const { params } = useRoute();

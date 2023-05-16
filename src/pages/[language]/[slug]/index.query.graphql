@@ -1,3 +1,5 @@
+# import '../../../components/image-card-grid/image-card-grid.fragment.graphql'
+
 query LandingPage($locale: SiteLocale, $slug: String) {
   page: landingPage(locale: $locale, filter: {slug: {eq: $slug}}) {
     title
@@ -101,17 +103,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
         }
       }
       ... on SectionImageCardGridRecord {
-        title
-        items {
-          id
-          title
-          body {
-            value
-          }
-          image {
-            ...image
-          }
-        }
+        ...ImageCardGridFragment
       }
       ... on SectionJobsListRecord {
         id

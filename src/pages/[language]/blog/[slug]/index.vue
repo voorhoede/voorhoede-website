@@ -169,7 +169,7 @@
 </template>
 
 <script setup>
-  import query from './index.query.graphql?raw';
+  import query from './index.query.graphql';
   import prismjs from 'prismjs';
   import('prismjs/components/prism-graphql');
   import('prismjs/components/prism-rust');
