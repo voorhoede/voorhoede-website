@@ -7,12 +7,12 @@ export default async function (client: Client) {
   console.log("Create new models/block models");
 
   console.log(
-    'Create block model "Section Events List" (`section_events_list`)'
+    'Create block model "Section Events Section" (`section_events_section`)'
   );
   newItemTypes["1770007"] = await client.itemTypes.create(
     {
-      name: "Section Events List",
-      api_key: "section_events_list",
+      name: "Section Events Section",
+      api_key: "section_events_section",
       modular_block: true,
       inverse_relationships_enabled: false,
     },
@@ -22,7 +22,23 @@ export default async function (client: Client) {
   console.log("Creating new fields/fieldsets");
 
   console.log(
-    'Create Multiple links field "Items" (`items`) in block model "Section Events List" (`section_events_list`)'
+    'Create Single-line string field "Title" (`title`) in block model "Section Events Section" (`section_events_section`)'
+  );
+  newFields["7649987"] = await client.fields.create(newItemTypes["1498028"], {
+    label: "Title",
+    field_type: "string",
+    api_key: "title",
+    validators: { required: {} },
+    appearance: {
+      addons: [],
+      editor: "single_line",
+      parameters: { heading: false },
+    },
+    default_value: "",
+  });
+
+  console.log(
+    'Create Multiple links field "Items" (`items`) in block model "Section Events Section" (`section_events_section`)'
   );
   newFields["9165469"] = await client.fields.create(newItemTypes["1770007"], {
     label: "Items",

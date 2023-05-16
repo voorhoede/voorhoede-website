@@ -41,14 +41,10 @@
       :items="data.page.teamGrid"
     />
 
-    <div class="page-lustrum__list">
-      <h2 class="page-lustrum__title-events h3">
-        {{ data.page.eventsTitle }}
-      </h2>
-      <events-list
-        :items="data.page.eventsList"
-      />
-    </div>
+    <events-section
+      :items="data.page.eventsList"
+      :title="data.page.eventsTitle"
+    />
 
     <highlighted-clients
       :title="data.page.clientsTitle"

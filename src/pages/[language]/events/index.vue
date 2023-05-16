@@ -45,15 +45,11 @@
         </ul>
       </section>
     </div>
-    <section class="page-event__past-events grid">
-      <h2 class="page-event__events-list-title h2">
-        Past events
-      </h2>
-      <events-list
-        class="page-event__past-events-list"
-        :items="pastEvents"
-      />
-    </section>
+    <events-section
+      class="page-event__past-events"
+      :items="pastEvents"
+      title="Past events"
+    />
     <newsletter-form :has-background="true" />
   </main>
 </template>
