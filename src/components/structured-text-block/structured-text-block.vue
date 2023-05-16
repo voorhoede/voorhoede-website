@@ -1,16 +1,31 @@
 <template>
+  <aside class="structured-text__aside">
+    <toc-section
+      v-if="toc"
+      :items="tocItems"
+    />
+  </aside>
   <DatocmsStructuredText
+    v-bind="$attrs"
     :data="content"
     :render-block="renderBlock"
     :custom-node-rules="customNodeRules"
     class="structured-text"
     :class="{
       'structured-text--center-grid': gridAlignment === 'center',
+      'structured-text--with-toc': toc,
     }"
   />
 </template>
 
+<script>
+export default {
+  inheritAttrs: false
+}
+</script>
+
 <script setup>
+  import slugify from '../../lib/slugify';
   import { h } from 'vue'
   import { StructuredText as DatocmsStructuredText, renderNodeRule } from 'vue-datocms'
   import { isHeading, isParagraph, isList  } from 'datocms-structured-text-utils'
@@ -32,11 +47,31 @@
       default: 'body',
       validator: (variant) => ['body', 'body-big'].includes(variant),
     },
+    toc: {
+      type: Boolean,
+      default: false,
+    },
+    root: {
+      type: Boolean,
+      default: false,
+    }
   });
+  const emit = defineEmits(['update-toc-items']);
+
+  const tocItems = ref([]);
 
   const customNodeRules = [
     renderNodeRule(isHeading, ({ node, key, children }) => {
-      return h(`h${node.level}`, { key, class: `h${node.level} structured-text__title` }, children)
+      const slug = slugify(node.children[0].value)
+      updateTocItems({
+        slug,
+        title: node.children[0].value,
+      })
+      return h(`h${node.level}`, {
+        key,
+        class: `h${node.level} structured-text__title`,
+        id: slug
+      }, children)
     }),
     renderNodeRule(isParagraph, ({ key, children }) => {
       return h(
@@ -64,6 +99,7 @@
           class: 'structured-text__highlighted-list-item',
         }, h(StructuredTextBlock, {
           content: listItem.body,
+          onUpdateTocItems: (item) => updateTocItems(item),
         }))))
       }
       case 'StructuredTextBlueTextRecord': {
@@ -72,6 +108,7 @@
           content: record.body,
           paragraphVariant: props.paragraphVariant,
           class: 'structured-text__blue-text',
+          onUpdateTocItems: (item) => updateTocItems(item),
         })
       }
       case 'StructuredTextButtonsListRecord': {
@@ -98,9 +135,24 @@
       }
     }
   }
+
+  function updateTocItems(item) {
+    if (props.root) {
+      if (!tocItems.value.find((tocItem) => tocItem.slug === item.slug)) {
+        tocItems.value.push(item)
+      }
+    } else {
+      emit('update-toc-items', item)
+    }
+  }
 </script>
 
 <style>
+  .structured-text__aside {
+    grid-column-end: 10;
+    grid-column-start: 3;
+  }
+
   .structured-text {
     grid-column: var(--grid-content);
     word-wrap: break-word;
@@ -112,6 +164,11 @@
     .structured-text--center-grid {
       grid-column-start: 6;
       grid-column-end: 44;
+    }
+
+    .structured-text--with-toc,
+    .structured-text--with-toc.structured-text--center-grid {
+      grid-column-start: 13;
     }
   }
 

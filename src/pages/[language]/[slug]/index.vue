@@ -56,6 +56,8 @@
         v-if="section.__typename === 'SectionStructuredTextRecord'"
         :content="section.body"
         :grid-alignment="section.gridAlignment"
+        :toc="section.toc"
+        :root="true"
         paragraph-variant="body-big"
       />
       <image-card-grid
