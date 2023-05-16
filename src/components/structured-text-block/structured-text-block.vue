@@ -1,8 +1,14 @@
 <template>
-  <aside class="structured-text__aside">
+  <aside
+    class="structured-text__aside"
+    :class="{
+      'structured-text__aside--center-grid': gridAlignment === 'center',
+    }"
+  >
     <toc-section
       v-if="toc"
       :items="tocItems"
+      class="structured-text__toc"
     />
   </aside>
   <DatocmsStructuredText
@@ -56,9 +62,9 @@ export default {
       default: false,
     }
   });
-  const emit = defineEmits(['update-toc-items']);
 
   const tocItems = ref([]);
+  const emit = defineEmits(['update-toc-items']);
 
   const customNodeRules = [
     renderNodeRule(isHeading, ({ node, key, children }) => {
@@ -99,7 +105,7 @@ export default {
           class: 'structured-text__highlighted-list-item',
         }, h(StructuredTextBlock, {
           content: listItem.body,
-          onUpdateTocItems: (item) => updateTocItems(item),
+          onUpdateTocItems: updateTocItems,
         }))))
       }
       case 'StructuredTextBlueTextRecord': {
@@ -108,7 +114,7 @@ export default {
           content: record.body,
           paragraphVariant: props.paragraphVariant,
           class: 'structured-text__blue-text',
-          onUpdateTocItems: (item) => updateTocItems(item),
+          onUpdateTocItems: updateTocItems,
         })
       }
       case 'StructuredTextButtonsListRecord': {
@@ -149,8 +155,12 @@ export default {
 
 <style>
   .structured-text__aside {
-    grid-column-end: 10;
     grid-column-start: 3;
+    grid-column-end: 10;
+  }
+
+  .structured-text__toc {
+    margin-top: 0;
   }
 
   .structured-text {
@@ -166,9 +176,18 @@ export default {
       grid-column-end: 44;
     }
 
-    .structured-text--with-toc,
-    .structured-text--with-toc.structured-text--center-grid {
+    .structured-text--with-toc {
       grid-column-start: 13;
+    }
+
+
+    .structured-text--with-toc.structured-text--center-grid {
+      grid-column-start: 18;
+    }
+
+    .structured-text__aside--center-grid {
+      grid-column-start: 8;
+      grid-column-end: 15;
     }
   }
 
