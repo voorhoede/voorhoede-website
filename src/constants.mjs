@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'switch-jobs';
+export const datocmsEnvironment = 'switch-pages-deploy';
