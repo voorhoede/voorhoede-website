@@ -18,11 +18,28 @@ query LandingPage($locale: SiteLocale, $slug: String) {
       }
       ... on SectionImageTextRecord {
         title
-        body(markdown: true)
         image {
           ...image
         }
         imagePosition
+        structuredBody {
+          value
+          blocks {
+            __typename
+            ... on StructuredTextBlueTextRecord {
+              id
+              body {
+                value
+              }
+            }
+            ... on StructuredTextButtonsListRecord {
+              id
+              buttons {
+                ...link
+              }
+            }
+          }
+        }
       }
       ... on SectionInterstitialCtaRecord {
         title

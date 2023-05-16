@@ -21,8 +21,15 @@
         {{ title }}
       </h2>
       <div
+        v-if="body"
         class="pullquote image-with-text__body-text"
         v-html="body"
+      />
+      <structured-text-block
+        v-if="structuredBody"
+        class="image-with-text__body-text"
+        :content="structuredBody"
+        paragraph-variant="body-big"
       />
     </div>
   </div>
@@ -37,7 +44,11 @@
       },
       body: {
         type: String,
-        required: true,
+        default: null,
+      },
+      structuredBody: {
+        type: Object,
+        default: null,
       },
       image: {
         type: Object,
@@ -85,6 +96,10 @@
   .image-with-text__body-text {
     padding-bottom: var(--spacing-medium);
     background-color: var(--white);
+  }
+
+  .image-with-text__body-text .structured-text__blue-text {
+    text-align: left;
   }
 
   @media (min-width: 720px) {
