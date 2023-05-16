@@ -27,14 +27,14 @@ export default async function (client: Client) {
   console.log("Destroy fields in existing models/block models");
 
   console.log(
-    'Delete Single-line string field "Title" (`title`) in model "Job overview" (`job_overview`)'
-  );
-  await client.fields.destroy("153583");
-
-  console.log(
     'Delete Slug field "Slug" (`slug`) in model "Job overview" (`job_overview`)'
   );
   await client.fields.destroy("153584");
+
+  console.log(
+    'Delete Single-line string field "Title" (`title`) in model "Job overview" (`job_overview`)'
+  );
+  await client.fields.destroy("153583");
 
   console.log(
     'Delete SEO meta tags field "Social" (`social`) in model "Job overview" (`job_overview`)'
@@ -75,7 +75,7 @@ export default async function (client: Client) {
   })
 
   console.log('Update Job overview to point to the Jobs landing page');
-  await client.items.update("40180", {
+  await client.items.update("363574", {
     page: '110636103'
   })
 }
