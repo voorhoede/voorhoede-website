@@ -1,50 +1,50 @@
 <template>
   <article
     class="blog-list-item"
-    :class="{'blog-list-item--large' : props.large}"
+    :class="{'blog-list-item--large' : large}"
   >
     <span
-      v-if="props.pinned"
+      v-if="pinned"
       class="body-small blog-list-item__pin-badge"
     >
       <app-icon name="pin" /> {{ $t('pinned_blog') }}
     </span>
     <app-link
-      :to="$localeUrl({ name: props.linkName, params: { slug: props.item.slug } })"
+      :to="$localeUrl({ name: linkName, params: { slug: item.slug } })"
       :lang="language"
     >
       <h3
         class="blog-list-item__title font-html-blue"
-        :class="props.large ? 'h4' : 'body'"
+        :class="large ? 'h4' : 'body'"
       >
-        {{ props.item.title }}
+        {{ item.title }}
       </h3>
     </app-link>
     <time
-      :datetime="props.item.date"
+      :datetime="item.date"
       class="blog-list-item__time"
-      :class="props.large ? 'body' : 'body-small'"
+      :class="large ? 'body' : 'body-small'"
     >
       {{ formattedDate }}
     </time>
     <div class="blog-list-item__content">
       <div
         class="blog-list-item__image-container"
-        v-for="author in props.item.authors"
+        v-for="author in item.authors"
         :key="author.name"
       >
         <dato-image
           class="blog-list-item__image"
           :src="author.image.url"
           alt=""
-          :width="props.large ? 65 : 40"
-          :height="props.large ? 65 : 40"
+          :width="large ? 65 : 40"
+          :height="large ? 65 : 40"
           loading="lazy"
           :quality="85"
           :modifiers="{ ar: '1:1', fit: 'crop', crop: 'faces', sat: -100 }"
         />
       </div>
-      <span :class="props.large ? 'body' : 'body-small'">{{ $t('by__authors_', { authors }) }}</span>
+      <span :class="large ? 'body' : 'body-small'">{{ $t('by__authors_', { authors }) }}</span>
     </div>
   </article>
 </template>
