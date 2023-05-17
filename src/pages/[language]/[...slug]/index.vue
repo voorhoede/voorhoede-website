@@ -92,13 +92,14 @@
   import query from './index.query.graphql?raw';
 
   const { params } = useRoute();
-  console.log(params.slug)
-
   const { data } = await useFetchContent({
     query,
     variables: {
       locale: params.language,
-      slug: params.slug.join('/'),
+      slug: params.slug
+        // Don't include empty string fragments caused by leading or trailing slashes
+        .filter(Boolean)
+        .join('/'),
     },
   });
 
