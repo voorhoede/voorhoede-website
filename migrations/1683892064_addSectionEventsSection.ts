@@ -24,7 +24,7 @@ export default async function (client: Client) {
   console.log(
     'Create Single-line string field "Title" (`title`) in block model "Section Events Section" (`section_events_section`)'
   );
-  newFields["7649987"] = await client.fields.create(newItemTypes["1498028"], {
+  newFields["7649987"] = await client.fields.create(newItemTypes["1770007"], {
     label: "Title",
     field_type: "string",
     api_key: "title",
@@ -68,6 +68,7 @@ export default async function (client: Client) {
           "1466128",
           "1471996",
           "1757574",
+          "1514671",
           newItemTypes["1770007"].id,
           "2037668",
           "2037669",

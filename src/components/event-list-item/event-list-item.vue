@@ -2,24 +2,24 @@
   <article class="event-list-item">
     <div class="event-list-item__transition-box">
       <calendar-icon
-        :date="props.event.date"
+        :date="event.date"
         fill="dim"
       />
       <div class="event-list-item__content">
         <app-link
           class="event-list-item__link"
-          :to="$localeUrl({ name: 'events-slug', params: { slug: props.event.slug } })"
+          :to="$localeUrl({ name: 'events-slug', params: { slug: event.slug } })"
         >
           <h3 class="event-list-item__title event-list-item__title--compact body">
-            {{ props.event.title }}
+            {{ event.title }}
           </h3>
           <h3 class="event-list-item__title event-list-item__title--large h4">
-            {{ props.event.title }}
+            {{ event.title }}
           </h3>
         </app-link>
         <rich-text-block
-          v-if="props.event.social.description"
-          :text="props.event.social.description"
+          v-if="event.social.description"
+          :text="event.social.description"
         />
       </div>
     </div>
@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-  const props = defineProps({
+  defineProps({
     event: {
       type: Object,
       required: true,

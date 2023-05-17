@@ -4,14 +4,14 @@
     v-once
   >
     <h2 class="events-section__title h3">
-      {{ props.title }}
+      {{ title }}
     </h2>
     <ul class="events-section__list">
       <li
-        v-for="event in props.items"
+        v-for="event in items"
         :key="event.slug"
       >
-        <events-section-item
+        <event-list-item
           :event="event"
         />
       </li>
@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-  const props = defineProps({
+  defineProps({
     items: {
       type: Array,
       required: true,
@@ -35,7 +35,7 @@
 <style>
 .events-section__title {
   text-align: center;
-  margin-bottom: var(--spacing-big);
+  margin-bottom: var(--spacing-medium);
 }
 
 .events-section__list {
