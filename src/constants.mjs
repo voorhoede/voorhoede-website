@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'events-list-deploy';
+export const datocmsEnvironment = 'toc-deploy';

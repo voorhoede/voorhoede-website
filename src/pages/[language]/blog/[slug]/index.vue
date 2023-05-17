@@ -171,6 +171,7 @@
 </template>
 
 <script setup>
+  import slugify from '../../../../lib/slugify';
   import query from './index.query.graphql?raw';
   import prismjs from 'prismjs';
   import('prismjs/components/prism-graphql');
@@ -219,10 +220,6 @@
   const tocItems = computed(() => {
     return items.value.filter(item => item.titleId)
   })
-
-  function slugify(title) {
-    return `${title.replace(/[^A-Za-z]+/g, '-').toLowerCase()}`;
-  }
 </script>
 
 <style>
