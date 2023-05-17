@@ -4,7 +4,7 @@
       scrolling="no"
       :title="title"
       :src="iframeSrc"
-      :id="slug"
+      :id="id"
       class="code-preview-block__i-frame"
       frameborder="no"
       loading="lazy"
@@ -17,9 +17,12 @@
   </figure>
 </template>
 
-<script>
-export default {
-  props: {
+<script setup>
+  const props = defineProps({
+    id: {
+      type: String,
+      default: null
+    },
     title: {
       type: String,
       required: true
@@ -36,36 +39,17 @@ export default {
     type: {
       type: String,
       default: 'codepen'
-    },
-    slug: {
-      type: String,
-      default: null
     }
-  },
-  computed: {
-    iframeSrc() {
-      if (this.type ==='codepen') {
-        const embedUrl = this.url.replace('/pen', '/embed/preview')
-        return `${embedUrl}?default-tab=css%2Cresult`
-      } else {
-        return this.url
-      }
-    },
-    cardTitle() {
-      switch (this.type) {
-        case 'codepen': {
-          return 'CodePen'
-        }
-        case 'codesandbox': {
-          return 'CodeSandbox'
-        }
-        default: {
-          return this.type
-        }
-      }
-    },
-  },
-}
+  })
+
+  const iframeSrc = computed(() => {
+    if (props.type ==='codepen') {
+      const embedUrl = props.url.replace('/pen', '/embed/preview')
+      return `${embedUrl}?default-tab=css%2Cresult`
+    } else {
+      return props.url
+    }
+  })
 </script>
 
 <style>

@@ -41,15 +41,14 @@
         >
           <blockquote-block
             :title="item.title"
+            :title-id="item.titleId"
             :body="item.body"
             :link-label="item.linkLabel"
             :link-url="item.linkUrl"
-            :slug="item.slug"
           />
         </div>
 
         <code-preview-block
-          :id="item.id"
           class="page-blog-post-list--full-width"
           v-if="item.__typename === 'CodePenBlockRecord' && item.url"
           :url="item.url"
@@ -57,7 +56,7 @@
           :title="item.title"
           :type="item.previewType"
           :key="item.id"
-          :slug="item.slug"
+          :id="item.titleId"
         />
 
         <code-block
@@ -119,7 +118,7 @@
             class="page-blog-post-list__title font-html-blue"
             :class="headingLevelClassMap[item.headingLevel || defaultHeadingLevel]"
             :is="`h${item.headingLevel || defaultHeadingLevel}`"
-            :id="item.slug"
+            :id="item.titleId"
           >
             {{ item.title }}
           </component>
@@ -209,7 +208,7 @@
     return data.value.page.items
       .map((item) => {
         return item.title ? {
-          slug: slugify(item.title),
+          titleId: slugify(item.title),
           ...item
         } : {
           ...item
@@ -218,7 +217,7 @@
   })
 
   const tocItems = computed(() => {
-    return items.value.filter(item => item.slug)
+    return items.value.filter(item => item.titleId)
   })
 
   function slugify(title) {
