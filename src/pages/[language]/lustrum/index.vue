@@ -18,14 +18,7 @@
       <h2 class="page-lustrum__title-facts h3">
         {{ data.page.factsTitle }}
       </h2>
-      <ul class="page-lustrum__facts-list">
-        <tag-item
-          v-for="fact in data.page.factsList"
-          :key="fact.id"
-          :amount="fact.amount"
-          :label="fact.label"
-        />
-      </ul>
+      <tag-list :items="data.page.factsList" />
     </div>
 
     <image-with-text-block
@@ -71,17 +64,10 @@
       <h2 class="page-lustrum__title-blogs h3">
         {{ data.page.blogsTitle }}
       </h2>
-      <ul>
-        <li
-          v-for="blogPost in data.page.blogsList"
-          :key="blogPost.slug"
-        >
-          <blog-list-item
-            large
-            :item="blogPost"
-          />
-        </li>
-      </ul>
+      <blogs-list
+        :items="data.page.blogsList"
+        item-size="large"
+      />
     </div>
   </main>
 </template>
@@ -177,10 +163,4 @@
     grid-column: var(--grid-content-narrow);
   }
 
-  .page-lustrum__facts-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--spacing-smaller);
-  }
 </style>

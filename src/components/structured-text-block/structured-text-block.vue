@@ -13,8 +13,9 @@
 <script setup>
   import { h } from 'vue'
   import { StructuredText as DatocmsStructuredText, renderNodeRule } from 'vue-datocms'
-  import { isHeading, isParagraph } from 'datocms-structured-text-utils'
+  import { isHeading, isParagraph, isList  } from 'datocms-structured-text-utils'
   import AppButton from '../app-button/app-button.vue'
+  import TagList from '../tag-list/tag-list.vue'
   import StructuredTextBlock from './structured-text-block.vue'
 
   const props = defineProps({
@@ -35,7 +36,7 @@
 
   const customNodeRules = [
     renderNodeRule(isHeading, ({ node, key, children }) => {
-      return h(`h${node.level}`, { key, class: `h${node.level}` }, children)
+      return h(`h${node.level}`, { key, class: `h${node.level} structured-text__title` }, children)
     }),
     renderNodeRule(isParagraph, ({ key, children }) => {
       return h(
@@ -46,6 +47,9 @@
         },
         children
       );
+    }),
+    renderNodeRule(isList, ({ node, key, children }) => {
+      return h(node.style === 'numbered' ? 'ol' : 'ul', { key, class: 'structured-text__list' }, children)
     }),
   ]
 
@@ -70,18 +74,24 @@
           class: 'structured-text__blue-text',
         })
       }
-      case 'StructuredTextCtaListRecord': {
+      case 'StructuredTextButtonsListRecord': {
         return h('div', {
           key,
-          class: 'structured-text__cta-list',
-        }, record.ctas.map((cta, ctaIndex) => {
+          class: 'structured-text__buttons-list',
+        }, record.buttons.map((button) => {
           return h(AppButton, {
-            key: ctaIndex,
-            label: cta.title,
-            to: cta.url || cta.link,
-            external: cta.__typename === 'ExternalLinkRecord',
+            key: button.id,
+            label: button.title,
+            to: button.url || button.link,
+            external: button.__typename === 'ExternalLinkRecord',
           })
         }))
+      }
+      case 'StructuredTextTagListRecord': {
+        return h(TagList, {
+          key: record.id,
+          items: record.items
+        })
       }
       default: {
         return null
@@ -112,6 +122,10 @@
     }
   }
 
+  .structured-text__title:not(:last-child) {
+    margin-bottom: var(--spacing-medium);
+  }
+
   .structured-text p:not(:last-child) {
     margin-bottom: var(--spacing-medium);
   }
@@ -134,7 +148,7 @@
     margin-bottom: var(--spacing-medium);
   }
 
-  .structured-text__cta-list {
+  .structured-text__buttons-list {
     margin-top: var(--spacing-medium);
     display: inline-flex;
     align-items: flex-start;
@@ -149,6 +163,24 @@
   }
 
   .structured-text__highlighted-list-item + .structured-text__highlighted-list-item {
+    margin-top: var(--spacing-medium);
+  }
+
+  .structured-text__list {
+    padding-left: var(--spacing-medium);
+  }
+
+  ul.structured-text__list {
+    list-style: initial;
+  }
+
+  ol.structured-text__list {
+    list-style: decimal;
+    font-family: var(--font-sans);
+    font-weight: 700;
+  }
+
+  .structured-text__list li + li {
     margin-top: var(--spacing-medium);
   }
 </style>

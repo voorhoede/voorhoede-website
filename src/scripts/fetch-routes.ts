@@ -20,13 +20,11 @@ const staticRoutesConfig = [
   "/services/",
   "/contact/",
   "/cases/",
-  "/jobs/",
   "/work-at/",
   "/lustrum/",
   "/events/",
   "/faq/",
   "/energy-first/",
-  "/about-us/",
 ];
 
 // these routes are generated dynamically by fetching all slugs for each page type
@@ -59,6 +57,10 @@ const dynamicRoutesConfig: RouteConfig[] = [
   {
     queryOperation: "allJobs",
     path: "/jobs/",
+  },
+  {
+    queryOperation: "allLandingPages",
+    path: "/",
   },
 ];
 

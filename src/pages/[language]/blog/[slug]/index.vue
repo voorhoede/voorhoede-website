@@ -32,7 +32,7 @@
         </p>
       </text-block>
 
-      <template v-for="item in data.page.items">
+      <template v-for="item in items">
         <div
           v-if="item.__typename === 'CallToActionRecord'"
           :key="item.id"
@@ -41,6 +41,7 @@
         >
           <blockquote-block
             :title="item.title"
+            :title-id="item.titleId"
             :body="item.body"
             :link-label="item.linkLabel"
             :link-url="item.linkUrl"
@@ -48,7 +49,6 @@
         </div>
 
         <code-preview-block
-          :id="item.id"
           class="page-blog-post-list--full-width"
           v-if="item.__typename === 'CodePenBlockRecord' && item.url"
           :url="item.url"
@@ -56,6 +56,7 @@
           :title="item.title"
           :type="item.previewType"
           :key="item.id"
+          :id="item.titleId"
         />
 
         <code-block
@@ -117,6 +118,7 @@
             class="page-blog-post-list__title font-html-blue"
             :class="headingLevelClassMap[item.headingLevel || defaultHeadingLevel]"
             :is="`h${item.headingLevel || defaultHeadingLevel}`"
+            :id="item.titleId"
           >
             {{ item.title }}
           </component>
@@ -202,15 +204,20 @@
       : body
   );
 
-  const tocItems = computed(() => {
+  const items = computed(() => {
     return data.value.page.items
-      .filter(item => item.title)
-      .map(({ title }) => {
-        return {
-          slug: slugify(title),
-          title
+      .map((item) => {
+        return item.title ? {
+          titleId: slugify(item.title),
+          ...item
+        } : {
+          ...item
         }
       })
+  })
+
+  const tocItems = computed(() => {
+    return items.value.filter(item => item.titleId)
   })
 
   function slugify(title) {

@@ -75,9 +75,9 @@ query LandingPage($locale: SiteLocale, $slug: String) {
                 value
               }
             }
-            ... on StructuredTextCtaListRecord {
+            ... on StructuredTextButtonsListRecord {
               id
-              ctas {
+              buttons {
                 ...link
               }
             }
@@ -87,6 +87,14 @@ query LandingPage($locale: SiteLocale, $slug: String) {
                 body {
                   value
                 }
+              }
+            }
+            ... on StructuredTextTagListRecord {
+              id
+              items {
+                id
+                amount
+                label
               }
             }
           }
@@ -105,6 +113,48 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           }
         }
       }
+      ... on SectionJobsListRecord {
+        id
+        jobs {
+          title
+          slug
+          jobImage {
+            ...image
+          }
+        }
+      }
+      ... on SectionTimelineRecord {
+        items {
+          date
+          description
+          image {
+            ...image
+          }
+          title
+        }
+      }
+      ... on SectionBlogsSectionRecord {
+        title
+        itemSize
+        items {
+          ...blogpost
+        }
+        pinnedItems {
+          ...blogpost
+        }
+      }
+    }
+  }
+}
+
+fragment blogpost on BlogPostRecord {
+  slug
+  title
+  date: publishDate
+  authors {
+    name
+    image {
+      ...image
     }
   }
 }
@@ -119,6 +169,7 @@ fragment image on FileField {
 fragment link on RecordInterface {
   __typename
   ... on InternalLinkRecord {
+    id
     title
     link {
       ... on LandingPageRecord {
@@ -127,6 +178,7 @@ fragment link on RecordInterface {
     }
   }
   ... on ExternalLinkRecord {
+    id
     title
     url
   }

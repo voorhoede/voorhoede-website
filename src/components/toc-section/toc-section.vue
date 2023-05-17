@@ -7,11 +7,11 @@
       <ul class="flat-list">
         <li
           class="toc-section__list-item"
-          v-for="({slug, title}) in items"
-          :key="slug"
+          v-for="({titleId, title}) in items"
+          :key="titleId"
         >
           <a
-            :href="`#${slug}`"
+            :href="`#${titleId}`"
             class="body"
           >
             {{ title }}
@@ -22,15 +22,13 @@
   </section>
 </template>
 
-<script>
-  export default {
-    props: {
-      items: {
-        type: Array,
-        required: true,
-      },
-    }
-  }
+<script setup>
+  defineProps({
+    items: {
+      type: Array,
+      required: true,
+    },
+  })
 </script>
 
 <style>

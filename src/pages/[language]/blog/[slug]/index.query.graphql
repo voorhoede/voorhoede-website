@@ -141,13 +141,10 @@ fragment page on BlogPostRecord {
         ... on BlogPostOverviewRecord {
           slug
         }
-        ... on JobOverviewRecord {
-          slug
-        }
-        ... on AboutRecord {
-          slug
-        }
         ... on ContactRecord {
+          slug
+        }
+        ... on LandingPageRecord {
           slug
         }
       }
