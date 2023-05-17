@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'toc-deploy';
+export const datocmsEnvironment = 'landing-previews';
