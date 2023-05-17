@@ -6,12 +6,12 @@ export default async function (client: Client) {
   console.log("Creating new fields/fieldsets");
 
   console.log(
-    'Create Boolean field "Show table of contents" (`toc`) in block model "Section Structured Text" (`section_structured_text`)'
+    'Create Boolean field "Show table of contents" (`has_toc`) in block model "Section Structured Text" (`section_structured_text`)'
   );
   newFields["7662689"] = await client.fields.create("2040351", {
     label: "Show table of contents",
     field_type: "boolean",
-    api_key: "toc",
+    api_key: "has_toc",
     appearance: { addons: [], editor: "boolean", parameters: {} },
     default_value: false,
   });

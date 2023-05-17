@@ -65,7 +65,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
       }
       ...on SectionStructuredTextRecord {
         gridAlignment
-        toc
+        hasToc
         body {
           value
           blocks {

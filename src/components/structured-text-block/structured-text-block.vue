@@ -1,16 +1,19 @@
 <template>
-  <aside
-    class="structured-text__aside"
+  <div
+    class="structured-text__toc-container"
     :class="{
-      'structured-text__aside--center-grid': gridAlignment === 'center',
+      'structured-text__toc-container--center-grid': gridAlignment === 'center',
     }"
   >
     <toc-section
-      v-if="toc"
+      v-if="hasToc"
       :items="tocItems"
       class="structured-text__toc"
+      :class="{
+        'structured-text__toc--center-grid': gridAlignment === 'center',
+      }"
     />
-  </aside>
+  </div>
   <DatocmsStructuredText
     v-bind="$attrs"
     :data="content"
@@ -19,7 +22,7 @@
     class="structured-text"
     :class="{
       'structured-text--center-grid': gridAlignment === 'center',
-      'structured-text--with-toc': toc,
+      'structured-text--with-toc': hasToc,
     }"
   />
 </template>
@@ -53,13 +56,13 @@ export default {
       default: 'body',
       validator: (variant) => ['body', 'body-big'].includes(variant),
     },
-    toc: {
+    hasToc: {
       type: Boolean,
       default: false,
     },
-    root: {
+    isRoot: {
       type: Boolean,
-      default: false,
+      default: true,
     }
   });
 
@@ -105,6 +108,7 @@ export default {
           class: 'structured-text__highlighted-list-item',
         }, h(StructuredTextBlock, {
           content: listItem.body,
+          isRoot: false,
           onUpdateTocItems: updateTocItems,
         }))))
       }
@@ -113,6 +117,7 @@ export default {
           key,
           content: record.body,
           paragraphVariant: props.paragraphVariant,
+          isRoot: false,
           class: 'structured-text__blue-text',
           onUpdateTocItems: updateTocItems,
         })
@@ -143,7 +148,7 @@ export default {
   }
 
   function updateTocItems(item) {
-    if (props.root) {
+    if (props.isRoot) {
       if (!tocItems.value.find((tocItem) => tocItem.titleId === item.titleId)) {
         tocItems.value.push(item)
       }
@@ -154,7 +159,7 @@ export default {
 </script>
 
 <style>
-  .structured-text__aside {
+  .structured-text__toc-container {
     grid-column-start: 3;
     grid-column-end: 10;
   }
@@ -185,7 +190,7 @@ export default {
       grid-column-start: 18;
     }
 
-    .structured-text__aside--center-grid {
+    .structured-text__toc-container--center-grid {
       grid-column-start: 8;
       grid-column-end: 15;
     }
