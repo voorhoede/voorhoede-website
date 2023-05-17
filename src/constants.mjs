@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'blogs-list';
+export const datocmsEnvironment = 'blogs-list-deploy';
