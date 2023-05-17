@@ -35,7 +35,7 @@
 <style>
 .events-section__title {
   text-align: center;
-  margin-bottom: var(--space-medium);
+  margin-bottom: var(--spacing-big);
 }
 
 .events-section__list {
