@@ -17,18 +17,16 @@
         <h2 class="dialogue-cta__title h4">
           {{ title }}
         </h2>
-        <p
+        <div
           v-if="variant === 'information'"
           class="dialogue-cta__body body-big"
-        >
-          {{ body }}
-        </p>
+          v-html="body"
+        />
         <blockquote
           v-if="variant === 'quote'"
           class="dialogue-cta__body dialogue-cta__body--quote body-big"
-        >
-          {{ body }}
-        </blockquote>
+          v-html="body"
+        />
         <div class="dialogue-cta__ctas">
           <app-button
             v-for="(cta, index) in ctas"
@@ -104,6 +102,10 @@
   .dialogue-cta__body--quote {
     font-style: italic;
     quotes: auto;
+  }
+
+  .dialogue-cta__body--quote > p {
+    display: inline;
   }
 
   .dialogue-cta__body--quote::before {
