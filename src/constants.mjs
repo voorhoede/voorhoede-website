@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'table-of-contents';
+export const datocmsEnvironment = 'toc-deploy';
