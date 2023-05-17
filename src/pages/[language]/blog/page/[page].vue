@@ -21,29 +21,11 @@
         </p>
       </text-block>
 
-      <ul class="page-blog__posts">
-        <template v-if="currentPage === 1">
-          <li
-            v-for="blogPost in data.page.pinnedPosts"
-            :key="blogPost.slug"
-          >
-            <blog-list-item
-              large
-              pinned
-              :item="blogPost"
-            />
-          </li>
-        </template>
-        <li
-          v-for="blogPost in data.items"
-          :key="blogPost.slug"
-        >
-          <blog-list-item
-            large
-            :item="blogPost"
-          />
-        </li>
-      </ul>
+      <blogs-list
+        :items="data.items"
+        :pinned-items="currentPage === 1 ? data.page.pinnedPosts : []"
+        class="page-blog__posts"
+      />
 
       <pagination-nav
         :total-items="data.itemsMeta.count"
@@ -121,6 +103,7 @@
   .page-blog__posts {
     grid-row: 2;
     margin-bottom: var(--spacing-large);
+    grid-column: var(--grid-content);
   }
 
   .page-blog__pagination {

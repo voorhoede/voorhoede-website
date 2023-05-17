@@ -133,6 +133,28 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           title
         }
       }
+      ... on SectionBlogsSectionRecord {
+        title
+        itemSize
+        items {
+          ...blogpost
+        }
+        pinnedItems {
+          ...blogpost
+        }
+      }
+    }
+  }
+}
+
+fragment blogpost on BlogPostRecord {
+  slug
+  title
+  date: publishDate
+  authors {
+    name
+    image {
+      ...image
     }
   }
 }

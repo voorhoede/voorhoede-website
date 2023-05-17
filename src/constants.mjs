@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'switch-pages-deploy';
+export const datocmsEnvironment = 'blogs-list-deploy';

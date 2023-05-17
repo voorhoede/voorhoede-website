@@ -64,17 +64,10 @@
       <h2 class="page-lustrum__title-blogs h3">
         {{ data.page.blogsTitle }}
       </h2>
-      <ul>
-        <li
-          v-for="blogPost in data.page.blogsList"
-          :key="blogPost.slug"
-        >
-          <blog-list-item
-            large
-            :item="blogPost"
-          />
-        </li>
-      </ul>
+      <blogs-list
+        :items="data.page.blogsList"
+        item-size="large"
+      />
     </div>
   </main>
 </template>
