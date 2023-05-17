@@ -51,7 +51,6 @@ export default async function (client: Client) {
         on_reference_delete_strategy: "delete_references",
         item_types: ["38232"],
       },
-      size: { min: 1 },
     },
     appearance: { addons: [], editor: "links_select", parameters: {} },
   });
