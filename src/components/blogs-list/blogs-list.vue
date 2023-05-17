@@ -3,29 +3,29 @@
     class="blogs-list"
   >
     <li
-      v-for="blog in props.pinnedItems"
+      v-for="blog in pinnedItems"
       :key="blog.slug"
     >
       <blog-list-item
         :item="blog"
-        :large="props.itemSize === 'large'"
+        :large="itemSize === 'large'"
         pinned
       />
     </li>
     <li
-      v-for="blog in props.items"
+      v-for="blog in items"
       :key="blog.slug"
     >
       <blog-list-item
         :item="blog"
-        :large="props.itemSize === 'large'"
+        :large="itemSize === 'large'"
       />
     </li>
   </ul>
 </template>
 
 <script setup>
-  const props = defineProps({
+  defineProps({
     items: {
       type: Array,
       required: true,

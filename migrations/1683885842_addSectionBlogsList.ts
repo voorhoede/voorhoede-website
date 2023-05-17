@@ -6,11 +6,11 @@ export default async function (client: Client) {
 
   console.log("Create new models/block models");
 
-  console.log('Create block model "Section Blogs List" (`section_blogs_list`)');
+  console.log('Create block model "Section Blogs Section" (`section_blogs_section`)');
   newItemTypes["1769919"] = await client.itemTypes.create(
     {
-      name: "Section Blogs List",
-      api_key: "section_blogs_list",
+      name: "Section Blogs Section",
+      api_key: "section_blogs_section",
       modular_block: true,
       inverse_relationships_enabled: false,
     },
@@ -20,9 +20,26 @@ export default async function (client: Client) {
   console.log("Creating new fields/fieldsets");
 
   console.log(
-    'Create Multiple links field "Items" (`items`) in block model "Section Blogs List" (`section_blogs_list`)'
+    'Create Single-line string field "Title" (`title`) in block model "Section Blogs Section" (`section_blogs_section`)'
   );
   newFields["9165190"] = await client.fields.create(newItemTypes["1769919"], {
+    label: "Title",
+    field_type: "string",
+    api_key: "title",
+    validators: { required: {} },
+    appearance: {
+      addons: [],
+      editor: "single_line",
+      parameters: { heading: false },
+    },
+    default_value: "",
+  });
+
+
+  console.log(
+    'Create Multiple links field "Items" (`items`) in block model "Section Blogs Section" (`section_blogs_section`)'
+  );
+  newFields["9165191"] = await client.fields.create(newItemTypes["1769919"], {
     label: "Items",
     field_type: "links",
     api_key: "items",
@@ -39,9 +56,9 @@ export default async function (client: Client) {
   });
 
   console.log(
-    'Create Multiple links field "Pinned items" (`pinned_items`) in block model "Section Blogs List" (`section_blogs_list`)'
+    'Create Multiple links field "Pinned items" (`pinned_items`) in block model "Section Blogs Section" (`section_blogs_section`)'
   );
-  newFields["9165193"] = await client.fields.create(newItemTypes["1769919"], {
+  newFields["9165192"] = await client.fields.create(newItemTypes["1769919"], {
     label: "Pinned items",
     field_type: "links",
     api_key: "pinned_items",
@@ -57,9 +74,9 @@ export default async function (client: Client) {
   });
 
   console.log(
-    'Create Single-line string field "Item size" (`item_size`) in block model "Section Blogs List" (`section_blogs_list`)'
+    'Create Single-line string field "Item size" (`item_size`) in block model "Section Blogs Section" (`section_blogs_section`)'
   );
-  newFields["9165192"] = await client.fields.create(newItemTypes["1769919"], {
+  newFields["9165193"] = await client.fields.create(newItemTypes["1769919"], {
     label: "Item size",
     field_type: "string",
     api_key: "item_size",

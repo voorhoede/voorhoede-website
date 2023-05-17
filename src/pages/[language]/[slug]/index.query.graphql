@@ -133,7 +133,8 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           title
         }
       }
-      ... on SectionBlogsListRecord {
+      ... on SectionBlogsSectionRecord {
+        title
         itemSize
         items {
           ...blogpost
