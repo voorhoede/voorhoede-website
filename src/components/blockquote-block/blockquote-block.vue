@@ -3,6 +3,7 @@
     <h2
       v-if="title"
       class="blockquote-block__title h4"
+      :id="titleId"
     >
       {{ title }}
     </h2>
@@ -27,31 +28,33 @@
   </div>
 </template>
 
-<script>
-  export default {
-    props: {
-      title: {
-        type: String,
-        default: null
-      },
-      body: {
-        type: String,
-        default: null
-      },
-      linkLabel: {
-        type: String,
-        default: null
-      },
-      linkUrl: {
-        type: String,
-        default: null
-      },
-      linkIsExternal: {
-        type: Boolean,
-        default: false
-      }
+<script setup>
+  defineProps({
+    title: {
+      type: String,
+      default: null
+    },
+    titleId: {
+      type: String,
+      default: null
+    },
+    body: {
+      type: String,
+      default: null
+    },
+    linkLabel: {
+      type: String,
+      default: null
+    },
+    linkUrl: {
+      type: String,
+      default: null
+    },
+    linkIsExternal: {
+      type: Boolean,
+      default: false
     }
-  }
+  })
 </script>
 
 <style>
