@@ -70,7 +70,7 @@ export default {
     renderNodeRule(isHeading, ({ node, key, children }) => {
       const slug = slugify(node.children[0].value)
       updateTocItems({
-        slug,
+        titleId: slug,
         title: node.children[0].value,
       })
       return h(`h${node.level}`, {
@@ -144,7 +144,7 @@ export default {
 
   function updateTocItems(item) {
     if (props.root) {
-      if (!tocItems.value.find((tocItem) => tocItem.slug === item.slug)) {
+      if (!tocItems.value.find((tocItem) => tocItem.titleId === item.titleId)) {
         tocItems.value.push(item)
       }
     } else {
