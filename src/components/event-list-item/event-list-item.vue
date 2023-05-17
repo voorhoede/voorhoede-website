@@ -26,24 +26,21 @@
   </article>
 </template>
 
-<script>
-
-  export default {
-    props: {
-      event: {
-        type: Object,
-        required: true,
-        validator(event) {
-          return (
-            typeof(event.slug) === 'string'
-            && typeof(event.date) === 'string'
-            && typeof(event.title) === 'string'
-            && typeof(event.social.description) === 'string'
-          )
-        }
+<script setup>
+  defineProps({
+    event: {
+      type: Object,
+      required: true,
+      validator(event) {
+        return (
+          typeof(event.slug) === 'string'
+          && typeof(event.date) === 'string'
+          && typeof(event.title) === 'string'
+          && typeof(event.social.description) === 'string'
+        )
       }
     }
-  }
+  })
 </script>
 
 <style>
