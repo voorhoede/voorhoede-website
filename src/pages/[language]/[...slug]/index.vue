@@ -96,7 +96,10 @@
     query,
     variables: {
       locale: params.language,
-      slug: params.slug,
+      slug: params.slug
+        // Don't include empty string fragments caused by leading or trailing slashes
+        .filter(Boolean)
+        .join('/'),
     },
   });
 
