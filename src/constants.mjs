@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'landing-previews';
+export const datocmsEnvironment = 'landing-previews-deploy';
