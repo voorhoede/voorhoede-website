@@ -53,7 +53,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
       ... on SectionDialogueCtaRecord {
         variant
         title
-        body
+        body(markdown: true)
         person {
           image {
             ...image
