@@ -1,5 +1,5 @@
-query Error {
-  page: errorPage(filter: {errorCode: {eq: "404"}}) {
+query Error($locale: SiteLocale) {
+  page: errorPage(locale: $locale, filter: {errorCode: {eq: "404"}}) {
     title
     errorCode
     headerImage {
@@ -11,4 +11,3 @@ query Error {
     body
   }
 }
-
