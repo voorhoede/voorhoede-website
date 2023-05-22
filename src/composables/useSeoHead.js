@@ -37,15 +37,19 @@ export function useSeoHead({ title, slug, i18nSlugs, social }) {
           rel: 'alternate',
           hreflang: code,
           href: withTrailingSlash(
-            new URL(
-              router.resolve({
-                params: {
-                  language: code,
-                  slug: i18nSlugs?.find((i18nSlug) => i18nSlug.locale === code).value || slug,
-                },
-              }).path,
-              runtimeConfig.public.baseUrl,
-            ).href
+            // Decode the route to make sure slashes in slug are not encoded
+            // Vue router doesn't have an option to disable encoding on router.resolve
+            decodeURIComponent(
+              new URL(
+                router.resolve({
+                  params: {
+                    language: code,
+                    slug: i18nSlugs?.find((i18nSlug) => i18nSlug.locale === code).value || slug,
+                  },
+                }).path,
+                runtimeConfig.public.baseUrl,
+              ).href
+            )
           )
         })),
     ],
