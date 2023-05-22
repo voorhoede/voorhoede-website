@@ -99,6 +99,13 @@ query LandingPage($locale: SiteLocale, $slug: String) {
                 label
               }
             }
+            ... on ImageRecord {
+              id
+              caption
+              image {
+                ...image
+              }
+            }
           }
         }
       }
