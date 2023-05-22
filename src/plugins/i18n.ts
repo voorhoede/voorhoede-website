@@ -1,15 +1,26 @@
 import rosetta from 'rosetta';
+import { joinURL, withTrailingSlash } from 'ufo';
 import { locales } from '../lib/i18n';
 import messages from '../../.cache/ui-translations.json';
 
 const i18n = rosetta(messages);
+const defaultLanguage = 'en';
 
 export default defineNuxtPlugin((nuxtApp) => {
   i18n.locale(nuxtApp._route.params.language);
 
-  function isValidLocale({ locale }) {
-    return locales.find(({ code }) => code === locale);
-  }
+  addRouteMiddleware(
+    'i18n-invalid-language',
+    (to) => {
+      if (!isValidLocale({ locale: to.params.language })) {
+        return navigateTo(
+          withTrailingSlash(joinURL('/', defaultLanguage, to.path)),
+          { redirectCode: 404, replace: true },
+        );
+      }
+    },
+    { global: true }
+  );
 
   return {
     provide: {
@@ -19,7 +30,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         isValidLocale,
         locale: () => {
           if (!isValidLocale({ locale: nuxtApp._route.params.language })) {
-            return "en";
+            return defaultLanguage;
           }
 
           return nuxtApp._route.params.language;
@@ -28,4 +39,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     },
   };
 });
+
+function isValidLocale({ locale }) {
+  return locales.find(({ code }) => code === locale);
+}
 
