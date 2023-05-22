@@ -40,6 +40,7 @@ export default {
   import { isHeading, isParagraph, isList  } from 'datocms-structured-text-utils'
   import AppButton from '../app-button/app-button.vue'
   import TagList from '../tag-list/tag-list.vue'
+  import ImageWithCaption from '../image-with-caption/image-with-caption.vue'
   import StructuredTextBlock from './structured-text-block.vue'
 
   const props = defineProps({
@@ -141,6 +142,13 @@ export default {
           items: record.items
         })
       }
+      case 'ImageRecord': {
+        return h(ImageWithCaption, {
+          class: 'structured-text__image-with-caption',
+          caption: record.caption,
+          image: record.image,
+        })
+      }
       default: {
         return null
       }
@@ -235,7 +243,14 @@ export default {
     align-items: flex-start;
     flex-wrap: wrap;
     gap: var(--spacing-small);
+  }
+
+  .structured-text__blue-text .structured-text__buttons-list {
     align-self: center;
+  }
+
+  .structured-text__image-with-caption {
+    margin: var(--spacing-big) 0;
   }
 
   .structured-text__highlighted-list-item {

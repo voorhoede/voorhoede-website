@@ -1,5 +1,10 @@
 <template>
-  <div class="landing-page grid">
+  <div
+    class="landing-page grid"
+    :class="{
+      'landing-page--pastel-background': data.page.backgroundColor === 'pastel-yellow',
+    }"
+  >
     <template
       v-for="(section, index) in data.page.sections"
       :key="index"
@@ -107,7 +112,7 @@
 </script>
 
 <style>
-  .landing-page {
+  .landing-page--pastel-background {
     background: var(--bg-pastel);
   }
 

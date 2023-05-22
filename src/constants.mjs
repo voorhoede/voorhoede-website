@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'landing-previews-deploy';
+export const datocmsEnvironment = 'blog-like-landing-page-tweaks-deploy';

@@ -6,6 +6,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
       title
       description
     }
+    backgroundColor
     sections {
       __typename
       ... on SectionHeaderRecord {
@@ -74,13 +75,16 @@ query LandingPage($locale: SiteLocale, $slug: String) {
               id
               body {
                 value
+                blocks {
+                  __typename
+                  ... on StructuredTextButtonsListRecord {
+                    ...buttonsList
+                  }
+                }
               }
             }
             ... on StructuredTextButtonsListRecord {
-              id
-              buttons {
-                ...link
-              }
+              ...buttonsList
             }
             ... on StructuredTextHighlightedListRecord {
               id
@@ -96,6 +100,13 @@ query LandingPage($locale: SiteLocale, $slug: String) {
                 id
                 amount
                 label
+              }
+            }
+            ... on ImageRecord {
+              id
+              caption
+              image {
+                ...image
               }
             }
           }
@@ -156,6 +167,13 @@ query LandingPage($locale: SiteLocale, $slug: String) {
         }
       }
     }
+  }
+}
+
+fragment buttonsList on StructuredTextButtonsListRecord {
+  id
+  buttons {
+    ...link
   }
 }
 
