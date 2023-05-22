@@ -243,6 +243,9 @@ export default {
     align-items: flex-start;
     flex-wrap: wrap;
     gap: var(--spacing-small);
+  }
+
+  .structured-text__blue-text .structured-text__buttons-list {
     align-self: center;
   }
 

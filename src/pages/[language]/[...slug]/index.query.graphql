@@ -75,13 +75,16 @@ query LandingPage($locale: SiteLocale, $slug: String) {
               id
               body {
                 value
+                blocks {
+                  __typename
+                  ... on StructuredTextButtonsListRecord {
+                    ...buttonsList
+                  }
+                }
               }
             }
             ... on StructuredTextButtonsListRecord {
-              id
-              buttons {
-                ...link
-              }
+              ...buttonsList
             }
             ... on StructuredTextHighlightedListRecord {
               id
@@ -164,6 +167,13 @@ query LandingPage($locale: SiteLocale, $slug: String) {
         }
       }
     }
+  }
+}
+
+fragment buttonsList on StructuredTextButtonsListRecord {
+  id
+  buttons {
+    ...link
   }
 }
 

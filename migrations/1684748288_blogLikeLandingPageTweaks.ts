@@ -81,4 +81,20 @@ export default async function (client: Client) {
       },
     },
   });
+
+  console.log(
+    'Update Structured text field "Blue body" (`body`) in block model "Structured Text - Blue Text" (`structured_text_blue_text`)'
+  );
+  await client.fields.update("10483442", {
+    validators: {
+      required: {},
+      structured_text_blocks: { item_types: ["2040408"] },
+      structured_text_links: {
+        on_publish_with_unpublished_references_strategy: "fail",
+        on_reference_unpublish_strategy: "delete_references",
+        on_reference_delete_strategy: "delete_references",
+        item_types: [],
+      },
+    },
+  });
 }
