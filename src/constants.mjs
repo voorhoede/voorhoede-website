@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'blog-like-landing-page-tweaks-deploy';
+export const datocmsEnvironment = 'landing-page-blue-text-variants ';
