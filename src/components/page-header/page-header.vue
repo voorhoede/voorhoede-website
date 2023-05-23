@@ -5,7 +5,6 @@
       'page-header--curly-bracket': displayCurlyBracket,
       'page-header--fill-screen': fillScreen,
       'page-header--has-image': image,
-      'page-header--has-slot': displaySlot,
       'page-header--has-breakout-image': breakOutImage,
       'is-animated': isAnimated
     }"
@@ -62,18 +61,6 @@
       </div>
     </div>
 
-    <!--
-      The slot is used to render additional content,
-      taking up `23.5%` of the viewport.
-      It is only rendered when the `fillScreen` prop is `true`.
-    -->
-    <div
-      class="page-header__slot"
-      v-if="displaySlot"
-    >
-      <slot />
-    </div>
-
     <scroll-to
       v-if="fillScreen"
       direction="down"
@@ -82,68 +69,58 @@
   </header>
 </template>
 
-<script>
-  export default {
-    props: {
-      headline: {
-        type: String,
-        required: true,
-      },
-      byline: {
-        type: String,
-        required: true,
-      },
-      heading: {
-        type: String,
-        default: 'headline',
-        validator(heading) {
-          return ['headline', 'byline'].indexOf(heading) >= 0
-        }
-      },
-      image: {
-        type: Object,
-        default: null,
-        validator(image) {
-          return image && typeof(image.url) === 'string'
-        },
-      },
-      breakOutImage: {
-        type: Boolean,
-        default: false
-      },
-      fillScreen: {
-        type: Boolean,
-        default: false
-      },
-      curlyBracket: {
-        type: Boolean,
-        default: false,
-      },
-      isAnimated: {
-        type: Boolean,
-        default: false
-      },
-      animationDelay: {
-        type: Number,
-        default: 0
+<script setup>
+  const props = defineProps({
+    headline: {
+      type: String,
+      required: true,
+    },
+    byline: {
+      type: String,
+      required: true,
+    },
+    heading: {
+      type: String,
+      default: 'headline',
+      validator(heading) {
+        return ['headline', 'byline'].indexOf(heading) >= 0
       }
     },
-    computed: {
-      /* The slot and curly bracket are only available within the fill screen variant */
-      displaySlot() {
-        if (this.$slots.default && !this.fillScreen) {
-          throw new Error('The slot is only available in combination with fhe fill-screen prop')
-        }
-        return (this.$slots.default && this.fillScreen)
+    image: {
+      type: Object,
+      default: null,
+      validator(image) {
+        return image && typeof(image.url) === 'string'
       },
-      displayCurlyBracket() {
-        if (this.curlyBracket && !this.fillScreen) {
-          throw new Error('The curly bracket is only available in combination with fhe fill-screen prop')
-        }
-        return (this.curlyBracket && this.fillScreen)
-      }
     },
-  }
+    breakOutImage: {
+      type: Boolean,
+      default: false
+    },
+    fillScreen: {
+      type: Boolean,
+      default: false
+    },
+    curlyBracket: {
+      type: Boolean,
+      default: false,
+    },
+    isAnimated: {
+      type: Boolean,
+      default: false
+    },
+    animationDelay: {
+      type: Number,
+      default: 0
+    }
+  })
+
+  const displayCurlyBracket = computed(() => {
+    if (props.curlyBracket && !props.fillScreen) {
+      throw new Error('The curly bracket is only available in combination with fhe fill-screen prop')
+    }
+    return (props.curlyBracket && props.fillScreen)
+  })
 </script>
 
 <!--
@@ -243,25 +220,6 @@
     left: var(--grid-margin);
   }
 
-  .page-header--has-slot {
-    grid-template-rows:
-      var(--app-header-height-small) /* 1 - 2 */
-      var(--spacing-medium) /* 2 - 3, spacing */
-      auto /* 3 - 4, text */
-      var(--spacing-medium) /* 4 - 5, spacing */
-      var(--spacing-medium) /* 5 - 6, spacing */
-      calc(50vh - 2 * var(--spacing-medium)) /* 6 - 7, image */
-      var(--spacing-medium) /* 7 - 8, spacing */
-      var(--spacing-medium) /* 8 - 9, spacing */
-      auto /* 9 - 10, slot */
-      var(--spacing-medium); /* 10 - 11, spacing */
-  }
-
-  .page-header__slot {
-    grid-column: 4 / var(--grid-content-end);
-    grid-row: 9 / 10;
-  }
-
   @media (min-width: 520px) {
     .page-header--fill-screen {
       grid-template-rows:
@@ -283,20 +241,6 @@
       grid-column: 39 / 50;
       background-position: unset;
       background-size: contain;
-    }
-
-    .page-header--has-slot {
-      grid-template-rows:
-        var(--app-header-height-small) /* 1 - 2 */
-        var(--spacing-medium) /* 2 - 3, spacing */
-        auto /* 3 - 4, text */
-        var(--spacing-medium) /* 4 - 5, spacing */
-        var(--spacing-medium) /* 5 - 6, spacing */
-        calc(40vh - 2 * var(--spacing-medium)) /* 6 - 7, image */
-        var(--spacing-medium) /* 7 - 8, spacing */
-        var(--spacing-medium) /* 8 - 9, spacing */
-        auto /* 9 - 10, Slot */
-        var(--spacing-medium) /* 10 - 11, spacing */
     }
   }
 
@@ -383,24 +327,6 @@
       height: auto;
       max-height: 100%;
     }
-
-    .page-header--has-slot {
-      grid-template-rows:
-        var(--app-header-height-small) /* 1 - 2 */
-        var(--spacing-larger) /* 2 - 3, spacing */
-        auto /* 3 - 4, text */
-        var(--spacing-medium) /* 4 - 5, spacing between text and image */
-        1fr /* 5 - 6, image */
-        var(--spacing-larger) /* 6 - 7, spacing */
-        var(--spacing-medium) /* 7 - 8, spacing above slot */
-        auto /* 8 - 9, slot */
-        var(--spacing-medium); /* 9 - 10, spacing below slot */
-    }
-
-    .page-header__slot {
-      grid-row: 8 / 9;
-      min-height: calc(23.5% - 2 * var(--spacing-medium));
-    }
   }
 
   /* Keep aspect ratio */
@@ -458,17 +384,6 @@
     /* Curly bracket */
     .page-header--curly-bracket::after {
       grid-row: 3 / 4;
-    }
-
-    .page-header--has-slot {
-      grid-template-rows:
-        var(--app-header-height-large) /* 1 - 2 */
-        var(--spacing-big) /* 2 - 3, spacing above text */
-        1fr /* 3 - 4, text */
-        var(--spacing-larger) /* 4 - 5, spacing below text */
-        var(--spacing-medium) /* 5 - 6, spacing */
-        calc(23.5% - 2 * var(--spacing-medium)) /* 6 - 7, slot */
-        var(--spacing-medium); /* 7 - 8, spacing */
     }
 
     .page-header__slot {
