@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'landing-page-blue-text-variants ';
+export const datocmsEnvironment = 'landing-page-blue-text-variants-deploy';
