@@ -73,6 +73,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
             __typename
             ... on StructuredTextBlueTextRecord {
               id
+              variant
               body {
                 value
                 blocks {
@@ -82,7 +83,6 @@ query LandingPage($locale: SiteLocale, $slug: String) {
                   }
                 }
               }
-              variant
             }
             ... on StructuredTextButtonsListRecord {
               ...buttonsList
