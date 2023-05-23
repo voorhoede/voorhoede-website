@@ -277,6 +277,6 @@ export default {
   }
 
   .structured-text__list li + li {
-    margin-top: var(--spacing-medium);
+    margin-top: var(--spacing-larger);
   }
 </style>
