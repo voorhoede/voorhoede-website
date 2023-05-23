@@ -55,7 +55,7 @@ export default {
     paragraphVariant: {
       type: String,
       default: 'body',
-      validator: (variant) => ['body', 'body-big'].includes(variant),
+      validator: (variant) => ['body', 'body-big', 'testimonial'].includes(variant),
     },
     hasToc: {
       type: Boolean,
@@ -117,7 +117,7 @@ export default {
         return h(StructuredTextBlock, {
           key,
           content: record.body,
-          paragraphVariant: props.paragraphVariant,
+          paragraphVariant: record.variant === 'intro' ? 'testimonial' : props.paragraphVariant,
           isRoot: false,
           class: 'structured-text__blue-text',
           onUpdateTocItems: updateTocItems,

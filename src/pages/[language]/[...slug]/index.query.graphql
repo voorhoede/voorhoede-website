@@ -82,6 +82,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
                   }
                 }
               }
+              variant
             }
             ... on StructuredTextButtonsListRecord {
               ...buttonsList
