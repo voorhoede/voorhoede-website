@@ -22,7 +22,7 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    '/**': { swr: true },
+    '/**': { isr: true },
     '/*/team/**': { prerender: false },
     '/blog-feed.xml': { redirect: { to: '/blog/feed.json', statusCode: 301 } },
     '/mogelijk/api/event': { proxy: 'https://plausible.io/api/event' },
