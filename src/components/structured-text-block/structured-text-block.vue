@@ -1,19 +1,12 @@
 <template>
-  <div
-    class="structured-text__toc-container"
+  <toc-section
+    v-if="hasToc"
+    :items="tocItems"
+    class="structured-text__toc"
     :class="{
-      'structured-text__toc-container--center-grid': gridAlignment === 'center',
+      'structured-text__toc--center-grid': gridAlignment === 'center',
     }"
-  >
-    <toc-section
-      v-if="hasToc"
-      :items="tocItems"
-      class="structured-text__toc"
-      :class="{
-        'structured-text__toc--center-grid': gridAlignment === 'center',
-      }"
-    />
-  </div>
+  />
   <DatocmsStructuredText
     v-bind="$attrs"
     :data="content"
@@ -167,13 +160,10 @@ export default {
 </script>
 
 <style>
-  .structured-text__toc-container {
-    grid-column-start: 3;
-    grid-column-end: 10;
-  }
-
   .structured-text__toc {
     margin-top: 0;
+    grid-column-start: 3;
+    grid-column-end: 10;
   }
 
   .structured-text {
@@ -198,7 +188,7 @@ export default {
       grid-column-start: 18;
     }
 
-    .structured-text__toc-container--center-grid {
+    .structured-text__toc--center-grid {
       grid-column-start: 8;
       grid-column-end: 15;
     }
@@ -277,6 +267,6 @@ export default {
   }
 
   .structured-text__list li + li {
-    margin-top: var(--spacing-larger);
+    margin-top: var(--spacing-medium);
   }
 </style>
