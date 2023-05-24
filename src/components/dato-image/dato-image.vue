@@ -3,7 +3,7 @@
     class="dato-image"
     :src="props.src"
     :loader="loader"
-    :srcset="srcset"
+    :srcset="checkedSrcset"
   />
 </template>
 
@@ -36,7 +36,7 @@
       : imgixLoader
   ));
 
-  const srcset = computed(() => (
+  const checkedSrcset = computed(() => (
     props.src.endsWith('.svg')
       ? ''
       : props.srcset
