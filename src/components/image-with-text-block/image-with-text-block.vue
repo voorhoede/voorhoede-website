@@ -88,10 +88,6 @@
     background-color: var(--white);
   }
 
-  .image-with-text__body-text .structured-text__blue-text {
-    text-align: left;
-  }
-
   @media (min-width: 720px) {
     .image-with-text {
       display: flex;

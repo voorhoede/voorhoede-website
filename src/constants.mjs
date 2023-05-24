@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'image-with-text-structured-text-remove-legacy-body-fields-deploy';
+export const datocmsEnvironment = 'structured-text-blue-text-alignment-options-deploy';

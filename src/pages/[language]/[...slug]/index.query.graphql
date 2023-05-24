@@ -28,6 +28,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
             __typename
             ... on StructuredTextBlueTextRecord {
               id
+              textAlignment
               body {
                 value
               }
@@ -91,6 +92,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
             ... on StructuredTextBlueTextRecord {
               id
               variant
+              textAlignment
               body {
                 value
                 blocks {

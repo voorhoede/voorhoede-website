@@ -115,7 +115,10 @@ export default {
           content: record.body,
           paragraphVariant: record.variant === 'intro' ? 'testimonial' : props.paragraphVariant,
           isRoot: false,
-          class: 'structured-text__blue-text',
+          class: {
+            'structured-text__blue-text': true,
+            'structured-text__blue-text--center': record.textAlignment === 'center'
+          },
           onUpdateTocItems: updateTocItems,
         })
       }
@@ -226,8 +229,11 @@ export default {
 
   .structured-text__blue-text {
     color: var(--html-blue);
-    text-align: center;
     margin-bottom: var(--spacing-medium);
+  }
+
+  .structured-text__blue-text--center {
+    text-align: center;
   }
 
   .structured-text__buttons-list {
@@ -238,7 +244,7 @@ export default {
     gap: var(--spacing-small);
   }
 
-  .structured-text__blue-text .structured-text__buttons-list {
+  .structured-text__blue-text--center .structured-text__buttons-list {
     align-self: center;
   }
 
