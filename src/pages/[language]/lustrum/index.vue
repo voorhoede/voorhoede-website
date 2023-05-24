@@ -10,7 +10,7 @@
 
     <image-with-text-block
       :title="data.page.introTitle"
-      :body="data.page.introBody"
+      :body="data.page.introStructuredBody"
       :image="data.page.introImage"
     />
 
@@ -23,7 +23,7 @@
 
     <image-with-text-block
       :title="data.page.middleTitle"
-      :body="data.page.middleBody"
+      :body="data.page.middleStructuredBody"
       :image="data.page.middleImage"
       :inverse="true"
     />
@@ -105,6 +105,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     cursor: pointer;
+  }
+
+  .page-lustrum .image-with-text__body-text a:hover,
+  .page-lustrum .image-with-text__body-text a:focus {
+    color: var(--white);
   }
 
   .page-lustrum .image-with-text__body-text a::before {

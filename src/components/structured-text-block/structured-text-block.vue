@@ -87,7 +87,10 @@ export default {
       );
     }),
     renderNodeRule(isList, ({ node, key, children }) => {
-      return h(node.style === 'numbered' ? 'ol' : 'ul', { key, class: 'structured-text__list' }, children)
+      return h(node.style === 'numbered' ? 'ol' : 'ul', {
+        key,
+        class: `structured-text__list ${props.paragraphVariant}`
+      }, children)
     }),
   ]
 

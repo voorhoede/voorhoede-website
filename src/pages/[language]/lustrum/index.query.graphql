@@ -25,7 +25,24 @@ fragment lustrum on LustrumRecord {
     }
   }
   introTitle
-  introBody(markdown: true)
+  introStructuredBody {
+    value
+    blocks {
+      __typename
+      ... on StructuredTextBlueTextRecord {
+        id
+        body {
+          value
+        }
+      }
+      ... on StructuredTextButtonsListRecord {
+        id
+        buttons {
+          ...link
+        }
+      }
+    }
+  }
   introImage {
     url
     alt
@@ -39,7 +56,24 @@ fragment lustrum on LustrumRecord {
     amount
   }
   middleTitle
-  middleBody(markdown: true)
+  middleStructuredBody {
+    value
+    blocks {
+      __typename
+      ... on StructuredTextBlueTextRecord {
+        id
+        body {
+          value
+        }
+      }
+      ... on StructuredTextButtonsListRecord {
+        id
+        buttons {
+          ...link
+        }
+      }
+    }
+  }
   middleImage {
     url
     alt
@@ -124,5 +158,23 @@ fragment lustrum on LustrumRecord {
         height
       }
     }
+  }
+}
+
+fragment link on RecordInterface {
+  __typename
+  ... on InternalLinkRecord {
+    id
+    title
+    link {
+      ... on LandingPageRecord {
+        slug
+      }
+    }
+  }
+  ... on ExternalLinkRecord {
+    id
+    title
+    url
   }
 }

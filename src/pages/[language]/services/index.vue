@@ -7,9 +7,9 @@
     />
 
     <image-with-text-block
-      v-if="data.page.introTitle && data.page.introBody && data.page.introImage"
+      v-if="data.page.introTitle && data.page.introStructuredBody && data.page.introImage"
       :title="data.page.introTitle"
-      :body="data.page.introBody"
+      :body="data.page.introStructuredBody"
       :image="data.page.introImage"
       :inverse="true"
       class="page-services__intro"
