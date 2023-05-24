@@ -5,6 +5,9 @@
       'landing-page--pastel-background': data.page.backgroundColor === 'pastel-yellow',
     }"
   >
+    <h1 class="sr-only">
+      {{ data.page.title }}
+    </h1>
     <template
       v-for="(section, index) in data.page.sections"
       :key="index"
@@ -15,6 +18,7 @@
         :byline="section.title"
         :headline="section.subtitle"
         :image="section.illustration"
+        :has-semantic-header="false"
       />
       <image-with-text-block
         v-if="section.__typename === 'SectionImageTextRecord'"

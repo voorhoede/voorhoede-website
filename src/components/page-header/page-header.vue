@@ -25,14 +25,16 @@
         class="sub-title animation__uncover"
         v-html="byline"
       />
-      <h1
+      <component
+        :is="hasSemanticHeader ? 'h1' : 'p'"
         class="animation__uncover"
         :class="{
           'sub-title': heading === 'byline',
           'sr-only': heading === 'headline'
         }"
-        v-html="heading === 'byline' ? byline : headline"
-      />
+      >
+        <span v-html="heading === 'byline' ? byline : headline" />
+      </component>
       <p
         v-if="heading === 'byline'"
         class="sr-only"
@@ -85,6 +87,10 @@
       validator(heading) {
         return ['headline', 'byline'].indexOf(heading) >= 0
       }
+    },
+    hasSemanticHeader: {
+      type: Boolean,
+      default: true
     },
     image: {
       type: Object,
