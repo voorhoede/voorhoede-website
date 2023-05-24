@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'blue-text-alignment-options';
+export const datocmsEnvironment = 'structured-text-blue-text-alignment-options-deploy';
