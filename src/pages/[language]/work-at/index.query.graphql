@@ -25,7 +25,7 @@ fragment workat on WorkatRecord {
     }
   }
   introTitle
-  introStructuredBody {
+  introBody {
     value
     blocks {
       __typename
@@ -57,7 +57,7 @@ fragment workat on WorkatRecord {
     mailUsAddress
   }
   middleTitle
-  middleStructuredBody {
+  middleBody {
     value
     blocks {
       ...link
