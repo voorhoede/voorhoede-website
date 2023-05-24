@@ -107,6 +107,11 @@
     cursor: pointer;
   }
 
+  .page-lustrum .image-with-text__body-text a:hover,
+  .page-lustrum .image-with-text__body-text a:focus {
+    color: var(--white);
+  }
+
   .page-lustrum .image-with-text__body-text a::before {
     content: '';
     z-index: -1;
