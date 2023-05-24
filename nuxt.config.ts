@@ -27,6 +27,9 @@ export default defineNuxtConfig({
     '/blog-feed.xml': { redirect: { to: '/blog/feed.json', statusCode: 301 } },
     '/mogelijk/api/event': { proxy: 'https://plausible.io/api/event' },
   },
+  experimental: {
+    payloadExtraction: true,
+  },
   runtimeConfig: {
     public: {
       datoApiToken: process.env.DATOCMS_API_READ_TOKEN,
