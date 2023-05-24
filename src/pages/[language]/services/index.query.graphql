@@ -43,7 +43,7 @@ fragment servicespage on ServiceOverviewRecord {
     height
   }
   introTitle
-  introStructuredBody {
+  introBody {
     value
     blocks {
       __typename

@@ -8,9 +8,9 @@
       />
 
       <image-with-text-block
-        v-if="data.page.introTitle && data.page.introStructuredBody && data.page.introImage"
+        v-if="data.page.introTitle && data.page.introBody && data.page.introImage"
         :title="data.page.introTitle"
-        :body="data.page.introStructuredBody"
+        :body="data.page.introBody"
         :image="data.page.introImage"
         :inverse="true"
         class="page-cases__intro"

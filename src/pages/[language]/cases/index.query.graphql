@@ -25,7 +25,7 @@ fragment page on CaseOverviewRecord {
     height
   }
   introTitle
-  introStructuredBody {
+  introBody {
     value
     blocks {
       __typename
