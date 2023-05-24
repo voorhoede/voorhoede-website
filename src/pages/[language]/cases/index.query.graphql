@@ -25,7 +25,38 @@ fragment page on CaseOverviewRecord {
     height
   }
   introTitle
-  introBody
+  introStructuredBody {
+    value
+    blocks {
+      __typename
+      ... on StructuredTextBlueTextRecord {
+        id
+        body {
+          value
+        }
+      }
+      ... on StructuredTextButtonsListRecord {
+        id
+        buttons {
+          __typename
+          ... on InternalLinkRecord {
+            id
+            title
+            link {
+              ... on LandingPageRecord {
+                slug
+              }
+            }
+          }
+          ... on ExternalLinkRecord {
+            id
+            title
+            url
+          }
+        }
+      }
+    }
+  }
   introImage {
     url
     alt

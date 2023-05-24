@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'landing-page-blue-text-variants-deploy';
+export const datocmsEnvironment = 'image-with-text-structured-text-body';

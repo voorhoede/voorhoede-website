@@ -22,7 +22,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           ...image
         }
         imagePosition
-        structuredBody {
+        body {
           value
           blocks {
             __typename

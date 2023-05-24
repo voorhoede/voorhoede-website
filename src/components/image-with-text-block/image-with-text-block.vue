@@ -20,15 +20,9 @@
       >
         {{ title }}
       </h2>
-      <div
-        v-if="body"
-        class="pullquote image-with-text__body-text"
-        v-html="body"
-      />
       <structured-text-block
-        v-if="structuredBody"
         class="image-with-text__body-text"
-        :content="structuredBody"
+        :content="body"
         paragraph-variant="body-big"
       />
     </div>
@@ -43,12 +37,8 @@
         required: true,
       },
       body: {
-        type: String,
-        default: null,
-      },
-      structuredBody: {
         type: Object,
-        default: null,
+        required: true
       },
       image: {
         type: Object,

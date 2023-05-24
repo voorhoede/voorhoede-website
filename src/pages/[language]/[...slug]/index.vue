@@ -23,7 +23,7 @@
       <image-with-text-block
         v-if="section.__typename === 'SectionImageTextRecord'"
         :title="section.title"
-        :structured-body="section.structuredBody"
+        :body="section.body"
         :image="section.image"
         :inverse="section.imagePosition === 'right'"
       />

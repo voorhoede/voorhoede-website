@@ -9,7 +9,7 @@
 
     <image-with-text-block
       :title="data.page.introTitle"
-      :body="data.page.introBody"
+      :body="data.page.introStructuredBody"
       :image="data.page.introImage"
     />
 
@@ -22,9 +22,9 @@
     />
 
     <image-with-text-block
-      v-if="data.page.middleTitle || data.page.middleBody || data.page.middleImage"
+      v-if="data.page.middleTitle || data.page.middleStructuredBody || data.page.middleImage"
       :title="data.page.middleTitle"
-      :body="data.page.middleBody"
+      :body="data.page.middleStructuredBody"
       :image="data.page.middleImage"
       :inverse="true"
     />

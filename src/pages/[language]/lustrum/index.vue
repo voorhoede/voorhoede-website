@@ -10,7 +10,7 @@
 
     <image-with-text-block
       :title="data.page.introTitle"
-      :body="data.page.introBody"
+      :body="data.page.introStructuredBody"
       :image="data.page.introImage"
     />
 
@@ -23,7 +23,7 @@
 
     <image-with-text-block
       :title="data.page.middleTitle"
-      :body="data.page.middleBody"
+      :body="data.page.middleStructuredBody"
       :image="data.page.middleImage"
       :inverse="true"
     />
