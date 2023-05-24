@@ -38,7 +38,7 @@ export default async function (client: Client) {
   console.log(
     'Update Structured text field "Intro body" (`intro_body`) in model "Case overview" (`case_overview`)'
   );
-  await client.fields.update("7959704", {
+  await client.fields.update('case_overview::intro_structured_body', {
     label: "Intro body",
     api_key: "intro_body",
   });
@@ -46,7 +46,7 @@ export default async function (client: Client) {
   console.log(
     'Update Structured text field "Intro body" (`intro_body`) in model "Service overview" (`service_overview`)'
   );
-  await client.fields.update("7959705", {
+  await client.fields.update("service_overview::intro_structured_body", {
     label: "Intro body",
     api_key: "intro_body",
   });
@@ -54,7 +54,7 @@ export default async function (client: Client) {
   console.log(
     'Update Structured text field "Intro body" (`intro_body`) in model "Work At" (`workat`)'
   );
-  await client.fields.update("7959706", {
+  await client.fields.update("workat::intro_structured_body", {
     label: "Intro body",
     api_key: "intro_body",
   });
@@ -62,7 +62,7 @@ export default async function (client: Client) {
   console.log(
     'Update Structured text field "Middle body" (`middle_body`) in model "Work At" (`workat`)'
   );
-  await client.fields.update("7959707", {
+  await client.fields.update("workat::middle_structured_body", {
     label: "Middle body",
     api_key: "middle_body",
   });
@@ -70,7 +70,7 @@ export default async function (client: Client) {
   console.log(
     'Update Structured text field "Intro body" (`intro_body`) in model "Lustrum" (`lustrum`)'
   );
-  await client.fields.update("7959708", {
+  await client.fields.update("lustrum::intro_structured_body", {
     label: "Intro body",
     api_key: "intro_body",
   });
@@ -78,7 +78,7 @@ export default async function (client: Client) {
   console.log(
     'Update Structured text field "Middle body" (`middle_body`) in model "Lustrum" (`lustrum`)'
   );
-  await client.fields.update("7959709", {
+  await client.fields.update("lustrum::middle_structured_body", {
     label: "Middle body",
     api_key: "middle_body",
   });
