@@ -8,6 +8,9 @@
         v-for="card in items"
         :key="card.id"
         class="image-card-grid__card"
+        :class="{
+          'image-card-grid__card--has-link': card.link?.url || card.link?.page,
+        }"
       >
         <dato-image
           class="image-card-grid__image"
@@ -24,25 +27,46 @@
         <structured-text-block
           :content="card.body"
         />
+
+        <app-button
+          v-if="card.link?.url"
+          class="image-card-grid__link"
+          :label="card.link.title"
+          :to="card.link.url"
+          external
+          secondary
+        />
+        <app-button
+          v-if="card.link?.page"
+          class="image-card-grid__link"
+          :label="card.link.title"
+          :to="createHref($i18n, card.link)"
+          secondary
+        />
       </li>
     </ul>
   </section>
 </template>
 
 <script>
-  export default {
-    props: {
-      title: {
-        type: String,
-        required: true,
-      },
-      items: {
-        type: Array,
-        required: false,
-        default: () => [],
-      },
+import { createHref } from '../../lib/links'
+
+export default {
+  props: {
+    title: {
+      type: String,
+      required: true,
     },
+    items: {
+      type: Array,
+      required: false,
+      default: () => [],
+    },
+  },
+  methods: {
+    createHref
   }
+}
 </script>
 
 <style>
@@ -63,6 +87,7 @@
   }
 
   .image-card-grid__card {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -71,9 +96,24 @@
     padding: var(--spacing-medium);
     background: var(--white);
     margin-top: var(--image-offset);
+    transition: box-shadow var(--app-button-duration);
   }
 
   .image-card-grid__image {
     margin-top: calc(-1 * var(--image-offset));
+  }
+
+  .image-card-grid__link {
+    margin-top: auto;
+    align-self: flex-start;
+  }
+
+  .image-card-grid__link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
 </style>
