@@ -21,6 +21,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           ...image
         }
         imagePosition
+        backgroundColor
         body {
           value
           blocks {
@@ -43,15 +44,17 @@ query LandingPage($locale: SiteLocale, $slug: String) {
       }
       ... on SectionInterstitialCtaRecord {
         title
+        backgroundColor
         ctas {
           ...link
         }
       }
       ... on SectionNewsletterRecord {
-        __typename # can be removed if record contains fields
+        backgroundColor
       }
       ... on SectionImageGridRecord {
         title
+        backgroundColor
         items {
           title
           description
@@ -72,6 +75,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
         variant
         title
         body(markdown: true)
+        backgroundColor
         person {
           image {
             ...image
@@ -84,6 +88,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
       ...on SectionStructuredTextRecord {
         gridAlignment
         hasToc
+        backgroundColor
         body {
           value
           blocks {
@@ -133,6 +138,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
       }
       ... on SectionImageCardGridRecord {
         title
+        backgroundColor
         items {
           id
           title
@@ -155,6 +161,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
         }
       }
       ... on SectionTimelineRecord {
+        backgroundColor
         items {
           date
           description
@@ -165,6 +172,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
         }
       }
       ... on SectionBlogsSectionRecord {
+        backgroundColor
         title
         itemSize
         items {
@@ -176,6 +184,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
       }
       ... on SectionEventsSectionRecord {
         title
+        backgroundColor
         items {
           title
           social {

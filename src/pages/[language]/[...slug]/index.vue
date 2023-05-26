@@ -5,8 +5,12 @@
     <h1 class="sr-only">
       {{ data.page.title }}
     </h1>
-    <template
+    <div
       v-for="(section, index) in data.page.sections"
+      class="grid landing-page__section"
+      :class="{
+        'landing-page__section--pastel-background': hasPastelBackground(section),
+      }"
       :key="index"
     >
       <page-header
@@ -90,7 +94,7 @@
         :items="section.items"
         :title="section.title"
       />
-    </template>
+    </div>
   </div>
 </template>
 
@@ -110,10 +114,27 @@
   });
 
   useSeoHead(data.value.page);
+
+  function hasPastelBackground(section) {
+    return [
+      'SectionHeaderRecord',
+    ].includes(section.__typename) || (
+      section.backgroundColor === BackgroundColor.PastelYellow
+    )
+  }
 </script>
 
 <style>
-  .landing-page > * {
-    margin-bottom: var(--spacing-big);
+  .landing-page__section + .landing-page__section {
+    padding-top: var(--spacing-big);
+  }
+
+  .landing-page__section--pastel-background {
+    padding-bottom: var(--spacing-big);
+    background-color: var(--bg-pastel);
+  }
+
+  .landing-page__section:not(.landing-page__section--pastel-background) + .landing-page__section--pastel-background {
+    margin-top: var(--spacing-big);
   }
 </style>
