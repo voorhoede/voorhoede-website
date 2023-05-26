@@ -27,6 +27,7 @@
         :body="section.body"
         :image="section.image"
         :inverse="section.imagePosition === 'right'"
+        :background-color="section.backgroundColor"
       />
       <interstitial-cta
         v-if="section.__typename === 'SectionInterstitialCtaRecord'"
@@ -44,6 +45,7 @@
         v-if="section.__typename === 'SectionImageGridRecord'"
         :title="section.title"
         :items="section.items"
+        :background-color="section.backgroundColor"
       />
       <logo-grid
         v-if="section.__typename === 'SectionLogoGridRecord'"
@@ -73,6 +75,7 @@
         v-if="section.__typename === 'SectionImageCardGridRecord'"
         :title="section.title"
         :items="section.items"
+        :background-color="section.backgroundColor"
       />
       <jobs-list
         v-if="section.__typename === 'SectionJobsListRecord'"
@@ -100,6 +103,7 @@
 
 <script setup>
   import query from './index.query.graphql?raw';
+  import { BackgroundColor } from '../../../types/index.d';
 
   const { params } = useRoute();
   const { data } = await useFetchContent({
