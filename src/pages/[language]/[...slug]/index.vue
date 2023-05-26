@@ -1,9 +1,6 @@
 <template>
   <div
-    class="landing-page grid"
-    :class="{
-      'landing-page--pastel-background': data.page.backgroundColor === 'pastel-yellow',
-    }"
+    class="landing-page"
   >
     <h1 class="sr-only">
       {{ data.page.title }}
@@ -116,10 +113,6 @@
 </script>
 
 <style>
-  .landing-page--pastel-background {
-    background: var(--bg-pastel);
-  }
-
   .landing-page > * {
     margin-bottom: var(--spacing-big);
   }

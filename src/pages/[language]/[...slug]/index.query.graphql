@@ -6,7 +6,6 @@ query LandingPage($locale: SiteLocale, $slug: String) {
       title
       description
     }
-    backgroundColor
     sections {
       __typename
       ... on SectionHeaderRecord {

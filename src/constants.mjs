@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'structured-text-blue-text-alignment-options-deploy';
+export const datocmsEnvironment = 'landing-page-configurable-section-backgrounds';
