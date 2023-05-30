@@ -29,18 +29,20 @@
         />
 
         <app-button
-          v-if="card.link?.url"
+          v-if="card.links?.[0]?.__typename === 'ExternalLinkRecord'"
           class="image-card-grid__link"
-          :label="card.link.title"
-          :to="card.link.url"
+          :label="card.links[0].title"
+          :to="card.links[0].url"
           external
           secondary
         />
         <app-button
-          v-if="card.link?.page"
+          v-if="card.links?.[0]?.__typename === 'InternalLinkRecord'"
           class="image-card-grid__link"
-          :label="card.link.title"
-          :to="createHref($i18n, card.link)"
+          :label="card.links[0].title"
+          :to="$localeUrl({
+            name: 'slug', params: { slug: card.links[0].link.slug }
+          })"
           secondary
         />
       </li>
