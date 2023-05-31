@@ -39,7 +39,7 @@
     sizes: undefined,
     srcset: undefined,
     decoding: 'async',
-    loader: () => ({ src }) => src,
+    loader: ({ src }) => src,
     quality: 45,
   });
 </script>
