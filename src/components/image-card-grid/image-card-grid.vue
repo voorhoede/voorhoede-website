@@ -41,7 +41,7 @@
           class="image-card-grid__link"
           :label="card.links[0].title"
           :to="$localeUrl({
-            name: 'slug', params: { slug: card.links[0].link.slug }
+            name: 'slug', params: { slug: card.links[0].link.slug.split('/') }
           })"
           secondary
         />
