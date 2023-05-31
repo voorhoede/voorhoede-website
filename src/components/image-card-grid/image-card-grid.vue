@@ -29,7 +29,7 @@
         />
 
         <app-button
-          v-if="card.links?.[0]?.__typename === 'ExternalLinkRecord'"
+          v-if="card.links[0]?.__typename === 'ExternalLinkRecord'"
           class="image-card-grid__link"
           :label="card.links[0].title"
           :to="card.links[0].url"
@@ -37,7 +37,7 @@
           secondary
         />
         <app-button
-          v-if="card.links?.[0]?.__typename === 'InternalLinkRecord'"
+          v-if="card.links[0]?.__typename === 'InternalLinkRecord'"
           class="image-card-grid__link"
           :label="card.links[0].title"
           :to="$localeUrl({
