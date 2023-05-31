@@ -33,25 +33,26 @@ export function useSeoHead({ title, slug, i18nSlugs, social }) {
     link: [
       { rel: 'canonical', href: pageUrl },
       ...$i18n.locales
-        .map(({ code }) => ({
-          rel: 'alternate',
-          hreflang: code,
-          href: withTrailingSlash(
-            // Decode the route to make sure slashes in slug are not encoded
-            // Vue router doesn't have an option to disable encoding on router.resolve
-            decodeURIComponent(
+        .map(({ code }) => {
+          const alternateSlug = i18nSlugs?.find((i18nSlug) => i18nSlug.locale === code).value || slug;
+          const formattedAlternateSlug = alternateSlug.includes('/') ? alternateSlug.split('/') : alternateSlug
+
+          return {
+            rel: 'alternate',
+            hreflang: code,
+            href: withTrailingSlash(
               new URL(
                 router.resolve({
                   params: {
                     language: code,
-                    slug: i18nSlugs?.find((i18nSlug) => i18nSlug.locale === code).value || slug,
+                    slug: formattedAlternateSlug,
                   },
                 }).path,
                 runtimeConfig.public.baseUrl,
               ).href
             )
-          )
-        })),
+          }
+        }),
     ],
   });
 }
