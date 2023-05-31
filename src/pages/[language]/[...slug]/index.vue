@@ -9,7 +9,9 @@
       v-for="(section, index) in data.page.sections"
       class="grid landing-page__section"
       :class="{
-        'landing-page__section--pastel-background': hasPastelBackground(section),
+        'landing-page__section--background': getSectionBackgroundColor(section) !== BackgroundColor.None,
+        'landing-page__section--pastel-background': getSectionBackgroundColor(section) === BackgroundColor.PastelYellow,
+        'landing-page__section--grey-background': getSectionBackgroundColor(section) === BackgroundColor.Grey,
       }"
       :key="index"
     >
@@ -119,12 +121,18 @@
 
   useSeoHead(data.value.page);
 
-  function hasPastelBackground(section) {
-    return [
-      'SectionHeaderRecord',
-    ].includes(section.__typename) || (
-      section.backgroundColor === BackgroundColor.PastelYellow
-    )
+function getSectionBackgroundColor(section) {
+    switch (section.__typename) {
+      case 'SectionHeaderRecord': {
+        return BackgroundColor.PastelYellow;
+      }
+      case 'SectionLogoGridRecord': {
+        return BackgroundColor.Grey;
+      }
+      default: {
+        return section.backgroundColor
+      }
+    }
   }
 </script>
 
@@ -133,12 +141,19 @@
     padding-top: var(--spacing-big);
   }
 
-  .landing-page__section--pastel-background {
+  .landing-page__section--background {
     padding-bottom: var(--spacing-big);
+  }
+
+  .landing-page__section--pastel-background {
     background-color: var(--bg-pastel);
   }
 
-  .landing-page__section:not(.landing-page__section--pastel-background) + .landing-page__section--pastel-background {
+  .landing-page__section--grey-background {
+    background-color: var(--fog);
+  }
+
+  .landing-page__section:not(.landing-page__section--background) + .landing-page__section--background {
     margin-top: var(--spacing-big);
   }
 </style>

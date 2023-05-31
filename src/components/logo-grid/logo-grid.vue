@@ -42,10 +42,8 @@
 
 <style>
   .logo-grid {
-    background: var(--fog);
     grid-column-end: var(--grid-page-end);
     grid-column-start: var(--grid-page-start);
-    padding: clamp(var(--spacing-larger), 14%, var(--spacing-big)) 0;
   }
 
   .logo-grid__title {
