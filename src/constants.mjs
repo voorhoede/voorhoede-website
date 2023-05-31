@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'image-block-require-alt';
+export const datocmsEnvironment = 'image-block-require-alt-deploy';
