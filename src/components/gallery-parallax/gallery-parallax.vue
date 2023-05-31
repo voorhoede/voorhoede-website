@@ -8,54 +8,27 @@
       :style="!isMobile && `--grid-template: ${gridColumnTemplateAmount}`"
     >
       <ul
-        v-if="isMobile"
-        class="gallery-parallax__wrapper"
+        v-for="galleryColumn in galleryItems"
+        :key="galleryColumn.id"
+        :class="`${isMobile ? 'gallery-parallax__wrapper' : 'gallery-parallax__row--desktop'}`"
+        ref="galleryItemsRef"
         :style="`--grid-template: ${gridColumnTemplateAmount}`"
       >
-        <template v-for="galleryColumn in galleryItems">
-          <li
-            class="gallery-parallax_item gallery-parallax_item--mobile"
-            v-for="item in galleryColumn"
-            :key="item.id"
-            :style="{
-              '--ratio': `${item && (item.size.height / item.size.width) * 100}%`,
-            }"
-          >
-            <gallery-item
-              :name="item.name"
-              :image="item.image"
-              :role="item.jobTitle"
-              :id="item.id"
-              :slug="item.slug"
-            />
-          </li>
-        </template>
-      </ul>
-      <template v-else>
-        <ul
-          v-for="galleryColumn in galleryItems"
-          :key="galleryColumn.id"
-          :class="{ 'gallery-parallax__wrapper': gridColumnTemplateAmount <= 1 }"
-          class="gallery-parallax__row--desktop"
-          ref="galleryItemsRef"
-          :style="`--grid-template: ${gridColumnTemplateAmount}`"
+        <li
+          v-for="(item) in galleryColumn"
+          :key="item.id"
+          class="gallery-parallax_item"
+          :style="`--ratio: ${item && (item.size.height / item.size.width) * 100}%`"
         >
-          <li
-            v-for="(item) in galleryColumn"
-            :key="item.id"
-            class="gallery-parallax_item"
-            :style="`--ratio: ${item && (item.size.height / item.size.width) * 100}%`"
-          >
-            <gallery-item
-              :name="item.name"
-              :image="item.image"
-              :role="item.jobTitle"
-              :id="item.id"
-              :slug="item.slug"
-            />
-          </li>
-        </ul>
-      </template>
+          <gallery-item
+            :name="item.name"
+            :image="item.image"
+            :role="item.jobTitle"
+            :id="item.id"
+            :slug="item.slug"
+          />
+        </li>
+      </ul>
     </div>
   </section>
 </template>
