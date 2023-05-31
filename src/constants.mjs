@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'image-card-links-deploy';
+export const datocmsEnvironment = 'landing-page-configurable-section-backgrounds-deploy';

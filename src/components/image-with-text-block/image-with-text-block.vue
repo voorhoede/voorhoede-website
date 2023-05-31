@@ -1,7 +1,10 @@
 <template>
   <div
     class="image-with-text"
-    :class="{ 'image-with-text--inverse': inverse }"
+    :class="{
+      'image-with-text--inverse': inverse,
+      'image-with-text--pastel-background': backgroundColor === BackgroundColor.PastelYellow,
+    }"
   >
     <dato-image
       class="image-with-text__image"
@@ -29,32 +32,37 @@
   </div>
 </template>
 
-<script>
-  export default {
-    props: {
-      title: {
-        type: String,
-        required: true,
-      },
-      body: {
-        type: Object,
-        required: true
-      },
-      image: {
-        type: Object,
-        required: true,
-      },
-      inverse: {
-        type: Boolean,
-        default: false,
-      }
-    }
-  }
+<script setup lang="ts">
+import { BackgroundColor } from '../../types/index.d'
+
+type Props = {
+  title: string,
+  body: object,
+  image: {
+    url: string,
+    width: number,
+    height: number
+  },
+  inverse?: boolean,
+  backgroundColor: BackgroundColor
+}
+
+withDefaults(defineProps<Props>(), {
+  backgroundColor: BackgroundColor.None
+})
 </script>
 
 <style>
+  :root {
+    --image-with-text-body-background-color: var(--bg-pastel);
+  }
+
   .image-with-text {
     width: 100%;
+  }
+
+  .image-with-text--pastel-background {
+    --image-with-text-body-background-color: var(--white);
   }
 
   .image-with-text__image {
@@ -75,7 +83,7 @@
 
   .image-with-text__body-title {
     margin-left: var(--spacing-larger);
-    background-color: var(--white);
+    background-color: var(--image-with-text-body-background-color);
   }
 
   .image-with-text--inverse .image-with-text__body-title {
@@ -85,7 +93,7 @@
 
   .image-with-text__body-text {
     padding-bottom: var(--spacing-medium);
-    background-color: var(--white);
+    background-color: var(--image-with-text-body-background-color);
   }
 
   @media (min-width: 720px) {
@@ -98,8 +106,8 @@
         to right,
         transparent,
         transparent 25%,
-        var(--white) 25%,
-        var(--white) 100%
+        var(--image-with-text-body-background-color) 25%,
+        var(--image-with-text-body-background-color) 100%
       );
     }
 
@@ -110,8 +118,8 @@
         to left,
         transparent,
         transparent 25%,
-        var(--white) 25%,
-        var(--white) 100%
+        var(--image-with-text-body-background-color) 25%,
+        var(--image-with-text-body-background-color) 100%
       );
     }
 
@@ -156,8 +164,8 @@
         to right,
         transparent,
         transparent 30%,
-        var(--white) 30%,
-        var(--white) 100%
+        var(--image-with-text-body-background-color) 30%,
+        var(--image-with-text-body-background-color) 100%
       );
     }
 
@@ -167,8 +175,8 @@
         to left,
         transparent,
         transparent 30%,
-        var(--white) 30%,
-        var(--white) 100%
+        var(--image-with-text-body-background-color) 30%,
+        var(--image-with-text-body-background-color) 100%
       );
     }
 

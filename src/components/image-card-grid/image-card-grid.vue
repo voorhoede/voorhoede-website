@@ -1,5 +1,10 @@
 <template>
-  <section>
+  <section
+    class="image-card-grid"
+    :class="{
+      'image-card-grid--pastel-background': backgroundColor === BackgroundColor.PastelYellow,
+    }"
+  >
     <h2 class="image-card-grid__title h3">
       {{ title }}
     </h2>
@@ -50,25 +55,39 @@
   </section>
 </template>
 
-<script>
-import { createHref } from '../../lib/links'
+<script setup lang="ts">
+import { BackgroundColor } from '../../types/index.d'
 
-export default {
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    items: {
-      type: Array,
-      required: false,
-      default: () => [],
-    },
-  },
-  methods: {
-    createHref
-  }
+type Props = {
+  title: string
+  items: {
+    id: string
+    title: string
+    body: object
+    image: {
+      url: string
+    }
+    links: (
+      | {
+          __typename: 'ExternalLinkRecord'
+          title: string
+          url: string
+        }
+      | {
+          __typename: 'InternalLinkRecord'
+          title: string
+          link: {
+            slug: string
+          }
+        }
+    )[]
+  }[]
+  backgroundColor: BackgroundColor
 }
+
+withDefaults(defineProps<Props>(), {
+  backgroundColor: BackgroundColor.None
+})
 </script>
 
 <style>
@@ -96,9 +115,12 @@ export default {
     flex-basis: 20rem;
     gap: var(--spacing-small);
     padding: var(--spacing-medium);
-    background: var(--white);
+    background: var(--bg-pastel);
     margin-top: var(--image-offset);
-    transition: box-shadow var(--app-button-duration);
+  }
+
+  .image-card-grid--pastel-background .image-card-grid__card {
+    background-color: var(--white);
   }
 
   .image-card-grid__image {

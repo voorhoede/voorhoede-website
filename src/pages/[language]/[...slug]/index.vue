@@ -1,15 +1,18 @@
 <template>
   <div
-    class="landing-page grid"
-    :class="{
-      'landing-page--pastel-background': data.page.backgroundColor === 'pastel-yellow',
-    }"
+    class="landing-page"
   >
     <h1 class="sr-only">
       {{ data.page.title }}
     </h1>
-    <template
+    <div
       v-for="(section, index) in data.page.sections"
+      class="grid landing-page__section"
+      :class="{
+        'landing-page__section--background': getSectionBackgroundColor(section) !== BackgroundColor.None,
+        'landing-page__section--pastel-background': getSectionBackgroundColor(section) === BackgroundColor.PastelYellow,
+        'landing-page__section--grey-background': getSectionBackgroundColor(section) === BackgroundColor.Grey,
+      }"
       :key="index"
     >
       <page-header
@@ -26,6 +29,7 @@
         :body="section.body"
         :image="section.image"
         :inverse="section.imagePosition === 'right'"
+        :background-color="section.backgroundColor"
       />
       <interstitial-cta
         v-if="section.__typename === 'SectionInterstitialCtaRecord'"
@@ -43,6 +47,7 @@
         v-if="section.__typename === 'SectionImageGridRecord'"
         :title="section.title"
         :items="section.items"
+        :background-color="section.backgroundColor"
       />
       <logo-grid
         v-if="section.__typename === 'SectionLogoGridRecord'"
@@ -72,6 +77,7 @@
         v-if="section.__typename === 'SectionImageCardGridRecord'"
         :title="section.title"
         :items="section.items"
+        :background-color="section.backgroundColor"
       />
       <jobs-list
         v-if="section.__typename === 'SectionJobsListRecord'"
@@ -93,12 +99,13 @@
         :items="section.items"
         :title="section.title"
       />
-    </template>
+    </div>
   </div>
 </template>
 
 <script setup>
   import query from './index.query.graphql?raw';
+  import { BackgroundColor } from '../../../types/index.d';
 
   const { params } = useRoute();
   const { data } = await useFetchContent({
@@ -113,14 +120,40 @@
   });
 
   useSeoHead(data.value.page);
+
+function getSectionBackgroundColor(section) {
+    switch (section.__typename) {
+      case 'SectionHeaderRecord': {
+        return BackgroundColor.PastelYellow;
+      }
+      case 'SectionLogoGridRecord': {
+        return BackgroundColor.Grey;
+      }
+      default: {
+        return section.backgroundColor
+      }
+    }
+  }
 </script>
 
 <style>
-  .landing-page--pastel-background {
-    background: var(--bg-pastel);
+  .landing-page__section + .landing-page__section {
+    padding-top: var(--spacing-big);
   }
 
-  .landing-page > * {
-    margin-bottom: var(--spacing-big);
+  .landing-page__section--background {
+    padding-bottom: var(--spacing-big);
+  }
+
+  .landing-page__section--pastel-background {
+    background-color: var(--bg-pastel);
+  }
+
+  .landing-page__section--grey-background {
+    background-color: var(--fog);
+  }
+
+  .landing-page__section:not(.landing-page__section--background) + .landing-page__section--background {
+    margin-top: var(--spacing-big);
   }
 </style>
