@@ -11,6 +11,6 @@ const { data } = await useFetchContent({ query });
 
 <style>
 .page-team {
-  padding-top: var(--spacing-larger);
+  padding-top: var(--spacing-large);
 }
 </style>

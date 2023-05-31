@@ -1,51 +1,62 @@
 <template>
   <section
-    class="gallery-parallax gallery-parallax--full-width"
+    class="gallery-parallax grid"
     ref="galleryRootRef"
   >
     <div
-      :class="{ 'gallery-parallax_wrapper': gridFragmentAmount > 1 }"
-      :style="gridFragmentAmount > 1 && `--grid-template: ${gridFragmentAmount}`"
+      :class="{ 'gallery-parallax__wrapper': !isMobile }"
+      :style="!isMobile && `--grid-template: ${gridColumnTemplateAmount}`"
     >
       <ul
-        :class="{ 'gallery-parallax_wrapper': gridFragmentAmount <= 1 }"
-        v-for="galleryColumn in galleryItems"
-        :key="galleryColumn.id"
-        ref="galleryItemsRef"
-        :style="gridFragmentAmount <= 1 && `--grid-template: ${gridFragmentAmount}`"
+        v-if="isMobile"
+        class="gallery-parallax__wrapper"
+        :style="`--grid-template: ${gridColumnTemplateAmount}`"
       >
-        <li
-          v-for="(item) in galleryColumn"
-          :key="item.id"
-          class="gallery-parallax_item"
-          :style="`--ratio: ${item && (item.size.height / item.size.width) * 100}%`
-          "
-        >
-          <gallery-item
-            :name="item.name"
-            :image="item.image"
-            :role="item.jobTitle"
-            :id="item.id"
-            :slug="item.slug"
-          />
-        </li>
-        <!-- <li
-          class="gallery-parallax_item"
-          v-for="(item) in galleryColumn"
-          :key="item.id"
-          :style="
-            `--ratio: ${item && (item.size.height / item.size.width) * 100}%`
-          "
-        >
-          <gallery-item
-            :name="item.name"
-            :image="item.image"
-            :role="item.jobTitle"
-            :id="item.id"
-            :slug="item.slug"
-          />
-        </li> -->
+        <template v-for="galleryColumn in galleryItems">
+          <li
+            class="gallery-parallax_item gallery-parallax_item--mobile"
+            v-for="item in galleryColumn"
+            :key="item.id"
+            :style="{
+              '--ratio': `${item && (item.size.height / item.size.width) * 100}%`,
+            }"
+          >
+            <gallery-item
+              :name="item.name"
+              :image="item.image"
+              :role="item.jobTitle"
+              :id="item.id"
+              :slug="item.slug"
+            />
+          </li>
+        </template>
       </ul>
+      <template v-else>
+        <ul
+          :class="{ 'gallery-parallax__wrapper': gridColumnTemplateAmount <= 1 }"
+          class="gallery-parallax__row--desktop"
+          v-for="galleryColumn in galleryItems"
+          :key="galleryColumn.id"
+          ref="galleryItemsRef"
+          :style="`--grid-template: ${gridColumnTemplateAmount}`"
+        >
+          <li
+            v-for="(item) in galleryColumn"
+            :key="item.id"
+            class="gallery-parallax_item"
+            :style="`--ratio: ${item && (item.size.height / item.size.width) * 100}%`
+            "
+          >
+            <gallery-item
+              :name="item.name"
+              :image="item.image"
+              :role="item.jobTitle"
+              :id="item.id"
+              :slug="item.slug"
+            />
+          </li>
+        </ul>
+      </template>
     </div>
   </section>
 </template>
@@ -63,39 +74,19 @@ export default {
     return {
       columnItems: 3,
       oddColumnImageAmount: 3, // index 1, 3, 5, 7 etc
-      evenColumnImageAmount: 4, // index 2, 4, 6, 8 etc
-
       responseData: [],
       galleryItemsRef: null,
       galleryRootRef: null,
-      // gridFragmentAmount: 1,
       hasListener: false,
-      // galleryItems: [],
       screenInnerWidth: this.innerWidth,
       timeout: null,
       filter: []
     }
   },
-  watch: {
-    // columnItems() {
-    //   this.loadImage(this.responseData)
-    // },
-    screenInnerWidth() {
-      //   document.addEventListener('scroll', this.scrollHandler, false)
-
-      //   if (this.screenInnerWidth <= 800) {
-      //     this.columnItems = 8
-      //     document.removeEventListener('scroll', this.scrollHandler, false)
-      //     this.galleryItemsRef.forEach(
-      //       item => (item.transform = 'translateY(0)')
-      //     )
-      //   }
-    }
-  },
   async mounted() {
     try {
-      this.updateColumnItems()
-      window.addEventListener('resize', this.updateColumnItems)
+      this.screenInnerWidth = window.innerWidth
+
       window.addEventListener(
         'resize',
         () => (this.screenInnerWidth = window.innerWidth)
@@ -105,56 +96,51 @@ export default {
       this.loadImage(this.responseData)
 
       this.$nextTick(() => {
-
         this.galleryItemsRef = this.$refs.galleryItemsRef
         this.galleryRootRef = this.$refs.galleryRootRef
 
-        const options = {
-          root: null,
-          rootMargin: '0px',
-          threshold: [0]
+        if (this.screenInnerWidth > 600) {
+          this.galleryItemsRef.forEach(item => {
+            const randomTopPosition = Math.floor(Math.random() * (50 - -50 + 1) + -50)
+            item.style.transform = `translateY(${ randomTopPosition }px)`
+          })
         }
-        const observer = new IntersectionObserver(
-          this.handleIntersect,
-          options
-        )
-
-        observer.observe(this.galleryRootRef)
+        this.animateGalleryOnScroll()
       })
     } catch (error) {
       throw new Error('Failed to fetch profile picture', { cause: error })
     }
   },
-  unmounted() {
-    window.removeEventListener('resize', this.updateColumnItems)
-  },
   computed: {
     galleryItems() {
       const imagePerColumn = this.amountImagePerColumn(this.loadImage(this.responseData))
-      return this.screenInnerWidth < 500 ? [this.loadImage(this.responseData)] : imagePerColumn
+      return this.isMobile ? [this.loadImage(this.responseData)] : imagePerColumn
     },
-    gridFragmentAmount() {
-      // take the innerwidth of the screen and devide the width of the image to get the amount of grid fragments
-      // const pictureAmount = this.responseData.length * this.responseData[0].width
-      console.log(this.responseData)
-      // const gridAmount = this.screenInnerWidth / pictureAmount
-      // console.log(gridAmount)
-      return this.screenInnerWidth < 500 ? 1 : 7
-    }
+    gridColumnTemplateAmount() {
+      switch (true) {
+        case this.isMobile:
+          return 2
+        case this.screenInnerWidth < 800:
+          return 3
+        default:
+          return 7
+      }
+    },
+    isMobile() {
+      return this.screenInnerWidth < 500
+    },
+    evenColumnImageAmount() {
+      switch (true) {
+        case this.isMobile:
+          return 3
+        case this.screenInnerWidth < 800:
+          return 5
+        default:
+          return 4
+      }
+    },
   },
   methods: {
-    updateColumnItems() {
-      // if (this.responseData.length <= 10 && window.innerWidth < 800) {
-      //   this.columnItems = 2
-      // } else {
-      //   this.columnItems = 1
-      // }
-      // if (window.innerWidth < 800) {
-      //   this.columnItems = 4
-      // } else {
-      //   this.columnItems = 3
-      // }
-    },
     loadImage(data) {
       return data.reduce((newObject, oldObject) => {
         newObject.push({
@@ -195,7 +181,7 @@ export default {
       entries.forEach(entry => {
         const { isIntersecting } = entry
 
-        if (isIntersecting && !this.hasListener && window.innerWidth >= 800) {
+        if (isIntersecting && !this.hasListener && this.screenInnerWidth > 800) {
           this.hasListener = true
           document.addEventListener('scroll', this.scrollHandler, false)
         }
@@ -207,7 +193,7 @@ export default {
     },
     scrollHandler() {
       debounce(() => {
-        const y =
+        const galleryWrapperTopPosition =
           (window.innerHeight -
             this.galleryRootRef.getBoundingClientRect().top) *
           0.01
@@ -218,7 +204,7 @@ export default {
           if (column) {
             column.animate(
               {
-                transform: `translateY(${ y * speed * -1 }px)`,
+                transform: `translateY(${ galleryWrapperTopPosition * speed * -1 }px)`,
                 easing: 'ease-out'
               },
               {
@@ -236,7 +222,20 @@ export default {
         }
         timeout = window.requestAnimationFrame(() => fn())
       }
-    }
+    },
+    animateGalleryOnScroll() {
+      const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: [0]
+      }
+
+      const observer = new IntersectionObserver(
+        this.handleIntersect,
+        options
+      )
+      observer.observe(this.galleryRootRef)
+    },
   }
 }
 </script>
@@ -251,13 +250,16 @@ export default {
 
 .gallery-parallax {
   position: relative;
-  z-index: 10;
   margin-top: var(--blender);
   margin-bottom: var(--blender);
   background-color: white;
 
-  transform: translateZ(0);
   /* force gpu to avoid render glitches */
+  transform: translateZ(0);
+
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
 }
 
 .gallery-parallax::before {
@@ -272,18 +274,18 @@ export default {
   pointer-events: none;
 }
 
-.gallery-parallax--full-width {
-  display: inline-block;
-  width: 100%;
-  grid-column: 1 / 51;
-  grid-column: var(--grid-page);
-}
-
-.gallery-parallax_wrapper {
+.gallery-parallax__wrapper {
   width: 100%;
   display: grid;
-  grid-template-columns: 0.5fr repeat(2, 1fr) 0.5fr;
+  grid-template-columns: repeat(var(--grid-template), 1fr);
   grid-gap: var(--gap);
+  grid-column: var(--grid-content);
+}
+
+.gallery-parallax__row--desktop {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .gallery-parallax_grid {
@@ -294,17 +296,9 @@ export default {
   will-change: transform;
 }
 
-.gallery-parallax_grid:first-child li,
-.gallery-parallax_grid:last-child li {
-  /* width: 200%; */
-}
-
-.gallery-parallax_grid:first-child li {
-  /* transform: translateX(-50%); */
-}
-
 .gallery-parallax_item {
   position: relative;
+  height: 100%;
 }
 
 .gallery-parallax_item::before {
@@ -313,8 +307,10 @@ export default {
   padding-top: var(--ratio);
 }
 
-.gallery-parallax_item+.gallery-parallax_item {
-  margin-top: var(--gap);
+@media screen and (min-width: 500px) {
+  .gallery-parallax_item+.gallery-parallax_item {
+    margin-top: var(--gap);
+  }
 }
 
 @media screen and (min-width: 800px) {
@@ -324,7 +320,7 @@ export default {
     --blender: 200px;
   }
 
-  .gallery-parallax_wrapper {
+  .gallery-parallax__wrapper {
     /* grid-template-columns: 0.5fr repeat(var(--grid-template), 1fr) 0.5fr; */
     grid-template-columns: repeat(var(--grid-template), 1fr);
   }
