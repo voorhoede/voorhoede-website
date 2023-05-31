@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'structured-text-lists';
+export const datocmsEnvironment = 'structured-text-allow-lists-deploy';
