@@ -148,6 +148,9 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           image {
             ...image
           }
+          links {
+            ...link
+          }
         }
       }
       ... on SectionJobsListRecord {

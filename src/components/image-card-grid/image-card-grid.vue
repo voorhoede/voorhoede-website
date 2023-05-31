@@ -13,6 +13,9 @@
         v-for="card in items"
         :key="card.id"
         class="image-card-grid__card"
+        :class="{
+          'image-card-grid__card--has-link': card.link?.url || card.link?.page,
+        }"
       >
         <dato-image
           class="image-card-grid__image"
@@ -28,6 +31,24 @@
 
         <structured-text-block
           :content="card.body"
+        />
+
+        <app-button
+          v-if="card.links[0]?.__typename === 'ExternalLinkRecord'"
+          class="image-card-grid__link"
+          :label="card.links[0].title"
+          :to="card.links[0].url"
+          external
+          secondary
+        />
+        <app-button
+          v-if="card.links[0]?.__typename === 'InternalLinkRecord'"
+          class="image-card-grid__link"
+          :label="card.links[0].title"
+          :to="$localeUrl({
+            name: 'slug', params: { slug: card.links[0].link.slug }
+          })"
+          secondary
         />
       </li>
     </ul>
@@ -46,6 +67,20 @@ type Props = {
     image: {
       url: string
     }
+    links: (
+      | {
+          __typename: 'ExternalLinkRecord'
+          title: string
+          url: string
+        }
+      | {
+          __typename: 'InternalLinkRecord'
+          title: string
+          link: {
+            slug: string
+          }
+        }
+    )[]
   }[]
   backgroundColor: BackgroundColor
 }
@@ -73,6 +108,7 @@ withDefaults(defineProps<Props>(), {
   }
 
   .image-card-grid__card {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -89,5 +125,19 @@ withDefaults(defineProps<Props>(), {
 
   .image-card-grid__image {
     margin-top: calc(-1 * var(--image-offset));
+  }
+
+  .image-card-grid__link {
+    margin-top: auto;
+    align-self: flex-start;
+  }
+
+  .image-card-grid__link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
 </style>
