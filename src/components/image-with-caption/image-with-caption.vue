@@ -3,7 +3,7 @@
     <dato-image
       class="image-with-caption__image"
       :src="image.url"
-      alt=""
+      :alt="image.alt || ''"
       :width="image.width"
       :height="image.height"
       loading="eager"
@@ -18,19 +18,16 @@
   </div>
 </template>
 
-<script>
-  export default {
-    props: {
-      caption: {
-        type: String,
-        default: null
-      },
-      image: {
-        type: Object,
-        required: true,
-      },
-    }
+<script setup lang="ts">
+defineProps<{
+  caption: string,
+  image: {
+    width: number,
+    height: number,
+    url: string,
+    alt?: string,
   }
+}>()
 </script>
 
 <style>

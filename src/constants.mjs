@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'structured-text-allow-lists-deploy';
+export const datocmsEnvironment = 'image-block-require-alt-deploy';
