@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'landing-page-configurable-section-backgrounds-deploy';
+export const datocmsEnvironment = 'structured-text-allow-lists-deploy';
