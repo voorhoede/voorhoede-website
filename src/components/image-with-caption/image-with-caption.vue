@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-type Props = {
+defineProps<{
   caption: string,
   image: {
     width: number,
@@ -27,9 +27,7 @@ type Props = {
     url: string,
     alt?: string,
   }
-}
-
-defineProps<Props>()
+}>()
 </script>
 
 <style>
