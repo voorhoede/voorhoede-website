@@ -8,12 +8,14 @@ export function linkValidator (item) {
   )
 }
 
-export function createHref ($i18n, item) {
+export function createHref($i18n, item) {
   const { page, url } = item
   const directory = getDirectoryByTypename(page.__typename)
 
   if (page.slug && page.__typename) {
-    return `/${$i18n.locale()}/${directory}/${page.slug}/`
+    return directory
+      ? `/${$i18n.locale()}/${directory}/${page.slug}/`
+      : `/${$i18n.locale()}/${page.slug}/`
   } else if (page.slug) {
     return `/${$i18n.locale()}/${page.slug}/`
   } else {
@@ -26,6 +28,7 @@ function getDirectoryByTypename (type) {
     case 'ServiceRecord': {
       return 'services'
     }
+    case 'LandingPageRecord':
     default:
       return null
   }
