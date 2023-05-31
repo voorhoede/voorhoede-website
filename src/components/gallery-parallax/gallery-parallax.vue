@@ -8,24 +8,24 @@
       :style="!isMobile && `--grid-template: ${gridColumnTemplateAmount}`"
     >
       <ul
-        v-for="galleryColumn in galleryItems"
-        :key="galleryColumn.id"
+        v-for="items in galleryItems"
+        :key="items.id"
         :class="`${isMobile ? 'gallery-parallax__wrapper' : 'gallery-parallax__row--desktop'}`"
         ref="galleryItemsRef"
         :style="`--grid-template: ${gridColumnTemplateAmount}`"
       >
         <li
-          v-for="(item) in galleryColumn"
-          :key="item.id"
+          v-for="person in items"
+          :key="person.id"
           class="gallery-parallax_item"
-          :style="`--ratio: ${item && (item.size.height / item.size.width) * 100}%`"
+          :style="`--ratio: ${(person.size.height / person.size.width) * 100}%`"
         >
           <gallery-item
-            :name="item.name"
-            :image="item.image"
-            :role="item.jobTitle"
-            :id="item.id"
-            :slug="item.slug"
+            :name="person.name"
+            :image="person.image"
+            :role="person.jobTitle"
+            :id="person.id"
+            :slug="person.slug"
           />
         </li>
       </ul>
@@ -44,18 +44,17 @@ export default {
   },
   data() {
     return {
-      columnItems: 3,
-      columnImageAmountOdd: 3,
-      responseData: [],
       galleryItemsRef: null,
       galleryRootRef: null,
+      oddColumnItemAmount: 3,
+      responseData: [],
+
       hasListener: false,
       screenInnerWidth: this.innerWidth,
       timeout: null,
-      filter: []
     }
   },
-  async mounted() {
+  mounted() {
     try {
       this.screenInnerWidth = window.innerWidth
 
@@ -65,50 +64,18 @@ export default {
       )
 
       this.responseData = this.team
-      this.loadImage(this.responseData)
+      this.galleryItemsRef = this.$refs.galleryItemsRef
+      this.galleryRootRef = this.$refs.galleryRootRef
 
-      this.$nextTick(() => {
-        this.galleryItemsRef = this.$refs.galleryItemsRef
-        this.galleryRootRef = this.$refs.galleryRootRef
+      this.animateGalleryOnScroll()
 
-        this.animateGalleryOnScroll()
-      })
     } catch (error) {
       throw new Error('Failed to fetch profile picture', { cause: error })
     }
   },
   computed: {
-    galleryItems() {
-      const imagePerColumn = this.amountImagePerColumn(this.loadImage(this.responseData))
-      return this.isMobile ? [this.loadImage(this.responseData)] : imagePerColumn
-    },
-    gridColumnTemplateAmount() {
-      switch (true) {
-        case this.isMobile:
-          return 2
-        case this.screenInnerWidth < 800:
-          return 3
-        default:
-          return 7
-      }
-    },
-    isMobile() {
-      return this.screenInnerWidth < 500
-    },
-    columnImageAmountEven() {
-      switch (true) {
-        case this.isMobile:
-          return 3
-        case this.screenInnerWidth < 800:
-          return 5
-        default:
-          return 4
-      }
-    },
-  },
-  methods: {
-    loadImage(data) {
-      return data.reduce((newObject, oldObject) => {
+    modifiedImageData() {
+      return this.responseData.reduce((newObject, oldObject) => {
         newObject.push({
           ...oldObject,
           size: {
@@ -120,9 +87,39 @@ export default {
         return newObject
       }, [])
     },
-    amountImagePerColumn(refactoredResponse) {
-      const { columnImageAmountOdd, columnImageAmountEven } = this
-      const columnGroupSize = columnImageAmountEven + columnImageAmountOdd
+    galleryItems() {
+      const imagePerColumn = this.arrangeImagesByColumns(this.modifiedImageData)
+      return this.isMobile ? [this.modifiedImageData] : imagePerColumn
+    },
+    gridColumnTemplateAmount() {
+      switch (true) {
+        case this.isMobile:
+          return 2
+        case this.screenInnerWidth < 800:
+          return 3
+        default:
+          return 7
+      }
+    },
+    evenColumnItemAmount() {
+      switch (true) {
+        case this.isMobile:
+          return 2
+        case this.screenInnerWidth < 800:
+          return 5
+        default:
+          return 4
+      }
+    },
+
+    isMobile() {
+      return this.screenInnerWidth < 500
+    },
+  },
+  methods: {
+    arrangeImagesByColumns(refactoredResponse) {
+      const { oddColumnItemAmount, evenColumnItemAmount } = this
+      const columnGroupSize = evenColumnItemAmount + oddColumnItemAmount
 
       return refactoredResponse.reduce(
         (resultValue, currentValue, index) => {
@@ -130,9 +127,9 @@ export default {
 
           if (
             (index % columnGroupSize === 0 &&
-              currentArray.length === columnImageAmountEven) ||
-            (index % columnGroupSize === columnImageAmountOdd &&
-              currentArray.length === columnImageAmountOdd)
+              currentArray.length === evenColumnItemAmount) ||
+            (index % columnGroupSize === oddColumnItemAmount &&
+              currentArray.length === oddColumnItemAmount)
           ) {
             resultValue.push([currentValue])
           } else {
@@ -167,11 +164,11 @@ export default {
 
         this.galleryItemsRef.forEach((column, index) => {
           const { speed } = this.galleryItems[index][0]
-
+          const shouldResetAnimation = this.screenInnerWidth < 800;
           if (column) {
             column.animate(
               {
-                transform: `translateY(${ galleryWrapperTopPosition * speed * -1 }px)`,
+                transform: shouldResetAnimation ? 'translateY(0)' : `translateY(${ galleryWrapperTopPosition * speed * -1 }px)`,
                 easing: 'ease-out'
               },
               {
@@ -275,7 +272,8 @@ export default {
 }
 
 @media screen and (min-width: 500px) {
-  .gallery-parallax_item+.gallery-parallax_item {
+  .gallery-parallax_item +
+  .gallery-parallax_item {
     margin-top: var(--gap);
   }
 }
@@ -288,7 +286,6 @@ export default {
   }
 
   .gallery-parallax__wrapper {
-    /* grid-template-columns: 0.5fr repeat(var(--grid-template), 1fr) 0.5fr; */
     grid-template-columns: repeat(var(--grid-template), 1fr);
   }
 
