@@ -33,10 +33,10 @@
       </ul>
       <template v-else>
         <ul
-          :class="{ 'gallery-parallax__wrapper': gridColumnTemplateAmount <= 1 }"
-          class="gallery-parallax__row--desktop"
           v-for="galleryColumn in galleryItems"
           :key="galleryColumn.id"
+          :class="{ 'gallery-parallax__wrapper': gridColumnTemplateAmount <= 1 }"
+          class="gallery-parallax__row--desktop"
           ref="galleryItemsRef"
           :style="`--grid-template: ${gridColumnTemplateAmount}`"
         >
@@ -44,8 +44,7 @@
             v-for="(item) in galleryColumn"
             :key="item.id"
             class="gallery-parallax_item"
-            :style="`--ratio: ${item && (item.size.height / item.size.width) * 100}%`
-            "
+            :style="`--ratio: ${item && (item.size.height / item.size.width) * 100}%`"
           >
             <gallery-item
               :name="item.name"
@@ -73,7 +72,7 @@ export default {
   data() {
     return {
       columnItems: 3,
-      oddColumnImageAmount: 3, // index 1, 3, 5, 7 etc
+      columnImageAmountOdd: 3,
       responseData: [],
       galleryItemsRef: null,
       galleryRootRef: null,
@@ -99,12 +98,6 @@ export default {
         this.galleryItemsRef = this.$refs.galleryItemsRef
         this.galleryRootRef = this.$refs.galleryRootRef
 
-        if (this.screenInnerWidth > 600) {
-          this.galleryItemsRef.forEach(item => {
-            const randomTopPosition = Math.floor(Math.random() * (50 - -50 + 1) + -50)
-            item.style.transform = `translateY(${ randomTopPosition }px)`
-          })
-        }
         this.animateGalleryOnScroll()
       })
     } catch (error) {
@@ -129,7 +122,7 @@ export default {
     isMobile() {
       return this.screenInnerWidth < 500
     },
-    evenColumnImageAmount() {
+    columnImageAmountEven() {
       switch (true) {
         case this.isMobile:
           return 3
@@ -155,8 +148,8 @@ export default {
       }, [])
     },
     amountImagePerColumn(refactoredResponse) {
-      const { oddColumnImageAmount, evenColumnImageAmount } = this
-      const columnGroupSize = evenColumnImageAmount + oddColumnImageAmount
+      const { columnImageAmountOdd, columnImageAmountEven } = this
+      const columnGroupSize = columnImageAmountEven + columnImageAmountOdd
 
       return refactoredResponse.reduce(
         (resultValue, currentValue, index) => {
@@ -164,9 +157,9 @@ export default {
 
           if (
             (index % columnGroupSize === 0 &&
-              currentArray.length === evenColumnImageAmount) ||
-            (index % columnGroupSize === oddColumnImageAmount &&
-              currentArray.length === oddColumnImageAmount)
+              currentArray.length === columnImageAmountEven) ||
+            (index % columnGroupSize === columnImageAmountOdd &&
+              currentArray.length === columnImageAmountOdd)
           ) {
             resultValue.push([currentValue])
           } else {
@@ -197,6 +190,7 @@ export default {
           (window.innerHeight -
             this.galleryRootRef.getBoundingClientRect().top) *
           0.01
+
 
         this.galleryItemsRef.forEach((column, index) => {
           const { speed } = this.galleryItems[index][0]
