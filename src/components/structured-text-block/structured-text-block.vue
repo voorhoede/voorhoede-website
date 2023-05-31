@@ -207,6 +207,10 @@ export default {
     }
   }
 
+  .structured-text > *:not(:last-child) {
+    margin-bottom: var(--spacing-medium);
+  }
+
   .structured-text__title:not(:last-child) {
     margin-bottom: var(--spacing-medium);
   }
