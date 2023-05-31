@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'image-cards-optional-links-2';
+export const datocmsEnvironment = 'image-card-links-deploy';
