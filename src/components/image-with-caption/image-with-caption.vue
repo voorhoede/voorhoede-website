@@ -18,19 +18,18 @@
   </div>
 </template>
 
-<script>
-  export default {
-    props: {
-      caption: {
-        type: String,
-        default: null
-      },
-      image: {
-        type: Object,
-        required: true,
-      },
-    }
+<script setup lang="ts">
+type Props = {
+  caption: string,
+  image: {
+    width: number,
+    height: number,
+    url: string,
+    alt?: string,
   }
+}
+
+defineProps<Props>()
 </script>
 
 <style>
