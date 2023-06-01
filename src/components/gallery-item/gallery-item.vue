@@ -17,7 +17,7 @@
       <p class="h4">
         {{ name }}
       </p>
-      <span class="body-small">{{ role }}</span>
+      <span class="body-detail">{{ jobTitle }}</span>
     </div>
   </div>
 </template>
@@ -45,7 +45,7 @@ export default {
       required: true,
       default: null
     },
-    role: {
+    jobTitle: {
       type: String,
       required: true,
       default: null
@@ -123,15 +123,18 @@ export default {
   background-color: var(--brand-yellow);
   width: 100%;
   pointer-events: none;
+
   bottom: 0;
   padding: 1rem;
   opacity: 0;
   z-index: var(--z-index-high);
-  transition: opacity 250ms ease-in-out;
+  transform: translateY(10px);
+  transition: opacity 250ms ease-in-out, transform 250ms ease-in-out;
 }
 
 .gallery-item:hover .details,
 .gallery-item:focus .details {
+  transform: translateY(0);
   opacity: 1;
 }
 

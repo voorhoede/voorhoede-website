@@ -15,17 +15,17 @@
         :style="`--grid-template: ${gridColumnTemplateAmount}`"
       >
         <li
-          v-for="person in items"
-          :key="person.id"
+          v-for="item in items"
+          :key="item.id"
           class="gallery-parallax_item"
-          :style="`--ratio: ${(person.size.height / person.size.width) * 100}%`"
+          :style="`--ratio: ${(item.size.height / item.size.width) * 100}%`"
         >
           <gallery-item
-            :name="person.name"
-            :image="person.image"
-            :role="person.jobTitle"
-            :id="person.id"
-            :slug="person.slug"
+            :name="item.name"
+            :image="item.image"
+            :job-title="item.jobTitle"
+            :id="item.id"
+            :slug="item.slug"
           />
         </li>
       </ul>
@@ -54,7 +54,7 @@ export default {
       timeout: null,
     }
   },
-  mounted() {
+  async mounted() {
     try {
       this.screenInnerWidth = window.innerWidth
 
@@ -66,6 +66,19 @@ export default {
       this.responseData = this.team
       this.galleryItemsRef = this.$refs.galleryItemsRef
       this.galleryRootRef = this.$refs.galleryRootRef
+
+      this.$nextTick(() => {
+        if(this.screenInnerWidth < 800) return
+        this.galleryItemsRef.forEach((column, index) => {
+          const { speed } = this.galleryItems[index][0]
+          const galleryWrapperTopPosition =
+            (window.innerHeight -
+              this.galleryRootRef.getBoundingClientRect().top) *
+            0.01
+          column.style.transform = `translateY(${ galleryWrapperTopPosition * speed * -1 }px)`
+
+        })
+      })
 
       this.animateGalleryOnScroll()
 
@@ -82,7 +95,7 @@ export default {
             width: oldObject.image.responsiveImage.width,
             height: oldObject.image.responsiveImage.height
           },
-          speed: Math.floor(Math.random() * (20 - 5 + 1) + 5)
+          speed: Math.floor(Math.random() * (10 - 5 + 1) + 5)
         })
         return newObject
       }, [])
@@ -111,7 +124,6 @@ export default {
           return 4
       }
     },
-
     isMobile() {
       return this.screenInnerWidth < 500
     },
@@ -161,14 +173,15 @@ export default {
             this.galleryRootRef.getBoundingClientRect().top) *
           0.01
 
-
         this.galleryItemsRef.forEach((column, index) => {
           const { speed } = this.galleryItems[index][0]
           const shouldResetAnimation = this.screenInnerWidth < 800;
           if (column) {
             column.animate(
               {
-                transform: shouldResetAnimation ? 'translateY(0)' : `translateY(${ galleryWrapperTopPosition * speed * -1 }px)`,
+                transform: shouldResetAnimation ?
+                  'translateY(0)' :
+                  `translateY(${ galleryWrapperTopPosition * speed * -1 }px)`,
                 easing: 'ease-out'
               },
               {
@@ -208,34 +221,22 @@ export default {
 :root {
   --gap: 10px;
   --radius: 10px;
-  --blender: 150px;
-  --unit-medium: 20px;
+  --gallery-spacing-top: 50px;
 }
 
 .gallery-parallax {
   position: relative;
-  margin-top: var(--blender);
-  margin-bottom: var(--blender);
-  background-color: white;
-
+  margin-top: var(--gallery-spacing-top);
   /* force gpu to avoid render glitches */
   transform: translateZ(0);
-
-  margin-left: auto;
-  margin-right: auto;
+  grid-column: var(--grid-page);
   z-index: 1;
 }
 
-.gallery-parallax::before {
-  content: "";
-  position: absolute;
-  bottom: 100%;
-  left: 0;
-  width: 100%;
-  height: var(--blender);
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), white);
-  background-size: cover;
-  pointer-events: none;
+@media (min-width: 1400px) {
+  .gallery-parallax {
+    grid-column: var(--grid-content);
+  }
 }
 
 .gallery-parallax__wrapper {
@@ -243,21 +244,13 @@ export default {
   display: grid;
   grid-template-columns: repeat(var(--grid-template), 1fr);
   grid-gap: var(--gap);
-  grid-column: var(--grid-content);
+  grid-column: var(--grid-page);
 }
 
 .gallery-parallax__row--desktop {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-}
-
-.gallery-parallax_grid {
-  display: grid;
-  align-content: center;
-  list-style: none;
-  overflow: unset;
-  will-change: transform;
 }
 
 .gallery-parallax_item {
@@ -280,23 +273,12 @@ export default {
 
 @media screen and (min-width: 800px) {
   .gallery-parallax {
-    --gap: var(--unit-medium);
     --radius: 20px;
-    --blender: 200px;
+    --gallery-spacing-top: 100px;
   }
 
   .gallery-parallax__wrapper {
     grid-template-columns: repeat(var(--grid-template), 1fr);
-  }
-
-  .gallery-parallax_grid {
-    overflow: hidden;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .gallery-parallax {
-    --blender: 250px;
   }
 }
 </style>
