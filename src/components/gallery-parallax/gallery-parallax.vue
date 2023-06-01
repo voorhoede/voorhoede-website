@@ -87,7 +87,7 @@ export default {
     }
   },
   computed: {
-    modifiedImageData() {
+    modifiedResponseData() {
       return this.responseData.reduce((newObject, oldObject) => {
         newObject.push({
           ...oldObject,
@@ -101,8 +101,8 @@ export default {
       }, [])
     },
     galleryItems() {
-      const imagePerColumn = this.arrangeImagesByColumns(this.modifiedImageData)
-      return this.isMobile ? [this.modifiedImageData] : imagePerColumn
+      const imagePerColumn = this.arrangeImagesByColumns(this.modifiedResponseData)
+      return this.isMobile ? [this.modifiedResponseData] : imagePerColumn
     },
     gridColumnTemplateAmount() {
       switch (true) {
@@ -250,12 +250,6 @@ export default {
   grid-template-columns: repeat(var(--gallery-parallax-grid-template), 1fr);
   grid-gap: var(--gallery-parallax-gap);
   grid-column: var(--grid-page);
-}
-
-@media (min-width: 800px) {
-  .gallery-parallax__wrapper {
-    grid-template-columns: repeat(var(--gallery-parallax-grid-template), 1fr);
-  }
 }
 
 .gallery-parallax__wrapper--desktop {
