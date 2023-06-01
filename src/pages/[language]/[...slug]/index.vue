@@ -141,7 +141,8 @@ function getSectionBackgroundColor(section) {
     padding-top: var(--spacing-big);
   }
 
-  .landing-page__section--background {
+  .landing-page__section--background,
+  .landing-page__section:last-child {
     padding-bottom: var(--spacing-big);
   }
 
