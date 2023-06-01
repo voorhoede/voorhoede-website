@@ -105,21 +105,7 @@ fragment servicespage on ServiceOverviewRecord {
       title
       url
       page {
-        ... on HomeRecord {
-          slug
-        }
-        ... on ServiceOverviewRecord {
-          slug
-        }
-        ... on CaseOverviewRecord {
-          slug
-        }
-        ... on BlogPostOverviewRecord {
-          slug
-        }
-        ... on ContactRecord {
-          slug
-        }
+        __typename
         ... on LandingPageRecord {
           slug
         }

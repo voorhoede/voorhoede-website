@@ -28,7 +28,7 @@
           >
             <app-link
               class="app-footer__link"
-              :to="createHref($i18n, link)"
+              :to="createHref($i18n, link.page)"
             >
               {{ link.title }}
             </app-link>
@@ -36,7 +36,7 @@
           <li class="app-footer__list-item body-detail">
             <app-link
               class="app-footer__link"
-              :to="createHref($i18n, { page: { slug: 'faq' } })"
+              :to="createHref($i18n, { __typename: 'FaqRecord' })"
             >
               FAQ
             </app-link>

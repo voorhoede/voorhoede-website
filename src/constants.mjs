@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'image-block-require-alt-deploy';
+export const datocmsEnvironment = 'internal-link-all-pages';

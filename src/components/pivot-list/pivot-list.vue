@@ -54,7 +54,7 @@
           <app-button
             v-else-if="pivot.link"
             :label="pivot.buttonLabel"
-            :to="createHref($i18n, pivot.link)"
+            :to="createHref($i18n, pivot.link.page)"
           />
 
           <newsletter-form

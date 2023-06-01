@@ -22,7 +22,7 @@
           >
             <app-link
               class="app-header__link"
-              :to="createHref($i18n, link)"
+              :to="createHref($i18n, link.page)"
             >
               {{ link.title }}
             </app-link>
@@ -34,7 +34,7 @@
             <app-button
               small
               :label="callToAction.title"
-              :to="createHref($i18n, callToAction)"
+              :to="createHref($i18n, callToAction.page)"
             />
           </li>
         </ul>

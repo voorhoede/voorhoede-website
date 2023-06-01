@@ -44,7 +44,7 @@
         >
           <app-link
             class="h3"
-            :to="createHref($i18n, link)"
+            :to="createHref($i18n, link.page)"
           >
             {{ link.title }}
           </app-link>

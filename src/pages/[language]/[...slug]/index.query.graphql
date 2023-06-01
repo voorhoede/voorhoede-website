@@ -233,7 +233,26 @@ fragment link on RecordInterface {
     id
     title
     link {
+      __typename
       ... on LandingPageRecord {
+        slug
+      }
+      ... on BlogPostRecord {
+        slug
+      }
+      ... on CaseItemRecord {
+        slug
+      }
+      ... on EventItemRecord {
+        slug
+      }
+      ... on JobRecord {
+        slug
+      }
+      ... on ServiceRecord {
+        slug
+      }
+      ... on PersonRecord {
         slug
       }
     }
