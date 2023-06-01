@@ -5,22 +5,22 @@
   >
     <div
       :class="{ 'gallery-parallax__wrapper': !isMobile }"
-      :style="!isMobile && `--grid-template: ${gridColumnTemplateAmount}`"
+      :style="!isMobile && `--gallery-parallax-grid-template: ${gridColumnTemplateAmount}`"
     >
       <ul
         v-for="items in galleryItems"
         :key="items.id"
-        :class="`${isMobile ? 'gallery-parallax__wrapper' : 'gallery-parallax__row--desktop'}`"
+        :class="`${isMobile ? 'gallery-parallax__wrapper' : 'gallery-parallax__wrapper--desktop'}`"
         ref="galleryItemsRef"
-        :style="`--grid-template: ${gridColumnTemplateAmount}`"
+        :style="`--gallery-parallax-grid-template: ${gridColumnTemplateAmount}`"
       >
         <li
           v-for="item in items"
           :key="item.id"
-          class="gallery-parallax_item"
+          class="gallery-parallax__item"
           :style="`--ratio: ${(item.size.height / item.size.width) * 100}%`"
         >
-          <gallery-item
+          <gallery-item-employee
             :name="item.name"
             :image="item.image"
             :job-title="item.jobTitle"
@@ -219,18 +219,23 @@ export default {
 
 <style>
 :root {
-  --gap: 10px;
-  --radius: 10px;
-  --gallery-spacing-top: 50px;
+  --gallery-parallax-gap: 10px;
+  --gallery-parallax-spacing-top: 50px;
 }
 
 .gallery-parallax {
   position: relative;
-  margin-top: var(--gallery-spacing-top);
+  margin-top: var(--gallery-parallax-spacing-top);
   /* force gpu to avoid render glitches */
   transform: translateZ(0);
   grid-column: var(--grid-page);
   z-index: 1;
+}
+
+@media (min-width: 800px) {
+  .gallery-parallax {
+    --gallery-parallax-spacing-top: 100px;
+  }
 }
 
 @media (min-width: 1400px) {
@@ -242,43 +247,38 @@ export default {
 .gallery-parallax__wrapper {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(var(--grid-template), 1fr);
-  grid-gap: var(--gap);
+  grid-template-columns: repeat(var(--gallery-parallax-grid-template), 1fr);
+  grid-gap: var(--gallery-parallax-gap);
   grid-column: var(--grid-page);
 }
 
-.gallery-parallax__row--desktop {
+@media (min-width: 800px) {
+  .gallery-parallax__wrapper {
+    grid-template-columns: repeat(var(--gallery-parallax-grid-template), 1fr);
+  }
+}
+
+.gallery-parallax__wrapper--desktop {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
-.gallery-parallax_item {
+.gallery-parallax__item {
   position: relative;
   height: 100%;
 }
 
-.gallery-parallax_item::before {
+.gallery-parallax__item::before {
   content: "";
   display: block;
   padding-top: var(--ratio);
 }
 
-@media screen and (min-width: 500px) {
-  .gallery-parallax_item +
-  .gallery-parallax_item {
-    margin-top: var(--gap);
-  }
-}
-
-@media screen and (min-width: 800px) {
-  .gallery-parallax {
-    --radius: 20px;
-    --gallery-spacing-top: 100px;
-  }
-
-  .gallery-parallax__wrapper {
-    grid-template-columns: repeat(var(--grid-template), 1fr);
+@media (min-width: 500px) {
+  .gallery-parallax__item +
+  .gallery-parallax__item {
+    margin-top: var(--gallery-parallax-gap);
   }
 }
 </style>

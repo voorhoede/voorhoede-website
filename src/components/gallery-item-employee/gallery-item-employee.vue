@@ -1,27 +1,26 @@
 <template>
   <app-link
     :to="$localeUrl({ name: 'team-slug', params: { slug } })"
+    class="gallery-item"
   >
-    <div class="gallery-item">
-      <picture>
-        <source
-          type="image/webp"
-          :srcset="image.responsiveImage.webpSrcSet"
-        >
-        <img
-          class="image"
-          :src="image.responsiveImage.src"
-          :alt="name"
-          loading="lazy"
-          ref="imageRef"
-        >
-      </picture>
-      <div class="details">
-        <p class="h4">
-          {{ name }}
-        </p>
-        <span class="body-detail">{{ jobTitle }}</span>
-      </div>
+    <picture>
+      <source
+        type="image/webp"
+        :srcset="image.responsiveImage.webpSrcSet"
+      >
+      <img
+        class="gallery-item__image"
+        :src="image.responsiveImage.src"
+        :alt="name"
+        loading="lazy"
+        ref="galleryItemImageRef"
+      >
+    </picture>
+    <div class="gallery-item__details">
+      <p class="h4">
+        {{ name }}
+      </p>
+      <span class="body-detail">{{ jobTitle }}</span>
     </div>
   </app-link>
 </template>
@@ -37,11 +36,6 @@ export default {
     name: {
       type: String,
       required: true,
-      default: null
-    },
-    quote: {
-      type: String,
-      required: false,
       default: null
     },
     image: {
@@ -62,17 +56,17 @@ export default {
   },
   data() {
     return {
-      imageRef: null
+      galleryItemImage: null
     }
   },
   mounted() {
-    const image = this.$refs.imageRef
+    const imageRef = this.$refs.galleryItemImageRef
     function startScale(entries) {
       entries.forEach(entry => {
         const { isIntersecting } = entry
 
         if (isIntersecting) {
-          window.requestAnimationFrame(startAnimation(image))
+          window.requestAnimationFrame(startAnimation(imageRef))
         }
         window.cancelAnimationFrame()
       })
@@ -102,14 +96,14 @@ export default {
 
     const observer = new IntersectionObserver(startScale, options)
     window.requestAnimationFrame(() => {
-      observer.observe(image)
+      observer.observe(imageRef)
     })
   }
 }
 </script>
 
 <style>
-.image {
+.gallery-item__image {
   position: absolute;
   top: 0;
   left: 0;
@@ -122,7 +116,7 @@ export default {
   will-change: transform;
 }
 
-.details {
+.gallery-item__details {
   position: absolute;
   background-color: var(--brand-yellow);
   width: 100%;
@@ -136,23 +130,9 @@ export default {
   transition: opacity 250ms ease-in-out, transform 250ms ease-in-out;
 }
 
-.gallery-item:hover .details,
-.gallery-item:focus .details {
+.gallery-item:hover .gallery-item__details,
+.gallery-item:focus .gallery-item__details {
   transform: translateY(0);
   opacity: 1;
-}
-
-.button {
-  border: none;
-  background: none;
-  border: none;
-}
-
-.button:hover {
-  cursor: pointer;
-}
-.show-details-side-view {
-  right: 0;
-  color: white;
 }
 </style>
