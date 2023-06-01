@@ -1,25 +1,29 @@
 <template>
-  <div class="gallery-item">
-    <picture>
-      <source
-        type="image/webp"
-        :srcset="image.responsiveImage.webpSrcSet"
-      >
-      <img
-        class="image"
-        :src="image.responsiveImage.src"
-        :alt="name"
-        loading="lazy"
-        ref="imageRef"
-      >
-    </picture>
-    <div class="details">
-      <p class="h4">
-        {{ name }}
-      </p>
-      <span class="body-detail">{{ jobTitle }}</span>
+  <app-link
+    :to="$localeUrl({ name: 'team-slug', params: { slug } })"
+  >
+    <div class="gallery-item">
+      <picture>
+        <source
+          type="image/webp"
+          :srcset="image.responsiveImage.webpSrcSet"
+        >
+        <img
+          class="image"
+          :src="image.responsiveImage.src"
+          :alt="name"
+          loading="lazy"
+          ref="imageRef"
+        >
+      </picture>
+      <div class="details">
+        <p class="h4">
+          {{ name }}
+        </p>
+        <span class="body-detail">{{ jobTitle }}</span>
+      </div>
     </div>
-  </div>
+  </app-link>
 </template>
 
 <script>
