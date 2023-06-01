@@ -199,6 +199,13 @@ query LandingPage($locale: SiteLocale, $slug: String) {
       }
     }
   }
+
+  employees: allPeople(
+    filter: { employmentStatus: { eq: "currentEmployee" } }
+    first: 100
+  ) {
+    ...person
+  }
 }
 
 fragment buttonsList on StructuredTextButtonsListRecord {
@@ -242,5 +249,23 @@ fragment link on RecordInterface {
     id
     title
     url
+  }
+}
+
+fragment person on PersonRecord {
+  id
+  jobTitle
+  lastName
+  name
+  slug
+  image {
+    responsiveImage {
+      srcSet
+      src
+      webpSrcSet
+      width
+      height
+      alt
+    }
   }
 }
