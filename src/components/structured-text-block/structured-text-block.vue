@@ -20,12 +20,6 @@
   />
 </template>
 
-<script>
-export default {
-  inheritAttrs: false
-}
-</script>
-
 <script setup>
   import slugify from '../../lib/slugify';
   import { h } from 'vue'
@@ -62,6 +56,7 @@ export default {
 
   const tocItems = ref([]);
   const emit = defineEmits(['update-toc-items']);
+  defineOptions({ inheritAttrs: false });
 
   const customNodeRules = [
     renderNodeRule(isHeading, ({ node, key, children }) => {
