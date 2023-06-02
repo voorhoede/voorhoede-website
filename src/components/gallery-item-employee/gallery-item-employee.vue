@@ -3,19 +3,15 @@
     :to="$localeUrl({ name: 'team-slug', params: { slug } })"
     class="gallery-item"
   >
-    <picture>
-      <source
-        type="image/webp"
-        :srcset="image.responsiveImage.webpSrcSet"
-      >
-      <img
-        class="gallery-item__image"
-        :src="image.responsiveImage.src"
-        :alt="name"
-        loading="lazy"
-        ref="galleryItemImageRef"
-      >
-    </picture>
+    <dato-image
+      class="gallery-item__image"
+      :src="image.url"
+      :alt="name"
+      :width="image.width"
+      :height="image.height"
+      loading="lazy"
+      ref="galleryItemImageRef"
+    />
     <div class="gallery-item__details">
       <p class="h4">
         {{ name }}
@@ -112,7 +108,6 @@ export default {
   object-fit: cover;
   background-color: var(--bg-pastel);
   overflow: hidden;
-  opacity: 0;
   will-change: transform;
 }
 

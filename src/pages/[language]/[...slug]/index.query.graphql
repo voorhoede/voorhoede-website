@@ -259,13 +259,6 @@ fragment person on PersonRecord {
   name
   slug
   image {
-    responsiveImage {
-      srcSet
-      src
-      webpSrcSet
-      width
-      height
-      alt
-    }
+    ...image
   }
 }

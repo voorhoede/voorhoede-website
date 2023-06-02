@@ -30,6 +30,7 @@
         </li>
       </ul>
     </div>
+    length: {{ galleryItems.length }}
   </section>
 </template>
 
@@ -92,8 +93,8 @@ export default {
         newObject.push({
           ...oldObject,
           size: {
-            width: oldObject.image.responsiveImage.width,
-            height: oldObject.image.responsiveImage.height
+            width: oldObject.image.width,
+            height: oldObject.image.height
           },
           speed: Math.floor(Math.random() * (10 - 5 + 1) + 5)
         })

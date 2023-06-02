@@ -99,7 +99,7 @@
         :items="section.items"
         :title="section.title"
       />
-      <gallery-parallax
+      <team-gallery
         v-if="section.__typename === 'SectionTeamGalleryRecord'"
         :team="data.employees"
       />
