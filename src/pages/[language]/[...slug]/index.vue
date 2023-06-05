@@ -121,7 +121,7 @@
 
   useSeoHead(data.value.page);
 
-function getSectionBackgroundColor(section) {
+  function getSectionBackgroundColor(section) {
     switch (section.__typename) {
       case 'SectionHeaderRecord': {
         return BackgroundColor.PastelYellow;
