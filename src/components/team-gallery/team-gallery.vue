@@ -9,6 +9,7 @@
         <app-link
           :to="$localeUrl({ name: 'team-slug', params: { slug: member.slug } })"
           class="team-gallery-member__link"
+          tabindex="-1"
         >
           <dato-image
             class="team-gallery-member__image"
@@ -21,9 +22,14 @@
           />
         </app-link>
         <div class="team-gallery-member__details">
-          <p class="h4">
-            {{ member.name }}
-          </p>
+          <app-link
+            :to="$localeUrl({ name: 'team-slug', params: { slug: member.slug } })"
+            class="team-gallery-member__link"
+          >
+            <p class="h4">
+              {{ member.name }}
+            </p>
+          </app-link>
           <span
             v-if="member.jobTitle"
             class="body-detail"
@@ -61,6 +67,12 @@
   .team-gallery-member__link {
     display: block;
     height: auto;
+    overflow: hidden;
+  }
+
+  .team-gallery-member__link:hover
+  .team-gallery-member__image {
+    transform: scale(1.05);
   }
 
   .team-gallery__list-item {
@@ -71,6 +83,7 @@
     display: block;
     height: 100%;
     object-fit: cover;
+    transition: transform 200ms ease-in-out;
   }
 
   .team-gallery-member__details {
