@@ -1,11 +1,24 @@
 <template>
   <section class="grid">
     <ul class="team-gallery__list">
-      <li v-for="(member, index) in  team " class="team-gallery__list-item">
-        <app-link :to="$localeUrl({ name: 'team-slug', params: { slug: member.slug } })" class="">
-          <dato-image class="team-gallery-member__image" :class="{" "team-gallery-member__image--idk" : }
-            :src="member.image.url" :alt="member.name" :width="member.image.width" :height="member.image.height"
-            loading="lazy" sizes="(min-width: 800px) 20vw, (min-width: 500px) 33vw, 50vw" />
+      <li
+        v-for="member in team "
+        :key="member.id"
+        class="team-gallery__list-item"
+      >
+        <app-link
+          :to="$localeUrl({ name: 'team-slug', params: { slug: member.slug } })"
+          class=""
+        >
+          <dato-image
+            class="team-gallery-member__image"
+            :src="member.image.url"
+            :alt="member.name"
+            :width="member.image.width"
+            :height="member.image.height"
+            loading="lazy"
+            sizes="(min-width: 800px) 20vw, (min-width: 500px) 33vw, 50vw"
+          />
           <div class="gallery-item__details">
             <p class="h4">
               {{ member.name }}
@@ -19,14 +32,18 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   team: Array<{
     id: string,
     slug: string,
     name: string,
     lastName: string,
     jobTitle: string,
-    image: Object,
+    image: {
+      url: string,
+      width: number,
+      height: number,
+    },
   }>
 }>();
 </script>
