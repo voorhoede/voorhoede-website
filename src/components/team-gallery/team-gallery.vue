@@ -58,10 +58,14 @@
 </script>
 
 <style>
+  :root {
+    --team-gallery-grid-columns: 1;
+  }
+
   .team-gallery__list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(var(--team-gallery-grid-columns), 1fr);
+    gap: 16px;
   }
 
   .team-gallery-member__link {
@@ -87,7 +91,81 @@
   }
 
   .team-gallery-member__details {
-    padding: 1rem 0;
-    text-align: center;
+    position: absolute;
+    padding: 1rem;
+    z-index: 1;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--brand-yellow);
+  }
+
+  @media (min-width: 768px) {
+    .team-gallery-member__details {
+      opacity: 0;
+      transition: opacity 200ms ease-in-out;
+    }
+
+    .team-gallery__list-item:hover .team-gallery-member__details{
+      opacity: 1;
+    }
+
+    .team-gallery__list-item:focus-within .team-gallery-member__details {
+      opacity: 1;
+    }
+
+    .team-gallery__list-item:focus-within .team-gallery-member__image {
+      transform: scale(1.05)
+    }
+  }
+
+  @media (min-width: 486px) {
+    :root {
+      --team-gallery-grid-columns: 2;
+    }
+
+    .team-gallery__list {
+      grid-template-columns: repeat(var(--team-gallery-grid-columns), 1fr);
+    }
+    .team-gallery__list-item:nth-child(2n+2){
+      transform: translateY(20px);
+    }
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --team-gallery-grid-columns: 3;
+    }
+
+    .team-gallery__list .team-gallery__list-item:nth-child(2n+2){
+      transform: translateY(0px);
+    }
+
+    .team-gallery__list .team-gallery__list-item:nth-child(3n+2) {
+      transform: translateY(50px);
+    }
+  }
+  @media (min-width: 1020px) {
+  :root {
+    --team-gallery-grid-columns: 4;
+  }
+
+  .team-gallery__list .team-gallery__list-item:nth-child(2n+2){
+    transform: translateY(0px);
+  }
+
+  .team-gallery__list .team-gallery__list-item:nth-child(3n+2) {
+    transform: translateY(0px);
+  }
+
+  .team-gallery__list .team-gallery__list-item:nth-child(4n+2),
+  .team-gallery__list .team-gallery__list-item:nth-child(4n+4) {
+      transform: translateY(50px);
+    }
+  }
+
+  @media (min-width: 1200px) {
+    :root {
+      --team-gallery-grid-columns: 6;
+    }
   }
 </style>
