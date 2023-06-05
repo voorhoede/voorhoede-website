@@ -197,14 +197,19 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           slug
         }
       }
+      ... on SectionTeamGalleryRecord {
+        team {
+          id
+          jobTitle
+          lastName
+          name
+          slug
+          image {
+            ...image
+          }
+        }
+      }
     }
-  }
-
-  employees: allPeople(
-    filter: { employmentStatus: { eq: "currentEmployee" } }
-    first: 100
-  ) {
-    ...person
   }
 }
 
@@ -249,16 +254,5 @@ fragment link on RecordInterface {
     id
     title
     url
-  }
-}
-
-fragment person on PersonRecord {
-  id
-  jobTitle
-  lastName
-  name
-  slug
-  image {
-    ...image
   }
 }
