@@ -21,12 +21,12 @@
           />
         </app-link>
         <div class="team-gallery-member__details">
-          <p class="h4 team-gallery-member__name">
+          <p class="h4">
             {{ member.name }}
           </p>
           <span
             v-if="member.jobTitle"
-            class="body-detail team-gallery-member__job"
+            class="body-detail"
           >{{ member.jobTitle }}</span>
         </div>
       </li>
@@ -52,15 +52,9 @@ defineProps<{
 </script>
 
 <style>
-:root {
-  --gallery-parallax-gap: 10px;
-  --team-gallery-grid-columns: 1;
-}
-
 .team-gallery__list {
   display: grid;
-  grid-template-columns: repeat(var(--team-gallery-grid-columns), 1fr);
-  /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 10px;
 }
 
@@ -70,60 +64,7 @@ defineProps<{
 }
 
 .team-gallery__list-item {
-  /* text-align: center; */
   position: relative;
-}
-
-@media (min-width: 486px) {
-  :root {
-    --team-gallery-grid-columns: 2;
-  }
-
-  .team-gallery__list {
-    grid-template-columns: repeat(var(--team-gallery-grid-columns), 1fr);
-  }
-  .team-gallery__list-item:nth-child(2n+2){
-    transform: translateY(20px);
-  }
-}
-
-@media (min-width: 768px) {
-  :root {
-    --team-gallery-grid-columns: 3;
-  }
-
-  .team-gallery__list .team-gallery__list-item:nth-child(2n+2){
-    transform: translateY(0px);
-  }
-
-  .team-gallery__list .team-gallery__list-item:nth-child(3n+2) {
-    transform: translateY(50px);
-  }
-}
-
-@media (min-width: 1020px) {
-  :root {
-    --team-gallery-grid-columns: 4;
-  }
-
-  .team-gallery__list .team-gallery__list-item:nth-child(2n+2){
-    transform: translateY(0px);
-  }
-
-  .team-gallery__list .team-gallery__list-item:nth-child(3n+2) {
-    transform: translateY(0px);
-  }
-
-  .team-gallery__list .team-gallery__list-item:nth-child(4n+2),
-  .team-gallery__list .team-gallery__list-item:nth-child(4n+4) {
-    transform: translateY(50px);
-  }
-}
-
-@media (min-width: 1200px) {
-  :root {
-    --team-gallery-grid-columns: 6;
-  }
 }
 
 .team-gallery-member__image {
@@ -131,23 +72,8 @@ defineProps<{
   height: 100%;
   object-fit: cover;
 }
-
 .team-gallery-member__details {
-  position: absolute;
-  background-color: var(--brand-yellow);
-  z-index: 1;
-  bottom: 0;
-  right: 0;
-  padding: 10px;
-}
-
-.team-gallery-member__name {
-  /* background-color: var(--brand-yellow); */
-  padding-top: 10px;
-}
-
-.team-gallery-member__job {
-  display: block;
-  /* color: var(--white); */
+  padding: 1rem 0;
+  text-align: center;
 }
 </style>
