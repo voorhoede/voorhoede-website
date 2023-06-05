@@ -45,7 +45,7 @@
           v-if="card.links[0]?.__typename === 'InternalLinkRecord'"
           class="image-card-grid__link"
           :label="card.links[0].title"
-          :to="createHref($i18n, card.links[0].link)"
+          :to="$datoPageLink(card.links[0].link)"
           secondary
         />
       </li>
@@ -54,7 +54,6 @@
 </template>
 
 <script setup lang="ts">
-import { createHref } from '../../lib/links'
 import { BackgroundColor } from '../../types/index.d'
 
 type Props = {

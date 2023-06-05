@@ -22,7 +22,7 @@
           >
             <app-link
               class="app-header__link"
-              :to="createHref($i18n, link.page)"
+              :to="$datoPageLink(link.page)"
             >
               {{ link.title }}
             </app-link>
@@ -34,7 +34,7 @@
             <app-button
               small
               :label="callToAction.title"
-              :to="createHref($i18n, callToAction.page)"
+              :to="$datoPageLink(callToAction.page)"
             />
           </li>
         </ul>
@@ -45,25 +45,17 @@
 </template>
 
 <script>
-  import { createHref, linkValidator } from '../../lib/links'
 
   export default {
     props: {
       links: {
         type: Array,
-        validator (links) {
-          return links.every(linkValidator)
-        },
         default: () => [],
       },
       callToAction: {
         type: Object,
-        validator: linkValidator,
         default: () => {},
       }
-    },
-    methods: {
-      createHref,
     },
   }
 </script>

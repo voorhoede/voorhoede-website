@@ -30,14 +30,12 @@ export default {
   import { h } from 'vue'
   import { StructuredText as DatocmsStructuredText, renderNodeRule } from 'vue-datocms'
   import { isHeading, isParagraph, isList  } from 'datocms-structured-text-utils'
-  import { createHref } from '../../lib/links';
   import slugify from '../../lib/slugify';
   import AppButton from '../app-button/app-button.vue'
   import TagList from '../tag-list/tag-list.vue'
   import ImageWithCaption from '../image-with-caption/image-with-caption.vue'
   import StructuredTextBlock from './structured-text-block.vue'
 
-  const { $i18n } = useNuxtApp();
   const props = defineProps({
     content: {
       type: Object,
@@ -132,7 +130,7 @@ export default {
           return h(AppButton, {
             key: button.id,
             label: button.title,
-            to: button.url || createHref($i18n, button.link),
+            to: button.url || $datoPageLink(button.link),
             external: button.__typename === 'ExternalLinkRecord',
           })
         }))

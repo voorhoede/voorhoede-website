@@ -54,7 +54,7 @@
           <app-button
             v-else-if="pivot.link"
             :label="pivot.buttonLabel"
-            :to="createHref($i18n, pivot.link.page)"
+            :to="$datoPageLink(pivot.link.page)"
           />
 
           <newsletter-form
@@ -67,8 +67,6 @@
 </template>
 
 <script>
-  import { createHref } from '../../lib/links'
-
   export default {
     props: {
       pivots: {
@@ -95,7 +93,6 @@
       }
     },
     methods: {
-      createHref,
       pivotHasBackground(pivotIndex) {
         const lastPivotIndex = this.pivots.length - 1
 

@@ -28,7 +28,7 @@
           >
             <app-link
               class="app-footer__link"
-              :to="createHref($i18n, link.page)"
+              :to="$datoPageLink(link.page)"
             >
               {{ link.title }}
             </app-link>
@@ -36,7 +36,7 @@
           <li class="app-footer__list-item body-detail">
             <app-link
               class="app-footer__link"
-              :to="createHref($i18n, { __typename: 'FaqRecord' })"
+              :to="$datoPageLink({ __typename: 'FaqRecord' })"
             >
               FAQ
             </app-link>
@@ -138,7 +138,6 @@
 </template>
 
 <script>
-import { createHref } from '../../lib/links'
 
 export default {
   props: {
@@ -175,7 +174,6 @@ export default {
     }
   },
   methods: {
-    createHref,
     observeContact () {
       const contactElement = this.$refs.contact
       this.observer = new IntersectionObserver(function(entries) {
