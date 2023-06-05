@@ -35,45 +35,46 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  team: Array<{
-    id: string,
-    slug: string,
-    name: string,
-    lastName: string,
-    jobTitle: string,
-    image: {
-      url: string,
-      width: number,
-      height: number,
-    },
-  }>
-}>();
+  defineProps<{
+    team: Array<{
+      id: string,
+      slug: string,
+      name: string,
+      lastName: string,
+      jobTitle: string,
+      image: {
+        url: string,
+        width: number,
+        height: number,
+      },
+    }>
+  }>();
 </script>
 
 <style>
-.team-gallery__list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 10px;
-}
+  .team-gallery__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+  }
 
-.team-gallery-member__link {
-  display: block;
-  height: auto;
-}
+  .team-gallery-member__link {
+    display: block;
+    height: auto;
+  }
 
-.team-gallery__list-item {
-  position: relative;
-}
+  .team-gallery__list-item {
+    position: relative;
+  }
 
-.team-gallery-member__image {
-  display: block;
-  height: 100%;
-  object-fit: cover;
-}
-.team-gallery-member__details {
-  padding: 1rem 0;
-  text-align: center;
-}
+  .team-gallery-member__image {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .team-gallery-member__details {
+    padding: 1rem 0;
+    text-align: center;
+  }
 </style>
