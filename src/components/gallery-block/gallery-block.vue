@@ -1,10 +1,15 @@
 <template>
   <div class="gallery-block">
-    <image-with-caption
+    <dato-image
       v-for="image in images"
       :key="image.id"
       class="gallery-block__image"
-      :image="image"
+      :src="image.url"
+      :width="image.width"
+      :height="image.height"
+      :alt="image.alt || ''"
+      sizes="(min-width: 1100px) 650px, 45vw"
+      loading="lazy"
     />
   </div>
 </template>
@@ -29,6 +34,8 @@
   .gallery-block__image {
     flex-grow: 1;
     flex-basis: 50%;
+    width: 100%;
+    height: auto;
   }
 
   .gallery-block__image .image-with-caption__image {
