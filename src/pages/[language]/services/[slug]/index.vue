@@ -32,7 +32,10 @@
           v-if="item.__typename === 'ImageRecord'"
           :key="item.id"
           :id="item.id"
-          :image="item.image"
+          :image="{
+            ...item.image,
+            sizes: '(min-width: 1440px) 840px, (min-width: 720px) 65vw, 95vw',
+          }"
           :caption="item.caption"
         />
         <responsive-video

@@ -12,7 +12,7 @@
       alt=""
       :width="image.width"
       :height="image.height"
-      sizes="(min-width: 1100px) 730px, (min-width: 720px) 40vw, 100vw"
+      sizes="(min-width: 1100px) 730px, (min-width: 720px) 40vw, 90vw"
       loading="eager"
       :quality="55"
     />

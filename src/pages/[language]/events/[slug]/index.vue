@@ -53,10 +53,15 @@
       </aside>
 
       <article class="page-event-detail__main">
-        <image-with-caption
+        <dato-image
           v-if="!imageIsIllustration && data.page.image"
           class="page-event-detail__image"
-          :image="data.page.image"
+          :src="data.page.image.url"
+          alt=""
+          :width="data.page.image.width"
+          :height="data.page.image.height"
+          sizes="(min-width: 1440px) 640px, (min-width: 720px) 65vw, 95vw"
+          loading="eager"
         />
 
         <template v-for="item in data.page.items">
@@ -82,7 +87,12 @@
             :class="{ 'page-event-detail__main--not-indented' : item.fullWidth}"
             v-if="item.__typename === 'ImageRecord' && item.image"
             :key="item.image.url"
-            :image="item.image"
+            :image="{
+              ...item.image,
+              sizes: item.fullWidth
+                ? '(min-width: 1440px) 860px, (min-width: 720px) 75vw, 95vw'
+                : '(min-width: 1440px) 640px, (min-width: 720px) 65vw, 95vw',
+            }"
             :caption="item.caption"
           />
 
@@ -233,6 +243,8 @@
   .page-event-detail__image {
     justify-content: space-between;
     margin-bottom: var(--spacing-large);
+    width: 100%;
+    height: auto;
   }
 
   .page-event-detail__image .image-with-description__description {

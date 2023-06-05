@@ -68,7 +68,10 @@
           :id="item.id"
           v-if="item.__typename === 'ImageRecord'"
           :key="item.id"
-          :image="item.image"
+          :image="{
+            ...item.image,
+            sizes: '(min-width: 1440px) 1300px, (min-width: 1100px) 1060px, 95vw',
+          }"
           :caption="item.caption"
         />
 
