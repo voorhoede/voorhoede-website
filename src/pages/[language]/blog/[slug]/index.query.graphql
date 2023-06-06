@@ -133,6 +133,9 @@ fragment page on BlogPostRecord {
         ... on LandingPageRecord {
           slug
         }
+        ... on ServiceRecord {
+          slug
+        }
       }
     }
     externalLink
