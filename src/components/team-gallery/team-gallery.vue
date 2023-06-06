@@ -2,7 +2,7 @@
   <section class="grid">
     <ul class="team-gallery__list">
       <li
-        v-for="member in team "
+        v-for="member in team"
         :key="member.id"
         class="team-gallery__list-item"
       >
@@ -23,7 +23,9 @@
         </app-link>
         <div class="team-gallery-member__details">
           <app-link
-            :to="$localeUrl({ name: 'team-slug', params: { slug: member.slug } })"
+            :to="
+              $localeUrl({ name: 'team-slug', params: { slug: member.slug } })
+            "
             class="team-gallery-member__link"
           >
             <p class="h4">
@@ -33,7 +35,9 @@
           <span
             v-if="member.jobTitle"
             class="body-detail"
-          >{{ member.jobTitle }}</span>
+          >
+            {{ member.jobTitle }}
+          </span>
         </div>
       </li>
     </ul>
@@ -41,132 +45,132 @@
 </template>
 
 <script setup lang="ts">
-  defineProps<{
-    team: Array<{
-      id: string,
-      slug: string,
-      name: string,
-      lastName: string,
-      jobTitle: string,
-      image: {
-        url: string,
-        width: number,
-        height: number,
-      },
-    }>
-  }>();
+defineProps<{
+  team: Array<{
+    id: string;
+    slug: string;
+    name: string;
+    lastName: string;
+    jobTitle: string;
+    image: {
+      url: string;
+      width: number;
+      height: number;
+    };
+  }>;
+}>();
 </script>
 
 <style>
+:root {
+  --team-gallery-grid-columns: 1;
+}
+
+.team-gallery__list {
+  display: grid;
+  grid-template-columns: repeat(var(--team-gallery-grid-columns), 1fr);
+  gap: 16px;
+}
+
+.team-gallery-member__link {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+}
+
+.team-gallery-member__link:hover .team-gallery-member__image {
+  transform: scale(1.05);
+}
+
+.team-gallery__list-item {
+  position: relative;
+}
+
+.team-gallery-member__image {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 200ms ease-in-out;
+}
+
+.team-gallery-member__details {
+  position: absolute;
+  padding: 1rem;
+  z-index: 1;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--brand-yellow);
+}
+
+@media (min-width: 768px) {
+  .team-gallery-member__details {
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+  }
+
+  .team-gallery__list-item:hover .team-gallery-member__details {
+    opacity: 1;
+  }
+
+  .team-gallery__list-item:focus-within .team-gallery-member__details {
+    opacity: 1;
+  }
+
+  .team-gallery__list-item:focus-within .team-gallery-member__image {
+    transform: scale(1.05);
+  }
+}
+
+@media (min-width: 486px) {
   :root {
-    --team-gallery-grid-columns: 1;
+    --team-gallery-grid-columns: 2;
   }
 
   .team-gallery__list {
-    display: grid;
     grid-template-columns: repeat(var(--team-gallery-grid-columns), 1fr);
-    gap: 16px;
   }
 
-  .team-gallery-member__link {
-    display: block;
-    height: auto;
-    overflow: hidden;
+  .team-gallery__list-item:nth-child(2n + 2) {
+    transform: translateY(20px);
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --team-gallery-grid-columns: 3;
   }
 
-  .team-gallery-member__link:hover .team-gallery-member__image {
-    transform: scale(1.05);
+  .team-gallery__list .team-gallery__list-item:nth-child(2n + 2) {
+    transform: translateY(0px);
   }
 
-  .team-gallery__list-item {
-    position: relative;
+  .team-gallery__list .team-gallery__list-item:nth-child(3n + 2) {
+    transform: translateY(50px);
+  }
+}
+
+@media (min-width: 1020px) {
+  :root {
+    --team-gallery-grid-columns: 4;
   }
 
-  .team-gallery-member__image {
-    display: block;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 200ms ease-in-out;
+  .team-gallery__list .team-gallery__list-item:nth-child(2n + 2) {
+    transform: translateY(0px);
   }
 
-  .team-gallery-member__details {
-    position: absolute;
-    padding: 1rem;
-    z-index: 1;
-    bottom: 0;
-    width: 100%;
-    background-color: var(--brand-yellow);
+  .team-gallery__list .team-gallery__list-item:nth-child(3n + 2) {
+    transform: translateY(0px);
   }
 
-  @media (min-width: 768px) {
-    .team-gallery-member__details {
-      opacity: 0;
-      transition: opacity 200ms ease-in-out;
-    }
-
-    .team-gallery__list-item:hover .team-gallery-member__details {
-      opacity: 1;
-    }
-
-    .team-gallery__list-item:focus-within .team-gallery-member__details {
-      opacity: 1;
-    }
-
-    .team-gallery__list-item:focus-within .team-gallery-member__image {
-      transform: scale(1.05)
-    }
+  .team-gallery__list .team-gallery__list-item:nth-child(4n + 2),
+  .team-gallery__list .team-gallery__list-item:nth-child(4n + 4) {
+    transform: translateY(50px);
   }
+}
 
-  @media (min-width: 486px) {
-    :root {
-      --team-gallery-grid-columns: 2;
-    }
-
-    .team-gallery__list {
-      grid-template-columns: repeat(var(--team-gallery-grid-columns), 1fr);
-    }
-
-    .team-gallery__list-item:nth-child(2n+2) {
-      transform: translateY(20px);
-    }
+@media (min-width: 1200px) {
+  :root {
+    --team-gallery-grid-columns: 6;
   }
-
-  @media (min-width: 768px) {
-    :root {
-      --team-gallery-grid-columns: 3;
-    }
-
-    .team-gallery__list .team-gallery__list-item:nth-child(2n+2) {
-      transform: translateY(0px);
-    }
-
-    .team-gallery__list .team-gallery__list-item:nth-child(3n+2) {
-      transform: translateY(50px);
-    }
-  }
-
-  @media (min-width: 1020px) {
-    :root {
-      --team-gallery-grid-columns: 4;
-    }
-
-    .team-gallery__list .team-gallery__list-item:nth-child(2n+2) {
-      transform: translateY(0px);
-    }
-
-    .team-gallery__list .team-gallery__list-item:nth-child(3n+2) {
-      transform: translateY(0px);
-    }
-
-    .team-gallery__list .team-gallery__list-item:nth-child(4n+2),
-    .team-gallery__list .team-gallery__list-item:nth-child(4n+4) {
-      transform: translateY(50px);
-    }
-  }
-
-  @media (min-width: 1200px) {
-    :root {
-      --team-gallery-grid-columns: 6;
-    }
-  }
+}
 </style>
