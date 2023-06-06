@@ -36,6 +36,8 @@ export default {
   import ImageWithCaption from '../image-with-caption/image-with-caption.vue'
   import StructuredTextBlock from './structured-text-block.vue'
 
+  const { $datoPageLink } = useNuxtApp()
+
   const props = defineProps({
     content: {
       type: Object,
