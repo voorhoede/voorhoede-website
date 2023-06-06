@@ -6,21 +6,15 @@
         :key="member.id"
         class="team-gallery__list-item"
       >
-        <app-link
-          :to="$localeUrl({ name: 'team-slug', params: { slug: member.slug } })"
-          class="team-gallery-member__link"
-          tabindex="-1"
-        >
-          <dato-image
-            class="team-gallery-member__image"
-            :src="member.image.url"
-            :alt="member.name"
-            :width="member.image.width"
-            :height="member.image.height"
-            loading="lazy"
-            sizes="(min-width: 800px) 20vw, (min-width: 500px) 33vw, 50vw"
-          />
-        </app-link>
+        <dato-image
+          class="team-gallery-member__image"
+          :src="member.image.url"
+          :alt="member.name"
+          :width="member.image.width"
+          :height="member.image.height"
+          loading="lazy"
+          sizes="(min-width: 800px) 20vw, (min-width: 500px) 33vw, 50vw"
+        />
         <div class="team-gallery-member__details">
           <app-link
             :to="
@@ -34,7 +28,7 @@
           </app-link>
           <span
             v-if="member.jobTitle"
-            class="body-detail"
+            class="body-detail team-gallery-member__job-title"
           >
             {{ member.jobTitle }}
           </span>
@@ -69,21 +63,33 @@ defineProps<{
 .team-gallery__list {
   display: grid;
   grid-template-columns: repeat(var(--team-gallery-grid-columns), 1fr);
-  gap: 16px;
+  gap: var(--spacing-small);
 }
 
 .team-gallery-member__link {
   display: block;
-  height: 100%;
   overflow: hidden;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  background-color: var(--brand-yellow);
 }
 
-.team-gallery-member__link:hover .team-gallery-member__image {
+.team-gallery__list-item:hover .team-gallery-member__image {
   transform: scale(1.05);
 }
 
 .team-gallery__list-item {
   position: relative;
+  overflow: hidden;
+}
+
+.team-gallery-member__link::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .team-gallery-member__image {
@@ -94,12 +100,19 @@ defineProps<{
 }
 
 .team-gallery-member__details {
+  display: flex;
   position: absolute;
-  padding: 1rem;
-  z-index: 1;
-  bottom: 0;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
   width: 100%;
-  background-color: var(--brand-yellow);
+  bottom: 0;
+  z-index: 1;
+}
+
+.team-gallery-member__details:not(:has(span))
+.team-gallery-member__link {
+  padding-bottom: var(--spacing-small);
 }
 
 @media (min-width: 768px) {
@@ -172,5 +185,12 @@ defineProps<{
   :root {
     --team-gallery-grid-columns: 6;
   }
+}
+
+.team-gallery-member__job-title {
+  padding-left: var(--spacing-small);
+  padding-top: var(---spacing-small);
+  padding-bottom: var(--spacing-small);
+  background-color: var(--brand-yellow);
 }
 </style>
