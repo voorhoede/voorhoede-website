@@ -6,15 +6,18 @@
         :key="member.id"
         class="team-gallery__list-item"
       >
-        <dato-image
-          class="team-gallery-member__image"
-          :src="member.image.url"
-          :alt="member.name"
-          :width="member.image.width"
-          :height="member.image.height"
-          loading="lazy"
-          sizes="(min-width: 800px) 20vw, (min-width: 500px) 33vw, 50vw"
-        />
+        <div class="team-gallery-member__image-wrapper">
+          <dato-image
+            class="team-gallery-member__image"
+            :src="member.image.url"
+            :alt="member.name"
+            :width="member.image.width"
+            :height="member.image.height"
+            loading="lazy"
+            sizes="(min-width: 800px) 20vw, (min-width: 500px) 33vw, 50vw"
+          />
+        </div>
+
         <div class="team-gallery-member__details">
           <app-link
             :to="
@@ -28,7 +31,7 @@
           </app-link>
           <span
             v-if="member.jobTitle"
-            class="body-detail team-gallery-member__job-title"
+            class="body-detail"
           >
             {{ member.jobTitle }}
           </span>
@@ -66,21 +69,13 @@ defineProps<{
   gap: var(--spacing-small);
 }
 
-.team-gallery-member__link {
-  display: block;
-  overflow: hidden;
-  padding-left: 1rem;
-  padding-top: 1rem;
-  background-color: var(--brand-yellow);
-}
-
-.team-gallery__list-item:hover .team-gallery-member__image {
-  transform: scale(1.05);
-}
-
 .team-gallery__list-item {
   position: relative;
-  overflow: hidden;
+}
+
+.team-gallery__list-item:hover
+.team-gallery-member__image {
+  transform: scale(1.05);
 }
 
 .team-gallery-member__link::after {
@@ -92,43 +87,32 @@ defineProps<{
   width: 100%;
 }
 
+.team-gallery-member__image-wrapper {
+  overflow: hidden;
+  height: auto;
+}
+
+@media (min-width: 486px) {
+  .team-gallery-member__image-wrapper {
+    height: 280px;
+  }
+}
+
 .team-gallery-member__image {
   display: block;
   height: 100%;
+  width: 100%;
   object-fit: cover;
   transition: transform 200ms ease-in-out;
 }
 
 .team-gallery-member__details {
-  display: flex;
-  position: absolute;
-  flex-direction: column;
-  justify-content: flex-end;
-  height: 100%;
-  width: 100%;
-  bottom: 0;
-  z-index: 1;
-}
-
-.team-gallery-member__details:not(:has(span))
-.team-gallery-member__link {
-  padding-bottom: var(--spacing-small);
+  padding: var(--spacing-small);
+  text-align: center;
+  background-color: var(--white);
 }
 
 @media (min-width: 768px) {
-  .team-gallery-member__details {
-    opacity: 0;
-    transition: opacity 200ms ease-in-out;
-  }
-
-  .team-gallery__list-item:hover .team-gallery-member__details {
-    opacity: 1;
-  }
-
-  .team-gallery__list-item:focus-within .team-gallery-member__details {
-    opacity: 1;
-  }
-
   .team-gallery__list-item:focus-within .team-gallery-member__image {
     transform: scale(1.05);
   }
@@ -185,12 +169,5 @@ defineProps<{
   :root {
     --team-gallery-grid-columns: 6;
   }
-}
-
-.team-gallery-member__job-title {
-  padding-left: var(--spacing-small);
-  padding-top: var(---spacing-small);
-  padding-bottom: var(--spacing-small);
-  background-color: var(--brand-yellow);
 }
 </style>
