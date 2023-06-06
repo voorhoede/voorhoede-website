@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'internal-link-all-pages';
+export const datocmsEnvironment = 'menu-use-internal-links';

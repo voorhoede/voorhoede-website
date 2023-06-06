@@ -23,12 +23,12 @@
         <ul class="app-footer__list">
           <li
             v-for="link in links"
-            :key="link.slug"
+            :key="link.id"
             class="app-footer__list-item body-detail"
           >
             <app-link
               class="app-footer__link"
-              :to="$datoPageLink(link.page)"
+              :to="$datoPageLink(link.link)"
             >
               {{ link.title }}
             </app-link>
@@ -36,7 +36,7 @@
           <li class="app-footer__list-item body-detail">
             <app-link
               class="app-footer__link"
-              :to="$datoPageLink({ __typename: 'FaqRecord' })"
+              :to="$localeUrl({ name: 'faq' })"
             >
               FAQ
             </app-link>

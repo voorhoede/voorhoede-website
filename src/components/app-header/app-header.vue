@@ -22,7 +22,7 @@
           >
             <app-link
               class="app-header__link"
-              :to="$datoPageLink(link.page)"
+              :to="$datoPageLink(link.link)"
             >
               {{ link.title }}
             </app-link>
@@ -34,7 +34,7 @@
             <app-button
               small
               :label="callToAction.title"
-              :to="$datoPageLink(callToAction.page)"
+              :to="$datoPageLink(callToAction.link)"
             />
           </li>
         </ul>
