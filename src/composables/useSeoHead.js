@@ -1,7 +1,7 @@
 import { withTrailingSlash } from 'ufo';
 
-export function useSeoHead({ title, slug, i18nSlugs, social }) {
-  if (!slug || !social) {
+export function useSeoHead({ title, i18nSlugs, social }) {
+  if (!social) {
     throw new Error('Missing required SEO data');
   }
 
@@ -34,8 +34,8 @@ export function useSeoHead({ title, slug, i18nSlugs, social }) {
       { rel: 'canonical', href: pageUrl },
       ...$i18n.locales
         .map(({ code }) => {
-          const alternateSlug = i18nSlugs?.find((i18nSlug) => i18nSlug.locale === code).value || slug;
-          const formattedAlternateSlug = alternateSlug.includes('/') ? alternateSlug.split('/') : alternateSlug
+          const alternateSlug = i18nSlugs?.find((i18nSlug) => i18nSlug.locale === code).value;
+          const formattedAlternateSlug = alternateSlug?.includes('/') ? alternateSlug.split('/') : alternateSlug
 
           return {
             rel: 'alternate',

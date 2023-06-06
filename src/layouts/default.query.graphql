@@ -23,37 +23,13 @@ query DefaultLayout($locale: SiteLocale) {
       title
       page {
         __typename
-        ... on ContactRecord {
-          slug
-        }
       }
     }
     links {
       title
       page {
         __typename
-        ... on BlogPostOverviewRecord {
-          slug
-        }
-        ... on CaseOverviewRecord {
-          slug
-        }
-        ... on ContactRecord {
-          slug
-        }
-        ... on EventOverviewRecord {
-          slug
-        }
-        ... on HomeRecord {
-          slug
-        }
-        ... on ServiceOverviewRecord {
-          slug
-        }
         ... on ServiceRecord {
-          slug
-        }
-        ... on WorkatRecord {
           slug
         }
         ... on LandingPageRecord {

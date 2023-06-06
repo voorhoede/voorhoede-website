@@ -33,7 +33,6 @@ query HomePage($locale: SiteLocale, $currentDate: DateTime) {
 }
 
 fragment homepage on HomeRecord {
-  slug
   title
   slug
   social {

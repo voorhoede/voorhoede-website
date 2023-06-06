@@ -13,7 +13,6 @@ fragment page on FaqRecord {
     width
     height
   }
-  slug
   social {
     title
     description
