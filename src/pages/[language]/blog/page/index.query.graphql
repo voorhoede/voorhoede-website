@@ -39,7 +39,6 @@ fragment blogPost on BlogPostRecord {
 
 fragment blogPostOverview on BlogPostOverviewRecord {
   title
-  slug
   social {
     title
     description
