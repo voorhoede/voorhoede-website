@@ -198,7 +198,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
         }
       }
       ... on SectionTeamGalleryRecord {
-        team {
+        persons {
           id
           jobTitle
           lastName

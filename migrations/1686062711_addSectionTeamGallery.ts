@@ -23,12 +23,12 @@ export default async function (client: Client) {
   console.log("Creating new fields/fieldsets");
 
   console.log(
-    'Create Multiple links field "Team" (`team`) in block model "Section Team Gallery" (`section_team_gallery`)'
+    'Create Multiple links field "Persons" (`persons`) in block model "Section Team Gallery" (`section_team_gallery`)'
   );
   newFields["8299171"] = await client.fields.create(newItemTypes["1602503"], {
-    label: "Team",
+    label: "Persons",
     field_type: "links",
-    api_key: "team",
+    api_key: "persons",
     validators: {
       items_item_type: {
         on_publish_with_unpublished_references_strategy: "fail",
@@ -45,7 +45,6 @@ export default async function (client: Client) {
   console.log(
     'Update Boolean field "Full width" (`full_width`) in block model "Image" (`image`)'
   );
-  await client.fields.update("159787", { hint: null });
 
   console.log(
     'Update Modular content field "Sections" (`sections`) in model "Landing Page" (`landing_page`)'
@@ -71,5 +70,18 @@ export default async function (client: Client) {
         ],
       },
     },
+    appearance: {
+      addons: [],
+      editor: "rich_text",
+      parameters: { start_collapsed: true },
+    },
+  });
+
+  console.log("Manage menu items");
+
+  console.log('Update menu item "Landing Page"');
+  await client.menuItems.update("1261998", {
+    label: "Landing Page",
+    position: 58,
   });
 }

@@ -101,7 +101,7 @@
       />
       <team-gallery
         v-if="section.__typename === 'SectionTeamGalleryRecord'"
-        :team="section.team"
+        :team="section.persons"
       />
     </div>
   </div>
