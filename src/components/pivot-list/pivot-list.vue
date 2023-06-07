@@ -46,8 +46,8 @@
           <app-button
             v-if="pivot.links[0]?.__typename === 'ExternalLinkRecord'"
             @click="trackLink(pivot.links[0].url)"
-            :label="pivot.buttonLabel"
-            :to="pivot.links[0].title"
+            :label="pivot.links[0].title"
+            :to="pivot.links[0].url"
             external
           />
 
