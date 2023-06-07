@@ -14,7 +14,7 @@ export default defineNuxtPlugin((nuxtApp) => {
             return { name: 'language-slug', params: { ...sharedParams, slug: page.slug?.split('/') } }
           }
           case 'BlogPostOverviewRecord': {
-            return { name: 'language-blog', params: sharedParams }
+            return { name: 'language-blog-page-page', params: { ...sharedParams, page: 1 } }
           }
           case 'BlogPostRecord': {
             return { name: 'language-blog-slug', params: { ...sharedParams, slug: page.slug } }
