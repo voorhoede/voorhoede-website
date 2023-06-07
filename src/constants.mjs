@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'menu-use-internal-links';
+export const datocmsEnvironment = 'links-refactor';

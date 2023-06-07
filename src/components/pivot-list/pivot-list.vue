@@ -44,17 +44,17 @@
           />
 
           <app-button
-            v-if="pivot.externalLink"
-            @click="trackLink(pivot.externalLink)"
+            v-if="pivot.links[0]?.__typename === 'ExternalLinkRecord'"
+            @click="trackLink(pivot.links[0].url)"
             :label="pivot.buttonLabel"
-            :to="pivot.externalLink"
+            :to="pivot.links[0].title"
             external
           />
 
           <app-button
-            v-else-if="pivot.link"
-            :label="pivot.buttonLabel"
-            :to="$datoPageLink(pivot.link.page)"
+            v-else-if="pivot.links[0]?.__typename === 'InternalLinkRecord'"
+            :label="pivot.links[0].title"
+            :to="$datoPageLink(pivot.links[0].link)"
           />
 
           <newsletter-form
