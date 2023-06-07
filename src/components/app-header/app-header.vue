@@ -22,7 +22,7 @@
           >
             <app-link
               class="app-header__link"
-              :to="$datoPageLink(link.link)"
+              :to="getDatoNuxtRoute(link.link)"
             >
               {{ link.title }}
             </app-link>
@@ -34,7 +34,7 @@
             <app-button
               small
               :label="callToAction.title"
-              :to="$datoPageLink(callToAction.link)"
+              :to="getDatoNuxtRoute(callToAction.link)"
             />
           </li>
         </ul>
@@ -45,8 +45,12 @@
 </template>
 
 <script>
-
   export default {
+    setup() {
+      const { getDatoNuxtRoute } = useDatoNuxtRoute()
+
+      return { getDatoNuxtRoute }
+    },
     props: {
       links: {
         type: Array,

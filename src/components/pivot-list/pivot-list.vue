@@ -54,7 +54,7 @@
           <app-button
             v-else-if="pivot.links[0]?.__typename === 'InternalLinkRecord'"
             :label="pivot.links[0].title"
-            :to="$datoPageLink(pivot.links[0].link)"
+            :to="getDatoNuxtRoute(pivot.links[0].link)"
           />
 
           <newsletter-form
@@ -68,6 +68,11 @@
 
 <script>
   export default {
+    setup() {
+      const { getDatoNuxtRoute } = useDatoNuxtRoute()
+
+      return { getDatoNuxtRoute }
+    },
     props: {
       pivots: {
         type: Array,

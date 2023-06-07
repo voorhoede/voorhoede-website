@@ -36,7 +36,7 @@ export default {
   import ImageWithCaption from '../image-with-caption/image-with-caption.vue'
   import StructuredTextBlock from './structured-text-block.vue'
 
-  const { $datoPageLink } = useNuxtApp()
+  const { getDatoNuxtRoute } = useDatoNuxtRoute()
 
   const props = defineProps({
     content: {
@@ -132,7 +132,7 @@ export default {
           return h(AppButton, {
             key: button.id,
             label: button.title,
-            to: button.url || $datoPageLink(button.link),
+            to: button.url || getDatoNuxtRoute(button.link),
             external: button.__typename === 'ExternalLinkRecord',
           })
         }))
