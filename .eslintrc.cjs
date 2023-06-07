@@ -17,6 +17,7 @@ module.exports = {
   },
   rules: {
     'no-undef': 'off',
+    'vue/define-props-declaration': 'error',
   },
   overrides: [
     {

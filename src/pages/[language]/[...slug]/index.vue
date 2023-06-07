@@ -125,7 +125,7 @@
 
   useSeoHead(data.value.page);
 
-function getSectionBackgroundColor(section) {
+  function getSectionBackgroundColor(section) {
     switch (section.__typename) {
       case 'SectionHeaderRecord': {
         return BackgroundColor.PastelYellow;
@@ -145,7 +145,8 @@ function getSectionBackgroundColor(section) {
     padding-top: var(--spacing-big);
   }
 
-  .landing-page__section--background {
+  .landing-page__section--background,
+  .landing-page__section:last-child {
     padding-bottom: var(--spacing-big);
   }
 

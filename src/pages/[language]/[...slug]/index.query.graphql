@@ -5,6 +5,9 @@ query LandingPage($locale: SiteLocale, $slug: String) {
     social {
       title
       description
+      image {
+        ...image
+      }
     }
     sections {
       __typename

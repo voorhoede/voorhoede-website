@@ -20,12 +20,6 @@
   />
 </template>
 
-<script>
-export default {
-  inheritAttrs: false
-}
-</script>
-
 <script setup>
   import slugify from '../../lib/slugify';
   import { h } from 'vue'
@@ -62,6 +56,7 @@ export default {
 
   const tocItems = ref([]);
   const emit = defineEmits(['update-toc-items']);
+  defineOptions({ inheritAttrs: false });
 
   const customNodeRules = [
     renderNodeRule(isHeading, ({ node, key, children }) => {
@@ -145,7 +140,10 @@ export default {
         return h(ImageWithCaption, {
           class: 'structured-text__image-with-caption',
           caption: record.caption,
-          image: record.image,
+          image: {
+            ...record.image,
+            sizes: '(min-width: 1100px) 860px, (min-width: 720px) 75vw, 90vw',
+          },
         })
       }
       default: {
@@ -205,6 +203,10 @@ export default {
       grid-column-start: 10;
       grid-column-end: 42;
     }
+  }
+
+  .structured-text > *:not(:last-child) {
+    margin-bottom: var(--spacing-medium);
   }
 
   .structured-text__title:not(:last-child) {
