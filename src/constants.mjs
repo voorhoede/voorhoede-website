@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'section-team-gallery';
+export const datocmsEnvironment = 'team-section-deploy';
