@@ -99,11 +99,11 @@ function addSquishyNameAnimation(index: number) {
 
 .team-gallery__list-item:hover
 .team-gallery-member__name {
-  animation: squishyMotion 500ms ease-in-out;
+  animation: squishy-motion 500ms ease-in-out;
 }
 
 .team-gallery-squishy-animation {
-  animation: squishyMotion 500ms ease-in-out;
+  animation: squishy-motion 500ms ease-in-out;
 }
 
 .team-gallery-member__link::after {
@@ -199,7 +199,7 @@ function addSquishyNameAnimation(index: number) {
   }
 }
 
-@keyframes squishyMotion {
+@keyframes squishy-motion {
   from,
   to {
     transform: scale(1, 1);
