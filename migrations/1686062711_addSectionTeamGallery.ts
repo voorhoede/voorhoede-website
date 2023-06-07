@@ -76,12 +76,4 @@ export default async function (client: Client) {
       parameters: { start_collapsed: true },
     },
   });
-
-  console.log("Manage menu items");
-
-  console.log('Update menu item "Landing Page"');
-  await client.menuItems.update("1261998", {
-    label: "Landing Page",
-    position: 58,
-  });
 }
