@@ -200,6 +200,18 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           slug
         }
       }
+      ... on SectionTeamGalleryRecord {
+        persons {
+          id
+          jobTitle
+          lastName
+          name
+          slug
+          image {
+            ...image
+          }
+        }
+      }
     }
   }
 }

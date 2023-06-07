@@ -99,6 +99,10 @@
         :items="section.items"
         :title="section.title"
       />
+      <team-gallery
+        v-if="section.__typename === 'SectionTeamGalleryRecord'"
+        :team="section.persons"
+      />
     </div>
   </div>
 </template>
