@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'links-refactor';
+export const datocmsEnvironment = 'remove-legacy-pivot-section-fields';
