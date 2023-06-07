@@ -2,7 +2,7 @@
   <section class="grid">
     <ul class="team-gallery__list">
       <li
-        v-for="member in team"
+        v-for="(member, index) in team"
         :key="member.id"
         class="team-gallery__list-item"
       >
@@ -24,8 +24,12 @@
               $localeUrl({ name: 'team-slug', params: { slug: member.slug } })
             "
             class="team-gallery-member__link"
+            @mouseenter="addSquishyNameAnimation(index)"
           >
-            <p class="h4">
+            <p
+              ref="teamGalleryMemberName"
+              class="h4 team-gallery-member__name"
+            >
               {{ member.name }}
             </p>
           </app-link>
@@ -42,6 +46,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+
 defineProps<{
   team: Array<{
     id: string;
@@ -56,6 +62,19 @@ defineProps<{
     };
   }>;
 }>();
+
+function addSquishyNameAnimation(index: number) {
+  const teamGalleryMemberName = ref<HTMLElement | null>(null);
+  teamGalleryMemberName.value = document.querySelectorAll(
+    ".team-gallery-member__name"
+  )[index] as HTMLElement;
+
+  teamGalleryMemberName.value.classList.add("team-gallery-squishy-animation");
+
+  teamGalleryMemberName.value.addEventListener("animationend", () => {
+    teamGalleryMemberName.value?.classList.remove("team-gallery-squishy-animation");
+  });
+}
 </script>
 
 <style>
@@ -76,6 +95,15 @@ defineProps<{
 .team-gallery__list-item:hover
 .team-gallery-member__image {
   transform: scale(1.05);
+}
+
+.team-gallery__list-item:hover
+.team-gallery-member__name {
+  animation: squishyMotion 500ms ease-in-out;
+}
+
+.team-gallery-squishy-animation {
+  animation: squishyMotion 500ms ease-in-out;
 }
 
 .team-gallery-member__link::after {
@@ -168,6 +196,22 @@ defineProps<{
 @media (min-width: 1200px) {
   :root {
     --team-gallery-grid-columns: 6;
+  }
+}
+
+@keyframes squishyMotion {
+  from,
+  to {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+  75% {
+    transform: scale(0.95, 1.05);
   }
 }
 </style>
