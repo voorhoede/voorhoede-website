@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'remove-legacy-pivot-section-fields';
+export const datocmsEnvironment = 'pivot-section-link-model-cleanup';
