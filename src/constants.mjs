@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'team-section-deploy';
+export const datocmsEnvironment = 'internal-links-refactor-deploy';

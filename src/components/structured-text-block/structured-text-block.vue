@@ -21,14 +21,16 @@
 </template>
 
 <script setup>
-  import slugify from '../../lib/slugify';
   import { h } from 'vue'
   import { StructuredText as DatocmsStructuredText, renderNodeRule } from 'vue-datocms'
   import { isHeading, isParagraph, isList  } from 'datocms-structured-text-utils'
+  import slugify from '../../lib/slugify';
   import AppButton from '../app-button/app-button.vue'
   import TagList from '../tag-list/tag-list.vue'
   import ImageWithCaption from '../image-with-caption/image-with-caption.vue'
   import StructuredTextBlock from './structured-text-block.vue'
+
+  const { getDatoNuxtRoute } = useDatoNuxtRoute()
 
   const props = defineProps({
     content: {
@@ -125,7 +127,7 @@
           return h(AppButton, {
             key: button.id,
             label: button.title,
-            to: button.url || button.link,
+            to: button.url || getDatoNuxtRoute(button.link),
             external: button.__typename === 'ExternalLinkRecord',
           })
         }))

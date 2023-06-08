@@ -45,9 +45,7 @@
           v-if="card.links[0]?.__typename === 'InternalLinkRecord'"
           class="image-card-grid__link"
           :label="card.links[0].title"
-          :to="$localeUrl({
-            name: 'slug', params: { slug: card.links[0].link.slug.split('/') }
-          })"
+          :to="getDatoNuxtRoute(card.links[0].link)"
           secondary
         />
       </li>
@@ -57,6 +55,8 @@
 
 <script setup lang="ts">
 import { BackgroundColor } from '../../types/index.d'
+
+const { getDatoNuxtRoute } = useDatoNuxtRoute()
 
 type Props = {
   title: string

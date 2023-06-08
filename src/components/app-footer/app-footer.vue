@@ -23,12 +23,12 @@
         <ul class="app-footer__list">
           <li
             v-for="link in links"
-            :key="link.slug"
+            :key="link.id"
             class="app-footer__list-item body-detail"
           >
             <app-link
               class="app-footer__link"
-              :to="createHref($i18n, link)"
+              :to="getDatoNuxtRoute(link.link)"
             >
               {{ link.title }}
             </app-link>
@@ -36,7 +36,7 @@
           <li class="app-footer__list-item body-detail">
             <app-link
               class="app-footer__link"
-              :to="createHref($i18n, { page: { slug: 'faq' } })"
+              :to="$localeUrl({ name: 'faq' })"
             >
               FAQ
             </app-link>
@@ -138,9 +138,13 @@
 </template>
 
 <script>
-import { createHref } from '../../lib/links'
 
 export default {
+  setup() {
+    const { getDatoNuxtRoute } = useDatoNuxtRoute()
+
+    return { getDatoNuxtRoute }
+  },
   props: {
     links: { type: Object, required: true },
     app: { type: Object, required: true },
@@ -175,7 +179,6 @@ export default {
     }
   },
   methods: {
-    createHref,
     observeContact () {
       const contactElement = this.$refs.contact
       this.observer = new IntersectionObserver(function(entries) {

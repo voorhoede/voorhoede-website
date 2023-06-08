@@ -15,7 +15,7 @@
       <nav :aria-label="data.menu.title">
         <app-header
           :links="data.menu.links"
-          :call-to-action="data.menu.callToAction"
+          :call-to-action="data.menu.callToActions[0]"
           :inert="focusTrapMobileMenu"
         />
         <app-mobile-menu
@@ -34,7 +34,7 @@
         <app-footer
           class="layout-default__footer"
           :app="data.app"
-          :links="[].concat(data.menu.links, data.menu.callToAction)"
+          :links="[].concat(data.menu.links, data.menu.callToActions[0])"
           :footer="data.footer"
         />
       </div>
@@ -43,8 +43,9 @@
 </template>
 
 <script setup>
-  const { $i18n } = useNuxtApp();
   import query from './default.query.graphql?raw';
+
+  const { $i18n } = useNuxtApp();
   const { afterEach } = useRouter();
   const skipLink = ref(null);
   const mobileMenuIsOpen = ref(false);

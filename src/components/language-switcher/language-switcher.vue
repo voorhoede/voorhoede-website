@@ -39,6 +39,7 @@ const getLocaleRoute = (code) => {
   return {
     name: route.name,
     params: {
+      ...route.params,
       language: code,
       slug: localeSlug?.value || route.params.slug,
     },

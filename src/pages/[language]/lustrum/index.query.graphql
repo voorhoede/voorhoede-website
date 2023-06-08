@@ -2,9 +2,6 @@ query Lustrum($locale: SiteLocale) {
   page: lustrum(locale: $locale) {
     ...lustrum
   }
-  alternate: lustrum(locale: $locale) {
-    slug
-  }
 }
 
 fragment lustrum on LustrumRecord {
@@ -16,7 +13,6 @@ fragment lustrum on LustrumRecord {
     width
     height
   }
-  slug
   social {
     title
     description

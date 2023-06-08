@@ -19,45 +19,11 @@ query DefaultLayout($locale: SiteLocale) {
   }
   menu(locale: $locale) {
     title
-    callToAction {
-      title
-      page {
-        ... on ContactRecord {
-          slug
-        }
-      }
+    callToActions {
+      ...internalLink
     }
     links {
-      title
-      page {
-        ... on BlogPostOverviewRecord {
-          slug
-        }
-        ... on CaseOverviewRecord {
-          slug
-        }
-        ... on ContactRecord {
-          slug
-        }
-        ... on EventOverviewRecord {
-          slug
-        }
-        ... on HomeRecord {
-          slug
-        }
-        ... on ServiceOverviewRecord {
-          slug
-        }
-        ... on ServiceRecord {
-          slug
-        }
-        ... on WorkatRecord {
-          slug
-        }
-        ... on LandingPageRecord {
-          slug
-        }
-      }
+      ...internalLink
     }
   }
   footer(locale: $locale) {
@@ -67,5 +33,34 @@ query DefaultLayout($locale: SiteLocale) {
     privacyTitle
     privacyLabel
     privacyLink
+  }
+}
+
+fragment internalLink on InternalLinkRecord {
+  id
+  title
+  link {
+    __typename
+    ... on LandingPageRecord {
+      slug
+    }
+    ... on BlogPostRecord {
+      slug
+    }
+    ... on CaseItemRecord {
+      slug
+    }
+    ... on EventItemRecord {
+      slug
+    }
+    ... on JobRecord {
+      slug
+    }
+    ... on ServiceRecord {
+      slug
+    }
+    ... on PersonRecord {
+      slug
+    }
   }
 }

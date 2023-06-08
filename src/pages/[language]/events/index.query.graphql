@@ -10,7 +10,6 @@ query Events($locale: SiteLocale) {
 fragment eventOverview on EventOverviewRecord {
   title
   subtitle
-  slug
   social {
     title
     description

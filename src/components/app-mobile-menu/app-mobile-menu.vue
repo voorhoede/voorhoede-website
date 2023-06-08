@@ -44,7 +44,7 @@
         >
           <app-link
             class="h3"
-            :to="createHref($i18n, link)"
+            :to="getDatoNuxtRoute(link.page)"
           >
             {{ link.title }}
           </app-link>
@@ -71,9 +71,12 @@
 </template>
 
 <script>
-  import { createHref, linkValidator } from '../../lib/links'
-
   export default {
+    setup() {
+      const { getDatoNuxtRoute } = useDatoNuxtRoute()
+
+      return { getDatoNuxtRoute }
+    },
     props: {
       isOpen: {
         type: Boolean,
@@ -81,9 +84,6 @@
       },
       links: {
         type: Array,
-        validator (links) {
-          return links.every(linkValidator)
-        },
         default: () => [],
       },
     },
@@ -106,7 +106,6 @@
       prevent(event) {
         event.preventDefault()
       },
-      createHref
     },
   }
 </script>

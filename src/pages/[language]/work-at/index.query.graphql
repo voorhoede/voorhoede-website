@@ -2,9 +2,6 @@ query WorkAt($locale: SiteLocale) {
   page: workat(locale: $locale) {
     ...workat
   }
-  alternate: workat(locale: $locale) {
-    slug
-  }
 }
 
 fragment workat on WorkatRecord {
@@ -16,7 +13,6 @@ fragment workat on WorkatRecord {
     width
     height
   }
-  slug
   social {
     title
     description
