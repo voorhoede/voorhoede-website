@@ -44,7 +44,7 @@
         >
           <app-link
             class="h3"
-            :to="$datoPageLink(link.page)"
+            :to="getDatoNuxtRoute(link.page)"
           >
             {{ link.title }}
           </app-link>
@@ -72,6 +72,11 @@
 
 <script>
   export default {
+    setup() {
+      const { getDatoNuxtRoute } = useDatoNuxtRoute()
+
+      return { getDatoNuxtRoute }
+    },
     props: {
       isOpen: {
         type: Boolean,

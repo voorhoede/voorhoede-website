@@ -3,6 +3,20 @@ import { Client, SimpleSchemaTypes } from "@datocms/cli/lib/cma-client-node";
 export default async function (client: Client) {
   const newFields: Record<string, SimpleSchemaTypes.Field> = {};
 
+  console.log("Update existing fields/fieldsets");
+
+  console.log(
+    'Update Modular content field "Link" (`links`) in model "Pivot section" (`pivot_section`)'
+  );
+
+  console.log(
+    'Update Single link field "Internal link" (`internal_link`) in model "Pivot section" (`pivot_section`)'
+  );
+  await client.fields.update("236126", {
+    label: "Internal link",
+    api_key: "internal_link",
+  });
+
   console.log("Creating new fields/fieldsets");
 
   console.log(
@@ -25,18 +39,5 @@ export default async function (client: Client) {
     default_value: { en: null, nl: null },
   });
 
-  console.log("Update existing fields/fieldsets");
-
-  console.log(
-    'Update Modular content field "Link" (`links`) in model "Pivot section" (`pivot_section`)'
-  );
   await client.fields.update(newFields["8405234"], { position: 6 });
-
-  console.log(
-    'Update Single link field "Internal link" (`internal_link`) in model "Pivot section" (`pivot_section`)'
-  );
-  await client.fields.update("236126", {
-    label: "Internal link",
-    api_key: "internal_link",
-  });
 }

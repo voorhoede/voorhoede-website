@@ -7,7 +7,7 @@
       :width="image.width"
       :height="image.height"
       loading="eager"
-      sizes="100vw"
+      :sizes="image.sizes"
     />
     <div
       v-if="caption"
@@ -26,7 +26,8 @@ defineProps<{
     height: number,
     url: string,
     alt?: string,
-  }
+    sizes: string,
+  },
 }>()
 </script>
 

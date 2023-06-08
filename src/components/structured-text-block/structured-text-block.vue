@@ -20,12 +20,6 @@
   />
 </template>
 
-<script>
-export default {
-  inheritAttrs: false
-}
-</script>
-
 <script setup>
   import { h } from 'vue'
   import { StructuredText as DatocmsStructuredText, renderNodeRule } from 'vue-datocms'
@@ -36,7 +30,7 @@ export default {
   import ImageWithCaption from '../image-with-caption/image-with-caption.vue'
   import StructuredTextBlock from './structured-text-block.vue'
 
-  const { $datoPageLink } = useNuxtApp()
+  const { getDatoNuxtRoute } = useDatoNuxtRoute()
 
   const props = defineProps({
     content: {
@@ -64,6 +58,7 @@ export default {
 
   const tocItems = ref([]);
   const emit = defineEmits(['update-toc-items']);
+  defineOptions({ inheritAttrs: false });
 
   const customNodeRules = [
     renderNodeRule(isHeading, ({ node, key, children }) => {
@@ -132,7 +127,7 @@ export default {
           return h(AppButton, {
             key: button.id,
             label: button.title,
-            to: button.url || $datoPageLink(button.link),
+            to: button.url || getDatoNuxtRoute(button.link),
             external: button.__typename === 'ExternalLinkRecord',
           })
         }))
@@ -147,7 +142,10 @@ export default {
         return h(ImageWithCaption, {
           class: 'structured-text__image-with-caption',
           caption: record.caption,
-          image: record.image,
+          image: {
+            ...record.image,
+            sizes: '(min-width: 1100px) 860px, (min-width: 720px) 75vw, 90vw',
+          },
         })
       }
       default: {

@@ -92,7 +92,12 @@
           :class="{ 'page-blog-post-list--full-width' : item.fullWidth}"
           v-if="item.__typename === 'ImageRecord' && item.image"
           :key="item.id"
-          :image="item.image"
+          :image="{
+            ...item.image,
+            sizes: item.fullWidth
+              ? '(min-width: 1440px) 860px, (min-width: 720px) 75vw, 95vw'
+              : '(min-width: 1440px) 640px, (min-width: 720px) 65vw, 95vw',
+          }"
           :caption="item.caption"
         />
 

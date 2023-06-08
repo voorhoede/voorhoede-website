@@ -99,6 +99,10 @@
         :items="section.items"
         :title="section.title"
       />
+      <team-gallery
+        v-if="section.__typename === 'SectionTeamGalleryRecord'"
+        :team="section.persons"
+      />
     </div>
   </div>
 </template>
@@ -121,7 +125,7 @@
 
   useSeoHead(data.value.page);
 
-function getSectionBackgroundColor(section) {
+  function getSectionBackgroundColor(section) {
     switch (section.__typename) {
       case 'SectionHeaderRecord': {
         return BackgroundColor.PastelYellow;
