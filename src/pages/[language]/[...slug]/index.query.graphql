@@ -5,6 +5,9 @@ query LandingPage($locale: SiteLocale, $slug: String) {
     social {
       title
       description
+      image {
+        ...image
+      }
     }
     sections {
       __typename
@@ -195,6 +198,18 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           }
           date
           slug
+        }
+      }
+      ... on SectionTeamGalleryRecord {
+        persons {
+          id
+          jobTitle
+          lastName
+          name
+          slug
+          image {
+            ...image
+          }
         }
       }
     }
