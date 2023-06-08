@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'links-refactor';
+export const datocmsEnvironment = 'internal-links-refactor-deploy';
