@@ -17,4 +17,14 @@ export default async function (client: Client) {
     'Delete Single-line string field "External link" (`external_link`) in model "Pivot section" (`pivot_section`)'
   );
   await client.fields.destroy("1128145");
+
+  console.log("Destroy models/block models");
+
+  console.log('Delete model "Link" (`link`)');
+  await client.itemTypes.destroy("55657", { skip_menu_items_deletion: true });
+
+  console.log("Manage menu items");
+
+  console.log('Delete menu item "Links"');
+  await client.menuItems.destroy("1261053");
 }
