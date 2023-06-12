@@ -44,7 +44,7 @@
         >
           <app-link
             class="h3"
-            :to="getDatoNuxtRoute(link.page)"
+            :to="getDatoNuxtRoute(link.link)"
           >
             {{ link.title }}
           </app-link>

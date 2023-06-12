@@ -19,7 +19,7 @@
           :inert="focusTrapMobileMenu"
         />
         <app-mobile-menu
-          :links="[].concat(data.menu.links, data.menu.callToAction)"
+          :links="[].concat(data.menu.links, data.menu.callToActions[0])"
           :is-open="mobileMenuIsOpen"
           @open-menu="openMenu"
           @close-menu="closeMenu"
