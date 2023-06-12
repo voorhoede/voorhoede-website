@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'internal-links-refactor-deploy';
+export const datocmsEnvironment = 'remove-legacy-fields-deploy';
