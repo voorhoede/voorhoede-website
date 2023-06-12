@@ -30,6 +30,7 @@
         :image="section.image"
         :inverse="section.imagePosition === 'right'"
         :background-color="section.backgroundColor"
+        :font-size="section.fontSize"
       />
       <interstitial-cta
         v-if="section.__typename === 'SectionInterstitialCtaRecord'"

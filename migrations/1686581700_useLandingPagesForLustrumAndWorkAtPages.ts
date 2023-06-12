@@ -1,6 +1,26 @@
 import { Client, SimpleSchemaTypes } from "@datocms/cli/lib/cma-client-node";
 
 export default async function (client: Client) {
+  const newFields: Record<string, SimpleSchemaTypes.Field> = {};
+
+  console.log("Creating new fields/fieldsets");
+
+  console.log(
+    'Create Single-line string field "Font size" (`font_size`) in block model "Section Image & Text" (`section_image_text`)'
+  );
+  newFields["8697596"] = await client.fields.create("2037669", {
+    label: "Font size",
+    field_type: "string",
+    api_key: "font_size",
+    validators: { required: {}, enum: { values: ["default", "small"] } },
+    appearance: {
+      addons: [],
+      editor: "single_line",
+      parameters: { heading: false },
+    },
+    default_value: "default",
+  });
+
   console.log("Destroy models/block models");
 
   console.log('Delete model "Work At" (`workat`)');
