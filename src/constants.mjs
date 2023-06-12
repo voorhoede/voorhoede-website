@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'remove-legacy-fields-deploy';
+export const datocmsEnvironment = 'switch-over-lustrum-and-work-at-page';
