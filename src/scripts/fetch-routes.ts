@@ -20,8 +20,6 @@ const staticRoutesConfig = [
   "/services/",
   "/contact/",
   "/cases/",
-  "/work-at/",
-  "/lustrum/",
   "/events/",
   "/faq/",
   "/energy-first/",

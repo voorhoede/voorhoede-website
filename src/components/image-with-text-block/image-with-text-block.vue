@@ -26,7 +26,7 @@
       <structured-text-block
         class="image-with-text__body-text"
         :content="body"
-        paragraph-variant="body-big"
+        :paragraph-variant="paragraphVariant"
       />
     </div>
   </div>
@@ -43,12 +43,14 @@ type Props = {
     width: number,
     height: number
   },
+  paragraphVariant?: 'body-big' | 'body'
   inverse?: boolean,
   backgroundColor: BackgroundColor
 }
 
 withDefaults(defineProps<Props>(), {
-  backgroundColor: BackgroundColor.None
+  backgroundColor: BackgroundColor.None,
+  paragraphVariant: 'body-big'
 })
 </script>
 

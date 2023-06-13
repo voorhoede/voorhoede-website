@@ -25,6 +25,7 @@ query LandingPage($locale: SiteLocale, $slug: String) {
         }
         imagePosition
         backgroundColor
+        fontSize
         body {
           value
           blocks {
