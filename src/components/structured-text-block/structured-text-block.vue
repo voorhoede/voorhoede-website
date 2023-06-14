@@ -319,23 +319,27 @@
       margin-top: var(--spacing-big);
     }
 
+    /* Left aligned image before regular (non-image) content. Needs to align to content, without a margin. */
     .structured-text__image-with-caption--left:has(+ *:not(.structured-text__image-with-caption--right)) {
       margin-top: 0;
     }
 
-    /* When combining the selector with the :has selector, this selector doesn't work anymore in unsupported browsers  */
+    /* Right aligned image after regular (non-image) content. Needs to align to content, without a margin  */
     :not(.structured-text__image-with-caption--left) + .structured-text__image-with-caption--right {
       margin-top: 0;
     }
 
+    /* Add some margin between image and regular (non-image) content */
     .structured-text__image-with-caption--left:has(+ *:not(.structured-text__image-with-caption--right)) {
       margin-right: var(--spacing-small);
     }
 
+    /* Add some margin between image and regular (non-image) content */
     :not(.structured-text__image-with-caption--left) + .structured-text__image-with-caption--right {
       margin-left: var(--spacing-small);
     }
 
+    /* Make sure adjacent content of a left and right aligned image next to each other nicely wraps onto the next line */
     .structured-text__image-with-caption--left + .structured-text__image-with-caption--right + * {
       clear: both;
     }
