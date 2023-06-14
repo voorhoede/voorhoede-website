@@ -57,7 +57,7 @@ const dynamicRoutesConfig: RouteConfig[] = [
     path: "/jobs/",
   },
   {
-    queryOperation: "allLandingPages",
+    queryOperation: "allPages",
     path: "/",
   },
 ];

@@ -60,7 +60,7 @@ fragment servicespage on ServiceOverviewRecord {
             id
             title
             link {
-              ... on LandingPageRecord {
+              ... on PageRecord {
                 slug
               }
             }
@@ -124,7 +124,7 @@ fragment link on RecordInterface {
     title
     link {
       __typename
-      ... on LandingPageRecord {
+      ... on PageRecord {
         slug
       }
       ... on BlogPostRecord {
