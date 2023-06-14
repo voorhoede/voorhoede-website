@@ -11,7 +11,7 @@ export default async function (client: Client) {
   );
   newItemTypes["1897306"] = await client.itemTypes.create(
     {
-      name: "Structured text image",
+      name: "Structured Text Image",
       api_key: "structured_text_image",
       modular_block: true,
       inverse_relationships_enabled: false,
