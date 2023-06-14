@@ -149,6 +149,25 @@
         })
       }
       case 'StructuredTextImageRecord': {
+        let sizes;
+
+        switch (record.layout) {
+          case 'left':
+          case 'right': {
+            sizes = '(min-width: 1100px) 430px, (min-width: 720px) 40vw, 90vw'
+            break
+          }
+          case 'narrow': {
+            sizes = '(min-width: 1100px) 680px, (min-width: 720px) 60vw, 90vw'
+            break
+          }
+          case 'default':
+          default: {
+            sizes = '(min-width: 1100px) 860px, (min-width: 720px) 75vw, 90vw'
+            break
+          }
+        }
+
         return h(ImageWithCaption, {
           class: {
             'structured-text__image-with-caption': true,
@@ -159,7 +178,7 @@
           caption: record.caption,
           image: {
             ...record.image,
-            sizes: '(min-width: 1100px) 860px, (min-width: 720px) 75vw, 90vw',
+            sizes
           },
         })
       }
@@ -303,7 +322,7 @@
       margin-top: 0;
     }
 
-    /* When combining the selector with the :has selecotor, this selector doesn't work anymore in unsupported browsers  */
+    /* When combining the selector with the :has selector, this selector doesn't work anymore in unsupported browsers  */
     :not(.structured-text__image-with-caption--left) + .structured-text__image-with-caption--right {
       margin-top: 0;
     }
