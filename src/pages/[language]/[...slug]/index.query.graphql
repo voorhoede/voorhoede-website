@@ -137,6 +137,14 @@ query LandingPage($locale: SiteLocale, $slug: String) {
                 ...image
               }
             }
+            ... on StructuredTextImageRecord {
+              id
+              caption
+              layout
+              image {
+                ...image
+              }
+            }
           }
         }
       }

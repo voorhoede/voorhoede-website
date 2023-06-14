@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'migrate-lustrum-work-at-pages-to-landing-pages-deploy';
+export const datocmsEnvironment = 'structured-text-image-block-configurable-width';

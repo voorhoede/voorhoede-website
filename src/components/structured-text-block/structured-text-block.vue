@@ -148,6 +148,21 @@
           },
         })
       }
+      case 'StructuredTextImageRecord': {
+        return h(ImageWithCaption, {
+          class: {
+            'structured-text__image-with-caption': true,
+            'structured-text__image-with-caption--narrow': record.layout === 'narrow',
+            'structured-text__image-with-caption--left': record.layout === 'left',
+            'structured-text__image-with-caption--right': record.layout === 'right',
+          },
+          caption: record.caption,
+          image: {
+            ...record.image,
+            sizes: '(min-width: 1100px) 860px, (min-width: 720px) 75vw, 90vw',
+          },
+        })
+      }
       default: {
         return null
       }
@@ -175,8 +190,6 @@
   .structured-text {
     grid-column: var(--grid-content);
     word-wrap: break-word;
-    display: flex;
-    flex-direction: column;
   }
 
   @media (min-width: 720px) {
@@ -249,12 +262,65 @@
   }
 
   .structured-text__blue-text--center .structured-text__buttons-list {
-    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .structured-text__image-with-caption {
     margin: var(--spacing-big) 0;
   }
+
+
+  @media (max-width: 719px) {
+    .structured-text__image-with-caption--left + .structured-text__image-with-caption--right {
+      margin-top: var(--spacing-small)
+    }
+  }
+
+  @media (min-width: 720px) {
+    .structured-text__image-with-caption--narrow {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 80%
+    }
+
+    .structured-text__image-with-caption--left,
+    .structured-text__image-with-caption--right {
+      width: 50%;
+    }
+
+    .structured-text__image-with-caption--left {
+      padding-right: var(--spacing-small);
+      float: left;
+    }
+
+    .structured-text__image-with-caption--right {
+      padding-left: var(--spacing-small);
+      float: right;
+    }
+
+    .structured-text__image-with-caption--left:has(+ *:not(.structured-text__image-with-caption--right)) {
+      margin-top: 0;
+    }
+
+    /* When combining the selector with the :has selecotor, this selector doesn't work anymore in unsupported browsers  */
+    :not(.structured-text__image-with-caption--left) + .structured-text__image-with-caption--right {
+      margin-top: 0;
+    }
+
+    .structured-text__image-with-caption--left:has(+ *:not(.structured-text__image-with-caption--right)) {
+      margin-right: var(--spacing-small);
+    }
+
+    :not(.structured-text__image-with-caption--left) + .structured-text__image-with-caption--right {
+      margin-left: var(--spacing-small);
+    }
+
+    .structured-text__image-with-caption--left + .structured-text__image-with-caption--right + * {
+      clear: both;
+    }
+  }
+
 
   .structured-text__highlighted-list-item {
     padding: var(--spacing-medium);
