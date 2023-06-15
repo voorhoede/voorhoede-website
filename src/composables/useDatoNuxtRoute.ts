@@ -10,7 +10,7 @@ export function useDatoNuxtRoute() {
     const sharedParams = { language: $i18n.locale() }
 
     switch (page.__typename) {
-      case 'LandingPageRecord': {
+      case 'PageRecord': {
         return { name: 'language-slug', params: { ...sharedParams, slug: page.slug?.split('/') } }
       }
       case 'BlogPostOverviewRecord': {

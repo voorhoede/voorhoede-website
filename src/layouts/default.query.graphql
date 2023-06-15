@@ -41,7 +41,7 @@ fragment internalLink on InternalLinkRecord {
   title
   link {
     __typename
-    ... on LandingPageRecord {
+    ... on PageRecord {
       slug
     }
     ... on BlogPostRecord {
