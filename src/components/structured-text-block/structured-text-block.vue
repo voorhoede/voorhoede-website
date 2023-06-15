@@ -149,23 +149,11 @@
         })
       }
       case 'StructuredTextImageRecord': {
-        let sizes;
-
-        switch (record.layout) {
-          case 'left':
-          case 'right': {
-            sizes = '(min-width: 1100px) 430px, (min-width: 720px) 40vw, 90vw'
-            break
-          }
-          case 'narrow': {
-            sizes = '(min-width: 1100px) 680px, (min-width: 720px) 60vw, 90vw'
-            break
-          }
-          case 'default':
-          default: {
-            sizes = '(min-width: 1100px) 860px, (min-width: 720px) 75vw, 90vw'
-            break
-          }
+        const sizes = {
+          left: '(min-width: 1100px) 430px, (min-width: 720px) 40vw, 90vw',
+          right: '(min-width: 1100px) 430px, (min-width: 720px) 40vw, 90vw',
+          narrow: '(min-width: 1100px) 680px, (min-width: 720px) 60vw, 90vw',
+          default: '(min-width: 1100px) 860px, (min-width: 720px) 75vw, 90vw',
         }
 
         return h(ImageWithCaption, {
@@ -178,7 +166,7 @@
           caption: record.caption,
           image: {
             ...record.image,
-            sizes
+            sizes: sizes[record.layout] || sizes.default,
           },
         })
       }
