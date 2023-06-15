@@ -289,7 +289,8 @@
     margin: var(--spacing-big) 0;
   }
 
-  .structured-text__image-with-caption--left + .structured-text__image-with-caption--right {
+  .structured-text__image-with-caption--left,
+  .structured-text__image-with-caption--right {
     margin-top: var(--spacing-small)
   }
 
@@ -302,41 +303,26 @@
 
     .structured-text__image-with-caption--left,
     .structured-text__image-with-caption--right {
-      width: 50%;
+      margin-top: var(--spacing-smaller);
+
+      /* We use width and padding to create a gutter, so we don't need to know about other content */
+      width: calc(50% + var(--spacing-small));
     }
 
     .structured-text__image-with-caption--left {
-      padding-right: var(--spacing-small);
+      padding-right: calc(2 * var(--spacing-small));
       float: left;
     }
 
     .structured-text__image-with-caption--right {
-      padding-left: var(--spacing-small);
+      padding-left: calc(2 * var(--spacing-small));
       float: right;
     }
 
+    /* The left image already has the full gutter, so we remove it from the right image */
     .structured-text__image-with-caption--left + .structured-text__image-with-caption--right {
-      margin-top: var(--spacing-big);
-    }
-
-    /* Left aligned image before regular (non-image) content. Needs to align to content, without a margin. */
-    .structured-text__image-with-caption--left:has(+ *:not(.structured-text__image-with-caption--right)) {
-      margin-top: 0;
-    }
-
-    /* Right aligned image after regular (non-image) content. Needs to align to content, without a margin  */
-    :not(.structured-text__image-with-caption--left) + .structured-text__image-with-caption--right {
-      margin-top: 0;
-    }
-
-    /* Add some margin between image and regular (non-image) content */
-    .structured-text__image-with-caption--left:has(+ *:not(.structured-text__image-with-caption--right)) {
-      margin-right: var(--spacing-small);
-    }
-
-    /* Add some margin between image and regular (non-image) content */
-    :not(.structured-text__image-with-caption--left) + .structured-text__image-with-caption--right {
-      margin-left: var(--spacing-small);
+      padding-left: 0;
+      width: calc(50% - var(--spacing-small));
     }
 
     /* Make sure adjacent content of a left and right aligned image next to each other nicely wraps onto the next line */
@@ -344,7 +330,6 @@
       clear: both;
     }
   }
-
 
   .structured-text__highlighted-list-item {
     padding: var(--spacing-medium);
