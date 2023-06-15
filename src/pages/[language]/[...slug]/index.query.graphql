@@ -1,5 +1,5 @@
-query LandingPage($locale: SiteLocale, $slug: String) {
-  page: landingPage(locale: $locale, filter: {slug: {eq: $slug}}) {
+query Page($locale: SiteLocale, $slug: String) {
+  page: page(locale: $locale, filter: {slug: {eq: $slug}}) {
     title
     slug
     social {
@@ -250,7 +250,7 @@ fragment link on RecordInterface {
     title
     link {
       __typename
-      ... on LandingPageRecord {
+      ... on PageRecord {
         slug
       }
       ... on BlogPostRecord {
