@@ -104,6 +104,11 @@
         v-if="section.__typename === 'SectionTeamGalleryRecord'"
         :team="section.persons"
       />
+      <open-source-projects
+        v-if="section.__typename === 'SectionOpenSourceProjectRecord'"
+        :title="section.title"
+        :items="section.items"
+      />
     </div>
   </div>
 </template>
@@ -133,6 +138,9 @@
       }
       case 'SectionLogoGridRecord': {
         return BackgroundColor.Grey;
+      }
+      case 'SectionOpenSourceProjectRecord': {
+        return BackgroundColor.None;
       }
       default: {
         return section.backgroundColor

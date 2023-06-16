@@ -213,6 +213,16 @@ query LandingPage($locale: SiteLocale, $slug: String) {
           }
         }
       }
+      ... on SectionOpenSourceProjectRecord {
+        title
+        items {
+          id
+          title
+          repositoryOwner
+          repositoryName
+          description
+        }
+      }
     }
   }
 }
