@@ -74,13 +74,21 @@
       }, children)
     }),
     renderNodeRule(isParagraph, ({ key, children }) => {
+      const validChildren = children.filter((child) => (
+        typeof child === 'string' ? child.trim() : child
+      ));
+
+      if (validChildren.length === 0) {
+        return null;
+      }
+
       return h(
         'p',
         {
           key,
           class: props.paragraphVariant,
         },
-        children
+        validChildren,
       );
     }),
     renderNodeRule(isList, ({ node, key, children }) => {
