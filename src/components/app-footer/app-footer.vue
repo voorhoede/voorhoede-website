@@ -135,8 +135,8 @@
                 <dato-image
                   class="app-footer__certificate-logo"
                   :src="certificate.logo.url"
-                  :width="certificate.logo.width"
-                  :height="certificate.logo.height"
+                  width="80"
+                  height="60"
                   :alt="certificate.platform"
                   loading="lazy"
                 />
@@ -404,7 +404,6 @@ export default {
   }
 
   .app-footer__certificate-logo {
-    height: 60px;
     width: 100%;
     object-fit: contain;
   }
