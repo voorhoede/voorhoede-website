@@ -44,58 +44,58 @@
         </ul>
       </nav>
 
-      <div>
+
+      <nav
+        aria-label="Contact"
+      >
         <h2 class="h4 app-footer__title">
           {{ $t('say_hello') }}
         </h2>
-        <nav
-          aria-label="Contact"
-        >
-          <ul class="body-small app-footer__list app-footer__list--contact">
-            <li class="app-footer__list-item">
-              <a
-                :href="`tel:${ cleanedPhoneNumber }`"
-                class="app-footer__link"
-                @click="trackLink('phone')"
-              >{{ app.phoneNumber }}</a>
-            </li>
-            <li class="app-footer__list-item">
-              <a
-                :href="`mailto:${ app.emailAddress }`"
-                class="app-footer__link"
-                @click="trackLink('email')"
-              >{{ app.emailAddress }}</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div class="app-footer__list-address-wrapper">
+        <ul class="body-small app-footer__list app-footer__list--contact">
+          <li class="app-footer__list-item">
+            <a
+              :href="`tel:${ cleanedPhoneNumber }`"
+              class="app-footer__link"
+              @click="trackLink('phone')"
+            >{{ app.phoneNumber }}</a>
+          </li>
+          <li class="app-footer__list-item">
+            <a
+              :href="`mailto:${ app.emailAddress }`"
+              class="app-footer__link"
+              @click="trackLink('email')"
+            >{{ app.emailAddress }}</a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav
+        class="app-footer__list-address"
+        ref="contact"
+        aria-label="Contact"
+      >
         <h2 class="h4 app-footer__title">
           {{ $t('visit_us') }}
         </h2>
-        <nav
-          ref="contact"
-          aria-label="Contact"
-        >
-          <ul class="body-small app-footer__list">
-            <li
-              v-for="address in app.addresses"
-              :key="address.address"
-              class="app-footer__list-item"
+        <ul class="body-small app-footer__list">
+          <li
+            v-for="address in app.addresses"
+            :key="address.address"
+            class="app-footer__list-item"
+          >
+            <a
+              :href="address.googleMapsLink"
+              class="app-footer__link app-footer__link--right"
+              target="_blank"
+              rel="noreferrer noopener"
             >
-              <a
-                :href="address.googleMapsLink"
-                class="app-footer__link app-footer__link--right"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                <span>{{ address.address }}</span>
-                <span>{{ address.postalCode }} {{ address.city }}</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+              <span>{{ address.address }}</span>
+              <span>{{ address.postalCode }} {{ address.city }}</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
       <div class="app-footer__list">
         <ul class="app-footer__list--icon">
           <li
@@ -412,7 +412,7 @@ export default {
     object-fit: scale-down;
   }
 
-  .app-footer__list-address-wrapper {
+  .app-footer__list-address {
     margin-bottom: var(--spacing-small);
   }
 
