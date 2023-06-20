@@ -29,6 +29,7 @@
   import TagList from '../tag-list/tag-list.vue'
   import ImageWithCaption from '../image-with-caption/image-with-caption.vue'
   import StructuredTextBlock from './structured-text-block.vue'
+  import TwoColumnBlock from '../two-column-block/two-column-block.vue';
 
   const { getDatoNuxtRoute } = useDatoNuxtRoute()
 
@@ -149,26 +150,31 @@
         })
       }
       case 'StructuredTextImageRecord': {
-        const sizes = {
-          left: '(min-width: 1100px) 430px, (min-width: 720px) 40vw, 90vw',
-          right: '(min-width: 1100px) 430px, (min-width: 720px) 40vw, 90vw',
-          narrow: '(min-width: 1100px) 680px, (min-width: 720px) 60vw, 90vw',
-          default: '(min-width: 1100px) 860px, (min-width: 720px) 75vw, 90vw',
-        }
-
         return h(ImageWithCaption, {
           class: {
             'structured-text__image-with-caption': true,
-            'structured-text__image-with-caption--narrow': record.layout === 'narrow',
-            'structured-text__image-with-caption--left': record.layout === 'left',
-            'structured-text__image-with-caption--right': record.layout === 'right',
           },
           caption: record.caption,
           image: {
             ...record.image,
-            sizes: sizes[record.layout] || sizes.default,
+            sizes: '(min-width: 1100px) 680px, (min-width: 720px) 60vw, 90vw',
           },
         })
+      }
+      case 'TwoColumnBlockRecord': {
+        return h(
+          TwoColumnBlock, {
+            key,
+            class: {
+              'structured-text__two-column-block': true,
+              'structured-text__two-column-block--center': record.textAlignment === 'center',
+            },
+          },
+          {
+            left: () => renderColumn(record.leftItems[0]),
+            right: () => renderColumn(record.rightItems[0])
+          }
+        )
       }
       default: {
         return null
@@ -183,6 +189,33 @@
       }
     } else {
       emit('update-toc-items', item)
+    }
+  }
+
+  function renderColumn(column) {
+    switch (column.__typename) {
+      case 'StructuredTextRecord': {
+        return h(StructuredTextBlock, {
+          key: column.id,
+          class: 'structured-text__column-structured-text',
+          content: column.body,
+          isRoot: false,
+          onUpdateTocItems: updateTocItems,
+        })
+      }
+      case 'StructuredTextImageRecord': {
+        return h(ImageWithCaption, {
+          class: 'structured-text__image-with-caption structured-text__column-image',
+          caption: column.caption,
+          image: {
+            ...column.image,
+            sizes: '(min-width: 1100px) 430px, (min-width: 720px) 40vw, 90vw',
+          },
+        })
+      }
+      default: {
+        return null
+      }
     }
   }
 </script>
@@ -277,48 +310,6 @@
     margin: var(--spacing-big) 0;
   }
 
-  .structured-text__image-with-caption--left,
-  .structured-text__image-with-caption--right {
-    margin-top: var(--spacing-small)
-  }
-
-  @media (min-width: 720px) {
-    .structured-text__image-with-caption--narrow {
-      margin-left: auto;
-      margin-right: auto;
-      max-width: 80%
-    }
-
-    .structured-text__image-with-caption--left,
-    .structured-text__image-with-caption--right {
-      margin-top: var(--spacing-smaller);
-
-      /* We use width and padding to create a gutter, so we don't need to know about other content */
-      width: calc(50% + var(--spacing-small));
-    }
-
-    .structured-text__image-with-caption--left {
-      padding-right: calc(2 * var(--spacing-small));
-      float: left;
-    }
-
-    .structured-text__image-with-caption--right {
-      padding-left: calc(2 * var(--spacing-small));
-      float: right;
-    }
-
-    /* The left image already has the full gutter, so we remove it from the right image */
-    .structured-text__image-with-caption--left + .structured-text__image-with-caption--right {
-      padding-left: 0;
-      width: calc(50% - var(--spacing-small));
-    }
-
-    /* Make sure adjacent content of a left and right aligned image next to each other nicely wraps onto the next line */
-    .structured-text__image-with-caption--left + .structured-text__image-with-caption--right + * {
-      clear: both;
-    }
-  }
-
   .structured-text__highlighted-list-item {
     padding: var(--spacing-medium);
     background-color: var(--white);
@@ -344,5 +335,14 @@
 
   .structured-text__list li + li {
     margin-top: var(--spacing-medium);
+  }
+
+  .structured-text__column-structured-text {
+    grid-column: auto;
+  }
+
+  .structured-text__column-image {
+    margin-top: var(--spacing-tiny);
+    margin-bottom: 0;
   }
 </style>
