@@ -24,7 +24,7 @@
           <li
             v-for="link in links"
             :key="link.id"
-            class="app-footer__list-item body-detail"
+            class="app-footer__list-item body-small"
           >
             <app-link
               class="app-footer__link"
@@ -33,7 +33,7 @@
               {{ link.title }}
             </app-link>
           </li>
-          <li class="app-footer__list-item body-detail">
+          <li class="app-footer__list-item body-small">
             <app-link
               class="app-footer__link"
               :to="$localeUrl({ name: 'faq' })"
@@ -77,7 +77,7 @@
         class="app-footer__column app-footer__column--right"
         aria-label="Contact"
       >
-        <ul class="body-detail app-footer__list app-footer__list--contact">
+        <ul class="body-small app-footer__list app-footer__list--contact">
           <li
             v-for="address in app.addresses"
             :key="address.address"
