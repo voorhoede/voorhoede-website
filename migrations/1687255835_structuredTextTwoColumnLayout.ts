@@ -9,29 +9,31 @@ export default async function (client: Client) {
   console.log(
     'Create block model "Structured Text Image" (`structured_text_image`)'
   );
-  newItemTypes["1741417"] = await client.itemTypes.create(
+  newItemTypes["1934886"] = await client.itemTypes.create(
     {
       name: "Structured Text Image",
       api_key: "structured_text_image",
       modular_block: true,
+      hint: "https://www.datocms-assets.com/6524/1687254596-structured-text-image-preview.png",
       inverse_relationships_enabled: false,
     },
     { skip_menu_item_creation: true }
   );
 
   console.log('Create block model "Two column block" (`two_column_block`)');
-  newItemTypes["1930166"] = await client.itemTypes.create(
+  newItemTypes["1934887"] = await client.itemTypes.create(
     {
       name: "Two column block",
       api_key: "two_column_block",
       modular_block: true,
+      hint: "https://www.datocms-assets.com/6524/1687254602-two-column-block-preview.png",
       inverse_relationships_enabled: false,
     },
     { skip_menu_item_creation: true }
   );
 
   console.log('Create block model "Structured text" (`structured_text`)');
-  newItemTypes["1930168"] = await client.itemTypes.create(
+  newItemTypes["1934888"] = await client.itemTypes.create(
     {
       name: "Structured text",
       api_key: "structured_text",
@@ -46,7 +48,7 @@ export default async function (client: Client) {
   console.log(
     'Create Single asset field "Image" (`image`) in block model "Structured Text Image" (`structured_text_image`)'
   );
-  newFields["8991213"] = await client.fields.create(newItemTypes["1741417"], {
+  newFields["10089810"] = await client.fields.create(newItemTypes["1934886"], {
     label: "Image",
     field_type: "file",
     api_key: "image",
@@ -61,7 +63,7 @@ export default async function (client: Client) {
   console.log(
     'Create Single-line string field "Caption" (`caption`) in block model "Structured Text Image" (`structured_text_image`)'
   );
-  newFields["8991214"] = await client.fields.create(newItemTypes["1741417"], {
+  newFields["10089811"] = await client.fields.create(newItemTypes["1934886"], {
     label: "Caption",
     field_type: "string",
     api_key: "caption",
@@ -76,13 +78,13 @@ export default async function (client: Client) {
   console.log(
     'Create Modular content field "Left content" (`left_items`) in block model "Two column block" (`two_column_block`)'
   );
-  newFields["10063556"] = await client.fields.create(newItemTypes["1930166"], {
+  newFields["10089812"] = await client.fields.create(newItemTypes["1934887"], {
     label: "Left content",
     field_type: "rich_text",
     api_key: "left_items",
     validators: {
       rich_text_blocks: {
-        item_types: [newItemTypes["1741417"].id, newItemTypes["1930168"].id],
+        item_types: [newItemTypes["1934886"].id, newItemTypes["1934888"].id],
       },
       size: { eq: 1 },
     },
@@ -96,13 +98,13 @@ export default async function (client: Client) {
   console.log(
     'Create Modular content field "Right content" (`right_items`) in block model "Two column block" (`two_column_block`)'
   );
-  newFields["10063564"] = await client.fields.create(newItemTypes["1930166"], {
+  newFields["10089813"] = await client.fields.create(newItemTypes["1934887"], {
     label: "Right content",
     field_type: "rich_text",
     api_key: "right_items",
     validators: {
       rich_text_blocks: {
-        item_types: [newItemTypes["1741417"].id, newItemTypes["1930168"].id],
+        item_types: [newItemTypes["1934886"].id, newItemTypes["1934888"].id],
       },
       size: { eq: 1 },
     },
@@ -116,7 +118,7 @@ export default async function (client: Client) {
   console.log(
     'Create Structured text field "Body" (`body`) in block model "Structured text" (`structured_text`)'
   );
-  newFields["10063562"] = await client.fields.create(newItemTypes["1930168"], {
+  newFields["10089814"] = await client.fields.create(newItemTypes["1934888"], {
     label: "Body",
     field_type: "structured_text",
     api_key: "body",
@@ -169,9 +171,9 @@ export default async function (client: Client) {
       structured_text_blocks: {
         item_types: [
           "41672",
-          newItemTypes["1741417"].id,
           "1775016",
-          newItemTypes["1930166"].id,
+          newItemTypes["1934886"].id,
+          newItemTypes["1934887"].id,
           "2040400",
           "2040401",
           "2040408",
