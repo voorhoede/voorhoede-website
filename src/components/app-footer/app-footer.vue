@@ -131,14 +131,15 @@
                 <span class="sr-only">
                   {{ certificate.platform }}
                 </span>
-                <img
+
+                <dato-image
                   class="app-footer__certificate-logo"
-                  :class="{ 'app-footer__certificate-logo--dda': certificate.platform === 'Dutch digital agencies' }"
-                  :src="certificate.icon"
-                  :alt="`${ certificate.platform } logo`"
+                  :src="certificate.logo.url"
+                  :width="certificate.logo.width"
+                  :height="certificate.logo.height"
+                  :alt="certificate.platform"
                   loading="lazy"
-                  height="60"
-                >
+                />
               </a>
             </li>
           </template>
@@ -208,8 +209,8 @@ export default {
   computed: {
     certificateLinks() {
       return [
-        { url: this.footer.bCorpLink, platform: 'B Corp', icon: '/images/bcorp-logo.svg' },
-        { url: this.footer.dutchDigitalAgenciesLink, platform: 'Dutch digital agencies', icon: '/images/dutch-ditital-agency-logo.svg' }
+        { url: this.footer.bCorpLink, platform: 'B Corp', logo: this.footer.bcorpLogo },
+        { url: this.footer.dutchDigitalAgenciesLink, platform: 'Dutch digital agencies', logo: this.footer.dutchDigitalAgenciesLogo }
       ]
     },
     socialLinks() {
@@ -393,7 +394,7 @@ export default {
   .app-footer__certificate-list {
     display: flex;
     align-items: center;
-    gap: var(--spacing-tiny);
+    gap: var(--spacing-small);
   }
 
   @media (min-width: 768px) {
@@ -403,12 +404,9 @@ export default {
   }
 
   .app-footer__certificate-logo {
-    height: 70px;
+    height: 60px;
+    width: 100%;
     object-fit: contain;
-  }
-
-  .app-footer__certificate-logo--dda {
-    width: 70px;
   }
 
   .app-footer__list-address {
