@@ -135,6 +135,7 @@
                   {{ certificate.platform }}
                 </span>
                 <img
+                  class="app-footer__certificate-logo"
                   :src="certificate.icon"
                   :alt="`${ certificate.platform } logo`"
                   loading="lazy"
@@ -394,6 +395,7 @@ export default {
 
   .app-footer__certificate-list {
     display: flex;
+    align-items: center;
     gap: var(--spacing-tiny);
   }
 
@@ -401,6 +403,13 @@ export default {
     .app-footer__certificate-list {
       justify-content: space-between;
     }
+  }
+
+  .app-footer__certificate-logo {
+    height: 70px;
+    width: 70px;
+    max-width: max-content;
+    object-fit: scale-down;
   }
 
   .app-footer__list-address-wrapper {
