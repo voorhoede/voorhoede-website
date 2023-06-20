@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'rename-landing-page-and-block-titles-deploy';
+export const datocmsEnvironment = 'structured-text-two-column-layout-deploy';

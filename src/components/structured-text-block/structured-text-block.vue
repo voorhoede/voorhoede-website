@@ -29,6 +29,7 @@
   import TagList from '../tag-list/tag-list.vue'
   import ImageWithCaption from '../image-with-caption/image-with-caption.vue'
   import StructuredTextBlock from './structured-text-block.vue'
+  import TwoColumnBlock from '../two-column-block/two-column-block.vue';
 
   const { getDatoNuxtRoute } = useDatoNuxtRoute()
 
@@ -156,6 +157,33 @@
           },
         })
       }
+      case 'StructuredTextImageRecord': {
+        return h(ImageWithCaption, {
+          class: {
+            'structured-text__image-with-caption': true,
+          },
+          caption: record.caption,
+          image: {
+            ...record.image,
+            sizes: '(min-width: 1100px) 680px, (min-width: 720px) 60vw, 90vw',
+          },
+        })
+      }
+      case 'TwoColumnBlockRecord': {
+        return h(
+          TwoColumnBlock, {
+            key,
+            class: {
+              'structured-text__two-column-block': true,
+              'structured-text__two-column-block--center': record.textAlignment === 'center',
+            },
+          },
+          {
+            left: () => renderColumn(record.leftItems[0]),
+            right: () => renderColumn(record.rightItems[0])
+          }
+        )
+      }
       default: {
         return null
       }
@@ -171,6 +199,33 @@
       emit('update-toc-items', item)
     }
   }
+
+  function renderColumn(column) {
+    switch (column.__typename) {
+      case 'StructuredTextRecord': {
+        return h(StructuredTextBlock, {
+          key: column.id,
+          class: 'structured-text__column-structured-text',
+          content: column.body,
+          isRoot: false,
+          onUpdateTocItems: updateTocItems,
+        })
+      }
+      case 'StructuredTextImageRecord': {
+        return h(ImageWithCaption, {
+          class: 'structured-text__image-with-caption structured-text__column-image',
+          caption: column.caption,
+          image: {
+            ...column.image,
+            sizes: '(min-width: 1100px) 430px, (min-width: 720px) 40vw, 90vw',
+          },
+        })
+      }
+      default: {
+        return null
+      }
+    }
+  }
 </script>
 
 <style>
@@ -183,8 +238,6 @@
   .structured-text {
     grid-column: var(--grid-content);
     word-wrap: break-word;
-    display: flex;
-    flex-direction: column;
   }
 
   @media (min-width: 720px) {
@@ -257,7 +310,8 @@
   }
 
   .structured-text__blue-text--center .structured-text__buttons-list {
-    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .structured-text__image-with-caption {
@@ -289,5 +343,14 @@
 
   .structured-text__list li + li {
     margin-top: var(--spacing-medium);
+  }
+
+  .structured-text__column-structured-text {
+    grid-column: auto;
+  }
+
+  .structured-text__column-image {
+    margin-top: var(--spacing-tiny);
+    margin-bottom: 0;
   }
 </style>
