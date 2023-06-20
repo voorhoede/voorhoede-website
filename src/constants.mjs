@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'structured-text-image-block-configurable-width';
+export const datocmsEnvironment = 'structured-text-two-column-layout';

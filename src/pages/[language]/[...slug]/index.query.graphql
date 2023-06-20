@@ -138,11 +138,15 @@ query Page($locale: SiteLocale, $slug: String) {
               }
             }
             ... on StructuredTextImageRecord {
+              ...structuredTextImage
+            }
+            ... on TwoColumnBlockRecord {
               id
-              caption
-              layout
-              image {
-                ...image
+              leftItems {
+                ...twoColumnItemFragment
+              }
+              rightItems {
+                ...twoColumnItemFragment
               }
             }
           }
@@ -225,6 +229,24 @@ query Page($locale: SiteLocale, $slug: String) {
   }
 }
 
+fragment twoColumnItemFragment on RecordInterface {
+  __typename
+  ... on StructuredTextRecord {
+    id
+    body {
+      value
+      blocks {
+        ... on StructuredTextButtonsListRecord {
+          ...buttonsList
+        }
+      }
+    }
+  }
+  ... on StructuredTextImageRecord {
+    ...structuredTextImage
+  }
+}
+
 fragment buttonsList on StructuredTextButtonsListRecord {
   id
   buttons {
@@ -285,5 +307,13 @@ fragment link on RecordInterface {
     id
     title
     url
+  }
+}
+
+fragment structuredTextImage on StructuredTextImageRecord {
+  id
+  caption
+  image {
+    ...image
   }
 }
