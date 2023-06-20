@@ -45,9 +45,7 @@
       </nav>
 
 
-      <nav
-        aria-label="Contact"
-      >
+      <nav>
         <h2 class="h4 app-footer__title">
           {{ $t('say_hello') }}
         </h2>
@@ -72,7 +70,6 @@
       <nav
         class="app-footer__list-address"
         ref="contact"
-        aria-label="Contact"
       >
         <h2 class="h4 app-footer__title">
           {{ $t('visit_us') }}
