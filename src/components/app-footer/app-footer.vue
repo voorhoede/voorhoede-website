@@ -133,6 +133,7 @@
                 </span>
                 <img
                   class="app-footer__certificate-logo"
+                  :class="{ 'app-footer__certificate-logo--dda': certificate.platform === 'Dutch digital agencies' }"
                   :src="certificate.icon"
                   :alt="`${ certificate.platform } logo`"
                   loading="lazy"
@@ -207,7 +208,7 @@ export default {
   computed: {
     certificateLinks() {
       return [
-        { url: this.footer.bCorpLink, platform: 'B Corp', icon: '/images/becorp-logo.svg' },
+        { url: this.footer.bCorpLink, platform: 'B Corp', icon: '/images/bcorp-logo.svg' },
         { url: this.footer.dutchDigitalAgenciesLink, platform: 'Dutch digital agencies', icon: '/images/dutch-ditital-agency-logo.svg' }
       ]
     },
@@ -385,7 +386,6 @@ export default {
     }
   }
 
-
   .app-footer__list--contact {
    grid-template-columns: auto;
   }
@@ -404,9 +404,11 @@ export default {
 
   .app-footer__certificate-logo {
     height: 70px;
+    object-fit: contain;
+  }
+
+  .app-footer__certificate-logo--dda {
     width: 70px;
-    max-width: max-content;
-    object-fit: scale-down;
   }
 
   .app-footer__list-address {
