@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'rename-landing-page-and-block-titles-deploy';
+export const datocmsEnvironment = 'app-footer-certificate-links';

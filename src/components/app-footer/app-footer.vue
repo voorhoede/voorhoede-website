@@ -43,6 +43,35 @@
           </li>
         </ul>
       </nav>
+
+      <h2 class="h4 app-footer__title">
+        {{ $t('say_hello') }}
+      </h2>
+      <nav
+        class="app-footer__column app-footer__column--right"
+        aria-label="Contact"
+      >
+        <ul class="body-small app-footer__list app-footer__list--contact">
+          <li class="app-footer__list-item">
+            <a
+              :href="`tel:${ cleanedPhoneNumber }`"
+              class="app-footer__link"
+              @click="trackLink('phone')"
+            >{{ app.phoneNumber }}</a>
+          </li>
+          <li class="app-footer__list-item">
+            <a
+              :href="`mailto:${ app.emailAddress }`"
+              class="app-footer__link"
+              @click="trackLink('email')"
+            >{{ app.emailAddress }}</a>
+          </li>
+        </ul>
+      </nav>
+
+      <h2 class="h4">
+        {{ $t('visit_us') }}
+      </h2>
       <nav
         ref="contact"
         class="app-footer__column app-footer__column--right"
@@ -64,22 +93,9 @@
               <span>{{ address.postalCode }} {{ address.city }}</span>
             </a>
           </li>
-          <li class="app-footer__list-item">
-            <a
-              :href="`tel:${ cleanedPhoneNumber }`"
-              class="app-footer__link"
-              @click="trackLink('phone')"
-            >{{ app.phoneNumber }}</a>
-          </li>
-          <li class="app-footer__list-item">
-            <a
-              :href="`mailto:${ app.emailAddress }`"
-              class="app-footer__link"
-              @click="trackLink('email')"
-            >{{ app.emailAddress }}</a>
-          </li>
         </ul>
       </nav>
+
       <div class="app-footer__column app-footer__column--bottom">
         <ul class="app-footer__list--icon">
           <li
@@ -101,6 +117,32 @@
               />
             </a>
           </li>
+        </ul>
+
+        <ul class="app-footer__certificate-list">
+          <template
+            v-for="certificate in certificateLinks"
+            :key="certificate.url"
+          >
+            <li v-if="certificate.url !== ''">
+              <a
+                :href="certificate.url"
+                target="_blank"
+                rel="noreferrer noopener"
+                :aria-label="certificate.platform"
+              >
+                <span class="sr-only">
+                  {{ certificate.platform }}
+                </span>
+                <img
+                  :src="certificate.icon"
+                  :alt="`${ certificate.platform } logo`"
+                  loading="lazy"
+                  height="60"
+                >
+              </a>
+            </li>
+          </template>
         </ul>
       </div>
     </div>
@@ -156,6 +198,12 @@ export default {
     }
   },
   computed: {
+    certificateLinks() {
+      return [
+        { url: this.footer.bCorpLink, platform: 'B Corp', icon: '/images/becorp-logo.svg' },
+        { url: this.footer.dutchDigitalAgenciesLink, platform: 'Dutch digital agencies', icon: '/images/dutch-ditital-agency-logo.svg' }
+      ]
+    },
     socialLinks() {
       return [
         { url: this.app.twitterUrl,  platform: 'Twitter',  icon: 'twitter' },

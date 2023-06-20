@@ -33,6 +33,8 @@ query DefaultLayout($locale: SiteLocale) {
     privacyTitle
     privacyLabel
     privacyLink
+    bCorpLink
+    dutchDigitalAgenciesLink
   }
 }
 
