@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'structured-text-two-column-layout';
+export const datocmsEnvironment = 'structured-text-two-column-layout-deploy';
