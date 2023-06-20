@@ -35,6 +35,12 @@ query Page($locale: SiteLocale, $slug: String) {
               textAlignment
               body {
                 value
+                blocks {
+                  ... on StructuredTextButtonsListRecord {
+                    __typename
+                    ...buttonsList
+                  }
+                }
               }
             }
             ... on StructuredTextButtonsListRecord {
