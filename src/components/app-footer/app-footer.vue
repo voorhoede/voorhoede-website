@@ -126,14 +126,14 @@
                 :href="certificate.url"
                 target="_blank"
                 rel="noreferrer noopener"
-                :aria-label="certificate.platform"
+                :aria-label="certificate.title"
               >
                 <dato-image
                   class="app-footer__certificate-logo"
                   :src="certificate.logo.url"
                   :width="80"
                   :height="60"
-                  :alt="certificate.platform"
+                  :alt="certificate.title"
                   loading="lazy"
                 />
               </a>
@@ -204,9 +204,24 @@ export default {
   },
   computed: {
     certificateLinks() {
+      const {
+        bCorpLink,
+        bcorpLogo,
+        dutchDigitalAgenciesLink,
+        dutchDigitalAgenciesLogo
+      } = this.footer
+
       return [
-        { url: this.footer.bCorpLink, platform: 'B Corp', logo: this.footer.bcorpLogo },
-        { url: this.footer.dutchDigitalAgenciesLink, platform: 'Dutch digital agencies', logo: this.footer.dutchDigitalAgenciesLogo }
+        {
+          url: bCorpLink[0].url,
+          title: bCorpLink[0].title,
+          logo: bcorpLogo
+        },
+        {
+          url: dutchDigitalAgenciesLink[0].url,
+          title: dutchDigitalAgenciesLink[0].title,
+          logo: dutchDigitalAgenciesLogo
+        }
       ]
     },
     socialLinks() {
