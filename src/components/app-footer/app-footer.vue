@@ -128,10 +128,6 @@
                 rel="noreferrer noopener"
                 :aria-label="certificate.platform"
               >
-                <span class="sr-only">
-                  {{ certificate.platform }}
-                </span>
-
                 <dato-image
                   class="app-footer__certificate-logo"
                   :src="certificate.logo.url"
