@@ -135,8 +135,8 @@
                 <dato-image
                   class="app-footer__certificate-logo"
                   :src="certificate.logo.url"
-                  width="80"
-                  height="60"
+                  :width="80"
+                  :height="60"
                   :alt="certificate.platform"
                   loading="lazy"
                 />
