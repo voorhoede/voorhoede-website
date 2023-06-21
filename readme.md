@@ -33,7 +33,7 @@ Once your PR is ready to merge, we have to apply the migrations to DatoCMS's mai
 5. Await the production deploy to succeed
 6. Promote the new environment in DatoCMS
 7. Turn off maintenance mode
-8. Once you've made sure everything is in order, you can remove your deploy sandbox environment. Be aware that you forfeit the option to rollback by performing this action.
+8. Once you've made sure everything is in order, you can remove the previous primary environment. Be aware that you forfeit the option to rollback by performing this action.
 
 ## Decision log
 
