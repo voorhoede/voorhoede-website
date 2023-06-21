@@ -90,12 +90,12 @@ export default async function (client: Client) {
   console.log(
     'Update Single asset field "Dutch digital agencies logo" (`dutch_digital_agencies_logo`) in model "Footer" (`footer`)'
   );
-  await client.fields.update(newFields["9338642"], { position: 2 });
+  await client.fields.update(newFields["9374835"], { position: 1 });
 
   console.log(
     'Update Modular content field "B corp link" (`b_corp_links`) in model "Footer" (`footer`)'
   );
-  await client.fields.update(newFields["9374835"], { position: 1 });
+  await client.fields.update(newFields["9338642"], { position: 2 });
 
   console.log(
     'Update Modular content field "Dutch digital agencies link" (`dutch_digital_agencies_links`) in model "Footer" (`footer`)'
