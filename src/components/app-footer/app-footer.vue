@@ -203,21 +203,21 @@ export default {
   computed: {
     certificateLinks() {
       const {
-        bCorpLink,
+        bCorpLinks,
         bcorpLogo,
-        dutchDigitalAgenciesLink,
+        dutchDigitalAgenciesLinks,
         dutchDigitalAgenciesLogo
       } = this.footer
 
       return [
         {
-          url: bCorpLink[0].url,
-          title: bCorpLink[0].title,
+          url: bCorpLinks[0].url,
+          title: bCorpLinks[0].title,
           logo: bcorpLogo
         },
         {
-          url: dutchDigitalAgenciesLink[0].url,
-          title: dutchDigitalAgenciesLink[0].title,
+          url: dutchDigitalAgenciesLinks[0].url,
+          title: dutchDigitalAgenciesLinks[0].title,
           logo: dutchDigitalAgenciesLogo
         }
       ]

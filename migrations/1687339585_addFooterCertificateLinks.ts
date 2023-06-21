@@ -28,12 +28,12 @@ export default async function (client: Client) {
   });
 
   console.log(
-    'Create Modular content field "B corp link" (`b_corp_link`) in model "Footer" (`footer`)'
+    'Create Modular content field "B corp link" (`b_corp_links`) in model "Footer" (`footer`)'
   );
   newFields["9374835"] = await client.fields.create("47595", {
     label: "B corp link",
     field_type: "rich_text",
-    api_key: "b_corp_link",
+    api_key: "b_corp_links",
     validators: {
       rich_text_blocks: { item_types: ["2034503"] },
       size: { eq: 1 },
@@ -62,12 +62,12 @@ export default async function (client: Client) {
   });
 
   console.log(
-    'Create Modular content field "Dutch digital agencies link" (`dutch_digital_agencies_link`) in model "Footer" (`footer`)'
+    'Create Modular content field "Dutch digital agencies link" (`dutch_digital_agencies_links`) in model "Footer" (`footer`)'
   );
   newFields["9375155"] = await client.fields.create("47595", {
     label: "Dutch digital agencies link",
     field_type: "rich_text",
-    api_key: "dutch_digital_agencies_link",
+    api_key: "dutch_digital_agencies_links",
     validators: {
       rich_text_blocks: { item_types: ["2034503"] },
       size: { eq: 1 },
@@ -93,12 +93,12 @@ export default async function (client: Client) {
   await client.fields.update(newFields["9338642"], { position: 2 });
 
   console.log(
-    'Update Modular content field "B corp link" (`b_corp_link`) in model "Footer" (`footer`)'
+    'Update Modular content field "B corp link" (`b_corp_links`) in model "Footer" (`footer`)'
   );
   await client.fields.update(newFields["9374835"], { position: 1 });
 
   console.log(
-    'Update Modular content field "Dutch digital agencies link" (`dutch_digital_agencies_link`) in model "Footer" (`footer`)'
+    'Update Modular content field "Dutch digital agencies link" (`dutch_digital_agencies_links`) in model "Footer" (`footer`)'
   );
   await client.fields.update(newFields["9375155"], { position: 3 });
 
