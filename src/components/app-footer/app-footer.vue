@@ -117,28 +117,26 @@
         </ul>
 
         <ul class="app-footer__certificate-list">
-          <template
+          <li
             v-for="certificate in certificateLinks"
             :key="certificate.url"
           >
-            <li v-if="certificate.url !== ''">
-              <a
-                :href="certificate.url"
-                target="_blank"
-                rel="noreferrer noopener"
-                :aria-label="certificate.title"
-              >
-                <dato-image
-                  class="app-footer__certificate-logo"
-                  :src="certificate.logo.url"
-                  :width="80"
-                  :height="60"
-                  :alt="certificate.title"
-                  loading="lazy"
-                />
-              </a>
-            </li>
-          </template>
+            <a
+              :href="certificate.url"
+              target="_blank"
+              rel="noreferrer noopener"
+              :aria-label="certificate.title"
+            >
+              <dato-image
+                class="app-footer__certificate-logo"
+                :src="certificate.logo.url"
+                :width="80"
+                :height="60"
+                :alt="certificate.title"
+                loading="lazy"
+              />
+            </a>
+          </li>
         </ul>
       </div>
     </div>
