@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'structured-text-two-column-layout-deploy';
+export const datocmsEnvironment = 'app-footer-certificate-links-deploy';

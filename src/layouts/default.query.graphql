@@ -33,7 +33,26 @@ query DefaultLayout($locale: SiteLocale) {
     privacyTitle
     privacyLabel
     privacyLink
+    bCorpLinks {
+      ...externalLink
+    }
+    dutchDigitalAgenciesLinks {
+      ...externalLink
+    }
+    dutchDigitalAgenciesLogo {
+      ...image
+    }
+    bcorpLogo {
+      ...image
+    }
   }
+}
+
+fragment image on FileField {
+  url
+  alt
+  width
+  height
 }
 
 fragment internalLink on InternalLinkRecord {
@@ -63,4 +82,10 @@ fragment internalLink on InternalLinkRecord {
       slug
     }
   }
+}
+
+fragment externalLink on ExternalLinkRecord {
+    id
+    title
+    url
 }
