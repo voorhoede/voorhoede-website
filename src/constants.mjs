@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'app-footer-certificate-links';
+export const datocmsEnvironment = 'app-footer-certificate-links-deploy';
