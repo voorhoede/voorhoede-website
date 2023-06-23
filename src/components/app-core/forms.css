@@ -26,7 +26,7 @@ input,
 select,
 textarea {
   margin-top: var(--spacing-tiny);
-  padding: 2px 5px;
+  padding: 0px 5px;
   display: block;
   width: 100%;
   border: 1px solid var(--html-blue);
@@ -42,6 +42,7 @@ input:focus,
 select:focus,
 textarea:focus {
   margin-bottom: -2px; /* Decrease the margin-bottom, to prevent jump caused by enlarged border */
+  margin-right: -2px; /* Decrease the margin-right, to prevent jump caused by enlarged border */
   border-width: 2px;
   outline: none;
 }
