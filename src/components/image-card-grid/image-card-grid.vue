@@ -97,6 +97,7 @@ withDefaults(defineProps<Props>(), {
 
   .image-card-grid__title {
     margin-bottom: var(--spacing-medium);
+    text-align: center;
   }
 
   .image-card-grid__list {
