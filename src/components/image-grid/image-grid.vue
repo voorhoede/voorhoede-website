@@ -93,7 +93,7 @@ withDefaults(defineProps<Props>(), {
 
   .image-grid__item {
     flex: 0 0 50%;
-    height: 250px;
+    min-height: 250px;
     background-color: var(--bg-pastel);
   }
 
