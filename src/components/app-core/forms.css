@@ -26,10 +26,10 @@ input,
 select,
 textarea {
   margin-top: var(--spacing-tiny);
-  padding: 0;
+  padding: 2px 5px;
   display: block;
   width: 100%;
-  border-bottom: 1px solid var(--html-blue);
+  border: 1px solid var(--html-blue);
   background-color: transparent;
 }
 
@@ -41,15 +41,15 @@ select {
 input:focus,
 select:focus,
 textarea:focus {
-  margin-bottom: -1px; /* Decrease the margin-bottom, to prevent jump caused by enlarged border */
-  border-bottom-width: 2px;
+  margin-bottom: -2px; /* Decrease the margin-bottom, to prevent jump caused by enlarged border */
+  border-width: 2px;
   outline: none;
 }
 
 input.is-invalid,
 select.is-invalid,
 textarea.is-invalid {
-  border-bottom-color: var(--soft-red);
+  border-color: var(--soft-red);
 }
 
 select {
@@ -66,38 +66,4 @@ select {
 
 ::placeholder {
   color: var(--dim);
-}
-
-@media screen and (min-width: 1100px) {
-  .input-field {
-    display: grid;
-    grid-template-columns: auto 66%;
-    grid-template-rows: auto auto;
-  }
-
-  .input-field + .input-field {
-    margin-top: var(--spacing-small);
-  }
-
-  .input-field__label,
-  .input-field__error {
-    grid-column: 1 / 2;
-    padding-right: var(--spacing-small);
-  }
-
-  .input-field__label {
-    grid-row: 1 / 2;
-  }
-
-  .input-field__error {
-    grid-row: 2 / 3;
-  }
-
-  .input-field > input,
-  .input-field > select,
-  .input-field > textarea {
-    margin-top: 0;
-    grid-row-start: 1;
-    grid-column-start: 2 / 3;
-  }
 }
