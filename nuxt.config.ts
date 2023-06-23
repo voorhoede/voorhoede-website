@@ -18,8 +18,11 @@ export default defineNuxtConfig({
   ],
   nitro: {
     prerender: {
-      crawlLinks: false
-    }
+      crawlLinks: false,
+    },
+  },
+  experimental: {
+    payloadExtraction: true,
   },
   runtimeConfig: {
     public: {
@@ -45,6 +48,15 @@ export default defineNuxtConfig({
           })
         })
     },
+    'nitro:config': (config) => (
+      fetchRedirects()
+        .then((redirects) => {
+          config.routeRules = {
+            ...config.routeRules,
+            ...redirects,
+          };
+        })
+    ),
     'build:before': () => Promise.all([
       fetchTranslations()
         .then(async (translations) => {
@@ -56,8 +68,6 @@ export default defineNuxtConfig({
           await mkdir('./src/public/blog', { recursive: true });
           await writeFile('./src/public/blog/feed.json', JSON.stringify(blogFeed));
         }),
-      fetchRedirects()
-        .then((redirects) => writeFile('./src/public/_redirects', redirects)),
       fetchI18nSlugs()
         .then(async (data) => {
           await mkdir('.cache', { recursive: true });
