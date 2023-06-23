@@ -96,8 +96,8 @@ withDefaults(defineProps<Props>(), {
   }
 
   .image-card-grid__title {
-    text-align: center;
     margin-bottom: var(--spacing-medium);
+    text-align: center;
   }
 
   .image-card-grid__list {
@@ -111,7 +111,6 @@ withDefaults(defineProps<Props>(), {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
     flex-basis: 20rem;
     gap: var(--spacing-small);
     padding: var(--spacing-medium);
@@ -125,6 +124,7 @@ withDefaults(defineProps<Props>(), {
 
   .image-card-grid__image {
     margin-top: calc(-1 * var(--image-offset));
+    align-self: center;
   }
 
   .image-card-grid__link {
