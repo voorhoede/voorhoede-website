@@ -307,10 +307,6 @@ fragment link on RecordInterface {
       ... on PersonRecord {
         slug
       }
-      ... on ContactRecord {
-        id
-      }
-
     }
   }
   ... on ExternalLinkRecord {
