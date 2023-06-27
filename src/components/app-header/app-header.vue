@@ -22,7 +22,7 @@
           >
             <app-link
               class="app-header__link"
-              :to="getDatoNuxtRoute(link.link)"
+              :to="useDatoNuxtRoute(link.link)"
             >
               {{ link.title }}
             </app-link>
@@ -34,7 +34,7 @@
             <app-button
               small
               :label="callToAction.title"
-              :to="getDatoNuxtRoute(callToAction.link)"
+              :to="useDatoNuxtRoute(callToAction.link)"
             />
           </li>
         </ul>
@@ -46,11 +46,6 @@
 
 <script>
   export default {
-    setup() {
-      const { getDatoNuxtRoute } = useDatoNuxtRoute()
-
-      return { getDatoNuxtRoute }
-    },
     props: {
       links: {
         type: Array,
