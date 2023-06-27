@@ -28,7 +28,7 @@
           >
             <app-link
               class="app-footer__link"
-              :to="getDatoNuxtRoute(link.link)"
+              :to="useDatoNuxtRoute(link.link)"
             >
               {{ link.title }}
             </app-link>
@@ -185,11 +185,6 @@
 <script>
 
 export default {
-  setup() {
-    const { getDatoNuxtRoute } = useDatoNuxtRoute()
-
-    return { getDatoNuxtRoute }
-  },
   props: {
     links: { type: Object, required: true },
     app: { type: Object, required: true },

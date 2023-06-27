@@ -24,7 +24,7 @@
     v-else
     :class="rootClass"
     v-bind="$attrs"
-    :to="to?.__typename ? getDatoNuxtRoute(to) : to"
+    :to="to?.__typename ? useDatoNuxtRoute(to) : to"
   >
     <span v-if="primary || small">{{ label }}</span>
     <template v-else>
@@ -35,11 +35,6 @@
 
 <script>
   export default {
-    setup() {
-      const { getDatoNuxtRoute } = useDatoNuxtRoute()
-
-      return { getDatoNuxtRoute }
-    },
     props: {
       label: {
         type: String,

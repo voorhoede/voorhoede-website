@@ -31,8 +31,6 @@
   import StructuredTextBlock from './structured-text-block.vue'
   import TwoColumnBlock from '../two-column-block/two-column-block.vue';
 
-  const { getDatoNuxtRoute } = useDatoNuxtRoute()
-
   const props = defineProps({
     content: {
       type: Object,
@@ -136,7 +134,7 @@
           return h(AppButton, {
             key: button.id,
             label: button.title,
-            to: button.url || getDatoNuxtRoute(button.link),
+            to: button.url || useDatoNuxtRoute(button.link),
             external: button.__typename === 'ExternalLinkRecord',
           })
         }))
