@@ -13,9 +13,6 @@
         v-for="card in items"
         :key="card.id"
         class="image-card-grid__card"
-        :class="{
-          'image-card-grid__card--has-link': card.link?.url || card.link?.page,
-        }"
       >
         <dato-image
           class="image-card-grid__image"
