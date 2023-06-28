@@ -77,6 +77,7 @@ type Props = {
           __typename: 'InternalLinkRecord'
           title: string
           link: {
+            __typename: string
             slug: string
           }
         }

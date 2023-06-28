@@ -19,12 +19,11 @@
       />
     </section>
     <section class="page-index__services grid">
-      <h2 class="page-index__section-title h1">
-        {{ data.page.servicesHeader }}
-      </h2>
-      <services-list
-        class="page-index__services-list"
-        :services="data.page.services"
+      <image-card-grid
+        class="page-index__services-grid"
+        :title="data.page.servicesSections[0].title"
+        :items="data.page.servicesSections[0].items"
+        :background-color="data.page.servicesSections[0].backgroundColor"
       />
       <div class="page-index__blog-posts-button">
         <app-button
@@ -130,6 +129,11 @@
 
   .page-index__services {
     margin-bottom: var(--spacing-larger);
+  }
+
+  .page-index__services-grid {
+    margin-bottom: var(--spacing-larger);
+    grid-column: var(--grid-page);
   }
 
   .page-index__section-title {
@@ -240,10 +244,6 @@
 
     .page-index__services {
       margin-bottom: var(--spacing-bigger);
-    }
-
-    .page-index__services-list {
-      margin-bottom: var(--spacing-large);
     }
 
     .page-index__cta {

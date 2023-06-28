@@ -92,16 +92,21 @@ fragment homepage on HomeRecord {
       }
     }
   }
-  servicesHeader
-  services {
-    excerptTitle
-    slug
-    cardBody
-    cardImage {
-      url
-      alt
-      width
-      height
+  servicesSections {
+    title
+    backgroundColor
+    items {
+      id
+      title
+      body {
+        value
+      }
+      image {
+        ...image
+      }
+      links {
+        ...link
+      }
     }
   }
   clientsTitle
@@ -170,4 +175,11 @@ fragment link on RecordInterface {
     title
     url
   }
+}
+
+fragment image on FileField {
+  url
+  alt
+  width
+  height
 }

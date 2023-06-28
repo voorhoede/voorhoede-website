@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'app-footer-certificate-links-deploy';
+export const datocmsEnvironment = 'image-cards-refactor';
