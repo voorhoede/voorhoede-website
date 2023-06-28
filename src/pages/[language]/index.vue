@@ -24,6 +24,7 @@
         :title="data.page.servicesSections[0].title"
         :items="data.page.servicesSections[0].items"
         :background-color="data.page.servicesSections[0].backgroundColor"
+        card-orientation="horizontal"
       />
       <div class="page-index__blog-posts-button">
         <app-button
@@ -133,7 +134,7 @@
 
   .page-index__services-grid {
     margin-bottom: var(--spacing-larger);
-    grid-column: var(--grid-page);
+    grid-column: var(--grid-content);
   }
 
   .page-index__section-title {
