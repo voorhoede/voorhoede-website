@@ -22,7 +22,7 @@
       >
         <ul class="app-footer__list">
           <li
-            v-for="link in links"
+            v-for="link in footer.links"
             :key="link.id"
             class="app-footer__list-item body-small"
           >
@@ -31,14 +31,6 @@
               :to="useDatoNuxtRoute(link.link)"
             >
               {{ link.title }}
-            </app-link>
-          </li>
-          <li class="app-footer__list-item body-small">
-            <app-link
-              class="app-footer__link"
-              :to="$localeUrl({ name: 'faq' })"
-            >
-              FAQ
             </app-link>
           </li>
         </ul>
@@ -186,7 +178,6 @@
 
 export default {
   props: {
-    links: { type: Object, required: true },
     app: { type: Object, required: true },
     footer: { type: Object, required: true },
   },
