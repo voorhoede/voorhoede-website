@@ -60,7 +60,7 @@ import { BackgroundColor } from '../../types/index.d'
 
 const { getDatoNuxtRoute } = useDatoNuxtRoute()
 
-type Props = {
+const props = withDefaults(defineProps<{
   title: string
   items: {
     id: string
@@ -87,11 +87,9 @@ type Props = {
         }
     )[]
   }[]
-  backgroundColor: BackgroundColor,
-  cardOrientation: 'horizontal' | 'vertical'
-}
-
-const props = withDefaults(defineProps<Props>(), {
+  backgroundColor?: BackgroundColor,
+  cardOrientation?: 'horizontal' | 'vertical'
+}>(), {
   backgroundColor: BackgroundColor.None,
   cardOrientation: 'vertical',
 })
