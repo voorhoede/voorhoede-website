@@ -41,16 +41,14 @@ select {
 input:focus,
 select:focus,
 textarea:focus {
-  margin-bottom: -2px; /* Decrease the margin-bottom, to prevent jump caused by enlarged border */
-  margin-right: -2px; /* Decrease the margin-right, to prevent jump caused by enlarged border */
-  border-width: 2px;
-  outline: none;
+  outline: 2px solid var(--html-blue);
 }
 
 input.is-invalid,
 select.is-invalid,
 textarea.is-invalid {
   border-color: var(--soft-red);
+  outline-color: var(--soft-red);
 }
 
 select {
