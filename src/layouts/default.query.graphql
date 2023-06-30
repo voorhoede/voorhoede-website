@@ -27,6 +27,9 @@ query DefaultLayout($locale: SiteLocale) {
     }
   }
   footer(locale: $locale) {
+    links {
+      ...internalLink
+    }
     copyrightTitle
     copyrightLabel
     copyrightLink
