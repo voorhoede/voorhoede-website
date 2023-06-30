@@ -1,18 +1,18 @@
 <template>
   <vue-dato-video
     class="responsive-video"
-    v-bind="$attrs"
+    v-bind="props"
     :play-icon-alt="playIconAlt"
   >
     <template #caption>
       <div class="caption-container">
         <a
           class="body-detail link"
-          :href="$attrs.video.url"
+          :href="props.video.url"
           target="_blank"
           rel="noopener"
         >
-          {{ $attrs.video.title }}
+          {{ props.video.title }}
         </a>
       </div>
     </template>
@@ -22,8 +22,8 @@
   </vue-dato-video>
 </template>
 
-<script setup>
-import "@voorhoede/vue-dato-video/dist/style.css";
+<script setup lang="ts">
+import "@voorhoede/vue-dato-video/style";
 import { VueDatoVideo } from "@voorhoede/vue-dato-video";
 
 defineOptions({
@@ -36,6 +36,10 @@ const locale = $i18n.locale();
 const playIconAlt = computed(() =>
   locale === "en" ? "play video" : "video afspelen"
 );
+
+type VueDatoVideoProps = InstanceType<typeof VueDatoVideo>["$props"];
+
+const props = defineProps<VueDatoVideoProps>()
 </script>
 
 <style>
