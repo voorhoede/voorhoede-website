@@ -16,6 +16,7 @@
         </p>
 
         <app-button
+          class="page-job__closed-button"
           :label="$t('all_jobs')"
           :to="$localeUrl({ name: 'slug', params: { slug: data.overview.page.slug } })"
         />
@@ -215,18 +216,21 @@
 
     .page-job__closed {
       grid-column: var(--grid-content);
-      padding: var(--spacing-medium) var(--spacing-large);
+      padding: var(--spacing-large) var(--spacing-larger);
+      display: grid;
+      grid-template-columns: 63% 1fr;
+    }
+
+    .page-job__closed-button {
+      grid-row: 2;
+      width: fit-content;
     }
   }
 
   @media (min-width: 1100px) {
-    .page-job__content {
+    .page-job__content, .page-job__closed {
       grid-column: var(--grid-content-narrow);
-      padding: var(--spacing-big) var(--spacing-bigger);
-    }
-
-    .page-job__closed {
-      grid-column: var(--grid-content-narrow);
+      padding: var(--spacing-larger) var(--spacing-bigger);
     }
   }
 </style>
