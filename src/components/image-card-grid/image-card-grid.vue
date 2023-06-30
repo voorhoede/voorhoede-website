@@ -186,7 +186,7 @@ const imageSizes = computed(() => {
       flex-shrink: 0;
     }
 
-    .image-card-grid__card-content {
+    .image-card-grid--horizontal .image-card-grid__card-content {
       width: 40%;
       gap: var(--spacing-large);
     }
@@ -198,7 +198,8 @@ const imageSizes = computed(() => {
       margin-right: var(--spacing-large);
       width: 50%;
     }
-    .image-card-grid__card-content {
+
+    .image-card-grid--horizontal .image-card-grid__card-content {
       width: 25%;
     }
 
