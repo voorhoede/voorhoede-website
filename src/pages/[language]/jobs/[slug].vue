@@ -7,6 +7,20 @@
       :image="data.page.jobImage"
     />
     <div class="grid">
+      <div
+        v-if="data.page.closed"
+        class="page-job__closed"
+      >
+        <p class="h4">
+          {{ $t('apply_closed') }}
+        </p>
+
+        <app-button
+          :label="$t('all_jobs')"
+          :to="$localeUrl({ name: 'slug', params: { slug: data.overview.page.slug } })"
+        />
+      </div>
+
       <div class="page-job__content">
         <template v-for="item in data.page.jobContent">
           <generic-text-block
@@ -26,19 +40,20 @@
         </template>
         <footer class="page-job__footer button-group">
           <h2 class="page-job__title h3">
-            {{ data.page.callToActionTitle }}
+            {{ data.page.closed? $t('apply_title_closed') : $t('apply_title') }}
           </h2>
 
           <app-button
             :label="$t('apply')"
             :to="data.page.url"
             @click="trackApplyButton"
+            v-if="!data.page.closed"
             external
           />
           <app-button
             :label="$t('all_jobs')"
             :to="$localeUrl({ name: 'slug', params: { slug: data.overview.page.slug } })"
-            secondary
+            :secondary="!data.page.closed"
           />
           <scroll-to direction="up" />
         </footer>
@@ -161,6 +176,15 @@
     margin-left: var(--spacing-small);
   }
 
+  .page-job__closed {
+    margin-bottom: var(--spacing-large);
+    background-color: var(--white);
+  }
+
+  .page-job__closed .app-button {
+    margin-top: var(--spacing-medium);
+  }
+
   @media (min-width: 720px) {
     .page-job {
       background-color: var(--bg-pastel);
@@ -188,12 +212,21 @@
     .page-job__footer .app-button {
       margin-top: 0;
     }
+
+    .page-job__closed {
+      grid-column: var(--grid-content);
+      padding: var(--spacing-medium) var(--spacing-large);
+    }
   }
 
   @media (min-width: 1100px) {
     .page-job__content {
       grid-column: var(--grid-content-narrow);
       padding: var(--spacing-big) var(--spacing-bigger);
+    }
+
+    .page-job__closed {
+      grid-column: var(--grid-content-narrow);
     }
   }
 </style>
