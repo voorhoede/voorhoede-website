@@ -21,7 +21,6 @@ const staticRoutesConfig = [
   "/contact/",
   "/cases/",
   "/events/",
-  "/faq/",
   "/energy-first/",
 ];
 
