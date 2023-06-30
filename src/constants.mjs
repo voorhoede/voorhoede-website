@@ -1,1 +1,1 @@
-export const datocmsEnvironment = 'faq';
+export const datocmsEnvironment = 'faq-deploy';

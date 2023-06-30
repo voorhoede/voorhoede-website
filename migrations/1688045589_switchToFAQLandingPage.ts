@@ -12,12 +12,14 @@ export default async function (client: Client) {
     label: "Links",
     field_type: "rich_text",
     api_key: "links",
+    localized: true,
     validators: { rich_text_blocks: { item_types: ["2037919"] } },
     appearance: {
       addons: [],
       editor: "rich_text",
       parameters: { start_collapsed: false },
     },
+    default_value: { en: null, nl: null },
   });
 
   console.log("Update existing fields/fieldsets");
@@ -67,42 +69,81 @@ export default async function (client: Client) {
 
   console.log('Add links to Footer')
   await client.items.update('433576', {
-    links: [
-      buildBlockRecord({
-        item_type: { type: 'item_type', id: '2037919' },
-        title: 'Impact',
-        link: '111438583'
-      }),
-      buildBlockRecord({
-        item_type: { type: 'item_type', id: '2037919' },
-        title: 'Services',
-        link: '363596'
-      }),
-      buildBlockRecord({
-        item_type: { type: 'item_type', id: '2037919' },
-        title: 'Cases',
-        link: '340361'
-      }),
-      buildBlockRecord({
-        item_type: { type: 'item_type', id: '2037919' },
-        title: 'Blog',
-        link: '340358'
-      }),
-      buildBlockRecord({
-        item_type: { type: 'item_type', id: '2037919' },
-        title: 'About us',
-        link: '148229180'
-      }),
-      buildBlockRecord({
-        item_type: { type: 'item_type', id: '2037919' },
-        title: 'Contact',
-        link: '340359'
-      }),
-      buildBlockRecord({
-        item_type: { type: 'item_type', id: '2037919' },
-        title: 'FAQ',
-        link: '143190383'
-      }),
-    ],
+    links: {
+      en: [
+        buildBlockRecord({
+          item_type: { type: 'item_type', id: '2037919' },
+          title: 'Impact',
+          link: '111438583'
+        }),
+        buildBlockRecord({
+          item_type: { type: 'item_type', id: '2037919' },
+          title: 'Services',
+          link: '363596'
+        }),
+        buildBlockRecord({
+          item_type: { type: 'item_type', id: '2037919' },
+          title: 'Cases',
+          link: '340361'
+        }),
+        buildBlockRecord({
+          item_type: { type: 'item_type', id: '2037919' },
+          title: 'Blog',
+          link: '340358'
+        }),
+        buildBlockRecord({
+          item_type: { type: 'item_type', id: '2037919' },
+          title: 'About us',
+          link: '148229180'
+        }),
+        buildBlockRecord({
+          item_type: { type: 'item_type', id: '2037919' },
+          title: 'Contact',
+          link: '340359'
+        }),
+        buildBlockRecord({
+          item_type: { type: 'item_type', id: '2037919' },
+          title: 'FAQ',
+          link: '143190383'
+        }),
+      ],
+      nl: [
+        buildBlockRecord({
+          item_type: { type: 'item_type', id: '2037919' },
+          title: 'Impact',
+          link: '111438583'
+        }),
+        buildBlockRecord({
+          item_type: { type: 'item_type', id: '2037919' },
+          title: 'Services',
+          link: '363596'
+        }),
+        buildBlockRecord({
+          item_type: { type: 'item_type', id: '2037919' },
+          title: 'Cases',
+          link: '340361'
+        }),
+        buildBlockRecord({
+          item_type: { type: 'item_type', id: '2037919' },
+          title: 'Blog',
+          link: '340358'
+        }),
+        buildBlockRecord({
+          item_type: { type: 'item_type', id: '2037919' },
+          title: 'Over ons',
+          link: '148229180'
+        }),
+        buildBlockRecord({
+          item_type: { type: 'item_type', id: '2037919' },
+          title: 'Contact',
+          link: '340359'
+        }),
+        buildBlockRecord({
+          item_type: { type: 'item_type', id: '2037919' },
+          title: 'FAQ',
+          link: '143190383'
+        }),
+      ]
+    }
   });
 }
