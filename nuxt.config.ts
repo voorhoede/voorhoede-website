@@ -22,10 +22,10 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    '/**': { prerender: true },
+    '/**': { isr: true },
     '/*/team/**': { prerender: false },
     '/blog-feed.xml': { redirect: { to: '/blog/feed.json', statusCode: 301 } },
-    '/mogelijk/api/event': { proxy: 'https://plausible.io/api/event' },
+    '/mogelijk/api/event': { proxy: 'https://plausible.io/api/event', isr: false },
   },
   experimental: {
     payloadExtraction: true,
