@@ -21,10 +21,10 @@
     <section class="page-index__services grid">
       <image-card-grid
         class="page-index__services-grid"
-        :title="data.page.servicesSections[0].title"
-        :items="data.page.servicesSections[0].items"
-        :background-color="data.page.servicesSections[0].backgroundColor"
-        card-orientation="horizontal"
+        :title="servicesSection.title"
+        :items="servicesSection.items"
+        :background-color="servicesSection.backgroundColor"
+        :card-orientation="servicesSection.cardOrientation"
       />
       <div class="page-index__blog-posts-button">
         <app-button
@@ -121,6 +121,7 @@
   const ctaSectionTop = data.value.page.pageCtaSection[0];
   const selfTypingTextInterval = getSelfTypingTextInterval(data.value.page.subtitle) / 1000;
   const pageHeaderAnimationDelay = data.value.page.subtitle.length * selfTypingTextInterval;
+  const servicesSection = computed(() => data.value.page.servicesSections[0]);
 </script>
 
 <style>

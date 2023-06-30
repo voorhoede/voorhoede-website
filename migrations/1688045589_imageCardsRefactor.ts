@@ -20,9 +20,25 @@ export default async function (client: Client) {
     appearance: {
       addons: [],
       editor: "rich_text",
-      parameters: { start_collapsed: true },
+      parameters: { start_collapsed: false },
     },
     default_value: { en: null, nl: null },
+  });
+
+  console.log(
+    'Create Single-line string field "Card orientation" (`card_orientation`) in block model "Section Image Card Grid" (`section_image_card_grid`)'
+  );
+  newFields["9879168"] = await client.fields.create("1757574", {
+    label: "Card orientation",
+    field_type: "string",
+    api_key: "card_orientation",
+    validators: { required: {}, enum: { values: ["vertical", "horizontal"] } },
+    appearance: {
+      addons: [],
+      editor: "single_line",
+      parameters: { heading: false },
+    },
+    default_value: "vertical",
   });
 
   console.log("Destroy fields in existing models/block models");

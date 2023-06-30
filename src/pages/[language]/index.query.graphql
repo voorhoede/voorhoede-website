@@ -95,6 +95,7 @@ fragment homepage on HomeRecord {
   servicesSections {
     title
     backgroundColor
+    cardOrientation
     items {
       id
       title
