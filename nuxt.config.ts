@@ -24,6 +24,9 @@ export default defineNuxtConfig({
       nativeSWR: true,
     },
   },
+  routeRules: {
+    '/mogelijk/api/event': { proxy: 'https://plausible.io/api/event', isr: false },
+  },
   runtimeConfig: {
     public: {
       datoApiToken: process.env.DATOCMS_API_READ_TOKEN,
