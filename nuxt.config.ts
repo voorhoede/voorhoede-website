@@ -19,7 +19,10 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: false
-    }
+    },
+    future: {
+      nativeSWR: true,
+    },
   },
   runtimeConfig: {
     public: {
