@@ -34,7 +34,6 @@
         <app-footer
           class="layout-default__footer"
           :app="data.app"
-          :links="[].concat(data.menu.links, data.menu.callToActions[0])"
           :footer="data.footer"
         />
       </div>
