@@ -93,13 +93,14 @@ const props = withDefaults(defineProps<{
 })
 
 const imageSizes = computed(() => {
-  return props.cardOrientation === 'horizontal' ? '(min-width: 1100px) 225px, 170px' : '170px'
+  return props.cardOrientation === 'horizontal' ? '(min-width: 1100px) 200px, 170px' : '170px'
 })
 </script>
 
 <style>
   :root {
     --image-offset: 150px;
+    --horizontal-image-width: 200px;
   }
 
   .image-card-grid__title {
@@ -174,22 +175,22 @@ const imageSizes = computed(() => {
 
     .image-card-grid--horizontal .image-card-grid__card {
       margin-top: 0;
-      margin-left: 25%;
+      margin-left: calc(var(--horizontal-image-width) / 2);
       padding-left: 0;
       flex-direction: row;
     }
 
     .image-card-grid--horizontal .image-card-grid__image {
       margin-top: 0;
-      margin-left: -20%;
+      margin-left: calc(var(--horizontal-image-width) / -2);
       margin-right: var(--spacing-small);
-      width: 40%;
+      width: var(--horizontal-image-width);
       height: auto;
       flex-shrink: 0;
     }
 
     .image-card-grid--horizontal .image-card-grid__card-content {
-      width: 40%;
+      width: calc(100% - var(--horizontal-image-width));
     }
   }
 
@@ -198,18 +199,8 @@ const imageSizes = computed(() => {
       column-gap: var(--spacing-large);
     }
 
-    .image-card-grid--horizontal .image-card-grid__card {
-      margin-left: 100px;
-    }
-
     .image-card-grid--horizontal .image-card-grid__image {
-      margin-left: -100px;
       margin-right: var(--spacing-large);
-      width: 200px;
-    }
-
-    .image-card-grid--horizontal .image-card-grid__card-content {
-      width: calc(100% - 200px);
     }
   }
 </style>
