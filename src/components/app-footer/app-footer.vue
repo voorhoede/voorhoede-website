@@ -175,6 +175,7 @@
 </template>
 
 <script>
+import { mastodonUrl } from '../../constants.mjs';
 
 export default {
   props: {
@@ -211,7 +212,7 @@ export default {
     socialLinks() {
       return [
         { url: this.app.githubUrl, platform: 'GitHub', icon: 'git-hub' },
-        { url: 'https://fosstodon.org/@devoorhoede', platform: 'Mastodon', icon: 'mastodon' },
+        { url: mastodonUrl, platform: 'Mastodon', icon: 'mastodon' },
         { url: this.app.twitterUrl, platform: 'Twitter', icon: 'twitter' },
         { url: this.app.youtubeUrl, platform: 'YouTube', icon: 'youtube' },
         { url: this.app.linkedinUrl, platform: 'LinkedIn', icon: 'linkedin' },
