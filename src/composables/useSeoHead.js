@@ -31,6 +31,7 @@ export function useSeoHead({ title, i18nSlugs, social }) {
       { name: 'twitter:image', content: social.image?.url || defaultShareImg },
     ],
     link: [
+      { rel: 'me', href: 'https://fosstodon.org/@devoorhoede' },
       { rel: 'canonical', href: pageUrl },
       ...$i18n.locales
         .map(({ code }) => {
