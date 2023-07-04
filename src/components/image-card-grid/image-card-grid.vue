@@ -141,7 +141,11 @@ const imageSizes = computed(() => {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    gap: var(--spacing-small);
+  }
+
+  .image-card-grid__body {
+    margin-top: var(--spacing-smaller);
+    margin-bottom: var(--spacing-small);
   }
 
   .image-card-grid__link {
@@ -188,7 +192,6 @@ const imageSizes = computed(() => {
 
     .image-card-grid--horizontal .image-card-grid__card-content {
       width: 40%;
-      gap: var(--spacing-large);
     }
   }
 
