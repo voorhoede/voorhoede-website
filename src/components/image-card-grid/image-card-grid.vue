@@ -196,15 +196,22 @@ const imageSizes = computed(() => {
   }
 
   @media (min-width: 1440px) {
+    .image-card-grid--horizontal .image-card-grid__list {
+      column-gap: var(--spacing-large);
+    }
+
+    .image-card-grid--horizontal .image-card-grid__card {
+      margin-left: 100px;
+    }
+
     .image-card-grid--horizontal .image-card-grid__image {
-      margin-left: -25%;
+      margin-left: -100px;
       margin-right: var(--spacing-large);
-      width: 50%;
+      width: 200px;
     }
 
     .image-card-grid--horizontal .image-card-grid__card-content {
-      width: 25%;
+      width: calc(100% - 200px);
     }
-
   }
 </style>
