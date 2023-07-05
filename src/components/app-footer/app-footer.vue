@@ -175,6 +175,7 @@
 </template>
 
 <script>
+import { mastodonUrl } from '../../constants.mjs';
 
 export default {
   props: {
@@ -210,9 +211,10 @@ export default {
     },
     socialLinks() {
       return [
-        { url: this.app.twitterUrl,  platform: 'Twitter',  icon: 'twitter' },
-        { url: this.app.githubUrl,   platform: 'GitHub',   icon: 'git-hub' },
-        { url: this.app.youtubeUrl,  platform: 'YouTube',  icon: 'youtube' },
+        { url: this.app.githubUrl, platform: 'GitHub', icon: 'git-hub' },
+        { url: mastodonUrl, platform: 'Mastodon', icon: 'mastodon' },
+        { url: this.app.twitterUrl, platform: 'Twitter', icon: 'twitter' },
+        { url: this.app.youtubeUrl, platform: 'YouTube', icon: 'youtube' },
         { url: this.app.linkedinUrl, platform: 'LinkedIn', icon: 'linkedin' },
       ]
     },
@@ -423,8 +425,7 @@ export default {
   }
 
   .app-footer__list-item--icon {
-    font-size: 1.2rem;
-    margin: 0 var(--spacing-tiny);
+    margin-right: var(--spacing-small);
   }
 
   .app-footer__list-item--icon a {
