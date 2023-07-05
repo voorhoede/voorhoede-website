@@ -6,13 +6,13 @@ export default async function (client: Client) {
   console.log("Creating new fields/fieldsets");
 
   console.log(
-    'Create Boolean field "Is closed?" (`closed`) in model "Job" (`job`)'
+    'Create Boolean field "Is closed?" (`is_closed`) in model "Job" (`job`)'
   );
   newFields["10413779"] = await client.fields.create("38231", {
     label: "Is closed?",
     field_type: "boolean",
-    api_key: "closed",
-    hint: "Closed jobs will remain online for SEO optimization reasons but will not be directly listed on the website. A banner explaining the position is closed will appear on the top of the page.",
+    api_key: "is_closed",
+    hint: "Closed jobs will remain online for search engine optimization reasons but will not be directly listed on the website. A banner explaining the position is closed will appear on the top of the page.",
     appearance: { addons: [], editor: "boolean", parameters: {} },
   });
 
@@ -26,7 +26,7 @@ export default async function (client: Client) {
   console.log("Update existing fields/fieldsets");
 
   console.log(
-    'Update Boolean field "Is closed?" (`closed`) in model "Job" (`job`)'
+    'Update Boolean field "Is closed?" (`is_closed`) in model "Job" (`job`)'
   );
   await client.fields.update(newFields["10413779"], { position: 0 });
 

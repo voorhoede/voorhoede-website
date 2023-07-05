@@ -14,7 +14,7 @@ fragment job on JobRecord {
   title
   subtitle
   slug
-  closed
+  isClosed
   i18nSlugs: _allSlugLocales {
     locale
     value

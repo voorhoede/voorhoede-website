@@ -8,7 +8,7 @@
     />
     <div class="grid">
       <div
-        v-if="data.page.closed"
+        v-if="data.page.isClosed"
         class="page-job__closed"
       >
         <p class="h4">
@@ -41,20 +41,20 @@
         </template>
         <footer class="page-job__footer button-group">
           <h2 class="page-job__title h3">
-            {{ data.page.closed? $t('apply_title_closed') : $t('apply_title') }}
+            {{ data.page.isClosed? $t('apply_title_closed') : $t('apply_title') }}
           </h2>
 
           <app-button
             :label="$t('apply')"
             :to="data.page.url"
             @click="trackApplyButton"
-            v-if="!data.page.closed"
+            v-if="!data.page.isClosed"
             external
           />
           <app-button
             :label="$t('all_jobs')"
             :to="$localeUrl({ name: 'slug', params: { slug: data.overview.page.slug } })"
-            :secondary="!data.page.closed"
+            :secondary="!data.page.isClosed"
           />
           <scroll-to direction="up" />
         </footer>
