@@ -14,6 +14,7 @@
         :height="135"
         loading="eager"
         :modifiers="{ ar: '1:1', fit: 'crop', crop: 'faces' }"
+        :quality="75"
       />
     </app-link>
     <div class="blog-author__text body">
