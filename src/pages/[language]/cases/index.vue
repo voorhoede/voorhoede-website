@@ -14,6 +14,7 @@
         :image="data.page.introImage"
         :inverse="true"
         class="page-cases__intro"
+        :background-color="BackgroundColor.PastelYellow"
       />
 
       <div
@@ -72,6 +73,7 @@
 </template>
 
 <script setup>
+  import { BackgroundColor } from '~/types/index.d';
   import query from './index.query.graphql?raw';
 
   const { params } = useRoute();
