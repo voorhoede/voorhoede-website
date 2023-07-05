@@ -56,6 +56,16 @@
 
   const { $localeUrl } = useNuxtApp();
 
+  definePageMeta({
+    middleware: [
+      function (to) {
+        if (to.params.page === '1') {
+          return navigateTo({ name: 'language-blog' })
+        }
+      },
+    ],
+  });
+
   // If you change this, also change it in fetch-routes.ts
   const PER_PAGE = 20;
 
