@@ -13,7 +13,7 @@
             :alt="member.name"
             :width="member.image.width"
             :height="member.image.height"
-            :quality="65"
+            :quality="75"
             loading="lazy"
             sizes="(min-width: 800px) 20vw, (min-width: 500px) 33vw, 50vw"
           />
