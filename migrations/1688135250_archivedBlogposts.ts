@@ -6,12 +6,12 @@ export default async function (client: Client) {
   console.log("Creating new fields/fieldsets");
 
   console.log(
-    'Create Boolean field "Archived?" (`archived`) in model "Blog post" (`blog_post`)'
+    'Create Boolean field "Is archived?" (`is_archived`) in model "Blog post" (`blog_post`)'
   );
   newFields["10418257"] = await client.fields.create("38241", {
-    label: "Archived?",
+    label: "Is archived?",
     field_type: "boolean",
-    api_key: "archived",
+    api_key: "is_archived",
     hint: "Archived blogposts will not appear in the blog overview but will remain accessible. A banner will be displayed on top explaning that they are outdated.",
     appearance: { addons: [], editor: "boolean", parameters: {} },
   });
@@ -19,7 +19,7 @@ export default async function (client: Client) {
   console.log("Update existing fields/fieldsets");
 
   console.log(
-    'Update Boolean field "Archived?" (`archived`) in model "Blog post" (`blog_post`)'
+    'Update Boolean field "Is archived?" (`is_archived`) in model "Blog post" (`blog_post`)'
   );
   await client.fields.update(newFields["10418257"], { position: 0 });
 }

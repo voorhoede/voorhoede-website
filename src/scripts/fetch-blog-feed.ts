@@ -24,7 +24,7 @@ export const fetchBlogFeed = () => {
         allBlogPosts(
           first: 10
           orderBy: publishDate_DESC
-          filter: { archived: { eq: "false" } }
+          filter: { isArchived: { eq: "false" } }
         ) {
           title
           slug

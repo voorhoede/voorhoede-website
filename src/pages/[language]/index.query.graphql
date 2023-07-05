@@ -20,7 +20,7 @@ query HomePage($locale: SiteLocale, $currentDate: DateTime) {
     locale: $locale
     first: 3
     orderBy: publishDate_DESC
-    filter: { archived: { eq: "false" } }
+    filter: { isArchived: { eq: "false" } }
   ) {
     slug
     title
