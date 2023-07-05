@@ -40,7 +40,7 @@
           :width="large ? 65 : 40"
           :height="large ? 65 : 40"
           loading="lazy"
-          :quality="85"
+          :quality="75"
           :modifiers="{ ar: '1:1', fit: 'crop', crop: 'faces', sat: -100 }"
         />
       </div>
