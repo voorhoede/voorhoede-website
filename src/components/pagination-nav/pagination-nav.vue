@@ -67,7 +67,7 @@
     currentPage: number
     perPage: number
     // eslint-disable-next-line no-unused-vars
-    getPaginatedRoute: (page: number) => number | RouteLocation
+    getPaginatedRoute: (page: number) => RouteLocation
   }>()
 
   const totalPages = computed(() => Math.ceil(props.totalItems / props.perPage))
