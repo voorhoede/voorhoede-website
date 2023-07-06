@@ -31,7 +31,7 @@
         :total-items="data.itemsMeta.count"
         :current-page="currentPage"
         :per-page="PER_PAGE"
-        :scroll-to="`#${SECTION_ID}`"
+        :get-paginated-route="getPaginatedRoute"
         class="page-blog__pagination"
       />
     </section>
@@ -53,6 +53,18 @@
 
 <script setup>
   import query from './index.query.graphql?raw';
+
+  const { $localeUrl } = useNuxtApp();
+
+  definePageMeta({
+    middleware: [
+      function (to) {
+        if (to.params.page === '1') {
+          return navigateTo({ name: 'language-blog' })
+        }
+      },
+    ],
+  });
 
   // If you change this, also change it in fetch-routes.ts
   const PER_PAGE = 20;
@@ -87,6 +99,14 @@
   }
 
   useSeoHead(data.value.page);
+
+  function getPaginatedRoute(pageNumber) {
+    if (pageNumber === 1) {
+      return $localeUrl({ name: 'blog', hash: `#${SECTION_ID}` });
+    } else {
+      return $localeUrl({ name: 'blog-page-page', params: { page: pageNumber }, hash: `#${SECTION_ID}` });
+    }
+  }
 </script>
 
 <style>

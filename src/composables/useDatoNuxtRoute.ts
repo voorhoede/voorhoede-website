@@ -13,7 +13,7 @@ export function useDatoNuxtRoute(page: Page) {
       return { name: 'language-slug', params: { ...sharedParams, slug: page.slug?.split('/') } }
     }
     case 'BlogPostOverviewRecord': {
-      return { name: 'language-blog-page-page', params: { ...sharedParams, page: 1 } }
+      return { name: 'language-blog' }
     }
     case 'BlogPostRecord': {
       return { name: 'language-blog-slug', params: { ...sharedParams, slug: page.slug } }
