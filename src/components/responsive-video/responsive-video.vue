@@ -30,9 +30,24 @@ defineOptions({
   inheritAttrs: false,
 });
 
-type VueDatoVideoProps = InstanceType<typeof VueDatoVideo>["$props"];
+interface Video {
+  provider: "youtube" | "vimeo";
+  providerUid: string;
+  title: string;
+  url: string;
+  width: number;
+  height: number;
+  thumbnailUrl: string;
+}
 
-const props = defineProps<Omit<VueDatoVideoProps, "playIconAlt">>()
+interface Props {
+  video: Video;
+  autoplay: boolean;
+  loop: boolean;
+  mute: boolean;
+}
+
+const props = defineProps<Props>()
 </script>
 
 <style>
