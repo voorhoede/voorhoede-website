@@ -2,7 +2,7 @@
   <vue-dato-video
     class="responsive-video"
     v-bind="props"
-    :play-icon-alt="playIconAlt"
+    :play-icon-alt="$t('play_video')"
   >
     <template #caption>
       <div class="caption-container">
@@ -30,16 +30,9 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const { $i18n } = useNuxtApp();
-const locale = $i18n.locale();
-
-const playIconAlt = computed(() =>
-  locale === "en" ? "play video" : "video afspelen"
-);
-
 type VueDatoVideoProps = InstanceType<typeof VueDatoVideo>["$props"];
 
-const props = defineProps<VueDatoVideoProps>()
+const props = defineProps<Omit<VueDatoVideoProps, "playIconAlt">>()
 </script>
 
 <style>
