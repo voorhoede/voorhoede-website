@@ -1,4 +1,5 @@
 import { withTrailingSlash } from 'ufo';
+import { mastodonUrl } from '../constants.mjs';
 
 export function useSeoHead({ title, i18nSlugs, social }) {
   if (!social) {
@@ -31,6 +32,7 @@ export function useSeoHead({ title, i18nSlugs, social }) {
       { name: 'twitter:image', content: social.image?.url || defaultShareImg },
     ],
     link: [
+      { rel: 'me', href: mastodonUrl },
       { rel: 'canonical', href: pageUrl },
       ...$i18n.locales
         .map(({ code }) => {
