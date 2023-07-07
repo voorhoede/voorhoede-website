@@ -52,18 +52,19 @@ const props = defineProps<Props>()
 
 <style>
 .responsive-video__caption-container {
-  margin-top: 0.5rem;
+  margin-top: var(--spacing-smaller);
   text-align: center;
 }
 
+.responsive-video .vue-dato-video__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .responsive-video .app-icon {
-  position: absolute;
-  display: block;
-  top: 50%;
-  left: 50%;
   width: 60px;
   height: 60px;
-  transform: translate(-50%, -50%);
 }
 
 .responsive-video .app-icon svg {
