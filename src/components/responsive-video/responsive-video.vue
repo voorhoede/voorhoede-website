@@ -5,7 +5,7 @@
     :play-icon-alt="$t('play_video')"
   >
     <template #caption>
-      <div class="caption-container">
+      <div class="responsive-video__caption-container">
         <a
           class="body-detail link"
           :href="props.video.url"
@@ -51,7 +51,7 @@ const props = defineProps<Props>()
 </script>
 
 <style>
-.responsive-video .caption-container {
+.responsive-video__caption-container {
   margin-top: 0.5rem;
   text-align: center;
 }
