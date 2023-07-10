@@ -2,7 +2,7 @@
   <ul class="jobs-list grid">
     <li
       class="jobs-list__item"
-      v-for="item in jobs"
+      v-for="item in jobs.filter(job => !job.isClosed)"
       :key="item.slug"
     >
       <jobs-excerpt

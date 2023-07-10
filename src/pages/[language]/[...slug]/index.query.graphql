@@ -180,6 +180,7 @@ query Page($locale: SiteLocale, $slug: String) {
         jobs {
           title
           slug
+          isClosed
           jobImage {
             ...image
           }
