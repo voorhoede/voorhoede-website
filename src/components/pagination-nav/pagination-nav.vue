@@ -6,7 +6,7 @@
       <li class="pagination-nav__item">
         <app-link
           v-if="props.currentPage > 1"
-          :to="toLink(previousPage)"
+          :to="getPaginatedRoute(previousPage)"
           :aria-label="$t('previous_page')"
         >
           &lt; {{ $t('previous') }}
@@ -22,7 +22,7 @@
       >
         <app-link
           v-if="page === props.currentPage"
-          :to="toLink(page)"
+          :to="getPaginatedRoute(page)"
           :aria-label="$t('current_page', { page })"
           aria-current="true"
         >
@@ -30,7 +30,7 @@
         </app-link>
         <app-link
           v-else-if="page !== DOTS"
-          :to="toLink(page)"
+          :to="getPaginatedRoute(page)"
           :aria-label="$t('go_to_page', { page })"
         >
           {{ page }}
@@ -46,7 +46,7 @@
       <li class="pagination-nav__item">
         <app-link
           v-if="props.currentPage < totalPages"
-          :to="toLink(nextPage)"
+          :to="getPaginatedRoute(nextPage)"
           :aria-label="$t('next_page')"
         >
           {{ $t('next') }} >
@@ -56,27 +56,19 @@
   </nav>
 </template>
 
-<script setup>
+<script setup lang="ts">
+  import { RouteLocation } from "vue-router";
+
+
   const DOTS = '...'
 
-  const props = defineProps({
-    totalItems: {
-      type: Number,
-      required: true,
-    },
-    currentPage: {
-      type: Number,
-      required: true,
-    },
-    perPage: {
-      type: Number,
-      required: true,
-    },
-    scrollTo: {
-      type: String,
-      default: null,
-    },
-  })
+  const props = defineProps<{
+    totalItems: number
+    currentPage: number
+    perPage: number
+    // eslint-disable-next-line no-unused-vars
+    getPaginatedRoute: (page: number) => RouteLocation
+  }>()
 
   const totalPages = computed(() => Math.ceil(props.totalItems / props.perPage))
   const previousPage = computed(() => props.currentPage - 1)
@@ -146,13 +138,9 @@
     }
   })
 
-  function range(start, end) {
+  function range(start: number, end: number) {
     const size = end - start + 1
     return [...Array(size).keys()].map(i => i + start)
-  }
-
-  function toLink(page) {
-    return { params: { page }, ...(props.scrollTo && { hash: props.scrollTo })}
   }
 </script>
 

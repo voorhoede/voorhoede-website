@@ -67,7 +67,10 @@ const fetchBlogPagesRoutes = async ({ locale } : { locale: string }) => {
   const { data: meta } = await fetchMetaForOperation({ operation, locale });
   const { count } = meta[`_${operation}Meta`];
   const pages = Math.ceil(count / BLOG_PER_PAGE);
-  return  [...Array(pages)].map((_, index) => `/${locale}/blog/page/${index + 1}/`);
+  return [...Array(pages)]
+    .map((_, index) => index + 1)
+    .filter(pageNumber => pageNumber > 1)
+    .map((pageNumber) => `/${locale}/blog/page/${pageNumber}/`);
 };
 
 // fetches a paginated list of slugs for a given operation
