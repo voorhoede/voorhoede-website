@@ -1,2 +1,2 @@
-export const datocmsEnvironment = 'archive-blogs-deploy';
+export const datocmsEnvironment = 'service-page-structured-text';
 export const mastodonUrl = 'https://fosstodon.org/@devoorhoede';
