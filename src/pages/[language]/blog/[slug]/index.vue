@@ -29,11 +29,17 @@
       <div
         v-if="data.page.isArchived"
       >
-        <text-block class="page-blog-post__archived">
+        <div class="page-blog-post__archived">
           <p class="font-html-blue body-big">
             {{ $t('archived_blogpost') }}
           </p>
-        </text-block>
+
+          <app-button
+            class="page-blog-post__archived-button"
+            :label="$t('all_blogposts')"
+            :to="$localeUrl({ name: 'blog' })"
+          />
+        </div>
       </div>
 
       <text-block>
@@ -309,6 +315,10 @@
     margin-top: var(--spacing-medium);
     background-color: var(--brand-yellow);
     padding: var(--spacing-large);
+  }
+
+  .page-blog-post__archived-button {
+    margin-top: var(--spacing-medium);
   }
 
   @media (min-width: 720px) {
