@@ -26,6 +26,22 @@
     </aside>
 
     <article class="page-blog-post-list">
+      <div
+        v-if="data.page.isArchived"
+      >
+        <div class="page-blog-post__archived">
+          <p class="font-html-blue body-big">
+            {{ $t('archived_blogpost') }}
+          </p>
+
+          <app-button
+            class="page-blog-post__archived-button"
+            :label="$t('all_blogposts')"
+            :to="$localeUrl({ name: 'blog' })"
+          />
+        </div>
+      </div>
+
       <text-block>
         <p class="font-html-blue testimonial">
           {{ data.page.introTitle }}
@@ -295,6 +311,16 @@
     max-width: var(--case-content-max-width-l);
   }
 
+  .page-blog-post__archived {
+    margin-top: var(--spacing-medium);
+    background-color: var(--brand-yellow);
+    padding: var(--spacing-large);
+  }
+
+  .page-blog-post__archived-button {
+    margin-top: var(--spacing-medium);
+  }
+
   @media (min-width: 720px) {
     .page-blog-post-list > * {
       margin-bottom: var(--spacing-larger);
@@ -328,6 +354,10 @@
 
     .page-blog-post__scroll-to {
       display: block;
+    }
+
+    .page-blog-post__archived {
+      margin-top: 0;
     }
   }
 

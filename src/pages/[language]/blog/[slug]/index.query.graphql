@@ -15,6 +15,7 @@ fragment page on BlogPostRecord {
   }
   title
   subtitle
+  isArchived
   headerIllustration {
     url
     alt
