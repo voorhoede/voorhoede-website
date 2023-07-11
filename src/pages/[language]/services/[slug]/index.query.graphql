@@ -112,6 +112,69 @@ fragment page on ServiceRecord {
         }
       }
     }
+    ...on SectionStructuredTextRecord {
+      gridAlignment
+      hasToc
+      backgroundColor
+      body {
+        value
+        blocks {
+          __typename
+          ... on StructuredTextBlueTextRecord {
+            id
+            variant
+            textAlignment
+            body {
+              value
+              blocks {
+                __typename
+                ... on StructuredTextButtonsListRecord {
+                  ...buttonsList
+                }
+              }
+            }
+          }
+          ... on StructuredTextButtonsListRecord {
+            ...buttonsList
+          }
+          ... on StructuredTextHighlightedListRecord {
+            id
+            items {
+              body {
+                value
+              }
+            }
+          }
+          ... on StructuredTextTagListRecord {
+            id
+            items {
+              id
+              amount
+              label
+            }
+          }
+          ... on ImageRecord {
+            id
+            caption
+            image {
+              ...image
+            }
+          }
+          ... on StructuredTextImageRecord {
+            ...structuredTextImage
+          }
+          ... on TwoColumnBlockRecord {
+            id
+            leftItems {
+              ...twoColumnItemFragment
+            }
+            rightItems {
+              ...twoColumnItemFragment
+            }
+          }
+        }
+      }
+    }
   }
   breadcrumbsNextService {
     ... on ServiceRecord {
@@ -143,6 +206,20 @@ fragment page on ServiceRecord {
   }
 }
 
+fragment image on FileField {
+  url
+  alt
+  width
+  height
+}
+
+fragment buttonsList on StructuredTextButtonsListRecord {
+  id
+  buttons {
+    ...link
+  }
+}
+
 fragment link on RecordInterface {
   __typename
   ... on InternalLinkRecord {
@@ -171,11 +248,41 @@ fragment link on RecordInterface {
       ... on PersonRecord {
         slug
       }
+      ... on ContactRecord {
+        id
+      }
+
     }
   }
   ... on ExternalLinkRecord {
     id
     title
     url
+  }
+}
+
+fragment structuredTextImage on StructuredTextImageRecord {
+  id
+  caption
+  image {
+    ...image
+  }
+}
+
+fragment twoColumnItemFragment on RecordInterface {
+  __typename
+  ... on StructuredTextRecord {
+    id
+    body {
+      value
+      blocks {
+        ... on StructuredTextButtonsListRecord {
+          ...buttonsList
+        }
+      }
+    }
+  }
+  ... on StructuredTextImageRecord {
+    ...structuredTextImage
   }
 }

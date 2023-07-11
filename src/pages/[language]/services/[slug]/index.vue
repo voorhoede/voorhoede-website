@@ -14,6 +14,15 @@
     />
     <article class="page-service__overview">
       <template v-for="item in data.page.items">
+        <structured-text-block
+          v-if="item.__typename === 'SectionStructuredTextRecord'"
+          class="page-service__structured-text-section"
+          :key="item.id"
+          :content="item.body"
+          :grid-alignment="item.gridAlignment"
+          :has-toc="item.hasToc"
+          paragraph-variant="body-big"
+        />
         <generic-text-block
           v-if="item.__typename === 'GenericTextBlockRecord'"
           :key="item.id"
@@ -139,6 +148,7 @@
 
   .page-service__overview > .image-with-caption,
   .page-service__overview .generic-text-block,
+  .page-service__structured-text-section,
   .page-service__overview .blockquote-block,
   .page-service__overview > .responsive-video {
     margin: 0 0 var(--spacing-large) 0;
@@ -193,6 +203,7 @@
     }
 
     .page-service__overview .blockquote-block,
+    .page-service__structured-text-section,
     .page-service__overview .cta-image-block {
       width: 70%;
     }
