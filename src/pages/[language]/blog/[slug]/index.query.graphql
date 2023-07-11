@@ -66,6 +66,7 @@ fragment page on BlogPostRecord {
       }
       caption
       fullWidth
+      imagePosition
     }
     ... on ImageWithTextRecord {
       id
