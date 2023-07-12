@@ -103,8 +103,6 @@ fragment page on ServiceRecord {
     }
     ...on SectionStructuredTextRecord {
       gridAlignment
-      hasToc
-      backgroundColor
       body {
         value
         blocks {

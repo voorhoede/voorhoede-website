@@ -19,8 +19,6 @@
           class="page-service__structured-text-section"
           :key="item.id"
           :content="item.body"
-          :grid-alignment="item.gridAlignment"
-          :has-toc="item.hasToc"
           paragraph-variant="body-big"
         />
         <generic-text-block
