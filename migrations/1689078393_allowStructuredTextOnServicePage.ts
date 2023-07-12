@@ -13,4 +13,16 @@ export default async function (client: Client) {
       },
     },
   });
+
+  await client.fields.update('section_structured_text::grid_alignment', {
+    hint: 'Only has effect on regular pages. Not on specific pages (like services etc.)'
+  })
+
+  await client.fields.update('section_structured_text::has_toc', {
+    hint: 'Only has effect on regular pages. Not on specific pages (like services etc.)'
+  })
+
+  await client.fields.update('section_structured_text::background_color', {
+    hint: 'Only has effect on regular pages. Not on specific pages (like services etc.)'
+  })
 }
