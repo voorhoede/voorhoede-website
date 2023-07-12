@@ -49,17 +49,6 @@ fragment page on ServiceRecord {
       caption
       fullWidth
     }
-    ... on GenericTextBlockRecord {
-      id
-      title
-      body
-      image {
-        url
-        alt
-        width
-        height
-      }
-    }
     ... on TestimonialBlockRecord {
       id
       testimonial {
