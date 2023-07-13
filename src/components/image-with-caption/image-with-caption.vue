@@ -1,7 +1,7 @@
 <template>
   <figure
     class="image-with-caption"
-    :class="`image-with-caption--${imagePosition}`"
+    :class="`image-with-caption--${captionPosition}`"
   >
     <dato-image
       class="image-with-caption__image"
@@ -15,7 +15,7 @@
     <figcaption
       v-if="caption"
       class="image-with-caption__caption"
-      :class="`${imagePosition === 'top' ? 'body-detail' : 'pullquote font-bold'}`"
+      :class="`${captionPosition === 'bottom' ? 'body-detail' : 'pullquote font-bold'}`"
     >
       {{ caption }}
     </figcaption>
@@ -32,9 +32,9 @@ withDefaults(defineProps<{
     alt?: string,
     sizes: string,
   },
-  imagePosition: string
+  captionPosition: 'left' | 'right' | 'bottom'
 }>(), {
-  imagePosition: 'top'
+  captionPosition: 'bottom'
 })
 </script>
 
@@ -54,7 +54,7 @@ withDefaults(defineProps<{
     margin-top: var(--spacing-smaller);
   }
 
-  .image-with-caption--top .image-with-caption__caption {
+  .image-with-caption--bottom .image-with-caption__caption {
     text-align: center;
   }
 
@@ -65,7 +65,7 @@ withDefaults(defineProps<{
       align-items: center;
     }
 
-    .image-with-caption--left {
+    .image-with-caption--right {
       flex-direction: row-reverse;
     }
 

@@ -53,7 +53,7 @@ fragment caseItem on CaseItemRecord {
         height
       }
       caption
-      imagePosition
+      captionPosition
     }
     ... on ImageWithTextRecord {
       id

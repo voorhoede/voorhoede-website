@@ -73,7 +73,7 @@
             sizes: '(min-width: 1440px) 1300px, (min-width: 1100px) 1060px, 95vw',
           }"
           :caption="item.caption"
-          :image-position="item.imagePosition"
+          :caption-position="item.captionPosition"
         />
 
         <image-with-caption
@@ -84,7 +84,7 @@
             ...item.imageWithDescription.image,
             sizes: '(min-width: 720px) 50vw, 100vw'
           }"
-          :image-position="item.imageWithDescription.inverse ? 'left' : 'right'"
+          :caption-position="item.imageWithDescription.inverse ? 'right' : 'left'"
           :caption="item.imageWithDescription.description"
         />
 

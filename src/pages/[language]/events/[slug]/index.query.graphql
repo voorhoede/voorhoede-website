@@ -53,7 +53,7 @@ fragment eventItem on EventItemRecord {
       }
       caption
       fullWidth
-      imagePosition
+      captionPosition
     }
     ... on ImageWithTextRecord {
       imageWithDescription {

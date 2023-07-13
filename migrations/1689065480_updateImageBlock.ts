@@ -6,13 +6,13 @@ export default async function (client: Client) {
   console.log("Creating new fields/fieldsets");
 
   console.log(
-    'Create Single-line string field "Image position" (`image_position`) in block model "Image" (`image`)'
+    'Create Single-line string field "Caption position" (`caption_position`) in block model "Image" (`image`)'
   );
   newFields["10353018"] = await client.fields.create("41672", {
-    label: "Image position",
+    label: "Caption position",
     field_type: "string",
-    api_key: "image_position",
-    validators: { enum: { values: ["left", "right", "top"] } },
+    api_key: "caption_position",
+    validators: { enum: { values: ["left", "right", "bottom"] } },
     appearance: {
       addons: [],
       editor: "string_select",
@@ -20,11 +20,11 @@ export default async function (client: Client) {
         options: [
           { hint: "", label: "Left", value: "left" },
           { hint: "", label: "Right", value: "right" },
-          { hint: "", label: "Top", value: "top" },
+          { hint: "", label: "Bottom", value: "bottom" },
         ],
       },
     },
-    default_value: "top",
+    default_value: "bottom",
   });
 
   console.log("Finalize models/block models");
