@@ -142,7 +142,7 @@ query Page($locale: SiteLocale, $slug: String) {
               image {
                 ...image
               }
-              imagePosition
+              captionPosition
             }
             ... on StructuredTextImageRecord {
               ...structuredTextImage
