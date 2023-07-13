@@ -65,7 +65,7 @@ withDefaults(defineProps<{
       align-items: center;
     }
 
-    .image-with-caption--right {
+    .image-with-caption--left {
       flex-direction: row-reverse;
     }
 
