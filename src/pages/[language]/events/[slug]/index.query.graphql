@@ -24,10 +24,7 @@ fragment eventItem on EventItemRecord {
   url
   callToActionLabel
   image {
-    url
-    alt
-    width
-    height
+    ...image
   }
   label {
     label
@@ -46,10 +43,7 @@ fragment eventItem on EventItemRecord {
     __typename
     ... on ImageRecord {
       image {
-        url
-        alt
-        width
-        height
+        ...image
       }
       caption
       fullWidth
@@ -58,10 +52,7 @@ fragment eventItem on EventItemRecord {
     ... on ImageWithTextRecord {
       imageWithDescription {
         image {
-          url
-          alt
-          width
-          height
+          ...image
         }
         description
         inverse
@@ -71,9 +62,148 @@ fragment eventItem on EventItemRecord {
       quote
       author
     }
-    ... on TextSectionRecord {
-      title
-      body
+    ...on SectionStructuredTextRecord {
+      gridAlignment
+      body {
+        value
+        blocks {
+          __typename
+          ... on StructuredTextBlueTextRecord {
+            id
+            variant
+            textAlignment
+            body {
+              value
+              blocks {
+                __typename
+                ... on StructuredTextButtonsListRecord {
+                  ...buttonsList
+                }
+              }
+            }
+          }
+          ... on StructuredTextButtonsListRecord {
+            ...buttonsList
+          }
+          ... on StructuredTextHighlightedListRecord {
+            id
+            items {
+              body {
+                value
+              }
+            }
+          }
+          ... on StructuredTextTagListRecord {
+            id
+            items {
+              id
+              amount
+              label
+            }
+          }
+          ... on ImageRecord {
+            id
+            caption
+            captionPosition
+            image {
+              ...image
+            }
+          }
+          ... on StructuredTextImageRecord {
+            ...structuredTextImage
+          }
+          ... on TwoColumnBlockRecord {
+            id
+            leftItems {
+              ...twoColumnItemFragment
+            }
+            rightItems {
+              ...twoColumnItemFragment
+            }
+          }
+        }
+      }
     }
+  }
+}
+
+fragment image on FileField {
+  url
+  alt
+  width
+  height
+}
+
+fragment buttonsList on StructuredTextButtonsListRecord {
+  id
+  buttons {
+    ...link
+  }
+}
+
+fragment structuredTextImage on StructuredTextImageRecord {
+  id
+  caption
+  image {
+    ...image
+  }
+}
+
+fragment twoColumnItemFragment on RecordInterface {
+  __typename
+  ... on StructuredTextRecord {
+    id
+    body {
+      value
+      blocks {
+        ... on StructuredTextButtonsListRecord {
+          ...buttonsList
+        }
+      }
+    }
+  }
+  ... on StructuredTextImageRecord {
+    ...structuredTextImage
+  }
+}
+
+fragment link on RecordInterface {
+  __typename
+  ... on InternalLinkRecord {
+    id
+    title
+    link {
+      __typename
+      ... on PageRecord {
+        slug
+      }
+      ... on BlogPostRecord {
+        slug
+      }
+      ... on CaseItemRecord {
+        slug
+      }
+      ... on EventItemRecord {
+        slug
+      }
+      ... on JobRecord {
+        slug
+      }
+      ... on ServiceRecord {
+        slug
+      }
+      ... on PersonRecord {
+        slug
+      }
+      ... on ContactRecord {
+        id
+      }
+
+    }
+  }
+  ... on ExternalLinkRecord {
+    id
+    title
+    url
   }
 }

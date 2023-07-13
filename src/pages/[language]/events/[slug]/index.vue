@@ -100,14 +100,12 @@
             :caption-position="item.captionPosition"
           />
 
-          <text-block
-            v-if="item.__typename === 'TextSectionRecord' && item.title"
-            :key="item.title"
-          >
-            <h2 class="page-event-detail__title h3 font-html-blue">
-              {{ item.title }}
-            </h2>
-          </text-block>
+          <structured-text-block
+            v-if="item.__typename === 'SectionStructuredTextRecord'"
+            :key="item.id"
+            :content="item.body"
+            paragraph-variant="body-big"
+          />
 
           <rich-text-block
             class="page-event-detail__rich-text"
