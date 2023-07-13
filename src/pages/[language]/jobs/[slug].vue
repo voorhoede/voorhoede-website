@@ -28,7 +28,6 @@
             v-if="item.__typename === 'SectionStructuredTextRecord'"
             :key="item.id"
             :content="item.body"
-            paragraph-variant="body"
           />
           <gallery-block
             v-if="item.__typename === 'GalleryBlockRecord'"
