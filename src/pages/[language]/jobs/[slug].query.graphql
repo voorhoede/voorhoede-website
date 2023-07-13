@@ -27,10 +27,7 @@ fragment job on JobRecord {
     }
   }
   jobImage {
-    url
-    alt
-    width
-    height
+    ...image
   }
   url
   validUntil
@@ -40,29 +37,75 @@ fragment job on JobRecord {
   maxSalary
   jobDescription
   jobContent {
+    __typename
     ... on GalleryBlockRecord {
-      _modelApiKey
       id
       gallery {
         images {
-          id
-          url
-          alt
-          width
-          height
+          ...image
         }
       }
     }
-    ... on GenericTextBlockRecord {
-      _modelApiKey
-      id
-      title
-      body
-      image {
-        url
-        alt
-        width
-        height
+    ...on SectionStructuredTextRecord {
+      gridAlignment
+      body {
+        value
+        blocks {
+          __typename
+          ... on StructuredTextBlueTextRecord {
+            id
+            variant
+            textAlignment
+            body {
+              value
+              blocks {
+                __typename
+                ... on StructuredTextButtonsListRecord {
+                  ...buttonsList
+                }
+              }
+            }
+          }
+          ... on StructuredTextButtonsListRecord {
+            ...buttonsList
+          }
+          ... on StructuredTextHighlightedListRecord {
+            id
+            items {
+              body {
+                value
+              }
+            }
+          }
+          ... on StructuredTextTagListRecord {
+            id
+            items {
+              id
+              amount
+              label
+            }
+          }
+          ... on ImageRecord {
+            id
+            caption
+            captionPosition
+            image {
+              ...image
+            }
+          }
+          ... on StructuredTextImageRecord {
+            ...structuredTextImage
+          }
+          ... on TwoColumnBlockRecord {
+            id
+            leftItems {
+              ...twoColumnItemFragment
+            }
+            rightItems {
+              ...twoColumnItemFragment
+            }
+          }
+        }
       }
     }
   }
@@ -74,5 +117,87 @@ fragment job on JobRecord {
       city
       countryCode
     }
+  }
+}
+
+fragment image on FileField {
+  id
+  url
+  alt
+  width
+  height
+}
+
+fragment buttonsList on StructuredTextButtonsListRecord {
+  id
+  buttons {
+    ...link
+  }
+}
+
+fragment structuredTextImage on StructuredTextImageRecord {
+  id
+  caption
+  image {
+    ...image
+  }
+}
+
+fragment twoColumnItemFragment on RecordInterface {
+  __typename
+  ... on StructuredTextRecord {
+    id
+    body {
+      value
+      blocks {
+        ... on StructuredTextButtonsListRecord {
+          ...buttonsList
+        }
+      }
+    }
+  }
+  ... on StructuredTextImageRecord {
+    ...structuredTextImage
+  }
+}
+
+fragment link on RecordInterface {
+  __typename
+  ... on InternalLinkRecord {
+    id
+    title
+    link {
+      __typename
+      ... on PageRecord {
+        slug
+      }
+      ... on BlogPostRecord {
+        slug
+      }
+      ... on CaseItemRecord {
+        slug
+      }
+      ... on EventItemRecord {
+        slug
+      }
+      ... on JobRecord {
+        slug
+      }
+      ... on ServiceRecord {
+        slug
+      }
+      ... on PersonRecord {
+        slug
+      }
+      ... on ContactRecord {
+        id
+      }
+
+    }
+  }
+  ... on ExternalLinkRecord {
+    id
+    title
+    url
   }
 }

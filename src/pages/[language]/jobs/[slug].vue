@@ -24,16 +24,14 @@
 
       <div class="page-job__content">
         <template v-for="item in data.page.jobContent">
-          <generic-text-block
-            v-if="item._modelApiKey === 'generic_text_block'"
+          <structured-text-block
+            v-if="item.__typename === 'SectionStructuredTextRecord'"
             :key="item.id"
-            :is-nested="false"
-            :title="item.title"
-            :body="item.body"
-            :image="item.image"
+            :content="item.body"
+            paragraph-variant="body"
           />
           <gallery-block
-            v-if="item._modelApiKey === 'gallery_block'"
+            v-if="item.__typename === 'GalleryBlockRecord'"
             :key="item.id"
             :images="item.gallery.images"
             class="page-job__gallery"
@@ -196,6 +194,10 @@
       grid-column: var(--grid-content);
       background-color: var(--white);
       padding: var(--spacing-large) var(--spacing-larger);
+    }
+
+    .page-job__content .structured-text {
+      width: 70%;
     }
 
     .page-job__content .scroll-to {
