@@ -9,4 +9,9 @@ export default async function (client: Client) {
   await client.fields.update("182802", {
     validators: { rich_text_blocks: { item_types: ["1992764", "2040351"] } },
   });
+
+  console.log("Destroy models/block models");
+
+  console.log('Delete block model "Generic text block" (`generic_text_block`)');
+  await client.itemTypes.destroy("41836", { skip_menu_items_deletion: true });
 }
