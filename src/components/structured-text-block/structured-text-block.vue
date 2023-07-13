@@ -149,6 +149,7 @@
         return h(ImageWithCaption, {
           class: 'structured-text__image-with-caption',
           caption: record.caption,
+          captionPosition: record.captionPosition,
           image: {
             ...record.image,
             sizes: '(min-width: 1100px) 860px, (min-width: 720px) 75vw, 90vw',

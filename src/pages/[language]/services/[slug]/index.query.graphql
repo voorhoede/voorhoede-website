@@ -48,6 +48,7 @@ fragment page on ServiceRecord {
       }
       caption
       fullWidth
+      captionPosition
     }
     ... on GenericTextBlockRecord {
       id
