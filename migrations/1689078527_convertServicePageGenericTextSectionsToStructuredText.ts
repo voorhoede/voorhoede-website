@@ -27,7 +27,7 @@ export default async function(client: Client): Promise<void> {
             const structuredTextContent = await parse5ToStructuredText(parse(html), {
               allowedHeadingLevels: [2],
               allowedMarks: ['strong', 'em'],
-              allowedBlocks: ['heading', 'blockquote', 'list'],
+              allowedBlocks: ['heading', 'blockquote', 'list', 'link'],
             });
 
             return buildBlockRecord({
