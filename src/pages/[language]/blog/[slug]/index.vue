@@ -84,19 +84,6 @@
           :key="item.id"
         />
 
-        <image-with-caption
-          :id="item.id"
-          class="page-blog-post-list__image page-blog-post-list--full-width"
-          v-if="item.__typename === 'ImageWithTextRecord'"
-          :key="item.id"
-          :image="{
-            ...item.imageWithDescription.image,
-            sizes: '(min-width: 720px) 50vw, 100vw'
-          }"
-          :caption-position="item.imageWithDescription.inverse ? 'right' : 'left'"
-          :caption="item.imageWithDescription.description"
-        />
-
         <quote-block
           :id="item.id"
           v-if="item.quote"

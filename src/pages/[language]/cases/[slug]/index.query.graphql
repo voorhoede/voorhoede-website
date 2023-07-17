@@ -55,19 +55,6 @@ fragment caseItem on CaseItemRecord {
       caption
       captionPosition
     }
-    ... on ImageWithTextRecord {
-      id
-      imageWithDescription {
-        image {
-          url
-          alt
-          width
-          height
-        }
-        description
-        inverse
-      }
-    }
     ... on StorytellingBlockRecord {
       id
       storyItem {

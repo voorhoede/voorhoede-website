@@ -65,18 +65,6 @@
         />
 
         <template v-for="item in data.page.items">
-          <image-with-caption
-            class="page-event-detail__image page-event-detail__main--not-indented"
-            v-if="item.__typename === 'ImageWithTextRecord'"
-            :key="item.id"
-            :image="{
-              ...item.imageWithDescription.image,
-              sizes: '(min-width: 720px) 50vw, 100vw'
-            }"
-            :caption-position="item.imageWithDescription.inverse ? 'right' : 'left'"
-            :caption="item.imageWithDescription.description"
-          />
-
           <quote-block
             v-if="item.quote"
             :key="item.quote"

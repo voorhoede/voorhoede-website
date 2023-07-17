@@ -55,18 +55,6 @@ fragment eventItem on EventItemRecord {
       fullWidth
       captionPosition
     }
-    ... on ImageWithTextRecord {
-      imageWithDescription {
-        image {
-          url
-          alt
-          width
-          height
-        }
-        description
-        inverse
-      }
-    }
     ... on QuoteRecord {
       quote
       author

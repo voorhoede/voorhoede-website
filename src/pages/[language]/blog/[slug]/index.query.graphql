@@ -68,19 +68,6 @@ fragment page on BlogPostRecord {
       fullWidth
       captionPosition
     }
-    ... on ImageWithTextRecord {
-      id
-      imageWithDescription {
-        image {
-          url
-          alt
-          width
-          height
-        }
-        description
-        inverse
-      }
-    }
     ... on LinkSectionRecord {
       id
       link
