@@ -21,7 +21,11 @@ export const fetchBlogFeed = () => {
   return datocmsFetch({
     query: `
       query BlogFeed {
-        allBlogPosts(first: 10, orderBy: publishDate_DESC) {
+        allBlogPosts(
+          first: 10
+          orderBy: publishDate_DESC
+          filter: { isArchived: { eq: "false" } }
+        ) {
           title
           slug
           publishDate

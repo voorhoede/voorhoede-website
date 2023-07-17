@@ -73,15 +73,7 @@
             sizes: '(min-width: 1440px) 1300px, (min-width: 1100px) 1060px, 95vw',
           }"
           :caption="item.caption"
-        />
-
-        <image-with-description
-          :id="item.id"
-          v-if="item.__typename === 'ImageWithTextRecord'"
-          :key="item.id"
-          :image="item.imageWithDescription.image"
-          :inverse="item.imageWithDescription.inverse"
-          :description="item.imageWithDescription.description"
+          :caption-position="item.captionPosition"
         />
 
         <storytelling-section
@@ -324,10 +316,6 @@
     .page-case__link-container {
       grid-column-start: 4;
       grid-column-end: 48;
-    }
-
-    .page-case__content .image-with-description {
-      max-width: var(--case-content-max-width-m);
     }
 
     .page-case .breadcrumbs-block {

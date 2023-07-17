@@ -26,6 +26,22 @@
     </aside>
 
     <article class="page-blog-post-list">
+      <div
+        v-if="data.page.isArchived"
+      >
+        <div class="page-blog-post__archived">
+          <p class="font-html-blue body-big">
+            {{ $t('archived_blogpost') }}
+          </p>
+
+          <app-button
+            class="page-blog-post__archived-button"
+            :label="$t('all_blogposts')"
+            :to="$localeUrl({ name: 'blog' })"
+          />
+        </div>
+      </div>
+
       <text-block>
         <p class="font-html-blue testimonial">
           {{ data.page.introTitle }}
@@ -68,16 +84,6 @@
           :key="item.id"
         />
 
-        <image-with-description
-          :id="item.id"
-          class="page-blog-post-list__image page-blog-post-list--full-width"
-          v-if="item.__typename === 'ImageWithTextRecord'"
-          :key="item.id"
-          :image="item.imageWithDescription.image"
-          :inverse="item.imageWithDescription.inverse"
-          :description="item.imageWithDescription.description"
-        />
-
         <quote-block
           :id="item.id"
           v-if="item.quote"
@@ -99,6 +105,7 @@
               : '(min-width: 1440px) 640px, (min-width: 720px) 65vw, 95vw',
           }"
           :caption="item.caption"
+          :caption-position="item.captionPosition"
         />
 
         <responsive-video
@@ -243,11 +250,6 @@
     margin-bottom: var(--spacing-large);
   }
 
-  .page-blog-post-list__image .image-with-description__description {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
   .page-blog-post-list__title {
     margin-bottom: var(--spacing-smaller);
   }
@@ -295,6 +297,16 @@
     max-width: var(--case-content-max-width-l);
   }
 
+  .page-blog-post__archived {
+    margin-top: var(--spacing-medium);
+    background-color: var(--brand-yellow);
+    padding: var(--spacing-large);
+  }
+
+  .page-blog-post__archived-button {
+    margin-top: var(--spacing-medium);
+  }
+
   @media (min-width: 720px) {
     .page-blog-post-list > * {
       margin-bottom: var(--spacing-larger);
@@ -328,6 +340,10 @@
 
     .page-blog-post__scroll-to {
       display: block;
+    }
+
+    .page-blog-post__archived {
+      margin-top: 0;
     }
   }
 

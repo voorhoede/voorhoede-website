@@ -7,10 +7,14 @@ query Blog($locale: SiteLocale, $skip: IntType, $first: IntType) {
     skip: $skip
     locale: $locale
     orderBy: publishDate_DESC
+    filter: { isArchived: { eq: "false" } }
   ) {
     ...blogPost
   }
-  itemsMeta: _allBlogPostsMeta(locale: $locale) {
+  itemsMeta: _allBlogPostsMeta(
+    locale: $locale
+    filter: { isArchived: { eq: "false" } }
+  ) {
     count
   }
 }

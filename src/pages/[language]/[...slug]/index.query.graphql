@@ -142,6 +142,7 @@ query Page($locale: SiteLocale, $slug: String) {
               image {
                 ...image
               }
+              captionPosition
             }
             ... on StructuredTextImageRecord {
               ...structuredTextImage
@@ -180,6 +181,7 @@ query Page($locale: SiteLocale, $slug: String) {
         jobs {
           title
           slug
+          isClosed
           jobImage {
             ...image
           }
