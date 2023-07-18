@@ -6,7 +6,7 @@
     <header class="series-navigation__header">
       <h2
         id="series-navigation-title"
-        class="series-navigation__title h3"
+        class="series-navigation__title h1"
       >
         {{ titleRoute.title }}
       </h2>
