@@ -84,16 +84,6 @@
           :key="item.id"
         />
 
-        <image-with-description
-          :id="item.id"
-          class="page-blog-post-list__image page-blog-post-list--full-width"
-          v-if="item.__typename === 'ImageWithTextRecord'"
-          :key="item.id"
-          :image="item.imageWithDescription.image"
-          :inverse="item.imageWithDescription.inverse"
-          :description="item.imageWithDescription.description"
-        />
-
         <quote-block
           :id="item.id"
           v-if="item.quote"
@@ -115,6 +105,7 @@
               : '(min-width: 1440px) 640px, (min-width: 720px) 65vw, 95vw',
           }"
           :caption="item.caption"
+          :caption-position="item.captionPosition"
         />
 
         <responsive-video
@@ -257,11 +248,6 @@
   .page-blog-post-list__image {
     justify-content: space-between;
     margin-bottom: var(--spacing-large);
-  }
-
-  .page-blog-post-list__image .image-with-description__description {
-    margin-left: 0;
-    margin-right: 0;
   }
 
   .page-blog-post-list__title {
