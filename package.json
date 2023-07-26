@@ -19,7 +19,7 @@
     "prismjs": "^1.29.0",
     "rosetta": "^1.1.0",
     "ufo": "^1.0.1",
-    "vue-datocms": "^4.0.5"
+    "vue-datocms": "^4.0.6"
   },
   "devDependencies": {
     "@datocms/cli": "^1.1.9",
