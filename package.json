@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@json-feed-types/1_1": "^1.0.2",
+    "@nuxtjs/html-validator": "^1.2.3",
     "@nuxtjs/plausible": "^0.2.0",
     "datocms-listen": "^0.1.14",
     "datocms-structured-text-utils": "^2.0.4",

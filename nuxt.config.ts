@@ -31,7 +31,11 @@ export default defineNuxtConfig({
   modules: [
     nuxtIcons,
     plausible,
+    '@nuxtjs/html-validator'
   ],
+  htmlValidator: {
+    logLevel: 'verbose',
+  },
   plausible: {
     apiHost: '/mogelijk',
   },
