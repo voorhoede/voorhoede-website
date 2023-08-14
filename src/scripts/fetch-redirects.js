@@ -11,10 +11,12 @@ export const fetchRedirects = () => (
         }
       }
     `,
-    })
-      .then(({ data }) => (
-        data.allRedirects
-          .map((rule) => `${rule.from} ${rule.to} ${rule.httpStatusCode}`)
-          .join('\n')
-      ))
+  })
+    .then(({ data }) => Object.fromEntries(
+      data.allRedirects
+        .map((rule) => [
+          rule.from,
+          { redirect: { to: rule.to, statusCode: rule.httpStatusCode } }
+        ])
+    ))
 );

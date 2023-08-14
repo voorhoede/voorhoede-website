@@ -16,24 +16,3 @@ for = "/*"
 Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
 Referrer-Policy = "no-referrer-when-downgrade"
 X-Frame-Options = "SAMEORIGIN"
-
-[[redirects]]
-from = "/"
-to = "/nl/"
-status = 302
-conditions = { Language = ["nl"] }
-
-[[redirects]]
-from = "/"
-to = "/en/"
-status = 302
-
-[[redirects]]
-from = "/blog-feed.xml"
-to = "/blog/feed.json"
-status = 301
-
-[[redirects]]
-from = "/mogelijk/api/event"
-to = "https://plausible.io/api/event"
-status = 200

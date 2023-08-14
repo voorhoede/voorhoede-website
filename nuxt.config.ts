@@ -5,7 +5,6 @@ import { default as plausible } from '@nuxtjs/plausible';
 import { fetchTranslations } from './src/scripts/fetch-translations';
 import { fetchBlogFeed } from './src/scripts/fetch-blog-feed';
 import { fetchRedirects } from './src/scripts/fetch-redirects';
-import { fetchRoutes } from './src/scripts/fetch-routes';
 import { fetchI18nSlugs } from './src/scripts/fetch-i18n-slugs';
 
 export default defineNuxtConfig({
@@ -18,8 +17,18 @@ export default defineNuxtConfig({
   ],
   nitro: {
     prerender: {
-      crawlLinks: false
-    }
+      crawlLinks: true,
+      routes: ['/en/', '/nl/'],
+    },
+  },
+  routeRules: {
+    '/**': { isr: true },
+    '/*/team/**': { prerender: false },
+    '/blog-feed.xml': { redirect: { to: '/blog/feed.json', statusCode: 301 } },
+    '/mogelijk/api/event': { proxy: 'https://plausible.io/api/event', isr: false },
+  },
+  experimental: {
+    payloadExtraction: true,
   },
   runtimeConfig: {
     public: {
@@ -36,15 +45,15 @@ export default defineNuxtConfig({
     apiHost: '/mogelijk',
   },
   hooks: {
-    'prerender:routes': ({ routes }) => {
-      fetchRoutes()
-        .then((generatedRoutes) => {
-          generatedRoutes.forEach((route) => {
-            // routes is of type Set, so we need to add each route individually
-            routes.add(route);
-          })
+    'nitro:config': (config) => (
+      fetchRedirects()
+        .then((redirects) => {
+          config.routeRules = {
+            ...config.routeRules,
+            ...redirects,
+          }
         })
-    },
+    ),
     'build:before': () => Promise.all([
       fetchTranslations()
         .then(async (translations) => {
@@ -56,8 +65,6 @@ export default defineNuxtConfig({
           await mkdir('./src/public/blog', { recursive: true });
           await writeFile('./src/public/blog/feed.json', JSON.stringify(blogFeed));
         }),
-      fetchRedirects()
-        .then((redirects) => writeFile('./src/public/_redirects', redirects)),
       fetchI18nSlugs()
         .then(async (data) => {
           await mkdir('.cache', { recursive: true });
