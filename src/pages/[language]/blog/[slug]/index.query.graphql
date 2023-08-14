@@ -15,6 +15,7 @@ fragment page on BlogPostRecord {
   }
   title
   subtitle
+  isArchived
   headerIllustration {
     url
     alt
@@ -65,19 +66,7 @@ fragment page on BlogPostRecord {
       }
       caption
       fullWidth
-    }
-    ... on ImageWithTextRecord {
-      id
-      imageWithDescription {
-        image {
-          url
-          alt
-          width
-          height
-        }
-        description
-        inverse
-      }
+      captionPosition
     }
     ... on LinkSectionRecord {
       id
@@ -121,38 +110,12 @@ fragment page on BlogPostRecord {
   pivots {
     title
     body(markdown: true)
-    buttonLabel: callToActionLabel
+    links {
+      ...link
+    }
     mailchimpValue
     mailchimpName
     mailchimpId
-    link {
-      title
-      url
-      page {
-        ... on HomeRecord {
-          slug
-        }
-        ... on ServiceOverviewRecord {
-          slug
-        }
-        ... on CaseOverviewRecord {
-          slug
-        }
-        ... on BlogPostOverviewRecord {
-          slug
-        }
-        ... on JobOverviewRecord {
-          slug
-        }
-        ... on AboutRecord {
-          slug
-        }
-        ... on ContactRecord {
-          slug
-        }
-      }
-    }
-    externalLink
     formType
     contactPerson {
       name
@@ -165,5 +128,42 @@ fragment page on BlogPostRecord {
         height
       }
     }
+  }
+}
+
+fragment link on RecordInterface {
+  __typename
+  ... on InternalLinkRecord {
+    id
+    title
+    link {
+      __typename
+      ... on PageRecord {
+        slug
+      }
+      ... on BlogPostRecord {
+        slug
+      }
+      ... on CaseItemRecord {
+        slug
+      }
+      ... on EventItemRecord {
+        slug
+      }
+      ... on JobRecord {
+        slug
+      }
+      ... on ServiceRecord {
+        slug
+      }
+      ... on PersonRecord {
+        slug
+      }
+    }
+  }
+  ... on ExternalLinkRecord {
+    id
+    title
+    url
   }
 }

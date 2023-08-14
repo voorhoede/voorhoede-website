@@ -25,7 +25,13 @@
           v-if="item.image"
           class="timeline-block__item-image"
         >
-          <responsive-image :image="item.image" />
+          <dato-image
+            :src="item.image.url"
+            :width="item.image.width"
+            :height="item.image.height"
+            :alt="item.image.alt"
+            loading="lazy"
+          />
         </div>
       </li>
     </ul>
@@ -130,6 +136,11 @@
 
   .timeline-block__item-image {
     margin-top: var(--spacing-medium);
+    width: 100%;
+  }
+
+  .timeline-block__item-image .dato-image {
+    height: auto;
   }
 
   .timeline-block__item-title::after {

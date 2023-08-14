@@ -9,7 +9,6 @@ query Cases($locale: SiteLocale) {
 
 fragment page on CaseOverviewRecord {
   title
-  slug
   social {
     title
     description
@@ -25,7 +24,38 @@ fragment page on CaseOverviewRecord {
     height
   }
   introTitle
-  introBody
+  introBody {
+    value
+    blocks {
+      __typename
+      ... on StructuredTextBlueTextRecord {
+        id
+        body {
+          value
+        }
+      }
+      ... on StructuredTextButtonsListRecord {
+        id
+        buttons {
+          __typename
+          ... on InternalLinkRecord {
+            id
+            title
+            link {
+              ... on PageRecord {
+                slug
+              }
+            }
+          }
+          ... on ExternalLinkRecord {
+            id
+            title
+            url
+          }
+        }
+      }
+    }
+  }
   introImage {
     url
     alt
@@ -36,7 +66,6 @@ fragment page on CaseOverviewRecord {
   projects {
     title
     slug
-    published
     caseTeaser {
       title
       image {
@@ -70,38 +99,12 @@ fragment page on CaseOverviewRecord {
   pivots {
     title
     body(markdown: true)
-    buttonLabel: callToActionLabel
+    links {
+      ...link
+    }
     mailchimpValue
     mailchimpName
     mailchimpId
-    link {
-      title
-      url
-      page {
-        ... on HomeRecord {
-          slug
-        }
-        ... on ServiceOverviewRecord {
-          slug
-        }
-        ... on CaseOverviewRecord {
-          slug
-        }
-        ... on BlogPostOverviewRecord {
-          slug
-        }
-        ... on JobOverviewRecord {
-          slug
-        }
-        ... on AboutRecord {
-          slug
-        }
-        ... on ContactRecord {
-          slug
-        }
-      }
-    }
-    externalLink
     formType
     contactPerson {
       name
@@ -114,5 +117,42 @@ fragment page on CaseOverviewRecord {
         height
       }
     }
+  }
+}
+
+fragment link on RecordInterface {
+  __typename
+  ... on InternalLinkRecord {
+    id
+    title
+    link {
+      __typename
+      ... on PageRecord {
+        slug
+      }
+      ... on BlogPostRecord {
+        slug
+      }
+      ... on CaseItemRecord {
+        slug
+      }
+      ... on EventItemRecord {
+        slug
+      }
+      ... on JobRecord {
+        slug
+      }
+      ... on ServiceRecord {
+        slug
+      }
+      ... on PersonRecord {
+        slug
+      }
+    }
+  }
+  ... on ExternalLinkRecord {
+    id
+    title
+    url
   }
 }

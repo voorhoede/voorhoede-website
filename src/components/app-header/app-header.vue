@@ -22,7 +22,7 @@
           >
             <app-link
               class="app-header__link"
-              :to="createHref($i18n, link)"
+              :to="useDatoNuxtRoute(link.link)"
             >
               {{ link.title }}
             </app-link>
@@ -34,71 +34,26 @@
             <app-button
               small
               :label="callToAction.title"
-              :to="createHref($i18n, callToAction)"
+              :to="useDatoNuxtRoute(callToAction.link)"
             />
           </li>
         </ul>
-        <div class="app-header__link-list app-header__link-list--languages">
-          <template
-            v-for="({ code, name }) in $i18n.locales"
-            :key="code"
-          >
-            <span
-              v-if="code === $i18n.locale()"
-              aria-hidden="true"
-              class="app-header__link-list-item app-header__link-list-item--highlighted"
-            >
-              {{ code }}
-            </span>
-            <div
-              v-else
-              class="app-header__link-list-item"
-            >
-              <a
-                class="app-header__link"
-                :aria-label="$t('switch_to__language_', { language: name }, code)"
-                :lang="code"
-                :href="`/${code}/`"
-                @click="saveLocale(code)"
-              >
-                {{ code }}
-              </a>
-            </div>
-          </template>
-        </div>
+        <language-switcher />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import { createHref, linkValidator } from '../../lib/links'
-
   export default {
     props: {
       links: {
         type: Array,
-        validator (links) {
-          return links.every(linkValidator)
-        },
         default: () => [],
       },
       callToAction: {
         type: Object,
-        validator: linkValidator,
         default: () => {},
-      }
-    },
-    methods: {
-      createHref,
-      saveLocale (code) {
-        const cookie = document.cookie
-        const langKey = 'nf_lang' // @See https://www.netlify.com/docs/redirects/#geoip-and-language-based-redirects
-        if (cookie.match(new RegExp(langKey) !== null)) {
-          document.cookie = cookie.replace(new RegExp(`${langKey}=[A-Za-z-]+;`), `${langKey}=${code};`)
-        } else {
-          document.cookie = `${langKey}=${code}; path=/; ${cookie}`
-        }
       }
     },
   }
@@ -150,12 +105,6 @@
     display: none;
   }
 
-  .app-header__link-list--languages {
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
-  }
-
   .app-header__link-list-item {
     padding: 0 calc(var(--spacing-small) / 2);
     font-family: var(--font-sans);
@@ -174,21 +123,6 @@
   .app-header__link:focus {
     padding-bottom: .23rem;
     background: transparent linear-gradient(to top, var(--html-blue) 2px, transparent 2px);
-  }
-
-  .app-header__link-list--languages .app-header__link-list-item {
-    padding-right: var(--spacing-tiny);
-  }
-
-  .app-header__link-list--languages .app-header__link-list-item + .app-header__link-list-item {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .app-header__link-list--languages .app-header__link-list-item + .app-header__link-list-item::before {
-    content: '|';
-    padding-right: var(--spacing-tiny);
-    color: var(--html-blue);
   }
 
   @media screen and (min-width: 800px) {
@@ -213,10 +147,6 @@
 
     .app-header__link-list-item {
       padding: 0 calc(var(--spacing-large) / 2);
-    }
-
-    .app-header__link-list--languages .app-header__link-list-item {
-      padding-right: var(--spacing-tiny);
     }
   }
 

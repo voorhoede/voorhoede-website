@@ -6,6 +6,7 @@ import { fetchTranslations } from './src/scripts/fetch-translations';
 import { fetchBlogFeed } from './src/scripts/fetch-blog-feed';
 import { fetchRedirects } from './src/scripts/fetch-redirects';
 import { fetchRoutes } from './src/scripts/fetch-routes';
+import { fetchI18nSlugs } from './src/scripts/fetch-i18n-slugs';
 
 export default defineNuxtConfig({
   srcDir: 'src',
@@ -22,7 +23,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      datoApiToken: process.env.DATO_API_TOKEN,
+      datoApiToken: process.env.DATOCMS_API_READ_TOKEN,
       baseUrl: process.env.BASE_URL,
       previewSecret: process.env.PREVIEW_SECRET
     },
@@ -61,6 +62,11 @@ export default defineNuxtConfig({
         }),
       fetchRedirects()
         .then((redirects) => writeFile('./src/public/_redirects', redirects)),
+      fetchI18nSlugs()
+        .then(async (data) => {
+          await mkdir('.cache', { recursive: true });
+          await writeFile('.cache/i18n-slugs.json', JSON.stringify(data));
+        }),
     ])
       // hook expects a promise with no return data
       .then(() => {}),

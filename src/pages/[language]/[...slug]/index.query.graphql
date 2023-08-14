@@ -1,0 +1,331 @@
+query Page($locale: SiteLocale, $slug: String) {
+  page: page(locale: $locale, filter: {slug: {eq: $slug}}) {
+    title
+    slug
+    social {
+      title
+      description
+      image {
+        ...image
+      }
+    }
+    sections {
+      __typename
+      ... on SectionHeaderRecord {
+        title
+        subtitle
+        illustration {
+          ...image
+        }
+      }
+      ... on SectionImageTextRecord {
+        title
+        image {
+          ...image
+        }
+        imagePosition
+        backgroundColor
+        fontSize
+        body {
+          value
+          blocks {
+            __typename
+            ... on StructuredTextBlueTextRecord {
+              id
+              textAlignment
+              body {
+                value
+                blocks {
+                  ... on StructuredTextButtonsListRecord {
+                    __typename
+                    ...buttonsList
+                  }
+                }
+              }
+            }
+            ... on StructuredTextButtonsListRecord {
+              id
+              buttons {
+                ...link
+              }
+            }
+          }
+        }
+      }
+      ... on SectionInterstitialCtaRecord {
+        title
+        backgroundColor
+        ctas {
+          ...link
+        }
+      }
+      ... on SectionNewsletterRecord {
+        backgroundColor
+      }
+      ... on SectionImageGridRecord {
+        title
+        backgroundColor
+        items {
+          title
+          description
+          image {
+            ...image
+          }
+          isHighlighted
+          isFullWidth
+        }
+      }
+      ... on SectionLogoGridRecord {
+        title
+        logos {
+          ...image
+        }
+      }
+      ... on SectionDialogueCtaRecord {
+        variant
+        title
+        body(markdown: true)
+        backgroundColor
+        person {
+          image {
+            ...image
+          }
+        }
+        ctas {
+          ...link
+        }
+      }
+      ...on SectionStructuredTextRecord {
+        gridAlignment
+        hasToc
+        backgroundColor
+        body {
+          value
+          blocks {
+            __typename
+            ... on StructuredTextBlueTextRecord {
+              id
+              variant
+              textAlignment
+              body {
+                value
+                blocks {
+                  __typename
+                  ... on StructuredTextButtonsListRecord {
+                    ...buttonsList
+                  }
+                }
+              }
+            }
+            ... on StructuredTextButtonsListRecord {
+              ...buttonsList
+            }
+            ... on StructuredTextHighlightedListRecord {
+              id
+              items {
+                body {
+                  value
+                }
+              }
+            }
+            ... on StructuredTextTagListRecord {
+              id
+              items {
+                id
+                amount
+                label
+              }
+            }
+            ... on ImageRecord {
+              id
+              caption
+              image {
+                ...image
+              }
+              captionPosition
+            }
+            ... on StructuredTextImageRecord {
+              ...structuredTextImage
+            }
+            ... on TwoColumnBlockRecord {
+              id
+              leftItems {
+                ...twoColumnItemFragment
+              }
+              rightItems {
+                ...twoColumnItemFragment
+              }
+            }
+          }
+        }
+      }
+      ... on SectionImageCardGridRecord {
+        title
+        backgroundColor
+        items {
+          id
+          title
+          body {
+            value
+          }
+          image {
+            ...image
+          }
+          links {
+            ...link
+          }
+        }
+      }
+      ... on SectionJobsListRecord {
+        id
+        jobs {
+          title
+          slug
+          isClosed
+          jobImage {
+            ...image
+          }
+        }
+      }
+      ... on SectionTimelineRecord {
+        backgroundColor
+        items {
+          date
+          description
+          image {
+            ...image
+          }
+          title
+        }
+      }
+      ... on SectionBlogsSectionRecord {
+        backgroundColor
+        title
+        itemSize
+        items {
+          ...blogpost
+        }
+        pinnedItems {
+          ...blogpost
+        }
+      }
+      ... on SectionEventsSectionRecord {
+        title
+        backgroundColor
+        items {
+          title
+          social {
+            description
+          }
+          date
+          slug
+        }
+      }
+      ... on SectionTeamGalleryRecord {
+        persons {
+          id
+          jobTitle
+          lastName
+          name
+          slug
+          image {
+            ...image
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment twoColumnItemFragment on RecordInterface {
+  __typename
+  ... on StructuredTextRecord {
+    id
+    body {
+      value
+      blocks {
+        ... on StructuredTextButtonsListRecord {
+          ...buttonsList
+        }
+      }
+    }
+  }
+  ... on StructuredTextImageRecord {
+    ...structuredTextImage
+  }
+}
+
+fragment buttonsList on StructuredTextButtonsListRecord {
+  id
+  buttons {
+    ...link
+  }
+}
+
+fragment blogpost on BlogPostRecord {
+  slug
+  title
+  date: publishDate
+  authors {
+    name
+    image {
+      ...image
+    }
+  }
+}
+
+fragment image on FileField {
+  url
+  alt
+  width
+  height
+}
+
+fragment link on RecordInterface {
+  __typename
+  ... on InternalLinkRecord {
+    id
+    title
+    link {
+      __typename
+      ... on PageRecord {
+        slug
+      }
+      ... on BlogPostRecord {
+        slug
+      }
+      ... on CaseItemRecord {
+        slug
+      }
+      ... on EventItemRecord {
+        slug
+      }
+      ... on JobRecord {
+        slug
+      }
+      ... on ServiceRecord {
+        slug
+      }
+      ... on PersonRecord {
+        slug
+      }
+      ... on ContactRecord {
+        id
+      }
+
+    }
+  }
+  ... on ExternalLinkRecord {
+    id
+    title
+    url
+  }
+}
+
+fragment structuredTextImage on StructuredTextImageRecord {
+  id
+  caption
+  image {
+    ...image
+  }
+}

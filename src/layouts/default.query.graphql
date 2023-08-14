@@ -19,56 +19,76 @@ query DefaultLayout($locale: SiteLocale) {
   }
   menu(locale: $locale) {
     title
-    callToAction {
-      title
-      page {
-        ... on ContactRecord {
-          slug
-        }
-      }
+    callToActions {
+      ...internalLink
     }
     links {
-      title
-      page {
-        ... on AboutRecord {
-          slug
-        }
-        ... on BlogPostOverviewRecord {
-          slug
-        }
-        ... on CaseOverviewRecord {
-          slug
-        }
-        ... on ContactRecord {
-          slug
-        }
-        ... on EventOverviewRecord {
-          slug
-        }
-        ... on HomeRecord {
-          slug
-        }
-        ... on JobOverviewRecord {
-          slug
-        }
-        ... on ServiceOverviewRecord {
-          slug
-        }
-        ... on ServiceRecord {
-          slug
-        }
-        ... on WorkatRecord {
-          slug
-        }
-      }
+      ...internalLink
     }
   }
   footer(locale: $locale) {
+    links {
+      ...internalLink
+    }
     copyrightTitle
     copyrightLabel
     copyrightLink
     privacyTitle
     privacyLabel
     privacyLink
+    bCorpLinks {
+      ...externalLink
+    }
+    dutchDigitalAgenciesLinks {
+      ...externalLink
+    }
+    dutchDigitalAgenciesLogo {
+      ...image
+    }
+    bcorpLogo {
+      ...image
+    }
   }
+}
+
+fragment image on FileField {
+  url
+  alt
+  width
+  height
+}
+
+fragment internalLink on InternalLinkRecord {
+  id
+  title
+  link {
+    __typename
+    ... on PageRecord {
+      slug
+    }
+    ... on BlogPostRecord {
+      slug
+    }
+    ... on CaseItemRecord {
+      slug
+    }
+    ... on EventItemRecord {
+      slug
+    }
+    ... on JobRecord {
+      slug
+    }
+    ... on ServiceRecord {
+      slug
+    }
+    ... on PersonRecord {
+      slug
+    }
+  }
+}
+
+fragment externalLink on ExternalLinkRecord {
+    id
+    title
+    url
 }

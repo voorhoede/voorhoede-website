@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "default": {
+      "migrations": {
+        "directory": "./migrations",
+        "modelApiKey": "schema_migration",
+        "tsconfig": "./migrations/tsconfig.json"
+      }
+    }
+  }
+}

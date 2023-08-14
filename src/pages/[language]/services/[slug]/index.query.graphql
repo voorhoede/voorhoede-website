@@ -48,17 +48,7 @@ fragment page on ServiceRecord {
       }
       caption
       fullWidth
-    }
-    ... on GenericTextBlockRecord {
-      id
-      title
-      body
-      image {
-        url
-        alt
-        width
-        height
-      }
+      captionPosition
     }
     ... on TestimonialBlockRecord {
       id
@@ -112,6 +102,67 @@ fragment page on ServiceRecord {
         }
       }
     }
+    ...on SectionStructuredTextRecord {
+      gridAlignment
+      body {
+        value
+        blocks {
+          __typename
+          ... on StructuredTextBlueTextRecord {
+            id
+            variant
+            textAlignment
+            body {
+              value
+              blocks {
+                __typename
+                ... on StructuredTextButtonsListRecord {
+                  ...buttonsList
+                }
+              }
+            }
+          }
+          ... on StructuredTextButtonsListRecord {
+            ...buttonsList
+          }
+          ... on StructuredTextHighlightedListRecord {
+            id
+            items {
+              body {
+                value
+              }
+            }
+          }
+          ... on StructuredTextTagListRecord {
+            id
+            items {
+              id
+              amount
+              label
+            }
+          }
+          ... on ImageRecord {
+            id
+            caption
+            image {
+              ...image
+            }
+          }
+          ... on StructuredTextImageRecord {
+            ...structuredTextImage
+          }
+          ... on TwoColumnBlockRecord {
+            id
+            leftItems {
+              ...twoColumnItemFragment
+            }
+            rightItems {
+              ...twoColumnItemFragment
+            }
+          }
+        }
+      }
+    }
   }
   breadcrumbsNextService {
     ... on ServiceRecord {
@@ -122,38 +173,12 @@ fragment page on ServiceRecord {
   pivots {
     title
     body(markdown: true)
-    buttonLabel: callToActionLabel
+    links {
+      ...link
+    }
     mailchimpValue
     mailchimpName
     mailchimpId
-    link {
-      title
-      url
-      page {
-        ... on HomeRecord {
-          slug
-        }
-        ... on ServiceOverviewRecord {
-          slug
-        }
-        ... on CaseOverviewRecord {
-          slug
-        }
-        ... on BlogPostOverviewRecord {
-          slug
-        }
-        ... on JobOverviewRecord {
-          slug
-        }
-        ... on AboutRecord {
-          slug
-        }
-        ... on ContactRecord {
-          slug
-        }
-      }
-    }
-    externalLink
     formType
     contactPerson {
       name
@@ -166,5 +191,86 @@ fragment page on ServiceRecord {
         height
       }
     }
+  }
+}
+
+fragment image on FileField {
+  url
+  alt
+  width
+  height
+}
+
+fragment buttonsList on StructuredTextButtonsListRecord {
+  id
+  buttons {
+    ...link
+  }
+}
+
+fragment link on RecordInterface {
+  __typename
+  ... on InternalLinkRecord {
+    id
+    title
+    link {
+      __typename
+      ... on PageRecord {
+        slug
+      }
+      ... on BlogPostRecord {
+        slug
+      }
+      ... on CaseItemRecord {
+        slug
+      }
+      ... on EventItemRecord {
+        slug
+      }
+      ... on JobRecord {
+        slug
+      }
+      ... on ServiceRecord {
+        slug
+      }
+      ... on PersonRecord {
+        slug
+      }
+      ... on ContactRecord {
+        id
+      }
+
+    }
+  }
+  ... on ExternalLinkRecord {
+    id
+    title
+    url
+  }
+}
+
+fragment structuredTextImage on StructuredTextImageRecord {
+  id
+  caption
+  image {
+    ...image
+  }
+}
+
+fragment twoColumnItemFragment on RecordInterface {
+  __typename
+  ... on StructuredTextRecord {
+    id
+    body {
+      value
+      blocks {
+        ... on StructuredTextButtonsListRecord {
+          ...buttonsList
+        }
+      }
+    }
+  }
+  ... on StructuredTextImageRecord {
+    ...structuredTextImage
   }
 }

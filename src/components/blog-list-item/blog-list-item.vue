@@ -40,7 +40,7 @@
           :width="large ? 65 : 40"
           :height="large ? 65 : 40"
           loading="lazy"
-          :quality="85"
+          :quality="75"
           :modifiers="{ ar: '1:1', fit: 'crop', crop: 'faces', sat: -100 }"
         />
       </div>
@@ -49,50 +49,43 @@
   </article>
 </template>
 
-<script>
+<script setup>
   import formatDate from '../../lib/format-date'
 
-  export default {
-    props: {
-      item: {
-        type: Object,
-        required: true,
-        validator(item) {
-          return typeof(item.slug) === 'string' &&
-                 typeof(item.title) === 'string' &&
-                 !!Date.parse(item.date) &&
-                 item.authors.length >= 1
-        },
-      },
-      large: {
-        type: Boolean,
-        default: false,
-      },
-      pinned: {
-        type: Boolean,
-        default: false,
-      },
-      linkName: {
-        type: String,
-        default: 'blog-slug',
+  const { $i18n } = useNuxtApp();
+
+  const props = defineProps({
+    item: {
+      type: Object,
+      required: true,
+      validator(item) {
+        return typeof(item.slug) === 'string' &&
+                typeof(item.title) === 'string' &&
+                !!Date.parse(item.date) &&
+                item.authors.length >= 1
       },
     },
-    computed: {
-      authors () {
-        return `${this.item.authors.map(author => author.name).join(', ')}`
-      },
-      language() {
-        return this.linkName === 'blog-slug' ? 'en' : null
-      },
-      formattedDate() {
-        return formatDate({
-          date: this.item.date,
-          format: 'D MMM YYYY',
-          locale: this.$i18n.locale(),
-        })
-      },
+    large: {
+      type: Boolean,
+      default: false,
     },
-  }
+    pinned: {
+      type: Boolean,
+      default: false,
+    },
+    linkName: {
+      type: String,
+      default: 'blog-slug',
+    },
+  })
+
+  const authors = computed(() => `${props.item.authors.map(author => author.name).join(', ')}`)
+  const language = computed(() => props.linkName === 'blog-slug' ? 'en' : null)
+  const formattedDate = computed(()=> formatDate({
+    date: props.item.date,
+    format: 'D MMM YYYY',
+    locale: $i18n.locale(),
+  }))
 </script>
 
 <style>

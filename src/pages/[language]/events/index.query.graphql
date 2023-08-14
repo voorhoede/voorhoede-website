@@ -2,7 +2,7 @@ query Events($locale: SiteLocale) {
   page: eventOverview(locale: $locale) {
     ...eventOverview
   }
-  items: allEventItems(locale: $locale, first: 100, orderBy: date_DESC, filter: {published: {eq: true}}) {
+  items: allEventItems(locale: $locale, first: 100, orderBy: date_DESC) {
     ...event
   }
 }
@@ -10,7 +10,6 @@ query Events($locale: SiteLocale) {
 fragment eventOverview on EventOverviewRecord {
   title
   subtitle
-  slug
   social {
     title
     description

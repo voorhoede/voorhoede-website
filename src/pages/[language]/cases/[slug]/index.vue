@@ -64,28 +64,16 @@
           />
         </div>
 
-        <full-width-image
+        <image-with-caption
           :id="item.id"
-          v-if="item.__typename === 'ImageRecord' && item.image && item.fullWidth"
+          v-if="item.__typename === 'ImageRecord'"
           :key="item.id"
-          :image="item.image"
-        />
-
-        <responsive-image
-          :id="item.id"
-          v-if="item.__typename === 'ImageRecord' && !(item.image && item.fullWidth)"
-          :key="item.id"
-          :image="item.image"
+          :image="{
+            ...item.image,
+            sizes: '(min-width: 1440px) 1300px, (min-width: 1100px) 1060px, 95vw',
+          }"
           :caption="item.caption"
-        />
-
-        <image-with-description
-          :id="item.id"
-          v-if="item.__typename === 'ImageWithTextRecord'"
-          :key="item.id"
-          :image="item.imageWithDescription.image"
-          :inverse="item.imageWithDescription.inverse"
-          :description="item.imageWithDescription.description"
+          :caption-position="item.captionPosition"
         />
 
         <storytelling-section
@@ -184,7 +172,6 @@
     --case-content-max-width-l: 1440px;
     --page-section-max-width: 830px;
     --page-section-breakout-width: 1050px;
-    --case-full-width-image-height: 515px; /* value according to design */
   }
 
   .page-case__case-meta {
@@ -235,8 +222,7 @@
     max-width: 100%; /* temporary fix for mvp should refactored after mvp */
   }
 
-  .page-case__content .storytelling-section,
-  .page-case__content .full-width-image {
+  .page-case__content .storytelling-section {
     width: calc(100% + (var(--spacing-small) * 2));
     height: auto;
     margin-left: calc(-1 * var(--spacing-small));
@@ -274,8 +260,7 @@
       padding-right: var(--spacing-large);
     }
 
-    .page-case__content .storytelling-section,
-    .page-case__content .full-width-image {
+    .page-case__content .storytelling-section {
       width: calc(100% + (var(--spacing-large) * 2));
       margin-left: calc(-1 * var(--spacing-large));
       margin-right: calc(-1 * var(--spacing-large));
@@ -292,7 +277,7 @@
   }
 
   @media (min-width: 1100px) {
-    .page-case__content .responsive-image {
+    .page-case__content .image-with-caption {
       max-width: var(--image-resizer-max-width-m);
     }
 
@@ -333,14 +318,6 @@
       grid-column-end: 48;
     }
 
-    .page-case__content .full-width-image {
-      height: var(--case-full-width-image-height);
-    }
-
-    .page-case__content .image-with-description {
-      max-width: var(--case-content-max-width-m);
-    }
-
     .page-case .breadcrumbs-block {
       grid-column-start: 6;
       grid-column-end: 46;
@@ -349,12 +326,8 @@
   }
 
   @media (min-width: 1440px) {
-    .page-case__content .responsive-image {
+    .page-case__content .image-with-caption {
       max-width: var(--image-resizer-max-width-l);
-    }
-
-    .page-case__content .full-width-image {
-      max-width: var(--case-content-max-width-l);
     }
   }
 </style>

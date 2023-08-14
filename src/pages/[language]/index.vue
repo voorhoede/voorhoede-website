@@ -19,12 +19,12 @@
       />
     </section>
     <section class="page-index__services grid">
-      <h2 class="page-index__section-title h1">
-        {{ data.page.servicesHeader }}
-      </h2>
-      <services-list
-        class="page-index__services-list"
-        :services="data.page.services"
+      <image-card-grid
+        class="page-index__services-grid"
+        :title="servicesSection.title"
+        :items="servicesSection.items"
+        :background-color="servicesSection.backgroundColor"
+        :card-orientation="servicesSection.cardOrientation"
       />
       <div class="page-index__blog-posts-button">
         <app-button
@@ -73,15 +73,14 @@
       <h2 class="page-index__section-title page-index__section-title--blog-posts h3">
         {{ $t('latest_blog_posts') }}
       </h2>
-      <ul class="page-index__blog-posts-list grid">
-        <li
-          v-for="blogPost in data.latestBlogposts"
-          :key="blogPost.slug"
-          class="page-index__blog-posts-list-item"
-        >
-          <blog-list-item :item="blogPost" />
-        </li>
-      </ul>
+      <div class="page-index__blog-posts-list-container grid">
+        <blogs-list
+          :items="data.latestBlogposts"
+          item-size="small"
+          class="page-index__blog-posts-list"
+        />
+      </div>
+
       <div class="page-index__blog-posts-button">
         <app-button
           secondary
@@ -122,6 +121,7 @@
   const ctaSectionTop = data.value.page.pageCtaSection[0];
   const selfTypingTextInterval = getSelfTypingTextInterval(data.value.page.subtitle) / 1000;
   const pageHeaderAnimationDelay = data.value.page.subtitle.length * selfTypingTextInterval;
+  const servicesSection = computed(() => data.value.page.servicesSections[0]);
 </script>
 
 <style>
@@ -131,6 +131,11 @@
 
   .page-index__services {
     margin-bottom: var(--spacing-larger);
+  }
+
+  .page-index__services-grid {
+    margin-bottom: var(--spacing-larger);
+    grid-column: var(--grid-content);
   }
 
   .page-index__section-title {
@@ -169,23 +174,11 @@
     margin-bottom: var(--spacing-large);
   }
 
-  .page-index__blog-posts-list {
+  .page-index__blog-posts-list-container {
     margin-bottom: var(--spacing-small);
     grid-row: 2;
     grid-column: var(--grid-content-start) / 48;
     grid-template-rows: repeat(3, auto);
-  }
-
-  .page-index__blog-posts-list-item {
-    grid-row: 1;
-  }
-
-  .page-index__blog-posts-list-item:nth-child(2) {
-    grid-row: 2;
-  }
-
-  .page-index__blog-posts-list-item:nth-child(3) {
-    grid-row: 3;
   }
 
   .page-index__blog-posts-button {
@@ -255,10 +248,6 @@
       margin-bottom: var(--spacing-bigger);
     }
 
-    .page-index__services-list {
-      margin-bottom: var(--spacing-large);
-    }
-
     .page-index__cta {
       margin-bottom: var(--spacing-bigger);
     }
@@ -273,12 +262,12 @@
       margin-bottom: var(--spacing-big);
     }
 
-    .page-index__blog-posts-list {
+    .page-index__blog-posts-list-container {
       grid-column: var(--grid-page);
       overflow: hidden;
     }
 
-    .page-index__blog-posts-list-item {
+    .page-index__blog-posts-list {
       transition: transform var(--blog-list-item-animation-timing) ease-out;
       display: inline-block;
       grid-column-start: 8;
@@ -353,7 +342,7 @@
       grid-column-end: 21;
     }
 
-    .page-index__blog-posts-list-item {
+    .page-index__blog-posts-list {
       grid-column-start: 16;
       grid-column-end: 45;
     }

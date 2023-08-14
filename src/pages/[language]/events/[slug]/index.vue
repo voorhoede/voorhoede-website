@@ -15,7 +15,7 @@
       <aside class="page-event-detail__aside">
         <div>
           <p class="body font-bold">
-            Date
+            {{ $t('date') }}
           </p>
           <time
             :datetime="data.page.date"
@@ -27,7 +27,7 @@
 
         <div>
           <p class="body font-bold">
-            Location
+            {{ $t('location') }}
           </p>
           <rich-text-block
             :key="formattedAddress"
@@ -37,10 +37,10 @@
 
         <div v-if="data.page.price && data.page.price !== '0'">
           <p class="body font-bold">
-            Price
+            {{ $t('price') }}
           </p>
           <p class="body">
-            € {{ data.page.price }}
+            {{ data.page.price }}
           </p>
         </div>
 
@@ -53,22 +53,18 @@
       </aside>
 
       <article class="page-event-detail__main">
-        <responsive-image
+        <dato-image
           v-if="!imageIsIllustration && data.page.image"
           class="page-event-detail__image"
-          :image="data.page.image"
+          :src="data.page.image.url"
+          alt=""
+          :width="data.page.image.width"
+          :height="data.page.image.height"
+          sizes="(min-width: 1440px) 640px, (min-width: 720px) 65vw, 95vw"
+          loading="eager"
         />
 
         <template v-for="item in data.page.items">
-          <image-with-description
-            class="page-event-detail__image page-event-detail__main--not-indented"
-            v-if="item.__typename === 'ImageWithTextRecord'"
-            :key="item.social.description"
-            :image="item.imageWithDescription.image"
-            :inverse="item.imageWithDescription.inverse"
-            :description="item.imageWithDescription.description"
-          />
-
           <quote-block
             v-if="item.quote"
             :key="item.quote"
@@ -77,13 +73,19 @@
             class="page-event-detail__quote"
           />
 
-          <responsive-image
+          <image-with-caption
             class="page-event-detail__image"
             :class="{ 'page-event-detail__main--not-indented' : item.fullWidth}"
             v-if="item.__typename === 'ImageRecord' && item.image"
             :key="item.image.url"
-            :image="item.image"
+            :image="{
+              ...item.image,
+              sizes: item.fullWidth
+                ? '(min-width: 1440px) 860px, (min-width: 720px) 75vw, 95vw'
+                : '(min-width: 1440px) 640px, (min-width: 720px) 65vw, 95vw',
+            }"
             :caption="item.caption"
+            :caption-position="item.captionPosition"
           />
 
           <text-block
@@ -170,6 +172,7 @@
     script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(structuredData()) }],
   });
 
+
   function structuredData() {
     let location
     if (data.value.page.eventIsOnline) {
@@ -233,11 +236,8 @@
   .page-event-detail__image {
     justify-content: space-between;
     margin-bottom: var(--spacing-large);
-  }
-
-  .page-event-detail__image .image-with-description__description {
-    margin-left: 0;
-    margin-right: 0;
+    width: 100%;
+    height: auto;
   }
 
   .page-event-detail__title {

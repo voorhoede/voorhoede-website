@@ -1,7 +1,8 @@
 import { withTrailingSlash } from 'ufo';
+import { mastodonUrl } from '../constants.mjs';
 
-export function useSeoHead({ title, slug, i18nSlugs, social }) {
-  if (!slug || !social) {
+export function useSeoHead({ title, i18nSlugs, social }) {
+  if (!social) {
     throw new Error('Missing required SEO data');
   }
 
@@ -31,22 +32,29 @@ export function useSeoHead({ title, slug, i18nSlugs, social }) {
       { name: 'twitter:image', content: social.image?.url || defaultShareImg },
     ],
     link: [
+      { rel: 'me', href: mastodonUrl },
+      { rel: 'canonical', href: pageUrl },
       ...$i18n.locales
-        .map(({ code }) => ({
-          rel: 'alternate',
-          hreflang: code,
-          href: withTrailingSlash(
-            new URL(
-              router.resolve({
-                params: {
-                  language: code,
-                  slug: i18nSlugs?.find((i18nSlug) => i18nSlug.locale === code).value || slug,
-                },
-              }).path,
-              runtimeConfig.public.baseUrl,
-            ).href
-          )
-        })),
+        .map(({ code }) => {
+          const alternateSlug = i18nSlugs?.find((i18nSlug) => i18nSlug.locale === code).value;
+          const formattedAlternateSlug = alternateSlug?.includes('/') ? alternateSlug.split('/') : alternateSlug
+
+          return {
+            rel: 'alternate',
+            hreflang: code,
+            href: withTrailingSlash(
+              new URL(
+                router.resolve({
+                  params: {
+                    language: code,
+                    slug: formattedAlternateSlug,
+                  },
+                }).path,
+                runtimeConfig.public.baseUrl,
+              ).href
+            )
+          }
+        }),
     ],
   });
 }

@@ -16,73 +16,70 @@
       >
         {{ ariaLabelOrTitle }}
       </legend>
-      <div class="contact-page-form__personal-details">
-        <div class="contact-page-form__column">
-          <input
-            type="hidden"
-            name="form-name"
-            :value="form['form-name']"
-          >
-          <input
-            type="text"
-            name="subject"
-            :value="form.name"
-            class="hidden"
-          >
-          <label class="sr-only">
-            Don't fill this out if you're human:
-            <input
-              v-model="form['url-page']"
-              name="url-page"
-              type="url"
-            >
-          </label>
-          <input-field
-            v-model="form.name"
-            id="name"
-            type="text"
-            @input="createEmailSubject"
-            :label="$t('my_name_is')"
-            :placeholder-label="$t('your_name')"
-            required
-            :validate="formIsValidated"
-            :reset-validation="resetValidation"
-            :validation-error-message="$t('name_is_required')"
-            class="body-small contact-page-form__input-field"
-          />
-          <input-field
-            v-model="form.business"
-            id="business"
-            type="text"
-            :label="$t('my_business_is')"
-            :placeholder-label="$t('company_name')"
-            class="body-small contact-page-form__input-field"
-          />
-        </div>
+      <input
+        type="hidden"
+        name="form-name"
+        :value="form['form-name']"
+      >
+      <input
+        type="text"
+        name="subject"
+        :value="form.name"
+        class="hidden"
+      >
+      <label class="sr-only">
+        Don't fill this out if you're human:
+        <input
+          v-model="form['url-page']"
+          name="url-page"
+          type="url"
+        >
+      </label>
 
-        <div class="contact-page-form__column">
-          <input-field
-            v-model="form.email"
-            id="email"
-            type="email"
-            :label="$t('you_can_email_me_at')"
-            :placeholder-label="$t('email_address')"
-            required
-            :validate="formIsValidated"
-            :reset-validation="resetValidation"
-            :validation-error-message="emailValidationErrorMessage"
-            class="body-small contact-page-form__input-field"
-          />
-          <input-field
-            v-model="form.phone"
-            id="phone"
-            type="tel"
-            :label="$t('you_can_call_me_at')"
-            :placeholder-label="$t('phone_number')"
-            class="body-small contact-page-form__input-field"
-          />
-        </div>
-      </div>
+      <input-field
+        v-model="form.name"
+        id="name"
+        type="text"
+        @input="createEmailSubject"
+        :label="$t('my_name_is')"
+        :placeholder-label="$t('your_name')"
+        required
+        :validate="formIsValidated"
+        :reset-validation="resetValidation"
+        :validation-error-message="$t('name_is_required')"
+        class="body-small contact-page-form__input-field"
+      />
+
+      <input-field
+        v-model="form.business"
+        id="business"
+        type="text"
+        :label="$t('my_business_is')"
+        :placeholder-label="$t('company_name')"
+        class="body-small contact-page-form__input-field"
+      />
+
+      <input-field
+        v-model="form.email"
+        id="email"
+        type="email"
+        :label="$t('you_can_email_me_at')"
+        :placeholder-label="$t('email_address')"
+        required
+        :validate="formIsValidated"
+        :reset-validation="resetValidation"
+        :validation-error-message="emailValidationErrorMessage"
+        class="body-small contact-page-form__input-field"
+      />
+
+      <input-field
+        v-model="form.phone"
+        id="phone"
+        type="tel"
+        :label="$t('you_can_call_me_at')"
+        :placeholder-label="$t('phone_number')"
+        class="body-small contact-page-form__input-field"
+      />
 
       <input-field
         textarea
@@ -93,6 +90,7 @@
         :placeholder-label="$t('project_description')"
         class="body-small contact-page-form__input-field"
       />
+
       <app-button
         @click="trackEvent()"
         class="contact-page-form__button"
@@ -177,53 +175,12 @@
     --contact-page-form-thumbnail-size: 120px;
   }
 
-  .contact-page-form__contact-person {
-    display: none;
-  }
-
-  .contact-page-form__contact-person .responsive-image {
-    margin-bottom: var(--spacing-small);
-    width: var(--contact-page-form-thumbnail-size-small);
-  }
-
-  .contact-page-form__label:first-of-type {
+  .contact-page-form__input-field:first-of-type {
     margin-top: 0;
   }
 
   .contact-page-form__button {
     margin-top: var(--spacing-large);
     margin-bottom: var(--spacing-small);
-  }
-
-  @media (min-width: 520px) {
-    .contact-page-form__contact-person .responsive-image {
-      margin-left: 0;
-      margin-right: 0;
-    }
-
-    .contact-page-form__personal-details {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .contact-page-form__column {
-      width: calc(50% - var(--spacing-medium));
-    }
-
-    .contact-page-form__form .contact-page-form__input-field {
-      display: block;
-      margin: var(--spacing-large) 0;
-    }
-  }
-
-  @media (min-width: 1100px) {
-    .contact-page-form__contact-person {
-      display: block;
-    }
-
-    .contact-page-form__contact-person .responsive-image {
-      width: var(--contact-page-form-thumbnail-size);
-    }
   }
 </style>

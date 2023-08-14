@@ -15,8 +15,12 @@
           v-for="contact in data.page.contacts"
           :key="contact.title"
         >
-          <responsive-image
-            :image="contact.image"
+          <dato-image
+            :src="contact.image.url"
+            :width="contact.image.width"
+            :height="contact.image.height"
+            alt=""
+            loading="eager"
             class="page-contact__contact-image"
           />
 

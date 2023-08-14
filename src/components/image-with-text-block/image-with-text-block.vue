@@ -1,7 +1,10 @@
 <template>
   <div
     class="image-with-text"
-    :class="{ 'image-with-text--inverse': inverse }"
+    :class="{
+      'image-with-text--inverse': inverse,
+      'image-with-text--pastel-background': backgroundColor === BackgroundColor.PastelYellow,
+    }"
   >
     <dato-image
       class="image-with-text__image"
@@ -9,7 +12,7 @@
       alt=""
       :width="image.width"
       :height="image.height"
-      sizes="(min-width: 1100px) 730px, (min-width: 720px) 40vw, 100vw"
+      sizes="(min-width: 1100px) 730px, (min-width: 720px) 40vw, 90vw"
       loading="eager"
       :quality="55"
     />
@@ -20,40 +23,48 @@
       >
         {{ title }}
       </h2>
-      <div
-        class="pullquote image-with-text__body-text"
-        v-html="body"
+      <structured-text-block
+        class="image-with-text__body-text"
+        :content="body"
+        :paragraph-variant="paragraphVariant"
       />
     </div>
   </div>
 </template>
 
-<script>
-  export default {
-    props: {
-      title: {
-        type: String,
-        required: true,
-      },
-      body: {
-        type: String,
-        required: true,
-      },
-      image: {
-        type: Object,
-        required: true,
-      },
-      inverse: {
-        type: Boolean,
-        default: false,
-      }
-    }
-  }
+<script setup lang="ts">
+import { BackgroundColor } from '../../types/index.d'
+
+type Props = {
+  title: string,
+  body: object,
+  image: {
+    url: string,
+    width: number,
+    height: number
+  },
+  paragraphVariant?: 'body-big' | 'body'
+  inverse?: boolean,
+  backgroundColor: BackgroundColor
+}
+
+withDefaults(defineProps<Props>(), {
+  backgroundColor: BackgroundColor.None,
+  paragraphVariant: 'body-big'
+})
 </script>
 
 <style>
+  :root {
+    --image-with-text-body-background-color: var(--bg-pastel);
+  }
+
   .image-with-text {
     width: 100%;
+  }
+
+  .image-with-text--pastel-background {
+    --image-with-text-body-background-color: var(--white);
   }
 
   .image-with-text__image {
@@ -74,7 +85,7 @@
 
   .image-with-text__body-title {
     margin-left: var(--spacing-larger);
-    background-color: var(--white);
+    background-color: var(--image-with-text-body-background-color);
   }
 
   .image-with-text--inverse .image-with-text__body-title {
@@ -84,7 +95,7 @@
 
   .image-with-text__body-text {
     padding-bottom: var(--spacing-medium);
-    background-color: var(--white);
+    background-color: var(--image-with-text-body-background-color);
   }
 
   @media (min-width: 720px) {
@@ -97,8 +108,8 @@
         to right,
         transparent,
         transparent 25%,
-        var(--white) 25%,
-        var(--white) 100%
+        var(--image-with-text-body-background-color) 25%,
+        var(--image-with-text-body-background-color) 100%
       );
     }
 
@@ -109,8 +120,8 @@
         to left,
         transparent,
         transparent 25%,
-        var(--white) 25%,
-        var(--white) 100%
+        var(--image-with-text-body-background-color) 25%,
+        var(--image-with-text-body-background-color) 100%
       );
     }
 
@@ -155,8 +166,8 @@
         to right,
         transparent,
         transparent 30%,
-        var(--white) 30%,
-        var(--white) 100%
+        var(--image-with-text-body-background-color) 30%,
+        var(--image-with-text-body-background-color) 100%
       );
     }
 
@@ -166,8 +177,8 @@
         to left,
         transparent,
         transparent 30%,
-        var(--white) 30%,
-        var(--white) 100%
+        var(--image-with-text-body-background-color) 30%,
+        var(--image-with-text-body-background-color) 100%
       );
     }
 

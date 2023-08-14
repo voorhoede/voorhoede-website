@@ -44,17 +44,17 @@
           />
 
           <app-button
-            v-if="pivot.externalLink"
-            @click="trackLink(pivot.externalLink)"
-            :label="pivot.buttonLabel"
-            :to="pivot.externalLink"
+            v-if="pivot.links[0]?.__typename === 'ExternalLinkRecord'"
+            @click="trackLink(pivot.links[0].url)"
+            :label="pivot.links[0].title"
+            :to="pivot.links[0].url"
             external
           />
 
           <app-button
-            v-else-if="pivot.link"
-            :label="pivot.buttonLabel"
-            :to="createHref($i18n, pivot.link)"
+            v-else-if="pivot.links[0]?.__typename === 'InternalLinkRecord'"
+            :label="pivot.links[0].title"
+            :to="useDatoNuxtRoute(pivot.links[0].link)"
           />
 
           <newsletter-form
@@ -67,8 +67,6 @@
 </template>
 
 <script>
-  import { createHref } from '../../lib/links'
-
   export default {
     props: {
       pivots: {
@@ -95,7 +93,6 @@
       }
     },
     methods: {
-      createHref,
       pivotHasBackground(pivotIndex) {
         const lastPivotIndex = this.pivots.length - 1
 

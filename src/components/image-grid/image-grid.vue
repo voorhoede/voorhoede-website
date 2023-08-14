@@ -1,5 +1,10 @@
 <template>
-  <section class="image-grid">
+  <section
+    class="image-grid"
+    :class="{
+      'image-grid--pastel-background': backgroundColor === BackgroundColor.PastelYellow,
+    }"
+  >
     <h2
       v-if="title"
       class="image-grid__title h2"
@@ -45,31 +50,28 @@
   </section>
 </template>
 
-<script>
-  export default {
-    props: {
-      title: {
-        type: String,
-        default: '',
-      },
-      items: {
-        type: Array,
-        default: () => [],
-        validator: (items) => {
-          return (
-            items.every(item => {
-              return typeof item === 'object' &&
-                typeof item.title === 'string' &&
-                typeof item.description === 'string' &&
-                typeof item.image === 'object' &&
-                typeof item.isFullWidth === 'boolean' &&
-                typeof item.isHighlighted === 'boolean'
-            })
-          )
-        },
-      }
+<script setup lang="ts">
+import { BackgroundColor } from '../../types/index.d'
+
+type Props = {
+  title: string
+  items: {
+    title: string
+    description: string
+    image: {
+      url: string
+      width: number
+      height: number
     }
-  }
+    isFullWidth: boolean
+    isHighlighted: boolean
+  }[]
+  backgroundColor: BackgroundColor
+}
+
+withDefaults(defineProps<Props>(), {
+  backgroundColor: BackgroundColor.PastelYellow
+})
 </script>
 
 <style>
@@ -91,8 +93,8 @@
 
   .image-grid__item {
     flex: 0 0 50%;
-    height: 250px;
-    background-color: var(--white);
+    min-height: 250px;
+    background-color: var(--bg-pastel);
   }
 
   .image-grid__item--full-width {
@@ -101,6 +103,10 @@
 
   .image-grid__item--highlighted {
     background-color: var(--brand-yellow);
+  }
+
+  .image-grid--pastel-background .image-grid__item:not(.image-grid__item--highlighted) {
+    background-color: var(--white);
   }
 
   .image-grid__item-image {

@@ -16,7 +16,6 @@ query Contact($locale: SiteLocale) {
 }
 
 fragment contact on ContactRecord {
-  slug
   subtitle
   social {
     title

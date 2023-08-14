@@ -45,20 +45,11 @@
         </ul>
       </section>
     </div>
-    <section class="page-event__past-events grid">
-      <h2 class="page-event__events-list-title h2">
-        Past events
-      </h2>
-      <ul class="page-event__past-events-list">
-        <li
-          v-for="(event, index) in pastEvents"
-          :key="event.social.description + index"
-          class="page-event__past-events-item"
-        >
-          <event-list-item :event="event" />
-        </li>
-      </ul>
-    </section>
+    <events-section
+      class="page-event__past-events"
+      :items="pastEvents"
+      title="Past events"
+    />
     <newsletter-form :has-background="true" />
   </main>
 </template>
@@ -114,6 +105,10 @@
   .page-event__events-list-title {
     margin-bottom: var(--spacing-medium);
     text-align: center;
+  }
+
+  .page-event__past-events-list {
+    grid-column: var(--grid-content);
   }
 
   .page-event__intro {

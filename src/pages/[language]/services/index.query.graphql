@@ -10,7 +10,6 @@ query Services($locale: SiteLocale) {
 fragment servicespage on ServiceOverviewRecord {
   title
   subtitle
-  slug
   social {
     title
     description
@@ -43,7 +42,38 @@ fragment servicespage on ServiceOverviewRecord {
     height
   }
   introTitle
-  introBody
+  introBody {
+    value
+    blocks {
+      __typename
+      ... on StructuredTextBlueTextRecord {
+        id
+        body {
+          value
+        }
+      }
+      ... on StructuredTextButtonsListRecord {
+        id
+        buttons {
+          __typename
+          ... on InternalLinkRecord {
+            id
+            title
+            link {
+              ... on PageRecord {
+                slug
+              }
+            }
+          }
+          ... on ExternalLinkRecord {
+            id
+            title
+            url
+          }
+        }
+      }
+    }
+  }
   introImage {
     url
     alt
@@ -66,38 +96,12 @@ fragment servicespage on ServiceOverviewRecord {
   pivots {
     title
     body(markdown: true)
-    buttonLabel: callToActionLabel
+    links {
+      ...link
+    }
     mailchimpValue
     mailchimpName
     mailchimpId
-    link {
-      title
-      url
-      page {
-        ... on HomeRecord {
-          slug
-        }
-        ... on ServiceOverviewRecord {
-          slug
-        }
-        ... on CaseOverviewRecord {
-          slug
-        }
-        ... on BlogPostOverviewRecord {
-          slug
-        }
-        ... on JobOverviewRecord {
-          slug
-        }
-        ... on AboutRecord {
-          slug
-        }
-        ... on ContactRecord {
-          slug
-        }
-      }
-    }
-    externalLink
     formType
     contactPerson {
       name
@@ -110,5 +114,42 @@ fragment servicespage on ServiceOverviewRecord {
         height
       }
     }
+  }
+}
+
+fragment link on RecordInterface {
+  __typename
+  ... on InternalLinkRecord {
+    id
+    title
+    link {
+      __typename
+      ... on PageRecord {
+        slug
+      }
+      ... on BlogPostRecord {
+        slug
+      }
+      ... on CaseItemRecord {
+        slug
+      }
+      ... on EventItemRecord {
+        slug
+      }
+      ... on JobRecord {
+        slug
+      }
+      ... on ServiceRecord {
+        slug
+      }
+      ... on PersonRecord {
+        slug
+      }
+    }
+  }
+  ... on ExternalLinkRecord {
+    id
+    title
+    url
   }
 }

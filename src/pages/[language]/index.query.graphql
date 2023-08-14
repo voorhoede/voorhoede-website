@@ -16,10 +16,14 @@ query HomePage($locale: SiteLocale, $currentDate: DateTime) {
       height
     }
   }
-  latestBlogposts: allBlogPosts(locale: $locale, first: 3, orderBy: publishDate_DESC, filter: {published: {eq: true}}) {
+  latestBlogposts: allBlogPosts(
+    locale: $locale
+    first: 3
+    orderBy: publishDate_DESC
+    filter: { isArchived: { eq: "false" } }
+  ) {
     slug
     title
-    published
     date: publishDate
     authors {
       name
@@ -34,9 +38,7 @@ query HomePage($locale: SiteLocale, $currentDate: DateTime) {
 }
 
 fragment homepage on HomeRecord {
-  slug
   title
-  slug
   social {
     title
     description
@@ -95,16 +97,22 @@ fragment homepage on HomeRecord {
       }
     }
   }
-  servicesHeader
-  services {
-    excerptTitle
-    slug
-    cardBody
-    cardImage {
-      url
-      alt
-      width
-      height
+  servicesSections {
+    title
+    backgroundColor
+    cardOrientation
+    items {
+      id
+      title
+      body {
+        value
+      }
+      image {
+        ...image
+      }
+      links {
+        ...link
+      }
     }
   }
   clientsTitle
@@ -117,38 +125,12 @@ fragment homepage on HomeRecord {
   pivots {
     title
     body(markdown: true)
-    buttonLabel: callToActionLabel
+    links {
+      ...link
+    }
     mailchimpValue
     mailchimpName
     mailchimpId
-    link {
-      title
-      url
-      page {
-        ... on HomeRecord {
-          slug
-        }
-        ... on ServiceOverviewRecord {
-          slug
-        }
-        ... on CaseOverviewRecord {
-          slug
-        }
-        ... on BlogPostOverviewRecord {
-          slug
-        }
-        ... on JobOverviewRecord {
-          slug
-        }
-        ... on AboutRecord {
-          slug
-        }
-        ... on ContactRecord {
-          slug
-        }
-      }
-    }
-    externalLink
     formType
     contactPerson {
       name
@@ -162,4 +144,48 @@ fragment homepage on HomeRecord {
       }
     }
   }
+}
+
+fragment link on RecordInterface {
+  __typename
+  ... on InternalLinkRecord {
+    id
+    title
+    link {
+      __typename
+      ... on PageRecord {
+        slug
+      }
+      ... on BlogPostRecord {
+        slug
+      }
+      ... on CaseItemRecord {
+        slug
+      }
+      ... on EventItemRecord {
+        slug
+      }
+      ... on JobRecord {
+        slug
+      }
+      ... on ServiceRecord {
+        slug
+      }
+      ... on PersonRecord {
+        slug
+      }
+    }
+  }
+  ... on ExternalLinkRecord {
+    id
+    title
+    url
+  }
+}
+
+fragment image on FileField {
+  url
+  alt
+  width
+  height
 }

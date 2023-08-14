@@ -1,0 +1,78 @@
+query JobsSlug($locale: SiteLocale, $slug: String) {
+  page: job(locale: $locale, filter: {slug: {eq: $slug}}) {
+    ...job
+  }
+  overview: jobOverview(locale: $locale) {
+    page {
+      slug
+    }
+  }
+}
+
+fragment job on JobRecord {
+  _publishedAt
+  title
+  subtitle
+  slug
+  isClosed
+  i18nSlugs: _allSlugLocales {
+    locale
+    value
+  }
+  social {
+    title
+    description
+    image {
+      url
+    }
+  }
+  jobImage {
+    url
+    alt
+    width
+    height
+  }
+  url
+  validUntil
+  employmentType
+  salary
+  minSalary
+  maxSalary
+  jobDescription
+  jobContent {
+    ... on GalleryBlockRecord {
+      _modelApiKey
+      id
+      gallery {
+        images {
+          id
+          url
+          alt
+          width
+          height
+        }
+      }
+    }
+    ... on GenericTextBlockRecord {
+      _modelApiKey
+      id
+      title
+      body
+      image {
+        url
+        alt
+        width
+        height
+      }
+    }
+  }
+  location {
+    ... on LocationRecord {
+      id
+      address
+      postalCode
+      city
+      countryCode
+    }
+  }
+}

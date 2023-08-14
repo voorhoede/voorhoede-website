@@ -14,6 +14,7 @@
         :image="data.page.introImage"
         :inverse="true"
         class="page-cases__intro"
+        :background-color="BackgroundColor.PastelYellow"
       />
 
       <div
@@ -37,7 +38,7 @@
       </h2>
       <ul class="page-case__grid">
         <li
-          v-for="caseItem in data.page.projects.filter(caseItem => caseItem.published)"
+          v-for="caseItem in data.page.projects"
           :key="caseItem.slug"
         >
           <link-card
@@ -72,6 +73,7 @@
 </template>
 
 <script setup>
+  import { BackgroundColor } from '~/types/index.d';
   import query from './index.query.graphql?raw';
 
   const { params } = useRoute();

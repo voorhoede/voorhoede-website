@@ -5,7 +5,14 @@
         v-if="illustration"
         class="event-card__illustration"
       >
-        <responsive-image :image="illustration" />
+        <dato-image
+          :src="illustration.url"
+          :width="illustration.width"
+          :height="illustration.height"
+          alt=""
+          loading="lazy"
+          sizes="(min-width: 1100px) 350px, (min-width: 720px) 50vw, 100vw"
+        />
       </div>
       <calendar-icon
         :date="dateString"
@@ -133,11 +140,14 @@
     overflow: hidden;
   }
 
-  .event-card .responsive-image {
+  .event-card .dato-image {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .event-card__title {
