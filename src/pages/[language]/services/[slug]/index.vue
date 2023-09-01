@@ -53,6 +53,13 @@
           :id="item.id"
           :item="item"
         />
+        <cases-list
+          v-if="item.__typename === 'SectionCasesListRecord'"
+          :key="item.id"
+          :id="item.id"
+          :cases="item.cases"
+          :max-columns="2"
+        />
       </template>
     </article>
     <pivot-list
@@ -139,7 +146,8 @@
   .page-service__overview > .image-with-caption,
   .page-service__structured-text-section,
   .page-service__overview .blockquote-block,
-  .page-service__overview > .responsive-video {
+  .page-service__overview > .responsive-video,
+  .page-service__overview .cases-list {
     margin: 0 0 var(--spacing-large) 0;
   }
 
@@ -179,7 +187,8 @@
 
     .page-service__overview .blockquote-block,
     .page-service__structured-text-section,
-    .page-service__overview .cta-image-block {
+    .page-service__overview .cta-image-block,
+    .page-service__overview .cases-list {
       width: 70%;
     }
 
