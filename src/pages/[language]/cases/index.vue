@@ -36,19 +36,7 @@
       <h2 class="h2 page-cases__overview-title">
         {{ $t('all_cases') }}
       </h2>
-      <ul class="page-case__grid">
-        <li
-          v-for="caseItem in data.page.projects"
-          :key="caseItem.slug"
-        >
-          <link-card
-            :internal-link="$localeUrl({ name: 'cases-slug', params: { slug: caseItem.slug} })"
-            :image="caseItem.caseTeaser.image"
-            :title="caseItem.title"
-            :body="caseItem.caseTeaser.title"
-          />
-        </li>
-      </ul>
+      <cases-list :cases="data.page.projects" />
     </section>
 
     <section class="page-cases__cta grid">
@@ -132,17 +120,6 @@
     text-align: center;
   }
 
-  .page-case__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: var(--spacing-medium);
-    column-gap: var(--spacing-medium);
-  }
-
-  .page-case__grid .link-card {
-    height: 100%;
-  }
-
   .page-cases__cta {
     margin-bottom: var(--spacing-medium);
   }
@@ -175,10 +152,6 @@
       max-width: 500px;
     }
 
-    .page-case__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
     .page-cases__cta {
       margin-bottom: var(--spacing-big);
     }
@@ -200,10 +173,6 @@
     .page-cases__overview-title {
       margin-bottom: var(--spacing-larger);
     }
-
-    .page-case__grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
   }
 
   @media (min-width: 1100px) {
@@ -219,11 +188,6 @@
   @media (min-width: 1200px) {
     .page-cases__overview {
       background-size: 100% 300px;
-    }
-
-    .page-case__grid {
-      row-gap: var(--spacing-large);
-      column-gap: var(--spacing-large);
     }
   }
 </style>

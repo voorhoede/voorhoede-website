@@ -163,6 +163,22 @@ fragment page on ServiceRecord {
         }
       }
     }
+    ...on CasesListRecord {
+      id
+      cases {
+        title
+        slug
+        caseTeaser {
+          title
+          image {
+            url
+            alt
+            width
+            height
+          }
+        }
+      }
+    }
   }
   breadcrumbsNextService {
     ... on ServiceRecord {
