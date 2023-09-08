@@ -46,14 +46,14 @@
             <a
               :href="`tel:${ cleanedPhoneNumber }`"
               class="app-footer__link"
-              @click="trackLink('phone')"
+              @click="trackPhoneLink()"
             >{{ app.phoneNumber }}</a>
           </li>
           <li class="app-footer__list-item">
             <a
               :href="`mailto:${ app.emailAddress }`"
               class="app-footer__link"
-              @click="trackLink('email')"
+              @click="trackEmailLink()"
             >{{ app.emailAddress }}</a>
           </li>
         </ul>
@@ -242,8 +242,11 @@ export default {
       })
       this.observer.observe(contactElement)
     },
-    trackLink (linkType) {
-      useTrackEvent(`Click on ${linkType}`);
+    trackPhoneLink () {
+      useTrackEvent('Click on phone number');
+    },
+    trackEmailLink () {
+      useTrackEvent('Click on email');
     },
     unobserveContact () {
       this.observer.unobserve(this.$refs.contact)
