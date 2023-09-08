@@ -1,7 +1,7 @@
 <template>
   <main class="page-services grid">
     <page-header
-      heading="byline"
+      heading="headline"
       :byline="data.page.title"
       :headline="data.page.subtitle"
     />
