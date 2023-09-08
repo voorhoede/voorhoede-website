@@ -122,8 +122,8 @@
               <dato-image
                 class="app-footer__certificate-logo"
                 :src="certificate.logo.url"
-                :width="80"
-                :height="60"
+                :width="100"
+                :height="75"
                 :alt="certificate.title"
                 loading="lazy"
               />
@@ -397,6 +397,7 @@ export default {
   @media (min-width: 768px) {
     .app-footer__certificate-list {
       justify-content: space-between;
+      margin-top: var(--spacing-tiny);
     }
   }
 

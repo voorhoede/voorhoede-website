@@ -1,2 +1,2 @@
-export const datocmsEnvironment = 'remove-image-with-description-deploy';
+export const datocmsEnvironment = 'service-page-structured-text-deploy';
 export const mastodonUrl = 'https://fosstodon.org/@devoorhoede';

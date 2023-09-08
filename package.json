@@ -20,15 +20,17 @@
     "prismjs": "^1.29.0",
     "rosetta": "^1.1.0",
     "ufo": "^1.0.1",
-    "vue-datocms": "^4.0.5"
+    "vue-datocms": "^4.0.6"
   },
   "devDependencies": {
     "@datocms/cli": "^1.1.9",
-    "@typescript-eslint/parser": "^5.60.0",
+    "@typescript-eslint/parser": "^6.4.1",
+    "datocms-html-to-structured-text": "^2.1.11",
     "eslint": "^8.43.0",
     "eslint-plugin-vue": "^9.15.1",
     "husky": "^8.0.3",
     "nano-staged": "^0.8.0",
+    "parse5": "^7.1.2",
     "typescript-imgix-url-params": "^0.3.1"
   },
   "engines": {
