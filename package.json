@@ -11,6 +11,7 @@
   "dependencies": {
     "@json-feed-types/1_1": "^1.0.2",
     "@nuxtjs/plausible": "^0.2.0",
+    "@voorhoede/vue-dato-video": "^3.1.0",
     "datocms-listen": "^0.1.14",
     "datocms-structured-text-utils": "^2.0.4",
     "dayjs": "^1.11.9",
