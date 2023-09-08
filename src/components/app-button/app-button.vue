@@ -16,6 +16,7 @@
     :href="to"
     target="_blank"
     rel="noreferrer noopener"
+    @click="trackExternalLink(to)"
   >
     <span v-if="primary || small">{{ label }}</span>
     <template v-else>{{ label }} &rarr;</template>
@@ -71,6 +72,13 @@
         }
       },
     },
+    methods:{
+      trackExternalLink(url) {
+        const hostname = new URL(url).hostname
+        if (url.startsWith('tel:')) useTrackEvent('Click on phone number');
+        if (hostname === 'calendly.com') useTrackEvent('Schedule a meeting');
+      }
+    }
   }
 </script>
 
