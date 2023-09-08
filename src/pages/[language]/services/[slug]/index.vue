@@ -54,7 +54,7 @@
           :item="item"
         />
         <cases-list
-          v-if="item.__typename === 'SectionCasesListRecord'"
+          v-if="item.__typename === 'CasesListRecord'"
           :key="item.id"
           :id="item.id"
           :cases="item.cases"

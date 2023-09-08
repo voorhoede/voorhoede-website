@@ -163,7 +163,7 @@ fragment page on ServiceRecord {
         }
       }
     }
-    ...on SectionCasesListRecord {
+    ...on CasesListRecord {
       id
       cases {
         title

@@ -6,11 +6,11 @@ export default async function (client: Client) {
 
   console.log("Create new models/block models");
 
-  console.log('Create block model "Section Cases List" (`section_cases_list`)');
+  console.log('Create block model "Cases List" (`cases_list`)');
   newItemTypes["2435781"] = await client.itemTypes.create(
     {
-      name: "Section Cases List",
-      api_key: "section_cases_list",
+      name: "Cases List",
+      api_key: "cases_list",
       modular_block: true,
       inverse_relationships_enabled: false,
     },
@@ -20,7 +20,7 @@ export default async function (client: Client) {
   console.log("Creating new fields/fieldsets");
 
   console.log(
-    'Create Multiple links field "Cases" (`cases`) in block model "Section Cases List" (`section_cases_list`)'
+    'Create Multiple links field "Cases" (`cases`) in block model "Cases List" (`cases_list`)'
   );
   newFields["12754652"] = await client.fields.create(newItemTypes["2435781"], {
     label: "Cases",
