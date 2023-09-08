@@ -2,7 +2,7 @@
   <main class="page-cases">
     <div class="grid page-cases__top">
       <page-header
-        heading="byline"
+        heading="headline"
         :byline="data.page.title"
         :headline="data.page.subtitle"
       />
