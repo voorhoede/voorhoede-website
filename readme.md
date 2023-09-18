@@ -24,7 +24,7 @@ We use scripted migrations for CMS model changes. Use [DatoCMS's scripted migrat
 
 If you need to make changes to the CMS model you will have to use a sandbox environment:
 
-1. Create a new sandbox by forking the primary environment [here](https://voorhoede-website.admin.datocms.com/admin/environments) or by doing `npx datocms environments:fork <primary-env> <new-env>`. Our current plan allows for maximum 3 concurrent sandboxes, if those are occupied check with your teammates to see if any of them can be deleted. 
+1. Create a new sandbox by forking the primary environment [here](https://voorhoede-website.admin.datocms.com/admin/environments) or by doing `npx datocms environments:fork <primary-env> <new-env>`. DatoCMS has a limit on concurrent sandboxes, if those are occupied check with your teammates to see if any of them can be deleted. 
 2. Update the value of `datocmsEnvironment` at [`constants.mjs`](/src/constants.mjs) to `<new-env>`
 3. Run the app in development mode (`npm run dev`). 
 
