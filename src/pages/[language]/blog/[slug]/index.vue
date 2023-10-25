@@ -71,6 +71,7 @@
           :caption="item.caption"
           :title="item.title"
           :type="item.previewType"
+          :height="item.height"
           :key="item.id"
           :id="item.titleId"
         />
@@ -188,6 +189,8 @@
   import prismjs from 'prismjs';
   import('prismjs/components/prism-graphql');
   import('prismjs/components/prism-rust');
+  import('prismjs/components/prism-jsx');
+  import('prismjs/components/prism-sql');
 
   const defaultHeadingLevel = 3;
 
