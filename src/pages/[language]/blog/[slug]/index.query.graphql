@@ -55,6 +55,7 @@ fragment page on BlogPostRecord {
       title
       caption
       previewType
+      height
     }
     ... on ImageRecord {
       id

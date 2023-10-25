@@ -5,6 +5,9 @@
       :title="title"
       :src="iframeSrc"
       :id="id"
+      :style="{
+        height: formattedHeight 
+      }"
       class="code-preview-block__i-frame"
       frameborder="no"
       loading="lazy"
@@ -39,6 +42,10 @@
     type: {
       type: String,
       default: 'codepen'
+    },
+    height: {
+      type: String,
+      required: true
     }
   })
 
@@ -49,6 +56,10 @@
     } else {
       return props.url
     }
+  })
+
+  const formattedHeight = computed(() => {
+    return `${props.height}px`
   })
 </script>
 

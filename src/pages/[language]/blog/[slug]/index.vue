@@ -71,6 +71,7 @@
           :caption="item.caption"
           :title="item.title"
           :type="item.previewType"
+          :height="item.height"
           :key="item.id"
           :id="item.titleId"
         />
