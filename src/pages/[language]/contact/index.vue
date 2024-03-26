@@ -88,7 +88,9 @@
 </template>
 
 <script setup>
- import query from './index.query.graphql?raw';
+  definePageMeta({ layout: 'content-page' })
+
+  import query from './index.query.graphql?raw';
 
   const { params } = useRoute();
   const { data } = await useFetchContent({

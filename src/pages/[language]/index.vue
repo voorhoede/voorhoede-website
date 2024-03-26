@@ -103,6 +103,8 @@
 </template>
 
 <script setup>
+  definePageMeta({ layout: 'content-page' })
+
   import query from './index.query.graphql?raw';
   import getSelfTypingTextInterval from '~/lib/get-self-typing-text-interval'
 

@@ -183,6 +183,8 @@
 </template>
 
 <script setup>
+  definePageMeta({ layout: 'content-page' })
+
   import slugify from '../../../../lib/slugify';
   import query from './index.query.graphql?raw';
   import prismjs from 'prismjs';

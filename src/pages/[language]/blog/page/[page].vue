@@ -57,6 +57,7 @@
   const { $localeUrl } = useNuxtApp();
 
   definePageMeta({
+    layout: 'content-page',
     middleware: [
       function (to) {
         if (to.params.page === '1') {
