@@ -9,7 +9,7 @@
       </h1>
       <iframe
         class="page-meet__iframe"
-        :src="person.meetUrl"
+        :src="person.meet.url"
         :title="title"
       />
     </main>
@@ -43,9 +43,9 @@
 
   useSeoHead({
     social: {
-      ...person.meetSeo,
-      title: person.meetSeo?.title || title.value,
-      description: person.meetSeo?.description || person.biography,
+      ...person.meet.seo,
+      title: person.meet.seo?.title || title.value,
+      description: person.meet.seo?.description || person.biography,
     }
   })
 </script>

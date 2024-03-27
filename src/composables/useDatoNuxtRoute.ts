@@ -1,6 +1,7 @@
 type Page = {
   __typename: string
   slug?: string
+  parents?: Page[]
 }
 
 export function useDatoNuxtRoute(page: Page) {
@@ -50,6 +51,9 @@ export function useDatoNuxtRoute(page: Page) {
     }
     case 'PersonRecord': {
       return { name: 'language-team-slug', params: { ...sharedParams, slug: page.slug } }
+    }
+    case 'MeetRecord': {
+      return { name: 'language-meet-slug', params: { ...sharedParams, slug: page.parents?.[0].slug } }
     }
     case 'WorkatRecord': {
       return { name: 'language-work-at', params: sharedParams }

@@ -84,6 +84,12 @@ fragment internalLink on InternalLinkRecord {
     ... on PersonRecord {
       slug
     }
+    ... on MeetRecord {
+      parents: _allReferencingPeople {
+        __typename
+        slug
+      }
+    }
   }
 }
 
