@@ -109,7 +109,11 @@
   }
 
   function trackLink(contactType) {
-    useTrackEvent(`Click on ${contactType}`);
+    if (contactType === 'phone') {
+      useTrackEvent('Click on phone number');
+    } else {
+      useTrackEvent(`Click on ${contactType}`);
+    }
   }
 </script>
 

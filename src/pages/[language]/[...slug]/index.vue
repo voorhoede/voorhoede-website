@@ -79,6 +79,7 @@
         :title="section.title"
         :items="section.items"
         :background-color="section.backgroundColor"
+        :card-orientation="section.cardOrientation"
       />
       <jobs-list
         v-if="section.__typename === 'SectionJobsListRecord'"

@@ -24,6 +24,7 @@
           :width="144"
           :height="170"
           loading="lazy"
+          :quality="75"
         />
         <p class="h5">
           {{ contactPerson.name }} {{ contactPerson.lastName }}

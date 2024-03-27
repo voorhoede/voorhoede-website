@@ -1,7 +1,7 @@
 <template>
   <main class="page-services grid">
     <page-header
-      heading="byline"
+      heading="headline"
       :byline="data.page.title"
       :headline="data.page.subtitle"
     />
@@ -13,6 +13,7 @@
       :image="data.page.introImage"
       :inverse="true"
       class="page-services__intro"
+      :background-color="BackgroundColor.PastelYellow"
     />
 
     <interstitial-cta
@@ -62,6 +63,7 @@
 </template>
 
 <script setup>
+  import { BackgroundColor } from '~/types/index.d';
   import query from './index.query.graphql?raw';
 
   const { params } = useRoute();

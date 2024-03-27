@@ -65,15 +65,6 @@
         />
 
         <template v-for="item in data.page.items">
-          <image-with-description
-            class="page-event-detail__image page-event-detail__main--not-indented"
-            v-if="item.__typename === 'ImageWithTextRecord'"
-            :key="item.social.description"
-            :image="item.imageWithDescription.image"
-            :inverse="item.imageWithDescription.inverse"
-            :description="item.imageWithDescription.description"
-          />
-
           <quote-block
             v-if="item.quote"
             :key="item.quote"
@@ -94,6 +85,7 @@
                 : '(min-width: 1440px) 640px, (min-width: 720px) 65vw, 95vw',
             }"
             :caption="item.caption"
+            :caption-position="item.captionPosition"
           />
 
           <text-block
@@ -180,6 +172,7 @@
     script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(structuredData()) }],
   });
 
+
   function structuredData() {
     let location
     if (data.value.page.eventIsOnline) {
@@ -245,11 +238,6 @@
     margin-bottom: var(--spacing-large);
     width: 100%;
     height: auto;
-  }
-
-  .page-event-detail__image .image-with-description__description {
-    margin-left: 0;
-    margin-right: 0;
   }
 
   .page-event-detail__title {

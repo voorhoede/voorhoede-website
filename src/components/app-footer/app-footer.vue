@@ -46,14 +46,14 @@
             <a
               :href="`tel:${ cleanedPhoneNumber }`"
               class="app-footer__link"
-              @click="trackLink('phone')"
+              @click="trackPhoneLink()"
             >{{ app.phoneNumber }}</a>
           </li>
           <li class="app-footer__list-item">
             <a
               :href="`mailto:${ app.emailAddress }`"
               class="app-footer__link"
-              @click="trackLink('email')"
+              @click="trackEmailLink()"
             >{{ app.emailAddress }}</a>
           </li>
         </ul>
@@ -122,8 +122,8 @@
               <dato-image
                 class="app-footer__certificate-logo"
                 :src="certificate.logo.url"
-                :width="80"
-                :height="60"
+                :width="100"
+                :height="75"
                 :alt="certificate.title"
                 loading="lazy"
               />
@@ -175,6 +175,7 @@
 </template>
 
 <script>
+import { mastodonUrl } from '../../constants.mjs';
 
 export default {
   props: {
@@ -210,9 +211,10 @@ export default {
     },
     socialLinks() {
       return [
-        { url: this.app.twitterUrl,  platform: 'Twitter',  icon: 'twitter' },
-        { url: this.app.githubUrl,   platform: 'GitHub',   icon: 'git-hub' },
-        { url: this.app.youtubeUrl,  platform: 'YouTube',  icon: 'youtube' },
+        { url: this.app.githubUrl, platform: 'GitHub', icon: 'git-hub' },
+        { url: mastodonUrl, platform: 'Mastodon', icon: 'mastodon' },
+        { url: this.app.twitterUrl, platform: 'Twitter', icon: 'twitter' },
+        { url: this.app.youtubeUrl, platform: 'YouTube', icon: 'youtube' },
         { url: this.app.linkedinUrl, platform: 'LinkedIn', icon: 'linkedin' },
       ]
     },
@@ -240,8 +242,11 @@ export default {
       })
       this.observer.observe(contactElement)
     },
-    trackLink (linkType) {
-      useTrackEvent(`Click on ${linkType}`);
+    trackPhoneLink () {
+      useTrackEvent('Click on phone number');
+    },
+    trackEmailLink () {
+      useTrackEvent('Click on email');
     },
     unobserveContact () {
       this.observer.unobserve(this.$refs.contact)
@@ -395,6 +400,7 @@ export default {
   @media (min-width: 768px) {
     .app-footer__certificate-list {
       justify-content: space-between;
+      margin-top: var(--spacing-tiny);
     }
   }
 
@@ -423,8 +429,7 @@ export default {
   }
 
   .app-footer__list-item--icon {
-    font-size: 1.2rem;
-    margin: 0 var(--spacing-tiny);
+    margin-right: var(--spacing-small);
   }
 
   .app-footer__list-item--icon a {

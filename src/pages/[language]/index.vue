@@ -19,12 +19,12 @@
       />
     </section>
     <section class="page-index__services grid">
-      <h2 class="page-index__section-title h1">
-        {{ data.page.servicesHeader }}
-      </h2>
-      <services-list
-        class="page-index__services-list"
-        :services="data.page.services"
+      <image-card-grid
+        class="page-index__services-grid"
+        :title="servicesSection.title"
+        :items="servicesSection.items"
+        :background-color="servicesSection.backgroundColor"
+        :card-orientation="servicesSection.cardOrientation"
       />
       <div class="page-index__blog-posts-button">
         <app-button
@@ -121,6 +121,7 @@
   const ctaSectionTop = data.value.page.pageCtaSection[0];
   const selfTypingTextInterval = getSelfTypingTextInterval(data.value.page.subtitle) / 1000;
   const pageHeaderAnimationDelay = data.value.page.subtitle.length * selfTypingTextInterval;
+  const servicesSection = computed(() => data.value.page.servicesSections[0]);
 </script>
 
 <style>
@@ -130,6 +131,11 @@
 
   .page-index__services {
     margin-bottom: var(--spacing-larger);
+  }
+
+  .page-index__services-grid {
+    margin-bottom: var(--spacing-larger);
+    grid-column: var(--grid-content);
   }
 
   .page-index__section-title {
@@ -240,10 +246,6 @@
 
     .page-index__services {
       margin-bottom: var(--spacing-bigger);
-    }
-
-    .page-index__services-list {
-      margin-bottom: var(--spacing-large);
     }
 
     .page-index__cta {

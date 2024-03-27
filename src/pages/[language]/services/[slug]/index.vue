@@ -14,13 +14,12 @@
     />
     <article class="page-service__overview">
       <template v-for="item in data.page.items">
-        <generic-text-block
-          v-if="item.__typename === 'GenericTextBlockRecord'"
+        <structured-text-block
+          v-if="item.__typename === 'SectionStructuredTextRecord'"
+          class="page-service__structured-text-section"
           :key="item.id"
-          :id="item.id"
-          :title="item.title"
-          :body="item.body"
-          :image="item.image"
+          :content="item.body"
+          paragraph-variant="body-big"
         />
         <testimonial-block
           v-if="item.__typename === 'TestimonialBlockRecord'"
@@ -53,6 +52,13 @@
           :key="item.id"
           :id="item.id"
           :item="item"
+        />
+        <cases-list
+          v-if="item.__typename === 'CasesListRecord'"
+          :key="item.id"
+          :id="item.id"
+          :cases="item.cases"
+          :max-columns="2"
         />
       </template>
     </article>
@@ -138,9 +144,10 @@
   }
 
   .page-service__overview > .image-with-caption,
-  .page-service__overview .generic-text-block,
+  .page-service__structured-text-section,
   .page-service__overview .blockquote-block,
-  .page-service__overview > .responsive-video {
+  .page-service__overview > .responsive-video,
+  .page-service__overview .cases-list {
     margin: 0 0 var(--spacing-large) 0;
   }
 
@@ -157,16 +164,6 @@
   .page-service__overview .blockquote-block__body {
     font-size: 1.1rem;
     line-height: 1.5;
-  }
-
-  .page-service__overview .generic-text-block__title {
-    font-size: 1.5rem;
-    line-height: 1.2083333333;
-  }
-
-  .page-service__overview .generic-text-block__body {
-    font-size: 1.125rem;
-    line-height: 1.6666666667;
   }
 
   .page-service .breadcrumbs-block {
@@ -188,12 +185,10 @@
       grid-column: var(--grid-content);
     }
 
-    .page-service__overview .generic-text-block {
-      grid-template-columns: 70% 1fr;
-    }
-
     .page-service__overview .blockquote-block,
-    .page-service__overview .cta-image-block {
+    .page-service__structured-text-section,
+    .page-service__overview .cta-image-block,
+    .page-service__overview .cases-list {
       width: 70%;
     }
 
@@ -205,16 +200,6 @@
     .page-service__overview .blockquote-block__body {
       font-size: 1.2rem;
       line-height: 1.5;
-    }
-
-    .page-service__overview .generic-text-block__body {
-      font-size: 1.25rem;
-      line-height: 1.75;
-    }
-
-    .page-service__overview .generic-text-block__title {
-      font-size: 1.6875rem;
-      line-height: 1.3333333333;
     }
 
     .page-service__overview > .image-with-caption,
@@ -236,14 +221,12 @@
       grid-column-end: 35;
     }
 
-    .page-service__overview .blockquote-block__body,
-    .page-service__overview .generic-text-block__body {
+    .page-service__overview .blockquote-block__body {
       font-size: 1.375rem;
       line-height: 1.8181818182;
     }
 
-    .page-service__overview .blockquote-block__title,
-    .page-service__overview .generic-text-block__title {
+    .page-service__overview .blockquote-block__title {
       font-size: 2.0625rem;
       line-height: 1.3636363636;
     }
