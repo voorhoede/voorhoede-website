@@ -141,7 +141,7 @@
 </template>
 
 <script setup>
-  definePageMeta({ layout: 'content-page' })
+  definePageMeta({ layout: 'content-page' });
 
   import query from './index.query.graphql?raw';
 

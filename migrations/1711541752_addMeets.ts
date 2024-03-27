@@ -91,7 +91,6 @@ export default async function (client: Client) {
           ],
         },
       },
-      default_value: { en: null, nl: null },
       deep_filtering_enabled: false,
     }
   );
@@ -112,7 +111,8 @@ export default async function (client: Client) {
       },
       unique: {},
     },
-    appearance: { addons: [], editor: "link_select", parameters: {} },
+    appearance: { addons: [], editor: "link_embed", parameters: {} },
+    default_value: null,
     deep_filtering_enabled: false,
   });
 

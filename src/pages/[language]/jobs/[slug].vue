@@ -64,7 +64,7 @@
 </template>
 
 <script setup>
-  definePageMeta({ layout: 'content-page' })
+  definePageMeta({ layout: 'content-page' });
 
   import query from './[slug].query.graphql?raw';
 

@@ -53,7 +53,13 @@ export function useDatoNuxtRoute(page: Page) {
       return { name: 'language-team-slug', params: { ...sharedParams, slug: page.slug } }
     }
     case 'MeetRecord': {
-      return { name: 'language-meet-slug', params: { ...sharedParams, slug: page.parents?.[0].slug } }
+      const slug = page.parents?.[0].slug
+
+      if (!slug) {
+        throw new Error('MeetRecord is missing required parent slug')
+      }
+
+      return { name: 'language-meet-slug', params: { ...sharedParams, slug } }
     }
     case 'WorkatRecord': {
       return { name: 'language-work-at', params: sharedParams }

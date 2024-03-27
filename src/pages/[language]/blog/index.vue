@@ -1,5 +1,5 @@
 <script>
-definePageMeta({ layout: 'content-page' })
+definePageMeta({ layout: 'content-page' });
 
 export { default } from './page/[page].vue'
 </script>
