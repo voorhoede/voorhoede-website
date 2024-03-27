@@ -74,9 +74,7 @@
     },
     methods:{
       trackExternalLink(url) {
-        const hostname = new URL(url).hostname
         if (url.startsWith('tel:')) useTrackEvent('Click on phone number');
-        if (hostname === 'calendly.com') useTrackEvent('Schedule a meeting');
       }
     }
   }

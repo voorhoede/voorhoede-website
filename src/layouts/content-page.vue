@@ -1,6 +1,6 @@
 <template>
   <div id="top">
-    <div class="layout-default">
+    <div class="layout-content-page">
       <div
         tabindex="-1"
         ref="skipLink"
@@ -28,11 +28,12 @@
       <div
         id="content"
         :inert="focusTrapMobileMenu"
-        class="layout-default__content"
+        class="layout-content-page__content"
       >
         <slot />
         <app-footer
-          class="layout-default__footer"
+          v-if="!hideFooter"
+          class="layout-content-page__footer"
           :app="data.app"
           :footer="data.footer"
         />
@@ -42,13 +43,20 @@
 </template>
 
 <script setup>
-  import query from './default.query.graphql?raw';
+  import query from './content-page.query.graphql?raw';
 
   const { $i18n } = useNuxtApp();
   const { afterEach } = useRouter();
   const skipLink = ref(null);
   const mobileMenuIsOpen = ref(false);
   const focusTrapMobileMenu = computed(() => mobileMenuIsOpen.value ? true : null);
+
+  defineProps({
+    hideFooter: {
+      type: Boolean,
+      default: false,
+    },
+  });
 
   afterEach((from, to) => {
     closeMenu()
@@ -78,13 +86,13 @@
 </script>
 
 <style>
-  .layout-default {
+  .layout-content-page {
     position: relative;
     min-height: 100vh;
     background-color: var(--brand-yellow);
   }
 
-  .layout-default__content {
+  .layout-content-page__content {
     background-color: var(--white);
   }
 </style>

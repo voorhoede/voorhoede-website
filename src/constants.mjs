@@ -1,2 +1,2 @@
-export const datocmsEnvironment = 'add-cases-block-to-service-page-deploy';
+export const datocmsEnvironment = 'implement-google-calendar-schedular';
 export const mastodonUrl = 'https://fosstodon.org/@devoorhoede';
