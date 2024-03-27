@@ -1,5 +1,5 @@
 <template>
-  <NuxtLayout>
+  <NuxtLayout name="content-page">
     <main class="error-page">
       <page-header
         heading="byline"
