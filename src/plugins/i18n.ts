@@ -12,10 +12,10 @@ export default defineNuxtPlugin((nuxtApp) => {
   addRouteMiddleware(
     'i18n-invalid-language',
     (to) => {
-      if (!isValidLocale({ locale: to.params.language })) {
+      if (!isValidLocale({ locale: to.params.language }) || to.path === '/') {
         return navigateTo(
           withTrailingSlash(joinURL('/', defaultLanguage, to.path)),
-          { redirectCode: 404, replace: true },
+          { redirectCode: 301, replace: true },
         );
       }
     },
