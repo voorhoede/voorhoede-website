@@ -4,7 +4,6 @@ import { default as nuxtIcons } from 'nuxt-icons';
 import { default as plausible } from '@nuxtjs/plausible';
 import { fetchTranslations } from './src/scripts/fetch-translations';
 import { fetchBlogFeed } from './src/scripts/fetch-blog-feed';
-import { fetchRedirects } from './src/scripts/fetch-redirects';
 import { fetchRoutes } from './src/scripts/fetch-routes';
 import { fetchI18nSlugs } from './src/scripts/fetch-i18n-slugs';
 
@@ -19,7 +18,13 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: false
-    }
+    },
+    future: {
+      nativeSWR: true,
+    },
+  },
+  routeRules: {
+    '/mogelijk/api/event': { proxy: 'https://plausible.io/api/event', isr: false },
   },
   runtimeConfig: {
     public: {
@@ -56,8 +61,6 @@ export default defineNuxtConfig({
           await mkdir('./src/public/blog', { recursive: true });
           await writeFile('./src/public/blog/feed.json', JSON.stringify(blogFeed));
         }),
-      fetchRedirects()
-        .then((redirects) => writeFile('./src/public/_redirects', redirects)),
       fetchI18nSlugs()
         .then(async (data) => {
           await mkdir('.cache', { recursive: true });
