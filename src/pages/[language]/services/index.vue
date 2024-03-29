@@ -63,6 +63,8 @@
 </template>
 
 <script setup>
+  definePageMeta({ layout: 'content-page' });
+
   import { BackgroundColor } from '~/types/index.d';
   import query from './index.query.graphql?raw';
 

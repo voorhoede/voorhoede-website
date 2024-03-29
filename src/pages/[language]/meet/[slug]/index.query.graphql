@@ -1,0 +1,24 @@
+query MeetSlug($slug: String, $locale: SiteLocale) {
+  person(filter: { slug: { eq: $slug }, meet: { exists: true } }, locale: $locale) {
+    ...person
+  }
+}
+
+fragment person on PersonRecord {
+  name
+  lastName
+  biography
+  meet {
+    url
+    seo {
+      title
+      description
+      image {
+        url
+        alt
+        width
+        height
+      }
+    }
+  }
+}

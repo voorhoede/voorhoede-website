@@ -145,6 +145,12 @@ fragment link on RecordInterface {
       ... on PersonRecord {
         slug
       }
+      ... on MeetRecord {
+        parents: _allReferencingPeople {
+          __typename
+          slug
+        }
+      }
     }
   }
   ... on ExternalLinkRecord {

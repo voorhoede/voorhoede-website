@@ -68,6 +68,8 @@
 </template>
 
 <script setup>
+definePageMeta({ layout: 'content-page' });
+
 import formatDate from '../../../../lib/format-date';
 import personQuery from './index.person.graphql?raw';
 import blogPostsQuery from './index.blogPosts.graphql?raw';

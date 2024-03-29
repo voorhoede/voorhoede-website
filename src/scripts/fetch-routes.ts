@@ -44,6 +44,10 @@ const dynamicRoutesConfig: RouteConfig[] = [
     path: "/team/",
   },
   {
+    queryOperation: "allPeople",
+    path: "/meet/",
+  },
+  {
     queryOperation: "allEventItems",
     path: "/events/",
   },

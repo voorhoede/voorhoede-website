@@ -11,6 +11,7 @@
           :width="200"
           :height="200"
           loading="eager"
+          :quality="75"
         />
       </div>
       <div>
