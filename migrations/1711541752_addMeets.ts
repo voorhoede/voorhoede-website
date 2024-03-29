@@ -37,7 +37,6 @@ export default async function (client: Client) {
         type: "title",
       },
       default_value: "",
-      deep_filtering_enabled: false,
     }
   );
 
@@ -57,7 +56,6 @@ export default async function (client: Client) {
         parameters: { heading: false },
       },
       default_value: "",
-      deep_filtering_enabled: false,
     }
   );
 
@@ -91,7 +89,6 @@ export default async function (client: Client) {
           ],
         },
       },
-      deep_filtering_enabled: false,
     }
   );
 
@@ -113,7 +110,6 @@ export default async function (client: Client) {
     },
     appearance: { addons: [], editor: "link_embed", parameters: {} },
     default_value: null,
-    deep_filtering_enabled: false,
   });
 
   console.log("Update existing fields/fieldsets");
