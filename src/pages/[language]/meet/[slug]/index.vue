@@ -34,6 +34,10 @@
     throw createError({ statusCode: 404, fatal: true })
   }
 
+  onMounted(() => {
+    useTrackEvent('Meet page view')
+  })
+
   const title = computed(() => {
     const { $t } = instance.appContext.config.globalProperties
     const fullName = `${person.name}${person.lastName ? ` ${person.lastName}` : ''}`
