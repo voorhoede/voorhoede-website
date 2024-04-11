@@ -28,6 +28,7 @@
       />
 
       <pagination-nav
+        v-if="data.itemsMeta.count > PER_PAGE"
         :total-items="data.itemsMeta.count"
         :current-page="currentPage"
         :per-page="PER_PAGE"
