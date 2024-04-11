@@ -1,4 +1,4 @@
-query HomePage($locale: SiteLocale, $currentDate: DateTime) {
+query HomePage($locale: SiteLocale!, $currentDate: DateTime) {
   page: home(locale: $locale) {
     ...homepage
   }
@@ -20,7 +20,10 @@ query HomePage($locale: SiteLocale, $currentDate: DateTime) {
     locale: $locale
     first: 3
     orderBy: publishDate_DESC
-    filter: { isArchived: { eq: "false" } }
+    filter: {
+      isArchived: { eq: "false" }
+      _locales: { allIn: [$locale] }
+    }
   ) {
     slug
     title
