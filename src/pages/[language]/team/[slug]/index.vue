@@ -43,21 +43,33 @@
     </header>
 
     <ul
-      v-if="blogs"
+      v-if="transformedBlogposts"
       class="page-team__blogs"
     >
       <li
-        v-for="blogPost in blogs.blogPosts"
+        v-for="blogPost in transformedBlogposts"
         :key="blogPost.id"
         class="page-team__blog"
       >
-        <app-link :to="$localeUrl({ name: 'blog-slug', params: { slug: blogPost.slug } })">
+        <app-link
+          :to="{ name: 'language-blog-slug', params: {
+            language: blogPost.locale,
+            slug: blogPost.slug
+          }}"
+          :hreflang="blogPost.locale"
+        >
           <div class="page-team__blog-details">
             <span class="body page-team__date">{{ formattedDate(blogPost.date) }}</span>
-            <h2 class="h3 page-team__blog-title">
+            <h2
+              class="h3 page-team__blog-title"
+              :lang="blogPost.locale"
+            >
               {{ blogPost.title }}
             </h2>
-            <p class="body page-team__blog-content">
+            <p
+              class="body page-team__blog-content"
+              :lang="blogPost.locale"
+            >
               {{ blogPost.introTitle }}
             </p>
           </div>
@@ -96,6 +108,14 @@ const { data: blogs } = await useFetchContent({
     personId: person.id,
   },
 })
+
+const transformedBlogposts = computed(() => {
+  return blogs.value.blogPosts.map((blogPost) => ({
+    ...blogPost,
+    locale: blogPost._allSlugLocales.find((locale) => locale.value === blogPost.slug).locale,
+  }))
+})
+
 
 const formattedDate = (date) => formatDate({ date, locale: route.params.language, format: 'D MMM YYYY' })
 

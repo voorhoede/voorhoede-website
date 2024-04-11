@@ -2,13 +2,18 @@ query TeamSlug($personId: [ItemId]) {
   blogPosts: allBlogPosts(
     first: 100
     filter: { authors: { anyIn: $personId } }
-    orderBy: publishDate_DESC
+    orderBy: publishDate_DESC,
+    fallbackLocales: nl
   ) {
     ...blogPost
   }
 }
 
 fragment blogPost on BlogPostRecord {
+  _allSlugLocales {
+    locale
+    value
+  }
   id
   title
   introTitle
