@@ -13,6 +13,10 @@ const operationsWithTranslatedSlugs = [
     route: "language-cases-slug",
     operation: "allCaseItems",
   },
+  {
+    route: "language-blog-slug",
+    operation: "allBlogPosts",
+  },
 ];
 
 // fetches a paginated list of slugs for a given operation
