@@ -1,5 +1,5 @@
 import type { default as Feed } from '@json-feed-types/1_1';
-import { datocmsFetch } from '../lib/datocms-fetch.ts';
+import { datocmsFetch } from '../lib/datocms-fetch';
 
 type BlogFeedResponse = {
   data: {
@@ -24,7 +24,10 @@ export const fetchBlogFeed = () => {
         allBlogPosts(
           first: 10
           orderBy: publishDate_DESC
-          filter: { isArchived: { eq: "false" } }
+          filter: {
+            isArchived: { eq: "false" },
+            _locales: { allIn: [en] }
+          }
         ) {
           title
           slug
