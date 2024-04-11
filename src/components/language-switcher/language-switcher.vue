@@ -34,10 +34,14 @@ const i18nSlugs = await useI18nSlugs();
 const route = useRoute();
 
 const getLocaleRoute = (code) => {
+  const isDynamicRoute = Boolean(i18nSlugs.value)
+  const isTranslationSlugAvailable = Boolean(i18nSlugs.value?.filter((i18nSlug) => i18nSlug.locale === code).length);
+
   const localeSlug = i18nSlugs.value?.find((i18nSlug) => i18nSlug.locale === code);
+  const routeName = (isDynamicRoute && !isTranslationSlugAvailable) ? 'language' : route.name;
 
   return {
-    name: route.name,
+    name: routeName,
     params: {
       ...route.params,
       language: code,
