@@ -1,2 +1,2 @@
-export const datocmsEnvironment = 'implement-google-calendar-schedular-deploy';
+export const datocmsEnvironment = 'multilingual-blogs';
 export const mastodonUrl = 'https://fosstodon.org/@devoorhoede';
