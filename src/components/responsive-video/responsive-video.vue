@@ -1,5 +1,6 @@
 <template>
   <vue-dato-video
+    v-if="props.video"
     class="responsive-video"
     v-bind="props"
     :play-icon-alt="$t('play_video')"
@@ -20,15 +21,35 @@
       <app-icon name="play" />
     </template>
   </vue-dato-video>
+  <video
+    v-else-if="props.gif"
+    class="responsive-video"
+    autoplay
+    controls
+    :style="{
+      aspectRatio: `${props.gif.width} / ${props.gif.height}`,
+    }"
+  >
+    <source
+      :src="`${props.gif.url}?fm=mp4`"
+      type="video/mp4"
+    >
+  </video>
 </template>
 
 <script setup lang="ts">
 import "@voorhoede/vue-dato-video/style";
-import { VueDatoVideo } from "@voorhoede/vue-dato-video";
+import { VueDatoVideo, } from "@voorhoede/vue-dato-video";
 
 defineOptions({
   inheritAttrs: false,
 });
+
+interface BaseProps {
+  autoplay: boolean;
+  loop: boolean;
+  mute: boolean;
+}
 
 interface Video {
   provider: "youtube" | "vimeo";
@@ -40,12 +61,24 @@ interface Video {
   thumbnailUrl: string;
 }
 
-interface Props {
-  video: Video;
-  autoplay: boolean;
-  loop: boolean;
-  mute: boolean;
+interface Gif {
+  url: string;
+  height: number;
+  width: number;
+  title: string;
 }
+
+interface PropsWithGif extends BaseProps {
+  gif: Gif;
+  video: undefined;
+}
+
+interface PropsWithVideo extends BaseProps {
+  gif: undefined;
+  video: Video;
+}
+
+type Props = PropsWithGif | PropsWithVideo;
 
 const props = defineProps<Props>()
 </script>
