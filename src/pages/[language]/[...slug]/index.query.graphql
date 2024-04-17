@@ -1,5 +1,5 @@
 query Page($locale: SiteLocale, $slug: String) {
-  page: page(locale: $locale, filter: {slug: {eq: $slug}}) {
+  page: page(locale: $locale, filter: { slug: { eq: $slug } }) {
     title
     slug
     social {
@@ -95,7 +95,7 @@ query Page($locale: SiteLocale, $slug: String) {
           ...link
         }
       }
-      ...on SectionStructuredTextRecord {
+      ... on SectionStructuredTextRecord {
         gridAlignment
         hasToc
         backgroundColor
@@ -143,6 +143,27 @@ query Page($locale: SiteLocale, $slug: String) {
                 ...image
               }
               captionPosition
+            }
+            ... on ResponsiveVideoRecord {
+              id
+              mute
+              loop
+              autoplay
+              video {
+                url
+                title
+                height
+                width
+                provider
+                providerUid
+                thumbnailUrl
+              }
+              gif {
+                url
+                title
+                width
+                height
+              }
             }
             ... on StructuredTextImageRecord {
               ...structuredTextImage
