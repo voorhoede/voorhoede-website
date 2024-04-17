@@ -30,6 +30,7 @@
   import ImageWithCaption from '../image-with-caption/image-with-caption.vue'
   import StructuredTextBlock from './structured-text-block.vue'
   import TwoColumnBlock from '../two-column-block/two-column-block.vue';
+  import ResponsiveVideo from '../responsive-video/responsive-video.vue';
 
   const props = defineProps({
     content: {
@@ -154,6 +155,17 @@
             ...record.image,
             sizes: '(min-width: 1100px) 860px, (min-width: 720px) 75vw, 90vw',
           },
+        })
+      }
+      case 'ResponsiveVideoRecord': {
+        return h(ResponsiveVideo, {
+          class: 'structured-text__responsive-video',
+          key,
+          video: record.video,
+          gif: record.gif,
+          autoplay: record.autoplay,
+          loop: record.loop,
+          mute: record.mute,
         })
       }
       case 'StructuredTextImageRecord': {
@@ -351,5 +363,9 @@
   .structured-text__column-image {
     margin-top: var(--spacing-tiny);
     margin-bottom: 0;
+  }
+
+  .structured-text__responsive-video {
+    margin: 0 auto;
   }
 </style>
