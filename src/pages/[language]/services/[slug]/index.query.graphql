@@ -66,6 +66,7 @@ fragment page on ServiceRecord {
       mute
       loop
       autoplay
+      caption
       gif {
         url
         title
@@ -102,7 +103,7 @@ fragment page on ServiceRecord {
         }
       }
     }
-    ...on SectionStructuredTextRecord {
+    ... on SectionStructuredTextRecord {
       gridAlignment
       body {
         value
@@ -163,7 +164,7 @@ fragment page on ServiceRecord {
         }
       }
     }
-    ...on CasesListRecord {
+    ... on CasesListRecord {
       id
       cases {
         title

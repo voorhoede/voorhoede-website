@@ -84,6 +84,7 @@ fragment page on BlogPostRecord {
       mute
       loop
       autoplay
+      caption
       video {
         url
         title

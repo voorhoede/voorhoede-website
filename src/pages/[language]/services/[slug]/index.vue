@@ -46,6 +46,7 @@
           :autoplay="item.autoplay"
           :loop="item.loop"
           :mute="item.autoplay"
+          :caption="item.caption"
         />
         <cta-block
           v-if="item.__typename === 'CallToActionRecord'"

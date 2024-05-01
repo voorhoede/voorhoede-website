@@ -12,7 +12,7 @@
           target="_blank"
           rel="noopener"
         >
-          {{ props.video.title }}
+          {{ props.caption || props.video.title }}
         </a>
       </div>
     </template>
@@ -45,6 +45,7 @@ interface Props {
   autoplay: boolean;
   loop: boolean;
   mute: boolean;
+  caption?: string;
 }
 
 const props = defineProps<Props>()
