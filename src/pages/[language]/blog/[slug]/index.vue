@@ -117,6 +117,7 @@
           :autoplay="item.autoplay"
           :loop="item.loop"
           :mute="item.autoplay"
+          :caption="item.caption"
         />
 
         <div

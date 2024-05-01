@@ -87,6 +87,7 @@ fragment caseItem on CaseItemRecord {
       mute
       loop
       autoplay
+      caption
       gif {
         url
         title
