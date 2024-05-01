@@ -265,7 +265,7 @@ fragment buttonsList on StructuredTextButtonsListRecord {
 fragment blogpost on BlogPostRecord {
   slug
   title
-  date: publishDate
+  date: _firstPublishedAt
   authors {
     name
     image {

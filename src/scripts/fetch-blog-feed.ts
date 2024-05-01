@@ -23,7 +23,7 @@ export const fetchBlogFeed = () => {
       query BlogFeed {
         allBlogPosts(
           first: 10
-          orderBy: publishDate_DESC
+          orderBy: _firstPublishedAt_DESC
           filter: {
             isArchived: { eq: "false" },
             _locales: { allIn: [en] }
@@ -31,7 +31,7 @@ export const fetchBlogFeed = () => {
         ) {
           title
           slug
-          publishDate
+          publishDate: _firstPublishedAt
           introTitle
           social {
             description

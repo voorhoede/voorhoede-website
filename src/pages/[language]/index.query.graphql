@@ -2,7 +2,12 @@ query HomePage($locale: SiteLocale!, $currentDate: DateTime) {
   page: home(locale: $locale) {
     ...homepage
   }
-  upcomingEvents: allEventItems(locale: $locale, first: 1, orderBy: date_ASC, filter: {date: {gte: $currentDate}}) {
+  upcomingEvents: allEventItems(
+    locale: $locale
+    first: 1
+    orderBy: date_ASC
+    filter: { date: { gte: $currentDate } }
+  ) {
     date
     social {
       description
@@ -19,15 +24,12 @@ query HomePage($locale: SiteLocale!, $currentDate: DateTime) {
   latestBlogposts: allBlogPosts(
     locale: $locale
     first: 3
-    orderBy: publishDate_DESC
-    filter: {
-      isArchived: { eq: "false" }
-      _locales: { allIn: [$locale] }
-    }
+    orderBy: _firstPublishedAt_DESC
+    filter: { isArchived: { eq: "false" }, _locales: { allIn: [$locale] } }
   ) {
     slug
     title
-    date: publishDate
+    date: _firstPublishedAt
     authors {
       name
       image {
