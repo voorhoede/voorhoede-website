@@ -41,13 +41,14 @@ import { NuxtLinkProps } from 'nuxt/app'
   }
 
   .tag-list__item {
+    display: inline-block;
     font-family: var(--font-sans);
     padding: 0.5rem 1.5rem;
     color: var(--html-blue);
-    background: var(--brand-yellow);
+    background: var(--bg-pastel);
     border-radius: 2rem;
     white-space: nowrap;
-    border: 1px solid var(--brand-yellow);
+    border: 1px solid transparent;
   }
 
   .tag-list__item--active {

@@ -1,4 +1,10 @@
-query Blog($locale: SiteLocale!, $skip: IntType, $first: IntType) {
+query Blog(
+  $locale: SiteLocale!
+  $skip: IntType
+  $first: IntType
+  $tagFilter: LinksFilter
+  $tagId: ItemId
+) {
   page: blogPostOverview(locale: $locale) {
     ...blogPostOverview
   }
@@ -8,7 +14,8 @@ query Blog($locale: SiteLocale!, $skip: IntType, $first: IntType) {
     locale: $locale
     orderBy: _firstPublishedAt_DESC
     filter: {
-      isArchived: { eq: "false" },
+      isArchived: { eq: "false" }
+      tags: $tagFilter
       _locales: { allIn: [$locale] }
     }
   ) {
@@ -17,11 +24,22 @@ query Blog($locale: SiteLocale!, $skip: IntType, $first: IntType) {
   itemsMeta: _allBlogPostsMeta(
     locale: $locale
     filter: {
-      isArchived: { eq: "false" },
+      isArchived: { eq: "false" }
+      tags: $tagFilter
       _locales: { allIn: [$locale] }
     }
   ) {
     count
+  }
+  tags: allTags(locale: $locale) {
+    id
+    title
+    slug
+  }
+  tag: tag(filter: { id: { eq: $tagId } }) {
+    id
+    title
+    slug
   }
 }
 

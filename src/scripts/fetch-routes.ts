@@ -63,18 +63,64 @@ const dynamicRoutesConfig: RouteConfig[] = [
     queryOperation: "allPages",
     path: "/",
   },
+  {
+    queryOperation: "allTags",
+    path: "/blog/tag/",
+  },
 ];
 
 // fetches all routes for blog pages for a given locale
-const fetchBlogPagesRoutes = async ({ locale } : { locale: string }) => {
+const fetchBlogPagesRoutes = async ({ locale }: { locale: string }) => {
   const operation = "allBlogPosts";
   const { data: meta } = await fetchMetaForOperation({ operation, locale });
   const { count } = meta[`_${operation}Meta`];
   const pages = Math.ceil(count / BLOG_PER_PAGE);
   return [...Array(pages)]
     .map((_, index) => index + 1)
-    .filter(pageNumber => pageNumber > 1)
+    .filter((pageNumber) => pageNumber > 1)
     .map((pageNumber) => `/${locale}/blog/page/${pageNumber}/`);
+};
+
+// fetches all routes for blog tags for a given locale
+// this needs a separate function because we need to fetch the tag ID for each tag
+// and then calculate the number of pages based on the number of blog posts with that tag
+const fetchBlogTagRoutes = async ({ locale }: { locale: string }) => {
+  const operation = "allTags";
+  const slugs = await fetchSlugsForOperation({ operation, locale });
+  return Promise.all(
+    slugs.map(async (slug) => {
+      const tagId = await datocmsFetch({
+        query: `
+          query TagId($locale: SiteLocale, $slug: String) {
+            tag(locale: $locale, filter: { slug: { eq: $slug } }) {
+              id
+            }
+          }
+        `,
+        variables: {
+          locale,
+          slug,
+        },
+      }).then(({ data }) => data.tag.id);
+
+      const { data: meta } = await fetchMetaForOperation({
+        operation: "allBlogPosts",
+        locale,
+        filter: { tags: { anyIn: [tagId] } },
+      });
+
+      const { count } = meta[`_allBlogPostsMeta`];
+
+      const pages = Math.ceil(count / BLOG_PER_PAGE);
+
+      const paginatedRoutes = [...Array(pages)]
+        .map((_, index) => index + 1)
+        .filter((pageNumber) => pageNumber > 1)
+        .map((pageNumber) => `/${locale}/blog/tag/${slug}/page/${pageNumber}/`);
+
+      return [`/${locale}/blog/tag/${slug}/`, ...paginatedRoutes];
+    })
+  ).then((data) => data.flat());
 };
 
 // fetches a paginated list of slugs for a given operation
@@ -91,6 +137,7 @@ const fetchPaginatedSlugsForOperation = ({
     query: `
         query ${operation}($skip: IntType, $locale: SiteLocale) {
             ${operation}(first: 100, skip: $skip, locale: $locale) {
+                id
                 slug
             }
         }
@@ -106,14 +153,16 @@ const fetchPaginatedSlugsForOperation = ({
 const fetchMetaForOperation = ({
   operation,
   locale,
+  filter = null,
 }: {
   operation: string;
   locale: string;
+  filter?: Record<string, any> | null;
 }) => {
   return datocmsFetch({
     query: `
         query Meta ($locale: SiteLocale) {
-            _${operation}Meta(locale: $locale) {
+            _${operation}Meta(locale: $locale, filter: ${gqlFilter(filter)}) {
                 count
             }
         }
@@ -158,10 +207,29 @@ const fetchDynamicRoutes = ({
         locale,
       });
 
-      return slugs.map((slug) => `/${locale}${path}${slug}/`);
+      return (
+        slugs
+          // some slugs might not exist for some locales,
+          // so we need to filter out any empty values
+          .filter(Boolean)
+          .map((slug) => `/${locale}${path}${slug}/`)
+      );
     })
   ).then((data) => data.flat());
 };
+
+// converts an object to a string that can be used as a filter in a GraphQL query
+function gqlFilter(obj: Record<string, any> | null) {
+  if (!obj) {
+    return null;
+  }
+
+  var cleaned = JSON.stringify(obj, null, 2);
+
+  return cleaned.replace(/^[\t ]*"[^:\n\r]+(?<!\\)":/gm, function (match) {
+    return match.replace(/"/g, "");
+  });
+}
 
 export const fetchRoutes = () =>
   Promise.all(
@@ -174,11 +242,13 @@ export const fetchRoutes = () =>
         });
 
         const blogRoutes = await fetchBlogPagesRoutes({ locale });
+        const blogTagRoutes = await fetchBlogTagRoutes({ locale });
 
         return [
           ...staticRoutesConfig.map((route) => `/${locale}${route}`),
           ...dynamicRoutes,
           ...blogRoutes,
+          ...blogTagRoutes,
         ];
       })
   ).then((data) => data.flat());

@@ -1,2 +1,2 @@
-export const datocmsEnvironment = 'blog-post-published-date';
+export const datocmsEnvironment = 'tags';
 export const mastodonUrl = 'https://fosstodon.org/@devoorhoede';

@@ -130,6 +130,11 @@ fragment page on BlogPostRecord {
       }
     }
   }
+  tags {
+    id
+    title
+    slug
+  }
 }
 
 fragment link on RecordInterface {
