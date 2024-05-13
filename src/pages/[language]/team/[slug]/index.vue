@@ -110,7 +110,7 @@ const { data: blogs } = await useFetchContent({
 })
 
 const transformedBlogposts = computed(() => {
-  return blogs.value.blogPosts.map((blogPost) => ({
+  return blogs.value?.blogPosts.map((blogPost) => ({
     ...blogPost,
     locale: blogPost._allSlugLocales.find((locale) => locale.value === blogPost.slug).locale,
   }))

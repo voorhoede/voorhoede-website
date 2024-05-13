@@ -92,7 +92,7 @@
       <blogs-section
         v-if="section.__typename === 'SectionBlogsSectionRecord'"
         :title="section.title"
-        :items="section.items"
+        :items="filterBlogPosts(section.items)"
         :pinned-items="section.pinnedItems"
         :item-size="section.itemSize"
       />
@@ -141,6 +141,12 @@
         return section.backgroundColor
       }
     }
+  }
+
+  // due to graphql limitations, we need to filter out blog posts without a slug
+  // since we can't do this on the query level
+  function filterBlogPosts(blogPosts) {
+    return blogPosts.filter((blogPost) => Boolean(blogPost.slug));
   }
 </script>
 

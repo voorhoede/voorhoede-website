@@ -19,6 +19,11 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: false
+    },
+    routeRules: {
+      '/': {
+        prerender: false
+      }
     }
   },
   runtimeConfig: {
