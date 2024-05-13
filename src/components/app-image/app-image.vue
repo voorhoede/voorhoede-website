@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ImageLoader } from './types';
+  import { type ImageLoader } from './types';
   import { generateSrcSet } from './generate-src-set';
 
   export type ImageProps = {
@@ -39,7 +39,7 @@
     sizes: undefined,
     srcset: undefined,
     decoding: 'async',
-    loader: ({ src }) => src,
+    loader: ({ src }: { src: string }) => src,
     quality: 45,
   });
 </script>
