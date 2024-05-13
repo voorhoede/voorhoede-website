@@ -26,7 +26,7 @@
   import { isHeading, isParagraph, isList  } from 'datocms-structured-text-utils'
   import slugify from '../../lib/slugify';
   import AppButton from '../app-button/app-button.vue'
-  import TagList from '../tag-list/tag-list.vue'
+  import CounterItemList from '../counter-item-list/counter-item-list.vue'
   import ImageWithCaption from '../image-with-caption/image-with-caption.vue'
   import StructuredTextBlock from './structured-text-block.vue'
   import TwoColumnBlock from '../two-column-block/two-column-block.vue';
@@ -139,8 +139,8 @@
           })
         }))
       }
-      case 'StructuredTextTagListRecord': {
-        return h(TagList, {
+      case 'StructuredTextCounterItemListRecord': {
+        return h(CounterItemList, {
           key: record.id,
           items: record.items
         })

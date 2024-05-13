@@ -134,7 +134,7 @@ fragment page on ServiceRecord {
               }
             }
           }
-          ... on StructuredTextTagListRecord {
+          ... on StructuredTextCounterItemListRecord {
             id
             items {
               id
