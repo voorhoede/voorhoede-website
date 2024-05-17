@@ -86,14 +86,12 @@
     methods: {
       closeMenu() {
         this.$emit('close-menu')
-        console.log('close')
         this.$nextTick(() => {
           this.$refs.openButton.focus()
         })
       },
       openMenu() {
         this.$emit('open-menu')
-        console.log('open')
         this.$nextTick(() => {
           this.$refs.closeButton.focus()
         })
