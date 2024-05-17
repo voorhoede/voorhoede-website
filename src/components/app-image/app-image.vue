@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ImageLoader } from './types';
+  import type { ImageLoader } from './types';
   import { generateSrcSet } from './generate-src-set';
 
   export type ImageProps = {

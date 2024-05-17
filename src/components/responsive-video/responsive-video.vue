@@ -1,5 +1,6 @@
 <template>
   <vue-dato-video
+    v-if="props.video"
     class="responsive-video"
     v-bind="props"
     :play-icon-alt="$t('play_video')"
