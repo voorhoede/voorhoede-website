@@ -1,7 +1,7 @@
 <template>
   <app-image
     class="dato-image"
-    :src="props.src"
+    v-bind="props"
     :loader="loader"
     :srcset="checkedSrcset"
   />
@@ -9,17 +9,18 @@
 
 <script setup lang="ts">
   import { withQuery } from 'ufo';
-  import { ImageLoader } from '../app-image/types';
+  import type { ImageLoader } from '../app-image/types';
+  import type { ImageProps } from '../app-image/app-image.vue';
   import type { ImgixUrl } from 'typescript-imgix-url-params';
 
   const props = defineProps<{
     src: string,
     srcset?: string,
     modifiers?: ImgixUrl.Params,
-  }>();
+  } & ImageProps>();
 
   const imgixLoader: ImageLoader = ({ src, width, quality }) => (
-    withQuery(src, { w: width, q: quality, auto: 'format,compress', ...props.modifiers })
+    withQuery(src, { w: width, q: quality, auto: 'format,compress', ...props.modifiers as Record<string, string> })
   );
 
   const loader = computed(() => (

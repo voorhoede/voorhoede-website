@@ -57,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-  import { RouteLocation } from "vue-router";
+  import { type RouteLocation } from "vue-router";
 
 
   const DOTS = '...'
