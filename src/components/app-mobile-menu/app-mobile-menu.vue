@@ -1,72 +1,70 @@
 <template>
   <div class="app-mobile-menu grid">
     <button
-      v-if="!isOpen"
-      ref="openButton"
+      ref="toggleButton"
       class="app-mobile-menu__button app-mobile-menu__button--open"
-      @click="openMenu()"
+      :class="isOpen ? 'app-mobile-menu__button--close' : 'app-mobile-menu__button--open'"
+      @click="toggleMenu()"
       @touchmove="prevent"
     >
-      <div
-        class="app-mobile-menu__button-icon app-mobile-menu__button-icon--open"
-      />
-
-      <span class="sr-only">
-        {{ $t('open_menu') }}
-      </span>
-    </button>
-    <div
-      v-if="isOpen"
-      class="app-mobile-menu__content"
-      @touchmove="prevent"
-    >
-      <img
-        class="app-mobile-menu__logo"
-        src="/images/voorhoede-logo.svg"
-        alt="Voorhoede logo"
-      >
-
-      <ul class="app-mobile-menu__list body-small">
-        <li
-          class="app-mobile-menu__list-item"
-        >
-          <app-link
-            class="h3"
-            :to="$localeUrl()"
-          >
-            {{ $t('home') }}
-          </app-link>
-        </li>
-        <li
-          v-for="link in links"
-          :key="link.href"
-          class="app-mobile-menu__list-item"
-        >
-          <app-link
-            class="h3"
-            :to="useDatoNuxtRoute(link.link)"
-          >
-            {{ link.title }}
-          </app-link>
-        </li>
-      </ul>
-
-      <button
-        v-if="isOpen"
-        ref="closeButton"
-        class="app-mobile-menu__button app-mobile-menu__button--close"
-        @click="closeMenu()"
-        @touchmove="prevent"
+      <transition
+        name="fade"
+        mode="out-in"
       >
         <div
+          v-if="isOpen"
           class="app-mobile-menu__button-icon app-mobile-menu__button-icon--close"
         />
+        <div
+          v-else
+          class="app-mobile-menu__button-icon app-mobile-menu__button-icon--open"
+        />
+      </transition>
 
-        <span class="sr-only">
-          {{ $t('close_menu') }}
-        </span>
-      </button>
-    </div>
+      <span class="sr-only">
+        {{ isOpen ? $t('close_menu') : $t('open_menu') }}
+      </span>
+    </button>
+
+    <transition-group name="app-mobile-menu-slidein">
+      <div
+        v-if="isOpen"
+        class="app-mobile-menu__content"
+        @touchmove="prevent"
+      >
+        <img
+          class="app-mobile-menu__logo"
+          src="/images/voorhoede-logo.svg"
+          alt="Voorhoede logo"
+        >
+
+        <ul class="app-mobile-menu__list body-small">
+          <li
+            class="app-mobile-menu__list-item"
+          >
+            <app-link
+              class="h3"
+              :to="$localeUrl()"
+            >
+              {{ $t('home') }}
+            </app-link>
+          </li>
+          <li
+            v-for="(link, index) in links"
+            :key="link.href"
+            class="app-mobile-menu__list-item"
+            :style="{ transitionDelay: `${(index * 0.04)}s` }"
+          >
+            <app-link
+              class="h3"
+              :to="useDatoNuxtRoute(link.link)"
+            >
+              {{ link.title }}
+            </app-link>
+          </li>
+        </ul>
+      </div>
+    </transition-group>
   </div>
 </template>
 
@@ -84,16 +82,10 @@
     },
     emits: ['open-menu', 'close-menu'],
     methods: {
-      closeMenu() {
-        this.$emit('close-menu')
+      toggleMenu() {
+        this.isOpen ? this.$emit('close-menu') : this.$emit('open-menu')
         this.$nextTick(() => {
-          this.$refs.openButton.focus()
-        })
-      },
-      openMenu() {
-        this.$emit('open-menu')
-        this.$nextTick(() => {
-          this.$refs.closeButton.focus()
+          this.$refs.toggleButton.focus()
         })
       },
       prevent(event) {
@@ -181,6 +173,7 @@
     width: 100vw;
     background-color: var(--brand-yellow);
     padding: var(--mobile-spacing);
+    box-shadow: rgba(0, 0, 0, 0.3) 0 0 3px 1px;
   }
 
   .app-mobile-menu__list {
@@ -193,6 +186,10 @@
 
   .app-mobile-menu__list-item {
     margin-bottom: var(--spacing-medium);
+
+    transition:
+      transform .2s cubic-bezier(0.250, 0.460, 0.450, 0.940),
+      opacity .2s cubic-bezier(0.250, 0.460, 0.450, 0.940);
   }
 
   @media (min-height: 500px) {
@@ -207,4 +204,46 @@
     }
   }
 
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity .1s ease-in;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+
+  .app-mobile-menu-slidein-enter-active {
+    animation: scale-in-from-bottom .3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
+    .app-mobile-menu__list-item {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+  }
+
+  .app-mobile-menu-slidein-leave-active {
+    animation: scale-in-from-bottom .3s cubic-bezier(0.250, 0.460, 0.450, 0.940) reverse both;
+
+    .app-mobile-menu__list-item {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+
+  @keyframes scale-in-from-bottom {
+    0% {
+      transform: scale(.95) translateY(105vh);
+      transform-origin: center bottom;
+    }
+    60% {
+      transform: scale(.95) translateY(0);
+      transform-origin: center bottom;
+    }
+    100% {
+      transform: scale(1) translateY(0);
+      transform-origin: center bottom;
+    }
+  }
 </style>
