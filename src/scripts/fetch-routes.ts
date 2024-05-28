@@ -106,7 +106,7 @@ const fetchBlogTagRoutes = async ({ locale }: { locale: string }) => {
       const { data: meta } = await fetchMetaForOperation({
         operation: "allBlogPosts",
         locale,
-        filter: { tags: { anyIn: [tagId] } },
+        filter: `{ tags: { anyIn: ["${tagId}"] } }`,
       });
 
       const { count } = meta[`_allBlogPostsMeta`];
@@ -157,12 +157,17 @@ const fetchMetaForOperation = ({
 }: {
   operation: string;
   locale: string;
-  filter?: Record<string, any> | null;
+  filter?: string | null;
 }) => {
+
+  if (operation === 'allBlogPosts') {
+    console.log(filter)
+  }
+
   return datocmsFetch({
     query: `
         query Meta ($locale: SiteLocale) {
-            _${operation}Meta(locale: $locale, filter: ${gqlFilter(filter)}) {
+            _${operation}Meta(locale: $locale, filter: ${filter}) {
                 count
             }
         }
@@ -217,19 +222,6 @@ const fetchDynamicRoutes = ({
     })
   ).then((data) => data.flat());
 };
-
-// converts an object to a string that can be used as a filter in a GraphQL query
-function gqlFilter(obj: Record<string, any> | null) {
-  if (!obj) {
-    return null;
-  }
-
-  var cleaned = JSON.stringify(obj, null, 2);
-
-  return cleaned.replace(/^[\t ]*"[^:\n\r]+(?<!\\)":/gm, function (match) {
-    return match.replace(/"/g, "");
-  });
-}
 
 export const fetchRoutes = () =>
   Promise.all(

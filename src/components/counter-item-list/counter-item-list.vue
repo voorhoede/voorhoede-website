@@ -11,15 +11,13 @@
 </template>
 
 <script lang="ts" setup>
-  type Props = {
-    items: {
+  defineProps<{
+    items: Array<{
       id: string
       amount: number
       label: string
-    }[]
-  }
-
-  defineProps<Props>()
+    }>
+  }>()
 </script>
 
 <style>

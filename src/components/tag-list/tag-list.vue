@@ -20,17 +20,15 @@
 <script lang="ts" setup>
 import { NuxtLinkProps } from 'nuxt/app'
 
-  type Props = {
-    items: {
+  defineProps<{
+    items: Array<{
       id: string
       title: number
       slug: string
       to: NuxtLinkProps['to']
       isActive: boolean
-    }[]
-  }
-
-  defineProps<Props>()
+    }>
+  }>()
 </script>
 
 <style>
