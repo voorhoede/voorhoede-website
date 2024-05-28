@@ -26,7 +26,6 @@
           target="_blank"
           rel="noreferrer noopener"
           :aria-label="item.label"
-          @click="trackShare(item.label)"
         >
           <app-icon
             :name="item.icon"
@@ -100,19 +99,7 @@
     },
     methods: {
       shareNative () {
-        this.$gtag('event', 'social share', {
-          'event_category': 'native',
-          'event_label': this.url,
-          'value': 0,
-        })
         return navigator.share({ url: this.url })
-      },
-      trackShare(platform) {
-        this.$gtag('event', 'social share', {
-          'event_category': platform,
-          'event_label': this.url,
-          'value': 0
-        })
       },
     },
 
