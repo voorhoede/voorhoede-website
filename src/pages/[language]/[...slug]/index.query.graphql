@@ -95,7 +95,7 @@ query Page($locale: SiteLocale, $slug: String) {
           ...link
         }
       }
-      ...on SectionStructuredTextRecord {
+      ... on SectionStructuredTextRecord {
         gridAlignment
         hasToc
         backgroundColor
@@ -128,7 +128,7 @@ query Page($locale: SiteLocale, $slug: String) {
                 }
               }
             }
-            ... on StructuredTextTagListRecord {
+            ... on StructuredTextCounterItemListRecord {
               id
               items {
                 id

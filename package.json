@@ -23,7 +23,7 @@
     "vue-datocms": "^4.0.6"
   },
   "devDependencies": {
-    "@datocms/cli": "^1.1.10",
+    "@datocms/cli": "^2.0.4",
     "@typescript-eslint/parser": "^6.4.1",
     "datocms-html-to-structured-text": "^2.1.11",
     "eslint": "^8.48.0",

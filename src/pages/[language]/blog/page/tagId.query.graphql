@@ -1,0 +1,7 @@
+query tag($tagSlug: String, $locale: SiteLocale) {
+  tag(filter: { slug: { eq: $tagSlug } }, locale: $locale) {
+    id
+    title
+    slug
+  }
+}

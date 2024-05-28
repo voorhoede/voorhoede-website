@@ -180,6 +180,17 @@
         <scroll-to direction="up" />
       </div>
     </section>
+
+    <section
+      v-if="tags?.length"
+      class="page-blog-post__tags"
+    >
+      <h2 class="h4 page-blog-post__tags-title">
+        {{ $t('read_more_on') }}
+      </h2>
+
+      <tag-list :items="tags" />
+    </section>
   </main>
 </template>
 
@@ -191,6 +202,8 @@
   import prismjs from 'prismjs';
   import('prismjs/components/prism-graphql');
   import('prismjs/components/prism-rust');
+
+  const { $localeUrl } = useNuxtApp();
 
   const defaultHeadingLevel = 3;
 
@@ -235,6 +248,15 @@
   const tocItems = computed(() => {
     return items.value.filter(item => item.titleId)
   })
+
+  const tags = computed(() => {
+    return data.value.page.tags.map(tag => {
+      return {
+        ...tag,
+        to: $localeUrl({ name: 'blog-tag-slug', params: { slug: tag.slug } }),
+      }
+    })
+  });
 </script>
 
 <style>
@@ -262,8 +284,17 @@
     grid-row: 2;
   }
 
-  .page-blog-post__link-container {
+  .page-blog-post__tags {
     grid-row: 4;
+    padding-bottom: var(--spacing-large);
+  }
+
+  .page-blog-post__tags-title {
+    margin-bottom: var(--spacing-medium);
+  }
+
+  .page-blog-post__link-container {
+    grid-row: 5;
     padding-top: var(--spacing-small);
     border-top: 2px solid var(--very-dim);
     margin-bottom: var(--spacing-bigger);
@@ -272,7 +303,7 @@
   .page-blog-post__pivots {
     position: relative;
     grid-column: var(--grid-page);
-    grid-row: 5;
+    grid-row: 6;
     background-color: var(--bg-pastel);
   }
 
@@ -311,7 +342,8 @@
   }
 
   @media (min-width: 720px) {
-    .page-blog-post-list > * {
+    .page-blog-post-list > *,
+    .page-blog-post__tags {
       margin-bottom: var(--spacing-larger);
       padding: 0 var(--spacing-larger);
     }
@@ -327,6 +359,10 @@
 
     .page-blog-post-list {
       grid-row: 2;
+    }
+
+    .page-blog-post-list,
+    .page-blog-post__tags {
       grid-column-start: 10;
       grid-column-end: 50;
     }
@@ -351,11 +387,13 @@
   }
 
   @media (min-width: 1100px) {
-    .page-blog-post-list > * {
+    .page-blog-post-list > *,
+    .page-blog-post__tags {
       padding: 0 var(--spacing-big);
     }
 
-    .page-blog-post-list {
+    .page-blog-post-list,
+    .page-blog-post__tags {
       grid-column-start: 12;
       grid-column-end: 46;
     }
@@ -367,13 +405,19 @@
   }
 
   @media (min-width: 1440px) {
-    .page-blog-post-list > * {
+    .page-blog-post-list > *,
+    .page-blog-post__tags {
       padding: 0 var(--spacing-bigger);
     }
 
-    .page-blog-post-list {
+    .page-blog-post-list,
+    .page-blog-post__tags {
       grid-column-start: 12;
       grid-column-end: 44;
+    }
+
+    .page-blog-post__tags {
+      margin-bottom: var(--spacing-large);
     }
   }
 </style>
