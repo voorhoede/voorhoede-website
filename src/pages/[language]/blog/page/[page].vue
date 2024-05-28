@@ -22,7 +22,10 @@
           </p>
         </text-block>
 
-        <nav class="page-blog__tags">
+        <nav
+          v-if="tags.length"
+          class="page-blog__tags"
+        >
           <tag-list :items="tags" />
         </nav>
 
@@ -127,6 +130,10 @@
   });
 
   const tags = computed(() => {
+    if (!pageData.value?.tags.length) {
+      return []
+    }
+
     const hash = `#${SECTION_ID}`
 
     return [
