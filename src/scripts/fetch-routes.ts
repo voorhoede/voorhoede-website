@@ -159,11 +159,6 @@ const fetchMetaForOperation = ({
   locale: string;
   filter?: string | null;
 }) => {
-
-  if (operation === 'allBlogPosts') {
-    console.log(filter)
-  }
-
   return datocmsFetch({
     query: `
         query Meta ($locale: SiteLocale) {
