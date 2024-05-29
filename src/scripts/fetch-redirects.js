@@ -4,7 +4,7 @@ export const fetchRedirects = () => (
   datocmsFetch({
     query: `
       query Redirects {
-        allRedirects {
+        allRedirects(first: 100) {
           from
           to
           httpStatusCode
