@@ -44,10 +44,6 @@ const dynamicRoutesConfig: RouteConfig[] = [
     path: "/team/",
   },
   {
-    queryOperation: "allPeople",
-    path: "/meet/",
-  },
-  {
     queryOperation: "allEventItems",
     path: "/events/",
   },
@@ -123,20 +119,35 @@ const fetchBlogTagRoutes = async ({ locale }: { locale: string }) => {
   ).then((data) => data.flat());
 };
 
+// fetches all routes for meet pages for a given locale
+// this needs a separate function because the meet records are optional
+// and we need to filter out all non-existing pages
+const fetchMeetRoutes = async ({ locale }: { locale: string }) => {
+  const slugs = await fetchSlugsForOperation({
+    operation: "allPeople",
+    locale,
+    filter: `{ meet: { exists: true } }`,
+  });
+
+  return slugs.flatMap((slug) => `/${locale}/meet/${slug}/`)
+}
+
 // fetches a paginated list of slugs for a given operation
 const fetchPaginatedSlugsForOperation = ({
   operation,
   locale,
   skip,
+  filter = null,
 }: {
   operation: string;
   locale: string;
   skip: number;
+  filter?: string | null;
 }) => {
   return datocmsFetch({
     query: `
         query ${operation}($skip: IntType, $locale: SiteLocale) {
-            ${operation}(first: 100, skip: $skip, locale: $locale) {
+            ${operation}(first: 100, skip: $skip, locale: $locale, filter: ${filter}) {
                 id
                 slug
             }
@@ -177,9 +188,11 @@ const fetchMetaForOperation = ({
 const fetchSlugsForOperation = async ({
   operation,
   locale,
+  filter = null,
 }: {
   operation: string;
   locale: string;
+  filter?: string | null;
 }) => {
   const { data: meta } = await fetchMetaForOperation({ operation, locale });
   const { count } = meta[`_${operation}Meta`];
@@ -187,7 +200,7 @@ const fetchSlugsForOperation = async ({
 
   return Promise.all(
     [...Array(pages)].map((_, index) =>
-      fetchPaginatedSlugsForOperation({ operation, locale, skip: index * 100 })
+      fetchPaginatedSlugsForOperation({ operation, locale, skip: index * 100, filter })
     )
   ).then((data) => data.flat().map((data) => data.slug));
 };
@@ -230,12 +243,14 @@ export const fetchRoutes = () =>
 
         const blogRoutes = await fetchBlogPagesRoutes({ locale });
         const blogTagRoutes = await fetchBlogTagRoutes({ locale });
+        const meetRoutes = await fetchMeetRoutes({ locale });
 
         return [
           ...staticRoutesConfig.map((route) => `/${locale}${route}`),
           ...dynamicRoutes,
           ...blogRoutes,
           ...blogTagRoutes,
+          ...meetRoutes,
         ];
       })
   ).then((data) => data.flat());
