@@ -5,7 +5,6 @@
       class="app-mobile-menu__button app-mobile-menu__button--open"
       :class="isOpen ? 'app-mobile-menu__button--close' : 'app-mobile-menu__button--open'"
       @click="toggleMenu()"
-      @touchmove="prevent"
     >
       <transition
         name="fade"
@@ -30,7 +29,6 @@
       <div
         v-if="isOpen"
         class="app-mobile-menu__content"
-        @touchmove="prevent"
       >
         <img
           class="app-mobile-menu__logo"
@@ -87,9 +85,6 @@
         this.$nextTick(() => {
           this.$refs.toggleButton.focus()
         })
-      },
-      prevent(event) {
-        event.preventDefault()
       },
     },
   }
