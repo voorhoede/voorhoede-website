@@ -35,6 +35,7 @@ export function useSeoHead({ title, i18nSlugs, social }) {
       { rel: 'me', href: mastodonUrl },
       { rel: 'canonical', href: pageUrl },
       ...$i18n.locales
+        .filter(({ code }) => code !== route.params.language)
         .map(({ code }) => {
           const alternateSlug = i18nSlugs?.find((i18nSlug) => i18nSlug.locale === code).value;
           const formattedAlternateSlug = alternateSlug?.includes('/') ? alternateSlug.split('/') : alternateSlug
