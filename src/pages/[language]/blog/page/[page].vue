@@ -18,7 +18,7 @@
 
         <text-block class="page-blog__text">
           <p class="testimonial">
-            {{ pageData.page.description }}
+            {{ pageData.tag?.blogTopicDescription || pageData.page.description }}
           </p>
         </text-block>
 
@@ -99,7 +99,7 @@
     return (currentPage.value - 1) * PER_PAGE;
   });
 
-  let tagId = undefined
+  let tagId = ''
 
   if (params.slug) {
     const { data: tagData } = await useFetchContent({
@@ -111,7 +111,7 @@
       }
     });
 
-    tagId = tagData.value?.tag?.id;
+    tagId = tagData.value?.tag?.id || '';
   }
 
   const tagFilter = tagId ? {
@@ -156,7 +156,15 @@
   // Only show pinned posts on the first page and if no tag is selected
   const shouldShowPinnedPosts = currentPage.value === 1 && !tagId;
 
-  useSeoHead(pageData.value.page);
+  const seoHeadData = pageData.value.tag
+    ? {
+      title: pageData.value.tag.title,
+      i18nSlugs: pageData.value.tag.i18nSlugs,
+      social: pageData.value.tag.blogTopicSocial,
+    }
+    : pageData.value.page;
+
+  useSeoHead(seoHeadData);
 
   function getPaginatedRoute(pageNumber) {
     if (pageNumber === 1) {
@@ -207,6 +215,7 @@
   .page-blog__pagination {
     grid-row: 4;
     margin: auto;
+    margin-bottom: var(--spacing-small);
   }
 
   .page-blog__pivots {
