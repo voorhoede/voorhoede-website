@@ -1,5 +1,6 @@
 <template>
   <vue-dato-video
+    v-if="showVideo"
     class="responsive-video"
     v-bind="props"
     :play-icon-alt="$t('play_video')"
@@ -20,6 +21,13 @@
       <app-icon name="play" />
     </template>
   </vue-dato-video>
+
+  <cookie-notice
+    v-else
+    :title="$t('cookie_notice_permission', { content: 'video' })"
+    :cta="$t('cookie_notice_view_content', { content: 'video' })"
+    @update="handleCookieNoticeUpdate"
+  />
 </template>
 
 <script setup lang="ts">
@@ -49,6 +57,11 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+const showVideo = ref(false);
+
+const handleCookieNoticeUpdate = (value: boolean) => {
+  showVideo.value = value
+}
 </script>
 
 <style>
