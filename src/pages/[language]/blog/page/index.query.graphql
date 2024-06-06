@@ -44,7 +44,7 @@ query Blog(
     id
     title
     slug
-    blogTopicSocial {
+    blogTagSocial {
       title
       description
       image {

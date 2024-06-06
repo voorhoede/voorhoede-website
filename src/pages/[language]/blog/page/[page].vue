@@ -160,7 +160,7 @@
     ? {
       title: pageData.value.tag.title,
       i18nSlugs: pageData.value.tag.i18nSlugs,
-      social: pageData.value.tag.blogTopicSocial,
+      social: pageData.value.tag.blogTagSocial,
     }
     : pageData.value.page;
 
