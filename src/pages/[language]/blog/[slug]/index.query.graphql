@@ -6,6 +6,10 @@ query BlogSlug($locale: SiteLocale, $slug: String) {
 
 fragment page on BlogPostRecord {
   slug
+  i18nSlugs: _allSlugLocales {
+    locale
+    value
+  }
   social {
     title
     description
