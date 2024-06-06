@@ -22,6 +22,18 @@
         :twitter-title="data.page.title"
         :authors="data.page.authors"
       />
+
+      <div
+        v-if="tags?.length"
+        class="page-blog-post__tags"
+      >
+        <h2 class="page-blog-post__tags-title body font-html-blue">
+          {{ $t('tags') }}
+        </h2>
+
+        <tag-list :items="tags" />
+      </div>
+
       <toc-section :items="tocItems" />
     </aside>
 
@@ -181,15 +193,16 @@
       </div>
     </section>
 
-    <section
-      v-if="tags?.length"
-      class="page-blog-post__tags"
-    >
-      <h2 class="h4 page-blog-post__tags-title">
-        {{ $t('read_more_on') }}
+    <section class="grid">
+      <h2 class="h3 page-blog-post__related-blog-posts-title">
+        {{ $t('related_blog_posts') }}
       </h2>
-
-      <tag-list :items="tags" />
+      <div class="grid">
+        <blogs-list
+          :items="relatedBlogPosts"
+          item-size="small"
+        />
+      </div>
     </section>
   </main>
 </template>
@@ -257,6 +270,26 @@
       }
     })
   });
+
+  const relatedBlogPosts = computed(() => {
+    let concatenatedRelatedBlogPosts = data.value.page.relatedBlogPosts;
+
+    if (concatenatedRelatedBlogPosts.length < 3) {
+      concatenatedRelatedBlogPosts = data.value.page.tags.reduce((out, tag) => {
+        const tagBlogPosts = tag.blogPosts.filter(tagPost => {
+          const outSlugs = out.map(outPost => outPost.slug)
+          const alreadyInRelated = outSlugs.includes(tagPost.slug)
+          return (tagPost.slug !== data.value.page.slug && !alreadyInRelated)
+        });
+
+        out = out.concat(tagBlogPosts);
+
+        return out
+      }, concatenatedRelatedBlogPosts)
+    }
+
+    return concatenatedRelatedBlogPosts.slice(0, 3);
+  });
 </script>
 
 <style>
@@ -285,12 +318,12 @@
   }
 
   .page-blog-post__tags {
-    grid-row: 4;
-    padding-bottom: var(--spacing-large);
+    margin-top: var(--spacing-small);
+    margin-bottom: var(--spacing-small);
   }
 
   .page-blog-post__tags-title {
-    margin-bottom: var(--spacing-medium);
+    margin-bottom: var(--spacing-small);
   }
 
   .page-blog-post__link-container {
@@ -341,9 +374,12 @@
     margin-top: var(--spacing-medium);
   }
 
+  .page-blog-post__related-blog-posts-title {
+    margin-bottom: var(--spacing-medium);
+  }
+
   @media (min-width: 720px) {
-    .page-blog-post-list > *,
-    .page-blog-post__tags {
+    .page-blog-post-list > * {
       margin-bottom: var(--spacing-larger);
       padding: 0 var(--spacing-larger);
     }
@@ -361,8 +397,7 @@
       grid-row: 2;
     }
 
-    .page-blog-post-list,
-    .page-blog-post__tags {
+    .page-blog-post-list {
       grid-column-start: 10;
       grid-column-end: 50;
     }
@@ -384,16 +419,18 @@
     .page-blog-post__archived {
       margin-top: 0;
     }
+
+    .page-blog-post__related-blog-posts-title {
+      grid-column-start: 16;
+    }
   }
 
   @media (min-width: 1100px) {
-    .page-blog-post-list > *,
-    .page-blog-post__tags {
+    .page-blog-post-list > * {
       padding: 0 var(--spacing-big);
     }
 
-    .page-blog-post-list,
-    .page-blog-post__tags {
+    .page-blog-post-list {
       grid-column-start: 12;
       grid-column-end: 46;
     }
@@ -405,19 +442,13 @@
   }
 
   @media (min-width: 1440px) {
-    .page-blog-post-list > *,
-    .page-blog-post__tags {
+    .page-blog-post-list > * {
       padding: 0 var(--spacing-bigger);
     }
 
-    .page-blog-post-list,
-    .page-blog-post__tags {
+    .page-blog-post-list {
       grid-column-start: 12;
       grid-column-end: 44;
-    }
-
-    .page-blog-post__tags {
-      margin-bottom: var(--spacing-large);
     }
   }
 </style>

@@ -134,10 +134,31 @@ fragment page on BlogPostRecord {
       }
     }
   }
+  relatedBlogPosts {
+    ...blogPostListItem
+  }
   tags {
     id
     title
     slug
+    blogPosts: _allReferencingBlogPosts {
+      ...blogPostListItem
+    }
+  }
+}
+
+fragment blogPostListItem on BlogPostRecord {
+  slug
+  title
+  date: _firstPublishedAt
+  authors {
+    name
+    image {
+      url
+      alt
+      width
+      height
+    }
   }
 }
 
