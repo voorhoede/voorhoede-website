@@ -25,7 +25,7 @@
       </span>
     </button>
 
-    <transition-group name="app-mobile-menu-slidein">
+    <transition name="app-mobile-menu-slidein">
       <div
         v-if="isOpen"
         class="app-mobile-menu__content"
@@ -62,7 +62,7 @@
           </li>
         </ul>
       </div>
-    </transition-group>
+    </transition>
   </div>
 </template>
 
