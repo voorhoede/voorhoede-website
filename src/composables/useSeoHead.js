@@ -37,7 +37,10 @@ export function useSeoHead({ title, i18nSlugs, social }) {
       ...$i18n.locales
         .filter(({ code }) => code !== route.params.language)
         .map(({ code }) => {
-          const alternateSlug = i18nSlugs?.find((i18nSlug) => i18nSlug.locale === code).value;
+          const alternateSlug = i18nSlugs?.find((i18nSlug) => i18nSlug.locale === code)?.value;
+          if (!alternateSlug) {
+            return null;
+          }
           const formattedAlternateSlug = alternateSlug?.includes('/') ? alternateSlug.split('/') : alternateSlug
 
           return {
