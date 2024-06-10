@@ -129,7 +129,10 @@
           <component
             v-if="item.title"
             class="page-blog-post-list__title font-html-blue"
-            :class="headingLevelClassMap[item.headingLevel || defaultHeadingLevel]"
+            :class="`
+              h${item.headingLevel || defaultHeadingLevel}
+              page-blog-post-list__title--h${item.headingLevel || defaultHeadingLevel}
+            `"
             :is="`h${item.headingLevel || defaultHeadingLevel}`"
             :id="item.titleId"
           >
@@ -207,13 +210,6 @@
 
   const defaultHeadingLevel = 3;
 
-  const headingLevelClassMap = {
-    2: 'h3',
-    3: 'h4',
-    4: 'h5',
-    5: 'h6',
-  }
-
   const runtimeConfig = useRuntimeConfig();
 
   const { params } = useRoute();
@@ -259,7 +255,7 @@
   });
 </script>
 
-<style>
+<style scoped>
   .page-blog-post__header,
   .page-blog-post__aside-author,
   .page-blog-post__button {
@@ -277,6 +273,26 @@
 
   .page-blog-post-list__title {
     margin-bottom: var(--spacing-smaller);
+  }
+
+  .page-blog-post-list__title--h2 {
+    font-size: 2.1875rem; /* 35px */
+  }
+
+  .page-blog-post-list__title--h3 {
+    font-size: 1.75rem; /* 28px */
+  }
+
+  .page-blog-post-list__title--h4 {
+    font-size: 1.3125rem; /* 21px */
+  }
+
+  .page-blog-post-list__title--h5 {
+    font-size: 1.0625rem; /* 17px */
+  }
+
+  .page-blog-post-list__title--h6 {
+    font-size: .9375rem; /* 15px */
   }
 
   .page-blog-post__aside {
