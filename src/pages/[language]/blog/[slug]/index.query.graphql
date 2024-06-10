@@ -141,7 +141,7 @@ fragment page on BlogPostRecord {
     id
     title
     slug
-    blogPosts: _allReferencingBlogPosts {
+    blogPosts: _allReferencingBlogPosts(first: 3) {
       ...blogPostListItem
     }
   }
