@@ -3,19 +3,19 @@ import { Client, SimpleSchemaTypes } from "@datocms/cli/lib/cma-client-node";
 export default async function (client: Client) {
   await client.items.create({
     item_type: { type: 'item_type', id: '55443' },
-    key: 'cookie_notice_permission',
+    key: 'youtube_video_cookie_notice',
     value: {
-      en: 'By viewing this {{ content }} you give us consent to use cookies.',
-      nl: 'Door deze {{ content }} te bekijken geef je ons toestemming om cookies te gebruiken.',
+      en: 'Playing this video requires sharing information with YouTube.',
+      nl: 'Voor het afspelen van deze video is het delen van informatie met YouTube vereist.',
     }
   });
 
   await client.items.create({
     item_type: { type: 'item_type', id: '55443' },
-    key: 'cookie_notice_view_content',
+    key: 'play_youtube_video',
     value: {
-      en: 'View {{ content }}',
-      nl: 'Bekijk {{ content }}',
+      en: 'Watch YouTube video',
+      nl: 'Bekijk YouTube video',
     }
   });
 }

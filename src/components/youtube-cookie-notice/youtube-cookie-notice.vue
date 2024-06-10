@@ -1,28 +1,38 @@
 <template>
-  <div class="cookie-notice">
-    <div class="cookie-notice__inner">
-      <p class="cookie-notice__title body-big">
-        {{ props.title }}
+  <!-- the class is named notice instead of youtube-cookie-notice to prevent adblockers from hiding the content. -->
+  <div class="notice">
+    <div class="notice__inner">
+      <p class="notice__title body-big">
+        {{ $t('youtube_video_cookie_notice') }}
       </p>
 
       <app-button
         small
-        :label="props.cta"
-        class="cookie-notice__cta"
+        :label="$t('play_youtube_video')"
+        class="notice__cta"
         type="button"
         @click="handleCookieNoticeClick"
       />
+
+
+      <a
+        class="notice__body body-small link font-html-blue"
+        :href="props.url"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {{ props.url }}
+      </a>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 interface Props {
-  title: string;
-  cta: string;
+  url: string;
 }
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 const emit = defineEmits(['update']);
 
 const emitUpdate = (value: boolean) => {
@@ -30,7 +40,7 @@ const emitUpdate = (value: boolean) => {
 }
 
 const cookieChoice = ref(false);
-const cookieKey = 'has_accepted_video_cookie'
+const cookieKey = 'has_accepted_youtube_video_cookie'
 
 onMounted(() => {
   const storedCookieChoice = getFromLocalStorage(cookieKey)
@@ -52,8 +62,8 @@ const getFromLocalStorage = (key: string): unknown | null => {
 const setInLocalStorage = (key: string, state: any) => localStorage.setItem(key, JSON.stringify(state))
 </script>
 
-<style>
-.cookie-notice {
+<style scoped>
+.notice {
   display: grid;
   align-content: center;
   inline-size: 100%;
@@ -62,7 +72,7 @@ const setInLocalStorage = (key: string, state: any) => localStorage.setItem(key,
   background-color: var(--paper);
 }
 
-.cookie-notice__inner {
+.notice__inner {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,12 +80,16 @@ const setInLocalStorage = (key: string, state: any) => localStorage.setItem(key,
   max-inline-size: 80%;
 }
 
-.cookie-notice__title {
+.notice__title {
   text-align: center;
 }
 
-.cookie-notice__cta {
+.notice__cta {
   margin-block-start: var(--spacing-large);
   margin-inline: auto;
+}
+
+.notice__body {
+  margin-block-start: var(--spacing-small);
 }
 </style>

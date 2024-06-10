@@ -22,10 +22,9 @@
     </template>
   </vue-dato-video>
 
-  <cookie-notice
+  <youtube-cookie-notice
     v-else
-    :title="$t('cookie_notice_permission', { content: 'video' })"
-    :cta="$t('cookie_notice_view_content', { content: 'video' })"
+    :url="props.video.url"
     @update="handleCookieNoticeUpdate"
   />
 </template>
@@ -57,7 +56,7 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const showVideo = ref(false);
+const showVideo = ref(props.video.provider === 'vimeo');
 
 const handleCookieNoticeUpdate = (value: boolean) => {
   showVideo.value = value
