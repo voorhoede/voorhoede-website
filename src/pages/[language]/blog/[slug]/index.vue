@@ -167,6 +167,16 @@
           />
         </div>
       </template>
+
+      <section v-if="relatedBlogPosts.length">
+        <h2 class="h3 page-blog-post__related-blog-posts-title">
+          {{ $t('related_blog_posts') }}
+        </h2>
+        <blogs-list
+          :items="relatedBlogPosts"
+          item-size="small"
+        />
+      </section>
     </article>
 
     <div
@@ -190,21 +200,6 @@
       />
       <div class="page-blog-post__scroll-to">
         <scroll-to direction="up" />
-      </div>
-    </section>
-
-    <section
-      class="grid"
-      v-if="relatedBlogPosts.length"
-    >
-      <h2 class="h3 page-blog-post__related-blog-posts-title">
-        {{ $t('related_blog_posts') }}
-      </h2>
-      <div class="grid">
-        <blogs-list
-          :items="relatedBlogPosts"
-          item-size="small"
-        />
       </div>
     </section>
   </main>
@@ -421,10 +416,6 @@
 
     .page-blog-post__archived {
       margin-top: 0;
-    }
-
-    .page-blog-post__related-blog-posts-title {
-      grid-column-start: 16;
     }
   }
 
