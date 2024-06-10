@@ -302,50 +302,6 @@
     font-size: 0.6875rem; /* 11px */
   }
 
-  @media (min-width: 720px) {
-    .page-blog-post-list__title--h2 {
-      font-size: 2.5rem; /* 35px */
-    }
-
-    .page-blog-post-list__title--h3 {
-      font-size: 2.1875rem; /* 35px */
-    }
-
-    .page-blog-post-list__title--h4 {
-      font-size: 1.4375rem; /* 23px */
-    }
-
-    .page-blog-post-list__title--h5 {
-      font-size: 1rem; /* 16px */
-    }
-
-    .page-blog-post-list__title--h6 {
-      font-size: 0.75rem; /* 12px */
-    }
-  }
-
-  @media (min-width: 1100px) {
-    .page-blog-post-list__title--h2 {
-      font-size: 2.8125rem; /* 45px */
-    }
-
-    .page-blog-post-list__title--h3 {
-      font-size: 2.5rem; /* 40px */
-    }
-
-    .page-blog-post-list__title--h4 {
-      font-size: 1.75rem; /* 28px */
-    }
-
-    .page-blog-post-list__title--h5 {
-      font-size: 1.75rem; /* 18px */
-    }
-
-    .page-blog-post-list__title--h6 {
-      font-size: 1.75rem; /* 13px */
-    }
-  }
-
   .page-blog-post__aside {
     justify-content: space-between;
     grid-row: 2;
@@ -409,6 +365,26 @@
   }
 
   @media (min-width: 720px) {
+    .page-blog-post-list__title--h2 {
+      font-size: 2.5rem; /* 35px */
+    }
+
+    .page-blog-post-list__title--h3 {
+      font-size: 2.1875rem; /* 35px */
+    }
+
+    .page-blog-post-list__title--h4 {
+      font-size: 1.4375rem; /* 23px */
+    }
+
+    .page-blog-post-list__title--h5 {
+      font-size: 1rem; /* 16px */
+    }
+
+    .page-blog-post-list__title--h6 {
+      font-size: 0.75rem; /* 12px */
+    }
+
     .page-blog-post-list > *,
     .page-blog-post__tags {
       margin-bottom: var(--spacing-larger);
@@ -454,6 +430,26 @@
   }
 
   @media (min-width: 1100px) {
+    .page-blog-post-list__title--h2 {
+      font-size: 2.8125rem; /* 45px */
+    }
+
+    .page-blog-post-list__title--h3 {
+      font-size: 2.5rem; /* 40px */
+    }
+
+    .page-blog-post-list__title--h4 {
+      font-size: 1.75rem; /* 28px */
+    }
+
+    .page-blog-post-list__title--h5 {
+      font-size: 1.75rem; /* 18px */
+    }
+
+    .page-blog-post-list__title--h6 {
+      font-size: 1.75rem; /* 13px */
+    }
+
     .page-blog-post-list > *,
     .page-blog-post__tags {
       padding: 0 var(--spacing-big);
