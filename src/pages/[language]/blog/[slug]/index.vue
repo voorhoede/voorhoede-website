@@ -130,8 +130,8 @@
             v-if="item.title"
             class="page-blog-post-list__title font-html-blue"
             :class="`
-              ${headingClassMap[item.headingLevel || defaultHeadingLevel]}
-              page-blog-post-list__title--${headingClassMap[item.headingLevel || defaultHeadingLevel]}
+              ${headingLevelClassMap[item.headingLevel || defaultHeadingLevel]}
+              page-blog-post-list__title--${headingLevelClassMap[item.headingLevel || defaultHeadingLevel]}
             `"
             :is="`h${item.headingLevel || defaultHeadingLevel}`"
             :id="item.titleId"
@@ -209,7 +209,7 @@
   const { $localeUrl } = useNuxtApp();
 
   const defaultHeadingLevel = 3;
-  const headingClassMap = {
+  const headingLevelClassMap = {
     2: 'h3',
     3: 'h4',
     4: 'h5',
