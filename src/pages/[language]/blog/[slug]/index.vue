@@ -130,8 +130,8 @@
             v-if="item.title"
             class="page-blog-post-list__title font-html-blue"
             :class="`
-              h${item.headingLevel || defaultHeadingLevel}
-              page-blog-post-list__title--h${item.headingLevel || defaultHeadingLevel}
+              ${headingClassMap[item.headingLevel || defaultHeadingLevel]}
+              page-blog-post-list__title--${headingClassMap[item.headingLevel || defaultHeadingLevel]}
             `"
             :is="`h${item.headingLevel || defaultHeadingLevel}`"
             :id="item.titleId"
@@ -209,6 +209,13 @@
   const { $localeUrl } = useNuxtApp();
 
   const defaultHeadingLevel = 3;
+  const headingClassMap = {
+    2: 'h3',
+    3: 'h4',
+    4: 'h5',
+    5: 'h6',
+    6: 'h6',
+  }
 
   const runtimeConfig = useRuntimeConfig();
 
@@ -288,11 +295,55 @@
   }
 
   .page-blog-post-list__title--h5 {
-    font-size: 1.0625rem; /* 17px */
+    font-size: 1.0625rem; /* 15px */
   }
 
   .page-blog-post-list__title--h6 {
-    font-size: .9375rem; /* 15px */
+    font-size: 0.6875rem; /* 11px */
+  }
+
+  @media (min-width: 720px) {
+    .page-blog-post-list__title--h2 {
+      font-size: 2.5rem; /* 35px */
+    }
+
+    .page-blog-post-list__title--h3 {
+      font-size: 2.1875rem; /* 35px */
+    }
+
+    .page-blog-post-list__title--h4 {
+      font-size: 1.4375rem; /* 23px */
+    }
+
+    .page-blog-post-list__title--h5 {
+      font-size: 1rem; /* 16px */
+    }
+
+    .page-blog-post-list__title--h6 {
+      font-size: 0.75rem; /* 12px */
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .page-blog-post-list__title--h2 {
+      font-size: 2.8125rem; /* 45px */
+    }
+
+    .page-blog-post-list__title--h3 {
+      font-size: 2.5rem; /* 40px */
+    }
+
+    .page-blog-post-list__title--h4 {
+      font-size: 1.75rem; /* 28px */
+    }
+
+    .page-blog-post-list__title--h5 {
+      font-size: 1.75rem; /* 18px */
+    }
+
+    .page-blog-post-list__title--h6 {
+      font-size: 1.75rem; /* 13px */
+    }
   }
 
   .page-blog-post__aside {
