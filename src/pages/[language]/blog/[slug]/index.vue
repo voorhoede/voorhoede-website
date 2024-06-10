@@ -366,7 +366,7 @@
 
   @media (min-width: 720px) {
     .page-blog-post-list__title--h2 {
-      font-size: 2.5rem; /* 35px */
+      font-size: 2.5rem; /* 40px */
     }
 
     .page-blog-post-list__title--h3 {
