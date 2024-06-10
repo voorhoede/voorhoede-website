@@ -27,7 +27,7 @@
         v-if="tags?.length"
         class="page-blog-post__tags"
       >
-        <h2 class="page-blog-post__tags-title body font-html-blue">
+        <h2 class="sr-only">
           {{ $t('tags') }}
         </h2>
 
@@ -277,7 +277,7 @@
         const tagBlogPosts = tag.blogPosts.filter(tagPost => {
           const outSlugs = out.map(outPost => outPost.slug)
           const alreadyInRelated = outSlugs.includes(tagPost.slug)
-          return (tagPost.slug !== data.value.page.slug && !alreadyInRelated)
+          return !alreadyInRelated
         });
 
         out = out.concat(tagBlogPosts);
@@ -316,12 +316,7 @@
   }
 
   .page-blog-post__tags {
-    margin-top: var(--spacing-small);
-    margin-bottom: var(--spacing-small);
-  }
-
-  .page-blog-post__tags-title {
-    margin-bottom: var(--spacing-small);
+    margin-top: var(--spacing-large);
   }
 
   .page-blog-post__link-container {

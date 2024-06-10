@@ -141,7 +141,7 @@ fragment page on BlogPostRecord {
     id
     title
     slug
-    blogPosts: _allReferencingBlogPosts(first: 3) {
+    blogPosts: _allReferencingBlogPosts(first: 3, filter: { slug: { neq: $slug }}) {
       ...blogPostListItem
     }
   }
