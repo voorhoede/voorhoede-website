@@ -14,7 +14,6 @@
         @click="handleCookieNoticeClick"
       />
 
-
       <a
         class="notice__body body-small link font-html-blue"
         :href="props.url"
@@ -30,6 +29,7 @@
 <script setup lang="ts">
 interface Props {
   url: string;
+  aspectRatio: number;
 }
 
 const props = defineProps<Props>();
@@ -67,8 +67,8 @@ const setInLocalStorage = (key: string, state: any) => localStorage.setItem(key,
   display: grid;
   align-content: center;
   inline-size: 100%;
-  block-size: 250px;
-  max-inline-size: var(--page-section-max-width);
+  aspect-ratio: v-bind(aspectRatio);
+  max-inline-size: var(--case-content-max-width-l);
   background-color: var(--paper);
 }
 

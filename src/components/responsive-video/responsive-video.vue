@@ -25,6 +25,7 @@
   <youtube-cookie-notice
     v-else
     :url="props.video.url"
+    :aspect-ratio="videoAspectRatio"
     @update="handleCookieNoticeUpdate"
   />
 </template>
@@ -57,6 +58,7 @@ interface Props {
 
 const props = defineProps<Props>()
 const showVideo = ref(props.video.provider === 'vimeo');
+const videoAspectRatio = props.video.width / props.video.height;
 
 const handleCookieNoticeUpdate = (value: boolean) => {
   showVideo.value = value
