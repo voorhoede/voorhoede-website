@@ -326,9 +326,14 @@
     font-style: italic;
   }
 
-  .page-blog-post-list .responsive-video {
-    width: 100%;
-    max-width: var(--case-content-max-width-l);
+  .page-blog-post-list .responsive-video,
+  .page-blog-post-list .notice {
+    max-inline-size: var(--case-content-max-width-l);
+  }
+
+  .page-blog-post-list .notice {
+    padding: unset;
+    margin-inline: var(--spacing-bigger);
   }
 
   .page-blog-post__archived {

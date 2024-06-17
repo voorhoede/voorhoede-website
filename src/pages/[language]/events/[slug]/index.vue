@@ -282,7 +282,8 @@
     max-width: 100%;
   }
 
-  .page-event-detail__main .responsive-video {
+  .page-event-detail__main .responsive-video,
+  .page-event-detail__main .notice {
     width: 100%;
     max-width: var(--case-content-max-width-l);
   }

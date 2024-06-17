@@ -150,6 +150,7 @@
   .page-service__structured-text-section,
   .page-service__overview .blockquote-block,
   .page-service__overview > .responsive-video,
+  .page-service__overview > .notice,
   .page-service__overview .cases-list {
     margin: 0 0 var(--spacing-large) 0;
   }
@@ -207,6 +208,7 @@
 
     .page-service__overview > .image-with-caption,
     .page-service__overview > .responsive-video,
+    .page-service__overview > .notice,
     .page-service__overview > .testimonial-block {
       width: 70%;
     }
