@@ -66,9 +66,7 @@ const setInLocalStorage = (key: string, state: any) => localStorage.setItem(key,
 .notice {
   display: grid;
   align-content: center;
-  inline-size: 100%;
   aspect-ratio: v-bind(aspectRatio);
-  max-inline-size: var(--case-content-max-width-l);
   background-color: var(--paper);
 }
 

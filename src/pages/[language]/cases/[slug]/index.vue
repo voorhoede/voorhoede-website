@@ -232,7 +232,8 @@
     margin-right: calc(-1 * var(--spacing-small));
   }
 
-  .page-case__content .responsive-video {
+  .page-case__content .responsive-video,
+  .page-case__content .notice {
     width: 100%;
     max-width: var(--case-content-max-width-l);
   }
