@@ -126,15 +126,13 @@
           :key="item.id"
           class="page-blog-post-list__text"
         >
-          <component
+          <h2
             v-if="item.title"
-            class="page-blog-post-list__title font-html-blue"
-            :class="headingLevelClassMap[item.headingLevel || defaultHeadingLevel]"
-            :is="`h${item.headingLevel || defaultHeadingLevel}`"
+            class="page-blog-post-list__title font-html-blue h2"
             :id="item.titleId"
           >
             {{ item.title }}
-          </component>
+          </h2>
           <rich-text-block
             v-if="item.body"
             :text="item.body"
@@ -204,15 +202,6 @@
   import('prismjs/components/prism-rust');
 
   const { $localeUrl } = useNuxtApp();
-
-  const defaultHeadingLevel = 3;
-
-  const headingLevelClassMap = {
-    2: 'h3',
-    3: 'h4',
-    4: 'h5',
-    5: 'h6',
-  }
 
   const runtimeConfig = useRuntimeConfig();
 
