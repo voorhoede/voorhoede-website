@@ -1,5 +1,6 @@
 <template>
   <vue-dato-video
+    v-if="showVideo"
     class="responsive-video"
     v-bind="props"
     :play-icon-alt="$t('play_video')"
@@ -20,6 +21,13 @@
       <app-icon name="play" />
     </template>
   </vue-dato-video>
+
+  <youtube-cookie-notice
+    v-else
+    :url="props.video.url"
+    :aspect-ratio="videoAspectRatio"
+    @update="handleCookieNoticeUpdate"
+  />
 </template>
 
 <script setup lang="ts">
@@ -49,6 +57,12 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+const showVideo = ref(props.video.provider === 'vimeo');
+const videoAspectRatio = props.video.width / props.video.height;
+
+const handleCookieNoticeUpdate = (value: boolean) => {
+  showVideo.value = value
+}
 </script>
 
 <style>

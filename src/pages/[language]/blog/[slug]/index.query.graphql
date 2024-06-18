@@ -108,7 +108,6 @@ fragment page on BlogPostRecord {
     ... on TextSectionRecord {
       id
       title
-      headingLevel
       body
     }
   }
