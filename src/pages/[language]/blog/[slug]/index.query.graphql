@@ -6,6 +6,10 @@ query BlogSlug($locale: SiteLocale, $slug: String) {
 
 fragment page on BlogPostRecord {
   slug
+  i18nSlugs: _allSlugLocales {
+    locale
+    value
+  }
   social {
     title
     description
@@ -129,10 +133,31 @@ fragment page on BlogPostRecord {
       }
     }
   }
+  relatedBlogPosts {
+    ...blogPostListItem
+  }
   tags {
     id
     title
     slug
+    blogPosts: _allReferencingBlogPosts(first: 3, filter: { slug: { neq: $slug }}) {
+      ...blogPostListItem
+    }
+  }
+}
+
+fragment blogPostListItem on BlogPostRecord {
+  slug
+  title
+  date: _firstPublishedAt
+  authors {
+    name
+    image {
+      url
+      alt
+      width
+      height
+    }
   }
 }
 

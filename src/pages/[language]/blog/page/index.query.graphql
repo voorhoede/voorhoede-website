@@ -37,9 +37,24 @@ query Blog(
     slug
   }
   tag: tag(filter: { id: { eq: $tagId } }) {
+    i18nSlugs: _allSlugLocales {
+      locale
+      value
+    }
     id
     title
     slug
+    blogTagSocial {
+      title
+      description
+      image {
+        id
+        width
+        height
+        url
+      }
+    }
+    blogTopicDescription
   }
 }
 

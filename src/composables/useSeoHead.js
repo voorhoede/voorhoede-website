@@ -36,7 +36,10 @@ export function useSeoHead({ title, i18nSlugs, social }) {
       { rel: 'canonical', href: pageUrl },
       ...$i18n.locales
         .map(({ code }) => {
-          const alternateSlug = i18nSlugs?.find((i18nSlug) => i18nSlug.locale === code).value;
+          const alternateSlug = i18nSlugs?.find((i18nSlug) => i18nSlug.locale === code)?.value;
+          if (i18nSlugs && !alternateSlug) {
+            return null;
+          }
           const formattedAlternateSlug = alternateSlug?.includes('/') ? alternateSlug.split('/') : alternateSlug
 
           return {
