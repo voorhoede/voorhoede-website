@@ -29,7 +29,7 @@
             :src="item.image.url"
             :width="item.image.width"
             :height="item.image.height"
-            :alt="item.image.alt"
+            :alt="item.image.alt || ''"
             loading="lazy"
           />
         </div>
