@@ -32,7 +32,7 @@ withDefaults(defineProps<{
     alt?: string,
     sizes: string,
   },
-  captionPosition: 'left' | 'right' | 'bottom'
+  captionPosition?: 'left' | 'right' | 'bottom'
 }>(), {
   captionPosition: 'bottom'
 })
