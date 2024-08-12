@@ -234,7 +234,6 @@ query Page($locale: SiteLocale, $slug: String) {
         }
       }
       ... on SectionVideoRecord {
-        id
         mute
         loop
         autoplay
