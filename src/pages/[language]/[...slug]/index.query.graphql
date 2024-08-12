@@ -233,6 +233,22 @@ query Page($locale: SiteLocale, $slug: String) {
           }
         }
       }
+      ... on SectionVideoRecord {
+        id
+        mute
+        loop
+        autoplay
+        caption
+        video {
+          url
+          title
+          height
+          width
+          provider
+          providerUid
+          thumbnailUrl
+        }
+      }
     }
   }
 }

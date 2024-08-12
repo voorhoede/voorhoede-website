@@ -105,6 +105,14 @@
         v-if="section.__typename === 'SectionTeamGalleryRecord'"
         :team="section.persons"
       />
+      <responsive-video
+        v-if="section.__typename === 'SectionVideoRecord'"
+        :video="section.video"
+        :autoplay="section.autoplay"
+        :loop="section.loop"
+        :mute="section.mute"
+        :caption="section.caption"
+      />
     </div>
   </div>
 </template>

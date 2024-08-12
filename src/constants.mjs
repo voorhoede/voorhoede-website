@@ -1,2 +1,2 @@
-export const datocmsEnvironment = 'blog-headings-deploy';
+export const datocmsEnvironment = 'section-video-block';
 export const mastodonUrl = 'https://fosstodon.org/@devoorhoede';
