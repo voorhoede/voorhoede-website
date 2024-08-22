@@ -1,10 +1,9 @@
 import rosetta from 'rosetta';
 import { joinURL, withTrailingSlash } from 'ufo';
-import { locales } from '../lib/i18n';
+import { locales, defaultLanguage } from '../lib/i18n';
 import messages from '../../.cache/ui-translations.json';
 
 const i18n = rosetta(messages);
-const defaultLanguage = 'en';
 
 export default defineNuxtPlugin((nuxtApp) => {
   i18n.locale(nuxtApp._route.params.language);

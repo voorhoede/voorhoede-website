@@ -32,6 +32,7 @@
 <script setup>
 const i18nSlugs = await useI18nSlugs();
 const route = useRoute();
+import { cookieName } from '~/lib/i18n.js';
 
 const getLocaleRoute = (code) => {
   const isDynamicRoute = Boolean(i18nSlugs.value)
@@ -52,14 +53,13 @@ const getLocaleRoute = (code) => {
 
 const saveLocale = (code) => {
   const cookie = document.cookie;
-  const langKey = "nf_lang"; // @See https://www.netlify.com/docs/redirects/#geoip-and-language-based-redirects
-  if (cookie.match(new RegExp(langKey) !== null)) {
+  if (cookie.match(new RegExp(cookieName) !== null)) {
     document.cookie = cookie.replace(
-      new RegExp(`${langKey}=[A-Za-z-]+;`),
-      `${langKey}=${code};`
+      new RegExp(`${cookieName}=[A-Za-z-]+;`),
+      `${cookieName}=${code};`
     );
   } else {
-    document.cookie = `${langKey}=${code}; path=/; ${cookie}`;
+    document.cookie = `${cookieName}=${code}; path=/; ${cookie}`;
   }
 };
 </script>

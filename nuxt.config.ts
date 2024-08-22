@@ -18,11 +18,16 @@ export default defineNuxtConfig({
     '@/components/app-core/index.css',
   ],
   nitro: {
+    preset: 'netlify-edge',
     prerender: {
       crawlLinks: false,
     },
     routeRules: {
       '/': { prerender: false },
+      '/blog-feed.xml': {
+        redirect: { to: '/blog/feed.json', statusCode: 301 },
+      },
+      '/mogelijk/api/event': { proxy: { to:  'https://plausible.io/api/event' } },
     },
   },
   runtimeConfig: {
