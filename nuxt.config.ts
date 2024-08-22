@@ -21,6 +21,9 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: false,
     },
+    routeRules: {
+      '/': { prerender: false },
+    },
   },
   runtimeConfig: {
     public: {
