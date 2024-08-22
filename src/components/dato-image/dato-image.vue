@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
   import { withQuery } from 'ufo';
-  import { ImageLoader } from '../app-image/types';
+  import { type ImageLoader } from '../app-image/types';
   import type { ImgixUrl } from 'typescript-imgix-url-params';
 
   const props = defineProps<{

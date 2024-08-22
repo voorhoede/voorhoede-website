@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt dev",
-    "build": "nuxt generate",
+    "build": "nuxt build",
     "lint": "eslint '**/*.vue'",
     "lint-staged": "nano-staged",
     "prepare": "husky install"
