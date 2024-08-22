@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import { NuxtLinkProps } from 'nuxt/app'
+import { type NuxtLinkProps } from 'nuxt/app'
 
   defineProps<{
     items: Array<{
