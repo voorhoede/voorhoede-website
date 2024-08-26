@@ -26,7 +26,7 @@
     "@datocms/cli": "^2.0.4",
     "@typescript-eslint/parser": "^6.4.1",
     "datocms-html-to-structured-text": "^2.1.11",
-    "eslint": "^8.48.0",
+    "eslint": "^9.9.0",
     "eslint-plugin-vue": "^9.17.0",
     "husky": "^8.0.3",
     "nano-staged": "^0.8.0",
