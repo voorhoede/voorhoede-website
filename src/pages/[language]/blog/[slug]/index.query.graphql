@@ -144,6 +144,7 @@ fragment page on BlogPostRecord {
       ...blogPostListItem
     }
   }
+  script
 }
 
 fragment blogPostListItem on BlogPostRecord {
