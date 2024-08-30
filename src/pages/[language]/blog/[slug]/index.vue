@@ -166,6 +166,11 @@
         </div>
       </template>
 
+      <custom-script
+        v-if="data.page.script"
+        :script="data.page.script"
+      />
+
       <section v-if="relatedBlogPosts.length">
         <h2 class="h3 page-blog-post__related-blog-posts-title">
           {{ $t('related_blog_posts') }}
