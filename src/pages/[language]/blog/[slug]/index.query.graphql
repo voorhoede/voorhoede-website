@@ -144,6 +144,8 @@ fragment page on BlogPostRecord {
       ...blogPostListItem
     }
   }
+  onMountedScript
+  onUnmountedScript
 }
 
 fragment blogPostListItem on BlogPostRecord {
