@@ -14,14 +14,10 @@
     script: string;
   }>()
 
-  useHead({
-    script: [
-      {
-        hid: 'custom-script',
-        type: 'text/javascript',
-        innerHTML: props.script,
-      },
-    ],
+  onMounted(() => {
+    const script = document.createElement('script');
+    script.innerHTML = props.script;
+    document.body.appendChild(script);
   });
 </script>
 
