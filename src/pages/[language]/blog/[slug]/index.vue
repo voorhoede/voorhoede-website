@@ -167,8 +167,9 @@
       </template>
 
       <custom-script
-        v-if="data.page.script"
-        :script="data.page.script"
+        v-if="data.page.onMountedScript"
+        :mount-script="data.page.onMountedScript"
+        :unmount-script="data.page.onUnmountedScript"
       />
 
       <section v-if="relatedBlogPosts.length">

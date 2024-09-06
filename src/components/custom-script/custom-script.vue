@@ -10,15 +10,42 @@
 </template>
 
 <script lang="ts" setup>
+  import { nanoid } from 'nanoid';
+
   const props = defineProps<{
-    script: string;
+    mountScript: string;
+    unmountScript?: string;
   }>()
 
+  const onMountScriptId = nanoid()
+  const onUnmountScriptId = nanoid()
+
   onMounted(() => {
-    const script = document.createElement('script');
-    script.innerHTML = props.script;
-    document.body.appendChild(script);
+    runScriptInBrowser(props.mountScript, onMountScriptId);
   });
+
+  onUnmounted(() => {
+    const mountScript = document.getElementById(onMountScriptId);
+    mountScript?.remove();
+
+    if (props.unmountScript) {
+      const unmountScript = runScriptInBrowser(props.unmountScript, onUnmountScriptId);
+
+      // how to ensure the unmountScript has a chance to be executed in the browser?
+      unmountScript?.remove();
+    }
+  });
+
+  function runScriptInBrowser(code: string, id: string) {
+      const script = document.createElement('script');
+
+      script.innerHTML = `(function() { ${code} })()`;
+      script.setAttribute('id', id);
+
+      document.body.appendChild(script);
+
+      return script;
+  }
 </script>
 
 <style>
