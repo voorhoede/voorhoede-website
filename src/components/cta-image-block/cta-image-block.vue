@@ -6,6 +6,7 @@
         alt=""
         :width="200"
         :height="200"
+        :quality="75"
         loading="eager"
       />
     </div>
