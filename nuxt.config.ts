@@ -7,6 +7,7 @@ import { fetchBlogFeed } from './src/scripts/fetch-blog-feed';
 import { fetchRedirects } from './src/scripts/fetch-redirects';
 import { fetchRoutes } from './src/scripts/fetch-routes';
 import { fetchI18nSlugs } from './src/scripts/fetch-i18n-slugs';
+import { defaultLanguage } from './src/lib/i18n';
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-08-22',
@@ -18,9 +19,11 @@ export default defineNuxtConfig({
     '@/components/app-core/index.css',
   ],
   nitro: {
-    preset: 'netlify-edge',
+    preset: 'netlify',
     prerender: {
       crawlLinks: false,
+      // need at least one route to trigger the 'prerender:routes' hook
+      routes: [`/${defaultLanguage}/`]
     },
     routeRules: {
       '/': { prerender: false },
