@@ -12,6 +12,7 @@
     "@json-feed-types/1_1": "^1.0.2",
     "@nuxtjs/plausible": "^1.2.0",
     "@std/http": "npm:@jsr/std__http@^1.0.10",
+    "@voorhoede/image-vue": "^1.0.1",
     "@voorhoede/vue-dato-video": "^3.1.0",
     "datocms-listen": "^0.1.14",
     "datocms-structured-text-utils": "^2.0.4",
