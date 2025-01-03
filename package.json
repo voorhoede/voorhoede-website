@@ -6,11 +6,11 @@
     "build": "nuxt build",
     "lint": "eslint '**/*.vue'",
     "lint-staged": "nano-staged",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "@json-feed-types/1_1": "^1.0.2",
-    "@nuxtjs/plausible": "^0.2.0",
+    "@nuxtjs/plausible": "^1.2.0",
     "@std/http": "npm:@jsr/std__http@^1.0.10",
     "@voorhoede/vue-dato-video": "^3.1.0",
     "datocms-listen": "^0.1.14",
@@ -29,7 +29,7 @@
     "datocms-html-to-structured-text": "^2.1.11",
     "eslint": "^8.48.0",
     "eslint-plugin-vue": "^9.17.0",
-    "husky": "^8.0.3",
+    "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
     "parse5": "^7.1.2",
     "typescript-imgix-url-params": "^0.3.1"
