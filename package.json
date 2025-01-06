@@ -14,7 +14,7 @@
     "@std/http": "npm:@jsr/std__http@^1.0.10",
     "@voorhoede/image-vue": "^1.0.1",
     "@voorhoede/vue-dato-video": "^3.1.0",
-    "datocms-listen": "^0.1.14",
+    "datocms-listen": "^1.0.1",
     "datocms-structured-text-utils": "^2.0.4",
     "dayjs": "^1.11.10",
     "nuxt": "^3.5.3",
