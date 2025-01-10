@@ -9,7 +9,7 @@ export default async function (client: Client) {
   await client.fieldsets.create("38241", {
     id: "IKdvIfTYR2aXiSu_uTucYg",
     title: "\uD83E\uDE84 Scripts",
-    hint: "Javascript script that will be executed on the client side of the rendered page. Can be used to make your blog posts more interactive through the use of web-components etc. The scripts will be wrapped in IIFEs.",
+    hint: "Javascript script that will be executed on the client side of the rendered page. Can be used to make your blog posts more interactive through the use of Web Components etc. The scripts will be wrapped in IIFEs.\n\nRemember that Web Components should have unique names, so consider adding a suffix to the class and the tag.",
     collapsible: true,
     start_collapsed: true,
   });
@@ -75,4 +75,3 @@ export default async function (client: Client) {
     }
   });
 }
-
