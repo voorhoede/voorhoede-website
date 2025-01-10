@@ -23,7 +23,9 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: false,
       // need at least one route to trigger the 'prerender:routes' hook
-      routes: [`/${defaultLanguage}/`]
+      routes: [`/${defaultLanguage}/`],
+      concurrency: 35, // stay below 40 to avoid rate limiting
+      interval: 1000, // use 1 second interval to avoid rate limiting
     },
     routeRules: {
       '/': { prerender: false },
