@@ -9,21 +9,19 @@ import { fetchI18nSlugs } from './src/scripts/fetch-i18n-slugs';
 import { defaultLanguage } from './src/lib/i18n';
 
 export default defineNuxtConfig({
-  compatibilityDate: '2024-08-22',
+  compatibilityDate: '2025-01-17',
   srcDir: 'src',
-  typescript: {
-    shim: false,
-  },
   css: [
     '@/components/app-core/index.css',
   ],
   nitro: {
-    preset: 'netlify',
+    preset: 'cloudflare_pages',
     prerender: {
       crawlLinks: true,
       routes: [`/${defaultLanguage}/`],
       concurrency: 35, // stay below 40 to avoid rate limiting
       interval: 1000, // use 1 second interval to avoid rate limiting
+      failOnError: false,
     },
     routeRules: {
       '/': { prerender: false },
