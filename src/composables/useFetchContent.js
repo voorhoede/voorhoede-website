@@ -25,7 +25,6 @@ export async function useFetchContent({ key = null, query, variables }) {
         onUpdate: ({ response }) => { data.value = response.data; },
         onError: console.error,
         onChannelError: console.error,
-        preview: true,
       });
     });
 
