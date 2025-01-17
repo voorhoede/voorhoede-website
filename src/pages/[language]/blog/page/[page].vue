@@ -81,7 +81,6 @@
     ],
   });
 
-  // If you change this, also change it in fetch-routes.ts
   const PER_PAGE = 20;
 
   const SECTION_ID = 'blog-container';
