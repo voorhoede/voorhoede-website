@@ -1,6 +1,6 @@
 import rosetta from 'rosetta';
 import { joinURL, withTrailingSlash } from 'ufo';
-import { locales, defaultLanguage } from '../lib/i18n';
+import { defaultLanguage, locales } from '../lib/i18n';
 import messages from '../../.cache/ui-translations.json';
 
 const i18n = rosetta(messages);
@@ -14,11 +14,11 @@ export default defineNuxtPlugin((nuxtApp) => {
       if (!isValidLocale({ locale: to.params.language })) {
         return navigateTo(
           withTrailingSlash(joinURL('/', defaultLanguage, to.path)),
-          { redirectCode: 404, replace: true },
+          { redirectCode: 302, replace: true },
         );
       }
     },
-    { global: true }
+    { global: true },
   );
 
   return {
@@ -42,4 +42,3 @@ export default defineNuxtPlugin((nuxtApp) => {
 function isValidLocale({ locale }) {
   return locales.find(({ code }) => code === locale);
 }
-
