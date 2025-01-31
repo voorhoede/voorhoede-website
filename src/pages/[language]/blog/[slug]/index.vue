@@ -19,7 +19,6 @@
       <social-share-buttons
         :base-url="runtimeConfig.public.baseUrl"
         :title="data.page.socialTitle"
-        :twitter-title="data.page.title"
         :authors="data.page.authors"
       />
 

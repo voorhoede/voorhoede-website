@@ -213,7 +213,6 @@ export default {
       return [
         { url: this.app.githubUrl, platform: 'GitHub', icon: 'git-hub' },
         { url: mastodonUrl, platform: 'Mastodon', icon: 'mastodon' },
-        { url: this.app.twitterUrl, platform: 'Twitter', icon: 'twitter' },
         { url: this.app.youtubeUrl, platform: 'YouTube', icon: 'youtube' },
         { url: this.app.linkedinUrl, platform: 'LinkedIn', icon: 'linkedin' },
       ]

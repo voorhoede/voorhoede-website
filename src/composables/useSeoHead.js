@@ -25,11 +25,6 @@ export function useSeoHead({ title, i18nSlugs, social }) {
       { property: 'og:image', content: social.image?.url || defaultShareImg },
       { property: 'og:image:width', content: '1000' },
       { property: 'og:image:height', content: '500' },
-      { name: 'twitter:title', content: social.title || title || 'De Voorhoede' },
-      { name: 'twitter:description', content: social.description },
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:creator', content: '@devoorhoede' },
-      { name: 'twitter:image', content: social.image?.url || defaultShareImg },
     ],
     link: [
       { rel: 'me', href: mastodonUrl },

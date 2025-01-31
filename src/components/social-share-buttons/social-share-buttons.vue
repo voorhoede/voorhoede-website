@@ -53,10 +53,6 @@
         type: String,
         default: '',
       },
-      twitterTitle: {
-        type: String,
-        default: '',
-      },
     },
     data () {
       return {
@@ -70,11 +66,6 @@
       },
       socials () {
         return [
-          { icon: 'twitter',
-            href: `https://twitter.com/intent/tweet?text=${this.twitterTitle} by ${this.blogAuthors} @devoorhoede&url=${this.url}`,
-            label: 'twitter',
-            alt: 'Share this post on Twitter',
-          },
           { icon: 'facebook',
             href: `https://www.facebook.com/sharer.php?u=${this.url}`,
             label: 'facebook',
