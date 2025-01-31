@@ -38,24 +38,6 @@
       </div>
     </section>
 
-    <div class="page-contact__form-container rich-text grid">
-      <div class="page-contact__form-header">
-        <h2 class="h2 page-contact__body-title">
-          {{ data.page.introTitle }}
-        </h2>
-        <p class="sub-title page-contact__body-subtitle">
-          {{ data.page.introBody }}
-        </p>
-      </div>
-
-      <div class="page-contact__backdrop grid">
-        <contact-page-form
-          class="page-contact__form-body"
-          :aria-label="$t('lets_discuss')"
-        />
-      </div>
-    </div>
-
     <div class="page-contact__visit grid">
       <div class="page-contact__visit-header rich-text grid">
         <h2 class="h2">
@@ -155,7 +137,7 @@
   .page-contact__contacts {
     position: relative;
     margin-top: var(--spacing-big);
-    margin-bottom: var(--spacing-big);
+    margin-bottom: var(--spacing-huge);
     text-align: center;
   }
 
@@ -232,92 +214,6 @@
 
   .page-contact__contact-title {
     color: var(--black);
-  }
-
-  .page-contact__backdrop {
-    margin-right: calc(-1 * var(--spacing-large));
-    background-color: var(--white);
-    position: relative;
-  }
-
-  @media screen and (min-width: 720px) {
-    .page-contact .page-contact__backdrop {
-      display: block;
-      margin-right: var(--spacing-large);
-      width: 58%;
-    }
-  }
-
-  @media screen and (min-width: 1100px) {
-    .page-contact .page-contact__backdrop {
-      margin-right: var(--spacing-larger);
-    }
-  }
-
-  .page-contact .contact-form {
-    margin-bottom: var(--spacing-larger);
-  }
-
-  .page-contact__form-body {
-    padding-top: var(--spacing-large);
-  }
-
-  @media screen and (min-width: 720px) {
-    .page-contact__body-subtitle,
-    .page-contact__body-title {
-      grid-column-start: 2;
-      grid-column-end: 19;
-    }
-
-    .page-contact__form-body {
-      flex-direction: row;
-      justify-content: space-between;
-      padding: var(--spacing-larger) var(--spacing-large);
-    }
-  }
-
-  @media screen and (min-width: 1100px) {
-    .page-contact__form-body {
-      grid-column: var(--grid-content-narrow);
-      padding: var(--spacing-larger) var(--spacing-larger);
-    }
-  }
-
-  .page-contact__form-container {
-    margin-top: var(--spacing-small);
-    margin-bottom: var(--spacing-big);
-    padding-top: var(--spacing-medium);
-    background-image: var(--page-contact-brand-bg--small);
-  }
-
-  @media screen and (min-width: 720px) {
-    .page-contact__form-container {
-      grid-column: var(--grid-page);
-      display: flex;
-      position: relative;
-      align-items: center;
-      justify-content: center;
-      margin-top: var(--spacing-bigger);
-      background: var(--page-contact-brand-bg);
-    }
-  }
-
-  @media screen and (min-width: 1100px) {
-    .page-contact__form-container {
-      grid-column: var(--grid-content);
-    }
-  }
-
-  .page-contact__form-header {
-    margin: var(--spacing-medium) 0 var(--spacing-medium) var(--spacing-small);
-  }
-
-  @media screen and (min-width: 720px) {
-    .page-contact__form-header {
-      margin-left: var(--spacing-big);
-      margin-right: var(--spacing-larger);
-      width: 30%;
-    }
   }
 
   .page-contact__visit {
