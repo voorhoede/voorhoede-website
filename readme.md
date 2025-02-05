@@ -58,4 +58,4 @@ Once your PR is ready to merge, we have to apply the migrations to DatoCMS's mai
 
 ## Decision log
 
-Key decisions that are made during the course of the project are documented in [docs/decision-log/](docs/decision-log/). Please read the log so you understand why decisions are made and document key decisions when you make them.
+Key decisions that are made during the course of the project are documented in [_docs/decision-log/](_docs/decision-log/). Please read the log so you understand why decisions are made and document key decisions when you make them.
