@@ -4,11 +4,13 @@
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
+    "build-cloudflare": "node ./scripts/cloudflare-build.mjs",
     "lint": "eslint '**/*.vue'",
     "lint-staged": "nano-staged",
     "prepare": "husky"
   },
   "dependencies": {
+    "@datocms/cma-client-browser": "^3.4.2",
     "@json-feed-types/1_1": "^1.0.2",
     "@mux/mux-player": "^3.2.4",
     "@nuxtjs/plausible": "^1.2.0",
