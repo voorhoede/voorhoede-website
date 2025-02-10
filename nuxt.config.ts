@@ -35,6 +35,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
+    postmarkApiToken: process.env.POSTMARK_API_TOKEN,
     public: {
       datoApiToken: process.env.DATOCMS_API_READ_TOKEN,
       baseUrl: process.env.BASE_URL,
