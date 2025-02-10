@@ -1,7 +1,7 @@
 <template>
   <div
     class="contact-form"
-    :class="{ 'grid': hasSidebar }"
+    :class="{ grid: hasSidebar }"
   >
     <div
       v-if="hasSidebar"
@@ -22,7 +22,7 @@
           :src="contactPerson.image.url"
           alt=""
           :width="144"
-          :height="170"
+          :height="192"
           loading="lazy"
           :quality="75"
         />
@@ -44,233 +44,159 @@
       </div>
     </div>
     <form
-      @submit.prevent="submit"
-      method="POST"
-      :name="form['form-name']"
-      :action="`/${$i18n.locale()}/contact/confirmation/`"
       class="contact-form__form"
-      data-netlify="true"
-      netlify-honeypot="magic-castle"
-      :novalidate="useCustomValidation"
+      method="POST"
+      action="/api/contact/"
     >
-      <fieldset>
-        <legend
-          v-if="ariaLabelOrTitle"
-          class="sr-only"
-        >
-          {{ ariaLabelOrTitle }}
-        </legend>
+      <label class="sr-only">
+        <span>Don't fill this out if you're human:</span>
         <input
-          type="hidden"
-          name="form-name"
-          :value="form['form-name']"
+          type="url"
+          name="url-page"
         >
+      </label>
+      <label class="input-field">
+        <span class="input-field__label">{{ $t("my_name_is") }}</span>
         <input
+          class="body"
           type="text"
-          name="subject"
-          :value="form.name"
-          class="hidden"
+          name="name"
+          required
+          :placeholder="$t('your_name')"
         >
-        <label class="hidden">
-          Don't fill this out if you're human:
-          <input
-            v-model="form.magicCastle"
-            name="magic-castle"
-          >
-        </label>
-        <input-field
-          v-model="form.name"
-          id="name"
+      </label>
+      <label class="input-field">
+        <span class="input-field__label">{{ $t("my_business_is") }}</span>
+        <input
+          class="body"
           type="text"
-          @input="createEmailSubject"
-          :label="$t('my_name_is')"
-          :placeholder-label="$t('your_name')"
+          name="business"
+          :placeholder="$t('company_name')"
+        >
+      </label>
+      <label class="input-field">
+        <span class="input-field__label">{{ $t("you_can_email_me_at") }}</span>
+        <input
+          class="body"
+          type="text"
+          name="email"
           required
-          :validate="formIsValidated"
-          :reset-validation="resetValidation"
-          :validation-error-message="$t('name_is_required')"
-          class="body-small"
-        />
-        <input-field
-          v-model="form.business"
-          id="business"
+          :placeholder="$t('email_address')"
+        >
+      </label>
+      <label class="input-field">
+        <span class="input-field__label">{{ $t("you_can_call_me_at") }}</span>
+        <input
+          class="body"
           type="text"
-          :label="$t('my_business_is')"
-          :placeholder-label="$t('company_name')"
-          class="body-small"
-        />
-        <input-field
-          v-model="form.email"
-          id="email"
-          type="email"
-          :label="$t('you_can_email_me_at')"
-          :placeholder-label="$t('email_address')"
+          name="phone"
+          :placeholder="$t('phone_number')"
+        >
+      </label>
+      <label class="input-field">
+        <span class="input-field__label">{{ $t("my_project_is") }}</span>
+        <textarea
+          class="body"
+          type="text"
+          name="explanation"
+          rows="5"
           required
-          :validate="formIsValidated"
-          :reset-validation="resetValidation"
-          :validation-error-message="emailValidationErrorMessage"
-          class="body-small"
+          :placeholder="$t('project_description')"
         />
-        <input-field
-          v-model="form.phone"
-          id="phone"
-          type="tel"
-          :label="$t('you_can_call_me_at')"
-          :placeholder-label="$t('phone_number')"
-          class="body-small"
-        />
-        <input-field
-          textarea
-          v-model="form.explanation"
-          id="explanation"
-          type="text"
-          :label="$t('my_project_is')"
-          :placeholder-label="$t('project_description')"
-          class="body-small"
-        />
-        <app-button
-          @click="trackEvent()"
-          class="contact-form__button"
-          :label="$t('get_in_touch')"
-          type="submit"
-        />
-      </fieldset>
+      </label>
+      <app-button
+        @click="trackEvent()"
+        class="contact-form__button"
+        :label="$t('get_in_touch')"
+        type="submit"
+      />
     </form>
   </div>
 </template>
 
 <script>
-  import submitContactForm from '../../lib/submit-contact-form'
-
-  export default {
-    props: {
-      title: {
-        type: String,
-        required: false,
-        default: undefined
-      },
-      ariaLabel: {
-        type: String,
-        required: false,
-        default: undefined,
-      },
-      contactPerson: {
-        type: Object,
-        default: undefined,
-        validator(contactPerson) {
-          return !contactPerson || (
-            typeof(contactPerson.name) === 'string'
-            && typeof(contactPerson.lastName) === 'string'
-            && typeof(contactPerson.image) === 'object'
-          )
-        }
-      }
+export default {
+  props: {
+    title: {
+      type: String,
+      required: false,
+      default: undefined,
     },
-    data() {
-      return {
-        form: {
-          'form-name': 'get-in-touch',
-          name: '',
-          email: '',
-          phone: '',
-          business: '',
-          explanation: '',
-          subject: '',
-        },
-        formIsValidated: false,
-        resetValidation: false,
-        useCustomValidation: false,
-      }
+    contactPerson: {
+      type: Object,
+      default: undefined,
+      validator(contactPerson) {
+        return (
+          !contactPerson ||
+          (typeof contactPerson.name === "string" &&
+            typeof contactPerson.lastName === "string" &&
+            typeof contactPerson.image === "object")
+        );
+      },
     },
-    computed: {
-      ariaLabelOrTitle () {
-        return this.ariaLabel || this.title
-      },
-      emailValidationErrorMessage() {
-        return this.form.email ? this.$t('provide_valid_email') : this.$t('email_is_required')
-      },
-      hasSidebar() {
-        return this.title || this.contactPerson
-      }
+  },
+  computed: {
+    hasSidebar() {
+      return this.title || this.contactPerson;
     },
-    mounted() {
-      this.useCustomValidation = true
+  },
+  methods: {
+    trackEvent() {
+      useTrackEvent("Send Contact Form SP");
     },
-    methods: {
-      createEmailSubject(name) {
-        this.form.subject = `${name} has sent a message`
-      },
-      submit(event) {
-        this.formIsValidated = true
-        if (!event.target.checkValidity()) {
-          this.resetValidation = true
-          this.$nextTick(() => {
-            this.resetValidation = false
-          })
-          return false
-        }
-        submitContactForm({
-          form: event.target,
-          router: this.$router,
-          localeUrl: this.$localeUrl,
-        })
-      },
-      trackEvent () {
-        useTrackEvent('Send Contact Form SP');
-      },
-    }
-  }
+  },
+};
 </script>
 
 <style>
-  :root {
-    --contact-form-thumbnail-size: 120px;
-  }
+:root {
+  --contact-form-thumbnail-size: 144px;
+}
 
+.contact-form__header {
+  grid-row: 1;
+}
+
+.contact-form__contact-person {
+  display: none;
+}
+
+.contact-form__contact-person-image {
+  margin-bottom: var(--spacing-small);
+  width: var(--contact-form-thumbnail-size);
+}
+
+.contact-form__header ~ .contact-form__form {
+  grid-row: 2;
+}
+
+.contact-form__label:first-of-type {
+  margin-top: 0;
+}
+
+.contact-form__button {
+  margin-top: var(--spacing-larger);
+}
+
+@media (min-width: 1100px) {
   .contact-form__header {
-    grid-row: 1;
+    grid-column-start: 6;
+    grid-column-end: 18;
+    margin-bottom: var(--spacing-medium);
   }
 
   .contact-form__contact-person {
-    display: none;
-  }
-
-  .contact-form__contact-person-image {
-    margin-bottom: var(--spacing-small);
-    width: var(--contact-form-thumbnail-size);
+    display: block;
   }
 
   .contact-form__header ~ .contact-form__form {
-    grid-row: 2;
+    grid-column-start: 21;
+    grid-column-end: 46;
+    grid-row: 1;
   }
 
-  .contact-form__label:first-of-type {
-    margin-top: 0;
+  .contact-form__header ~ .contact-form__form > .contact-form__label-text {
+    width: 9rem;
   }
-
-  .contact-form__button {
-    margin-top: var(--spacing-larger);
-  }
-
-  @media (min-width: 1100px) {
-    .contact-form__header {
-      grid-column-start: 6;
-      grid-column-end: 18;
-      margin-bottom: var(--spacing-medium);
-    }
-
-    .contact-form__contact-person {
-      display: block;
-    }
-
-    .contact-form__header ~ .contact-form__form {
-      grid-column-start: 21;
-      grid-column-end: 46;
-      grid-row: 1;
-    }
-
-    .contact-form__header ~ .contact-form__form > .contact-form__label-text {
-      width: 9rem;
-    }
-  }
+}
 </style>
