@@ -1,0 +1,10 @@
+name = "voorhoede-website"
+pages_build_output_dir = "dist"
+compatibility_date = "2025-02-03"
+
+[vars]
+NODE_ENV = "production"
+NODE_VERSION = "v20.18.3"
+NPM_CONFIG_IGNORE_SCRIPTS = "true"
+NPM_CONFIG_AUDIT = "false"
+NPM_CONFIG_FUND = "false"

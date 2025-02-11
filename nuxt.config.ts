@@ -9,7 +9,6 @@ import { fetchI18nSlugs } from './src/scripts/fetch-i18n-slugs';
 import { defaultLanguage } from './src/lib/i18n';
 
 export default defineNuxtConfig({
-  compatibilityDate: '2025-01-17',
   srcDir: 'src',
   css: [
     '@/components/app-core/index.css',
