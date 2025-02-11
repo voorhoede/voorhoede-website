@@ -66,7 +66,6 @@
     totalItems: number
     currentPage: number
     perPage: number
-    // eslint-disable-next-line no-unused-vars
     getPaginatedRoute: (page: number) => RouteLocation
   }>()
 
@@ -132,10 +131,8 @@
     /*
       Case 4: Both left and right DOTS to be shown
     */
-    if (showLeftDOTS && showRightDOTS) {
-      let middleRange = range(leftSibling, rightSibling)
-      return [firstPage, DOTS, ...middleRange, DOTS, lastPage]
-    }
+    let middleRange = range(leftSibling, rightSibling)
+    return [firstPage, DOTS, ...middleRange, DOTS, lastPage]
   })
 
   function range(start: number, end: number) {

@@ -82,7 +82,7 @@
     },
     created () {
       this.$nextTick(() => {
-        if (process.client) {
+        if (import.meta.client) {
           this.hasNativeShare = (typeof window.navigator.share === 'function')
           this.url = window.location.href
         }
