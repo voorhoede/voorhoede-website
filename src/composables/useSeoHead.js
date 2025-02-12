@@ -11,7 +11,7 @@ export function useSeoHead({ title, i18nSlugs, social }) {
   const route = useRoute();
   const router = useRouter();
 
-  const pageUrl = new URL(route.path, runtimeConfig.public.baseUrl).toString();
+  const pageUrl = withTrailingSlash(new URL(route.path, runtimeConfig.public.baseUrl).toString());
   const defaultShareImg = new URL('/images/logo-wide.jpg', runtimeConfig.public.baseUrl).toString();
 
   useHead({

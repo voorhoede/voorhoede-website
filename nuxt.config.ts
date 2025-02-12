@@ -22,10 +22,10 @@ export default defineNuxtConfig({
       concurrency: 35, // stay below 40 to avoid rate limiting
       interval: 1000, // use 1 second interval to avoid rate limiting
       failOnError: false,
+      autoSubfolderIndex: false,
     },
     routeRules: {
       '/': { prerender: false },
-      '/*/blog/': { prerender: false },
       '/blog-feed.xml': {
         redirect: { to: '/blog/feed.json', statusCode: 301 },
       },
