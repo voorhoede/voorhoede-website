@@ -26,6 +26,7 @@ export default defineNuxtConfig({
     },
     routeRules: {
       '/': { prerender: false },
+      '/en/services/': { prerender: false },
       '/blog-feed.xml': {
         redirect: { to: '/blog/feed.json', statusCode: 301 },
       },

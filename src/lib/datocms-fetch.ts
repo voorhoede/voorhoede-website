@@ -1,6 +1,6 @@
 import { datocmsEnvironment } from '../constants.mjs';
 
-export function datocmsFetch(
+export async function datocmsFetch(
   {
     fetcher = fetch,
     apiToken = process.env.DATOCMS_API_READ_TOKEN,
@@ -9,6 +9,10 @@ export function datocmsFetch(
     preview = false,
   },
 ) {
+  await new Promise((resolve) => {
+    setTimeout(() => resolve(null), 500);
+  });
+
   return fetcher('https://graphql.datocms.com/', {
     method: 'post',
     headers: {
