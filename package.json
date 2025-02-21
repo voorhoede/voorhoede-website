@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
-    "build-cloudflare": "node ./scripts/cloudflare-build.mjs",
+    "build-cloudflare": "node ./src/scripts/cloudflare-build.mjs",
     "lint": "eslint '**/*.vue'",
     "lint-staged": "nano-staged",
     "prepare": "husky"
