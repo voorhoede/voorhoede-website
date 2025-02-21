@@ -50,7 +50,7 @@ export default defineNuxtConfig({
     apiHost: '/mogelijk',
   },
   hooks: {
-    'build:before': () =>
+    'build:before': () => (
       Promise.all([
         fetchTranslations()
           .then(async (translations) => {
@@ -68,8 +68,6 @@ export default defineNuxtConfig({
               JSON.stringify(blogFeed),
             );
           }),
-        fetchRedirects()
-          .then((redirects) => writeFile('./src/public/_redirects', redirects)),
         fetchI18nSlugs()
           .then(async (data) => {
             await mkdir('.cache', { recursive: true });
@@ -77,6 +75,20 @@ export default defineNuxtConfig({
           }),
       ])
         // hook expects a promise with no return data
-        .then(() => {}),
+        .then(() => {})
+    ),
+    'nitro:config': (nitroConfig) => {
+      return fetchRedirects()
+        .then((redirects) => {
+          redirects.forEach((redirect) => {
+            nitroConfig.routeRules[redirect.from] = {
+              redirect: {
+                to: redirect.to,
+                statusCode: redirect.httpStatusCode,
+              },
+            };
+          });
+        });
+    },
   },
 });
