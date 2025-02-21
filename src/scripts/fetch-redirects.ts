@@ -1,4 +1,4 @@
-import { datocmsFetch } from '../lib/datocms-fetch.ts';
+import { datocmsFetch } from '../lib/datocms-fetch.js';
 
 export const fetchRedirects = () => (
   datocmsFetch({
