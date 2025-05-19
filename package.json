@@ -18,7 +18,7 @@
     "@voorhoede/image-vue": "^1.1.0",
     "@voorhoede/vue-dato-video": "^3.1.0",
     "datocms-listen": "^1.0.0",
-    "datocms-structured-text-utils": "^4.0.1",
+    "datocms-structured-text-utils": "^5.0.0",
     "dayjs": "^1.11.10",
     "nanoid": "^5.1.5",
     "nuxt": "^3.17.4",
