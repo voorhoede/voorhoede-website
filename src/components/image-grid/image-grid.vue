@@ -66,7 +66,7 @@ type Props = {
     isFullWidth: boolean
     isHighlighted: boolean
   }[]
-  backgroundColor: BackgroundColor
+  backgroundColor?: BackgroundColor
 }
 
 withDefaults(defineProps<Props>(), {

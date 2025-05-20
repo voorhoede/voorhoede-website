@@ -32,6 +32,7 @@
 <script>
   export default {
     inheritAttrs: false,
+    // eslint-disable-next-line vue/no-deprecated-model-definition
     model: {
       prop: 'checked',
       event: 'change'
