@@ -45,7 +45,7 @@ type Props = {
   },
   paragraphVariant?: 'body-big' | 'body'
   inverse?: boolean,
-  backgroundColor: BackgroundColor
+  backgroundColor?: BackgroundColor
 }
 
 withDefaults(defineProps<Props>(), {
