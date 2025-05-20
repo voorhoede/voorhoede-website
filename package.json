@@ -10,7 +10,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@datocms/cma-client-browser": "^3.4.4",
+    "@datocms/cma-client-browser": "^4.0.1",
     "@json-feed-types/1_1": "^1.0.2",
     "@mux/mux-player": "^3.4.0",
     "@nuxtjs/plausible": "^1.2.0",
