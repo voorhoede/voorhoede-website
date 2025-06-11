@@ -15,7 +15,7 @@
     "@mux/mux-player": "^3.4.0",
     "@nuxtjs/plausible": "^1.2.0",
     "@std/http": "npm:@jsr/std__http@^1.0.17",
-    "@voorhoede/image-vue": "^1.0.1",
+    "@voorhoede/image-vue": "^1.1.0",
     "@voorhoede/vue-dato-video": "^3.1.0",
     "datocms-listen": "^1.0.0",
     "datocms-structured-text-utils": "^4.0.1",
