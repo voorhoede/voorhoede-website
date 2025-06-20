@@ -1,7 +1,7 @@
 <template>
   <Image
     class="dato-image"
-    :src="props.src"
+    v-bind="props"
     :loader="loader"
     :srcset="checkedSrcset"
   />
@@ -10,11 +10,9 @@
 <script setup lang="ts">
 import { withQuery, type QueryObject } from "ufo";
 import type { ImgixUrl } from "typescript-imgix-url-params";
-import { Image, type ImageLoader } from "@voorhoede/image-vue";
+import { Image, type ImageProps, type ImageLoader } from "@voorhoede/image-vue";
 
-const props = defineProps<{
-  src: string;
-  srcset?: string;
+const props = defineProps<Omit<ImageProps, 'loader'> & {
   modifiers?: ImgixUrl.Params;
 }>();
 
