@@ -7,7 +7,7 @@ export default defineEventHandler((event) => {
   const request = toWebRequest(event);
   const chosenLanguage = getCookie(event, cookieName);
 
-  if (localeCodes.includes(chosenLanguage)) {
+  if (chosenLanguage && localeCodes.includes(chosenLanguage)) {
     return sendRedirect(
       event,
       `/${chosenLanguage}/`,
