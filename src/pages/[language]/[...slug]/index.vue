@@ -121,21 +121,36 @@
   definePageMeta({ layout: 'content-page' });
 
   import query from './index.query.graphql?raw';
-  import { BackgroundColor } from '../../../types/index.d';
+  import { withQuery } from 'ufo';
+  import { BackgroundColor } from '~/types/index.d.ts';
 
-  const { params } = useRoute();
+  const route = useRoute();
+  const slug = route.params.slug
+    // Don't include empty string fragments caused by leading or trailing slashes
+    .filter(Boolean)
+    .join('/');
+
   const { data } = await useFetchContent({
     query,
     variables: {
-      locale: params.language,
-      slug: params.slug
-        // Don't include empty string fragments caused by leading or trailing slashes
-        .filter(Boolean)
-        .join('/'),
+      locale: route.params.language,
+      slug,
     },
   });
 
   useSeoHead(data.value.page);
+
+  if (
+    import.meta.client &&
+    slug === 'subscription-confirmation' &&
+    route.query.email
+  ) {
+    fetch(
+      withQuery('https://hooks.zapier.com/hooks/catch/22617085/uosq4mq/', {
+        email: route.query.email,
+      }),
+    );
+  }
 
   function getSectionBackgroundColor(section) {
     switch (section.__typename) {
