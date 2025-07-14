@@ -39,6 +39,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     postmarkApiToken: process.env.POSTMARK_API_TOKEN,
+    pipedriveApiToken: process.env.PIPEDRIVE_API_TOKEN,
+    pipedriveApiUrl: process.env.PIPEDRIVE_API_URL,
     public: {
       datoApiToken: process.env.DATOCMS_API_READ_TOKEN,
       baseUrl: process.env.BASE_URL,
