@@ -9,6 +9,10 @@ export default defineEventHandler(async (event) => {
   const { name, email, consent, locale } = body;
 
   if (!name || !email || body[honeypotFieldName]) {
+    console.error(
+      'Encountered filled-in honey-pot',
+      { [honeypotFieldName]: body['honeypotFieldName'] }
+    );
     return sendRedirect(event, `/${locale}/${FAILED_REDIRECT}`);
   }
   await subscribe(
@@ -18,7 +22,11 @@ export default defineEventHandler(async (event) => {
     .then(() => {
       return sendRedirect(event, `/${locale}/${CONFIRMATION_REDIRECT}`, 303);
     })
-    .catch(() => {
+    .catch((error) => {
+      console.error(
+        'Error subscribing user',
+        error
+      );
       return sendRedirect(event, `/${locale}/${FAILED_REDIRECT}`);
     });
 });
