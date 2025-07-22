@@ -8,7 +8,7 @@
     </h2>
     <form
       @submit="submit"
-      action="https://voorhoede.us20.list-manage.com/subscribe/post?u=bd1491faa00c5405cce7ba212&amp;id=76cc576b8d"
+      action="/api/newsletter/"
       method="post"
       target="_blank"
       class="newsletter-form__form"
@@ -16,13 +16,18 @@
       <label class="sr-only">
         Don't fill this out if you're human
         <input
-          type="text"
-          :name="mailchimpFieldnamesMapping.honeypot"
-          value=""
+          type="url"
+          name="url-page"
         >
       </label>
+      <input
+        type="hidden"
+        name="locale"
+        :value="$i18n.locale()"
+      >
       <input-field
-        :id="mailchimpFieldnamesMapping.firstName"
+        id="newsletter-form-name"
+        name="name"
         type="text"
         :label="$t('my_first_name_is')"
         :placeholder-label="$t('your_first_name')"
@@ -30,7 +35,8 @@
         class="newsletter-form__input-field body"
       />
       <input-field
-        :id="mailchimpFieldnamesMapping.email"
+        id="newsletter-form-email"
+        name="email"
         type="email"
         :label="$t('you_can_email_me_at')"
         :placeholder-label="$t('email_address')"
@@ -40,7 +46,7 @@
       <input-checkbox
         value="Y"
         id="newsletter-form-gdpr"
-        :name="mailchimpFieldnamesMapping.gdprConsent"
+        name="consent"
         :label="$t('newsletter_permission')"
         :required="true"
         class="newsletter-form__input-checkbox body-small"
@@ -62,16 +68,6 @@
       hasBackground: {
         type: Boolean,
         required: false
-      }
-    },
-    data () {
-      return {
-        mailchimpFieldnamesMapping: {
-          honeypot: 'b_bd1491faa00c5405cce7ba212_76cc576b8d',
-          firstName: 'FNAME',
-          email: 'EMAIL',
-          gdprConsent: 'gdpr[38537]',
-        },
       }
     },
     methods: {
