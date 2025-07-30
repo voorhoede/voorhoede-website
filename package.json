@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@datocms/cli": "^2.0.22",
-    "@nuxt/eslint-config": "^1.0.1",
+    "@nuxt/eslint-config": "^1.5.2",
     "datocms-html-to-structured-text": "^4.1.2",
     "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
