@@ -1,11 +1,26 @@
+import arcjet, { detectBot } from '@arcjet/node';
+const config = useRuntimeConfig();
+
+const arcjetClient = arcjet({
+  key: config.arcjetApitoken,
+  rules: [
+    detectBot({ mode: 'LIVE', allow: [] }),
+  ],
+});
+
 export default defineEventHandler(async (event) => {
   const honeypotFieldName = 'url-page';
-  const config = useRuntimeConfig(event);
   const body = await readBody(event);
 
   if (
     !body?.name || !body?.email || !body.explanation || body[honeypotFieldName]
   ) {
+    return sendRedirect(event, '/en/contact/failed/');
+  }
+
+  const decision = await arcjetClient.protect(event.node.req);
+
+  if (decision.isDenied() || decision.ip.isHosting()) {
     return sendRedirect(event, '/en/contact/failed/');
   }
 
