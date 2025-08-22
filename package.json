@@ -37,9 +37,6 @@
     "parse5": "^8.0.0",
     "typescript-imgix-url-params": "^0.3.1"
   },
-  "engines": {
-    "node": ">=20"
-  },
   "nano-staged": {
     "*.vue": "eslint --fix --max-warnings 0"
   }
