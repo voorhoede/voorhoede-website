@@ -1,23 +1,25 @@
 import { defineNuxtConfig } from 'nuxt/config';
 import { mkdir, writeFile } from 'node:fs/promises';
-import { default as nuxtIcons } from 'nuxt-icons';
 import { default as plausible } from '@nuxtjs/plausible';
 import { fetchTranslations } from './src/scripts/fetch-translations';
 import { fetchBlogFeed } from './src/scripts/fetch-blog-feed';
 import { fetchRedirects } from './src/scripts/fetch-redirects';
 import { fetchI18nSlugs } from './src/scripts/fetch-i18n-slugs';
+import { svgSymbolLoader } from './src/scripts/svg-symbol-loader';
 import { defaultLanguage } from './src/lib/i18n';
+import { type Plugin } from 'vite';
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-01-17',
   srcDir: 'src',
   // Disable confusing @ alias in favor of ~ alias
   alias: { '@': '' },
-  css: [
-    '@/components/app-core/index.css',
-  ],
+  css: ['@/components/app-core/index.css'],
   nitro: {
     preset: 'cloudflare_pages',
+    rollupConfig: {
+      plugins: [svgSymbolLoader() as Plugin],
+    },
     prerender: {
       crawlLinks: true,
       routes: [`/${defaultLanguage}/`],
@@ -34,6 +36,9 @@ export default defineNuxtConfig({
       '/mogelijk/api/event': {
         proxy: { to: 'https://plausible.io/api/event' },
       },
+      '/icon-sprite.svg': {
+        prerender: true,
+      },
     },
   },
   runtimeConfig: {
@@ -47,53 +52,45 @@ export default defineNuxtConfig({
       previewSecret: process.env.PREVIEW_SECRET,
     },
   },
-  modules: [
-    nuxtIcons,
-    plausible,
-  ],
+  modules: [nuxtIcons, plausible],
   plausible: {
     apiHost: '/mogelijk',
   },
   hooks: {
-    'build:before': () => (
+    'build:before': () =>
       Promise.all([
-        fetchTranslations()
-          .then(async (translations) => {
-            await mkdir('.cache', { recursive: true });
-            await writeFile(
-              '.cache/ui-translations.json',
-              JSON.stringify(translations),
-            );
-          }),
-        fetchBlogFeed()
-          .then(async (blogFeed) => {
-            await mkdir('./src/public/blog', { recursive: true });
-            await writeFile(
-              './src/public/blog/feed.json',
-              JSON.stringify(blogFeed),
-            );
-          }),
-        fetchI18nSlugs()
-          .then(async (data) => {
-            await mkdir('.cache', { recursive: true });
-            await writeFile('.cache/i18n-slugs.json', JSON.stringify(data));
-          }),
+        fetchTranslations().then(async (translations) => {
+          await mkdir('.cache', { recursive: true });
+          await writeFile(
+            '.cache/ui-translations.json',
+            JSON.stringify(translations),
+          );
+        }),
+        fetchBlogFeed().then(async (blogFeed) => {
+          await mkdir('./src/public/blog', { recursive: true });
+          await writeFile(
+            './src/public/blog/feed.json',
+            JSON.stringify(blogFeed),
+          );
+        }),
+        fetchI18nSlugs().then(async (data) => {
+          await mkdir('.cache', { recursive: true });
+          await writeFile('.cache/i18n-slugs.json', JSON.stringify(data));
+        }),
       ])
         // hook expects a promise with no return data
-        .then(() => {})
-    ),
+        .then(() => {}),
     'nitro:config': (nitroConfig) => {
-      return fetchRedirects()
-        .then((redirects) => {
-          redirects.forEach((redirect) => {
-            nitroConfig.routeRules[redirect.from] = {
-              redirect: {
-                to: redirect.to,
-                statusCode: redirect.httpStatusCode,
-              },
-            };
-          });
+      return fetchRedirects().then((redirects) => {
+        redirects.forEach((redirect) => {
+          nitroConfig.routeRules[redirect.from] = {
+            redirect: {
+              to: redirect.to,
+              statusCode: redirect.httpStatusCode,
+            },
+          };
         });
+      });
     },
   },
 });
