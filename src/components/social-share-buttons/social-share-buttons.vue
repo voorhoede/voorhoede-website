@@ -29,8 +29,8 @@
         >
           <app-icon
             :name="item.icon"
-            is-large
             :alt="item.alt"
+            size="large"
           />
         </a>
       </li>
@@ -105,7 +105,7 @@
   .social-share-buttons__list-icon {
     display: inline-block;
     margin-right: var(--spacing-small);
-    color: var(--html-blue);
+    fill: var(--html-blue);
   }
 
   .social-share-buttons__list-icon:last-of-type {
