@@ -16,9 +16,6 @@ export default defineNuxtConfig({
   css: [
     '@/components/app-core/index.css',
   ],
-  future: {
-    compatibilityVersion: 4,
-  },
   nitro: {
     preset: 'cloudflare_pages',
     prerender: {
