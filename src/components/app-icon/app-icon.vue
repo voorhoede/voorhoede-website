@@ -1,42 +1,42 @@
 <template>
-  <nuxt-icon
-    class="app-icon"
-    :class="{ 'app-icon--large': isLarge }"
-    :name="name"
-    :title="alt"
-    role="img"
-  />
+  <svg :class="['app-icon', `app-icon--${props.size}`]" :aria-label="alt">
+    <use :href="`/icon-sprite.svg#${props.name}`" />
+  </svg>
 </template>
 
-<script>
-  export default {
-    props: {
-      name: {
-        type: String,
-        required: true,
-      },
-      alt: {
-        type: String,
-        default: '',
-      },
-      isLarge: {
-        type: Boolean,
-        default: false,
-      },
-    },
-  }
+<script setup lang="ts">
+interface Props {
+  name: string;
+  alt?: string;
+  size?: "medium" | "large";
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  alt: "",
+  size: "medium",
+});
 </script>
 
-<style>
-  .app-icon {
-    display: inline-flex;
-    width: 1em;
-    height: 1em;
-  }
+<style scoped>
+.app-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s ease-in-out;
+}
 
-  @media (min-width: 720px) {
-    .app-icon--large {
-      font-size: 1.4em;
-    }
-  }
+.app-icon--medium {
+  width: 1rem;
+  height: 1rem;
+}
+
+.app-icon--large {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.app-icon:hover {
+  transform: scale(1.05);
+}
 </style>
