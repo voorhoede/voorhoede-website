@@ -11,6 +11,8 @@ import { defaultLanguage } from './src/lib/i18n';
 export default defineNuxtConfig({
   compatibilityDate: '2025-01-17',
   srcDir: 'src',
+  // Disable confusing @ alias in favor of ~ alias
+  alias: { '@': '' },
   css: [
     '@/components/app-core/index.css',
   ],
@@ -41,6 +43,7 @@ export default defineNuxtConfig({
     postmarkApiToken: process.env.POSTMARK_API_TOKEN,
     pipedriveApiToken: process.env.PIPEDRIVE_API_TOKEN,
     pipedriveApiUrl: process.env.PIPEDRIVE_API_URL,
+    akismetApiToken: process.env.AKISMET_API_TOKEN,
     public: {
       datoApiToken: process.env.DATOCMS_API_READ_TOKEN,
       baseUrl: process.env.BASE_URL,
