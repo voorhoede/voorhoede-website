@@ -102,7 +102,7 @@
               </span>
               <app-icon
                 :name="socialLink.icon"
-                :is-large="true"
+                size="large"
               />
             </a>
           </li>
@@ -211,7 +211,7 @@ export default {
     },
     socialLinks() {
       return [
-        { url: this.app.githubUrl, platform: 'GitHub', icon: 'git-hub' },
+        { url: this.app.githubUrl, platform: 'GitHub', icon: 'github' },
         { url: mastodonUrl, platform: 'Mastodon', icon: 'mastodon' },
         { url: this.app.youtubeUrl, platform: 'YouTube', icon: 'youtube' },
         { url: this.app.linkedinUrl, platform: 'LinkedIn', icon: 'linkedin' },
@@ -432,35 +432,8 @@ export default {
   }
 
   .app-footer__list-item--icon a {
-    position: relative;
     display: block;
-    color: var(--html-blue);
-  }
-
-  .app-footer__list-item--icon a:hover::before,
-  .app-footer__list-item--icon a:focus::before {
-    transform: scale(1.5);
-    opacity: 1;
-  }
-
-  .app-footer__list-item--icon a::before {
-    content: '';
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: var(--white);
-    transform: scale(0);
-    opacity: 0;
-    transition: transform .1s, opacity .1s linear;
-  }
-
-  .app-footer__list-item--icon .app-icon {
-    position: relative;
-    z-index: 2;
+    fill: var(--html-blue);
   }
 
   .app-footer__link {
