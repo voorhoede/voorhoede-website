@@ -49,7 +49,7 @@ const handlePipedriveCommunication = async (
       org_id: organizationId,
       notes: body.explanation,
       [pipedriveClient.getContactSourceFieldApiKey()]:
-        pipedriveClient.getNewsletterOptionId(),
+        pipedriveClient.getFormOptionId(),
     };
     if (personId) {
 
