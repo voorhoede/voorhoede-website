@@ -7,11 +7,13 @@ export class PipedriveClient {
   private config: PipedriveConfig;
   private contactSourceFieldApiKey: string;
   private newsletterOptionId: number;
+  private formOptionId: number;
 
   constructor(config: PipedriveConfig) {
     this.config = config;
     this.contactSourceFieldApiKey = "777843b709aa29ae549063f689f7a6bd4c06b481";
     this.newsletterOptionId = 309;
+    this.formOptionId = 318;
   }
 
   getContactSourceFieldApiKey(): string {
@@ -20,6 +22,10 @@ export class PipedriveClient {
 
   getNewsletterOptionId(): number {
     return this.newsletterOptionId;
+  }
+
+  getFormOptionId(): number {
+    return this.formOptionId;
   }
 
   private getParams(): URLSearchParams {
