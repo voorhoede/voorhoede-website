@@ -15,7 +15,7 @@
     "@json-feed-types/1_1": "^1.0.2",
     "@mux/mux-player": "^3.5.3",
     "@nuxtjs/plausible": "^3.0.2",
-    "@std/http": "npm:@jsr/std__http@^1.0.20",
+    "@std/http": "npm:@jsr/std__http@^1.0.25",
     "@voorhoede/image-vue": "^1.1.0",
     "@voorhoede/vue-dato-video": "^3.1.0",
     "datocms-listen": "^1.0.0",
