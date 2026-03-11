@@ -33,9 +33,6 @@ export default defineNuxtConfig({
       '/blog-feed.xml': {
         redirect: { to: '/blog/feed.json', statusCode: 301 },
       },
-      '/mogelijk/api/event': {
-        proxy: { to: 'https://plausible.io/api/event' },
-      },
       '/icon-sprite.svg': {
         prerender: true,
       },
@@ -54,7 +51,8 @@ export default defineNuxtConfig({
   },
   modules: [plausible],
   plausible: {
-    apiHost: '/mogelijk',
+    proxy: true,
+    proxyBaseEndpoint: '/mogelijk',
   },
   hooks: {
     'build:before': () =>
@@ -83,7 +81,7 @@ export default defineNuxtConfig({
     'nitro:config': (nitroConfig) => {
       return fetchRedirects().then((redirects) => {
         redirects.forEach((redirect) => {
-          nitroConfig.routeRules[redirect.from] = {
+          nitroConfig.routeRules![redirect.from] = {
             redirect: {
               to: redirect.to,
               statusCode: redirect.httpStatusCode,
