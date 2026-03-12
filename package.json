@@ -34,7 +34,7 @@
     "@nuxt/eslint-config": "^1.15.2",
     "datocms-html-to-structured-text": "^5.0.0",
     "husky": "^9.1.7",
-    "nano-staged": "^0.8.0",
+    "nano-staged": "^0.9.0",
     "parse5": "^8.0.0",
     "typescript-imgix-url-params": "^0.3.1"
   },
