@@ -11,7 +11,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@datocms/cma-client-browser": "^5.0.1",
+    "@datocms/cma-client-browser": "^5.3.0",
     "@json-feed-types/1_1": "^1.0.2",
     "@mux/mux-player": "^3.5.3",
     "@nuxtjs/plausible": "^3.0.2",
