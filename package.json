@@ -30,7 +30,7 @@
     "vue-datocms": "^8.1.14"
   },
   "devDependencies": {
-    "@datocms/cli": "^2.0.23",
+    "@datocms/cli": "^3.1.16",
     "@nuxt/eslint-config": "^1.15.2",
     "datocms-html-to-structured-text": "^5.0.0",
     "husky": "^9.1.7",
