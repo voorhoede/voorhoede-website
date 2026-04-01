@@ -43,7 +43,7 @@ const checkedSrcset = computed(() =>
   display: block;
   max-width: 100%;
   background-image: var(--background);
-  background-size: 100%;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 </style>
