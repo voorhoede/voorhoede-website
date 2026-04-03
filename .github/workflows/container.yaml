@@ -43,6 +43,15 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
+          build-args: |
+            BASE_URL=${{ env.BASE_URL }}
+            DATOCMS_API_READ_TOKEN=${{ env.DATOCMS_API_READ_TOKEN }}
+            DATOCMS_API_TOKEN=${{ env.DATOCMS_API_TOKEN }}
+            POSTMARK_API_TOKEN=${{ env.POSTMARK_API_TOKEN }}
+            PREVIEW_SECRET=${{ env.PREVIEW_SECRET }}
+            PIPEDRIVE_API_TOKEN=${{ env.PIPEDRIVE_API_TOKEN }}
+            PIPEDRIVE_API_URL=${{ env.PIPEDRIVE_API_URL }}
+            AKISMET_API_TOKEN=${{ env.AKISMET_API_TOKEN }}
 
       - name: Update container image on Magic Containers
         uses: BunnyWay/actions/container-update-image@main
