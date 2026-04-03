@@ -17,6 +17,16 @@ jobs:
       contents: read
       packages: write
 
+    env:
+      BASE_URL: ${{ vars.BASE_URL }}
+      DATOCMS_API_READ_TOKEN: ${{ secrets.DATOCMS_API_READ_TOKEN }}
+      DATOCMS_API_TOKEN: ${{ secrets.DATOCMS_API_TOKEN }}
+      POSTMARK_API_TOKEN: ${{ secrets.POSTMARK_API_TOKEN }}
+      PREVIEW_SECRET: ${{ secrets.PREVIEW_SECRET }}
+      PIPEDRIVE_API_TOKEN: ${{ secrets.PIPEDRIVE_API_TOKEN }}
+      PIPEDRIVE_API_URL: ${{ vars.PIPEDRIVE_API_URL }}
+      AKISMET_API_TOKEN: ${{ secrets.AKISMET_API_TOKEN }}
+
     steps:
       - uses: actions/checkout@v6
 
