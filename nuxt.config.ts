@@ -16,7 +16,7 @@ export default defineNuxtConfig({
   alias: { '@': '' },
   css: ['@/components/app-core/index.css'],
   nitro: {
-    preset: 'cloudflare_pages',
+    // preset: 'cloudflare_pages',
     rollupConfig: {
       plugins: [svgSymbolLoader() as Plugin],
     },
