@@ -4,6 +4,9 @@
     v-bind="props"
     :loader="loader"
     :srcset="checkedSrcset"
+    :style="props.blurUpThumb ? `--background: url('${props.blurUpThumb}')` : null"
+    :blur-up-thumb="null"
+    :modifiers="null"
   />
 </template>
 
@@ -14,6 +17,7 @@ import { Image, type ImageProps, type ImageLoader } from "@voorhoede/image-vue";
 
 const props = defineProps<Omit<ImageProps, 'loader'> & {
   modifiers?: ImgixUrl.Params;
+  blurUpThumb?: string;
 }>();
 
 const imgixLoader: ImageLoader = ({ src, width, quality }) =>
@@ -38,5 +42,8 @@ const checkedSrcset = computed(() =>
 .dato-image {
   display: block;
   max-width: 100%;
+  background-image: var(--background);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 </style>
