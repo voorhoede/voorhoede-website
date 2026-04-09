@@ -107,32 +107,31 @@
             </a>
           </li>
         </ul>
-
-        <ul class="app-footer__certificate-list">
-          <li
-            v-for="certificate in certificateLinks"
-            :key="certificate.url"
+      </div>
+    </div>
+    <!-- CERTIFICATES GRID -->
+      <ul v-if="footer.certificatesGrid?.length" class="app-footer__certificate-list">
+        <li
+            v-for="certificate in footer.certificatesGrid"
+            :key="certificate.link.url"
           >
             <a
-              :href="certificate.url"
+              :href="certificate.link.url"
               target="_blank"
               rel="noreferrer noopener"
-              :aria-label="certificate.title"
+              :aria-label="certificate.link.title"
             >
               <dato-image
                 class="app-footer__certificate-logo"
-                :src="certificate.logo.url"
+                :src="certificate.image.url"
                 :width="100"
                 :height="75"
-                :alt="certificate.title"
+                :alt="certificate.image.alt"
                 loading="lazy"
               />
             </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
+        </li>
+      </ul>
     <div class="app-footer__bottom">
       <div class="body-detail app-footer__bottom-text">
         <dl class="app-footer__definition-list">
@@ -188,27 +187,6 @@ export default {
     }
   },
   computed: {
-    certificateLinks() {
-      const {
-        bCorpLinks,
-        bcorpLogo,
-        dutchDigitalAgenciesLinks,
-        dutchDigitalAgenciesLogo
-      } = this.footer
-
-      return [
-        {
-          url: bCorpLinks[0].url,
-          title: bCorpLinks[0].title,
-          logo: bcorpLogo
-        },
-        {
-          url: dutchDigitalAgenciesLinks[0].url,
-          title: dutchDigitalAgenciesLinks[0].title,
-          logo: dutchDigitalAgenciesLogo
-        }
-      ]
-    },
     socialLinks() {
       return [
         { url: this.app.githubUrl, platform: 'GitHub', icon: 'github' },
@@ -219,7 +197,7 @@ export default {
     },
     cleanedPhoneNumber() {
       return this.app.phoneNumber.replace(/[^0-9]/g, '')
-    }
+    },
   },
   mounted () {
     if ('IntersectionObserver' in window) {
@@ -250,7 +228,7 @@ export default {
     unobserveContact () {
       this.observer.unobserve(this.$refs.contact)
     }
-  },
+  }
 }
 </script>
 
@@ -392,20 +370,31 @@ export default {
 
   .app-footer__certificate-list {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    border-bottom: 1px solid var(--black);
     gap: var(--spacing-small);
+    margin-bottom: var(--spacing-large);
+    padding-bottom: var(--spacing-large);
+    justify-content: space-between;
   }
 
   @media (min-width: 768px) {
     .app-footer__certificate-list {
-      justify-content: space-between;
-      margin-top: var(--spacing-tiny);
+      margin-bottom: var(--spacing-larger);
+      padding-bottom: var(--spacing-larger);
+      justify-content: space-evenly;
     }
   }
 
   .app-footer__certificate-logo {
     width: 100%;
     object-fit: contain;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
 
   .app-footer__list-address {
