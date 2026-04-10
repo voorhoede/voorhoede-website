@@ -116,6 +116,7 @@
             :key="certificate.link.url"
           >
             <a
+              v-if="certificate.link?.__typename === 'ExternalLinkRecord'"
               :href="certificate.link.url"
               target="_blank"
               rel="noreferrer noopener"
@@ -130,6 +131,19 @@
                 loading="lazy"
               />
             </a>
+            <app-link
+              v-else
+              :to="useDatoNuxtRoute(certificate.link.link)"
+            >
+                <dato-image
+                class="app-footer__certificate-logo"
+                :src="certificate.image.url"
+                :width="100"
+                :height="75"
+                :alt="certificate.image.alt"
+                loading="lazy"
+              />
+            </app-link>
         </li>
       </ul>
     <div class="app-footer__bottom">

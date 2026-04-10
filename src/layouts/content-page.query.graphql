@@ -84,6 +84,7 @@ fragment internalLink on InternalLinkRecord {
 }
 
 fragment externalLink on ExternalLinkRecord {
+    __typename
     id
     title
     url
