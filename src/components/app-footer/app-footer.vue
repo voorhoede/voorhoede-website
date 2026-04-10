@@ -376,14 +376,14 @@ export default {
     gap: var(--spacing-small);
     margin-bottom: var(--spacing-large);
     padding-bottom: var(--spacing-large);
-    justify-content: space-between;
+    justify-content: center;
   }
 
   @media (min-width: 768px) {
     .app-footer__certificate-list {
       margin-bottom: var(--spacing-larger);
       padding-bottom: var(--spacing-larger);
-      justify-content: space-evenly;
+      gap: var(--spacing-larger);
     }
   }
 
