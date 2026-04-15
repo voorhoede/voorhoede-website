@@ -5,15 +5,7 @@
     </h1>
     <div
       v-for="(section, index) in data.page.sections"
-      class="grid landing-page__section"
-      :class="{
-        'landing-page__section--background':
-          getSectionBackgroundColor(section) !== BackgroundColor.None,
-        'landing-page__section--pastel-background':
-          getSectionBackgroundColor(section) === BackgroundColor.PastelYellow,
-        'landing-page__section--grey-background':
-          getSectionBackgroundColor(section) === BackgroundColor.Grey,
-      }"
+      class="landing-page__section"
       :key="index"
     >
       <image-card-grid
@@ -61,6 +53,8 @@
       <grouping-block
         v-if="section.__typename === 'SectionGroupingRecord'"
         :items="section.items"
+        :theme="section.theme"
+        :accent-position="section.accentPosition"
       />
     </div>
     <section class="page-index__blog-posts grid">
@@ -101,7 +95,6 @@
 definePageMeta({ layout: "content-page" });
 
 import query from "./index.query.graphql?raw";
-import { BackgroundColor } from "~/types/styling";
 
 const route = useRoute();
 
@@ -112,26 +105,11 @@ const { data } = await useFetchContent({
   },
 });
 
-useSeoHead(data.value.page);
-
-function getSectionBackgroundColor(section) {
-  switch (section.__typename) {
-    case "SectionHeaderRecord":
-    case "SectionGroupingRecord": {
-      return BackgroundColor.PastelYellow;
-    }
-    case "SectionLogoGridRecord": {
-      return BackgroundColor.Grey;
-    }
-    default: {
-      return section.backgroundColor;
-    }
-  }
-}
+useSeoHead(data.value?.page);
 </script>
 
 <style>
-.landing-page__section + .landing-page__section {
+.landing-page__section + .landing-page__section:not(:has(.grouping-block)) {
   padding-top: var(--spacing-big);
 }
 

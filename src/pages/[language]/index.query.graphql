@@ -68,10 +68,13 @@ query HomePage($locale: SiteLocale!) {
       }
       ... on SectionGroupingRecord {
         layout
+        theme
+        accentPosition
         items {
           ... on GroupingItemRecord {
             title
             sections {
+              id
               __typename
               ... on SectionTextImageRecord {
                 text {
