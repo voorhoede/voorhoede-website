@@ -2,7 +2,7 @@
   <div class="component">
     <div :class="[`layout`, `layout--${props.layout}`]">
       <div class="layout__item">
-        <structured-text-block :content="props.text" />
+        <structured-text-block :content="props.text"/>
       </div>
       <div class="layout__item">
         <dato-image
@@ -10,6 +10,7 @@
           :alt="image.alt"
           :width="image.width"
           :height="image.height"
+          class="layout__item--image"
           loading="eager"
         />
       </div>
@@ -33,6 +34,15 @@ const props = defineProps<{
   container-name: component;
 }
 
+.layout--text-image,
+.layout--image-text {
+  gap: var(--spacing-big);
+}
+
+.layout__item--image{
+  width: 100%;
+}
+
 @container component (min-width: 760px) {
   .layout {
     display: flex;
@@ -47,6 +57,7 @@ const props = defineProps<{
   .layout__item {
     flex: 1;
     width: 50%;
+    color: var(--html-blue);
   }
 }
 </style>
