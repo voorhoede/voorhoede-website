@@ -3,12 +3,8 @@
     <div :class="['grouping-block-wrapper', `accent--${accentPosition}`]">
       <div v-for="section in item.sections" :key="section.id" class="grouping-block-item">
         <text-image-block
-          v-if="section.__typename === 'SectionTextImageRecord'"
-          class="grouping-block-item-content"
-          :text="section.text"
-          :layout="section.layout"
-          :image="section.image"
-        />
+v-if="section.__typename === 'SectionTextImageRecord'" class="grouping-block-item-content"
+          :text="section.text" :layout="section.layout" :image="section.image" />
       </div>
     </div>
   </div>
@@ -43,12 +39,16 @@ const {
 
 <style>
 .grouping-block {
-  padding: var(--spacing-big) 0;
+  padding-top: var(--spacing-big);
+  margin-bottom: var(--spacing-big);
   display: grid;
   row-gap: var(--spacing-larger);
   position: relative;
   overflow: hidden;
-
+  background-image: linear-gradient(var(--white), var(--white));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% var(--spacing-huge);
 }
 
 .grouping-block-wrapper {
@@ -65,7 +65,6 @@ const {
 .grouping-block-item-content {
   padding-inline: var(--spacing-larger);
   padding-block-end: var(--spacing-larger);
-
 }
 
 .background--gray {
