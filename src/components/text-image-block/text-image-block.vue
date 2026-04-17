@@ -2,7 +2,7 @@
   <div class="component">
     <div :class="[`layout`, `layout--${props.layout}`]">
       <div class="layout__item">
-        <structured-text-block :content="props.text"/>
+        <structured-text-block :content="props.text" :paragraph-variant="'body-big'"/>
       </div>
       <div class="layout__item">
         <dato-image
