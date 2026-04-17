@@ -1,20 +1,15 @@
 <template>
-  <div 
-  v-for="item in items" 
-  :key="item.id"
-  :class="[`grouping-block`, 
-    `grid`,
-    `background--${props.theme}`,
-    `accent--${props.accentPosition}`]"
->
-    <div v-for="section in item.sections" :key="section.id" class="grouping-item">
-      <text-image-block
-        v-if="section.__typename === 'SectionTextImageRecord'"
-        class=""
-        :text="section.text"
-        :layout="section.layout"
-        :image="section.image"
-      />
+  <div v-for="item in items" :key="item.id" :class="['grouping-block', 'grid', `background--${theme}`]">
+    <div :class="['grouping-block-wrapper', `accent--${accentPosition}`]">
+      <div v-for="section in item.sections" :key="section.id" class="grouping-block-item">
+        <text-image-block
+          v-if="section.__typename === 'SectionTextImageRecord'"
+          class="grouping-block-item-content"
+          :text="section.text"
+          :layout="section.layout"
+          :image="section.image"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -35,7 +30,11 @@ interface GroupItem {
   sections: Section[];
 }
 
-const props = defineProps<{
+const {
+  items,
+  theme = 'none',
+  accentPosition = 'none',
+} = defineProps<{
   items: GroupItem[];
   theme?: 'none' | 'gray' | 'yellow';
   accentPosition?: 'none' | 'left' | 'right';
@@ -49,24 +48,36 @@ const props = defineProps<{
   row-gap: var(--spacing-larger);
   position: relative;
   overflow: hidden;
+
+}
+
+.grouping-block-wrapper {
+  position: relative;
   --grouping-accent-color: var(--brand-yellow);
   --grouping-accent-width: max(50%, 440px);
 }
 
-.grouping-item {
+.grouping-block-item {
+  position: relative;
   z-index: 1;
 }
 
+.grouping-block-item-content {
+  padding-inline: var(--spacing-larger);
+  padding-block-end: var(--spacing-larger);
+
+}
+
 .background--gray {
-    background-color: var(--fog);
+  background-color: var(--fog);
 }
 
 .background--yellow {
   background-color: var(--bg-pastel);
 }
 
-.grouping-block.accent--left::before,
-.grouping-block.accent--right::before {
+.grouping-block-wrapper.accent--left::before,
+.grouping-block-wrapper.accent--right::before {
   background-color: var(--grouping-accent-color);
   bottom: 0;
   content: "";
@@ -76,27 +87,27 @@ const props = defineProps<{
   z-index: 0;
 }
 
-.grouping-block.accent--left::before {
+.grouping-block-wrapper.accent--left::before {
   left: 0;
 }
 
-.grouping-block.accent--right::before {
+.grouping-block-wrapper.accent--right::before {
   right: 0;
 }
 
 @media (max-width: 800px) {
-  .grouping-block {
+  .grouping-block-wrapper {
     --grouping-accent-width: 100%;
   }
 
-  .grouping-block.accent--left::before,
-  .grouping-block.accent--right::before {
+  .grouping-block-wrapper.accent--left::before,
+  .grouping-block-wrapper.accent--right::before {
     bottom: auto;
     left: 50%;
     right: auto;
     top: 60%;
     transform: translate(-50%, -50%);
-    width: var(--grouping-accent-width);;
+    width: var(--grouping-accent-width);
     height: clamp(50%, 60dvh, 100%);
   }
 }
