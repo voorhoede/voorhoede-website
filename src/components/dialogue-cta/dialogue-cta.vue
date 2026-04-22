@@ -32,7 +32,9 @@
             :label="cta.label"
             :to="cta.to"
             :external="cta.external"
-            small
+            :primary="cta.style === 'primary'"
+            :secondary="cta.style === 'secondary'"
+            :small="cta.style === 'primary'"
           />
         </div>
       </div>
@@ -95,6 +97,7 @@ export default {
 .dialogue-cta__body {
   margin-bottom: var(--spacing-small);
   max-width: 55ch;
+  color: var(--html-blue);
 }
 
 .dialogue-cta__body--quote {
@@ -116,7 +119,7 @@ export default {
 
 .dialogue-cta__ctas {
   display: inline-flex;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: wrap;
   gap: var(--spacing-small);
 }

@@ -42,6 +42,8 @@
 
 <style>
   .logo-grid {
+    --logo-grid-columns: 4;
+
     grid-column-end: var(--grid-page-end);
     grid-column-start: var(--grid-page-start);
   }
@@ -52,19 +54,24 @@
   }
 
   .logo-grid__list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-medium);
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(var(--logo-grid-columns), minmax(0, 1fr));
+    row-gap: var(--spacing-medium);
+    column-gap: var(--spacing-tiny);
   }
 
   .logo-grid__item {
-    flex-grow: 1;
+    width: auto;
   }
 
   .logo-grid__image {
     object-fit: contain;
-    margin: 0 auto;
+  }
+
+  @media (max-width: 600px) {
+    .logo-grid {
+      --logo-grid-columns: 2;
+    }
   }
 
   @media (min-width: 1100px) {
