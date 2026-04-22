@@ -37,7 +37,7 @@ const props = defineProps<{
 .layout {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-big);
+  gap: var(--spacing-small);
   align-items: center;
   justify-content: center;
 }
@@ -47,6 +47,9 @@ const props = defineProps<{
 }
 
 @container component (min-width: 760px) {
+  .layout {
+    gap: var(--spacing-big);
+  }
 
   .layout--text-image {
     flex-direction: row;
