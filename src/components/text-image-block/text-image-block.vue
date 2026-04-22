@@ -46,6 +46,10 @@ const props = defineProps<{
   width: 100%;
 }
 
+.layout__item {
+  color: var(--html-blue);
+}
+
 @container component (min-width: 760px) {
   .layout {
     gap: var(--spacing-big);
@@ -60,7 +64,6 @@ const props = defineProps<{
   .layout__item {
     flex: 1;
     width: 50%;
-    color: var(--html-blue);
   }
 }
 </style>
