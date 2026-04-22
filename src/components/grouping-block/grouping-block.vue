@@ -40,7 +40,6 @@ const {
 <style>
 .grouping-block {
   padding-top: var(--spacing-big);
-  margin-bottom: var(--spacing-big);
   display: grid;
   row-gap: var(--spacing-larger);
   position: relative;
@@ -63,7 +62,6 @@ const {
 }
 
 .grouping-block-item-content {
-  padding-inline: var(--spacing-larger);
   padding-block-end: var(--spacing-larger);
 }
 
@@ -92,6 +90,16 @@ const {
 
 .grouping-block-wrapper.accent--right::before {
   right: 0;
+}
+
+@media (min-width: 1400px) {
+.grouping-block-item-content {
+  margin-inline: var(--spacing-larger);
+}
+
+  .grouping-block-item-content {
+    grid-template-columns: none;
+  }
 }
 
 @media (max-width: 800px) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="component">
+  <div class="component grid">
     <div :class="[`layout`, `layout--${props.layout}`]">
       <div class="layout__item">
         <structured-text-block :content="props.text" :paragraph-variant="'body-big'"/>
@@ -34,9 +34,12 @@ const props = defineProps<{
   container-name: component;
 }
 
-.layout--text-image,
-.layout--image-text {
+.layout {
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--spacing-big);
+  align-items: center;
+  justify-content: center;
 }
 
 .layout__item--image{
@@ -44,10 +47,7 @@ const props = defineProps<{
 }
 
 @container component (min-width: 760px) {
-  .layout {
-    display: flex;
-    align-items: center;
-  }
+
   .layout--text-image {
     flex-direction: row;
   }

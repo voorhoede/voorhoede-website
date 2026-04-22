@@ -67,7 +67,6 @@ query HomePage($locale: SiteLocale!) {
         layout
       }
       ... on SectionGroupingRecord {
-        layout
         theme
         accentPosition
         items {
@@ -89,6 +88,24 @@ query HomePage($locale: SiteLocale!) {
           }
         }
       }
+    ... on SectionCaseListRecord {
+      id
+      title
+      columns
+      cases {
+        title
+        slug
+        caseTeaser {
+          title
+          image {
+            url
+            alt
+            width
+            height
+          }
+        }
+      }
+    }
     }
     pivots {
       title
@@ -146,6 +163,7 @@ fragment link on RecordInterface {
   ... on InternalLinkRecord {
     id
     title
+    style
     link {
       __typename
       ... on PageRecord {
@@ -184,5 +202,6 @@ fragment link on RecordInterface {
     id
     title
     url
+    style
   }
 }
