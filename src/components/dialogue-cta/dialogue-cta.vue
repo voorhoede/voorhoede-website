@@ -34,7 +34,6 @@
             :external="cta.external"
             :primary="cta.style === 'primary'"
             :secondary="cta.style === 'secondary'"
-            :small="cta.style === 'primary'"
           />
         </div>
       </div>
@@ -97,7 +96,6 @@ export default {
 .dialogue-cta__body {
   margin-bottom: var(--spacing-small);
   max-width: 55ch;
-  color: var(--html-blue);
 }
 
 .dialogue-cta__body--quote {
@@ -107,6 +105,16 @@ export default {
 
 .dialogue-cta__body--quote > p {
   display: inline;
+}
+
+.dialogue-cta__body > p > a {
+  background: transparent linear-gradient(to top, transparent 1px, var(--html-blue) 1px, var(--html-blue) 2px, transparent 2px);
+  color: var(--html-blue);
+  padding-bottom: .15rem;
+}
+
+.dialogue-cta__body > p > a:hover {
+  opacity: 0.8;
 }
 
 .dialogue-cta__body--quote::before {
