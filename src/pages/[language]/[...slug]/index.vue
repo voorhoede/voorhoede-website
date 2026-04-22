@@ -65,6 +65,7 @@
           label: cta.title,
           to: cta.url || cta.link,
           external: cta.__typename === 'ExternalLinkRecord',
+          style: cta.style,
         }))"
       />
       <structured-text-block
