@@ -1,5 +1,14 @@
 <template>
-  <div v-for="item in items" :key="item.id" :class="['grouping-block', 'grid', `background--${theme}`]">
+  <div
+    v-for="item in items"
+    :key="item.id"
+    :class="[
+      'grouping-block',
+      'grid',
+      `background--${theme}`,
+      { 'grouping-block--with-accent': accentPosition !== 'none' },
+    ]"
+  >
     <div :class="['grouping-block-wrapper', `accent--${accentPosition}`]">
       <div v-for="section in item.sections" :key="section.id" class="grouping-block-item">
         <text-image-block
@@ -12,6 +21,9 @@ v-if="section.__typename === 'SectionTextImageRecord'" class="grouping-block-ite
 
 <script setup lang="ts">
 import { type CdaStructuredTextValue } from "datocms-structured-text-utils";
+import { BackgroundColor } from "~/types/styling";
+
+type BackgroundColorValue = (typeof BackgroundColor)[keyof typeof BackgroundColor];
 
 interface Section {
   id: string;
@@ -28,11 +40,11 @@ interface GroupItem {
 
 const {
   items,
-  theme = 'none',
+  theme = BackgroundColor.None,
   accentPosition = 'none',
 } = defineProps<{
   items: GroupItem[];
-  theme?: 'none' | 'gray' | 'yellow';
+  theme?: BackgroundColorValue;
   accentPosition?: 'none' | 'left' | 'right';
 }>();
 </script>
@@ -44,6 +56,9 @@ const {
   row-gap: var(--spacing-larger);
   position: relative;
   overflow: hidden;
+}
+
+.grouping-block--with-accent {
   background-image: linear-gradient(var(--white), var(--white));
   background-position: 0 100%;
   background-repeat: no-repeat;
@@ -65,10 +80,12 @@ const {
   padding-block-end: var(--spacing-larger);
 }
 
+.background--grey,
 .background--gray {
   background-color: var(--fog);
 }
 
+.background--pastel-yellow,
 .background--yellow {
   background-color: var(--bg-pastel);
 }
