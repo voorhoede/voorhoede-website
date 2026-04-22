@@ -3,6 +3,7 @@
     <div class="app-footer__layout">
       <div class="app-footer__header">
         <app-link
+          class="app-footer__header-link"
           :to="$localeUrl()"
           :aria-label="$t('home')"
           :title="$t('home')"
@@ -267,6 +268,11 @@ export default {
     margin-bottom: var(--spacing-large);
   }
 
+  .app-footer__header-link {
+    padding: var(--spacing-small) 0;
+    display: flex;
+  }
+
   @media (min-width: 768px) {
     .app-footer__layout {
       flex-direction: row;
@@ -373,7 +379,7 @@ export default {
       flex-flow: column wrap;
       justify-content: flex-start;
       max-height: var(--footer-list-height);
-      gap: var(--spacing-small);
+      gap: var(--spacing-tiny);
       padding-bottom: 0;
     }
   }
@@ -428,6 +434,7 @@ export default {
 
   .app-footer__list-item {
     text-decoration: none;
+    display: flex
   }
 
   .app-footer__list-item--icon {
@@ -443,6 +450,7 @@ export default {
     position: relative;
     z-index: var(--z-index-low);
     text-decoration: none;
+    padding: 6px 0;
   }
 
   .app-footer__link:hover,
