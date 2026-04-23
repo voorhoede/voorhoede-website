@@ -1,24 +1,133 @@
-query HomePage($locale: SiteLocale!, $currentDate: DateTime) {
-  page: home(locale: $locale) {
-    ...homepage
-  }
-  upcomingEvents: allEventItems(
-    locale: $locale
-    first: 1
-    orderBy: date_ASC
-    filter: { date: { gte: $currentDate } }
-  ) {
-    date
-    social {
-      description
-    }
+query HomePage($locale: SiteLocale!) {
+  page: homePage(locale: $locale) {
     title
-    url
-    image {
-      url
-      alt
-      width
-      height
+    social: seo {
+      title
+      description
+      image {
+        ...image
+      }
+    }
+    sections {
+      __typename
+      ... on SectionImageCardGridRecord {
+        title
+        backgroundColor
+        cardOrientation
+        items {
+          id
+          title
+          body {
+            value
+          }
+          image {
+            ...image
+          }
+          links {
+            ...link
+          }
+        }
+      }
+      ... on SectionHeaderRecord {
+        layout
+        style
+        title
+        subtitle
+        illustration {
+          ...image
+        }
+      }
+      ... on SectionLogoGridRecord {
+        title
+        logos {
+          ...image
+        }
+      }
+      ... on SectionDialogueCtaRecord {
+        variant
+        title
+        body(markdown: true)
+        backgroundColor
+        person {
+          image {
+            ...image
+          }
+        }
+        ctas {
+          ...link
+        }
+      }
+      ... on SectionTextImageRecord {
+        text {
+          value
+        }
+        image {
+          ...image
+        }
+        layout
+      }
+      ... on SectionGroupingRecord {
+        theme
+        accentPosition
+        items {
+          ... on GroupingItemRecord {
+            title
+            sections {
+              id
+              __typename
+              ... on SectionTextImageRecord {
+                text {
+                  value
+                }
+                image {
+                  ...image
+                }
+                layout
+              }
+            }
+          }
+        }
+      }
+    ... on SectionCaseListRecord {
+      id
+      title
+      columns
+      cases {
+        title
+        slug
+        caseTeaser {
+          title
+          image {
+            url
+            alt
+            width
+            height
+          }
+        }
+      }
+    }
+    }
+    pivots {
+      title
+      body(markdown: true)
+      links {
+        ...link
+      }
+      mailchimpValue
+      mailchimpName
+      mailchimpId
+      formType
+      contactPerson {
+        name
+        lastName
+        jobTitle
+        image {
+          url
+          alt
+          width
+          height
+        }
+      }
     }
   }
   latestBlogposts: allBlogPosts(
@@ -42,113 +151,11 @@ query HomePage($locale: SiteLocale!, $currentDate: DateTime) {
   }
 }
 
-fragment homepage on HomeRecord {
-  title
-  social {
-    title
-    description
-    image {
-      url
-    }
-  }
-  headerTitle
-  subtitle
-  headerIllustration {
-    url
-    alt
-    width
-    height
-  }
-  pageIntroductionSections {
-    title
-    body
-    image {
-      url
-      alt
-      width
-      height
-    }
-  }
-  pageCtaSection {
-    title
-    body
-    linkLabel
-    linkUrl
-    linkIsExternal
-    secondaryLinkIsExternal
-    secondaryLinkLabel
-    secondaryLinkUrl
-    person {
-      name
-      image {
-        url
-        alt
-        width
-        height
-      }
-    }
-  }
-  casesTitle
-  cases {
-    slug
-    title
-    subtitle
-    caseTeaser {
-      image {
-        url
-        alt
-        width
-        height
-      }
-    }
-  }
-  servicesSections {
-    title
-    backgroundColor
-    cardOrientation
-    items {
-      id
-      title
-      body {
-        value
-      }
-      image {
-        ...image
-      }
-      links {
-        ...link
-      }
-    }
-  }
-  clientsTitle
-  academyIllustration {
-    url
-    alt
-    width
-    height
-  }
-  pivots {
-    title
-    body(markdown: true)
-    links {
-      ...link
-    }
-    mailchimpValue
-    mailchimpName
-    mailchimpId
-    formType
-    contactPerson {
-      name
-      lastName
-      jobTitle
-      image {
-        url
-        alt
-        width
-        height
-      }
-    }
-  }
+fragment image on FileField {
+  url
+  alt
+  width
+  height
 }
 
 fragment link on RecordInterface {
@@ -156,6 +163,7 @@ fragment link on RecordInterface {
   ... on InternalLinkRecord {
     id
     title
+    style
     link {
       __typename
       ... on PageRecord {
@@ -185,18 +193,15 @@ fragment link on RecordInterface {
           slug
         }
       }
+      ... on ContactRecord {
+        id
+      }
     }
   }
   ... on ExternalLinkRecord {
     id
     title
     url
+    style
   }
-}
-
-fragment image on FileField {
-  url
-  alt
-  width
-  height
 }

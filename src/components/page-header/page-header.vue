@@ -142,6 +142,7 @@
       var(--spacing-medium) /* 2 - 3, spacing */
       auto /* 3 - 4, text */
       var(--spacing-medium); /* 4 - 5, spacing */
+      position: relative;
   }
 
   .page-header--has-breakout-image {
@@ -222,7 +223,7 @@
 
   .page-header .scroll-to {
     position: absolute;
-    top: calc(100vh - var(--spacing-medium) - var(--scroll-to-height));
+    bottom: -32px;
     left: var(--grid-margin);
   }
 

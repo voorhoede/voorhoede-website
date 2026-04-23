@@ -164,8 +164,10 @@ fragment page on ServiceRecord {
         }
       }
     }
-    ... on CasesListRecord {
+    ... on SectionCaseListRecord {
       id
+      title
+      columns
       cases {
         title
         slug

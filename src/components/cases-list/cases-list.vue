@@ -1,4 +1,5 @@
 <template>
+  <h2 class="cases-list__title h1" v-if="title">{{ title }}</h2>
   <ul
     class="cases-list"
     :class="{'cases-list--three-columns': maxColumns >= 3}"
@@ -31,6 +32,10 @@
         validator: (value) => [2, 3].includes(value),
         default: 3,
       },
+      title: {
+        type: String,
+        default: '',
+      },
     },
   };
 </script>
@@ -41,6 +46,11 @@
     grid-template-columns: 1fr;
     row-gap: var(--spacing-medium);
     column-gap: var(--spacing-medium);
+  }
+
+  .cases-list__title {
+    margin-bottom: var(--spacing-larger);
+    text-align: center;
   }
 
   .cases-list .link-card {

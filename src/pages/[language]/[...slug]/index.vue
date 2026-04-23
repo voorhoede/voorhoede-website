@@ -65,6 +65,7 @@
           label: cta.title,
           to: cta.url || cta.link,
           external: cta.__typename === 'ExternalLinkRecord',
+          style: cta.style,
         }))"
       />
       <structured-text-block
@@ -168,13 +169,13 @@
 </script>
 
 <style>
-  .landing-page__section + .landing-page__section {
-    padding-top: var(--spacing-big);
+  .landing-page__section + .landing-page__section:not(:has(.grouping-block)) {
+    padding-top: var(--spacing-huge);
   }
 
   .landing-page__section--background,
   .landing-page__section:last-child {
-    padding-bottom: var(--spacing-big);
+    padding-bottom: var(--spacing-huge);
   }
 
   .landing-page__section--pastel-background {
