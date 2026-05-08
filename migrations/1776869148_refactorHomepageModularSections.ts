@@ -496,14 +496,14 @@ export default async function (client: Client) {
   await client.fields.update("HP_aymPXS4CKD3MArOfQ3g", { position: 2 });
 
   console.log(
-    'Update Asset gallery field "Logos" (`logos`) in block model "\uD83C\uDFF7\uFE0F Section Logo Grid" (`section_logo_grid`)',
+    'Update Asset gallery field "Logos" (`logos`) in block model "Section Logo Grid" (`section_logo_grid`)',
   );
   await client.fields.update("10482071", {
     validators: { extension: { extensions: [], predefined_list: "image" } },
   });
 
   console.log(
-    'Update Multiple-paragraph text field "Body" (`body`) in block model "\uD83E\uDDD1\u200D\uD83E\uDDD2\u200D\uD83E\uDDD2 Section Dialogue CTA" (`section_dialogue_cta`)',
+    'Update Multiple-paragraph text field "Body" (`body`) in block model "Section Dialogue CTA" (`section_dialogue_cta`)',
   );
   await client.fields.update("10483193", {
     appearance: {
@@ -555,17 +555,17 @@ export default async function (client: Client) {
   await client.itemTypes.update("2035421", { name: "\uD83D\uDCD1 Page" });
 
   console.log(
-    'Update block model "\uD83C\uDFF7\uFE0F Section Logo Grid" (`section_logo_grid`)',
+    'Update block model "Section Logo Grid" (`section_logo_grid`)',
   );
   await client.itemTypes.update("2040174", {
-    name: "\uD83C\uDFF7\uFE0F Section Logo Grid",
+    name: "Section Logo Grid",
   });
 
   console.log(
-    'Update block model "\uD83E\uDDD1\u200D\uD83E\uDDD2\u200D\uD83E\uDDD2 Section Dialogue CTA" (`section_dialogue_cta`)',
+    'Update block model "Section Dialogue CTA" (`section_dialogue_cta`)',
   );
   await client.itemTypes.update("2040362", {
-    name: "\uD83E\uDDD1\u200D\uD83E\uDDD2\u200D\uD83E\uDDD2 Section Dialogue CTA",
+    name: "Section Dialogue CTA",
   });
 
   console.log(
