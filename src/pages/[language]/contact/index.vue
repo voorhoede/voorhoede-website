@@ -59,6 +59,7 @@
             :title="location.title"
             :body="`${location.address} - ${location.postalCode} ${location.city}`"
             :external-link="location.googleMaps"
+            sizes="(min-width: 1200px) 600px, (min-width: 720px) 50vw, 100vw"
             class="page-contact__location-card"
           />
         </li>

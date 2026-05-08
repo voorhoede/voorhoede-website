@@ -17,10 +17,7 @@
         :background-color="BackgroundColor.PastelYellow"
       />
 
-      <div
-        v-if="data.page.contactBody"
-        class="page-cases__contact"
-      >
+      <div v-if="data.page.contactBody" class="page-cases__contact">
         <p class="pullquote">
           {{ data.page.contactBody }}
         </p>
@@ -34,16 +31,13 @@
 
     <section class="grid page-cases__overview">
       <h2 class="h2 page-cases__overview-title">
-        {{ $t('all_cases') }}
+        {{ $t("all_cases") }}
       </h2>
-      <cases-list :cases="data.page.projects" />
+      <cases-list :cases="data.page.projects" :max-columns="3" />
     </section>
 
     <section class="page-cases__cta grid">
-      <cta-block
-        v-if="ctaSectionTop"
-        :item="ctaSectionTop"
-      />
+      <cta-block v-if="ctaSectionTop" :item="ctaSectionTop" />
     </section>
 
     <highlighted-clients
@@ -61,136 +55,135 @@
 </template>
 
 <script setup>
-  definePageMeta({ layout: 'content-page' });
+definePageMeta({ layout: "content-page" });
 
-  import { BackgroundColor } from '~/types/index.d';
-  import query from './index.query.graphql?raw';
+import { BackgroundColor } from "~/types/index.d";
+import query from "./index.query.graphql?raw";
 
-  const { params } = useRoute();
+const { params } = useRoute();
 
-  const { data } = await useFetchContent({
-    query,
-    variables: {
-      locale: params.language,
-    },
-  });
+const { data } = await useFetchContent({
+  query,
+  variables: {
+    locale: params.language,
+  },
+});
 
-  useSeoHead(data.value.page);
+useSeoHead(data.value.page);
 
-  const ctaSectionTop = computed(() => data.value?.page.pageCtaSection[0]);
+const ctaSectionTop = computed(() => data.value?.page.pageCtaSection[0]);
 </script>
 
 <style>
-  .page-cases__top {
-    padding-bottom: var(--spacing-large);
-    background-color: var(--bg-pastel);
-  }
+.page-cases__top {
+  padding-bottom: var(--spacing-large);
+  background-color: var(--bg-pastel);
+}
 
-  .page-cases__top > *:not(:last-child) {
-    margin-bottom: var(--spacing-large);
-  }
+.page-cases__top > *:not(:last-child) {
+  margin-bottom: var(--spacing-large);
+}
 
+.page-cases__intro {
+  grid-column: var(--grid-page);
+}
+
+.page-cases__contact {
+  grid-column: var(--grid-content);
+  padding-right: var(--spacing-medium);
+  padding-left: var(--spacing-medium);
+  text-align: center;
+}
+
+.page-cases__contact > * + * {
+  margin-top: var(--spacing-small);
+}
+
+.page-cases__pivots .newsletter-form {
+  background-color: var(--bg-pastel);
+}
+
+.page-cases__overview {
+  margin-bottom: var(--spacing-larger);
+  background-image: linear-gradient(var(--bg-pastel), var(--bg-pastel));
+  background-size: 100% 150px;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+}
+
+.page-cases__overview-title {
+  margin-bottom: var(--spacing-small);
+  text-align: center;
+}
+
+.page-cases__cta {
+  margin-bottom: var(--spacing-medium);
+}
+
+@media (min-width: 400px) {
+  .page-cases__overview {
+    background-size: 100% 200px;
+  }
+}
+
+@media (min-width: 720px) {
   .page-cases__intro {
-    grid-column: var(--grid-page);
-  }
-
-  .page-cases__contact {
     grid-column: var(--grid-content);
-    padding-right: var(--spacing-medium);
-    padding-left: var(--spacing-medium);
-    text-align: center;
-  }
-
-  .page-cases__contact > * + * {
-    margin-top: var(--spacing-small);
-  }
-
-  .page-cases__pivots .newsletter-form {
-    background-color: var(--bg-pastel);
   }
 
   .page-cases__overview {
-    margin-bottom: var(--spacing-larger);
-    background-image: linear-gradient(var(--bg-pastel), var(--bg-pastel));
-    background-size: 100% 150px;
-    background-repeat: no-repeat;
-    background-position: 50% 0;
+    margin-bottom: var(--spacing-bigger);
   }
 
-  .page-cases__overview-title {
-    margin-bottom: var(--spacing-small);
-    text-align: center;
+  .page-cases__highlighted-clients.highlighted-clients {
+    margin-bottom: var(--spacing-large);
+  }
+
+  .page-cases__contact {
+    padding-left: var(--spacing-larger);
+    text-align: left;
+  }
+
+  .page-cases__contact > p {
+    max-width: 500px;
   }
 
   .page-cases__cta {
-    margin-bottom: var(--spacing-medium);
+    margin-bottom: var(--spacing-big);
+  }
+}
+
+@media (min-width: 1000px) {
+  .page-cases__top {
+    padding-bottom: var(--spacing-big);
   }
 
-  @media (min-width: 400px) {
-    .page-cases__overview {
-      background-size: 100% 200px;
-    }
+  .page-cases__top > *:not(:last-child) {
+    margin-bottom: var(--spacing-big);
   }
 
-  @media (min-width: 720px) {
-    .page-cases__intro {
-      grid-column: var(--grid-content);
-    }
-
-    .page-cases__overview {
-      margin-bottom: var(--spacing-bigger);
-    }
-
-    .page-cases__highlighted-clients.highlighted-clients {
-      margin-bottom: var(--spacing-large);
-    }
-
-    .page-cases__contact {
-      padding-left: var(--spacing-larger);
-      text-align: left;
-    }
-
-    .page-cases__contact > p {
-      max-width: 500px;
-    }
-
-    .page-cases__cta {
-      margin-bottom: var(--spacing-big);
-    }
+  .page-cases__overview {
+    background-size: 100% 250px;
   }
 
-  @media (min-width: 1000px) {
-    .page-cases__top {
-      padding-bottom: var(--spacing-big);
-    }
+  .page-cases__overview-title {
+    margin-bottom: var(--spacing-larger);
+  }
+}
 
-    .page-cases__top > *:not(:last-child) {
-      margin-bottom: var(--spacing-big);
-    }
-
-    .page-cases__overview {
-      background-size: 100% 250px;
-    }
-
-    .page-cases__overview-title {
-      margin-bottom: var(--spacing-larger);
-    }
+@media (min-width: 1100px) {
+  .page-cases__overview {
+    margin-bottom: var(--spacing-huge);
   }
 
-  @media (min-width: 1100px) {
-    .page-cases__overview {
-      margin-bottom: var(--spacing-huge);
-    }
-
-    .page-cases__highlighted-clients.highlighted-clients {
-      margin-bottom: var(--spacing-larger);
-    }
+  .page-cases__highlighted-clients.highlighted-clients {
+    margin-bottom: var(--spacing-larger);
   }
+}
 
-  @media (min-width: 1200px) {
-    .page-cases__overview {
-      background-size: 100% 300px;
-    }
+@media (min-width: 1200px) {
+  .page-cases__overview {
+    background-size: 100% 300px;
   }
+}
 </style>
-

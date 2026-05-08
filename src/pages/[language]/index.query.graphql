@@ -73,9 +73,9 @@ query HomePage($locale: SiteLocale!) {
           ... on GroupingItemRecord {
             title
             sections {
-              id
               __typename
               ... on SectionTextImageRecord {
+                id
                 text {
                   value
                 }
@@ -84,28 +84,34 @@ query HomePage($locale: SiteLocale!) {
                 }
                 layout
               }
+              ... on SectionLogoGridRecord {
+                title
+                logos {
+                  ...image
+                }
+              }
             }
           }
         }
       }
-    ... on SectionCaseListRecord {
-      id
-      title
-      columns
-      cases {
+      ... on SectionCaseListRecord {
+        id
         title
-        slug
-        caseTeaser {
+        columns
+        cases {
           title
-          image {
-            url
-            alt
-            width
-            height
+          slug
+          caseTeaser {
+            title
+            image {
+              url
+              alt
+              width
+              height
+            }
           }
         }
       }
-    }
     }
     pivots {
       title

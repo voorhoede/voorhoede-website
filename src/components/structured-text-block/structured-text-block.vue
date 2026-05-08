@@ -68,7 +68,7 @@
       })
       return h(`h${node.level}`, {
         key,
-        class: `h${node.level} structured-text__title`,
+        class: `h${node.level + 1} structured-text__title`,
         id: slug
       }, children)
     }),

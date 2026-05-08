@@ -315,7 +315,7 @@ export default async function (client: Client) {
     hint: "Section background color",
     validators: {
       required: {},
-      enum: { values: ["none", "pastel-yellow", "gray"] },
+      enum: { values: ["none", "pastel-yellow", "grey"] },
     },
     appearance: {
       addons: [],
@@ -323,7 +323,7 @@ export default async function (client: Client) {
       parameters: {
         options: [
           { hint: "", label: "None", value: "none" },
-          { hint: "", label: "Gray", value: "gray" },
+          { hint: "", label: "Grey", value: "grey" },
           { hint: "", label: "Yellow", value: "pastel-yellow" },
         ],
       },
@@ -554,9 +554,7 @@ export default async function (client: Client) {
   console.log('Update model "\uD83D\uDCD1 Page" (`page`)');
   await client.itemTypes.update("2035421", { name: "\uD83D\uDCD1 Page" });
 
-  console.log(
-    'Update block model "Section Logo Grid" (`section_logo_grid`)',
-  );
+  console.log('Update block model "Section Logo Grid" (`section_logo_grid`)');
   await client.itemTypes.update("2040174", {
     name: "Section Logo Grid",
   });

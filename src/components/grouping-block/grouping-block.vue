@@ -1,36 +1,44 @@
 <template>
   <div
-    v-for="item in items"
+    v-for="item in props.items"
     :key="item.id"
     :class="[
       'grouping-block',
       'grid',
-      `background--${theme}`,
-      { 'grouping-block--with-accent': accentPosition !== 'none' },
+      `background--${props.theme}`,
+      { 'grouping-block--with-accent': props.accentPosition !== 'none' },
     ]"
   >
-    <div :class="['grouping-block-wrapper', `accent--${accentPosition}`]">
-      <div v-for="section in item.sections" :key="section.id" class="grouping-block-item">
+    <div :class="['grouping-block-wrapper', `accent--${props.accentPosition}`]">
+      <div
+        v-for="section in item.sections"
+        :key="section.id"
+        class="grouping-block-item"
+      >
         <text-image-block
-v-if="section.__typename === 'SectionTextImageRecord'" class="grouping-block-item-content"
-          :text="section.text" :layout="section.layout" :image="section.image" />
+          v-if="section.__typename === 'SectionTextImageRecord'"
+          class="grouping-block-item-content"
+          :text="section.text"
+          :layout="section.layout"
+          :image="section.image"
+        />
+        <logo-grid
+          v-if="section.__typename === 'SectionLogoGridRecord'"
+          :title="section.title"
+          :logos="section.logos"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { type CdaStructuredTextValue } from "datocms-structured-text-utils";
-import { BackgroundColor } from "~/types/styling";
-
-type BackgroundColorValue = (typeof BackgroundColor)[keyof typeof BackgroundColor];
+import { BackgroundColor, type BackgroundColorValue } from "~/types/styling";
 
 interface Section {
   id: string;
   __typename: string;
-  text: CdaStructuredTextValue;
-  layout: "text-image" | "image-text";
-  image: object;
+  [key: string]: any;
 }
 
 interface GroupItem {
@@ -38,24 +46,26 @@ interface GroupItem {
   sections: Section[];
 }
 
-const {
-  items,
-  theme = BackgroundColor.None,
-  accentPosition = 'none',
-} = defineProps<{
-  items: GroupItem[];
-  theme?: BackgroundColorValue;
-  accentPosition?: 'none' | 'left' | 'right';
-}>();
+const props = withDefaults(
+  defineProps<{
+    items: GroupItem[];
+    theme?: BackgroundColorValue;
+    accentPosition?: "none" | "left" | "right";
+  }>(),
+  {
+    theme: BackgroundColor.None,
+    accentPosition: "none",
+  },
+);
 </script>
 
 <style scoped>
 .grouping-block {
-  padding-top: var(--spacing-big);
   display: grid;
   row-gap: var(--spacing-larger);
   position: relative;
   overflow: hidden;
+  padding-top: var(--spacing-big);
 }
 
 .grouping-block--with-accent {
@@ -79,9 +89,12 @@ const {
 .grouping-block-item-content {
   padding-block-end: var(--spacing-larger);
 }
+.background--grey {
+  margin-top: var(--spacing-huge);
+  padding-block-end: var(--spacing-medium);
+}
 
-.background--grey,
-.background--gray {
+.background--grey {
   background-color: var(--fog);
 }
 
