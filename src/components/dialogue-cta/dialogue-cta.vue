@@ -1,6 +1,5 @@
 <template>
-  <section class="grid" v-once>
-    <div class="dialogue-cta">
+  <section class="grid dialogue-cta" v-once>
       <div class="dialogue-cta__image">
         <dato-image
           :src="person.image.url"
@@ -37,7 +36,6 @@
           />
         </div>
       </div>
-    </div>
   </section>
 </template>
 

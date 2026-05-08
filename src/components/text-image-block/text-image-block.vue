@@ -1,5 +1,5 @@
 <template>
-  <div class="component grid">
+  <div class="grid">
     <div :class="[`layout`, `layout--${props.layout}`]">
       <div class="layout__item">
         <structured-text-block :content="props.text" :paragraph-variant="'body-big'"/>
@@ -29,15 +29,10 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-.component {
-  container-type: inline-size;
-  container-name: component;
-}
-
 .layout {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-small);
+  gap: var(--spacing-medium);
   align-items: center;
   justify-content: center;
 }
@@ -50,7 +45,7 @@ const props = defineProps<{
   color: var(--html-blue);
 }
 
-@container component (min-width: 760px) {
+@media (min-width: 800px) {
   .layout {
     gap: var(--spacing-big);
   }

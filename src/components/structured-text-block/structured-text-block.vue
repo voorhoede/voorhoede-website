@@ -268,15 +268,15 @@
   }
 
   .structured-text > *:not(:last-child) {
-    margin-bottom: var(--spacing-medium);
+    margin-bottom: var(--spacing-small);
   }
 
   .structured-text__title:not(:last-child) {
-    margin-bottom: var(--spacing-medium);
+    margin-bottom: var(--spacing-small);
   }
 
   .structured-text p:not(:last-child) {
-    margin-bottom: var(--spacing-medium);
+    margin-bottom: var(--spacing-small);
   }
 
   .structured-text p a {

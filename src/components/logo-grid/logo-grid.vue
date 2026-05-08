@@ -42,7 +42,7 @@
 
 <style>
   .logo-grid {
-    --logo-grid-columns: 4;
+    --logo-grid-columns: 2;
 
     grid-column-end: var(--grid-page-end);
     grid-column-start: var(--grid-page-start);
@@ -68,9 +68,9 @@
     object-fit: contain;
   }
 
-  @media (max-width: 600px) {
+  @media (min-width: 600px) {
     .logo-grid {
-      --logo-grid-columns: 2;
+      --logo-grid-columns: 4;
     }
   }
 
