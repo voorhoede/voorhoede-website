@@ -49,7 +49,7 @@ const {
 }>();
 </script>
 
-<style>
+<style scoped>
 .grouping-block {
   padding-top: var(--spacing-big);
   display: grid;

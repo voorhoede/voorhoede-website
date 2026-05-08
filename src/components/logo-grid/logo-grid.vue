@@ -40,7 +40,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .logo-grid {
     --logo-grid-columns: 2;
 
