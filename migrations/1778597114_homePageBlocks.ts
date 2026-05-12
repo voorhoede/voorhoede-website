@@ -1,4 +1,4 @@
-import type { Client } from "@datocms/cli/lib/cma-client-node";
+import { Client, SimpleSchemaTypes } from "@datocms/cli/lib/cma-client-node";
 
 export default async function (client: Client) {
   console.log("Create new models/block models");
@@ -107,7 +107,7 @@ export default async function (client: Client) {
     field_type: "rich_text",
     api_key: "sections",
     validators: {
-      rich_text_blocks: { item_types: ["CL2tcnR9TimpzQxNR2RKCg"] },
+      rich_text_blocks: { item_types: ["2040174", "CL2tcnR9TimpzQxNR2RKCg"] },
       size: { min: 1 },
     },
     appearance: {
@@ -485,6 +485,15 @@ export default async function (client: Client) {
     default_value: 3,
   });
 
+  console.log("Destroy fields in existing models/block models");
+
+  console.log("Update existing fields/fieldsets");
+
+  console.log(
+    'Update Single-line string field "Copyright link" (`copyright_link`) in model "Footer" (`footer`)',
+  );
+  await client.fields.update("181847", { position: 6 });
+
   console.log(
     'Update Single-line string field "layout" (`layout`) in block model "Section Header" (`section_header`)',
   );
@@ -496,14 +505,14 @@ export default async function (client: Client) {
   await client.fields.update("HP_aymPXS4CKD3MArOfQ3g", { position: 2 });
 
   console.log(
-    'Update Asset gallery field "Logos" (`logos`) in block model "Section Logo Grid" (`section_logo_grid`)',
+    'Update Asset gallery field "Logos" (`logos`) in block model "\uD83C\uDFF7\uFE0F Section Logo Grid" (`section_logo_grid`)',
   );
   await client.fields.update("10482071", {
     validators: { extension: { extensions: [], predefined_list: "image" } },
   });
 
   console.log(
-    'Update Multiple-paragraph text field "Body" (`body`) in block model "Section Dialogue CTA" (`section_dialogue_cta`)',
+    'Update Multiple-paragraph text field "Body" (`body`) in block model "\uD83E\uDDD1\u200D\uD83E\uDDD2\u200D\uD83E\uDDD2 Section Dialogue CTA" (`section_dialogue_cta`)',
   );
   await client.fields.update("10483193", {
     appearance: {
@@ -527,6 +536,8 @@ export default async function (client: Client) {
     'Update Multiple links field "Cases" (`cases`) in block model "\uD83D\uDCBC Section Case List" (`section_case_list`)',
   );
   await client.fields.update("13026206", { position: 2 });
+
+  console.log("Destroy models/block models");
 
   console.log("Finalize models/block models");
 
@@ -554,16 +565,18 @@ export default async function (client: Client) {
   console.log('Update model "\uD83D\uDCD1 Page" (`page`)');
   await client.itemTypes.update("2035421", { name: "\uD83D\uDCD1 Page" });
 
-  console.log('Update block model "Section Logo Grid" (`section_logo_grid`)');
+  console.log(
+    'Update block model "\uD83C\uDFF7\uFE0F Section Logo Grid" (`section_logo_grid`)',
+  );
   await client.itemTypes.update("2040174", {
-    name: "Section Logo Grid",
+    name: "\uD83C\uDFF7\uFE0F Section Logo Grid",
   });
 
   console.log(
-    'Update block model "Section Dialogue CTA" (`section_dialogue_cta`)',
+    'Update block model "\uD83E\uDDD1\u200D\uD83E\uDDD2\u200D\uD83E\uDDD2 Section Dialogue CTA" (`section_dialogue_cta`)',
   );
   await client.itemTypes.update("2040362", {
-    name: "Section Dialogue CTA",
+    name: "\uD83E\uDDD1\u200D\uD83E\uDDD2\u200D\uD83E\uDDD2 Section Dialogue CTA",
   });
 
   console.log(
@@ -615,6 +628,18 @@ export default async function (client: Client) {
   );
   await client.schemaMenuItems.update("DSeGziuYRt-wnoOnR6Dqfg", {
     position: 94,
+  });
+
+  console.log(
+    'Update block schema menu item for block model "Section Video" (`section_video`)',
+  );
+  await client.schemaMenuItems.update("by5IJkHxSoaaQ0JAR7IXWg", {
+    position: 92,
+  });
+
+  console.log('Update model schema menu item for model "Tag" (`tag`)');
+  await client.schemaMenuItems.update("btkIhgW0S6OODEExy7dzMw", {
+    position: 91,
   });
 
   console.log(

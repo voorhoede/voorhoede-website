@@ -8,7 +8,7 @@
         <dato-image
           class="logo-grid__image"
           :src="logo.url"
-          :alt="logo.alt"
+          :alt="logo.alt || ''"
           :width="280"
           :height="80"
           loading="lazy"
