@@ -1,5 +1,5 @@
 query Page($locale: SiteLocale, $slug: String) {
-  page: page(locale: $locale, filter: {slug: {eq: $slug}}) {
+  page: page(locale: $locale, filter: { slug: { eq: $slug } }) {
     title
     slug
     social {
@@ -301,6 +301,7 @@ fragment link on RecordInterface {
   ... on InternalLinkRecord {
     id
     title
+    style
     link {
       __typename
       ... on PageRecord {
@@ -333,13 +334,13 @@ fragment link on RecordInterface {
       ... on ContactRecord {
         id
       }
-
     }
   }
   ... on ExternalLinkRecord {
     id
     title
     url
+    style
   }
 }
 

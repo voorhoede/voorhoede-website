@@ -142,6 +142,7 @@
       var(--spacing-medium) /* 2 - 3, spacing */
       auto /* 3 - 4, text */
       var(--spacing-medium); /* 4 - 5, spacing */
+      position: relative;
   }
 
   .page-header--has-breakout-image {
@@ -221,9 +222,7 @@
   }
 
   .page-header .scroll-to {
-    position: absolute;
-    top: calc(100vh - var(--spacing-medium) - var(--scroll-to-height));
-    left: var(--grid-margin);
+    display: none;
   }
 
   @media (min-width: 520px) {
@@ -251,6 +250,13 @@
   }
 
   @media (min-width: 720px) {
+    .page-header .scroll-to {
+      display: block;
+      position: absolute;
+      bottom: var(--spacing-medium);
+      left: 0;
+    }
+
     .page-header--fill-screen {
       position: relative;
       overflow: hidden;
@@ -287,12 +293,6 @@
       margin: calc(-1 * var(--spacing-medium)) 0;
       background-position: right center;
       background-size: contain;
-    }
-
-    .page-header--fill-screen .scroll-to {
-      left: 0;
-      top: auto;
-      bottom: var(--spacing-medium);
     }
 
     .page-header__text {

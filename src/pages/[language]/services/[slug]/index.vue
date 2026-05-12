@@ -55,11 +55,11 @@
           :item="item"
         />
         <cases-list
-          v-if="item.__typename === 'CasesListRecord'"
+          v-if="item.__typename === 'SectionCaseListRecord'"
           :key="item.id"
           :id="item.id"
           :cases="item.cases"
-          :max-columns="2"
+          :max-columns="item.columns"
         />
       </template>
     </article>

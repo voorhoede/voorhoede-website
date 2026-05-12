@@ -1,2 +1,2 @@
-export const datocmsEnvironment = 'footer-logo-block';
-export const mastodonUrl = 'https://fosstodon.org/@devoorhoede';
+export const datocmsEnvironment = "home-page-deploy";
+export const mastodonUrl = "https://fosstodon.org/@devoorhoede";

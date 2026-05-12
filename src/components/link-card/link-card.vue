@@ -7,7 +7,7 @@
       :width="image.width"
       :height="image.height"
       loading="lazy"
-      sizes="(min-width: 1300px) 420px, (min-width: 800px) 33vw, (min-width: 400px) 60vw, 90vw"
+      :sizes="sizes"
     />
     <div class="link-card__caption">
       <app-link
@@ -59,6 +59,10 @@
       externalLink: {
         type: String,
         default: null
+      },
+      sizes: {
+        type: String,
+        required: true
       }
     },
   }
