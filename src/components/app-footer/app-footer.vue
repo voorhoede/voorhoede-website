@@ -16,10 +16,7 @@
           >
         </app-link>
       </div>
-      <nav
-        class="app-footer__column"
-        aria-label="Explore"
-      >
+      <nav class="app-footer__column" aria-label="Explore">
         <ul class="app-footer__list">
           <li
             v-for="link in footer.links"
@@ -36,35 +33,34 @@
         </ul>
       </nav>
 
-
       <nav>
         <h2 class="h4 app-footer__title">
-          {{ $t('say_hello') }}
+          {{ $t("say_hello") }}
         </h2>
         <ul class="body-small app-footer__list app-footer__list--contact">
           <li class="app-footer__list-item">
             <a
-              :href="`tel:${ cleanedPhoneNumber }`"
+              :href="`tel:${cleanedPhoneNumber}`"
               class="app-footer__link"
               @click="trackPhoneLink()"
-            >{{ app.phoneNumber }}</a>
+              >{{ app.phoneNumber }}</a
+            >
           </li>
           <li class="app-footer__list-item">
             <a
-              :href="`mailto:${ app.emailAddress }`"
+              :href="`mailto:${app.emailAddress}`"
               class="app-footer__link"
               @click="trackEmailLink()"
-            >{{ app.emailAddress }}</a>
+            >
+              {{ app.emailAddress }}
+            </a>
           </li>
         </ul>
       </nav>
 
-      <nav
-        class="app-footer__list-address"
-        ref="contact"
-      >
+      <nav class="app-footer__list-address" ref="contact">
         <h2 class="h4 app-footer__title">
-          {{ $t('visit_us') }}
+          {{ $t("visit_us") }}
         </h2>
         <ul class="body-small app-footer__list">
           <li
@@ -92,75 +88,65 @@
             :key="socialLink.url"
             class="app-footer__list-item--icon"
           >
-            <a
-              :href="socialLink.url"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
+            <a :href="socialLink.url" target="_blank" rel="noreferrer noopener">
               <span class="sr-only">
                 {{ socialLink.platform }}
               </span>
-              <app-icon
-                :name="socialLink.icon"
-                size="large"
-              />
+              <app-icon :name="socialLink.icon" size="large" />
             </a>
           </li>
         </ul>
       </div>
     </div>
     <!-- CERTIFICATES GRID -->
-      <ul v-if="footer.certificatesGrid?.length" class="app-footer__certificate-list">
-        <li
-            v-for="certificate in footer.certificatesGrid"
-            :key="certificate.link.url"
-          >
-            <a
-              v-if="certificate.link?.__typename === 'ExternalLinkRecord'"
-              :href="certificate.link.url"
-              target="_blank"
-              rel="noreferrer noopener"
-              :aria-label="certificate.link.title"
-            >
-              <dato-image
-                class="app-footer__certificate-logo"
-                :src="certificate.image.url"
-                :width="100"
-                :height="75"
-                :alt="certificate.image.alt"
-                loading="lazy"
-              />
-            </a>
-            <app-link
-              v-else
-              :to="useDatoNuxtRoute(certificate.link.link)"
-            >
-                <dato-image
-                class="app-footer__certificate-logo"
-                :src="certificate.image.url"
-                :width="100"
-                :height="75"
-                :alt="certificate.image.alt"
-                loading="lazy"
-              />
-            </app-link>
-        </li>
-      </ul>
+    <ul
+      v-if="footer.certificatesGrid?.length"
+      class="app-footer__certificate-list"
+    >
+      <li
+        v-for="certificate in footer.certificatesGrid"
+        :key="certificate.link.url"
+      >
+        <a
+          v-if="certificate.link?.__typename === 'ExternalLinkRecord'"
+          :href="certificate.link.url"
+          target="_blank"
+          rel="noreferrer noopener"
+          :aria-label="certificate.link.title"
+        >
+          <dato-image
+            class="app-footer__certificate-logo"
+            :src="certificate.image.url"
+            :width="100"
+            :height="75"
+            alt=""
+            loading="lazy"
+          />
+        </a>
+        <app-link
+          v-else
+          :to="useDatoNuxtRoute(certificate.link.link)"
+          :aria-label="certificate.link.title"
+        >
+          <dato-image
+            class="app-footer__certificate-logo"
+            :src="certificate.image.url"
+            :width="100"
+            :height="75"
+            alt=""
+            loading="lazy"
+          />
+        </app-link>
+      </li>
+    </ul>
     <div class="app-footer__bottom">
       <div class="body-detail app-footer__bottom-text">
         <dl class="app-footer__definition-list">
-          <template
-            v-for="{ title, value } in app.legal"
-            :key="title"
-          >
-            <dt
-              class="app-footer__definition-list-title"
-            >
+          <template v-for="{ title, value } in app.legal" :key="title">
+            <dt class="app-footer__definition-list-title">
               {{ title }}
             </dt>
-            <dd
-              class="app-footer__definition-list-value"
-            >
+            <dd class="app-footer__definition-list-value">
               {{ value }}
             </dd>
           </template>
@@ -173,7 +159,8 @@
           :aria-label="footer.copyrightTitle"
           target="_blank"
           rel="noreferrer noopener"
-        >{{ footer.copyrightLabel }}</a>
+          >{{ footer.copyrightLabel }}</a
+        >
         <span> - </span>
         <a
           :href="footer.privacyLink"
@@ -181,297 +168,303 @@
           :aria-label="footer.privacyTitle"
           target="_blank"
           rel="noreferrer noopener"
-        >{{ footer.privacyLabel }}</a>
+        >
+          {{ footer.privacyLabel }}
+        </a>
       </div>
     </div>
   </footer>
 </template>
 
 <script>
-import { mastodonUrl } from '../../constants.mjs';
+import { mastodonUrl } from "../../constants.mjs";
 
 export default {
   props: {
     app: { type: Object, required: true },
     footer: { type: Object, required: true },
   },
-  data () {
+  data() {
     return {
-      observer: null
-    }
+      observer: null,
+    };
   },
   computed: {
     socialLinks() {
       return [
-        { url: this.app.githubUrl, platform: 'GitHub', icon: 'github' },
-        { url: mastodonUrl, platform: 'Mastodon', icon: 'mastodon' },
-        { url: this.app.youtubeUrl, platform: 'YouTube', icon: 'youtube' },
-        { url: this.app.linkedinUrl, platform: 'LinkedIn', icon: 'linkedin' },
-      ]
+        { url: this.app.githubUrl, platform: "GitHub", icon: "github" },
+        { url: mastodonUrl, platform: "Mastodon", icon: "mastodon" },
+        { url: this.app.youtubeUrl, platform: "YouTube", icon: "youtube" },
+        { url: this.app.linkedinUrl, platform: "LinkedIn", icon: "linkedin" },
+      ];
     },
     cleanedPhoneNumber() {
-      return this.app.phoneNumber.replace(/[^0-9]/g, '')
+      return this.app.phoneNumber.replace(/[^0-9]/g, "");
     },
   },
-  mounted () {
-    if ('IntersectionObserver' in window) {
-      this.observeContact()
+  mounted() {
+    if ("IntersectionObserver" in window) {
+      this.observeContact();
     }
   },
   beforeUnmount() {
     if (this.observer !== null) {
-      this.unobserveContact()
+      this.unobserveContact();
     }
   },
   methods: {
-    observeContact () {
-      const contactElement = this.$refs.contact
-      this.observer = new IntersectionObserver(function(entries) {
-        if (entries.some(entry => entry.isIntersecting)) {
-          this.unobserve(contactElement)
+    observeContact() {
+      const contactElement = this.$refs.contact;
+      this.observer = new IntersectionObserver(function (entries) {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          this.unobserve(contactElement);
         }
-      })
-      this.observer.observe(contactElement)
+      });
+      this.observer.observe(contactElement);
     },
-    trackPhoneLink () {
-      useTrackEvent('Click on phone number');
+    trackPhoneLink() {
+      useTrackEvent("Click on phone number");
     },
-    trackEmailLink () {
-      useTrackEvent('Click on email');
+    trackEmailLink() {
+      useTrackEvent("Click on email");
     },
-    unobserveContact () {
-      this.observer.unobserve(this.$refs.contact)
-    }
-  }
-}
+    unobserveContact() {
+      this.observer.unobserve(this.$refs.contact);
+    },
+  },
+};
 </script>
 
 <style>
-  :root {
-    --footer-list-height: 140px;
-    --logo-width: 180px;
-  }
+:root {
+  --footer-list-height: 140px;
+  --logo-width: 180px;
+}
 
-  .app-footer {
-    width: 100%;
-    padding: var(--spacing-larger) 0 var(--spacing-small) 0;
-    background-color: var(--brand-yellow);
-  }
+.app-footer {
+  width: 100%;
+  padding: var(--spacing-larger) 0 var(--spacing-small) 0;
+  background-color: var(--brand-yellow);
+}
 
+.app-footer__layout {
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--black);
+  padding-bottom: var(--spacing-small);
+  margin-bottom: var(--spacing-large);
+}
+
+@media (min-width: 768px) {
   .app-footer__layout {
-    grid-row: 1;
-    display: flex;
-    flex-direction: column;
-    border-bottom: 1px solid var(--black);
-    padding-bottom: var(--spacing-small);
-    margin-bottom: var(--spacing-large);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-larger);
+    flex-wrap: wrap;
   }
+}
 
-  @media (min-width: 768px) {
-    .app-footer__layout {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: var(--spacing-larger);
-      flex-wrap: wrap;
-    }
+@media (min-width: 1400px) {
+  .app-footer__layout {
+    flex-wrap: nowrap;
   }
+}
 
-  @media (min-width: 1400px) {
-    .app-footer__layout {
-      flex-wrap: nowrap;
-    }
-  }
+.app-footer__header {
+  flex-basis: 100%;
+}
 
+@media (min-width: 1400px) {
   .app-footer__header {
-    flex-basis: 100%;
+    flex-basis: auto;
   }
+}
 
-  @media (min-width: 1400px) {
-    .app-footer__header {
-      flex-basis: auto;
-    }
-  }
+.app-footer__bottom {
+  margin-bottom: var(--spacing-medium);
+}
 
+@media (min-width: 520px) {
   .app-footer__bottom {
-    margin-bottom: var(--spacing-medium);
+    text-align: center;
   }
+}
 
-  @media (min-width: 520px) {
-    .app-footer__bottom  {
-      text-align: center;
-    }
-  }
+.app-footer__definition-list {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  margin-bottom: var(--spacing-small);
+}
 
+@media (min-width: 520px) {
   .app-footer__definition-list {
-    display: grid;
-    grid-template-columns: 30px 1fr;
-    margin-bottom: var(--spacing-small);
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 520px) {
+  .app-footer__definition-list-value {
+    padding-left: var(--spacing-tiny);
   }
 
-  @media (min-width: 520px) {
-    .app-footer__definition-list {
-      display: flex;
-      justify-content: center;
-    }
+  .app-footer__definition-list-value::after {
+    content: "|";
+    padding: 0 var(--spacing-small);
   }
 
-  @media (min-width: 520px) {
-    .app-footer__definition-list-value {
-      padding-left: var(--spacing-tiny);
-    }
-
-   .app-footer__definition-list-value::after{
-      content: '|';
-      padding: 0 var(--spacing-small);
-    }
-
-    .app-footer__definition-list-value:last-child::after {
-      display: none;
-    }
+  .app-footer__definition-list-value:last-child::after {
+    display: none;
   }
+}
 
-  .app-footer__copyright,
-  .app-footer__privacy {
-    text-decoration: none;
-    border-bottom: 1px solid var(--black);
-  }
+.app-footer__copyright,
+.app-footer__privacy {
+  text-decoration: none;
+  border-bottom: 1px solid var(--black);
+}
 
-  .app-footer__copyright:hover,
-  .app-footer__copyright:focus,
-  .app-footer__privacy:hover,
-  .app-footer__privacy:focus {
-    color: var(--html-blue);
-    border-bottom: none;
-  }
+.app-footer__copyright:hover,
+.app-footer__copyright:focus,
+.app-footer__privacy:hover,
+.app-footer__privacy:focus {
+  color: var(--html-blue);
+  border-bottom: none;
+}
 
-  .app-footer__title {
-    color: var(--black);
-    margin-bottom: var(--spacing-smaller);
+.app-footer__title {
+  color: var(--black);
+  margin-bottom: var(--spacing-smaller);
+}
+
+.app-footer__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: var(--spacing-small);
+}
+
+@media (min-width: 768px) {
+  .app-footer__column {
+    flex-basis: 20%;
   }
 
   .app-footer__list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-bottom: var(--spacing-small);
-  }
-
-
-  @media (min-width: 768px) {
-    .app-footer__column {
-      flex-basis: 20%;
-    }
-
-    .app-footer__list {
-      display: block;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .app-footer__list {
-      display: flex;
-      flex-flow: column wrap;
-      justify-content: flex-start;
-      max-height: var(--footer-list-height);
-      gap: var(--spacing-small);
-      padding-bottom: 0;
-    }
-  }
-
-  .app-footer__list--contact {
-   grid-template-columns: auto;
-  }
-
-  .app-footer__certificate-list {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    border-bottom: 1px solid var(--black);
-    gap: var(--spacing-small);
-    margin-bottom: var(--spacing-large);
-    padding-bottom: var(--spacing-large);
-    justify-content: center;
-  }
-
-  @media (min-width: 768px) {
-    .app-footer__certificate-list {
-      margin-bottom: var(--spacing-larger);
-      padding-bottom: var(--spacing-larger);
-      gap: var(--spacing-larger);
-    }
-  }
-
-  .app-footer__certificate-logo {
-    width: 100%;
-    object-fit: contain;
-    transition: opacity 0.3s ease;
-
-    &:hover {
-      opacity: 0.7;
-    }
-  }
-
-  .app-footer__list-address {
-    margin-bottom: var(--spacing-small);
-  }
-
-  .app-footer__list--icon {
-    display: flex;
-    margin-bottom: var(--spacing-small);
-  }
-
-  @media (min-width: 768px) {
-    .app-footer__list--icon {
-      margin-bottom: 0;
-    }
-  }
-
-  .app-footer__list-item {
-    text-decoration: none;
-  }
-
-  .app-footer__list-item--icon {
-    margin-right: var(--spacing-small);
-  }
-
-  .app-footer__list-item--icon a {
     display: block;
-    fill: var(--html-blue);
   }
+}
 
-  .app-footer__link {
-    position: relative;
-    z-index: var(--z-index-low);
-    text-decoration: none;
+@media (min-width: 768px) {
+  .app-footer__list {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    max-height: var(--footer-list-height);
+    gap: var(--spacing-small);
+    padding-bottom: 0;
   }
+}
 
-  .app-footer__link:hover,
-  .app-footer__link:focus {
-    color: var(--html-blue);
-    background: transparent linear-gradient(to top, var(--html-blue) 1px, transparent 1px);
-  }
+.app-footer__list--contact {
+  grid-template-columns: auto;
+}
 
-  .app-footer__link--right {
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
+.app-footer__certificate-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border-bottom: 1px solid var(--black);
+  gap: var(--spacing-small);
+  margin-bottom: var(--spacing-large);
+  padding-bottom: var(--spacing-large);
+  justify-content: center;
+}
 
-  .app-footer__link--right:hover,
-  .app-footer__link--right:focus {
-    background: none;
+@media (min-width: 768px) {
+  .app-footer__certificate-list {
+    margin-bottom: var(--spacing-larger);
+    padding-bottom: var(--spacing-larger);
+    gap: var(--spacing-larger);
   }
+}
 
-  .app-footer__link--right:hover > span,
-  .app-footer__link--right:focus > span {
-    background-image: linear-gradient(to right, var(--html-blue), var(--html-blue));
-    background-repeat: no-repeat;
-    background-position: 0 80%;
-    background-size: 100% 1px;
-  }
+.app-footer__certificate-logo {
+  width: 100%;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
 
-  .app-footer__header-logo {
-    width: var(--logo-width);
-    margin-bottom: var(--spacing-small);
+  &:hover {
+    opacity: 0.7;
   }
+}
+
+.app-footer__list-address {
+  margin-bottom: var(--spacing-small);
+}
+
+.app-footer__list--icon {
+  display: flex;
+  margin-bottom: var(--spacing-small);
+}
+
+@media (min-width: 768px) {
+  .app-footer__list--icon {
+    margin-bottom: 0;
+  }
+}
+
+.app-footer__list-item {
+  text-decoration: none;
+}
+
+.app-footer__list-item--icon {
+  margin-right: var(--spacing-small);
+}
+
+.app-footer__list-item--icon a {
+  display: block;
+  fill: var(--html-blue);
+}
+
+.app-footer__link {
+  position: relative;
+  z-index: var(--z-index-low);
+  text-decoration: none;
+}
+
+.app-footer__link:hover,
+.app-footer__link:focus {
+  color: var(--html-blue);
+  background: transparent
+    linear-gradient(to top, var(--html-blue) 1px, transparent 1px);
+}
+
+.app-footer__link--right {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.app-footer__link--right:hover,
+.app-footer__link--right:focus {
+  background: none;
+}
+
+.app-footer__link--right:hover > span,
+.app-footer__link--right:focus > span {
+  background-image: linear-gradient(
+    to right,
+    var(--html-blue),
+    var(--html-blue)
+  );
+  background-repeat: no-repeat;
+  background-position: 0 80%;
+  background-size: 100% 1px;
+}
+
+.app-footer__header-logo {
+  width: var(--logo-width);
+  margin-bottom: var(--spacing-small);
+}
 </style>
