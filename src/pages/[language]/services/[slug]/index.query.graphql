@@ -107,6 +107,9 @@ fragment page on ServiceRecord {
       gridAlignment
       body {
         value
+        links {
+          ...glossaryTermLink
+        }
         blocks {
           __typename
           ... on StructuredTextBlueTextRecord {
@@ -115,6 +118,9 @@ fragment page on ServiceRecord {
             textAlignment
             body {
               value
+              links {
+                ...glossaryTermLink
+              }
               blocks {
                 __typename
                 ... on StructuredTextButtonsListRecord {
@@ -131,6 +137,9 @@ fragment page on ServiceRecord {
             items {
               body {
                 value
+                links {
+                  ...glossaryTermLink
+                }
               }
             }
           }
@@ -227,6 +236,17 @@ fragment buttonsList on StructuredTextButtonsListRecord {
   }
 }
 
+fragment glossaryTermLink on RecordInterface {
+  __typename
+  ... on GlossaryTermRecord {
+    id
+    term
+    slug
+    question
+    definition(markdown: true)
+  }
+}
+
 fragment link on RecordInterface {
   __typename
   ... on InternalLinkRecord {
@@ -288,6 +308,9 @@ fragment twoColumnItemFragment on RecordInterface {
     id
     body {
       value
+      links {
+        ...glossaryTermLink
+      }
       blocks {
         ... on StructuredTextButtonsListRecord {
           ...buttonsList

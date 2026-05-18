@@ -26,12 +26,18 @@ fragment page on CaseOverviewRecord {
   introTitle
   introBody {
     value
+    links {
+      ...glossaryTermLink
+    }
     blocks {
       __typename
       ... on StructuredTextBlueTextRecord {
         id
         body {
           value
+          links {
+            ...glossaryTermLink
+          }
         }
       }
       ... on StructuredTextButtonsListRecord {
@@ -117,6 +123,17 @@ fragment page on CaseOverviewRecord {
         height
       }
     }
+  }
+}
+
+fragment glossaryTermLink on RecordInterface {
+  __typename
+  ... on GlossaryTermRecord {
+    id
+    term
+    slug
+    question
+    definition(markdown: true)
   }
 }
 

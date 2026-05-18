@@ -11,6 +11,7 @@
     v-bind="$attrs"
     :data="content"
     :render-block="renderBlock"
+    :render-link-to-record="renderLinkToRecord"
     :custom-node-rules="customNodeRules"
     class="structured-text"
     :class="{
@@ -21,12 +22,13 @@
 </template>
 
 <script setup>
-  import { h } from 'vue'
+  import { computed, h } from 'vue'
   import { StructuredText as DatocmsStructuredText, renderNodeRule } from 'vue-datocms'
   import { isHeading, isParagraph, isList  } from 'datocms-structured-text-utils'
   import slugify from '../../lib/slugify';
   import AppButton from '../app-button/app-button.vue'
   import CounterItemList from '../counter-item-list/counter-item-list.vue'
+  import GlossaryTerm from '../glossary-term/glossary-term.vue'
   import ImageWithCaption from '../image-with-caption/image-with-caption.vue'
   import StructuredTextBlock from './structured-text-block.vue'
   import TwoColumnBlock from '../two-column-block/two-column-block.vue';
@@ -72,13 +74,25 @@
         id: slug
       }, children)
     }),
-    renderNodeRule(isParagraph, ({ key, children }) => {
+    renderNodeRule(isParagraph, ({ node, key, children }) => {
       const validChildren = children.filter((child) => (
         typeof child === 'string' ? child.trim() : child
       ));
 
       if (validChildren.length === 0) {
         return null;
+      }
+
+      if (containsGlossaryTerm(node)) {
+        return h(
+          'div',
+          {
+            key,
+            role: 'paragraph',
+            class: props.paragraphVariant,
+          },
+          validChildren,
+        );
       }
 
       return h(
@@ -97,6 +111,29 @@
       }, children)
     }),
   ]
+
+  const glossaryTermIds = computed(() =>
+    (props.content?.links ?? [])
+      .filter((link) => link?.__typename === 'GlossaryTermRecord')
+      .map((link) => link.id),
+  )
+
+  function containsGlossaryTerm(node) {
+    if (glossaryTermIds.value.includes(node.item)) {
+      return true
+    }
+    return (node.children ?? []).some(containsGlossaryTerm)
+  }
+
+  function renderLinkToRecord({ record, children, key }) {
+    if (record.__typename === 'GlossaryTermRecord') {
+      return h(GlossaryTerm, {
+        key,
+        definition: record.definition,
+      }, () => children)
+    }
+    return h('span', { key }, children)
+  }
 
   function renderBlock({ record, key }) {
     switch (record.__typename) {
@@ -275,18 +312,22 @@
     margin-bottom: var(--spacing-small);
   }
 
-  .structured-text p:not(:last-child) {
+  .structured-text > p:not(:last-child),
+  .structured-text > div[role="paragraph"]:not(:last-child) {
     margin-bottom: var(--spacing-small);
   }
 
-  .structured-text p a {
+  .structured-text > p a,
+  .structured-text > div[role="paragraph"] a {
     color: var(--html-blue);
     padding-bottom: .15rem;
     background: transparent linear-gradient(to top, transparent 1px, var(--html-blue) 1px, var(--html-blue) 2px, transparent 2px);
   }
 
-  .structured-text p a:hover,
-  .structured-text p a:focus {
+  .structured-text > p a:hover,
+  .structured-text > p a:focus,
+  .structured-text > div[role="paragraph"] a:hover,
+  .structured-text > div[role="paragraph"] a:focus {
     color: var(--active-blue);
     background: transparent linear-gradient(to top, var(--html-blue) 2px, transparent 2px);
   }
