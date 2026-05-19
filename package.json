@@ -22,7 +22,7 @@
     "datocms-structured-text-utils": "^5.0.0",
     "dayjs": "^1.11.20",
     "nanoid": "^5.1.9",
-    "nuxt": "^4.4.2",
+    "nuxt": "^4.4.6",
     "prismjs": "^1.29.0",
     "rosetta": "^1.1.0",
     "svgo": "^4.0.0",
