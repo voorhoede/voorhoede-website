@@ -248,6 +248,24 @@ query Page($locale: SiteLocale, $slug: String) {
           thumbnailUrl
         }
       }
+      ... on SectionCaseListRecord {
+        id
+        title
+        columns
+        cases {
+          title
+          slug
+          caseTeaser {
+            title
+            image {
+              url
+              alt
+              width
+              height
+            }
+          }
+        }
+      }
     }
   }
 }
