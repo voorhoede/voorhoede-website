@@ -22,13 +22,13 @@
 </template>
 
 <script setup>
-  import { computed, h } from 'vue'
+  import { h } from 'vue'
   import { StructuredText as DatocmsStructuredText, renderNodeRule } from 'vue-datocms'
   import { isHeading, isParagraph, isList  } from 'datocms-structured-text-utils'
+  import { footnoteId, openGlossaryPopover } from '../../lib/glossary-popover'
   import slugify from '../../lib/slugify';
   import AppButton from '../app-button/app-button.vue'
   import CounterItemList from '../counter-item-list/counter-item-list.vue'
-  import GlossaryTerm from '../glossary-term/glossary-term.vue'
   import ImageWithCaption from '../image-with-caption/image-with-caption.vue'
   import StructuredTextBlock from './structured-text-block.vue'
   import TwoColumnBlock from '../two-column-block/two-column-block.vue';
@@ -74,25 +74,13 @@
         id: slug
       }, children)
     }),
-    renderNodeRule(isParagraph, ({ node, key, children }) => {
+    renderNodeRule(isParagraph, ({ key, children }) => {
       const validChildren = children.filter((child) => (
         typeof child === 'string' ? child.trim() : child
       ));
 
       if (validChildren.length === 0) {
         return null;
-      }
-
-      if (containsGlossaryTerm(node)) {
-        return h(
-          'div',
-          {
-            key,
-            role: 'paragraph',
-            class: props.paragraphVariant,
-          },
-          validChildren,
-        );
       }
 
       return h(
@@ -112,25 +100,27 @@
     }),
   ]
 
-  const glossaryTermIds = computed(() =>
-    (props.content?.links ?? [])
-      .filter((link) => link?.__typename === 'GlossaryTermRecord')
-      .map((link) => link.id),
-  )
-
-  function containsGlossaryTerm(node) {
-    if (glossaryTermIds.value.includes(node.item)) {
-      return true
-    }
-    return (node.children ?? []).some(containsGlossaryTerm)
+  const pageGlossaryTerms = usePageGlossaryTerms()
+  const additions = (props.content?.links ?? []).filter((link) => (
+    link?.__typename === 'GlossaryTermRecord' &&
+    !pageGlossaryTerms.value.some((term) => term.id === link.id)
+  ))
+  if (additions.length > 0) {
+    pageGlossaryTerms.value = [...pageGlossaryTerms.value, ...additions]
   }
 
   function renderLinkToRecord({ record, children, key }) {
     if (record.__typename === 'GlossaryTermRecord') {
-      return h(GlossaryTerm, {
+      const number = pageGlossaryTerms.value.findIndex((term) => term.id === record.id) + 1
+      return h('a', {
         key,
-        definition: record.definition,
-      }, () => children)
+        href: `#${footnoteId(record.slug)}`,
+        class: 'structured-text__glossary-ref',
+        onClick: (event) => openGlossaryPopover(event, record.slug),
+      }, [
+        ...children,
+        h('sup', { class: 'structured-text__glossary-ref-number' }, `[${number}]`),
+      ])
     }
     return h('span', { key }, children)
   }
@@ -312,13 +302,12 @@
     margin-bottom: var(--spacing-small);
   }
 
-  .structured-text > p:not(:last-child),
-  .structured-text > div[role="paragraph"]:not(:last-child) {
+  .structured-text > p:not(:last-child) {
     margin-bottom: var(--spacing-small);
   }
 
   .structured-text > p a,
-  .structured-text > div[role="paragraph"] a {
+  .structured-text__glossary-ref {
     color: var(--html-blue);
     padding-bottom: .15rem;
     background: transparent linear-gradient(to top, transparent 1px, var(--html-blue) 1px, var(--html-blue) 2px, transparent 2px);
@@ -326,10 +315,14 @@
 
   .structured-text > p a:hover,
   .structured-text > p a:focus,
-  .structured-text > div[role="paragraph"] a:hover,
-  .structured-text > div[role="paragraph"] a:focus {
+  .structured-text__glossary-ref:hover,
+  .structured-text__glossary-ref:focus {
     color: var(--active-blue);
     background: transparent linear-gradient(to top, var(--html-blue) 2px, transparent 2px);
+  }
+
+  .structured-text__glossary-ref-number {
+    margin-left: .25em;
   }
 
   .structured-text__blue-text {

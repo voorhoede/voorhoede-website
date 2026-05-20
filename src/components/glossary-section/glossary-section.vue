@@ -3,7 +3,7 @@
     <h2 class="glossary-section__title h2">
       {{ title }}
     </h2>
-    <ul v-if="terms.length > 0" class="glossary-section__list">
+    <ul v-if="terms.length > 0" class="glossary-section__list body">
       <li
         v-for="term in terms"
         :id="term.slug"
@@ -43,27 +43,29 @@ const { data } = await useFetchContent({
 
 const terms = computed(() => data.value?.terms ?? []);
 
-if (terms.value.length > 0) {
-  useHead({
-    script: [
-      {
-        type: "application/ld+json",
-        innerHTML: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: terms.value.map((term) => ({
-            "@type": "Question",
-            name: term.question,
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: term.definition,
-            },
-          })),
-        }),
-      },
-    ],
-  });
-}
+const structuredData = computed(() =>
+  terms.value.length === 0
+    ? []
+    : [
+        {
+          type: "application/ld+json",
+          innerHTML: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: terms.value.map((term) => ({
+              "@type": "Question",
+              name: term.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: term.definition,
+              },
+            })),
+          }),
+        },
+      ],
+);
+
+useHead({ script: structuredData });
 </script>
 
 <style>
@@ -92,12 +94,11 @@ if (terms.value.length > 0) {
 }
 
 .glossary-section__item + .glossary-section__item {
-  margin-top: var(--spacing-small);
+  margin-top: var(--spacing-medium);
 }
 
 .glossary-section__details {
-  background-color: var(--bg-pastel);
-  border-left: 3px solid var(--html-blue);
+  border-left: 2px solid var(--html-blue);
 }
 
 .glossary-section__summary {
@@ -109,7 +110,7 @@ if (terms.value.length > 0) {
   gap: var(--spacing-small);
   justify-content: space-between;
   list-style: none;
-  padding: var(--spacing-small) var(--spacing-medium);
+  padding-left: var(--spacing-small);
 }
 
 .glossary-section__summary::-webkit-details-marker {
@@ -133,7 +134,8 @@ if (terms.value.length > 0) {
 }
 
 .glossary-section__definition {
-  padding: 0 var(--spacing-medium) var(--spacing-small);
+  margin-top: var(--spacing-tiny);
+  padding-left: var(--spacing-small);
 }
 
 .glossary-section__item:target .glossary-section__details {

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@datocms/cma-client-browser": "^5.0.1",
+    "@floating-ui/dom": "^1.7.6",
     "@json-feed-types/1_1": "^1.0.2",
     "@mux/mux-player": "^3.11.5",
     "@nuxtjs/plausible": "^3.0.2",
