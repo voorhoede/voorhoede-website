@@ -114,6 +114,12 @@
         :mute="section.mute"
         :caption="section.caption"
       />
+      <cases-list
+        v-if="section.__typename === 'SectionCaseListRecord'"
+        :cases="section.cases"
+        :max-columns="section.columns"
+        :title="section.title"
+      />
     </div>
   </div>
 </template>
