@@ -302,19 +302,19 @@
     margin-bottom: var(--spacing-small);
   }
 
-  .structured-text > p:not(:last-child) {
+  .structured-text p:not(:last-child) {
     margin-bottom: var(--spacing-small);
   }
 
-  .structured-text > p a,
+  .structured-text p a,
   .structured-text__glossary-ref {
     color: var(--html-blue);
     padding-bottom: .15rem;
     background: transparent linear-gradient(to top, transparent 1px, var(--html-blue) 1px, var(--html-blue) 2px, transparent 2px);
   }
 
-  .structured-text > p a:hover,
-  .structured-text > p a:focus,
+  .structured-text p a:hover,
+  .structured-text p a:focus,
   .structured-text__glossary-ref:hover,
   .structured-text__glossary-ref:focus {
     color: var(--active-blue);

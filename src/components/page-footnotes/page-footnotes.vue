@@ -32,6 +32,8 @@ import {
 
 const terms = usePageGlossaryTerms();
 
+// Awaits `useAsyncData/useFetch` to finish so we can populate this on the server
+// without hydration issues as the layout and page are rendered simultaneously.
 if (import.meta.server) {
   const nuxtApp = useNuxtApp();
   await Promise.all(Object.values(nuxtApp._asyncDataPromises ?? {}));
