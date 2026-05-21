@@ -14,6 +14,10 @@
         :theme="section.theme"
         :accent-position="section.accentPosition"
       />
+      <page-partial-block
+        v-if="section.__typename === 'PagePartialBlockRecord'"
+        :item="section.item"
+      />
       <div class="grid landing-page__section-content">
         <image-card-grid
           v-if="section.__typename === 'SectionImageCardGridRecord'"

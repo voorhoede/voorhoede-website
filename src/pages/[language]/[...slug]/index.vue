@@ -120,6 +120,10 @@
         :max-columns="section.columns"
         :title="section.title"
       />
+      <page-partial-block
+        v-if="section.__typename === 'PagePartialBlockRecord'"
+        :item="section.item"
+      />
     </div>
   </div>
 </template>

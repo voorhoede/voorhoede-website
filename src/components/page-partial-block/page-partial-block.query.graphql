@@ -1,17 +1,12 @@
-query Page($locale: SiteLocale, $slug: String) {
-  page: page(locale: $locale, filter: { slug: { eq: $slug } }) {
+query PagePartial($locale: SiteLocale!, $id: ItemId!) {
+  pagePartial(locale: $locale, filter: { id: { eq: $id } }) {
+    id
     title
-    slug
-    social {
-      title
-      description
-      image {
-        ...image
-      }
-    }
-    sections {
+    section {
       __typename
       ... on SectionHeaderRecord {
+        layout
+        style
         title
         subtitle
         illustration {
@@ -162,6 +157,7 @@ query Page($locale: SiteLocale, $slug: String) {
       ... on SectionImageCardGridRecord {
         title
         backgroundColor
+        cardOrientation
         items {
           id
           title
@@ -266,10 +262,41 @@ query Page($locale: SiteLocale, $slug: String) {
           }
         }
       }
-      ... on PagePartialBlockRecord {
-        id
-        item {
-          id
+      ... on SectionTextImageRecord {
+        text {
+          value
+        }
+        image {
+          ...image
+        }
+        layout
+      }
+      ... on SectionGroupingRecord {
+        theme
+        accentPosition
+        items {
+          ... on GroupingItemRecord {
+            title
+            sections {
+              __typename
+              ... on SectionTextImageRecord {
+                id
+                text {
+                  value
+                }
+                image {
+                  ...image
+                }
+                layout
+              }
+              ... on SectionLogoGridRecord {
+                title
+                logos {
+                  ...image
+                }
+              }
+            }
+          }
         }
       }
     }

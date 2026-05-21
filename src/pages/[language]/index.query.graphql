@@ -112,6 +112,12 @@ query HomePage($locale: SiteLocale!) {
           }
         }
       }
+      ... on PagePartialBlockRecord {
+        id
+        item {
+          id
+        }
+      }
     }
     pivots {
       title
