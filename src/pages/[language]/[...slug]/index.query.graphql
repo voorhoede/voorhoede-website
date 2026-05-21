@@ -321,7 +321,8 @@ fragment glossaryTermLink on RecordInterface {
     term
     slug
     question
-    definition(markdown: true)
+    definition
+    definitionHtml: definition(markdown: true)
   }
 }
 

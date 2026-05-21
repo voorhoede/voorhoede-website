@@ -13,7 +13,7 @@
         <strong class="page-footnotes__term">{{ term.term }}</strong>
         <rich-text-block
           class="page-footnotes__definition"
-          :text="term.definition"
+          :text="term.definitionHtml"
         />
       </li>
     </ol>
