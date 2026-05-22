@@ -79,6 +79,7 @@ query Page($locale: SiteLocale, $slug: String) {
         title
         logos {
           ...image
+          customData
         }
       }
       ... on SectionDialogueCtaRecord {
