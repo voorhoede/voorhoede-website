@@ -41,6 +41,7 @@ query HomePage($locale: SiteLocale!) {
         title
         logos {
           ...image
+          customData
         }
       }
       ... on SectionDialogueCtaRecord {
@@ -88,6 +89,7 @@ query HomePage($locale: SiteLocale!) {
                 title
                 logos {
                   ...image
+                  customData
                 }
               }
             }
