@@ -1,37 +1,37 @@
 <template>
   <grouping-block
-    v-if="partial.section.__typename === 'SectionGroupingRecord'"
-    :items="partial.section.items"
-    :theme="partial.section.theme"
-    :accent-position="partial.section.accentPosition"
+    v-if="item.section.__typename === 'SectionGroupingRecord'"
+    :items="item.section.items"
+    :theme="item.section.theme"
+    :accent-position="item.section.accentPosition"
   />
   <page-header
-    v-if="partial.section.__typename === 'SectionHeaderRecord'"
+    v-if="item.section.__typename === 'SectionHeaderRecord'"
     heading="byline"
-    :byline="partial.section.title"
-    :headline="partial.section.subtitle"
-    :image="partial.section.illustration"
-    :fill-screen="partial.section.layout === 'full-height'"
-    :has-semantic-header="partial.section.layout === 'full-height'"
-    :is-animated="partial.section.style === 'animated'"
-    :curly-bracket="partial.section.style === 'animated'"
+    :byline="item.section.title"
+    :headline="item.section.subtitle"
+    :image="item.section.illustration"
+    :fill-screen="item.section.layout === 'full-height'"
+    :has-semantic-header="item.section.layout === 'full-height'"
+    :is-animated="item.section.style === 'animated'"
+    :curly-bracket="item.section.style === 'animated'"
   />
   <image-with-text-block
-    v-if="partial.section.__typename === 'SectionImageTextRecord'"
-    :title="partial.section.title"
-    :body="partial.section.body"
-    :image="partial.section.image"
-    :inverse="partial.section.imagePosition === 'right'"
-    :background-color="partial.section.backgroundColor"
+    v-if="item.section.__typename === 'SectionImageTextRecord'"
+    :title="item.section.title"
+    :body="item.section.body"
+    :image="item.section.image"
+    :inverse="item.section.imagePosition === 'right'"
+    :background-color="item.section.backgroundColor"
     :paragraph-variant="
-      partial.section.fontSize === 'small' ? 'body' : 'body-big'
+      item.section.fontSize === 'small' ? 'body' : 'body-big'
     "
   />
   <interstitial-cta
-    v-if="partial.section.__typename === 'SectionInterstitialCtaRecord'"
-    :cta="partial.section.title"
+    v-if="item.section.__typename === 'SectionInterstitialCtaRecord'"
+    :cta="item.section.title"
     :buttons="
-      partial.section.ctas.map((cta) => ({
+      item.section.ctas.map((cta) => ({
         label: cta.title,
         to: cta.url || cta.link,
         external: cta.__typename === 'ExternalLinkRecord',
@@ -39,27 +39,27 @@
     "
   />
   <newsletter-form
-    v-if="partial.section.__typename === 'SectionNewsletterRecord'"
+    v-if="item.section.__typename === 'SectionNewsletterRecord'"
   />
   <image-grid
-    v-if="partial.section.__typename === 'SectionImageGridRecord'"
-    :title="partial.section.title"
-    :items="partial.section.items"
-    :background-color="partial.section.backgroundColor"
+    v-if="item.section.__typename === 'SectionImageGridRecord'"
+    :title="item.section.title"
+    :items="item.section.items"
+    :background-color="item.section.backgroundColor"
   />
   <logo-grid
-    v-if="partial.section.__typename === 'SectionLogoGridRecord'"
-    :title="partial.section.title"
-    :logos="partial.section.logos"
+    v-if="item.section.__typename === 'SectionLogoGridRecord'"
+    :title="item.section.title"
+    :logos="item.section.logos"
   />
   <dialogue-cta
-    v-if="partial.section.__typename === 'SectionDialogueCtaRecord'"
-    :variant="partial.section.variant"
-    :title="partial.section.title"
-    :body="partial.section.body"
-    :person="partial.section.person"
+    v-if="item.section.__typename === 'SectionDialogueCtaRecord'"
+    :variant="item.section.variant"
+    :title="item.section.title"
+    :body="item.section.body"
+    :person="item.section.person"
     :ctas="
-      partial.section.ctas.map((cta) => ({
+      item.section.ctas.map((cta) => ({
         label: cta.title,
         to: cta.url || cta.link,
         external: cta.__typename === 'ExternalLinkRecord',
@@ -68,82 +68,78 @@
     "
   />
   <structured-text-block
-    v-if="partial.section.__typename === 'SectionStructuredTextRecord'"
-    :content="partial.section.body"
-    :grid-alignment="partial.section.gridAlignment"
-    :has-toc="partial.section.hasToc"
+    v-if="item.section.__typename === 'SectionStructuredTextRecord'"
+    :content="item.section.body"
+    :grid-alignment="item.section.gridAlignment"
+    :has-toc="item.section.hasToc"
     paragraph-variant="body-big"
   />
   <image-card-grid
-    v-if="partial.section.__typename === 'SectionImageCardGridRecord'"
-    :title="partial.section.title"
-    :items="partial.section.items"
-    :background-color="partial.section.backgroundColor"
-    :card-orientation="partial.section.cardOrientation"
+    v-if="item.section.__typename === 'SectionImageCardGridRecord'"
+    :title="item.section.title"
+    :items="item.section.items"
+    :background-color="item.section.backgroundColor"
+    :card-orientation="item.section.cardOrientation"
   />
   <jobs-list
-    v-if="partial.section.__typename === 'SectionJobsListRecord'"
-    :jobs="partial.section.jobs"
+    v-if="item.section.__typename === 'SectionJobsListRecord'"
+    :jobs="item.section.jobs"
   />
   <timeline-block
-    v-if="partial.section.__typename === 'SectionTimelineRecord'"
-    :items="partial.section.items"
+    v-if="item.section.__typename === 'SectionTimelineRecord'"
+    :items="item.section.items"
   />
   <blogs-section
-    v-if="partial.section.__typename === 'SectionBlogsSectionRecord'"
-    :title="partial.section.title"
-    :items="partial.section.items"
-    :pinned-items="partial.section.pinnedItems"
-    :item-size="partial.section.itemSize"
+    v-if="item.section.__typename === 'SectionBlogsSectionRecord'"
+    :title="item.section.title"
+    :items="item.section.items"
+    :pinned-items="item.section.pinnedItems"
+    :item-size="item.section.itemSize"
   />
   <events-section
-    v-if="partial.section.__typename === 'SectionEventsSectionRecord'"
-    :items="partial.section.items"
-    :title="partial.section.title"
+    v-if="item.section.__typename === 'SectionEventsSectionRecord'"
+    :items="item.section.items"
+    :title="item.section.title"
   />
   <team-gallery
-    v-if="partial.section.__typename === 'SectionTeamGalleryRecord'"
-    :team="partial.section.persons"
+    v-if="item.section.__typename === 'SectionTeamGalleryRecord'"
+    :team="item.section.persons"
   />
   <responsive-video
-    v-if="partial.section.__typename === 'SectionVideoRecord'"
-    :video="partial.section.video"
-    :autoplay="partial.section.autoplay"
-    :loop="partial.section.loop"
-    :mute="partial.section.mute"
-    :caption="partial.section.caption"
+    v-if="item.section.__typename === 'SectionVideoRecord'"
+    :video="item.section.video"
+    :autoplay="item.section.autoplay"
+    :loop="item.section.loop"
+    :mute="item.section.mute"
+    :caption="item.section.caption"
   />
   <cases-list
-    v-if="partial.section.__typename === 'SectionCaseListRecord'"
-    :cases="partial.section.cases"
-    :max-columns="partial.section.columns"
-    :title="partial.section.title"
+    v-if="item.section.__typename === 'SectionCaseListRecord'"
+    :cases="item.section.cases"
+    :max-columns="item.section.columns"
+    :title="item.section.title"
   />
   <text-image-block
-    v-if="partial.section.__typename === 'SectionTextImageRecord'"
-    :text="partial.section.text"
-    :layout="partial.section.layout"
-    :image="partial.section.image"
+    v-if="item.section.__typename === 'SectionTextImageRecord'"
+    :text="item.section.text"
+    :layout="item.section.layout"
+    :image="item.section.image"
   />
 </template>
 
 <script setup lang="ts">
-import query from "./page-partial-block.query.graphql?raw";
+interface PagePartialSection {
+  __typename: string;
+  [key: string]: any;
+}
 
 const props = defineProps<{
-  item: { id: string };
+  item: {
+    id: string;
+    title: string;
+    section: PagePartialSection;
+  };
 }>();
 
-const route = useRoute();
-
-const { data } = await useFetchContent({
-  key: `page-partial-${props.item.id}`,
-  query,
-  variables: {
-    locale: route.params.language,
-    id: props.item.id,
-  },
-});
-
-const partial = computed(() => data.value?.pagePartial);
+const { item } = toRefs(props);
 </script>
