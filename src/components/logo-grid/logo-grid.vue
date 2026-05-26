@@ -5,7 +5,18 @@
     </h2>
     <ul class="logo-grid__list">
       <li class="logo-grid__item" v-for="(logo, index) in logos" :key="index">
+        <a v-if="logo.customData?.pageUrl" :href="logo.customData?.pageUrl" target="_blank" rel="noopener noreferrer">
+          <dato-image
+            class="logo-grid__image"
+            :src="logo.url"
+            :alt="logo.alt || ''"
+            :width="280"
+            :height="80"
+            loading="lazy"
+            />
+        </a>
         <dato-image
+          v-else
           class="logo-grid__image"
           :src="logo.url"
           :alt="logo.alt || ''"
@@ -24,6 +35,9 @@ defineProps<{
   logos: Array<{
     url: string;
     alt: string;
+    customData?: {
+      pageUrl?: string;
+    };
   }>;
 }>();
 </script>
