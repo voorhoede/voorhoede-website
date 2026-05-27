@@ -44,12 +44,18 @@ fragment servicespage on ServiceOverviewRecord {
   introTitle
   introBody {
     value
+    links {
+      ...glossaryTermLink
+    }
     blocks {
       __typename
       ... on StructuredTextBlueTextRecord {
         id
         body {
           value
+          links {
+            ...glossaryTermLink
+          }
         }
       }
       ... on StructuredTextButtonsListRecord {
@@ -114,6 +120,18 @@ fragment servicespage on ServiceOverviewRecord {
         height
       }
     }
+  }
+}
+
+fragment glossaryTermLink on RecordInterface {
+  __typename
+  ... on GlossaryTermRecord {
+    id
+    term
+    slug
+    question
+    definition
+    definitionHtml: definition(markdown: true)
   }
 }
 

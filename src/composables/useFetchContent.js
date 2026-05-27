@@ -1,6 +1,9 @@
 import { datocmsFetch } from '../lib/datocms-fetch.ts';
 import { datocmsEnvironment } from '../constants.mjs';
 
+/**
+ * @param {{ key?: string | null, query: string, variables?: object }} options
+ */
 export async function useFetchContent({ key = null, query, variables }) {
   const runtimeConfig = useRuntimeConfig();
   const route = useRoute();

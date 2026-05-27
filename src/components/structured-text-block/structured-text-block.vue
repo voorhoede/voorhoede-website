@@ -11,6 +11,7 @@
     v-bind="$attrs"
     :data="content"
     :render-block="renderBlock"
+    :render-link-to-record="renderLinkToRecord"
     :custom-node-rules="customNodeRules"
     class="structured-text"
     :class="{
@@ -24,6 +25,7 @@
   import { h } from 'vue'
   import { StructuredText as DatocmsStructuredText, renderNodeRule } from 'vue-datocms'
   import { isHeading, isParagraph, isList  } from 'datocms-structured-text-utils'
+  import { footnoteId, openGlossaryPopover } from '../../lib/glossary-popover'
   import slugify from '../../lib/slugify';
   import AppButton from '../app-button/app-button.vue'
   import CounterItemList from '../counter-item-list/counter-item-list.vue'
@@ -97,6 +99,31 @@
       }, children)
     }),
   ]
+
+  const pageGlossaryTerms = usePageGlossaryTerms()
+  const additions = (props.content?.links ?? []).filter((link) => (
+    link?.__typename === 'GlossaryTermRecord' &&
+    !pageGlossaryTerms.value.some((term) => term.id === link.id)
+  ))
+  if (additions.length > 0) {
+    pageGlossaryTerms.value = [...pageGlossaryTerms.value, ...additions]
+  }
+
+  function renderLinkToRecord({ record, children, key }) {
+    if (record.__typename === 'GlossaryTermRecord') {
+      const number = pageGlossaryTerms.value.findIndex((term) => term.id === record.id) + 1
+      return h('a', {
+        key,
+        href: `#${footnoteId(record.slug)}`,
+        class: 'structured-text__glossary-ref',
+        onClick: (event) => openGlossaryPopover(event, record.slug),
+      }, [
+        ...children,
+        h('sup', { class: 'structured-text__glossary-ref-number' }, `[${number}]`),
+      ])
+    }
+    return h('span', { key }, children)
+  }
 
   function renderBlock({ record, key }) {
     switch (record.__typename) {
@@ -279,16 +306,23 @@
     margin-bottom: var(--spacing-small);
   }
 
-  .structured-text p a {
+  .structured-text p a,
+  .structured-text__glossary-ref {
     color: var(--html-blue);
     padding-bottom: .15rem;
     background: transparent linear-gradient(to top, transparent 1px, var(--html-blue) 1px, var(--html-blue) 2px, transparent 2px);
   }
 
   .structured-text p a:hover,
-  .structured-text p a:focus {
+  .structured-text p a:focus,
+  .structured-text__glossary-ref:hover,
+  .structured-text__glossary-ref:focus {
     color: var(--active-blue);
     background: transparent linear-gradient(to top, var(--html-blue) 2px, transparent 2px);
+  }
+
+  .structured-text__glossary-ref-number {
+    margin-left: .25em;
   }
 
   .structured-text__blue-text {

@@ -28,6 +28,9 @@ query Page($locale: SiteLocale, $slug: String) {
         fontSize
         body {
           value
+          links {
+            ...glossaryTermLink
+          }
           blocks {
             __typename
             ... on StructuredTextBlueTextRecord {
@@ -35,6 +38,9 @@ query Page($locale: SiteLocale, $slug: String) {
               textAlignment
               body {
                 value
+                links {
+                  ...glossaryTermLink
+                }
                 blocks {
                   ... on StructuredTextButtonsListRecord {
                     __typename
@@ -102,6 +108,9 @@ query Page($locale: SiteLocale, $slug: String) {
         backgroundColor
         body {
           value
+          links {
+            ...glossaryTermLink
+          }
           blocks {
             __typename
             ... on StructuredTextBlueTextRecord {
@@ -110,6 +119,9 @@ query Page($locale: SiteLocale, $slug: String) {
               textAlignment
               body {
                 value
+                links {
+                  ...glossaryTermLink
+                }
                 blocks {
                   __typename
                   ... on StructuredTextButtonsListRecord {
@@ -126,6 +138,9 @@ query Page($locale: SiteLocale, $slug: String) {
               items {
                 body {
                   value
+                  links {
+                    ...glossaryTermLink
+                  }
                 }
               }
             }
@@ -160,6 +175,10 @@ query Page($locale: SiteLocale, $slug: String) {
           }
         }
       }
+      ... on SectionGlossaryRecord {
+        id
+        title
+      }
       ... on SectionImageCardGridRecord {
         title
         backgroundColor
@@ -168,6 +187,9 @@ query Page($locale: SiteLocale, $slug: String) {
           title
           body {
             value
+            links {
+              ...glossaryTermLink
+            }
           }
           image {
             ...image
@@ -277,6 +299,9 @@ fragment twoColumnItemFragment on RecordInterface {
     id
     body {
       value
+      links {
+        ...glossaryTermLink
+      }
       blocks {
         ... on StructuredTextButtonsListRecord {
           ...buttonsList
@@ -286,6 +311,18 @@ fragment twoColumnItemFragment on RecordInterface {
   }
   ... on StructuredTextImageRecord {
     ...structuredTextImage
+  }
+}
+
+fragment glossaryTermLink on RecordInterface {
+  __typename
+  ... on GlossaryTermRecord {
+    id
+    term
+    slug
+    question
+    definition
+    definitionHtml: definition(markdown: true)
   }
 }
 

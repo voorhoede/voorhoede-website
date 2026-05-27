@@ -120,6 +120,10 @@
         :max-columns="section.columns"
         :title="section.title"
       />
+      <glossary-section
+        v-if="section.__typename === 'SectionGlossaryRecord'"
+        :title="section.title"
+      />
     </div>
   </div>
 </template>
