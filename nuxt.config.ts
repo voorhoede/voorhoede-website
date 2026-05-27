@@ -1,11 +1,13 @@
 import { defineNuxtConfig } from 'nuxt/config';
 import { mkdir, writeFile } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
 import { default as plausible } from '@nuxtjs/plausible';
 import { fetchTranslations } from './src/scripts/fetch-translations';
 import { fetchBlogFeed } from './src/scripts/fetch-blog-feed';
 import { fetchRedirects } from './src/scripts/fetch-redirects';
 import { fetchI18nSlugs } from './src/scripts/fetch-i18n-slugs';
 import { svgSymbolLoader } from './src/scripts/svg-symbol-loader';
+import { htmlToMarkdown } from './src/scripts/html-to-markdown';
 import { defaultLanguage } from './src/lib/i18n';
 import { type Plugin } from 'vite';
 
@@ -88,6 +90,40 @@ export default defineNuxtConfig({
             },
           };
         });
+      });
+    },
+    'nitro:init'(nitro) {
+      const publicDir = nitro.options.output.publicDir;
+      const origin = process.env.BASE_URL ?? '';
+
+      nitro.hooks.hook('prerender:generate', async (route) => {
+        if (!route.fileName?.endsWith('.html') || typeof route.contents !== 'string') return;
+
+        const mdFileName = route.fileName.replace(/(?:\/index)?\.html$/, '.md');
+        const firstSegment = route.route?.split('/').filter(Boolean)[0];
+        const language = firstSegment
+          ? new Intl.DisplayNames(['en'], { type: 'language' }).of(firstSegment)
+          : undefined;
+
+        let markdown: string;
+        try {
+          markdown = await htmlToMarkdown({
+            html: route.contents,
+            url: route.route ?? '',
+            language,
+            origin,
+          });
+        } catch (error) {
+          console.warn(`[markdown] failed to convert ${route.route}:`, error);
+          return;
+        }
+
+        const body = markdown.replace(/^---\n[\s\S]*?\n---\n+/, '').trim();
+        if (!body || body === '---') return;
+
+        const outPath = join(publicDir, mdFileName);
+        await mkdir(dirname(outPath), { recursive: true });
+        await writeFile(outPath, markdown, 'utf8');
       });
     },
   },
