@@ -21,7 +21,7 @@
   <div :id="POPOVER_ID" popover="auto" class="page-footnotes__popover body" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed, onMounted, watch } from "vue";
 import {
   closeGlossaryPopover,
@@ -67,7 +67,7 @@ const structuredData = computed(() =>
 useHead({ script: structuredData });
 </script>
 
-<style>
+<style scoped>
 .page-footnotes {
   padding-bottom: var(--spacing-larger);
 }
@@ -82,17 +82,13 @@ useHead({ script: structuredData });
   grid-column: var(--grid-content);
   list-style: decimal;
   padding-left: var(--spacing-medium);
-}
 
-@media (min-width: 720px) {
-  .page-footnotes__list {
+  @media (min-width: 720px) {
     grid-column-start: 6;
     grid-column-end: 44;
   }
-}
 
-@media (min-width: 1100px) {
-  .page-footnotes__list {
+  @media (min-width: 1100px) {
     grid-column-start: 10;
     grid-column-end: 42;
   }

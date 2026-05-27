@@ -1,7 +1,7 @@
 <template>
   <section class="glossary-section grid" v-once>
     <h2 class="glossary-section__title h2">
-      {{ title }}
+      {{ props.title }}
     </h2>
     <ul v-if="terms.length > 0" class="glossary-section__list body">
       <li
@@ -27,19 +27,20 @@
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import query from "./glossary-section.query.graphql?raw";
 
-defineProps({
-  title: { type: String, required: true },
-});
+const props = defineProps<{
+  title: string;
+}>();
 
 const route = useRoute();
-const { data } = await useFetchContent({
-  key: `glossary-terms-${route.params.language}`,
-  query,
-  variables: { locale: route.params.language },
-});
+const { data }: { data: Ref<{ terms: GlossaryTerm[] } | null> } =
+  await useFetchContent({
+    key: `glossary-terms-${route.params.language}`,
+    query,
+    variables: { locale: route.params.language },
+  });
 
 const terms = computed(() => data.value?.terms ?? []);
 
@@ -68,7 +69,7 @@ const structuredData = computed(() =>
 useHead({ script: structuredData });
 </script>
 
-<style>
+<style scoped>
 .glossary-section__title {
   grid-column: var(--grid-content);
   margin-bottom: var(--spacing-medium);
@@ -77,17 +78,13 @@ useHead({ script: structuredData });
 
 .glossary-section__list {
   grid-column: var(--grid-content);
-}
 
-@media (min-width: 720px) {
-  .glossary-section__list {
+  @media (min-width: 720px) {
     grid-column-start: 6;
     grid-column-end: 44;
   }
-}
 
-@media (min-width: 1100px) {
-  .glossary-section__list {
+  @media (min-width: 1100px) {
     grid-column-start: 10;
     grid-column-end: 42;
   }
