@@ -19,6 +19,9 @@ query HomePage($locale: SiteLocale!) {
           title
           body {
             value
+            links {
+              ...glossaryTermLink
+            }
           }
           image {
             ...image
@@ -61,6 +64,9 @@ query HomePage($locale: SiteLocale!) {
       ... on SectionTextImageRecord {
         text {
           value
+          links {
+            ...glossaryTermLink
+          }
         }
         image {
           ...image
@@ -79,6 +85,9 @@ query HomePage($locale: SiteLocale!) {
                 id
                 text {
                   value
+                  links {
+                    ...glossaryTermLink
+                  }
                 }
                 image {
                   ...image
@@ -496,6 +505,18 @@ fragment image on FileField {
   alt
   width
   height
+}
+
+fragment glossaryTermLink on RecordInterface {
+  __typename
+  ... on GlossaryTermRecord {
+    id
+    term
+    slug
+    question
+    definition
+    definitionHtml: definition(markdown: true)
+  }
 }
 
 fragment link on RecordInterface {

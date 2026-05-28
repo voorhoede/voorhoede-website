@@ -124,6 +124,10 @@
         v-if="section.__typename === 'PagePartialBlockRecord'"
         :item="section.item"
       />
+      <glossary-section
+        v-if="section.__typename === 'SectionGlossaryRecord'"
+        :title="section.title"
+      />
     </div>
   </div>
 </template>

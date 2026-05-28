@@ -31,6 +31,7 @@
         class="layout-content-page__content"
       >
         <slot />
+        <page-footnotes :key="$route.path" />
         <app-footer
           v-if="!hideFooter"
           class="layout-content-page__footer"
