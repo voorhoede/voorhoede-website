@@ -169,6 +169,7 @@ export default async function (client: Client) {
           "CL2tcnR9TimpzQxNR2RKCg",
           "CrAZK2ukS-Cev0D-CSbA2g",
           "G8-kViMTTG62MbHNzPc7PQ",
+          "AjYd96IgQYuBzefFaL5VBA"
         ],
       },
     },
