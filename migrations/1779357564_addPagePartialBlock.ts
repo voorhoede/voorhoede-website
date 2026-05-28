@@ -146,6 +146,7 @@ export default async function (client: Client) {
           "2040351",
           "2040362",
           "2486431",
+          "AjYd96IgQYuBzefFaL5VBA",
           "G8-kViMTTG62MbHNzPc7PQ",
           "Y2qM8sXMR0-lwk-NZ0YZNg",
         ],
