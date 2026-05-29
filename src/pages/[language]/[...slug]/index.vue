@@ -212,4 +212,15 @@
   .landing-page__section:not(.landing-page__section--background) + .landing-page__section--background {
     margin-top: var(--spacing-big);
   }
+
+  .landing-page__section--pastel-background + .landing-page__section--pastel-background:not(:has(.grouping-block)),
+  .landing-page__section--grey-background + .landing-page__section--grey-background:not(:has(.grouping-block)) {
+    padding-top: var(--spacing-large);
+  }
+
+  .landing-page__section--pastel-background:has(+ .landing-page__section--pastel-background),
+  .landing-page__section--grey-background:has(+ .landing-page__section--grey-background) {
+    padding-bottom: var(--spacing-large);
+  }
+
 </style>
