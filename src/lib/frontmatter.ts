@@ -1,40 +1,35 @@
+import { stringify } from '@std/yaml';
 import type { PageMeta } from './rehype/rehype-extract-meta.js';
 
 export interface FrontmatterOptions {
   meta: PageMeta;
   url: string;
-  language?: string;
 }
 
-function yamlQuote(value: string): string {
-  const escaped = value
-    .replace(/\\/g, '\\\\')
-    .replace(/"/g, '\\"')
-    .replace(/\n/g, '\\n')
-    .replace(/\r/g, '\\r')
-    .split('')
-    .filter((ch) => {
-      const c = ch.charCodeAt(0);
-      return c > 8 && c !== 11 && c !== 12 && (c < 14 || c > 31) && c !== 127;
-    })
-    .join('');
-  return `"${escaped}"`;
-}
-
-function addField(lines: string[], key: string, value: string | undefined) {
-  if (value) {
-    lines.push(`${key}: ${yamlQuote(value)}`);
+function deriveLanguage(url: string): string | undefined {
+  try {
+    const path = new URL(url, 'http://_').pathname;
+    const [firstSegment] = path.split('/').filter(Boolean);
+    return firstSegment
+      ? new Intl.DisplayNames(['en'], { type: 'language' }).of(firstSegment)
+      : undefined;
+  } catch {
+    return undefined;
   }
 }
 
-export function buildFrontmatter({ meta, url, language }: FrontmatterOptions): string {
-  const lines: string[] = [];
+export function buildFrontmatter({ meta, url }: FrontmatterOptions): string {
+  const fields: Record<string, string> = {};
+  const title = meta['og:title'] || meta['twitter:title'] || meta['dc.title'];
+  const description = meta['og:description'] || meta['twitter:description'] || meta['dc.description'];
+  const language = deriveLanguage(url);
+  const finalUrl = meta['og:url'] || url;
 
-  addField(lines, 'title', meta['og:title'] || meta['twitter:title'] || meta['dc.title']);
-  addField(lines, 'description', meta['og:description'] || meta['twitter:description'] || meta['dc.description']);
-  addField(lines, 'language', language);
-  addField(lines, 'url', meta['og:url'] || url);
+  if (title) fields.title = title;
+  if (description) fields.description = description;
+  if (language) fields.language = language;
+  if (finalUrl) fields.url = finalUrl;
 
-  if (lines.length === 0) return '';
-  return `---\n${lines.join('\n')}\n---\n\n`;
+  if (Object.keys(fields).length === 0) return '';
+  return `---\n${stringify(fields)}---\n\n`;
 }

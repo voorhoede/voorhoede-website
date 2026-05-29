@@ -13,7 +13,7 @@ function htmlToMarkdownPath(pathname: string): string {
   return pathname.replace(/\/$/, '') + '.md';
 }
 
-const rehypeRewriteLinksToMarkdown: Plugin<[Options?], Root> = ({ origin = '' } = {}) => {
+export const rehypeRewriteLinksToMarkdown: Plugin<[Options?], Root> = ({ origin = '' } = {}) => {
   const normalizedOrigin = origin ? new URL(origin).origin : '';
 
   return (tree) => {
@@ -60,5 +60,3 @@ const rehypeRewriteLinksToMarkdown: Plugin<[Options?], Root> = ({ origin = '' } 
     }
   };
 };
-
-export default rehypeRewriteLinksToMarkdown;

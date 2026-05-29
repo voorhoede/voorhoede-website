@@ -18,7 +18,7 @@ function removeNodes(node: Element | Root, toRemove: Set<Element>) {
   }
 }
 
-const rehypeExtractContent: Plugin<[Options], Root> = ({ selector, exclude = [] }) => (tree) => {
+export const rehypeExtractContent: Plugin<[Options], Root> = ({ selector, exclude = [] }) => (tree) => {
   const content = select(selector, tree);
   if (!content) {
     tree.children = [];
@@ -35,5 +35,3 @@ const rehypeExtractContent: Plugin<[Options], Root> = ({ selector, exclude = [] 
   }
   tree.children = content.children as RootContent[];
 };
-
-export default rehypeExtractContent;

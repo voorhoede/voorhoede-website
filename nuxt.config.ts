@@ -1,6 +1,5 @@
 import { defineNuxtConfig } from 'nuxt/config';
 import { mkdir, writeFile } from 'node:fs/promises';
-import { dirname, join } from 'node:path';
 import { default as plausible } from '@nuxtjs/plausible';
 import { fetchTranslations } from './src/scripts/fetch-translations';
 import { fetchBlogFeed } from './src/scripts/fetch-blog-feed';
@@ -93,24 +92,17 @@ export default defineNuxtConfig({
       });
     },
     'nitro:init'(nitro) {
-      const publicDir = nitro.options.output.publicDir;
+      const publicDirUrl = new URL(`file://${nitro.options.output.publicDir}/`);
       const origin = process.env.BASE_URL ?? '';
 
       nitro.hooks.hook('prerender:generate', async (route) => {
         if (!route.fileName?.endsWith('.html') || typeof route.contents !== 'string') return;
-
-        const mdFileName = route.fileName.replace(/(?:\/index)?\.html$/, '.md');
-        const firstSegment = route.route?.split('/').filter(Boolean)[0];
-        const language = firstSegment
-          ? new Intl.DisplayNames(['en'], { type: 'language' }).of(firstSegment)
-          : undefined;
 
         let markdown: string;
         try {
           markdown = await htmlToMarkdown({
             html: route.contents,
             url: route.route ?? '',
-            language,
             origin,
           });
         } catch (error) {
@@ -118,12 +110,12 @@ export default defineNuxtConfig({
           return;
         }
 
-        const body = markdown.replace(/^---\n[\s\S]*?\n---\n+/, '').trim();
-        if (!body || body === '---') return;
+        if (!markdown) return;
 
-        const outPath = join(publicDir, mdFileName);
-        await mkdir(dirname(outPath), { recursive: true });
-        await writeFile(outPath, markdown, 'utf8');
+        const mdFileName = route.fileName.replace(/(?:\/index)?\.html$/, '.md');
+        const outUrl = new URL(`.${mdFileName}`, publicDirUrl);
+        await mkdir(new URL('.', outUrl), { recursive: true });
+        await writeFile(outUrl, markdown, 'utf8');
       });
     },
   },

@@ -11,7 +11,7 @@ const isRelevantKey = (key: string): boolean =>
   relevantPrefixes.some((prefix) => key.startsWith(prefix)) ||
   relevantNames.includes(key);
 
-const rehypeExtractMeta: Plugin<[], Root> = () => (tree, file) => {
+export const rehypeExtractMeta: Plugin<[], Root> = () => (tree, file) => {
   const meta: PageMeta = {};
   const metaTags = selectAll('meta[property], meta[name]', tree);
 
@@ -35,5 +35,3 @@ const rehypeExtractMeta: Plugin<[], Root> = () => (tree, file) => {
 
   file.data.meta = meta;
 };
-
-export default rehypeExtractMeta;

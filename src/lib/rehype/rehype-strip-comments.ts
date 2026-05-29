@@ -10,8 +10,6 @@ function stripComments(node: Element | Root) {
   }
 }
 
-const rehypeStripComments: Plugin<[], Root> = () => (tree) => {
+export const rehypeStripComments: Plugin<[], Root> = () => (tree) => {
   stripComments(tree);
 };
-
-export default rehypeStripComments;

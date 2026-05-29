@@ -72,7 +72,7 @@
 
   const { $localeUrl } = useNuxtApp();
 
-  const localeHref = (opts) =>
+  const localeHrefWithTrailingSlash = (opts) =>
     withTrailingSlash(router.resolve($localeUrl(opts)).fullPath, true);
 
   definePageMeta({
@@ -144,13 +144,13 @@
       {
         id: null,
         title: app.$t('all_blogposts'),
-        to: localeHref({ name: 'blog', hash }),
+        to: localeHrefWithTrailingSlash({ name: 'blog', hash }),
         isActive: !params.slug
       },
       ...(pageData.value?.tags.map(tag => {
         return {
           ...tag,
-          to: localeHref({ name: 'blog-tag-slug', params: { slug: tag.slug }, hash }),
+          to: localeHrefWithTrailingSlash({ name: 'blog-tag-slug', params: { slug: tag.slug }, hash }),
           isActive: tag.slug === params.slug
         }
       }) || {})
@@ -174,15 +174,15 @@
     const hash = `#${SECTION_ID}`;
     if (pageNumber === 1) {
       if (params.slug) {
-        return localeHref({ name: 'blog-tag-slug', params: { slug: params.slug }, hash });
+        return localeHrefWithTrailingSlash({ name: 'blog-tag-slug', params: { slug: params.slug }, hash });
       } else {
-        return localeHref({ name: 'blog', hash });
+        return localeHrefWithTrailingSlash({ name: 'blog', hash });
       }
     } else {
       if (params.slug) {
-        return localeHref({ name: 'blog-tag-slug-page-page', params: { slug: params.slug, page: pageNumber }, hash });
+        return localeHrefWithTrailingSlash({ name: 'blog-tag-slug-page-page', params: { slug: params.slug, page: pageNumber }, hash });
       } else {
-        return localeHref({ name: 'blog-page-page', params: { page: pageNumber }, hash });
+        return localeHrefWithTrailingSlash({ name: 'blog-page-page', params: { page: pageNumber }, hash });
       }
     }
   }
