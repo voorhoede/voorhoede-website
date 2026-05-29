@@ -123,6 +123,23 @@ query HomePage($locale: SiteLocale!) {
           }
         }
       }
+      ... on CallToActionRecord {
+        id
+        title
+        body
+        linkLabel
+        linkUrl
+        linkIsExternal
+        secondaryLinkLabel
+        secondaryLinkUrl
+        secondaryLinkIsExternal
+        person {
+          image {
+            ...image
+          }
+          name
+        }
+      }
       ... on PagePartialBlockRecord {
         id
         item {
@@ -416,6 +433,23 @@ query HomePage($locale: SiteLocale!) {
                     }
                   }
                 }
+              }
+            }
+            ... on CallToActionRecord {
+              id
+              title
+              body
+              linkLabel
+              linkUrl
+              linkIsExternal
+              secondaryLinkLabel
+              secondaryLinkUrl
+              secondaryLinkIsExternal
+              person {
+                image {
+                  ...image
+                }
+                name
               }
             }
           }

@@ -128,6 +128,15 @@
         v-if="section.__typename === 'SectionGlossaryRecord'"
         :title="section.title"
       />
+      <cta-block
+        v-if="section.__typename === 'CallToActionRecord'"
+        :key="section.id"
+        :id="section.id"
+        :body="section.body"
+        :title="section.title"
+        :item="section"
+        :person="section.person"
+      />
     </div>
   </div>
 </template>

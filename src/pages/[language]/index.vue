@@ -14,6 +14,15 @@
         :theme="section.theme"
         :accent-position="section.accentPosition"
       />
+      <cta-block
+        v-if="section.__typename === 'CallToActionRecord'"
+        :key="section.id"
+        :id="section.id"
+        :body="section.body"
+        :title="section.title"
+        :item="section"
+        :person="section.person"
+      />
       <page-partial-block
         v-if="section.__typename === 'PagePartialBlockRecord'"
         :item="section.item"

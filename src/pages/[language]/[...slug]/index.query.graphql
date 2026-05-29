@@ -582,7 +582,41 @@ query Page($locale: SiteLocale, $slug: String) {
                 }
               }
             }
+            ... on CallToActionRecord {
+              id
+              title
+              body
+              linkLabel
+              linkUrl
+              linkIsExternal
+              secondaryLinkLabel
+              secondaryLinkUrl
+              secondaryLinkIsExternal
+              person {
+                image {
+                  ...image
+                }
+                name
+              }
+            }
           }
+        }
+      }
+      ... on CallToActionRecord {
+        id
+        title
+        body
+        linkLabel
+        linkUrl
+        linkIsExternal
+        secondaryLinkLabel
+        secondaryLinkUrl
+        secondaryLinkIsExternal
+        person {
+          image {
+            ...image
+          }
+          name
         }
       }
     }

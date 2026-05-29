@@ -125,6 +125,17 @@
     :layout="item.section.layout"
     :image="item.section.image"
   />
+  <cta-block
+    v-if="item.section.__typename === 'CallToActionRecord'"
+    :id="item.section.id"
+    :body="item.section.body"
+    :title="item.section.title"
+    :item="item.section"
+    :person="item.section.person"
+    :secondary-link-label="item.section.secondaryLinkLabel"
+    :secondary-link-url="item.section.secondaryLinkUrl"
+    :secondary-link-is-external="item.section.secondaryLinkIsExternal"
+  />
 </template>
 
 <script setup lang="ts">
