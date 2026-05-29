@@ -10,6 +10,12 @@
   const route = useRoute();
   const config = useRuntimeConfig();
 
+  const markdownAlternateHref = computed(() => {
+    const path = route.path.replace(/\/$/, '');
+    if (!path) return null;
+    return new URL(`${path}.md`, config.public.baseUrl).toString();
+  });
+
   useHead({
     htmlAttrs: {
       'lang': route.params.language,
@@ -24,6 +30,11 @@
         title: 'Blog',
         type: 'application/feed+json',
         href: new URL('/blog/feed.json', config.public.baseUrl).toString(),
+      },
+      {
+        rel: 'alternate',
+        type: 'text/markdown',
+        href: markdownAlternateHref,
       },
     ],
     meta: [

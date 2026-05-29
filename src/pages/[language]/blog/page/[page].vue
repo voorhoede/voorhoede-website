@@ -62,13 +62,18 @@
 </template>
 
 <script setup>
+  import { withTrailingSlash } from 'ufo';
   import tagIdQuery from './tagId.query.graphql?raw';
   import pageQuery from './index.query.graphql?raw';
 
   const app = useNuxtApp();
   const route = useRoute();
+  const router = useRouter();
 
   const { $localeUrl } = useNuxtApp();
+
+  const localeHrefWithTrailingSlash = (opts) =>
+    withTrailingSlash(router.resolve($localeUrl(opts)).fullPath, true);
 
   definePageMeta({
     layout: 'content-page',
@@ -139,13 +144,13 @@
       {
         id: null,
         title: app.$t('all_blogposts'),
-        to: $localeUrl({ name: 'blog', hash }),
+        to: localeHrefWithTrailingSlash({ name: 'blog', hash }),
         isActive: !params.slug
       },
       ...(pageData.value?.tags.map(tag => {
         return {
           ...tag,
-          to: $localeUrl({ name: 'blog-tag-slug', params: { slug: tag.slug }, hash }),
+          to: localeHrefWithTrailingSlash({ name: 'blog-tag-slug', params: { slug: tag.slug }, hash }),
           isActive: tag.slug === params.slug
         }
       }) || {})
@@ -166,17 +171,18 @@
   useSeoHead(seoHeadData);
 
   function getPaginatedRoute(pageNumber) {
+    const hash = `#${SECTION_ID}`;
     if (pageNumber === 1) {
       if (params.slug) {
-        return $localeUrl({ name: 'blog-tag-slug', params: { slug: params.slug }, hash: `#${SECTION_ID}` });
+        return localeHrefWithTrailingSlash({ name: 'blog-tag-slug', params: { slug: params.slug }, hash });
       } else {
-        return $localeUrl({ name: 'blog', hash: `#${SECTION_ID}` });
+        return localeHrefWithTrailingSlash({ name: 'blog', hash });
       }
     } else {
       if (params.slug) {
-        return $localeUrl({ name: 'blog-tag-slug-page-page', params: { slug: params.slug, page: pageNumber }, hash: `#${SECTION_ID}` });
+        return localeHrefWithTrailingSlash({ name: 'blog-tag-slug-page-page', params: { slug: params.slug, page: pageNumber }, hash });
       } else {
-        return $localeUrl({ name: 'blog-page-page', params: { page: pageNumber }, hash: `#${SECTION_ID}` });
+        return localeHrefWithTrailingSlash({ name: 'blog-page-page', params: { page: pageNumber }, hash });
       }
     }
   }
