@@ -24,6 +24,8 @@ function buildProcessor(origin: string) {
       exclude: [
         '.app-footer',
         '[aria-hidden="true"]',
+        'img:not([alt])',
+        'img[alt=""]',
       ],
     })
     .use(rehypeStripComments)
