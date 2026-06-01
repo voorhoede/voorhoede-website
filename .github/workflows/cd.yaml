@@ -31,18 +31,12 @@ jobs:
           build-args: |
             BASE_URL=${{ vars.BASE_URL }}
             PIPEDRIVE_API_URL=${{ vars.PIPEDRIVE_API_URL }}
-          secret-envs: |
-            DATOCMS_API_READ_TOKEN=$$DATOCMS_API_READ_TOKEN
-            POSTMARK_API_TOKEN=$$POSTMARK_API_TOKEN
-            PREVIEW_SECRET=$$PREVIEW_SECRET
-            PIPEDRIVE_API_TOKEN=$$PIPEDRIVE_API_TOKEN
-            AKISMET_API_TOKEN=$$AKISMET_API_TOKEN
-        env:
-          DATOCMS_API_READ_TOKEN: ${{ secrets.DATOCMS_API_READ_TOKEN }}
-          POSTMARK_API_TOKEN: ${{ secrets.POSTMARK_API_TOKEN }}
-          PREVIEW_SECRET: ${{ secrets.PREVIEW_SECRET }}
-          PIPEDRIVE_API_TOKEN: ${{ secrets.PIPEDRIVE_API_TOKEN }}
-          AKISMET_API_TOKEN: ${{ secrets.AKISMET_API_TOKEN }}
+          secrets: |
+            "datocms_api_read_token=${{ secrets.DATOCMS_API_READ_TOKEN }}"
+            "postmark_api_token=${{ secrets.POSTMARK_API_TOKEN }}"
+            "preview_secret=${{ secrets.PREVIEW_SECRET }}"
+            "pipedrive_api_token=${{ secrets.PIPEDRIVE_API_TOKEN }}"
+            "akismet_api_token=${{ secrets.AKISMET_API_TOKEN }}"
 
       - name: Update container image on Magic Containers
         uses: BunnyWay/actions/container-update-image@main
