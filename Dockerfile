@@ -2,20 +2,9 @@ FROM node:24-alpine AS build
 WORKDIR /app
 
 ARG BASE_URL
-ARG DATOCMS_API_READ_TOKEN
-ARG POSTMARK_API_TOKEN
-ARG PREVIEW_SECRET
-ARG PIPEDRIVE_API_TOKEN
 ARG PIPEDRIVE_API_URL
-ARG AKISMET_API_TOKEN
-
 ENV BASE_URL=$BASE_URL
-ENV DATOCMS_API_READ_TOKEN=$DATOCMS_API_READ_TOKEN
-ENV POSTMARK_API_TOKEN=$POSTMARK_API_TOKEN
-ENV PREVIEW_SECRET=$PREVIEW_SECRET
-ENV PIPEDRIVE_API_TOKEN=$PIPEDRIVE_API_TOKEN
 ENV PIPEDRIVE_API_URL=$PIPEDRIVE_API_URL
-ENV AKISMET_API_TOKEN=$AKISMET_API_TOKEN
 
 COPY package*.json ./
 RUN npm ci --ignore-scripts --no-audit --no-fund --no-update-notifier
@@ -23,7 +12,13 @@ COPY src/ ./src/
 COPY server/ ./server/
 COPY public/ ./public/
 COPY nuxt.config.ts ./
-RUN npm run build
+
+RUN --mount=type=secret,id=datocms_api_read_token,env=DATOCMS_API_READ_TOKEN \
+  --mount=type=secret,id=postmark_api_token,env=POSTMARK_API_TOKEN \
+  --mount=type=secret,id=preview_secret,env=PREVIEW_SECRET \
+  --mount=type=secret,id=pipedrive_api_token,env=PIPEDRIVE_API_TOKEN \
+  --mount=type=secret,id=akismet_api_token,env=AKISMET_API_TOKEN \
+  npm run build
 
 FROM node:24-alpine AS runtime
 WORKDIR /app

@@ -30,11 +30,12 @@ jobs:
           tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
           build-args: |
             BASE_URL=${{ vars.BASE_URL }}
+            PIPEDRIVE_API_URL=${{ vars.PIPEDRIVE_API_URL }}
+          secret-args: |
             DATOCMS_API_READ_TOKEN=${{ secrets.DATOCMS_API_READ_TOKEN }}
             POSTMARK_API_TOKEN=${{ secrets.POSTMARK_API_TOKEN }}
             PREVIEW_SECRET=${{ secrets.PREVIEW_SECRET }}
             PIPEDRIVE_API_TOKEN=${{ secrets.PIPEDRIVE_API_TOKEN }}
-            PIPEDRIVE_API_URL=${{ vars.PIPEDRIVE_API_URL }}
             AKISMET_API_TOKEN=${{ secrets.AKISMET_API_TOKEN }}
 
       - name: Update container image on Magic Containers
