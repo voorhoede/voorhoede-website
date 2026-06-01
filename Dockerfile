@@ -14,11 +14,11 @@ COPY server/ ./server/
 COPY public/ ./public/
 COPY nuxt.config.ts ./
 
-RUN --mount=type=secret,id=datocms_api_read_token,env=DATOCMS_API_READ_TOKEN \
-  --mount=type=secret,id=postmark_api_token,env=POSTMARK_API_TOKEN \
-  --mount=type=secret,id=preview_secret,env=PREVIEW_SECRET \
-  --mount=type=secret,id=pipedrive_api_token,env=PIPEDRIVE_API_TOKEN \
-  --mount=type=secret,id=akismet_api_token,env=AKISMET_API_TOKEN \
+RUN --mount=type=secret,id=DATOCMS_API_READ_TOKEN,env=DATOCMS_API_READ_TOKEN \
+  --mount=type=secret,id=POSTMARK_API_TOKEN,env=POSTMARK_API_TOKEN \
+  --mount=type=secret,id=PREVIEW_SECRET,env=PREVIEW_SECRET \
+  --mount=type=secret,id=PIPEDRIVE_API_TOKEN,env=PIPEDRIVE_API_TOKEN \
+  --mount=type=secret,id=AKISMET_API_TOKEN,env=AKISMET_API_TOKEN \
   npm run build
 
 FROM node:24-alpine AS runtime
