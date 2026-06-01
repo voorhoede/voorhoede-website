@@ -5,10 +5,6 @@ name: CD
 #     branches: [main]
 on: pull_request
 
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
-
 jobs:
   deploy-bunny:
     runs-on: ubuntu-latest
