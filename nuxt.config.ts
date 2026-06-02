@@ -17,7 +17,6 @@ export default defineNuxtConfig({
   alias: { '@': '' },
   css: ['@/components/app-core/index.css'],
   nitro: {
-    preset: 'cloudflare_pages',
     rollupConfig: {
       plugins: [svgSymbolLoader() as Plugin],
     },
@@ -47,6 +46,7 @@ export default defineNuxtConfig({
     public: {
       datoApiToken: process.env.DATOCMS_API_READ_TOKEN,
       baseUrl: process.env.BASE_URL,
+      originalUrl: process.env.ORIGINAL_URL,
       previewSecret: process.env.PREVIEW_SECRET,
     },
   },
@@ -96,7 +96,10 @@ export default defineNuxtConfig({
       const origin = process.env.BASE_URL ?? '';
 
       nitro.hooks.hook('prerender:generate', async (route) => {
-        if (!route.fileName?.endsWith('.html') || typeof route.contents !== 'string') return;
+        if (
+          !route.fileName?.endsWith('.html') ||
+          typeof route.contents !== 'string'
+        ) return;
 
         let markdown: string;
         try {
