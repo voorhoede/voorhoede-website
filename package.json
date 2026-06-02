@@ -24,7 +24,7 @@
     "datocms-structured-text-utils": "^5.1.16",
     "dayjs": "^1.11.20",
     "hast-util-select": "^6.0.4",
-    "nanoid": "^5.1.9",
+    "nanoid": "^5.1.11",
     "nuxt": "^4.4.6",
     "prismjs": "^1.29.0",
     "rehype-parse": "^9.0.1",
