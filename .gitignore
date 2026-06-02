@@ -6,3 +6,7 @@ dist
 .cache
 feed.json
 _redirects
+.agents
+.claude
+skills-lock.json
+.wrangler

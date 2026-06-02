@@ -66,11 +66,6 @@
       },
       socials () {
         return [
-          { icon: 'facebook',
-            href: `https://www.facebook.com/sharer.php?u=${this.url}`,
-            label: 'facebook',
-            alt: 'Share this post on Facebook',
-          },
           {
             icon: 'linkedin',
             href: `https://www.linkedin.com/shareArticle?&url=${this.url}&title=${this.title}`,

@@ -16,6 +16,7 @@
         class="page-blog-post__aside-author"
         :item="data.page"
       />
+      <open-in-llm class="page-blog-post__open-in-llm" />
       <social-share-buttons
         :base-url="runtimeConfig.public.baseUrl"
         :title="data.page.socialTitle"
@@ -307,6 +308,10 @@
   .page-blog-post__aside {
     justify-content: space-between;
     grid-row: 2;
+  }
+
+  .page-blog-post__open-in-llm {
+    margin-bottom: var(--spacing-smaller);
   }
 
   .page-blog-post__tags {
