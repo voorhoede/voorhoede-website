@@ -11,7 +11,10 @@ ENV ORIGINAL_URL=$ORIGINAL_URL
 
 COPY package*.json ./
 RUN npm ci --ignore-scripts --no-audit --no-fund --no-update-notifier
-COPY src/ server/ public/ nuxt.config.ts ./
+COPY src/ ./src/
+COPY server/ ./server/
+COPY public/ ./public/
+COPY nuxt.config.ts ./
 
 RUN --mount=type=secret,id=datocms_api_read_token,env=DATOCMS_API_READ_TOKEN \
   --mount=type=secret,id=postmark_api_token,env=POSTMARK_API_TOKEN \
