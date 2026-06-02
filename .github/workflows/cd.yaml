@@ -30,6 +30,7 @@ jobs:
           build-args: |
             BASE_URL=${{ vars.BASE_URL }}
             PIPEDRIVE_API_URL=${{ vars.PIPEDRIVE_API_URL }}
+            ORIGINAL_URL=${{ vars.ORIGINAL_URL }}
           secrets: |
             datocms_api_read_token=${{ secrets.DATOCMS_API_READ_TOKEN }}
             postmark_api_token=${{ secrets.POSTMARK_API_TOKEN }}

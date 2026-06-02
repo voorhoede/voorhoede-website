@@ -13,6 +13,9 @@ export function useSeoHead({ title, i18nSlugs, social }) {
 
   const pageUrl = withTrailingSlash(new URL(route.path, runtimeConfig.public.baseUrl).toString());
   const defaultShareImg = new URL('/images/logo-wide.jpg', runtimeConfig.public.baseUrl).toString();
+  const canonicalUrl = runtimeConfig.public.originalUrl
+    ? withTrailingSlash(new URL(route.path, runtimeConfig.public.originalUrl).toString())
+    : pageUrl;
 
   useHead({
     title: social.title || title,
@@ -28,14 +31,21 @@ export function useSeoHead({ title, i18nSlugs, social }) {
     ],
     link: [
       { rel: 'me', href: mastodonUrl },
-      { rel: 'canonical', href: pageUrl },
+      { rel: 'canonical', href: canonicalUrl },
+      runtimeConfig.public.originalUrl
+        ? {
+          rel: 'alternate',
+          hreflang: $i18n.locale(),
+          href: pageUrl,
+        }
+        : null,
       ...$i18n.locales
         .map(({ code }) => {
           const alternateSlug = i18nSlugs?.find((i18nSlug) => i18nSlug.locale === code)?.value;
           if (i18nSlugs && !alternateSlug) {
             return null;
           }
-          const formattedAlternateSlug = alternateSlug?.includes('/') ? alternateSlug.split('/') : alternateSlug
+          const formattedAlternateSlug = alternateSlug?.includes('/') ? alternateSlug.split('/') : alternateSlug;
 
           return {
             rel: 'alternate',
@@ -49,9 +59,9 @@ export function useSeoHead({ title, i18nSlugs, social }) {
                   },
                 }).path,
                 runtimeConfig.public.baseUrl,
-              ).href
-            )
-          }
+              ).href,
+            ),
+          };
         }),
     ],
   });

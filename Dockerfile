@@ -4,8 +4,10 @@ WORKDIR /app
 
 ARG BASE_URL
 ARG PIPEDRIVE_API_URL
+ARG ORIGINAL_URL
 ENV BASE_URL=$BASE_URL
 ENV PIPEDRIVE_API_URL=$PIPEDRIVE_API_URL
+ENV ORIGINAL_URL=$ORIGINAL_URL
 
 COPY package*.json ./
 RUN npm ci --ignore-scripts --no-audit --no-fund --no-update-notifier

@@ -46,6 +46,7 @@ export default defineNuxtConfig({
     public: {
       datoApiToken: process.env.DATOCMS_API_READ_TOKEN,
       baseUrl: process.env.BASE_URL,
+      originalUrl: process.env.ORIGINAL_URL,
       previewSecret: process.env.PREVIEW_SECRET,
     },
   },

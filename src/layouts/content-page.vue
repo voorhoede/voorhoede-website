@@ -1,5 +1,6 @@
 <template>
   <div id="top">
+    <mirror-banner />
     <div class="layout-content-page">
       <div
         tabindex="-1"
