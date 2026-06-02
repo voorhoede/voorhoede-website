@@ -3,10 +3,10 @@
     v-if="originalUrl"
     class="mirror-banner"
   >
-    <div class="mirror-banner__content body-small">
+    <div class="mirror-banner__content">
       <span>{{$t("mirror_notice")}}:&nbsp;</span>
       <a
-        class="mirror-banner__link font-bold"
+        class="mirror-banner__link"
         :href="originalUrl"
       >
         {{ originalUrl }}
@@ -31,11 +31,13 @@
     justify-content: center;
     align-items: center;
     padding: var(--spacing-small);
+    font-family: var(--font-sans);
     text-align: center;
   }
 
   .mirror-banner__link {
     color: var(--brand-yellow);
     text-decoration: underline;
+    font-weight: 700;
   }
 </style>
