@@ -5,5 +5,20 @@
     { "path": "./.nuxt/tsconfig.server.json" },
     { "path": "./.nuxt/tsconfig.shared.json" },
     { "path": "./.nuxt/tsconfig.node.json" }
-  ]
+  ],
+  "compilerOptions": {
+    // paths needed for gql.tada check command
+    // upstream issue: https://github.com/0no-co/gql.tada/issues/485
+    "paths": {
+      "~/*": ["./src/*"],
+      "~/": ["./src/"]
+    },
+    "plugins": [
+      {
+        "name": "gql.tada/ts-plugin",
+        "schema": "./.cache/schema.graphql",
+        "tadaOutputLocation": "./shared/generated/graphql-env.d.ts"
+      }
+    ]
+  }
 }
