@@ -1,4 +1,4 @@
-import { datocmsEnvironment } from '../constants.mjs';
+import { datocmsContentApiUrl, datocmsEnvironment } from '../constants.mjs';
 
 export function datocmsFetch(
   {
@@ -9,7 +9,7 @@ export function datocmsFetch(
     preview = false,
   },
 ) {
-  return fetcher('https://graphql.datocms.com/', {
+  return fetcher(datocmsContentApiUrl, {
     method: 'post',
     headers: {
       'Authorization': apiToken,
