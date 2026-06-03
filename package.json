@@ -8,7 +8,9 @@
     "build-cloudflare": "node ./src/scripts/cloudflare-build.mjs",
     "lint": "eslint '**/*.vue'",
     "lint-staged": "nano-staged",
-    "prepare": "husky"
+    "prepare": "husky",
+    "generate:datocms-schema": "node ./src/scripts/generate-datocms-schema.mts",
+    "generate:datocms-types": "gql-tada generate output"
   },
   "dependencies": {
     "@datocms/cma-client-browser": "^5.0.1",
@@ -18,12 +20,14 @@
     "@nuxtjs/plausible": "^3.0.2",
     "@std/http": "npm:@jsr/std__http@^1.1.1",
     "@std/yaml": "npm:@jsr/std__yaml@^1.1.1",
+    "@urql/core": "^6.0.1",
     "@voorhoede/image-vue": "^1.1.0",
     "@voorhoede/vue-dato-video": "^3.1.0",
     "datocms-listen": "^1.0.0",
     "datocms-structured-text-utils": "^5.1.16",
     "dayjs": "^1.11.21",
     "hast-util-select": "^6.0.4",
+    "gql.tada": "^1.9.2",
     "nanoid": "^5.1.11",
     "nuxt": "^4.4.6",
     "prismjs": "^1.29.0",
