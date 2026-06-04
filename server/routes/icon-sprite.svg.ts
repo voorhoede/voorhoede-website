@@ -4,7 +4,6 @@ import youtube from '~/assets/icons/youtube.svg?symbol';
 import linkedin from '~/assets/icons/linkedin.svg?symbol';
 import mastodon from '~/assets/icons/mastodon.svg?symbol';
 import play from '~/assets/icons/play.svg?symbol';
-import facebook from '~/assets/icons/facebook.svg?symbol';
 
 const responseBody = [
   '<svg xmlns="http://www.w3.org/2000/svg">',
@@ -14,7 +13,6 @@ const responseBody = [
   linkedin,
   mastodon,
   play,
-  facebook,
   '</svg>',
 ].join('');
 
