@@ -1,73 +1,56 @@
 <template>
   <section class="grid dialogue-cta" v-once>
-      <div class="dialogue-cta__image">
-        <dato-image
-          :src="person.image.url"
-          alt=""
-          :width="200"
-          :height="200"
-          loading="eager"
-          :quality="75"
+    <div class="dialogue-cta__image">
+      <DatoImage
+        :src="data.person.image.url"
+        alt=""
+        :width="200"
+        :height="200"
+        loading="eager"
+        :quality="75"
+      />
+    </div>
+    <div>
+      <h2 class="dialogue-cta__title h4">
+        {{ data.title }}
+      </h2>
+      <div
+        v-if="data.variant === 'information'"
+        class="dialogue-cta__body body-big"
+        v-html="data.body"
+      />
+      <blockquote
+        v-if="data.variant === 'quote'"
+        class="dialogue-cta__body dialogue-cta__body--quote body-big"
+        v-html="data.body"
+      />
+      <div class="dialogue-cta__ctas">
+        <AppButton
+          v-for="(cta, index) in data.ctas"
+          :key="index"
+          :label="cta.title"
+          :to="cta.__typename === 'ExternalLinkRecord' ? cta?.url : cta?.link"
+          :external="cta.__typename === 'ExternalLinkRecord'"
+          :primary="cta.style === 'primary'"
+          :secondary="cta.style === 'secondary'"
         />
       </div>
-      <div>
-        <h2 class="dialogue-cta__title h4">
-          {{ title }}
-        </h2>
-        <div
-          v-if="variant === 'information'"
-          class="dialogue-cta__body body-big"
-          v-html="body"
-        />
-        <blockquote
-          v-if="variant === 'quote'"
-          class="dialogue-cta__body dialogue-cta__body--quote body-big"
-          v-html="body"
-        />
-        <div class="dialogue-cta__ctas">
-          <app-button
-            v-for="(cta, index) in ctas"
-            :key="index"
-            :label="cta.label"
-            :to="cta.to"
-            :external="cta.external"
-            :primary="cta.style === 'primary'"
-            :secondary="cta.style === 'secondary'"
-          />
-        </div>
-      </div>
+    </div>
   </section>
 </template>
 
-<script>
-export default {
-  props: {
-    variant: {
-      type: String,
-      required: true,
-    },
-    title: {
-      type: String,
-      required: true,
-    },
-    body: {
-      type: String,
-      required: true,
-    },
-    person: {
-      type: Object,
-      required: true,
-    },
-    ctas: {
-      type: Array,
-      required: false,
-      default: () => [],
-    },
-  },
-};
+<script setup lang="ts">
+import { type DialogueCtaFragment } from "./DialogueCta.query";
+import { type FragmentOf, readFragment } from "~/utils/graphql";
+
+const props = defineProps<{
+  data: FragmentOf<typeof DialogueCtaFragment>;
+}>();
+
+const data = readFragment<typeof DialogueCtaFragment>(props.data);
 </script>
 
-<style>
+<style scoped>
 .dialogue-cta {
   display: flex;
   flex-direction: column;
@@ -106,9 +89,16 @@ export default {
 }
 
 .dialogue-cta__body > p > a {
-  background: transparent linear-gradient(to top, transparent 1px, var(--html-blue) 1px, var(--html-blue) 2px, transparent 2px);
+  background: transparent
+    linear-gradient(
+      to top,
+      transparent 1px,
+      var(--html-blue) 1px,
+      var(--html-blue) 2px,
+      transparent 2px
+    );
   color: var(--html-blue);
-  padding-bottom: .15rem;
+  padding-bottom: 0.15rem;
 }
 
 .dialogue-cta__body > p > a:hover {
