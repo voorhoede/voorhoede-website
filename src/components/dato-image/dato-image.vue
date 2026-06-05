@@ -1,9 +1,20 @@
 <template>
+  <img
+    v-if="isSvg"
+    class="dato-image"
+    :src="props.src"
+    :alt="props.alt"
+    :width="props.width"
+    :height="props.height"
+    :loading="props.loading"
+    decoding="async"
+  >
   <Image
+    v-else
     class="dato-image"
     v-bind="props"
-    :loader="loader"
-    :srcset="checkedSrcset"
+    :loader="imgixLoader"
+    :srcset="props.srcset"
   />
 </template>
 
@@ -16,6 +27,8 @@ const props = defineProps<Omit<ImageProps, 'loader'> & {
   modifiers?: ImgixUrl.Params;
 }>();
 
+const isSvg = computed(() => props.src.endsWith('.svg'));
+
 const imgixLoader: ImageLoader = ({ src, width, quality }) =>
   withQuery(src, {
     w: width,
@@ -24,14 +37,6 @@ const imgixLoader: ImageLoader = ({ src, width, quality }) =>
     cs: "origin",
     ...(props.modifiers as QueryObject),
   });
-
-const loader = computed(() =>
-  props.src.endsWith(".svg") ? ({ src }: { src: string }) => src : imgixLoader
-);
-
-const checkedSrcset = computed(() =>
-  props.src.endsWith(".svg") ? "" : props.srcset
-);
 </script>
 
 <style>
