@@ -1,8 +1,8 @@
 <template>
-  <h2 class="cases-list__title h1" v-if="title">{{ title }}</h2>
-  <ul class="cases-list" :style="{ '--max-columns': props.maxColumns }">
-    <li v-for="caseItem in cases" :key="caseItem.slug">
-      <link-card
+  <h2 class="cases-list__title h1" v-if="data.title">{{ data.title }}</h2>
+  <ul class="cases-list" :style="{ '--max-columns': data.columns }">
+    <li v-for="caseItem in data.cases" :key="caseItem.slug">
+      <LinkCard
         :internal-link="
           $localeUrl({ name: 'cases-slug', params: { slug: caseItem.slug } })
         "
@@ -16,15 +16,18 @@
 </template>
 
 <script setup lang="ts">
+import { type CaseListFragment } from "./CaseList.query";
+import { type FragmentOf, readFragment } from "~/utils/graphql";
+
 const props = defineProps<{
-  cases: Array<any>;
-  maxColumns: number;
-  title: string;
+  data: FragmentOf<typeof CaseListFragment>;
 }>();
 
+const data = readFragment<typeof CaseListFragment>(props.data);
+
 const sizes = computed(() => {
-  const columnWidth = Math.round(1200 / props.maxColumns);
-  const vwWidth = Math.round(100 / Math.max(1, props.maxColumns - 1));
+  const columnWidth = Math.round(1200 / data.columns);
+  const vwWidth = Math.round(100 / Math.max(1, data.columns - 1));
 
   return `(min-width: 1200px) ${columnWidth}px, (min-width: 800px) ${vwWidth}vw, 90vw`;
 });

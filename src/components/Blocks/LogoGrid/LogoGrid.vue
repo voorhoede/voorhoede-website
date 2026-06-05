@@ -1,21 +1,30 @@
 <template>
   <section class="logo-grid grid" v-once>
     <h2 class="logo-grid__title h3">
-      {{ title }}
+      {{ data.title }}
     </h2>
     <ul class="logo-grid__list">
-      <li class="logo-grid__item" v-for="(logo, index) in logos" :key="index">
-        <a v-if="logo.customData?.pageUrl" :href="logo.customData?.pageUrl" target="_blank" rel="noopener noreferrer">
-          <dato-image
+      <li
+        class="logo-grid__item"
+        v-for="(logo, index) in data.logos"
+        :key="index"
+      >
+        <a
+          v-if="logo.customData?.pageUrl"
+          :href="logo.customData?.pageUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <DatoImage
             class="logo-grid__image"
             :src="logo.url"
             :alt="logo.alt || ''"
             :width="280"
             :height="80"
             loading="lazy"
-            />
+          />
         </a>
-        <dato-image
+        <DatoImage
           v-else
           class="logo-grid__image"
           :src="logo.url"
@@ -30,16 +39,14 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  title: string;
-  logos: Array<{
-    url: string;
-    alt: string;
-    customData?: {
-      pageUrl?: string;
-    };
-  }>;
+import { type LogoGridFragment } from "./LogoGrid.query";
+import { type FragmentOf, readFragment } from "~/utils/graphql";
+
+const props = defineProps<{
+  data: FragmentOf<typeof LogoGridFragment>;
 }>();
+
+const data = readFragment<typeof LogoGridFragment>(props.data);
 </script>
 
 <style scoped>
