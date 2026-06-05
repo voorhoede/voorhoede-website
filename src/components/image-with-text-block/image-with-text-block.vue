@@ -9,7 +9,7 @@
     <dato-image
       class="image-with-text__image"
       :src="image.url"
-      alt=""
+      alt="image.alt"
       :width="image.width"
       :height="image.height"
       sizes="(min-width: 1100px) 730px, (min-width: 720px) 40vw, 90vw"
