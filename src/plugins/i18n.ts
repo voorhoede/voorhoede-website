@@ -32,7 +32,9 @@ export default defineNuxtPlugin((nuxtApp) => {
             return defaultLanguage;
           }
 
-          return nuxtApp._route.params.language;
+          return Array.isArray(nuxtApp._route.params.language)
+            ? nuxtApp._route.params.language[0]
+            : nuxtApp._route.params.language;
         },
       },
     },
