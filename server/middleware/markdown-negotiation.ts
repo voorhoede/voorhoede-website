@@ -9,8 +9,9 @@ import { locales } from "~/lib/i18n.js";
  * `Accept: text/markdown` by returning that `.md` source at the same URL, per
  * https://specification.website/spec/agent-readiness/markdown-source-endpoints/
  *
- * Only trailing-slash page URLs reach Nitro; `.md` and `/_nuxt/*` paths are
- * served straight from the Cloudflare `ASSETS` binding and skip this middleware.
+ * Pages only reach this middleware because `nuxt.config.ts` routes them through
+ * the worker (`cloudflare.pages.routes`); `.md`, `/_nuxt/*` and other static
+ * assets are served straight from the Cloudflare `ASSETS` binding and skip it.
  */
 const localeCodes = locales.map(({ code }) => code);
 
@@ -25,10 +26,12 @@ export default defineEventHandler(async (event) => {
   // The canonical URL has two representations; let caches key on Accept.
   setResponseHeader(event, "Vary", "Accept");
 
-  if (
-    accepts(toWebRequest(event), "text/html", "text/markdown") !==
-    "text/markdown"
-  )
+  // Browsers and `*/*` clients (curl, link unfurlers) never name `text/markdown`,
+  // so they keep getting HTML; only negotiate when it's explicitly accepted and
+  // preferred at least as much as HTML.
+  const request = toWebRequest(event);
+  if (!(request.headers.get("accept") ?? "").includes("text/markdown")) return;
+  if (accepts(request, "text/markdown", "text/html") !== "text/markdown")
     return;
 
   // `/en/` -> `/en.md`, `/en/about-us/` -> `/en/about-us.md`
