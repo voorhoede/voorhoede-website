@@ -21,6 +21,7 @@ import { DialogueCtaFragment } from "~/components/Blocks/DialogueCta/DialogueCta
 import { ImageCardGridFragment } from "~/components/Blocks/ImageCardGrid/ImageCardGrid.query";
 import { LogoGridFragment } from "~/components/Blocks/LogoGrid/LogoGrid.query";
 import { PageHeaderFragment } from "~/components/Blocks/PageHeader/PageHeader.query";
+import { TextImageFragment } from "~/components/Blocks/TextImage/TextImage.query";
 
 const route = useRoute();
 const query = graphql(
@@ -45,6 +46,7 @@ const query = graphql(
           ...ImageCardGridFragment
           ...LogoGridFragment
           ...PageHeaderFragment
+          ...TextImageFragment
         }
       }
     }
@@ -55,6 +57,7 @@ const query = graphql(
     ImageCardGridFragment,
     LogoGridFragment,
     PageHeaderFragment,
+    TextImageFragment,
   ],
 );
 
