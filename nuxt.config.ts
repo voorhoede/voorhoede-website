@@ -20,6 +20,17 @@ export default defineNuxtConfig({
     rollupConfig: {
       plugins: [svgSymbolLoader() as Plugin],
     },
+    cloudflare: {
+      pages: {
+        // Route pages through the worker so the markdown-negotiation
+        // middleware runs; only heavy static dirs skip it (served via `ASSETS`).
+        defaultRoutes: false,
+        routes: {
+          include: ['/*'],
+          exclude: ['/_nuxt/*', '/images/*', '/fonts/*'],
+        },
+      },
+    },
     prerender: {
       crawlLinks: true,
       routes: [`/${defaultLanguage}/`],
