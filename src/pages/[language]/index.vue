@@ -28,6 +28,16 @@ const query = graphql(
     query HomePage($locale: SiteLocale!) {
       homePage(locale: $locale) {
         title
+        seo {
+          title
+          description
+          image {
+            url
+            alt
+            width
+            height
+          }
+        }
         sections {
           __typename
           ...CaseListFragment
@@ -61,6 +71,13 @@ const { data } = await useAsyncData(pageKey, async () => {
 
   return result.data;
 });
+
+if (data.value?.homePage && data.value.homePage.seo) {
+  useSeoHead({
+    title: data.value.homePage.title,
+    social: data.value.homePage.seo,
+  });
+}
 </script>
 
 <style scoped>
