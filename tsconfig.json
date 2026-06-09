@@ -10,8 +10,8 @@
     // paths needed for gql.tada check command
     // upstream issue: https://github.com/0no-co/gql.tada/issues/485
     "paths": {
-      "~/*": ["./app/*"],
-      "~/": ["./app/"]
+      "~/*": ["./src/*"],
+      "~/": ["./src/"]
     },
     "plugins": [
       {

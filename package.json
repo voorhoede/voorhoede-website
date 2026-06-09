@@ -15,6 +15,7 @@
   "dependencies": {
     "@datocms/cma-client-browser": "^5.0.1",
     "@floating-ui/dom": "^1.7.6",
+    "@gql.tada/vue-support": "^1.0.2",
     "@json-feed-types/1_1": "^1.0.2",
     "@mux/mux-player": "^3.11.5",
     "@nuxtjs/plausible": "^3.0.2",
@@ -26,8 +27,8 @@
     "datocms-listen": "^1.0.0",
     "datocms-structured-text-utils": "^5.1.16",
     "dayjs": "^1.11.21",
-    "hast-util-select": "^6.0.4",
     "gql.tada": "^1.9.2",
+    "hast-util-select": "^6.0.4",
     "nanoid": "^5.1.11",
     "nuxt": "^4.4.6",
     "prismjs": "^1.29.0",
