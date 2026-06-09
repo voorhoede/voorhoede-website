@@ -2,16 +2,16 @@
   <header
     class="page-header grid"
     :class="{
-      'page-header--curly-bracket': displayCurlyBracket,
-      'page-header--fill-screen': fillScreen,
-      'page-header--has-image': image,
-      'page-header--has-breakout-image': breakOutImage,
-      'is-animated': isAnimated
+      'page-header--curly-bracket': props.curlyBracket,
+      'page-header--fill-screen': data.layout === 'full-height',
+      'page-header--has-image': data.illustration,
+      'page-header--has-breakout-image': props.breakOutImage,
+      'is-animated': data.style === 'animated'
     }"
-    :style="{'--animation-delay': animationDelay + 's'}"
+    :style="{'--animation-delay': props.animationDelay + 's'}"
   >
     <span
-      v-if="fillScreen"
+      v-if="data.layout === 'full-height'"
       class="page-header__background scale-up-background"
     />
     <div class="page-header__text">
@@ -21,118 +21,79 @@
        otherwise a `<p>` for the headline should succeed it.
       -->
       <p
-        v-if="heading === 'headline'"
+        v-if="props.heading === 'headline'"
         class="sub-title animation__uncover"
-        v-html="byline"
+        v-html="data.title"
       />
       <component
-        :is="hasSemanticHeader ? 'h1' : 'p'"
+        :is="data.layout === 'full-height' ? 'h1' : 'p'"
         class="animation__uncover"
         :class="{
-          'sub-title': heading === 'byline',
-          'sr-only': heading === 'headline'
+          'sub-title': props.heading === 'byline',
+          'sr-only': props.heading === 'headline'
         }"
       >
-        <span v-html="heading === 'byline' ? byline : headline" />
+        <span v-html="props.heading === 'byline' ? data.title : data.subtitle" />
       </component>
       <p
-        v-if="heading === 'byline'"
+        v-if="props.heading === 'byline'"
         class="sr-only"
-        v-html="headline"
+        v-html="data.subtitle"
       />
       <!-- Always visible, but has aria-hidden -->
-      <self-typing-text
+       <self-typing-text
         class="h1"
-        :text="headline"
-      />
+        :text="data.subtitle"
+      /> 
     </div>
 
     <div
-      v-if="image"
+      v-if="data.illustration"
       class="page-header__image-column animation__reveal"
     >
       <div class="page-header__image-column-content animation__reveal-content">
-        <dato-image
+        <DatoImage
           class="page-header__image"
-          :src="image.url"
+          :src="data.illustration.url"
           alt=""
-          :width="image.width"
-          :height="image.height"
+          :width="data.illustration.width!"
+          :height="data.illustration.height!"
           loading="eager"
         />
       </div>
     </div>
 
-    <scroll-to
-      v-if="fillScreen"
+    <ScrollTo
+      v-if="data.layout === 'full-height'"
       direction="down"
       class="animation__fade-in"
     />
   </header>
 </template>
 
-<script setup>
-  const props = defineProps({
-    headline: {
-      type: String,
-      required: true,
-    },
-    byline: {
-      type: String,
-      required: true,
-    },
-    heading: {
-      type: String,
-      default: 'headline',
-      validator(heading) {
-        return ['headline', 'byline'].indexOf(heading) >= 0
-      }
-    },
-    hasSemanticHeader: {
-      type: Boolean,
-      default: true
-    },
-    image: {
-      type: Object,
-      default: null,
-      validator(image) {
-        return image && typeof(image.url) === 'string'
-      },
-    },
-    breakOutImage: {
-      type: Boolean,
-      default: false
-    },
-    fillScreen: {
-      type: Boolean,
-      default: false
-    },
-    curlyBracket: {
-      type: Boolean,
-      default: false,
-    },
-    isAnimated: {
-      type: Boolean,
-      default: false
-    },
-    animationDelay: {
-      type: Number,
-      default: 0
-    }
-  })
+<script setup lang="ts">
+import { type PageHeaderFragment } from "./PageHeader.query";
+import { type FragmentOf, readFragment } from "~/utils/graphql";
 
-  const displayCurlyBracket = computed(() => {
-    if (props.curlyBracket && !props.fillScreen) {
-      throw new Error('The curly bracket is only available in combination with fhe fill-screen prop')
-    }
-    return (props.curlyBracket && props.fillScreen)
-  })
+const props = withDefaults(
+  defineProps<{
+    data: FragmentOf<typeof PageHeaderFragment>;
+    curlyBracket?: boolean;
+    breakOutImage?: boolean;
+    animationDelay?: number;
+    heading?: 'headline' | 'byline';
+  }>(),
+  {
+    curlyBracket: true,
+    breakOutImage: false,
+    animationDelay: 0,
+    heading: 'headline',
+  },
+);
+
+const data = readFragment<typeof PageHeaderFragment>(props.data);
 </script>
 
-<!--
-  Webpack doesn't import core styling before this component in development.
-  By making it scoped, the styling defined here is more specific than the core styling
--->
 <style scoped>
   .page-header {
     background-color: var(--bg-pastel);

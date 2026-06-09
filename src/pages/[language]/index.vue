@@ -2,6 +2,11 @@
   <main>
     <h1 class="sr-only">{{ data?.homePage?.title }}</h1>
     <Blocks v-if="data?.homePage?.sections" :blocks="data.homePage.sections" />
+    <div class="grid">
+      <div class="page__scroll-to">
+        <ScrollTo direction="up" />
+      </div>
+    </div>
   </main>
 </template>
 
@@ -11,9 +16,11 @@ definePageMeta({ layout: "content-page" });
 import { useFetchDatocmsContent } from "~/composables/useFetchDatocmsContent";
 import { graphql } from "~/utils/graphql";
 
-import { LogoGridFragment } from "~/components/Blocks/LogoGrid/LogoGrid.query";
 import { CaseListFragment } from "~/components/Blocks/CaseList/CaseList.query";
 import { DialogueCtaFragment } from "~/components/Blocks/DialogueCta/DialogueCta.query";
+import { ImageCardGridFragment } from "~/components/Blocks/ImageCardGrid/ImageCardGrid.query";
+import { LogoGridFragment } from "~/components/Blocks/LogoGrid/LogoGrid.query";
+import { PageHeaderFragment } from "~/components/Blocks/PageHeader/PageHeader.query";
 
 const route = useRoute();
 const query = graphql(
@@ -23,14 +30,22 @@ const query = graphql(
         title
         sections {
           __typename
-          ...LogoGridFragment
           ...CaseListFragment
           ...DialogueCtaFragment
+          ...ImageCardGridFragment
+          ...LogoGridFragment
+          ...PageHeaderFragment
         }
       }
     }
   `,
-  [LogoGridFragment, CaseListFragment, DialogueCtaFragment],
+  [
+    CaseListFragment,
+    DialogueCtaFragment,
+    ImageCardGridFragment,
+    LogoGridFragment,
+    PageHeaderFragment,
+  ],
 );
 const pageKey = [route.name, ...Object.values(route.params)]
   .filter(Boolean)
@@ -47,3 +62,16 @@ const { data } = await useAsyncData(pageKey, async () => {
   return result.data;
 });
 </script>
+
+<style scoped>
+.page__scroll-to {
+  display: none;
+  grid-column-start: -2;
+  grid-column-end: -3;
+  margin-bottom: var(--spacing-medium);
+
+  @media (min-width: 720px) {
+    display: block;
+  }
+}
+</style>
