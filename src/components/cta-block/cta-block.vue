@@ -1,4 +1,5 @@
 <template>
+  <div class="cta-block">
   <cta-image-block
     v-if="Boolean(item.person)"
     :key="item.id"
@@ -22,6 +23,7 @@
     :link-label="item.linkLabel"
     :link-url="item.linkUrl"
   />
+  </div>
 </template>
 
 <script>
@@ -35,3 +37,15 @@
     }
   }
 </script>
+
+<style>
+.cta-block {
+  margin-left: var(--spacing-small);
+  margin-right: var(--spacing-small);
+}
+@media (min-width: 768px) {
+  .cta-block {
+    width: fit-content;
+  }
+}
+</style>

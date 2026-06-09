@@ -127,6 +127,8 @@
     .cta-image-block__ctas {
       display: flex;
       align-items: center;
+      align-content: flex-start;
+      flex-direction: column;
       flex-wrap: wrap;
     }
   }
