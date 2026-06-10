@@ -9,6 +9,8 @@ import type { LogoGridFragment } from "./LogoGrid/LogoGrid.query";
 import LogoGrid from "./LogoGrid/LogoGrid.vue";
 import type { PageHeaderFragment } from "./PageHeader/PageHeader.query";
 import PageHeader from "./PageHeader/PageHeader.vue";
+import type { PagePartialFragment } from "./PagePartial/PagePartial.query";
+import PagePartial from "./PagePartial/PagePartial.vue";
 import type { TextImageFragment } from "./TextImage/TextImage.query";
 import TextImage from "./TextImage/TextImage.vue";
 
@@ -28,6 +30,9 @@ const props = defineProps<{
       })
     | (FragmentOf<typeof PageHeaderFragment> & {
         __typename: "SectionHeaderRecord";
+      })
+    | (FragmentOf<typeof PagePartialFragment> & {
+        __typename: "PagePartialBlockRecord";
       })
     | (FragmentOf<typeof TextImageFragment> & {
         __typename: "SectionTextImageRecord";
@@ -56,6 +61,10 @@ const props = defineProps<{
     />
     <PageHeader
       v-else-if="block?.__typename === 'SectionHeaderRecord'"
+      :data="block"
+    />
+    <PagePartial
+      v-else-if="block?.__typename === 'PagePartialBlockRecord'"
       :data="block"
     />
     <TextImage
