@@ -29,7 +29,7 @@
           v-for="(cta, index) in data.ctas"
           :key="index"
           :label="cta.title"
-          :to="cta.__typename === 'ExternalLinkRecord' ? cta?.url : cta?.link"
+          :to="cta.__typename === 'ExternalLinkRecord' ? cta.url : cta.link"
           :external="cta.__typename === 'ExternalLinkRecord'"
           :primary="cta.style === 'primary'"
           :secondary="cta.style === 'secondary'"
