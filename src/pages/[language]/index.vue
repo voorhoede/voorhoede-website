@@ -2,6 +2,30 @@
   <main>
     <h1 class="sr-only">{{ data?.homePage?.title }}</h1>
     <Blocks v-if="data?.homePage?.sections" :blocks="data.homePage.sections" />
+    <section class="page-index__blog-posts grid">
+      <div class="grid">
+        <h2
+          class="page-index__section-title page-index__section-title--blog-posts h3"
+        >
+          {{ $t("latest_blog_posts") }}
+        </h2>
+      </div>
+      <div class="page-index__blog-posts-list-container grid">
+        <BlogsList
+          :items="data?.latestBlogposts!"
+          item-size="small"
+          class="page-index__blog-posts-list"
+        />
+      </div>
+
+      <div class="page-index__blog-posts-button">
+        <AppButton
+          secondary
+          :to="$localeUrl({ name: 'blog' })"
+          :label="$t('latest_blog_posts')"
+        />
+      </div>
+    </section>
     <div class="grid">
       <div class="page__scroll-to">
         <ScrollTo direction="up" />
@@ -49,6 +73,26 @@ const query = graphql(
           ...TextImageFragment
         }
       }
+
+      latestBlogposts: allBlogPosts(
+        locale: $locale
+        first: 3
+        orderBy: _firstPublishedAt_DESC
+        filter: { isArchived: { eq: "false" }, _locales: { allIn: [$locale] } }
+      ) {
+        slug
+        title
+        date: _firstPublishedAt
+        authors {
+          name
+          image {
+            url
+            alt
+            width
+            height
+          }
+        }
+      }
     }
   `,
   [
@@ -92,6 +136,28 @@ if (data.value?.homePage && data.value.homePage.seo) {
 
   @media (min-width: 720px) {
     display: block;
+  }
+}
+
+/* Blog posts section */
+.page-index__blog-posts {
+  position: relative;
+  margin-block-end: var(--spacing-larger);
+}
+
+.page-index__section-title--blog-posts {
+  text-align: center;
+  margin-bottom: var(--spacing-large);
+}
+
+.page-index__blog-posts-button {
+  text-align: center;
+}
+
+@media (min-width: 720px) {
+  .page-index__section-title--blog-posts {
+    grid-column: var(--grid-content-smallest);
+    text-align: left;
   }
 }
 </style>
