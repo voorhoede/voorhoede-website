@@ -1,43 +1,15 @@
 <script setup lang="ts">
-import type { CaseListFragment } from "./CaseList/CaseList.query";
+import type { BlockItem } from "./PagePartial/types";
 import CaseList from "./CaseList/CaseList.vue";
-import type { DialogueCtaFragment } from "./DialogueCta/DialogueCta.query";
 import DialogueCta from "./DialogueCta/DialogueCta.vue";
-import type { ImageCardGridFragment } from "./ImageCardGrid/ImageCardGrid.query";
 import ImageCardGrid from "./ImageCardGrid/ImageCardGrid.vue";
-import type { LogoGridFragment } from "./LogoGrid/LogoGrid.query";
 import LogoGrid from "./LogoGrid/LogoGrid.vue";
-import type { PageHeaderFragment } from "./PageHeader/PageHeader.query";
 import PageHeader from "./PageHeader/PageHeader.vue";
-import type { PagePartialFragment } from "./PagePartial/PagePartial.query";
 import PagePartial from "./PagePartial/PagePartial.vue";
-import type { TextImageFragment } from "./TextImage/TextImage.query";
 import TextImage from "./TextImage/TextImage.vue";
 
 const props = defineProps<{
-  blocks: Array<
-    | (FragmentOf<typeof CaseListFragment> & {
-        __typename: "SectionCaseListRecord";
-      })
-    | (FragmentOf<typeof DialogueCtaFragment> & {
-        __typename: "SectionDialogueCtaRecord";
-      })
-    | (FragmentOf<typeof ImageCardGridFragment> & {
-        __typename: "SectionImageCardGridRecord";
-      })
-    | (FragmentOf<typeof LogoGridFragment> & {
-        __typename: "SectionLogoGridRecord";
-      })
-    | (FragmentOf<typeof PageHeaderFragment> & {
-        __typename: "SectionHeaderRecord";
-      })
-    | (FragmentOf<typeof PagePartialFragment> & {
-        __typename: "PagePartialBlockRecord";
-      })
-    | (FragmentOf<typeof TextImageFragment> & {
-        __typename: "SectionTextImageRecord";
-      })
-  >;
+  blocks: BlockItem[];
 }>();
 </script>
 
