@@ -107,17 +107,12 @@ const query = graphql(
     TextImageFragment,
   ],
 );
-const pageKey = [route.name, ...Object.values(route.params)]
-  .filter(Boolean)
-  .join("-");
-const { data } = await useAsyncData(pageKey, async () => {
+
+const { data } = await useAsyncData(route.path, async () => {
   const result = await useFetchDatocmsContent({
     query,
     variables: { locale: route.params.language as "nl" | "en" },
   });
-
-  console.log("result.error", result.error);
-  console.log("result.data", result.data);
 
   return result.data;
 });
