@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "nuxt dev",
+    "prebuild": "npm run generate:datocms-types",
     "build": "nuxt build",
     "build-cloudflare": "node ./src/scripts/cloudflare-build.mjs",
     "lint": "eslint '**/*.vue'",
+    "typecheck": "gql-tada check",
     "lint-staged": "nano-staged",
-    "prepare": "husky",
+    "prepare": "husky && npm run generate:datocms-types",
     "generate:datocms-schema": "node ./src/scripts/generate-datocms-schema.mts",
     "generate:datocms-types": "gql-tada generate output"
   },
