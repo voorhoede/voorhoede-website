@@ -1,12 +1,12 @@
-import type { CaseListFragment } from "../CaseList/CaseList.query";
-import type { DialogueCtaFragment } from "../DialogueCta/DialogueCta.query";
-import type { ImageCardGridFragment } from "../ImageCardGrid/ImageCardGrid.query";
-import type { LogoGridFragment } from "../LogoGrid/LogoGrid.query";
-import type { PageHeaderFragment } from "../PageHeader/PageHeader.query";
-import type { PagePartialFragment } from "../PagePartial/PagePartial.query";
-import type { TextImageFragment } from "../TextImage/TextImage.query";
+import type { CaseListFragment } from "./CaseList/CaseList.query";
+import type { DialogueCtaFragment } from "./DialogueCta/DialogueCta.query";
+import type { ImageCardGridFragment } from "./ImageCardGrid/ImageCardGrid.query";
+import type { LogoGridFragment } from "./LogoGrid/LogoGrid.query";
+import type { PageHeaderFragment } from "./PageHeader/PageHeader.query";
+import type { PagePartialFragment } from "./PagePartial/PagePartial.query";
+import type { TextImageFragment } from "./TextImage/TextImage.query";
 
-export type BlockItem =
+export type BlockRecord =
   | (FragmentOf<typeof CaseListFragment> & {
       __typename: "SectionCaseListRecord";
     })
