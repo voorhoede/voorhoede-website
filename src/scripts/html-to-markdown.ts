@@ -3,11 +3,12 @@ import rehypeRemark from 'rehype-remark';
 import remarkGfm from 'remark-gfm';
 import remarkStringify from 'remark-stringify';
 import { unified } from 'unified';
+import { buildFrontmatter } from '../lib/frontmatter.js';
 import { rehypeExtractContent } from '../lib/rehype/rehype-extract-content.js';
 import { rehypeExtractMeta, type PageMeta } from '../lib/rehype/rehype-extract-meta.js';
+import { rehypeRemoveEmptyElements } from '../lib/rehype/rehype-remove-empty-elements.js';
 import { rehypeRewriteLinksToMarkdown } from '../lib/rehype/rehype-rewrite-links-to-markdown.js';
 import { rehypeStripComments } from '../lib/rehype/rehype-strip-comments.js';
-import { buildFrontmatter } from '../lib/frontmatter.js';
 
 interface HtmlToMarkdownOptions {
   html: string;
@@ -23,12 +24,14 @@ function buildProcessor(origin: string) {
       selector: '#content',
       exclude: [
         '.app-footer',
+        '.open-in-llm',
         '[aria-hidden="true"]',
         'img:not([alt])',
         'img[alt=""]',
       ],
     })
     .use(rehypeStripComments)
+    .use(rehypeRemoveEmptyElements)
     .use(rehypeRewriteLinksToMarkdown, { origin })
     .use(rehypeRemark)
     .use(remarkGfm)
