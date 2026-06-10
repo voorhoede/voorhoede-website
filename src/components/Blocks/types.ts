@@ -1,5 +1,6 @@
 import type { CaseListFragment } from "./CaseList/CaseList.query";
 import type { DialogueCtaFragment } from "./DialogueCta/DialogueCta.query";
+import type { GroupingFragment } from "./Grouping/Grouping.query";
 import type { ImageCardGridFragment } from "./ImageCardGrid/ImageCardGrid.query";
 import type { LogoGridFragment } from "./LogoGrid/LogoGrid.query";
 import type { PageHeaderFragment } from "./PageHeader/PageHeader.query";
@@ -12,6 +13,9 @@ export type BlockRecord =
     })
   | (FragmentOf<typeof DialogueCtaFragment> & {
       __typename: "SectionDialogueCtaRecord";
+    })
+  | (FragmentOf<typeof GroupingFragment> & {
+      __typename: "SectionGroupingRecord";
     })
   | (FragmentOf<typeof ImageCardGridFragment> & {
       __typename: "SectionImageCardGridRecord";
