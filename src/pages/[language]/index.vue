@@ -42,6 +42,7 @@ import { graphql } from "~/utils/graphql";
 
 import { CaseListFragment } from "~/components/Blocks/CaseList/CaseList.query";
 import { DialogueCtaFragment } from "~/components/Blocks/DialogueCta/DialogueCta.query";
+import { GroupingFragment } from "~/components/Blocks/Grouping/Grouping.query";
 import { ImageCardGridFragment } from "~/components/Blocks/ImageCardGrid/ImageCardGrid.query";
 import { LogoGridFragment } from "~/components/Blocks/LogoGrid/LogoGrid.query";
 import { PageHeaderFragment } from "~/components/Blocks/PageHeader/PageHeader.query";
@@ -68,6 +69,7 @@ const query = graphql(
           __typename
           ...CaseListFragment
           ...DialogueCtaFragment
+          ...GroupingFragment
           ...ImageCardGridFragment
           ...LogoGridFragment
           ...PageHeaderFragment
@@ -100,6 +102,7 @@ const query = graphql(
   [
     CaseListFragment,
     DialogueCtaFragment,
+    GroupingFragment,
     ImageCardGridFragment,
     LogoGridFragment,
     PageHeaderFragment,
