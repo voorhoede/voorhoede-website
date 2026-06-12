@@ -1,69 +1,25 @@
 import { graphql } from "~/utils/graphql";
+import { LinkFragment } from "~/utils/link";
 
-export const DialogueCtaFragment = graphql(`
-  fragment DialogueCtaFragment on SectionDialogueCtaRecord {
-    variant
-    title
-    body(markdown: true)
-    backgroundColor
-    person {
-      image {
-        url
-        alt
-        width
-        height
-      }
-    }
-    ctas {
-      ...link
-    }
-  }
-
-  fragment link on RecordInterface {
-    __typename
-    ... on InternalLinkRecord {
-      id
+export const DialogueCtaFragment = graphql(
+  `
+    fragment DialogueCtaFragment on SectionDialogueCtaRecord {
+      variant
       title
-      style
-      link {
-        __typename
-        ... on PageRecord {
-          slug
-        }
-        ... on BlogPostRecord {
-          slug
-        }
-        ... on CaseItemRecord {
-          slug
-        }
-        ... on EventItemRecord {
-          slug
-        }
-        ... on JobRecord {
-          slug
-        }
-        ... on ServiceRecord {
-          slug
-        }
-        ... on PersonRecord {
-          slug
-        }
-        ... on MeetRecord {
-          parents: _allReferencingPeople {
-            __typename
-            slug
-          }
-        }
-        ... on ContactRecord {
-          id
+      body(markdown: true)
+      backgroundColor
+      person {
+        image {
+          url
+          alt
+          width
+          height
         }
       }
+      ctas {
+        ...LinkFragment
+      }
     }
-    ... on ExternalLinkRecord {
-      id
-      title
-      url
-      style
-    }
-  }
-`);
+  `,
+  [LinkFragment],
+);
