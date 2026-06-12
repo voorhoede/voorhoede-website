@@ -10894,7 +10894,7 @@ type SectionCaseListRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   cases: [CaseItemRecord!]!
-  columns: IntType
+  columns: IntType!
   createdAt: DateTime!
   id: ItemId!
   title: String
