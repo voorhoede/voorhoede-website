@@ -4016,7 +4016,6 @@ input HomePageModelFilter {
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   seo: SeoFilter
-  pivots: LinksFilter
   title: StringFilter
   OR: [HomePageModelFilter]
   AND: [HomePageModelFilter]
@@ -4096,7 +4095,6 @@ type HomePageRecord implements RecordInterface {
   _updatedAt: DateTime!
   createdAt: DateTime!
   id: ItemId!
-  pivots: [PivotSectionRecord!]!
   sections(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
