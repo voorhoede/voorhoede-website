@@ -11,11 +11,7 @@
       {{ data.title }}
     </h2>
     <ul class="image-card-grid__list">
-      <li
-        v-for="card in data.items"
-        :key="card.id"
-        class="image-card-grid__card"
-      >
+      <li v-for="card in cards" :key="card.id" class="image-card-grid__card">
         <DatoImage
           class="image-card-grid__image"
           :src="card.image.url"
@@ -36,18 +32,18 @@
           />
 
           <AppButton
-            v-if="card.links[0]?.__typename === 'ExternalLinkRecord'"
+            v-if="card.link?.__typename === 'ExternalLinkRecord'"
             class="image-card-grid__link"
-            :label="card.links[0].title"
-            :to="card.links[0].url"
+            :label="card.link.title"
+            :to="card.link.url"
             external
             secondary
           />
           <AppButton
-            v-if="card.links[0]?.__typename === 'InternalLinkRecord'"
+            v-if="card.link?.__typename === 'InternalLinkRecord'"
             class="image-card-grid__link"
-            :label="card.links[0].title"
-            :to="useDatoNuxtRoute(card.links[0].link)"
+            :label="card.link.title"
+            :to="useDatoNuxtRoute(card.link.link)"
             secondary
           />
         </div>
@@ -59,6 +55,7 @@
 <script setup lang="ts">
 import { type ImageCardGridFragment } from "./ImageCardGrid.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
+import { LinkFragment } from "~/utils/link";
 import { BackgroundColor } from "~/types/styling";
 
 const props = defineProps<{
@@ -66,6 +63,13 @@ const props = defineProps<{
 }>();
 
 const data = readFragment<typeof ImageCardGridFragment>(props.data);
+
+const cards = computed(() => {
+  return data.items.map((card) => ({
+    ...card,
+    link: card.links[0] ? readFragment(LinkFragment, card.links[0]) : undefined,
+  }));
+});
 
 const imageSizes = computed(() => {
   return data.cardOrientation === "horizontal"
