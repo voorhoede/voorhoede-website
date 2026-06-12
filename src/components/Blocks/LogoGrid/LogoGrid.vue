@@ -55,7 +55,6 @@ const data = readFragment<typeof LogoGridFragment>(props.data);
 
   grid-column-end: var(--grid-page-end);
   grid-column-start: var(--grid-page-start);
-  margin-top: 1rem;
 }
 
 .logo-grid__title {
