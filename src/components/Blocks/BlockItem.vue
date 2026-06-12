@@ -2,6 +2,7 @@
 import type { BlockRecord } from "./types";
 import CaseList from "./CaseList/CaseList.vue";
 import DialogueCta from "./DialogueCta/DialogueCta.vue";
+import Grouping from "./Grouping/Grouping.vue";
 import ImageCardGrid from "./ImageCardGrid/ImageCardGrid.vue";
 import LogoGrid from "./LogoGrid/LogoGrid.vue";
 import PageHeader from "./PageHeader/PageHeader.vue";
@@ -20,6 +21,10 @@ const props = defineProps<{
   />
   <DialogueCta
     v-else-if="props.block?.__typename === 'SectionDialogueCtaRecord'"
+    :data="props.block"
+  />
+  <Grouping
+    v-else-if="props.block?.__typename === 'SectionGroupingRecord'"
     :data="props.block"
   />
   <ImageCardGrid

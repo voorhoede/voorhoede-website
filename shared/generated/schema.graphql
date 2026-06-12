@@ -182,9 +182,6 @@ input BlogPostModelFilter {
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
-  onMountedScript: TextFilter
-  onUnmountedScript: TextFilter
-  slug: SlugFilter
   authors: LinksFilter
   social: SeoFilter
   headerIllustration: FileFilter
@@ -197,6 +194,9 @@ input BlogPostModelFilter {
   title: StringFilter
   introTitle: StringFilter
   subtitle: StringFilter
+  onMountedScript: TextFilter
+  onUnmountedScript: TextFilter
+  slug: SlugFilter
   OR: [BlogPostModelFilter]
   AND: [BlogPostModelFilter]
 }
@@ -258,7 +258,6 @@ input BlogPostOverviewModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  subtitle: StringFilter
   headerIllustration: FileFilter
   social: SeoFilter
   pivots: LinksFilter
@@ -266,6 +265,7 @@ input BlogPostOverviewModelFilter {
   previewLinks: JsonFilter
   title: StringFilter
   description: TextFilter
+  subtitle: StringFilter
   OR: [BlogPostOverviewModelFilter]
   AND: [BlogPostOverviewModelFilter]
 }
@@ -293,10 +293,10 @@ enum BlogPostOverviewModelOrderBy {
   updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
-  subtitle_ASC
-  subtitle_DESC
   title_ASC
   title_DESC
+  subtitle_ASC
+  subtitle_DESC
 }
 
 """Record of type Blog post overview (blog_post_overview)"""
@@ -1002,8 +1002,6 @@ input CaseItemModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  subtitle: StringFilter
-  slug: SlugFilter
   social: SeoFilter
   heroIllustration: FileFilter
   metaData: LinkFilter
@@ -1013,6 +1011,8 @@ input CaseItemModelFilter {
   title: StringFilter
   quote: StringFilter
   author: StringFilter
+  subtitle: StringFilter
+  slug: SlugFilter
   OR: [CaseItemModelFilter]
   AND: [CaseItemModelFilter]
 }
@@ -1042,14 +1042,14 @@ enum CaseItemModelOrderBy {
   updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
-  subtitle_ASC
-  subtitle_DESC
   title_ASC
   title_DESC
   quote_ASC
   quote_DESC
   author_ASC
   author_DESC
+  subtitle_ASC
+  subtitle_DESC
 }
 
 """Record of type Case item (case_item)"""
@@ -1426,10 +1426,6 @@ input CaseOverviewModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  subtitle: StringFilter
-  introTitle: StringFilter
-  contactBody: TextFilter
-  clientsTitle: StringFilter
   introBody: StructuredTextFilter
   social: SeoFilter
   projects: LinksFilter
@@ -1439,6 +1435,10 @@ input CaseOverviewModelFilter {
   introductionBlock: LinkFilter
   previewLinks: JsonFilter
   title: StringFilter
+  subtitle: StringFilter
+  introTitle: StringFilter
+  contactBody: TextFilter
+  clientsTitle: StringFilter
   OR: [CaseOverviewModelFilter]
   AND: [CaseOverviewModelFilter]
 }
@@ -1480,14 +1480,14 @@ enum CaseOverviewModelOrderBy {
   updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
+  title_ASC
+  title_DESC
   subtitle_ASC
   subtitle_DESC
   introTitle_ASC
   introTitle_DESC
   clientsTitle_ASC
   clientsTitle_DESC
-  title_ASC
-  title_DESC
 }
 
 """Record of type Case overview (case_overview)"""
@@ -1847,15 +1847,15 @@ input ContactConfirmationModelFilter {
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
-  subtitle: StringFilter
-  callToActionLabel: StringFilter
-  slug: SlugFilter
   headerIllustration: FileFilter
   body: TextFilter
   social: SeoFilter
   pivots: LinksFilter
   previewLinks: JsonFilter
   title: StringFilter
+  subtitle: StringFilter
+  callToActionLabel: StringFilter
+  slug: SlugFilter
   OR: [ContactConfirmationModelFilter]
   AND: [ContactConfirmationModelFilter]
 }
@@ -1883,12 +1883,12 @@ enum ContactConfirmationModelOrderBy {
   updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
+  title_ASC
+  title_DESC
   subtitle_ASC
   subtitle_DESC
   callToActionLabel_ASC
   callToActionLabel_DESC
-  title_ASC
-  title_DESC
 }
 
 """Record of type Contact confirmation (contact_confirmation)"""
@@ -2028,10 +2028,10 @@ input ContactItemModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
+  image: FileFilter
   title: StringFilter
   body: StringFilter
   contactType: StringFilter
-  image: FileFilter
   OR: [ContactItemModelFilter]
   AND: [ContactItemModelFilter]
 }
@@ -2382,9 +2382,9 @@ input CustomPageModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
+  social: SeoFilter
   title: StringFilter
   slug: SlugFilter
-  social: SeoFilter
   OR: [CustomPageModelFilter]
   AND: [CustomPageModelFilter]
 }
@@ -2644,10 +2644,10 @@ input ErrorPageModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  errorCode: IntegerFilter
-  title: StringFilter
   body: TextFilter
   headerImage: FileFilter
+  errorCode: IntegerFilter
+  title: StringFilter
   OR: [ErrorPageModelFilter]
   AND: [ErrorPageModelFilter]
 }
@@ -2756,10 +2756,6 @@ input EventItemModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  price: StringFilter
-  callToActionLabel: StringFilter
-  onlineEventUrl: StringFilter
-  slug: SlugFilter
   date: DateTimeFilter
   image: FileFilter
   social: SeoFilter
@@ -2769,6 +2765,10 @@ input EventItemModelFilter {
   location: LinkFilter
   title: StringFilter
   url: StringFilter
+  price: StringFilter
+  callToActionLabel: StringFilter
+  onlineEventUrl: StringFilter
+  slug: SlugFilter
   OR: [EventItemModelFilter]
   AND: [EventItemModelFilter]
 }
@@ -2798,12 +2798,6 @@ enum EventItemModelOrderBy {
   updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
-  price_ASC
-  price_DESC
-  callToActionLabel_ASC
-  callToActionLabel_DESC
-  onlineEventUrl_ASC
-  onlineEventUrl_DESC
   date_ASC
   date_DESC
   eventIsOnline_ASC
@@ -2812,6 +2806,12 @@ enum EventItemModelOrderBy {
   title_DESC
   url_ASC
   url_DESC
+  price_ASC
+  price_DESC
+  callToActionLabel_ASC
+  callToActionLabel_DESC
+  onlineEventUrl_ASC
+  onlineEventUrl_DESC
 }
 
 """Record of type Event item (event_item)"""
@@ -3719,8 +3719,8 @@ input GalleryModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  title: StringFilter
   images: GalleryFilter
+  title: StringFilter
   OR: [GalleryModelFilter]
   AND: [GalleryModelFilter]
 }
@@ -3831,10 +3831,10 @@ input GlossaryTermModelFilter {
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
-  slug: SlugFilter
   term: StringFilter
   question: StringFilter
   definition: TextFilter
+  slug: SlugFilter
   OR: [GlossaryTermModelFilter]
   AND: [GlossaryTermModelFilter]
 }
@@ -4015,9 +4015,9 @@ input HomePageModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  title: StringFilter
   seo: SeoFilter
   pivots: LinksFilter
+  title: StringFilter
   OR: [HomePageModelFilter]
   AND: [HomePageModelFilter]
 }
@@ -4049,7 +4049,7 @@ enum HomePageModelOrderBy {
   title_DESC
 }
 
-union HomePageModelSectionsField = PagePartialBlockRecord | SectionCaseListRecord | SectionDialogueCtaRecord | SectionHeaderRecord | SectionImageCardGridRecord | SectionLogoGridRecord | SectionTextImageRecord
+union HomePageModelSectionsField = CallToActionRecord | PagePartialBlockRecord | SectionCaseListRecord | SectionDialogueCtaRecord | SectionGlossaryRecord | SectionGroupingRecord | SectionHeaderRecord | SectionImageCardGridRecord | SectionLogoGridRecord | SectionTextImageRecord
 
 type HomePageModelSectionsFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -6946,8 +6946,8 @@ input JobCtaModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  title: StringFilter
   job: LinkFilter
+  title: StringFilter
   OR: [JobCtaModelFilter]
   AND: [JobCtaModelFilter]
 }
@@ -7047,12 +7047,6 @@ input JobModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  subtitle: StringFilter
-  salary: StringFilter
-  minSalary: IntegerFilter
-  maxSalary: IntegerFilter
-  employmentType: StringFilter
-  slug: SlugFilter
   jobImage: FileFilter
   social: SeoFilter
   location: LinksFilter
@@ -7062,6 +7056,12 @@ input JobModelFilter {
   previewLinks: JsonFilter
   title: StringFilter
   url: StringFilter
+  subtitle: StringFilter
+  salary: StringFilter
+  minSalary: IntegerFilter
+  maxSalary: IntegerFilter
+  employmentType: StringFilter
+  slug: SlugFilter
   OR: [JobModelFilter]
   AND: [JobModelFilter]
 }
@@ -7098,6 +7098,14 @@ enum JobModelOrderBy {
   updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
+  validUntil_ASC
+  validUntil_DESC
+  isClosed_ASC
+  isClosed_DESC
+  title_ASC
+  title_DESC
+  url_ASC
+  url_DESC
   subtitle_ASC
   subtitle_DESC
   salary_ASC
@@ -7108,14 +7116,6 @@ enum JobModelOrderBy {
   maxSalary_DESC
   employmentType_ASC
   employmentType_DESC
-  validUntil_ASC
-  validUntil_DESC
-  isClosed_ASC
-  isClosed_DESC
-  title_ASC
-  title_DESC
-  url_ASC
-  url_DESC
 }
 
 """Record of type Job overview (job_overview)"""
@@ -7558,6 +7558,7 @@ input LocationModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
+  image: FileFilter
   title: StringFilter
   body: StringFilter
   googleMaps: StringFilter
@@ -7565,7 +7566,6 @@ input LocationModelFilter {
   postalCode: StringFilter
   city: StringFilter
   countryCode: StringFilter
-  image: FileFilter
   OR: [LocationModelFilter]
   AND: [LocationModelFilter]
 }
@@ -7654,9 +7654,9 @@ input MeetModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
+  seo: SeoFilter
   name: StringFilter
   url: StringFilter
-  seo: SeoFilter
   OR: [MeetModelFilter]
   AND: [MeetModelFilter]
 }
@@ -8211,9 +8211,9 @@ input OpenGraphImageModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  title: StringFilter
   authors: LinksFilter
   image: FileFilter
+  title: StringFilter
   OR: [OpenGraphImageModelFilter]
   AND: [OpenGraphImageModelFilter]
 }
@@ -8355,10 +8355,10 @@ input PageModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
+  social: SeoFilter
   title: StringFilter
   previewLink: JsonFilter
   slug: SlugFilter
-  social: SeoFilter
   OR: [PageModelFilter]
   AND: [PageModelFilter]
 }
@@ -8648,14 +8648,14 @@ input PersonModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  jobTitle: StringFilter
-  slug: SlugFilter
   image: FileFilter
   employmentStatus: StringFilter
   biography: TextFilter
   meet: LinkFilter
   name: StringFilter
   lastName: StringFilter
+  jobTitle: StringFilter
+  slug: SlugFilter
   OR: [PersonModelFilter]
   AND: [PersonModelFilter]
 }
@@ -8683,14 +8683,14 @@ enum PersonModelOrderBy {
   updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
-  jobTitle_ASC
-  jobTitle_DESC
   employmentStatus_ASC
   employmentStatus_DESC
   name_ASC
   name_DESC
   lastName_ASC
   lastName_DESC
+  jobTitle_ASC
+  jobTitle_DESC
 }
 
 """Record of type Person (person)"""
@@ -8785,6 +8785,8 @@ input PivotSectionModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
+  body: TextFilter
+  contactPerson: LinkFilter
   title: StringFilter
   formType: StringFilter
   mailchimpId: StringFilter
@@ -8792,8 +8794,6 @@ input PivotSectionModelFilter {
   mailchimpValue: StringFilter
   identifier: StringFilter
   adConversionId: StringFilter
-  body: TextFilter
-  contactPerson: LinkFilter
   OR: [PivotSectionModelFilter]
   AND: [PivotSectionModelFilter]
 }
@@ -10894,7 +10894,7 @@ type SectionCaseListRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   cases: [CaseItemRecord!]!
-  columns: IntType!
+  columns: IntType
   createdAt: DateTime!
   id: ItemId!
   title: String
@@ -11535,9 +11535,6 @@ input ServiceModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  excerptTitle: StringFilter
-  cardBody: TextFilter
-  slug: SlugFilter
   social: SeoFilter
   headerIllustration: FileFilter
   pivots: LinksFilter
@@ -11549,6 +11546,9 @@ input ServiceModelFilter {
   icon: StringFilter
   title: StringFilter
   subtitle: StringFilter
+  excerptTitle: StringFilter
+  cardBody: TextFilter
+  slug: SlugFilter
   OR: [ServiceModelFilter]
   AND: [ServiceModelFilter]
 }
@@ -11583,14 +11583,14 @@ enum ServiceModelOrderBy {
   updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
-  excerptTitle_ASC
-  excerptTitle_DESC
   icon_ASC
   icon_DESC
   title_ASC
   title_DESC
   subtitle_ASC
   subtitle_DESC
+  excerptTitle_ASC
+  excerptTitle_DESC
 }
 
 """Linking fields"""
@@ -11619,9 +11619,6 @@ input ServiceOverviewModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  introTitle: StringFilter
-  servicesTitle: StringFilter
-  introBody: StructuredTextFilter
   services: LinksFilter
   headerIllustration: FileFilter
   social: SeoFilter
@@ -11634,6 +11631,9 @@ input ServiceOverviewModelFilter {
   title: StringFilter
   subtitle: StringFilter
   servicesButtonLabel: StringFilter
+  introTitle: StringFilter
+  servicesTitle: StringFilter
+  introBody: StructuredTextFilter
   OR: [ServiceOverviewModelFilter]
   AND: [ServiceOverviewModelFilter]
 }
@@ -11675,16 +11675,16 @@ enum ServiceOverviewModelOrderBy {
   updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
-  introTitle_ASC
-  introTitle_DESC
-  servicesTitle_ASC
-  servicesTitle_DESC
   title_ASC
   title_DESC
   subtitle_ASC
   subtitle_DESC
   servicesButtonLabel_ASC
   servicesButtonLabel_DESC
+  introTitle_ASC
+  introTitle_DESC
+  servicesTitle_ASC
+  servicesTitle_DESC
 }
 
 """Record of type Service overview (service_overview)"""
@@ -11871,9 +11871,9 @@ input ServicePageSeriesModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  identifier: StringFilter
   mainService: LinkFilter
   childServices: LinksFilter
+  identifier: StringFilter
   OR: [ServicePageSeriesModelFilter]
   AND: [ServicePageSeriesModelFilter]
 }
@@ -12645,10 +12645,10 @@ input TagModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
+  blogTagSocial: SeoFilter
   blogTopicDescription: StringFilter
   title: StringFilter
   slug: SlugFilter
-  blogTagSocial: SeoFilter
   OR: [TagModelFilter]
   AND: [TagModelFilter]
 }
@@ -13021,11 +13021,11 @@ input TestimonialItemModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  author: StringFilter
-  company: StringFilter
   quote: TextFilter
   validated: BooleanFilter
   fullwidth: BooleanFilter
+  author: StringFilter
+  company: StringFilter
   OR: [TestimonialItemModelFilter]
   AND: [TestimonialItemModelFilter]
 }
@@ -13053,14 +13053,14 @@ enum TestimonialItemModelOrderBy {
   updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
-  author_ASC
-  author_DESC
-  company_ASC
-  company_DESC
   validated_ASC
   validated_DESC
   fullwidth_ASC
   fullwidth_DESC
+  author_ASC
+  author_DESC
+  company_ASC
+  company_DESC
 }
 
 """Record of type testimonial item (testimonial_item)"""
@@ -13881,9 +13881,9 @@ input UspModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  title: StringFilter
   image: FileFilter
   body: TextFilter
+  title: StringFilter
   OR: [UspModelFilter]
   AND: [UspModelFilter]
 }

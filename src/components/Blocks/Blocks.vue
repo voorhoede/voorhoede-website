@@ -14,7 +14,7 @@ const props = defineProps<{
 </template>
 
 <style scoped>
-.block:not(:has(.grouping-block)) {
+.block:not(:has(.page-header)) {
   margin-bottom: var(--spacing-larger);
 
   @media (min-width: 720px) {

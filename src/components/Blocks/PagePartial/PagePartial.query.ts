@@ -1,6 +1,7 @@
 import { graphql } from "~/utils/graphql";
 import { CaseListFragment } from "../CaseList/CaseList.query";
 import { DialogueCtaFragment } from "../DialogueCta/DialogueCta.query";
+import { GroupingFragment } from "../Grouping/Grouping.query";
 import { ImageCardGridFragment } from "../ImageCardGrid/ImageCardGrid.query";
 import { LogoGridFragment } from "../LogoGrid/LogoGrid.query";
 import { PageHeaderFragment } from "../PageHeader/PageHeader.query";
@@ -17,6 +18,7 @@ export const PagePartialFragment = graphql(
           __typename
           ...CaseListFragment
           ...DialogueCtaFragment
+          ...GroupingFragment
           ...ImageCardGridFragment
           ...LogoGridFragment
           ...PageHeaderFragment
@@ -27,6 +29,7 @@ export const PagePartialFragment = graphql(
   [
     CaseListFragment,
     DialogueCtaFragment,
+    GroupingFragment,
     ImageCardGridFragment,
     LogoGridFragment,
     PageHeaderFragment,
