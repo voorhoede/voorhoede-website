@@ -25,3 +25,5 @@ jobs:
         run: npm ci --ignore-scripts --no-audit --no-fund
 
       - run: npm run lint -- --max-warnings 0
+
+      - run: npm run typecheck

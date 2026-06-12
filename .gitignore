@@ -6,3 +6,4 @@ dist
 .cache
 feed.json
 _redirects
+shared/generated/graphql-env.d.ts
