@@ -348,6 +348,7 @@ export default {
 .app-footer__list {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  row-gap: var(--spacing-tiny);
   margin-bottom: var(--spacing-small);
 }
 
@@ -367,7 +368,7 @@ export default {
     flex-flow: column wrap;
     justify-content: flex-start;
     max-height: var(--footer-list-height);
-    gap: var(--spacing-tiny);
+    gap: var(--spacing-small);
     padding-bottom: 0;
   }
 }
@@ -438,7 +439,15 @@ export default {
   position: relative;
   z-index: var(--z-index-low);
   text-decoration: none;
-  padding: 6px 0;
+  padding-top: var(--spacing-tiny);
+}
+
+@media (min-width: 768px) {
+  .app-footer__link {
+    padding-block: 0;
+    padding-top: var(--spacing-smaller);
+    margin-top: calc(var(--spacing-smaller) * -1);
+  }
 }
 
 .app-footer__link:hover,
