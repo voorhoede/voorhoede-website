@@ -32,7 +32,7 @@
     "gql.tada": "^1.9.2",
     "hast-util-select": "^6.0.4",
     "nanoid": "^5.1.11",
-    "nuxt": "^4.4.6",
+    "nuxt": "^4.4.8",
     "prismjs": "^1.29.0",
     "rehype-parse": "^9.0.1",
     "rehype-remark": "^10.0.1",
