@@ -13,8 +13,10 @@ COPY package*.json ./
 RUN npm ci --ignore-scripts --no-audit --no-fund --no-update-notifier
 COPY src/ ./src/
 COPY server/ ./server/
+COPY shared/ ./shared/
 COPY public/ ./public/
 COPY nuxt.config.ts ./
+COPY tsconfig.json ./
 
 RUN --mount=type=secret,id=datocms_api_read_token,env=DATOCMS_API_READ_TOKEN \
   --mount=type=secret,id=postmark_api_token,env=POSTMARK_API_TOKEN \
