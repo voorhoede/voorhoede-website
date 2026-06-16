@@ -26,17 +26,10 @@
       />
       <div class="dialogue-cta__ctas">
         <AppLink
-          v-for="(cta, index) in ctas"
+          v-for="(cta, index) in data.ctas"
           :key="index"
-          :link="cta.record"
-          class="app-button body"
-          :class="cta.style === 'secondary'
-            ? 'app-button--secondary'
-            : 'app-button--primary font-bold'"
-        >
-          <span v-if="cta.style !== 'secondary'">{{ cta.label }}</span>
-          <template v-else>{{ cta.label }} &rarr;</template>
-        </AppLink>
+          :link="cta"
+        />
       </div>
     </div>
   </section>
@@ -46,14 +39,12 @@
 import { type DialogueCtaFragment } from "./DialogueCta.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import AppLink from "~/components/Core/AppLink/AppLink.vue";
-import { resolveLink } from "~/utils/link";
 
 const props = defineProps<{
   data: FragmentOf<typeof DialogueCtaFragment>;
 }>();
 
 const data = readFragment<typeof DialogueCtaFragment>(props.data);
-const ctas = data.ctas.map((cta) => ({ record: cta, ...resolveLink(cta) }));
 </script>
 
 <style scoped>

@@ -33,11 +33,9 @@
 
           <AppLink
             v-if="card.link"
-            class="image-card-grid__link app-button body app-button--secondary"
-            :link="card.link.record"
-          >
-            {{ card.link.label }} &rarr;
-          </AppLink>
+            class="image-card-grid__link"
+            :link="card.link"
+          />
         </div>
       </li>
     </ul>
@@ -49,7 +47,6 @@ import { type ImageCardGridFragment } from "./ImageCardGrid.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import { BackgroundColor } from "~/types/styling";
 import AppLink from "~/components/Core/AppLink/AppLink.vue";
-import { resolveLink } from "~/utils/link";
 
 const props = defineProps<{
   data: FragmentOf<typeof ImageCardGridFragment>;
@@ -60,7 +57,7 @@ const data = readFragment<typeof ImageCardGridFragment>(props.data);
 const cards = computed(() => {
   return data.items.map((card) => ({
     ...card,
-    link: card.links[0] ? { record: card.links[0], ...resolveLink(card.links[0]) } : undefined,
+    link: card.links[0] ?? undefined,
   }));
 });
 
