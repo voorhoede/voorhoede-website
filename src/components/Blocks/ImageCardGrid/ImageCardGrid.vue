@@ -31,21 +31,13 @@
             :content="card.body"
           />
 
-          <AppButton
-            v-if="card.link?.__typename === 'ExternalLinkRecord'"
-            class="image-card-grid__link"
-            :label="card.link.title"
-            :to="card.link.url"
-            external
-            secondary
-          />
-          <AppButton
-            v-if="card.link?.__typename === 'InternalLinkRecord'"
-            class="image-card-grid__link"
-            :label="card.link.title"
-            :to="useDatoNuxtRoute(card.link.link)"
-            secondary
-          />
+          <AppLink
+            v-if="card.link"
+            class="image-card-grid__link app-button body app-button--secondary"
+            :to="card.link.to"
+          >
+            {{ card.link.label }} &rarr;
+          </AppLink>
         </div>
       </li>
     </ul>
@@ -55,8 +47,9 @@
 <script setup lang="ts">
 import { type ImageCardGridFragment } from "./ImageCardGrid.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
-import { LinkFragment } from "~/utils/link";
+import { resolveLink } from "~/utils/link";
 import { BackgroundColor } from "~/types/styling";
+import AppLink from "~/components/Core/AppLink/AppLink.vue";
 
 const props = defineProps<{
   data: FragmentOf<typeof ImageCardGridFragment>;
@@ -67,7 +60,7 @@ const data = readFragment<typeof ImageCardGridFragment>(props.data);
 const cards = computed(() => {
   return data.items.map((card) => ({
     ...card,
-    link: card.links[0] ? readFragment(LinkFragment, card.links[0]) : undefined,
+    link: card.links[0] ? resolveLink(card.links[0]) : undefined,
   }));
 });
 
