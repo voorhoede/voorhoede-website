@@ -19,13 +19,11 @@ const resolved = computed(() => {
   return { to: '/', external: false, label: '', style: null }
 })
 
-const isSecondary = computed(() => resolved.value.style === 'secondary')
-
 // The button variant is derived from the record's `style`.
 const buttonClass = computed(() => [
   'app-button',
   'body',
-  isSecondary.value ? 'app-button--secondary' : 'app-button--primary font-bold',
+  resolved.value.style === 'secondary' ? 'app-button--secondary' : 'app-button--primary font-bold',
 ])
 
 defineOptions({ inheritAttrs: false })
