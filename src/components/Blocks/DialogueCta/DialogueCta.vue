@@ -28,7 +28,7 @@
         <AppLink
           v-for="(cta, index) in ctas"
           :key="index"
-          :to="cta.to"
+          :link="cta.record"
           class="app-button body"
           :class="cta.style === 'secondary'
             ? 'app-button--secondary'
@@ -45,15 +45,15 @@
 <script setup lang="ts">
 import { type DialogueCtaFragment } from "./DialogueCta.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
-import { resolveLink } from "~/utils/link";
 import AppLink from "~/components/Core/AppLink/AppLink.vue";
+import { resolveLink } from "~/utils/link";
 
 const props = defineProps<{
   data: FragmentOf<typeof DialogueCtaFragment>;
 }>();
 
 const data = readFragment<typeof DialogueCtaFragment>(props.data);
-const ctas = data.ctas.map(resolveLink);
+const ctas = data.ctas.map((cta) => ({ record: cta, ...resolveLink(cta) }));
 </script>
 
 <style scoped>

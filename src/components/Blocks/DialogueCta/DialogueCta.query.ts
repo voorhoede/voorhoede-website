@@ -1,5 +1,5 @@
 import { graphql } from "~/utils/graphql";
-import { LinkFragment } from "~/utils/link";
+import { LinkFragment } from "~/components/Core/AppLink/AppLink.query";
 
 export const DialogueCtaFragment = graphql(
   `

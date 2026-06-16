@@ -1,13 +1,25 @@
 <script setup lang="ts">
 import type { RouteLocationRaw } from 'vue-router'
+import { type FragmentOf, readFragment } from '~/utils/graphql'
+import { LinkFragment } from './AppLink.query'
 
 const props = defineProps<{
-  to: string | RouteLocationRaw
+  /** A CMS link record (InternalLinkRecord / ExternalLinkRecord). */
+  link: FragmentOf<typeof LinkFragment>
 }>()
 
-const isExternal = computed(
-  () => typeof props.to === 'string' && /^(https?:|tel:|mailto:)/.test(props.to),
-)
+// Resolve the destination and external-ness from the record's `__typename`.
+const resolved = computed<{ to: string | RouteLocationRaw; external: boolean }>(() => {
+  const link = readFragment(LinkFragment, props.link)
+
+  if (link.__typename === 'ExternalLinkRecord') {
+    return { to: link.url, external: true }
+  }
+  if (link.__typename === 'InternalLinkRecord') {
+    return { to: useDatoNuxtRoute(link.link) ?? '/', external: false }
+  }
+  return { to: '/', external: false }
+})
 
 // Two root branches (v-if/v-else) disable automatic attribute fallthrough,
 // so class/listeners are bound explicitly via `$attrs` on each branch.
@@ -16,7 +28,7 @@ defineOptions({ inheritAttrs: false })
 const LinkWithTrailingSlash = defineNuxtLink({ trailingSlash: 'append' })
 
 function trackExternalLink() {
-  if (typeof props.to === 'string' && props.to.startsWith('tel:')) {
+  if (typeof resolved.value.to === 'string' && resolved.value.to.startsWith('tel:')) {
     useTrackEvent('Click on phone number')
   }
 }
@@ -24,9 +36,9 @@ function trackExternalLink() {
 
 <template>
   <a
-    v-if="isExternal"
+    v-if="resolved.external"
     v-bind="$attrs"
-    :href="(to as string)"
+    :href="(resolved.to as string)"
     target="_blank"
     rel="noopener noreferrer"
     @click="trackExternalLink"
@@ -36,7 +48,7 @@ function trackExternalLink() {
   <LinkWithTrailingSlash
     v-else
     v-bind="$attrs"
-    :to="to"
+    :to="resolved.to"
   >
     <slot />
   </LinkWithTrailingSlash>
