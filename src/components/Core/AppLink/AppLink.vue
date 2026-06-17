@@ -23,6 +23,8 @@ const variantClass = computed(() =>
   resolvedLink.value?.style === 'secondary' ? 'app-button--secondary' : 'app-button--primary font-bold',
 )
 
+const href = computed(() => String(resolvedLink.value?.to ?? ''))
+
 defineOptions({ inheritAttrs: false })
 
 const LinkWithTrailingSlash = defineNuxtLink({ trailingSlash: 'append' })
@@ -41,7 +43,7 @@ function trackExternalLink() {
       v-if="resolvedLink.external"
       v-bind="$attrs"
       :class="['app-button', 'body', variantClass]"
-      :href="String(resolvedLink.to)"
+      :href="href"
       target="_blank"
       rel="noopener noreferrer"
       @click="trackExternalLink"
