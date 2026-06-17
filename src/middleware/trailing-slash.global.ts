@@ -1,10 +1,9 @@
-import { withTrailingSlash } from 'ufo';
+import { parseFilename, withTrailingSlash, hasTrailingSlash } from 'ufo';
 
-export default defineNuxtRouteMiddleware((to, from) => {
-  if (!to.path.endsWith('/')) {
-    return navigateTo(
-      withTrailingSlash(to.fullPath, true),
-      { redirectCode: 308 },
-    );
+export default defineNuxtRouteMiddleware((to) => {
+  if (!hasTrailingSlash(to.path) && !parseFilename(to.path, { strict: true })) {
+    return navigateTo(withTrailingSlash(to.fullPath, true), {
+      redirectCode: 308,
+    });
   }
 });
