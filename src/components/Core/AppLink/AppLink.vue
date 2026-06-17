@@ -7,7 +7,7 @@ const props = defineProps<{
   link: FragmentOf<typeof LinkFragment>
 }>()
 
-const resolved = computed(() => {
+const resolvedLink = computed(() => {
   const link = readFragment(LinkFragment, props.link)
 
   if (link.__typename === 'ExternalLinkRecord') {
@@ -16,47 +16,47 @@ const resolved = computed(() => {
   if (link.__typename === 'InternalLinkRecord') {
     return { to: useDatoNuxtRoute(link.link) ?? '/', external: false, label: link.title, style: link.style }
   }
-  return { to: '/', external: false, label: '', style: null }
+  return null
 })
 
-// The button variant is derived from the record's `style`.
-const buttonClass = computed(() => [
-  'app-button',
-  'body',
-  resolved.value.style === 'secondary' ? 'app-button--secondary' : 'app-button--primary font-bold',
-])
+const variantClass = computed(() =>
+  resolvedLink.value?.style === 'secondary' ? 'app-button--secondary' : 'app-button--primary font-bold',
+)
 
 defineOptions({ inheritAttrs: false })
 
 const LinkWithTrailingSlash = defineNuxtLink({ trailingSlash: 'append' })
 
 function trackExternalLink() {
-  if (typeof resolved.value.to === 'string' && resolved.value.to.startsWith('tel:')) {
+  const to = resolvedLink.value?.to
+  if (typeof to === 'string' && to.startsWith('tel:')) {
     useTrackEvent('Click on phone number')
   }
 }
 </script>
 
 <template>
-  <a
-    v-if="resolved.external"
-    v-bind="$attrs"
-    :class="buttonClass"
-    :href="(resolved.to as string)"
-    target="_blank"
-    rel="noopener noreferrer"
-    @click="trackExternalLink"
-  >
-    <span>{{ resolved.label }}</span>
-  </a>
-  <LinkWithTrailingSlash
-    v-else
-    v-bind="$attrs"
-    :class="buttonClass"
-    :to="resolved.to"
-  >
-    <span>{{ resolved.label }}</span>
-  </LinkWithTrailingSlash>
+  <template v-if="resolvedLink">
+    <a
+      v-if="resolvedLink.external"
+      v-bind="$attrs"
+      :class="['app-button', 'body', variantClass]"
+      :href="(resolvedLink.to as string)"
+      target="_blank"
+      rel="noopener noreferrer"
+      @click="trackExternalLink"
+    >
+      <span>{{ resolvedLink.label }}</span>
+    </a>
+    <LinkWithTrailingSlash
+      v-else
+      v-bind="$attrs"
+      :class="['app-button', 'body', variantClass]"
+      :to="resolvedLink.to"
+    >
+      <span>{{ resolvedLink.label }}</span>
+    </LinkWithTrailingSlash>
+  </template>
 </template>
 
 <style>

@@ -118,12 +118,12 @@ const imageSizes = computed(() => {
   margin-bottom: var(--spacing-small);
 }
 
-.image-card-grid__link {
+:deep(.image-card-grid__link) {
   margin-top: auto;
   align-self: flex-start;
 }
 
-.image-card-grid__link::before {
+:deep(.image-card-grid__link)::before {
   content: "";
   position: absolute;
   top: 0;
