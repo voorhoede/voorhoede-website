@@ -1,0 +1,15 @@
+query GlossaryTerms($locale: SiteLocale!) {
+  terms: allGlossaryTerms(
+    locale: $locale
+    orderBy: term_ASC
+    first: 500
+    filter: { _locales: { allIn: [$locale] } }
+  ) {
+    id
+    term
+    slug
+    question
+    definition
+    definitionHtml: definition(markdown: true)
+  }
+}
