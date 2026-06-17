@@ -11,7 +11,11 @@
       {{ data.title }}
     </h2>
     <ul class="image-card-grid__list">
-      <li v-for="card in cards" :key="card.id" class="image-card-grid__card">
+      <li
+        v-for="card in data.items"
+        :key="card.id"
+        class="image-card-grid__card"
+      >
         <DatoImage
           class="image-card-grid__image"
           :src="card.image.url"
@@ -31,20 +35,10 @@
             :content="card.body"
           />
 
-          <AppButton
-            v-if="card.link?.__typename === 'ExternalLinkRecord'"
+          <AppLink
+            v-if="card.links[0]"
             class="image-card-grid__link"
-            :label="card.link.title"
-            :to="card.link.url"
-            external
-            secondary
-          />
-          <AppButton
-            v-if="card.link?.__typename === 'InternalLinkRecord'"
-            class="image-card-grid__link"
-            :label="card.link.title"
-            :to="useDatoNuxtRoute(card.link.link)"
-            secondary
+            :link="card.links[0]"
           />
         </div>
       </li>
@@ -55,21 +49,14 @@
 <script setup lang="ts">
 import { type ImageCardGridFragment } from "./ImageCardGrid.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
-import { LinkFragment } from "~/utils/link";
 import { BackgroundColor } from "~/types/styling";
+import AppLink from "~/components/Core/AppLink/AppLink.vue";
 
 const props = defineProps<{
   data: FragmentOf<typeof ImageCardGridFragment>;
 }>();
 
 const data = readFragment<typeof ImageCardGridFragment>(props.data);
-
-const cards = computed(() => {
-  return data.items.map((card) => ({
-    ...card,
-    link: card.links[0] ? readFragment(LinkFragment, card.links[0]) : undefined,
-  }));
-});
 
 const imageSizes = computed(() => {
   return data.cardOrientation === "horizontal"
@@ -128,12 +115,12 @@ const imageSizes = computed(() => {
   margin-bottom: var(--spacing-small);
 }
 
-.image-card-grid__link {
+:deep(.image-card-grid__link) {
   margin-top: auto;
   align-self: flex-start;
 }
 
-.image-card-grid__link::before {
+:deep(.image-card-grid__link)::before {
   content: "";
   position: absolute;
   top: 0;

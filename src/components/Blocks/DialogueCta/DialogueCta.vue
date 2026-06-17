@@ -25,14 +25,10 @@
         v-html="data.body"
       />
       <div class="dialogue-cta__ctas">
-        <AppButton
-          v-for="(cta, index) in ctas"
+        <AppLink
+          v-for="(cta, index) in data.ctas"
           :key="index"
-          :label="cta.title"
-          :to="cta.__typename === 'ExternalLinkRecord' ? cta.url : cta.link"
-          :external="cta.__typename === 'ExternalLinkRecord'"
-          :primary="cta.style === 'primary'"
-          :secondary="cta.style === 'secondary'"
+          :link="cta"
         />
       </div>
     </div>
@@ -42,14 +38,13 @@
 <script setup lang="ts">
 import { type DialogueCtaFragment } from "./DialogueCta.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
-import { LinkFragment } from "~/utils/link";
+import AppLink from "~/components/Core/AppLink/AppLink.vue";
 
 const props = defineProps<{
   data: FragmentOf<typeof DialogueCtaFragment>;
 }>();
 
 const data = readFragment<typeof DialogueCtaFragment>(props.data);
-const ctas = data.ctas.map((cta) => readFragment(LinkFragment, cta));
 </script>
 
 <style scoped>
