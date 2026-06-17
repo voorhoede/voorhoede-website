@@ -1,7 +1,7 @@
 <template>
   <section class="glossary-section grid" v-once>
     <h2 class="glossary-section__title h2">
-      {{ data.title }}
+      {{ props.title }}
     </h2>
     <ul v-if="terms.length > 0" class="glossary-section__list body">
       <li
@@ -28,25 +28,21 @@
 </template>
 
 <script setup lang="ts">
-import { type GlossarySectionFragment } from "./GlossarySection.query";
-import { type FragmentOf, readFragment } from "~/utils/graphql";
-import query from "./GlossarySection.query.graphql?raw";
+import query from "./glossary-section.query.graphql?raw";
 
 const props = defineProps<{
-  data: FragmentOf<typeof GlossarySectionFragment>;
+  title: string;
 }>();
 
-const data = readFragment<typeof GlossarySectionFragment>(props.data);
-
 const route = useRoute();
-const { data: glossaryData }: { data: Ref<{ terms: GlossaryTerm[] } | null> } =
+const { data }: { data: Ref<{ terms: GlossaryTerm[] } | null> } =
   await useFetchContent({
     key: `glossary-terms-${route.params.language}`,
     query,
     variables: { locale: route.params.language },
   });
 
-const terms = computed(() => glossaryData.value?.terms ?? []);
+const terms = computed(() => data.value?.terms ?? []);
 
 const structuredData = computed(() =>
   terms.value.length === 0

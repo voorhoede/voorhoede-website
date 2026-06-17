@@ -4,11 +4,11 @@
     v-once
   >
     <h2 class="events-section__title h3">
-      {{ data.title }}
+      {{ title }}
     </h2>
     <ul class="events-section__list">
       <li
-        v-for="event in data.items"
+        v-for="event in items"
         :key="event.slug"
       >
         <event-list-item
@@ -19,18 +19,20 @@
   </section>
 </template>
 
-<script setup lang="ts">
-import { type EventsSectionFragment } from "./EventsSection.query";
-import { type FragmentOf, readFragment } from "~/utils/graphql";
-
-const props = defineProps<{
-  data: FragmentOf<typeof EventsSectionFragment>;
-}>();
-
-const data = readFragment<typeof EventsSectionFragment>(props.data);
+<script setup>
+  defineProps({
+    items: {
+      type: Array,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    }
+  })
 </script>
 
-<style scoped>
+<style>
 .events-section__title {
   text-align: center;
   margin-bottom: var(--spacing-medium);

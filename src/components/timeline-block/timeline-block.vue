@@ -2,7 +2,7 @@
   <div class="timeline-block">
     <ul class="timeline-block__items">
       <li
-        v-for="item in data.items"
+        v-for="item in items"
         :key="item.id"
         class="timeline-block__item"
       >
@@ -38,29 +38,29 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { type TimelineBlockFragment } from "./TimelineBlock.query";
-import { type FragmentOf, readFragment } from "~/utils/graphql";
-import formatDate from "~/lib/format-date";
+<script>
+  import formatDate from '../../lib/format-date'
 
-const props = defineProps<{
-  data: FragmentOf<typeof TimelineBlockFragment>;
-}>();
-
-const data = readFragment<typeof TimelineBlockFragment>(props.data);
-
-const { $i18n } = useNuxtApp();
-
-function formattedDate(value: string) {
-  return formatDate({
-    date: value,
-    locale: $i18n.locale(),
-    format: "DD MMMM YYYY",
-  });
-}
+  export default {
+    props: {
+      items: {
+        type: Array,
+        default: () => [],
+      }
+    },
+    methods: {
+      formattedDate (value) {
+        return formatDate({
+          date: value,
+          locale: this.$i18n.locale(),
+          format: 'DD MMMM YYYY'
+        })
+      },
+    },
+  }
 </script>
 
-<style scoped>
+<style>
   :root {
     --timeline-bullet-size: 16px;
   }

@@ -2,7 +2,7 @@
   <ul class="jobs-list grid">
     <li
       class="jobs-list__item"
-      v-for="item in data.jobs.filter(job => !job.isClosed)"
+      v-for="item in jobs.filter(job => !job.isClosed)"
       :key="item.slug"
     >
       <jobs-excerpt
@@ -16,18 +16,18 @@
   </ul>
 </template>
 
-<script setup lang="ts">
-import { type JobsListFragment } from "./JobsList.query";
-import { type FragmentOf, readFragment } from "~/utils/graphql";
-
-const props = defineProps<{
-  data: FragmentOf<typeof JobsListFragment>;
-}>();
-
-const data = readFragment<typeof JobsListFragment>(props.data);
+<script>
+export default {
+  props: {
+    jobs: {
+      type: Array,
+      required: true
+    }
+  }
+}
 </script>
 
-<style scoped>
+<style>
   .jobs-list {
     grid-column-start: 1;
     grid-column-end: 51;

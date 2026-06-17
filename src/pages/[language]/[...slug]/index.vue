@@ -16,12 +16,19 @@ import { withQuery } from "ufo";
 
 import { CaseListFragment } from "~/components/Blocks/CaseList/CaseList.query";
 import { DialogueCtaFragment } from "~/components/Blocks/DialogueCta/DialogueCta.query";
+import { BlogsSectionFragment } from "~/components/Blocks/BlogsSection/BlogsSection.query";
+import { EventsSectionFragment } from "~/components/Blocks/EventsSection/EventsSection.query";
+import { GlossarySectionFragment } from "~/components/Blocks/GlossarySection/GlossarySection.query";
 import { GroupingFragment } from "~/components/Blocks/Grouping/Grouping.query";
 import { ImageCardGridFragment } from "~/components/Blocks/ImageCardGrid/ImageCardGrid.query";
+import { JobsListFragment } from "~/components/Blocks/JobsList/JobsList.query";
 import { LogoGridFragment } from "~/components/Blocks/LogoGrid/LogoGrid.query";
 import { PageHeaderFragment } from "~/components/Blocks/PageHeader/PageHeader.query";
 import { PagePartialFragment } from "~/components/Blocks/PagePartial/PagePartial.query";
+import { ResponsiveVideoFragment } from "~/components/Blocks/ResponsiveVideo/ResponsiveVideo.query";
 import { TextImageFragment } from "~/components/Blocks/TextImage/TextImage.query";
+import { TeamGalleryFragment } from "~/components/Blocks/TeamGallery/TeamGallery.query";
+import { TimelineBlockFragment } from "~/components/Blocks/TimelineBlock/TimelineBlock.query";
 
 const route = useRoute();
 const slug = route?.params?.slug
@@ -46,27 +53,41 @@ const query = graphql(
         }
         sections {
           __typename
+          ...BlogsSectionFragment
           ...CaseListFragment
           ...DialogueCtaFragment
+          ...EventsSectionFragment
+          ...GlossarySectionFragment
           ...GroupingFragment
           ...ImageCardGridFragment
+          ...JobsListFragment
           ...LogoGridFragment
           ...PageHeaderFragment
           ...PagePartialFragment
+          ...ResponsiveVideoFragment
           ...TextImageFragment
+          ...TeamGalleryFragment
+          ...TimelineBlockFragment
         }
       }
     }
   `,
   [
+    BlogsSectionFragment,
     CaseListFragment,
     DialogueCtaFragment,
+    EventsSectionFragment,
+    GlossarySectionFragment,
     GroupingFragment,
     ImageCardGridFragment,
+    JobsListFragment,
     LogoGridFragment,
     PageHeaderFragment,
     PagePartialFragment,
+    ResponsiveVideoFragment,
     TextImageFragment,
+    TeamGalleryFragment,
+    TimelineBlockFragment,
   ],
 );
 

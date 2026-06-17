@@ -2,18 +2,18 @@
   <vue-dato-video
     v-if="showVideo"
     class="responsive-video"
-    v-bind="videoProps"
+    v-bind="props"
     :play-icon-alt="$t('play_video')"
   >
     <template #caption>
       <div class="responsive-video__caption-container">
         <a
           class="body-detail link"
-          :href="videoProps.video.url"
+          :href="props.video.url"
           target="_blank"
           rel="noopener"
         >
-          {{ videoProps.caption || videoProps.video.title }}
+          {{ props.caption || props.video.title }}
         </a>
       </div>
     </template>
@@ -24,7 +24,7 @@
 
   <youtube-cookie-notice
     v-else
-    :url="videoProps.video.url"
+    :url="props.video.url"
     :aspect-ratio="videoAspectRatio"
     @update="handleCookieNoticeUpdate"
   />
@@ -33,36 +33,39 @@
 <script setup lang="ts">
 import "@voorhoede/vue-dato-video/style";
 import { VueDatoVideo } from "@voorhoede/vue-dato-video";
-import { type ResponsiveVideoFragment } from "./ResponsiveVideo.query";
-import { type FragmentOf, readFragment } from "~/utils/graphql";
 
 defineOptions({
   inheritAttrs: false,
 });
 
-const props = defineProps<{
-  data: FragmentOf<typeof ResponsiveVideoFragment>;
-}>();
+interface Video {
+  provider: "youtube" | "vimeo";
+  providerUid: string;
+  title: string;
+  url: string;
+  width: number;
+  height: number;
+  thumbnailUrl: string;
+}
 
-const data = readFragment<typeof ResponsiveVideoFragment>(props.data);
+interface Props {
+  video: Video;
+  autoplay: boolean;
+  loop: boolean;
+  mute: boolean;
+  caption?: string;
+}
 
-const videoProps = computed(() => ({
-  video: data.video,
-  autoplay: data.autoplay,
-  loop: data.loop,
-  mute: data.mute,
-  caption: data.caption,
-}));
-
-const showVideo = ref(data.video.provider === 'vimeo');
-const videoAspectRatio = data.video.width / data.video.height;
+const props = defineProps<Props>()
+const showVideo = ref(props.video.provider === 'vimeo');
+const videoAspectRatio = props.video.width / props.video.height;
 
 const handleCookieNoticeUpdate = (value: boolean) => {
-  showVideo.value = value;
-};
+  showVideo.value = value
+}
 </script>
 
-<style scoped>
+<style>
 .responsive-video__caption-container {
   margin-top: var(--spacing-smaller);
   text-align: center;

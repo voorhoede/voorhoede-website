@@ -4,39 +4,29 @@
     v-once
   >
     <h2 class="blogs-section__title h3">
-      {{ title }}
+      {{ data.title }}
     </h2>
 
     <blogs-list
-      :items="items"
-      :pinned-items="pinnedItems"
-      :item-size="itemSize"
+      :items="data.items"
+      :pinned-items="data.pinnedItems"
+      :item-size="data.itemSize"
     />
   </section>
 </template>
 
-<script setup>
-  defineProps({
-    title: {
-      type: String,
-      required: true,
-    },
-    items: {
-      type: Array,
-      required: true,
-    },
-    pinnedItems: {
-      type: Array,
-      default: () => [],
-    },
-    itemSize: {
-      type: String,
-      default: 'large',
-    }
-  })
+<script setup lang="ts">
+import { type BlogsSectionFragment } from "./BlogsSection.query";
+import { type FragmentOf, readFragment } from "~/utils/graphql";
+
+const props = defineProps<{
+  data: FragmentOf<typeof BlogsSectionFragment>;
+}>();
+
+const data = readFragment<typeof BlogsSectionFragment>(props.data);
 </script>
 
-<style>
+<style scoped>
 .blogs-section__title {
   text-align: center;
   margin-bottom: var(--spacing-big);

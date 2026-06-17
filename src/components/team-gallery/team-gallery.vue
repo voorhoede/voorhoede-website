@@ -2,7 +2,7 @@
   <section class="grid">
     <ul class="team-gallery__list">
       <li
-        v-for="(member, index) in data.persons"
+        v-for="(member, index) in team"
         :key="member.id"
         class="team-gallery__list-item"
       >
@@ -47,15 +47,22 @@
 </template>
 
 <script setup lang="ts">
-import { type TeamGalleryFragment } from "./TeamGallery.query";
-import { type FragmentOf, readFragment } from "~/utils/graphql";
 import { ref } from "vue";
 
-const props = defineProps<{
-  data: FragmentOf<typeof TeamGalleryFragment>;
+defineProps<{
+  team: Array<{
+    id: string;
+    slug: string;
+    name: string;
+    lastName: string;
+    jobTitle: string;
+    image: {
+      url: string;
+      width: number;
+      height: number;
+    };
+  }>;
 }>();
-
-const data = readFragment<typeof TeamGalleryFragment>(props.data);
 
 function addSquishyNameAnimation(index: number) {
   const teamGalleryMemberName = ref<HTMLElement | null>(null);
@@ -71,7 +78,7 @@ function addSquishyNameAnimation(index: number) {
 }
 </script>
 
-<style scoped>
+<style>
 :root {
   --team-gallery-grid-columns: 1;
 }
