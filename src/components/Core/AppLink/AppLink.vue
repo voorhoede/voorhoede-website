@@ -41,7 +41,7 @@ function trackExternalLink() {
       v-if="resolvedLink.external"
       v-bind="$attrs"
       :class="['app-button', 'body', variantClass]"
-      :href="(resolvedLink.to as string)"
+      :href="String(resolvedLink.to)"
       target="_blank"
       rel="noopener noreferrer"
       @click="trackExternalLink"
