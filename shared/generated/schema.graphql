@@ -4052,7 +4052,7 @@ enum HomePageModelOrderBy {
   title_DESC
 }
 
-union HomePageModelSectionsField = CallToActionRecord | PagePartialBlockRecord | SectionCaseListRecord | SectionDialogueCtaRecord | SectionGlossaryRecord | SectionGroupingRecord | SectionHeaderRecord | SectionImageCardGridRecord | SectionLogoGridRecord | SectionTextImageRecord
+union HomePageModelSectionsField = PagePartialBlockRecord | SectionCaseListRecord | SectionDialogueCtaRecord | SectionGroupingRecord | SectionHeaderRecord | SectionImageCardGridRecord | SectionLogoGridRecord | SectionTextImageRecord
 
 type HomePageModelSectionsFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
