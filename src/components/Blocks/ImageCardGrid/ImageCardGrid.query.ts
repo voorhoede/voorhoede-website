@@ -7,6 +7,12 @@ export const ImageCardGridFragment = graphql(
       title
       backgroundColor
       cardOrientation
+      text {
+        value
+        blocks {
+          ...LinkFragment
+        }
+      }
       items {
         id
         title

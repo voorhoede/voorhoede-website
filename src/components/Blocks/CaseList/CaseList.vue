@@ -13,6 +13,9 @@
       />
     </li>
   </ul>
+  <div class="cases-list__text" v-if="data.text">
+    <StructuredTextBlock :content="data.text" />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -59,5 +62,11 @@ const sizes = computed(() => {
 
 .cases-list .link-card {
   height: 100%;
+}
+
+.cases-list__text {
+  margin-top: var(--spacing-medium);
+  margin-inline: auto;
+  text-align: center;
 }
 </style>
