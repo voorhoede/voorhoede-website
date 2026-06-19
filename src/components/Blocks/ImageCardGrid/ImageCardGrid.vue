@@ -43,6 +43,9 @@
         </div>
       </li>
     </ul>
+    <div class="image-card-grid__text" v-if="data.text">
+      <StructuredTextBlock :content="data.text" />
+    </div>
   </section>
 </template>
 
@@ -127,6 +130,12 @@ const imageSizes = computed(() => {
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+.image-card-grid__text {
+  margin-top: var(--spacing-larger);
+  margin-inline: auto;
+  text-align: center;
 }
 
 @media (min-width: 720px) {

@@ -127,6 +127,17 @@
 
   function renderBlock({ record, key }) {
     switch (record.__typename) {
+      case 'ExternalLinkRecord':
+      case 'InternalLinkRecord': {
+        const isExternal = record.__typename === 'ExternalLinkRecord'
+        return h(AppButton, {
+          key,
+          label: record.title,
+          to: isExternal ? record.url : record.link,
+          external: isExternal,
+          secondary: record.style !== 'primary',
+        })
+      }
       case 'StructuredTextHighlightedListRecord': {
         return h('ul', {
           key,
@@ -306,15 +317,15 @@
     margin-bottom: var(--spacing-small);
   }
 
-  .structured-text p a,
+  .structured-text p a:not(.app-button),
   .structured-text__glossary-ref {
     color: var(--html-blue);
     padding-bottom: .15rem;
     background: transparent linear-gradient(to top, transparent 1px, var(--html-blue) 1px, var(--html-blue) 2px, transparent 2px);
   }
 
-  .structured-text p a:hover,
-  .structured-text p a:focus,
+  .structured-text p a:not(.app-button):hover,
+  .structured-text p a:not(.app-button):focus,
   .structured-text__glossary-ref:hover,
   .structured-text__glossary-ref:focus {
     color: var(--active-blue);
