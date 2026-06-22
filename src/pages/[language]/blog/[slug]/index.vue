@@ -1,7 +1,7 @@
 <template>
   <main
     class="page-blog-post grid"
-    lang="en"
+    :lang="params.language"
   >
     <page-header
       class="page-blog-post__header"
