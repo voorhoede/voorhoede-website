@@ -3,7 +3,7 @@
     <h1 class="sr-only">
       {{ data?.page?.title }}
     </h1>
-    <Blocks :blocks="data.page.sections" />
+    <Blocks :blocks="data?.page?.sections" />
   </div>
 </template>
 
@@ -12,12 +12,12 @@ definePageMeta({ layout: "content-page" });
 
 import { withQuery } from "ufo";
 
-import { CaseListFragment } from "~/components/Blocks/CaseList/CaseList.query";
-import { DialogueCtaFragment } from "~/components/Blocks/DialogueCta/DialogueCta.query";
-import { ImageCardGridFragment } from "~/components/Blocks/ImageCardGrid/ImageCardGrid.query";
-import { LogoGridFragment } from "~/components/Blocks/LogoGrid/LogoGrid.query";
-import { PageHeaderFragment } from "~/components/Blocks/PageHeader/PageHeader.query";
-import { PagePartialFragment } from "~/components/Blocks/PagePartial/PagePartial.query";
+import { CaseListBlockFragment } from "~/components/Blocks/CaseListBlock/CaseListBlock.query";
+import { DialogueCtaBlockFragment } from "~/components/Blocks/DialogueCtaBlock/DialogueCtaBlock.query";
+import { ImageCardGridBlockFragment } from "~/components/Blocks/ImageCardGridBlock/ImageCardGridBlock.query";
+import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGridBlock.query";
+import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
+import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
 
 const route = useRoute();
 
@@ -45,23 +45,23 @@ const query = graphql(
         }
         sections {
           __typename
-          ...CaseListFragment
-          ...DialogueCtaFragment
-          ...ImageCardGridFragment
-          ...LogoGridFragment
-          ...PageHeaderFragment
-          ...PagePartialFragment
+          ...CaseListBlockFragment
+          ...DialogueCtaBlockFragment
+          ...ImageCardGridBlockFragment
+          ...LogoGridBlockFragment
+          ...PageHeaderBlockFragment
+          ...PagePartialBlockFragment
         }
       }
     }
   `,
   [
-    CaseListFragment,
-    DialogueCtaFragment,
-    ImageCardGridFragment,
-    LogoGridFragment,
-    PageHeaderFragment,
-    PagePartialFragment,
+    CaseListBlockFragment,
+    DialogueCtaBlockFragment,
+    ImageCardGridBlockFragment,
+    LogoGridBlockFragment,
+    PageHeaderBlockFragment,
+    PagePartialBlockFragment,
   ],
 );
 
