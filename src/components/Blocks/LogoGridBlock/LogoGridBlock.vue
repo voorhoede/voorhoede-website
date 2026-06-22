@@ -39,14 +39,14 @@
 </template>
 
 <script setup lang="ts">
-import { type LogoGridFragment } from "./LogoGrid.query";
+import type { LogoGridBlockFragment } from "./LogoGridBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 
 const props = defineProps<{
-  data: FragmentOf<typeof LogoGridFragment>;
+  data: FragmentOf<typeof LogoGridBlockFragment>;
 }>();
 
-const data = readFragment<typeof LogoGridFragment>(props.data);
+const data = readFragment<typeof LogoGridBlockFragment>(props.data);
 </script>
 
 <style scoped>

@@ -1,9 +1,9 @@
 import { graphql } from "~/utils/graphql";
 import { LinkFragment } from "~/components/Core/AppLink/AppLink.query";
 
-export const ImageCardGridFragment = graphql(
+export const ImageCardGridBlockFragment = graphql(
   `
-    fragment ImageCardGridFragment on SectionImageCardGridRecord {
+    fragment ImageCardGridBlockFragment on SectionImageCardGridRecord {
       title
       backgroundColor
       cardOrientation

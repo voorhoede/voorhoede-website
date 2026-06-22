@@ -1,7 +1,7 @@
 import { graphql } from "~/utils/graphql";
 
-export const LogoGridFragment = graphql(`
-  fragment LogoGridFragment on SectionLogoGridRecord {
+export const LogoGridBlockFragment = graphql(`
+  fragment LogoGridBlockFragment on SectionLogoGridRecord {
     title
     logos {
       url
