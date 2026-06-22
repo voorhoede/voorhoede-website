@@ -1,7 +1,6 @@
 <template>
   <main
     class="page-blog-post grid"
-    lang="en"
   >
     <page-header
       class="page-blog-post__header"
