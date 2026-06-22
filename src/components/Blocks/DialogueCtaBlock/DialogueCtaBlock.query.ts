@@ -1,16 +1,14 @@
 import { graphql } from "~/utils/graphql";
 import { LinkFragment } from "~/components/Core/AppLink/AppLink.query";
 
-export const CaseListFragment = graphql(`
-  fragment CaseListFragment on SectionCaseListRecord {
-    id
-    title
-    columns
-    cases {
+export const DialogueCtaBlockFragment = graphql(
+  `
+    fragment DialogueCtaBlockFragment on SectionDialogueCtaRecord {
+      variant
       title
-      slug
-      caseTeaser {
-        title
+      body(markdown: true)
+      backgroundColor
+      person {
         image {
           url
           alt
@@ -18,13 +16,10 @@ export const CaseListFragment = graphql(`
           height
         }
       }
-    }
-    text {
-      value
-      blocks {
+      ctas {
         ...LinkFragment
       }
     }
-  }`,
+  `,
   [LinkFragment],
 );

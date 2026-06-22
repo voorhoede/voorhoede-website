@@ -1,34 +1,34 @@
-import type { CaseListFragment } from "./CaseList/CaseList.query";
-import type { DialogueCtaFragment } from "./DialogueCta/DialogueCta.query";
-import type { GroupingFragment } from "./Grouping/Grouping.query";
-import type { ImageCardGridFragment } from "./ImageCardGrid/ImageCardGrid.query";
-import type { LogoGridFragment } from "./LogoGrid/LogoGrid.query";
-import type { PageHeaderFragment } from "./PageHeader/PageHeader.query";
-import type { PagePartialFragment } from "./PagePartial/PagePartial.query";
-import type { TextImageFragment } from "./TextImage/TextImage.query";
+import type { CaseListBlockFragment } from "./CaseListBlock/CaseListBlock.query";
+import type { DialogueCtaBlockFragment } from "./DialogueCtaBlock/DialogueCtaBlock.query";
+import type { GroupingBlockFragment } from "./GroupingBlock/GroupingBlock.query";
+import type { ImageCardGridBlockFragment } from "./ImageCardGridBlock/ImageCardGridBlock.query";
+import type { LogoGridBlockFragment } from "./LogoGridBlock/LogoGridBlock.query";
+import type { PageHeaderBlockFragment } from "./PageHeaderBlock/PageHeaderBlock.query";
+import type { PagePartialBlockFragment } from "./PagePartialBlock/PagePartialBlock.query";
+import type { TextImageBlockFragment } from "./TextImageBlock/TextImageBlock.query";
 
 export type BlockRecord =
-  | (FragmentOf<typeof CaseListFragment> & {
+  | (FragmentOf<typeof CaseListBlockFragment> & {
       __typename: "SectionCaseListRecord";
     })
-  | (FragmentOf<typeof DialogueCtaFragment> & {
+  | (FragmentOf<typeof DialogueCtaBlockFragment> & {
       __typename: "SectionDialogueCtaRecord";
     })
-  | (FragmentOf<typeof GroupingFragment> & {
+  | (FragmentOf<typeof GroupingBlockFragment> & {
       __typename: "SectionGroupingRecord";
     })
-  | (FragmentOf<typeof ImageCardGridFragment> & {
+  | (FragmentOf<typeof ImageCardGridBlockFragment> & {
       __typename: "SectionImageCardGridRecord";
     })
-  | (FragmentOf<typeof LogoGridFragment> & {
+  | (FragmentOf<typeof LogoGridBlockFragment> & {
       __typename: "SectionLogoGridRecord";
     })
-  | (FragmentOf<typeof PageHeaderFragment> & {
+  | (FragmentOf<typeof PageHeaderBlockFragment> & {
       __typename: "SectionHeaderRecord";
     })
-  | (FragmentOf<typeof PagePartialFragment> & {
+  | (FragmentOf<typeof PagePartialBlockFragment> & {
       __typename: "PagePartialBlockRecord";
     })
-  | (FragmentOf<typeof TextImageFragment> & {
+  | (FragmentOf<typeof TextImageBlockFragment> & {
       __typename: "SectionTextImageRecord";
     });

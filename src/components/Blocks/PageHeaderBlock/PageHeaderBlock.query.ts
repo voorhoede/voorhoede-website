@@ -1,7 +1,7 @@
 import { graphql } from "~/utils/graphql";
 
-export const PageHeaderFragment = graphql(`
-  fragment PageHeaderFragment on SectionHeaderRecord {
+export const PageHeaderBlockFragment = graphql(`
+  fragment PageHeaderBlockFragment on SectionHeaderRecord {
     layout
     style
     title

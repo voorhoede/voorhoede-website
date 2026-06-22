@@ -50,16 +50,16 @@
 </template>
 
 <script setup lang="ts">
-import { type ImageCardGridFragment } from "./ImageCardGrid.query";
+import type { ImageCardGridBlockFragment } from "./ImageCardGridBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import { BackgroundColor } from "~/types/styling";
 import AppLink from "~/components/Core/AppLink/AppLink.vue";
 
 const props = defineProps<{
-  data: FragmentOf<typeof ImageCardGridFragment>;
+  data: FragmentOf<typeof ImageCardGridBlockFragment>;
 }>();
 
-const data = readFragment<typeof ImageCardGridFragment>(props.data);
+const data = readFragment<typeof ImageCardGridBlockFragment>(props.data);
 
 const imageSizes = computed(() => {
   return data.cardOrientation === "horizontal"

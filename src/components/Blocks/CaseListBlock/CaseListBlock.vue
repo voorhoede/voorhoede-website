@@ -19,14 +19,14 @@
 </template>
 
 <script setup lang="ts">
-import { type CaseListFragment } from "./CaseList.query";
+import type { CaseListBlockFragment } from "./CaseListBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 
 const props = defineProps<{
-  data: FragmentOf<typeof CaseListFragment>;
+  data: FragmentOf<typeof CaseListBlockFragment>;
 }>();
 
-const data = readFragment<typeof CaseListFragment>(props.data);
+const data = readFragment<typeof CaseListBlockFragment>(props.data);
 
 const sizes = computed(() => {
   const columnWidth = Math.round(1200 / data.columns);

@@ -31,19 +31,19 @@
 </template>
 
 <script setup lang="ts">
-import {
-  type GroupingFragment,
-  type GroupingItemFragment,
-} from "./Grouping.query";
+import type {
+  GroupingBlockFragment,
+  GroupingItemFragment,
+} from "./GroupingBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import type { BlockRecord } from "../types";
 import BlockItem from "../BlockItem.vue";
 
 const props = defineProps<{
-  data: FragmentOf<typeof GroupingFragment>;
+  data: FragmentOf<typeof GroupingBlockFragment>;
 }>();
 
-const data = readFragment<typeof GroupingFragment>(props.data);
+const data = readFragment<typeof GroupingBlockFragment>(props.data);
 
 type GroupingSection = Extract<
   BlockRecord,
