@@ -3,16 +3,16 @@
 </template>
 
 <script setup lang="ts">
-import { type PagePartialFragment } from "./PagePartial.query";
+import type { PagePartialBlockFragment } from "./PagePartialBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import type { BlockRecord } from "../types";
 import BlockItem from "../BlockItem.vue";
 
 const props = defineProps<{
-  data: FragmentOf<typeof PagePartialFragment>;
+  data: FragmentOf<typeof PagePartialBlockFragment>;
 }>();
 
-const data = readFragment<typeof PagePartialFragment>(props.data);
+const data = readFragment<typeof PagePartialBlockFragment>(props.data);
 
 type SupportedBlockItem = Exclude<
   BlockRecord,

@@ -40,14 +40,14 @@ definePageMeta({ layout: "content-page" });
 import { useFetchDatocmsContent } from "~/composables/useFetchDatocmsContent";
 import { graphql } from "~/utils/graphql";
 
-import { CaseListFragment } from "~/components/Blocks/CaseList/CaseList.query";
-import { DialogueCtaFragment } from "~/components/Blocks/DialogueCta/DialogueCta.query";
-import { GroupingFragment } from "~/components/Blocks/Grouping/Grouping.query";
-import { ImageCardGridFragment } from "~/components/Blocks/ImageCardGrid/ImageCardGrid.query";
-import { LogoGridFragment } from "~/components/Blocks/LogoGrid/LogoGrid.query";
-import { PageHeaderFragment } from "~/components/Blocks/PageHeader/PageHeader.query";
-import { PagePartialFragment } from "~/components/Blocks/PagePartial/PagePartial.query";
-import { TextImageFragment } from "~/components/Blocks/TextImage/TextImage.query";
+import { CaseListBlockFragment } from "~/components/Blocks/CaseListBlock/CaseListBlock.query";
+import { DialogueCtaBlockFragment } from "~/components/Blocks/DialogueCtaBlock/DialogueCtaBlock.query";
+import { GroupingBlockFragment } from "~/components/Blocks/GroupingBlock/GroupingBlock.query";
+import { ImageCardGridBlockFragment } from "~/components/Blocks/ImageCardGridBlock/ImageCardGridBlock.query";
+import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGridBlock.query";
+import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
+import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
+import { TextImageBlockFragment } from "~/components/Blocks/TextImageBlock/TextImageBlock.query";
 
 const route = useRoute();
 const query = graphql(
@@ -67,14 +67,14 @@ const query = graphql(
         }
         sections {
           __typename
-          ...CaseListFragment
-          ...DialogueCtaFragment
-          ...GroupingFragment
-          ...ImageCardGridFragment
-          ...LogoGridFragment
-          ...PageHeaderFragment
-          ...PagePartialFragment
-          ...TextImageFragment
+          ...CaseListBlockFragment
+          ...DialogueCtaBlockFragment
+          ...GroupingBlockFragment
+          ...ImageCardGridBlockFragment
+          ...LogoGridBlockFragment
+          ...PageHeaderBlockFragment
+          ...PagePartialBlockFragment
+          ...TextImageBlockFragment
         }
       }
 
@@ -100,14 +100,14 @@ const query = graphql(
     }
   `,
   [
-    CaseListFragment,
-    DialogueCtaFragment,
-    GroupingFragment,
-    ImageCardGridFragment,
-    LogoGridFragment,
-    PageHeaderFragment,
-    PagePartialFragment,
-    TextImageFragment,
+    CaseListBlockFragment,
+    DialogueCtaBlockFragment,
+    GroupingBlockFragment,
+    ImageCardGridBlockFragment,
+    LogoGridBlockFragment,
+    PageHeaderBlockFragment,
+    PagePartialBlockFragment,
+    TextImageBlockFragment,
   ],
 );
 

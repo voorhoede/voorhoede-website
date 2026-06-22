@@ -22,14 +22,14 @@
 </template>
 
 <script setup lang="ts">
-import { type TextImageFragment } from "./TextImage.query";
+import type { TextImageBlockFragment } from "./TextImageBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 
 const props = defineProps<{
-  data: FragmentOf<typeof TextImageFragment>;
+  data: FragmentOf<typeof TextImageBlockFragment>;
 }>();
 
-const data = readFragment<typeof TextImageFragment>(props.data);
+const data = readFragment<typeof TextImageBlockFragment>(props.data);
 </script>
 
 <style scoped>

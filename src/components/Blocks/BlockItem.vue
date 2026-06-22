@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { BlockRecord } from "./types";
-import CaseList from "./CaseList/CaseList.vue";
-import DialogueCta from "./DialogueCta/DialogueCta.vue";
-import Grouping from "./Grouping/Grouping.vue";
-import ImageCardGrid from "./ImageCardGrid/ImageCardGrid.vue";
-import LogoGrid from "./LogoGrid/LogoGrid.vue";
-import PageHeader from "./PageHeader/PageHeader.vue";
-import PagePartial from "./PagePartial/PagePartial.vue";
-import TextImage from "./TextImage/TextImage.vue";
+import CaseListBlock from "./CaseListBlock/CaseListBlock.vue";
+import DialogueCtaBlock from "./DialogueCtaBlock/DialogueCtaBlock.vue";
+import GroupingBlock from "./GroupingBlock/GroupingBlock.vue";
+import ImageCardGridBlock from "./ImageCardGridBlock/ImageCardGridBlock.vue";
+import LogoGridBlock from "./LogoGridBlock/LogoGridBlock.vue";
+import PageHeaderBlock from "./PageHeaderBlock/PageHeaderBlock.vue";
+import PagePartialBlock from "./PagePartialBlock/PagePartialBlock.vue";
+import TextImageBlock from "./TextImageBlock/TextImageBlock.vue";
 
 const props = defineProps<{
   block: BlockRecord;
@@ -15,35 +15,35 @@ const props = defineProps<{
 </script>
 
 <template>
-  <CaseList
+  <CaseListBlock
     v-if="props.block?.__typename === 'SectionCaseListRecord'"
     :data="props.block"
   />
-  <DialogueCta
+  <DialogueCtaBlock
     v-else-if="props.block?.__typename === 'SectionDialogueCtaRecord'"
     :data="props.block"
   />
-  <Grouping
+  <GroupingBlock
     v-else-if="props.block?.__typename === 'SectionGroupingRecord'"
     :data="props.block"
   />
-  <ImageCardGrid
+  <ImageCardGridBlock
     v-else-if="props.block?.__typename === 'SectionImageCardGridRecord'"
     :data="props.block"
   />
-  <LogoGrid
+  <LogoGridBlock
     v-else-if="props.block?.__typename === 'SectionLogoGridRecord'"
     :data="props.block"
   />
-  <PageHeader
+  <PageHeaderBlock
     v-else-if="props.block?.__typename === 'SectionHeaderRecord'"
     :data="props.block"
   />
-  <PagePartial
+  <PagePartialBlock
     v-else-if="props.block?.__typename === 'PagePartialBlockRecord'"
     :data="props.block"
   />
-  <TextImage
+  <TextImageBlock
     v-else-if="props.block?.__typename === 'SectionTextImageRecord'"
     :data="props.block"
   />
