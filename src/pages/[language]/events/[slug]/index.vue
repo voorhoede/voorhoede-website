@@ -2,7 +2,6 @@
   <main>
     <div
       class="page-event-detail grid"
-      :lang="params.language"
     >
       <page-header
         class="page-event-detail__header"
