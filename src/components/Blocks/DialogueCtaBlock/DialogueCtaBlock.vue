@@ -25,7 +25,11 @@
         v-html="data.body"
       />
       <div class="dialogue-cta__ctas">
-        <AppLink v-for="(cta, index) in data.ctas" :key="index" :link="cta" />
+        <LinkToRecord
+          v-for="(cta, index) in data.ctas"
+          :key="index"
+          :link="cta"
+        />
       </div>
     </div>
   </section>
@@ -34,7 +38,7 @@
 <script setup lang="ts">
 import type { DialogueCtaBlockFragment } from "./DialogueCtaBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
-import AppLink from "~/components/Core/AppLink/AppLink.vue";
+import LinkToRecord from "~/components/Core/LinkToRecord/LinkToRecord.vue";
 
 const props = defineProps<{
   data: FragmentOf<typeof DialogueCtaBlockFragment>;

@@ -1,5 +1,5 @@
 import { graphql } from "~/utils/graphql";
-import { LinkFragment } from "~/components/Core/AppLink/AppLink.query";
+import { LinkToRecordFragment } from "~/components/Core/LinkToRecord/LinkToRecord.query";
 
 export const ImageCardGridBlockFragment = graphql(
   `
@@ -10,7 +10,7 @@ export const ImageCardGridBlockFragment = graphql(
       text {
         value
         blocks {
-          ...LinkFragment
+          ...LinkToRecordFragment
         }
       }
       items {
@@ -26,10 +26,10 @@ export const ImageCardGridBlockFragment = graphql(
           height
         }
         links {
-          ...LinkFragment
+          ...LinkToRecordFragment
         }
       }
     }
   `,
-  [LinkFragment],
+  [LinkToRecordFragment],
 );
