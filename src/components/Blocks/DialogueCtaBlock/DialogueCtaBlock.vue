@@ -77,11 +77,11 @@ const data = readFragment<typeof DialogueCtaBlockFragment>(props.data);
   quotes: auto;
 }
 
-.dialogue-cta__body--quote > p {
+.dialogue-cta__body--quote :deep(p) {
   display: inline;
 }
 
-.dialogue-cta__body > p > a {
+.dialogue-cta__body :deep(p > a) {
   background: transparent
     linear-gradient(
       to top,
@@ -94,7 +94,7 @@ const data = readFragment<typeof DialogueCtaBlockFragment>(props.data);
   padding-bottom: 0.15rem;
 }
 
-.dialogue-cta__body > p > a:hover {
+.dialogue-cta__body :deep(p > a:hover) {
   opacity: 0.8;
 }
 
