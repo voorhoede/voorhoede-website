@@ -3,7 +3,7 @@
     <h1 class="sr-only">
       {{ data?.page?.title }}
     </h1>
-    <Blocks :blocks="data?.page?.sections" />
+    <Blocks v-if="data?.page?.sections" :blocks="data.page.sections" />
   </div>
 </template>
 
@@ -15,6 +15,7 @@ import { withQuery } from "ufo";
 import { CaseListBlockFragment } from "~/components/Blocks/CaseListBlock/CaseListBlock.query";
 import { DialogueCtaBlockFragment } from "~/components/Blocks/DialogueCtaBlock/DialogueCtaBlock.query";
 import { ImageCardGridBlockFragment } from "~/components/Blocks/ImageCardGridBlock/ImageCardGridBlock.query";
+import { JobsListBlockFragment } from "~/components/Blocks/JobsListBlock/JobsListBlock.query";
 import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGridBlock.query";
 import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
 import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
@@ -48,6 +49,7 @@ const query = graphql(
           ...CaseListBlockFragment
           ...DialogueCtaBlockFragment
           ...ImageCardGridBlockFragment
+          ...JobsListBlockFragment
           ...LogoGridBlockFragment
           ...PageHeaderBlockFragment
           ...PagePartialBlockFragment
@@ -59,6 +61,7 @@ const query = graphql(
     CaseListBlockFragment,
     DialogueCtaBlockFragment,
     ImageCardGridBlockFragment,
+    JobsListBlockFragment,
     LogoGridBlockFragment,
     PageHeaderBlockFragment,
     PagePartialBlockFragment,

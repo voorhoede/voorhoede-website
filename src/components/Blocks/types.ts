@@ -2,6 +2,7 @@ import type { CaseListBlockFragment } from "./CaseListBlock/CaseListBlock.query"
 import type { DialogueCtaBlockFragment } from "./DialogueCtaBlock/DialogueCtaBlock.query";
 import type { GroupingBlockFragment } from "./GroupingBlock/GroupingBlock.query";
 import type { ImageCardGridBlockFragment } from "./ImageCardGridBlock/ImageCardGridBlock.query";
+import type { JobsListBlockFragment } from "./JobsListBlock/JobsListBlock.query";
 import type { LogoGridBlockFragment } from "./LogoGridBlock/LogoGridBlock.query";
 import type { PageHeaderBlockFragment } from "./PageHeaderBlock/PageHeaderBlock.query";
 import type { PagePartialBlockFragment } from "./PagePartialBlock/PagePartialBlock.query";
@@ -19,6 +20,9 @@ export type BlockRecord =
     })
   | (FragmentOf<typeof ImageCardGridBlockFragment> & {
       __typename: "SectionImageCardGridRecord";
+    })
+  | (FragmentOf<typeof JobsListBlockFragment> & {
+      __typename: "SectionJobsListRecord";
     })
   | (FragmentOf<typeof LogoGridBlockFragment> & {
       __typename: "SectionLogoGridRecord";

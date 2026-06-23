@@ -4,6 +4,7 @@ import CaseListBlock from "./CaseListBlock/CaseListBlock.vue";
 import DialogueCtaBlock from "./DialogueCtaBlock/DialogueCtaBlock.vue";
 import GroupingBlock from "./GroupingBlock/GroupingBlock.vue";
 import ImageCardGridBlock from "./ImageCardGridBlock/ImageCardGridBlock.vue";
+import JobsListBlock from "./JobsListBlock/JobsListBlock.vue";
 import LogoGridBlock from "./LogoGridBlock/LogoGridBlock.vue";
 import PageHeaderBlock from "./PageHeaderBlock/PageHeaderBlock.vue";
 import PagePartialBlock from "./PagePartialBlock/PagePartialBlock.vue";
@@ -29,6 +30,10 @@ const props = defineProps<{
   />
   <ImageCardGridBlock
     v-else-if="props.block?.__typename === 'SectionImageCardGridRecord'"
+    :data="props.block"
+  />
+  <JobsListBlock
+    v-else-if="props.block?.__typename === 'SectionJobsListRecord'"
     :data="props.block"
   />
   <LogoGridBlock
