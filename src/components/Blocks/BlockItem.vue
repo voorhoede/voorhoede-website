@@ -9,6 +9,7 @@ import LogoGridBlock from "./LogoGridBlock/LogoGridBlock.vue";
 import PageHeaderBlock from "./PageHeaderBlock/PageHeaderBlock.vue";
 import PagePartialBlock from "./PagePartialBlock/PagePartialBlock.vue";
 import TextImageBlock from "./TextImageBlock/TextImageBlock.vue";
+import TimelineBlock from "./TimelineBlock/TimelineBlock.vue";
 
 const props = defineProps<{
   block: BlockRecord;
@@ -50,6 +51,10 @@ const props = defineProps<{
   />
   <TextImageBlock
     v-else-if="props.block?.__typename === 'SectionTextImageRecord'"
+    :data="props.block"
+  />
+  <TimelineBlock
+    v-else-if="props.block?.__typename === 'SectionTimelineRecord'"
     :data="props.block"
   />
 </template>

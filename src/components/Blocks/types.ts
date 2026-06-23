@@ -7,6 +7,7 @@ import type { LogoGridBlockFragment } from "./LogoGridBlock/LogoGridBlock.query"
 import type { PageHeaderBlockFragment } from "./PageHeaderBlock/PageHeaderBlock.query";
 import type { PagePartialBlockFragment } from "./PagePartialBlock/PagePartialBlock.query";
 import type { TextImageBlockFragment } from "./TextImageBlock/TextImageBlock.query";
+import type { TimelineBlockFragment } from "./TimelineBlock/TimelineBlock.query";
 
 export type BlockRecord =
   | (FragmentOf<typeof CaseListBlockFragment> & {
@@ -35,4 +36,7 @@ export type BlockRecord =
     })
   | (FragmentOf<typeof TextImageBlockFragment> & {
       __typename: "SectionTextImageRecord";
+    })
+  | (FragmentOf<typeof TimelineBlockFragment> & {
+      __typename: "SectionTimelineRecord";
     });

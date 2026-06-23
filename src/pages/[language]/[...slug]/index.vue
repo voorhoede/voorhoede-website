@@ -19,6 +19,7 @@ import { JobsListBlockFragment } from "~/components/Blocks/JobsListBlock/JobsLis
 import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGridBlock.query";
 import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
 import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
+import { TimelineBlockFragment } from "~/components/Blocks/TimelineBlock/TimelineBlock.query";
 
 const route = useRoute();
 
@@ -53,6 +54,7 @@ const query = graphql(
           ...LogoGridBlockFragment
           ...PageHeaderBlockFragment
           ...PagePartialBlockFragment
+          ...TimelineBlockFragment
         }
       }
     }
@@ -65,6 +67,7 @@ const query = graphql(
     LogoGridBlockFragment,
     PageHeaderBlockFragment,
     PagePartialBlockFragment,
+    TimelineBlockFragment,
   ],
 );
 
