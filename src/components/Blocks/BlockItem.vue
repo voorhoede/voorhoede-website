@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import type { BlockRecord } from "./types";
+import BlogsSectionBlock from "./BlogsSectionBlock/BlogsSectionBlock.vue";
 import CaseListBlock from "./CaseListBlock/CaseListBlock.vue";
 import DialogueCtaBlock from "./DialogueCtaBlock/DialogueCtaBlock.vue";
+import EventsSectionBlock from "./EventsSectionBlock/EventsSectionBlock.vue";
 import GroupingBlock from "./GroupingBlock/GroupingBlock.vue";
 import ImageCardGridBlock from "./ImageCardGridBlock/ImageCardGridBlock.vue";
 import JobsListBlock from "./JobsListBlock/JobsListBlock.vue";
 import LogoGridBlock from "./LogoGridBlock/LogoGridBlock.vue";
 import PageHeaderBlock from "./PageHeaderBlock/PageHeaderBlock.vue";
 import PagePartialBlock from "./PagePartialBlock/PagePartialBlock.vue";
+import TeamGalleryBlock from "./TeamGalleryBlock/TeamGalleryBlock.vue";
 import TextImageBlock from "./TextImageBlock/TextImageBlock.vue";
 import TimelineBlock from "./TimelineBlock/TimelineBlock.vue";
 
@@ -17,12 +20,20 @@ const props = defineProps<{
 </script>
 
 <template>
+  <BlogsSectionBlock
+    v-if="props.block?.__typename === 'SectionBlogsSectionRecord'"
+    :data="props.block"
+  />
   <CaseListBlock
-    v-if="props.block?.__typename === 'SectionCaseListRecord'"
+    v-else-if="props.block?.__typename === 'SectionCaseListRecord'"
     :data="props.block"
   />
   <DialogueCtaBlock
     v-else-if="props.block?.__typename === 'SectionDialogueCtaRecord'"
+    :data="props.block"
+  />
+  <EventsSectionBlock
+    v-else-if="props.block?.__typename === 'SectionEventsSectionRecord'"
     :data="props.block"
   />
   <GroupingBlock
@@ -47,6 +58,10 @@ const props = defineProps<{
   />
   <PagePartialBlock
     v-else-if="props.block?.__typename === 'PagePartialBlockRecord'"
+    :data="props.block"
+  />
+  <TeamGalleryBlock
+    v-else-if="props.block?.__typename === 'SectionTeamGalleryRecord'"
     :data="props.block"
   />
   <TextImageBlock
