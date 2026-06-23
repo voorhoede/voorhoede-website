@@ -15,11 +15,13 @@ import { withQuery } from "ufo";
 import { BlogsSectionBlockFragment } from "~/components/Blocks/BlogsSectionBlock/BlogsSectionBlock.query";
 import { CaseListBlockFragment } from "~/components/Blocks/CaseListBlock/CaseListBlock.query";
 import { DialogueCtaBlockFragment } from "~/components/Blocks/DialogueCtaBlock/DialogueCtaBlock.query";
+import { EventsSectionBlockFragment } from "~/components/Blocks/EventsSectionBlock/EventsSectionBlock.query";
 import { ImageCardGridBlockFragment } from "~/components/Blocks/ImageCardGridBlock/ImageCardGridBlock.query";
 import { JobsListBlockFragment } from "~/components/Blocks/JobsListBlock/JobsListBlock.query";
 import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGridBlock.query";
 import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
 import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
+import { TeamGalleryBlockFragment } from "~/components/Blocks/TeamGalleryBlock/TeamGalleryBlock.query";
 import { TimelineBlockFragment } from "~/components/Blocks/TimelineBlock/TimelineBlock.query";
 
 const route = useRoute();
@@ -51,11 +53,13 @@ const query = graphql(
           ...BlogsSectionBlockFragment
           ...CaseListBlockFragment
           ...DialogueCtaBlockFragment
+          ...EventsSectionBlockFragment
           ...ImageCardGridBlockFragment
           ...JobsListBlockFragment
           ...LogoGridBlockFragment
           ...PageHeaderBlockFragment
           ...PagePartialBlockFragment
+          ...TeamGalleryBlockFragment
           ...TimelineBlockFragment
         }
       }
@@ -65,11 +69,13 @@ const query = graphql(
     BlogsSectionBlockFragment,
     CaseListBlockFragment,
     DialogueCtaBlockFragment,
+    EventsSectionBlockFragment,
     ImageCardGridBlockFragment,
     JobsListBlockFragment,
     LogoGridBlockFragment,
     PageHeaderBlockFragment,
     PagePartialBlockFragment,
+    TeamGalleryBlockFragment,
     TimelineBlockFragment,
   ],
 );
