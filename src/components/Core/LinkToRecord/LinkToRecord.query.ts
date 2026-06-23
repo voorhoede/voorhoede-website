@@ -1,7 +1,7 @@
 import { graphql } from "~/utils/graphql";
 
 export const LinkToRecordFragment = graphql(`
-  fragment LinkToRecordFragment on RecordInterface @_unmask {
+  fragment LinkToRecordFragment on RecordInterface {
     __typename
     ... on ExternalLinkRecord {
       id
