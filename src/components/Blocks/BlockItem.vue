@@ -4,6 +4,7 @@ import BlogsSectionBlock from "./BlogsSectionBlock/BlogsSectionBlock.vue";
 import CaseListBlock from "./CaseListBlock/CaseListBlock.vue";
 import DialogueCtaBlock from "./DialogueCtaBlock/DialogueCtaBlock.vue";
 import EventsSectionBlock from "./EventsSectionBlock/EventsSectionBlock.vue";
+import GlossarySectionBlock from "./GlossarySectionBlock/GlossarySectionBlock.vue";
 import GroupingBlock from "./GroupingBlock/GroupingBlock.vue";
 import ImageCardGridBlock from "./ImageCardGridBlock/ImageCardGridBlock.vue";
 import JobsListBlock from "./JobsListBlock/JobsListBlock.vue";
@@ -35,6 +36,10 @@ const props = defineProps<{
   />
   <EventsSectionBlock
     v-else-if="props.block?.__typename === 'SectionEventsSectionRecord'"
+    :data="props.block"
+  />
+  <GlossarySectionBlock
+    v-else-if="props.block?.__typename === 'SectionGlossaryRecord'"
     :data="props.block"
   />
   <GroupingBlock

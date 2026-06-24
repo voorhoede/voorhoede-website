@@ -16,6 +16,7 @@ import { BlogsSectionBlockFragment } from "~/components/Blocks/BlogsSectionBlock
 import { CaseListBlockFragment } from "~/components/Blocks/CaseListBlock/CaseListBlock.query";
 import { DialogueCtaBlockFragment } from "~/components/Blocks/DialogueCtaBlock/DialogueCtaBlock.query";
 import { EventsSectionBlockFragment } from "~/components/Blocks/EventsSectionBlock/EventsSectionBlock.query";
+import { GlossarySectionBlockFragment } from "~/components/Blocks/GlossarySectionBlock/GlossarySectionBlock.query";
 import { ImageCardGridBlockFragment } from "~/components/Blocks/ImageCardGridBlock/ImageCardGridBlock.query";
 import { JobsListBlockFragment } from "~/components/Blocks/JobsListBlock/JobsListBlock.query";
 import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGridBlock.query";
@@ -55,6 +56,7 @@ const query = graphql(
           ...CaseListBlockFragment
           ...DialogueCtaBlockFragment
           ...EventsSectionBlockFragment
+          ...GlossarySectionBlockFragment
           ...ImageCardGridBlockFragment
           ...JobsListBlockFragment
           ...LogoGridBlockFragment
@@ -72,6 +74,7 @@ const query = graphql(
     CaseListBlockFragment,
     DialogueCtaBlockFragment,
     EventsSectionBlockFragment,
+    GlossarySectionBlockFragment,
     ImageCardGridBlockFragment,
     JobsListBlockFragment,
     LogoGridBlockFragment,

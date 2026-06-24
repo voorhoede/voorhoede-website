@@ -2,6 +2,7 @@ import type { BlogsSectionBlockFragment } from "./BlogsSectionBlock/BlogsSection
 import type { CaseListBlockFragment } from "./CaseListBlock/CaseListBlock.query";
 import type { DialogueCtaBlockFragment } from "./DialogueCtaBlock/DialogueCtaBlock.query";
 import type { EventsSectionBlockFragment } from "./EventsSectionBlock/EventsSectionBlock.query";
+import type { GlossarySectionBlockFragment } from "./GlossarySectionBlock/GlossarySectionBlock.query";
 import type { GroupingBlockFragment } from "./GroupingBlock/GroupingBlock.query";
 import type { ImageCardGridBlockFragment } from "./ImageCardGridBlock/ImageCardGridBlock.query";
 import type { JobsListBlockFragment } from "./JobsListBlock/JobsListBlock.query";
@@ -25,6 +26,9 @@ export type BlockRecord =
     })
   | (FragmentOf<typeof EventsSectionBlockFragment> & {
       __typename: "SectionEventsSectionRecord";
+    })
+  | (FragmentOf<typeof GlossarySectionBlockFragment> & {
+      __typename: "SectionGlossaryRecord";
     })
   | (FragmentOf<typeof GroupingBlockFragment> & {
       __typename: "SectionGroupingRecord";
