@@ -23,8 +23,8 @@
 </template>
 
 <script setup lang="ts">
-import { type FragmentOf, readFragment } from "~/utils/graphql";
-import { LinkToRecordFragment } from "./LinkToRecord.query";
+import { type FragmentOf } from "~/utils/graphql";
+import { type LinkToRecordFragment } from "./LinkToRecord.query";
 
 defineOptions({ inheritAttrs: false });
 
@@ -34,22 +34,20 @@ const props = defineProps<{
 }>();
 
 const resolvedLink = computed(() => {
-  const link = readFragment(LinkToRecordFragment, props.link);
-
-  if (link.__typename === "ExternalLinkRecord") {
+  if (props.link.__typename === "ExternalLinkRecord") {
     return {
-      to: link.url,
+      to: props.link.url,
       external: true,
-      label: link.title,
-      style: link.style,
+      label: props.link.title,
+      style: props.link.style,
     };
   }
-  if (link.__typename === "InternalLinkRecord") {
+  if (props.link.__typename === "InternalLinkRecord") {
     return {
-      to: useDatoNuxtRoute(link.link) ?? "/",
+      to: useDatoNuxtRoute(props.link.link) ?? "/",
       external: false,
-      label: link.title,
-      style: link.style,
+      label: props.link.title,
+      style: props.link.style,
     };
   }
   return null;
