@@ -15,7 +15,7 @@
     "generate:datocms-types": "gql-tada generate output"
   },
   "dependencies": {
-    "@datocms/cma-client-browser": "^5.0.1",
+    "@datocms/cma-client-browser": "^5.5.3",
     "@floating-ui/dom": "^1.7.6",
     "@gql.tada/vue-support": "^1.0.2",
     "@json-feed-types/1_1": "^1.0.2",
