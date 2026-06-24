@@ -7,6 +7,7 @@ import type { GroupingBlockFragment } from "./GroupingBlock/GroupingBlock.query"
 import type { ImageCardGridBlockFragment } from "./ImageCardGridBlock/ImageCardGridBlock.query";
 import type { JobsListBlockFragment } from "./JobsListBlock/JobsListBlock.query";
 import type { LogoGridBlockFragment } from "./LogoGridBlock/LogoGridBlock.query";
+import type { NewsletterBlockFragment } from "./NewsletterBlock/NewsletterBlock.query";
 import type { PageHeaderBlockFragment } from "./PageHeaderBlock/PageHeaderBlock.query";
 import type { PagePartialBlockFragment } from "./PagePartialBlock/PagePartialBlock.query";
 import type { ResponsiveVideoBlockFragment } from "./ResponsiveVideoBlock/ResponsiveVideoBlock.query";
@@ -41,6 +42,9 @@ export type BlockRecord =
     })
   | (FragmentOf<typeof LogoGridBlockFragment> & {
       __typename: "SectionLogoGridRecord";
+    })
+  | (FragmentOf<typeof NewsletterBlockFragment> & {
+      __typename: "SectionNewsletterRecord";
     })
   | (FragmentOf<typeof PageHeaderBlockFragment> & {
       __typename: "SectionHeaderRecord";

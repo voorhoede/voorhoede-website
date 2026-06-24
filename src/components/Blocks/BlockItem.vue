@@ -9,6 +9,7 @@ import GroupingBlock from "./GroupingBlock/GroupingBlock.vue";
 import ImageCardGridBlock from "./ImageCardGridBlock/ImageCardGridBlock.vue";
 import JobsListBlock from "./JobsListBlock/JobsListBlock.vue";
 import LogoGridBlock from "./LogoGridBlock/LogoGridBlock.vue";
+import NewsletterBlock from "./NewsletterBlock/NewsletterBlock.vue";
 import PageHeaderBlock from "./PageHeaderBlock/PageHeaderBlock.vue";
 import PagePartialBlock from "./PagePartialBlock/PagePartialBlock.vue";
 import ResponsiveVideoBlock from "./ResponsiveVideoBlock/ResponsiveVideoBlock.vue";
@@ -56,6 +57,10 @@ const props = defineProps<{
   />
   <LogoGridBlock
     v-else-if="props.block?.__typename === 'SectionLogoGridRecord'"
+    :data="props.block"
+  />
+  <NewsletterBlock
+    v-else-if="props.block?.__typename === 'SectionNewsletterRecord'"
     :data="props.block"
   />
   <PageHeaderBlock
