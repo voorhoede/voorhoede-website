@@ -24,7 +24,6 @@
 import type { CaseListBlockFragment } from "./CaseListBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import StructuredText from "~/components/Core/StructuredText/StructuredText.vue";
-import LinkCard from "~/components/link-card/link-card.vue";
 
 const props = defineProps<{
   data: FragmentOf<typeof CaseListBlockFragment>;
