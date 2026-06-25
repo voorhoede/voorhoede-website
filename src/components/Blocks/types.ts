@@ -6,6 +6,7 @@ import type { GlossarySectionBlockFragment } from "./GlossarySectionBlock/Glossa
 import type { GroupingBlockFragment } from "./GroupingBlock/GroupingBlock.query";
 import type { ImageCardGridBlockFragment } from "./ImageCardGridBlock/ImageCardGridBlock.query";
 import type { ImageGridBlockFragment } from "./ImageGridBlock/ImageGridBlock.query";
+import type { ImageTextBlockFragment } from "./ImageTextBlock/ImageTextBlock.query";
 import type { JobsListBlockFragment } from "./JobsListBlock/JobsListBlock.query";
 import type { LogoGridBlockFragment } from "./LogoGridBlock/LogoGridBlock.query";
 import type { NewsletterBlockFragment } from "./NewsletterBlock/NewsletterBlock.query";
@@ -40,6 +41,9 @@ export type BlockRecord =
     })
   | (FragmentOf<typeof ImageGridBlockFragment> & {
       __typename: "SectionImageGridRecord";
+    })
+  | (FragmentOf<typeof ImageTextBlockFragment> & {
+      __typename: "SectionImageTextRecord";
     })
   | (FragmentOf<typeof JobsListBlockFragment> & {
       __typename: "SectionJobsListRecord";
