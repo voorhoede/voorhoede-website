@@ -7,6 +7,7 @@ import EventsSectionBlock from "./EventsSectionBlock/EventsSectionBlock.vue";
 import GlossarySectionBlock from "./GlossarySectionBlock/GlossarySectionBlock.vue";
 import GroupingBlock from "./GroupingBlock/GroupingBlock.vue";
 import ImageCardGridBlock from "./ImageCardGridBlock/ImageCardGridBlock.vue";
+import ImageGridBlock from "./ImageGridBlock/ImageGridBlock.vue";
 import JobsListBlock from "./JobsListBlock/JobsListBlock.vue";
 import LogoGridBlock from "./LogoGridBlock/LogoGridBlock.vue";
 import NewsletterBlock from "./NewsletterBlock/NewsletterBlock.vue";
@@ -49,6 +50,10 @@ const props = defineProps<{
   />
   <ImageCardGridBlock
     v-else-if="props.block?.__typename === 'SectionImageCardGridRecord'"
+    :data="props.block"
+  />
+  <ImageGridBlock
+    v-else-if="props.block?.__typename === 'SectionImageGridRecord'"
     :data="props.block"
   />
   <JobsListBlock
