@@ -21,7 +21,13 @@
       <h2 v-if="data.title" class="image-with-text__body-title h3">
         {{ data.title }}
       </h2>
-      <StructuredText class="image-with-text__body-text" :data="data.body" />
+      <StructuredText
+        :class="[
+          'image-with-text__body-text',
+          data.fontSize === 'small' ? 'body' : 'body-big',
+        ]"
+        :data="data.body"
+      />
     </div>
   </div>
 </template>

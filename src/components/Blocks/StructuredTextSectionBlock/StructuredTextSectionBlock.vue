@@ -3,6 +3,7 @@
     :data="data.body"
     :class="[
       'structured-text-section',
+      'body-big',
       { 'structured-text-section--center': data.gridAlignment === 'center' },
     ]"
   />

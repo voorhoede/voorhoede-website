@@ -112,7 +112,6 @@ const { data } = await useAsyncData(route.path, async () => {
     query,
     variables: { locale: route.params.language as "nl" | "en", slug },
   });
-  console.log({ result });
 
   return result.data;
 });
