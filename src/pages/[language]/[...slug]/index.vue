@@ -18,6 +18,7 @@ import { ImageCardGridBlockFragment } from "~/components/Blocks/ImageCardGridBlo
 import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGridBlock.query";
 import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
 import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
+import { TextBlockFragment } from "~/components/Blocks/TextBlock/TextBlock.query";
 
 const route = useRoute();
 
@@ -51,6 +52,7 @@ const query = graphql(
           ...LogoGridBlockFragment
           ...PageHeaderBlockFragment
           ...PagePartialBlockFragment
+          ...TextBlockFragment
         }
       }
     }
@@ -62,6 +64,7 @@ const query = graphql(
     LogoGridBlockFragment,
     PageHeaderBlockFragment,
     PagePartialBlockFragment,
+    TextBlockFragment,
   ],
 );
 

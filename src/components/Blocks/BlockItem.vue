@@ -7,6 +7,7 @@ import ImageCardGridBlock from "./ImageCardGridBlock/ImageCardGridBlock.vue";
 import LogoGridBlock from "./LogoGridBlock/LogoGridBlock.vue";
 import PageHeaderBlock from "./PageHeaderBlock/PageHeaderBlock.vue";
 import PagePartialBlock from "./PagePartialBlock/PagePartialBlock.vue";
+import TextBlock from "./TextBlock/TextBlock.vue";
 import TextImageBlock from "./TextImageBlock/TextImageBlock.vue";
 
 const props = defineProps<{
@@ -41,6 +42,10 @@ const props = defineProps<{
   />
   <PagePartialBlock
     v-else-if="props.block?.__typename === 'PagePartialBlockRecord'"
+    :data="props.block"
+  />
+  <TextBlock
+    v-else-if="props.block?.__typename === 'TextBlockRecord'"
     :data="props.block"
   />
   <TextImageBlock
