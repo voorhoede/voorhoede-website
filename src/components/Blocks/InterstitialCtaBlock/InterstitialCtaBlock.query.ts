@@ -1,5 +1,5 @@
 import { graphql } from "~/utils/graphql";
-import { LinkFragment } from "~/components/Core/AppLink/AppLink.query";
+import { LinkToRecordFragment } from "~/components/Core/LinkToRecord/LinkToRecord.query";
 
 export const InterstitialCtaBlockFragment = graphql(
   `
@@ -7,9 +7,9 @@ export const InterstitialCtaBlockFragment = graphql(
       title
       backgroundColor
       ctas {
-        ...LinkFragment
+        ...LinkToRecordFragment
       }
     }
   `,
-  [LinkFragment],
+  [LinkToRecordFragment],
 );
