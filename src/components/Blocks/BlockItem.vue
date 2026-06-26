@@ -9,6 +9,7 @@ import GroupingBlock from "./GroupingBlock/GroupingBlock.vue";
 import ImageCardGridBlock from "./ImageCardGridBlock/ImageCardGridBlock.vue";
 import ImageGridBlock from "./ImageGridBlock/ImageGridBlock.vue";
 import ImageTextBlock from "./ImageTextBlock/ImageTextBlock.vue";
+import InterstitialCtaBlock from "./InterstitialCtaBlock/InterstitialCtaBlock.vue";
 import JobsListBlock from "./JobsListBlock/JobsListBlock.vue";
 import LogoGridBlock from "./LogoGridBlock/LogoGridBlock.vue";
 import NewsletterBlock from "./NewsletterBlock/NewsletterBlock.vue";
@@ -59,6 +60,10 @@ const props = defineProps<{
   />
   <ImageTextBlock
     v-else-if="props.block?.__typename === 'SectionImageTextRecord'"
+    :data="props.block"
+  />
+  <InterstitialCtaBlock
+    v-else-if="props.block?.__typename === 'SectionInterstitialCtaRecord'"
     :data="props.block"
   />
   <JobsListBlock

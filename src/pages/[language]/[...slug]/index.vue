@@ -20,6 +20,7 @@ import { GlossarySectionBlockFragment } from "~/components/Blocks/GlossarySectio
 import { ImageCardGridBlockFragment } from "~/components/Blocks/ImageCardGridBlock/ImageCardGridBlock.query";
 import { ImageGridBlockFragment } from "~/components/Blocks/ImageGridBlock/ImageGridBlock.query";
 import { ImageTextBlockFragment } from "~/components/Blocks/ImageTextBlock/ImageTextBlock.query";
+import { InterstitialCtaBlockFragment } from "~/components/Blocks/InterstitialCtaBlock/InterstitialCtaBlock.query";
 import { JobsListBlockFragment } from "~/components/Blocks/JobsListBlock/JobsListBlock.query";
 import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGridBlock.query";
 import { NewsletterBlockFragment } from "~/components/Blocks/NewsletterBlock/NewsletterBlock.query";
@@ -63,6 +64,7 @@ const query = graphql(
           ...ImageCardGridBlockFragment
           ...ImageGridBlockFragment
           ...ImageTextBlockFragment
+          ...InterstitialCtaBlockFragment
           ...JobsListBlockFragment
           ...LogoGridBlockFragment
           ...NewsletterBlockFragment
@@ -84,6 +86,7 @@ const query = graphql(
     ImageCardGridBlockFragment,
     ImageGridBlockFragment,
     ImageTextBlockFragment,
+    InterstitialCtaBlockFragment,
     JobsListBlockFragment,
     LogoGridBlockFragment,
     NewsletterBlockFragment,
