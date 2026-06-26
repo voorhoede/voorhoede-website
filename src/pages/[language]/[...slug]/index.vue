@@ -29,6 +29,7 @@ import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/Pag
 import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
 import { ResponsiveVideoBlockFragment } from "~/components/Blocks/ResponsiveVideoBlock/ResponsiveVideoBlock.query";
 import { TeamGalleryBlockFragment } from "~/components/Blocks/TeamGalleryBlock/TeamGalleryBlock.query";
+import { TextBlockFragment } from "~/components/Blocks/TextBlock/TextBlock.query";
 import { TimelineBlockFragment } from "~/components/Blocks/TimelineBlock/TimelineBlock.query";
 
 const route = useRoute();
@@ -74,6 +75,7 @@ const query = graphql(
           ...PagePartialBlockFragment
           ...ResponsiveVideoBlockFragment
           ...TeamGalleryBlockFragment
+          ...TextBlockFragment
           ...TimelineBlockFragment
         }
       }
@@ -97,6 +99,7 @@ const query = graphql(
     PagePartialBlockFragment,
     ResponsiveVideoBlockFragment,
     TeamGalleryBlockFragment,
+    TextBlockFragment,
     TimelineBlockFragment,
   ],
 );

@@ -16,6 +16,7 @@ import type { PageHeaderBlockFragment } from "./PageHeaderBlock/PageHeaderBlock.
 import type { PagePartialBlockFragment } from "./PagePartialBlock/PagePartialBlock.query";
 import type { ResponsiveVideoBlockFragment } from "./ResponsiveVideoBlock/ResponsiveVideoBlock.query";
 import type { TeamGalleryBlockFragment } from "./TeamGalleryBlock/TeamGalleryBlock.query";
+import type { TextBlockFragment } from "./TextBlock/TextBlock.query";
 import type { TextImageBlockFragment } from "./TextImageBlock/TextImageBlock.query";
 import type { TimelineBlockFragment } from "./TimelineBlock/TimelineBlock.query";
 
@@ -73,6 +74,9 @@ export type BlockRecord =
     })
   | (FragmentOf<typeof TeamGalleryBlockFragment> & {
       __typename: "SectionTeamGalleryRecord";
+    })
+  | (FragmentOf<typeof TextBlockFragment> & {
+      __typename: "TextBlockRecord";
     })
   | (FragmentOf<typeof TextImageBlockFragment> & {
       __typename: "SectionTextImageRecord";
