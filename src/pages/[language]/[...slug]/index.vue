@@ -3,7 +3,7 @@
     <h1 class="sr-only">
       {{ data?.page?.title }}
     </h1>
-    <Blocks :blocks="data?.page?.sections" />
+    <Blocks v-if="data?.page?.sections" :blocks="data.page.sections" />
   </div>
 </template>
 
@@ -12,13 +12,26 @@ definePageMeta({ layout: "content-page" });
 
 import { withQuery } from "ufo";
 
+import { BlogsSectionBlockFragment } from "~/components/Blocks/BlogsSectionBlock/BlogsSectionBlock.query";
+import { CallToActionBlockFragment } from "~/components/Blocks/CallToActionBlock/CallToActionBlock.query";
 import { CaseListBlockFragment } from "~/components/Blocks/CaseListBlock/CaseListBlock.query";
 import { DialogueCtaBlockFragment } from "~/components/Blocks/DialogueCtaBlock/DialogueCtaBlock.query";
+import { EventsSectionBlockFragment } from "~/components/Blocks/EventsSectionBlock/EventsSectionBlock.query";
+import { GlossarySectionBlockFragment } from "~/components/Blocks/GlossarySectionBlock/GlossarySectionBlock.query";
 import { ImageCardGridBlockFragment } from "~/components/Blocks/ImageCardGridBlock/ImageCardGridBlock.query";
+import { ImageGridBlockFragment } from "~/components/Blocks/ImageGridBlock/ImageGridBlock.query";
+import { ImageTextBlockFragment } from "~/components/Blocks/ImageTextBlock/ImageTextBlock.query";
+import { InterstitialCtaBlockFragment } from "~/components/Blocks/InterstitialCtaBlock/InterstitialCtaBlock.query";
+import { JobsListBlockFragment } from "~/components/Blocks/JobsListBlock/JobsListBlock.query";
 import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGridBlock.query";
+import { NewsletterBlockFragment } from "~/components/Blocks/NewsletterBlock/NewsletterBlock.query";
 import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
 import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
+import { ResponsiveVideoBlockFragment } from "~/components/Blocks/ResponsiveVideoBlock/ResponsiveVideoBlock.query";
+import { StructuredTextSectionBlockFragment } from "~/components/Blocks/StructuredTextSectionBlock/StructuredTextSectionBlock.query";
+import { TeamGalleryBlockFragment } from "~/components/Blocks/TeamGalleryBlock/TeamGalleryBlock.query";
 import { TextBlockFragment } from "~/components/Blocks/TextBlock/TextBlock.query";
+import { TimelineBlockFragment } from "~/components/Blocks/TimelineBlock/TimelineBlock.query";
 
 const route = useRoute();
 
@@ -46,25 +59,51 @@ const query = graphql(
         }
         sections {
           __typename
+          ...BlogsSectionBlockFragment
+          ...CallToActionBlockFragment
           ...CaseListBlockFragment
           ...DialogueCtaBlockFragment
+          ...EventsSectionBlockFragment
+          ...GlossarySectionBlockFragment
           ...ImageCardGridBlockFragment
+          ...ImageGridBlockFragment
+          ...ImageTextBlockFragment
+          ...InterstitialCtaBlockFragment
+          ...JobsListBlockFragment
           ...LogoGridBlockFragment
+          ...NewsletterBlockFragment
           ...PageHeaderBlockFragment
           ...PagePartialBlockFragment
+          ...ResponsiveVideoBlockFragment
+          ...StructuredTextSectionBlockFragment
+          ...TeamGalleryBlockFragment
           ...TextBlockFragment
+          ...TimelineBlockFragment
         }
       }
     }
   `,
   [
+    BlogsSectionBlockFragment,
+    CallToActionBlockFragment,
     CaseListBlockFragment,
     DialogueCtaBlockFragment,
+    EventsSectionBlockFragment,
+    GlossarySectionBlockFragment,
     ImageCardGridBlockFragment,
+    ImageGridBlockFragment,
+    ImageTextBlockFragment,
+    InterstitialCtaBlockFragment,
+    JobsListBlockFragment,
     LogoGridBlockFragment,
+    NewsletterBlockFragment,
     PageHeaderBlockFragment,
     PagePartialBlockFragment,
+    ResponsiveVideoBlockFragment,
+    StructuredTextSectionBlockFragment,
+    TeamGalleryBlockFragment,
     TextBlockFragment,
+    TimelineBlockFragment,
   ],
 );
 
@@ -73,7 +112,6 @@ const { data } = await useAsyncData(route.path, async () => {
     query,
     variables: { locale: route.params.language as "nl" | "en", slug },
   });
-  console.log({ result });
 
   return result.data;
 });
