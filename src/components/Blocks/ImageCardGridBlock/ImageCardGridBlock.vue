@@ -35,7 +35,7 @@
             :content="card.body"
           />
 
-          <AppLink
+          <LinkToRecord
             v-if="card.links[0]"
             class="image-card-grid__link"
             :link="card.links[0]"
@@ -53,7 +53,7 @@
 import type { ImageCardGridBlockFragment } from "./ImageCardGridBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import { BackgroundColor } from "~/types/styling";
-import AppLink from "~/components/Core/AppLink/AppLink.vue";
+import LinkToRecord from "~/components/Core/LinkToRecord/LinkToRecord.vue";
 
 const props = defineProps<{
   data: FragmentOf<typeof ImageCardGridBlockFragment>;

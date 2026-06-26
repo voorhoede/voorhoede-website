@@ -265,7 +265,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .structured-text__toc {
     margin-top: 0;
     grid-column-start: 3;

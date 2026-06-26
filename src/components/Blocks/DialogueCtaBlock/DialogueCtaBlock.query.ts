@@ -1,5 +1,5 @@
 import { graphql } from "~/utils/graphql";
-import { LinkFragment } from "~/components/Core/AppLink/AppLink.query";
+import { LinkToRecordFragment } from "~/components/Core/LinkToRecord/LinkToRecord.query";
 
 export const DialogueCtaBlockFragment = graphql(
   `
@@ -17,9 +17,9 @@ export const DialogueCtaBlockFragment = graphql(
         }
       }
       ctas {
-        ...LinkFragment
+        ...LinkToRecordFragment
       }
     }
   `,
-  [LinkFragment],
+  [LinkToRecordFragment],
 );
