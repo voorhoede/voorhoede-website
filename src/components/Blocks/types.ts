@@ -1,4 +1,5 @@
 import type { BlogsSectionBlockFragment } from "./BlogsSectionBlock/BlogsSectionBlock.query";
+import type { CallToActionBlockFragment } from "./CallToActionBlock/CallToActionBlock.query";
 import type { CaseListBlockFragment } from "./CaseListBlock/CaseListBlock.query";
 import type { DialogueCtaBlockFragment } from "./DialogueCtaBlock/DialogueCtaBlock.query";
 import type { EventsSectionBlockFragment } from "./EventsSectionBlock/EventsSectionBlock.query";
@@ -21,6 +22,9 @@ import type { TimelineBlockFragment } from "./TimelineBlock/TimelineBlock.query"
 export type BlockRecord =
   | (FragmentOf<typeof BlogsSectionBlockFragment> & {
       __typename: "SectionBlogsSectionRecord";
+    })
+  | (FragmentOf<typeof CallToActionBlockFragment> & {
+      __typename: "CallToActionRecord";
     })
   | (FragmentOf<typeof CaseListBlockFragment> & {
       __typename: "SectionCaseListRecord";

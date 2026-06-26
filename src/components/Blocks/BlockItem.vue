@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { BlockRecord } from "./types";
 import BlogsSectionBlock from "./BlogsSectionBlock/BlogsSectionBlock.vue";
+import CallToActionBlock from "./CallToActionBlock/CallToActionBlock.vue";
 import CaseListBlock from "./CaseListBlock/CaseListBlock.vue";
 import DialogueCtaBlock from "./DialogueCtaBlock/DialogueCtaBlock.vue";
 import EventsSectionBlock from "./EventsSectionBlock/EventsSectionBlock.vue";
@@ -28,6 +29,10 @@ const props = defineProps<{
 <template>
   <BlogsSectionBlock
     v-if="props.block?.__typename === 'SectionBlogsSectionRecord'"
+    :data="props.block"
+  />
+  <CallToActionBlock
+    v-else-if="props.block?.__typename === 'CallToActionRecord'"
     :data="props.block"
   />
   <CaseListBlock

@@ -13,6 +13,7 @@ definePageMeta({ layout: "content-page" });
 import { withQuery } from "ufo";
 
 import { BlogsSectionBlockFragment } from "~/components/Blocks/BlogsSectionBlock/BlogsSectionBlock.query";
+import { CallToActionBlockFragment } from "~/components/Blocks/CallToActionBlock/CallToActionBlock.query";
 import { CaseListBlockFragment } from "~/components/Blocks/CaseListBlock/CaseListBlock.query";
 import { DialogueCtaBlockFragment } from "~/components/Blocks/DialogueCtaBlock/DialogueCtaBlock.query";
 import { EventsSectionBlockFragment } from "~/components/Blocks/EventsSectionBlock/EventsSectionBlock.query";
@@ -57,6 +58,7 @@ const query = graphql(
         sections {
           __typename
           ...BlogsSectionBlockFragment
+          ...CallToActionBlockFragment
           ...CaseListBlockFragment
           ...DialogueCtaBlockFragment
           ...EventsSectionBlockFragment
@@ -79,6 +81,7 @@ const query = graphql(
   `,
   [
     BlogsSectionBlockFragment,
+    CallToActionBlockFragment,
     CaseListBlockFragment,
     DialogueCtaBlockFragment,
     EventsSectionBlockFragment,
