@@ -28,6 +28,7 @@ import { NewsletterBlockFragment } from "~/components/Blocks/NewsletterBlock/New
 import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
 import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
 import { ResponsiveVideoBlockFragment } from "~/components/Blocks/ResponsiveVideoBlock/ResponsiveVideoBlock.query";
+import { StructuredTextSectionBlockFragment } from "~/components/Blocks/StructuredTextSectionBlock/StructuredTextSectionBlock.query";
 import { TeamGalleryBlockFragment } from "~/components/Blocks/TeamGalleryBlock/TeamGalleryBlock.query";
 import { TextBlockFragment } from "~/components/Blocks/TextBlock/TextBlock.query";
 import { TimelineBlockFragment } from "~/components/Blocks/TimelineBlock/TimelineBlock.query";
@@ -74,6 +75,7 @@ const query = graphql(
           ...PageHeaderBlockFragment
           ...PagePartialBlockFragment
           ...ResponsiveVideoBlockFragment
+          ...StructuredTextSectionBlockFragment
           ...TeamGalleryBlockFragment
           ...TextBlockFragment
           ...TimelineBlockFragment
@@ -98,6 +100,7 @@ const query = graphql(
     PageHeaderBlockFragment,
     PagePartialBlockFragment,
     ResponsiveVideoBlockFragment,
+    StructuredTextSectionBlockFragment,
     TeamGalleryBlockFragment,
     TextBlockFragment,
     TimelineBlockFragment,
