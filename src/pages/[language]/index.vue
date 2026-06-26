@@ -47,7 +47,6 @@ import { ImageCardGridBlockFragment } from "~/components/Blocks/ImageCardGridBlo
 import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGridBlock.query";
 import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
 import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
-import { ReachOutBlockFragment } from "~/components/Blocks/ReachOutBlock/ReachOutBlock.query";
 import { TextBlockFragment } from "~/components/Blocks/TextBlock/TextBlock.query";
 import { TextImageBlockFragment } from "~/components/Blocks/TextImageBlock/TextImageBlock.query";
 
@@ -76,7 +75,6 @@ const query = graphql(
           ...LogoGridBlockFragment
           ...PageHeaderBlockFragment
           ...PagePartialBlockFragment
-          ...ReachOutBlockFragment
           ...TextBlockFragment
           ...TextImageBlockFragment
         }
@@ -111,7 +109,6 @@ const query = graphql(
     LogoGridBlockFragment,
     PageHeaderBlockFragment,
     PagePartialBlockFragment,
-    ReachOutBlockFragment,
     TextBlockFragment,
     TextImageBlockFragment,
   ],
