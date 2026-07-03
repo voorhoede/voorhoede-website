@@ -17,7 +17,6 @@ import NewsletterBlock from "./NewsletterBlock/NewsletterBlock.vue";
 import PageHeaderBlock from "./PageHeaderBlock/PageHeaderBlock.vue";
 import PagePartialBlock from "./PagePartialBlock/PagePartialBlock.vue";
 import ResponsiveVideoBlock from "./ResponsiveVideoBlock/ResponsiveVideoBlock.vue";
-import StructuredTextSectionBlock from "./StructuredTextSectionBlock/StructuredTextSectionBlock.vue";
 import TeamGalleryBlock from "./TeamGalleryBlock/TeamGalleryBlock.vue";
 import TextBlock from "./TextBlock/TextBlock.vue";
 import TextImageBlock from "./TextImageBlock/TextImageBlock.vue";
@@ -95,10 +94,6 @@ const props = defineProps<{
   />
   <ResponsiveVideoBlock
     v-else-if="props.block?.__typename === 'SectionVideoRecord'"
-    :data="props.block"
-  />
-  <StructuredTextSectionBlock
-    v-else-if="props.block?.__typename === 'SectionStructuredTextRecord'"
     :data="props.block"
   />
   <TeamGalleryBlock
