@@ -31,8 +31,6 @@ export const TextBlockFragment = graphql(
           ...ImageFragment
         }
       }
-      layout
-      style
     }
   `,
   [
