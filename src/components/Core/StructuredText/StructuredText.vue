@@ -32,15 +32,12 @@ import type {
   CounterItemListFragment,
   ImageBlockFragment,
   StructuredTextImageFragment,
-  TwoColumnBlockFragment,
-  TwoColumnItemFragment,
 } from "~/components/Blocks/shared/structuredText.query";
 
 import LinkToRecord from "~/components/Core/LinkToRecord/LinkToRecord.vue";
 import StructuredText from "./StructuredText.vue";
 import CounterItemList from "~/components/counter-item-list/counter-item-list.vue";
 import ImageWithCaption from "~/components/image-with-caption/image-with-caption.vue";
-import TwoColumnBlock from "~/components/two-column-block/two-column-block.vue";
 
 const props = defineProps<{
   data: CdaStructuredTextValue;
@@ -63,27 +60,6 @@ function renderInlineRecord({ record }) {
 
 // A masked structured-text body field rendered recursively by this component.
 type NestedBody = CdaStructuredTextValue;
-
-function renderColumn(column: FragmentOf<typeof TwoColumnItemFragment>) {
-  const item = readFragment<typeof TwoColumnItemFragment>(column);
-  if (item.__typename === "StructuredTextRecord") {
-    return h(StructuredText, { data: item.body as unknown as NestedBody });
-  }
-  if (item.__typename === "StructuredTextImageRecord") {
-    const image = readFragment<typeof StructuredTextImageFragment>(
-      column as unknown as FragmentOf<typeof StructuredTextImageFragment>,
-    );
-    return h(ImageWithCaption, {
-      class: "structured-text__image-with-caption structured-text__column-image",
-      caption: image.caption ?? "",
-      image: {
-        ...image.image,
-        sizes: "(min-width: 1100px) 430px, (min-width: 720px) 40vw, 90vw",
-      },
-    });
-  }
-  return null;
-}
 
 function renderBlock({
   record,
@@ -167,19 +143,6 @@ function renderBlock({
           sizes: "(min-width: 1100px) 680px, (min-width: 720px) 60vw, 90vw",
         },
       });
-    }
-    case "TwoColumnBlockRecord": {
-      const data = readFragment<typeof TwoColumnBlockFragment>(
-        record as unknown as FragmentOf<typeof TwoColumnBlockFragment>,
-      );
-      return h(
-        TwoColumnBlock,
-        {},
-        {
-          left: () => renderColumn(data.leftItems[0]),
-          right: () => renderColumn(data.rightItems[0]),
-        },
-      );
     }
     default:
       return null;
