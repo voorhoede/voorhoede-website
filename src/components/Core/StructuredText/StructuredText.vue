@@ -23,10 +23,21 @@ import {
   isParagraph,
   isLink,
 } from "datocms-structured-text-utils";
-import { type FragmentOf } from "~/utils/graphql";
+import { type FragmentOf, readFragment } from "~/utils/graphql";
 import { type LinkToRecordFragment } from "~/components/Core/LinkToRecord/LinkToRecord.query";
+import type {
+  BlueTextFragment,
+  ButtonsListFragment,
+  HighlightedListFragment,
+  CounterItemListFragment,
+  ImageBlockFragment,
+  StructuredTextImageFragment,
+} from "~/components/Blocks/shared/structuredText.query";
 
 import LinkToRecord from "~/components/Core/LinkToRecord/LinkToRecord.vue";
+import StructuredText from "./StructuredText.vue";
+import CounterItemList from "~/components/counter-item-list/counter-item-list.vue";
+import ImageWithCaption from "~/components/image-with-caption/image-with-caption.vue";
 
 const props = defineProps<{
   data: CdaStructuredTextValue;
@@ -39,13 +50,16 @@ function renderLinkToRecord({
   children,
 }: RenderRecordLinkContext<CdaStructuredTextRecord>) {
   const resolvedRoute = useDatoNuxtRoute(record);
-  return h(LinkWithTrailingSlash, { to: resolvedRoute }, () => children);
+  return h(LinkWithTrailingSlash, { to: resolvedRoute }, children);
 }
 
 function renderInlineRecord({ record }) {
   const resolvedRoute = useDatoNuxtRoute(record);
-  return h(LinkWithTrailingSlash, { to: resolvedRoute }, () => record.title);
+  return h(LinkWithTrailingSlash, { to: resolvedRoute }, record.title);
 }
+
+// A masked structured-text body field rendered recursively by this component.
+type NestedBody = CdaStructuredTextValue;
 
 function renderBlock({
   record,
@@ -55,8 +69,79 @@ function renderBlock({
   switch (record.__typename) {
     case "ExternalLinkRecord":
     case "InternalLinkRecord": {
-      return h(LinkToRecord, {
-        link: record,
+      return h(LinkToRecord, { link: record });
+    }
+    case "StructuredTextBlueTextRecord": {
+      const data = readFragment<typeof BlueTextFragment>(
+        record as unknown as FragmentOf<typeof BlueTextFragment>,
+      );
+      return h(StructuredText, {
+        data: data.body as unknown as NestedBody,
+        class: {
+          "structured-text__blue-text": true,
+          "structured-text__blue-text--center": data.textAlignment === "center",
+        },
+      });
+    }
+    case "StructuredTextButtonsListRecord": {
+      const data = readFragment<typeof ButtonsListFragment>(
+        record as unknown as FragmentOf<typeof ButtonsListFragment>,
+      );
+      return h(
+        "div",
+        { class: "structured-text__buttons-list" },
+        data.buttons.map((button, index) =>
+          h(LinkToRecord, { key: index, link: button }),
+        ),
+      );
+    }
+    case "StructuredTextHighlightedListRecord": {
+      const data = readFragment<typeof HighlightedListFragment>(
+        record as unknown as FragmentOf<typeof HighlightedListFragment>,
+      );
+      return h(
+        "ul",
+        { class: "structured-text__highlighted-list" },
+        data.items.map((item, index) =>
+          h(
+            "li",
+            { key: index, class: "structured-text__highlighted-list-item" },
+            h(StructuredText, { data: item.body as unknown as NestedBody }),
+          ),
+        ),
+      );
+    }
+    case "StructuredTextCounterItemListRecord": {
+      const data = readFragment<typeof CounterItemListFragment>(
+        record as unknown as FragmentOf<typeof CounterItemListFragment>,
+      );
+      return h(CounterItemList, { items: data.items });
+    }
+    case "ImageRecord": {
+      const data = readFragment<typeof ImageBlockFragment>(
+        record as unknown as FragmentOf<typeof ImageBlockFragment>,
+      );
+      return h(ImageWithCaption, {
+        class: "structured-text__image-with-caption",
+        caption: data.caption ?? "",
+        captionPosition: data.captionPosition ?? undefined,
+        image: {
+          ...data.image,
+          sizes: "(min-width: 1100px) 860px, (min-width: 720px) 75vw, 90vw",
+        },
+      });
+    }
+    case "StructuredTextImageRecord": {
+      const data = readFragment<typeof StructuredTextImageFragment>(
+        record as unknown as FragmentOf<typeof StructuredTextImageFragment>,
+      );
+      return h(ImageWithCaption, {
+        class: "structured-text__image-with-caption",
+        caption: data.caption ?? "",
+        image: {
+          ...data.image,
+          sizes: "(min-width: 1100px) 680px, (min-width: 720px) 60vw, 90vw",
+        },
       });
     }
     default:
@@ -108,5 +193,35 @@ const customNodeRules = [
     color: var(--active-blue);
     text-decoration-thickness: 2px;
   }
+}
+
+.structured-text__buttons-list {
+  margin-top: var(--spacing-medium);
+  display: inline-flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--spacing-small);
+}
+
+.structured-text__blue-text {
+  color: var(--html-blue);
+  margin-bottom: var(--spacing-medium);
+}
+
+.structured-text__blue-text--center {
+  text-align: center;
+}
+
+.structured-text__image-with-caption {
+  margin: var(--spacing-big) 0;
+}
+
+.structured-text__highlighted-list-item {
+  padding: var(--spacing-medium);
+  background-color: var(--white);
+}
+
+.structured-text__highlighted-list-item + .structured-text__highlighted-list-item {
+  margin-top: var(--spacing-medium);
 }
 </style>
