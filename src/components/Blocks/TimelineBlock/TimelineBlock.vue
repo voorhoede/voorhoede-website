@@ -39,7 +39,6 @@
 </template>
 
 <script setup lang="ts">
-import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
 import type { TimelineBlockFragment } from "./TimelineBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import formatDate from "~/lib/format-date";

@@ -15,6 +15,8 @@ import LogoGridBlock from "./LogoGridBlock/LogoGridBlock.vue";
 import NewsletterBlock from "./NewsletterBlock/NewsletterBlock.vue";
 import PageHeaderBlock from "./PageHeaderBlock/PageHeaderBlock.vue";
 import PagePartialBlock from "./PagePartialBlock/PagePartialBlock.vue";
+import ResponsiveVideoBlock from "./ResponsiveVideoBlock/ResponsiveVideoBlock.vue";
+import TeamGalleryBlock from "./TeamGalleryBlock/TeamGalleryBlock.vue";
 import TextBlock from "./TextBlock/TextBlock.vue";
 import TextImageBlock from "./TextImageBlock/TextImageBlock.vue";
 import TimelineBlock from "./TimelineBlock/TimelineBlock.vue";
@@ -83,6 +85,14 @@ const props = defineProps<{
   />
   <PagePartialBlock
     v-else-if="props.block?.__typename === 'PagePartialBlockRecord'"
+    :data="props.block"
+  />
+  <ResponsiveVideoBlock
+    v-else-if="props.block?.__typename === 'SectionVideoRecord'"
+    :data="props.block"
+  />
+  <TeamGalleryBlock
+    v-else-if="props.block?.__typename === 'SectionTeamGalleryRecord'"
     :data="props.block"
   />
   <TextBlock

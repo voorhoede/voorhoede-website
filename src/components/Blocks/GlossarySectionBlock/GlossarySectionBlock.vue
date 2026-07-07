@@ -17,7 +17,7 @@
               &#9662;
             </span>
           </summary>
-          <RichTextBlock
+          <rich-text-block
             class="glossary-section__definition"
             :text="term.definitionHtml"
           />
@@ -28,7 +28,6 @@
 </template>
 
 <script setup lang="ts">
-import RichTextBlock from "~/components/rich-text-block/rich-text-block.vue";
 import termsQuery from "./GlossarySectionBlock.terms.graphql?raw";
 import type { GlossarySectionBlockFragment } from "./GlossarySectionBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";

@@ -16,7 +16,6 @@
 </template>
 
 <script setup lang="ts">
-import BlogsList from "~/components/blogs-list/blogs-list.vue";
 import type { BlogsSectionBlockFragment } from "./BlogsSectionBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 

@@ -17,7 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import JobsExcerpt from "~/components/jobs-excerpt/jobs-excerpt.vue";
 import type { JobsListBlockFragment } from "./JobsListBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 
