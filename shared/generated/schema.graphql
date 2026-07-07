@@ -3996,6 +3996,7 @@ enum HomePageModelFieldsReferencingBlogPostModel {
   homePage_sections__sectionDialogueCta_ctas__internalLink_link
   homePage_sections__sectionImageCardGrid_items__sectionImageCardGridItem_links__internalLink_link
   homePage_sections__sectionImageCardGrid_text__internalLink_link
+  homePage_sections__textBlock_text__structuredTextButtonsList_buttons__internalLink_link
 }
 
 """Linking fields"""
@@ -4005,6 +4006,7 @@ enum HomePageModelFieldsReferencingMeetModel {
   homePage_sections__sectionDialogueCta_ctas__internalLink_link
   homePage_sections__sectionImageCardGrid_items__sectionImageCardGridItem_links__internalLink_link
   homePage_sections__sectionImageCardGrid_text__internalLink_link
+  homePage_sections__textBlock_text__structuredTextButtonsList_buttons__internalLink_link
 }
 
 input HomePageModelFilter {
@@ -8350,6 +8352,7 @@ enum PageModelFieldsReferencingBlogPostModel {
   page_sections__sectionStructuredText_body__structuredTextButtonsList_buttons__internalLink_link
   page_sections__sectionStructuredText_body__twoColumnBlock_leftItems__structuredText_body__structuredTextButtonsList_buttons__internalLink_link
   page_sections__sectionStructuredText_body__twoColumnBlock_rightItems__structuredText_body__structuredTextButtonsList_buttons__internalLink_link
+  page_sections__textBlock_text__structuredTextButtonsList_buttons__internalLink_link
 }
 
 """Linking fields"""
@@ -8366,6 +8369,7 @@ enum PageModelFieldsReferencingMeetModel {
   page_sections__sectionStructuredText_body__structuredTextButtonsList_buttons__internalLink_link
   page_sections__sectionStructuredText_body__twoColumnBlock_leftItems__structuredText_body__structuredTextButtonsList_buttons__internalLink_link
   page_sections__sectionStructuredText_body__twoColumnBlock_rightItems__structuredText_body__structuredTextButtonsList_buttons__internalLink_link
+  page_sections__textBlock_text__structuredTextButtonsList_buttons__internalLink_link
 }
 
 input PageModelFilter {
@@ -13192,14 +13196,16 @@ type TestimonialItemRecord implements RecordInterface {
   validated: BooleanType!
 }
 
+union TextBlockModelTextBlocksField = ImageRecord | StructuredTextButtonsListRecord | StructuredTextCounterItemListRecord | StructuredTextHighlightedListRecord
+
 type TextBlockModelTextField {
-  blocks: [String!]!
+  blocks: [TextBlockModelTextBlocksField!]!
   inlineBlocks: [String!]!
   links: [TextBlockModelTextLinksField!]!
   value: JsonField!
 }
 
-union TextBlockModelTextLinksField = HomePageRecord | PageRecord
+union TextBlockModelTextLinksField = GlossaryTermRecord | HomePageRecord | PageRecord
 
 """Block of type 📝 Text Block (text_block)"""
 type TextBlockRecord implements RecordInterface {
