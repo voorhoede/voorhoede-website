@@ -1,4 +1,10 @@
 import { graphql } from "~/utils/graphql";
+import {
+  ButtonsListFragment,
+  CounterItemListFragment,
+  HighlightedListFragment,
+  ImageFragment,
+} from "~/components/Blocks/shared/structuredText.query";
 
 export const TextBlockFragment = graphql(
   `
@@ -17,10 +23,22 @@ export const TextBlockFragment = graphql(
             title
           }
         }
+        blocks {
+          __typename
+          ...ButtonsListFragment
+          ...CounterItemListFragment
+          ...HighlightedListFragment
+          ...ImageFragment
+        }
       }
       layout
       style
     }
   `,
-  [],
+  [
+    ButtonsListFragment,
+    CounterItemListFragment,
+    HighlightedListFragment,
+    ImageFragment,
+  ],
 );
