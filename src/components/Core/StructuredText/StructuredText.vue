@@ -6,6 +6,7 @@
     :render-block="renderBlock"
     :render-inline-record="renderInlineRecord"
     :custom-node-rules="customNodeRules"
+    :custom-mark-rules="customMarkRules"
   />
 </template>
 
@@ -16,6 +17,7 @@ import {
   type RenderBlockContext,
   type RenderRecordLinkContext,
   renderNodeRule,
+  renderMarkRule,
 } from "vue-datocms";
 import {
   type CdaStructuredTextValue,
@@ -122,9 +124,16 @@ function renderBlock({
   }
 }
 
+// Custom styles plugin > custom mark rules
+const customMarkRules = [
+  renderMarkRule("blue", ({ key, children }) =>
+    h("span", { key, class: "blue" }, children),
+  ),
+];
+
 const customNodeRules = [
   // Prevent empty newlines from rendering empty paragraphs
-  renderNodeRule(isParagraph, ({ key, children }) => {
+  renderNodeRule(isParagraph, ({ node, key, children }) => {
     // @ts-expect-error children is untyped
     const validChildren = children.filter((child) =>
       typeof child === "string" ? child.trim() : child,
@@ -134,7 +143,8 @@ const customNodeRules = [
       return null;
     }
 
-    return h("p", { key }, validChildren);
+    // node.style is passed on for custom styles plugin
+    return h("p", { key, class: node.style }, validChildren);
   }),
   // Make external links open in new tab
   renderNodeRule(isLink, ({ node, key, children }) => {
@@ -177,12 +187,14 @@ const customNodeRules = [
   gap: var(--spacing-medium);
 }
 
-.blue-text {
+.structured-text :deep(.blue) {
   color: var(--html-blue);
 }
 
-.centered {
+.structured-text :deep(.centered) {
   text-align: center;
+  justify-self: center;
+  max-width: 40rem;
 }
 
 :deep(.structured-text__image-with-caption) {
