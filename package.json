@@ -22,7 +22,7 @@
     "@mux/mux-player": "^3.11.5",
     "@nuxtjs/plausible": "^3.0.2",
     "@std/http": "npm:@jsr/std__http@^1.1.1",
-    "@std/yaml": "npm:@jsr/std__yaml@^1.1.1",
+    "@std/yaml": "npm:@jsr/std__yaml@^1.1.2",
     "@urql/core": "^6.0.3",
     "@voorhoede/image-vue": "^1.1.0",
     "@voorhoede/vue-dato-video": "^3.1.0",
