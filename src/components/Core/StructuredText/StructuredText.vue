@@ -39,12 +39,12 @@ function renderLinkToRecord({
   children,
 }: RenderRecordLinkContext<CdaStructuredTextRecord>) {
   const resolvedRoute = useDatoNuxtRoute(record);
-  return h(LinkWithTrailingSlash, { to: resolvedRoute }, children);
+  return h(LinkWithTrailingSlash, { to: resolvedRoute }, () => children);
 }
 
 function renderInlineRecord({ record }) {
   const resolvedRoute = useDatoNuxtRoute(record);
-  return h(LinkWithTrailingSlash, { to: resolvedRoute }, record.title);
+  return h(LinkWithTrailingSlash, { to: resolvedRoute }, () => record.title);
 }
 
 function renderBlock({
