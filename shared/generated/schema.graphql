@@ -13237,14 +13237,16 @@ type TestimonialItemRecord implements RecordInterface {
   validated: BooleanType!
 }
 
+union TextBlockModelTextBlocksField = ImageRecord | StructuredTextButtonsListRecord | StructuredTextCounterItemListRecord | StructuredTextHighlightedListRecord
+
 type TextBlockModelTextField {
-  blocks: [String!]!
+  blocks: [TextBlockModelTextBlocksField!]!
   inlineBlocks: [String!]!
   links: [TextBlockModelTextLinksField!]!
   value: JsonField!
 }
 
-union TextBlockModelTextLinksField = HomePageRecord | PageRecord
+union TextBlockModelTextLinksField = GlossaryTermRecord | HomePageRecord | PageRecord
 
 """Block of type 📝 Text Block (text_block)"""
 type TextBlockRecord implements RecordInterface {

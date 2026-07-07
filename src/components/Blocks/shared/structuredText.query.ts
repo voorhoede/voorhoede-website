@@ -8,6 +8,7 @@ import { LinkToRecordFragment } from "~/components/Core/LinkToRecord/LinkToRecor
  * distinct GraphQL type, but these leaf block fragments are reusable.
  */
 
+// References
 export const GlossaryTermLinkFragment = graphql(`
   fragment GlossaryTermLinkFragment on RecordInterface {
     __typename
@@ -22,6 +23,7 @@ export const GlossaryTermLinkFragment = graphql(`
   }
 `);
 
+// Blocks
 export const ButtonsListFragment = graphql(
   `
     fragment ButtonsListFragment on StructuredTextButtonsListRecord {
@@ -32,27 +34,6 @@ export const ButtonsListFragment = graphql(
     }
   `,
   [LinkToRecordFragment],
-);
-
-export const BlueTextFragment = graphql(
-  `
-    fragment BlueTextFragment on StructuredTextBlueTextRecord {
-      id
-      variant
-      textAlignment
-      body {
-        value
-        links {
-          ...GlossaryTermLinkFragment
-        }
-        blocks {
-          __typename
-          ...ButtonsListFragment
-        }
-      }
-    }
-  `,
-  [GlossaryTermLinkFragment, ButtonsListFragment],
 );
 
 export const HighlightedListFragment = graphql(
@@ -83,8 +64,8 @@ export const CounterItemListFragment = graphql(`
   }
 `);
 
-export const ImageBlockFragment = graphql(`
-  fragment ImageBlockFragment on ImageRecord {
+export const ImageFragment = graphql(`
+  fragment ImageFragment on ImageRecord {
     id
     caption
     captionPosition
@@ -96,56 +77,3 @@ export const ImageBlockFragment = graphql(`
     }
   }
 `);
-
-export const StructuredTextImageFragment = graphql(`
-  fragment StructuredTextImageFragment on StructuredTextImageRecord {
-    id
-    caption
-    image {
-      url
-      alt
-      width
-      height
-    }
-  }
-`);
-
-export const TwoColumnItemFragment = graphql(
-  `
-    fragment TwoColumnItemFragment on RecordInterface {
-      __typename
-      ... on StructuredTextRecord {
-        id
-        body {
-          value
-          links {
-            ...GlossaryTermLinkFragment
-          }
-          blocks {
-            __typename
-            ...ButtonsListFragment
-          }
-        }
-      }
-      ... on StructuredTextImageRecord {
-        ...StructuredTextImageFragment
-      }
-    }
-  `,
-  [GlossaryTermLinkFragment, ButtonsListFragment, StructuredTextImageFragment],
-);
-
-export const TwoColumnBlockFragment = graphql(
-  `
-    fragment TwoColumnBlockFragment on TwoColumnBlockRecord {
-      id
-      leftItems {
-        ...TwoColumnItemFragment
-      }
-      rightItems {
-        ...TwoColumnItemFragment
-      }
-    }
-  `,
-  [TwoColumnItemFragment],
-);

@@ -26,12 +26,10 @@ import {
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import { type LinkToRecordFragment } from "~/components/Core/LinkToRecord/LinkToRecord.query";
 import type {
-  BlueTextFragment,
   ButtonsListFragment,
   HighlightedListFragment,
   CounterItemListFragment,
-  ImageBlockFragment,
-  StructuredTextImageFragment,
+  ImageFragment,
 } from "~/components/Blocks/shared/structuredText.query";
 
 import LinkToRecord from "~/components/Core/LinkToRecord/LinkToRecord.vue";
@@ -71,18 +69,6 @@ function renderBlock({
     case "InternalLinkRecord": {
       return h(LinkToRecord, { link: record });
     }
-    case "StructuredTextBlueTextRecord": {
-      const data = readFragment<typeof BlueTextFragment>(
-        record as unknown as FragmentOf<typeof BlueTextFragment>,
-      );
-      return h(StructuredText, {
-        data: data.body as unknown as NestedBody,
-        class: {
-          "structured-text__blue-text": true,
-          "structured-text__blue-text--center": data.textAlignment === "center",
-        },
-      });
-    }
     case "StructuredTextButtonsListRecord": {
       const data = readFragment<typeof ButtonsListFragment>(
         record as unknown as FragmentOf<typeof ButtonsListFragment>,
@@ -118,8 +104,8 @@ function renderBlock({
       return h(CounterItemList, { items: data.items });
     }
     case "ImageRecord": {
-      const data = readFragment<typeof ImageBlockFragment>(
-        record as unknown as FragmentOf<typeof ImageBlockFragment>,
+      const data = readFragment<typeof ImageFragment>(
+        record as unknown as FragmentOf<typeof ImageFragment>,
       );
       return h(ImageWithCaption, {
         class: "structured-text__image-with-caption",
@@ -128,19 +114,6 @@ function renderBlock({
         image: {
           ...data.image,
           sizes: "(min-width: 1100px) 860px, (min-width: 720px) 75vw, 90vw",
-        },
-      });
-    }
-    case "StructuredTextImageRecord": {
-      const data = readFragment<typeof StructuredTextImageFragment>(
-        record as unknown as FragmentOf<typeof StructuredTextImageFragment>,
-      );
-      return h(ImageWithCaption, {
-        class: "structured-text__image-with-caption",
-        caption: data.caption ?? "",
-        image: {
-          ...data.image,
-          sizes: "(min-width: 1100px) 680px, (min-width: 720px) 60vw, 90vw",
         },
       });
     }
@@ -181,7 +154,7 @@ const customNodeRules = [
 </script>
 
 <style scoped>
-.structured-text :deep(a) {
+.structured-text :deep(a:not(.app-button)) {
   color: var(--html-blue);
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -195,33 +168,33 @@ const customNodeRules = [
   }
 }
 
-.structured-text__buttons-list {
+:deep(.structured-text__buttons-list) {
   margin-top: var(--spacing-medium);
   display: inline-flex;
-  align-items: flex-start;
+  justify-content: baseline;
+  align-items: baseline;
   flex-wrap: wrap;
-  gap: var(--spacing-small);
+  gap: var(--spacing-medium);
 }
 
-.structured-text__blue-text {
+.blue-text {
   color: var(--html-blue);
-  margin-bottom: var(--spacing-medium);
 }
 
-.structured-text__blue-text--center {
+.centered {
   text-align: center;
 }
 
-.structured-text__image-with-caption {
+:deep(.structured-text__image-with-caption) {
   margin: var(--spacing-big) 0;
 }
 
-.structured-text__highlighted-list-item {
+:deep(.structured-text__highlighted-list-item) {
   padding: var(--spacing-medium);
   background-color: var(--white);
 }
 
-.structured-text__highlighted-list-item + .structured-text__highlighted-list-item {
+:deep(.structured-text__highlighted-list-item + .structured-text__highlighted-list-item) {
   margin-top: var(--spacing-medium);
 }
 </style>
