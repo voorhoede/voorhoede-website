@@ -216,11 +216,6 @@ const customNodeRules = [
   margin: var(--spacing-big) 0;
 }
 
-.structured-text__column-image {
-  margin-top: var(--spacing-tiny);
-  margin-bottom: 0;
-}
-
 .structured-text__highlighted-list-item {
   padding: var(--spacing-medium);
   background-color: var(--white);
