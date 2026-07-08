@@ -59,7 +59,7 @@ if (additions.length > 0) {
   pageGlossaryTerms.value = [...pageGlossaryTerms.value, ...additions];
 }
 
-function renderGlossaryRef(record: GlossaryTerm, label: any[]) {
+function renderGlossaryRef(record: GlossaryTerm, label: VNode[]) {
   const number =
     pageGlossaryTerms.value.findIndex((term) => term.id === record.id) + 1;
   return h(
@@ -82,7 +82,7 @@ function renderLinkToRecord({
 }: RenderRecordLinkContext<CdaStructuredTextRecord>) {
   if (record.__typename === "GlossaryTermRecord") {
     return renderGlossaryRef(record as unknown as GlossaryTerm, [
-      ...(children as any[]),
+      ...(children as VNode[]),
     ]);
   }
   const resolvedRoute = useDatoNuxtRoute(record);
