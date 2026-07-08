@@ -67,13 +67,13 @@ export const CounterItemListFragment = graphql(`
 export const ImageFragment = graphql(`
   fragment ImageFragment on ImageRecord {
     id
-    caption
-    captionPosition
     image {
       url
       alt
       width
       height
+      author
+      title
     }
   }
 `);
