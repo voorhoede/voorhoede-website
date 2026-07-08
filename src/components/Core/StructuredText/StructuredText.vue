@@ -27,6 +27,8 @@ import {
 } from "datocms-structured-text-utils";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import { type LinkToRecordFragment } from "~/components/Core/LinkToRecord/LinkToRecord.query";
+import { footnoteId, openGlossaryPopover } from "~/lib/glossary-popover";
+import { type GlossaryTerm } from "~/composables/usePageGlossaryTerms";
 import type {
   ButtonsListFragment,
   HighlightedListFragment,
@@ -45,15 +47,52 @@ const props = defineProps<{
 
 const LinkWithTrailingSlash = defineNuxtLink({ trailingSlash: "append" });
 
+const pageGlossaryTerms = usePageGlossaryTerms();
+const additions = (props.data?.links ?? [])
+  .filter(
+    (link) =>
+      link.__typename === "GlossaryTermRecord" &&
+      !pageGlossaryTerms.value.some((term) => term.id === link.id),
+  )
+  .map((link) => link as unknown as GlossaryTerm);
+if (additions.length > 0) {
+  pageGlossaryTerms.value = [...pageGlossaryTerms.value, ...additions];
+}
+
+function renderGlossaryRef(record: GlossaryTerm, label: any[]) {
+  const number =
+    pageGlossaryTerms.value.findIndex((term) => term.id === record.id) + 1;
+  return h(
+    "a",
+    {
+      href: `#${footnoteId(record.slug)}`,
+      class: "structured-text__glossary-ref",
+      onClick: (event: MouseEvent) => openGlossaryPopover(event, record.slug),
+    },
+    [
+      ...label,
+      h("sup", { class: "structured-text__glossary-ref-number" }, `[${number}]`),
+    ],
+  );
+}
+
 function renderLinkToRecord({
   record,
   children,
 }: RenderRecordLinkContext<CdaStructuredTextRecord>) {
+  if (record.__typename === "GlossaryTermRecord") {
+    return renderGlossaryRef(record as unknown as GlossaryTerm, [
+      ...(children as any[]),
+    ]);
+  }
   const resolvedRoute = useDatoNuxtRoute(record);
   return h(LinkWithTrailingSlash, { to: resolvedRoute }, children);
 }
 
 function renderInlineRecord({ record }) {
+  if (record.__typename === "GlossaryTermRecord") {
+    return renderGlossaryRef(record as unknown as GlossaryTerm, [record.term]);
+  }
   const resolvedRoute = useDatoNuxtRoute(record);
   return h(LinkWithTrailingSlash, { to: resolvedRoute }, record.title);
 }
@@ -208,5 +247,13 @@ const customNodeRules = [
 
 :deep(.structured-text__highlighted-list-item + .structured-text__highlighted-list-item) {
   margin-top: var(--spacing-medium);
+}
+
+:deep(.structured-text__glossary-ref) {
+  margin-right: 0.5em;
+}
+
+:deep(.structured-text__glossary-ref-number) {
+  padding-left: 0.25em;
 }
 </style>
