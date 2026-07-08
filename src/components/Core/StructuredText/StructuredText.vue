@@ -150,7 +150,6 @@ function renderBlock({
       );
       return h(ImageWithCaption, {
         class: "structured-text__image-with-caption",
-        caption: data.caption ?? "",
         captionPosition: data.captionPosition ?? undefined,
         image: {
           ...data.image,
