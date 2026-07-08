@@ -2,6 +2,7 @@ import { graphql } from "~/utils/graphql";
 import {
   ButtonsListFragment,
   CounterItemListFragment,
+  GlossaryTermLinkFragment,
   HighlightedListFragment,
   ImageFragment,
 } from "~/components/Blocks/shared/structuredText.query";
@@ -22,6 +23,7 @@ export const TextBlockFragment = graphql(
             slug
             title
           }
+          ...GlossaryTermLinkFragment
         }
         blocks {
           __typename
@@ -36,6 +38,7 @@ export const TextBlockFragment = graphql(
   [
     ButtonsListFragment,
     CounterItemListFragment,
+    GlossaryTermLinkFragment,
     HighlightedListFragment,
     ImageFragment,
   ],
