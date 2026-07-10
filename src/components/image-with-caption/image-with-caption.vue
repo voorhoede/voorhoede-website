@@ -11,6 +11,7 @@
       :height="image.height"
       loading="eager"
       :sizes="image.sizes"
+      :quality="80"
     />
     <figcaption
       v-if="image.title || image.author"
