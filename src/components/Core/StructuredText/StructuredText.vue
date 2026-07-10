@@ -153,7 +153,7 @@ function renderBlock({
         captionPosition: data.captionPosition ?? undefined,
         image: {
           ...data.image,
-          sizes: "(min-width: 1100px) 860px, (min-width: 720px) 75vw, 90vw",
+          sizes: "(min-width: 1100px) 1100px, (min-width: 720px) 75vw, 90vw",
         },
       });
     }
