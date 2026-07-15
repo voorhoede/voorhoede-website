@@ -26,6 +26,7 @@ import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGri
 import { NewsletterBlockFragment } from "~/components/Blocks/NewsletterBlock/NewsletterBlock.query";
 import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
 import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
+import { ReachOutBlockFragment } from "~/components/Blocks/ReachOutBlock/ReachOutBlock.query";
 import { ResponsiveVideoBlockFragment } from "~/components/Blocks/ResponsiveVideoBlock/ResponsiveVideoBlock.query";
 import { TeamGalleryBlockFragment } from "~/components/Blocks/TeamGalleryBlock/TeamGalleryBlock.query";
 import { TextBlockFragment } from "~/components/Blocks/TextBlock/TextBlock.query";
@@ -71,6 +72,7 @@ const query = graphql(
           ...NewsletterBlockFragment
           ...PageHeaderBlockFragment
           ...PagePartialBlockFragment
+          ...ReachOutBlockFragment
           ...ResponsiveVideoBlockFragment
           ...TeamGalleryBlockFragment
           ...TextBlockFragment
@@ -94,6 +96,7 @@ const query = graphql(
     NewsletterBlockFragment,
     PageHeaderBlockFragment,
     PagePartialBlockFragment,
+    ReachOutBlockFragment,
     ResponsiveVideoBlockFragment,
     TeamGalleryBlockFragment,
     TextBlockFragment,

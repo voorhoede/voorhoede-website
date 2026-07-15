@@ -4054,7 +4054,7 @@ enum HomePageModelOrderBy {
   title_DESC
 }
 
-union HomePageModelSectionsField = PagePartialBlockRecord | SectionCaseListRecord | SectionDialogueCtaRecord | SectionGroupingRecord | SectionHeaderRecord | SectionImageCardGridRecord | SectionLogoGridRecord | SectionTextImageRecord | TextBlockRecord
+union HomePageModelSectionsField = PagePartialBlockRecord | ReachOutBlockRecord | SectionCaseListRecord | SectionDialogueCtaRecord | SectionGroupingRecord | SectionHeaderRecord | SectionImageCardGridRecord | SectionLogoGridRecord | SectionTextImageRecord | TextBlockRecord
 
 type HomePageModelSectionsFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -8419,7 +8419,7 @@ enum PageModelOrderBy {
   title_DESC
 }
 
-union PageModelSectionsField = CallToActionRecord | PagePartialBlockRecord | SectionBlogsSectionRecord | SectionCaseListRecord | SectionDialogueCtaRecord | SectionEventsSectionRecord | SectionGlossaryRecord | SectionHeaderRecord | SectionImageCardGridRecord | SectionImageGridRecord | SectionImageTextRecord | SectionInterstitialCtaRecord | SectionJobsListRecord | SectionLogoGridRecord | SectionNewsletterRecord | SectionStructuredTextRecord | SectionTeamGalleryRecord | SectionTimelineRecord | SectionVideoRecord | TextBlockRecord
+union PageModelSectionsField = CallToActionRecord | PagePartialBlockRecord | ReachOutBlockRecord | SectionBlogsSectionRecord | SectionCaseListRecord | SectionDialogueCtaRecord | SectionEventsSectionRecord | SectionGlossaryRecord | SectionHeaderRecord | SectionImageCardGridRecord | SectionImageGridRecord | SectionImageTextRecord | SectionInterstitialCtaRecord | SectionJobsListRecord | SectionLogoGridRecord | SectionNewsletterRecord | SectionStructuredTextRecord | SectionTeamGalleryRecord | SectionTimelineRecord | SectionVideoRecord | TextBlockRecord
 
 type PageModelSectionsFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -8530,7 +8530,7 @@ enum PagePartialModelOrderBy {
   title_DESC
 }
 
-union PagePartialModelSectionField = CallToActionRecord | SectionBlogsSectionRecord | SectionCaseListRecord | SectionDialogueCtaRecord | SectionEventsSectionRecord | SectionGroupingRecord | SectionHeaderRecord | SectionImageCardGridRecord | SectionImageGridRecord | SectionImageTextRecord | SectionInterstitialCtaRecord | SectionJobsListRecord | SectionLogoGridRecord | SectionNewsletterRecord | SectionStructuredTextRecord | SectionTeamGalleryRecord | SectionTextImageRecord | SectionTimelineRecord | SectionVideoRecord
+union PagePartialModelSectionField = CallToActionRecord | ReachOutBlockRecord | SectionBlogsSectionRecord | SectionCaseListRecord | SectionDialogueCtaRecord | SectionEventsSectionRecord | SectionGroupingRecord | SectionHeaderRecord | SectionImageCardGridRecord | SectionImageGridRecord | SectionImageTextRecord | SectionInterstitialCtaRecord | SectionJobsListRecord | SectionLogoGridRecord | SectionNewsletterRecord | SectionStructuredTextRecord | SectionTeamGalleryRecord | SectionTextImageRecord | SectionTimelineRecord | SectionVideoRecord
 
 type PagePartialModelSectionFieldMultiLocaleField {
   locale: SiteLocale
@@ -10632,6 +10632,32 @@ type QuoteRecord implements RecordInterface {
   createdAt: DateTime!
   id: ItemId!
   quote: String
+  updatedAt: DateTime!
+}
+
+"""Block of type 📫 Reach Out Block (reach_out_block)"""
+type ReachOutBlockRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  createdAt: DateTime!
+  id: ItemId!
+  pivot: PivotSectionRecord!
   updatedAt: DateTime!
 }
 
