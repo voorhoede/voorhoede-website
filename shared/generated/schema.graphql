@@ -4056,7 +4056,7 @@ enum HomePageModelOrderBy {
   title_DESC
 }
 
-union HomePageModelSectionsField = PagePartialBlockRecord | SectionCaseListRecord | SectionDialogueCtaRecord | SectionGroupingRecord | SectionHeaderRecord | SectionImageCardGridRecord | SectionLogoGridRecord | SectionTextImageRecord | TextBlockRecord
+union HomePageModelSectionsField = PagePartialBlockRecord | ReachOutBlockRecord | SectionCaseListRecord | SectionDialogueCtaRecord | SectionGroupingRecord | SectionHeaderRecord | SectionImageCardGridRecord | SectionLogoGridRecord | SectionTextImageRecord | TextBlockRecord
 
 type HomePageModelSectionsFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -8423,7 +8423,7 @@ enum PageModelOrderBy {
   title_DESC
 }
 
-union PageModelSectionsField = CallToActionRecord | PagePartialBlockRecord | SectionBlogsSectionRecord | SectionCaseListRecord | SectionDialogueCtaRecord | SectionEventsSectionRecord | SectionGlossaryRecord | SectionHeaderRecord | SectionImageCardGridRecord | SectionImageGridRecord | SectionImageTextRecord | SectionInterstitialCtaRecord | SectionJobsListRecord | SectionLogoGridRecord | SectionNewsletterRecord | SectionStructuredTextRecord | SectionTeamGalleryRecord | SectionTimelineRecord | SectionVideoRecord | TextBlockRecord
+union PageModelSectionsField = CallToActionRecord | PagePartialBlockRecord | ReachOutBlockRecord | SectionBlogsSectionRecord | SectionCaseListRecord | SectionDialogueCtaRecord | SectionEventsSectionRecord | SectionGlossaryRecord | SectionHeaderRecord | SectionImageCardGridRecord | SectionImageGridRecord | SectionImageTextRecord | SectionInterstitialCtaRecord | SectionJobsListRecord | SectionLogoGridRecord | SectionNewsletterRecord | SectionStructuredTextRecord | SectionTeamGalleryRecord | SectionTimelineRecord | SectionVideoRecord | TextBlockRecord
 
 type PageModelSectionsFieldListListNonNullMultiLocaleField {
   locale: SiteLocale

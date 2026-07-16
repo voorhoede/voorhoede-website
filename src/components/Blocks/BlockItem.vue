@@ -15,6 +15,7 @@ import LogoGridBlock from "./LogoGridBlock/LogoGridBlock.vue";
 import NewsletterBlock from "./NewsletterBlock/NewsletterBlock.vue";
 import PageHeaderBlock from "./PageHeaderBlock/PageHeaderBlock.vue";
 import PagePartialBlock from "./PagePartialBlock/PagePartialBlock.vue";
+import ReachOutBlock from "./ReachOutBlock/ReachOutBlock.vue";
 import ResponsiveVideoBlock from "./ResponsiveVideoBlock/ResponsiveVideoBlock.vue";
 import TeamGalleryBlock from "./TeamGalleryBlock/TeamGalleryBlock.vue";
 import TextBlock from "./TextBlock/TextBlock.vue";
@@ -85,6 +86,10 @@ const props = defineProps<{
   />
   <PagePartialBlock
     v-else-if="props.block?.__typename === 'PagePartialBlockRecord'"
+    :data="props.block"
+  />
+  <ReachOutBlock
+    v-else-if="props.block?.__typename === 'ReachOutBlockRecord'"
     :data="props.block"
   />
   <ResponsiveVideoBlock

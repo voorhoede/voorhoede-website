@@ -13,6 +13,7 @@ import type { LogoGridBlockFragment } from "./LogoGridBlock/LogoGridBlock.query"
 import type { NewsletterBlockFragment } from "./NewsletterBlock/NewsletterBlock.query";
 import type { PageHeaderBlockFragment } from "./PageHeaderBlock/PageHeaderBlock.query";
 import type { PagePartialBlockFragment } from "./PagePartialBlock/PagePartialBlock.query";
+import type { ReachOutBlockFragment } from "./ReachOutBlock/ReachOutBlock.query";
 import type { ResponsiveVideoBlockFragment } from "./ResponsiveVideoBlock/ResponsiveVideoBlock.query";
 import type { TeamGalleryBlockFragment } from "./TeamGalleryBlock/TeamGalleryBlock.query";
 import type { TextBlockFragment } from "./TextBlock/TextBlock.query";
@@ -64,6 +65,9 @@ export type BlockRecord =
     })
   | (FragmentOf<typeof PagePartialBlockFragment> & {
       __typename: "PagePartialBlockRecord";
+    })
+  | (FragmentOf<typeof ReachOutBlockFragment> & {
+      __typename: "ReachOutBlockRecord";
     })
   | (FragmentOf<typeof ResponsiveVideoBlockFragment> & {
       __typename: "SectionVideoRecord";
