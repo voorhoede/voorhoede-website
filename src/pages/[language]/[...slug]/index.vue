@@ -26,6 +26,7 @@ import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGri
 import { NewsletterBlockFragment } from "~/components/Blocks/NewsletterBlock/NewsletterBlock.query";
 import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
 import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
+import { ReachOutBlockFragment } from "~/components/Blocks/ReachOutBlock/ReachOutBlock.query";
 import { ResponsiveVideoBlockFragment } from "~/components/Blocks/ResponsiveVideoBlock/ResponsiveVideoBlock.query";
 import { TeamGalleryBlockFragment } from "~/components/Blocks/TeamGalleryBlock/TeamGalleryBlock.query";
 import { TextBlockFragment } from "~/components/Blocks/TextBlock/TextBlock.query";
@@ -71,6 +72,7 @@ const query = graphql(
           ...NewsletterBlockFragment
           ...PageHeaderBlockFragment
           ...PagePartialBlockFragment
+          ...ReachOutBlockFragment
           ...ResponsiveVideoBlockFragment
           ...TeamGalleryBlockFragment
           ...TextBlockFragment
@@ -94,6 +96,7 @@ const query = graphql(
     NewsletterBlockFragment,
     PageHeaderBlockFragment,
     PagePartialBlockFragment,
+    ReachOutBlockFragment,
     ResponsiveVideoBlockFragment,
     TeamGalleryBlockFragment,
     TextBlockFragment,
@@ -106,6 +109,10 @@ const { data } = await useAsyncData(route.path, async () => {
     query,
     variables: { locale: route.params.language as "nl" | "en", slug },
   });
+
+  // #region agent log
+  fetch('http://127.0.0.1:7378/ingest/bd12d82c-517b-4d1e-bd21-690bc7f58739',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'ce9598'},body:JSON.stringify({sessionId:'ce9598',location:'index.vue:107',message:'page query result',data:{hasData:!!result.data,hasError:!!result.error,errorMessage:result.error?.message,pageTitle:result.data?.page?.title,sectionsCount:(result.data?.page as any)?.sections?.length,sectionsTypes:(result.data?.page as any)?.sections?.map((s: any) => s.__typename)},timestamp:Date.now(),hypothesisId:'H1-H2'})}).catch(()=>{});
+  // #endregion
 
   return result.data;
 });
