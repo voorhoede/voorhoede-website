@@ -4,26 +4,21 @@ import { LinkToRecordFragment } from "~/components/Core/LinkToRecord/LinkToRecor
 export const ReachOutBlockFragment = graphql(
   `
     fragment ReachOutBlockFragment on ReachOutBlockRecord {
-      pivot {
-        title
-        body(markdown: true)
-        links {
-          ...LinkToRecordFragment
-        }
-        formType
-        mailchimpValue
-        mailchimpName
-        mailchimpId
-        contactPerson {
-          name
-          lastName
-          jobTitle
-          image {
-            url
-            alt
-            width
-            height
-          }
+      title
+      body(markdown: true)
+      formType
+      cta {
+        ...LinkToRecordFragment
+      }
+      contactPerson {
+        name
+        lastName
+        jobTitle
+        image {
+          url
+          alt
+          width
+          height
         }
       }
     }

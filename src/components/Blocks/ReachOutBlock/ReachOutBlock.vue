@@ -2,45 +2,38 @@
   <section class="reach-out-block grid">
     <div
       class="reach-out-block__content"
-      :class="{
-        'reach-out-block__content--full-width': itemContentIsFullWidth,
-      }"
+      :class="{ 'reach-out-block__content--full-width': itemContentIsFullWidth }"
     >
-      <ContactForm
+      <contact-form
         v-if="isContactForm"
-        :contact-person="data.pivot.contactPerson ?? undefined"
-        :title="data.pivot.title || $t('lets_discuss')"
+        :contact-person="data.contactPerson ?? undefined"
+        :title="data.title || $t('lets_discuss')"
       />
-      <div v-else class="reach-out-block__text">
+      <div
+        v-else
+        class="reach-out-block__text"
+      >
         <h2
-          v-if="data.pivot.title && !isNewsletterForm"
+          v-if="data.title && !isNewsletterForm"
           class="reach-out-block__heading h3"
         >
-          {{ data.pivot.title }}
+          {{ data.title }}
         </h2>
 
-        <RichTextBlock
-          v-if="data.pivot.body"
-          :text="data.pivot.body"
-          :large-text="true"
-          class="reach-out-block__body"
+        <div
+          v-if="data.body"
+          class="rich-text body-big list reach-out-block__body"
+          v-html="data.body"
         />
 
-        <AppButton
-          v-if="data.pivot.links[0]?.__typename === 'ExternalLinkRecord'"
-          @click="trackLink(data.pivot.links[0].url)"
-          :label="data.pivot.links[0].title"
-          :to="data.pivot.links[0].url"
-          external
+        <LinkToRecord
+          v-if="data.cta[0]"
+          :link="data.cta[0]"
         />
 
-        <AppButton
-          v-else-if="data.pivot.links[0]?.__typename === 'InternalLinkRecord'"
-          :label="data.pivot.links[0].title"
-          :to="useDatoNuxtRoute(data.pivot.links[0].link)"
+        <newsletter-form
+          v-if="isNewsletterForm"
         />
-
-        <NewsletterForm v-if="isNewsletterForm" />
       </div>
     </div>
   </section>
@@ -48,12 +41,9 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import ContactForm from "~/components/contact-form/contact-form.vue";
-import RichTextBlock from "~/components/rich-text-block/rich-text-block.vue";
-import AppButton from "~/components/app-button/app-button.vue";
-import NewsletterForm from "~/components/newsletter-form/newsletter-form.vue";
 import type { ReachOutBlockFragment } from "./ReachOutBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
+import LinkToRecord from "~/components/Core/LinkToRecord/LinkToRecord.vue";
 
 const props = defineProps<{
   data: FragmentOf<typeof ReachOutBlockFragment>;
@@ -61,47 +51,41 @@ const props = defineProps<{
 
 const data = readFragment<typeof ReachOutBlockFragment>(props.data);
 
-const isContactForm = computed(() => data.pivot.formType === "contact");
-const isNewsletterForm = computed(() => data.pivot.formType === "newsletter");
-const itemContentIsFullWidth = computed(
-  () => isContactForm.value || isNewsletterForm.value,
-);
-
-function trackLink(href: string) {
-  useTrackEvent("Click on Schedule Meeting", { props: { url: href } });
-}
+const isContactForm = computed(() => data.formType === "contact");
+const isNewsletterForm = computed(() => data.formType === "newsletter");
+const itemContentIsFullWidth = computed(() => isContactForm.value || isNewsletterForm.value);
 </script>
 
-<style scoped>
-.reach-out-block {
-  background-color: var(--bg-pastel);
-  position: relative;
-  grid-column: var(--grid-page);
-}
+<style>
+  .reach-out-block {
+    background-color: var(--bg-pastel);
+    position: relative;
+    grid-column: var(--grid-page);
+  }
 
-.reach-out-block__content--full-width {
-  grid-column: var(--grid-page);
-}
+  .reach-out-block__content--full-width {
+    grid-column: var(--grid-page);
+  }
 
-.reach-out-block__content {
-  padding-top: var(--spacing-large);
-  padding-bottom: var(--spacing-big);
-}
+  .reach-out-block__content {
+    padding-top: var(--spacing-large);
+    padding-bottom: var(--spacing-big);
+  }
 
-.reach-out-block .newsletter-form {
-  padding: 0;
-}
+  .reach-out-block .newsletter-form {
+    padding: 0;
+  }
 
-.reach-out-block__text {
-  text-align: center;
-}
+  .reach-out-block__text {
+    text-align: center;
+  }
 
-.reach-out-block__heading {
-  margin-bottom: var(--spacing-medium);
-}
+  .reach-out-block__heading {
+    margin-bottom: var(--spacing-medium);
+  }
 
-.reach-out-block__body {
-  margin-top: 0;
-  margin-bottom: var(--spacing-large);
-}
+  .reach-out-block__body {
+    margin-top: 0;
+    margin-bottom: var(--spacing-large);
+  }
 </style>

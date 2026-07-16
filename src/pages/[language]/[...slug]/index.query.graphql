@@ -287,23 +287,18 @@ query Page($locale: SiteLocale, $slug: String) {
         }
       }
       ... on ReachOutBlockRecord {
-        pivot {
-          title
-          body(markdown: true)
-          links {
-            ...link
-          }
-          formType
-          mailchimpValue
-          mailchimpName
-          mailchimpId
-          contactPerson {
-            name
-            lastName
-            jobTitle
-            image {
-              ...image
-            }
+        title
+        body(markdown: true)
+        formType
+        cta {
+          ...link
+        }
+        contactPerson {
+          name
+          lastName
+          jobTitle
+          image {
+            ...image
           }
         }
       }
