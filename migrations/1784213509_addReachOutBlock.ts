@@ -1,6 +1,13 @@
 import type { Client } from "datocms/lib/cma-client-node";
 
 export default async function (client: Client) {
+  // Idempotency guard: skip if reach_out_block already exists
+  const existing = await client.itemTypes.list();
+  if (existing.find((t) => t.api_key === "reach_out_block")) {
+    console.log("reach_out_block already exists — skipping migration");
+    return;
+  }
+
   console.log("Manage upload filters");
 
   console.log("Create new models/block models");
