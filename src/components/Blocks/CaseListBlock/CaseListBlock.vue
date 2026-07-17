@@ -1,5 +1,7 @@
 <template>
-  <h2 class="cases-list__title h1" v-if="data.title">{{ data.title }}</h2>
+  <h2 class="cases-list__title h1" v-if="data.title">
+    {{ data.title }}
+  </h2>
   <ul class="cases-list" :style="{ '--max-columns': data.columns }">
     <li v-for="caseItem in data.cases" :key="caseItem.slug">
       <LinkCard
@@ -21,6 +23,8 @@
 <script setup lang="ts">
 import type { CaseListBlockFragment } from "./CaseListBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
+import LinkCard from "~/components/link-card/link-card.vue";
+import StructuredTextBlock from "~/components/structured-text-block/structured-text-block.vue";
 
 const props = defineProps<{
   data: FragmentOf<typeof CaseListBlockFragment>;

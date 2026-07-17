@@ -41,6 +41,7 @@
 <script setup lang="ts">
 import type { LogoGridBlockFragment } from "./LogoGridBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
+import DatoImage from "~/components/dato-image/dato-image.vue";
 
 const props = defineProps<{
   data: FragmentOf<typeof LogoGridBlockFragment>;
