@@ -25,7 +25,7 @@
 import type { TextImageBlockFragment } from "./TextImageBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import StructuredTextBlock from "~/components/structured-text-block/structured-text-block.vue";
-import DatoImage from "~/components/dato-image/dato-image.vue";
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
 
 const props = defineProps<{
   data: FragmentOf<typeof TextImageBlockFragment>;

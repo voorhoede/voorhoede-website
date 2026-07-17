@@ -73,7 +73,7 @@
 <script setup lang="ts">
 import type { PageHeaderBlockFragment } from "./PageHeaderBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
-import DatoImage from "~/components/dato-image/dato-image.vue";
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
 import ScrollTo from "~/components/scroll-to/scroll-to.vue";
 import SelfTypingText from "~/components/self-typing-text/self-typing-text.vue";
 

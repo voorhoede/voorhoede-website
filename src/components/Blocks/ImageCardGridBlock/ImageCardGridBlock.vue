@@ -54,7 +54,7 @@ import type { ImageCardGridBlockFragment } from "./ImageCardGridBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import { BackgroundColor } from "~/types/styling";
 import AppLink from "~/components/Core/AppLink/AppLink.vue";
-import DatoImage from "~/components/dato-image/dato-image.vue";
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
 import StructuredTextBlock from "~/components/structured-text-block/structured-text-block.vue";
 
 const props = defineProps<{

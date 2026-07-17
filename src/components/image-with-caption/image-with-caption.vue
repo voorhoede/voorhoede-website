@@ -23,6 +23,8 @@
 </template>
 
 <script setup lang="ts">
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
+
 withDefaults(defineProps<{
   caption: string,
   image: {

@@ -30,6 +30,8 @@
 </template>
 
 <script setup lang="ts">
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
+
 defineProps<{
   title: string;
   logos: Array<{

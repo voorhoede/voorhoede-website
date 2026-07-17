@@ -20,6 +20,7 @@
 
 <script setup lang="ts">
 import { type CdaStructuredTextValue } from "datocms-structured-text-utils";
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
 
 const props = defineProps<{
   layout: "text-image" | "image-text";

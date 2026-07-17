@@ -40,8 +40,12 @@
 
 <script>
   import formatDate from '../../lib/format-date'
+  import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
 
   export default {
+    components: {
+      DatoImage,
+    },
     props: {
       items: {
         type: Array,
