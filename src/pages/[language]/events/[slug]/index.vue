@@ -129,6 +129,8 @@
 </template>
 
 <script setup>
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
+
   definePageMeta({ layout: 'content-page' });
 
   import query from './index.query.graphql?raw';

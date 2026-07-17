@@ -25,7 +25,12 @@
 </template>
 
 <script>
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
+
   export default {
+    components: {
+      DatoImage,
+    },
     props: {
       title: {
         type: String,

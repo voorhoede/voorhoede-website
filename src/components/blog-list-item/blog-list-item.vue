@@ -51,6 +51,7 @@
 
 <script setup>
   import formatDate from '../../lib/format-date'
+  import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
 
   const { $i18n } = useNuxtApp();
 

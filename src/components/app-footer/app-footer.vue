@@ -179,8 +179,12 @@
 
 <script>
 import { mastodonUrl } from "../../constants.mjs";
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
 
 export default {
+  components: {
+    DatoImage,
+  },
   props: {
     app: { type: Object, required: true },
     footer: { type: Object, required: true },
