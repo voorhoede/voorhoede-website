@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+import NewsletterForm from "~/components/newsletter-form/newsletter-form.vue";
 import type { NewsletterBlockFragment } from "./NewsletterBlock.query";
 import type { FragmentOf } from "~/utils/graphql";
 

@@ -1,7 +1,7 @@
 <template>
   <div class="cta-image-block">
     <div class="cta-image-block__image">
-      <dato-image
+      <DatoImage
         :src="personImage.url"
         alt=""
         :width="200"
@@ -19,7 +19,7 @@
         {{ title }}
       </h2>
 
-      <rich-text-block
+      <RichTextBlock
         v-if="body"
         :text="body"
         :large-text="true"
@@ -30,7 +30,7 @@
         v-if="hasCta"
         class="cta-image-block__ctas"
       >
-        <app-button
+        <AppButton
           :v-if="hasPrimaryCta"
           class="cta_image-block__primary-cta"
           small
@@ -38,7 +38,7 @@
           :to="linkUrl"
           :external="linkIsExternal"
         />
-        <app-button
+        <AppButton
           v-if="hasSecondaryCta"
           class="cta_image-block__secondary-cta"
           secondary
@@ -52,7 +52,16 @@
 </template>
 
 <script>
+  import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
+  import RichTextBlock from "~/components/rich-text-block/rich-text-block.vue";
+  import AppButton from "~/components/app-button/app-button.vue";
+
   export default {
+    components: {
+      DatoImage,
+      RichTextBlock,
+      AppButton,
+    },
     props: {
       title: {
         type: String,

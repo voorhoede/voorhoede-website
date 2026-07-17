@@ -6,7 +6,7 @@
         'reach-out-block__content--full-width': itemContentIsFullWidth,
       }"
     >
-      <contact-form
+      <ContactForm
         v-if="isContactForm"
         :contact-person="data.pivot.contactPerson ?? undefined"
         :title="data.pivot.title || $t('lets_discuss')"
@@ -19,14 +19,14 @@
           {{ data.pivot.title }}
         </h2>
 
-        <rich-text-block
+        <RichTextBlock
           v-if="data.pivot.body"
           :text="data.pivot.body"
           :large-text="true"
           class="reach-out-block__body"
         />
 
-        <app-button
+        <AppButton
           v-if="data.pivot.links[0]?.__typename === 'ExternalLinkRecord'"
           @click="trackLink(data.pivot.links[0].url)"
           :label="data.pivot.links[0].title"
@@ -34,13 +34,13 @@
           external
         />
 
-        <app-button
+        <AppButton
           v-else-if="data.pivot.links[0]?.__typename === 'InternalLinkRecord'"
           :label="data.pivot.links[0].title"
           :to="useDatoNuxtRoute(data.pivot.links[0].link)"
         />
 
-        <newsletter-form v-if="isNewsletterForm" />
+        <NewsletterForm v-if="isNewsletterForm" />
       </div>
     </div>
   </section>
@@ -48,6 +48,10 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
+import ContactForm from "~/components/contact-form/contact-form.vue";
+import RichTextBlock from "~/components/rich-text-block/rich-text-block.vue";
+import AppButton from "~/components/app-button/app-button.vue";
+import NewsletterForm from "~/components/newsletter-form/newsletter-form.vue";
 import type { ReachOutBlockFragment } from "./ReachOutBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 

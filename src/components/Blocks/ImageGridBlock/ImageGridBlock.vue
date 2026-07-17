@@ -52,6 +52,7 @@
 </template>
 
 <script setup lang="ts">
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
 import type { ImageGridBlockFragment } from "./ImageGridBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import { BackgroundColor } from "~/types/styling";

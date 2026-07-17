@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+import InterstitialCta from "~/components/interstitial-cta/interstitial-cta.vue";
 import type { InterstitialCtaBlockFragment } from "./InterstitialCtaBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import type { LinkToRecordFragment } from "~/components/Core/LinkToRecord/LinkToRecord.query";

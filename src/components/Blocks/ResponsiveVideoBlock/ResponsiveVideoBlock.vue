@@ -10,6 +10,7 @@
 </template>
 
 <script setup lang="ts">
+import ResponsiveVideo from "~/components/responsive-video/responsive-video.vue";
 import type { ResponsiveVideoBlockFragment } from "./ResponsiveVideoBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 

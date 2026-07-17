@@ -20,6 +20,7 @@
 </template>
 
 <script setup lang="ts">
+import EventListItem from "~/components/event-list-item/event-list-item.vue";
 import type { EventsSectionBlockFragment } from "./EventsSectionBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 

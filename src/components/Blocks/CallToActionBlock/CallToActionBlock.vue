@@ -15,7 +15,7 @@
     :person-name="person.name"
   />
 
-  <blockquote-block
+  <BlockquoteBlock
     v-else
     :key="'else' + data.id"
     :title="data.title ?? undefined"
@@ -28,6 +28,7 @@
 
 <script setup lang="ts">
 import CallToActionImageBlock from "./CallToActionImageBlock.vue";
+import BlockquoteBlock from "~/components/blockquote-block/blockquote-block.vue";
 import type { CallToActionBlockFragment } from "./CallToActionBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 
