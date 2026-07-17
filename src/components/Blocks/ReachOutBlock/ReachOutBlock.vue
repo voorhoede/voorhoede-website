@@ -70,7 +70,7 @@ function trackLink(href: string) {
 }
 </script>
 
-<style>
+<style scoped>
   .reach-out-block {
     background-color: var(--bg-pastel);
     position: relative;
