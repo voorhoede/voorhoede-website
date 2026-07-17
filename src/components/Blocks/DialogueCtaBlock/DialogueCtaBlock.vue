@@ -39,6 +39,7 @@
 import type { DialogueCtaBlockFragment } from "./DialogueCtaBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import LinkToRecord from "~/components/Core/LinkToRecord/LinkToRecord.vue";
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
 
 const props = defineProps<{
   data: FragmentOf<typeof DialogueCtaBlockFragment>;

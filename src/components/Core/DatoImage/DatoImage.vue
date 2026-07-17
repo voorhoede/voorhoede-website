@@ -20,8 +20,8 @@
 
 <script setup lang="ts">
 import { withQuery, type QueryObject } from "ufo";
-import type { ImgixUrl } from "typescript-imgix-url-params";
 import { Image, type ImageProps, type ImageLoader } from "@voorhoede/image-vue";
+import type { ImgixUrl } from "typescript-imgix-url-params";
 
 const props = defineProps<Omit<ImageProps, 'loader'> & {
   modifiers?: ImgixUrl.Params;
@@ -39,7 +39,7 @@ const imgixLoader: ImageLoader = ({ src, width, quality }) =>
   });
 </script>
 
-<style>
+<style scoped>
 .dato-image {
   display: block;
   max-width: 100%;

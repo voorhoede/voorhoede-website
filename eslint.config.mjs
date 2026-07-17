@@ -17,4 +17,15 @@ export default createConfigForNuxt()
       'vue/multi-word-component-names': 'off',
       'vue/no-v-html': 'off',
     },
+  })
+  .append({
+    files: ['src/components/Blocks/**/*.vue', 'src/components/Core/**/*.vue'],
+    rules: {
+      'vue/component-name-in-template-casing': [
+        'error',
+        'PascalCase',
+        { registeredComponentsOnly: false },
+      ],
+      'vue/no-undef-components': ['error'],
+    },
   });

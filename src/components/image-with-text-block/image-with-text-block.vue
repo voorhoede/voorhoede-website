@@ -34,6 +34,7 @@
 
 <script setup lang="ts">
 import { BackgroundColor } from '../../types/index.d'
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
 
 type Props = {
   title: string,
