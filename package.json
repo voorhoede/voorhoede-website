@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@datocms/cma-client-browser": "^5.5.4",
-    "@floating-ui/dom": "^1.7.6",
+    "@floating-ui/dom": "^1.8.0",
     "@gql.tada/vue-support": "^1.0.2",
     "@json-feed-types/1_1": "^1.0.2",
     "@mux/mux-player": "^3.11.5",
