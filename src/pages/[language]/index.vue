@@ -123,10 +123,6 @@ const { data } = await useAsyncData(route.path, async () => {
     variables: { locale: route.params.language as "nl" | "en" },
   });
 
-  // #region agent log
-  fetch('http://127.0.0.1:7378/ingest/bd12d82c-517b-4d1e-bd21-690bc7f58739',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'ce9598'},body:JSON.stringify({sessionId:'ce9598',location:'index.vue(homepage):120',message:'homepage query result',data:{hasData:!!result.data,hasError:!!result.error,errorMessage:result.error?.message,homePageTitle:result.data?.homePage?.title,sectionsCount:(result.data?.homePage as any)?.sections?.length,sectionsTypes:(result.data?.homePage as any)?.sections?.map((s: any) => s.__typename)},timestamp:Date.now(),hypothesisId:'H1-H2'})}).catch(()=>{});
-  // #endregion
-
   return result.data;
 });
 
