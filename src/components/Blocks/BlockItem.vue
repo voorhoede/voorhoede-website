@@ -19,6 +19,7 @@ import ReachOutBlock from "./ReachOutBlock/ReachOutBlock.vue";
 import ResponsiveVideoBlock from "./ResponsiveVideoBlock/ResponsiveVideoBlock.vue";
 import TeamGalleryBlock from "./TeamGalleryBlock/TeamGalleryBlock.vue";
 import TextBlock from "./TextBlock/TextBlock.vue";
+import SectionImageTextRecord from "./SectionImageTextRecord/SectionImageTextRecord.vue";
 import TextImageBlock from "./TextImageBlock/TextImageBlock.vue";
 import TimelineBlock from "./TimelineBlock/TimelineBlock.vue";
 
@@ -102,6 +103,10 @@ const props = defineProps<{
   />
   <TextBlock
     v-else-if="props.block?.__typename === 'TextBlockRecord'"
+    :data="props.block"
+  />
+  <SectionImageTextRecord
+    v-else-if="props.block?.__typename === 'SectionImageTextRecord'"
     :data="props.block"
   />
   <TextImageBlock
