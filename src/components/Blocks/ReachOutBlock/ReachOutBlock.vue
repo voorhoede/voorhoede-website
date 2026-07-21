@@ -4,7 +4,7 @@
       class="reach-out-block__content"
       :class="{ 'reach-out-block__content--full-width': itemContentIsFullWidth }"
     >
-      <contact-form
+      <ContactForm
         v-if="isContactForm"
         :contact-person="data.contactPerson ?? undefined"
         :title="data.title || $t('lets_discuss')"
@@ -31,7 +31,7 @@
           :link="data.cta[0]"
         />
 
-        <newsletter-form
+        <NewsletterForm
           v-if="isNewsletterForm"
         />
       </div>
@@ -44,6 +44,8 @@ import { computed } from "vue";
 import type { ReachOutBlockFragment } from "./ReachOutBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import LinkToRecord from "~/components/Core/LinkToRecord/LinkToRecord.vue";
+import ContactForm from "~/components/contact-form/contact-form.vue";
+import NewsletterForm from "~/components/newsletter-form/newsletter-form.vue";
 
 const props = defineProps<{
   data: FragmentOf<typeof ReachOutBlockFragment>;
