@@ -15,7 +15,7 @@
     "generate:datocms-types": "gql-tada generate output"
   },
   "dependencies": {
-    "@datocms/cma-client-browser": "^5.5.3",
+    "@datocms/cma-client-browser": "^5.5.4",
     "@floating-ui/dom": "^1.7.6",
     "@gql.tada/vue-support": "^1.0.2",
     "@json-feed-types/1_1": "^1.0.2",
@@ -31,7 +31,7 @@
     "dayjs": "^1.11.21",
     "gql.tada": "^1.11.2",
     "hast-util-select": "^6.0.4",
-    "nanoid": "^5.1.11",
+    "nanoid": "^5.1.16",
     "nuxt": "^4.4.8",
     "prismjs": "^1.29.0",
     "rehype-parse": "^9.0.1",
