@@ -45,7 +45,11 @@ export default async function (client: Client) {
       title: { en: "Job", nl: "Vacature" },
       slug: { en: "job", nl: "vacature" },
       category: "job",
-      description: { en: "", nl: "" },
+      description: { en: "Job", nl: "Vacature" },
+      seo: {
+        en: { title: "Job", description: "Job" },
+        nl: { title: "Vacature", description: "Vacature" },
+      },
     } as Record<string, unknown>);
     jobTagId = jobTag.id;
     console.log(`Created "job" tag: ${jobTagId}`);
@@ -80,14 +84,27 @@ export default async function (client: Client) {
     }
 
     try {
+      const titleEn = typeof r.title === "object" && r.title !== null
+        ? ((r.title as { en?: string }).en ?? slug)
+        : slug;
+      const titleNl = typeof r.title === "object" && r.title !== null
+        ? ((r.title as { nl?: string }).nl ?? titleEn)
+        : titleEn;
+      // Ensure seo has required title+description for both locales
+      const rawSeo = r.social as Record<string, { title?: string; description?: string }> | null | undefined;
+      const seoVal = {
+        en: { title: rawSeo?.en?.title ?? titleEn, description: rawSeo?.en?.description ?? titleEn },
+        nl: { title: rawSeo?.nl?.title ?? titleNl, description: rawSeo?.nl?.description ?? titleNl },
+      };
+      // NOTE: job_content is localized rich_text; block IDs can't be moved.
+      // Create page with metadata only; body can be re-created later.
       await client.items.create({
         item_type: { type: "item_type", id: PAGE_MODEL_ID },
         title: r.title,
         subtitle: r.subtitle,
         slug,
-        seo: r.social,
+        seo: seoVal,
         preview_image: r.job_image,
-        body_blocks: r.job_content,
         tags: [jobTagId],
       } as Record<string, unknown>);
       existingSlugs.add(slug);
@@ -95,7 +112,8 @@ export default async function (client: Client) {
       console.log(`  Created page: "${slug}"`);
     } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : String(e);
-      console.warn(`  ERROR: job ${job.id} "${slug}": ${msg.slice(0, 200)}`);
+      // Show first 400 chars so we can see the actual field validation error
+      console.warn(`  ERROR: job ${job.id} "${slug}": ${msg.slice(0, 400)}`);
       skipped++;
     }
   }

@@ -28,16 +28,27 @@ export default async function (client: Client) {
   const slugify = (str: string) =>
     str.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
-  // Get existing tags to avoid duplicates
-  const existingTags = await client.items.list({ filter: { type: "tag" } });
+  // Get ALL existing tags with pagination to avoid duplicates
   const existingTagSlugs = new Map<string, string>(); // slug_en → id
-  for (const tag of existingTags) {
-    const slug = (tag as Record<string, unknown>).slug;
-    if (slug && typeof slug === "object") {
-      const slugEn = (slug as { en?: string }).en;
-      if (slugEn) existingTagSlugs.set(slugEn, tag.id);
+  let tagPage = 1;
+  while (true) {
+    const batch = await client.items.list({
+      filter: { type: "tag" },
+      page: { limit: 100, offset: (tagPage - 1) * 100 },
+    });
+    for (const tag of batch) {
+      const slug = (tag as Record<string, unknown>).slug;
+      if (slug && typeof slug === "object") {
+        const slugEn = (slug as { en?: string }).en;
+        if (slugEn) existingTagSlugs.set(slugEn, tag.id);
+      } else if (typeof slug === "string" && slug) {
+        existingTagSlugs.set(slug, tag.id);
+      }
     }
+    if (batch.length < 100) break;
+    tagPage++;
   }
+  console.log(`Pre-existing tags: ${existingTagSlugs.size}`);
 
   type TaxEntry = { old_id: string; new_tag_id: string; title_en: string; title_nl: string };
   const idMap: Record<string, TaxEntry> = {};
@@ -67,20 +78,45 @@ export default async function (client: Client) {
         continue;
       }
 
-      const newTag = await client.items.create({
-        item_type: { type: "item_type", id: TAG_MODEL_ID },
-        title: { en: titleEn, nl: titleNl },
-        slug: { en: slugEn, nl: slugify(titleNl) },
-        category,
-        description: { en: titleEn, nl: titleNl },
-        seo: {
-          en: { title: titleEn, description: titleEn },
-          nl: { title: titleNl, description: titleNl },
-        },
-      } as Record<string, unknown>);
-      existingTagSlugs.set(slugEn, newTag.id);
-      idMap[rec.id] = { old_id: rec.id, new_tag_id: newTag.id, title_en: titleEn, title_nl: titleNl };
-      console.log(`  Created tag: "${titleEn}" (${category}) → ${newTag.id}`);
+      let newTagId: string;
+      try {
+        const newTag = await client.items.create({
+          item_type: { type: "item_type", id: TAG_MODEL_ID },
+          title: { en: titleEn, nl: titleNl },
+          slug: { en: slugEn, nl: slugify(titleNl) },
+          category,
+          description: { en: titleEn, nl: titleNl },
+          seo: {
+            en: { title: titleEn, description: titleEn },
+            nl: { title: titleNl, description: titleNl },
+          },
+        } as Record<string, unknown>);
+        existingTagSlugs.set(slugEn, newTag.id);
+        newTagId = newTag.id;
+        console.log(`  Created tag: "${titleEn}" (${category}) → ${newTag.id}`);
+      } catch (createErr: unknown) {
+        const errMsg = createErr instanceof Error ? createErr.message : String(createErr);
+        if (errMsg.includes("VALIDATION_UNIQUE")) {
+          // Tag was created in a previous partial run — refresh lookup
+          const refetch = await client.items.list({ filter: { type: "tag" } });
+          const match = refetch.find((t) => {
+            const s = (t as Record<string, unknown>).slug;
+            if (typeof s === "object" && s !== null) return (s as { en?: string }).en === slugEn;
+            return s === slugEn;
+          });
+          if (match) {
+            existingTagSlugs.set(slugEn, match.id);
+            newTagId = match.id;
+            console.log(`  SKIP (already exists from prev run): "${titleEn}" → ${match.id}`);
+          } else {
+            console.warn(`  WARN: VALIDATION_UNIQUE but tag "${titleEn}" not found in refetch`);
+            continue;
+          }
+        } else {
+          throw createErr;
+        }
+      }
+      idMap[rec.id] = { old_id: rec.id, new_tag_id: newTagId, title_en: titleEn, title_nl: titleNl };
     }
   };
 
@@ -119,8 +155,13 @@ export default async function (client: Client) {
       for (const caseItem of caseItems) {
         const existing = ((caseItem as Record<string, unknown>).tags as string[] | undefined) ?? [];
         const merged = [...new Set([...existing, ...newTagIds])];
-        await client.items.update(caseItem.id, { tags: merged } as Record<string, unknown>);
-        console.log(`  case_item ${caseItem.id}: added ${newTagIds.length} tags`);
+        try {
+          await client.items.update(caseItem.id, { tags: merged } as Record<string, unknown>);
+          console.log(`  case_item ${caseItem.id}: added ${newTagIds.length} tags`);
+        } catch (e: unknown) {
+          const msg = e instanceof Error ? e.message : String(e);
+          console.warn(`  WARN: case_item ${caseItem.id} update failed (may have invalid blocks): ${msg.slice(0, 80)}`);
+        }
       }
     }
   }

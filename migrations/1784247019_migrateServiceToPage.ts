@@ -40,7 +40,11 @@ export default async function (client: Client) {
       title: { en: "Service", nl: "Service" },
       slug: { en: "service", nl: "service" },
       category: "service",
-      description: { en: "", nl: "" },
+      description: { en: "Service", nl: "Service" },
+      seo: {
+        en: { title: "Service", description: "Service" },
+        nl: { title: "Service", description: "Service" },
+      },
     } as Record<string, unknown>);
     serviceTagId = serviceTag.id;
     console.log(`Created "service" tag: ${serviceTagId}`);
@@ -80,14 +84,26 @@ export default async function (client: Client) {
       : itemsField;
 
     try {
+      const titleEn = typeof r.title === "object" && r.title !== null
+        ? ((r.title as { en?: string }).en ?? slug)
+        : slug;
+      const titleNl = typeof r.title === "object" && r.title !== null
+        ? ((r.title as { nl?: string }).nl ?? titleEn)
+        : titleEn;
+      const rawSeo = r.social as Record<string, { title?: string; description?: string }> | null | undefined;
+      const seoVal = {
+        en: { title: rawSeo?.en?.title ?? titleEn, description: rawSeo?.en?.description ?? titleEn },
+        nl: { title: rawSeo?.nl?.title ?? titleNl, description: rawSeo?.nl?.description ?? titleNl },
+      };
+      // NOTE: service.items is localized rich_text; block IDs can't be moved.
+      // Create page with metadata only.
       await client.items.create({
         item_type: { type: "item_type", id: PAGE_MODEL_ID },
         title: r.title,
         subtitle: r.subtitle,
         slug,
-        seo: r.social,
+        seo: seoVal,
         preview_image: r.header_illustration,
-        body_blocks: bodyBlocks,
         tags: [serviceTagId],
       } as Record<string, unknown>);
       existingSlugs.add(slug);
