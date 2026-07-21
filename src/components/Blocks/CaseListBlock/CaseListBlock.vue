@@ -16,15 +16,15 @@
     </li>
   </ul>
   <div class="cases-list__text" v-if="data.text">
-    <StructuredTextBlock :content="data.text" />
+    <StructuredText :data="data.text" />
   </div>
 </template>
 
 <script setup lang="ts">
 import type { CaseListBlockFragment } from "./CaseListBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
+import StructuredText from "~/components/Core/StructuredText/StructuredText.vue";
 import LinkCard from "~/components/link-card/link-card.vue";
-import StructuredTextBlock from "~/components/structured-text-block/structured-text-block.vue";
 
 const props = defineProps<{
   data: FragmentOf<typeof CaseListBlockFragment>;

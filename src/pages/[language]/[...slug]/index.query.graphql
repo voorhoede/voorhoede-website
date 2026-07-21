@@ -286,6 +286,22 @@ query Page($locale: SiteLocale, $slug: String) {
           }
         }
       }
+      ... on ReachOutBlockRecord {
+        title
+        body(markdown: true)
+        formType
+        cta {
+          ...link
+        }
+        contactPerson {
+          name
+          lastName
+          jobTitle
+          image {
+            ...image
+          }
+        }
+      }
       ... on PagePartialBlockRecord {
         id
         item {

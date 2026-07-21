@@ -11,13 +11,16 @@
       :height="image.height"
       loading="eager"
       :sizes="image.sizes"
+      :quality="80"
     />
     <figcaption
-      v-if="caption"
+      v-if="image.title || image.author"
       class="image-with-caption__caption"
       :class="`${captionPosition === 'bottom' ? 'body-detail' : 'pullquote font-bold'}`"
     >
-      {{ caption }}
+      <span v-if="image.title">{{ image.title }}</span>
+      <span v-if="image.title && image.author"> - </span>
+      <span  v-if="image.author" class="image-with-caption__author">{{ image.author }}</span>
     </figcaption>
   </figure>
 </template>
@@ -26,8 +29,9 @@
 import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
 
 withDefaults(defineProps<{
-  caption: string,
   image: {
+    title: string,
+    author: string,
     width: number,
     height: number,
     url: string,
@@ -54,6 +58,10 @@ withDefaults(defineProps<{
 
   .image-with-caption__caption {
     margin-top: var(--spacing-smaller);
+  }
+
+  .image-with-caption__author {
+    font-style: italic;
   }
 
   .image-with-caption--bottom .image-with-caption__caption {

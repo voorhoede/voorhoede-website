@@ -5,6 +5,7 @@ import { GroupingBlockFragment } from "../GroupingBlock/GroupingBlock.query";
 import { ImageCardGridBlockFragment } from "../ImageCardGridBlock/ImageCardGridBlock.query";
 import { LogoGridBlockFragment } from "../LogoGridBlock/LogoGridBlock.query";
 import { PageHeaderBlockFragment } from "../PageHeaderBlock/PageHeaderBlock.query";
+import { ReachOutBlockFragment } from "../ReachOutBlock/ReachOutBlock.query";
 import { TextImageBlockFragment } from "../TextImageBlock/TextImageBlock.query";
 
 export const PagePartialBlockFragment = graphql(
@@ -23,6 +24,7 @@ export const PagePartialBlockFragment = graphql(
           ...ImageCardGridBlockFragment
           ...LogoGridBlockFragment
           ...PageHeaderBlockFragment
+          ...ReachOutBlockFragment
           ...TextImageBlockFragment
         }
       }
@@ -35,6 +37,7 @@ export const PagePartialBlockFragment = graphql(
     ImageCardGridBlockFragment,
     LogoGridBlockFragment,
     PageHeaderBlockFragment,
+    ReachOutBlockFragment,
     TextImageBlockFragment,
   ],
 );

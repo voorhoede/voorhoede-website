@@ -1,23 +1,25 @@
 import { graphql } from "~/utils/graphql";
 import { LinkToRecordFragment } from "~/components/Core/LinkToRecord/LinkToRecord.query";
 
-export const DialogueCtaBlockFragment = graphql(
+export const ReachOutBlockFragment = graphql(
   `
-    fragment DialogueCtaBlockFragment on SectionDialogueCtaRecord {
-      variant
+    fragment ReachOutBlockFragment on ReachOutBlockRecord {
       title
       body(markdown: true)
-      backgroundColor
-      person {
+      formType
+      cta {
+        ...LinkToRecordFragment
+      }
+      contactPerson {
+        name
+        lastName
+        jobTitle
         image {
           url
           alt
           width
           height
         }
-      }
-      ctas {
-        ...LinkToRecordFragment
       }
     }
   `,

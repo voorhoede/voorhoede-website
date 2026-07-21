@@ -1,5 +1,5 @@
 import { graphql } from "~/utils/graphql";
-import { LinkFragment } from "~/components/Core/AppLink/AppLink.query";
+import { LinkToRecordFragment } from "~/components/Core/LinkToRecord/LinkToRecord.query";
 
 export const CaseListBlockFragment = graphql(
   `
@@ -23,10 +23,10 @@ export const CaseListBlockFragment = graphql(
       text {
         value
         blocks {
-          ...LinkFragment
+          ...LinkToRecordFragment
         }
       }
     }
   `,
-  [LinkFragment],
+  [LinkToRecordFragment],
 );
