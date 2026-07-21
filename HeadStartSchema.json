@@ -1,0 +1,4057 @@
+[
+  {
+    "itemType": {
+      "id": "BRbU6VwTRgmG5SbwUs0rBg",
+      "type": "item_type",
+      "name": "📝 🖼️ Text Image Block",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "text_image_block",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": null,
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "V4dMfrWsQ027JYEp6q3KhA",
+        "type": "field",
+        "label": "Text",
+        "field_type": "structured_text",
+        "api_key": "text",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "structured_text_blocks": {
+            "item_types": [
+              "F60ZY1wFSW2qbvh99poj3g",
+              "Tv6MHewBS4evujN0EuSrwQ",
+              "ZdBokLsWRgKKjHrKeJzdpw",
+              "gezG9nO7SfaiWcWnp-HNqw",
+              "0SxYNS2CR1it_5LHYWuEQg"
+            ]
+          },
+          "structured_text_inline_blocks": {
+            "item_types": [
+              "CNWKTKleQGeovku16xSa7A",
+              "O3-JKIJwTaiqdryVNiyBBA"
+            ]
+          },
+          "structured_text_links": {
+            "on_publish_with_unpublished_references_strategy": "fail",
+            "on_reference_unpublish_strategy": "delete_references",
+            "on_reference_delete_strategy": "delete_references",
+            "item_types": [
+              "GjWw8t-hTFaYYWyc53FeIg",
+              "LjXdkuCdQxCFT4hv8_ayew",
+              "X_tZn3TxQY28ltSyjZUGHQ"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "structured_text",
+          "parameters": {
+            "marks": [
+              "strong",
+              "code",
+              "emphasis",
+              "underline",
+              "strikethrough",
+              "highlight"
+            ],
+            "nodes": [
+              "blockquote",
+              "code",
+              "heading",
+              "link",
+              "list",
+              "thematicBreak",
+              "inlineItem",
+              "itemLink"
+            ],
+            "heading_levels": [
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "blocks_start_collapsed": false,
+            "show_links_meta_editor": false,
+            "show_links_target_blank": true
+          }
+        },
+        "default_value": null
+      },
+      {
+        "id": "FubZXQtGR2ir_2G6-1fJtQ",
+        "type": "field",
+        "label": "Image",
+        "field_type": "file",
+        "api_key": "image",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "extension": {
+            "extensions": [],
+            "predefined_list": "image"
+          },
+          "required_alt_title": {
+            "title": false,
+            "alt": true
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "file",
+          "parameters": {}
+        },
+        "default_value": null
+      },
+      {
+        "id": "Ejw-eeKDTPWU-2EUtowmYg",
+        "type": "field",
+        "label": "Layout",
+        "field_type": "string",
+        "api_key": "layout",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "enum": {
+            "values": [
+              "text-image",
+              "image-text"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "BeM4dW2OQYWKc9iBZUyMeg",
+      "type": "item_type",
+      "name": "🗂️ Grouping Item",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "grouping_item",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "SKH6LSKZS12ZmF10nklCXg",
+        "type": "field"
+      },
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "SKH6LSKZS12ZmF10nklCXg",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": null
+      },
+      {
+        "id": "NTDc3vtCRzO5mEsE3gfmOQ",
+        "type": "field",
+        "label": "Body",
+        "field_type": "rich_text",
+        "api_key": "blocks",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "rich_text_blocks": {
+            "item_types": [
+              "BRbU6VwTRgmG5SbwUs0rBg",
+              "F60ZY1wFSW2qbvh99poj3g",
+              "PAk40zGjQJCcDXXPgygUrA",
+              "QYfZyBzIRWKxA1MinIR0aQ",
+              "ZdBokLsWRgKKjHrKeJzdpw",
+              "gezG9nO7SfaiWcWnp-HNqw",
+              "0SxYNS2CR1it_5LHYWuEQg"
+            ]
+          },
+          "size": {
+            "min": 1
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "rich_text",
+          "parameters": {
+            "start_collapsed": false
+          }
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "CNWKTKleQGeovku16xSa7A",
+      "type": "item_type",
+      "name": "🔣 Variable Block",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "variable_block",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": "",
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "Axr-8GliRJ6d-Vnca3LnAA",
+        "type": "field"
+      },
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "Axr-8GliRJ6d-Vnca3LnAA",
+        "type": "field",
+        "label": "Variable",
+        "field_type": "link",
+        "api_key": "variable",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "item_item_type": {
+            "on_publish_with_unpublished_references_strategy": "fail",
+            "on_reference_unpublish_strategy": "delete_references",
+            "on_reference_delete_strategy": "delete_references",
+            "item_types": [
+              "Weqp1brXRkSS-jZE8Z3HTw"
+            ]
+          },
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "link_select",
+          "parameters": {
+            "filters": []
+          }
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "C5fWG5CYRJ69oqaP6CjYdA",
+      "type": "item_type",
+      "name": "📞 Phone Link",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "phone_link",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": null,
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "fp9Cugu8QlKqawis3QTnPA",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "bfnOOp5cSM-x8S5RKEpKsw",
+        "type": "field",
+        "label": "Phone number",
+        "field_type": "string",
+        "api_key": "phone_number",
+        "hint": "Best to use international notation: +31 20 2610954",
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "Hn81xiLsS_eoctf8KSPyDQ",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          },
+          "field_extension": "phoneNumber"
+        },
+        "default_value": ""
+      },
+      {
+        "id": "ZbVIU9fdQgG8IFcEqIQ54A",
+        "type": "field",
+        "label": "Action",
+        "field_type": "string",
+        "api_key": "action",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "enum": {
+            "values": [
+              "call",
+              "sms",
+              "whatsapp"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [
+            {
+              "id": "Srdwo4YOREmRtvMAV2otlQ",
+              "parameters": {
+                "dependencies": "{\n  \"sms\": [\n    \"text\"\n  ],\n  \"whatsapp\": [\n    \"text\"\n  ]\n}"
+              }
+            }
+          ],
+          "editor": "string_select",
+          "parameters": {
+            "options": [
+              {
+                "hint": "",
+                "label": "Call",
+                "value": "call"
+              },
+              {
+                "hint": "",
+                "label": "Text (sms)",
+                "value": "sms"
+              },
+              {
+                "hint": "",
+                "label": "WhatsApp",
+                "value": "whatsapp"
+              }
+            ]
+          }
+        },
+        "default_value": "call"
+      },
+      {
+        "id": "FKNWfZ5FS-KwBcWn9H8C7A",
+        "type": "field",
+        "label": "Text",
+        "field_type": "text",
+        "api_key": "text",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "sanitized_html": {
+            "sanitize_before_validation": true
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "textarea",
+          "parameters": {
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "GnHv18BPRyCsFsCAGmX0cQ",
+        "type": "field",
+        "label": "Style",
+        "field_type": "string",
+        "api_key": "style",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "enum": {
+            "values": [
+              "default",
+              "primary",
+              "secondary"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "string_select",
+          "parameters": {
+            "options": [
+              {
+                "hint": "",
+                "label": "Default action",
+                "value": "default"
+              },
+              {
+                "hint": "",
+                "label": "Primary action",
+                "value": "primary"
+              },
+              {
+                "hint": "",
+                "label": "Secondary action",
+                "value": "secondary"
+              }
+            ]
+          }
+        },
+        "default_value": "default"
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "C7XXNAAxQUqrKViywb05eA",
+      "type": "item_type",
+      "name": "🔢 List item",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "list_item",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": "",
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": null,
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "bvdh6Cu8QJu-uYTyxi4_CA",
+        "type": "field",
+        "label": "Text",
+        "field_type": "structured_text",
+        "api_key": "text",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "structured_text_blocks": {
+            "item_types": []
+          },
+          "structured_text_inline_blocks": {
+            "item_types": []
+          },
+          "structured_text_links": {
+            "on_publish_with_unpublished_references_strategy": "fail",
+            "on_reference_unpublish_strategy": "delete_references",
+            "on_reference_delete_strategy": "delete_references",
+            "item_types": [
+              "GjWw8t-hTFaYYWyc53FeIg",
+              "LjXdkuCdQxCFT4hv8_ayew",
+              "Weqp1brXRkSS-jZE8Z3HTw",
+              "X_tZn3TxQY28ltSyjZUGHQ"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "structured_text",
+          "parameters": {
+            "marks": [
+              "emphasis",
+              "strong",
+              "underline"
+            ],
+            "nodes": [
+              "inlineItem",
+              "itemLink",
+              "link"
+            ],
+            "heading_levels": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "blocks_start_collapsed": false,
+            "show_links_meta_editor": false,
+            "show_links_target_blank": true
+          }
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "DAdmJVaoTZKumF9GYBZDfQ",
+      "type": "item_type",
+      "name": "🧩 Page Partial",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "page_partial",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": false,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "table",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "UFrvDLVxQju6Z35XHzuENQ",
+        "type": "field"
+      },
+      "presentation_image_field": null,
+      "title_field": {
+        "id": "UFrvDLVxQju6Z35XHzuENQ",
+        "type": "field"
+      },
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "UFrvDLVxQju6Z35XHzuENQ",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": null,
+        "localized": true,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": true,
+            "placeholder": null
+          }
+        },
+        "default_value": {
+          "en": "",
+          "nl": null
+        }
+      },
+      {
+        "id": "SKLmdv71Rge0rKhJzOFQWQ",
+        "type": "field",
+        "label": "Body",
+        "field_type": "rich_text",
+        "api_key": "blocks",
+        "hint": null,
+        "localized": true,
+        "validators": {
+          "rich_text_blocks": {
+            "item_types": [
+              "BRbU6VwTRgmG5SbwUs0rBg",
+              "F60ZY1wFSW2qbvh99poj3g",
+              "PAk40zGjQJCcDXXPgygUrA",
+              "QYfZyBzIRWKxA1MinIR0aQ",
+              "QzOde8F5Qy6r7HPIazVIeQ",
+              "TBuD6qQOSDy6i9dM3T_XEA",
+              "Tv6MHewBS4evujN0EuSrwQ",
+              "ZdBokLsWRgKKjHrKeJzdpw",
+              "gezG9nO7SfaiWcWnp-HNqw",
+              "0SxYNS2CR1it_5LHYWuEQg"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "rich_text",
+          "parameters": {
+            "start_collapsed": true
+          }
+        },
+        "default_value": {
+          "en": null,
+          "nl": null
+        }
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "EkWwcYfPQSGXskAZKO_tTg",
+      "type": "item_type",
+      "name": "⤴️ Schema migration",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "schema_migration",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": false,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "Zz8GhzqwQGey0CezbgV6Vw",
+        "type": "field"
+      },
+      "presentation_image_field": null,
+      "title_field": {
+        "id": "Zz8GhzqwQGey0CezbgV6Vw",
+        "type": "field"
+      },
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "Zz8GhzqwQGey0CezbgV6Vw",
+        "type": "field",
+        "label": "Migration file name",
+        "field_type": "string",
+        "api_key": "name",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "FmR0GklXRq-7Ix8-5MaJjw",
+      "type": "item_type",
+      "name": "🔽 Menu Item (Internal)",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "menu_item_internal",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": "Use this item to link to a page within the website.\n\nYou can optionally add sub-items to create a dropdown menu. Sub-items can link to either internal or external pages.\n\nThe menu supports up to 3 levels of nesting (main item → sub-item → sub-sub-item). Avoid adding deeper levels, as they will not be displayed.",
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": null,
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "VZLI-ydZTtGSypAKrnWEHQ",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": "Optional title. By default the title of the linked record will be used.",
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "LRhrTAY1QCG_wHWshhPNWQ",
+        "type": "field",
+        "label": "Link",
+        "field_type": "link",
+        "api_key": "link",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "item_item_type": {
+            "on_publish_with_unpublished_references_strategy": "fail",
+            "on_reference_unpublish_strategy": "delete_references",
+            "on_reference_delete_strategy": "delete_references",
+            "item_types": [
+              "LjXdkuCdQxCFT4hv8_ayew",
+              "X_tZn3TxQY28ltSyjZUGHQ"
+            ]
+          },
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "link_select",
+          "parameters": {}
+        },
+        "default_value": null
+      },
+      {
+        "id": "ERIaYZ9RQpeR7zhw5drWvg",
+        "type": "field",
+        "label": "Items",
+        "field_type": "rich_text",
+        "api_key": "items",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "rich_text_blocks": {
+            "item_types": [
+              "FmR0GklXRq-7Ix8-5MaJjw",
+              "HK5FsUejSR-11KojiPoWbQ",
+              "TolRinJHS4GC8C2mw2iiXQ"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "rich_text",
+          "parameters": {
+            "start_collapsed": false
+          }
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "F60ZY1wFSW2qbvh99poj3g",
+      "type": "item_type",
+      "name": "🎛️ Action Block",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "action_block",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "table",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": null,
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "dAUckF8qR0edf_f7zam6hA",
+        "type": "field",
+        "label": "Items",
+        "field_type": "rich_text",
+        "api_key": "items",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "rich_text_blocks": {
+            "item_types": [
+              "C5fWG5CYRJ69oqaP6CjYdA",
+              "GWnhoQDqQoGJj4-sQTVttw",
+              "Yk1ge9eTTf25Iwph1Dx3_g",
+              "b90_c2zeS6auRELEzZHNcA"
+            ]
+          },
+          "size": {
+            "min": 1
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "rich_text",
+          "parameters": {
+            "start_collapsed": true
+          }
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "GWnhoQDqQoGJj4-sQTVttw",
+      "type": "item_type",
+      "name": "🔗 Internal Link",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "internal_link",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "table",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": null,
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "XTl0xPRsTpWg9zFauwDl5Q",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "bN5K_JObRQqv7tkzt4RG2w",
+        "type": "field",
+        "label": "Link",
+        "field_type": "link",
+        "api_key": "link",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "item_item_type": {
+            "on_publish_with_unpublished_references_strategy": "fail",
+            "on_reference_unpublish_strategy": "delete_references",
+            "on_reference_delete_strategy": "delete_references",
+            "item_types": [
+              "LjXdkuCdQxCFT4hv8_ayew",
+              "X_tZn3TxQY28ltSyjZUGHQ"
+            ]
+          },
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "link_select",
+          "parameters": {}
+        },
+        "default_value": null
+      },
+      {
+        "id": "S3JQgijhRmalePX3GeugPg",
+        "type": "field",
+        "label": "Style",
+        "field_type": "string",
+        "api_key": "style",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "enum": {
+            "values": [
+              "default",
+              "primary",
+              "secondary"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "string_select",
+          "parameters": {
+            "options": [
+              {
+                "hint": "",
+                "label": "Default action",
+                "value": "default"
+              },
+              {
+                "hint": "",
+                "label": "Primary action",
+                "value": "primary"
+              },
+              {
+                "hint": "",
+                "label": "Secondary action",
+                "value": "secondary"
+              }
+            ]
+          }
+        },
+        "default_value": "default"
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "GjWw8t-hTFaYYWyc53FeIg",
+      "type": "item_type",
+      "name": "📦 File",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "file",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": false,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "table",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": true,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "YIftd04cTlyz0aEvqsfWXA",
+        "type": "field"
+      },
+      "presentation_image_field": {
+        "id": "LolhguizT_mZMl1zzZtQ4Q",
+        "type": "field"
+      },
+      "title_field": {
+        "id": "YIftd04cTlyz0aEvqsfWXA",
+        "type": "field"
+      },
+      "image_preview_field": {
+        "id": "LolhguizT_mZMl1zzZtQ4Q",
+        "type": "field"
+      },
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "LolhguizT_mZMl1zzZtQ4Q",
+        "type": "field",
+        "label": "File",
+        "field_type": "file",
+        "api_key": "file",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "file",
+          "parameters": {}
+        },
+        "default_value": null
+      },
+      {
+        "id": "JcOc0SI4RYONRdiNvys1Rg",
+        "type": "field",
+        "label": "Locale",
+        "field_type": "string",
+        "api_key": "locale",
+        "hint": "Only relevant for files containing text.",
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "string_select",
+          "parameters": {
+            "options": [
+              {
+                "hint": "",
+                "label": "Deutsch",
+                "value": "de"
+              },
+              {
+                "hint": "",
+                "label": "English",
+                "value": "en"
+              },
+              {
+                "hint": "",
+                "label": "Español",
+                "value": "es"
+              },
+              {
+                "hint": "",
+                "label": "Français",
+                "value": "fr"
+              },
+              {
+                "hint": "",
+                "label": "Italiano",
+                "value": "it"
+              },
+              {
+                "hint": "",
+                "label": "Nederlands",
+                "value": "nl"
+              }
+            ]
+          }
+        },
+        "default_value": null
+      },
+      {
+        "id": "cnnDYybJTAGvHxiYq2MJ8g",
+        "type": "field",
+        "label": "Path",
+        "field_type": "string",
+        "api_key": "path",
+        "hint": "Optional custom path, like <code>/my-files/example.pdf</code>. This may be useful if you need files to be available under a specific URL.",
+        "localized": false,
+        "validators": {
+          "format": {
+            "custom_pattern": "^/.*",
+            "description": "Field must start with a forward slash: /"
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "YIftd04cTlyz0aEvqsfWXA",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": "This title is automatically generated based on the filename of the selected file. This ensures you can recognise this record in overviews and when inserting it in a text field.",
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "EiyZ3d0SSDCPCNbsKBIwWQ",
+          "parameters": {
+            "defaultFunction": "if (path) {\n return path.split('/').pop()\n}\nconst upload = await getUpload(file.upload_id)\nreturn `${upload.filename}`"
+          },
+          "field_extension": "computedFields"
+        },
+        "default_value": ""
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "HK5FsUejSR-11KojiPoWbQ",
+      "type": "item_type",
+      "name": "🔽 Menu Item (External)",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "menu_item_external",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": "Use this item to link to an external website (outside of this site).\n\nYou can also add sub-items if this link should open a dropdown. Sub-items may link to internal or external pages.\n\nThe menu supports a maximum of 3 levels of nesting. Deeper levels will be ignored in the navigation.",
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "I8HNHQLsTCuHpLxk3F3GPQ",
+        "type": "field"
+      },
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "I8HNHQLsTCuHpLxk3F3GPQ",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": "Optional title. By default the title of the linked record will be used.",
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "ThmoBnufTnmoqh1OOpfjnw",
+        "type": "field",
+        "label": "Link",
+        "field_type": "string",
+        "api_key": "link",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": null
+      },
+      {
+        "id": "QFHlwZngSF6iFXGw4n03NA",
+        "type": "field",
+        "label": "Items",
+        "field_type": "rich_text",
+        "api_key": "items",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "rich_text_blocks": {
+            "item_types": [
+              "FmR0GklXRq-7Ix8-5MaJjw",
+              "HK5FsUejSR-11KojiPoWbQ",
+              "TolRinJHS4GC8C2mw2iiXQ"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "rich_text",
+          "parameters": {
+            "start_collapsed": false
+          }
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "LjXdkuCdQxCFT4hv8_ayew",
+      "type": "item_type",
+      "name": "📑 Page",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "page",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": false,
+      "draft_mode_active": true,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "table",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": true,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "a2HWuvqES8OBn7Zoyn4uig",
+        "type": "field"
+      },
+      "presentation_image_field": null,
+      "title_field": {
+        "id": "a2HWuvqES8OBn7Zoyn4uig",
+        "type": "field"
+      },
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "a2HWuvqES8OBn7Zoyn4uig",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": null,
+        "localized": true,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": true,
+            "placeholder": null
+          }
+        },
+        "default_value": {
+          "en": "",
+          "nl": null
+        }
+      },
+      {
+        "id": "SFfpl7xiQaGe5-jy6tlPfg",
+        "type": "field",
+        "label": "Slug",
+        "field_type": "slug",
+        "api_key": "slug",
+        "hint": null,
+        "localized": true,
+        "validators": {
+          "slug_title_field": {
+            "title_field_id": "a2HWuvqES8OBn7Zoyn4uig"
+          },
+          "slug_format": {
+            "predefined_pattern": "webpage_slug"
+          },
+          "required": {},
+          "unique": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "slug",
+          "parameters": {
+            "url_prefix": null,
+            "placeholder": null
+          }
+        },
+        "default_value": {
+          "en": null,
+          "nl": null
+        }
+      },
+      {
+        "id": "FybgJf3dQ3G061OgVj1FHw",
+        "type": "field",
+        "label": "Parent page",
+        "field_type": "link",
+        "api_key": "parent_page",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "item_item_type": {
+            "on_publish_with_unpublished_references_strategy": "fail",
+            "on_reference_unpublish_strategy": "delete_references",
+            "on_reference_delete_strategy": "delete_references",
+            "item_types": [
+              "LjXdkuCdQxCFT4hv8_ayew"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "link_select",
+          "parameters": {}
+        },
+        "default_value": null
+      },
+      {
+        "id": "JzQG6ReuRua52ovuNn-riQ",
+        "type": "field",
+        "label": "SEO",
+        "field_type": "seo",
+        "api_key": "seo",
+        "hint": null,
+        "localized": true,
+        "validators": {
+          "title_length": {
+            "max": 60
+          },
+          "description_length": {
+            "max": 160
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "seo",
+          "parameters": {
+            "fields": [
+              "title",
+              "description",
+              "image",
+              "twitter_card"
+            ],
+            "previews": [
+              "google",
+              "twitter",
+              "facebook"
+            ]
+          }
+        },
+        "default_value": {
+          "en": null,
+          "nl": null
+        }
+      },
+      {
+        "id": "O1GwGpnqTO2dtee2OIhKyQ",
+        "type": "field",
+        "label": "Has Table of Contents",
+        "field_type": "boolean",
+        "api_key": "has_table_of_contents",
+        "hint": "If set, a table of contents with anchor links to the page headings will be shown above the page content.",
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "boolean",
+          "parameters": {}
+        },
+        "default_value": null
+      },
+      {
+        "id": "Q-z1nyMsQtC8Sr6w6J2oGw",
+        "type": "field",
+        "label": "Body",
+        "field_type": "rich_text",
+        "api_key": "body_blocks",
+        "hint": null,
+        "localized": true,
+        "validators": {
+          "rich_text_blocks": {
+            "item_types": [
+              "BRbU6VwTRgmG5SbwUs0rBg",
+              "F60ZY1wFSW2qbvh99poj3g",
+              "PAk40zGjQJCcDXXPgygUrA",
+              "QYfZyBzIRWKxA1MinIR0aQ",
+              "QzOde8F5Qy6r7HPIazVIeQ",
+              "TBuD6qQOSDy6i9dM3T_XEA",
+              "Tv6MHewBS4evujN0EuSrwQ",
+              "VZvVfu52RZK81WG0Dxp-FQ",
+              "V80liDVtRC-UYgd3Sm-dXg",
+              "ZdBokLsWRgKKjHrKeJzdpw",
+              "gezG9nO7SfaiWcWnp-HNqw",
+              "0SxYNS2CR1it_5LHYWuEQg"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "rich_text",
+          "parameters": {
+            "start_collapsed": true
+          }
+        },
+        "default_value": {
+          "en": null,
+          "nl": null
+        }
+      },
+      {
+        "id": "dyBTjn-aQwOI1xYPVvCFsQ",
+        "type": "field",
+        "label": "Preview",
+        "field_type": "json",
+        "api_key": "preview",
+        "hint": null,
+        "localized": true,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "NYOCpCD9SUSA3y3sod-84Q",
+          "parameters": {
+            "urlPattern": "/api/reroute/page/{ locale }/{ slug }"
+          }
+        },
+        "default_value": {
+          "en": null,
+          "nl": null
+        }
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "O3-JKIJwTaiqdryVNiyBBA",
+      "type": "item_type",
+      "name": "🚘 Icon Block",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "icon_block",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": "",
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "YcplD7VvSKy7Rw7BGWeKIA",
+        "type": "field"
+      },
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "HSHkTh4fRsKlUHpdraaIIg",
+        "type": "field",
+        "label": "Name",
+        "field_type": "string",
+        "api_key": "name",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "enum": {
+            "values": [
+              "external",
+              "download"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": null
+      },
+      {
+        "id": "YcplD7VvSKy7Rw7BGWeKIA",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": null,
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "EiyZ3d0SSDCPCNbsKBIwWQ",
+          "parameters": {
+            "editFunction": false,
+            "defaultFunction": "const iconName = thisBlock?.name || '';\nreturn iconName ? `🚘 ${iconName}` : '🚘';"
+          },
+          "field_extension": "computedFields"
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "PAk40zGjQJCcDXXPgygUrA",
+      "type": "item_type",
+      "name": "📝 Text Block",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "text_block",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": null,
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "NtVXfZ6gTL2sKNffNeUf5Q",
+        "type": "field",
+        "label": "Text",
+        "field_type": "structured_text",
+        "api_key": "text",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "structured_text_blocks": {
+            "item_types": [
+              "F60ZY1wFSW2qbvh99poj3g",
+              "QYfZyBzIRWKxA1MinIR0aQ",
+              "Tv6MHewBS4evujN0EuSrwQ",
+              "ZdBokLsWRgKKjHrKeJzdpw",
+              "gezG9nO7SfaiWcWnp-HNqw",
+              "0SxYNS2CR1it_5LHYWuEQg"
+            ]
+          },
+          "structured_text_inline_blocks": {
+            "item_types": [
+              "CNWKTKleQGeovku16xSa7A",
+              "O3-JKIJwTaiqdryVNiyBBA",
+              "Yj11fFgoThKqLyKcqIg2Gg"
+            ]
+          },
+          "structured_text_links": {
+            "on_publish_with_unpublished_references_strategy": "fail",
+            "on_reference_unpublish_strategy": "delete_references",
+            "on_reference_delete_strategy": "delete_references",
+            "item_types": [
+              "GjWw8t-hTFaYYWyc53FeIg",
+              "LjXdkuCdQxCFT4hv8_ayew",
+              "X_tZn3TxQY28ltSyjZUGHQ"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "structured_text",
+          "parameters": {
+            "marks": [
+              "strong",
+              "code",
+              "emphasis",
+              "underline",
+              "strikethrough",
+              "highlight"
+            ],
+            "nodes": [
+              "blockquote",
+              "code",
+              "heading",
+              "link",
+              "list",
+              "thematicBreak",
+              "inlineItem",
+              "itemLink"
+            ],
+            "heading_levels": [
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "blocks_start_collapsed": false,
+            "show_links_meta_editor": false,
+            "show_links_target_blank": true
+          }
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "QYfZyBzIRWKxA1MinIR0aQ",
+      "type": "item_type",
+      "name": "🎬 Video Block",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "video_block",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": null,
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "KdXhYelkQdaepb_wpK7yuw",
+        "type": "field",
+        "label": "Video",
+        "field_type": "file",
+        "api_key": "video_asset",
+        "hint": "⚠️ Note! Video streaming time is part of the variable costs of your Dato CMS plan.",
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "file",
+          "parameters": {}
+        },
+        "default_value": null
+      },
+      {
+        "id": "CYYGKtnXSkiSCTYMrOI3Yg",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": "Optional title. By default the title from the selected video is used.",
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "SEULcq3NS06_pDVrsHxiUA",
+        "type": "field",
+        "label": "Autoplay",
+        "field_type": "boolean",
+        "api_key": "autoplay",
+        "hint": "Note: video will only autoplay if device supports it and user has consented to 3rd party content.",
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "boolean",
+          "parameters": {}
+        },
+        "default_value": false
+      },
+      {
+        "id": "YaS-9DSqS3umFlirmXcOkw",
+        "type": "field",
+        "label": "Mute",
+        "field_type": "boolean",
+        "api_key": "mute",
+        "hint": null,
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "boolean",
+          "parameters": {}
+        },
+        "default_value": false
+      },
+      {
+        "id": "AsETx2yITvOK2QKbu8bYRw",
+        "type": "field",
+        "label": "Loop",
+        "field_type": "boolean",
+        "api_key": "loop",
+        "hint": null,
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "boolean",
+          "parameters": {}
+        },
+        "default_value": false
+      },
+      {
+        "id": "WVz9yVpWSymoFxO4oKzzeA",
+        "type": "field",
+        "label": "Tracks",
+        "field_type": "links",
+        "api_key": "tracks",
+        "hint": "For accessibility, videos should provide both captions and transcripts that accurately describe its content. Captions allow people who are experiencing hearing loss to understand a video's audio content as the video is being played, while transcripts allow people who need additional time to be able to review audio content at a pace and format that is comfortable for them.",
+        "localized": false,
+        "validators": {
+          "items_item_type": {
+            "on_publish_with_unpublished_references_strategy": "fail",
+            "on_reference_unpublish_strategy": "delete_references",
+            "on_reference_delete_strategy": "delete_references",
+            "item_types": [
+              "Us90isT5SgeXHuetcEj8eA"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "links_embed",
+          "parameters": {}
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "QzOde8F5Qy6r7HPIazVIeQ",
+      "type": "item_type",
+      "name": "🔍 Search form block",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "search_form_block",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": "",
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "JdRxITLwT9GIuvLpQvSWFQ",
+        "type": "field"
+      },
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "JdRxITLwT9GIuvLpQvSWFQ",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": null,
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": null
+      },
+      {
+        "id": "SZLwkYXuTD21tWzzinv8Fg",
+        "type": "field",
+        "label": "Query",
+        "field_type": "string",
+        "api_key": "query",
+        "hint": "Pre-fill priority for the search input: 1. CMS query (this field), 2. URL query parameter (?query=…), 3. last URL path segment, 4. empty.",
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "Sk_th2TFQ-q80D15KNzjMg",
+      "type": "item_type",
+      "name": "🌐 Translation",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "translation",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": false,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": true,
+      "collection_appearance": "table",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "LVwpzxlLTliU9stNkPwJRg",
+        "type": "field"
+      },
+      "presentation_image_field": null,
+      "title_field": {
+        "id": "LVwpzxlLTliU9stNkPwJRg",
+        "type": "field"
+      },
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "LVwpzxlLTliU9stNkPwJRg",
+        "type": "field",
+        "label": "Key",
+        "field_type": "string",
+        "api_key": "key",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "unique": {},
+          "format": {
+            "custom_pattern": "^[a-z_]+$"
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "IpSvZVFkRiyN3SC3YKxuNw",
+        "type": "field",
+        "label": "Value",
+        "field_type": "string",
+        "api_key": "value",
+        "hint": null,
+        "localized": true,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": true,
+            "placeholder": null
+          }
+        },
+        "default_value": {
+          "en": "",
+          "nl": null
+        }
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "TBuD6qQOSDy6i9dM3T_XEA",
+      "type": "item_type",
+      "name": "🗃️ Grouping Block",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "grouping_block",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "Wj5FlZbpRb23MFWVegBEoA",
+        "type": "field"
+      },
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "Wj5FlZbpRb23MFWVegBEoA",
+        "type": "field",
+        "label": "Layout",
+        "field_type": "string",
+        "api_key": "layout",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "enum": {
+            "values": [
+              "stack-untitled",
+              "stack-titled",
+              "accordion-closed",
+              "accordion-open",
+              "tabs"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "string_radio_group",
+          "parameters": {
+            "radios": [
+              {
+                "hint": "Show items, one after the other, without displaying their title.",
+                "label": "Stack, untitled",
+                "value": "stack-untitled"
+              },
+              {
+                "hint": "Show items, one after the other, with their title preceding their blocks content.",
+                "label": "Stack, titled",
+                "value": "stack-titled"
+              },
+              {
+                "hint": "Show items as accordion, with all items collapsed, showing only their titles.",
+                "label": "Accordion, closed",
+                "value": "accordion-closed"
+              },
+              {
+                "hint": "Show items as accordion, with the first item expanded, showing both its title and blocks content.",
+                "label": "Accordion, open",
+                "value": "accordion-open"
+              },
+              {
+                "hint": "Show items as tabbed interface, with their titles as tab labels and their blocks content in tab panels.",
+                "label": "Tabs",
+                "value": "tabs"
+              }
+            ]
+          }
+        },
+        "default_value": "stack-untitled"
+      },
+      {
+        "id": "ZEgzOa7HRnqDBc-FgI0RFQ",
+        "type": "field",
+        "label": "Items",
+        "field_type": "rich_text",
+        "api_key": "items",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "rich_text_blocks": {
+            "item_types": [
+              "BeM4dW2OQYWKc9iBZUyMeg"
+            ]
+          },
+          "size": {
+            "min": 1
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "rich_text",
+          "parameters": {
+            "start_collapsed": false
+          }
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "TolRinJHS4GC8C2mw2iiXQ",
+      "type": "item_type",
+      "name": "🔽 Menu Item (Group)",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "menu_item_group",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": "Use this item to create a non-clickable menu label that groups related links together.\n\nThe title itself is not a link and will only be used as a heading in the menu. Add sub-items underneath it to create the actual links.\n\nSub-items can be internal or external links and can be nested up to 3 levels deep.\nAvoid adding deeper levels, as they will not be displayed.",
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "SltvI6TZTpGS8EOpAnxqwQ",
+        "type": "field"
+      },
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "SltvI6TZTpGS8EOpAnxqwQ",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": "Optional title. By default the title of the linked record will be used.",
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "fZ_sddl4Q6OD5qtcmbwrBA",
+        "type": "field",
+        "label": "Items",
+        "field_type": "rich_text",
+        "api_key": "items",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "rich_text_blocks": {
+            "item_types": [
+              "FmR0GklXRq-7Ix8-5MaJjw",
+              "HK5FsUejSR-11KojiPoWbQ",
+              "TolRinJHS4GC8C2mw2iiXQ"
+            ]
+          },
+          "size": {
+            "min": 1
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "rich_text",
+          "parameters": {
+            "start_collapsed": false
+          }
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "Tv6MHewBS4evujN0EuSrwQ",
+      "type": "item_type",
+      "name": "🔢 List Block",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "list_block",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": "",
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "BIOGSwNaQkO0mxCay1AJ8g",
+        "type": "field"
+      },
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "BIOGSwNaQkO0mxCay1AJ8g",
+        "type": "field",
+        "label": "Type",
+        "field_type": "string",
+        "api_key": "list_type",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "enum": {
+            "values": [
+              "ordered",
+              "unordered"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [
+            {
+              "id": "Srdwo4YOREmRtvMAV2otlQ",
+              "parameters": {
+                "dependencies": "{\n  \"ordered\": [\n    \"start_number\"\n  ]\n}"
+              }
+            }
+          ],
+          "editor": "string_select",
+          "parameters": {
+            "options": [
+              {
+                "hint": "",
+                "label": "Ordered",
+                "value": "ordered"
+              },
+              {
+                "hint": "",
+                "label": "Unordered",
+                "value": "unordered"
+              }
+            ]
+          }
+        },
+        "default_value": "ordered"
+      },
+      {
+        "id": "anamS4ZQRDCZXvXPBtkmxg",
+        "type": "field",
+        "label": "Start number",
+        "field_type": "integer",
+        "api_key": "start_number",
+        "hint": null,
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "integer",
+          "parameters": {
+            "placeholder": null
+          }
+        },
+        "default_value": 1
+      },
+      {
+        "id": "R30BMoA3TqqCkFXVCWNojw",
+        "type": "field",
+        "label": "Items",
+        "field_type": "rich_text",
+        "api_key": "items",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "rich_text_blocks": {
+            "item_types": [
+              "C7XXNAAxQUqrKViywb05eA"
+            ]
+          },
+          "size": {
+            "min": 1
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "rich_text",
+          "parameters": {
+            "start_collapsed": false
+          }
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "Us90isT5SgeXHuetcEj8eA",
+      "type": "item_type",
+      "name": "🔡 Video Text Track",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "video_text_track",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": false,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "table",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "AD-nA46KQc2wL8978d6asg",
+        "type": "field"
+      },
+      "presentation_image_field": {
+        "id": "XNFlO-LWQJiMDd5r44PaKw",
+        "type": "field"
+      },
+      "title_field": {
+        "id": "AD-nA46KQc2wL8978d6asg",
+        "type": "field"
+      },
+      "image_preview_field": {
+        "id": "XNFlO-LWQJiMDd5r44PaKw",
+        "type": "field"
+      },
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "GzfEVsO6QnOu2KRUaPhc5Q",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": "A user-readable title of the text track which is used by the browser when listing available text tracks. Defaults to selected language name (English, Deutsch, etc) when empty.",
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "AD-nA46KQc2wL8978d6asg",
+        "type": "field",
+        "label": "Locale",
+        "field_type": "string",
+        "api_key": "locale",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "string_select",
+          "parameters": {
+            "options": [
+              {
+                "hint": "",
+                "label": "Deutsch",
+                "value": "de"
+              },
+              {
+                "hint": "",
+                "label": "English",
+                "value": "en"
+              },
+              {
+                "hint": "",
+                "label": "Español",
+                "value": "es"
+              },
+              {
+                "hint": "",
+                "label": "Français",
+                "value": "fr"
+              },
+              {
+                "hint": "",
+                "label": "Italiano",
+                "value": "it"
+              },
+              {
+                "hint": "",
+                "label": "Nederlands",
+                "value": "nl"
+              }
+            ]
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "F7QOFgNLStmPAdNlSn7uuQ",
+        "type": "field",
+        "label": "Kind",
+        "field_type": "string",
+        "api_key": "kind",
+        "hint": "How the text track is meant to be used.",
+        "localized": false,
+        "validators": {
+          "required": {},
+          "enum": {
+            "values": [
+              "subtitles",
+              "captions",
+              "descriptions",
+              "chapters",
+              "metadata"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": "subtitles"
+      },
+      {
+        "id": "XNFlO-LWQJiMDd5r44PaKw",
+        "type": "field",
+        "label": "File",
+        "field_type": "file",
+        "api_key": "file",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "extension": {
+            "extensions": [
+              "vtt"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "file",
+          "parameters": {}
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "VZvVfu52RZK81WG0Dxp-FQ",
+      "type": "item_type",
+      "name": "📎 Embed Block",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "embed_block",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": null,
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "IX57s5MtS9OdHC7GdbEbgg",
+        "type": "field",
+        "label": "URL",
+        "field_type": "string",
+        "api_key": "url",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "format": {
+            "predefined_pattern": "url"
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "MGCF_FuyQaGzN9KvKzmgNA",
+        "type": "field",
+        "label": "Data",
+        "field_type": "json",
+        "api_key": "data",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [
+            {
+              "id": "b9p6SdybQGS-ng6Qk6jrWQ",
+              "parameters": {
+                "urlFieldKey": "url"
+              },
+              "field_extension": "oembedPlugin"
+            }
+          ],
+          "editor": "json",
+          "parameters": {}
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "V80liDVtRC-UYgd3Sm-dXg",
+      "type": "item_type",
+      "name": "🧩 Page Partial Block",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "page_partial_block",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": null,
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "UgwMgWgIRPS-nqcdJdQYIg",
+        "type": "field",
+        "label": "Items",
+        "field_type": "links",
+        "api_key": "items",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "items_item_type": {
+            "on_publish_with_unpublished_references_strategy": "fail",
+            "on_reference_unpublish_strategy": "delete_references",
+            "on_reference_delete_strategy": "delete_references",
+            "item_types": [
+              "DAdmJVaoTZKumF9GYBZDfQ"
+            ]
+          },
+          "size": {
+            "min": 1
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "links_embed",
+          "parameters": {}
+        },
+        "default_value": null
+      },
+      {
+        "id": "SO4JBlc8QCiQjRNJVlZPcw",
+        "type": "field",
+        "label": "Layout",
+        "field_type": "string",
+        "api_key": "layout",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "enum": {
+            "values": [
+              "stack-untitled",
+              "stack-titled",
+              "accordion-closed",
+              "accordion-open",
+              "tabs"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "string_radio_group",
+          "parameters": {
+            "radios": [
+              {
+                "hint": "Show items, one after the other, without displaying their title.",
+                "label": "Stack, untitled",
+                "value": "stack-untitled"
+              },
+              {
+                "hint": "Show items, one after the other, with their title preceding their blocks content.",
+                "label": "Stack, titled",
+                "value": "stack-titled"
+              },
+              {
+                "hint": "Show items as accordion, with all items collapsed, showing only their titles.",
+                "label": "Accordion, closed",
+                "value": "accordion-closed"
+              },
+              {
+                "hint": "Show items as accordion, with the first item expanded, showing both its title and blocks content.",
+                "label": "Accordion, open",
+                "value": "accordion-open"
+              },
+              {
+                "hint": "Show items as tabbed interface, with their titles as tab labels and their blocks content in tab panels.",
+                "label": "Tabs",
+                "value": "tabs"
+              }
+            ]
+          }
+        },
+        "default_value": "stack-untitled"
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "Weqp1brXRkSS-jZE8Z3HTw",
+      "type": "item_type",
+      "name": "🔣 Variables",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "variable",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": false,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "table",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "WOwho0PRRZC86nvwy5vGDg",
+        "type": "field"
+      },
+      "presentation_image_field": null,
+      "title_field": {
+        "id": "ILVOGJzmTpKPVHzRuNUhnA",
+        "type": "field"
+      },
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "ILVOGJzmTpKPVHzRuNUhnA",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": null
+      },
+      {
+        "id": "DihXGTqXQoia4qtLLVmuQA",
+        "type": "field",
+        "label": "Value",
+        "field_type": "string",
+        "api_key": "value",
+        "hint": null,
+        "localized": true,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": {
+          "en": null,
+          "nl": null
+        }
+      },
+      {
+        "id": "WOwho0PRRZC86nvwy5vGDg",
+        "type": "field",
+        "label": "Display Title",
+        "field_type": "string",
+        "api_key": "display_title",
+        "hint": null,
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "EiyZ3d0SSDCPCNbsKBIwWQ",
+          "parameters": {
+            "hideField": false,
+            "editFunction": false,
+            "defaultFunction": "const titleValue = getFieldValue(datoCmsPlugin.formValues, 'title');\nreturn `🔣 ${titleValue}`;"
+          },
+          "field_extension": "computedFields"
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "X_tZn3TxQY28ltSyjZUGHQ",
+      "type": "item_type",
+      "name": "🏠 Home",
+      "singleton": true,
+      "sortable": false,
+      "api_key": "home_page",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": false,
+      "draft_mode_active": true,
+      "draft_saving_active": false,
+      "all_locales_required": true,
+      "collection_appearance": "table",
+      "has_singleton_item": true,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": {
+        "id": "TRkqqct_Rmm7_LkpFUiUXw",
+        "type": "item"
+      },
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "D4iIjY3pRd6Ab_KqmLrZCg",
+        "type": "field"
+      },
+      "presentation_image_field": null,
+      "title_field": {
+        "id": "D4iIjY3pRd6Ab_KqmLrZCg",
+        "type": "field"
+      },
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": true
+      }
+    },
+    "fields": [
+      {
+        "id": "D4iIjY3pRd6Ab_KqmLrZCg",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": null,
+        "localized": true,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": true,
+            "placeholder": null
+          }
+        },
+        "default_value": {
+          "en": "",
+          "nl": null
+        }
+      },
+      {
+        "id": "HqBrov-GQ6-p94WByDHsaA",
+        "type": "field",
+        "label": "SEO",
+        "field_type": "seo",
+        "api_key": "seo",
+        "hint": null,
+        "localized": true,
+        "validators": {
+          "title_length": {
+            "max": 60
+          },
+          "description_length": {
+            "max": 160
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "seo",
+          "parameters": {
+            "fields": [
+              "title",
+              "description",
+              "image",
+              "twitter_card"
+            ],
+            "previews": [
+              "google",
+              "twitter",
+              "facebook"
+            ]
+          }
+        },
+        "default_value": {
+          "en": null,
+          "nl": null
+        }
+      },
+      {
+        "id": "pUj2PObgTyC-8X4lvZLMBA",
+        "type": "field",
+        "label": "Body",
+        "field_type": "rich_text",
+        "api_key": "body_blocks",
+        "hint": null,
+        "localized": true,
+        "validators": {
+          "rich_text_blocks": {
+            "item_types": [
+              "BRbU6VwTRgmG5SbwUs0rBg",
+              "F60ZY1wFSW2qbvh99poj3g",
+              "PAk40zGjQJCcDXXPgygUrA",
+              "QYfZyBzIRWKxA1MinIR0aQ",
+              "QzOde8F5Qy6r7HPIazVIeQ",
+              "TBuD6qQOSDy6i9dM3T_XEA",
+              "VZvVfu52RZK81WG0Dxp-FQ",
+              "V80liDVtRC-UYgd3Sm-dXg",
+              "ZdBokLsWRgKKjHrKeJzdpw",
+              "gezG9nO7SfaiWcWnp-HNqw",
+              "0SxYNS2CR1it_5LHYWuEQg"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "rich_text",
+          "parameters": {
+            "start_collapsed": true
+          }
+        },
+        "default_value": {
+          "en": null,
+          "nl": null
+        }
+      },
+      {
+        "id": "FbCSEwdTSEulvG2Jw70dyg",
+        "type": "field",
+        "label": "Preview",
+        "field_type": "json",
+        "api_key": "preview",
+        "hint": null,
+        "localized": true,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "NYOCpCD9SUSA3y3sod-84Q",
+          "parameters": {
+            "urlPattern": "/{ locale }/"
+          }
+        },
+        "default_value": {
+          "en": null,
+          "nl": null
+        }
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "Yj11fFgoThKqLyKcqIg2Gg",
+      "type": "item_type",
+      "name": "🔢 Counter Block",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "counter_block",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": "Counts the number from 0 up to the desired value",
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": null,
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "bWLkWhktStaEM68eDL7Otg",
+        "type": "field",
+        "label": "Value",
+        "field_type": "float",
+        "api_key": "value",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "float",
+          "parameters": {
+            "placeholder": null
+          }
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "Yk1ge9eTTf25Iwph1Dx3_g",
+      "type": "item_type",
+      "name": "🔗 External Link",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "external_link",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": null,
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "Epmmtd7MTfeqpiwLP23D1Q",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "bUvYLCENQ3SP_vGhoN07nA",
+        "type": "field",
+        "label": "URL",
+        "field_type": "string",
+        "api_key": "url",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "format": {
+            "predefined_pattern": "url"
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "AlPRQFQdRlixBp4Tgz5qsQ",
+        "type": "field",
+        "label": "Open in new tab",
+        "field_type": "boolean",
+        "api_key": "open_in_new_tab",
+        "hint": null,
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "boolean",
+          "parameters": {}
+        },
+        "default_value": false
+      },
+      {
+        "id": "TNl63OntSe6ZLD3wCYxK-g",
+        "type": "field",
+        "label": "Style",
+        "field_type": "string",
+        "api_key": "style",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "enum": {
+            "values": [
+              "default",
+              "primary",
+              "secondary"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "string_select",
+          "parameters": {
+            "options": [
+              {
+                "hint": "",
+                "label": "Default action",
+                "value": "default"
+              },
+              {
+                "hint": "",
+                "label": "Primary action",
+                "value": "primary"
+              },
+              {
+                "hint": "",
+                "label": "Secondary action",
+                "value": "secondary"
+              }
+            ]
+          }
+        },
+        "default_value": "default"
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "ZdBokLsWRgKKjHrKeJzdpw",
+      "type": "item_type",
+      "name": "🖼️ Image Block",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "image_block",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": null,
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "nl2r21M8SnKAgtrAmA9Ctw",
+        "type": "field",
+        "label": "Image",
+        "field_type": "file",
+        "api_key": "image",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "extension": {
+            "extensions": [],
+            "predefined_list": "image"
+          },
+          "required_alt_title": {
+            "title": false,
+            "alt": true
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "file",
+          "parameters": {}
+        },
+        "default_value": null
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "Zrs1dDxCTXKDS0pdgh1yCw",
+      "type": "item_type",
+      "name": "🖥️ Website",
+      "singleton": true,
+      "sortable": false,
+      "api_key": "app",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": false,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": true,
+      "collection_appearance": "table",
+      "has_singleton_item": true,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": {
+        "id": "NZz_69JOSlCmf0mWtv9OKg",
+        "type": "item"
+      },
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "GvKdBPuwTjm2_4_MIck78A",
+        "type": "field"
+      },
+      "presentation_image_field": null,
+      "title_field": {
+        "id": "GvKdBPuwTjm2_4_MIck78A",
+        "type": "field"
+      },
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": true
+      }
+    },
+    "fields": [
+      {
+        "id": "LMT_L4wOT2yMX7S3ZViZAw",
+        "type": "field",
+        "label": "Allow AI Bots",
+        "field_type": "boolean",
+        "api_key": "allow_ai_bots",
+        "hint": "When you disallow AI bots access, we signal AI platforms (like OpenAI) not to use your content for training their models or using it for AI search queries. Note that they can choose to ignore this.",
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "boolean",
+          "parameters": {}
+        },
+        "default_value": false
+      },
+      {
+        "id": "CGZPvWJYQ4eHBinLW0IsUQ",
+        "type": "field",
+        "label": "LLMs Intro",
+        "field_type": "text",
+        "api_key": "llms_intro",
+        "hint": "Introduction shown in /llms.txt. Written in English (LLMs.txt supports one language). Adjust the wording when you toggle \"Allow AI Bots\" — the default is a scraping warning suitable when bots are disallowed; switch to attribution guidance when allowed. Use {{ siteName }} to interpolate the site name.",
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "textarea",
+          "parameters": {
+            "placeholder": null
+          }
+        },
+        "default_value": "IMPORTANT: You're not allowed to monitor, copy, scrape/crawl, download, reproduce, or otherwise use anything on our Platform for any commercial purpose without written permission of {{ siteName }}."
+      },
+      {
+        "id": "Bs4xoWrqTgCfLiNIzFaplw",
+        "type": "field",
+        "label": "Menu Items",
+        "field_type": "rich_text",
+        "api_key": "menu_items",
+        "hint": null,
+        "localized": true,
+        "validators": {
+          "rich_text_blocks": {
+            "item_types": [
+              "FmR0GklXRq-7Ix8-5MaJjw",
+              "HK5FsUejSR-11KojiPoWbQ",
+              "TolRinJHS4GC8C2mw2iiXQ"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "rich_text",
+          "parameters": {
+            "start_collapsed": true
+          }
+        },
+        "default_value": {
+          "en": null,
+          "nl": null
+        }
+      },
+      {
+        "id": "GvKdBPuwTjm2_4_MIck78A",
+        "type": "field",
+        "label": "Open page in LLM prompt",
+        "field_type": "string",
+        "api_key": "open_page_in_llm_prompt",
+        "hint": "If you type { pageUrl } in this text, it will be changed with the current page url.",
+        "localized": true,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": {
+          "en": "Read from this URL: { pageUrl } and explain it to me.",
+          "nl": null
+        }
+      },
+      {
+        "id": "N4BTo0L9TXKJ41wlBL4QXA",
+        "type": "field",
+        "label": "Open page in LLM option",
+        "field_type": "rich_text",
+        "api_key": "open_page_in_llm_option",
+        "hint": "Choose the LLM's the user can open this page contents in",
+        "localized": true,
+        "validators": {
+          "rich_text_blocks": {
+            "item_types": [
+              "Yk1ge9eTTf25Iwph1Dx3_g"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "rich_text",
+          "parameters": {
+            "start_collapsed": true
+          }
+        },
+        "default_value": {
+          "en": null,
+          "nl": null
+        }
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "b90_c2zeS6auRELEzZHNcA",
+      "type": "item_type",
+      "name": "📧 Email Link",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "email_link",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": null,
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "RM3FgSTnT4W5lYs16ndS9Q",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "VpbcpEhCS5OjLjrdUU8Z6w",
+        "type": "field",
+        "label": "Email address",
+        "field_type": "string",
+        "api_key": "email_address",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "format": {
+            "predefined_pattern": "email"
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "LMloAtp6SxOTDuaxCQ7L9g",
+        "type": "field",
+        "label": "Email Subject",
+        "field_type": "string",
+        "api_key": "email_subject",
+        "hint": null,
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "DvV-XIMvT-eioHVaY6AOeQ",
+        "type": "field",
+        "label": "Email Body",
+        "field_type": "text",
+        "api_key": "email_body",
+        "hint": null,
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "textarea",
+          "parameters": {
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "OAAORe89QV-DoOO1GfG5Jw",
+        "type": "field",
+        "label": "Style",
+        "field_type": "string",
+        "api_key": "style",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "enum": {
+            "values": [
+              "default",
+              "primary",
+              "secondary"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "string_select",
+          "parameters": {
+            "options": [
+              {
+                "hint": "",
+                "label": "Default action",
+                "value": "default"
+              },
+              {
+                "hint": "",
+                "label": "Primary action",
+                "value": "primary"
+              },
+              {
+                "hint": "",
+                "label": "Secondary action",
+                "value": "secondary"
+              }
+            ]
+          }
+        },
+        "default_value": "default"
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "c0S4sIyiRK-EewRhFEFPLA",
+      "type": "item_type",
+      "name": "↪️ Redirect Rule",
+      "singleton": false,
+      "sortable": true,
+      "api_key": "redirect_rule",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": false,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "table",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "L0DTI0v1Qeqoj1kkAoqEvA",
+        "type": "field"
+      },
+      "presentation_image_field": null,
+      "title_field": {
+        "id": "L0DTI0v1Qeqoj1kkAoqEvA",
+        "type": "field"
+      },
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "L0DTI0v1Qeqoj1kkAoqEvA",
+        "type": "field",
+        "label": "From URL",
+        "field_type": "string",
+        "api_key": "from",
+        "hint": "URL or URL pattern to redirect from when visited. <br><br>Pattern can contain wildcards (<code>*</code>) and placeholders (<code>:placeholder_name</code>) which can then be used in the <strong>To URL</strong> field below. Examples (related to <strong>To URL</strong> examples below):<br>\n• <code>/old-page-slug/</code><br>\n• <code>/en/catalogue/:code/details/:name</code><br>\n• <code>/archive/*</code>",
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "S9_kd7NPQ3-2jM1TfUq1Pw",
+        "type": "field",
+        "label": "To URL",
+        "field_type": "string",
+        "api_key": "to",
+        "hint": "URL or URL pattern to redirect a visitor to.<br><br>Pattern can contain any placeholders (<code>:placeholder_name</code>) and a splat (<code>:splat</code>) if a wildcard was used in the <strong>From URL</strong> field above. Examples (related to <strong>From URL</strong> examples above):<br>\n• <code>/en/new-page-slug/</code><br>\n• <code>/en/products/:code-:name</code><br>\n• <code>/en/:splat/</code>",
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "Bfb1Y4ZCT-2ciVjqeFMlaQ",
+        "type": "field",
+        "label": "Type",
+        "field_type": "string",
+        "api_key": "status_code",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {},
+          "enum": {
+            "values": [
+              "301",
+              "302"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "string_radio_group",
+          "parameters": {
+            "radios": [
+              {
+                "hint": "Is remembered by the browser. Best for performance.",
+                "label": "Permanent redirect",
+                "value": "301"
+              },
+              {
+                "hint": "Is checked on the server every time. Best for changing redirects.",
+                "label": "Temporary redirect",
+                "value": "302"
+              }
+            ]
+          }
+        },
+        "default_value": "302"
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "d_AvMVoMSqmNbMqx-NdqIw",
+      "type": "item_type",
+      "name": "🤷 Not found",
+      "singleton": true,
+      "sortable": false,
+      "api_key": "not_found_page",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": false,
+      "draft_mode_active": true,
+      "draft_saving_active": false,
+      "all_locales_required": true,
+      "collection_appearance": "table",
+      "has_singleton_item": true,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": {
+        "id": "Fk20pOwqSjWvlIUCLsRfSw",
+        "type": "item"
+      },
+      "ordering_field": null,
+      "presentation_title_field": {
+        "id": "ABViAi9vRzm9HjFIzRdkjw",
+        "type": "field"
+      },
+      "presentation_image_field": null,
+      "title_field": {
+        "id": "ABViAi9vRzm9HjFIzRdkjw",
+        "type": "field"
+      },
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": true
+      }
+    },
+    "fields": [
+      {
+        "id": "ABViAi9vRzm9HjFIzRdkjw",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": null,
+        "localized": true,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": {
+          "en": "",
+          "nl": null
+        }
+      },
+      {
+        "id": "Zu006Xq0TMCAvV-vyQ_Iiw",
+        "type": "field",
+        "label": "Body",
+        "field_type": "rich_text",
+        "api_key": "body_blocks",
+        "hint": null,
+        "localized": true,
+        "validators": {
+          "rich_text_blocks": {
+            "item_types": [
+              "BRbU6VwTRgmG5SbwUs0rBg",
+              "F60ZY1wFSW2qbvh99poj3g",
+              "PAk40zGjQJCcDXXPgygUrA",
+              "QYfZyBzIRWKxA1MinIR0aQ",
+              "QzOde8F5Qy6r7HPIazVIeQ",
+              "VZvVfu52RZK81WG0Dxp-FQ",
+              "V80liDVtRC-UYgd3Sm-dXg",
+              "ZdBokLsWRgKKjHrKeJzdpw",
+              "gezG9nO7SfaiWcWnp-HNqw",
+              "0SxYNS2CR1it_5LHYWuEQg"
+            ]
+          }
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "rich_text",
+          "parameters": {
+            "start_collapsed": true
+          }
+        },
+        "default_value": {
+          "en": null,
+          "nl": null
+        }
+      },
+      {
+        "id": "F861OXBNQE6s0QkW8Ccg4A",
+        "type": "field",
+        "label": "Preview",
+        "field_type": "json",
+        "api_key": "preview",
+        "hint": null,
+        "localized": true,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "NYOCpCD9SUSA3y3sod-84Q",
+          "parameters": {
+            "urlPattern": "/{ locale }/404"
+          }
+        },
+        "default_value": {
+          "en": null,
+          "nl": null
+        }
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "gezG9nO7SfaiWcWnp-HNqw",
+      "type": "item_type",
+      "name": "🎬 Video Embed Block",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "video_embed_block",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": null,
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "e-ssNRziQK62ip37l6b-SQ",
+        "type": "field",
+        "label": "Video",
+        "field_type": "video",
+        "api_key": "video",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "video",
+          "parameters": {}
+        },
+        "default_value": null
+      },
+      {
+        "id": "-R9jKxclS8uo7QG2zH9Awg",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": "Optional title. By default the title from the selected video is used.",
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "s8Wb9qm6QI2EaSsjSNX1dA",
+        "type": "field",
+        "label": "Autoplay",
+        "field_type": "boolean",
+        "api_key": "autoplay",
+        "hint": "Note: video will only autoplay if device supports it and user has consented to 3rd party content.",
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "boolean",
+          "parameters": {}
+        },
+        "default_value": false
+      },
+      {
+        "id": "8VA1-iOTRzOlvQZHtUWhDQ",
+        "type": "field",
+        "label": "Mute",
+        "field_type": "boolean",
+        "api_key": "mute",
+        "hint": null,
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "boolean",
+          "parameters": {}
+        },
+        "default_value": false
+      },
+      {
+        "id": "UW6zA8RlQv-33Bifg67-YA",
+        "type": "field",
+        "label": "Loop",
+        "field_type": "boolean",
+        "api_key": "loop",
+        "hint": null,
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "boolean",
+          "parameters": {}
+        },
+        "default_value": false
+      }
+    ]
+  },
+  {
+    "itemType": {
+      "id": "0SxYNS2CR1it_5LHYWuEQg",
+      "type": "item_type",
+      "name": "📊 Table Block",
+      "singleton": false,
+      "sortable": false,
+      "api_key": "table_block",
+      "ordering_direction": null,
+      "ordering_meta": null,
+      "tree": false,
+      "modular_block": true,
+      "draft_mode_active": false,
+      "draft_saving_active": false,
+      "all_locales_required": false,
+      "collection_appearance": "compact",
+      "has_singleton_item": false,
+      "hint": null,
+      "inverse_relationships_enabled": false,
+      "singleton_item": null,
+      "ordering_field": null,
+      "presentation_title_field": null,
+      "presentation_image_field": null,
+      "title_field": null,
+      "image_preview_field": null,
+      "excerpt_field": null,
+      "workflow": null,
+      "meta": {
+        "has_singleton_item": false
+      }
+    },
+    "fields": [
+      {
+        "id": "rCvzxtqpRJWdlSE8xH2plQ",
+        "type": "field",
+        "label": "Title",
+        "field_type": "string",
+        "api_key": "title",
+        "hint": null,
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "single_line",
+          "parameters": {
+            "heading": false,
+            "placeholder": null
+          }
+        },
+        "default_value": ""
+      },
+      {
+        "id": "ZpBMws8EQW2inOBtyVLgoA",
+        "type": "field",
+        "label": "Table",
+        "field_type": "json",
+        "api_key": "table",
+        "hint": null,
+        "localized": false,
+        "validators": {
+          "required": {}
+        },
+        "appearance": {
+          "addons": [],
+          "editor": "Af-zYKJRT5Wg8Y1Gt8SY3g",
+          "parameters": {},
+          "field_extension": "table"
+        },
+        "default_value": null
+      },
+      {
+        "id": "C4TKf4ifQ_S1QQK87nc9uw",
+        "type": "field",
+        "label": "Has header row?",
+        "field_type": "boolean",
+        "api_key": "has_header_row",
+        "hint": "The header row in the table above always needs unique values as these are used to identify the column values. Even if the table displayed on the page should not have a header row.",
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "boolean",
+          "parameters": {}
+        },
+        "default_value": true
+      },
+      {
+        "id": "D2OLeqrZSBCbaxjC7ci1ng",
+        "type": "field",
+        "label": "Has header column?",
+        "field_type": "boolean",
+        "api_key": "has_header_column",
+        "hint": "If the switch is turned on, the first value in each row is used to describe the following values in that row.",
+        "localized": false,
+        "validators": {},
+        "appearance": {
+          "addons": [],
+          "editor": "boolean",
+          "parameters": {}
+        },
+        "default_value": false
+      }
+    ]
+  }
+]

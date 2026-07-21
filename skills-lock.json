@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "skills": {
+    "datocms-cda": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/datocms-cda/SKILL.md",
+      "computedHash": "5e79f8d9c2f09e12bc3aeba2b277f79c7b7b27eac7af1588df4012fe2cda8779"
+    },
+    "datocms-cli": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/datocms-cli/SKILL.md",
+      "computedHash": "dbf875c95f3908e0ac0ab3714ced6d6f7f473d90200c2b58752b7d93af452e8c"
+    },
+    "datocms-cma": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/datocms-cma/SKILL.md",
+      "computedHash": "c6be709e958116303a6332047f764c5e7c35a2ddb50f5a6f65448df8f63a7234"
+    },
+    "datocms-content-modeling": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/datocms-content-modeling/SKILL.md",
+      "computedHash": "24a1679d77044a7cc1a0b50e1accef2927add78f0916e3f261206885603a959b"
+    },
+    "datocms-feedback": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/datocms-feedback/SKILL.md",
+      "computedHash": "8c0b0babc6de59ecd206dcecca21bafa97f927a644646c2aeca0c961b010aaa4"
+    },
+    "datocms-frontend-integrations": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/datocms-frontend-integrations/SKILL.md",
+      "computedHash": "494df62e5867c6e15145eb842bbd1aeee299debb62841b88234180dbd99ddf3b"
+    },
+    "datocms-plugin": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/datocms-plugin/SKILL.md",
+      "computedHash": "402902d1abaeb511d9e338f487db1406a377a58bbc6654fa1f6841e6fd3e53fe"
+    },
+    "datocms-setup": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/datocms-setup/SKILL.md",
+      "computedHash": "69636d9c57e0811fd69dcfd4f1780a87986e96fd57847cb66501cbae02e36be7"
+    },
+    "eval-triggers": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/eval-triggers/SKILL.md",
+      "computedHash": "ad629aadcaac5d7661a26499930ad8090ee465404aa9543bb1651a1b9d779aa4"
+    },
+    "validate": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/validate/SKILL.md",
+      "computedHash": "eb431b7b5f09b856e5e2b89825c029cab76028ba830b88cbb7325f12fb19516b"
+    }
+  }
+}

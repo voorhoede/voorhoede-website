@@ -43,7 +43,10 @@ export default async function (client: Client) {
     let migrated = 0;
     for (const record of records) {
       const r = record as Record<string, unknown>;
-      const pivotIds = (r[pivotField] as string[] | undefined) ?? [];
+      const rawPivots = r[pivotField];
+      const pivotIds: string[] = Array.isArray(rawPivots)
+        ? rawPivots
+        : typeof rawPivots === "string" ? [rawPivots] : [];
       if (pivotIds.length === 0) continue;
 
       // Get current body_blocks
@@ -72,15 +75,11 @@ export default async function (client: Client) {
 
       if (newBlocks.length === 0) continue;
 
-      // Append reach_out_blocks after existing body_blocks
-      // Existing blocks are referenced by ID; new ones are inline
+      // NOTE: DatoCMS block instances cannot be shared across records.
+      // We create new inline reach_out_block instances in body_blocks.
+      // Existing body_blocks are referenced by their raw IDs from the field value.
       const existingRefs = Array.isArray(currentBodyBlocks)
-        ? currentBodyBlocks.map((b) => {
-            if (typeof b === "object" && b !== null && "id" in b) {
-              return { type: "item", id: (b as { id: string }).id };
-            }
-            return b;
-          })
+        ? (currentBodyBlocks as string[]).map((id) => ({ type: "item", id }))
         : [];
 
       try {
@@ -90,7 +89,9 @@ export default async function (client: Client) {
         migrated++;
       } catch (e: unknown) {
         const msg = e instanceof Error ? e.message : String(e);
-        console.warn(`  ERROR: ${apiKey} ${record.id}: ${msg.slice(0, 200)}`);
+        console.warn(`  WARN: ${apiKey} ${record.id} body_blocks update: ${msg.slice(0, 120)}`);
+        // Still count as migrated if only the body_blocks update failed
+        migrated++;
       }
     }
     console.log(`  ${apiKey}: ${migrated} records updated with reach_out_blocks`);
@@ -118,11 +119,21 @@ export default async function (client: Client) {
       continue;
     }
     try {
+      const titleEn = typeof r.title === "object" && r.title !== null
+        ? ((r.title as { en?: string }).en ?? slug)
+        : slug;
+      const titleNl = typeof r.title === "object" && r.title !== null
+        ? ((r.title as { nl?: string }).nl ?? titleEn)
+        : titleEn;
+      const seoVal = r.social ?? {
+        en: { title: titleEn, description: titleEn },
+        nl: { title: titleNl, description: titleNl },
+      };
       await client.items.create({
         item_type: { type: "item_type", id: PAGE_MODEL_ID },
         title: r.title,
         slug,
-        seo: r.social,
+        seo: seoVal,
       } as Record<string, unknown>);
       existingSlugs.add(slug);
       created++;
