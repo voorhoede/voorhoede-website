@@ -80,12 +80,12 @@ export default defineNuxtConfig({
         // hook expects a promise with no return data
         .then(() => {}),
     'nitro:config': (nitroConfig) => {
-      return fetchRedirects().then((redirects) => {
-        redirects.forEach((redirect) => {
-          nitroConfig.routeRules![redirect.from] = {
+      return fetchRedirects().then((redirectRules) => {
+        redirectRules.forEach((redirectRule) => {
+          nitroConfig.routeRules![redirectRule.from] = {
             redirect: {
-              to: redirect.to,
-              statusCode: redirect.httpStatusCode,
+              to: redirectRule.to,
+              statusCode: redirectRule.statusCode,
             },
           };
         });
