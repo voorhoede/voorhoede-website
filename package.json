@@ -19,7 +19,7 @@
     "@floating-ui/dom": "^1.7.6",
     "@gql.tada/vue-support": "^1.0.2",
     "@json-feed-types/1_1": "^1.0.2",
-    "@mux/mux-player": "^3.11.5",
+    "@mux/mux-player": "^3.13.0",
     "@nuxtjs/plausible": "^3.0.2",
     "@std/http": "npm:@jsr/std__http@^1.1.1",
     "@std/yaml": "npm:@jsr/std__yaml@^1.1.1",
