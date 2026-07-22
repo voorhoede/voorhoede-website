@@ -24,6 +24,7 @@ import {
   type CdaStructuredTextRecord,
   isParagraph,
   isLink,
+  isHeading,
 } from "datocms-structured-text-utils";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import { type LinkToRecordFragment } from "~/components/Core/LinkToRecord/LinkToRecord.query";
@@ -170,6 +171,9 @@ const customMarkRules = [
 ];
 
 const customNodeRules = [
+  renderNodeRule(isHeading, ({ node, key, children }) =>
+    h(`h${node.level}`, { key, class: [`h${node.level} structured-text__heading`, node.style] }, children),
+  ),
   // Prevent empty newlines from rendering empty paragraphs
   renderNodeRule(isParagraph, ({ node, key, children }) => {
     // @ts-expect-error children is untyped
@@ -202,6 +206,11 @@ const customNodeRules = [
 </script>
 
 <style scoped>
+.structured-text :deep(.structured-text__heading) {
+  margin-top: var(--spacing-medium);
+  margin-bottom: var(--spacing-small);
+}
+
 .structured-text :deep(a:not(.app-button)) {
   color: var(--html-blue);
   text-decoration: underline;
