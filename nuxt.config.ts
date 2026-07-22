@@ -6,7 +6,6 @@ import { fetchBlogFeed } from './src/scripts/fetch-blog-feed';
 import { fetchRedirects } from './src/scripts/fetch-redirects';
 import { fetchI18nSlugs } from './src/scripts/fetch-i18n-slugs';
 import { svgSymbolLoader } from './src/scripts/svg-symbol-loader';
-import { htmlToMarkdown } from './src/scripts/html-to-markdown';
 import { defaultLanguage } from './src/lib/i18n';
 import { type Plugin } from 'vite';
 
@@ -19,6 +18,17 @@ export default defineNuxtConfig({
   nitro: {
     rollupConfig: {
       plugins: [svgSymbolLoader() as Plugin],
+    },
+    cloudflare: {
+      pages: {
+        // Route pages through the worker so the markdown middleware runs;
+        // only heavy static dirs skip it (served straight from static assets).
+        defaultRoutes: false,
+        routes: {
+          include: ['/*'],
+          exclude: ['/_nuxt/*', '/images/*', '/fonts/*'],
+        },
+      },
     },
     prerender: {
       crawlLinks: true,
@@ -89,36 +99,6 @@ export default defineNuxtConfig({
             },
           };
         });
-      });
-    },
-    'nitro:init'(nitro) {
-      const publicDirUrl = new URL(`file://${nitro.options.output.publicDir}/`);
-      const origin = process.env.BASE_URL ?? '';
-
-      nitro.hooks.hook('prerender:generate', async (route) => {
-        if (
-          !route.fileName?.endsWith('.html') ||
-          typeof route.contents !== 'string'
-        ) return;
-
-        let markdown: string;
-        try {
-          markdown = await htmlToMarkdown({
-            html: route.contents,
-            url: route.route ?? '',
-            origin,
-          });
-        } catch (error) {
-          console.warn(`[markdown] failed to convert ${route.route}:`, error);
-          return;
-        }
-
-        if (!markdown) return;
-
-        const mdFileName = route.fileName.replace(/(?:\/index)?\.html$/, '.md');
-        const outUrl = new URL(`.${mdFileName}`, publicDirUrl);
-        await mkdir(new URL('.', outUrl), { recursive: true });
-        await writeFile(outUrl, markdown, 'utf8');
       });
     },
   },
