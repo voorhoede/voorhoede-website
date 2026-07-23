@@ -6,44 +6,29 @@
     <ul class="logo-grid__list">
       <li
         class="logo-grid__item"
-        v-for="logo in logos"
-        :key="logo.id"
+        v-for="(logo, index) in data.logos"
+        :key="index"
       >
         <a
-          v-if="logo.href"
-          :href="logo.href"
+          v-if="logo.customData?.pageUrl"
+          :href="logo.customData?.pageUrl"
           target="_blank"
           rel="noopener noreferrer"
         >
           <DatoImage
-            v-if="logo.image"
             class="logo-grid__image"
-            :src="logo.image.url"
-            :alt="logo.image.alt || logo.title || ''"
+            :src="logo.url"
+            :alt="logo.alt || ''"
             :width="280"
             :height="80"
             loading="lazy"
           />
         </a>
-        <AppLink
-          v-else-if="logo.to"
-          :to="logo.to"
-        >
-          <DatoImage
-            v-if="logo.image"
-            class="logo-grid__image"
-            :src="logo.image.url"
-            :alt="logo.image.alt || logo.title || ''"
-            :width="280"
-            :height="80"
-            loading="lazy"
-          />
-        </AppLink>
         <DatoImage
-          v-else-if="logo.image"
+          v-else
           class="logo-grid__image"
-          :src="logo.image.url"
-          :alt="logo.image.alt || logo.title || ''"
+          :src="logo.url"
+          :alt="logo.alt || ''"
           :width="280"
           :height="80"
           loading="lazy"
@@ -62,54 +47,45 @@ const props = defineProps<{
 }>();
 
 const data = readFragment<typeof LogoGridBlockFragment>(props.data);
-
-const logos = computed(() =>
-  (data.logos ?? []).map((logo) => {
-    if (logo.__typename === "MenuItemExternalRecord") {
-      return {
-        id: logo.id,
-        title: logo.externalTitle,
-        image: logo.image,
-        href: logo.externalUrl,
-        to: null,
-      };
-    }
-    return {
-      id: logo.id,
-      title: logo.internalTitle,
-      image: logo.image,
-      href: null,
-      to: logo.internalLink ? useDatoNuxtRoute(logo.internalLink) : null,
-    };
-  }),
-);
 </script>
 
-<style>
+<style scoped>
 .logo-grid {
-  margin-bottom: var(--spacing-larger);
+  --logo-grid-columns: 2;
+
+  grid-column-end: var(--grid-page-end);
+  grid-column-start: var(--grid-page-start);
 }
 
 .logo-grid__title {
+  margin-bottom: var(--spacing-larger);
   text-align: center;
-  margin-bottom: var(--spacing-large);
 }
 
 .logo-grid__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: var(--spacing-large);
+  display: grid;
+  grid-template-columns: repeat(var(--logo-grid-columns), minmax(0, 1fr));
+  row-gap: var(--spacing-medium);
+  column-gap: var(--spacing-tiny);
 }
 
 .logo-grid__item {
-  flex: 0 1 140px;
+  width: auto;
 }
 
 .logo-grid__image {
-  width: 100%;
-  height: auto;
   object-fit: contain;
+}
+
+@media (min-width: 600px) {
+  .logo-grid {
+    --logo-grid-columns: 4;
+  }
+}
+
+@media (min-width: 1100px) {
+  .logo-grid__title {
+    margin-bottom: var(--spacing-big);
+  }
 }
 </style>

@@ -45,19 +45,10 @@ const props = defineProps<{
 
 const data = readFragment<typeof GroupingBlockFragment>(props.data);
 
-type GroupingSection = Extract<
-  BlockRecord,
-  | { __typename: "CaseListBlockRecord" }
-  | { __typename: "ReachOutBlockRecord" }
-  | { __typename: "TeamGalleryRecord" }
-  | { __typename: "TextBlockRecord" }
-  | { __typename: "TextImageBlockRecord" }
->;
-
 const items = computed(() =>
   data?.items.map((item) => {
     const { id, sections } = readFragment<typeof GroupingItemFragment>(item);
-    return { id, sections: (sections ?? []) as GroupingSection[] };
+    return { id, sections: (sections ?? []) as BlockRecord[] };
   }),
 );
 </script>

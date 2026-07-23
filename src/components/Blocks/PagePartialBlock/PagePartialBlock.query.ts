@@ -13,6 +13,7 @@ export const PagePartialBlockFragment = graphql(
       __typename
       id
       layout
+      theme
       item {
         id
         title
