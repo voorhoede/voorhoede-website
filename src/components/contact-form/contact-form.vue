@@ -111,6 +111,12 @@
         type="submit"
       />
     </form>
+    <div
+      v-if="hasCtaSlot"
+      class="contact-form__ctas"
+    >
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -138,6 +144,9 @@ export default {
   computed: {
     hasSidebar() {
       return this.title || this.contactPerson;
+    },
+    hasCtaSlot() {
+      return !!this.$slots.default?.()?.length;
     },
   },
   methods: {
@@ -170,6 +179,18 @@ export default {
   grid-row: 2;
 }
 
+.contact-form__header ~ .contact-form__ctas {
+  grid-row: 3;
+}
+
+.contact-form__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-small);
+  margin-top: var(--spacing-medium);
+}
+
 .contact-form__label:first-of-type {
   margin-top: 0;
 }
@@ -193,6 +214,12 @@ export default {
     grid-column-start: 21;
     grid-column-end: 46;
     grid-row: 1;
+  }
+
+  .contact-form__header ~ .contact-form__ctas {
+    grid-column-start: 21;
+    grid-column-end: 46;
+    grid-row: 2;
   }
 
   .contact-form__header ~ .contact-form__form > .contact-form__label-text {
