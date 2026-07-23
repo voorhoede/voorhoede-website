@@ -2,14 +2,6 @@ import { datocmsFetch } from "../lib/datocms-fetch";
 
 const operationsWithTranslatedSlugs = [
   {
-    route: "language-jobs-slug",
-    operation: "allJobs",
-  },
-  {
-    route: "language-services-slug",
-    operation: "allServices",
-  },
-  {
     route: "language-cases-slug",
     operation: "allCaseItems",
   },

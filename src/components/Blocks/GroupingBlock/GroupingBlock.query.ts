@@ -1,6 +1,9 @@
 import { graphql } from "~/utils/graphql";
-import { LogoGridBlockFragment } from "../LogoGridBlock/LogoGridBlock.query";
 import { TextImageBlockFragment } from "../TextImageBlock/TextImageBlock.query";
+import { TextBlockFragment } from "../TextBlock/TextBlock.query";
+import { CaseListBlockFragment } from "../CaseListBlock/CaseListBlock.query";
+import { ReachOutBlockFragment } from "../ReachOutBlock/ReachOutBlock.query";
+import { TeamGalleryBlockFragment } from "../TeamGalleryBlock/TeamGalleryBlock.query";
 
 export const GroupingItemFragment = graphql(
   `
@@ -9,17 +12,26 @@ export const GroupingItemFragment = graphql(
       title
       sections {
         __typename
-        ...LogoGridBlockFragment
+        ...CaseListBlockFragment
+        ...ReachOutBlockFragment
+        ...TeamGalleryBlockFragment
+        ...TextBlockFragment
         ...TextImageBlockFragment
       }
     }
   `,
-  [LogoGridBlockFragment, TextImageBlockFragment],
+  [
+    CaseListBlockFragment,
+    ReachOutBlockFragment,
+    TeamGalleryBlockFragment,
+    TextBlockFragment,
+    TextImageBlockFragment,
+  ],
 );
 
 export const GroupingBlockFragment = graphql(
   `
-    fragment GroupingBlockFragment on SectionGroupingRecord {
+    fragment GroupingBlockFragment on GroupingBlockRecord {
       __typename
       id
       theme

@@ -6,9 +6,9 @@
         :internal-link="
           $localeUrl({ name: 'cases-slug', params: { slug: caseItem.slug } })
         "
-        :image="caseItem.caseTeaser.image"
+        :image="caseItem.heroIllustration"
         :title="caseItem.title"
-        :body="caseItem.caseTeaser.title"
+        :body="caseItem.subtitle"
         :sizes="sizes"
       />
     </li>

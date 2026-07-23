@@ -24,25 +24,10 @@ export const LinkToRecordFragment = graphql(`
         ... on CaseItemRecord {
           slug
         }
-        ... on EventItemRecord {
+        ... on EventRecord {
           slug
         }
-        ... on JobRecord {
-          slug
-        }
-        ... on ServiceRecord {
-          slug
-        }
-        ... on PersonRecord {
-          slug
-        }
-        ... on MeetRecord {
-          parents: _allReferencingPeople {
-            __typename
-            slug
-          }
-        }
-        ... on ContactRecord {
+        ... on HomePageRecord {
           id
         }
       }

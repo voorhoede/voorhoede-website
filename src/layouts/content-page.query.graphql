@@ -1,42 +1,65 @@
 query DefaultLayout($locale: SiteLocale) {
   app(locale: $locale) {
-    githubUrl
-    youtubeUrl
-    linkedinUrl
-    phoneNumber
-    emailAddress
-    legal {
+    menuItems {
+      ... on MenuItemInternalRecord {
+        ...menuItemInternal
+      }
+      ... on MenuItemExternalRecord {
+        ...menuItemExternal
+      }
+      ... on MenuItemGroupRecord {
+        ...menuItemGroup
+      }
+    }
+    footerItems {
+      ... on MenuItemInternalRecord {
+        ...menuItemInternal
+      }
+      ... on MenuItemExternalRecord {
+        ...menuItemExternal
+      }
+      ... on MenuItemGroupRecord {
+        ...menuItemGroup
+      }
+    }
+    socials {
+      ... on SocialRecord {
+        id
+        url
+        icon {
+          name
+          title
+        }
+      }
+    }
+    certificates {
+      ... on MenuItemInternalRecord {
+        ...menuItemInternal
+      }
+      ... on MenuItemExternalRecord {
+        ...menuItemExternal
+      }
+    }
+    legalItems {
+      ... on VariableBlockRecord {
+        id
+        variable {
+          title
+          value
+          displayTitle
+        }
+      }
+    }
+    privacy {
+      ... on ExternalLinkRecord {
+        id
+        title
+        url
+      }
+    }
+    contactEmail {
       title
-      value
-    }
-    addresses {
-      address
-      city
-      googleMapsLink
-      postalCode
-    }
-  }
-  menu(locale: $locale) {
-    title
-    callToActions {
-      ...internalLink
-    }
-    links {
-      ...internalLink
-    }
-  }
-  footer(locale: $locale) {
-    links {
-      ...internalLink
-    }
-    copyrightTitle
-    copyrightLabel
-    copyrightLink
-    privacyTitle
-    privacyLabel
-    privacyLink
-    certificatesGrid {
-      ...menuItem
+      emailAddress
     }
   }
 }
@@ -48,55 +71,90 @@ fragment image on FileField {
   height
 }
 
-fragment internalLink on InternalLinkRecord {
-  id
-  title
-  link {
-    __typename
-    ... on PageRecord {
-      slug
-    }
-    ... on BlogPostRecord {
-      slug
-    }
-    ... on CaseItemRecord {
-      slug
-    }
-    ... on EventItemRecord {
-      slug
-    }
-    ... on JobRecord {
-      slug
-    }
-    ... on ServiceRecord {
-      slug
-    }
-    ... on PersonRecord {
-      slug
-    }
-    ... on MeetRecord {
-      parents: _allReferencingPeople {
-        __typename
-        slug
-      }
-    }
+fragment linkTarget on RecordInterface {
+  __typename
+  ... on PageRecord {
+    slug
+  }
+  ... on BlogPostRecord {
+    slug
+  }
+  ... on CaseItemRecord {
+    slug
+  }
+  ... on EventRecord {
+    slug
+  }
+  ... on HomePageRecord {
+    id
   }
 }
 
-fragment externalLink on ExternalLinkRecord {
-    __typename
-    id
-    title
-    url
-}
-
-fragment menuItem on MenuItemRecord {
+fragment menuItemInternal on MenuItemInternalRecord {
+  __typename
   id
+  title
+  style
   image {
     ...image
   }
   link {
-    ...externalLink,
-    ...internalLink
+    ...linkTarget
+  }
+}
+
+fragment menuItemExternal on MenuItemExternalRecord {
+  __typename
+  id
+  title
+  style
+  link
+  image {
+    ...image
+  }
+}
+
+fragment menuItemContact on MenuItemContactRecord {
+  __typename
+  id
+  title
+  style
+  contact {
+    ... on PhoneLinkRecord {
+      __typename
+      id
+      title
+      phoneNumber
+      action
+      style
+    }
+    ... on EmailLinkRecord {
+      __typename
+      id
+      title
+      emailAddress
+      style
+    }
+  }
+}
+
+fragment menuItemGroup on MenuItemGroupRecord {
+  __typename
+  id
+  title
+  items {
+    ... on MenuItemInternalRecord {
+      ...menuItemInternal
+    }
+    ... on MenuItemExternalRecord {
+      ...menuItemExternal
+    }
+    ... on MenuItemContactRecord {
+      ...menuItemContact
+    }
+    ... on MenuItemGroupRecord {
+      id
+      title
+    }
   }
 }

@@ -17,10 +17,14 @@
           >
         </app-link>
       </div>
-      <nav class="app-footer__column" aria-label="Explore">
+      <nav
+        v-if="exploreLinks.length"
+        class="app-footer__column"
+        aria-label="Explore"
+      >
         <ul class="app-footer__list">
           <li
-            v-for="link in footer.links"
+            v-for="link in exploreLinks"
             :key="link.id"
             class="app-footer__list-item body-small"
           >
@@ -34,50 +38,57 @@
         </ul>
       </nav>
 
-      <nav>
+      <nav
+        v-for="group in footerGroups"
+        :key="group.id"
+        :class="groupNavClass(group)"
+        :ref="groupRefName(group)"
+      >
         <h2 class="h4 app-footer__title">
-          {{ $t("say_hello") }}
+          {{ group.title }}
         </h2>
-        <ul class="body-small app-footer__list app-footer__list--contact">
-          <li class="app-footer__list-item">
-            <a
-              :href="`tel:${cleanedPhoneNumber}`"
-              class="app-footer__link"
-              @click="trackPhoneLink()"
-              >{{ app.phoneNumber }}</a
-            >
-          </li>
-          <li class="app-footer__list-item">
-            <a
-              :href="`mailto:${app.emailAddress}`"
-              class="app-footer__link"
-              @click="trackEmailLink()"
-            >
-              {{ app.emailAddress }}
-            </a>
-          </li>
-        </ul>
-      </nav>
-
-      <nav class="app-footer__list-address" ref="contact">
-        <h2 class="h4 app-footer__title">
-          {{ $t("visit_us") }}
-        </h2>
-        <ul class="body-small app-footer__list">
+        <ul
+          class="body-small app-footer__list"
+          :class="{ 'app-footer__list--contact': isContactGroup(group) }"
+        >
           <li
-            v-for="address in app.addresses"
-            :key="address.address"
+            v-for="item in group.items"
+            :key="item.id"
             class="app-footer__list-item"
           >
+            <template v-if="item.__typename === 'MenuItemContactRecord'">
+              <a
+                v-if="item.contact?.__typename === 'PhoneLinkRecord'"
+                :href="`tel:${cleanPhone(item.contact.phoneNumber)}`"
+                class="app-footer__link"
+                @click="trackPhoneLink()"
+              >{{ item.contact.title || item.contact.phoneNumber }}</a>
+              <a
+                v-else-if="item.contact?.__typename === 'EmailLinkRecord'"
+                :href="`mailto:${item.contact.emailAddress}`"
+                class="app-footer__link"
+                @click="trackEmailLink()"
+              >{{ item.contact.title || item.contact.emailAddress }}</a>
+            </template>
             <a
-              :href="address.googleMapsLink"
+              v-else-if="item.__typename === 'MenuItemExternalRecord'"
+              :href="item.link"
               class="app-footer__link app-footer__link--right"
               target="_blank"
               rel="noreferrer noopener"
             >
-              <span>{{ address.address }}</span>
-              <span>{{ address.postalCode }} {{ address.city }}</span>
+              <span
+                v-for="(line, index) in addressLines(item.title)"
+                :key="index"
+              >{{ line }}</span>
             </a>
+            <app-link
+              v-else-if="item.__typename === 'MenuItemInternalRecord'"
+              class="app-footer__link"
+              :to="useDatoNuxtRoute(item.link)"
+            >
+              {{ item.title }}
+            </app-link>
           </li>
         </ul>
       </nav>
@@ -85,35 +96,35 @@
       <div class="app-footer__list">
         <ul class="app-footer__list--icon">
           <li
-            v-for="socialLink in socialLinks"
-            :key="socialLink.url"
+            v-for="social in app.socials"
+            :key="social.id"
             class="app-footer__list-item--icon"
           >
-            <a :href="socialLink.url" target="_blank" rel="noreferrer noopener">
+            <a :href="social.url" target="_blank" rel="noreferrer noopener">
               <span class="sr-only">
-                {{ socialLink.platform }}
+                {{ social.icon?.title || social.icon?.name }}
               </span>
-              <app-icon :name="socialLink.icon" size="large" />
+              <app-icon :name="social.icon?.name" size="large" />
             </a>
           </li>
         </ul>
       </div>
     </div>
-    <!-- CERTIFICATES GRID -->
+
     <ul
-      v-if="footer.certificatesGrid?.length"
+      v-if="app.certificates?.length"
       class="app-footer__certificate-list"
     >
       <li
-        v-for="certificate in footer.certificatesGrid"
-        :key="certificate.link.url"
+        v-for="certificate in app.certificates"
+        :key="certificate.id"
       >
         <a
-          v-if="certificate.link?.__typename === 'ExternalLinkRecord'"
-          :href="certificate.link.url"
+          v-if="certificate.__typename === 'MenuItemExternalRecord'"
+          :href="certificate.link"
           target="_blank"
           rel="noreferrer noopener"
-          :aria-label="certificate.link.title"
+          :aria-label="certificate.title"
         >
           <dato-image
             class="app-footer__certificate-logo"
@@ -126,8 +137,8 @@
         </a>
         <app-link
           v-else
-          :to="useDatoNuxtRoute(certificate.link.link)"
-          :aria-label="certificate.link.title"
+          :to="useDatoNuxtRoute(certificate.link)"
+          :aria-label="certificate.title"
         >
           <dato-image
             class="app-footer__certificate-logo"
@@ -140,50 +151,46 @@
         </app-link>
       </li>
     </ul>
+
     <div class="app-footer__bottom">
       <div class="body-detail app-footer__bottom-text">
         <dl class="app-footer__definition-list">
-          <template v-for="{ title, value } in app.legal" :key="title">
+          <template
+            v-for="item in app.legalItems"
+            :key="item.id"
+          >
             <dt class="app-footer__definition-list-title">
-              {{ title }}
+              {{ item.variable?.displayTitle || item.variable?.title }}
             </dt>
             <dd class="app-footer__definition-list-value">
-              {{ value }}
+              {{ item.variable?.value }}
             </dd>
           </template>
         </dl>
       </div>
       <div class="body-detail">
-        <a
-          :href="footer.copyrightLink"
-          class="app-footer__copyright"
-          :aria-label="footer.copyrightTitle"
-          target="_blank"
-          rel="noreferrer noopener"
-          >{{ footer.copyrightLabel }}</a
+        <template
+          v-for="(link, index) in app.privacy"
+          :key="link.id"
         >
-        <span> - </span>
-        <a
-          :href="footer.privacyLink"
-          class="app-footer__privacy"
-          :aria-label="footer.privacyTitle"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          {{ footer.privacyLabel }}
-        </a>
+          <a
+            :href="link.url"
+            class="app-footer__copyright"
+            :aria-label="link.title"
+            target="_blank"
+            rel="noreferrer noopener"
+          >{{ link.title }}</a>
+          <span v-if="index < app.privacy.length - 1"> - </span>
+        </template>
       </div>
     </div>
   </footer>
 </template>
 
 <script>
-import { mastodonUrl } from "../../constants.mjs";
-
 export default {
   props: {
     app: { type: Object, required: true },
-    footer: { type: Object, required: true },
   },
   data() {
     return {
@@ -191,16 +198,15 @@ export default {
     };
   },
   computed: {
-    socialLinks() {
-      return [
-        { url: this.app.githubUrl, platform: "GitHub", icon: "github" },
-        { url: mastodonUrl, platform: "Mastodon", icon: "mastodon" },
-        { url: this.app.youtubeUrl, platform: "YouTube", icon: "youtube" },
-        { url: this.app.linkedinUrl, platform: "LinkedIn", icon: "linkedin" },
-      ];
+    exploreLinks() {
+      return (this.app.footerItems || []).filter(
+        (item) => item.__typename === 'MenuItemInternalRecord',
+      );
     },
-    cleanedPhoneNumber() {
-      return this.app.phoneNumber.replace(/[^0-9]/g, "");
+    footerGroups() {
+      return (this.app.footerItems || []).filter(
+        (item) => item.__typename === 'MenuItemGroupRecord',
+      );
     },
   },
   mounted() {
@@ -214,14 +220,33 @@ export default {
     }
   },
   methods: {
+    isContactGroup(group) {
+      return (group.items || []).some(
+        (item) => item.__typename === 'MenuItemContactRecord',
+      );
+    },
+    groupNavClass(group) {
+      return this.isContactGroup(group) ? undefined : 'app-footer__list-address';
+    },
+    groupRefName(group) {
+      return this.isContactGroup(group) ? undefined : 'contact';
+    },
+    addressLines(title) {
+      return String(title || '').split('\n').filter(Boolean);
+    },
+    cleanPhone(phoneNumber) {
+      return String(phoneNumber || '').replace(/[^0-9]/g, '');
+    },
     observeContact() {
       const contactElement = this.$refs.contact;
+      const el = Array.isArray(contactElement) ? contactElement[0] : contactElement;
+      if (!el) return;
       this.observer = new IntersectionObserver(function (entries) {
         if (entries.some((entry) => entry.isIntersecting)) {
-          this.unobserve(contactElement);
+          this.unobserve(el);
         }
       });
-      this.observer.observe(contactElement);
+      this.observer.observe(el);
     },
     trackPhoneLink() {
       useTrackEvent("Click on phone number");
@@ -230,7 +255,11 @@ export default {
       useTrackEvent("Click on email");
     },
     unobserveContact() {
-      this.observer.unobserve(this.$refs.contact);
+      const contactElement = this.$refs.contact;
+      const el = Array.isArray(contactElement) ? contactElement[0] : contactElement;
+      if (el && this.observer) {
+        this.observer.unobserve(el);
+      }
     },
   },
 };
@@ -312,6 +341,10 @@ export default {
 }
 
 @media (min-width: 520px) {
+  .app-footer__definition-list-title {
+    font-weight: bold;
+  }
+
   .app-footer__definition-list-value {
     padding-left: var(--spacing-tiny);
   }
@@ -324,6 +357,10 @@ export default {
   .app-footer__definition-list-value:last-child::after {
     display: none;
   }
+}
+
+.app-footer__definition-list-title {
+  font-weight: bold;
 }
 
 .app-footer__copyright,

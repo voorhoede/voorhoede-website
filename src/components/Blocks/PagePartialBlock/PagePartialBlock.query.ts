@@ -1,11 +1,10 @@
 import { graphql } from "~/utils/graphql";
 import { CaseListBlockFragment } from "../CaseListBlock/CaseListBlock.query";
-import { DialogueCtaBlockFragment } from "../DialogueCtaBlock/DialogueCtaBlock.query";
 import { GroupingBlockFragment } from "../GroupingBlock/GroupingBlock.query";
-import { ImageCardGridBlockFragment } from "../ImageCardGridBlock/ImageCardGridBlock.query";
 import { LogoGridBlockFragment } from "../LogoGridBlock/LogoGridBlock.query";
 import { PageHeaderBlockFragment } from "../PageHeaderBlock/PageHeaderBlock.query";
 import { ReachOutBlockFragment } from "../ReachOutBlock/ReachOutBlock.query";
+import { TextBlockFragment } from "../TextBlock/TextBlock.query";
 import { TextImageBlockFragment } from "../TextImageBlock/TextImageBlock.query";
 
 export const PagePartialBlockFragment = graphql(
@@ -13,18 +12,18 @@ export const PagePartialBlockFragment = graphql(
     fragment PagePartialBlockFragment on PagePartialBlockRecord {
       __typename
       id
+      layout
       item {
         id
         title
-        section {
+        blocks {
           __typename
           ...CaseListBlockFragment
-          ...DialogueCtaBlockFragment
           ...GroupingBlockFragment
-          ...ImageCardGridBlockFragment
           ...LogoGridBlockFragment
           ...PageHeaderBlockFragment
           ...ReachOutBlockFragment
+          ...TextBlockFragment
           ...TextImageBlockFragment
         }
       }
@@ -32,12 +31,11 @@ export const PagePartialBlockFragment = graphql(
   `,
   [
     CaseListBlockFragment,
-    DialogueCtaBlockFragment,
     GroupingBlockFragment,
-    ImageCardGridBlockFragment,
     LogoGridBlockFragment,
     PageHeaderBlockFragment,
     ReachOutBlockFragment,
+    TextBlockFragment,
     TextImageBlockFragment,
   ],
 );

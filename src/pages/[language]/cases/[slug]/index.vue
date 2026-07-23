@@ -11,6 +11,7 @@
     />
 
     <case-meta
+      v-if="data.page.metaData"
       class="page-case__case-meta"
       :expertise-title="data.page.metaData.expertisesTitle"
       :expertises="data.page.metaData.expertises"
@@ -25,12 +26,12 @@
 
     <div class="page-case__case-teaser">
       <h2 class="h2">
-        {{ data.page.caseTeaser.title }}
+        {{ data.page.subtitle }}
       </h2>
     </div>
 
     <article class="page-case__content">
-      <template v-for="item in data.page.content">
+      <template v-for="item in data.page.bodyBlocks">
         <div
           :id="item.id"
           v-if="item.__typename === 'TextSectionRecord'"
@@ -162,7 +163,10 @@
     return data.value.cases[nextCaseIndex]
   })
 
-  useSeoHead(data.value.page);
+  useSeoHead({
+    title: data.value.page.title,
+    social: data.value.page.seo,
+  });
 
   const typeDurationLetter = .05;
 </script>

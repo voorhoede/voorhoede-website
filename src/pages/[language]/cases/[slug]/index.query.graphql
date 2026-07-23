@@ -1,5 +1,5 @@
 query CaseSlug($locale: SiteLocale, $slug: String) {
-  page: caseItem(locale: $locale, filter: {slug: {eq: $slug}}) {
+  page: caseItem(locale: $locale, filter: { slug: { eq: $slug } }) {
     ...caseItem
   }
   cases: allCaseItems(locale: $locale, first: 100) {
@@ -10,12 +10,13 @@ query CaseSlug($locale: SiteLocale, $slug: String) {
 
 fragment caseItem on CaseItemRecord {
   title
+  subtitle
   slug
   i18nSlugs: _allSlugLocales {
     locale
     value
   }
-  social {
+  seo {
     title
     description
     image {
@@ -28,177 +29,9 @@ fragment caseItem on CaseItemRecord {
     width
     height
   }
-  caseTeaser {
-    title
-    image {
-      url
-      alt
-      width
-      height
-    }
-  }
-  content {
+  bodyBlocks {
     __typename
-    ... on TextSectionRecord {
-      id
-      title
-      body
-    }
-    ... on ImageRecord {
-      id
-      image {
-        url
-        alt
-        width
-        height
-      }
-      caption
-      captionPosition
-    }
-    ... on StorytellingBlockRecord {
-      id
-      storyItem {
-        title
-        items {
-          title
-          body
-          image {
-            url
-            alt
-            width
-            height
-          }
-        }
-      }
-    }
-    ... on TestimonialBlockRecord {
-      id
-      testimonial {
-        company
-        author
-        id
-        quote
-        validated
-        fullwidth
-      }
-    }
-    ... on ResponsiveVideoRecord {
-      id
-      mute
-      loop
-      autoplay
-      caption
-      gif {
-        url
-        title
-        height
-        width
-      }
-      video {
-        url
-        title
-        height
-        width
-        provider
-        providerUid
-        thumbnailUrl
-      }
-    }
-    ... on CallToActionRecord {
-      id
-      title
-      body
-      linkLabel
-      linkUrl
-    }
-    ... on QuoteRecord {
-      id
-      quote
-      author
-    }
-  }
-  metaData {
-    expertisesTitle
-    expertises {
-      title
-    }
-    deliverableTitle
-    deliverables {
-      title
-    }
-    technologiesTitle
-    technologies {
-      title
-    }
-    interestedTitle
-    interestedLinkUrl
-    interestedLinkLabel
   }
   quote
   author
-  pivots {
-    title
-    body(markdown: true)
-    links {
-      ...link
-    }
-    mailchimpValue
-    mailchimpName
-    mailchimpId
-    formType
-    contactPerson {
-      name
-      lastName
-      jobTitle
-      image {
-        url
-        alt
-        width
-        height
-      }
-    }
-  }
-}
-
-fragment link on RecordInterface {
-  __typename
-  ... on InternalLinkRecord {
-    id
-    title
-    link {
-      __typename
-      ... on PageRecord {
-        slug
-      }
-      ... on BlogPostRecord {
-        slug
-      }
-      ... on CaseItemRecord {
-        slug
-      }
-      ... on EventItemRecord {
-        slug
-      }
-      ... on JobRecord {
-        slug
-      }
-      ... on ServiceRecord {
-        slug
-      }
-      ... on PersonRecord {
-        slug
-      }
-      ... on MeetRecord {
-        parents: _allReferencingPeople {
-          __typename
-          slug
-        }
-      }
-    }
-  }
-  ... on ExternalLinkRecord {
-    id
-    title
-    url
-  }
 }

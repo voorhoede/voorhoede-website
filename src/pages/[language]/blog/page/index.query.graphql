@@ -60,13 +60,6 @@ query Blog(
 
 fragment blogPost on BlogPostRecord {
   slug
-  social {
-    title
-    description
-    image {
-      url
-    }
-  }
   title
   date: _firstPublishedAt
   authors {

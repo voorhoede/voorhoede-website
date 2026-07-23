@@ -1,15 +1,8 @@
 import { graphql } from "~/utils/graphql";
-import { LinkToRecordFragment } from "~/components/Core/LinkToRecord/LinkToRecord.query";
 
-export const InterstitialCtaBlockFragment = graphql(
-  `
-    fragment InterstitialCtaBlockFragment on SectionInterstitialCtaRecord {
-      title
-      backgroundColor
-      ctas {
-        ...LinkToRecordFragment
-      }
-    }
-  `,
-  [LinkToRecordFragment],
-);
+/** Legacy block — retained for unused components; maps to ActionBlockRecord. */
+export const InterstitialCtaBlockFragment = graphql(`
+  fragment InterstitialCtaBlockFragment on ActionBlockRecord {
+    id
+  }
+`);

@@ -1,7 +1,7 @@
 import { graphql } from "~/utils/graphql";
 
 export const TextImageBlockFragment = graphql(`
-  fragment TextImageBlockFragment on SectionTextImageRecord {
+  fragment TextImageBlockFragment on TextImageBlockRecord {
     text {
       value
     }

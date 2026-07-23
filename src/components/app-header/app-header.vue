@@ -16,15 +16,15 @@
       <div class="app-header__link-lists body-small">
         <ul class="app-header__link-list">
           <li
-            v-for="link in links"
-            :key="link.title"
+            v-for="item in linkItems"
+            :key="item.id"
             class="app-header__link-list-item"
           >
             <app-link
               class="app-header__link"
-              :to="useDatoNuxtRoute(link.link)"
+              :to="routeForItem(item)"
             >
-              {{ link.title }}
+              {{ item.title }}
             </app-link>
           </li>
           <li
@@ -34,7 +34,7 @@
             <app-button
               small
               :label="callToAction.title"
-              :to="useDatoNuxtRoute(callToAction.link)"
+              :to="routeForItem(callToAction)"
             />
           </li>
         </ul>
@@ -47,14 +47,26 @@
 <script>
   export default {
     props: {
-      links: {
+      menuItems: {
         type: Array,
         default: () => [],
       },
-      callToAction: {
-        type: Object,
-        default: () => {},
-      }
+    },
+    computed: {
+      linkItems() {
+        return this.menuItems.filter((item) => item.style !== 'button');
+      },
+      callToAction() {
+        return this.menuItems.find((item) => item.style === 'button') || null;
+      },
+    },
+    methods: {
+      routeForItem(item) {
+        if (item.__typename === 'MenuItemExternalRecord') {
+          return item.link;
+        }
+        return useDatoNuxtRoute(item.link);
+      },
     },
   }
 </script>

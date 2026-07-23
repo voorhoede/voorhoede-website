@@ -1,20 +1,9 @@
 import { graphql } from "~/utils/graphql";
 
+/** Legacy block — retained for unused components; maps to GalleryBlockRecord. */
 export const ImageGridBlockFragment = graphql(`
-  fragment ImageGridBlockFragment on SectionImageGridRecord {
+  fragment ImageGridBlockFragment on GalleryBlockRecord {
+    id
     title
-    backgroundColor
-    items {
-      title
-      description
-      image {
-        url
-        alt
-        width
-        height
-      }
-      isHighlighted
-      isFullWidth
-    }
   }
 `);
