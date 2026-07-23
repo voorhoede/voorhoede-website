@@ -1,12 +1,12 @@
 <template>
-  <BlockItem v-if="section" :block="section" />
+  <Blocks v-if="blocks.length" :blocks="blocks" />
 </template>
 
 <script setup lang="ts">
 import type { PagePartialBlockFragment } from "./PagePartialBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import type { BlockRecord } from "../types";
-import BlockItem from "../BlockItem.vue";
+import Blocks from "../Blocks.vue";
 
 const props = defineProps<{
   data: FragmentOf<typeof PagePartialBlockFragment>;
@@ -19,5 +19,7 @@ type SupportedBlockItem = Exclude<
   { __typename: "PagePartialBlockRecord" }
 >;
 
-const section = computed(() => data.item?.section as SupportedBlockItem);
+const blocks = computed(
+  () => (data.item?.blocks ?? []) as SupportedBlockItem[],
+);
 </script>

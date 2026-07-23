@@ -3,7 +3,7 @@
     <h1 class="sr-only">
       {{ data?.page?.title }}
     </h1>
-    <Blocks v-if="data?.page?.sections" :blocks="data.page.sections" />
+    <Blocks v-if="data?.page?.bodyBlocks" :blocks="data.page.bodyBlocks" />
   </div>
 </template>
 
@@ -12,25 +12,15 @@ definePageMeta({ layout: "content-page" });
 
 import { withQuery } from "ufo";
 
-import { BlogsSectionBlockFragment } from "~/components/Blocks/BlogsSectionBlock/BlogsSectionBlock.query";
-import { CallToActionBlockFragment } from "~/components/Blocks/CallToActionBlock/CallToActionBlock.query";
 import { CaseListBlockFragment } from "~/components/Blocks/CaseListBlock/CaseListBlock.query";
-import { DialogueCtaBlockFragment } from "~/components/Blocks/DialogueCtaBlock/DialogueCtaBlock.query";
-import { EventsSectionBlockFragment } from "~/components/Blocks/EventsSectionBlock/EventsSectionBlock.query";
-import { GlossarySectionBlockFragment } from "~/components/Blocks/GlossarySectionBlock/GlossarySectionBlock.query";
-import { ImageCardGridBlockFragment } from "~/components/Blocks/ImageCardGridBlock/ImageCardGridBlock.query";
-import { ImageGridBlockFragment } from "~/components/Blocks/ImageGridBlock/ImageGridBlock.query";
-import { InterstitialCtaBlockFragment } from "~/components/Blocks/InterstitialCtaBlock/InterstitialCtaBlock.query";
-import { JobsListBlockFragment } from "~/components/Blocks/JobsListBlock/JobsListBlock.query";
+import { GroupingBlockFragment } from "~/components/Blocks/GroupingBlock/GroupingBlock.query";
 import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGridBlock.query";
-import { NewsletterBlockFragment } from "~/components/Blocks/NewsletterBlock/NewsletterBlock.query";
 import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
 import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
 import { ReachOutBlockFragment } from "~/components/Blocks/ReachOutBlock/ReachOutBlock.query";
-import { ResponsiveVideoBlockFragment } from "~/components/Blocks/ResponsiveVideoBlock/ResponsiveVideoBlock.query";
 import { TeamGalleryBlockFragment } from "~/components/Blocks/TeamGalleryBlock/TeamGalleryBlock.query";
 import { TextBlockFragment } from "~/components/Blocks/TextBlock/TextBlock.query";
-import { TimelineBlockFragment } from "~/components/Blocks/TimelineBlock/TimelineBlock.query";
+import { TextImageBlockFragment } from "~/components/Blocks/TextImageBlock/TextImageBlock.query";
 
 const route = useRoute();
 
@@ -46,7 +36,7 @@ const query = graphql(
     query Page($locale: SiteLocale, $slug: String) {
       page(locale: $locale, filter: { slug: { eq: $slug } }) {
         title
-        social {
+        seo {
           title
           description
           image {
@@ -56,51 +46,31 @@ const query = graphql(
             height
           }
         }
-        sections {
+        bodyBlocks {
           __typename
-          ...BlogsSectionBlockFragment
-          ...CallToActionBlockFragment
           ...CaseListBlockFragment
-          ...DialogueCtaBlockFragment
-          ...EventsSectionBlockFragment
-          ...GlossarySectionBlockFragment
-          ...ImageCardGridBlockFragment
-          ...ImageGridBlockFragment
-          ...InterstitialCtaBlockFragment
-          ...JobsListBlockFragment
+          ...GroupingBlockFragment
           ...LogoGridBlockFragment
-          ...NewsletterBlockFragment
           ...PageHeaderBlockFragment
           ...PagePartialBlockFragment
           ...ReachOutBlockFragment
-          ...ResponsiveVideoBlockFragment
           ...TeamGalleryBlockFragment
           ...TextBlockFragment
-          ...TimelineBlockFragment
+          ...TextImageBlockFragment
         }
       }
     }
   `,
   [
-    BlogsSectionBlockFragment,
-    CallToActionBlockFragment,
     CaseListBlockFragment,
-    DialogueCtaBlockFragment,
-    EventsSectionBlockFragment,
-    GlossarySectionBlockFragment,
-    ImageCardGridBlockFragment,
-    ImageGridBlockFragment,
-    InterstitialCtaBlockFragment,
-    JobsListBlockFragment,
+    GroupingBlockFragment,
     LogoGridBlockFragment,
-    NewsletterBlockFragment,
     PageHeaderBlockFragment,
     PagePartialBlockFragment,
     ReachOutBlockFragment,
-    ResponsiveVideoBlockFragment,
     TeamGalleryBlockFragment,
     TextBlockFragment,
-    TimelineBlockFragment,
+    TextImageBlockFragment,
   ],
 );
 
@@ -110,17 +80,13 @@ const { data } = await useAsyncData(route.path, async () => {
     variables: { locale: route.params.language as "nl" | "en", slug },
   });
 
-  // #region agent log
-  fetch('http://127.0.0.1:7378/ingest/bd12d82c-517b-4d1e-bd21-690bc7f58739',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'ce9598'},body:JSON.stringify({sessionId:'ce9598',location:'index.vue:107',message:'page query result',data:{hasData:!!result.data,hasError:!!result.error,errorMessage:result.error?.message,pageTitle:result.data?.page?.title,sectionsCount:(result.data?.page as any)?.sections?.length,sectionsTypes:(result.data?.page as any)?.sections?.map((s: any) => s.__typename)},timestamp:Date.now(),hypothesisId:'H1-H2'})}).catch(()=>{});
-  // #endregion
-
   return result.data;
 });
 
-if (data.value?.page && data.value.page.social) {
+if (data.value?.page && data.value.page.seo) {
   useSeoHead({
     title: data.value.page.title,
-    social: data.value.page.social,
+    social: data.value.page.seo,
   });
 }
 

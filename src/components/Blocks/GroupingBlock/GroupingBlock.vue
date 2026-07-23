@@ -20,7 +20,7 @@
           'grouping-block-item',
           {
             'grouping-block-item--text-image':
-              section.__typename === 'SectionTextImageRecord',
+              section.__typename === 'TextImageBlockRecord',
           },
         ]"
       >
@@ -47,7 +47,11 @@ const data = readFragment<typeof GroupingBlockFragment>(props.data);
 
 type GroupingSection = Extract<
   BlockRecord,
-  { __typename: "SectionLogoGridRecord" | "SectionTextImageRecord" }
+  | { __typename: "CaseListBlockRecord" }
+  | { __typename: "ReachOutBlockRecord" }
+  | { __typename: "TeamGalleryRecord" }
+  | { __typename: "TextBlockRecord" }
+  | { __typename: "TextImageBlockRecord" }
 >;
 
 const items = computed(() =>

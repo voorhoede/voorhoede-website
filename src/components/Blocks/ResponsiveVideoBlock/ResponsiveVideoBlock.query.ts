@@ -1,19 +1,9 @@
 import { graphql } from "~/utils/graphql";
 
+/** Legacy block — retained for unused components; maps to VideoEmbedBlockRecord. */
 export const ResponsiveVideoBlockFragment = graphql(`
-  fragment ResponsiveVideoBlockFragment on SectionVideoRecord {
-    autoplay
-    loop
-    mute
+  fragment ResponsiveVideoBlockFragment on VideoEmbedBlockRecord {
+    id
     caption
-    video {
-      url
-      title
-      height
-      width
-      provider
-      providerUid
-      thumbnailUrl
-    }
   }
 `);

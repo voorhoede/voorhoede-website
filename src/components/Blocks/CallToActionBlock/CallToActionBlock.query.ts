@@ -1,24 +1,8 @@
 import { graphql } from "~/utils/graphql";
 
+/** Legacy block — retained for unused components; maps to ActionBlockRecord. */
 export const CallToActionBlockFragment = graphql(`
-  fragment CallToActionBlockFragment on CallToActionRecord {
+  fragment CallToActionBlockFragment on ActionBlockRecord {
     id
-    title
-    body
-    linkLabel
-    linkUrl
-    linkIsExternal
-    secondaryLinkLabel
-    secondaryLinkUrl
-    secondaryLinkIsExternal
-    person {
-      name
-      image {
-        url
-        alt
-        width
-        height
-      }
-    }
   }
 `);

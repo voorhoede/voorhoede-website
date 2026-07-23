@@ -1,7 +1,10 @@
 <template>
   <main>
     <h1 class="sr-only">{{ data?.homePage?.title }}</h1>
-    <Blocks v-if="data?.homePage?.sections" :blocks="data.homePage.sections" />
+    <Blocks
+      v-if="data?.homePage?.bodyBlocks"
+      :blocks="data.homePage.bodyBlocks"
+    />
     <section class="page-index__blog-posts grid">
       <div class="grid">
         <h2
@@ -41,9 +44,7 @@ import { useFetchDatocmsContent } from "~/composables/useFetchDatocmsContent";
 import { graphql } from "~/utils/graphql";
 
 import { CaseListBlockFragment } from "~/components/Blocks/CaseListBlock/CaseListBlock.query";
-import { DialogueCtaBlockFragment } from "~/components/Blocks/DialogueCtaBlock/DialogueCtaBlock.query";
 import { GroupingBlockFragment } from "~/components/Blocks/GroupingBlock/GroupingBlock.query";
-import { ImageCardGridBlockFragment } from "~/components/Blocks/ImageCardGridBlock/ImageCardGridBlock.query";
 import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGridBlock.query";
 import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
 import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
@@ -67,12 +68,10 @@ const query = graphql(
             height
           }
         }
-        sections {
+        bodyBlocks {
           __typename
           ...CaseListBlockFragment
-          ...DialogueCtaBlockFragment
           ...GroupingBlockFragment
-          ...ImageCardGridBlockFragment
           ...LogoGridBlockFragment
           ...PageHeaderBlockFragment
           ...PagePartialBlockFragment
@@ -105,9 +104,7 @@ const query = graphql(
   `,
   [
     CaseListBlockFragment,
-    DialogueCtaBlockFragment,
     GroupingBlockFragment,
-    ImageCardGridBlockFragment,
     LogoGridBlockFragment,
     PageHeaderBlockFragment,
     PagePartialBlockFragment,
@@ -122,10 +119,6 @@ const { data } = await useAsyncData(route.path, async () => {
     query,
     variables: { locale: route.params.language as "nl" | "en" },
   });
-
-  // #region agent log
-  fetch('http://127.0.0.1:7378/ingest/bd12d82c-517b-4d1e-bd21-690bc7f58739',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'ce9598'},body:JSON.stringify({sessionId:'ce9598',location:'index.vue(homepage):120',message:'homepage query result',data:{hasData:!!result.data,hasError:!!result.error,errorMessage:result.error?.message,homePageTitle:result.data?.homePage?.title,sectionsCount:(result.data?.homePage as any)?.sections?.length,sectionsTypes:(result.data?.homePage as any)?.sections?.map((s: any) => s.__typename)},timestamp:Date.now(),hypothesisId:'H1-H2'})}).catch(()=>{});
-  // #endregion
 
   return result.data;
 });

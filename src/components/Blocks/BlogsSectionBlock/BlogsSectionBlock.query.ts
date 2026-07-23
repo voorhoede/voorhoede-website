@@ -1,37 +1,9 @@
 import { graphql } from "~/utils/graphql";
 
+/** Legacy block — retained for unused components; maps to BlogListBlockRecord. */
 export const BlogsSectionBlockFragment = graphql(`
-  fragment BlogsSectionBlockFragment on SectionBlogsSectionRecord {
-    backgroundColor
+  fragment BlogsSectionBlockFragment on BlogListBlockRecord {
+    id
     title
-    itemSize
-    items {
-      slug
-      title
-      date: _firstPublishedAt
-      authors {
-        name
-        image {
-          url
-          alt
-          width
-          height
-        }
-      }
-    }
-    pinnedItems {
-      slug
-      title
-      date: _firstPublishedAt
-      authors {
-        name
-        image {
-          url
-          alt
-          width
-          height
-        }
-      }
-    }
   }
 `);

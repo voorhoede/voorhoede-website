@@ -1,19 +1,9 @@
 import { graphql } from "~/utils/graphql";
 
+/** Legacy block — retained for unused components; maps to ListBlockRecord. */
 export const TimelineBlockFragment = graphql(`
-  fragment TimelineBlockFragment on SectionTimelineRecord {
-    backgroundColor
-    items {
-      id
-      date
-      title
-      description
-      image {
-        url
-        alt
-        width
-        height
-      }
-    }
+  fragment TimelineBlockFragment on ListBlockRecord {
+    id
+    listType
   }
 `);

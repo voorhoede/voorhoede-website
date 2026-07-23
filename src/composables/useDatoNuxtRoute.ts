@@ -31,8 +31,14 @@ export function useDatoNuxtRoute(page: Page) {
     case 'EventOverviewRecord': {
       return { name: 'language-events', params: sharedParams }
     }
+    case 'EventRecord': {
+      return { name: 'language-events-slug', params: { ...sharedParams, slug: page.slug } }
+    }
     case 'EventItemRecord': {
       return { name: 'language-events-slug', params: { ...sharedParams, slug: page.slug } }
+    }
+    case 'HomePageRecord': {
+      return { name: 'language', params: sharedParams }
     }
     case 'FaqRecord': {
       return { name: 'language-faq', params: sharedParams }

@@ -3,21 +3,19 @@ import { LinkToRecordFragment } from "~/components/Core/LinkToRecord/LinkToRecor
 
 export const CaseListBlockFragment = graphql(
   `
-    fragment CaseListBlockFragment on SectionCaseListRecord {
+    fragment CaseListBlockFragment on CaseListBlockRecord {
       id
       title
       columns
       cases {
         title
         slug
-        caseTeaser {
-          title
-          image {
-            url
-            alt
-            width
-            height
-          }
+        subtitle
+        heroIllustration {
+          url
+          alt
+          width
+          height
         }
       }
       text {
