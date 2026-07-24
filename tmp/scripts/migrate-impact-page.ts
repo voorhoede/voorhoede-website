@@ -28,6 +28,8 @@ const BLOCK = {
   groupingItem: 'X-p4BCeGTZW3byYyovSV2g',
   imageBlock: '41672',
   reachOutBlock: 'ZoimmZOiR0mkjwIEXN-9Ag',
+  imageGridBlock: 'VjlVydOmSp-kj5GVXeVG4g',
+  imageGridItem: 'YMMwC_xjQ6qxjCepnLpPug',
   internalLink: '2037919',
   externalLink: '2034503',
 } as const;
@@ -326,6 +328,103 @@ function buildImpactfulWorkBlock(imageGrid: RefBlock): ReturnType<typeof buildBl
   });
 }
 
+function buildInternalLink(link: RefBlock): ReturnType<typeof buildBlockRecord> {
+  const linkData = attrs(link);
+  const pageId = String(linkData.link ?? '');
+
+  if (!pageId) {
+    throw new Error('Internal link is missing link target');
+  }
+
+  return buildBlockRecord({
+    item_type: ref(BLOCK.internalLink),
+    title: String(linkData.title ?? ''),
+    link: pageId,
+    style: linkStyle(String(linkData.style ?? '')),
+  });
+}
+
+function buildImageGridBlock(section: RefBlock): ReturnType<typeof buildBlockRecord> {
+  const data = attrs(section);
+  const items = (data.items as RefBlock[] | undefined) ?? [];
+
+  const gridItems = items.map((item) => {
+    const itemData = attrs(item);
+    const title = String(itemData.title ?? '');
+    const image = normalizeFile(itemData.image as FileValue | null, title || 'Image');
+    const body = itemData.body as StDocument | null | undefined;
+    const links = (itemData.links as RefBlock[] | undefined) ?? [];
+
+    if (!image) {
+      throw new Error(`Image grid item "${title}" is missing required image`);
+    }
+
+    return buildBlockRecord({
+      item_type: ref(BLOCK.imageGridItem),
+      title,
+      image,
+      body: body ?? { schema: 'dast', document: { type: 'root', children: [] } },
+      links: links.map(buildInternalLink),
+      is_full_width: false,
+      is_highlighted: false,
+    });
+  });
+
+  return buildBlockRecord({
+    item_type: ref(BLOCK.imageGridBlock),
+    title: String(data.title ?? ''),
+    layout: 'cards',
+    card_orientation: String(data.card_orientation ?? 'vertical'),
+    items: gridItems,
+  });
+}
+
+function collectCardLinkTargets(refDump: {
+  sections: Record<string, RefBlock[]>;
+}): string[] {
+  const targets = new Set<string>();
+
+  for (const locale of ['en', 'nl'] as const) {
+    const cardGrid = (refDump.sections?.[locale] ?? []).find(
+      (section) => section.__itemTypeId === REF_SECTION.imageCardGrid,
+    );
+
+    if (!cardGrid) {
+      throw new Error(`Missing image card grid section for locale ${locale}`);
+    }
+
+    const items = (attrs(cardGrid).items as RefBlock[] | undefined) ?? [];
+
+    for (const item of items) {
+      const links = (attrs(item).links as RefBlock[] | undefined) ?? [];
+
+      for (const link of links) {
+        const pageId = String(attrs(link).link ?? '');
+        if (pageId) {
+          targets.add(pageId);
+        }
+      }
+    }
+  }
+
+  return [...targets];
+}
+
+async function preflightCardLinkTargets(
+  client: Client,
+  refDump: { sections: Record<string, RefBlock[]> },
+): Promise<void> {
+  const targets = collectCardLinkTargets(refDump);
+
+  for (const pageId of targets) {
+    try {
+      await client.items.find(pageId);
+    } catch {
+      throw new Error(`Card link target page not found in TAR: ${pageId}`);
+    }
+  }
+}
+
 function buildReachOutBlock(dialogue: RefBlock): ReturnType<typeof buildBlockRecord> {
   const data = attrs(dialogue);
   const ctas = (data.ctas as RefBlock[] | undefined) ?? [];
@@ -371,7 +470,7 @@ function mapSection(section: RefBlock, locale: Locale): ReturnType<typeof buildB
     case REF_SECTION.structuredText:
       return buildStructuredTextBlock(section);
     case REF_SECTION.imageCardGrid:
-      return null;
+      return buildImageGridBlock(section);
     case REF_SECTION.imageText:
       return buildBcorpBlock(section);
     case REF_SECTION.imageGrid:
@@ -383,10 +482,43 @@ function mapSection(section: RefBlock, locale: Locale): ReturnType<typeof buildB
   }
 }
 
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function updatePageWithRetry(
+  client: Client,
+  pageId: string,
+  bodyBlocks: Record<Locale, ReturnType<typeof buildBlockRecord>[]>,
+  maxAttempts = 8,
+) {
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      await client.items.update(pageId, { body_blocks: bodyBlocks });
+      return;
+    } catch (error) {
+      const message = String(error);
+      const isLocked = message.includes('ITEM_LOCKED');
+
+      if (!isLocked || attempt === maxAttempts) {
+        throw error;
+      }
+
+      const delayMs = attempt * 3000;
+      console.log(
+        `Page locked (attempt ${attempt}/${maxAttempts}), retrying in ${delayMs}ms...`,
+      );
+      await sleep(delayMs);
+    }
+  }
+}
+
 export default async function (client: Client): Promise<void> {
   const refDump = JSON.parse(
     readFileSync('/tmp/ref-impact-sections.json', 'utf8'),
   ) as { sections: Record<string, RefBlock[]> };
+
+  await preflightCardLinkTargets(client, refDump);
 
   const bodyBlocks: Record<Locale, ReturnType<typeof buildBlockRecord>[]> = {
     en: [],
@@ -411,9 +543,7 @@ export default async function (client: Client): Promise<void> {
   const tarPage = await client.items.find(PAGE_ID, { version: 'current' });
   const wasPublished = tarPage.meta.status === 'published';
 
-  await client.items.update(PAGE_ID, {
-    body_blocks: bodyBlocks,
-  });
+  await updatePageWithRetry(client, PAGE_ID, bodyBlocks);
 
   if (wasPublished) {
     await client.items.publish(PAGE_ID);
@@ -426,6 +556,8 @@ export default async function (client: Client): Promise<void> {
         refEnvironment: 'slugs-and-blocks',
         updatedLocales: ['en', 'nl'],
         blockCount: { en: bodyBlocks.en.length, nl: bodyBlocks.nl.length },
+        cardGridBlockIndex: 2,
+        cardGridBlockType: 'image_grid_block',
         published: wasPublished,
         meetingLinkTarget: CONTACT_PAGE_ID,
       },

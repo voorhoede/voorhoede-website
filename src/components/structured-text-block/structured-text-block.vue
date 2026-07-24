@@ -45,7 +45,7 @@
     paragraphVariant: {
       type: String,
       default: 'body',
-      validator: (variant) => ['body', 'body-big', 'testimonial'].includes(variant),
+      validator: (variant) => ['body', 'body-big', 'body-small', 'testimonial'].includes(variant),
     },
     hasToc: {
       type: Boolean,

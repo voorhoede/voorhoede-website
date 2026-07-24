@@ -22,7 +22,10 @@ const props = defineProps<{
       'block--grey-background': block.backgroundColor === BackgroundColor.Grey,
     }"
   >
-    <BlockItem :block="block" />
+    <BlockItem
+      :block="block"
+      :theme="block.backgroundColor ?? BackgroundColor.None"
+    />
   </div>
 </template>
 

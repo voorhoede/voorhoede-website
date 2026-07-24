@@ -12,5 +12,6 @@ export const TextImageBlockFragment = graphql(`
       height
     }
     layout
+    style
   }
 `);

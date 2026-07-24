@@ -45,6 +45,7 @@ import { graphql } from "~/utils/graphql";
 
 import { CaseListBlockFragment } from "~/components/Blocks/CaseListBlock/CaseListBlock.query";
 import { GroupingBlockFragment } from "~/components/Blocks/GroupingBlock/GroupingBlock.query";
+import { ImageGridBlockFragment } from "~/components/Blocks/ImageGridBlock/ImageGridBlock.query";
 import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGridBlock.query";
 import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
 import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
@@ -72,6 +73,7 @@ const query = graphql(
           __typename
           ...CaseListBlockFragment
           ...GroupingBlockFragment
+          ...ImageGridBlockFragment
           ...LogoGridBlockFragment
           ...PageHeaderBlockFragment
           ...PagePartialBlockFragment
@@ -105,6 +107,7 @@ const query = graphql(
   [
     CaseListBlockFragment,
     GroupingBlockFragment,
+    ImageGridBlockFragment,
     LogoGridBlockFragment,
     PageHeaderBlockFragment,
     PagePartialBlockFragment,

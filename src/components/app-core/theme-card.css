@@ -1,0 +1,8 @@
+.theme-card--none,
+.theme-card--grey {
+  --background-card: var(--bg-pastel);
+}
+
+.theme-card--pastel-yellow {
+  --background-card: var(--white);
+}

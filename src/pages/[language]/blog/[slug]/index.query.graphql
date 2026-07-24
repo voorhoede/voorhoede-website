@@ -104,28 +104,6 @@ fragment page on BlogPostRecord {
       body
     }
   }
-  pivots {
-    title
-    body(markdown: true)
-    links {
-      ...link
-    }
-    mailchimpValue
-    mailchimpName
-    mailchimpId
-    formType
-    contactPerson {
-      name
-      lastName
-      jobTitle
-      image {
-        url
-        alt
-        width
-        height
-      }
-    }
-  }
   relatedBlogPosts {
     ...blogPostListItem
   }
