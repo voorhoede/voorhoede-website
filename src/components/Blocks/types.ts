@@ -1,5 +1,7 @@
+import type { ImageBlockFragment } from "./shared/structuredText.query";
 import type { CaseListBlockFragment } from "./CaseListBlock/CaseListBlock.query";
 import type { GroupingBlockFragment } from "./GroupingBlock/GroupingBlock.query";
+import type { ImageGridBlockFragment } from "./ImageGridBlock/ImageGridBlock.query";
 import type { LogoGridBlockFragment } from "./LogoGridBlock/LogoGridBlock.query";
 import type { PageHeaderBlockFragment } from "./PageHeaderBlock/PageHeaderBlock.query";
 import type { PagePartialBlockFragment } from "./PagePartialBlock/PagePartialBlock.query";
@@ -12,6 +14,12 @@ import type { FragmentOf } from "~/utils/graphql";
 export type BlockRecord =
   | (FragmentOf<typeof CaseListBlockFragment> & {
       __typename: "CaseListBlockRecord";
+    })
+  | (FragmentOf<typeof ImageBlockFragment> & {
+      __typename: "ImageBlockRecord";
+    })
+  | (FragmentOf<typeof ImageGridBlockFragment> & {
+      __typename: "ImageGridBlockRecord";
     })
   | (FragmentOf<typeof GroupingBlockFragment> & {
       __typename: "GroupingBlockRecord";

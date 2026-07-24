@@ -404,7 +404,7 @@ type BlogListBlockRecord implements RecordInterface {
   updatedAt: DateTime!
 }
 
-union BlogPostModelBodyBlocksField = ActionBlockRecord | BlogListBlockRecord | CaseListBlockRecord | CodeBlockRecord | CounterBlockRecord | EmbedBlockRecord | EventsListRecord | GalleryBlockRecord | GlossaryListRecord | GroupingBlockRecord | ImageBlockRecord | ListBlockRecord | LogoGridRecord | PageHeaderRecord | PageListRecord | PagePartialBlockRecord | ReachOutBlockRecord | TeamGalleryRecord | TestimonialBlockRecord | TextBlockRecord | TextImageBlockRecord | VideoBlockRecord | VideoEmbedBlockRecord
+union BlogPostModelBodyBlocksField = ActionBlockRecord | BlogListBlockRecord | CaseListBlockRecord | CodeBlockRecord | CounterBlockRecord | EmbedBlockRecord | EventsListRecord | GalleryBlockRecord | GlossaryListRecord | GroupingBlockRecord | ImageBlockRecord | ImageGridBlockRecord | ListBlockRecord | LogoGridRecord | PageHeaderRecord | PageListRecord | PagePartialBlockRecord | ReachOutBlockRecord | TeamGalleryRecord | TestimonialBlockRecord | TextBlockRecord | TextImageBlockRecord | VideoBlockRecord | VideoEmbedBlockRecord
 
 type BlogPostModelBodyBlocksFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -422,8 +422,12 @@ enum BlogPostModelFieldsReferencingBlogPostModel {
   blogPost_bodyBlocks__groupingBlock_items__groupingItem_sections__blogListBlock_items
   blogPost_bodyBlocks__groupingBlock_items__groupingItem_sections__blogListBlock_pinnedItems
   blogPost_bodyBlocks__groupingBlock_items__groupingItem_sections__caseListBlock_text__internalLink_link
+  blogPost_bodyBlocks__groupingBlock_items__groupingItem_sections__imageGridBlock_items__imageGridItem_cta__actionBlock_items__internalLink_link
+  blogPost_bodyBlocks__groupingBlock_items__groupingItem_sections__imageGridBlock_items__imageGridItem_links__internalLink_link
   blogPost_bodyBlocks__groupingBlock_items__groupingItem_sections__reachOutBlock_cta__internalLink_link
   blogPost_bodyBlocks__groupingBlock_items__groupingItem_sections__textBlock_text__actionBlock_items__internalLink_link
+  blogPost_bodyBlocks__imageGridBlock_items__imageGridItem_cta__actionBlock_items__internalLink_link
+  blogPost_bodyBlocks__imageGridBlock_items__imageGridItem_links__internalLink_link
   blogPost_bodyBlocks__reachOutBlock_cta__internalLink_link
   blogPost_bodyBlocks__textBlock_text__actionBlock_items__internalLink_link
   blogPost_relatedBlogPosts
@@ -915,7 +919,7 @@ input BooleanFilter {
 """Represents `true` or `false` values."""
 scalar BooleanType
 
-union CaseItemModelBodyBlocksField = ActionBlockRecord | BlogListBlockRecord | CaseListBlockRecord | CodeBlockRecord | CounterBlockRecord | EmbedBlockRecord | EventsListRecord | GalleryBlockRecord | GlossaryListRecord | GroupingBlockRecord | ImageBlockRecord | ListBlockRecord | LogoGridRecord | PageHeaderRecord | PageListRecord | PagePartialBlockRecord | ReachOutBlockRecord | TeamGalleryRecord | TestimonialBlockRecord | TextBlockRecord | TextImageBlockRecord | VideoBlockRecord | VideoEmbedBlockRecord
+union CaseItemModelBodyBlocksField = ActionBlockRecord | BlogListBlockRecord | CaseListBlockRecord | CodeBlockRecord | CounterBlockRecord | EmbedBlockRecord | EventsListRecord | GalleryBlockRecord | GlossaryListRecord | GroupingBlockRecord | ImageBlockRecord | ImageGridBlockRecord | ListBlockRecord | LogoGridRecord | PageHeaderRecord | PageListRecord | PagePartialBlockRecord | ReachOutBlockRecord | TeamGalleryRecord | TestimonialBlockRecord | TextBlockRecord | TextImageBlockRecord | VideoBlockRecord | VideoEmbedBlockRecord
 
 type CaseItemModelBodyBlocksFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -933,8 +937,12 @@ enum CaseItemModelFieldsReferencingBlogPostModel {
   caseItem_bodyBlocks__groupingBlock_items__groupingItem_sections__blogListBlock_items
   caseItem_bodyBlocks__groupingBlock_items__groupingItem_sections__blogListBlock_pinnedItems
   caseItem_bodyBlocks__groupingBlock_items__groupingItem_sections__caseListBlock_text__internalLink_link
+  caseItem_bodyBlocks__groupingBlock_items__groupingItem_sections__imageGridBlock_items__imageGridItem_cta__actionBlock_items__internalLink_link
+  caseItem_bodyBlocks__groupingBlock_items__groupingItem_sections__imageGridBlock_items__imageGridItem_links__internalLink_link
   caseItem_bodyBlocks__groupingBlock_items__groupingItem_sections__reachOutBlock_cta__internalLink_link
   caseItem_bodyBlocks__groupingBlock_items__groupingItem_sections__textBlock_text__actionBlock_items__internalLink_link
+  caseItem_bodyBlocks__imageGridBlock_items__imageGridItem_cta__actionBlock_items__internalLink_link
+  caseItem_bodyBlocks__imageGridBlock_items__imageGridItem_links__internalLink_link
   caseItem_bodyBlocks__reachOutBlock_cta__internalLink_link
   caseItem_bodyBlocks__textBlock_text__actionBlock_items__internalLink_link
 }
@@ -1429,7 +1437,7 @@ type EmbedBlockRecord implements RecordInterface {
   url: String!
 }
 
-union EventModelBodyBlocksField = ActionBlockRecord | BlogListBlockRecord | CaseListBlockRecord | CodeBlockRecord | CounterBlockRecord | EmbedBlockRecord | EventsListRecord | GalleryBlockRecord | GlossaryListRecord | GroupingBlockRecord | ImageBlockRecord | ListBlockRecord | LogoGridRecord | PageHeaderRecord | PageListRecord | PagePartialBlockRecord | ReachOutBlockRecord | TeamGalleryRecord | TestimonialBlockRecord | TextBlockRecord | TextImageBlockRecord | VideoBlockRecord | VideoEmbedBlockRecord
+union EventModelBodyBlocksField = ActionBlockRecord | BlogListBlockRecord | CaseListBlockRecord | CodeBlockRecord | CounterBlockRecord | EmbedBlockRecord | EventsListRecord | GalleryBlockRecord | GlossaryListRecord | GroupingBlockRecord | ImageBlockRecord | ImageGridBlockRecord | ListBlockRecord | LogoGridRecord | PageHeaderRecord | PageListRecord | PagePartialBlockRecord | ReachOutBlockRecord | TeamGalleryRecord | TestimonialBlockRecord | TextBlockRecord | TextImageBlockRecord | VideoBlockRecord | VideoEmbedBlockRecord
 
 """Linking fields"""
 enum EventModelFieldsReferencingBlogPostModel {
@@ -1442,8 +1450,12 @@ enum EventModelFieldsReferencingBlogPostModel {
   event_bodyBlocks__groupingBlock_items__groupingItem_sections__blogListBlock_items
   event_bodyBlocks__groupingBlock_items__groupingItem_sections__blogListBlock_pinnedItems
   event_bodyBlocks__groupingBlock_items__groupingItem_sections__caseListBlock_text__internalLink_link
+  event_bodyBlocks__groupingBlock_items__groupingItem_sections__imageGridBlock_items__imageGridItem_cta__actionBlock_items__internalLink_link
+  event_bodyBlocks__groupingBlock_items__groupingItem_sections__imageGridBlock_items__imageGridItem_links__internalLink_link
   event_bodyBlocks__groupingBlock_items__groupingItem_sections__reachOutBlock_cta__internalLink_link
   event_bodyBlocks__groupingBlock_items__groupingItem_sections__textBlock_text__actionBlock_items__internalLink_link
+  event_bodyBlocks__imageGridBlock_items__imageGridItem_cta__actionBlock_items__internalLink_link
+  event_bodyBlocks__imageGridBlock_items__imageGridItem_links__internalLink_link
   event_bodyBlocks__reachOutBlock_cta__internalLink_link
   event_bodyBlocks__textBlock_text__actionBlock_items__internalLink_link
 }
@@ -2167,7 +2179,7 @@ type GroupingBlockRecord implements RecordInterface {
   updatedAt: DateTime!
 }
 
-union GroupingItemModelSectionsField = ActionBlockRecord | BlogListBlockRecord | CaseListBlockRecord | CodeBlockRecord | CounterBlockRecord | EmbedBlockRecord | EventsListRecord | GalleryBlockRecord | ImageBlockRecord | ListBlockRecord | LogoGridRecord | ReachOutBlockRecord | TeamGalleryRecord | TestimonialBlockRecord | TextBlockRecord | TextImageBlockRecord | VideoBlockRecord | VideoEmbedBlockRecord
+union GroupingItemModelSectionsField = ActionBlockRecord | BlogListBlockRecord | CaseListBlockRecord | CodeBlockRecord | CounterBlockRecord | EmbedBlockRecord | EventsListRecord | GalleryBlockRecord | ImageBlockRecord | ImageGridBlockRecord | ListBlockRecord | LogoGridRecord | ReachOutBlockRecord | TeamGalleryRecord | TestimonialBlockRecord | TextBlockRecord | TextImageBlockRecord | VideoBlockRecord | VideoEmbedBlockRecord
 
 """Block of type 🗂️ Grouping Item (grouping_item)"""
 type GroupingItemRecord implements RecordInterface {
@@ -2196,7 +2208,7 @@ type GroupingItemRecord implements RecordInterface {
   updatedAt: DateTime!
 }
 
-union HomePageModelBodyBlocksField = ActionBlockRecord | BlogListBlockRecord | CaseListBlockRecord | CodeBlockRecord | CounterBlockRecord | EmbedBlockRecord | EventsListRecord | GalleryBlockRecord | GlossaryListRecord | GroupingBlockRecord | ImageBlockRecord | ListBlockRecord | LogoGridRecord | PageHeaderRecord | PageListRecord | PagePartialBlockRecord | ReachOutBlockRecord | TeamGalleryRecord | TestimonialBlockRecord | TextBlockRecord | TextImageBlockRecord | VideoBlockRecord | VideoEmbedBlockRecord
+union HomePageModelBodyBlocksField = ActionBlockRecord | BlogListBlockRecord | CaseListBlockRecord | CodeBlockRecord | CounterBlockRecord | EmbedBlockRecord | EventsListRecord | GalleryBlockRecord | GlossaryListRecord | GroupingBlockRecord | ImageBlockRecord | ImageGridBlockRecord | ListBlockRecord | LogoGridRecord | PageHeaderRecord | PageListRecord | PagePartialBlockRecord | ReachOutBlockRecord | TeamGalleryRecord | TestimonialBlockRecord | TextBlockRecord | TextImageBlockRecord | VideoBlockRecord | VideoEmbedBlockRecord
 
 type HomePageModelBodyBlocksFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -2214,8 +2226,12 @@ enum HomePageModelFieldsReferencingBlogPostModel {
   homePage_bodyBlocks__groupingBlock_items__groupingItem_sections__blogListBlock_items
   homePage_bodyBlocks__groupingBlock_items__groupingItem_sections__blogListBlock_pinnedItems
   homePage_bodyBlocks__groupingBlock_items__groupingItem_sections__caseListBlock_text__internalLink_link
+  homePage_bodyBlocks__groupingBlock_items__groupingItem_sections__imageGridBlock_items__imageGridItem_cta__actionBlock_items__internalLink_link
+  homePage_bodyBlocks__groupingBlock_items__groupingItem_sections__imageGridBlock_items__imageGridItem_links__internalLink_link
   homePage_bodyBlocks__groupingBlock_items__groupingItem_sections__reachOutBlock_cta__internalLink_link
   homePage_bodyBlocks__groupingBlock_items__groupingItem_sections__textBlock_text__actionBlock_items__internalLink_link
+  homePage_bodyBlocks__imageGridBlock_items__imageGridItem_cta__actionBlock_items__internalLink_link
+  homePage_bodyBlocks__imageGridBlock_items__imageGridItem_links__internalLink_link
   homePage_bodyBlocks__reachOutBlock_cta__internalLink_link
   homePage_bodyBlocks__textBlock_text__actionBlock_items__internalLink_link
 }
@@ -2498,6 +2514,77 @@ type ImageFileField implements FileFieldInterface {
   ): String!
   video: UploadVideoField
   width: IntType!
+}
+
+"""Block of type 🪟 Image Card Grid Block (image_grid_block)"""
+type ImageGridBlockRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  cardOrientation: String!
+  createdAt: DateTime!
+  id: ItemId!
+  items: [ImageGridItemRecord!]!
+  layout: String!
+  title: String
+  updatedAt: DateTime!
+}
+
+type ImageGridItemModelBodyField {
+  blocks: [String!]!
+  inlineBlocks: [String!]!
+  links: [ImageGridItemModelBodyLinksField!]!
+  value: JsonField!
+}
+
+union ImageGridItemModelBodyLinksField = GlossaryTermRecord | HomePageRecord | PageRecord
+
+union ImageGridItemModelLinksField = ExternalLinkRecord | InternalLinkRecord
+
+"""Block of type 🪟 Image Card Grid Item (image_grid_item)"""
+type ImageGridItemRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  body: ImageGridItemModelBodyField
+  createdAt: DateTime!
+  cta: ActionBlockRecord
+  id: ItemId!
+  image: AltFileField!
+  isFullWidth: BooleanType!
+  links: [ImageGridItemModelLinksField!]!
+  title: String!
+  updatedAt: DateTime!
 }
 
 input ImgixParams {
@@ -5305,7 +5392,7 @@ enum MuxThumbnailRotation {
   ROTATE_270
 }
 
-union NotFoundPageModelBodyBlocksField = ActionBlockRecord | BlogListBlockRecord | CaseListBlockRecord | CodeBlockRecord | CounterBlockRecord | EmbedBlockRecord | EventsListRecord | GalleryBlockRecord | GlossaryListRecord | GroupingBlockRecord | ImageBlockRecord | ListBlockRecord | LogoGridRecord | PageHeaderRecord | PageListRecord | PagePartialBlockRecord | ReachOutBlockRecord | TeamGalleryRecord | TestimonialBlockRecord | TextBlockRecord | TextImageBlockRecord | VideoBlockRecord | VideoEmbedBlockRecord
+union NotFoundPageModelBodyBlocksField = ActionBlockRecord | BlogListBlockRecord | CaseListBlockRecord | CodeBlockRecord | CounterBlockRecord | EmbedBlockRecord | EventsListRecord | GalleryBlockRecord | GlossaryListRecord | GroupingBlockRecord | ImageBlockRecord | ImageGridBlockRecord | ListBlockRecord | LogoGridRecord | PageHeaderRecord | PageListRecord | PagePartialBlockRecord | ReachOutBlockRecord | TeamGalleryRecord | TestimonialBlockRecord | TextBlockRecord | TextImageBlockRecord | VideoBlockRecord | VideoEmbedBlockRecord
 
 """Linking fields"""
 enum NotFoundPageModelFieldsReferencingBlogPostModel {
@@ -5318,8 +5405,12 @@ enum NotFoundPageModelFieldsReferencingBlogPostModel {
   notFoundPage_bodyBlocks__groupingBlock_items__groupingItem_sections__blogListBlock_items
   notFoundPage_bodyBlocks__groupingBlock_items__groupingItem_sections__blogListBlock_pinnedItems
   notFoundPage_bodyBlocks__groupingBlock_items__groupingItem_sections__caseListBlock_text__internalLink_link
+  notFoundPage_bodyBlocks__groupingBlock_items__groupingItem_sections__imageGridBlock_items__imageGridItem_cta__actionBlock_items__internalLink_link
+  notFoundPage_bodyBlocks__groupingBlock_items__groupingItem_sections__imageGridBlock_items__imageGridItem_links__internalLink_link
   notFoundPage_bodyBlocks__groupingBlock_items__groupingItem_sections__reachOutBlock_cta__internalLink_link
   notFoundPage_bodyBlocks__groupingBlock_items__groupingItem_sections__textBlock_text__actionBlock_items__internalLink_link
+  notFoundPage_bodyBlocks__imageGridBlock_items__imageGridItem_cta__actionBlock_items__internalLink_link
+  notFoundPage_bodyBlocks__imageGridBlock_items__imageGridItem_links__internalLink_link
   notFoundPage_bodyBlocks__reachOutBlock_cta__internalLink_link
   notFoundPage_bodyBlocks__textBlock_text__actionBlock_items__internalLink_link
 }
@@ -5478,7 +5569,7 @@ type PageListRecord implements RecordInterface {
   updatedAt: DateTime!
 }
 
-union PageModelBodyBlocksField = ActionBlockRecord | BlogListBlockRecord | CaseListBlockRecord | CodeBlockRecord | CounterBlockRecord | EmbedBlockRecord | EventsListRecord | GalleryBlockRecord | GlossaryListRecord | GroupingBlockRecord | ImageBlockRecord | ListBlockRecord | LogoGridRecord | PageHeaderRecord | PageListRecord | PagePartialBlockRecord | ReachOutBlockRecord | TeamGalleryRecord | TestimonialBlockRecord | TextBlockRecord | TextImageBlockRecord | VideoBlockRecord | VideoEmbedBlockRecord
+union PageModelBodyBlocksField = ActionBlockRecord | BlogListBlockRecord | CaseListBlockRecord | CodeBlockRecord | CounterBlockRecord | EmbedBlockRecord | EventsListRecord | GalleryBlockRecord | GlossaryListRecord | GroupingBlockRecord | ImageBlockRecord | ImageGridBlockRecord | ListBlockRecord | LogoGridRecord | PageHeaderRecord | PageListRecord | PagePartialBlockRecord | ReachOutBlockRecord | TeamGalleryRecord | TestimonialBlockRecord | TextBlockRecord | TextImageBlockRecord | VideoBlockRecord | VideoEmbedBlockRecord
 
 type PageModelBodyBlocksFieldListListNonNullMultiLocaleField {
   locale: SiteLocale
@@ -5496,8 +5587,12 @@ enum PageModelFieldsReferencingBlogPostModel {
   page_bodyBlocks__groupingBlock_items__groupingItem_sections__blogListBlock_items
   page_bodyBlocks__groupingBlock_items__groupingItem_sections__blogListBlock_pinnedItems
   page_bodyBlocks__groupingBlock_items__groupingItem_sections__caseListBlock_text__internalLink_link
+  page_bodyBlocks__groupingBlock_items__groupingItem_sections__imageGridBlock_items__imageGridItem_cta__actionBlock_items__internalLink_link
+  page_bodyBlocks__groupingBlock_items__groupingItem_sections__imageGridBlock_items__imageGridItem_links__internalLink_link
   page_bodyBlocks__groupingBlock_items__groupingItem_sections__reachOutBlock_cta__internalLink_link
   page_bodyBlocks__groupingBlock_items__groupingItem_sections__textBlock_text__actionBlock_items__internalLink_link
+  page_bodyBlocks__imageGridBlock_items__imageGridItem_cta__actionBlock_items__internalLink_link
+  page_bodyBlocks__imageGridBlock_items__imageGridItem_links__internalLink_link
   page_bodyBlocks__reachOutBlock_cta__internalLink_link
   page_bodyBlocks__textBlock_text__actionBlock_items__internalLink_link
 }
@@ -5595,7 +5690,7 @@ type PagePartialBlockRecord implements RecordInterface {
   updatedAt: DateTime!
 }
 
-union PagePartialModelBlocksField = ActionBlockRecord | BlogListBlockRecord | CaseListBlockRecord | CodeBlockRecord | CounterBlockRecord | EmbedBlockRecord | EventsListRecord | GalleryBlockRecord | GlossaryListRecord | GroupingBlockRecord | ImageBlockRecord | ListBlockRecord | LogoGridRecord | PageHeaderRecord | PageListRecord | PagePartialBlockRecord | ReachOutBlockRecord | TeamGalleryRecord | TestimonialBlockRecord | TextBlockRecord | TextImageBlockRecord | VideoBlockRecord | VideoEmbedBlockRecord
+union PagePartialModelBlocksField = ActionBlockRecord | BlogListBlockRecord | CaseListBlockRecord | CodeBlockRecord | CounterBlockRecord | EmbedBlockRecord | EventsListRecord | GalleryBlockRecord | GlossaryListRecord | GroupingBlockRecord | ImageBlockRecord | ImageGridBlockRecord | ListBlockRecord | LogoGridRecord | PageHeaderRecord | PageListRecord | PagePartialBlockRecord | ReachOutBlockRecord | TeamGalleryRecord | TestimonialBlockRecord | TextBlockRecord | TextImageBlockRecord | VideoBlockRecord | VideoEmbedBlockRecord
 
 """Linking fields"""
 enum PagePartialModelFieldsReferencingBlogPostModel {
@@ -5608,8 +5703,12 @@ enum PagePartialModelFieldsReferencingBlogPostModel {
   pagePartial_blocks__groupingBlock_items__groupingItem_sections__blogListBlock_items
   pagePartial_blocks__groupingBlock_items__groupingItem_sections__blogListBlock_pinnedItems
   pagePartial_blocks__groupingBlock_items__groupingItem_sections__caseListBlock_text__internalLink_link
+  pagePartial_blocks__groupingBlock_items__groupingItem_sections__imageGridBlock_items__imageGridItem_cta__actionBlock_items__internalLink_link
+  pagePartial_blocks__groupingBlock_items__groupingItem_sections__imageGridBlock_items__imageGridItem_links__internalLink_link
   pagePartial_blocks__groupingBlock_items__groupingItem_sections__reachOutBlock_cta__internalLink_link
   pagePartial_blocks__groupingBlock_items__groupingItem_sections__textBlock_text__actionBlock_items__internalLink_link
+  pagePartial_blocks__imageGridBlock_items__imageGridItem_cta__actionBlock_items__internalLink_link
+  pagePartial_blocks__imageGridBlock_items__imageGridItem_links__internalLink_link
   pagePartial_blocks__reachOutBlock_cta__internalLink_link
   pagePartial_blocks__textBlock_text__actionBlock_items__internalLink_link
 }
@@ -7598,6 +7697,7 @@ type TextImageBlockRecord implements RecordInterface {
   id: ItemId!
   image: AltFileField!
   layout: String!
+  style: String
   text: TextImageBlockModelTextField!
   updatedAt: DateTime!
 }

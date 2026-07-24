@@ -24,7 +24,7 @@
           },
         ]"
       >
-        <BlockItem :block="section" />
+        <BlockItem :block="section" :theme="data.theme" />
       </div>
     </div>
   </div>

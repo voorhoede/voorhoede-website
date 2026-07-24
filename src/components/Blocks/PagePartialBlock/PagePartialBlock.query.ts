@@ -1,6 +1,7 @@
 import { graphql } from "~/utils/graphql";
 import { CaseListBlockFragment } from "../CaseListBlock/CaseListBlock.query";
 import { GroupingBlockFragment } from "../GroupingBlock/GroupingBlock.query";
+import { ImageGridBlockFragment } from "../ImageGridBlock/ImageGridBlock.query";
 import { LogoGridBlockFragment } from "../LogoGridBlock/LogoGridBlock.query";
 import { PageHeaderBlockFragment } from "../PageHeaderBlock/PageHeaderBlock.query";
 import { ReachOutBlockFragment } from "../ReachOutBlock/ReachOutBlock.query";
@@ -21,6 +22,7 @@ export const PagePartialBlockFragment = graphql(
           __typename
           ...CaseListBlockFragment
           ...GroupingBlockFragment
+          ...ImageGridBlockFragment
           ...LogoGridBlockFragment
           ...PageHeaderBlockFragment
           ...ReachOutBlockFragment
@@ -33,6 +35,7 @@ export const PagePartialBlockFragment = graphql(
   [
     CaseListBlockFragment,
     GroupingBlockFragment,
+    ImageGridBlockFragment,
     LogoGridBlockFragment,
     PageHeaderBlockFragment,
     ReachOutBlockFragment,
