@@ -1,16 +1,11 @@
 import { graphql } from "~/utils/graphql";
 
+/** ST embed fragment — field-aligned with ActionBlockRecordFragment for ActionBlock.vue reuse. */
 export const ActionBlockFragment = graphql(`
   fragment ActionBlockFragment on ActionBlockRecord {
     id
     items {
       __typename
-      ... on ExternalLinkRecord {
-        id
-        title
-        url
-        externalStyle: style
-      }
       ... on InternalLinkRecord {
         id
         title
@@ -34,16 +29,27 @@ export const ActionBlockFragment = graphql(`
           }
         }
       }
+      ... on ExternalLinkRecord {
+        id
+        title
+        url
+        externalStyle: style
+        openInNewTab
+      }
       ... on EmailLinkRecord {
         id
         title
         emailAddress
+        emailSubject
+        emailBody
         emailStyle: style
       }
       ... on PhoneLinkRecord {
         id
         title
         phoneNumber
+        action
+        text
         phoneStyle: style
       }
     }
@@ -81,18 +87,6 @@ export const ImageBlockFragment = graphql(`
   }
 `);
 
-export const ListBlockFragment = graphql(`
-  fragment ListBlockFragment on ListBlockRecord {
-    id
-    listType
-    startNumber
-    items {
-      id
-      body
-    }
-  }
-`);
-
 export const VideoBlockFragment = graphql(`
   fragment VideoBlockFragment on VideoBlockRecord {
     id
@@ -100,6 +94,15 @@ export const VideoBlockFragment = graphql(`
     autoplay
     mute
     loop
+    videoAsset {
+      video {
+        muxPlaybackId
+        title: alt
+        width
+        height
+        blurUpThumb
+      }
+    }
   }
 `);
 
@@ -110,14 +113,15 @@ export const VideoEmbedBlockFragment = graphql(`
     autoplay
     mute
     loop
-  }
-`);
-
-export const CounterBlockFragment = graphql(`
-  fragment CounterBlockFragment on CounterBlockRecord {
-    id
-    amount
-    label
+    video {
+      url
+      title
+      provider
+      providerUid
+      width
+      height
+      thumbnailUrl
+    }
   }
 `);
 

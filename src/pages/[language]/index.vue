@@ -4,6 +4,7 @@
     <Blocks
       v-if="data?.homePage?.bodyBlocks"
       :blocks="data.homePage.bodyBlocks"
+      :host-page-id="data.homePage.id"
     />
     <section class="page-index__blog-posts grid">
       <div class="grid">
@@ -44,20 +45,24 @@ import { useFetchDatocmsContent } from "~/composables/useFetchDatocmsContent";
 import { graphql } from "~/utils/graphql";
 
 import { CaseListBlockFragment } from "~/components/Blocks/CaseListBlock/CaseListBlock.query";
+import { EventsListBlockFragment } from "~/components/Blocks/EventsListBlock/EventsListBlock.query";
 import { GroupingBlockFragment } from "~/components/Blocks/GroupingBlock/GroupingBlock.query";
 import { ImageGridBlockFragment } from "~/components/Blocks/ImageGridBlock/ImageGridBlock.query";
 import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGridBlock.query";
 import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
+import { PageListBlockFragment } from "~/components/Blocks/PageListBlock/PageListBlock.query";
 import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
 import { ReachOutBlockFragment } from "~/components/Blocks/ReachOutBlock/ReachOutBlock.query";
 import { TextBlockFragment } from "~/components/Blocks/TextBlock/TextBlock.query";
 import { TextImageBlockFragment } from "~/components/Blocks/TextImageBlock/TextImageBlock.query";
+import { ActionBlockFragment } from "~/components/Blocks/ActionBlock/ActionBlock.query";
 
 const route = useRoute();
 const query = graphql(
   `
     query HomePage($locale: SiteLocale!) {
       homePage(locale: $locale) {
+        id
         title
         seo {
           title
@@ -71,11 +76,14 @@ const query = graphql(
         }
         bodyBlocks {
           __typename
+          ...ActionBlockRecordFragment
           ...CaseListBlockFragment
+          ...EventsListBlockFragment
           ...GroupingBlockFragment
           ...ImageGridBlockFragment
           ...LogoGridBlockFragment
           ...PageHeaderBlockFragment
+          ...PageListBlockFragment
           ...PagePartialBlockFragment
           ...ReachOutBlockFragment
           ...TextBlockFragment
@@ -105,11 +113,14 @@ const query = graphql(
     }
   `,
   [
+    ActionBlockFragment,
     CaseListBlockFragment,
+    EventsListBlockFragment,
     GroupingBlockFragment,
     ImageGridBlockFragment,
     LogoGridBlockFragment,
     PageHeaderBlockFragment,
+    PageListBlockFragment,
     PagePartialBlockFragment,
     ReachOutBlockFragment,
     TextBlockFragment,

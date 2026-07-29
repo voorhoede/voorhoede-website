@@ -18,10 +18,9 @@
       :quality="55"
     />
     <div class="text-image-block__body">
-      <StructuredTextBlock
-        class="text-image-block__body-text"
-        :content="data.text"
-        paragraph-variant="body-big"
+      <StructuredText
+        class="text-image-block__body-text body-big"
+        :data="structuredText"
       />
     </div>
   </div>
@@ -31,11 +30,8 @@
     :class="`theme-card--${theme}`"
   >
     <div :class="['layout', `layout--${data.layout}`]">
-      <div class="layout__item">
-        <StructuredTextBlock
-          :content="data.text"
-          paragraph-variant="body-big"
-        />
+      <div class="layout__item body-big">
+        <StructuredText :data="structuredText" />
       </div>
       <div class="layout__item">
         <DatoImage
@@ -59,6 +55,8 @@ import {
   BackgroundColor,
   type BackgroundColorValue,
 } from "~/types/styling";
+import type { CdaStructuredTextValue } from "datocms-structured-text-utils";
+import StructuredText from "~/components/Core/StructuredText/StructuredText.vue";
 
 const props = withDefaults(
   defineProps<{
@@ -75,6 +73,10 @@ const data = readFragment<typeof TextImageBlockFragment>(props.data);
 const theme = computed(() => props.theme ?? BackgroundColor.None);
 
 const isTextBackground = computed(() => data.style === "text-background");
+
+const structuredText = computed(
+  () => data.text as unknown as CdaStructuredTextValue,
+);
 </script>
 
 <style scoped>

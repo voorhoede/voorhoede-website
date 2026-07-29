@@ -1,15 +1,13 @@
 import { graphql } from "~/utils/graphql";
+import { ActionBlockFragment } from "../ActionBlock/ActionBlock.query";
 import { BlogsSectionBlockFragment } from "../BlogsSectionBlock/BlogsSectionBlock.query";
 import { CaseListBlockFragment } from "../CaseListBlock/CaseListBlock.query";
-import { EventsSectionBlockFragment } from "../EventsSectionBlock/EventsSectionBlock.query";
+import { EventsListBlockFragment } from "../EventsListBlock/EventsListBlock.query";
 import { ImageGridBlockFragment } from "../ImageGridBlock/ImageGridBlock.query";
 import { LogoGridBlockFragment } from "../LogoGridBlock/LogoGridBlock.query";
 import { ReachOutBlockFragment } from "../ReachOutBlock/ReachOutBlock.query";
 import {
-  ActionBlockFragment,
-  CounterBlockFragment,
   ImageBlockFragment,
-  ListBlockFragment,
   VideoBlockFragment,
   VideoEmbedBlockFragment,
 } from "../shared/structuredText.query";
@@ -53,16 +51,14 @@ export const GroupingItemFragment = graphql(
       title
       sections {
         __typename
-        ...ActionBlockFragment
+        ...ActionBlockRecordFragment
         ...BlogsSectionBlockFragment
         ...CaseListBlockFragment
         ...CodeBlockFragment
-        ...CounterBlockFragment
         ...EmbedBlockFragment
-        ...EventsSectionBlockFragment
+        ...EventsListBlockFragment
         ...ImageBlockFragment
         ...ImageGridBlockFragment
-        ...ListBlockFragment
         ...LogoGridBlockFragment
         ...ReachOutBlockFragment
         ...TeamGalleryBlockFragment
@@ -79,12 +75,10 @@ export const GroupingItemFragment = graphql(
     BlogsSectionBlockFragment,
     CaseListBlockFragment,
     CodeBlockFragment,
-    CounterBlockFragment,
     EmbedBlockFragment,
-    EventsSectionBlockFragment,
+    EventsListBlockFragment,
     ImageBlockFragment,
     ImageGridBlockFragment,
-    ListBlockFragment,
     LogoGridBlockFragment,
     ReachOutBlockFragment,
     TeamGalleryBlockFragment,

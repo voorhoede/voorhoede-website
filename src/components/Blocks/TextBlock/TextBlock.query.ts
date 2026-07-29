@@ -1,11 +1,9 @@
 import { graphql } from "~/utils/graphql";
 import {
   ActionBlockFragment,
-  CounterBlockFragment,
   GlossaryTermLinkFragment,
   IconBlockFragment,
   ImageBlockFragment,
-  ListBlockFragment,
   VariableBlockFragment,
   VideoBlockFragment,
   VideoEmbedBlockFragment,
@@ -40,13 +38,11 @@ export const TextBlockFragment = graphql(
           __typename
           ...ActionBlockFragment
           ...ImageBlockFragment
-          ...ListBlockFragment
           ...VideoBlockFragment
           ...VideoEmbedBlockFragment
         }
         inlineBlocks {
           __typename
-          ...CounterBlockFragment
           ...IconBlockFragment
           ...VariableBlockFragment
         }
@@ -55,11 +51,9 @@ export const TextBlockFragment = graphql(
   `,
   [
     ActionBlockFragment,
-    CounterBlockFragment,
     GlossaryTermLinkFragment,
     IconBlockFragment,
     ImageBlockFragment,
-    ListBlockFragment,
     VariableBlockFragment,
     VideoBlockFragment,
     VideoEmbedBlockFragment,

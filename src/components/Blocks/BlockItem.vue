@@ -2,11 +2,15 @@
 import type { BlockRecord } from "./types";
 import type { BackgroundColorValue } from "~/types/styling";
 import { BackgroundColor } from "~/types/styling";
+import ActionBlock from "./ActionBlock/ActionBlock.vue";
 import CaseListBlock from "./CaseListBlock/CaseListBlock.vue";
+import EventsListBlock from "./EventsListBlock/EventsListBlock.vue";
 import GroupingBlock from "./GroupingBlock/GroupingBlock.vue";
 import ImageGridBlock from "./ImageGridBlock/ImageGridBlock.vue";
+import LocationsListBlock from "./LocationsListBlock/LocationsListBlock.vue";
 import LogoGridBlock from "./LogoGridBlock/LogoGridBlock.vue";
 import PageHeaderBlock from "./PageHeaderBlock/PageHeaderBlock.vue";
+import PageListBlock from "./PageListBlock/PageListBlock.vue";
 import PagePartialBlock from "./PagePartialBlock/PagePartialBlock.vue";
 import ReachOutBlock from "./ReachOutBlock/ReachOutBlock.vue";
 import TeamGalleryBlock from "./TeamGalleryBlock/TeamGalleryBlock.vue";
@@ -20,9 +24,11 @@ const props = withDefaults(
   defineProps<{
     block: BlockRecord;
     theme?: BackgroundColorValue | null;
+    hostPageId?: string | null;
   }>(),
   {
     theme: BackgroundColor.None,
+    hostPageId: null,
   },
 );
 
@@ -42,8 +48,16 @@ const imageCaptionPosition = computed((): "bottom" | "left" | "right" => {
 </script>
 
 <template>
+  <ActionBlock
+    v-if="props.block?.__typename === 'ActionBlockRecord'"
+    :data="props.block"
+  />
   <CaseListBlock
-    v-if="props.block?.__typename === 'CaseListBlockRecord'"
+    v-else-if="props.block?.__typename === 'CaseListBlockRecord'"
+    :data="props.block"
+  />
+  <EventsListBlock
+    v-else-if="props.block?.__typename === 'EventsListRecord'"
     :data="props.block"
   />
   <GroupingBlock
@@ -55,6 +69,10 @@ const imageCaptionPosition = computed((): "bottom" | "left" | "right" => {
     :data="props.block"
     :theme="props.theme"
   />
+  <LocationsListBlock
+    v-else-if="props.block?.__typename === 'LocationsListRecord'"
+    :data="props.block"
+  />
   <LogoGridBlock
     v-else-if="props.block?.__typename === 'LogoGridRecord'"
     :data="props.block"
@@ -63,9 +81,15 @@ const imageCaptionPosition = computed((): "bottom" | "left" | "right" => {
     v-else-if="props.block?.__typename === 'PageHeaderRecord'"
     :data="props.block"
   />
+  <PageListBlock
+    v-else-if="props.block?.__typename === 'PageListBlockRecord'"
+    :data="props.block"
+    :host-page-id="props.hostPageId"
+  />
   <PagePartialBlock
     v-else-if="props.block?.__typename === 'PagePartialBlockRecord'"
     :data="props.block"
+    :host-page-id="props.hostPageId"
   />
   <ReachOutBlock
     v-else-if="props.block?.__typename === 'ReachOutBlockRecord'"
