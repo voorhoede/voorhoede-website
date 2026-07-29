@@ -28,9 +28,7 @@
         :key="page.id"
       >
         <LinkCard
-          :internal-link="
-            $localeUrl({ name: 'slug', params: { slug: page.slug } })
-          "
+          :internal-link="pageListInternalLink(page)"
           :image="page.image"
           :title="page.title"
           :body="page.subtitle"
@@ -81,6 +79,17 @@ const props = defineProps<{
 const data = readFragment<typeof PageListBlockFragment>(props.data);
 const route = useRoute();
 const router = useRouter();
+const { $localeUrl } = useNuxtApp();
+
+function pageListInternalLink(page: PageCard) {
+  // Catch-all [...slug] needs path segments. Passing "a/b" as one string encodes
+  // "/" as %2F, which prerender crawls into paths that blow Cloudflare's 100-char
+  // _routes.json rule limit (Error 8000057).
+  const slugParam = page.slug.includes("/")
+    ? page.slug.split("/").filter(Boolean)
+    : page.slug;
+  return $localeUrl({ name: "slug", params: { slug: slugParam } });
+}
 
 const queryParamKey = computed(() => `pageList-${data.id}`);
 const sectionId = computed(() => `page-list-${data.id}`);
