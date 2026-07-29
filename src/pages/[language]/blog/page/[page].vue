@@ -4,8 +4,7 @@
       <page-header
         heading="byline"
         :byline="pageData.page.title"
-        :headline="pageData?.tag?.name || pageData.page.subtitle"
-        :image="pageData.page.headerIllustration"
+        :headline="pageData?.tag?.title || pageData.page.subtitle"
       />
 
       <section
@@ -16,9 +15,12 @@
           {{ $t('blog_overview') }}
         </h2>
 
-        <text-block class="page-blog__text">
+        <text-block
+          v-if="pageDescription"
+          class="page-blog__text"
+        >
           <p class="testimonial">
-            {{ pageData.tag?.blogTopicDescription || pageData.page.description }}
+            {{ pageDescription }}
           </p>
         </text-block>
 
@@ -31,7 +33,7 @@
 
         <blogs-list
           :items="pageData.items"
-          :pinned-items="shouldShowPinnedPosts ? pageData.page.pinnedPosts : []"
+          :pinned-items="[]"
           class="page-blog__posts"
         />
 
@@ -46,13 +48,6 @@
       </section>
 
       <section class="page-blog__pivots grid">
-        <pivot-list
-          v-if="pageData.page.pivots && pageData.page.pivots.length"
-          :pivots="pageData.page.pivots"
-          :can-have-border-top="false"
-          :pivot-narrow="true"
-        />
-
         <div class="page-blog__scroll-to">
           <scroll-to direction="up" />
         </div>
@@ -157,16 +152,23 @@
     ]
   });
 
-  // Only show pinned posts on the first page and if no tag is selected
-  const shouldShowPinnedPosts = currentPage.value === 1 && !tagId;
+  const pageDescription = computed(() =>
+    pageData.value?.tag?.description
+    || pageData.value?.page?.seo?.description
+    || pageData.value?.page?.subtitle
+    || '',
+  );
 
   const seoHeadData = pageData.value.tag
     ? {
       title: pageData.value.tag.title,
       i18nSlugs: pageData.value.tag.i18nSlugs,
-      social: pageData.value.tag.blogTagSocial,
+      social: pageData.value.tag.seo,
     }
-    : pageData.value.page;
+    : {
+      title: pageData.value.page.title,
+      social: pageData.value.page.seo,
+    };
 
   useSeoHead(seoHeadData);
 

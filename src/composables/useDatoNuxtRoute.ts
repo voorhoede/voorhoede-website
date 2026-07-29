@@ -13,62 +13,20 @@ export function useDatoNuxtRoute(page: Page) {
     case 'PageRecord': {
       return { name: 'language-slug', params: { ...sharedParams, slug: page.slug?.split('/') } }
     }
-    case 'BlogPostOverviewRecord': {
-      return { name: 'language-blog' }
-    }
     case 'BlogPostRecord': {
       return { name: 'language-blog-slug', params: { ...sharedParams, slug: page.slug } }
-    }
-    case 'CaseOverviewRecord': {
-      return { name: 'language-cases', params: sharedParams }
     }
     case 'CaseItemRecord': {
       return { name: 'language-cases-slug', params: { ...sharedParams, slug: page.slug } }
     }
-    case 'ContactRecord': {
-      return { name: 'language-contact', params: sharedParams }
-    }
-    case 'EventOverviewRecord': {
-      return { name: 'language-events', params: sharedParams }
-    }
     case 'EventRecord': {
-      return { name: 'language-events-slug', params: { ...sharedParams, slug: page.slug } }
-    }
-    case 'EventItemRecord': {
       return { name: 'language-events-slug', params: { ...sharedParams, slug: page.slug } }
     }
     case 'HomePageRecord': {
       return { name: 'language', params: sharedParams }
     }
-    case 'FaqRecord': {
-      return { name: 'language-faq', params: sharedParams }
-    }
-    case 'JobRecord': {
-      return { name: 'language-jobs-slug', params: { ...sharedParams, slug: page.slug } }
-    }
-    case 'LustrumRecord': {
-      return { name: 'language-lustrum', params: sharedParams }
-    }
-    case 'ServiceOverviewRecord': {
-      return { name: 'language-services', params: sharedParams }
-    }
-    case 'ServiceRecord': {
-      return { name: 'language-services-slug', params: { ...sharedParams, slug: page.slug } }
-    }
     case 'PersonRecord': {
       return { name: 'language-team-slug', params: { ...sharedParams, slug: page.slug } }
-    }
-    case 'MeetRecord': {
-      const slug = page.parents?.[0].slug
-
-      if (!slug) {
-        throw new Error('MeetRecord is missing required parent slug')
-      }
-
-      return { name: 'language-meet-slug', params: { ...sharedParams, slug } }
-    }
-    case 'WorkatRecord': {
-      return { name: 'language-work-at', params: sharedParams }
     }
   }
 }

@@ -5,8 +5,19 @@ query Blog(
   $tagFilter: LinksFilter
   $tagId: ItemId
 ) {
-  page: blogPostOverview(locale: $locale) {
-    ...blogPostOverview
+  page: page(locale: $locale, filter: { slug: { eq: "blog" } }) {
+    title
+    subtitle
+    seo {
+      title
+      description
+      image {
+        url
+        alt
+        width
+        height
+      }
+    }
   }
   items: allBlogPosts(
     first: $first
@@ -31,7 +42,10 @@ query Blog(
   ) {
     count
   }
-  tags: allTags(locale: $locale) {
+  tags: allTags(
+    locale: $locale
+    filter: { category: { eq: "topic" } }
+  ) {
     id
     title
     slug
@@ -44,7 +58,8 @@ query Blog(
     id
     title
     slug
-    blogTagSocial {
+    description
+    seo {
       title
       description
       image {
@@ -54,7 +69,6 @@ query Blog(
         url
       }
     }
-    blogTopicDescription
   }
 }
 
@@ -70,92 +84,5 @@ fragment blogPost on BlogPostRecord {
       width
       height
     }
-  }
-}
-
-fragment blogPostOverview on BlogPostOverviewRecord {
-  title
-  social {
-    title
-    description
-    image {
-      url
-    }
-  }
-  subtitle
-  description
-  headerIllustration {
-    url
-    alt
-    width
-    height
-  }
-  pinnedPosts {
-    ...blogPost
-  }
-  pivots {
-    title
-    body(markdown: true)
-    links {
-      ...link
-    }
-    mailchimpValue
-    mailchimpName
-    mailchimpId
-    formType
-    contactPerson {
-      name
-      lastName
-      jobTitle
-      image {
-        url
-        alt
-        width
-        height
-      }
-    }
-  }
-}
-
-fragment link on RecordInterface {
-  __typename
-  ... on InternalLinkRecord {
-    id
-    title
-    link {
-      __typename
-      ... on PageRecord {
-        slug
-      }
-      ... on BlogPostRecord {
-        slug
-      }
-      ... on CaseItemRecord {
-        slug
-      }
-      ... on EventItemRecord {
-        slug
-      }
-      ... on JobRecord {
-        slug
-      }
-      ... on ServiceRecord {
-        slug
-      }
-      ... on PersonRecord {
-        slug
-      }
-      ... on MeetRecord {
-        parents: _allReferencingPeople {
-          __typename
-          slug
-        }
-      }
-    }
-  }
-  ... on ExternalLinkRecord {
-    id
-    title
-    url
   }
 }
