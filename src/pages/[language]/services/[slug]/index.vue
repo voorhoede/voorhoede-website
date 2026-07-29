@@ -1,244 +1,111 @@
 <template>
-  <main class="page-service grid">
-    <page-header
-      heading="headline"
-      :byline="data.page.title"
-      :headline="data.page.subtitle"
-      :image="data.page.headerIllustration"
+  <div class="landing-page">
+    <h1 class="sr-only">
+      {{ data?.page?.title }}
+    </h1>
+    <Blocks
+      v-if="data?.page?.bodyBlocks"
+      :blocks="data.page.bodyBlocks"
+      :host-page-id="data.page.id"
     />
-    <series-navigation
-      v-if="shownSeriesNavigation"
-      class="page-service__series-navigation"
-      :title-route="seriesNavigationTitleRoutes"
-      :child-routes="seriesNavigationChildRoutes"
-    />
-    <article class="page-service__overview">
-      <template v-for="item in data.page.items">
-        <structured-text-block
-          v-if="item.__typename === 'SectionStructuredTextRecord'"
-          class="page-service__structured-text-section"
-          :key="item.id"
-          :content="item.body"
-          paragraph-variant="body-big"
-        />
-        <testimonial-block
-          v-if="item.__typename === 'TestimonialBlockRecord'"
-          :key="item.id"
-          :id="item.id"
-          :testimonial="item.testimonial"
-        />
-        <image-with-caption
-          v-if="item.__typename === 'ImageRecord'"
-          :key="item.id"
-          :id="item.id"
-          :image="{
-            ...item.image,
-            sizes: '(min-width: 1440px) 840px, (min-width: 720px) 65vw, 95vw',
-          }"
-          :caption="item.caption"
-        />
-        <responsive-video
-          :id="item.id"
-          v-if="item.__typename === 'ResponsiveVideoRecord'"
-          :key="item.id"
-          :video="item.video"
-          :gif="item.gif"
-          :autoplay="item.autoplay"
-          :loop="item.loop"
-          :mute="item.autoplay"
-          :caption="item.caption"
-        />
-        <cta-block
-          v-if="item.__typename === 'CallToActionRecord'"
-          :key="item.id"
-          :id="item.id"
-          :item="item"
-        />
-        <cases-list
-          v-if="item.__typename === 'SectionCaseListRecord'"
-          :key="item.id"
-          :id="item.id"
-          :cases="item.cases"
-          :max-columns="item.columns"
-        />
-      </template>
-    </article>
-    <pivot-list
-      class="page-service__pivots"
-      v-if="data.page.pivots && data.page.pivots.length"
-      :pivots="data.page.pivots"
-      :can-have-border-top="false"
-    />
-  </main>
+  </div>
 </template>
 
-<script setup>
-  definePageMeta({ layout: 'content-page' });
+<script setup lang="ts">
+definePageMeta({ layout: 'content-page' });
 
-  import query from './index.query.graphql?raw';
-  const { $localeUrl } = useNuxtApp();
+import { CaseListBlockFragment } from '~/components/Blocks/CaseListBlock/CaseListBlock.query';
+import { EventsListBlockFragment } from '~/components/Blocks/EventsListBlock/EventsListBlock.query';
+import { GroupingBlockFragment } from '~/components/Blocks/GroupingBlock/GroupingBlock.query';
+import { ImageGridBlockFragment } from '~/components/Blocks/ImageGridBlock/ImageGridBlock.query';
+import { LocationsListBlockFragment } from '~/components/Blocks/LocationsListBlock/LocationsListBlock.query';
+import { LogoGridBlockFragment } from '~/components/Blocks/LogoGridBlock/LogoGridBlock.query';
+import { PageHeaderBlockFragment } from '~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query';
+import { PageListBlockFragment } from '~/components/Blocks/PageListBlock/PageListBlock.query';
+import { PagePartialBlockFragment } from '~/components/Blocks/PagePartialBlock/PagePartialBlock.query';
+import { ReachOutBlockFragment } from '~/components/Blocks/ReachOutBlock/ReachOutBlock.query';
+import { TeamGalleryBlockFragment } from '~/components/Blocks/TeamGalleryBlock/TeamGalleryBlock.query';
+import { TextBlockFragment } from '~/components/Blocks/TextBlock/TextBlock.query';
+import { TextImageBlockFragment } from '~/components/Blocks/TextImageBlock/TextImageBlock.query';
+import { ActionBlockFragment } from '~/components/Blocks/ActionBlock/ActionBlock.query';
+import Blocks from '~/components/Blocks/Blocks.vue';
 
-  const { params } = useRoute();
-  const { data } = await useFetchContent({
+const route = useRoute();
+const slug = `services/${route.params.slug}`;
+
+const query = graphql(
+  `
+    query ServicesSlug($locale: SiteLocale, $slug: String) {
+      page(locale: $locale, filter: { slug: { eq: $slug } }) {
+        id
+        title
+        seo {
+          title
+          description
+          image {
+            url
+            alt
+            width
+            height
+          }
+        }
+        bodyBlocks {
+          __typename
+          ...ActionBlockRecordFragment
+          ...CaseListBlockFragment
+          ...EventsListBlockFragment
+          ...GroupingBlockFragment
+          ...ImageGridBlockFragment
+          ...LocationsListBlockFragment
+          ...LogoGridBlockFragment
+          ...PageHeaderBlockFragment
+          ...PageListBlockFragment
+          ...PagePartialBlockFragment
+          ...ReachOutBlockFragment
+          ...TeamGalleryBlockFragment
+          ...TextBlockFragment
+          ...TextImageBlockFragment
+        }
+      }
+    }
+  `,
+  [
+    ActionBlockFragment,
+    CaseListBlockFragment,
+    EventsListBlockFragment,
+    GroupingBlockFragment,
+    ImageGridBlockFragment,
+    LocationsListBlockFragment,
+    LogoGridBlockFragment,
+    PageHeaderBlockFragment,
+    PageListBlockFragment,
+    PagePartialBlockFragment,
+    ReachOutBlockFragment,
+    TeamGalleryBlockFragment,
+    TextBlockFragment,
+    TextImageBlockFragment,
+  ],
+);
+
+const { data } = await useAsyncData(route.path, async () => {
+  const result = await useFetchDatocmsContent({
     query,
     variables: {
-      slug: params.slug,
-      locale: params.language,
+      locale: route.params.language as 'nl' | 'en',
+      slug,
     },
   });
+  return result.data;
+});
 
-  useSeoHead(data.value.page);
+if (!data.value?.page) {
+  throw createError({ statusCode: 404, statusMessage: 'Page not found' });
+}
 
-  const shownSeriesNavigation = computed(() => {
-    if (!data.value.page.serviceSeries) {
-      return null
-    }
-
-    if (data.value.page.serviceSeries.length === 1) {
-      return data.value.page.serviceSeries[0]
-    }
-
-    return data.value.page.serviceSeries[0]
+if (data.value.page.seo) {
+  useSeoHead({
+    title: data.value.page.title,
+    social: data.value.page.seo,
   });
-
-  const seriesNavigationTitleRoutes = computed(() => {
-    return {
-      title: shownSeriesNavigation.value.mainService.title,
-      route: $localeUrl({
-        name: 'services-slug',
-        params: {
-          slug: shownSeriesNavigation.value.mainService.slug,
-        },
-      }),
-    };
-  });
-
-  const seriesNavigationChildRoutes = computed(() => {
-    return shownSeriesNavigation.value.childServices.map(service => ({
-      title: service.title,
-      route: $localeUrl({ name: 'services-slug', params: { slug: service.slug } })
-    }))
-  });
+}
 </script>
-
-<style>
-  .page-service .page-header {
-    margin-bottom: var(--spacing-large);
-  }
-
-  .page-service__pivots .newsletter-form,
-  .page-service__pivots .contact-form {
-    background-color: var(--bg-pastel);
-  }
-
-  .page-service__pivots {
-    grid-row: 4;
-  }
-
-  .page-service__series-navigation {
-    margin-bottom: var(--spacing-large);
-    grid-row: 2;
-  }
-
-  .page-service__overview {
-    display: flex;
-    grid-row: 3;
-    flex-direction: column;
-  }
-
-  .page-service__overview > .image-with-caption,
-  .page-service__structured-text-section,
-  .page-service__overview .blockquote-block,
-  .page-service__overview > .responsive-video,
-  .page-service__overview > .notice,
-  .page-service__overview .cases-list {
-    margin: 0 0 var(--spacing-large) 0;
-  }
-
-  .page-service__overview .cta-image-block {
-    margin-bottom: var(--spacing-big);
-    padding-top: var(--spacing-large);
-  }
-
-  .page-service__overview .blockquote-block__title {
-    font-size: 1.3rem;
-    line-height: 1.2;
-  }
-
-  .page-service__overview .blockquote-block__body {
-    font-size: 1.1rem;
-    line-height: 1.5;
-  }
-
-  .page-service .breadcrumbs-block {
-    margin-bottom: var(--spacing-large);
-    grid-row: 5;
-  }
-
-  @media (min-width: 720px) {
-    .page-service .page-header {
-      margin-bottom: var(--spacing-big);
-    }
-
-    .page-service__series-navigation {
-      margin-bottom: var(--spacing-larger);
-      grid-column: var(--grid-content);
-    }
-
-    .page-service__overview {
-      grid-column: var(--grid-content);
-    }
-
-    .page-service__overview .blockquote-block,
-    .page-service__structured-text-section,
-    .page-service__overview .cta-image-block,
-    .page-service__overview .cases-list {
-      width: 70%;
-    }
-
-    .page-service__overview .blockquote-block__title {
-      font-size: 1.4rem;
-      line-height: 1.2;
-    }
-
-    .page-service__overview .blockquote-block__body {
-      font-size: 1.2rem;
-      line-height: 1.5;
-    }
-
-    .page-service__overview > .image-with-caption,
-    .page-service__overview > .responsive-video,
-    .page-service__overview > .notice,
-    .page-service__overview > .testimonial-block {
-      width: 70%;
-    }
-  }
-
-  @media (min-width: 1100px) {
-    .page-service__overview,
-    .page-service .breadcrumbs-block {
-      grid-column-start: 4;
-      grid-column-end: 48;
-    }
-
-    .page-service__series-navigation {
-      grid-column-start: 4;
-      grid-column-end: 35;
-    }
-
-    .page-service__overview .blockquote-block__body {
-      font-size: 1.375rem;
-      line-height: 1.8181818182;
-    }
-
-    .page-service__overview .blockquote-block__title {
-      font-size: 2.0625rem;
-      line-height: 1.3636363636;
-    }
-
-    .page-service .breadcrumbs-block {
-      margin-top: var(--spacing-larger);
-      margin-bottom: var(--spacing-larger);
-    }
-  }
-</style>

@@ -6,7 +6,7 @@
       <page-header
         class="page-event-detail__header"
         heading="headline"
-        :byline="data.page.label.label"
+        :byline="eventLabel"
         :headline="data.page.title"
         :image="data.page.headerIllustration"
       />
@@ -44,10 +44,11 @@
         </div>
 
         <div
+          v-if="eventLabel"
           class="page-event-detail__label body"
           :class="{ 'page-event__detail__label--alt': isMeetup }"
         >
-          {{ data.page.label.label }}
+          {{ eventLabel }}
         </div>
       </aside>
 
@@ -63,44 +64,25 @@
           loading="eager"
         />
 
-        <template v-for="item in data.page.items">
-          <quote-block
-            v-if="item.quote"
-            :key="item.quote"
-            :quote="item.quote"
-            :cite="item.author"
-            class="page-event-detail__quote"
-          />
-
+        <template
+          v-for="item in data.page.bodyBlocks"
+          :key="item.id"
+        >
           <image-with-caption
             class="page-event-detail__image"
-            :class="{ 'page-event-detail__main--not-indented' : item.fullWidth}"
-            v-if="item.__typename === 'ImageRecord' && item.image"
-            :key="item.image.url"
+            v-if="item.__typename === 'ImageBlockRecord' && item.image"
             :image="{
               ...item.image,
-              sizes: item.fullWidth
-                ? '(min-width: 1440px) 860px, (min-width: 720px) 75vw, 95vw'
-                : '(min-width: 1440px) 640px, (min-width: 720px) 65vw, 95vw',
+              sizes: '(min-width: 1440px) 640px, (min-width: 720px) 65vw, 95vw',
             }"
             :caption="item.caption"
             :caption-position="item.captionPosition"
           />
 
-          <text-block
-            v-if="item.__typename === 'TextSectionRecord' && item.title"
-            :key="item.title"
-          >
-            <h2 class="page-event-detail__title h3 font-html-blue">
-              {{ item.title }}
-            </h2>
-          </text-block>
-
           <rich-text-block
             class="page-event-detail__rich-text"
-            v-if="item.__typename === 'TextSectionRecord' && item.body"
-            :key="item.body"
-            :text="item.body"
+            v-if="item.__typename === 'TextBlockRecord' && item.text?.value"
+            :text="item.text"
             large-text
           />
         </template>
@@ -143,7 +125,12 @@
     },
   });
 
-  useSeoHead(data.value.page);
+  useSeoHead({
+    title: data.value.page.title,
+    social: data.value.page.seo,
+  });
+
+  const eventLabel = computed(() => data.value.page.tags?.[0]?.title || '');
 
   const formattedDate = computed(() => formatDate({
     date: data.value.page.date,
@@ -155,13 +142,14 @@
     if (data.value.page.eventIsOnline) {
       return 'This event is online'
     } else if (data.value.page.location) {
-      return `${data.value.page.location.name}<br>${data.value.page.location.street}<br>${data.value.page.location.postcode} ${data.value.page.location.city}`
+      const { title, address, postalCode, city } = data.value.page.location
+      return `${title}<br>${address}<br>${postalCode} ${city}`
     }
     return ''
   });
 
   const isMeetup = computed(() =>
-    data.value.page.label.label.toLowerCase() === 'meet-up'
+    eventLabel.value.toLowerCase() === 'meet-up'
   );
 
   const imageIsIllustration = computed(() => {
@@ -184,12 +172,12 @@
     } else if (data.value.page.location) {
       location = {
         '@type': 'Place',
-        'name': data.value.page.location.name,
+        'name': data.value.page.location.title,
         'address': {
           '@type': 'PostalAddress',
-          'streetAddress': data.value.page.location.street,
+          'streetAddress': data.value.page.location.address,
           'addressLocality': data.value.page.location.city,
-          'postalCode': data.value.page.location.postcode,
+          'postalCode': data.value.page.location.postalCode,
           'addressCountry': data.value.page.location.countryCode,
         },
       }
@@ -203,7 +191,7 @@
         : 'OfflineEventAttendanceMode',
       'name': data.value.page.title,
       'startDate': data.value.page.date,
-      'description': data.value.page.social.description,
+      'description': data.value.page.seo?.description,
       'image': data.value.page.image
         ? [ data.value.page.image.url ]
         : null,
