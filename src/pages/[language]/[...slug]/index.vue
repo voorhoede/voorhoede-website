@@ -3,7 +3,11 @@
     <h1 class="sr-only">
       {{ data?.page?.title }}
     </h1>
-    <Blocks v-if="data?.page?.bodyBlocks" :blocks="data.page.bodyBlocks" />
+    <Blocks
+      v-if="data?.page?.bodyBlocks"
+      :blocks="data.page.bodyBlocks"
+      :host-page-id="data.page.id"
+    />
   </div>
 </template>
 
@@ -13,15 +17,19 @@ definePageMeta({ layout: "content-page" });
 import { withQuery } from "ufo";
 
 import { CaseListBlockFragment } from "~/components/Blocks/CaseListBlock/CaseListBlock.query";
+import { EventsListBlockFragment } from "~/components/Blocks/EventsListBlock/EventsListBlock.query";
 import { GroupingBlockFragment } from "~/components/Blocks/GroupingBlock/GroupingBlock.query";
 import { ImageGridBlockFragment } from "~/components/Blocks/ImageGridBlock/ImageGridBlock.query";
+import { LocationsListBlockFragment } from "~/components/Blocks/LocationsListBlock/LocationsListBlock.query";
 import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGridBlock.query";
 import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
+import { PageListBlockFragment } from "~/components/Blocks/PageListBlock/PageListBlock.query";
 import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
 import { ReachOutBlockFragment } from "~/components/Blocks/ReachOutBlock/ReachOutBlock.query";
 import { TeamGalleryBlockFragment } from "~/components/Blocks/TeamGalleryBlock/TeamGalleryBlock.query";
 import { TextBlockFragment } from "~/components/Blocks/TextBlock/TextBlock.query";
 import { TextImageBlockFragment } from "~/components/Blocks/TextImageBlock/TextImageBlock.query";
+import { ActionBlockFragment } from "~/components/Blocks/ActionBlock/ActionBlock.query";
 
 const route = useRoute();
 
@@ -36,6 +44,7 @@ const query = graphql(
   `
     query Page($locale: SiteLocale, $slug: String) {
       page(locale: $locale, filter: { slug: { eq: $slug } }) {
+        id
         title
         seo {
           title
@@ -49,11 +58,15 @@ const query = graphql(
         }
         bodyBlocks {
           __typename
+          ...ActionBlockRecordFragment
           ...CaseListBlockFragment
+          ...EventsListBlockFragment
           ...GroupingBlockFragment
           ...ImageGridBlockFragment
+          ...LocationsListBlockFragment
           ...LogoGridBlockFragment
           ...PageHeaderBlockFragment
+          ...PageListBlockFragment
           ...PagePartialBlockFragment
           ...ReachOutBlockFragment
           ...TeamGalleryBlockFragment
@@ -64,11 +77,15 @@ const query = graphql(
     }
   `,
   [
+    ActionBlockFragment,
     CaseListBlockFragment,
+    EventsListBlockFragment,
     GroupingBlockFragment,
     ImageGridBlockFragment,
+    LocationsListBlockFragment,
     LogoGridBlockFragment,
     PageHeaderBlockFragment,
+    PageListBlockFragment,
     PagePartialBlockFragment,
     ReachOutBlockFragment,
     TeamGalleryBlockFragment,

@@ -35,6 +35,7 @@
           />
         </div>
         <div
+          v-if="item.body || item.title || item.cta"
           class="image-card-grid-mosaic__cell image-card-grid-mosaic__cell--content"
         >
           <h3 v-if="item.title" class="image-card-grid-mosaic__cell-title h3">
@@ -174,6 +175,11 @@ const cardImageSizes = computed(() =>
   background-color: var(--bg-pastel);
 }
 
+/* Image-only mosaic items (no title/body/cta): stretch to the full item. */
+.image-card-grid-mosaic__cell:only-child {
+  flex: 0 0 100%;
+}
+
 /* Skip first item; then 2 highlighted, 2 not (items 2–3, 6–7, …). */
 .image-card-grid-mosaic__item:nth-child(4n + 2) .image-card-grid-mosaic__cell,
 .image-card-grid-mosaic__item:nth-child(4n + 3) .image-card-grid-mosaic__cell {
@@ -240,7 +246,6 @@ const cardImageSizes = computed(() =>
 .image-card-grid {
   --image-offset: 150px;
   --horizontal-image-width: 200px;
-  grid-column: var(--grid-page);
 }
 
 .image-card-grid__title {

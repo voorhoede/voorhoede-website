@@ -1,9 +1,12 @@
 import { graphql } from "~/utils/graphql";
+import { ActionBlockFragment } from "../ActionBlock/ActionBlock.query";
 import { CaseListBlockFragment } from "../CaseListBlock/CaseListBlock.query";
+import { EventsListBlockFragment } from "../EventsListBlock/EventsListBlock.query";
 import { GroupingBlockFragment } from "../GroupingBlock/GroupingBlock.query";
 import { ImageGridBlockFragment } from "../ImageGridBlock/ImageGridBlock.query";
 import { LogoGridBlockFragment } from "../LogoGridBlock/LogoGridBlock.query";
 import { PageHeaderBlockFragment } from "../PageHeaderBlock/PageHeaderBlock.query";
+import { PageListBlockFragment } from "../PageListBlock/PageListBlock.query";
 import { ReachOutBlockFragment } from "../ReachOutBlock/ReachOutBlock.query";
 import { TextBlockFragment } from "../TextBlock/TextBlock.query";
 import { TextImageBlockFragment } from "../TextImageBlock/TextImageBlock.query";
@@ -20,11 +23,14 @@ export const PagePartialBlockFragment = graphql(
         title
         blocks {
           __typename
+          ...ActionBlockRecordFragment
           ...CaseListBlockFragment
+          ...EventsListBlockFragment
           ...GroupingBlockFragment
           ...ImageGridBlockFragment
           ...LogoGridBlockFragment
           ...PageHeaderBlockFragment
+          ...PageListBlockFragment
           ...ReachOutBlockFragment
           ...TextBlockFragment
           ...TextImageBlockFragment
@@ -33,11 +39,14 @@ export const PagePartialBlockFragment = graphql(
     }
   `,
   [
+    ActionBlockFragment,
     CaseListBlockFragment,
+    EventsListBlockFragment,
     GroupingBlockFragment,
     ImageGridBlockFragment,
     LogoGridBlockFragment,
     PageHeaderBlockFragment,
+    PageListBlockFragment,
     ReachOutBlockFragment,
     TextBlockFragment,
     TextImageBlockFragment,

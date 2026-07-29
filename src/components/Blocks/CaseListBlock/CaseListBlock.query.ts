@@ -1,5 +1,13 @@
 import { graphql } from "~/utils/graphql";
-import { LinkToRecordFragment } from "~/components/Core/LinkToRecord/LinkToRecord.query";
+import {
+  ActionBlockFragment,
+  GlossaryTermLinkFragment,
+  IconBlockFragment,
+  ImageBlockFragment,
+  VariableBlockFragment,
+  VideoBlockFragment,
+  VideoEmbedBlockFragment,
+} from "~/components/Blocks/shared/structuredText.query";
 
 export const CaseListBlockFragment = graphql(
   `
@@ -20,11 +28,48 @@ export const CaseListBlockFragment = graphql(
       }
       text {
         value
+        links {
+          __typename
+          ... on HomePageRecord {
+            id
+            title
+          }
+          ... on PageRecord {
+            id
+            slug
+            title
+          }
+          ... on FileRecord {
+            id
+            title
+            file {
+              url
+            }
+          }
+          ...GlossaryTermLinkFragment
+        }
         blocks {
-          ...LinkToRecordFragment
+          __typename
+          ...ActionBlockFragment
+          ...ImageBlockFragment
+          ...VideoBlockFragment
+          ...VideoEmbedBlockFragment
+        }
+        inlineBlocks {
+          __typename
+          ...IconBlockFragment
+          ...VariableBlockFragment
         }
       }
     }
   `,
-  [LinkToRecordFragment],
+  [
+    ActionBlockFragment,
+    GlossaryTermLinkFragment,
+    IconBlockFragment,
+    ImageBlockFragment,
+    VariableBlockFragment,
+    VideoBlockFragment,
+    VideoEmbedBlockFragment,
+  ],
 );

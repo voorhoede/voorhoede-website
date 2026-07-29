@@ -371,22 +371,32 @@
     margin-top: var(--spacing-medium);
   }
 
-  .structured-text__list {
+  .structured-text :deep(.structured-text__list) {
     padding-left: var(--spacing-medium);
   }
 
-  ul.structured-text__list {
-    list-style: initial;
+  .structured-text :deep(ul.structured-text__list) {
+    list-style-type: disc;
+    list-style-position: outside;
   }
 
-  ol.structured-text__list {
-    list-style: decimal;
+  .structured-text :deep(ol.structured-text__list) {
+    list-style-type: decimal;
+    list-style-position: outside;
     font-family: var(--font-sans);
     font-weight: 700;
   }
 
-  .structured-text__list li + li {
+  .structured-text :deep(.structured-text__list > li) {
+    display: list-item;
+  }
+
+  .structured-text :deep(.structured-text__list > li + li) {
     margin-top: var(--spacing-medium);
+  }
+
+  .structured-text :deep(.structured-text__list > li > p) {
+    margin: 0;
   }
 
   .structured-text__column-structured-text {

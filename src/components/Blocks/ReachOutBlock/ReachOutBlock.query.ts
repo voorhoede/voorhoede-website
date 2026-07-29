@@ -1,14 +1,57 @@
 import { graphql } from "~/utils/graphql";
-import { LinkToRecordFragment } from "~/components/Core/LinkToRecord/LinkToRecord.query";
+import {
+  ActionBlockFragment,
+  GlossaryTermLinkFragment,
+  IconBlockFragment,
+  ImageBlockFragment,
+  VariableBlockFragment,
+  VideoBlockFragment,
+  VideoEmbedBlockFragment,
+} from "~/components/Blocks/shared/structuredText.query";
+import { ActionBlockFragment as ActionBlockRecordFragment } from "../ActionBlock/ActionBlock.query";
 
 export const ReachOutBlockFragment = graphql(
   `
     fragment ReachOutBlockFragment on ReachOutBlockRecord {
       title
-      body(markdown: true)
+      body {
+        value
+        links {
+          __typename
+          ... on HomePageRecord {
+            id
+            title
+          }
+          ... on PageRecord {
+            id
+            slug
+            title
+          }
+          ... on FileRecord {
+            id
+            title
+            file {
+              url
+            }
+          }
+          ...GlossaryTermLinkFragment
+        }
+        blocks {
+          __typename
+          ...ActionBlockFragment
+          ...ImageBlockFragment
+          ...VideoBlockFragment
+          ...VideoEmbedBlockFragment
+        }
+        inlineBlocks {
+          __typename
+          ...IconBlockFragment
+          ...VariableBlockFragment
+        }
+      }
       formType
       cta {
-        ...LinkToRecordFragment
+        ...ActionBlockRecordFragment
       }
       contactPerson {
         name
@@ -23,5 +66,14 @@ export const ReachOutBlockFragment = graphql(
       }
     }
   `,
-  [LinkToRecordFragment],
+  [
+    ActionBlockFragment,
+    GlossaryTermLinkFragment,
+    IconBlockFragment,
+    ImageBlockFragment,
+    VariableBlockFragment,
+    VideoBlockFragment,
+    VideoEmbedBlockFragment,
+    ActionBlockRecordFragment,
+  ],
 );
