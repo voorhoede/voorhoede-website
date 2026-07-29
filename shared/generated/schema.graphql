@@ -446,6 +446,9 @@ enum BlogPostModelFieldsReferencingBlogPostModel {
   blogPost_bodyBlocks__reachOutBlock_cta__actionBlock_items__internalLink_link
   blogPost_bodyBlocks__textBlock_text__actionBlock_items__internalLink_link
   blogPost_bodyBlocks__textImageBlock_text__actionBlock_items__internalLink_link
+  blogPost_reachOut
+  blogPost_reachOut__reachOutBlock_body__actionBlock_items__internalLink_link
+  blogPost_reachOut__reachOutBlock_cta__actionBlock_items__internalLink_link
   blogPost_relatedBlogPosts
 }
 
@@ -537,6 +540,12 @@ type BlogPostRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): [StringNonNullMultiLocaleField!]
+  _allReachOutLocales(
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [ReachOutBlockRecordMultiLocaleField!]
   _allReferencingApps(
     """Specifies how to filter linking records"""
     through: InverseRelationshipFilterBetweenAppAndBlogPost
@@ -864,6 +873,15 @@ type BlogPostRecord implements RecordInterface {
     """Process content as markdown"""
     markdown: Boolean
   ): String
+  reachOut(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): ReachOutBlockRecord
   relatedBlogPosts(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -6852,6 +6870,11 @@ type ReachOutBlockRecord implements RecordInterface {
   id: ItemId!
   title: String
   updatedAt: DateTime!
+}
+
+type ReachOutBlockRecordMultiLocaleField {
+  locale: SiteLocale
+  value: ReachOutBlockRecord
 }
 
 interface RecordInterface {

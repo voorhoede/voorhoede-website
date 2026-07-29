@@ -30,6 +30,12 @@
 
         <tag-list :items="tags" />
       </div>
+
+      <toc-section
+        v-if="tocItems.length"
+        :items="tocItems"
+        class="page-blog-post__toc"
+      />
     </aside>
 
     <article class="page-blog-post-list">
@@ -53,11 +59,16 @@
         </p>
       </text-block>
 
-      <Blocks
-        v-if="data.page.bodyBlocks?.length"
-        :blocks="data.page.bodyBlocks"
-        :host-page-id="data.page.id"
-      />
+      <div
+        v-for="(block, index) in bodyBlocks"
+        :key="index"
+        class="page-blog-post__body-block"
+      >
+        <BlockItem
+          :block="block"
+          :host-page-id="data.page.id"
+        />
+      </div>
 
       <custom-script
         v-if="data.page.onMountedScript"
@@ -88,159 +99,33 @@
       </app-link>
     </div>
 
-    <section class="page-blog-post__pivots grid">
-      <div class="page-blog-post__scroll-to">
-        <scroll-to direction="up" />
-      </div>
-    </section>
+    <ReachOutBlock
+      v-if="data.page.reachOut"
+      class="page-blog-post__reach-out"
+      :data="data.page.reachOut"
+    />
   </main>
 </template>
 
 <script setup lang="ts">
 definePageMeta({ layout: 'content-page' });
 
-import { CaseListBlockFragment } from '~/components/Blocks/CaseListBlock/CaseListBlock.query';
-import { EventsListBlockFragment } from '~/components/Blocks/EventsListBlock/EventsListBlock.query';
-import { GroupingBlockFragment } from '~/components/Blocks/GroupingBlock/GroupingBlock.query';
-import { ImageGridBlockFragment } from '~/components/Blocks/ImageGridBlock/ImageGridBlock.query';
-import { LocationsListBlockFragment } from '~/components/Blocks/LocationsListBlock/LocationsListBlock.query';
-import { LogoGridBlockFragment } from '~/components/Blocks/LogoGridBlock/LogoGridBlock.query';
-import { PageHeaderBlockFragment } from '~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query';
-import { PageListBlockFragment } from '~/components/Blocks/PageListBlock/PageListBlock.query';
-import { PagePartialBlockFragment } from '~/components/Blocks/PagePartialBlock/PagePartialBlock.query';
-import { ReachOutBlockFragment } from '~/components/Blocks/ReachOutBlock/ReachOutBlock.query';
-import { TeamGalleryBlockFragment } from '~/components/Blocks/TeamGalleryBlock/TeamGalleryBlock.query';
-import { TextBlockFragment } from '~/components/Blocks/TextBlock/TextBlock.query';
-import { TextImageBlockFragment } from '~/components/Blocks/TextImageBlock/TextImageBlock.query';
-import { ActionBlockFragment } from '~/components/Blocks/ActionBlock/ActionBlock.query';
-import { ImageBlockFragment } from '~/components/Blocks/shared/structuredText.query';
-import Blocks from '~/components/Blocks/Blocks.vue';
+import BlockItem from '~/components/Blocks/BlockItem.vue';
+import ReachOutBlock from '~/components/Blocks/ReachOutBlock/ReachOutBlock.vue';
+import type { BlockRecord } from '~/components/Blocks/types';
+import { readFragment } from '~/utils/graphql';
+import type { TextBlockFragment } from '~/components/Blocks/TextBlock/TextBlock.query';
+import slugify from '~/lib/slugify';
+import { blogSlugQuery } from './index.query';
 
 const { $localeUrl } = useNuxtApp();
 const runtimeConfig = useRuntimeConfig();
 const route = useRoute();
 const { params } = route;
 
-const query = graphql(
-  `
-    query BlogSlug($locale: SiteLocale, $slug: String) {
-      page: blogPost(locale: $locale, filter: { slug: { eq: $slug } }) {
-        id
-        slug
-        i18nSlugs: _allSlugLocales {
-          locale
-          value
-        }
-        title
-        subtitle
-        isArchived
-        headerIllustration {
-          url
-          alt
-          width
-          height
-        }
-        date: _firstPublishedAt
-        authors {
-          name
-          lastName
-          slug
-          image {
-            url
-            alt
-            width
-            height
-          }
-        }
-        introTitle
-        seo {
-          title
-          description
-          image {
-            url
-          }
-        }
-        bodyBlocks {
-          __typename
-          ...ActionBlockRecordFragment
-          ...CaseListBlockFragment
-          ...EventsListBlockFragment
-          ...GroupingBlockFragment
-          ...ImageBlockFragment
-          ...ImageGridBlockFragment
-          ...LocationsListBlockFragment
-          ...LogoGridBlockFragment
-          ...PageHeaderBlockFragment
-          ...PageListBlockFragment
-          ...PagePartialBlockFragment
-          ...ReachOutBlockFragment
-          ...TeamGalleryBlockFragment
-          ...TextBlockFragment
-          ...TextImageBlockFragment
-        }
-        relatedBlogPosts {
-          slug
-          title
-          date: _firstPublishedAt
-          authors {
-            name
-            image {
-              url
-              alt
-              width
-              height
-            }
-          }
-        }
-        tags {
-          id
-          title
-          slug
-          blogPosts: _allReferencingBlogPosts(
-            first: 3
-            filter: { slug: { neq: $slug } }
-          ) {
-            slug
-            title
-            date: _firstPublishedAt
-            authors {
-              name
-              image {
-                url
-                alt
-                width
-                height
-              }
-            }
-          }
-        }
-        onMountedScript
-        onUnmountedScript
-      }
-    }
-  `,
-  [
-    ActionBlockFragment,
-    CaseListBlockFragment,
-    EventsListBlockFragment,
-    GroupingBlockFragment,
-    ImageBlockFragment,
-    ImageGridBlockFragment,
-    LocationsListBlockFragment,
-    LogoGridBlockFragment,
-    PageHeaderBlockFragment,
-    PageListBlockFragment,
-    PagePartialBlockFragment,
-    ReachOutBlockFragment,
-    TeamGalleryBlockFragment,
-    TextBlockFragment,
-    TextImageBlockFragment,
-  ],
-);
-
 const { data } = await useAsyncData(route.path, async () => {
   const result = await useFetchDatocmsContent({
-    query,
+    query: blogSlugQuery,
     variables: {
       slug: params.slug as string,
       locale: params.language as 'nl' | 'en',
@@ -260,11 +145,55 @@ useSeoHead({
   social: data.value.page.seo,
 });
 
+const bodyBlocks = computed(
+  () => (data.value?.page?.bodyBlocks ?? []) as BlockRecord[],
+);
+
 const tags = computed(() => {
   return (data.value?.page?.tags || []).map((tag) => ({
     ...tag,
     to: $localeUrl({ name: 'blog-tag-slug', params: { slug: tag.slug } }),
   }));
+});
+
+type TocItem = { titleId: string; title: string };
+
+type DastNode = {
+  type?: string;
+  level?: number;
+  value?: string;
+  children?: DastNode[];
+};
+
+function collectHeadingText(node: DastNode): string {
+  if (typeof node.value === 'string') return node.value;
+  return (node.children ?? []).map(collectHeadingText).join('');
+}
+
+function walkHeadings(node: DastNode | undefined, out: TocItem[]) {
+  if (!node) return;
+  if (node.type === 'heading' && node.level === 2) {
+    const title = collectHeadingText(node).trim();
+    if (title) {
+      out.push({ titleId: slugify(title), title });
+    }
+  }
+  for (const child of node.children ?? []) {
+    walkHeadings(child, out);
+  }
+}
+
+const tocItems = computed(() => {
+  const items: TocItem[] = [];
+  for (const block of bodyBlocks.value) {
+    if (block.__typename !== 'TextBlockRecord') continue;
+    const textBlock = readFragment<typeof TextBlockFragment>(block);
+    const document = (
+      textBlock.text?.value as { document?: DastNode } | null | undefined
+    )?.document;
+    walkHeadings(document, items);
+  }
+  return items;
 });
 
 const relatedBlogPosts = computed(() => {
@@ -318,21 +247,8 @@ const relatedBlogPosts = computed(() => {
     margin-bottom: var(--spacing-bigger);
   }
 
-  .page-blog-post__pivots {
-    position: relative;
-    grid-column: var(--grid-page);
+  .page-blog-post__reach-out {
     grid-row: 6;
-    background-color: var(--bg-pastel);
-  }
-
-  .page-blog-post__scroll-to {
-    display: none;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 55px;
-    grid-column-start: -2;
-    grid-column-end: -3;
   }
 
   .page-blog-post-list {
@@ -379,10 +295,6 @@ const relatedBlogPosts = computed(() => {
     .page-blog-post__link-container {
       grid-column-start: 4;
       grid-column-end: 48;
-    }
-
-    .page-blog-post__scroll-to {
-      display: block;
     }
 
     .page-blog-post__archived {

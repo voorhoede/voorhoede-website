@@ -49,6 +49,7 @@ import ActionBlock from "~/components/Blocks/ActionBlock/ActionBlock.vue";
 import ImageWithCaption from "~/components/image-with-caption/image-with-caption.vue";
 import ResponsiveVideo from "~/components/responsive-video/responsive-video.vue";
 import AppIcon from "~/components/app-icon/app-icon.vue";
+import slugify from "~/lib/slugify";
 
 const props = defineProps<{
   data: CdaStructuredTextValue;
@@ -241,13 +242,20 @@ const customMarkRules = [
 ];
 
 const customNodeRules = [
-  renderNodeRule(isHeading, ({ node, key, children }) =>
-    h(
+  renderNodeRule(isHeading, ({ node, key, children }) => {
+    const title = node.children
+      .map((child) => ("value" in child ? String(child.value ?? "") : ""))
+      .join("");
+    return h(
       `h${node.level}`,
-      { key, class: [`h${node.level} structured-text__heading`, node.style] },
+      {
+        key,
+        id: title ? slugify(title) : undefined,
+        class: [`h${node.level} structured-text__heading`, node.style],
+      },
       children,
-    ),
-  ),
+    );
+  }),
   // Prevent empty newlines from rendering empty paragraphs
   renderNodeRule(isParagraph, ({ node, key, children }) => {
     // @ts-expect-error children is untyped

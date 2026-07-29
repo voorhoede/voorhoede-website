@@ -1,8 +1,18 @@
-import type { ImageBlockFragment } from "./shared/structuredText.query";
+import type {
+  ImageBlockFragment,
+  VideoBlockFragment,
+  VideoEmbedBlockFragment,
+} from "./shared/structuredText.query";
 import type { ActionBlockFragment } from "./ActionBlock/ActionBlock.query";
+import type { BlogsSectionBlockFragment } from "./BlogsSectionBlock/BlogsSectionBlock.query";
 import type { CaseListBlockFragment } from "./CaseListBlock/CaseListBlock.query";
 import type { EventsListBlockFragment } from "./EventsListBlock/EventsListBlock.query";
-import type { GroupingBlockFragment } from "./GroupingBlock/GroupingBlock.query";
+import type {
+  CodeBlockFragment,
+  EmbedBlockFragment,
+  GroupingBlockFragment,
+  TestimonialBlockFragment,
+} from "./GroupingBlock/GroupingBlock.query";
 import type { ImageGridBlockFragment } from "./ImageGridBlock/ImageGridBlock.query";
 import type { LocationsListBlockFragment } from "./LocationsListBlock/LocationsListBlock.query";
 import type { LogoGridBlockFragment } from "./LogoGridBlock/LogoGridBlock.query";
@@ -19,8 +29,17 @@ export type BlockRecord =
   | (FragmentOf<typeof ActionBlockFragment> & {
       __typename: "ActionBlockRecord";
     })
+  | (FragmentOf<typeof BlogsSectionBlockFragment> & {
+      __typename: "BlogListBlockRecord";
+    })
   | (FragmentOf<typeof CaseListBlockFragment> & {
       __typename: "CaseListBlockRecord";
+    })
+  | (FragmentOf<typeof CodeBlockFragment> & {
+      __typename: "CodeBlockRecord";
+    })
+  | (FragmentOf<typeof EmbedBlockFragment> & {
+      __typename: "EmbedBlockRecord";
     })
   | (FragmentOf<typeof EventsListBlockFragment> & {
       __typename: "EventsListRecord";
@@ -55,9 +74,18 @@ export type BlockRecord =
   | (FragmentOf<typeof TeamGalleryBlockFragment> & {
       __typename: "TeamGalleryRecord";
     })
+  | (FragmentOf<typeof TestimonialBlockFragment> & {
+      __typename: "TestimonialBlockRecord";
+    })
   | (FragmentOf<typeof TextBlockFragment> & {
       __typename: "TextBlockRecord";
     })
   | (FragmentOf<typeof TextImageBlockFragment> & {
       __typename: "TextImageBlockRecord";
+    })
+  | (FragmentOf<typeof VideoBlockFragment> & {
+      __typename: "VideoBlockRecord";
+    })
+  | (FragmentOf<typeof VideoEmbedBlockFragment> & {
+      __typename: "VideoEmbedBlockRecord";
     });

@@ -1,21 +1,6 @@
-<template>
-  <div class="landing-page">
-    <h1 class="sr-only">
-      {{ data?.page?.title }}
-    </h1>
-    <Blocks
-      v-if="data?.page?.bodyBlocks"
-      :blocks="data.page.bodyBlocks as BlockRecord[]"
-      :host-page-id="data.page.id"
-    />
-  </div>
-</template>
-
-<script setup lang="ts">
-definePageMeta({ layout: "content-page" });
-
-import { withQuery } from "ufo";
-
+import { graphql } from "~/utils/graphql";
+import { ActionBlockFragment } from "~/components/Blocks/ActionBlock/ActionBlock.query";
+import { BlogsSectionBlockFragment } from "~/components/Blocks/BlogsSectionBlock/BlogsSectionBlock.query";
 import { CaseListBlockFragment } from "~/components/Blocks/CaseListBlock/CaseListBlock.query";
 import { EventsListBlockFragment } from "~/components/Blocks/EventsListBlock/EventsListBlock.query";
 import {
@@ -25,7 +10,6 @@ import {
   TestimonialBlockFragment,
 } from "~/components/Blocks/GroupingBlock/GroupingBlock.query";
 import { ImageGridBlockFragment } from "~/components/Blocks/ImageGridBlock/ImageGridBlock.query";
-import { LocationsListBlockFragment } from "~/components/Blocks/LocationsListBlock/LocationsListBlock.query";
 import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGridBlock.query";
 import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
 import { PageListBlockFragment } from "~/components/Blocks/PageListBlock/PageListBlock.query";
@@ -34,38 +18,49 @@ import { ReachOutBlockFragment } from "~/components/Blocks/ReachOutBlock/ReachOu
 import { TeamGalleryBlockFragment } from "~/components/Blocks/TeamGalleryBlock/TeamGalleryBlock.query";
 import { TextBlockFragment } from "~/components/Blocks/TextBlock/TextBlock.query";
 import { TextImageBlockFragment } from "~/components/Blocks/TextImageBlock/TextImageBlock.query";
-import { ActionBlockFragment } from "~/components/Blocks/ActionBlock/ActionBlock.query";
-import { BlogsSectionBlockFragment } from "~/components/Blocks/BlogsSectionBlock/BlogsSectionBlock.query";
 import {
   ImageBlockFragment,
   VideoBlockFragment,
   VideoEmbedBlockFragment,
 } from "~/components/Blocks/shared/structuredText.query";
-import type { BlockRecord } from "~/components/Blocks/types";
 
-const route = useRoute();
-
-const slug = Array.isArray(route.params.slug)
-  ? route.params.slug
-      // Don't include empty string fragments caused by leading or trailing slashes
-      .filter(Boolean)
-      .join("/")
-  : route.params.slug;
-
-const query = graphql(
+export const blogSlugQuery = graphql(
   `
-    query Page($locale: SiteLocale, $slug: String) {
-      page(locale: $locale, filter: { slug: { eq: $slug } }) {
+    query BlogSlug($locale: SiteLocale, $slug: String) {
+      page: blogPost(locale: $locale, filter: { slug: { eq: $slug } }) {
         id
+        slug
+        i18nSlugs: _allSlugLocales {
+          locale
+          value
+        }
         title
-        seo {
-          title
-          description
+        subtitle
+        isArchived
+        headerIllustration {
+          url
+          alt
+          width
+          height
+        }
+        date: _firstPublishedAt
+        authors {
+          name
+          lastName
+          slug
           image {
             url
             alt
             width
             height
+          }
+        }
+        introTitle
+        seo {
+          title
+          description
+          image {
+            url
           }
         }
         bodyBlocks {
@@ -79,7 +74,6 @@ const query = graphql(
           ...GroupingBlockFragment
           ...ImageBlockFragment
           ...ImageGridBlockFragment
-          ...LocationsListBlockFragment
           ...LogoGridBlockFragment
           ...PageHeaderBlockFragment
           ...PageListBlockFragment
@@ -92,6 +86,47 @@ const query = graphql(
           ...VideoBlockFragment
           ...VideoEmbedBlockFragment
         }
+        reachOut {
+          ...ReachOutBlockFragment
+        }
+        relatedBlogPosts {
+          slug
+          title
+          date: _firstPublishedAt
+          authors {
+            name
+            image {
+              url
+              alt
+              width
+              height
+            }
+          }
+        }
+        tags {
+          id
+          title
+          slug
+          blogPosts: _allReferencingBlogPosts(
+            first: 3
+            filter: { slug: { neq: $slug } }
+          ) {
+            slug
+            title
+            date: _firstPublishedAt
+            authors {
+              name
+              image {
+                url
+                alt
+                width
+                height
+              }
+            }
+          }
+        }
+        onMountedScript
+        onUnmountedScript
       }
     }
   `,
@@ -105,7 +140,6 @@ const query = graphql(
     GroupingBlockFragment,
     ImageBlockFragment,
     ImageGridBlockFragment,
-    LocationsListBlockFragment,
     LogoGridBlockFragment,
     PageHeaderBlockFragment,
     PageListBlockFragment,
@@ -119,32 +153,3 @@ const query = graphql(
     VideoEmbedBlockFragment,
   ],
 );
-
-const { data } = await useAsyncData(route.path, async () => {
-  const result = await useFetchDatocmsContent({
-    query,
-    variables: { locale: route.params.language as "nl" | "en", slug },
-  });
-
-  return result.data;
-});
-
-if (data.value?.page && data.value.page.seo) {
-  useSeoHead({
-    title: data.value.page.title,
-    social: data.value.page.seo,
-  });
-}
-
-if (
-  import.meta.client &&
-  slug === "subscription-confirmation" &&
-  route.query.email
-) {
-  fetch(
-    withQuery("https://hooks.zapier.com/hooks/catch/22617085/uosq4mq/", {
-      email: route.query.email,
-    }),
-  );
-}
-</script>

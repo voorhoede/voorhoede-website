@@ -123,7 +123,7 @@
     </article>
 
     <breadcrumbs-block
-      :back-link="$localeUrl({ name: 'cases' })"
+      :back-link="$localeUrl({ name: 'slug', params: { slug: 'cases' } })"
       :back-link-label="$t('all_cases')"
       :next-link="$localeUrl({ name: 'cases-slug', params: { slug: nextCase.slug } })"
       :next-link-label="nextCase.title"
