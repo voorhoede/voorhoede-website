@@ -44,7 +44,7 @@
         v-html="data.subtitle"
       />
       <!-- Always visible, but has aria-hidden -->
-      <self-typing-text class="h1" :text="data.subtitle" />
+      <SelfTypingText class="h1" :text="data.subtitle" />
       <div
         v-if="structuredBody"
         class="page-header__body body animation__uncover"
@@ -81,6 +81,9 @@
 import type { PageHeaderBlockFragment } from "./PageHeaderBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import type { CdaStructuredTextValue } from "datocms-structured-text-utils";
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
+import ScrollTo from "~/components/scroll-to/scroll-to.vue";
+import SelfTypingText from "~/components/self-typing-text/self-typing-text.vue";
 import StructuredText from "~/components/Core/StructuredText/StructuredText.vue";
 
 const props = withDefaults(

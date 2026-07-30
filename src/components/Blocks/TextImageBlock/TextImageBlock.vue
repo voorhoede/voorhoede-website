@@ -56,6 +56,7 @@ import {
   type BackgroundColorValue,
 } from "~/types/styling";
 import type { CdaStructuredTextValue } from "datocms-structured-text-utils";
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
 import StructuredText from "~/components/Core/StructuredText/StructuredText.vue";
 
 const props = withDefaults(

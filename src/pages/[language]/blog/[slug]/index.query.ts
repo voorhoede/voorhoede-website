@@ -1,7 +1,9 @@
 import { graphql } from "~/utils/graphql";
 import { ActionBlockFragment } from "~/components/Blocks/ActionBlock/ActionBlock.query";
-import { BlogsSectionBlockFragment } from "~/components/Blocks/BlogsSectionBlock/BlogsSectionBlock.query";
+import { BlogListBlockFragment } from "~/components/Blocks/BlogListBlock/BlogListBlock.query";
 import { EventsListBlockFragment } from "~/components/Blocks/EventsListBlock/EventsListBlock.query";
+import { GalleryBlockFragment } from "~/components/Blocks/GalleryBlock/GalleryBlock.query";
+import { GlossaryListBlockFragment } from "~/components/Blocks/GlossaryListBlock/GlossaryListBlock.query";
 import {
   CodeBlockFragment,
   EmbedBlockFragment,
@@ -65,10 +67,12 @@ export const blogSlugQuery = graphql(
         bodyBlocks {
           __typename
           ...ActionBlockRecordFragment
-          ...BlogsSectionBlockFragment
+          ...BlogListBlockFragment
           ...CodeBlockFragment
           ...EmbedBlockFragment
           ...EventsListBlockFragment
+          ...GalleryBlockFragment
+          ...GlossaryListBlockFragment
           ...GroupingBlockFragment
           ...ImageBlockFragment
           ...ImageGridBlockFragment
@@ -130,10 +134,12 @@ export const blogSlugQuery = graphql(
   `,
   [
     ActionBlockFragment,
-    BlogsSectionBlockFragment,
+    BlogListBlockFragment,
     CodeBlockFragment,
     EmbedBlockFragment,
     EventsListBlockFragment,
+    GalleryBlockFragment,
+    GlossaryListBlockFragment,
     GroupingBlockFragment,
     ImageBlockFragment,
     ImageGridBlockFragment,

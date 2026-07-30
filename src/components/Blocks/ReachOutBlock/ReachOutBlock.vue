@@ -12,15 +12,15 @@
       >
         <StructuredText :data="structuredBody" />
       </div>
-      <contact-form
+      <ContactForm
         v-if="isContactForm"
         :contact-person="data.contactPerson ?? undefined"
         :title="data.title || $t('lets_discuss')"
       >
         <ActionBlock v-if="data.cta" :data="data.cta" />
-      </contact-form>
+      </ContactForm>
 
-      <newsletter-form
+      <NewsletterForm
         v-else-if="isNewsletterForm"
         :title="data.title || undefined"
       >
@@ -28,11 +28,11 @@
           <StructuredText :data="structuredBody" />
         </template>
         <ActionBlock v-if="data.cta" :data="data.cta" />
-      </newsletter-form>
+      </NewsletterForm>
 
       <div v-else-if="isPersonLayout" class="reach-out-block__person">
         <div class="reach-out-block__image">
-          <dato-image
+          <DatoImage
             :src="data.contactPerson!.image.url"
             alt=""
             :width="200"
@@ -83,6 +83,9 @@ import type { ReachOutBlockFragment } from "./ReachOutBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import type { CdaStructuredTextValue } from "datocms-structured-text-utils";
 import ActionBlock from "~/components/Blocks/ActionBlock/ActionBlock.vue";
+import ContactForm from "~/components/contact-form/contact-form.vue";
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
+import NewsletterForm from "~/components/newsletter-form/newsletter-form.vue";
 import StructuredText from "~/components/Core/StructuredText/StructuredText.vue";
 
 const props = defineProps<{

@@ -4,14 +4,16 @@ import type {
   VideoEmbedBlockFragment,
 } from "./shared/structuredText.query";
 import type { ActionBlockFragment } from "./ActionBlock/ActionBlock.query";
-import type { BlogsSectionBlockFragment } from "./BlogsSectionBlock/BlogsSectionBlock.query";
+import type { BlogListBlockFragment } from "./BlogListBlock/BlogListBlock.query";
 import type { EventsListBlockFragment } from "./EventsListBlock/EventsListBlock.query";
+import type { GalleryBlockFragment } from "./GalleryBlock/GalleryBlock.query";
 import type {
   CodeBlockFragment,
   EmbedBlockFragment,
   GroupingBlockFragment,
   TestimonialBlockFragment,
 } from "./GroupingBlock/GroupingBlock.query";
+import type { GlossaryListBlockFragment } from "./GlossaryListBlock/GlossaryListBlock.query";
 import type { ImageGridBlockFragment } from "./ImageGridBlock/ImageGridBlock.query";
 import type { LocationsListBlockFragment } from "./LocationsListBlock/LocationsListBlock.query";
 import type { LogoGridBlockFragment } from "./LogoGridBlock/LogoGridBlock.query";
@@ -28,7 +30,7 @@ export type BlockRecord =
   | (FragmentOf<typeof ActionBlockFragment> & {
       __typename: "ActionBlockRecord";
     })
-  | (FragmentOf<typeof BlogsSectionBlockFragment> & {
+  | (FragmentOf<typeof BlogListBlockFragment> & {
       __typename: "BlogListBlockRecord";
     })
   | (FragmentOf<typeof CodeBlockFragment> & {
@@ -40,14 +42,20 @@ export type BlockRecord =
   | (FragmentOf<typeof EventsListBlockFragment> & {
       __typename: "EventsListRecord";
     })
+  | (FragmentOf<typeof GalleryBlockFragment> & {
+      __typename: "GalleryBlockRecord";
+    })
+  | (FragmentOf<typeof GlossaryListBlockFragment> & {
+      __typename: "GlossaryListRecord";
+    })
+  | (FragmentOf<typeof GroupingBlockFragment> & {
+      __typename: "GroupingBlockRecord";
+    })
   | (FragmentOf<typeof ImageBlockFragment> & {
       __typename: "ImageBlockRecord";
     })
   | (FragmentOf<typeof ImageGridBlockFragment> & {
       __typename: "ImageGridBlockRecord";
-    })
-  | (FragmentOf<typeof GroupingBlockFragment> & {
-      __typename: "GroupingBlockRecord";
     })
   | (FragmentOf<typeof LocationsListBlockFragment> & {
       __typename: "LocationsListRecord";

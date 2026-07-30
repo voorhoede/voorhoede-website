@@ -45,6 +45,8 @@ import { useFetchDatocmsContent } from "~/composables/useFetchDatocmsContent";
 import { graphql } from "~/utils/graphql";
 
 import { EventsListBlockFragment } from "~/components/Blocks/EventsListBlock/EventsListBlock.query";
+import { GalleryBlockFragment } from "~/components/Blocks/GalleryBlock/GalleryBlock.query";
+import { GlossaryListBlockFragment } from "~/components/Blocks/GlossaryListBlock/GlossaryListBlock.query";
 import {
   CodeBlockFragment,
   EmbedBlockFragment,
@@ -61,7 +63,7 @@ import { TeamGalleryBlockFragment } from "~/components/Blocks/TeamGalleryBlock/T
 import { TextBlockFragment } from "~/components/Blocks/TextBlock/TextBlock.query";
 import { TextImageBlockFragment } from "~/components/Blocks/TextImageBlock/TextImageBlock.query";
 import { ActionBlockFragment } from "~/components/Blocks/ActionBlock/ActionBlock.query";
-import { BlogsSectionBlockFragment } from "~/components/Blocks/BlogsSectionBlock/BlogsSectionBlock.query";
+import { BlogListBlockFragment } from "~/components/Blocks/BlogListBlock/BlogListBlock.query";
 import {
   ImageBlockFragment,
   VideoBlockFragment,
@@ -89,10 +91,12 @@ const query = graphql(
         bodyBlocks {
           __typename
           ...ActionBlockRecordFragment
-          ...BlogsSectionBlockFragment
+          ...BlogListBlockFragment
           ...CodeBlockFragment
           ...EmbedBlockFragment
           ...EventsListBlockFragment
+          ...GalleryBlockFragment
+          ...GlossaryListBlockFragment
           ...GroupingBlockFragment
           ...ImageBlockFragment
           ...ImageGridBlockFragment
@@ -133,10 +137,12 @@ const query = graphql(
   `,
   [
     ActionBlockFragment,
-    BlogsSectionBlockFragment,
+    BlogListBlockFragment,
     CodeBlockFragment,
     EmbedBlockFragment,
     EventsListBlockFragment,
+    GalleryBlockFragment,
+    GlossaryListBlockFragment,
     GroupingBlockFragment,
     ImageBlockFragment,
     ImageGridBlockFragment,
