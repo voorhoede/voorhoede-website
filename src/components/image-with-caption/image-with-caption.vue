@@ -26,6 +26,8 @@
 </template>
 
 <script setup lang="ts">
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
+
 withDefaults(defineProps<{
   image: {
     title: string,

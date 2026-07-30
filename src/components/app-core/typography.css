@@ -7,6 +7,7 @@
 }
 
 .testimonial {
+  margin-top: var(--spacing-medium);
   font-family: var(--font-sans);
   font-size: 1.8125rem; /* 29px */
   font-weight: 400;

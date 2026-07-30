@@ -1,24 +1,24 @@
 <template>
-  <section class="glossary-section grid" v-once>
-    <h2 class="glossary-section__title h2">
+  <section class="glossary-list-block grid" v-once>
+    <h2 class="glossary-list-block__title h2">
       {{ data.title }}
     </h2>
-    <ul v-if="terms.length > 0" class="glossary-section__list body">
+    <ul v-if="terms.length > 0" class="glossary-list-block__list body">
       <li
         v-for="term in terms"
         :id="term.slug"
         :key="term.id"
-        class="glossary-section__item"
+        class="glossary-list-block__item"
       >
-        <details class="glossary-section__details">
-          <summary class="glossary-section__summary">
+        <details class="glossary-list-block__details">
+          <summary class="glossary-list-block__summary">
             {{ term.question }}
-            <span class="glossary-section__icon" aria-hidden="true">
+            <span class="glossary-list-block__icon" aria-hidden="true">
               &#9662;
             </span>
           </summary>
-          <rich-text-block
-            class="glossary-section__definition"
+          <RichTextBlock
+            class="glossary-list-block__definition"
             :text="term.definitionHtml"
           />
         </details>
@@ -28,15 +28,16 @@
 </template>
 
 <script setup lang="ts">
-import termsQuery from "./GlossarySectionBlock.terms.graphql?raw";
-import type { GlossarySectionBlockFragment } from "./GlossarySectionBlock.query";
+import termsQuery from "./GlossaryListBlock.terms.graphql?raw";
+import type { GlossaryListBlockFragment } from "./GlossaryListBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
+import RichTextBlock from "~/components/rich-text-block/rich-text-block.vue";
 
 const props = defineProps<{
-  data: FragmentOf<typeof GlossarySectionBlockFragment>;
+  data: FragmentOf<typeof GlossaryListBlockFragment>;
 }>();
 
-const data = readFragment<typeof GlossarySectionBlockFragment>(props.data);
+const data = readFragment<typeof GlossaryListBlockFragment>(props.data);
 
 const route = useRoute();
 const { data: termsData }: { data: Ref<{ terms: GlossaryTerm[] } | null> } =
@@ -74,13 +75,13 @@ useHead({ script: structuredData });
 </script>
 
 <style scoped>
-.glossary-section__title {
+.glossary-list-block__title {
   grid-column: var(--grid-content);
   margin-bottom: var(--spacing-medium);
   text-align: center;
 }
 
-.glossary-section__list {
+.glossary-list-block__list {
   grid-column: var(--grid-content);
 
   @media (min-width: 720px) {
@@ -94,15 +95,15 @@ useHead({ script: structuredData });
   }
 }
 
-.glossary-section__item + .glossary-section__item {
+.glossary-list-block__item + .glossary-list-block__item {
   margin-top: var(--spacing-medium);
 }
 
-.glossary-section__details {
+.glossary-list-block__details {
   border-left: 2px solid var(--html-blue);
 }
 
-.glossary-section__summary {
+.glossary-list-block__summary {
   align-items: center;
   cursor: pointer;
   display: flex;
@@ -114,32 +115,32 @@ useHead({ script: structuredData });
   padding-left: var(--spacing-small);
 }
 
-.glossary-section__summary::-webkit-details-marker {
+.glossary-list-block__summary::-webkit-details-marker {
   display: none;
 }
 
-.glossary-section__summary:hover,
-.glossary-section__summary:focus-visible {
+.glossary-list-block__summary:hover,
+.glossary-list-block__summary:focus-visible {
   color: var(--html-blue);
 }
 
-.glossary-section__icon {
+.glossary-list-block__icon {
   display: inline-block;
   flex-shrink: 0;
   font-size: 1.2em;
   transition: transform 0.15s ease;
 }
 
-.glossary-section__details[open] .glossary-section__icon {
+.glossary-list-block__details[open] .glossary-list-block__icon {
   transform: rotate(180deg);
 }
 
-.glossary-section__definition {
+.glossary-list-block__definition {
   margin-top: var(--spacing-tiny);
   padding-left: var(--spacing-small);
 }
 
-.glossary-section__item:target .glossary-section__details {
+.glossary-list-block__item:target .glossary-list-block__details {
   outline-offset: 2px;
   outline: 2px solid var(--html-blue);
 }

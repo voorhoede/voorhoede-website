@@ -1,12 +1,12 @@
 <template>
-  <section class="blogs-section grid" v-once>
-    <h2 class="blogs-section__title h3">
+  <section class="blog-list-block grid" v-once>
+    <h2 class="blog-list-block__title h3">
       {{ data.title }}
     </h2>
 
     <div
       v-if="structuredDescription"
-      class="blogs-section__description body"
+      class="blog-list-block__description body"
     >
       <StructuredText :data="structuredDescription" />
     </div>
@@ -20,16 +20,17 @@
 </template>
 
 <script setup lang="ts">
-import type { BlogsSectionBlockFragment } from "./BlogsSectionBlock.query";
+import type { BlogListBlockFragment } from "./BlogListBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import type { CdaStructuredTextValue } from "datocms-structured-text-utils";
+import BlogsList from "~/components/blogs-list/blogs-list.vue";
 import StructuredText from "~/components/Core/StructuredText/StructuredText.vue";
 
 const props = defineProps<{
-  data: FragmentOf<typeof BlogsSectionBlockFragment>;
+  data: FragmentOf<typeof BlogListBlockFragment>;
 }>();
 
-const data = readFragment<typeof BlogsSectionBlockFragment>(props.data);
+const data = readFragment<typeof BlogListBlockFragment>(props.data);
 
 const structuredDescription = computed(() =>
   data.description
@@ -39,12 +40,12 @@ const structuredDescription = computed(() =>
 </script>
 
 <style scoped>
-.blogs-section__title {
+.blog-list-block__title {
   text-align: center;
   margin-bottom: var(--spacing-big);
 }
 
-.blogs-section__description {
+.blog-list-block__description {
   text-align: center;
   margin-block: calc(-1 * var(--spacing-medium)) var(--spacing-big);
   margin-inline: auto;

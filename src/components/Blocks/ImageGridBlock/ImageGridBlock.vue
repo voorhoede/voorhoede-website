@@ -115,6 +115,7 @@ import { type FragmentOf, readFragment } from "~/utils/graphql";
 import { BackgroundColor, type BackgroundColorValue } from "~/types/styling";
 import type { CdaStructuredTextValue } from "datocms-structured-text-utils";
 import ActionBlock from "~/components/Blocks/ActionBlock/ActionBlock.vue";
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
 import StructuredText from "~/components/Core/StructuredText/StructuredText.vue";
 
 const props = withDefaults(

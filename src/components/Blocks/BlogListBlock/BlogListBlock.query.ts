@@ -9,9 +9,9 @@ import {
   VideoEmbedBlockFragment,
 } from "~/components/Blocks/shared/structuredText.query";
 
-export const BlogsSectionBlockFragment = graphql(
+export const BlogListBlockFragment = graphql(
   `
-    fragment BlogsSectionBlockFragment on BlogListBlockRecord {
+    fragment BlogListBlockFragment on BlogListBlockRecord {
       id
       title
       itemSize

@@ -1,7 +1,8 @@
 import { graphql } from "~/utils/graphql";
 import { ActionBlockFragment } from "../ActionBlock/ActionBlock.query";
-import { BlogsSectionBlockFragment } from "../BlogsSectionBlock/BlogsSectionBlock.query";
+import { BlogListBlockFragment } from "../BlogListBlock/BlogListBlock.query";
 import { EventsListBlockFragment } from "../EventsListBlock/EventsListBlock.query";
+import { GalleryBlockFragment } from "../GalleryBlock/GalleryBlock.query";
 import { ImageGridBlockFragment } from "../ImageGridBlock/ImageGridBlock.query";
 import { LogoGridBlockFragment } from "../LogoGridBlock/LogoGridBlock.query";
 import { PageListBlockFragment } from "../PageListBlock/PageListBlock.query";
@@ -52,10 +53,11 @@ export const GroupingItemFragment = graphql(
       sections {
         __typename
         ...ActionBlockRecordFragment
-        ...BlogsSectionBlockFragment
+        ...BlogListBlockFragment
         ...CodeBlockFragment
         ...EmbedBlockFragment
         ...EventsListBlockFragment
+        ...GalleryBlockFragment
         ...ImageBlockFragment
         ...ImageGridBlockFragment
         ...LogoGridBlockFragment
@@ -72,10 +74,11 @@ export const GroupingItemFragment = graphql(
   `,
   [
     ActionBlockFragment,
-    BlogsSectionBlockFragment,
+    BlogListBlockFragment,
     CodeBlockFragment,
     EmbedBlockFragment,
     EventsListBlockFragment,
+    GalleryBlockFragment,
     ImageBlockFragment,
     ImageGridBlockFragment,
     LogoGridBlockFragment,

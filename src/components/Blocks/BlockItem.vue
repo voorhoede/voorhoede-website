@@ -3,8 +3,10 @@ import type { BlockRecord } from "./types";
 import type { BackgroundColorValue } from "~/types/styling";
 import { BackgroundColor } from "~/types/styling";
 import ActionBlock from "./ActionBlock/ActionBlock.vue";
-import BlogsSectionBlock from "./BlogsSectionBlock/BlogsSectionBlock.vue";
+import BlogListBlock from "./BlogListBlock/BlogListBlock.vue";
 import EventsListBlock from "./EventsListBlock/EventsListBlock.vue";
+import GalleryBlock from "./GalleryBlock/GalleryBlock.vue";
+import GlossaryListBlock from "./GlossaryListBlock/GlossaryListBlock.vue";
 import GroupingBlock from "./GroupingBlock/GroupingBlock.vue";
 import ImageGridBlock from "./ImageGridBlock/ImageGridBlock.vue";
 import LocationsListBlock from "./LocationsListBlock/LocationsListBlock.vue";
@@ -96,7 +98,7 @@ const videoBlock = computed(() =>
     v-if="props.block?.__typename === 'ActionBlockRecord'"
     :data="props.block"
   />
-  <BlogsSectionBlock
+  <BlogListBlock
     v-else-if="props.block?.__typename === 'BlogListBlockRecord'"
     :data="props.block"
   />
@@ -115,6 +117,14 @@ const videoBlock = computed(() =>
   />
   <EventsListBlock
     v-else-if="props.block?.__typename === 'EventsListRecord'"
+    :data="props.block"
+  />
+  <GalleryBlock
+    v-else-if="props.block?.__typename === 'GalleryBlockRecord'"
+    :data="props.block"
+  />
+  <GlossaryListBlock
+    v-else-if="props.block?.__typename === 'GlossaryListRecord'"
     :data="props.block"
   />
   <GroupingBlock

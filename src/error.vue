@@ -22,7 +22,14 @@
 
 <script setup lang="ts">
 import { EventsListBlockFragment } from '~/components/Blocks/EventsListBlock/EventsListBlock.query';
-import { GroupingBlockFragment } from '~/components/Blocks/GroupingBlock/GroupingBlock.query';
+import { GalleryBlockFragment } from '~/components/Blocks/GalleryBlock/GalleryBlock.query';
+import { GlossaryListBlockFragment } from '~/components/Blocks/GlossaryListBlock/GlossaryListBlock.query';
+import {
+  CodeBlockFragment,
+  EmbedBlockFragment,
+  GroupingBlockFragment,
+  TestimonialBlockFragment,
+} from '~/components/Blocks/GroupingBlock/GroupingBlock.query';
 import { ImageGridBlockFragment } from '~/components/Blocks/ImageGridBlock/ImageGridBlock.query';
 import { LogoGridBlockFragment } from '~/components/Blocks/LogoGridBlock/LogoGridBlock.query';
 import { PageHeaderBlockFragment } from '~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query';
@@ -33,6 +40,12 @@ import { TeamGalleryBlockFragment } from '~/components/Blocks/TeamGalleryBlock/T
 import { TextBlockFragment } from '~/components/Blocks/TextBlock/TextBlock.query';
 import { TextImageBlockFragment } from '~/components/Blocks/TextImageBlock/TextImageBlock.query';
 import { ActionBlockFragment } from '~/components/Blocks/ActionBlock/ActionBlock.query';
+import { BlogListBlockFragment } from '~/components/Blocks/BlogListBlock/BlogListBlock.query';
+import {
+  ImageBlockFragment,
+  VideoBlockFragment,
+  VideoEmbedBlockFragment,
+} from '~/components/Blocks/shared/structuredText.query';
 import Blocks from '~/components/Blocks/Blocks.vue';
 
 const { $i18n } = useNuxtApp();
@@ -46,8 +59,14 @@ const query = graphql(
         bodyBlocks {
           __typename
           ...ActionBlockRecordFragment
+          ...BlogListBlockFragment
+          ...CodeBlockFragment
+          ...EmbedBlockFragment
           ...EventsListBlockFragment
+          ...GalleryBlockFragment
+          ...GlossaryListBlockFragment
           ...GroupingBlockFragment
+          ...ImageBlockFragment
           ...ImageGridBlockFragment
           ...LogoGridBlockFragment
           ...PageHeaderBlockFragment
@@ -55,16 +74,25 @@ const query = graphql(
           ...PagePartialBlockFragment
           ...ReachOutBlockFragment
           ...TeamGalleryBlockFragment
+          ...TestimonialBlockFragment
           ...TextBlockFragment
           ...TextImageBlockFragment
+          ...VideoBlockFragment
+          ...VideoEmbedBlockFragment
         }
       }
     }
   `,
   [
     ActionBlockFragment,
+    BlogListBlockFragment,
+    CodeBlockFragment,
+    EmbedBlockFragment,
     EventsListBlockFragment,
+    GalleryBlockFragment,
+    GlossaryListBlockFragment,
     GroupingBlockFragment,
+    ImageBlockFragment,
     ImageGridBlockFragment,
     LogoGridBlockFragment,
     PageHeaderBlockFragment,
@@ -72,8 +100,11 @@ const query = graphql(
     PagePartialBlockFragment,
     ReachOutBlockFragment,
     TeamGalleryBlockFragment,
+    TestimonialBlockFragment,
     TextBlockFragment,
     TextImageBlockFragment,
+    VideoBlockFragment,
+    VideoEmbedBlockFragment,
   ],
 );
 

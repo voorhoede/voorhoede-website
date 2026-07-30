@@ -20,7 +20,7 @@
         </div>
 
         <div class="team-gallery-member__details">
-          <app-link
+          <AppLink
             :to="
               $localeUrl({ name: 'team-slug', params: { slug: member.slug } })
             "
@@ -33,7 +33,7 @@
             >
               {{ member.name }}
             </p>
-          </app-link>
+          </AppLink>
           <span
             v-if="member.jobTitle"
             class="body-detail"
@@ -50,6 +50,8 @@
 import { ref } from "vue";
 import type { TeamGalleryBlockFragment } from "./TeamGalleryBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
+import AppLink from "~/components/app-link/app-link.vue";
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
 
 const props = defineProps<{
   data: FragmentOf<typeof TeamGalleryBlockFragment>;

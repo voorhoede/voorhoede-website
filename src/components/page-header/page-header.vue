@@ -72,6 +72,8 @@
 </template>
 
 <script setup>
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
+
   const props = defineProps({
     headline: {
       type: String,
