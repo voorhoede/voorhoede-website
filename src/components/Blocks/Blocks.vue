@@ -33,10 +33,10 @@ const props = defineProps<{
 
 <style scoped>
 .block:not(:has(.page-header)):not(:last-of-type) {
-  margin-bottom: var(--spacing-larger);
+  padding-bottom: var(--spacing-larger);
 
   @media (min-width: 720px) {
-    margin-bottom: var(--spacing-huge);
+    padding-bottom: var(--spacing-huge);
   }
 }
 

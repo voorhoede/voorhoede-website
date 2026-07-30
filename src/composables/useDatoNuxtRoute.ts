@@ -16,9 +16,6 @@ export function useDatoNuxtRoute(page: Page) {
     case 'BlogPostRecord': {
       return { name: 'language-blog-slug', params: { ...sharedParams, slug: page.slug } }
     }
-    case 'CaseItemRecord': {
-      return { name: 'language-cases-slug', params: { ...sharedParams, slug: page.slug } }
-    }
     case 'EventRecord': {
       return { name: 'language-events-slug', params: { ...sharedParams, slug: page.slug } }
     }

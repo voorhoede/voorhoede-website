@@ -41,12 +41,13 @@
           <h3 v-if="item.title" class="image-card-grid-mosaic__cell-title h3">
             {{ item.title }}
           </h3>
-          <StructuredTextBlock
+          <div
             v-if="item.body"
-            paragraph-variant="body-small"
-            :content="item.body"
-          />
-          <div v-if="item.cta" >
+            class="image-card-grid-mosaic__body body-small"
+          >
+            <StructuredText :data="item.body" />
+          </div>
+          <div v-if="item.cta">
             <ActionBlock
               class="image-card-grid__link"
               :data="item.cta"
@@ -69,7 +70,15 @@
       {{ data.title }}
     </h2>
     <ul class="image-card-grid__list">
-      <li v-for="item in items" :key="item.id" class="image-card-grid__card">
+      <li
+        v-for="item in cardsWithOrientation"
+        :key="item.id"
+        class="image-card-grid__card"
+        :class="{
+          'image-card-grid__card--full-width': item.isFullWidth,
+          'image-card-grid__card--image-end': item.imageEnd,
+        }"
+      >
         <DatoImage
           class="image-card-grid__image"
           :src="item.image.url"
@@ -84,11 +93,9 @@
             {{ item.title }}
           </h3>
 
-          <StructuredTextBlock
-            v-if="item.body?.value"
-            class="image-card-grid__body"
-            :content="item.body"
-          />
+          <div v-if="item.body?.value" class="image-card-grid__body body">
+            <StructuredText :data="item.body" />
+          </div>
 
           <div v-if="item.cta" class="image-card-grid__link-container">
             <ActionBlock class="image-card-grid__link" :data="item.cta" />
@@ -106,7 +113,9 @@ import type {
 } from "./ImageGridBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import { BackgroundColor, type BackgroundColorValue } from "~/types/styling";
+import type { CdaStructuredTextValue } from "datocms-structured-text-utils";
 import ActionBlock from "~/components/Blocks/ActionBlock/ActionBlock.vue";
+import StructuredText from "~/components/Core/StructuredText/StructuredText.vue";
 
 const props = withDefaults(
   defineProps<{
@@ -121,8 +130,32 @@ const props = withDefaults(
 const data = readFragment<typeof ImageGridBlockFragment>(props.data);
 
 const items = computed(() =>
-  data.items.map((item) => readFragment<typeof ImageGridItemFragment>(item)),
+  data.items.map((item) => {
+    const resolved = readFragment<typeof ImageGridItemFragment>(item);
+    return {
+      ...resolved,
+      body: resolved.body
+        ? (resolved.body as unknown as CdaStructuredTextValue)
+        : null,
+    };
+  }),
 );
+
+/** Within each run of consecutive full-width cards, odd indices flip to text→image. */
+const cardsWithOrientation = computed(() => {
+  let runIndex = 0;
+  return items.value.map((item, index, list) => {
+    if (!item.isFullWidth) {
+      runIndex = 0;
+      return { ...item, imageEnd: false };
+    }
+    const prevFullWidth = index > 0 && Boolean(list[index - 1]?.isFullWidth);
+    if (!prevFullWidth) runIndex = 0;
+    const imageEnd = runIndex % 2 === 1;
+    runIndex += 1;
+    return { ...item, imageEnd };
+  });
+});
 
 const theme = computed(() => props.theme ?? BackgroundColor.None);
 
@@ -213,6 +246,18 @@ const cardImageSizes = computed(() =>
   margin-bottom: var(--spacing-smaller);
 }
 
+/* Keep Core StructuredText spacing compact inside mosaic/card cells */
+.image-card-grid-mosaic__body :deep(.structured-text__heading),
+.image-card-grid__body :deep(.structured-text__heading) {
+  margin-top: 0;
+  margin-bottom: var(--spacing-smaller);
+}
+
+.image-card-grid-mosaic__body :deep(.structured-text__list > li + li),
+.image-card-grid__body :deep(.structured-text__list > li + li) {
+  margin-top: var(--spacing-smaller);
+}
+
 @media (min-width: 720px) {
   .image-card-grid-mosaic__item {
     height: 360px;
@@ -246,6 +291,7 @@ const cardImageSizes = computed(() =>
 .image-card-grid {
   --image-offset: 150px;
   --horizontal-image-width: 200px;
+  padding-top: var(--spacing-large);
 }
 
 .image-card-grid__title {
@@ -279,6 +325,11 @@ const cardImageSizes = computed(() =>
   margin-top: var(--image-offset);
 }
 
+/* Double the space of a regular card (two card slots). */
+.image-card-grid__card--full-width {
+  flex-basis: calc(40rem + var(--spacing-large));
+}
+
 .image-card-grid__image {
   margin-top: calc(-1 * var(--image-offset));
   align-self: center;
@@ -295,6 +346,10 @@ const cardImageSizes = computed(() =>
 .image-card-grid__body {
   margin-top: var(--spacing-smaller);
   margin-bottom: var(--spacing-small);
+}
+
+.image-card-grid__body :deep(p + p) {
+  margin-top: var(--spacing-small);
 }
 
 :deep(.image-card-grid__link) {
@@ -316,6 +371,10 @@ const cardImageSizes = computed(() =>
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .image-card-grid--horizontal .image-card-grid__card--full-width {
+    grid-column: span 2;
+  }
 }
 
 @media (min-width: 1100px) {
@@ -330,6 +389,14 @@ const cardImageSizes = computed(() =>
     flex-direction: row;
   }
 
+  .image-card-grid--horizontal .image-card-grid__card--image-end {
+    margin-left: 0;
+    margin-right: calc(var(--horizontal-image-width) / 2);
+    padding-left: var(--spacing-medium);
+    padding-right: 0;
+    flex-direction: row-reverse;
+  }
+
   .image-card-grid--horizontal .image-card-grid__image {
     margin-top: 0;
     margin-left: calc(var(--horizontal-image-width) / -2);
@@ -337,6 +404,13 @@ const cardImageSizes = computed(() =>
     width: var(--horizontal-image-width);
     height: auto;
     flex-shrink: 0;
+  }
+
+  .image-card-grid--horizontal
+    .image-card-grid__card--image-end
+    .image-card-grid__image {
+    margin-left: var(--spacing-small);
+    margin-right: calc(var(--horizontal-image-width) / -2);
   }
 
   .image-card-grid--horizontal .image-card-grid__card-content {
@@ -351,6 +425,13 @@ const cardImageSizes = computed(() =>
 
   .image-card-grid--horizontal .image-card-grid__image {
     margin-right: var(--spacing-large);
+  }
+
+  .image-card-grid--horizontal
+    .image-card-grid__card--image-end
+    .image-card-grid__image {
+    margin-left: var(--spacing-large);
+    margin-right: calc(var(--horizontal-image-width) / -2);
   }
 }
 </style>

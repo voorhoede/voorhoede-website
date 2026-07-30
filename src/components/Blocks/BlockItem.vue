@@ -4,7 +4,6 @@ import type { BackgroundColorValue } from "~/types/styling";
 import { BackgroundColor } from "~/types/styling";
 import ActionBlock from "./ActionBlock/ActionBlock.vue";
 import BlogsSectionBlock from "./BlogsSectionBlock/BlogsSectionBlock.vue";
-import CaseListBlock from "./CaseListBlock/CaseListBlock.vue";
 import EventsListBlock from "./EventsListBlock/EventsListBlock.vue";
 import GroupingBlock from "./GroupingBlock/GroupingBlock.vue";
 import ImageGridBlock from "./ImageGridBlock/ImageGridBlock.vue";
@@ -99,10 +98,6 @@ const videoBlock = computed(() =>
   />
   <BlogsSectionBlock
     v-else-if="props.block?.__typename === 'BlogListBlockRecord'"
-    :data="props.block"
-  />
-  <CaseListBlock
-    v-else-if="props.block?.__typename === 'CaseListBlockRecord'"
     :data="props.block"
   />
   <CodeBlock

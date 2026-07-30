@@ -56,7 +56,7 @@ import { type FragmentOf, readFragment } from "~/utils/graphql";
 import { useFetchDatocmsContent } from "~/composables/useFetchDatocmsContent";
 import StructuredText from "~/components/Core/StructuredText/StructuredText.vue";
 
-const PER_PAGE = 20;
+const PER_PAGE = 12;
 
 type PageCard = {
   id: string;
@@ -154,13 +154,29 @@ const sizes = computed(() => {
   return `(min-width: 1200px) ${columnWidth}px, (min-width: 800px) ${vwWidth}vw, 90vw`;
 });
 
+const pinnedCount = computed(() => pinnedPages.value.length);
+
+// Combined list is [...pinned, ...tagged]; pinned count toward the page size.
+const pageOffset = computed(() => (currentPage.value - 1) * PER_PAGE);
+
+const pinnedOnPage = computed(() =>
+  pinnedPages.value.slice(pageOffset.value, pageOffset.value + PER_PAGE),
+);
+
+const taggedSlotsOnPage = computed(() => PER_PAGE - pinnedOnPage.value.length);
+
+const taggedSkip = computed(() =>
+  Math.max(0, pageOffset.value - pinnedCount.value),
+);
+
 const fragmentTaggedPages = computed((): PageCard[] =>
   (data.tagFilter?._allReferencingPages ?? [])
     .map(toPageCard)
     .filter(
       (page): page is PageCard =>
         page !== null && !excludeIdSet.value.has(page.id),
-    ),
+    )
+    .slice(0, taggedSlotsOnPage.value),
 );
 
 const { data: pagedData } = await useAsyncData(
@@ -172,7 +188,7 @@ const { data: pagedData } = await useAsyncData(
     }
 
     // Page 1 uses fragment data; later pages need a follow-up with skip + excludeIds
-    if (currentPage.value <= 1) {
+    if (currentPage.value <= 1 || taggedSlotsOnPage.value === 0) {
       return null;
     }
 
@@ -181,8 +197,8 @@ const { data: pagedData } = await useAsyncData(
       variables: {
         tagId: data.tagFilter.id,
         locale: route.params.language as "nl" | "en",
-        first: PER_PAGE,
-        skip: (currentPage.value - 1) * PER_PAGE,
+        first: taggedSlotsOnPage.value,
+        skip: taggedSkip.value,
         excludeIds: excludeIds.value,
       },
     });
@@ -215,16 +231,7 @@ const { data: filteredMeta } = await useAsyncData(
   { watch: [excludeIds] },
 );
 
-const taggedPages = computed((): PageCard[] => {
-  if (currentPage.value > 1) {
-    return (pagedData.value?._allReferencingPages ?? [])
-      .map(toPageCard)
-      .filter((page): page is PageCard => page !== null);
-  }
-  return fragmentTaggedPages.value;
-});
-
-const totalItems = computed(() => {
+const taggedCount = computed(() => {
   if (currentPage.value > 1 && pagedData.value?._allReferencingPagesMeta) {
     return pagedData.value._allReferencingPagesMeta.count;
   }
@@ -235,15 +242,24 @@ const totalItems = computed(() => {
     const total = data.tagFilter._allReferencingPagesMeta?.count ?? 0;
     return Math.max(0, total - excludeIds.value.length);
   }
-  return pinnedPages.value.length;
+  return 0;
 });
 
-const displayPages = computed((): PageCard[] => {
-  if (currentPage.value === 1) {
-    return [...pinnedPages.value, ...taggedPages.value];
+const taggedPages = computed((): PageCard[] => {
+  if (currentPage.value > 1) {
+    return (pagedData.value?._allReferencingPages ?? [])
+      .map(toPageCard)
+      .filter((page): page is PageCard => page !== null);
   }
-  return taggedPages.value;
+  return fragmentTaggedPages.value;
 });
+
+const totalItems = computed(() => pinnedCount.value + taggedCount.value);
+
+const displayPages = computed((): PageCard[] => [
+  ...pinnedOnPage.value,
+  ...taggedPages.value,
+]);
 
 const showSection = computed(
   () =>

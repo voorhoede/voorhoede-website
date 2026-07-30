@@ -44,7 +44,6 @@ definePageMeta({ layout: "content-page" });
 import { useFetchDatocmsContent } from "~/composables/useFetchDatocmsContent";
 import { graphql } from "~/utils/graphql";
 
-import { CaseListBlockFragment } from "~/components/Blocks/CaseListBlock/CaseListBlock.query";
 import { EventsListBlockFragment } from "~/components/Blocks/EventsListBlock/EventsListBlock.query";
 import {
   CodeBlockFragment,
@@ -91,7 +90,6 @@ const query = graphql(
           __typename
           ...ActionBlockRecordFragment
           ...BlogsSectionBlockFragment
-          ...CaseListBlockFragment
           ...CodeBlockFragment
           ...EmbedBlockFragment
           ...EventsListBlockFragment
@@ -136,7 +134,6 @@ const query = graphql(
   [
     ActionBlockFragment,
     BlogsSectionBlockFragment,
-    CaseListBlockFragment,
     CodeBlockFragment,
     EmbedBlockFragment,
     EventsListBlockFragment,

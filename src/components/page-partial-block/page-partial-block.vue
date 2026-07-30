@@ -113,12 +113,6 @@
     :mute="item.section.mute"
     :caption="item.section.caption"
   />
-  <cases-list
-    v-if="item.section.__typename === 'SectionCaseListRecord'"
-    :cases="item.section.cases"
-    :max-columns="item.section.columns"
-    :title="item.section.title"
-  />
   <text-image-block
     v-if="item.section.__typename === 'SectionTextImageRecord'"
     :text="item.section.text"

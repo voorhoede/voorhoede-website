@@ -18,9 +18,6 @@ export const ActionBlockFragment = graphql(`
           ... on BlogPostRecord {
             slug
           }
-          ... on CaseItemRecord {
-            slug
-          }
           ... on EventRecord {
             slug
           }

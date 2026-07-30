@@ -66,7 +66,7 @@ export const PageListBlockFragment = graphql(
         id
         title
         _allReferencingPages(
-          first: 20
+          first: 12
           through: { fields: { anyIn: [page_tags] } }
         ) {
           id
