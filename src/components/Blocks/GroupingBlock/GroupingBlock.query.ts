@@ -1,10 +1,10 @@
 import { graphql } from "~/utils/graphql";
 import { ActionBlockFragment } from "../ActionBlock/ActionBlock.query";
 import { BlogsSectionBlockFragment } from "../BlogsSectionBlock/BlogsSectionBlock.query";
-import { CaseListBlockFragment } from "../CaseListBlock/CaseListBlock.query";
 import { EventsListBlockFragment } from "../EventsListBlock/EventsListBlock.query";
 import { ImageGridBlockFragment } from "../ImageGridBlock/ImageGridBlock.query";
 import { LogoGridBlockFragment } from "../LogoGridBlock/LogoGridBlock.query";
+import { PageListBlockFragment } from "../PageListBlock/PageListBlock.query";
 import { ReachOutBlockFragment } from "../ReachOutBlock/ReachOutBlock.query";
 import {
   ImageBlockFragment,
@@ -53,13 +53,13 @@ export const GroupingItemFragment = graphql(
         __typename
         ...ActionBlockRecordFragment
         ...BlogsSectionBlockFragment
-        ...CaseListBlockFragment
         ...CodeBlockFragment
         ...EmbedBlockFragment
         ...EventsListBlockFragment
         ...ImageBlockFragment
         ...ImageGridBlockFragment
         ...LogoGridBlockFragment
+        ...PageListBlockFragment
         ...ReachOutBlockFragment
         ...TeamGalleryBlockFragment
         ...TestimonialBlockFragment
@@ -73,13 +73,13 @@ export const GroupingItemFragment = graphql(
   [
     ActionBlockFragment,
     BlogsSectionBlockFragment,
-    CaseListBlockFragment,
     CodeBlockFragment,
     EmbedBlockFragment,
     EventsListBlockFragment,
     ImageBlockFragment,
     ImageGridBlockFragment,
     LogoGridBlockFragment,
+    PageListBlockFragment,
     ReachOutBlockFragment,
     TeamGalleryBlockFragment,
     TestimonialBlockFragment,
@@ -97,6 +97,7 @@ export const GroupingBlockFragment = graphql(
       id
       theme
       accentPosition
+      amountOfColumns
       items {
         ...GroupingItemFragment
       }

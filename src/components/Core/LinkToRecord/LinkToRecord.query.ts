@@ -21,9 +21,6 @@ export const LinkToRecordFragment = graphql(`
         ... on BlogPostRecord {
           slug
         }
-        ... on CaseItemRecord {
-          slug
-        }
         ... on EventRecord {
           slug
         }

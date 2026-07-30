@@ -16,7 +16,6 @@ definePageMeta({ layout: "content-page" });
 
 import { withQuery } from "ufo";
 
-import { CaseListBlockFragment } from "~/components/Blocks/CaseListBlock/CaseListBlock.query";
 import { EventsListBlockFragment } from "~/components/Blocks/EventsListBlock/EventsListBlock.query";
 import {
   CodeBlockFragment,
@@ -72,7 +71,6 @@ const query = graphql(
           __typename
           ...ActionBlockRecordFragment
           ...BlogsSectionBlockFragment
-          ...CaseListBlockFragment
           ...CodeBlockFragment
           ...EmbedBlockFragment
           ...EventsListBlockFragment
@@ -98,7 +96,6 @@ const query = graphql(
   [
     ActionBlockFragment,
     BlogsSectionBlockFragment,
-    CaseListBlockFragment,
     CodeBlockFragment,
     EmbedBlockFragment,
     EventsListBlockFragment,
@@ -129,7 +126,11 @@ const { data } = await useAsyncData(route.path, async () => {
   return result.data;
 });
 
-if (data.value?.page && data.value.page.seo) {
+if (!data.value?.page) {
+  throw createError({ statusCode: 404, fatal: true });
+}
+
+if (data.value.page.seo) {
   useSeoHead({
     title: data.value.page.title,
     social: data.value.page.seo,

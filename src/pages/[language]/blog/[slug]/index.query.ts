@@ -1,7 +1,6 @@
 import { graphql } from "~/utils/graphql";
 import { ActionBlockFragment } from "~/components/Blocks/ActionBlock/ActionBlock.query";
 import { BlogsSectionBlockFragment } from "~/components/Blocks/BlogsSectionBlock/BlogsSectionBlock.query";
-import { CaseListBlockFragment } from "~/components/Blocks/CaseListBlock/CaseListBlock.query";
 import { EventsListBlockFragment } from "~/components/Blocks/EventsListBlock/EventsListBlock.query";
 import {
   CodeBlockFragment,
@@ -67,7 +66,6 @@ export const blogSlugQuery = graphql(
           __typename
           ...ActionBlockRecordFragment
           ...BlogsSectionBlockFragment
-          ...CaseListBlockFragment
           ...CodeBlockFragment
           ...EmbedBlockFragment
           ...EventsListBlockFragment
@@ -133,7 +131,6 @@ export const blogSlugQuery = graphql(
   [
     ActionBlockFragment,
     BlogsSectionBlockFragment,
-    CaseListBlockFragment,
     CodeBlockFragment,
     EmbedBlockFragment,
     EventsListBlockFragment,

@@ -5,7 +5,6 @@ import type {
 } from "./shared/structuredText.query";
 import type { ActionBlockFragment } from "./ActionBlock/ActionBlock.query";
 import type { BlogsSectionBlockFragment } from "./BlogsSectionBlock/BlogsSectionBlock.query";
-import type { CaseListBlockFragment } from "./CaseListBlock/CaseListBlock.query";
 import type { EventsListBlockFragment } from "./EventsListBlock/EventsListBlock.query";
 import type {
   CodeBlockFragment,
@@ -31,9 +30,6 @@ export type BlockRecord =
     })
   | (FragmentOf<typeof BlogsSectionBlockFragment> & {
       __typename: "BlogListBlockRecord";
-    })
-  | (FragmentOf<typeof CaseListBlockFragment> & {
-      __typename: "CaseListBlockRecord";
     })
   | (FragmentOf<typeof CodeBlockFragment> & {
       __typename: "CodeBlockRecord";

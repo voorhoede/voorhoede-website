@@ -21,11 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import { CaseListBlockFragment } from '~/components/Blocks/CaseListBlock/CaseListBlock.query';
 import { EventsListBlockFragment } from '~/components/Blocks/EventsListBlock/EventsListBlock.query';
 import { GroupingBlockFragment } from '~/components/Blocks/GroupingBlock/GroupingBlock.query';
 import { ImageGridBlockFragment } from '~/components/Blocks/ImageGridBlock/ImageGridBlock.query';
-import { LocationsListBlockFragment } from '~/components/Blocks/LocationsListBlock/LocationsListBlock.query';
 import { LogoGridBlockFragment } from '~/components/Blocks/LogoGridBlock/LogoGridBlock.query';
 import { PageHeaderBlockFragment } from '~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query';
 import { PageListBlockFragment } from '~/components/Blocks/PageListBlock/PageListBlock.query';
@@ -37,19 +35,20 @@ import { TextImageBlockFragment } from '~/components/Blocks/TextImageBlock/TextI
 import { ActionBlockFragment } from '~/components/Blocks/ActionBlock/ActionBlock.query';
 import Blocks from '~/components/Blocks/Blocks.vue';
 
+const { $i18n } = useNuxtApp();
+const locale = $i18n.locale() as 'nl' | 'en';
+
 const query = graphql(
   `
-    query Error {
-      page: notFoundPage {
+    query Error($locale: SiteLocale!) {
+      page: notFoundPage(locale: $locale) {
         title
         bodyBlocks {
           __typename
           ...ActionBlockRecordFragment
-          ...CaseListBlockFragment
           ...EventsListBlockFragment
           ...GroupingBlockFragment
           ...ImageGridBlockFragment
-          ...LocationsListBlockFragment
           ...LogoGridBlockFragment
           ...PageHeaderBlockFragment
           ...PageListBlockFragment
@@ -64,11 +63,9 @@ const query = graphql(
   `,
   [
     ActionBlockFragment,
-    CaseListBlockFragment,
     EventsListBlockFragment,
     GroupingBlockFragment,
     ImageGridBlockFragment,
-    LocationsListBlockFragment,
     LogoGridBlockFragment,
     PageHeaderBlockFragment,
     PageListBlockFragment,
@@ -80,8 +77,11 @@ const query = graphql(
   ],
 );
 
-const { data } = await useAsyncData('ErrorPage', async () => {
-  const result = await useFetchDatocmsContent({ query });
+const { data } = await useAsyncData(`ErrorPage-${locale}`, async () => {
+  const result = await useFetchDatocmsContent({
+    query,
+    variables: { locale },
+  });
   return result.data;
 });
 </script>
