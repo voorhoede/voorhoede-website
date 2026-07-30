@@ -5,6 +5,7 @@ import BlockItem from "./BlockItem.vue";
 
 const props = defineProps<{
   blocks: (BlockRecord & { backgroundColor?: BackgroundColorValue | null })[];
+  hostPageId?: string | null;
 }>();
 </script>
 
@@ -22,16 +23,20 @@ const props = defineProps<{
       'block--grey-background': block.backgroundColor === BackgroundColor.Grey,
     }"
   >
-    <BlockItem :block="block" />
+    <BlockItem
+      :block="block"
+      :theme="block.backgroundColor ?? BackgroundColor.None"
+      :host-page-id="props.hostPageId"
+    />
   </div>
 </template>
 
 <style scoped>
-.block:not(:has(.page-header)) {
-  margin-bottom: var(--spacing-larger);
+.block:not(:has(.page-header)):not(:last-of-type) {
+  padding-bottom: var(--spacing-larger);
 
   @media (min-width: 720px) {
-    margin-bottom: var(--spacing-huge);
+    padding-bottom: var(--spacing-huge);
   }
 }
 

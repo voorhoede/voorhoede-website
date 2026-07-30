@@ -1,68 +1,73 @@
-import type { BlogsSectionBlockFragment } from "./BlogsSectionBlock/BlogsSectionBlock.query";
-import type { CallToActionBlockFragment } from "./CallToActionBlock/CallToActionBlock.query";
-import type { CaseListBlockFragment } from "./CaseListBlock/CaseListBlock.query";
-import type { DialogueCtaBlockFragment } from "./DialogueCtaBlock/DialogueCtaBlock.query";
-import type { EventsSectionBlockFragment } from "./EventsSectionBlock/EventsSectionBlock.query";
-import type { GlossarySectionBlockFragment } from "./GlossarySectionBlock/GlossarySectionBlock.query";
-import type { GroupingBlockFragment } from "./GroupingBlock/GroupingBlock.query";
-import type { ImageCardGridBlockFragment } from "./ImageCardGridBlock/ImageCardGridBlock.query";
+import type {
+  ImageBlockFragment,
+  VideoBlockFragment,
+  VideoEmbedBlockFragment,
+} from "./shared/structuredText.query";
+import type { ActionBlockFragment } from "./ActionBlock/ActionBlock.query";
+import type { BlogListBlockFragment } from "./BlogListBlock/BlogListBlock.query";
+import type { EventsListBlockFragment } from "./EventsListBlock/EventsListBlock.query";
+import type { GalleryBlockFragment } from "./GalleryBlock/GalleryBlock.query";
+import type {
+  CodeBlockFragment,
+  EmbedBlockFragment,
+  GroupingBlockFragment,
+  TestimonialBlockFragment,
+} from "./GroupingBlock/GroupingBlock.query";
+import type { GlossaryListBlockFragment } from "./GlossaryListBlock/GlossaryListBlock.query";
 import type { ImageGridBlockFragment } from "./ImageGridBlock/ImageGridBlock.query";
-import type { InterstitialCtaBlockFragment } from "./InterstitialCtaBlock/InterstitialCtaBlock.query";
-import type { JobsListBlockFragment } from "./JobsListBlock/JobsListBlock.query";
+import type { LocationsListBlockFragment } from "./LocationsListBlock/LocationsListBlock.query";
 import type { LogoGridBlockFragment } from "./LogoGridBlock/LogoGridBlock.query";
-import type { NewsletterBlockFragment } from "./NewsletterBlock/NewsletterBlock.query";
 import type { PageHeaderBlockFragment } from "./PageHeaderBlock/PageHeaderBlock.query";
+import type { PageListBlockFragment } from "./PageListBlock/PageListBlock.query";
 import type { PagePartialBlockFragment } from "./PagePartialBlock/PagePartialBlock.query";
 import type { ReachOutBlockFragment } from "./ReachOutBlock/ReachOutBlock.query";
-import type { ResponsiveVideoBlockFragment } from "./ResponsiveVideoBlock/ResponsiveVideoBlock.query";
-import type { SectionImageTextRecordFragment } from "./SectionImageTextRecord/SectionImageTextRecord.query";
 import type { TeamGalleryBlockFragment } from "./TeamGalleryBlock/TeamGalleryBlock.query";
 import type { TextBlockFragment } from "./TextBlock/TextBlock.query";
 import type { TextImageBlockFragment } from "./TextImageBlock/TextImageBlock.query";
-import type { TimelineBlockFragment } from "./TimelineBlock/TimelineBlock.query";
+import type { FragmentOf } from "~/utils/graphql";
 
 export type BlockRecord =
-  | (FragmentOf<typeof BlogsSectionBlockFragment> & {
-      __typename: "SectionBlogsSectionRecord";
+  | (FragmentOf<typeof ActionBlockFragment> & {
+      __typename: "ActionBlockRecord";
     })
-  | (FragmentOf<typeof CallToActionBlockFragment> & {
-      __typename: "CallToActionRecord";
+  | (FragmentOf<typeof BlogListBlockFragment> & {
+      __typename: "BlogListBlockRecord";
     })
-  | (FragmentOf<typeof CaseListBlockFragment> & {
-      __typename: "SectionCaseListRecord";
+  | (FragmentOf<typeof CodeBlockFragment> & {
+      __typename: "CodeBlockRecord";
     })
-  | (FragmentOf<typeof DialogueCtaBlockFragment> & {
-      __typename: "SectionDialogueCtaRecord";
+  | (FragmentOf<typeof EmbedBlockFragment> & {
+      __typename: "EmbedBlockRecord";
     })
-  | (FragmentOf<typeof EventsSectionBlockFragment> & {
-      __typename: "SectionEventsSectionRecord";
+  | (FragmentOf<typeof EventsListBlockFragment> & {
+      __typename: "EventsListRecord";
     })
-  | (FragmentOf<typeof GlossarySectionBlockFragment> & {
-      __typename: "SectionGlossaryRecord";
+  | (FragmentOf<typeof GalleryBlockFragment> & {
+      __typename: "GalleryBlockRecord";
+    })
+  | (FragmentOf<typeof GlossaryListBlockFragment> & {
+      __typename: "GlossaryListRecord";
     })
   | (FragmentOf<typeof GroupingBlockFragment> & {
-      __typename: "SectionGroupingRecord";
+      __typename: "GroupingBlockRecord";
     })
-  | (FragmentOf<typeof ImageCardGridBlockFragment> & {
-      __typename: "SectionImageCardGridRecord";
+  | (FragmentOf<typeof ImageBlockFragment> & {
+      __typename: "ImageBlockRecord";
     })
   | (FragmentOf<typeof ImageGridBlockFragment> & {
-      __typename: "SectionImageGridRecord";
+      __typename: "ImageGridBlockRecord";
     })
-  | (FragmentOf<typeof InterstitialCtaBlockFragment> & {
-      __typename: "SectionInterstitialCtaRecord";
-    })
-  | (FragmentOf<typeof JobsListBlockFragment> & {
-      __typename: "SectionJobsListRecord";
+  | (FragmentOf<typeof LocationsListBlockFragment> & {
+      __typename: "LocationsListRecord";
     })
   | (FragmentOf<typeof LogoGridBlockFragment> & {
-      __typename: "SectionLogoGridRecord";
-    })
-  | (FragmentOf<typeof NewsletterBlockFragment> & {
-      __typename: "SectionNewsletterRecord";
+      __typename: "LogoGridRecord";
     })
   | (FragmentOf<typeof PageHeaderBlockFragment> & {
-      __typename: "SectionHeaderRecord";
+      __typename: "PageHeaderRecord";
+    })
+  | (FragmentOf<typeof PageListBlockFragment> & {
+      __typename: "PageListBlockRecord";
     })
   | (FragmentOf<typeof PagePartialBlockFragment> & {
       __typename: "PagePartialBlockRecord";
@@ -70,21 +75,21 @@ export type BlockRecord =
   | (FragmentOf<typeof ReachOutBlockFragment> & {
       __typename: "ReachOutBlockRecord";
     })
-  | (FragmentOf<typeof ResponsiveVideoBlockFragment> & {
-      __typename: "SectionVideoRecord";
-    })
-  | (FragmentOf<typeof SectionImageTextRecordFragment> & {
-      __typename: "SectionImageTextRecord";
-    })
   | (FragmentOf<typeof TeamGalleryBlockFragment> & {
-      __typename: "SectionTeamGalleryRecord";
+      __typename: "TeamGalleryRecord";
+    })
+  | (FragmentOf<typeof TestimonialBlockFragment> & {
+      __typename: "TestimonialBlockRecord";
     })
   | (FragmentOf<typeof TextBlockFragment> & {
       __typename: "TextBlockRecord";
     })
   | (FragmentOf<typeof TextImageBlockFragment> & {
-      __typename: "SectionTextImageRecord";
+      __typename: "TextImageBlockRecord";
     })
-  | (FragmentOf<typeof TimelineBlockFragment> & {
-      __typename: "SectionTimelineRecord";
+  | (FragmentOf<typeof VideoBlockFragment> & {
+      __typename: "VideoBlockRecord";
+    })
+  | (FragmentOf<typeof VideoEmbedBlockFragment> & {
+      __typename: "VideoEmbedBlockRecord";
     });

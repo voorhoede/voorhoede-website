@@ -1,7 +1,7 @@
 import { graphql } from "~/utils/graphql";
 
 export const TeamGalleryBlockFragment = graphql(`
-  fragment TeamGalleryBlockFragment on SectionTeamGalleryRecord {
+  fragment TeamGalleryBlockFragment on TeamGalleryRecord {
     persons {
       id
       jobTitle

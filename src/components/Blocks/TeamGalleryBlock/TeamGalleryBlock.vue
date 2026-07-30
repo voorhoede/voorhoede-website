@@ -48,10 +48,10 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
-import AppLink from "~/components/app-link/app-link.vue";
 import type { TeamGalleryBlockFragment } from "./TeamGalleryBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
+import AppLink from "~/components/app-link/app-link.vue";
+import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
 
 const props = defineProps<{
   data: FragmentOf<typeof TeamGalleryBlockFragment>;

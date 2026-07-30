@@ -13,14 +13,13 @@
       >
         <span>{{ $t('skip_link') }}</span>
       </a>
-      <nav :aria-label="data.menu.title">
+      <nav aria-label="Site menu">
         <app-header
-          :links="data.menu.links"
-          :call-to-action="data.menu.callToActions[0]"
+          :menu-items="navItems"
           :inert="focusTrapMobileMenu"
         />
         <app-mobile-menu
-          :links="[].concat(data.menu.links, data.menu.callToActions[0])"
+          :menu-items="navItems"
           :is-open="mobileMenuIsOpen"
           @open-menu="openMenu"
           @close-menu="closeMenu"
@@ -37,7 +36,6 @@
           v-if="!hideFooter"
           class="layout-content-page__footer"
           :app="data.app"
-          :footer="data.footer"
         />
       </div>
     </div>
@@ -75,6 +73,8 @@
       locale: $i18n.locale(),
     },
   });
+
+  const navItems = computed(() => data.value?.app?.menuItems ?? []);
 
   function openMenu() {
     mobileMenuIsOpen.value = true;

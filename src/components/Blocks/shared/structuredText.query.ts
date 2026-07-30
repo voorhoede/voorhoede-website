@@ -1,14 +1,58 @@
 import { graphql } from "~/utils/graphql";
-import { LinkToRecordFragment } from "~/components/Core/LinkToRecord/LinkToRecord.query";
 
-/**
- * Shared fragments for DatoCMS structured-text content rendered by
- * `structured-text-block`. The `body` wrapper (value/links/blocks) must be
- * written inline per parent record because each record's body field is a
- * distinct GraphQL type, but these leaf block fragments are reusable.
- */
+/** ST embed fragment — field-aligned with ActionBlockRecordFragment for ActionBlock.vue reuse. */
+export const ActionBlockFragment = graphql(`
+  fragment ActionBlockFragment on ActionBlockRecord {
+    id
+    items {
+      __typename
+      ... on InternalLinkRecord {
+        id
+        title
+        internalStyle: style
+        link {
+          __typename
+          ... on PageRecord {
+            slug
+          }
+          ... on BlogPostRecord {
+            slug
+          }
+          ... on EventRecord {
+            slug
+          }
+          ... on HomePageRecord {
+            id
+          }
+        }
+      }
+      ... on ExternalLinkRecord {
+        id
+        title
+        url
+        externalStyle: style
+        openInNewTab
+      }
+      ... on EmailLinkRecord {
+        id
+        title
+        emailAddress
+        emailSubject
+        emailBody
+        emailStyle: style
+      }
+      ... on PhoneLinkRecord {
+        id
+        title
+        phoneNumber
+        action
+        text
+        phoneStyle: style
+      }
+    }
+  }
+`);
 
-// References
 export const GlossaryTermLinkFragment = graphql(`
   fragment GlossaryTermLinkFragment on RecordInterface {
     __typename
@@ -23,51 +67,12 @@ export const GlossaryTermLinkFragment = graphql(`
   }
 `);
 
-// Blocks
-export const ButtonsListFragment = graphql(
-  `
-    fragment ButtonsListFragment on StructuredTextButtonsListRecord {
-      id
-      buttons {
-        ...LinkToRecordFragment
-      }
-    }
-  `,
-  [LinkToRecordFragment],
-);
-
-export const HighlightedListFragment = graphql(
-  `
-    fragment HighlightedListFragment on StructuredTextHighlightedListRecord {
-      id
-      items {
-        body {
-          value
-          links {
-            ...GlossaryTermLinkFragment
-          }
-        }
-      }
-    }
-  `,
-  [GlossaryTermLinkFragment],
-);
-
-export const CounterItemListFragment = graphql(`
-  fragment CounterItemListFragment on StructuredTextCounterItemListRecord {
+export const ImageBlockFragment = graphql(`
+  fragment ImageBlockFragment on ImageBlockRecord {
     id
-    items {
-      id
-      amount
-      label
-    }
-  }
-`);
-
-export const ImageFragment = graphql(`
-  fragment ImageFragment on ImageRecord {
-    id
+    caption
     captionPosition
+    fullWidth
     image {
       url
       alt
@@ -75,6 +80,63 @@ export const ImageFragment = graphql(`
       height
       author
       title
+    }
+  }
+`);
+
+export const VideoBlockFragment = graphql(`
+  fragment VideoBlockFragment on VideoBlockRecord {
+    id
+    title
+    autoplay
+    mute
+    loop
+    videoAsset {
+      video {
+        muxPlaybackId
+        title: alt
+        width
+        height
+        blurUpThumb
+      }
+    }
+  }
+`);
+
+export const VideoEmbedBlockFragment = graphql(`
+  fragment VideoEmbedBlockFragment on VideoEmbedBlockRecord {
+    id
+    caption
+    autoplay
+    mute
+    loop
+    video {
+      url
+      title
+      provider
+      providerUid
+      width
+      height
+      thumbnailUrl
+    }
+  }
+`);
+
+export const IconBlockFragment = graphql(`
+  fragment IconBlockFragment on IconBlockRecord {
+    id
+    name
+    title
+  }
+`);
+
+export const VariableBlockFragment = graphql(`
+  fragment VariableBlockFragment on VariableBlockRecord {
+    id
+    variable {
+      title
+      value
+      displayTitle
     }
   }
 `);
