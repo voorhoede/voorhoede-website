@@ -6,6 +6,7 @@
     "dev": "nuxt dev",
     "prebuild": "npm run generate:datocms-types",
     "build": "nuxt build",
+    "preview": "nuxt preview",
     "build-cloudflare": "node ./src/scripts/cloudflare-build.mjs",
     "lint": "eslint '**/*.vue'",
     "typecheck": "gql-tada check",
@@ -24,6 +25,7 @@
     "@std/http": "npm:@jsr/std__http@^1.1.1",
     "@std/yaml": "npm:@jsr/std__yaml@^1.1.1",
     "@urql/core": "^6.0.3",
+    "@vite-pwa/nuxt": "1.1.1",
     "@voorhoede/image-vue": "^1.1.0",
     "@voorhoede/vue-dato-video": "^3.1.0",
     "datocms-listen": "^1.0.0",
@@ -51,7 +53,8 @@
     "husky": "^9.1.7",
     "nano-staged": "^1.0.2",
     "parse5": "^8.0.1",
-    "typescript-imgix-url-params": "^0.3.1"
+    "typescript-imgix-url-params": "^0.3.1",
+    "vite-plugin-pwa": "1.3.0"
   },
   "nano-staged": {
     "*.vue": "eslint --fix --max-warnings 0"

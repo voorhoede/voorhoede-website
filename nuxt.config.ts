@@ -9,6 +9,7 @@ import { svgSymbolLoader } from './src/scripts/svg-symbol-loader';
 import { htmlToMarkdown } from './src/scripts/html-to-markdown';
 import { defaultLanguage } from './src/lib/i18n';
 import { type Plugin } from 'vite';
+import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa';
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-01-17',
@@ -16,6 +17,19 @@ export default defineNuxtConfig({
   // Disable confusing @ alias in favor of ~ alias
   alias: { '@': '' },
   css: ['@/components/app-core/index.css'],
+  // vite: {
+  //   plugins: [
+  //     VitePWA({
+  //       srcDir: "src",
+  //       filename: "lib/sw.ts",
+  //       injectRegister: "auto",
+  //       devOptions: {
+  //         enabled: true,
+  //       },
+  //       mode: "development",
+  //     }),
+  //   ],
+  // },
   nitro: {
     rollupConfig: {
       plugins: [svgSymbolLoader() as Plugin],
@@ -50,11 +64,30 @@ export default defineNuxtConfig({
       previewSecret: process.env.PREVIEW_SECRET,
     },
   },
-  modules: [plausible],
+  modules: [plausible, '@vite-pwa/nuxt'],
   plausible: {
     proxy: true,
     proxyBaseEndpoint: '/mogelijk',
   },
+  pwa: {
+    strategies: 'injectManifest',
+    // Source lives outside `public/` so nitro doesn't also copy it verbatim to
+    // the output dir, where workbox writes the built worker. Paths are relative
+    // to the vite root, which nuxt sets to `srcDir`.
+    srcDir: 'lib',
+    filename: 'sw.js',
+    injectManifest: {
+      // The worker precaches by crawling the offline pages, not from the
+      // manifest; keep the injected manifest to a minimum (it's only used to
+      // version the cache per build).
+      globPatterns: ['_nuxt/*.css'],
+    },
+    devOptions: {
+      enabled: true,
+      type: 'module',
+    },
+    mode: 'development',
+  } satisfies Partial<VitePWAOptions>,
   hooks: {
     'build:before': () =>
       Promise.all([
@@ -81,7 +114,7 @@ export default defineNuxtConfig({
         .then(() => {}),
     'nitro:config': (nitroConfig) => {
       return fetchRedirects().then((redirects) => {
-        redirects.forEach((redirect) => {
+        redirects.forEach((redirect: any) => {
           nitroConfig.routeRules![redirect.from] = {
             redirect: {
               to: redirect.to,
@@ -89,6 +122,20 @@ export default defineNuxtConfig({
             },
           };
         });
+
+        nitroConfig.routeRules = {
+          ...nitroConfig.routeRules,
+          '/en/offline': {
+            proxy: {
+              to: '/en?offline=true',
+            },
+          },
+          '/nl/offline': {
+            proxy: {
+              to: '/nl?offline=true',
+            },
+          },
+        };
       });
     },
     'nitro:init'(nitro) {
