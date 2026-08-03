@@ -1,23 +1,22 @@
 <template>
   <!--
-    Client-side only: /en and /nl are prerendered, so their HTML is identical
-    regardless of query params — the banner can only be decided in the browser,
-    once the service worker has served the cached page at `?offline=true`.
+    Client-side only: prerendered HTML is identical either way, only the
+    browser knows whether this page was served as an offline fallback.
   -->
   <client-only>
-    <page-banner v-if="hasOfflineParam" :content="bannerContent" />
+    <page-banner v-if="isOfflineFallback" :content="bannerContent" />
   </client-only>
 </template>
 
 <script setup>
 const { $t, $i18n } = useNuxtApp();
-const route = useRoute();
 
-const hasOfflineParam = computed(() => route.query.offline === 'true');
-
-const alternativeUrl = ref('https://voorhoe.de/' + $i18n.locale());
+// Set by the script the service worker injects into its fallback page
+// (see src/lib/sw.js).
+const isOfflineFallback =
+  import.meta.client && window.__OFFLINE_FALLBACK__ === true;
 
 const bannerContent = $t('page_offline', {
-  mirrorUrl: alternativeUrl.value,
+  mirrorUrl: `https://voorhoe.de/${$i18n.locale()}`,
 });
 </script>

@@ -7,9 +7,9 @@ import { fetchRedirects } from './src/scripts/fetch-redirects';
 import { fetchI18nSlugs } from './src/scripts/fetch-i18n-slugs';
 import { svgSymbolLoader } from './src/scripts/svg-symbol-loader';
 import { htmlToMarkdown } from './src/scripts/html-to-markdown';
-import { defaultLanguage } from './src/lib/i18n';
+import { defaultLanguage, locales } from './src/lib/i18n';
 import { type Plugin } from 'vite';
-import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa';
+import { type VitePWAOptions } from 'vite-plugin-pwa';
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-01-17',
@@ -17,19 +17,6 @@ export default defineNuxtConfig({
   // Disable confusing @ alias in favor of ~ alias
   alias: { '@': '' },
   css: ['@/components/app-core/index.css'],
-  // vite: {
-  //   plugins: [
-  //     VitePWA({
-  //       srcDir: "src",
-  //       filename: "lib/sw.ts",
-  //       injectRegister: "auto",
-  //       devOptions: {
-  //         enabled: true,
-  //       },
-  //       mode: "development",
-  //     }),
-  //   ],
-  // },
   nitro: {
     rollupConfig: {
       plugins: [svgSymbolLoader() as Plugin],
@@ -70,6 +57,9 @@ export default defineNuxtConfig({
     proxyBaseEndpoint: '/mogelijk',
   },
   pwa: {
+    // The site serves its own /site.webmanifest; without this the plugin
+    // generates and precaches a default manifest.webmanifest as well.
+    manifest: false,
     strategies: 'injectManifest',
     // Source lives outside `public/` so nitro doesn't also copy it verbatim to
     // the output dir, where workbox writes the built worker. Paths are relative
@@ -77,16 +67,32 @@ export default defineNuxtConfig({
     srcDir: 'lib',
     filename: 'sw.js',
     injectManifest: {
-      // The worker precaches by crawling the offline pages, not from the
-      // manifest; keep the injected manifest to a minimum (it's only used to
-      // version the cache per build).
-      globPatterns: ['_nuxt/*.css'],
+      // The offline fallback pages and everything they need to render.
+      globPatterns: [
+        '_nuxt/**/*.{js,css}',
+        'fonts/*.woff2',
+        'images/*.{svg,png,webp}',
+        'icon-sprite.svg',
+        ...locales.flatMap(({ code }) => [
+          `${code}/index.html`,
+          `${code}/_payload.json`,
+        ]),
+      ],
+      // @vite-pwa/nuxt force-adds `**/_payload.json` to the globs; keep
+      // only the fallback pages' payloads.
+      manifestTransforms: [
+        (entries) => ({
+          manifest: entries.filter(
+            (entry) =>
+              !entry.url.includes('_payload.json') ||
+              locales.some(({ code }) =>
+                new RegExp(`^/?${code}/_payload\\.json$`).test(entry.url),
+              ),
+          ),
+          warnings: [],
+        }),
+      ],
     },
-    devOptions: {
-      enabled: true,
-      type: 'module',
-    },
-    mode: 'development',
   } satisfies Partial<VitePWAOptions>,
   hooks: {
     'build:before': () =>
@@ -122,20 +128,6 @@ export default defineNuxtConfig({
             },
           };
         });
-
-        nitroConfig.routeRules = {
-          ...nitroConfig.routeRules,
-          '/en/offline': {
-            proxy: {
-              to: '/en?offline=true',
-            },
-          },
-          '/nl/offline': {
-            proxy: {
-              to: '/nl?offline=true',
-            },
-          },
-        };
       });
     },
     'nitro:init'(nitro) {
