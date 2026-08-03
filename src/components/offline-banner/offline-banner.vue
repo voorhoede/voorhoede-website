@@ -1,8 +1,4 @@
 <template>
-  <!--
-    Client-side only: prerendered HTML is identical either way, only the
-    browser knows whether this page was served as an offline fallback.
-  -->
   <client-only>
     <page-banner v-if="isOfflineFallback" :content="bannerContent" />
   </client-only>
