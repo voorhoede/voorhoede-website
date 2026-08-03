@@ -30,10 +30,6 @@ precacheAndRoute(
   {
     // Nuxt requests payloads as `_payload.json?<build-id>`; match regardless.
     ignoreURLParametersMatching: [/.*/],
-    // Match verbatim only, or workbox's URL variations (`/x/` ->
-    // `/x/index.html`) would serve the fallback pages on navigations.
-    directoryIndex: false,
-    cleanURLs: false,
   },
 );
 
