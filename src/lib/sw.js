@@ -37,15 +37,17 @@ precacheAndRoute(
   },
 );
 
+function localeFromPathname(pathname) {
+  const [, segment] = pathname.split('/');
+  return locales.some(({ code }) => code === segment)
+    ? segment
+    : defaultLanguage;
+}
+
 setCatchHandler(async ({ request, url }) => {
   if (request.destination !== 'document') return Response.error();
 
-  const locale =
-    locales.find(({ code }) => url.pathname.startsWith(`/${code}`))?.code ??
-    defaultLanguage;
-
-  console.log(url.pathname, url.search, locale);
-
+  const locale = localeFromPathname(url.pathname);
   const page = await matchPrecache(`/${locale}/index.html`);
   if (!page) return Response.error();
 
@@ -54,8 +56,8 @@ setCatchHandler(async ({ request, url }) => {
   // so <offline-banner> renders.
   const html = await page.text();
   const body = html.replace(
-    /<head([^>]*)>/,
-    `<head$1><script>window.__OFFLINE_FALLBACK__=true;history.replaceState(null,"","/${locale}/")</script>`,
+    '</head>',
+    `<script>window.__OFFLINE_FALLBACK__=true;history.replaceState(null,"","/${locale}/")</script></head>`,
   );
 
   // Fresh headers: the precached response describes the original body, and
