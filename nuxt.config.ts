@@ -7,8 +7,9 @@ import { fetchRedirects } from './src/scripts/fetch-redirects';
 import { fetchI18nSlugs } from './src/scripts/fetch-i18n-slugs';
 import { svgSymbolLoader } from './src/scripts/svg-symbol-loader';
 import { htmlToMarkdown } from './src/scripts/html-to-markdown';
-import { defaultLanguage } from './src/lib/i18n';
+import { defaultLanguage, locales } from './src/lib/i18n';
 import { type Plugin } from 'vite';
+import { type VitePWAOptions } from 'vite-plugin-pwa';
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-01-17',
@@ -50,11 +51,49 @@ export default defineNuxtConfig({
       previewSecret: process.env.PREVIEW_SECRET,
     },
   },
-  modules: [plausible],
+  modules: [plausible, '@vite-pwa/nuxt'],
   plausible: {
     proxy: true,
     proxyBaseEndpoint: '/mogelijk',
   },
+  pwa: {
+    // The site serves its own /site.webmanifest; without this the plugin
+    // generates and precaches a default manifest.webmanifest as well.
+    manifest: false,
+    strategies: 'injectManifest',
+    // Source lives outside `public/` so nitro doesn't also copy it verbatim to
+    // the output dir, where workbox writes the built worker. Paths are relative
+    // to the vite root, which nuxt sets to `srcDir`.
+    srcDir: 'lib',
+    filename: 'sw.js',
+    injectManifest: {
+      // The offline fallback pages and everything they need to render.
+      globPatterns: [
+        '_nuxt/**/*.{js,css}',
+        'fonts/*.woff2',
+        'images/*.{svg,png,webp}',
+        'icon-sprite.svg',
+        ...locales.flatMap(({ code }) => [
+          `${code}/index.html`,
+          `${code}/_payload.json`,
+        ]),
+      ],
+      // @vite-pwa/nuxt force-adds `**/_payload.json` to the globs; keep
+      // only the fallback pages' payloads.
+      manifestTransforms: [
+        (entries) => ({
+          manifest: entries.filter(
+            (entry) =>
+              !entry.url.includes('_payload.json') ||
+              locales.some(({ code }) =>
+                new RegExp(`^/?${code}/_payload\\.json$`).test(entry.url),
+              ),
+          ),
+          warnings: [],
+        }),
+      ],
+    },
+  } satisfies Partial<VitePWAOptions>,
   hooks: {
     'build:before': () =>
       Promise.all([
@@ -81,7 +120,7 @@ export default defineNuxtConfig({
         .then(() => {}),
     'nitro:config': (nitroConfig) => {
       return fetchRedirects().then((redirects) => {
-        redirects.forEach((redirect) => {
+        redirects.forEach((redirect: any) => {
           nitroConfig.routeRules![redirect.from] = {
             redirect: {
               to: redirect.to,
