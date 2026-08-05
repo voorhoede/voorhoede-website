@@ -26,6 +26,7 @@
 <script setup lang="ts">
 import type { LocationsListBlockFragment } from "./LocationsListBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
+import LinkCard from "~/components/link-card/link-card.vue";
 
 const props = defineProps<{
   data: FragmentOf<typeof LocationsListBlockFragment>;

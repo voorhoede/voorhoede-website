@@ -37,7 +37,7 @@
       </li>
     </ul>
 
-    <pagination-nav
+    <PaginationNav
       v-if="totalItems > PER_PAGE"
       :total-items="totalItems"
       :current-page="currentPage"
@@ -55,6 +55,8 @@ import { PageListBlockPagesQuery } from "./PageListBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
 import { useFetchDatocmsContent } from "~/composables/useFetchDatocmsContent";
 import StructuredText from "~/components/Core/StructuredText/StructuredText.vue";
+import LinkCard from "~/components/link-card/link-card.vue";
+import PaginationNav from "~/components/pagination-nav/pagination-nav.vue";
 
 const PER_PAGE = 12;
 
