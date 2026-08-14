@@ -4,6 +4,7 @@ import { graphql } from "~/utils/graphql";
 export const ActionBlockFragment = graphql(`
   fragment ActionBlockRecordFragment on ActionBlockRecord {
     id
+    alignment
     items {
       __typename
       ... on InternalLinkRecord {

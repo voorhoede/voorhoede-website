@@ -20,6 +20,7 @@ type ActionBlockRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
+  alignment: String
   createdAt: DateTime!
   id: ItemId!
   items: [ActionBlockModelItemsField!]!
@@ -5627,6 +5628,7 @@ input PersonModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
+  meet: LinkFilter
   meetUrl: StringFilter
   image: FileFilter
   employmentStatus: StringFilter
@@ -5635,7 +5637,6 @@ input PersonModelFilter {
   lastName: StringFilter
   jobTitle: StringFilter
   slug: SlugFilter
-  meet: LinkFilter
   OR: [PersonModelFilter]
   AND: [PersonModelFilter]
 }

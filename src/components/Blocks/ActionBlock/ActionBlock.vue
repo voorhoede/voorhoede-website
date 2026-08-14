@@ -2,6 +2,7 @@
   <div
     v-if="actions.length"
     class="action-block"
+    :class="`action-block--${data.alignment ?? 'left'}`"
   >
     <template
       v-for="action in actions"
@@ -179,6 +180,14 @@ function trackAction(href: string) {
   flex-wrap: wrap;
   align-items: center;
   gap: var(--spacing-small);
+}
+
+.action-block--center {
+  justify-content: center;
+}
+
+.action-block--right {
+  justify-content: flex-end;
 }
 
 .action-block__link {
