@@ -5,7 +5,7 @@
     :class="[
       'grouping-block',
       'grid',
-      `grouping-block--${data.theme}`,
+      `background--${data.theme}`,
       {
         'grouping-block--with-accent': data.accentPosition !== 'none',
         'grouping-block--with-theme': data.theme !== 'none',
@@ -14,7 +14,6 @@
   >
     <div
       :class="['grouping-block-wrapper', `accent--${data.accentPosition}`]"
-      :style="{ '--amount-of-columns': amountOfColumns }"
     >
       <div
         v-for="(section, index) in item.sections"
@@ -48,10 +47,7 @@ const props = defineProps<{
 
 const data = readFragment<typeof GroupingBlockFragment>(props.data);
 
-const amountOfColumns = computed(() => {
-  const value = data.amountOfColumns ?? 1;
-  return Math.min(4, Math.max(1, value));
-});
+
 
 const items = computed(() =>
   data?.items.map((item) => {
@@ -64,6 +60,7 @@ const items = computed(() =>
 <style scoped>
 .grouping-block {
   grid-column: var(--grid-page);
+  padding-block-start: var(--spacing-larger);
 
   &.grouping-block--with-theme {
     padding-block-end: var(--spacing-larger);
@@ -143,6 +140,20 @@ const items = computed(() =>
       right: 0;
     }
   }
+}
+
+.background--grey {
+  margin-top: var(--spacing-huge);
+  padding-block-end: var(--spacing-medium);
+}
+
+.background--grey {
+  background-color: var(--fog);
+}
+
+.background--pastel-yellow,
+.background--yellow {
+  background-color: var(--bg-pastel);
 }
 
 @media (min-width: 1400px) {

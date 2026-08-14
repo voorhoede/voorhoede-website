@@ -91,8 +91,6 @@ const structuredText = computed(
 
 .text-image-block--default .layout__item--image {
   width: 100%;
-  height: auto;
-  object-fit: contain;
 }
 
 .text-image-block--default .layout__item {

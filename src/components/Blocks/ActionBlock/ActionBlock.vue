@@ -177,6 +177,7 @@ function trackAction(href: string) {
 .action-block {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: var(--spacing-small);
 }
 
