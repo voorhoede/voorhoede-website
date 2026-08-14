@@ -1,6 +1,7 @@
 import { graphql } from "~/utils/graphql";
 import { ActionBlockFragment } from "../ActionBlock/ActionBlock.query";
 import { GlossaryTermLinkFragment } from "../shared/structuredText.query";
+import { LinkToRecordFragment } from "~/components/Core/LinkToRecord/LinkToRecord.query";
 
 export const ImageGridItemFragment = graphql(
   `
@@ -45,10 +46,17 @@ export const ImageGridBlockFragment = graphql(
       title
       layout
       cardOrientation
+      backgroundColor
+      text {
+        value
+        blocks {
+          ...LinkToRecordFragment
+        }
+      }
       items {
         ...ImageGridItemFragment
       }
     }
   `,
-  [ImageGridItemFragment],
+  [ImageGridItemFragment, LinkToRecordFragment],
 );

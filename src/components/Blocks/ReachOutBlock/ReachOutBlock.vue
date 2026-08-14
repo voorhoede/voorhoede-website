@@ -4,6 +4,7 @@
       class="reach-out-block__content"
       :class="{
         'reach-out-block__content--full-width': itemContentIsFullWidth,
+        'reach-out-block__content--person': isPersonLayout,
       }"
     >
       <div
@@ -222,7 +223,7 @@ const itemContentIsFullWidth = computed(
 }
 
 @media (min-width: 1000px) {
-  .reach-out-block__person {
+  .reach-out-block__content--person {
     grid-column-start: 8;
     grid-column-end: 47;
   }

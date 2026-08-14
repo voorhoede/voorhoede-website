@@ -103,6 +103,9 @@
         </div>
       </li>
     </ul>
+    <div v-if="text" class="image-card-grid__text body">
+      <StructuredText :data="text" />
+    </div>
   </section>
 </template>
 
@@ -157,6 +160,10 @@ const cardsWithOrientation = computed(() => {
     return { ...item, imageEnd };
   });
 });
+
+const text = computed(() =>
+  data.text ? (data.text as unknown as CdaStructuredTextValue) : null,
+);
 
 const theme = computed(() => props.theme ?? BackgroundColor.None);
 
@@ -307,6 +314,12 @@ const cardImageSizes = computed(() =>
 
 .image-card-grid__link-container {
   margin-top: auto;
+}
+
+.image-card-grid__text {
+  margin-top: var(--spacing-larger);
+  margin-inline: auto;
+  text-align: center;
 }
 
 .image-card-grid__list {

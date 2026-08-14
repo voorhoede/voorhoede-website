@@ -100,7 +100,6 @@ export const GroupingBlockFragment = graphql(
       id
       theme
       accentPosition
-      amountOfColumns
       items {
         ...GroupingItemFragment
       }

@@ -246,12 +246,16 @@ const customNodeRules = [
     const title = node.children
       .map((child) => ("value" in child ? String(child.value ?? "") : ""))
       .join("");
+    // Headings render one size down from their semantic level, so an <h2>
+    // gets the .h3 styling. Clamped to .h6, the smallest size we define.
+    const styleLevel = Math.min(node.level + 1, 6);
+
     return h(
       `h${node.level}`,
       {
         key,
         id: title ? slugify(title) : undefined,
-        class: [`h${node.level} structured-text__heading`, node.style],
+        class: [`h${styleLevel} structured-text__heading`, node.style],
       },
       children,
     );
