@@ -5,7 +5,7 @@
     :class="[
       'grouping-block',
       'grid',
-      `background--${data.theme}`,
+      `grouping-block--${data.theme}`,
       {
         'grouping-block--with-accent': data.accentPosition !== 'none',
         'grouping-block--with-theme': data.theme !== 'none',
@@ -47,8 +47,6 @@ const props = defineProps<{
 
 const data = readFragment<typeof GroupingBlockFragment>(props.data);
 
-
-
 const items = computed(() =>
   data?.items.map((item) => {
     const { id, sections } = readFragment<typeof GroupingItemFragment>(item);
@@ -80,15 +78,6 @@ const items = computed(() =>
   grid-template-columns: 1fr;
   gap: var(--spacing-larger);
   position: relative;
-}
-
-@media (min-width: 800px) {
-  .grouping-block-wrapper {
-    grid-template-columns: repeat(
-      var(--amount-of-columns, 1),
-      minmax(0, 1fr)
-    );
-  }
 }
 
 .grouping-block-item {
@@ -140,20 +129,6 @@ const items = computed(() =>
       right: 0;
     }
   }
-}
-
-.background--grey {
-  margin-top: var(--spacing-huge);
-  padding-block-end: var(--spacing-medium);
-}
-
-.background--grey {
-  background-color: var(--fog);
-}
-
-.background--pastel-yellow,
-.background--yellow {
-  background-color: var(--bg-pastel);
 }
 
 @media (min-width: 1400px) {
