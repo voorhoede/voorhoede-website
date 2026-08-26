@@ -181,37 +181,6 @@ export default defineNuxtConfig({
 
         await writeRoutesFile(routesPath, JSON.stringify(routes, null, 2));
 
-        // #region agent log
-        fetch(
-          'http://127.0.0.1:7378/ingest/bd12d82c-517b-4d1e-bd21-690bc7f58739',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'X-Debug-Session-Id': '35a7f2',
-            },
-            body: JSON.stringify({
-              sessionId: '35a7f2',
-              runId: 'post-fix',
-              hypothesisId: 'C',
-              location: 'nuxt.config.ts:compiled:_routes.json',
-              message: 'Sanitized Cloudflare _routes.json',
-              data: {
-                droppedCount: dropped.length,
-                dropped,
-                includeCount: routes.include.length,
-                excludeCount: routes.exclude.length,
-                maxExcludeLen: Math.max(
-                  0,
-                  ...routes.exclude.map((rule) => rule.length),
-                ),
-              },
-              timestamp: Date.now(),
-            }),
-          },
-        ).catch(() => {});
-        // #endregion
-
         if (dropped.length) {
           nitro.logger.warn(
             `[cloudflare] Removed ${dropped.length} _routes.json rule(s) over ${CF_ROUTES_RULE_MAX_CHARS} chars`,

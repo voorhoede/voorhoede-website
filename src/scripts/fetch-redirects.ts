@@ -1,16 +1,27 @@
 import { datocmsFetch } from '../lib/datocms-fetch.js';
 
-export const fetchRedirects = () => (
-  datocmsFetch({
-    query: `
-      query Redirects {
-        allRedirectRules(first: 100) {
-          from
-          to
-          statusCode
+const pageSize = 100;
+
+export const fetchRedirects = async () => {
+  const redirectRules = [];
+
+  while (true) {
+    const { data } = await datocmsFetch({
+      query: `
+        query Redirects($first: IntType!, $skip: IntType!) {
+          allRedirectRules(first: $first, skip: $skip) {
+            from
+            to
+            statusCode
+          }
         }
-      }
-    `,
-  })
-    .then(({ data }) => data.allRedirectRules)
-);
+      `,
+      variables: { first: pageSize, skip: redirectRules.length },
+    });
+    redirectRules.push(...data.allRedirectRules);
+
+    if (data.allRedirectRules.length < pageSize) {
+      return redirectRules;
+    }
+  }
+};
