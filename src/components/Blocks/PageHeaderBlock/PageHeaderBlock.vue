@@ -2,7 +2,8 @@
   <header
     class="page-header grid"
     :class="{
-      'page-header--curly-bracket': props.curlyBracket,
+      'page-header--curly-bracket':
+        props.curlyBracket || data.layout === 'full-height',
       'page-header--fill-screen': data.layout === 'full-height',
       'page-header--has-image': data.illustration,
       'page-header--has-breakout-image': props.breakOutImage,
@@ -44,6 +45,12 @@
       />
       <!-- Always visible, but has aria-hidden -->
       <SelfTypingText class="h1" :text="data.subtitle" />
+      <div
+        v-if="structuredBody"
+        class="page-header__body body animation__uncover"
+      >
+        <StructuredText :data="structuredBody" />
+      </div>
     </div>
 
     <div
@@ -73,9 +80,11 @@
 <script setup lang="ts">
 import type { PageHeaderBlockFragment } from "./PageHeaderBlock.query";
 import { type FragmentOf, readFragment } from "~/utils/graphql";
+import type { CdaStructuredTextValue } from "datocms-structured-text-utils";
 import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
 import ScrollTo from "~/components/scroll-to/scroll-to.vue";
 import SelfTypingText from "~/components/self-typing-text/self-typing-text.vue";
+import StructuredText from "~/components/Core/StructuredText/StructuredText.vue";
 
 const props = withDefaults(
   defineProps<{
@@ -86,7 +95,7 @@ const props = withDefaults(
     heading?: "headline" | "byline";
   }>(),
   {
-    curlyBracket: true,
+    curlyBracket: false,
     breakOutImage: false,
     animationDelay: 0,
     heading: "headline",
@@ -94,6 +103,10 @@ const props = withDefaults(
 );
 
 const data = readFragment<typeof PageHeaderBlockFragment>(props.data);
+
+const structuredBody = computed(() =>
+  data.body ? (data.body as unknown as CdaStructuredTextValue) : null,
+);
 </script>
 
 <style scoped>
@@ -116,6 +129,11 @@ const data = readFragment<typeof PageHeaderBlockFragment>(props.data);
 
 .page-header__text {
   grid-row: 3 / 4;
+}
+
+.page-header__body {
+  margin-top: var(--spacing-medium);
+  max-width: 40rem;
 }
 
 .page-header__image-column {

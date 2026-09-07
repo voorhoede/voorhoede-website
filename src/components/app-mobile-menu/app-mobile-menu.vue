@@ -48,16 +48,16 @@
             </app-link>
           </li>
           <li
-            v-for="(link, index) in links"
-            :key="link.href"
+            v-for="(item, index) in menuItems"
+            :key="item.id"
             class="app-mobile-menu__list-item"
             :style="{ transitionDelay: `${(index * 0.04)}s` }"
           >
             <app-link
               class="h3"
-              :to="useDatoNuxtRoute(link.link)"
+              :to="routeForItem(item)"
             >
-              {{ link.title }}
+              {{ item.title }}
             </app-link>
           </li>
         </ul>
@@ -73,7 +73,7 @@
         type: Boolean,
         required: true,
       },
-      links: {
+      menuItems: {
         type: Array,
         default: () => [],
       },
@@ -85,6 +85,12 @@
         this.$nextTick(() => {
           this.$refs.toggleButton.focus()
         })
+      },
+      routeForItem(item) {
+        if (item.__typename === 'MenuItemExternalRecord') {
+          return item.link;
+        }
+        return useDatoNuxtRoute(item.link);
       },
     },
   }
