@@ -146,47 +146,6 @@ export default defineNuxtConfig({
         await mkdir(new URL('.', outUrl), { recursive: true });
         await writeFile(outUrl, markdown, 'utf8');
       });
-
-      // Runs after the cloudflare-pages preset writes _routes.json.
-      nitro.hooks.hook('compiled', async () => {
-        const { access, readFile, writeFile: writeRoutesFile } = await import(
-          'node:fs/promises'
-        );
-        const { resolve } = await import('node:path');
-        const routesPath = resolve(nitro.options.output.dir, '_routes.json');
-        try {
-          await access(routesPath);
-        } catch {
-          return;
-        }
-
-        const routes = JSON.parse(await readFile(routesPath, 'utf8')) as {
-          version?: number;
-          include?: string[];
-          exclude?: string[];
-        };
-        const dropped = [...(routes.include ?? []), ...(routes.exclude ?? [])]
-          .filter((rule) => rule.length > CF_ROUTES_RULE_MAX_CHARS)
-          .map((rule) => ({ length: rule.length, rule: rule.slice(0, 80) }));
-
-        routes.include = (routes.include ?? []).filter(
-          (rule) => rule.length <= CF_ROUTES_RULE_MAX_CHARS,
-        );
-        routes.exclude = (routes.exclude ?? []).filter(
-          (rule) => rule.length <= CF_ROUTES_RULE_MAX_CHARS,
-        );
-        if (!routes.include.length) {
-          routes.include = ['/*'];
-        }
-
-        await writeRoutesFile(routesPath, JSON.stringify(routes, null, 2));
-
-        if (dropped.length) {
-          nitro.logger.warn(
-            `[cloudflare] Removed ${dropped.length} _routes.json rule(s) over ${CF_ROUTES_RULE_MAX_CHARS} chars`,
-          );
-        }
-      });
     },
   },
 });
