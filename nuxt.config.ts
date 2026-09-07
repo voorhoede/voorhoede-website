@@ -20,24 +20,6 @@ export default defineNuxtConfig({
     rollupConfig: {
       plugins: [svgSymbolLoader() as Plugin],
     },
-    // Cloudflare Pages: keep _routes.json excludes short/wildcarded so deploy
-    // does not hit Error 8000057 (100-char rule limit).
-    cloudflare: {
-      pages: {
-        routes: {
-          exclude: [
-            '/_nuxt/*',
-            '/images/*',
-            '/fonts/*',
-            '/*.md',
-            '/robots.txt',
-            '/site.webmanifest',
-            '/icon-sprite.svg',
-            '/blog/feed.json',
-          ],
-        },
-      },
-    },
     prerender: {
       crawlLinks: true,
       routes: [`/${defaultLanguage}/`],
