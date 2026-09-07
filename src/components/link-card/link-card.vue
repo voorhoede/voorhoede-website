@@ -1,6 +1,7 @@
 <template>
   <article class="link-card">
     <dato-image
+      v-if="image"
       class="link-card__image"
       :src="image.url"
       alt=""
@@ -47,7 +48,7 @@ import DatoImage from "~/components/Core/DatoImage/DatoImage.vue";
     props: {
       image: {
         type: Object,
-        required: true
+        default: null,
       },
       title: {
         type: String,

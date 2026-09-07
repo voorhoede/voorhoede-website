@@ -12,7 +12,9 @@
       },
     ]"
   >
-    <div :class="['grouping-block-wrapper', `accent--${data.accentPosition}`]">
+    <div
+      :class="['grouping-block-wrapper', `accent--${data.accentPosition}`]"
+    >
       <div
         v-for="(section, index) in item.sections"
         :key="index"
@@ -20,11 +22,11 @@
           'grouping-block-item',
           {
             'grouping-block-item--text-image':
-              section.__typename === 'SectionTextImageRecord',
+              section.__typename === 'TextImageBlockRecord',
           },
         ]"
       >
-        <BlockItem :block="section" />
+        <BlockItem :block="section" :theme="data.theme" />
       </div>
     </div>
   </div>
@@ -45,15 +47,10 @@ const props = defineProps<{
 
 const data = readFragment<typeof GroupingBlockFragment>(props.data);
 
-type GroupingSection = Extract<
-  BlockRecord,
-  { __typename: "SectionLogoGridRecord" | "SectionTextImageRecord" }
->;
-
 const items = computed(() =>
   data?.items.map((item) => {
     const { id, sections } = readFragment<typeof GroupingItemFragment>(item);
-    return { id, sections: (sections ?? []) as GroupingSection[] };
+    return { id, sections: (sections ?? []) as BlockRecord[] };
   }),
 );
 </script>
@@ -77,14 +74,15 @@ const items = computed(() =>
 }
 
 .grouping-block-wrapper {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: var(--spacing-larger);
   position: relative;
 }
 
 .grouping-block-item {
   position: relative;
+  min-width: 0;
 }
 
 .grouping-block--with-accent {
