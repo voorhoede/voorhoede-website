@@ -85,7 +85,7 @@ export default defineNuxtConfig({
           nitroConfig.routeRules![redirect.from] = {
             redirect: {
               to: redirect.to,
-              statusCode: redirect.httpStatusCode,
+              statusCode: redirect.statusCode,
             },
           };
         });
