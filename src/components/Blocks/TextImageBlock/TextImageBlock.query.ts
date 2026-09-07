@@ -1,16 +1,69 @@
 import { graphql } from "~/utils/graphql";
+import {
+  ActionBlockFragment,
+  GlossaryTermLinkFragment,
+  IconBlockFragment,
+  ImageBlockFragment,
+  VariableBlockFragment,
+  VideoBlockFragment,
+  VideoEmbedBlockFragment,
+} from "~/components/Blocks/shared/structuredText.query";
 
-export const TextImageBlockFragment = graphql(`
-  fragment TextImageBlockFragment on SectionTextImageRecord {
-    text {
-      value
+export const TextImageBlockFragment = graphql(
+  `
+    fragment TextImageBlockFragment on TextImageBlockRecord {
+      text {
+        value
+        links {
+          __typename
+          ... on HomePageRecord {
+            id
+            title
+          }
+          ... on PageRecord {
+            id
+            slug
+            title
+          }
+          ... on FileRecord {
+            id
+            title
+            file {
+              url
+            }
+          }
+          ...GlossaryTermLinkFragment
+        }
+        blocks {
+          __typename
+          ...ActionBlockFragment
+          ...ImageBlockFragment
+          ...VideoBlockFragment
+          ...VideoEmbedBlockFragment
+        }
+        inlineBlocks {
+          __typename
+          ...IconBlockFragment
+          ...VariableBlockFragment
+        }
+      }
+      image {
+        url
+        alt
+        width
+        height
+      }
+      layout
+      style
     }
-    image {
-      url
-      alt
-      width
-      height
-    }
-    layout
-  }
-`);
+  `,
+  [
+    ActionBlockFragment,
+    GlossaryTermLinkFragment,
+    IconBlockFragment,
+    ImageBlockFragment,
+    VariableBlockFragment,
+    VideoBlockFragment,
+    VideoEmbedBlockFragment,
+  ],
+);

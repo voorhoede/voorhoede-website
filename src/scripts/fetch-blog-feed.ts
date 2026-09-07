@@ -8,7 +8,7 @@ type BlogFeedResponse = {
       slug: string;
       publishDate: string;
       introTitle: string;
-      social: {
+      seo: {
         description: string;
       };
     }>;
@@ -33,7 +33,7 @@ export const fetchBlogFeed = () => {
           slug
           publishDate: _firstPublishedAt
           introTitle
-          social {
+          seo {
             description
           }
         }
@@ -53,7 +53,7 @@ export const fetchBlogFeed = () => {
         url: new URL(`/en/blog/${item.slug}`, baseUrl).toString(),
         date_published: new Date(item.publishDate).toISOString(),
         title: item.title,
-        summary: item.social.description,
+        summary: item.seo?.description,
         content_text: item.introTitle,
       })),
     }))
