@@ -80,12 +80,12 @@ export default defineNuxtConfig({
         // hook expects a promise with no return data
         .then(() => {}),
     'nitro:config': (nitroConfig) => {
-      return fetchRedirects().then((redirectRules) => {
-        redirectRules.forEach((redirectRule) => {
-          nitroConfig.routeRules![redirectRule.from] = {
+      return fetchRedirects().then((redirects) => {
+        redirects.forEach((redirect) => {
+          nitroConfig.routeRules![redirect.from] = {
             redirect: {
-              to: redirectRule.to,
-              statusCode: redirectRule.statusCode,
+              to: redirect.to,
+              statusCode: redirect.httpStatusCode,
             },
           };
         });
@@ -94,16 +94,8 @@ export default defineNuxtConfig({
     'nitro:init'(nitro) {
       const publicDirUrl = new URL(`file://${nitro.options.output.publicDir}/`);
       const origin = process.env.BASE_URL ?? '';
-      const CF_ROUTES_RULE_MAX_CHARS = 100;
 
       nitro.hooks.hook('prerender:generate', async (route) => {
-        // Skip percent-encoded crawl artifacts (e.g. %2F) so they never land in
-        // dist and inflate Cloudflare _routes.json excludes past 100 chars.
-        if (route.route?.includes('%')) {
-          route.skip = true;
-          return;
-        }
-
         if (
           !route.fileName?.endsWith('.html') ||
           typeof route.contents !== 'string'
