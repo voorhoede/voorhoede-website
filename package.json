@@ -20,6 +20,7 @@
     "@gql.tada/vue-support": "^1.0.2",
     "@json-feed-types/1_1": "^1.0.2",
     "@mux/mux-player": "^3.11.5",
+    "@nuxt/eslint-config": "^1.17.0",
     "@nuxtjs/plausible": "^3.0.2",
     "@std/http": "npm:@jsr/std__http@^1.1.1",
     "@std/yaml": "npm:@jsr/std__yaml@^1.1.1",
@@ -46,7 +47,6 @@
   },
   "devDependencies": {
     "@datocms/cli": "^4.0.28",
-    "@nuxt/eslint-config": "^1.16.0",
     "datocms-html-to-structured-text": "^5.1.16",
     "husky": "^9.1.7",
     "nano-staged": "^1.0.2",
