@@ -3,7 +3,11 @@
     <h1 class="sr-only">
       {{ data?.page?.title }}
     </h1>
-    <Blocks v-if="data?.page?.sections" :blocks="data.page.sections" />
+    <Blocks
+      v-if="data?.page?.bodyBlocks"
+      :blocks="data.page.bodyBlocks as BlockRecord[]"
+      :host-page-id="data.page.id"
+    />
   </div>
 </template>
 
@@ -12,26 +16,33 @@ definePageMeta({ layout: "content-page" });
 
 import { withQuery } from "ufo";
 
-import { BlogsSectionBlockFragment } from "~/components/Blocks/BlogsSectionBlock/BlogsSectionBlock.query";
-import { CallToActionBlockFragment } from "~/components/Blocks/CallToActionBlock/CallToActionBlock.query";
-import { CaseListBlockFragment } from "~/components/Blocks/CaseListBlock/CaseListBlock.query";
-import { DialogueCtaBlockFragment } from "~/components/Blocks/DialogueCtaBlock/DialogueCtaBlock.query";
-import { EventsSectionBlockFragment } from "~/components/Blocks/EventsSectionBlock/EventsSectionBlock.query";
-import { GlossarySectionBlockFragment } from "~/components/Blocks/GlossarySectionBlock/GlossarySectionBlock.query";
-import { ImageCardGridBlockFragment } from "~/components/Blocks/ImageCardGridBlock/ImageCardGridBlock.query";
+import { EventsListBlockFragment } from "~/components/Blocks/EventsListBlock/EventsListBlock.query";
+import { GalleryBlockFragment } from "~/components/Blocks/GalleryBlock/GalleryBlock.query";
+import { GlossaryListBlockFragment } from "~/components/Blocks/GlossaryListBlock/GlossaryListBlock.query";
+import {
+  CodeBlockFragment,
+  EmbedBlockFragment,
+  GroupingBlockFragment,
+  TestimonialBlockFragment,
+} from "~/components/Blocks/GroupingBlock/GroupingBlock.query";
 import { ImageGridBlockFragment } from "~/components/Blocks/ImageGridBlock/ImageGridBlock.query";
-import { SectionImageTextRecordFragment } from "~/components/Blocks/SectionImageTextRecord/SectionImageTextRecord.query";
-import { InterstitialCtaBlockFragment } from "~/components/Blocks/InterstitialCtaBlock/InterstitialCtaBlock.query";
-import { JobsListBlockFragment } from "~/components/Blocks/JobsListBlock/JobsListBlock.query";
+import { LocationsListBlockFragment } from "~/components/Blocks/LocationsListBlock/LocationsListBlock.query";
 import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGridBlock.query";
-import { NewsletterBlockFragment } from "~/components/Blocks/NewsletterBlock/NewsletterBlock.query";
 import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
+import { PageListBlockFragment } from "~/components/Blocks/PageListBlock/PageListBlock.query";
 import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
 import { ReachOutBlockFragment } from "~/components/Blocks/ReachOutBlock/ReachOutBlock.query";
-import { ResponsiveVideoBlockFragment } from "~/components/Blocks/ResponsiveVideoBlock/ResponsiveVideoBlock.query";
 import { TeamGalleryBlockFragment } from "~/components/Blocks/TeamGalleryBlock/TeamGalleryBlock.query";
 import { TextBlockFragment } from "~/components/Blocks/TextBlock/TextBlock.query";
-import { TimelineBlockFragment } from "~/components/Blocks/TimelineBlock/TimelineBlock.query";
+import { TextImageBlockFragment } from "~/components/Blocks/TextImageBlock/TextImageBlock.query";
+import { ActionBlockFragment } from "~/components/Blocks/ActionBlock/ActionBlock.query";
+import { BlogListBlockFragment } from "~/components/Blocks/BlogListBlock/BlogListBlock.query";
+import {
+  ImageBlockFragment,
+  VideoBlockFragment,
+  VideoEmbedBlockFragment,
+} from "~/components/Blocks/shared/structuredText.query";
+import type { BlockRecord } from "~/components/Blocks/types";
 
 const route = useRoute();
 
@@ -46,8 +57,9 @@ const query = graphql(
   `
     query Page($locale: SiteLocale, $slug: String) {
       page(locale: $locale, filter: { slug: { eq: $slug } }) {
+        id
         title
-        social {
+        seo {
           title
           description
           image {
@@ -57,53 +69,57 @@ const query = graphql(
             height
           }
         }
-        sections {
+        bodyBlocks {
           __typename
-          ...BlogsSectionBlockFragment
-          ...CallToActionBlockFragment
-          ...CaseListBlockFragment
-          ...DialogueCtaBlockFragment
-          ...EventsSectionBlockFragment
-          ...GlossarySectionBlockFragment
-          ...ImageCardGridBlockFragment
+          ...ActionBlockRecordFragment
+          ...BlogListBlockFragment
+          ...CodeBlockFragment
+          ...EmbedBlockFragment
+          ...EventsListBlockFragment
+          ...GalleryBlockFragment
+          ...GlossaryListBlockFragment
+          ...GroupingBlockFragment
+          ...ImageBlockFragment
           ...ImageGridBlockFragment
-          ...InterstitialCtaBlockFragment
-          ...JobsListBlockFragment
+          ...LocationsListBlockFragment
           ...LogoGridBlockFragment
-          ...NewsletterBlockFragment
           ...PageHeaderBlockFragment
+          ...PageListBlockFragment
           ...PagePartialBlockFragment
           ...ReachOutBlockFragment
-          ...ResponsiveVideoBlockFragment
-          ...SectionImageTextRecordFragment
           ...TeamGalleryBlockFragment
+          ...TestimonialBlockFragment
           ...TextBlockFragment
-          ...TimelineBlockFragment
+          ...TextImageBlockFragment
+          ...VideoBlockFragment
+          ...VideoEmbedBlockFragment
         }
       }
     }
   `,
   [
-    BlogsSectionBlockFragment,
-    CallToActionBlockFragment,
-    CaseListBlockFragment,
-    DialogueCtaBlockFragment,
-    EventsSectionBlockFragment,
-    GlossarySectionBlockFragment,
-    ImageCardGridBlockFragment,
+    ActionBlockFragment,
+    BlogListBlockFragment,
+    CodeBlockFragment,
+    EmbedBlockFragment,
+    EventsListBlockFragment,
+    GalleryBlockFragment,
+    GlossaryListBlockFragment,
+    GroupingBlockFragment,
+    ImageBlockFragment,
     ImageGridBlockFragment,
-    InterstitialCtaBlockFragment,
-    JobsListBlockFragment,
+    LocationsListBlockFragment,
     LogoGridBlockFragment,
-    NewsletterBlockFragment,
     PageHeaderBlockFragment,
+    PageListBlockFragment,
     PagePartialBlockFragment,
-    SectionImageTextRecordFragment,
     ReachOutBlockFragment,
-    ResponsiveVideoBlockFragment,
     TeamGalleryBlockFragment,
+    TestimonialBlockFragment,
     TextBlockFragment,
-    TimelineBlockFragment,
+    TextImageBlockFragment,
+    VideoBlockFragment,
+    VideoEmbedBlockFragment,
   ],
 );
 
@@ -116,10 +132,14 @@ const { data } = await useAsyncData(route.path, async () => {
   return result.data;
 });
 
-if (data.value?.page && data.value.page.social) {
+if (!data.value?.page) {
+  throw createError({ statusCode: 404, fatal: true });
+}
+
+if (data.value.page.seo) {
   useSeoHead({
     title: data.value.page.title,
-    social: data.value.page.social,
+    social: data.value.page.seo,
   });
 }
 

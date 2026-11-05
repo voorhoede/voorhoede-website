@@ -20,3 +20,9 @@ const props = defineProps<{
 
 const data = readFragment<typeof TextBlockFragment>(props.data);
 </script>
+
+<style scoped>
+.text-block {
+  padding-top: var(--spacing-small);
+}
+</style>

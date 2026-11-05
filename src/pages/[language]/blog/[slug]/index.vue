@@ -1,7 +1,5 @@
 <template>
-  <main
-    class="page-blog-post grid"
-  >
+  <main class="page-blog-post grid">
     <page-header
       class="page-blog-post__header"
       heading="headline"
@@ -18,7 +16,7 @@
       <open-in-llm class="page-blog-post__open-in-llm" />
       <social-share-buttons
         :base-url="runtimeConfig.public.baseUrl"
-        :title="data.page.socialTitle"
+        :title="data.page.seo?.title || data.page.title"
         :authors="data.page.authors"
       />
 
@@ -33,13 +31,15 @@
         <tag-list :items="tags" />
       </div>
 
-      <toc-section :items="tocItems" />
+      <toc-section
+        v-if="tocItems.length"
+        :items="tocItems"
+        class="page-blog-post__toc"
+      />
     </aside>
 
     <article class="page-blog-post-list">
-      <div
-        v-if="data.page.isArchived"
-      >
+      <div v-if="data.page.isArchived">
         <div class="page-blog-post__archived">
           <p class="font-html-blue body-big">
             {{ $t('archived_blogpost') }}
@@ -53,117 +53,22 @@
         </div>
       </div>
 
-      <text-block>
+      <text-block v-if="data.page.introTitle">
         <p class="font-html-blue testimonial">
           {{ data.page.introTitle }}
         </p>
       </text-block>
 
-      <template v-for="item in items">
-        <div
-          v-if="item.__typename === 'CallToActionRecord'"
-          :key="item.id"
-          :id="item.id"
-          class="page-blog-post-list__text"
-        >
-          <blockquote-block
-            :title="item.title"
-            :title-id="item.titleId"
-            :body="item.body"
-            :link-label="item.linkLabel"
-            :link-url="item.linkUrl"
-          />
-        </div>
-
-        <code-preview-block
-          class="page-blog-post-list--full-width"
-          v-if="item.__typename === 'CodePenBlockRecord' && item.url"
-          :url="item.url"
-          :caption="item.caption"
-          :title="item.title"
-          :type="item.previewType"
-          :key="item.id"
-          :id="item.titleId"
+      <div
+        v-for="(block, index) in bodyBlocks"
+        :key="index"
+        class="page-blog-post__body-block"
+      >
+        <BlockItem
+          :block="block"
+          :host-page-id="data.page.id"
         />
-
-        <code-block
-          :id="item.id"
-          class="page-blog-post-list--full-width"
-          v-if="item.__typename === 'CodeBlockRecord' && item.body"
-          :language="item.language"
-          :content="prismify({ body: item.body, language: item.language })"
-          :key="item.id"
-        />
-
-        <quote-block
-          :id="item.id"
-          v-if="item.quote"
-          :key="item.id"
-          :quote="item.quote"
-          :cite="item.author"
-        />
-
-        <image-with-caption
-          :id="item.id"
-          class="page-blog-post-list__image"
-          :class="{ 'page-blog-post-list--full-width' : item.fullWidth}"
-          v-if="item.__typename === 'ImageRecord' && item.image"
-          :key="item.id"
-          :image="{
-            ...item.image,
-            sizes: item.fullWidth
-              ? '(min-width: 1440px) 860px, (min-width: 720px) 75vw, 95vw'
-              : '(min-width: 1440px) 640px, (min-width: 720px) 65vw, 95vw',
-          }"
-          :caption="item.caption"
-          :caption-position="item.captionPosition"
-        />
-
-        <responsive-video
-          :id="item.id"
-          v-if="item.__typename === 'ResponsiveVideoRecord'"
-          :key="item.id"
-          :video="item.video"
-          :gif="item.gif"
-          :autoplay="item.autoplay"
-          :loop="item.loop"
-          :mute="item.autoplay"
-          :caption="item.caption"
-        />
-
-        <div
-          :id="item.id"
-          v-if="item.__typename === 'TextSectionRecord'"
-          :key="item.id"
-          class="page-blog-post-list__text"
-        >
-          <h2
-            v-if="item.title"
-            class="page-blog-post-list__title font-html-blue h2"
-            :id="item.titleId"
-          >
-            {{ item.title }}
-          </h2>
-          <rich-text-block
-            v-if="item.body"
-            :text="item.body"
-            large-text
-          />
-        </div>
-
-        <div
-          :id="item.id"
-          v-if="item.__typename === 'LinkSectionRecord'"
-          :key="item.id"
-        >
-          <app-button
-            class="page-blog-post__button"
-            :external="item.external"
-            :label="item.label"
-            :to="item.link"
-          />
-        </div>
-      </template>
+      </div>
 
       <custom-script
         v-if="data.page.onMountedScript"
@@ -194,94 +99,121 @@
       </app-link>
     </div>
 
-    <section class="page-blog-post__pivots grid">
-      <pivot-list
-        v-if="data.page.pivots && data.page.pivots.length"
-        :pivots="data.page.pivots"
-        :can-have-border-top="false"
-        :pivot-narrow="true"
-      />
-      <div class="page-blog-post__scroll-to">
-        <scroll-to direction="up" />
-      </div>
-    </section>
+    <ReachOutBlock
+      v-if="data.page.reachOut"
+      class="page-blog-post__reach-out"
+      :data="data.page.reachOut"
+    />
   </main>
 </template>
 
-<script setup>
-  definePageMeta({ layout: 'content-page' });
+<script setup lang="ts">
+definePageMeta({ layout: 'content-page' });
 
-  import slugify from '../../../../lib/slugify';
-  import query from './index.query.graphql?raw';
-  import prismjs from 'prismjs';
-  import('prismjs/components/prism-graphql');
-  import('prismjs/components/prism-rust');
+import BlockItem from '~/components/Blocks/BlockItem.vue';
+import ReachOutBlock from '~/components/Blocks/ReachOutBlock/ReachOutBlock.vue';
+import type { BlockRecord } from '~/components/Blocks/types';
+import { readFragment } from '~/utils/graphql';
+import type { TextBlockFragment } from '~/components/Blocks/TextBlock/TextBlock.query';
+import slugify from '~/lib/slugify';
+import { blogSlugQuery } from './index.query';
 
-  const { $localeUrl } = useNuxtApp();
+const { $localeUrl } = useNuxtApp();
+const runtimeConfig = useRuntimeConfig();
+const route = useRoute();
+const { params } = route;
 
-  const runtimeConfig = useRuntimeConfig();
-
-  const { params } = useRoute();
-  const { data } = await useFetchContent({
-    query,
+const { data } = await useAsyncData(route.path, async () => {
+  const result = await useFetchDatocmsContent({
+    query: blogSlugQuery,
     variables: {
-      slug: params.slug,
-      locale: params.language,
+      slug: params.slug as string,
+      locale: params.language as 'nl' | 'en',
     },
   });
 
-  useSeoHead(data.value.page);
+  return result.data;
+});
 
-  const prismify = ({ body, language }) => (
-    prismjs.languages[language]
-      ? prismjs.highlight(body, prismjs.languages[language], language)
-      : body
-  );
+if (!data.value?.page) {
+  throw createError({ statusCode: 404, statusMessage: 'Blog post not found' });
+}
 
-  const items = computed(() => {
-    return data.value.page.items
-      .map((item) => {
-        return item.title ? {
-          titleId: slugify(item.title),
-          ...item
-        } : {
-          ...item
-        }
-      })
-  })
+useSeoHead({
+  title: data.value.page.title,
+  i18nSlugs: data.value.page.i18nSlugs,
+  social: data.value.page.seo,
+});
 
-  const tocItems = computed(() => {
-    return items.value.filter(item => item.titleId)
-  })
+const bodyBlocks = computed(
+  () => (data.value?.page?.bodyBlocks ?? []) as BlockRecord[],
+);
 
-  const tags = computed(() => {
-    return data.value.page.tags.map(tag => {
-      return {
-        ...tag,
-        to: $localeUrl({ name: 'blog-tag-slug', params: { slug: tag.slug } }),
-      }
-    })
-  });
+const tags = computed(() => {
+  return (data.value?.page?.tags || []).map((tag) => ({
+    ...tag,
+    to: $localeUrl({ name: 'blog-tag-slug', params: { slug: tag.slug } }),
+  }));
+});
 
-  const relatedBlogPosts = computed(() => {
-    let concatenatedRelatedBlogPosts = data.value.page.relatedBlogPosts;
+type TocItem = { titleId: string; title: string };
 
-    if (concatenatedRelatedBlogPosts.length < 3) {
-      concatenatedRelatedBlogPosts = data.value.page.tags.reduce((out, tag) => {
-        const tagBlogPosts = tag.blogPosts.filter(tagPost => {
-          const outSlugs = out.map(outPost => outPost.slug)
-          const alreadyInRelated = outSlugs.includes(tagPost.slug)
-          return !alreadyInRelated
-        });
+type DastNode = {
+  type?: string;
+  level?: number;
+  value?: string;
+  children?: DastNode[];
+};
 
-        out = out.concat(tagBlogPosts);
+function collectHeadingText(node: DastNode): string {
+  if (typeof node.value === 'string') return node.value;
+  return (node.children ?? []).map(collectHeadingText).join('');
+}
 
-        return out
-      }, concatenatedRelatedBlogPosts)
+function walkHeadings(node: DastNode | undefined, out: TocItem[]) {
+  if (!node) return;
+  if (node.type === 'heading' && node.level === 2) {
+    const title = collectHeadingText(node).trim();
+    if (title) {
+      out.push({ titleId: slugify(title), title });
     }
+  }
+  for (const child of node.children ?? []) {
+    walkHeadings(child, out);
+  }
+}
 
-    return concatenatedRelatedBlogPosts.slice(0, 3);
-  });
+const tocItems = computed(() => {
+  const items: TocItem[] = [];
+  for (const block of bodyBlocks.value) {
+    if (block.__typename !== 'TextBlockRecord') continue;
+    const textBlock = readFragment<typeof TextBlockFragment>(block);
+    const document = (
+      textBlock.text?.value as { document?: DastNode } | null | undefined
+    )?.document;
+    walkHeadings(document, items);
+  }
+  return items;
+});
+
+const relatedBlogPosts = computed(() => {
+  if (!data.value?.page) return [];
+
+  let concatenatedRelatedBlogPosts = [...data.value.page.relatedBlogPosts];
+
+  if (concatenatedRelatedBlogPosts.length < 3) {
+    concatenatedRelatedBlogPosts = data.value.page.tags.reduce((out, tag) => {
+      const tagBlogPosts = tag.blogPosts.filter((tagPost) => {
+        const outSlugs = out.map((outPost) => outPost.slug);
+        return !outSlugs.includes(tagPost.slug);
+      });
+
+      return out.concat(tagBlogPosts);
+    }, concatenatedRelatedBlogPosts);
+  }
+
+  return concatenatedRelatedBlogPosts.slice(0, 3);
+});
 </script>
 
 <style>
@@ -293,15 +225,6 @@
 
   .page-blog-post-list > * {
     margin-bottom: var(--spacing-large);
-  }
-
-  .page-blog-post-list__image {
-    justify-content: space-between;
-    margin-bottom: var(--spacing-large);
-  }
-
-  .page-blog-post-list__title {
-    margin-bottom: var(--spacing-smaller);
   }
 
   .page-blog-post__aside {
@@ -324,40 +247,13 @@
     margin-bottom: var(--spacing-bigger);
   }
 
-  .page-blog-post__pivots {
-    position: relative;
-    grid-column: var(--grid-page);
+  .page-blog-post__reach-out {
     grid-row: 6;
-    background-color: var(--bg-pastel);
-  }
-
-  .page-blog-post__scroll-to {
-    display: none;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 55px;
-    grid-column-start: -2;
-    grid-column-end: -3;
   }
 
   .page-blog-post-list {
     grid-row: 3;
     max-width: 100%;
-  }
-
-  .page-blog-post-list em {
-    font-style: italic;
-  }
-
-  .page-blog-post-list .responsive-video,
-  .page-blog-post-list .notice {
-    max-inline-size: var(--case-content-max-width-l);
-  }
-
-  .page-blog-post-list .notice {
-    padding: unset;
-    margin-inline: var(--spacing-bigger);
   }
 
   .page-blog-post__archived {
@@ -380,10 +276,6 @@
       padding: 0 var(--spacing-larger);
     }
 
-    .page-blog-post-list .page-blog-post-list--full-width {
-      padding: 0;
-    }
-
     .page-blog-post__header,
     .page-blog-post__button {
       margin-bottom: var(--spacing-larger);
@@ -391,9 +283,6 @@
 
     .page-blog-post-list {
       grid-row: 2;
-    }
-
-    .page-blog-post-list {
       grid-column-start: 10;
       grid-column-end: 50;
     }
@@ -406,10 +295,6 @@
     .page-blog-post__link-container {
       grid-column-start: 4;
       grid-column-end: 48;
-    }
-
-    .page-blog-post__scroll-to {
-      display: block;
     }
 
     .page-blog-post__archived {

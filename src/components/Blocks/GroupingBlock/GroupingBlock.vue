@@ -12,7 +12,10 @@
       },
     ]"
   >
-    <div :class="['grouping-block-wrapper', `accent--${data.accentPosition}`]">
+    <div
+      :class="['grouping-block-wrapper', `accent--${data.accentPosition}`]"
+      :style="{ '--amount-of-columns': amountOfColumns }"
+    >
       <div
         v-for="(section, index) in item.sections"
         :key="index"
@@ -20,11 +23,11 @@
           'grouping-block-item',
           {
             'grouping-block-item--text-image':
-              section.__typename === 'SectionTextImageRecord',
+              section.__typename === 'TextImageBlockRecord',
           },
         ]"
       >
-        <BlockItem :block="section" />
+        <BlockItem :block="section" :theme="data.theme" />
       </div>
     </div>
   </div>
@@ -45,15 +48,15 @@ const props = defineProps<{
 
 const data = readFragment<typeof GroupingBlockFragment>(props.data);
 
-type GroupingSection = Extract<
-  BlockRecord,
-  { __typename: "SectionLogoGridRecord" | "SectionTextImageRecord" }
->;
+const amountOfColumns = computed(() => {
+  const value = data.amountOfColumns ?? 1;
+  return Math.min(4, Math.max(1, value));
+});
 
 const items = computed(() =>
   data?.items.map((item) => {
     const { id, sections } = readFragment<typeof GroupingItemFragment>(item);
-    return { id, sections: (sections ?? []) as GroupingSection[] };
+    return { id, sections: (sections ?? []) as BlockRecord[] };
   }),
 );
 </script>
@@ -61,7 +64,6 @@ const items = computed(() =>
 <style scoped>
 .grouping-block {
   grid-column: var(--grid-page);
-  padding-block-start: var(--spacing-larger);
 
   &.grouping-block--with-theme {
     padding-block-end: var(--spacing-larger);
@@ -77,14 +79,24 @@ const items = computed(() =>
 }
 
 .grouping-block-wrapper {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: var(--spacing-larger);
   position: relative;
 }
 
+@media (min-width: 800px) {
+  .grouping-block-wrapper {
+    grid-template-columns: repeat(
+      var(--amount-of-columns, 1),
+      minmax(0, 1fr)
+    );
+  }
+}
+
 .grouping-block-item {
   position: relative;
+  min-width: 0;
 }
 
 .grouping-block--with-accent {
