@@ -1,6 +1,13 @@
 import type { Client} from "datocms/lib/cma-client-node";
 
 export default async function (client: Client) {
+  // Idempotency guard: skip if plugin already installed
+  const plugins = await client.plugins.list();
+  if (plugins.find((p) => p.package_name === "datocms-plugin-custom-text-styles")) {
+    console.log("Plugin already installed — skipping migration");
+    return;
+  }
+
   console.log("Manage upload filters");
 
   console.log('Install plugin "Custom Text Styles"');
