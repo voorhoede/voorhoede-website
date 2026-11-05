@@ -4,13 +4,13 @@ export const fetchRedirects = () => (
   datocmsFetch({
     query: `
       query Redirects {
-        allRedirects(first: 100) {
+        allRedirectRules(first: 100) {
           from
           to
-          httpStatusCode
+          statusCode
         }
       }
     `,
   })
-    .then(({ data }) => data.allRedirects)
+    .then(({ data }) => data.allRedirectRules)
 );

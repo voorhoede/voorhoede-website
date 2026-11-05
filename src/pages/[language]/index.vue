@@ -1,7 +1,11 @@
 <template>
   <main>
     <h1 class="sr-only">{{ data?.homePage?.title }}</h1>
-    <Blocks v-if="data?.homePage?.sections" :blocks="data.homePage.sections" />
+    <Blocks
+      v-if="data?.homePage?.bodyBlocks"
+      :blocks="data.homePage.bodyBlocks as BlockRecord[]"
+      :host-page-id="data.homePage.id"
+    />
     <section class="page-index__blog-posts grid">
       <div class="grid">
         <h2
@@ -40,22 +44,15 @@ definePageMeta({ layout: "content-page" });
 import { useFetchDatocmsContent } from "~/composables/useFetchDatocmsContent";
 import { graphql } from "~/utils/graphql";
 
-import { CaseListBlockFragment } from "~/components/Blocks/CaseListBlock/CaseListBlock.query";
-import { DialogueCtaBlockFragment } from "~/components/Blocks/DialogueCtaBlock/DialogueCtaBlock.query";
-import { GroupingBlockFragment } from "~/components/Blocks/GroupingBlock/GroupingBlock.query";
-import { ImageCardGridBlockFragment } from "~/components/Blocks/ImageCardGridBlock/ImageCardGridBlock.query";
-import { LogoGridBlockFragment } from "~/components/Blocks/LogoGridBlock/LogoGridBlock.query";
-import { PageHeaderBlockFragment } from "~/components/Blocks/PageHeaderBlock/PageHeaderBlock.query";
-import { PagePartialBlockFragment } from "~/components/Blocks/PagePartialBlock/PagePartialBlock.query";
-import { ReachOutBlockFragment } from "~/components/Blocks/ReachOutBlock/ReachOutBlock.query";
-import { TextBlockFragment } from "~/components/Blocks/TextBlock/TextBlock.query";
-import { TextImageBlockFragment } from "~/components/Blocks/TextImageBlock/TextImageBlock.query";
+import { BodyBlocksFragment } from "~/components/Blocks/bodyBlocks.query";
+import type { BlockRecord } from "~/components/Blocks/types";
 
 const route = useRoute();
 const query = graphql(
   `
     query HomePage($locale: SiteLocale!) {
       homePage(locale: $locale) {
+        id
         title
         seo {
           title
@@ -67,18 +64,8 @@ const query = graphql(
             height
           }
         }
-        sections {
-          __typename
-          ...CaseListBlockFragment
-          ...DialogueCtaBlockFragment
-          ...GroupingBlockFragment
-          ...ImageCardGridBlockFragment
-          ...LogoGridBlockFragment
-          ...PageHeaderBlockFragment
-          ...PagePartialBlockFragment
-          ...ReachOutBlockFragment
-          ...TextBlockFragment
-          ...TextImageBlockFragment
+        bodyBlocks {
+          ...BodyBlocksFragment
         }
       }
 
@@ -103,18 +90,7 @@ const query = graphql(
       }
     }
   `,
-  [
-    CaseListBlockFragment,
-    DialogueCtaBlockFragment,
-    GroupingBlockFragment,
-    ImageCardGridBlockFragment,
-    LogoGridBlockFragment,
-    PageHeaderBlockFragment,
-    PagePartialBlockFragment,
-    ReachOutBlockFragment,
-    TextBlockFragment,
-    TextImageBlockFragment,
-  ],
+  [BodyBlocksFragment],
 );
 
 const { data } = await useAsyncData(route.path, async () => {

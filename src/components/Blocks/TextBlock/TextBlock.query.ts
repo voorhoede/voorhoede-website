@@ -1,10 +1,12 @@
 import { graphql } from "~/utils/graphql";
 import {
-  ButtonsListFragment,
-  CounterItemListFragment,
+  ActionBlockFragment,
   GlossaryTermLinkFragment,
-  HighlightedListFragment,
-  ImageFragment,
+  IconBlockFragment,
+  ImageBlockFragment,
+  VariableBlockFragment,
+  VideoBlockFragment,
+  VideoEmbedBlockFragment,
 } from "~/components/Blocks/shared/structuredText.query";
 
 export const TextBlockFragment = graphql(
@@ -23,23 +25,37 @@ export const TextBlockFragment = graphql(
             slug
             title
           }
+          ... on FileRecord {
+            id
+            title
+            file {
+              url
+            }
+          }
           ...GlossaryTermLinkFragment
         }
         blocks {
           __typename
-          ...ButtonsListFragment
-          ...CounterItemListFragment
-          ...HighlightedListFragment
-          ...ImageFragment
+          ...ActionBlockFragment
+          ...ImageBlockFragment
+          ...VideoBlockFragment
+          ...VideoEmbedBlockFragment
+        }
+        inlineBlocks {
+          __typename
+          ...IconBlockFragment
+          ...VariableBlockFragment
         }
       }
     }
   `,
   [
-    ButtonsListFragment,
-    CounterItemListFragment,
+    ActionBlockFragment,
     GlossaryTermLinkFragment,
-    HighlightedListFragment,
-    ImageFragment,
+    IconBlockFragment,
+    ImageBlockFragment,
+    VariableBlockFragment,
+    VideoBlockFragment,
+    VideoEmbedBlockFragment,
   ],
 );

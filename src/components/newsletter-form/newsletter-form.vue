@@ -4,8 +4,25 @@
     :class="{ 'newsletter-form--has-background': hasBackground }"
   >
     <h2 class="newsletter-form__title h3">
-      {{ $t('newsletter') }}
+      {{ title || $t('newsletter') }}
     </h2>
+
+    <div
+      v-if="hasBodySlot || body"
+      class="rich-text body-big list newsletter-form__body"
+    >
+      <slot name="body">
+        <div v-if="body" v-html="body" />
+      </slot>
+    </div>
+
+    <div
+      v-if="hasCtaSlot"
+      class="newsletter-form__ctas"
+    >
+      <slot />
+    </div>
+
     <form
       @submit="submit"
       action="/api/newsletter/"
@@ -68,7 +85,25 @@
       hasBackground: {
         type: Boolean,
         required: false
-      }
+      },
+      title: {
+        type: String,
+        required: false,
+        default: undefined,
+      },
+      body: {
+        type: String,
+        required: false,
+        default: undefined,
+      },
+    },
+    computed: {
+      hasCtaSlot() {
+        return !!this.$slots.default?.()?.length;
+      },
+      hasBodySlot() {
+        return !!this.$slots.body?.()?.length;
+      },
     },
     methods: {
       trackEvent() {
@@ -91,15 +126,32 @@
   }
 
   .newsletter-form__title {
-    grid-row: 1;
     grid-column-start: 6;
     grid-column-end: 46;
     margin-bottom: var(--spacing-medium);
     text-align: center;
   }
 
+  .newsletter-form__body {
+    grid-column-start: 6;
+    grid-column-end: 46;
+    margin-top: 0;
+    margin-bottom: var(--spacing-large);
+    text-align: center;
+  }
+
+  .newsletter-form__ctas {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-small);
+    grid-column-start: 6;
+    grid-column-end: 46;
+    margin-bottom: var(--spacing-large);
+  }
+
   .newsletter-form__form {
-    grid-row: 2;
     margin: 0 auto;
     max-width: 400px;
     text-align: left;

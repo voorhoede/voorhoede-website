@@ -1,6 +1,6 @@
 <template>
   <blockquote
-    v-if="testimonial.validated"
+    v-if="testimonial.quote"
     class="testimonial-block"
     :class="{'testimonial-block--fullwidth' : isFullWidth}"
   >
