@@ -37,6 +37,7 @@ jobs:
     permissions:
       checks: read
       contents: read
+      pull-requests: write
     steps:
       - uses: actions/checkout@v7
 
@@ -76,6 +77,39 @@ jobs:
 
       - run: npx playwright install --with-deps chromium
 
-      - run: npm run test:a11y
+      - run: npm run test:a11y -- --reporter=list,json
         env:
           A11Y_BASE_URL: ${{ steps.preview.outputs.url }}
+          PLAYWRIGHT_JSON_OUTPUT_FILE: tmp/a11y-results.json
+
+      - name: Comment a11y report on PR
+        if: ${{ !cancelled() && hashFiles('tmp/a11y-results.json') != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          URL: ${{ steps.preview.outputs.url }}
+          RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          jq -r --arg url "$URL" --arg run "$RUN" '
+            [.. | objects | select(has("specs")) | .specs[]
+              | .tests[0].results[-1] as $r
+              | { page: (.title | sub("^a11y "; "")),
+                  error: (if $r.status == "passed" then null
+                    else ($r.error.message // $r.status | gsub("\u001b\\[[0-9;]*m"; "") | split("\n")[0]) end),
+                  violations: ([$r.attachments[] | select(.name == "axe-violations.json") | .body | @base64d | fromjson] | add // []) }]
+            | map(select(.error or (.violations | length > 0))) as $bad
+            | "<!-- a11y-report -->\n## Accessibility report\n\n"
+              + "\($bad | length) of \(length) pages have issues on \($url). [Full log](\($run))\n\n"
+              + ($bad | map("- `\(.page)`: " + if .error then "❌ \(.error)"
+                  else (.violations | map("**\(.impact)** \(.id) (\(.nodes | length)x)") | join(", ")) end)
+                | join("\n"))
+          ' tmp/a11y-results.json | head -c 60000 > tmp/a11y-report.md # GitHub caps comments at 65536 chars
+
+          # update our earlier comment instead of adding a new one per push
+          id=$(gh api --paginate "repos/$GITHUB_REPOSITORY/issues/$PR/comments" \
+            --jq '.[] | select(.body | startswith("<!-- a11y-report -->")) | .id' | head -1)
+          if [ -n "$id" ]; then
+            gh api -X PATCH "repos/$GITHUB_REPOSITORY/issues/comments/$id" -F body=@tmp/a11y-report.md
+          else
+            gh api "repos/$GITHUB_REPOSITORY/issues/$PR/comments" -F body=@tmp/a11y-report.md
+          fi
