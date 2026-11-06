@@ -28,3 +28,54 @@ jobs:
       - run: npm run lint -- --max-warnings 0
 
       - run: npm run typecheck
+
+  a11y:
+    # Cloudflare Pages doesn't build PRs from forks, so there is no preview to test
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      checks: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Wait for Cloudflare Pages preview
+        id: preview
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+          BRANCH: ${{ github.head_ref }}
+        run: |
+          for _ in $(seq 60); do
+            check=$(gh api "repos/$GITHUB_REPOSITORY/commits/$SHA/check-runs" \
+              --jq '[.check_runs[] | select(.name | test("cloudflare"; "i"))][0]')
+            if [ -n "$check" ] && [ "$(jq -r .status <<< "$check")" = completed ]; then
+              conclusion=$(jq -r .conclusion <<< "$check")
+              [ "$conclusion" = success ] || { echo "Cloudflare Pages check: $conclusion"; exit 1; }
+              # prefer the URL Cloudflare reports; fall back to the branch alias (lowercased, non-alphanumerics to '-')
+              url=$(jq -r '"\(.output.summary) \(.output.text)"' <<< "$check" \
+                | grep -oE 'https://[a-z0-9-]+\.voorhoede-website\.pages\.dev' | head -1)
+              url=${url:-https://$(tr '[:upper:]' '[:lower:]' <<< "$BRANCH" | sed 's/[^a-z0-9]/-/g').voorhoede-website.pages.dev}
+              echo "Preview: $url"
+              echo "url=$url" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            sleep 20
+          done
+          echo "Timed out waiting for the Cloudflare Pages check on $SHA"
+          exit 1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: ".node-version"
+          cache: npm
+
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - run: npx playwright install --with-deps chromium
+
+      - run: npm run test:a11y
+        env:
+          A11Y_BASE_URL: ${{ steps.preview.outputs.url }}
