@@ -9,6 +9,7 @@
     "build-cloudflare": "node ./src/scripts/cloudflare-build.mjs",
     "lint": "eslint '**/*.vue'",
     "typecheck": "gql-tada check",
+    "test:a11y": "playwright test tests/a11y",
     "lint-staged": "nano-staged",
     "prepare": "husky && npm run generate:datocms-types",
     "generate:datocms-schema": "node ./src/scripts/generate-datocms-schema.mts",
@@ -46,7 +47,9 @@
     "vue-datocms": "^8.1.17"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
     "@datocms/cli": "^4.0.28",
+    "@playwright/test": "1.64.1",
     "datocms-html-to-structured-text": "^5.1.16",
     "husky": "^9.1.7",
     "nano-staged": "^1.0.2",
